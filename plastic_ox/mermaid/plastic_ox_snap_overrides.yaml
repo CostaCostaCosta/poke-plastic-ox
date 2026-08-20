@@ -1,0 +1,6 @@
+render_node_labels: true
+nodes:
+  WELL:
+    scale: 2.0
+  COTTAGE:
+    scale: 2.0

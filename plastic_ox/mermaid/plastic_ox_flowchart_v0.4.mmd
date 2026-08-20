@@ -1,0 +1,178 @@
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "background": "#ffffff",
+    "primaryColor": "#ffffff",
+    "primaryTextColor": "#111111",
+    "primaryBorderColor": "#222222",
+    "secondaryColor": "#f8fbff",
+    "secondaryTextColor": "#111111",
+    "tertiaryColor": "#eef6ea",
+    "tertiaryTextColor": "#111111",
+    "lineColor": "#333333",
+    "textColor": "#111111",
+    "edgeLabelBackground": "#ffffff",
+    "fontFamily": "Arial, Helvetica, sans-serif"
+  },
+  "flowchart": {
+    "curve": "stepAfter",
+    "nodeSpacing": 25,
+    "rankSpacing": 35,
+    "htmlLabels": true
+  }
+} }%%
+flowchart TB
+
+  subgraph OPEN["Opening → Gym 2"]
+    direction LR
+    START["Merged Start"]
+    R29["Route 29"]
+    CHERRY["Cherrygrove"]
+    R30["Route 30"]
+    R31["Route 31"]
+    RUST["Rustboro<br/>Gym 1 — Roxanne"]
+    R3["Route 3"]
+    AZA["Azalea<br/>Gym 2 — Bugsy"]
+    ILEX["Ilex Forest"]
+    R34["Route 34"]
+    GOLD["Goldenrod<br/>Hub"]
+
+    START -->|"W↔E LAND"| R29
+    R29 -->|"W↔E LAND"| CHERRY
+    CHERRY -->|"N↔S LAND"| R30
+    R30 -->|"N↔S LAND"| R31
+    R31 -->|"W↔E LAND"| RUST
+    RUST -->|"S↔N LAND"| R3
+    R3 -->|"W↔E LAND"| AZA
+    AZA -->|"W↔E FOREST"| ILEX
+    ILEX -->|"N↔S LAND"| R34
+    R34 -->|"N↔S LAND"| GOLD
+  end
+
+  R46["Route 46<br/>lower pocket only"]
+  R29 -.->|"N↔S GATE<br/>optional early branch"| R46
+
+  WELL["Slowpoke Well<br/>required before Gym 2"]
+  AZA -.->|"reserved cave warp"| WELL
+
+  R115["Route 115<br/>optional NU branch<br/>late Dark Cave access"]
+  RUST -.->|"N↔S LAND"| R115
+
+  subgraph MID["Goldenrod → Gym 6"]
+    direction LR
+    R35["Route 35"]
+    PARK["National Park"]
+    R36["Route 36"]
+    R37["Route 37"]
+    ECRU["Ecruteak<br/>Gym 3 — Morty"]
+    R118["Route 118"]
+    R119["Route 119"]
+    FORT["Fortree<br/>Gym 4 — Winona"]
+    R120["Route 120"]
+    CELA["Celadon<br/>Gym 5 — Erika"]
+    R110["Route 110"]
+    R19["Route 19"]
+    R41["Route 41<br/>Whirl Islands water region"]
+    CINN["Cinnabar Island<br/>Gym 6 — Blaine"]
+
+    R35 -->|"N↔S GATE"| PARK
+    PARK -->|"E↔W GATE"| R36
+    R36 -->|"N↔S LAND"| R37
+    R37 -->|"N↔S LAND"| ECRU
+    ECRU -->|"E↔W LAND"| R118
+    R118 -->|"N↔S LAND"| R119
+    R119 -->|"E↔W LAND"| FORT
+    FORT -->|"E↔W LAND"| R120
+    R120 -->|"E↔W LAND"| CELA
+    CELA -->|"E↔W LAND"| R110
+    R110 -->|"S↔N LAND"| R19
+    R19 -->|"S↔N WATER"| R41
+    R41 -->|"W↔E WATER"| CINN
+  end
+
+  GOLD -->|"N↔S GATE"| R35
+
+  WEATHER["Weather Institute"]
+  NM["New Mauville"]
+  WHIRL["Whirl Islands<br/>required contained dungeon"]
+  R119 -.->|"facility"| WEATHER
+  R110 -.->|"facility"| NM
+  R41 -.->|"four native cave mouths<br/>required detour"| WHIRL
+
+  subgraph LATE["Cinnabar → Mossdeep → Saffron"]
+    direction LR
+    R21["Route 21"]
+    R121["Route 121<br/>late land/water junction"]
+    LAV["Lavender<br/>Hub"]
+    R24["Route 24"]
+    R25["Route 25"]
+    COTTAGE["Sea Cottage"]
+    R104["Route 104<br/>south/coastal segment"]
+    R126["Route 126"]
+    R124["Route 124"]
+    MOSS["Mossdeep Island<br/>Gym 7 — Tate & Liza"]
+    R12["Route 12"]
+    R11["Route 11"]
+    SAFF["Saffron<br/>Silph Co.<br/>Fighting Dojo — Gym 8: Bruno<br/>Official Saffron Gym BLOCKED"]
+    R23["Route 23"]
+    VR["Victory Road"]
+    LEAGUE["Pokémon League"]
+
+    CINN -->|"N↔S WATER"| R21
+    R21 -->|"N↔S WATER<br/>rewired to Route 121 south pier"| R121
+    R121 -->|"E↔W LAND"| LAV
+
+    LAV -->|"N↔S LAND"| R24
+    R24 -->|"N/E↔W LAND"| R25
+    R25 -->|"facility"| COTTAGE
+
+    R121 -->|"W↔E LAND"| R104
+    R104 -->|"S↔N WATER"| R126
+    R126 -->|"E↔W WATER"| R124
+    R124 -->|"E↔W WATER"| MOSS
+
+    LAV -->|"S↔N LAND<br/>after Mossdeep"| R12
+    R12 -->|"W↔E LAND"| R11
+    R11 -->|"W↔E GATE"| SAFF
+    SAFF -->|"Badge 8 → north gate"| R23
+    R23 --> VR
+    VR --> LEAGUE
+  end
+
+  R125["Route 125"]
+  SHOAL["Shoal Cave<br/>optional"]
+  MOSS -.->|"N↔S WATER"| R125
+  R125 -.->|"reserved cave"| SHOAL
+
+  subgraph DARKNET["Dark Cave — sole inter-landmass connector cave"]
+    direction LR
+    DARK["Dark Cave<br/>existing interior unchanged<br/>3 exterior ports max<br/>full network late-access"]
+  end
+
+  R31 -.->|"CAVE PORT A<br/>early pocket"| DARK
+  R115 -.->|"CAVE PORT B<br/>Meteor Falls mouth rewired"| DARK
+  R120 -.->|"CAVE PORT C<br/>Scorched Slab mouth rewired"| DARK
+
+  TRAIN["Magnet Train<br/>late unlock"]
+  GOLD -.->|"TRANSIT"| TRAIN
+  TRAIN -.->|"TRANSIT"| SAFF
+
+  classDef town fill:#ffffff,stroke:#333333,stroke-width:2px,color:#111111;
+  classDef gym fill:#ffffff,stroke:#111111,stroke-width:3px,color:#111111;
+  classDef hub fill:#f8fbff,stroke:#111111,stroke-width:3px,color:#111111;
+  classDef route fill:#f7f7f7,stroke:#777777,stroke-width:1.5px,color:#111111;
+  classDef landmark fill:#eef6ea,stroke:#666666,stroke-width:1.5px,color:#111111;
+  classDef island fill:#ffffff,stroke:#111111,stroke-width:4px,color:#111111;
+  classDef cave fill:#fff7e6,stroke:#8a5a00,stroke-width:3px,color:#111111;
+  classDef optional fill:#f3f4f6,stroke:#999999,stroke-dasharray:5 4,color:#111111;
+  classDef transit fill:#f3f0ff,stroke:#6d28d9,stroke-width:2px,color:#111111;
+
+  class START,CHERRY town;
+  class RUST,AZA,ECRU,FORT,CELA,SAFF gym;
+  class GOLD,LAV hub;
+  class CINN,MOSS island;
+  class R29,R30,R31,R3,R34,R35,R36,R37,R118,R119,R120,R110,R19,R41,R21,R121,R24,R25,R104,R126,R124,R12,R11,R23,R115,R125 route;
+  class ILEX,PARK,WELL,WEATHER,NM,WHIRL,COTTAGE,VR,LEAGUE,SHOAL landmark;
+  class DARK cave;
+  class R46 optional;
+  class TRAIN transit;

@@ -1,0 +1,1029 @@
+render_node_labels: false
+nodes:
+  START:
+    image: START.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R29:
+    image: R29.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  CHERRY:
+    image: CHERRY.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R30:
+    image: R30.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R31:
+    image: R31.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  RUST:
+    image: RUST.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R3:
+    image: R3.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  AZA:
+    image: AZA.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  ILEX:
+    image: ILEX.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R34:
+    image: R34.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  GOLD:
+    image: GOLD.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R46:
+    image: R46.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  WELL:
+    image: WELL.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R35:
+    image: R35.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  PARK:
+    image: PARK.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R36:
+    image: R36.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R37:
+    image: R37.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  ECRU:
+    image: ECRU.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R118:
+    image: R118.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R119:
+    image: R119.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  FORT:
+    image: FORT.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R120:
+    image: R120.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  CELA:
+    image: CELA.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R110:
+    image: R110.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R19:
+    image: R19.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R20:
+    image: R20.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  CINN:
+    image: CINN.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  WEATHER:
+    image: WEATHER.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  NM:
+    image: NM.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  SEAFOAM:
+    image: SEAFOAM.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R21:
+    image: R21.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R121:
+    image: R121.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  LAV:
+    image: LAV.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R24:
+    image: R24.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R25:
+    image: R25.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  COTTAGE:
+    image: COTTAGE.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R104:
+    image: R104.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R126:
+    image: R126.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R124:
+    image: R124.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  MOSS:
+    image: MOSS.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R12:
+    image: R12.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R11:
+    image: R11.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  SAFF:
+    image: SAFF.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R23:
+    image: R23.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  VR:
+    image: VR.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  LEAGUE:
+    image: LEAGUE.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R125:
+    image: R125.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  SHOAL:
+    image: SHOAL.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  DARK:
+    image: DARK.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  R115:
+    image: R115.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+  TRAIN:
+    image: TRAIN.png
+    rotate: 0
+    scale: 1.0
+    ports:
+      north:
+      - 0.5
+      - 0.0
+      east:
+      - 1.0
+      - 0.5
+      south:
+      - 0.5
+      - 1.0
+      west:
+      - 0.0
+      - 0.5
+edges:
+  START->R29:
+    source_port: ''
+    target_port: ''
+  R29->CHERRY:
+    source_port: ''
+    target_port: ''
+  CHERRY->R30:
+    source_port: ''
+    target_port: ''
+  R30->R31:
+    source_port: ''
+    target_port: ''
+  R31->RUST:
+    source_port: ''
+    target_port: ''
+  RUST->R3:
+    source_port: ''
+    target_port: ''
+  R3->AZA:
+    source_port: ''
+    target_port: ''
+  AZA->ILEX:
+    source_port: ''
+    target_port: ''
+  ILEX->R34:
+    source_port: ''
+    target_port: ''
+  R34->GOLD:
+    source_port: ''
+    target_port: ''
+  R29->R46:
+    source_port: ''
+    target_port: ''
+  AZA->WELL:
+    source_port: ''
+    target_port: ''
+  R35->PARK:
+    source_port: ''
+    target_port: ''
+  PARK->R36:
+    source_port: ''
+    target_port: ''
+  R36->R37:
+    source_port: ''
+    target_port: ''
+  R37->ECRU:
+    source_port: ''
+    target_port: ''
+  ECRU->R118:
+    source_port: ''
+    target_port: ''
+  R118->R119:
+    source_port: ''
+    target_port: ''
+  R119->FORT:
+    source_port: ''
+    target_port: ''
+  FORT->R120:
+    source_port: ''
+    target_port: ''
+  R120->CELA:
+    source_port: ''
+    target_port: ''
+  CELA->R110:
+    source_port: ''
+    target_port: ''
+  R110->R19:
+    source_port: ''
+    target_port: ''
+  R19->R20:
+    source_port: ''
+    target_port: ''
+  R20->CINN:
+    source_port: ''
+    target_port: ''
+  GOLD->R35:
+    source_port: ''
+    target_port: ''
+  R119->WEATHER:
+    source_port: ''
+    target_port: ''
+  R110->NM:
+    source_port: ''
+    target_port: ''
+  R20->SEAFOAM:
+    source_port: ''
+    target_port: ''
+  CINN->R21:
+    source_port: ''
+    target_port: ''
+  R21->R121:
+    source_port: ''
+    target_port: ''
+  R121->LAV:
+    source_port: ''
+    target_port: ''
+  LAV->R24:
+    source_port: ''
+    target_port: ''
+  R24->R25:
+    source_port: ''
+    target_port: ''
+  R25->COTTAGE:
+    source_port: ''
+    target_port: ''
+  R121->R104:
+    source_port: ''
+    target_port: ''
+  R104->R126:
+    source_port: ''
+    target_port: ''
+  R126->R124:
+    source_port: ''
+    target_port: ''
+  R124->MOSS:
+    source_port: ''
+    target_port: ''
+  LAV->R12:
+    source_port: ''
+    target_port: ''
+  R12->R11:
+    source_port: ''
+    target_port: ''
+  R11->SAFF:
+    source_port: ''
+    target_port: ''
+  SAFF->R23:
+    source_port: ''
+    target_port: ''
+  R23->VR:
+    source_port: ''
+    target_port: ''
+  VR->LEAGUE:
+    source_port: ''
+    target_port: ''
+  MOSS->R125:
+    source_port: ''
+    target_port: ''
+  R125->SHOAL:
+    source_port: ''
+    target_port: ''
+  R31->DARK:
+    source_port: ''
+    target_port: ''
+  RUST->R115:
+    source_port: ''
+    target_port: ''
+  R115->DARK:
+    source_port: ''
+    target_port: ''
+  R120->DARK:
+    source_port: ''
+    target_port: ''
+  GOLD->TRAIN:
+    source_port: ''
+    target_port: ''
+  TRAIN->SAFF:
+    source_port: ''
+    target_port: ''
