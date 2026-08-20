@@ -8,7 +8,7 @@ schema v2 C encoder, and build the load-bearing items enum mapping for metamon.
 ## Task checkboxes
 - [x] 1. `plastic_ox/agent/gen3_items_expansion_enum.json` (expansion items.h x Showdown items.ts, gen<=3 held items) — 96 entries, committed
 - [x] 2. Battle state storage doc (struct BattlePokemon, globals, reveal hooks)
-- [ ] 3. Mechanics config audit (config/battle.h GEN_LATEST -> GEN_3 recommended patch table)
+- [x] 3. Mechanics config audit (config/battle.h GEN_LATEST -> GEN_3 recommended patch table)
 - [ ] 4. C encoder schema v2 (include/rom_native_obs.h + src/rom_native_obs/rom_native_obs.c)
 - [ ] 5. metamon `rom-native/ROM_NATIVE_OBSERVATION.md` appendix (edit only, no commit there)
 
@@ -226,4 +226,206 @@ So the natural hooks for a production tracker are: `RecordAbilityBattle()`
 (ability_revealed to AI) + `gBattleScripting.abilityPopupOverwrite` assignment
 (ability_revealed to player) for abilities; `gLastUsedItem` assignment sites +
 `partyState[x][y].usedHeldItem` for items.
+
+
+## Section 3 — Mechanics config audit (GEN_LATEST → GEN_3)
+
+### 3.1 Overview
+
+`include/config/battle.h` has 319 `B_` config defines (this fork's count; the
+older "~216" estimate predates the fork). The vast majority default to
+`GEN_LATEST` (currently Gen 9-era mechanics). The ROM hack intends ORIGINAL
+GEN3 RULES, so the defines below should move to `GEN_3` (or a specific value).
+This section documents the materially relevant set for gen3 OU-style trainer
+battles (damage formula, phys/spec split, crit, status, weather, abilities,
+items, type chart, binding, confusion, paralysis, switching/turn order).
+
+NOT APPLIED — this is a recommendation table only.
+
+### 3.2 How the GEN_* tokens work
+
+`GEN_1`..`GEN_9` are ordered constants (include/constants/battle.h); code does
+`GetConfig(B_X) >= GEN_N` or `== GEN_N` comparisons. Setting a define to `GEN_3`
+selects the gen3 branch throughout the battle engine and data tables.
+
+### 3.3 Recommended patch table (battle engine, include/config/battle.h)
+
+Damage formula / damage modifiers:
+
+| Define (line) | Current | Recommended | Why (gen3 behavior) |
+|---|---|---|---|
+| B_CRIT_CHANCE (5) | GEN_LATEST | GEN_3 | gen3 crit chance per stage (1/16,1/8,1/4,1/3,1/2); LATEST adds gen6+ guarantees (Leek/etc.) |
+| B_CRIT_MULTIPLIER (6) | GEN_LATEST | GEN_3 | gen6+ crit = 1.5x; gen3 = 2x |
+| B_BURN_DAMAGE (28) | GEN_LATEST | GEN_3 | gen7+ burn = 1/16; gen3 = 1/8 |
+| B_BINDING_DAMAGE (30) | GEN_LATEST | GEN_3 | gen6+ bind = 1/8; gen3 = 1/16 |
+| B_PSYWAVE_DMG (31) | GEN_LATEST | GEN_3 | gen3 Psywave formula |
+| B_HIDDEN_POWER_DMG (33) | GEN_LATEST | GEN_3 | gen6+ HP = 60 fixed; gen3 = IV-based 30-70 |
+| B_ROUGH_SKIN_DMG (34) | GEN_LATEST | GEN_3 | gen4+ Rough Skin = 1/8; gen3 = 1/16 |
+| B_KNOCK_OFF_DMG (35) | GEN_LATEST | GEN_3 | gen6+ Knock Off +50% when removing; gen3 = no boost |
+| B_EXPLOSION_DEFENSE (37) | GEN_LATEST | GEN_3 | gen5+ no defense halving; gen3 Selfdestruct/Explosion halve Defense |
+| B_SPORT_DMG_REDUCTION (36) | GEN_LATEST | GEN_3 | gen5+ 67%; gen3 = 50% |
+| B_MULTIPLE_TARGETS_DMG (39) | GEN_LATEST | GEN_3 | gen4+ 75%; gen3 = 50% (full-field moves 100%) |
+| B_SOUL_DEW_BOOST (229) | GEN_LATEST | GEN_3 | gen3-6 Soul Dew = Latis SpAtk/SpDef +; gen7+ = move power |
+| B_PAYBACK_SWITCH_BOOST (32) | GEN_LATEST | GEN_3 | no Payback in gen3; harmless to set |
+| B_PARENTAL_BOND_DMG (38), B_ATE_MULTIPLIER (194), B_TRANSISTOR_BOOST (181), B_GALE_WINGS (166) | GEN_LATEST | GEN_3 | abilities don't exist in gen3; no-op, set for consistency |
+
+Move data / types / category:
+
+| Define (line) | Current | Recommended | Why |
+|---|---|---|---|
+| B_PHYSICAL_SPECIAL_SPLIT (69) | GEN_LATEST | GEN_3 | **THE** gen3 mechanic: type-based physical/special (no per-move split) |
+| B_UPDATED_MOVE_DATA (66) | GEN_LATEST | GEN_3 | move power/accuracy/PP/secondary chances per gen3 (gMovesInfo thresholds) |
+| B_UPDATED_MOVE_TYPES (67) | GEN_LATEST | GEN_3 | move typings per gen3 (no Fairy moves; e.g. moves re-typed in gen6 revert) |
+| B_UPDATED_MOVE_FLAGS (68) | GEN_LATEST | GEN_3 | move flags per gen3 |
+| B_EXTRAPOLATED_MOVE_FLAGS (75) | TRUE | FALSE | TRUE adds "would-have" latest-game flags; gen3 purity wants FALSE |
+| B_UPDATED_TYPE_MATCHUPS (45) | GEN_LATEST | GEN_3 | type chart per gen3 (gen2-5 chart; see 3.4) |
+| B_RECOIL_IF_MISS_DMG (70) | GEN_LATEST | GEN_3 | gen5+ HJK miss = 1/2 max HP; gen3 = old recoil rule |
+| B_HIDDEN_POWER_COUNTER (76) | GEN_LATEST | GEN_3 | pre-gen4 Counter/Mirror Coat treat HP as physical |
+| B_BEAT_UP (116) | GEN_LATEST | GEN_3 | gen3 Beat Up formula (and announces party member names) |
+| B_MULTI_HIT_CHANCE (9) | GEN_LATEST | GEN_3 | gen3 multi-hit distribution (2-5 hits, 37.5/37.5/12.5/12.5) |
+| B_METRONOME_MOVES (114) | GEN_LATEST | GEN_3 | Metronome pulls only from gen3 move pool |
+
+Status / ailment:
+
+| Define (line) | Current | Recommended | Why |
+|---|---|---|---|
+| B_PARALYSIS_SPEED (7) | GEN_LATEST | GEN_3 | gen7+ speed /2; gen3 speed /4 (75% cut) |
+| B_PARALYZE_ELECTRIC (43) | GEN_LATEST | GEN_3 | gen6+ Electric immune to paralysis; gen3 not |
+| B_POWDER_GRASS (44) | GEN_LATEST | GEN_3 | gen6+ Grass immune to powder; gen3 not |
+| B_CONFUSION_SELF_DMG_CHANCE (8) | GEN_LATEST | GEN_3 | gen7+ 33.3%; gen3 = 50% |
+| B_SLEEP_TURNS (57) | GEN_LATEST | GEN_3 | gen5+ 2-4 turns; gen3 2-5 |
+| B_BLIZZARD_HAIL (86) | GEN_LATEST | GEN_3 | gen4+ Blizzard never misses in hail; gen3 not |
+| B_TOXIC_NEVER_MISS (84) | GEN_LATEST | GEN_3 | gen6+ Poison-type Toxic auto-hit; gen3 no |
+| B_BURN_FACADE_DMG (29) | GEN_LATEST | GEN_3 | gen6+ no burn Atk drop on Facade; gen3 drop applies |
+| B_HIT_THAW (118) | GEN_LATEST | GEN_3 | gen3 thaw rules (Fire move thaws) |
+| B_SYNCHRONIZE_TOXIC (171) | GEN_LATEST | GEN_3 | gen5+ bad poison transfer; gen3 regular poison |
+| B_FLASH_FIRE_FROZEN (170) | GEN_LATEST | GEN_3 | gen5+ Flash Fire works frozen; gen3 not |
+| B_SHEER_COLD_IMMUNITY (47) | GEN_LATEST | GEN_3 | gen7+ Ice immune to Sheer Cold; gen3 not |
+| B_STATUS_TYPE_IMMUNITY (49) | GEN_LATEST | GEN_3 | gen1-only; GEN_3 == GEN_LATEST (both off) — no change, noted for completeness |
+| B_SKETCH_BANS (136) | GEN_LATEST | GEN_3 | gen9 sketch banlist; gen3 none (no-op for gen3 pool) |
+
+Weather:
+
+| Define (line) | Current | Recommended | Why |
+|---|---|---|---|
+| B_ABILITY_WEATHER (302) | GEN_LATEST | GEN_3 | **gen6+ ability weather 5 turns; gen3 permanent until replaced** (Drought/DD teams) |
+| B_SANDSTORM_SPDEF_BOOST (303) | GEN_LATEST | GEN_3 | gen4+ Rock SpD 1.5x in sand; gen3 none |
+| B_SANDSTORM_SOLAR_BEAM (304) | GEN_LATEST | GEN_3 | gen3+ SolarBeam weakened in sand (both ≥ GEN_3; no-op) |
+| B_WEATHER_FORMS (176) | GEN_LATEST | GEN_3 | gen5+ Castform/Cherrim revert; gen3 stays transformed |
+| B_SNOW_WARNING (307), B_OVERWORLD_SNOW (306), B_PREFERRED_ICE_WEATHER (308) | GEN_LATEST / B_ICE_WEATHER_BOTH | GEN_3 / B_ICE_WEATHER_HAIL | no Snow in gen3; hail only |
+
+Turn order / switching / protection:
+
+| Define (line) | Current | Recommended | Why |
+|---|---|---|---|
+| B_RECALC_TURN_AFTER_ACTIONS (62) | GEN_LATEST | GEN_3 | gen8+ dynamic speed; gen3 turn order fixed at turn start |
+| B_FAINT_SWITCH_IN (63) | GEN_LATEST | GEN_3 | gen4+ faint-switch at end of turn; gen3 switch after each action |
+| B_PROTECT_FAILURE_RATE (78) | GEN_LATEST | GEN_3 | gen5+ fail 1/3; gen2-4 fail 1/2 |
+| B_TAUNT_TURNS (58) | GEN_LATEST | GEN_3 | gen3 Taunt = 2 turns |
+| B_ENCORE_TURNS (59) | GEN_LATEST | GEN_3 | gen2-3 Encore = 2-6 turns |
+| B_BINDING_TURNS (52) | GEN_LATEST | GEN_3 | gen5+ 4-5 turns; gen2-4 2-5 (Wrap gen3) |
+| B_UPROAR_TURNS (53) | GEN_LATEST | GEN_3 | gen3-4 Uproar 2-5 turns |
+| B_UPROAR (163) | GEN_LATEST | GEN_3 | gen3-4: Uproar wakes battlers before action/end of turn |
+| B_DESTINY_BOND_FAIL (143) | GEN_LATEST | GEN_3 | gen7+ repeated-use fail; gen3 none |
+| B_FOCUS_PUNCH_FAILURE (154) | GEN_LATEST | GEN_3 | gen4- rules: lose focus if move isn't Focus Punch |
+| B_PURSUIT_TARGET (146) | GEN_LATEST | GEN_3 | gen4+ Pursuit hits any switcher; gen3 only targeted foe |
+| B_BATON_PASS_TRAPPING (105) | GEN_LATEST | GEN_3 | gen5+ BP drops trapping; **gen3 BP passes Mean Look/Block** |
+| B_BRICK_BREAK (108) | GEN_LATEST | GEN_3 | gen4+ breaks own screens; gen3 only target side |
+| B_WISH_HP_SOURCE (109) | GEN_LATEST | GEN_3 | gen5+ Wish = user's max HP; gen3 = target's |
+| B_ROOTED_GROUNDING (113) | GEN_LATEST | GEN_3 | gen4+ Ingrain grounds; gen3 not |
+| B_RAGE_BUILDS (160) | GEN_LATEST | GEN_3 | gen3 Rage builds even on miss/fail; gen4+ only on hit |
+| B_COUNTER_MIRROR_COAT_ALLY (158), B_COUNTER_TRY_HIT_PARTNER (159) | GEN_LATEST | GEN_3 | gen5+ ally exclusion; doubles-only nuance at GEN_4- |
+
+Trapping / immunity / ability rules:
+
+| Define (line) | Current | Recommended | Why |
+|---|---|---|---|
+| B_GHOSTS_ESCAPE (42) | GEN_LATEST | GEN_3 | gen6+ Ghost escapes traps; gen3 no |
+| B_SHADOW_TAG_ESCAPE (168) | GEN_LATEST | GEN_3 | gen4+ both-Tag free escape; gen3 neither escapes (Wobbuffet) |
+| B_OBLIVIOUS_TAUNT (173) | GEN_LATEST | GEN_3 | gen6+ Oblivious blocks Taunt; gen3 no |
+| B_LEAF_GUARD_PREVENTS_REST (180) | GEN_LATEST | GEN_3 | gen5+ Leaf Guard blocks Rest in sun; gen3 no |
+| B_UPDATED_INTIMIDATE (172) | GEN_LATEST | GEN_3 | gen8+ Inner Focus/etc. block Intimidate; gen3 no |
+| B_MOODY_ACC_EVASION (169) | GEN_LATEST | GEN_3 | gen8+ Moody can't raise Acc/Eva; gen3 can (Moody not in gen3 — no-op) |
+| B_STURDY (174) | GEN_LATEST | **keep ≥ GEN_5** | see 3.5 — expansion has NO pre-gen5 Sturdy branch; gen3-4 Sturdy (full-HP KO immunity) only exists at ≥ GEN_5 |
+| B_ABILITY_TRIGGER_CHANCE (188) | GEN_LATEST | GEN_3 | gen3 Shed Skin/Cute Charm/etc. = 1/3 (gen4+ 30%) |
+| B_MODERN_TRICK_CHOICE_LOCK (77) | GEN_LATEST | GEN_3 | gen5+ choicing after item swap; gen3 old lock |
+| B_KLUTZ_FLING_INTERACTION (71), B_INFILTRATOR_SUBSTITUTE (198), B_DANCER_ORDER (199), B_STANCE_CHANGE_FAIL (167), B_DISGUISE_HP_LOSS (187), B_BATTLE_BOND (193), B_PROTEAN_LIBERO (184), B_INTREPID_SWORD (185), B_DAUNTLESS_SHIELD (186), B_WEAK_ARMOR_SPEED (183), B_TRANSISTOR_BOOST (181), B_GALE_WINGS (166), B_MIRROR_ARMOR_STICKY_WEB (196), B_DEFIANT_STICKY_WEB (195), B_ILLUMINATE_EFFECT (182), B_REDIRECT_ABILITY_ALLIES (179), B_REDIRECT_ABILITY_IMMUNITY (178), B_SYMBIOSIS_GEMS (177), B_PLUS_MINUS_INTERACTION (175), B_POWDER_OVERCOAT (197) | GEN_LATEST | GEN_3 | post-gen3 abilities; no-op with gen3 teams, set for consistency |
+
+Items / item behavior (include/config/battle.h + item.h):
+
+| Define (line) | Current | Recommended | Why |
+|---|---|---|---|
+| B_X_ITEMS_BUFF (222) | GEN_LATEST | GEN_3 | gen7+ X items +2 stages; gen3 +1 |
+| B_MENTAL_HERB (224) | GEN_LATEST | GEN_3 | gen5+ cures Taunt/Encore/etc.; gen3 infatuation only |
+| B_CONFUSE_BERRIES_HEAL (221) | GEN_LATEST | GEN_3 | gen3-6 Figy-type heal 1/8 at ≤50% HP (gen7+: 1/2 at 25%) |
+| B_LIGHT_BALL_ATTACK_BOOST (11) | GEN_LATEST | GEN_3 | gen4+ Light Ball boosts physical too; gen3 special only |
+| B_KNOCK_OFF_REMOVAL (137) | GEN_LATEST | GEN_3 | gen5+ removes item; **gen3 renders it unusable but keeps it** |
+| B_SERENE_GRACE_BOOST (243) | GEN_LATEST | GEN_3 | gen5+ Serene Grace boosts King's Rock/Razor Fang flinch; gen3 not |
+| B_RESTORE_HELD_BATTLE_ITEMS (228) | GEN_LATEST | GEN_3 | gen9+ restore after battle; gen3 consumed items stay consumed |
+| B_STEAL_WILD_ITEMS (227) | GEN_LATEST | GEN_3 | gen9+ thief→bag; gen2-8 thief keeps the item |
+| B_RETURN_STOLEN_NPC_ITEMS (226) | GEN_LATEST | GEN_3 | gen5+ return stolen NPC items; gen3 keeps |
+| B_X_ITEMS_CROSSUSE (223) | TRUE | FALSE | gen3: X items only on current battler |
+| B_TRAINERS_KNOCK_OFF_ITEMS (225) | TRUE | FALSE (optional) | vanilla gen3: trainers can't steal your items (design choice; recommended FALSE for purity) |
+| I_TYPE_BOOST_POWER (include/config/item.h) | GEN_LATEST | GEN_3 | gen4+ 1.2x; gen3 Charcoal/etc. 1.1x, Sea Incense 1.05x |
+| I_SITRUS_BERRY_HEAL (include/config/item.h) | GEN_LATEST | GEN_3 | gen3 Sitrus = +30 HP (gen4+ 25%) |
+| I_LAX_INCENSE_BOOST (include/config/item.h) | GEN_LATEST | GEN_3 | gen3 Lax Incense evasion 5% (gen4+ 10%) |
+| I_HEALTH_RECOVERY (include/config/item.h) | GEN_LATEST | GEN_3 | gen3 potion heal amounts |
+| I_KEY_FOSSILS (include/config/item.h) | GEN_LATEST | GEN_3 | gen3 fossils are Key Items (gen4+ regular) |
+| I_BERRY_EV_JUMP (include/config/item.h) | GEN_LATEST | GEN_3 | EV-lowering berries per gen3 (gen4-only special case off) |
+| I_VITAMIN_EV_CAP (include/config/item.h) | GEN_LATEST | GEN_3 | gen8+ uncapped vitamins; gen3 cap 100 |
+| I_GEM_BOOST_POWER (include/config/item.h) | GEN_LATEST | GEN_3 | no gems in gen3; no-op |
+| I_REUSABLE_TMS (include/config/item.h) | FALSE | FALSE | already correct for gen3 (TMs one-time) |
+
+Single-player / progression (not OU mechanics; set GEN_3 for full original feel):
+
+| Define (line) | Current | Recommended | Why |
+|---|---|---|---|
+| B_WHITEOUT_MONEY (10) | GEN_LATEST | GEN_3 | gen3 RSE: half current money |
+| B_BADGE_BOOST (22) | GEN_LATEST | GEN_3 | gen3 badges boost stats 1.1x (B_FLAG_BADGE_BOOST_* lines 251-255) |
+| B_EXP_CATCH (14), B_TRAINER_EXP_MULTIPLIER (15), B_SPLIT_EXP (16), B_SCALED_EXP (17), B_UNEVOLVED_EXP_MULTIPLIER (18), B_MAX_LEVEL_EV_GAINS (24), B_RECALCULATE_STATS (25) | GEN_LATEST | GEN_3 | gen3 EXP/EV progression rules |
+| B_MULTI_BATTLE_WHITEOUT (355), B_EVOLUTION_AFTER_WHITEOUT (356) | GEN_LATEST | GEN_3 | gen3 whiteout/evolution rules |
+
+### 3.4 Type chart note
+
+`gTypeEffectivenessTable` (src/data/types_info.h:11-41) is a static 21x21 table
+with generation-conditional macros: STL_RS, PSN_RS, BUG_RS, PSY_RS, FIR_RS.
+At `B_UPDATED_TYPE_MATCHUPS == GEN_3` the chart is the gen2-5 chart (exact gen3):
+Ghost/Dark vs Steel = 0.5x, Ghost vs Psychic = 2.0x, Bug vs Poison = 0.5x,
+Poison vs Bug = 1.0x, Ice vs Fire = 0.5x. Fairy/Stellar rows exist as types but
+no gen3 species/move/ability yields them (Fairy row values are static in the
+table; harmless). Keeping GEN_LATEST would apply gen6+ changes (Ghost/Dark vs
+Steel 1.0x etc.) — wrong for gen3.
+
+### 3.5 Sturdy deviation (important)
+
+`B_STURDY` only has one code branch: `GetConfig(B_STURDY) >= GEN_5` →
+survive 1 HP from full HP (src/battle_util.c:8039). There is NO pre-gen5
+implementation in this fork. Real gen3-4 Sturdy (full-HP KO protection ≈ same
+outcome) would be LOST if you set B_STURDY to GEN_3. Recommendation: leave
+B_STURDY ≥ GEN_5 (e.g. GEN_LATEST) and document the deviation, or patch
+battle_util.c to implement gen3-4 Sturdy explicitly.
+
+### 3.6 Post-gen3 content gating
+
+- **Species**: include/config/species_enabled.h — `P_GEN_1..3_POKEMON TRUE`,
+  `P_GEN_4..9_POKEMON` default TRUE → set FALSE for gen3-only. Also
+  `P_MEGA_EVOLUTIONS`, `P_PRIMAL_REVERSIONS`, `P_ULTRA_BURST_FORMS`,
+  `P_GIGANTAMAX_FORMS`, `P_TERA_FORMS`, `P_FUSION_FORMS`, `P_REGIONAL_FORMS`
+  (and P_ALOLAN/GALARIAN/HISUIAN/PALDEAN_FORMS) default TRUE → set FALSE.
+  Species gating changes the saveblock (dex flags) — needs new save file.
+  Note P_GEN_X gating disables whole evolution families, not just the new
+  member (comment at top of file).
+- **Moves**: NOT gen-gated. All expansion moves are always in `gMovesInfo`
+  (src/data/moves_info.h); only `B_METRONOME_MOVES` (battle.h:114) restricts
+  Metronome's pool. Post-gen3 moves remain legal on gen3 species unless the
+  hack curates learnsets/TMs itself.
+- **Items**: NOT gen-gated in the item enum (include/constants/items.h defines
+  all 917 ITEM_ constants including gen4+ items). Gating is behavioral via
+  `B_*`/`I_*` config (see 3.3) and availability (shop/wild tables, item
+  importance flags). `include/config/caps.h` is only level/EV caps (EXP_CAP/
+  LEVEL_CAP/EV_CAP, all NONE by default) — unrelated to gen gating.
+- **Abilities**: all abilities defined in include/constants/abilities.h
+  (ABILITIES_COUNT_GEN4..9 boundaries); per-gen ability behavior is driven by
+  the B_* flags above, not by a gen gate. With gen3 species/moves only,
+  post-gen3 abilities are unreachable except via hacked gimmicks.
 
