@@ -10,7 +10,7 @@ schema v2 C encoder, and build the load-bearing items enum mapping for metamon.
 - [x] 2. Battle state storage doc (struct BattlePokemon, globals, reveal hooks)
 - [x] 3. Mechanics config audit (config/battle.h GEN_LATEST -> GEN_3 recommended patch table)
 - [x] 4. C encoder schema v2 (include/rom_native_obs.h + src/rom_native_obs/rom_native_obs.c)
-- [ ] 5. metamon `rom-native/ROM_NATIVE_OBSERVATION.md` appendix (edit only, no commit there)
+- [x] 5. metamon `rom-native/ROM_NATIVE_OBSERVATION.md` appendix (edit only, no commit there)
 
 ## Progress log
 - 2026-08-: branch `ec/rom-native-gen3` created from HEAD; scaffold committed.
@@ -447,3 +447,14 @@ battle_util.c to implement gen3-4 Sturdy explicitly.
   pre-existing warning in include/data.h). Notes: -I would shadow glibc's
   <strings.h> with the project's include/strings.h, hence -iquote; attributes are
   blanked since host gcc rejects `target("arm")` (ARM_FUNC).
+
+## Section 5 — metamon ROM_NATIVE_OBSERVATION.md appendix (done, NOT committed)
+- Appended "Gen3 Schema v2 (ROM side)" to /home/eddie/repos/metamon/rom-native/ROM_NATIVE_OBSERVATION.md
+  summarizing the v2 deltas (11 cat, 6 masks, spikes=8, widths) and pointing to this file.
+- Repo is read-only for this task except that file; left as uncommitted working-tree edit.
+
+## All sections complete. Deliverables:
+- plastic_ox/agent/gen3_items_expansion_enum.json (96 entries)
+- plastic_ox/agent/GEN3_ROM_STATE.md (storage doc + mechanics audit)
+- include/rom_native_obs.h + src/rom_native_obs/rom_native_obs.c (schema v2)
+- metamon rom-native/ROM_NATIVE_OBSERVATION.md appendix (uncommitted, by design)
