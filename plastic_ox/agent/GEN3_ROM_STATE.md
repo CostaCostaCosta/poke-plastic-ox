@@ -9,7 +9,7 @@ schema v2 C encoder, and build the load-bearing items enum mapping for metamon.
 - [x] 1. `plastic_ox/agent/gen3_items_expansion_enum.json` (expansion items.h x Showdown items.ts, gen<=3 held items) — 96 entries, committed
 - [x] 2. Battle state storage doc (struct BattlePokemon, globals, reveal hooks)
 - [x] 3. Mechanics config audit (config/battle.h GEN_LATEST -> GEN_3 recommended patch table)
-- [ ] 4. C encoder schema v2 (include/rom_native_obs.h + src/rom_native_obs/rom_native_obs.c)
+- [x] 4. C encoder schema v2 (include/rom_native_obs.h + src/rom_native_obs/rom_native_obs.c)
 - [ ] 5. metamon `rom-native/ROM_NATIVE_OBSERVATION.md` appendix (edit only, no commit there)
 
 ## Progress log
@@ -429,3 +429,21 @@ battle_util.c to implement gen3-4 Sturdy explicitly.
   the B_* flags above, not by a gen gate. With gen3 species/moves only,
   post-gen3 abilities are unreachable except via hacked gimmicks.
 
+
+## Section 4 — C encoder schema v2 (committed)
+- include/rom_native_obs.h: struct RomBattlePokemon gains `u16 item` + `u8 ability`
+  (appended after the 9 categoricals, before the move-feature arrays); masks gain
+  `item_revealed` + `ability_revealed` (4 -> 6); side-cond comment documents
+  spikes=8 lossiness.
+- src/rom_native_obs/rom_native_obs.c: RNO_SIDE_COND_SPIKES=8; SideConditionToSchema
+  gained an `enum BattleSide` param and reads gBattleStruct->hazardsQueue for
+  HAZARDS_SPIKES (lowest priority, after screens/safeguard/mist/tailwind/aurora-veil);
+  EncodeActiveBattler reads gBattleMons[battler].item/.ability;
+  EncodePartyMon reads GetMonData(MON_DATA_HELD_ITEM) + GetMonAbility();
+  omniscient masks set item_revealed/ability_revealed for valid slots.
+- Compile check: arm-none-eabi-gcc NOT installed (per task fallback). Host syntax
+  check passes: `gcc -fsyntax-only -std=gnu17 -iquote include -iquote include/gba
+  -D'__attribute__(x)=' src/rom_native_obs/rom_native_obs.c` -> exit 0 (one benign
+  pre-existing warning in include/data.h). Notes: -I would shadow glibc's
+  <strings.h> with the project's include/strings.h, hence -iquote; attributes are
+  blanked since host gcc rejects `target("arm")` (ARM_FUNC).

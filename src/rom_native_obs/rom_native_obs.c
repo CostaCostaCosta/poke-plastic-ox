@@ -15,10 +15,15 @@
 //
 // Notes:
 //  - This encoder is omniscient: it reveals everything the ROM knows
-//    (moves_revealed / hp_known are set for every valid slot). A knowledge
-//    model can clear those bits for opponent slots if needed.
-//  - Gen1 has no items/abilities/weather/tera; those schema fields are
-//    simply not produced here beyond the defined enums.
+//    (moves_revealed / hp_known / item_revealed / ability_revealed are set
+//    for every valid slot). A knowledge model can clear those bits for
+//    opponent slots if needed.
+//  - Schema v2 (Gen3): adds per-mon item (u16) + ability (u8) and the
+//    item_revealed / ability_revealed masks, plus SIDE_COND_SPIKES (=8,
+//    derived from gBattleStruct->hazardsQueue). The side-condition single
+//    enum stays lossy: only the highest-priority active condition is
+//    reported per side (spikes is lowest priority, see
+//    SideConditionToSchema).
 // ============================================================================
 
 // Canonical schema IDs (schema.py ID tables)
@@ -54,6 +59,7 @@ enum
     RNO_SIDE_COND_TAILWIND = 5,
     RNO_SIDE_COND_AURORA_VEIL = 6,
     RNO_SIDE_COND_UNKNOWN = 7,
+    RNO_SIDE_COND_SPIKES = 8,
 
     // Field effects
     RNO_FIELD_NONE = 0,
@@ -178,7 +184,11 @@ static u8 WeatherToSchema(u16 battleWeather)
     return RNO_WEATHER_NONE;
 }
 
-static u8 SideConditionToSchema(u32 sideStatus)
+// Lossy single-enum: returns the highest-priority active condition; spikes is
+// checked last, so screens/safeguard/mist/tailwind/aurora-veil win over spikes.
+// (Spikes layers and simultaneous conditions are not representable in the schema
+// and are collapsed: layers 1-3 -> RNO_SIDE_COND_SPIKES.)
+static u8 SideConditionToSchema(u32 sideStatus, enum BattleSide side)
 {
     if (sideStatus & SIDE_STATUS_REFLECT)
         return RNO_SIDE_COND_REFLECT;
@@ -192,6 +202,15 @@ static u8 SideConditionToSchema(u32 sideStatus)
         return RNO_SIDE_COND_TAILWIND;
     if (sideStatus & SIDE_STATUS_AURORA_VEIL)
         return RNO_SIDE_COND_AURORA_VEIL;
+    if (gBattleStruct != NULL)
+    {
+        u32 i;
+        for (i = 0; i < HAZARDS_MAX_COUNT; i++)
+        {
+            if (gBattleStruct->hazardsQueue[side][i] == HAZARDS_SPIKES)
+                return RNO_SIDE_COND_SPIKES;
+        }
+    }
     return RNO_SIDE_COND_NONE;
 }
 
@@ -381,9 +400,15 @@ static void EncodeActiveBattler(struct RomBattlePokemon *slot, enum BattlerId ba
 
     slot->effect = VolatilesToEffect(&battleMon->volatiles);
 
+    // Schema v2: item/ability. Debug encoder is omniscient: reveals both.
+    slot->item = (u16)battleMon->item;
+    slot->ability = (u8)battleMon->ability;
+
     slot->fainted = (battleMon->hp == 0) ? 1 : 0;
     slot->moves_revealed = 1;
     slot->hp_known = 1;
+    slot->item_revealed = 1;
+    slot->ability_revealed = 1;
 }
 
 // Party Pokémon (player switches / revealed opponents). Slot zeroed already.
@@ -433,9 +458,16 @@ static void EncodePartyMon(struct RomBattlePokemon *slot, struct Pokemon *partyM
 
     slot->effect = RNO_EFFECT_NONE; // party mons have no volatile battle effects
 
+    // Schema v2: item/ability from the party slot (species-default ability for
+    // the mon's ability number). Debug encoder is omniscient: reveals both.
+    slot->item = (u16)GetMonData(partyMon, MON_DATA_HELD_ITEM);
+    slot->ability = (u8)GetMonAbility(partyMon);
+
     slot->fainted = (hp == 0) ? 1 : 0;
     slot->moves_revealed = 1;
     slot->hp_known = 1;
+    slot->item_revealed = 1;
+    slot->ability_revealed = 1;
 }
 
 // ----------------------------------------------------------------------------
@@ -471,8 +503,8 @@ void EncodeRomBattleState(struct RomBattleState *out, u8 playerBattler, u8 oppon
     // ------------------------------------------------------------------
     out->global.weather = WeatherToSchema(gBattleWeather);
     out->global.field_effect = FieldEffectToSchema(gFieldStatuses);
-    out->global.player_side_cond = SideConditionToSchema(gSideStatuses[B_SIDE_PLAYER]);
-    out->global.opponent_side_cond = SideConditionToSchema(gSideStatuses[B_SIDE_OPPONENT]);
+    out->global.player_side_cond = SideConditionToSchema(gSideStatuses[B_SIDE_PLAYER], B_SIDE_PLAYER);
+    out->global.opponent_side_cond = SideConditionToSchema(gSideStatuses[B_SIDE_OPPONENT], B_SIDE_OPPONENT);
 
     if (playerValid)
     {

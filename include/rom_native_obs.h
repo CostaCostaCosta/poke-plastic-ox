@@ -47,7 +47,10 @@ enum
 //           6 toxic, 7 faint, 8 unknown
 // Weather:  0 none, 1 rain, 2 sun, 3 sandstorm, 4 hail, 5 snow, 6 fog, 7 unknown
 // Side:     0 none, 1 reflect, 2 light screen, 3 safeguard, 4 mist,
-//           5 tailwind, 6 aurora veil, 7 unknown
+//           5 tailwind, 6 aurora veil, 7 unknown, 8 spikes
+//           (single-enum side condition is lossy: only the highest-priority
+//           active condition per side is reported; spikes is checked last,
+//           so a screen/safeguard/mist/tailwind/aurora-veil wins over it)
 // Field:    0 none, 1 gravity, 2 trick room, 3 wonder room, 4 magic room,
 //           5 mud sport, 6 water sport, 7 unknown
 // Effect:   0 none, 1 confusion, 2 infatuation, 3 leech seed, 4 lock,
@@ -55,6 +58,8 @@ enum
 // Category: 0 none, 1 physical, 2 special, 3 status, 4 unknown
 // Type / move / species IDs use the ROM enum values, which for Gen1 match
 // the schema (TYPE_* 0-19 remapped where the ROM enum differs, see encoder).
+// Item IDs use the expansion ITEM_* enum values (u16; 0 = none/unknown).
+// Ability IDs use the expansion Ability enum values (u8; 0 = none/unknown).
 // ---------------------------------------------------------------------------
 
 struct RomBattleGlobal
@@ -84,6 +89,10 @@ struct RomBattlePokemon
     u8 move_categories[ROM_NATIVE_OBS_NUM_MOVES];   // canonical category IDs
     u8 move_types[ROM_NATIVE_OBS_NUM_MOVES];        // canonical Type IDs
 
+    // Item / ability (schema v2: appended after the first 9 categoricals)
+    u16 item;                       // expansion ITEM_* enum value (0 = none/unknown)
+    u8 ability;                     // expansion Ability enum value (0 = none/unknown)
+
     // Numerical (normalized to 0-255)
     u8 hp_fraction;                 // hp * 255 / maxHP
     u8 level_norm;                  // level * 255 / 100
@@ -101,6 +110,8 @@ struct RomBattlePokemon
     u8 fainted;         // HP is 0
     u8 moves_revealed;  // moves are known (the debug encoder always reveals)
     u8 hp_known;        // HP is observable (the debug encoder always knows)
+    u8 item_revealed;   // item is known (the debug encoder always reveals)
+    u8 ability_revealed;// ability is known (the debug encoder always reveals)
 };
 
 struct RomBattleState
