@@ -6800,6 +6800,18 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, enum Species species
             }
         }
 
+        // Plastic Ox: show the badge requirement while the target species' tier
+        // is still locked by evolution gating (but don't leak it for uncaught
+        // species whose method is hidden as "Unknown").
+        if (!(HGSS_HIDE_UNOWNED_EVOLUTION_METHODS == TRUE && !caught)
+         && !IsEvolutionTierUnlocked(targetSpecies))
+        {
+            ConvertIntToDecimalStringN(gStringVar2, GetSpeciesEvolutionBadgeRequirement(targetSpecies), STR_CONV_MODE_LEFT_ALIGN, 1);
+            StringAppend(gStringVar4, COMPOUND_STRING(", needs "));
+            StringAppend(gStringVar4, gStringVar2);
+            StringAppend(gStringVar4, COMPOUND_STRING(" badges"));
+        }
+
         if (isAlcremie)
             fontId = FONT_SMALL_NARROWER;
         else

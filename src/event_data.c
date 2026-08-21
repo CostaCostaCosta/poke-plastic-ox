@@ -274,3 +274,16 @@ bool8 FlagGet(u16 id)
 
     return TRUE;
 }
+
+u8 GetPlayerBadgeCount(void)
+{
+    u8 count = 0;
+    u32 i;
+
+    for (i = 0; i < NUM_BADGES; i++)
+    {
+        if (FlagGet(gBadgeFlags[i]))
+            count++;
+    }
+    return count;
+}

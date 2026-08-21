@@ -5629,13 +5629,19 @@ static void TryEvolvePokemon(void)
             enum Species species = GetEvolutionTargetSpecies(&gParties[B_TRAINER_PLAYER][i], mode, evolutionItemArg, NULL, &canStopEvo, CHECK_EVO);
             gTriedEvolving |= 1u << i;
 
-            if (species == SPECIES_NONE && (gLeveledUpInBattle & (1u << i)))
+            bool32 leveledUp = gLeveledUpInBattle & (1u << i);
+            if (species == SPECIES_NONE && leveledUp)
             {
                 gLeveledUpInBattle &= ~(1u << i);
                 mode = EVO_MODE_BATTLE_ONLY;
                 evolutionItemArg = gLeveledUpInBattle;
                 species = GetEvolutionTargetSpecies(&gParties[B_TRAINER_PLAYER][i], mode, evolutionItemArg, NULL, &canStopEvo, CHECK_EVO);
             }
+
+            // Plastic Ox: a level-up whose evolution is tier-blocked may still
+            // shed a split evolution (e.g. Nincada producing Shedinja at PU).
+            if (species == SPECIES_NONE && leveledUp)
+                TryGenerateTierBlockedSplitEvolution(&gParties[B_TRAINER_PLAYER][i]);
 
             if (species != SPECIES_NONE)
             {
