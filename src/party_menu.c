@@ -5856,6 +5856,13 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
             BeginEvolutionScene(mon, targetSpecies, canStopEvo, gPartyMenu.slotId);
             DestroyTask(taskId);
         }
+        else if (TryGenerateTierBlockedSplitEvolution(mon)) // Plastic Ox: e.g. level-20+ Nincada at PU sheds a Shedinja without evolving
+        {
+            gPartyMenuUseExitCallback = FALSE;
+            DisplayPartyMenuMessage(gText_PkmnShedShellJoined, TRUE);
+            ScheduleBgCopyTilemapToVram(2);
+            gTasks[taskId].func = task;
+        }
         else
         {
             gPartyMenuUseExitCallback = FALSE;
@@ -6049,6 +6056,14 @@ static void PartyMenuTryEvolution(u8 taskId)
     }
     else
     {
+        // Plastic Ox: a level-up whose evolution is tier-blocked may still shed
+        // a split evolution (e.g. Nincada producing Shedinja at PU).
+        if (TryGenerateTierBlockedSplitEvolution(mon))
+        {
+            GetMonNickname(mon, gStringVar1);
+            DisplayPartyMenuMessage(gText_PkmnShedShellJoined, TRUE);
+            ScheduleBgCopyTilemapToVram(2);
+        }
         if (gPartyMenu.menuType == PARTY_MENU_TYPE_FIELD && CheckBagHasItem(gSpecialVar_ItemId, 1))
             gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
         else

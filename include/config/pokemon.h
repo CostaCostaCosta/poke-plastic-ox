@@ -21,6 +21,7 @@
 
 // Evolution settings
 #define P_FRIENDSHIP_EVO_THRESHOLD   GEN_LATEST  // Since Gen 8, Pokémon that evolve by friendship evolve at or above 160 friendship instead of 220.
+#define P_EVOLUTION_TIER_GATING      TRUE        // Plastic Ox: if TRUE, evolutions are blocked until the player's badge count unlocks the target species' competitive tier (see plastic_ox/plasticox_encounters_v1.md).
 
 // Breeding settings
 #define P_NIDORAN_M_DITTO_BREED        GEN_LATEST                // Since Gen 5, when Nidoran♂ breeds with Ditto it can produce Nidoran♀ offspring. Before, it would only yield male offspring. This change also applies to Volbeat.

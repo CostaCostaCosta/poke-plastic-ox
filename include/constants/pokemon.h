@@ -331,6 +331,23 @@ enum EvolutionMethods {
     EVO_SPIN                    // The player spins in the overworld
 };
 
+// Plastic Ox: competitive tiers used to gate evolutions by badge count
+// (see plastic_ox/plasticox_encounters_v1.md). Value order mirrors the
+// badge-progression order; a tier is unlocked while the player holds the
+// badge count from sEvolutionTierBadgeRequirement (i.e. during that tier's
+// gym segment).
+enum EvolutionTier {
+    EVO_TIER_NONE,  // No gate (default for unlisted species)
+    EVO_TIER_LC,
+    EVO_TIER_PU,
+    EVO_TIER_NU,
+    EVO_TIER_RU,
+    EVO_TIER_UU,
+    EVO_TIER_UUBL,
+    EVO_TIER_OU,
+    NUM_EVOLUTION_TIERS
+};
+
 enum EvolutionMode {
     EVO_MODE_NORMAL,
     EVO_MODE_TRADE,

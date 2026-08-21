@@ -456,6 +456,7 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
 #include "data/graphics/pokemon.h"
 
 #include "data/pokemon/trainer_class_lookups.h"
+#include "data/pokemon/evolution_tier_gates.h"
 #include "data/pokemon/experience_tables.h"
 
 #if P_LVL_UP_LEARNSETS >= GEN_9
@@ -3331,6 +3332,42 @@ const struct Evolution *GetSpeciesEvolutions(enum Species species)
     return evolutions;
 }
 
+// Plastic Ox evolution tier gating (see plastic_ox/plasticox_encounters_v1.md).
+// Badge counts required to unlock each tier; a tier is playable during its
+// gym segment, matching the level-cap ladder in src/caps.c.
+static const u8 sEvolutionTierBadgeRequirement[NUM_EVOLUTION_TIERS] =
+{
+    [EVO_TIER_NONE] = 0,
+    [EVO_TIER_LC]   = 0,
+    [EVO_TIER_PU]   = 1,
+    [EVO_TIER_NU]   = 2,
+    [EVO_TIER_RU]   = 3,
+    [EVO_TIER_UU]   = 4,
+    [EVO_TIER_UUBL] = 5,
+    [EVO_TIER_OU]   = 6,
+};
+
+static enum EvolutionTier GetSpeciesEvolutionTier(enum Species species)
+{
+    return sSpeciesEvolutionTier[SanitizeSpeciesId(species)];
+}
+
+bool32 IsEvolutionTierUnlocked(enum Species targetSpecies)
+{
+    if (!P_EVOLUTION_TIER_GATING)
+        return TRUE;
+    return GetPlayerBadgeCount() >= sEvolutionTierBadgeRequirement[GetSpeciesEvolutionTier(targetSpecies)];
+}
+
+// Plastic Ox: badges needed before this species can be evolved into.
+// Returns 0 for ungated species (and whenever tier gating is disabled).
+u8 GetSpeciesEvolutionBadgeRequirement(enum Species targetSpecies)
+{
+    if (!P_EVOLUTION_TIER_GATING)
+        return 0;
+    return sEvolutionTierBadgeRequirement[GetSpeciesEvolutionTier(targetSpecies)];
+}
+
 const u16 *GetSpeciesFormTable(enum Species species)
 {
     const u16 *formTable = gSpeciesInfo[SanitizeSpeciesId(species)].formSpeciesIdTable;
@@ -4627,6 +4664,14 @@ enum Species GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode m
     {
         return SPECIES_NONE;
     }
+
+    // Plastic Ox: block the evolution if the target species' tier is not yet
+    // unlocked by the player's badge count. Placed at the single convergence
+    // point so every evolution mode (level, item, trade, battle, overworld,
+    // script) is gated uniformly. canStopEvo is deliberately left untouched:
+    // a tier-blocked evolution never starts, it is not "stopped".
+    if (targetSpecies != SPECIES_NONE && !IsEvolutionTierUnlocked(targetSpecies))
+        return SPECIES_NONE;
 
     return targetSpecies;
 }

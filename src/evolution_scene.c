@@ -562,6 +562,7 @@ static void CreateShedinja(enum Species preEvoSpecies, enum Species postEvoSpeci
         if (evolutions[i].method == EVO_SPLIT_FROM_EVO
          && evolutions[i].param == postEvoSpecies
          && gPartiesCount[B_TRAINER_PLAYER] < PARTY_SIZE
+         && IsEvolutionTierUnlocked(evolutions[i].targetSpecies) // Plastic Ox: don't generate a tier-locked split species
          && DoesMonMeetAdditionalConditions(mon, evolutions[i].params, NULL, PARTY_SIZE, NULL, CHECK_EVO))
         {
             s32 j;
@@ -601,6 +602,65 @@ static void CreateShedinja(enum Species preEvoSpecies, enum Species postEvoSpeci
 
         }
     }
+}
+
+// Plastic Ox: if the mon's level-based evolution is blocked ONLY by the tier
+// gate, but it has an EVO_SPLIT_FROM_EVO sibling whose tier IS unlocked,
+// generate the split species without evolving. This implements the
+// Nincada/Shedinja rule from plasticox_encounters_v1.md: at PU, a level-20+
+// Nincada that levels up with a free party slot and a Poke Ball produces
+// Shedinja while staying Nincada; Ninjask evolution itself resumes at UU.
+// Returns TRUE if a split species was generated.
+bool32 TryGenerateTierBlockedSplitEvolution(struct Pokemon *mon)
+{
+    enum Species species;
+    enum Species blockedTarget;
+    u32 level;
+    u32 i, j;
+    const struct Evolution *evolutions;
+
+    if (!P_EVOLUTION_TIER_GATING)
+        return FALSE;
+
+    species = GetMonData(mon, MON_DATA_SPECIES, 0);
+    level = GetMonData(mon, MON_DATA_LEVEL, 0);
+    evolutions = GetSpeciesEvolutions(species);
+    if (evolutions == NULL)
+        return FALSE;
+
+    // 1. Find a level-based main evolution that would have fired but is
+    //    tier-blocked (its other conditions still have to be met).
+    blockedTarget = SPECIES_NONE;
+    for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
+    {
+        if (evolutions[i].method != EVO_LEVEL || evolutions[i].param > level)
+            continue;
+        if (IsEvolutionTierUnlocked(evolutions[i].targetSpecies))
+            continue; // main evolution is legal; the normal path handles it
+        if (!DoesMonMeetAdditionalConditions(mon, evolutions[i].params, NULL, PARTY_SIZE, NULL, CHECK_EVO))
+            continue;
+        blockedTarget = evolutions[i].targetSpecies;
+        break;
+    }
+    if (blockedTarget == SPECIES_NONE)
+        return FALSE;
+
+    // 2. The main evolution is tier-blocked: generate any tier-unlocked split
+    //    sibling instead. CreateShedinja re-checks the free party slot and
+    //    the split entry's own conditions (e.g. the Poke Ball requirement),
+    //    and silently does nothing if they fail, matching vanilla behavior.
+    for (j = 0; evolutions[j].method != EVOLUTIONS_END; j++)
+    {
+        if (evolutions[j].method == EVO_SPLIT_FROM_EVO
+         && evolutions[j].param == blockedTarget
+         && IsEvolutionTierUnlocked(evolutions[j].targetSpecies))
+        {
+            u8 partyCountBefore = gPartiesCount[B_TRAINER_PLAYER];
+            CreateShedinja(species, blockedTarget, mon);
+            return gPartiesCount[B_TRAINER_PLAYER] > partyCountBefore;
+        }
+    }
+    return FALSE;
 }
 
 // States for the main switch in Task_EvolutionScene
