@@ -3196,7 +3196,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .levelUpLearnset = sSurskitLevelUpLearnset,
         .teachableLearnset = sSurskitTeachableLearnset,
         .eggMoveLearnset = sSurskitEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 22, SPECIES_MASQUERAIN}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_MASQUERAIN}), // Plastic Ox: lowered from 22
     },
 
     [SPECIES_MASQUERAIN] =
@@ -4042,7 +4042,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         )
         .levelUpLearnset = sLoudredLevelUpLearnset,
         .teachableLearnset = sLoudredTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_EXPLOUD}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_EXPLOUD}), // Plastic Ox: lowered from 40
     },
 
     [SPECIES_EXPLOUD] =
@@ -4958,7 +4958,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .levelUpLearnset = sAronLevelUpLearnset,
         .teachableLearnset = sAronTeachableLearnset,
         .eggMoveLearnset = sAronEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_LAIRON}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_LAIRON}), // Plastic Ox: lowered from 32
     },
 
     [SPECIES_LAIRON] =
@@ -5029,7 +5029,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         )
         .levelUpLearnset = sLaironLevelUpLearnset,
         .teachableLearnset = sLaironTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_AGGRON}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_AGGRON}), // Plastic Ox: lowered from 42
     },
 
     [SPECIES_AGGRON] =
@@ -6297,7 +6297,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .levelUpLearnset = sGulpinLevelUpLearnset,
         .teachableLearnset = sGulpinTeachableLearnset,
         .eggMoveLearnset = sGulpinEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 26, SPECIES_SWALOT}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_SWALOT}), // Plastic Ox: lowered from 26
     },
 
     [SPECIES_SWALOT] =
@@ -6685,7 +6685,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .levelUpLearnset = sWailmerLevelUpLearnset,
         .teachableLearnset = sWailmerTeachableLearnset,
         .eggMoveLearnset = sWailmerEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 40, SPECIES_WAILORD}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_WAILORD}), // Plastic Ox: lowered from 40
     },
 
     [SPECIES_WAILORD] =
@@ -7396,7 +7396,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .levelUpLearnset = sTrapinchLevelUpLearnset,
         .teachableLearnset = sTrapinchTeachableLearnset,
         .eggMoveLearnset = sTrapinchEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 35, SPECIES_VIBRAVA}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_VIBRAVA}), // Plastic Ox: lowered from 35
     },
 
     [SPECIES_VIBRAVA] =
@@ -7628,7 +7628,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .levelUpLearnset = sCacneaLevelUpLearnset,
         .teachableLearnset = sCacneaTeachableLearnset,
         .eggMoveLearnset = sCacneaEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_CACTURNE}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_CACTURNE}), // Plastic Ox: lowered from 32
     },
 
     [SPECIES_CACTURNE] =
@@ -9670,7 +9670,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .levelUpLearnset = sShuppetLevelUpLearnset,
         .teachableLearnset = sShuppetTeachableLearnset,
         .eggMoveLearnset = sShuppetEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 37, SPECIES_BANETTE}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_BANETTE}), // Plastic Ox: lowered from 37
     },
 
     [SPECIES_BANETTE] =
@@ -10680,7 +10680,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .levelUpLearnset = sSnoruntLevelUpLearnset,
         .teachableLearnset = sSnoruntTeachableLearnset,
         .eggMoveLearnset = sSnoruntEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_GLALIE}
+        .evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_GLALIE} // Plastic Ox: lowered from 42
                             #if P_GEN_4_CROSS_EVOS
                                 ,{EVO_ITEM, ITEM_DAWN_STONE, SPECIES_FROSLASS, CONDITIONS({IF_GENDER, MON_FEMALE})}
                             #endif
@@ -11047,7 +11047,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .levelUpLearnset = sSphealLevelUpLearnset,
         .teachableLearnset = sSphealTeachableLearnset,
         .eggMoveLearnset = sSphealEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_SEALEO}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_SEALEO}), // Plastic Ox: lowered from 32
     },
 
     [SPECIES_SEALEO] =
@@ -11121,7 +11121,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         )
         .levelUpLearnset = sSealeoLevelUpLearnset,
         .teachableLearnset = sSealeoTeachableLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 44, SPECIES_WALREIN}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 42, SPECIES_WALREIN}), // Plastic Ox: lowered from 44
     },
 
     [SPECIES_WALREIN] =
@@ -11653,7 +11653,7 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         .levelUpLearnset = sBagonLevelUpLearnset,
         .teachableLearnset = sBagonTeachableLearnset,
         .eggMoveLearnset = sBagonEggMoveLearnset,
-        .evolutions = EVOLUTION({EVO_LEVEL, 30, SPECIES_SHELGON}),
+        .evolutions = EVOLUTION({EVO_LEVEL, 20, SPECIES_SHELGON}), // Plastic Ox: lowered from 30
     },
 
     [SPECIES_SHELGON] =
