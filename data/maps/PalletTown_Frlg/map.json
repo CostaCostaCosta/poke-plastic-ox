@@ -3,7 +3,7 @@
   "name": "PalletTown_Frlg",
   "layout": "LAYOUT_PALLET_TOWN",
   "music": "MUS_RG_PALLET",
-  "region": "REGION_KANTO",
+  "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_PALLET_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -16,14 +16,9 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_ROUTE1",
-      "offset": 0,
+      "map": "MAP_ROUTE101",
+      "offset": 2,
       "direction": "up"
-    },
-    {
-      "map": "MAP_ROUTE21_NORTH",
-      "offset": 0,
-      "direction": "down"
     }
   ],
   "object_events": [
@@ -96,35 +91,7 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [
-    {
-      "type": "trigger",
-      "x": 12,
-      "y": 1,
-      "elevation": 3,
-      "var": "VAR_MAP_SCENE_PALLET_TOWN_OAK",
-      "var_value": "0",
-      "script": "PalletTown_EventScript_OakTriggerLeft"
-    },
-    {
-      "type": "trigger",
-      "x": 13,
-      "y": 1,
-      "elevation": 3,
-      "var": "VAR_MAP_SCENE_PALLET_TOWN_OAK",
-      "var_value": "0",
-      "script": "PalletTown_EventScript_OakTriggerRight"
-    },
-    {
-      "type": "trigger",
-      "x": 13,
-      "y": 2,
-      "elevation": 3,
-      "var": "VAR_TEMP_2",
-      "var_value": "1",
-      "script": "PalletTown_EventScript_SignLadyTrigger"
-    }
-  ],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "sign",

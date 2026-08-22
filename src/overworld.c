@@ -875,8 +875,11 @@ bool8 SetDiveWarpDive(u16 x, u16 y)
     return SetDiveWarp(CONNECTION_DIVE, x, y);
 }
 
-void LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
+bool8 LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
 {
+    const struct MapLayout *previousMapLayout = gMapHeader.mapLayout;
+    bool8 primaryTilesetChanged;
+
     SetWarpDestination(mapGroup, mapNum, WARP_ID_NONE, -1, -1);
 
     // Dont transition map music between BF Outside West/East
@@ -885,6 +888,8 @@ void LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
 
     ApplyCurrentWarp();
     LoadCurrentMapData();
+    primaryTilesetChanged = previousMapLayout->isFrlg != gMapHeader.mapLayout->isFrlg
+                         || previousMapLayout->primaryTileset != gMapHeader.mapLayout->primaryTileset;
     LoadObjEventTemplatesFromHeader();
     TrySetMapSaveWarpStatus();
     ClearTempFieldEventData();
@@ -905,12 +910,25 @@ void LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
     Overworld_ClearSavedMusic();
     RunOnTransitionMapScript();
     InitMap();
-    CopySecondaryTilesetToVramUsingHeap(gMapHeader.mapLayout);
-    LoadSecondaryTilesetPalette(gMapHeader.mapLayout, TRUE); // skip copying to Faded, gamma shift will take care of it
-
-    ApplyWeatherColorMapToPals(GetNumPalsInPrimary(gMapHeader.mapLayout), NUM_PALS_TOTAL - GetNumPalsInPrimary(gMapHeader.mapLayout)); // palettes [6,12]
-
-    InitSecondaryTilesetAnimation();
+    if (primaryTilesetChanged)
+    {
+        // Vanilla connections share a primary tileset. Cross-generation
+        // stitches do not, so reload both graphics sets and all BG palettes.
+        // Queue the graphics through the normal VBlank DMA path. A synchronous
+        // direct-to-VRAM copy requires forced blank and produces a visible
+        // white flash for one frame at the seam.
+        CopyMapTilesetsToVram(gMapHeader.mapLayout);
+        LoadMapTilesetPalettes(gMapHeader.mapLayout);
+        ApplyWeatherColorMapToPals(0, NUM_PALS_TOTAL);
+        InitTilesetAnimations();
+    }
+    else
+    {
+        CopySecondaryTilesetToVramUsingHeap(gMapHeader.mapLayout);
+        LoadSecondaryTilesetPalette(gMapHeader.mapLayout, TRUE); // skip copying to Faded, gamma shift will take care of it
+        ApplyWeatherColorMapToPals(GetNumPalsInPrimary(gMapHeader.mapLayout), NUM_PALS_TOTAL - GetNumPalsInPrimary(gMapHeader.mapLayout)); // palettes [6,12]
+        InitSecondaryTilesetAnimation();
+    }
     UpdateLocationHistoryForRoamer();
     MoveAllRoamers();
     DoCurrentWeather();
@@ -929,6 +947,7 @@ void LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
             ShowMapNamePopup();
     }
     SetMinimumOWESpawnTimer();
+    return primaryTilesetChanged;
 }
 
 static void LoadMapFromWarp(bool32 a1)
@@ -1934,10 +1953,10 @@ void CB2_NewGame(void)
     PlayTimeCounter_Start();
     ScriptContext_Init();
     UnlockPlayerFieldControls();
-    if (IS_FRLG)
-        gFieldCallback = FieldCB_WarpExitFadeFromBlack;
-    else
-        gFieldCallback = ExecuteTruckSequence;
+    // Plastic Ox demo: new games start in the Pallet Town bedroom, not the
+    // moving truck, so always fade in from black (ExecuteTruckSequence would
+    // scribble truck-door metatiles onto the bedroom and softlock).
+    gFieldCallback = FieldCB_WarpExitFadeFromBlack;
     gFieldCallback2 = NULL;
     DoMapLoadLoop(&gMain.state);
     SetFieldVBlankCallback();

@@ -74,7 +74,8 @@
     "gMapGroup_IndoorFiveIslandRoute_Frlg",
     "gMapGroup_IndoorTwoIslandRoute_Frlg",
     "gMapGroup_IndoorSixIslandRoute_Frlg",
-    "gMapGroup_IndoorSevenIslandRoute_Frlg"
+    "gMapGroup_IndoorSevenIslandRoute_Frlg",
+    "gMapGroup_PlasticOx"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",
@@ -857,7 +858,6 @@
     "NavelRock_Harbor_Frlg"
   ],
   "gMapGroup_TownsAndRoutes_Frlg": [
-    "PalletTown_Frlg",
     "ViridianCity_Frlg",
     "PewterCity_Frlg",
     "CeruleanCity_Frlg",
@@ -1160,5 +1160,8 @@
   ],
   "gMapGroup_IndoorSevenIslandRoute_Frlg": [
     "SevenIsland_SevaultCanyon_House_Frlg"
+  ],
+  "gMapGroup_PlasticOx": [
+    "PalletTown_Frlg"
   ]
 }

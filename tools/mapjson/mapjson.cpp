@@ -780,8 +780,18 @@ string generate_layout_headers_text(Json layouts_data) {
             else if (version == "firered")
                 layout_version = "frlg";
         }
-        if ((version == "emerald" && layout_version != "emerald")
-         || (version == "firered" && layout_version != "frlg"))
+        // Plastic Ox: a layout may opt into additional build versions via
+        // "include_in_versions": ["emerald", "firered"]. This lets shared
+        // demo layouts (e.g. Pallet Town stitched into the Emerald world)
+        // ship in multiple builds without changing the version-gated default.
+        vector<string> extra_versions;
+        if (layout.object_items().find("include_in_versions") != layout.object_items().end())
+            for (auto &v : layout["include_in_versions"].array_items())
+                extra_versions.push_back(json_to_string(v));
+        bool version_match = (version == "emerald" && layout_version == "emerald")
+                          || (version == "firered" && layout_version == "frlg")
+                          || find(extra_versions.begin(), extra_versions.end(), version) != extra_versions.end();
+        if (!version_match)
             continue;
         string layoutName = json_to_string(layout, "name");
         string border_label = layoutName + "_Border";
@@ -838,7 +848,14 @@ string generate_layouts_table_text(Json layouts_data) {
             else if (version == "firered")
                 layout_version = "frlg";
         }
-        if ((version == "emerald" && layout_version != "emerald") || (version == "firered" && layout_version != "frlg")) {
+        vector<string> extra_versions;
+        if (layout.object_items().find("include_in_versions") != layout.object_items().end())
+            for (auto &v : layout["include_in_versions"].array_items())
+                extra_versions.push_back(json_to_string(v));
+        bool version_match = (version == "emerald" && layout_version == "emerald")
+                          || (version == "firered" && layout_version == "frlg")
+                          || find(extra_versions.begin(), extra_versions.end(), version) != extra_versions.end();
+        if (!version_match) {
             text << "\t.4byte NULL\n";
         } else {
             string layout_name = json_to_string(layout, "name", true);
