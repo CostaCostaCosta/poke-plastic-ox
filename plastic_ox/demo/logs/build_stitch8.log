@@ -1,0 +1,19 @@
+tools/scaninc/scaninc -M build/emerald/src/new_game.d -g build/assets -I include -I tools/agbcc/include src/new_game.c
+/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin/../libexec/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/emerald/src/new_game.o src/new_game.c
+arm-none-eabi-ld: warning: ../../pokeemerald.elf has a LOAD segment with RWX permissions
+arm-none-eabi-ld: data/map_events.o: in function `PalletTown_ProfessorOaksLab_Frlg_MapCoordEvents':
+(.rodata+0x19070): undefined reference to `PalletTown_ProfessorOaksLab_EventScript_LeaveStarterSceneTrigger'
+arm-none-eabi-ld: (.rodata+0x19080): undefined reference to `PalletTown_ProfessorOaksLab_EventScript_LeaveStarterSceneTrigger'
+arm-none-eabi-ld: (.rodata+0x19090): undefined reference to `PalletTown_ProfessorOaksLab_EventScript_LeaveStarterSceneTrigger'
+arm-none-eabi-ld: (.rodata+0x190a0): undefined reference to `PalletTown_ProfessorOaksLab_EventScript_RivalBattleTriggerLeft'
+arm-none-eabi-ld: (.rodata+0x190b0): undefined reference to `PalletTown_ProfessorOaksLab_EventScript_RivalBattleTriggerMid'
+arm-none-eabi-ld: (.rodata+0x190c0): undefined reference to `PalletTown_ProfessorOaksLab_EventScript_RivalBattleTriggerRight'
+arm-none-eabi-ld: data/map_events.o: in function `PalletTown_Frlg_MapCoordEvents':
+(.rodata+0x19174): undefined reference to `PalletTown_EventScript_OakTriggerLeft'
+arm-none-eabi-ld: (.rodata+0x19184): undefined reference to `PalletTown_EventScript_OakTriggerRight'
+arm-none-eabi-ld: (.rodata+0x19194): undefined reference to `PalletTown_EventScript_SignLadyTrigger'
+Memory region         Used Size  Region Size  %age Used
+           EWRAM:      226588 B       256 KB     86.44%
+           IWRAM:       28392 B        32 KB     86.65%
+             ROM:    26834536 B        32 MB     79.97%
+make: *** [Makefile:582: pokeemerald.elf] Error 1

@@ -600,6 +600,14 @@ gStdScripts_End::
 	.include "data/maps/Route119_House/scripts.inc"
 	.include "data/maps/Route124_DivingTreasureHuntersHouse/scripts.inc"
 
+	@ Plastic Ox: Pallet Town demo maps are stitched into the Emerald world,
+	@ so their scripts are compiled in all builds.
+	.include "data/maps/PalletTown_Frlg/scripts.inc"
+	.include "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
+	.include "data/maps/PalletTown_PlayersHouse_2F_Frlg/scripts.inc"
+	.include "data/maps/PalletTown_RivalsHouse_Frlg/scripts.inc"
+	.include "data/maps/PalletTown_ProfessorOaksLab_Frlg/scripts.inc"
+
 .if IS_FRLG
 
 @ FRLG scripts
@@ -791,7 +799,6 @@ gStdScripts_End::
 	.include "data/maps/OneIsland_KindleRoad_EmberSpa_Frlg/scripts.inc"
 	.include "data/maps/BirthIsland_Harbor_Frlg/scripts.inc"
 	.include "data/maps/NavelRock_Harbor_Frlg/scripts.inc"
-	.include "data/maps/PalletTown_Frlg/scripts.inc"
 	.include "data/maps/ViridianCity_Frlg/scripts.inc"
 	.include "data/maps/PewterCity_Frlg/scripts.inc"
 	.include "data/maps/CeruleanCity_Frlg/scripts.inc"
@@ -853,10 +860,6 @@ gStdScripts_End::
 	.include "data/maps/SevenIsland_SevaultCanyon_Entrance_Frlg/scripts.inc"
 	.include "data/maps/SevenIsland_SevaultCanyon_Frlg/scripts.inc"
 	.include "data/maps/SevenIsland_TanobyRuins_Frlg/scripts.inc"
-	.include "data/maps/PalletTown_PlayersHouse_1F_Frlg/scripts.inc"
-	.include "data/maps/PalletTown_PlayersHouse_2F_Frlg/scripts.inc"
-	.include "data/maps/PalletTown_RivalsHouse_Frlg/scripts.inc"
-	.include "data/maps/PalletTown_ProfessorOaksLab_Frlg/scripts.inc"
 	.include "data/maps/ViridianCity_House_Frlg/scripts.inc"
 	.include "data/maps/ViridianCity_Gym_Frlg/scripts.inc"
 	.include "data/maps/ViridianCity_School_Frlg/scripts.inc"

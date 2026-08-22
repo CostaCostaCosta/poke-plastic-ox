@@ -1,0 +1,13 @@
+t=    300 boot300                      f=185e52235d7eca688f4d1630fa876740 st={'ptr': '0x200ffc8', 'group': 0, 'num': 0, 'x': 0, 'y': 0, 'textspeed': 0} bw=0.006 
+t=    330 intro-mash i=0               f=4b992e1f8388fb308ce652623c570ace st={'ptr': '0x200ffc8', 'group': 0, 'num': 0, 'x': 0, 'y': 0, 'textspeed': 0} bw=0.000 
+t=   1530 intro-mash i=40              f=17ff214cbb406142665a9a25ae0d15aa st={'ptr': '0x200ffc8', 'group': 0, 'num': 0, 'x': 0, 'y': 0, 'textspeed': 0} bw=0.783 
+t=   2730 intro-mash i=80              f=7dc5fbedcb5f0c2a963dfc27559048de st={'ptr': '0x200ffc8', 'group': 0, 'num': 0, 'x': 0, 'y': 0, 'textspeed': 0} bw=0.740 
+t=   3930 intro-mash i=120             f=26b82f0cdfdbc16096dfb91609e4100a st={'ptr': '0x200ffc8', 'group': 0, 'num': 0, 'x': 0, 'y': 0, 'textspeed': 0} bw=0.731 
+t=   5130 intro-mash i=160             f=21ea8a7fb6bdce02384e976a31576672 st={'ptr': '0x200ffc8', 'group': 0, 'num': 0, 'x': 0, 'y': 0, 'textspeed': 0} bw=0.287 
+t=   6332 start_press                  f=216003b5be77ce53c2d384e9804ad2f2 st={'ptr': '0x200ffc8', 'group': 0, 'num': 0, 'x': 0, 'y': 0, 'textspeed': 0} bw=0.806 
+t=   6452 after_start_120              f=d0dd4567cdc0acbe34647ed40eb0a36f st={'ptr': '0x200ffc8', 'group': 0, 'num': 0, 'x': 0, 'y': 0, 'textspeed': 0} bw=0.806 
+t=   6484 A_newgame                    f=b34b7102683775df866e20e62dbf3abb st={'ptr': '0x200ffc8', 'group': 0, 'num': 0, 'x': 0, 'y': 0, 'textspeed': 0} bw=0.813 
+t=   6724 after_A_240                  f=6f5d727b5efce76d84a659ca1d1aa548 st={'ptr': '0x200ffc8', 'group': 0, 'num': 0, 'x': 0, 'y': 0, 'textspeed': 0} bw=0.743 
+t=   6754 birch-mash i=0               f=f12b163732f0e02496a58ff9a3c333b8 st={'ptr': '0x200ffc8', 'group': 0, 'num': 0, 'x': 0, 'y': 0, 'textspeed': 2} bw=0.747 
+t=   8104 REACHED_BEDROOM              f=4b992e1f8388fb308ce652623c570ace st={'ptr': '0x200ff94', 'group': 38, 'num': 1, 'x': 6, 'y': 6, 'textspeed': 2} bw=0.000 
+done

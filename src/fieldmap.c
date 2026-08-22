@@ -1,6 +1,7 @@
 #include "global.h"
 #include "battle_pyramid.h"
 #include "bg.h"
+#include "field_camera.h"
 #include "fieldmap.h"
 #include "fldeff.h"
 #include "fldeff_misc.h"
@@ -43,6 +44,8 @@ static void FillSouthConnection(struct MapHeader const *mapHeader, struct MapHea
 static void FillNorthConnection(struct MapHeader const *mapHeader, struct MapHeader const *connectedMapHeader, s32 offset);
 static void FillWestConnection(struct MapHeader const *mapHeader, struct MapHeader const *connectedMapHeader, s32 offset);
 static void FillEastConnection(struct MapHeader const *mapHeader, struct MapHeader const *connectedMapHeader, s32 offset);
+static bool8 AreConnectionTilesetsCompatible(const struct MapHeader *mapHeader, const struct MapHeader *connectedMapHeader);
+static void FillConnectionWithCurrentMapEdge(const struct MapHeader *mapHeader, enum Connection direction, s32 x, s32 y, s32 width, s32 height);
 static void InitBackupMapLayoutConnections(const struct MapHeader *mapHeader);
 static void LoadSavedMapView(void);
 static bool8 SkipCopyingMetatileFromSavedMap(u16 *mapBlock, u16 mapWidth, u8 yMode);
@@ -248,6 +251,61 @@ static void FillConnection(s32 x, s32 y, const struct MapHeader *connectedMapHea
     }
 }
 
+static bool8 AreConnectionTilesetsCompatible(const struct MapHeader *mapHeader, const struct MapHeader *connectedMapHeader)
+{
+    const struct MapLayout *mapLayout = mapHeader->mapLayout;
+    const struct MapLayout *connectedMapLayout = connectedMapHeader->mapLayout;
+
+    return mapLayout->isFrlg == connectedMapLayout->isFrlg
+        && mapLayout->primaryTileset == connectedMapLayout->primaryTileset
+        && mapLayout->secondaryTileset == connectedMapLayout->secondaryTileset;
+}
+
+// A connection normally copies the neighboring map's blocks into the current
+// map's seven-block camera margin. That only renders correctly when both maps
+// use the same tilesets: metatile ids have no meaning outside their tileset.
+// For cross-generation stitches, extend the current map's touching edge into
+// the margin instead. The connection geometry and collision remain intact,
+// while foreign metatile ids are never drawn with the wrong graphics.
+static void FillConnectionWithCurrentMapEdge(const struct MapHeader *mapHeader, enum Connection direction, s32 x, s32 y, s32 width, s32 height)
+{
+    const struct MapLayout *mapLayout = mapHeader->mapLayout;
+    s32 destX;
+    s32 destY;
+    s32 localX;
+    s32 localY;
+    s32 srcX;
+    s32 srcY;
+    u16 block;
+
+    for (destY = y; destY < y + height; destY++)
+    {
+        for (destX = x; destX < x + width; destX++)
+        {
+            localX = destX - MAP_OFFSET;
+            localY = destY - MAP_OFFSET;
+            srcX = localX;
+            srcY = localY;
+
+            if (direction == CONNECTION_NORTH)
+                srcY = 0;
+            else if (direction == CONNECTION_SOUTH)
+                srcY = mapLayout->height - 1;
+            else if (direction == CONNECTION_WEST)
+                srcX = 0;
+            else
+                srcX = mapLayout->width - 1;
+
+            if (srcX >= 0 && srcX < mapLayout->width && srcY >= 0 && srcY < mapLayout->height)
+                block = mapLayout->map[srcX + srcY * mapLayout->width];
+            else
+                block = GetBorderBlockAt(destX, destY);
+
+            gBackupMapLayout.map[destX + destY * gBackupMapLayout.width] = block;
+        }
+    }
+}
+
 static void FillSouthConnection(const struct MapHeader *mapHeader, const struct MapHeader *connectedMapHeader, s32 offset)
 {
     s32 x, y;
@@ -280,7 +338,10 @@ static void FillSouthConnection(const struct MapHeader *mapHeader, const struct 
             width = gBackupMapLayout.width - x;
     }
 
-    FillConnection(x, y, connectedMapHeader, x2, /*y2*/ 0, width, /*height*/ MAP_OFFSET);
+    if (AreConnectionTilesetsCompatible(mapHeader, connectedMapHeader))
+        FillConnection(x, y, connectedMapHeader, x2, /*y2*/ 0, width, /*height*/ MAP_OFFSET);
+    else
+        FillConnectionWithCurrentMapEdge(mapHeader, CONNECTION_SOUTH, x, y, width, MAP_OFFSET);
 }
 
 static void FillNorthConnection(const struct MapHeader *mapHeader, const struct MapHeader *connectedMapHeader, s32 offset)
@@ -316,7 +377,10 @@ static void FillNorthConnection(const struct MapHeader *mapHeader, const struct 
             width = gBackupMapLayout.width - x;
     }
 
-    FillConnection(x, /*y*/ 0, connectedMapHeader, x2, y2, width, /*height*/ MAP_OFFSET);
+    if (AreConnectionTilesetsCompatible(mapHeader, connectedMapHeader))
+        FillConnection(x, /*y*/ 0, connectedMapHeader, x2, y2, width, /*height*/ MAP_OFFSET);
+    else
+        FillConnectionWithCurrentMapEdge(mapHeader, CONNECTION_NORTH, x, 0, width, MAP_OFFSET);
 }
 
 static void FillWestConnection(const struct MapHeader *mapHeader, const struct MapHeader *connectedMapHeader, s32 offset)
@@ -351,7 +415,10 @@ static void FillWestConnection(const struct MapHeader *mapHeader, const struct M
             height = gBackupMapLayout.height - y;
     }
 
-    FillConnection(/*x*/ 0, y, connectedMapHeader, x2, y2, /*width*/ MAP_OFFSET, height);
+    if (AreConnectionTilesetsCompatible(mapHeader, connectedMapHeader))
+        FillConnection(/*x*/ 0, y, connectedMapHeader, x2, y2, /*width*/ MAP_OFFSET, height);
+    else
+        FillConnectionWithCurrentMapEdge(mapHeader, CONNECTION_WEST, 0, y, MAP_OFFSET, height);
 }
 
 static void FillEastConnection(const struct MapHeader *mapHeader, const struct MapHeader *connectedMapHeader, s32 offset)
@@ -384,7 +451,10 @@ static void FillEastConnection(const struct MapHeader *mapHeader, const struct M
             height = gBackupMapLayout.height - y;
     }
 
-    FillConnection(x, y, connectedMapHeader, /*x2*/ 0, y2, /*width*/ MAP_OFFSET + 1, height);
+    if (AreConnectionTilesetsCompatible(mapHeader, connectedMapHeader))
+        FillConnection(x, y, connectedMapHeader, /*x2*/ 0, y2, /*width*/ MAP_OFFSET + 1, height);
+    else
+        FillConnectionWithCurrentMapEdge(mapHeader, CONNECTION_EAST, x, y, MAP_OFFSET + 1, height);
 }
 
 u8 MapGridGetElevationAt(s32 x, s32 y)
@@ -746,6 +816,7 @@ bool8 CameraMove(s32 x, s32 y)
 {
     enum Connection direction;
     const struct MapConnection *connection;
+    bool8 redrawMapView;
     s32 old_x, old_y;
     gCamera.active = FALSE;
     direction = GetPostCameraMoveMapBorderId(x, y);
@@ -767,13 +838,23 @@ bool8 CameraMove(s32 x, s32 y)
         }
 
         SetPositionFromConnection(connection, direction, x, y);
-        LoadMapFromCameraTransition(connection->mapGroup, connection->mapNum);
+        redrawMapView = LoadMapFromCameraTransition(connection->mapGroup, connection->mapNum);
         gCamera.active = TRUE;
         gCamera.x = old_x - gSaveBlock1Ptr->pos.x;
         gCamera.y = old_y - gSaveBlock1Ptr->pos.y;
         gSaveBlock1Ptr->pos.x += x;
         gSaveBlock1Ptr->pos.y += y;
-        MoveMapViewToBackup(direction);
+        if (redrawMapView)
+        {
+            // Saved map views contain metatile ids from the source map. They
+            // cannot be reused after switching primary tilesets.
+            ClearSavedMapView();
+            DrawWholeMapView();
+        }
+        else
+        {
+            MoveMapViewToBackup(direction);
+        }
     }
 
     return gCamera.active;

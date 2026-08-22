@@ -1,0 +1,56 @@
+python3 tools/wild_encounters/wild_encounters_to_header.py
+tools/jsonproc/jsonproc src/data/wild_encounters.json src/data/wild_encounters.constants.json.txt include/constants/wild_encounter.h
+tools/scaninc/scaninc -M build/emerald/data/mystery_gift.d -g build/assets -I include -I "" data/mystery_gift.s
+tools/scaninc/scaninc -M build/emerald/data/event_scripts.d -g build/assets -I include -I "" data/event_scripts.s
+tools/scaninc/scaninc -M build/emerald/src/wild_encounter_ow.d -g build/assets -I include -I tools/agbcc/include src/wild_encounter_ow.c
+tools/scaninc/scaninc -M build/emerald/src/wild_encounter.d -g build/assets -I include -I tools/agbcc/include src/wild_encounter.c
+tools/scaninc/scaninc -M build/emerald/src/start_menu.d -g build/assets -I include -I tools/agbcc/include src/start_menu.c
+tools/scaninc/scaninc -M build/emerald/src/script_pokemon_util.d -g build/assets -I include -I tools/agbcc/include src/script_pokemon_util.c
+python3 tools/learnset_helpers/make_tutors.py tools/learnset_helpers/build/all_tutors.json
+tools/scaninc/scaninc -M build/emerald/src/pokedex_area_screen.d -g build/assets -I include -I tools/agbcc/include src/pokedex_area_screen.c
+tools/scaninc/scaninc -M build/emerald/src/overworld.d -g build/assets -I include -I tools/agbcc/include src/overworld.c
+tools/scaninc/scaninc -M build/emerald/src/match_call.d -g build/assets -I include -I tools/agbcc/include src/match_call.c
+tools/scaninc/scaninc -M build/emerald/src/fldeff_sweetscent.d -g build/assets -I include -I tools/agbcc/include src/fldeff_sweetscent.c
+tools/scaninc/scaninc -M build/emerald/src/fishing.d -g build/assets -I include -I tools/agbcc/include src/fishing.c
+tools/scaninc/scaninc -M build/emerald/src/field_player_avatar.d -g build/assets -I include -I tools/agbcc/include src/field_player_avatar.c
+tools/scaninc/scaninc -M build/emerald/src/fieldmap.d -g build/assets -I include -I tools/agbcc/include src/fieldmap.c
+tools/scaninc/scaninc -M build/emerald/src/field_control_avatar.d -g build/assets -I include -I tools/agbcc/include src/field_control_avatar.c
+tools/scaninc/scaninc -M build/emerald/src/event_object_movement.d -g build/assets -I include -I tools/agbcc/include src/event_object_movement.c
+tools/scaninc/scaninc -M build/emerald/src/dexnav.d -g build/assets -I include -I tools/agbcc/include src/dexnav.c
+tools/scaninc/scaninc -M build/emerald/src/debug.d -g build/assets -I include -I tools/agbcc/include src/debug.c
+tools/scaninc/scaninc -M build/emerald/src/bike.d -g build/assets -I include -I tools/agbcc/include src/bike.c
+tools/scaninc/scaninc -M build/emerald/src/battle_script_commands.d -g build/assets -I include -I tools/agbcc/include src/battle_script_commands.c
+tools/scaninc/scaninc -M build/emerald/src/battle_pyramid.d -g build/assets -I include -I tools/agbcc/include src/battle_pyramid.c
+tools/scaninc/scaninc -M build/emerald/src/battle_main.d -g build/assets -I include -I tools/agbcc/include src/battle_main.c
+tools/scaninc/scaninc -M build/emerald/src/battle_controllers.d -g build/assets -I include -I tools/agbcc/include src/battle_controllers.c
+/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin/../libexec/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/emerald/src/battle_controllers.o src/battle_controllers.c
+/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin/../libexec/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/emerald/src/battle_main.o src/battle_main.c
+/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin/../libexec/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/emerald/src/battle_pyramid.o src/battle_pyramid.c
+/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin/../libexec/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/emerald/src/battle_script_commands.o src/battle_script_commands.c
+/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin/../libexec/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/emerald/src/bike.o src/bike.c
+/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin/../libexec/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/emerald/src/debug.o src/debug.c
+/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin/../libexec/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/emerald/src/dexnav.o src/dexnav.c
+/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin/../libexec/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/emerald/src/event_object_movement.o src/event_object_movement.c
+/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin/../libexec/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/emerald/src/field_control_avatar.o src/field_control_avatar.c
+/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin/../libexec/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/emerald/src/fieldmap.o src/fieldmap.c
+/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin/../libexec/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/emerald/src/field_player_avatar.o src/field_player_avatar.c
+/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin/../libexec/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/emerald/src/fishing.o src/fishing.c
+/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin/../libexec/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/emerald/src/fldeff_sweetscent.o src/fldeff_sweetscent.c
+/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin/../libexec/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/emerald/src/match_call.o src/match_call.c
+/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin/../libexec/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/emerald/src/overworld.o src/overworld.c
+/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin/../libexec/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/emerald/src/pokedex_area_screen.o src/pokedex_area_screen.c
+/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin/../libexec/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/emerald/src/script_pokemon_util.o src/script_pokemon_util.c
+/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin/../libexec/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/emerald/src/start_menu.o src/start_menu.c
+/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin/../libexec/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/emerald/src/wild_encounter.o src/wild_encounter.c
+/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin/../libexec/gcc/arm-none-eabi/14.2.0/cc1 -quiet <flags> -o build/emerald/src/wild_encounter_ow.o src/wild_encounter_ow.c
+tools/preproc/preproc -s data/event_scripts.s charmap.txt | arm-none-eabi-cpp -iquote include -Wno-trigraphs -DMODERN=1 -DTESTING=0 -DEMERALD -std=gnu17 -I include - | tools/preproc/preproc -ie data/event_scripts.s charmap.txt | arm-none-eabi-as -mcpu=arm7tdmi -march=armv4t -meabi=5 --defsym MODERN=1 --defsym EMERALD=1 -o build/emerald/data/event_scripts.o
+tools/preproc/preproc -s data/mystery_gift.s charmap.txt | arm-none-eabi-cpp -iquote include -Wno-trigraphs -DMODERN=1 -DTESTING=0 -DEMERALD -std=gnu17 -I include - | tools/preproc/preproc -ie data/mystery_gift.s charmap.txt | arm-none-eabi-as -mcpu=arm7tdmi -march=armv4t -meabi=5 --defsym MODERN=1 --defsym EMERALD=1 -o build/emerald/data/mystery_gift.o
+arm-none-eabi-ld: warning: ../../pokeemerald.elf has a LOAD segment with RWX permissions
+Memory region         Used Size  Region Size  %age Used
+           EWRAM:      226588 B       256 KB     86.44%
+           IWRAM:       28392 B        32 KB     86.65%
+             ROM:    26847820 B        32 MB     80.01%
+cd build/emerald && arm-none-eabi-ld -Map ../../pokeemerald.map --print-memory-usage --gc-sections -T ../../ld_script_modern.ld -o ../../pokeemerald.elf <objs> <libs> | cat
+tools/gbafix/gbafix pokeemerald.elf -t"POKEMON EMER" -cBPEE -m01 -r0 --silent
+arm-none-eabi-objcopy -O binary pokeemerald.elf pokeemerald.gba
+tools/gbafix/gbafix pokeemerald.gba -p --silent
