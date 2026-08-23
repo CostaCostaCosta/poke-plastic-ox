@@ -2985,10 +2985,7 @@ static void ClearSetBScriptingStruct(void)
     memset(&gBattleScripting, 0, sizeof(gBattleScripting));
 
     gBattleScripting.windowsType = temp;
-    gBattleScripting.battleStyle = gSaveBlock2Ptr->optionsBattleStyle;
-    #if TESTING
     gBattleScripting.battleStyle = OPTIONS_BATTLE_STYLE_SET;
-    #endif
     gBattleScripting.expOnCatch = (GetConfig(B_EXP_CATCH) >= GEN_6);
     gBattleScripting.specialTrainerBattleType = specialBattleType;
 }
@@ -5002,7 +4999,15 @@ static void SetActionsAndBattlersTurnOrder(void)
                     calcValues.battlerAtk = gBattlerByTurnOrder[battler];
                     calcValues.battlerDef = gBattlerByTurnOrder[battler2];
                     TryChangingTurnOrderEffects(&calcValues, quickClawRandom, quickDrawRandom);
-                    if (gActionsByTurnOrder[battler] != B_ACTION_USE_ITEM
+                    // Current ADV OU uses the Switch Priority Clause: when both
+                    // players switch, the faster active Pokémon switches first.
+                    if (gActionsByTurnOrder[battler] == B_ACTION_SWITCH
+                        && gActionsByTurnOrder[battler2] == B_ACTION_SWITCH)
+                    {
+                        if (GetWhichBattlerFaster(&calcValues, TRUE) == -1)
+                            SwapTurnOrder(battler, battler2);
+                    }
+                    else if (gActionsByTurnOrder[battler] != B_ACTION_USE_ITEM
                         && gActionsByTurnOrder[battler2] != B_ACTION_USE_ITEM
                         && gActionsByTurnOrder[battler] != B_ACTION_SWITCH
                         && gActionsByTurnOrder[battler2] != B_ACTION_SWITCH

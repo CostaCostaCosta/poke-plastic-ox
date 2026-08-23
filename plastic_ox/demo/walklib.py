@@ -215,37 +215,20 @@ class GBA:
         return None
 
 def boot_to_bedroom(g):
-    """Drive the boot/intro/new-game sequence to the 2F bedroom."""
-    g.frame(300)
-    for i in range(200):
-        g.frame(30)
-        if i % 4 == 0:
-            g.tap(K.KEY_A, hold=1, wait=3)
-    g.tap(K.KEY_START, hold=2, wait=30)
-    g.frame(120)
-    g.tap(K.KEY_A, hold=2, wait=30)
-    g.frame(240)
-    for i in range(2000):
-        g.frame(30)
-        g.set_text_speed_fast()
-        if i % 3 == 0:
-            g.tap(K.KEY_A, hold=1, wait=2)
+    """Wait for the direct-demo boot to place P in the 2F bedroom."""
+    for i in range(300):
+        g.frame(10)
         st = g.state()
         if st is not None and st['group'] == 38 and st['num'] == 1:
-            break
-    else:
-        raise RuntimeError("never reached bedroom")
-    # the A-mash above can open the NES sign the player faces at spawn;
-    # close any open dialog and verify movement before returning
-    g.frame(60)
-    for k in range(15):
-        st0 = g.state()
-        g.tap(K.KEY_A, hold=2, wait=25)
-        g.tap(K.KEY_B, hold=2, wait=25)
-        g.frame(30)
-        g.tap(K.KEY_RIGHT, hold=10, wait=30)
-        st1 = g.state()
-        if st0 and st1 and st1['x'] != st0['x']:
-            g.tap(K.KEY_LEFT, hold=10, wait=30)   # step back to spawn column
+            g.frame(60)
+            party_counts = g.symbol_address("gPartiesCount")
+            assert g.u8(party_counts) == 0, "direct boot should wait for Oak to issue P's team"
+
+            save2_ptr_addr = g.symbol_address("gSaveBlock2Ptr")
+            save2 = g.u32(save2_ptr_addr)
+            assert g.u8(save2) == 0xCA and g.u8(save2 + 1) == 0xFF, "direct boot player name is not P"
+            options = g.u16(save2 + 0x14)
+            assert ((options >> 9) & 1) == 1, "direct boot battle style is not Set"
             return
-    raise RuntimeError("bedroom reached but player is stuck in a dialog")
+    else:
+        raise RuntimeError("direct demo boot never reached bedroom")
