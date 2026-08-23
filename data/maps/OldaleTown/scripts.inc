@@ -33,6 +33,22 @@ OldaleTown_EventScript_Girl::
 	msgbox OldaleTown_Text_SavingMyProgress, MSGBOX_NPC
 	end
 
+OldaleTown_EventScript_Lance::
+	lock
+	faceplayer
+	msgbox OldaleTown_Text_LanceChallenge, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, OldaleTown_EventScript_LanceDeclined
+	playbgm MUS_ENCOUNTER_ELITE_FOUR, FALSE
+	trainerbattle_no_intro TRAINER_PLASTIC_OX_LANCE, OldaleTown_Text_LanceDefeat
+	msgbox OldaleTown_Text_LanceAfterBattle, MSGBOX_DEFAULT
+	release
+	end
+
+OldaleTown_EventScript_LanceDeclined::
+	msgbox OldaleTown_Text_LanceDeclined, MSGBOX_DEFAULT
+	release
+	end
+
 OldaleTown_EventScript_MartEmployee::
 	lock
 	faceplayer
@@ -343,6 +359,22 @@ OldaleTown_Text_SavingMyProgress:
 	.string "I want to take a rest, so I'm saving my\n"
 	.string "progress.$"
 
+OldaleTown_Text_LanceChallenge:
+	.string "LANCE: P, your team is ready for a\n"
+	.string "proper ADV OU battle.\p"
+	.string "Will you battle me?$"
+
+OldaleTown_Text_LanceDeclined:
+	.string "LANCE: I'll be here when you're ready.$"
+
+OldaleTown_Text_LanceDefeat:
+	.string "Your command of the ADV metagame is\n"
+	.string "impressive.$"
+
+OldaleTown_Text_LanceAfterBattle:
+	.string "LANCE: An excellent battle. Speak to me\n"
+	.string "again if you'd like a rematch.$"
+
 OldaleTown_Text_IWorkAtPokemonMart:
 	.string "Hi!\n"
 	.string "I work at a POKéMON MART.\p"
@@ -394,4 +426,3 @@ OldaleTown_Text_BrendanLetsGoBack:
 OldaleTown_Text_TownSign:
 	.string "OLDALE TOWN\n"
 	.string "“Where things start off scarce.”$"
-

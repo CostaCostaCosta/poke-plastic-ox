@@ -91,7 +91,7 @@ void EnableVCountIntrAtLine150(void);
 
 void AgbMain(void)
 {
-    *(vu16 *)BG_PLTT = RGB_WHITE; // Set the backdrop to white on startup
+    *(vu16 *)BG_PLTT = RGB_BLACK; // Direct-demo boot fades into the bedroom from black.
     InitGpuRegManager();
     REG_WAITCNT = WAITCNT_PREFETCH_ENABLE
             | WAITCNT_WS0_S_1 | WAITCNT_WS0_N_3

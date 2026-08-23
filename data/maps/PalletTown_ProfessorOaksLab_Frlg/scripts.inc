@@ -2,7 +2,18 @@ PalletTown_ProfessorOaksLab_Frlg_MapScripts::
 	.byte 0
 
 PalletTown_ProfessorOaksLab_EventScript_ProfOak::
-	msgbox PalletTown_ProfessorOaksLab_Text_ProfOak, MSGBOX_NPC
+	lock
+	faceplayer
+	msgbox PalletTown_ProfessorOaksLab_Text_ProfOak, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, PalletTown_ProfessorOaksLab_EventScript_ProfOakDeclined
+	special GivePlasticOxPlayerParty
+	msgbox PalletTown_ProfessorOaksLab_Text_ProfOakTeamGiven, MSGBOX_DEFAULT
+	release
+	end
+
+PalletTown_ProfessorOaksLab_EventScript_ProfOakDeclined::
+	msgbox PalletTown_ProfessorOaksLab_Text_ProfOakDeclined, MSGBOX_DEFAULT
+	release
 	end
 
 PalletTown_ProfessorOaksLab_EventScript_Rival::
@@ -50,8 +61,17 @@ PalletTown_ProfessorOaksLab_EventScript_RightSign::
 	end
 
 PalletTown_ProfessorOaksLab_Text_ProfOak::
-	.string "OAK: This lab is open for the demo.\n"
-	.string "Explore at your own pace.$"
+	.string "OAK: I've prepared a complete ADV OU\n"
+	.string "team for your battle with LANCE.\p"
+	.string "Would you like me to issue it now?$"
+
+PalletTown_ProfessorOaksLab_Text_ProfOakTeamGiven::
+	.string "OAK: Your team is ready: SKARMORY,\n"
+	.string "BLISSEY, CLAYDOL, DUGTRIO, GENGAR,\n"
+	.string "and SUICUNE. Good luck!$"
+
+PalletTown_ProfessorOaksLab_Text_ProfOakDeclined::
+	.string "OAK: Return whenever you're ready.$"
 
 PalletTown_ProfessorOaksLab_Text_Visitor::
 	.string "I'm studying how regions connect.$"

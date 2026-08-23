@@ -64,8 +64,8 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "0x0",
-      "flag": "FLAG_HIDE_OAK_IN_PALLET_TOWN"
+      "script": "PalletTown_EventScript_ProfOakTeam",
+      "flag": "0"
     }
   ],
   "warp_events": [

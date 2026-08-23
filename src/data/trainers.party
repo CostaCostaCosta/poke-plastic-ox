@@ -16877,3 +16877,134 @@ Double Battle: No
 Kyogre
 Level: 5
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+=== TRAINER_PLASTIC_OX_PLAYER ===
+Name: P
+Class: Pkmn Trainer 1
+Pic: RS Brendan
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Skarmory @ Leftovers
+Ability: Keen Eye
+EVs: 252 HP / 4 Def / 252 SpD
+Careful Nature
+- Protect
+- Drill Peck
+- Spikes
+- Toxic
+
+Blissey (F) @ Leftovers
+Ability: Natural Cure
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 40 HP / 252 Def / 216 SpA
+Bold Nature
+- Sing
+- Seismic Toss
+- Ice Beam
+- Soft Boiled
+
+Claydol @ Leftovers
+Ability: Levitate
+EVs: 252 HP / 112 Def / 128 SpD / 16 Spe
+Sassy Nature
+- Explosion
+- Rapid Spin
+- Earthquake
+- Psychic
+
+Dugtrio @ Choice Band
+Ability: Arena Trap
+IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 8 HP / 248 Atk / 252 Spe
+Jolly Nature
+- Aerial Ace
+- Earthquake
+- Hidden Power
+- Rock Slide
+
+Gengar @ Leftovers
+Ability: Levitate
+EVs: 248 HP / 52 Def / 208 Spe
+Timid Nature
+- Will O Wisp
+- Thunderbolt
+- Ice Punch
+- Explosion
+
+Suicune @ Leftovers
+Ability: Pressure
+EVs: 248 HP / 244 Def / 16 Spe
+Bold Nature
+- Calm Mind
+- Rest
+- Roar
+- Surf
+
+=== TRAINER_PLASTIC_OX_LANCE ===
+Name: LANCE
+Class: Elite Four Frlg
+Pic: Elite Four Lance Frlg
+Gender: Male
+Music: Elite Four
+Double Battle: No
+AI: Basic Trainer / Smart Switching / Omniscient / PP Stall Prevention
+
+Zapdos @ Leftovers
+Ability: Pressure
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 120 HP / 84 SpA / 108 SpD / 196 Spe
+Modest Nature
+- Thunder Wave
+- Thunderbolt
+- Hidden Power
+- Roar
+
+Forretress @ Leftovers
+Ability: Sturdy
+EVs: 252 HP / 4 Def / 252 SpD
+Careful Nature
+- Explosion
+- Earthquake
+- Spikes
+- Rapid Spin
+
+Blissey (F) @ Leftovers
+Ability: Natural Cure
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 128 HP / 252 Def / 128 Spe
+Bold Nature
+- Counter
+- Thunder Wave
+- Seismic Toss
+- Soft Boiled
+
+Gengar @ Leftovers
+Ability: Levitate
+EVs: 248 HP / 44 Def / 8 SpA / 112 SpD / 96 Spe
+Timid Nature
+- Will O Wisp
+- Ice Punch
+- Explosion
+- Fire Punch
+
+Tyranitar @ Leftovers
+Ability: Sand Stream
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 240 HP / 76 Def / 180 SpA / 12 Spe
+Modest Nature
+- Crunch
+- Pursuit
+- Flamethrower
+- Hidden Power
+
+Swampert @ Leftovers
+Ability: Torrent
+EVs: 248 HP / 216 Def / 44 SpD
+Relaxed Nature
+- Earthquake
+- Surf
+- Ice Beam
+- Protect

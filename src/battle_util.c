@@ -5250,6 +5250,17 @@ bool32 CanBeParalyzed(enum BattlerId battlerAtk, enum BattlerId battlerDef, enum
 
 bool32 CanBeFrozen(enum BattlerId battlerAtk, enum BattlerId battlerDef, enum Ability abilityDef)
 {
+    if (B_FREEZE_CLAUSE)
+    {
+        struct Pokemon *party = gParties[GetBattlerTrainer(battlerDef)];
+
+        for (u32 i = 0; i < PARTY_SIZE; i++)
+        {
+            if (GetMonData(&party[i], MON_DATA_STATUS) & STATUS1_FREEZE)
+                return FALSE;
+        }
+    }
+
     if (CanSetNonVolatileStatus(
             battlerAtk,
             battlerDef,
@@ -10747,6 +10758,10 @@ bool32 IsBattlerInvalidForSpreadMove(enum BattlerId battlerAtk, enum BattlerId b
 
 bool32 IsAllowedToUseBag(void)
 {
+    // Competitive ADV battles permit held items, but not bag items.
+    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+        return FALSE;
+
     switch (VarGet(B_VAR_NO_BAG_USE))
     {
     case NO_BAG_RESTRICTION:

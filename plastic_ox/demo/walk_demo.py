@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Authoritative headless verification for the Plastic Ox map-stitch demo.
 
-Flow: NEW GAME -> Pallet bedroom -> Mom -> Pallet Town -> Route 101 ->
+Flow: direct boot -> Pallet bedroom -> Mom -> Pallet Town -> Route 101 ->
 Oldale Town -> Route 101 -> Pallet Town. The run fails immediately if a
 battle starts, so a passing round trip also checks Route 101's empty table.
 """
@@ -59,6 +59,16 @@ def check_static_invariants():
     )
     for forbidden in ("trainerbattle", "applymovement", "{RIVAL}", "ChooseStarter", "StartBirchRescue"):
         assert forbidden not in scene_free_scripts, f"imported scene command remains: {forbidden}"
+
+    oldale = json.loads((REPO / "data/maps/OldaleTown/map.json").read_text())
+    lance = [event for event in oldale["object_events"] if event.get("local_id") == "LOCALID_OLDALE_LANCE"]
+    assert len(lance) == 1, "Oldale must contain exactly one Plastic Ox Lance NPC"
+    assert lance[0]["graphics_id"] == "OBJ_EVENT_GFX_LANCE"
+    assert lance[0]["script"] == "OldaleTown_EventScript_Lance"
+
+    trainers = (REPO / "src/data/trainers.party").read_text()
+    assert "=== TRAINER_PLASTIC_OX_PLAYER ===" in trainers
+    assert "=== TRAINER_PLASTIC_OX_LANCE ===" in trainers
 
 
 def assert_map(g, expected, stage):
@@ -190,7 +200,7 @@ def walk_to_edge(g, edge, mid_shot=None):
 def exercise_tall_grass(g, steps=80):
     """Deliberately walk in encounter-bearing terrain and reject any battle."""
     grass = (12, 10)
-    partner = (13, 10)
+    partner = (11, 10)
 
     for _ in range(300):
         state = g.state()
@@ -307,6 +317,26 @@ def visit_mom(g):
     g.shot("verified_02_mom.png")
 
 
+def exercise_lance_battle(g):
+    """Talk to Oldale's Lance, choose Yes, and verify his trainer battle starts."""
+    navigate_to(g, (10, 12))
+    g.tap(K.KEY_UP, hold=2, wait=15)
+    g.tap(K.KEY_A, hold=2, wait=45)
+
+    battle_flags = g.symbol_address("gBattleTypeFlags")
+    for _ in range(20):
+        if g.u32(battle_flags) != 0:
+            break
+        g.tap(K.KEY_A, hold=1, wait=30)
+    else:
+        raise AssertionError("Lance accepted the challenge but no trainer battle started")
+
+    assert g.u32(battle_flags) & 8, f"Lance battle is not marked as a trainer battle: {g.u32(battle_flags):#x}"
+    g.frame(180)
+    g.shot("verified_10_lance_battle.png")
+    print("LANCE BATTLE VERIFICATION PASSED", flush=True)
+
+
 def main():
     check_static_invariants()
     g = GBA()
@@ -347,11 +377,16 @@ def main():
 
     cross_connection(g, "UP", MAP_ROUTE101, "route101_northbound")
     g.shot("verified_05_route101_entry.png")
-    exercise_tall_grass(g)
+    if "--lance" not in sys.argv:
+        exercise_tall_grass(g)
     exercise_route101_ledge(g)
     walk_to_edge(g, "north", mid_shot="verified_06_route101_mid.png")
     cross_connection(g, "UP", MAP_OLDALE, "oldale")
     g.shot("verified_07_oldale.png")
+
+    if "--lance" in sys.argv:
+        exercise_lance_battle(g)
+        return
 
     walk_to_edge(g, "south")
     cross_connection(g, "DOWN", MAP_ROUTE101, "route101_southbound")
