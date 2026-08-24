@@ -61,4 +61,45 @@ extern const struct Tileset gTileset_SSAnne;
 extern const struct Tileset gTileset_SeaCottage;
 extern const struct Tileset gTileset_TrainerTower;
 
+// Plastic Ox: HnS (Johto/Kanto) tilesets
+extern const struct Tileset gTileset_Johto_General_Hns;
+extern const struct Tileset gTileset_Kanto_General_Hns;
+extern const struct Tileset gTileset_Johto_South_Hns;
+extern const struct Tileset gTileset_Johto_Building_Hns;
+extern const struct Tileset gTileset_Kanto_Building_Hns;
+extern const struct Tileset gTileset_Johto_NorthEast_Hns;
+extern const struct Tileset gTileset_NewBarkTown_Hns;
+extern const struct Tileset gTileset_CherrygroveCity_Hns;
+extern const struct Tileset gTileset_Cave_Default_Hns;
+extern const struct Tileset gTileset_IlexForest_Hns;
+extern const struct Tileset gTileset_PalletTown_Hns;
+extern const struct Tileset gTileset_Kanto_PokemonCenter_Hns;
+extern const struct Tileset gTileset_JohtoMart_Hns;
+extern const struct Tileset gTileset_KantoMart_Hns;
+extern const struct Tileset gTileset_House_Lab_Hns;
+extern const struct Tileset gTileset_Cave_MtMoon_Hns;
+extern const struct Tileset gTileset_BurnedTower_Hns;
+extern const struct Tileset gTileset_NationalPark_Hns;
+extern const struct Tileset gTileset_EcruteakCity_Gym_Hns;
+extern const struct Tileset gTileset_Cafe_Hns;
+extern const struct Tileset gTileset_EcruteakTheater_Hns;
+extern const struct Tileset gTileset_SeaCottage_Hns;
+extern const struct Tileset gTileset_Cave_Ice_Hns;
+extern const struct Tileset gTileset_Cave_DragonsDen_Hns;
+extern const struct Tileset gTileset_BlackthornGym_Hns;
+extern const struct Tileset gTileset_SilphCo_Hns;
+extern const struct Tileset gTileset_SaffronCity_Gym_Hns;
+extern const struct Tileset gTileset_WhirlIslands_Hns;
+extern const struct Tileset gTileset_IndigoPlateau_Hns;
+extern const struct Tileset gTileset_PokemonCenter_White_Hns;
+extern const struct Tileset gTileset_SaffronCity_Hns;
+extern const struct Tileset gTileset_Goldenrod_Hns;
+extern const struct Tileset gTileset_Route38_Farmland_Hns;
+extern const struct Tileset gTileset_CeladonCity_Hns;
+extern const struct Tileset gTileset_CeruleanCity_Hns;
+extern const struct Tileset gTileset_Route40_Hns;
+extern const struct Tileset gTileset_Vermilion_Hns;
+extern const struct Tileset gTileset_CianwoodCity_Hns;
+extern const struct Tileset gTileset_Blackthorn_Hns;
+
 #endif //GUARD_tilesets_H

@@ -632,4 +632,23 @@ const u16 gObjectEventPic_JigglypuffOld[] = INCGFX_U16("graphics/object_events/p
 const u16 gObjectEventPic_PidgeyOld[] = INCGFX_U16("graphics/object_events/pics/pokemon_old/pidgey.png", ".4bpp", "-mwidth 2 -mheight 2");
 const u16 gObjectEventPic_ClefairyOld[] = INCGFX_U16("graphics/object_events/pics/pokemon_old/clefairy.png", ".4bpp", "-mwidth 2 -mheight 2");
 
-// end Plastic Ox FRLG graphics
+
+
+// Plastic Ox: HnS object graphics
+const u16 gObjectEventPic_OldManHns[] = INCGFX_U16("graphics/object_events/pics/people/old_man_hns.png", ".4bpp", "-mwidth 2 -mheight 4");
+const u16 gObjectEventPic_LassHns[] = INCGFX_U16("graphics/object_events/pics/people/lass_hns.png", ".4bpp", "-mwidth 2 -mheight 4");
+const u16 gObjectEventPic_YoungsterHns[] = INCGFX_U16("graphics/object_events/pics/people/youngster_hns.png", ".4bpp", "-mwidth 2 -mheight 4");
+const u16 gObjectEventPic_Boy2Hns[] = INCGFX_U16("graphics/object_events/pics/people/boy_2_hns.png", ".4bpp", "-mwidth 2 -mheight 4");
+const u16 gObjectEventPic_FishermanHns[] = INCGFX_U16("graphics/object_events/pics/people/fisherman_hns.png", ".4bpp", "-mwidth 2 -mheight 4");
+const u16 gObjectEventPic_BugCatcherHns[] = INCGFX_U16("graphics/object_events/pics/people/bug_catcher_hns.png", ".4bpp", "-mwidth 2 -mheight 4");
+const u16 gObjectEventPic_KimonoHns[] = INCGFX_U16("graphics/object_events/pics/people/kimono_hns.png", ".4bpp", "-mwidth 2 -mheight 4");
+const u16 gObjectEventPic_SilverHns[] = INCGFX_U16("graphics/object_events/pics/people/silver_hns.png", ".4bpp", "-mwidth 2 -mheight 4");
+const u16 gObjectEventPic_FatManHns[] = INCGFX_U16("graphics/object_events/pics/people/fat_man_hns.png", ".4bpp", "-mwidth 2 -mheight 4");
+const u16 gObjectEventPic_PicnickerHns[] = INCGFX_U16("graphics/object_events/pics/people/picnicker_hns.png", ".4bpp", "-mwidth 2 -mheight 4");
+const u16 gObjectEventPic_CooltrainerFHns[] = INCGFX_U16("graphics/object_events/pics/people/cooltrainer_f_hns.png", ".4bpp", "-mwidth 2 -mheight 4");
+
+const u16 gObjectEventPal_KimonoHns[] = INCGFX_U16("graphics/object_events/palettes/kimono_hns.pal", ".gbapal");
+const u16 gObjectEventPal_SilverHns[] = INCGFX_U16("graphics/object_events/palettes/silver_hns.pal", ".gbapal");
+
+// end Plastic Ox HnS object graphics
+

@@ -608,6 +608,14 @@ gStdScripts_End::
 	.include "data/maps/PalletTown_RivalsHouse_Frlg/scripts.inc"
 	.include "data/maps/PalletTown_ProfessorOaksLab_Frlg/scripts.inc"
 
+	@ Plastic Ox: shared HnS interiors (compiled in all builds).
+	.include "data/maps/PokemonCenter_Johto_hns/scripts.inc"
+	.include "data/maps/PokemonCenter_Kanto_hns/scripts.inc"
+	.include "data/maps/Mart_Johto_hns/scripts.inc"
+	.include "data/maps/Mart_Kanto_hns/scripts.inc"
+	.include "data/maps/House_GenericA_hns/scripts.inc"
+	.include "data/maps/House_GenericB_hns/scripts.inc"
+
 .if IS_FRLG
 
 @ FRLG scripts

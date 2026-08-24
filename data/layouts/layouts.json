@@ -9343,6 +9343,66 @@
       "border_filepath": "data/layouts/OneIsland_KindleRoad_EmberSpa_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/OneIsland_KindleRoad_EmberSpa_Frlg/map.bin",
       "layout_version": "frlg"
+    },
+    {
+      "id": "LAYOUT_POKEMON_CENTER_JOHTO_HNS",
+      "name": "PokemonCenter_Johto_hns_Layout",
+      "width": 16,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Building_Hns",
+      "secondary_tileset": "gTileset_Kanto_PokemonCenter_Hns",
+      "border_filepath": "data/layouts/PokemonCenter_Johto_hns/border.bin",
+      "blockdata_filepath": "data/layouts/PokemonCenter_Johto_hns/map.bin"
+    },
+    {
+      "id": "LAYOUT_POKEMON_CENTER_KANTO_HNS",
+      "name": "PokemonCenter_Kanto_hns_Layout",
+      "width": 15,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Building_Hns",
+      "secondary_tileset": "gTileset_Kanto_PokemonCenter_Hns",
+      "border_filepath": "data/layouts/PokemonCenter_Kanto_hns/border.bin",
+      "blockdata_filepath": "data/layouts/PokemonCenter_Kanto_hns/map.bin"
+    },
+    {
+      "id": "LAYOUT_MART_JOHTO_HNS",
+      "name": "Mart_Johto_hns_Layout",
+      "width": 14,
+      "height": 9,
+      "primary_tileset": "gTileset_Johto_Building_Hns",
+      "secondary_tileset": "gTileset_JohtoMart_Hns",
+      "border_filepath": "data/layouts/Mart_Johto_hns/border.bin",
+      "blockdata_filepath": "data/layouts/Mart_Johto_hns/map.bin"
+    },
+    {
+      "id": "LAYOUT_MART_KANTO_HNS",
+      "name": "Mart_Kanto_hns_Layout",
+      "width": 11,
+      "height": 9,
+      "primary_tileset": "gTileset_Kanto_Building_Hns",
+      "secondary_tileset": "gTileset_KantoMart_Hns",
+      "border_filepath": "data/layouts/Mart_Kanto_hns/border.bin",
+      "blockdata_filepath": "data/layouts/Mart_Kanto_hns/map.bin"
+    },
+    {
+      "id": "LAYOUT_HOUSE_GENERIC_A_HNS",
+      "name": "House_GenericA_hns_Layout",
+      "width": 13,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Building_Hns",
+      "secondary_tileset": "gTileset_House_Lab_Hns",
+      "border_filepath": "data/layouts/House_GenericA_hns/border.bin",
+      "blockdata_filepath": "data/layouts/House_GenericA_hns/map.bin"
+    },
+    {
+      "id": "LAYOUT_HOUSE_GENERIC_B_HNS",
+      "name": "House_GenericB_hns_Layout",
+      "width": 13,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Building_Hns",
+      "secondary_tileset": "gTileset_House_Lab_Hns",
+      "border_filepath": "data/layouts/House_GenericB_hns/border.bin",
+      "blockdata_filepath": "data/layouts/House_GenericB_hns/map.bin"
     }
   ]
 }

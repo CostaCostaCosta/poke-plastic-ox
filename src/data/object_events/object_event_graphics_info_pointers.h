@@ -400,6 +400,19 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Giddy;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedMauvilleOldMan1;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_UnusedMauvilleOldMan2;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_ApricornTree;
+// Plastic Ox: HnS object graphics
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_OldManHns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_LassHns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_YoungsterHns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Boy2Hns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FishermanHns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_BugCatcherHns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_KimonoHns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SilverHns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FatManHns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PicnickerHns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CooltrainerFHns;
+
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
     [OBJ_EVENT_GFX_BRENDAN_NORMAL] =           &gObjectEventGraphicsInfo_BrendanNormal,
@@ -801,4 +814,16 @@ const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[
     [MAUVILLE_MAN_GIDDY]       = &gObjectEventGraphicsInfo_Giddy,
     [MAUVILLE_MAN_UNUSED1]     = &gObjectEventGraphicsInfo_UnusedMauvilleOldMan1,
     [MAUVILLE_MAN_UNUSED2]     = &gObjectEventGraphicsInfo_UnusedMauvilleOldMan2,
+// Plastic Ox: HnS object graphics
+    [OBJ_EVENT_GFX_OLD_MAN_HNS               ] = &gObjectEventGraphicsInfo_OldManHns,
+    [OBJ_EVENT_GFX_LASS_HNS                  ] = &gObjectEventGraphicsInfo_LassHns,
+    [OBJ_EVENT_GFX_YOUNGSTER_HNS             ] = &gObjectEventGraphicsInfo_YoungsterHns,
+    [OBJ_EVENT_GFX_BOY_2_HNS                 ] = &gObjectEventGraphicsInfo_Boy2Hns,
+    [OBJ_EVENT_GFX_FISHERMAN_HNS             ] = &gObjectEventGraphicsInfo_FishermanHns,
+    [OBJ_EVENT_GFX_BUG_CATCHER_HNS           ] = &gObjectEventGraphicsInfo_BugCatcherHns,
+    [OBJ_EVENT_GFX_KIMONO_HNS                ] = &gObjectEventGraphicsInfo_KimonoHns,
+    [OBJ_EVENT_GFX_SILVER_HNS                ] = &gObjectEventGraphicsInfo_SilverHns,
+    [OBJ_EVENT_GFX_FAT_MAN_HNS               ] = &gObjectEventGraphicsInfo_FatManHns,
+    [OBJ_EVENT_GFX_PICNICKER_HNS             ] = &gObjectEventGraphicsInfo_PicnickerHns,
+    [OBJ_EVENT_GFX_COOLTRAINER_F_HNS         ] = &gObjectEventGraphicsInfo_CooltrainerFHns,
 };

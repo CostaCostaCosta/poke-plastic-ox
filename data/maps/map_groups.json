@@ -75,7 +75,8 @@
     "gMapGroup_IndoorTwoIslandRoute_Frlg",
     "gMapGroup_IndoorSixIslandRoute_Frlg",
     "gMapGroup_IndoorSevenIslandRoute_Frlg",
-    "gMapGroup_PlasticOx"
+    "gMapGroup_PlasticOx",
+    "gMapGroup_PlasticOxInteriors"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",
@@ -1163,5 +1164,13 @@
   ],
   "gMapGroup_PlasticOx": [
     "PalletTown_Frlg"
+  ],
+  "gMapGroup_PlasticOxInteriors": [
+    "PokemonCenter_Johto_hns",
+    "PokemonCenter_Kanto_hns",
+    "Mart_Johto_hns",
+    "Mart_Kanto_hns",
+    "House_GenericA_hns",
+    "House_GenericB_hns"
   ]
 }
