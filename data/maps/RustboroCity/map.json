@@ -28,6 +28,11 @@
       "map": "MAP_ROUTE116",
       "offset": 0,
       "direction": "right"
+    },
+    {
+      "map": "MAP_ROUTE2_HNS",
+      "direction": "up",
+      "offset": -3
     }
   ],
   "object_events": [
@@ -330,6 +335,13 @@
       "elevation": 0,
       "dest_map": "MAP_RUSTBORO_CITY_HOUSE3",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 6,
+      "y": 3,
+      "elevation": 3,
+      "dest_map": "MAP_RUSTBORO_CITY",
+      "dest_warp_id": "12"
     }
   ],
   "coord_events": [
@@ -521,6 +533,24 @@
       "var": "VAR_RUSTBORO_CITY_STATE",
       "var_value": "7",
       "script": "RustboroCity_EventScript_RivalTrigger7"
+    },
+    {
+      "type": "trigger",
+      "x": 5,
+      "y": 10,
+      "elevation": 3,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": "0",
+      "script": "RustboroCity_EventScript_PortalEast"
+    },
+    {
+      "type": "trigger",
+      "x": 37,
+      "y": 9,
+      "elevation": 3,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": "0",
+      "script": "RustboroCity_EventScript_PortalWest"
     }
   ],
   "bg_events": [

@@ -77,7 +77,8 @@
     "gMapGroup_IndoorSevenIslandRoute_Frlg",
     "gMapGroup_PlasticOx",
     "gMapGroup_PlasticOxInteriors",
-    "gMapGroup_PlasticOxJohtoKanto"
+    "gMapGroup_PlasticOxJohtoKanto",
+    "gMapGroup_PlasticOxDungeons"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",
@@ -1172,7 +1173,9 @@
     "Mart_Johto_hns",
     "Mart_Kanto_hns",
     "House_GenericA_hns",
-    "House_GenericB_hns"
+    "House_GenericB_hns",
+    "Gate_AzaleaTown_IlexForest_hns",
+    "GoldenrodCity_BillsHouse_hns"
   ],
   "gMapGroup_PlasticOxJohtoKanto": [
     "Route29_hns",
@@ -1180,6 +1183,16 @@
     "Route31_hns",
     "Route46_hns",
     "DarkCave_SouthSide_hns",
-    "CherrygroveCity_hns"
+    "CherrygroveCity_hns",
+    "Route34_hns",
+    "Route2_hns",
+    "Route3_hns",
+    "Route4_hns",
+    "Route14_hns",
+    "GoldenrodCity_hns"
+  ],
+  "gMapGroup_PlasticOxDungeons": [
+    "IlexForest_hns",
+    "MtMoon_Cave_hns"
   ]
 }

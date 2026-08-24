@@ -1979,3 +1979,34 @@ const struct Tileset gTileset_Blackthorn_Hns =
     .callback = NULL,
 };
 
+const struct Tileset gTileset_Gate_Standard_Hns =
+{
+    .tiles = gTilesetTiles_Gate_Standard_Hns,
+    .palettes = gTilesetPalettes_Gate_Standard_Hns,
+    .metatiles = gMetatiles_Gate_Standard_Hns,
+    .metatileAttributes = gMetatileAttributes_Gate_Standard_Hns,
+};
+
+const struct Tileset gTileset_ViridianCity_Hns =
+{
+    .tiles = gTilesetTiles_ViridianCity_Hns,
+    .palettes = gTilesetPalettes_ViridianCity_Hns,
+    .metatiles = gMetatiles_ViridianCity_Hns,
+    .metatileAttributes = gMetatileAttributes_ViridianCity_Hns,
+};
+
+const struct Tileset gTileset_PewterCity_Hns =
+{
+    .tiles = gTilesetTiles_PewterCity_Hns,
+    .palettes = gTilesetPalettes_PewterCity_Hns,
+    .metatiles = gMetatiles_PewterCity_Hns,
+    .metatileAttributes = gMetatileAttributes_PewterCity_Hns,
+};
+
+const struct Tileset gTileset_Fuchsia_Hns =
+{
+    .tiles = gTilesetTiles_Fuchsia_Hns,
+    .palettes = gTilesetPalettes_Fuchsia_Hns,
+    .metatiles = gMetatiles_Fuchsia_Hns,
+    .metatileAttributes = gMetatileAttributes_Fuchsia_Hns,
+};

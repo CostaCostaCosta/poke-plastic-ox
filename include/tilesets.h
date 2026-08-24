@@ -101,5 +101,9 @@ extern const struct Tileset gTileset_Route40_Hns;
 extern const struct Tileset gTileset_Vermilion_Hns;
 extern const struct Tileset gTileset_CianwoodCity_Hns;
 extern const struct Tileset gTileset_Blackthorn_Hns;
+extern const struct Tileset gTileset_Gate_Standard_Hns;
+extern const struct Tileset gTileset_ViridianCity_Hns;
+extern const struct Tileset gTileset_PewterCity_Hns;
+extern const struct Tileset gTileset_Fuchsia_Hns;
 
 #endif //GUARD_tilesets_H

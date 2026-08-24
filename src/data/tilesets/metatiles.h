@@ -579,3 +579,14 @@ const u16 gMetatiles_Blackthorn_Hns[] = INCBIN_U16("data/tilesets/secondary/blac
 
 const u16 gMetatileAttributes_Blackthorn_Hns[] = INCBIN_U16("data/tilesets/secondary/blackthorn_hns/metatile_attributes.bin");
 
+const u16 gMetatiles_Gate_Standard_Hns[] = INCBIN_U16("data/tilesets/secondary/gate_standard_hns/metatiles.bin");
+const u16 gMetatileAttributes_Gate_Standard_Hns[] = INCBIN_U16("data/tilesets/secondary/gate_standard_hns/metatile_attributes.bin");
+
+const u16 gMetatiles_ViridianCity_Hns[] = INCBIN_U16("data/tilesets/secondary/viridian_city_hns/metatiles.bin");
+const u16 gMetatileAttributes_ViridianCity_Hns[] = INCBIN_U16("data/tilesets/secondary/viridian_city_hns/metatile_attributes.bin");
+
+const u16 gMetatiles_PewterCity_Hns[] = INCBIN_U16("data/tilesets/secondary/pewter_city_hns/metatiles.bin");
+const u16 gMetatileAttributes_PewterCity_Hns[] = INCBIN_U16("data/tilesets/secondary/pewter_city_hns/metatile_attributes.bin");
+
+const u16 gMetatiles_Fuchsia_Hns[] = INCBIN_U16("data/tilesets/secondary/fuchsia_hns/metatiles.bin");
+const u16 gMetatileAttributes_Fuchsia_Hns[] = INCBIN_U16("data/tilesets/secondary/fuchsia_hns/metatile_attributes.bin");

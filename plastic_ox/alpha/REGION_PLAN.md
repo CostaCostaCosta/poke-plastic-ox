@@ -32,7 +32,7 @@ Tilesets (from recon): primaries Johto_General_Hns; secondaries NewBarkTown_Hns,
 CherrygroveCity_Hns, Cave_Default_Hns.
 Shared interiors wired here: PC_Johto, Mart_Johto, House_Generic ×2.
 
-## Leg B — Ilex → Rustboro (wave 2)
+## Leg B — Ilex → Rustboro (wave 2) — SHIPPED (with substitutions, see below)
 
 ```
 Route31_hns W-end door → Gate_AzaleaTown_IlexForest_hns → IlexForest_hns E-side warp
@@ -42,6 +42,24 @@ Route116 E ↔ RustboroCity (native)      # native offsets already correct
 ```
 Gate interior is small; retarget its two doors (R31 side / Ilex side).
 Rustboro Gym = native RustboroCity_Gym. Devon NPCs keep native scripts + new lines.
+
+### Wave 2 shipped topology (differs from the sketch above — logged per plan rules)
+- Ilex↔Route34: the hns north seam (-39) exists but its crossing columns are
+  walled; Route34's own south edge is sealed. Shipped instead: coord-warp
+  portals `IlexForest (20,13) ⇄ Route34 (31,67)` (gate plaza), plus
+  `Route34 (31,89) ⇄ Route116 (40,1)` for the southward leg.
+- Goldenrod attaches to Route34's verbatim `up/-7` seam (north edge), so the
+  walking order is Ilex → R34 → GOLDENROD → R14 → R4 → Mt.Moon(spur) → R3 →
+  R2 → Rustboro → R116. Leg C's `R14 S ↔ Goldenrod S` was geometrically
+  impossible (Goldenrod's south is R34); replaced by the canyon portal pair.
+- Route2 east slot ↔ Route3 west slot works verbatim-free via calc offsets;
+  R4↔R14 elbow DROPPED (both R14 link slots were isolated pockets);
+  R14 remains reachable only through Goldenrod's canyon (scenic).
+- Rustboro City's NW and SE districts are internally split (native data);
+  a city portal pair `(5,10)⇄(37,9)` bridges them. R116 far point hosts the
+  demo Return Stone (`warp MAP_PALLET_TOWN, 10, 4`).
+- MtMoon_Cave keeps both original exits ((46,31)→R4-east landing,
+  (4,12)→R4-west); traversed as an optional spur in alpha demos.
 
 ## Leg C — Rustboro → Mt. Moon → Goldenrod (wave 2)
 

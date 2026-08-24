@@ -79,3 +79,7 @@ Route31_Text_Sign:
 Route31_Text_DarkCaveSign:
 	.string "DARK CAVE - southern entrance\n"
 	.string "Watch your step in the dark.$"
+Route31_EventScript_GateWarp::
+	warp MAP_GATE_AZALEA_TOWN_ILEX_FOREST_HNS, 0
+	waitstate
+	end

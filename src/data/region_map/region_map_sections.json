@@ -1838,6 +1838,14 @@
       "y": 15,
       "width": 8,
       "height": 1
+    },
+    {
+      "id": "MAPSEC_GOLDENROD_CITY",
+      "name": "GOLDENROD CITY",
+      "x": 20,
+      "y": 12,
+      "width": 1,
+      "height": 1
     }
   ]
 }

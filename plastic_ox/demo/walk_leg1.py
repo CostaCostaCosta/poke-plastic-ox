@@ -29,6 +29,7 @@ MAP_DARKCAVE = (77, 4)
 MAP_CHERRYGROVE = (77, 5)
 
 FLAG_ADVENTURE_STARTED = 0x74
+EXTRA_AVOID = set()  # tiles discovered hazardous at runtime (e.g. secret-base doors)
 SAVEBLOCK1_FLAGS_OFFSET = 0x1270
 
 
@@ -83,13 +84,13 @@ def find_path_elev(g, goal, avoid=frozenset()):
                 if not (0 <= nx < width and 0 <= ny < height):
                     continue
                 land_col, land_elev = g.collision_at(nx, ny)
-                if land_col != 0 or (nx, ny) in occupied or (nx, ny) in avoid:
+                if land_col != 0 or (nx, ny) in occupied or (nx, ny) in avoid or (nx, ny) in EXTRA_AVOID:
                     continue
                 if land_elev != 0 and e != 0 and land_elev != e:
                     continue
                 node = (nx, ny, land_elev)
             else:
-                if collision != 0 or (ax, ay) in occupied or (ax, ay) in avoid:
+                if collision != 0 or (ax, ay) in occupied or (ax, ay) in avoid or (ax, ay) in EXTRA_AVOID:
                     continue
                 if elev != 0 and e != 0 and elev != e:
                     continue
