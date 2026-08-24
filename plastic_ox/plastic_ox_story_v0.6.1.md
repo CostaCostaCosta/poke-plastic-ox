@@ -215,7 +215,7 @@ Its purpose is to establish that the **world** is strange even though the **Pok�
 
 Progression:
 
-**Pallet Town → early routes → Cherrygrove City**
+**Pallet Town → olddale -> early routes → Cherrygrove City**
 
 Cherrygrove is the chosen non-Gym Johto town.
 
@@ -234,7 +234,7 @@ A resident might be baffled that a Kanto route now leads into a Johto coastline.
 
 That is enough.
 
-The player should spend this stretch beginning to build a broad Little Cup team.
+The player should spend this stretch beginning to build a broad Little Cup team. We want a route north of olddale that has later access to the rest of the game. Route 46 also aexposes another encounter table, and route 31 opens dark cave before ilex forest. The player should have a permanently useable HM for headbutt to include those encounter tables. THis is so extensive because we need to expose so many pokemon for catching before the first gym. 
 
 ---
 
