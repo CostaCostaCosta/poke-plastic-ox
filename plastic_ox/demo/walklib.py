@@ -14,8 +14,11 @@ MAP_NAMES = {(38,1): "PALLET_2F", (38,0): "PALLET_1F", (75,0): "PALLET_TOWN",
              (38,3): "OAK_LAB", (0,16): "ROUTE101", (0,10): "OLDALE"}
 
 class GBA:
-    def __init__(self, rom=ROM):
+    def __init__(self, rom=ROM, linker_map=None):
+        # linker_map: pass e.g. "pokeemerald-triggers.map" when testing a
+        # non-default ROM build (defaults to <rom>.map).
         self._symbol_addresses = None
+        self.linker_map = Path(linker_map) if linker_map else Path(rom).with_suffix(".map")
         self.core = mgba.core.load_path(rom)
         self.fb = mgba.image.Image(*self.core.desired_video_dimensions())
         self.core.set_video_buffer(self.fb)
@@ -99,14 +102,14 @@ class GBA:
         if self._symbol_addresses is None:
             self._symbol_addresses = {}
             pattern = re.compile(r"^\s*(0x[0-9a-fA-F]+)\s+([A-Za-z_][A-Za-z0-9_]*)\s*$")
-            with LINKER_MAP.open(encoding="utf-8", errors="replace") as linker_map:
+            with self.linker_map.open(encoding="utf-8", errors="replace") as linker_map:
                 for line in linker_map:
                     match = pattern.match(line)
                     if match:
                         self._symbol_addresses[match.group(2)] = int(match.group(1), 16)
         if name in self._symbol_addresses:
             return self._symbol_addresses[name]
-        raise KeyError(f"symbol not found in {LINKER_MAP}: {name}")
+        raise KeyError(f"symbol not found in {self.linker_map}: {name}")
     # ---- map introspection ----
     def mapheader_info(self):
         mh = self.symbol_address("gMapHeader")

@@ -338,4 +338,17 @@
 #define TESTING_VAR_UNUSED_7                (TESTING_VARS_START + 0x7)
 #endif // TESTING
 
+// Plastic Ox alpha vars.
+// Ids above VARS_END (e.g. 0x5100) are NOT usable: GetVarPointer()
+// (src/event_data.c) maps every id below SPECIAL_VARS_START onto
+// gSaveBlock1Ptr->vars[id - VARS_START], so anything past 0x40FF indexes past
+// the end of the 256-entry vars array and corrupts the save block. Allocated
+// from slots marked "Unused Var" at the top of that range instead.
+#define VAR_POX_STARTER_SPECIES    0x40F7 // species id chosen at Oak's Lab (beat 1)
+#define VAR_POX_ILEX_STATE         0x40F8 // beat 3: escort quest state
+#define VAR_POX_MTMOON_STATE       0x40F9 // beat 5: Rocket I progress
+#define VAR_POX_SILPH_STATE        0x40FA // beat 16: Rocket III progress
+#define VAR_POX_EEVEE_GIFTS        0x40FB // count of Eevee gifts received (beats 6/8/11/12/15)
+#define POX_VARS_END               0x40FB // 0x40FC-0x40FF remain free for future POX vars
+
 #endif // GUARD_CONSTANTS_VARS_H

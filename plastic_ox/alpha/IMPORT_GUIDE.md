@@ -62,8 +62,12 @@ Add `include/constants/plastic_ox_flags.h` (+ include it from
 #define FLAG_POX_HIDE_...     // NPC visibility toggles
 #define FLAG_POX_STORY_...    // story beats (one per beat, see STORY_TRIGGERS.md)
 ```
-Vars: use free range starting `VAR_POX_... 0x5100` (verify unused against
-`include/constants/vars.h`). Badges use native `FLAG_BADGE0x_GET`.
+Vars: 0x4000-0x40FF ONLY — `GetVarPointer` (src/event_data.c) maps any id in
+`[VARS_START, SPECIAL_VARS_START)` onto `gSaveBlock1Ptr->vars[id - VARS_START]`
+(256 entries), so ids like 0x5100 would read/write past the array and corrupt
+the save block. POX vars are allocated from "Unused Var" slots at the top of
+that range (`VAR_POX_*` in `include/constants/vars.h`). Badges use native
+`FLAG_BADGE0x_GET`.
 
 ## 3. Object-event graphics
 
