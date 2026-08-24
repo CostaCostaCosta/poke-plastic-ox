@@ -9403,6 +9403,66 @@
       "secondary_tileset": "gTileset_House_Lab_Hns",
       "border_filepath": "data/layouts/House_GenericB_hns/border.bin",
       "blockdata_filepath": "data/layouts/House_GenericB_hns/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE29_HNS",
+      "name": "Route29_hns_Layout",
+      "width": 70,
+      "height": 32,
+      "primary_tileset": "gTileset_Johto_General_Hns",
+      "secondary_tileset": "gTileset_NewBarkTown_Hns",
+      "border_filepath": "data/layouts/Route29_hns/border.bin",
+      "blockdata_filepath": "data/layouts/Route29_hns/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE30_HNS",
+      "name": "Route30_hns_Layout",
+      "width": 58,
+      "height": 58,
+      "primary_tileset": "gTileset_Johto_General_Hns",
+      "secondary_tileset": "gTileset_CherrygroveCity_Hns",
+      "border_filepath": "data/layouts/Route30_hns/border.bin",
+      "blockdata_filepath": "data/layouts/Route30_hns/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE31_HNS",
+      "name": "Route31_hns_Layout",
+      "width": 60,
+      "height": 23,
+      "primary_tileset": "gTileset_Johto_General_Hns",
+      "secondary_tileset": "gTileset_CherrygroveCity_Hns",
+      "border_filepath": "data/layouts/Route31_hns/border.bin",
+      "blockdata_filepath": "data/layouts/Route31_hns/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE46_HNS",
+      "name": "Route46_hns_Layout",
+      "width": 27,
+      "height": 46,
+      "primary_tileset": "gTileset_Johto_NorthEast_Hns",
+      "secondary_tileset": "gTileset_CherrygroveCity_Hns",
+      "border_filepath": "data/layouts/Route46_hns/border.bin",
+      "blockdata_filepath": "data/layouts/Route46_hns/map.bin"
+    },
+    {
+      "id": "LAYOUT_DARK_CAVE_SOUTH_SIDE_HNS",
+      "name": "DarkCave_SouthSide_hns_Layout",
+      "width": 78,
+      "height": 50,
+      "primary_tileset": "gTileset_Johto_General_Hns",
+      "secondary_tileset": "gTileset_Cave_Default_Hns",
+      "border_filepath": "data/layouts/DarkCave_SouthSide_hns/border.bin",
+      "blockdata_filepath": "data/layouts/DarkCave_SouthSide_hns/map.bin"
+    },
+    {
+      "id": "LAYOUT_CHERRYGROVE_CITY_HNS",
+      "name": "CherrygroveCity_hns_Layout",
+      "width": 65,
+      "height": 42,
+      "primary_tileset": "gTileset_Johto_General_Hns",
+      "secondary_tileset": "gTileset_CherrygroveCity_Hns",
+      "border_filepath": "data/layouts/CherrygroveCity_hns/border.bin",
+      "blockdata_filepath": "data/layouts/CherrygroveCity_hns/map.bin"
     }
   ]
 }

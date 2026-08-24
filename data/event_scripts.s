@@ -616,6 +616,15 @@ gStdScripts_End::
 	.include "data/maps/House_GenericA_hns/scripts.inc"
 	.include "data/maps/House_GenericB_hns/scripts.inc"
 
+	@ Plastic Ox: Leg A outdoors (Pallet-Oldale-R29/R46/DarkCave/R31/R30-Cherrygrove),
+	@ compiled in all builds.
+	.include "data/maps/Route29_hns/scripts.inc"
+	.include "data/maps/Route30_hns/scripts.inc"
+	.include "data/maps/Route31_hns/scripts.inc"
+	.include "data/maps/Route46_hns/scripts.inc"
+	.include "data/maps/DarkCave_SouthSide_hns/scripts.inc"
+	.include "data/maps/CherrygroveCity_hns/scripts.inc"
+
 .if IS_FRLG
 
 @ FRLG scripts

@@ -76,7 +76,8 @@
     "gMapGroup_IndoorSixIslandRoute_Frlg",
     "gMapGroup_IndoorSevenIslandRoute_Frlg",
     "gMapGroup_PlasticOx",
-    "gMapGroup_PlasticOxInteriors"
+    "gMapGroup_PlasticOxInteriors",
+    "gMapGroup_PlasticOxJohtoKanto"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",
@@ -1172,5 +1173,13 @@
     "Mart_Kanto_hns",
     "House_GenericA_hns",
     "House_GenericB_hns"
+  ],
+  "gMapGroup_PlasticOxJohtoKanto": [
+    "Route29_hns",
+    "Route30_hns",
+    "Route31_hns",
+    "Route46_hns",
+    "DarkCave_SouthSide_hns",
+    "CherrygroveCity_hns"
   ]
 }

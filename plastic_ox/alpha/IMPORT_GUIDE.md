@@ -136,5 +136,33 @@ Append names to `group_order` too. No cap issues until group 256.
 2. Extend/author `plastic_ox/demo/walk_leg<N>.py` using walklib (`GBA()`,
    `boot_to_bedroom(g)`, `walk(...)`, `expect_map=`, battle-flag poll) walking the
    full leg both directions over seams.
-3. Run harness; screenshots to `plastic_ox/demo/shots/leg<N>_*`.
-4. `git add -A && git commit -m "alpha wave N: <legs>"`.
+
+## 8. Known hns porting pitfalls (learned in wave 1C)
+
+1. **Wanderer NPCs hard-crash the ROM.** Any imported NPC with
+   `MOVEMENT_TYPE_WANDER_AROUND` / `WANDER_LEFT_AND_RIGHT` / `WANDER_UP_AND_DOWN`
+   reboots the game ~120-210 frames after spawning (wild jump through a corrupted
+   pointer, landing in the m4a dispatch region). LOOK_AROUND / FACE_* are stable
+   after hours-equivalent soak. **Policy:** pin every imported people-NPC to
+   `MOVEMENT_TYPE_FACE_DOWN` (or LOOK_AROUND) at import time; only enable stepping
+   movement after a headless soak test.
+2. **NPCs can sit on single-tile chokepoints.** hns map data sometimes places a
+   person on the only walkable tile connecting two areas (e.g. Route30 x=23,y=25),
+   making whole regions unreachable. After import, BFS the live ROM grid and move
+   any NPC that gates a lane.
+3. **Delete cuttable trees on import.** The demo build has no Cut, so they gate
+   nothing — and their tiles sit on object spawn-window edges, so they flicker
+   active/inactive as the camera moves and destabilize headless pathfinding.
+4. **Connection offsets: verify empirically.** Landing tile when crossing a seam
+   is `dest_x = src_x - offset` for up/down seams (sign varies by which side
+   declares the connection). Don't trust hand-computed targets; print
+   `g.describe()` after each crossing in the leg harness.
+5. **Some cave-mouth warps land inside solid rock.** DarkCave_SouthSide's R31
+   mouth (warp at 14,20) deposits the player at (14,21), a solid tile — identical
+   in hns's own data. Cross such seams only in the direction that works, or carve
+   the landing tile in our `map.bin` copy.
+6. **Elevation semantics for harness BFS:** an object's elevation always becomes
+   its current tile's elevation (0 stays 0), and mismatch is rejected only when
+   BOTH mover and destination elevations are nonzero and differ. e=0 transition
+   tiles make every neighbor elevation legal from them.
+
