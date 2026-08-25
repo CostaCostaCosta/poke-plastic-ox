@@ -314,6 +314,7 @@ void CB2_InitPlasticOxDemo(void)
     // Pallet bedroom directly, bypassing copyright/title/new-game naming UI.
 #ifdef PLASTIC_OX_BUILD_TRIGGERS
     gPlasticOxTriggersEnabled = TRUE;
+    FlagSet(FLAG_POX_TRIGGERS_ENABLED);
 #else
     gPlasticOxTriggersEnabled = FALSE;
 #endif

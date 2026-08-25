@@ -90,3 +90,17 @@ PalletTown_ProfessorOaksLab_Text_Computer::
 
 PalletTown_ProfessorOaksLab_Text_Sign::
 	.string "POKéMON RESEARCH NOTES$"
+PalletTown_ProfessorOaksLab_EventScript_StarterGate::
+	checkflag FLAG_POX_STORY_STARTER
+	goto_if_eq TRUE, PalletTown_ProfessorOaksLab_EventScript_StarterDone
+	givemon SPECIES_TREECKO, 5
+	setflag FLAG_POX_STORY_STARTER
+	msgbox PalletTown_ProfessorOaksLab_Text_Starter, MSGBOX_DEFAULT
+	release
+	end
+
+PalletTown_ProfessorOaksLab_EventScript_StarterDone::
+	end
+
+PalletTown_ProfessorOaksLab_Text_Starter:
+	.string "PROF. OAK (voice): Take TREECKO and go see how far the roads go now.$"
