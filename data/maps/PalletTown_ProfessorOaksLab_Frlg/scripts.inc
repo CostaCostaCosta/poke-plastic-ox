@@ -90,16 +90,19 @@ PalletTown_ProfessorOaksLab_Text_Computer::
 
 PalletTown_ProfessorOaksLab_Text_Sign::
 	.string "POKéMON RESEARCH NOTES$"
-PalletTown_ProfessorOaksLab_EventScript_StarterGate::
+PalletTown_ProfessorOaksLab_EventScript_StarterBall::
+	lock
+	faceplayer
 	checkflag FLAG_POX_STORY_STARTER
-	goto_if_eq TRUE, PalletTown_ProfessorOaksLab_EventScript_StarterDone
-	givemon SPECIES_TREECKO, 5
+	goto_if_set FLAG_POX_STORY_STARTER, PalletTown_ProfessorOaksLab_EventScript_StarterDone
 	setflag FLAG_POX_STORY_STARTER
+	givemon SPECIES_TREECKO, 5
 	msgbox PalletTown_ProfessorOaksLab_Text_Starter, MSGBOX_DEFAULT
 	release
 	end
 
 PalletTown_ProfessorOaksLab_EventScript_StarterDone::
+	release
 	end
 
 PalletTown_ProfessorOaksLab_Text_Starter:

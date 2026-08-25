@@ -20,7 +20,7 @@
       "type": "trigger",
       "x": 24,
       "y": 38,
-      "elevation": 3,
+      "elevation": 0,
       "var": "VAR_POX_PORTAL_GATE",
       "var_value": "0",
       "script": "Route5_EventScript_P24_38"

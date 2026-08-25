@@ -62,3 +62,21 @@ End walk_leg5 at Champion door; final full-region harness = leg1..leg5 chained
   fail silently.
 - Objects on 1-tile chokepoints block whole regions (check objects= list in
   navigate asserts; relocate NPC like Route30 YOUNGSTER fix).
+
+## ADDENDUM: story-trigger investigation (session 2)
+- Coord events verified LIVE-correct (position, elevation 3, trigger var,
+  script pointer) on Oak's Lab / azalea gate — yet never fire on step-on,
+  even with TRIGGER-var gating removed and trivial setvar bodies.
+- Object A-interaction with retargeted starter ball also silent.
+- Working coords for comparison: r116/fortree/plateau stones, r36 johto
+  portal, gold(34,7), r36(21,21) — all fire reliably.
+- Dead/alive split does NOT follow native-vs-imported (plateau_hns fires,
+  lab_frlg doesn't). NEXT LEADS: (1) diff gMapHeader.events pointer chain
+  between a firing map and the lab at runtime; (2) check
+  RunScriptImmediatelyUntilEffect SCREFF mask handling for scripts whose
+  first op is checkflag (working portals all lead with `warp`);
+  (3) try a `warp`-first lab script (e.g., warp to a dummy interior and
+  back) to see if effect-first ordering is the gate.
+- Interim: Oak's Lab restored to native starter balls (SquirtleBall script
+  retarget reverted). Starter scaffold preserved in git history
+  (cc81fd59d0 + follow-ups).

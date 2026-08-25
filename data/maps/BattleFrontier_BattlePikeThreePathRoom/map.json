@@ -76,7 +76,7 @@
       "type": "trigger",
       "x": 5,
       "y": 10,
-      "elevation": 0,
+      "elevation": 3,
       "var": "VAR_TEMP_3",
       "var_value": "1",
       "script": "BattleFrontier_BattlePikeThreePathRoom_EventScript_NoTurningBack"
@@ -85,7 +85,7 @@
       "type": "trigger",
       "x": 6,
       "y": 10,
-      "elevation": 0,
+      "elevation": 3,
       "var": "VAR_TEMP_3",
       "var_value": "1",
       "script": "BattleFrontier_BattlePikeThreePathRoom_EventScript_NoTurningBack"
@@ -121,7 +121,7 @@
       "type": "trigger",
       "x": 7,
       "y": 10,
-      "elevation": 0,
+      "elevation": 3,
       "var": "VAR_TEMP_3",
       "var_value": "1",
       "script": "BattleFrontier_BattlePikeThreePathRoom_EventScript_NoTurningBack"

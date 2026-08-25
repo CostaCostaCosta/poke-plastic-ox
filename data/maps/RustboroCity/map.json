@@ -538,7 +538,7 @@
       "type": "trigger",
       "x": 5,
       "y": 10,
-      "elevation": 3,
+      "elevation": 0,
       "var": "VAR_POX_PORTAL_GATE",
       "var_value": "0",
       "script": "RustboroCity_EventScript_PortalEast"

@@ -82,7 +82,7 @@
       "type": "trigger",
       "x": 33,
       "y": 6,
-      "elevation": 0,
+      "elevation": 3,
       "var": "VAR_MAP_SCENE_ROUTE22",
       "var_value": "1",
       "script": "Route22_EventScript_EarlyRivalTriggerBottom"
@@ -109,7 +109,7 @@
       "type": "trigger",
       "x": 33,
       "y": 6,
-      "elevation": 0,
+      "elevation": 3,
       "var": "VAR_MAP_SCENE_ROUTE22",
       "var_value": "3",
       "script": "Route22_EventScript_LateRivalTriggerBottom"
