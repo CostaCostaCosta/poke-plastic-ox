@@ -1,0 +1,90 @@
+{
+ "Route35_hns": [
+  [
+   "PICNICKER",
+   "The park charges no entry fee. The squirrels work for tips."
+  ],
+  [
+   "YOUNGSTER",
+   "Two trainers ahead are arguing about which region has better bugs."
+  ]
+ ],
+ "NationalPark_Normal_hns": [
+  [
+   "LASS",
+   "They merged the parks too. The flowerbeds took it personally."
+  ],
+  [
+   "POKEFAN_F",
+   "I come for the contest lawn. It is now technically in two regions at once."
+  ],
+  [
+   "POKEFAN_M",
+   "A ranger said the hedges grew overnight. All of them. Overnight."
+  ]
+ ],
+ "Route36_hns": [
+  [
+   "PSYCHIC_M",
+   "There used to be a weird tree blocking the road. One day it just moved."
+  ]
+ ],
+ "Route37_hns": [
+  [
+   "LASS",
+   "Four apricorn trees on this route! KURT pays well for them, apparently."
+  ],
+  [
+   "HOUNDOUR",
+   ""
+  ]
+ ],
+ "EcruteakCity_hns": [
+  [
+   "GENTLEMAN",
+   "ECRUTEAK: two towers, one burned. History keeps the accounts."
+  ],
+  [
+   "ROCKER",
+   "The Dance Theater troupe has cousins in every region. And one Eevee each, they claim."
+  ],
+  [
+   "TWIN",
+   "MORTY's gym is haunted on weekdays."
+  ],
+  [
+   "OLD_MAN",
+   "The BURNED TOWER remembers the fire. The fire remembers nothing."
+  ]
+ ],
+ "Route38_hns": [
+  [
+   "SAILOR",
+   "MooMoo Milk farm ahead! The milk is region-neutral."
+  ]
+ ],
+ "Route16_hns": [
+  [
+   "BIKER",
+   "This is my turf. Which is confusing, because I found it last week."
+  ]
+ ],
+ "Route24_hns": [
+  [
+   "BUG_CATCHER",
+   "Six trainers in a row call themselves the BRIDGE COMMISSION."
+  ]
+ ],
+ "Route25_hns": [
+  [
+   "LASS",
+   "BILL lives past the cape! He fixed the PC system AND the map, allegedly."
+  ]
+ ],
+ "Route25_BillsHouse_hns": [
+  [
+   "BILL",
+   "People assume the region merge was my work. Flattering, but no."
+  ]
+ ]
+}

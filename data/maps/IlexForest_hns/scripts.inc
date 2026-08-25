@@ -125,6 +125,11 @@ IlexForest_EventScript_ToGate::
 	waitstate
 	end
 IlexForest_EventScript_ToR34::
-	warp MAP_ROUTE34_HNS, 0
+	warp MAP_ROUTE34_HNS, 31, 66
+	waitstate
+	end
+
+IlexForest_EventScript_ToR34North::
+	warp MAP_ROUTE34_HNS, 31, 66
 	waitstate
 	end

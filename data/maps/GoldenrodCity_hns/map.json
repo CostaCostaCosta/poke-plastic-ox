@@ -306,6 +306,24 @@
       "var": "VAR_POX_PORTAL_GATE",
       "var_value": "0",
       "script": "GoldenrodCity_EventScript_R4Portal"
+    },
+    {
+      "type": "trigger",
+      "x": 34,
+      "y": 7,
+      "elevation": 3,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": "0",
+      "script": "GoldenrodCity_EventScript_Portal8"
+    },
+    {
+      "type": "trigger",
+      "x": 33,
+      "y": 6,
+      "elevation": 3,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": "0",
+      "script": "GoldenrodCity_EventScript_ReturnStone"
     }
   ],
   "bg_events": [

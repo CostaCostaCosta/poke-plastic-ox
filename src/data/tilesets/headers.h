@@ -1981,6 +1981,8 @@ const struct Tileset gTileset_Blackthorn_Hns =
 
 const struct Tileset gTileset_Gate_Standard_Hns =
 {
+ .isCompressed = TRUE,
+ .isSecondary = TRUE,
     .tiles = gTilesetTiles_Gate_Standard_Hns,
     .palettes = gTilesetPalettes_Gate_Standard_Hns,
     .metatiles = gMetatiles_Gate_Standard_Hns,
@@ -1989,6 +1991,8 @@ const struct Tileset gTileset_Gate_Standard_Hns =
 
 const struct Tileset gTileset_ViridianCity_Hns =
 {
+ .isCompressed = TRUE,
+ .isSecondary = TRUE,
     .tiles = gTilesetTiles_ViridianCity_Hns,
     .palettes = gTilesetPalettes_ViridianCity_Hns,
     .metatiles = gMetatiles_ViridianCity_Hns,
@@ -1997,6 +2001,8 @@ const struct Tileset gTileset_ViridianCity_Hns =
 
 const struct Tileset gTileset_PewterCity_Hns =
 {
+ .isCompressed = TRUE,
+ .isSecondary = TRUE,
     .tiles = gTilesetTiles_PewterCity_Hns,
     .palettes = gTilesetPalettes_PewterCity_Hns,
     .metatiles = gMetatiles_PewterCity_Hns,
@@ -2005,8 +2011,37 @@ const struct Tileset gTileset_PewterCity_Hns =
 
 const struct Tileset gTileset_Fuchsia_Hns =
 {
+ .isCompressed = TRUE,
+ .isSecondary = TRUE,
     .tiles = gTilesetTiles_Fuchsia_Hns,
     .palettes = gTilesetPalettes_Fuchsia_Hns,
     .metatiles = gMetatiles_Fuchsia_Hns,
     .metatileAttributes = gMetatileAttributes_Fuchsia_Hns,
+};
+const struct Tileset gTileset_Ecruteak_City_Hns =
+{
+ .isCompressed = TRUE,
+ .isSecondary = TRUE,
+ .tiles = gTilesetTiles_Ecruteak_City_Hns,
+ .palettes = gTilesetPalettes_Ecruteak_City_Hns,
+ .metatiles = gMetatiles_Ecruteak_City_Hns,
+ .metatileAttributes = gMetatileAttributes_Ecruteak_City_Hns,
+};
+const struct Tileset gTileset_Johto_NorthWest_Hns =
+{
+ .isCompressed = TRUE,
+ .isSecondary = FALSE,
+ .tiles = gTilesetTiles_Johto_NorthWest_Hns,
+ .palettes = gTilesetPalettes_Johto_NorthWest_Hns,
+ .metatiles = gMetatiles_Johto_NorthWest_Hns,
+ .metatileAttributes = gMetatileAttributes_Johto_NorthWest_Hns,
+};
+const struct Tileset gTileset_VioletCity_Hns =
+{
+ .isCompressed = TRUE,
+ .isSecondary = TRUE,
+ .tiles = gTilesetTiles_VioletCity_Hns,
+ .palettes = gTilesetPalettes_VioletCity_Hns,
+ .metatiles = gMetatiles_VioletCity_Hns,
+ .metatileAttributes = gMetatileAttributes_VioletCity_Hns,
 };

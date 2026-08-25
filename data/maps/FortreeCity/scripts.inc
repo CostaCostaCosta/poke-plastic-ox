@@ -153,4 +153,7 @@ FortreeCity_Text_GymSign:
 	.string "LEADER: WINONA\p"
 	.string "“The bird user taking flight into\n"
 	.string "the world.”$"
-
+FortreeCity_EventScript_ReturnStone::
+	warp MAP_PALLET_TOWN, 10, 4
+	waitstate
+	end

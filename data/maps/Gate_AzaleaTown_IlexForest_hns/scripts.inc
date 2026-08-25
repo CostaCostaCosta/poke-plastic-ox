@@ -21,7 +21,7 @@ Gate_AzaleaTown_IlexForest_EventScript_Npc1_Text:
 Gate_AzaleaTown_IlexForest_EventScript_Npc2_Text:
 	.string "In my day this gate went two places,\nnot wherever you felt like walking.$"
 Gate_AzaleaTown_IlexForest_EventScript_ToIlex::
-	warp MAP_ILEX_FOREST_HNS, 0
+	warp MAP_ILEX_FOREST_HNS, 22, 63
 	waitstate
 	end
 Gate_AzaleaTown_IlexForest_EventScript_ToR31::

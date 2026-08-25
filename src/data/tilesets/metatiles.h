@@ -590,3 +590,9 @@ const u16 gMetatileAttributes_PewterCity_Hns[] = INCBIN_U16("data/tilesets/secon
 
 const u16 gMetatiles_Fuchsia_Hns[] = INCBIN_U16("data/tilesets/secondary/fuchsia_hns/metatiles.bin");
 const u16 gMetatileAttributes_Fuchsia_Hns[] = INCBIN_U16("data/tilesets/secondary/fuchsia_hns/metatile_attributes.bin");
+const u16 gMetatiles_Ecruteak_City_Hns[] = INCBIN_U16("data/tilesets/secondary/ecruteak_city_hns/metatiles.bin");
+const u16 gMetatileAttributes_Ecruteak_City_Hns[] = INCBIN_U16("data/tilesets/secondary/ecruteak_city_hns/metatile_attributes.bin");
+const u16 gMetatiles_Johto_NorthWest_Hns[] = INCBIN_U16("data/tilesets/primary/johto_north_west_hns/metatiles.bin");
+const u16 gMetatileAttributes_Johto_NorthWest_Hns[] = INCBIN_U16("data/tilesets/primary/johto_north_west_hns/metatile_attributes.bin");
+const u16 gMetatiles_VioletCity_Hns[] = INCBIN_U16("data/tilesets/secondary/violet_city_hns/metatiles.bin");
+const u16 gMetatileAttributes_VioletCity_Hns[] = INCBIN_U16("data/tilesets/secondary/violet_city_hns/metatile_attributes.bin");

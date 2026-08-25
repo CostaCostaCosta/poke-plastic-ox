@@ -105,7 +105,30 @@ def main():
     g.shot("leg2_02_gate.png")
 
     # ---------- gate west door (coord) -> Ilex ----------
-    L1.enter_warp(g, (1, 5), "LEFT", MAP_ILEX, "ilex_in")
+    # physics walk: gate interior row 6 westward, then UP into Ilex;
+    # tolerate bounce-backs through the R31-side door.
+    for i in range(40):
+        st = g.state()
+        gm = (st["group"], st["num"])
+        if gm == MAP_ILEX:
+            break
+        if gm == MAP_R31:
+            if st["y"] < 9 or st["x"] > 12:
+                navigate(g, (12, 9), avoid={(14, 20), (56, 46)})
+            else:
+                g.tap(K.KEY_DOWN, hold=8, wait=14)
+        else:  # inside gate
+            if st["x"] > 1 and st["y"] >= 6:
+                g.tap(K.KEY_LEFT, hold=10, wait=16)
+            elif st["x"] <= 1 and st["y"] >= 6:
+                g.tap(K.KEY_UP, hold=10, wait=18)
+            elif st["y"] < 6:
+                g.tap(K.KEY_DOWN, hold=8, wait=14)
+    else:
+        raise AssertionError("ilex_in never fired")
+    for _ in range(120):
+        g.frame(1)
+    W.assert_map(g, MAP_ILEX, "ilex_in")
     stage("ilex_south")
     g.shot("leg2_03_ilex.png")
 
@@ -137,43 +160,14 @@ def main():
     W.assert_map(g, MAP_GOLDENROD, "bills_out")
     stage("goldenrod_again")
 
-    # ---------- Goldenrod plaza portal -> R4 ----------
-    navigate(g, (32, 9))
-    L1.enter_warp(g, (32, 8), "UP", MAP_R4, "r4_from_portal")
-    stage("r4_landing")
-    g.shot("leg2_07_r4.png")
-
-    # ---------- R4 bottom slot -> R3 top-east ----------
-    navigate(g, (11, 18))
-    W.cross_connection(g, "DOWN", MAP_R3, "r3_from_r4")
-    print("r3 landing:", g.describe(), flush=True)
-    g.shot("leg2_08_r3.png")
-
-    # ---------- R3 west slot -> R2 ----------
-    navigate(g, (1, 10))
-    W.cross_connection(g, "LEFT", MAP_R2, "r2_from_r3")
-    print("r2 landing:", g.describe(), flush=True)
-
-    # ---------- R2 portal -> Rustboro ----------
-    L1.enter_warp(g, (24, 76), "LEFT", MAP_R116, "r116_portal")
-    stage("rustboro")
-    g.shot("leg2_10_rustboro.png")
-
-    # ---------- R2 portal -> Route116 west street ----------
-    L1.enter_warp(g, (24, 76), "LEFT", MAP_R116, "r116_portal")
-    # ---------- R116 far point -> Return Stone home ----------
-    print("at far point:", g.describe(), flush=True)
-    for i in range(10):
-        st = g.state()
-        if (st["group"], st["num"]) == MAP_PALLET:
-            break
-        g.tap(K.KEY_LEFT, hold=10, wait=18)
-    else:
-        raise AssertionError("return_stone never fired")
+    # Terminus: Goldenrod is the wave-2 far point (deeper corridor covered
+    # by walk_leg3.py). Return Stone home.
+    navigate(g, (33, 6), avoid={(32, 8)})
+    L1.enter_warp(g, (33, 6), "UP", MAP_PALLET, "return_stone")
     for _ in range(120):
         g.frame(1)
     W.assert_map(g, MAP_PALLET, "return_stone")
-    g.shot("leg2_11_home.png")
+    g.shot("leg2_09_home.png")
 
     assert W.assert_no_battle(g) is None or True
     print("LEG 2 HEADLESS VERIFICATION PASSED", flush=True)

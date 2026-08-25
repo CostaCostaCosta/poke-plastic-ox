@@ -1175,7 +1175,9 @@
     "House_GenericA_hns",
     "House_GenericB_hns",
     "Gate_AzaleaTown_IlexForest_hns",
-    "GoldenrodCity_BillsHouse_hns"
+    "GoldenrodCity_BillsHouse_hns",
+    "Gate_GoldenrodCity_Route35_hns",
+    "Route25_BillsHouse_hns"
   ],
   "gMapGroup_PlasticOxJohtoKanto": [
     "Route29_hns",
@@ -1189,10 +1191,19 @@
     "Route3_hns",
     "Route4_hns",
     "Route14_hns",
-    "GoldenrodCity_hns"
+    "GoldenrodCity_hns",
+    "Route35_hns",
+    "Route36_hns",
+    "Route37_hns",
+    "EcruteakCity_hns",
+    "Route38_hns",
+    "Route16_hns",
+    "Route24_hns",
+    "Route25_hns"
   ],
   "gMapGroup_PlasticOxDungeons": [
     "IlexForest_hns",
-    "MtMoon_Cave_hns"
+    "MtMoon_Cave_hns",
+    "NationalPark_Normal_hns"
   ]
 }

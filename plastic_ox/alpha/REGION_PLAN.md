@@ -76,32 +76,37 @@ Kanto route (R5/R6/R26) — record the substitution here.
 Goldenrod Gym (Whitney) = GoldenrodCity_Gym_hns. Bill family house =
 GoldenrodCity_BillsHouse_hns (Eevee gift site).
 
-## Leg D — Goldenrod → Park → Ecruteak (wave 3)
+## Leg D — Goldenrod → Park → Ecruteak (wave 3) — SHIPPED
 
 ```
-GoldenrodCity_hns N → Gate_GoldenrodCity_Route35_hns → Route35_hns S   # hns canon
-Route35_hns N → NationalPark_Normal_hns S-gate warp                    # hns canon
-NationalPark E-gate → Route36_hns W                                    # hns canon warps
-Route36_hns E ↔ Route37_hns S                                          # hns canon
-Route37_hns N ↔ EcruteakCity_hns S                                     # hns canon
+GoldenrodCity_hns plaza coord portal (34,7) → Route35_hns (14,48)      # POX portal pair
+Gate_GoldenrodCity_Route35_hns interior wired both ways:               # canon gate kept walkable
+  (7,9)→Goldenrod(33,8)   (7,1)→Route35(14,48)
+Route35_hns N coord (17,5) → NationalPark_Normal_hns (12,49)           # POX portal
+NationalPark_Normal E coord (40,19) ↔ Route36_hns W (16,20)            # POX portal pair
+Route36_hns N seam → Route37_hns        # map connection, offset -22 (open cols 33-41 ↔ 12-19)
+Route37_hns N seam → EcruteakCity_hns   # map connection, offset -16 (open cols 16-19 ↔ 0-1)
+IlexForest_hns (20,13) → Route34_hns (31,66)  # wave-2 portal re-pointed to explicit landing coords
 ```
-BurnedTower_1F/B1F attach to Ecruteak via city warp (story event site).
-Ecruteak Gym (Morty) = EcruteakCity_Gym_hns; Dance Theater = EcruteakCity_Theater_hns
-(optional Kimono battle + Eevee gift).
+Ecruteak Gym / Burned Tower / Dance Theater interiors NOT imported in wave 3
+(city exterior only).
 
-## Leg E — Ecruteak → Weather Institute → Fortree (+ Sea Cottage spur) (wave 3)
+## Leg E — Ecruteak → Route119 → Fortree (+ Sea Cottage spur) (wave 3) — SHIPPED
 
 ```
-EcruteakCity_hns E ↔ Route38_hns W      # hns canon
-Route38_hns E ↔ Route119 (native) S     # calc; cross-tileset seam accepted
-Route119 N ↔ FortreeCity (native) W     # native offsets already correct
-# Weather Institute = native facility on R119 (keep native warps/NPCs restyled)
-# Sea Cottage spur:
-FortreeCity E ↔ Route16_hns W           # calc
-Route16_hns E ↔ Route24_hns S           # calc
-Route24_hns N ↔ Route25_hns W           # calc
-Route25_hns E-end door → Route25_BillsHouse_hns   # dead end; Eevee gift
+EcruteakCity_hns W seam → Route38_hns   # map connection, offset -19
+                                        # open rows 33-36 on Ecruteak ↔ 14-17 on R38
+Route38_hns W coord portal (0,21) → Route119 native (18,138)     # POX portal pair
+Route119 native W coord (0,86) → Route38_hns (1,21)              # reverse direction
+Route119 traverse north on foot (native map; no HM gates)
+Route119 E exit rows 6-10 → FortreeCity   # NATIVE right-connection, offset 0
+FortreeCity Return Stone coord (20,4) → Pallet Town (10,4)       # wave-end shortcut home
 ```
+Weather Institute stays native on R119 (warps/NPCs untouched).
+# Sea Cottage spur: Route16/24/25_hns + Route25_BillsHouse_hns imported in
+# wave 3 but NOT yet wired into the walkable graph (no portals/seams); wave 4
+# continues from Fortree.
+
 
 ## Leg F — Fortree → Lavender (wave 4)
 
