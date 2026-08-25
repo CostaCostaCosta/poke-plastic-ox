@@ -1,0 +1,64 @@
+# Wave 4/5 + Story — continuation playbook
+
+State after wave 3 (commit 6c902ec92a): Legs A-E walkable via seams+portal
+network. Deferred (documented in REGION_PLAN): NationalPark/R37/Ecruteak
+map-load crash class; R14 scenic loop; MtMoon spur; Rustboro city interior
+split (bridged by portal).
+
+## Proven playbook per wave (repeat for 4 and 5)
+1. `python3 plastic_ox/agent/import_wave<N>.py` — clone import_wave3.py,
+   change MAPS / MUSIC / GROUP / PORTALS / NPC_DATA (json files) only.
+2. Missing tilesets: copy pattern from "Re-adding tileset definitions" fix
+   (see git log wave-3; struct name MUST be gTileset_<Name>).
+   Then `python3 plastic_ox/agent/remap_metatile_behaviors.py`.
+3. Pad any new _hns metatile_attributes.bin to 2048 B (zeros).
+4. `python3 plastic_ox/agent/fix_door_behaviors.py` then build:
+   rm -f .map_version && make generated && rm -f build/emerald/data/maps.o \
+     build/emerald/data/event_scripts.o && make -j$(nproc) pokeemerald.gba
+5. Author walk_leg<N>.py cloning walk_leg3.py; use nav()/enter_warp()/
+   try_cross_up_columns(); portals at verified-open tiles (find via
+   POX_DEBUG_GRID live dumps + offline BFS replication shown in probe
+   patterns throughout this session's history).
+6. Gates: leg harness x2 PASSED, walk_demo PASSED, both ROMs green.
+7. REGION_PLAN substitutions, single commit.
+
+## Map-load crash class (open bug)
+NationalPark/R37/Ecruteak/Ilex-north crash on load: PC→0x1f8 lr 0xa4 in
+LoadMapFromCameraTransition. Ruled out: callbacks (all NULL), flags, NPCs,
+encounters, MAPSECs, attrs range. NEXT LEAD: byte-diff crashing maps'
+MapLayout+tileset structs vs working Goldenrod_Hns; check src/tilesets.c
+anim dispatch indexing; try hns repo's own field_control_avatar.c diff.
+Workaround in tree: skip those maps; portals route around them.
+
+## Wave 4 specifics (Legs F+G)
+- Leg F: Ilex-south is Johto-side; Kanto Lavender chain per REGION_PLAN
+  (R24/R25 spur exists imported). Simplest: portal from Route25 BillsHouse
+  area -> Route7_hns -> LavenderTown_hns; Tower door retarget ->
+  MAP_POKEMON_TOWER_1F (FRLG, present).
+- Leg G: Lavender S <-> R12 <-> R21 water <-> CinnabarIsland_hns;
+  Gym door -> MAP_CINNABAR_GYM; Mansion warp -> MAP_POKEMON_MANSION_1F.
+- Water routes: walking harness can't surf — use portal pairs across water
+  or mark water legs as surf-gated (document).
+
+## Wave 5 (Legs H/I/J)
+Same pattern; Indigo Plateau/FRLG League rooms already present natively.
+End walk_leg5 at Champion door; final full-region harness = leg1..leg5 chained
+(or single long harness) ending Hall of Fame door.
+
+## Story phase (per STORY_TRIGGERS.md)
+- gPlasticOxTriggersEnabled plumbing exists. Every coord_event gate uses the
+  Special_PoxGate pattern; trainer battles via trainers.party Showdown ids
+  TRAINER_PLASTIC_OX_* (start 855); five Eevee gifts (givemon SPECIES_EEVEE,5).
+- Town-by-town headless tests on pokeemerald-triggers.gba using
+  GBA(linker_map="pokeemerald-triggers.map") pattern from walklib.
+
+## Gotchas that cost hours (do not repeat)
+- mapjson silently DROPS connections whose dest constant isn't in
+  constants/map_groups.h — verify emitted connections.inc after every json edit.
+- events.inc/scripts.inc stale unless .o removed or make generated runs.
+- enter_warp can exhaust taps exactly as transition fires -> post-loop state
+  check added (keep it).
+- hns coords-variant warps: two-arg form = x/y landing; three-arg invalid ids
+  fail silently.
+- Objects on 1-tile chokepoints block whole regions (check objects= list in
+  navigate asserts; relocate NPC like Route30 YOUNGSTER fix).
