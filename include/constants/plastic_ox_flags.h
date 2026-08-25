@@ -82,4 +82,7 @@
 #define FLAG_POX_HIDDEN_ROUTE36_15               (POX_HIDDEN_ITEMS_BASE + 17)
 #define FLAG_POX_HIDDEN_ROUTE38_16               (POX_HIDDEN_ITEMS_BASE + 18)
 #define FLAG_POX_HIDDEN_ROUTE38_17               (POX_HIDDEN_ITEMS_BASE + 19)
+
+// Wave 2 (Legs B+C) items/hidden.
+#define FLAG_POX_HIDDEN_ROUTE6_3                 (POX_HIDDEN_ITEMS_BASE + 14)
 #endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H

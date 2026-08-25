@@ -75,3 +75,7 @@ Route36_EventScript_ReturnStone::
 	warp MAP_PALLET_TOWN, 10, 4
 	waitstate
 	end
+Route36_EventScript_ToJohto::
+	warp MAP_SAFFRON_CITY_HNS, 29, 6
+	waitstate
+	end

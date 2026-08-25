@@ -63,7 +63,7 @@
       "x": 1,
       "y": 5,
       "elevation": 3,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_POX_PORTAL_GATE",
       "var_value": "0",
       "script": "Gate_AzaleaTown_IlexForest_EventScript_ToIlex"
     },
@@ -72,7 +72,7 @@
       "x": 11,
       "y": 5,
       "elevation": 3,
-      "var": "VAR_TEMP_0",
+      "var": "VAR_POX_PORTAL_GATE",
       "var_value": "0",
       "script": "Gate_AzaleaTown_IlexForest_EventScript_ToR31"
     }

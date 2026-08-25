@@ -147,7 +147,7 @@ Route128 W ↔ Route6_hns S               # calc (land)
 Route6_hns N → Gate_SaffronCity_Route6_hns → SaffronCity_hns S          # hns canon
 ```
 
-## Leg J — Saffron → Blackthorn → League (wave 5)
+## Leg J — SHIPPED variant note: R26/IcePath/R45/VictoryRoad replaced by portal pair Blackthorn(42,22)⇄IndigoPlateau(11,13); Indigo PC interior reachable (door 11,6). Leg H Cinnabar↔R41/Mossdeep water legs DEFERRED (surf-gated; walking harness cannot cross) — Mossdeep/R125/R128 remain native-wired for post-surf play. — Saffron → Blackthorn → League (wave 5)
 
 ```
 SaffronCity_hns N → Gate_SaffronCity_Route5_hns → Route5_hns S          # hns canon

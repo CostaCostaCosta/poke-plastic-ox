@@ -1177,7 +1177,10 @@
     "Gate_AzaleaTown_IlexForest_hns",
     "GoldenrodCity_BillsHouse_hns",
     "Gate_GoldenrodCity_Route35_hns",
-    "Route25_BillsHouse_hns"
+    "Route25_BillsHouse_hns",
+    "Gate_SaffronCity_Route6_hns",
+    "Gate_SaffronCity_Route5_hns",
+    "IndigoPlateau_PokemonCenter_hns"
   ],
   "gMapGroup_PlasticOxJohtoKanto": [
     "Route29_hns",
@@ -1199,7 +1202,12 @@
     "Route38_hns",
     "Route16_hns",
     "Route24_hns",
-    "Route25_hns"
+    "Route25_hns",
+    "Route6_hns",
+    "SaffronCity_hns",
+    "Route5_hns",
+    "BlackthornCity_hns",
+    "IndigoPlateau_hns"
   ],
   "gMapGroup_PlasticOxDungeons": [
     "IlexForest_hns",
