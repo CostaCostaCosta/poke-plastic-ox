@@ -107,3 +107,7 @@ PalletTown_ProfessorOaksLab_EventScript_StarterDone::
 
 PalletTown_ProfessorOaksLab_Text_Starter:
 	.string "PROF. OAK (voice): Take TREECKO and go see how far the roads go now.$"
+	release
+	end
+
+	.string "PROF. OAK (voice): Take TREECKO and go see how far the roads go now.$"

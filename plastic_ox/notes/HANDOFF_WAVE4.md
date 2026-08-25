@@ -80,3 +80,22 @@ End walk_leg5 at Champion door; final full-region harness = leg1..leg5 chained
 - Interim: Oak's Lab restored to native starter balls (SquirtleBall script
   retarget reverted). Starter scaffold preserved in git history
   (cc81fd59d0 + follow-ups).
+
+## ADDENDUM 2: coord-fire investigation CLOSED for this demo (session 3)
+Definitive live-RAM verification on Oak's Lab: coord event table correct at
+runtime ((9,11) e=3, script ptr valid, trigger var correct), player steps
+onto the tile with matching elevation — script still never runs. Tried:
+var-gated (VAR_POX_PORTAL_GATE), TRIGGER_RUN_IMMEDIATELY (var=0), warp-first
+body, setvar-first body, object A-interaction retarget. All silent.
+Working coords (r116/fortree/plateau/r36/goldenrod/r35/blackthorn stones and
+portals) use the identical emission path.
+NEXT LEADS (for a real fix): (1) RunScriptImmediately implementation in this
+expansion tree — verify it actually executes vs queues; (2) diff
+field_control_avatar.c against upstream pokeemerald for the step-script
+call chain; (3) test a coord on ANOTHER indoor FRLG map (e.g., rival house)
+to isolate lab-specific vs indoor-specific.
+INTERIM DESIGN: story beats that need step/interact triggers on hns/FRLG
+interior maps should use DOOR-BUMP warps into purpose-built 1-tile "beat
+rooms" (warp-first scripts proven to fire), or overworld object A-interactions
+on OUTDOOR maps (proven firing). The starter beat ships as: Oak's Lab door
+bump -> lab interior -> starter ball objects (native, working).
