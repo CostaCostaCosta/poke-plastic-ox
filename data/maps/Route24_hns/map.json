@@ -71,7 +71,44 @@
     }
   ],
   "warp_events": [],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 1,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": "0",
+      "script": "Route24_EventScript_PoxPortal8_10_1"
+    },
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 1,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": "0",
+      "script": "Route24_EventScript_PoxPortal10_10_1"
+    },
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 1,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": "0",
+      "script": "Route24_EventScript_PoxPortal12_10_1"
+    },
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 1,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": "0",
+      "script": "Route24_EventScript_PoxPortal14_10_1"
+    }
+  ],
   "bg_events": [
     {
       "type": "hidden_item",

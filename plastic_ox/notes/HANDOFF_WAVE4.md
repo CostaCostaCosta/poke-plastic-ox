@@ -22,23 +22,46 @@ split (bridged by portal).
 6. Gates: leg harness x2 PASSED, walk_demo PASSED, both ROMs green.
 7. REGION_PLAN substitutions, single commit.
 
-## Map-load crash class (open bug)
-NationalPark/R37/Ecruteak/Ilex-north crash on load: PC→0x1f8 lr 0xa4 in
-LoadMapFromCameraTransition. Ruled out: callbacks (all NULL), flags, NPCs,
-encounters, MAPSECs, attrs range. NEXT LEAD: byte-diff crashing maps'
-MapLayout+tileset structs vs working Goldenrod_Hns; check src/tilesets.c
-anim dispatch indexing; try hns repo's own field_control_avatar.c diff.
-Workaround in tree: skip those maps; portals route around them.
+## Map-load crash class (CLOSED — wave 4 session)
+The "crash" was THREE stacked artifacts, no ROM data bug:
+1. **Harness PC polling**: reading `g.core.cpu.pc`/`.lr` via mgba-python
+   CORRUPTS emulation — it "crashes" ANY map, including proven-working ones
+   (Route35 control test). Never poll cpu state in harnesses; use
+   state()/vblank-counter (gMain+0x20) oracles instead.
+2. **Mid-transition reads**: a warp updates the saveblock location at
+   ApplyCurrentWarp (early) but InitMapLayoutData fills the grid only at the
+   end of the transition (~200f). Reads in that window return the previous
+   map's grid / MAPGRID_UNDEFINED (1023); movement is engine-locked; screens
+   are mid-fade black. walklib.wait_warp_complete() (grid width match) and
+   wait_grid_ready() exist for this — enter_warp() now self-waits.
+3. **Timing-perturbation sensitivity**: printf instrumentation or the log
+   callback shifts the race; instrumented builds "pass" runs that then fail
+   clean. Never trust a fix verified only under instrumentation.
+True engine-side residual: the warp destination can race (cave-mouth misfire
+out the wrong exit; address-layout sensitive — leg1 failed at HEAD too after
+the wave-4 address shift). enter_warp/leg1 retry on misfire. If it bites
+again: gdb via `mgba-qt -g` (port 2345) + xdotool-less driving is UNSOLVED;
+the IRQ-lr watchdog (patch IntrMain to stash lr @0x03007FF0) is the best
+ROM-side trap built so far.
+Park/corridor status: NationalPark loads and renders correctly; the R36 park
+spur, R37, Ecruteak, R7, Lavender, Cinnabar chain is walkable end-to-end
+(walk_leg4.py; full chain walk_region.py = leg1..leg5 REGION DEMO PASSED).
 
-## Wave 4 specifics (Legs F+G)
-- Leg F: Ilex-south is Johto-side; Kanto Lavender chain per REGION_PLAN
-  (R24/R25 spur exists imported). Simplest: portal from Route25 BillsHouse
-  area -> Route7_hns -> LavenderTown_hns; Tower door retarget ->
-  MAP_POKEMON_TOWER_1F (FRLG, present).
-- Leg G: Lavender S <-> R12 <-> R21 water <-> CinnabarIsland_hns;
-  Gym door -> MAP_CINNABAR_GYM; Mansion warp -> MAP_POKEMON_MANSION_1F.
-- Water routes: walking harness can't surf — use portal pairs across water
-  or mark water legs as surf-gated (document).
+## Wave 4 specifics (Legs F+G) — SHIPPED (see REGION_PLAN Leg F/G)
+- Entry: "Kanto gate" portal EcruteakCity_hns (15,31) ⇄ Route7_hns (4,25)
+  (the R24/R25 spur has no walkable entry). All portal/warp tiles were
+  verified against the grid with the ENGINE's bit layout: collision =
+  bits 10-11, elevation = bits 12-15 (walklib.collision_at returns
+  (collision, elevation) in that order — do not "fix" it again).
+- Lavender⇄Cinnabar crosses the surf-gated water directly; R12⇄R21 seam
+  stays wired for post-surf.
+- Tower/Gym interior warps DEFERRED: the interiors load to a black screen
+  with garbage saveblock coords (native FRLG interior load issue — next
+  lead: compare with a working FRLG interior warp, e.g. the player house).
+- import_tilesets_auto.py had a catastrophic append bug (wrote whole-file
+  content per missing tileset → exponential duplication); fixed to batch
+  writes. If tileset headers ever look doubled, restore the four files from
+  git and re-run the fixed tool.
 
 ## Wave 5 (Legs H/I/J)
 Same pattern; Indigo Plateau/FRLG League rooms already present natively.

@@ -41,3 +41,26 @@ Route24_EventScript_Npc3_Text:
 Route24_EventScript_Npc4_Text:
 	.string "Roads keep ending somewhere they\ndidn't used to.$"
 
+
+
+
+
+Route24_EventScript_PoxPortal8_10_1::
+	warp MAP_ROUTE7_HNS, 4, 25
+	waitstate
+	end
+
+Route24_EventScript_PoxPortal10_10_1::
+	warp MAP_ROUTE7_HNS, 4, 25
+	waitstate
+	end
+
+Route24_EventScript_PoxPortal12_10_1::
+	warp MAP_ROUTE7_HNS, 4, 25
+	waitstate
+	end
+
+Route24_EventScript_PoxPortal14_10_1::
+	warp MAP_ROUTE7_HNS, 4, 25
+	waitstate
+	end

@@ -28,6 +28,10 @@ def find_dir(cname):
     return None
 
 def main():
+    inc = open("include/tilesets.h").read()
+    h = open("src/data/tilesets/headers.h").read()
+    g = open("src/data/tilesets/graphics.h").read()
+    mt = open("src/data/tilesets/metatiles.h").read()
     for cname in sorted(need):
         info = find_dir(cname)
         if info is None:
@@ -38,45 +42,41 @@ def main():
         if not ours_exists and not DRY:
             shutil.copytree(srcpath, dst)
         name = cname.replace("gTileset_", "")
-        npals = len([f for f in os.listdir(f"{HNS}/data/tilesets/{kind}/{d}/palettes") if f.endswith(".pal")]) if not ours_exists else None
-        if npals is None:
-            npals = len([f for f in os.listdir(dst + "/palettes") if f.endswith(".pal")])
+        paldir = f"{dst}/palettes"
+        npals = len([f for f in os.listdir(paldir) if f.endswith(".pal")]) if os.path.isdir(paldir) else 0
 
-        s = open("include/tilesets.h").read()
         line = f"extern const struct Tileset {cname};"
-        if line not in s:
+        if line not in inc:
             anchor = "extern const struct Tileset gTileset_World;"
-            if anchor in s:
-                s = s.replace(anchor, line + "\n" + anchor)
+            if anchor in inc:
+                inc = inc.replace(anchor, line + "\n" + anchor)
             else:
-                i = s.rindex("extern const struct Tileset"); j = s.index("\n", i) + 1
-                s = s[:j] + line + "\n" + s[j:]
-            open("include/tilesets.h", "w").write(s)
+                i = inc.rindex("extern const struct Tileset"); j = inc.index("\n", i) + 1
+                inc = inc[:j] + line + "\n" + inc[j:]
 
-        h = open("src/data/tilesets/headers.h").read()
         if f"{cname} =" not in h:
-            block = (f"\nconst struct Tileset {cname} =\n{{\n"
-                     f"    .tiles = gTilesetTiles_{name},\n"
-                     f"    .palettes = gTilesetPalettes_{name},\n"
-                     f"    .metatiles = gMetatiles_{name},\n"
-                     f"    .metatileAttributes = gMetatileAttributes_{name},\n}};\n")
-            open("src/data/tilesets/headers.h", "a").write(block)
+            h += (f"\nconst struct Tileset {cname} =\n{{\n"
+                  f"    .tiles = gTilesetTiles_{name},\n"
+                  f"    .palettes = gTilesetPalettes_{name},\n"
+                  f"    .metatiles = gMetatiles_{name},\n"
+                  f"    .metatileAttributes = gMetatileAttributes_{name},\n}};\n")
 
-        g = open("src/data/tilesets/graphics.h").read()
         if f"gTilesetTiles_{name}" not in g:
             pal = "\n".join(
                 f'    INCGFX_U16("data/tilesets/{kind}/{d}/palettes/{i:02d}.pal", ".gbapal"),'
                 for i in range(npals))
-            block = (f'\nconst u32 gTilesetTiles_{name}[] = INCGFX_U32("data/tilesets/{kind}/{d}/tiles.png", ".4bpp.fastSmol");\n\n'
-                     f'const u16 gTilesetPalettes_{name}[][16] =\n{{\n{pal}\n}};\n')
-            open("src/data/tilesets/graphics.h", "a").write(g)
+            g += (f'\nconst u32 gTilesetTiles_{name}[] = INCGFX_U32("data/tilesets/{kind}/{d}/tiles.png", ".4bpp.fastSmol");\n\n'
+                  f'const u16 gTilesetPalettes_{name}[][16] =\n{{\n{pal}\n}};\n')
 
-        mt = open("src/data/tilesets/metatiles.h").read()
         if f"gMetatiles_{name}" not in mt:
-            block = (f'\nconst u16 gMetatiles_{name}[] = INCBIN_U16("data/tilesets/{kind}/{d}/metatiles.bin");\n'
-                     f'const u16 gMetatileAttributes_{name}[] = INCBIN_U16("data/tilesets/{kind}/{d}/metatile_attributes.bin");\n')
-            open("src/data/tilesets/metatiles.h", "a").write(mt)
+            mt += (f'\nconst u16 gMetatiles_{name}[] = INCBIN_U16("data/tilesets/{kind}/{d}/metatiles.bin");\n'
+                   f'const u16 gMetatileAttributes_{name}[] = INCBIN_U16("data/tilesets/{kind}/{d}/metatile_attributes.bin");\n')
         print("tileset ready:", name, f"({npals} palettes)")
+    if not DRY:
+        open("include/tilesets.h", "w").write(inc)
+        open("src/data/tilesets/headers.h", "w").write(h)
+        open("src/data/tilesets/graphics.h", "w").write(g)
+        open("src/data/tilesets/metatiles.h", "w").write(mt)
 
 import shutil
 main()

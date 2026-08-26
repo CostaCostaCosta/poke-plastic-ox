@@ -101,7 +101,7 @@
     {
       "type": "trigger",
       "x": 16,
-      "y": 20,
+      "y": 19,
       "elevation": 3,
       "var": "VAR_POX_PORTAL_GATE",
       "var_value": "0",
@@ -110,7 +110,7 @@
     {
       "type": "trigger",
       "x": 16,
-      "y": 20,
+      "y": 19,
       "elevation": 3,
       "var": "VAR_POX_PORTAL_GATE",
       "var_value": "0",
@@ -128,7 +128,7 @@
     {
       "type": "trigger",
       "x": 20,
-      "y": 21,
+      "y": 19,
       "elevation": 3,
       "var": "VAR_POX_PORTAL_GATE",
       "var_value": "0",
@@ -142,6 +142,24 @@
       "var": "VAR_POX_PORTAL_GATE",
       "var_value": "0",
       "script": "Route36_EventScript_ToJohto"
+    },
+    {
+      "type": "trigger",
+      "x": 19,
+      "y": 19,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": "0",
+      "script": "Route36_EventScript_PoxPortal12_19_19"
+    },
+    {
+      "type": "trigger",
+      "x": 19,
+      "y": 19,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": "0",
+      "script": "Route36_EventScript_PoxPortal14_19_19"
     }
   ],
   "bg_events": [

@@ -2045,3 +2045,19 @@ const struct Tileset gTileset_VioletCity_Hns =
  .metatiles = gMetatiles_VioletCity_Hns,
  .metatileAttributes = gMetatileAttributes_VioletCity_Hns,
 };
+
+const struct Tileset gTileset_Lavaridge_Hns =
+{
+    .tiles = gTilesetTiles_Lavaridge_Hns,
+    .palettes = gTilesetPalettes_Lavaridge_Hns,
+    .metatiles = gMetatiles_Lavaridge_Hns,
+    .metatileAttributes = gMetatileAttributes_Lavaridge_Hns,
+};
+
+const struct Tileset gTileset_LavenderTown_Hns =
+{
+    .tiles = gTilesetTiles_LavenderTown_Hns,
+    .palettes = gTilesetPalettes_LavenderTown_Hns,
+    .metatiles = gMetatiles_LavenderTown_Hns,
+    .metatileAttributes = gMetatileAttributes_LavenderTown_Hns,
+};

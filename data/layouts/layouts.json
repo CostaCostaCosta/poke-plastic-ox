@@ -9753,6 +9753,56 @@
       "secondary_tileset": "gTileset_PokemonCenter_White_Hns",
       "border_filepath": "data/layouts/IndigoPlateau_PokemonCenter_hns/border.bin",
       "blockdata_filepath": "data/layouts/IndigoPlateau_PokemonCenter_hns/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE7_HNS",
+      "name": "Route7_hns_Layout",
+      "width": 20,
+      "height": 28,
+      "primary_tileset": "gTileset_Kanto_General_Hns",
+      "secondary_tileset": "gTileset_CeladonCity_Hns",
+      "border_filepath": "data/layouts/Route7_hns/border.bin",
+      "blockdata_filepath": "data/layouts/Route7_hns/map.bin"
+    },
+    {
+      "id": "LAYOUT_LAVENDER_TOWN_HNS",
+      "name": "LavenderTown_hns_Layout",
+      "width": 38,
+      "height": 31,
+      "primary_tileset": "gTileset_Kanto_General_Hns",
+      "secondary_tileset": "gTileset_LavenderTown_Hns",
+      "border_filepath": "data/layouts/LavenderTown_hns/border.bin",
+      "blockdata_filepath": "data/layouts/LavenderTown_hns/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE12_HNS",
+      "name": "Route12_hns_Layout",
+      "width": 38,
+      "height": 90,
+      "primary_tileset": "gTileset_Kanto_General_Hns",
+      "secondary_tileset": "gTileset_Route40_Hns",
+      "border_filepath": "data/layouts/Route12_hns/border.bin",
+      "blockdata_filepath": "data/layouts/Route12_hns/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE21_HNS",
+      "name": "Route21_hns_Layout",
+      "width": 24,
+      "height": 100,
+      "primary_tileset": "gTileset_Kanto_General_Hns",
+      "secondary_tileset": "gTileset_PalletTown_Hns",
+      "border_filepath": "data/layouts/Route21_hns/border.bin",
+      "blockdata_filepath": "data/layouts/Route21_hns/map.bin"
+    },
+    {
+      "id": "LAYOUT_CINNABAR_ISLAND_HNS",
+      "name": "CinnabarIsland_hns_Layout",
+      "width": 72,
+      "height": 44,
+      "primary_tileset": "gTileset_Kanto_General_Hns",
+      "secondary_tileset": "gTileset_Lavaridge_Hns",
+      "border_filepath": "data/layouts/CinnabarIsland_hns/border.bin",
+      "blockdata_filepath": "data/layouts/CinnabarIsland_hns/map.bin"
     }
   ]
 }

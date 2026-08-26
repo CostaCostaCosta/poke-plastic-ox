@@ -108,5 +108,7 @@ extern const struct Tileset gTileset_Fuchsia_Hns;
 extern const struct Tileset gTileset_Ecruteak_City_Hns;
 extern const struct Tileset gTileset_Johto_NorthWest_Hns;
 extern const struct Tileset gTileset_VioletCity_Hns;
+extern const struct Tileset gTileset_Lavaridge_Hns;
+extern const struct Tileset gTileset_LavenderTown_Hns;
 
 #endif //GUARD_tilesets_H

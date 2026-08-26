@@ -596,3 +596,9 @@ const u16 gMetatiles_Johto_NorthWest_Hns[] = INCBIN_U16("data/tilesets/primary/j
 const u16 gMetatileAttributes_Johto_NorthWest_Hns[] = INCBIN_U16("data/tilesets/primary/johto_north_west_hns/metatile_attributes.bin");
 const u16 gMetatiles_VioletCity_Hns[] = INCBIN_U16("data/tilesets/secondary/violet_city_hns/metatiles.bin");
 const u16 gMetatileAttributes_VioletCity_Hns[] = INCBIN_U16("data/tilesets/secondary/violet_city_hns/metatile_attributes.bin");
+
+const u16 gMetatiles_Lavaridge_Hns[] = INCBIN_U16("data/tilesets/secondary/lavaridge_hns/metatiles.bin");
+const u16 gMetatileAttributes_Lavaridge_Hns[] = INCBIN_U16("data/tilesets/secondary/lavaridge_hns/metatile_attributes.bin");
+
+const u16 gMetatiles_LavenderTown_Hns[] = INCBIN_U16("data/tilesets/secondary/lavender_town_hns/metatiles.bin");
+const u16 gMetatileAttributes_LavenderTown_Hns[] = INCBIN_U16("data/tilesets/secondary/lavender_town_hns/metatile_attributes.bin");

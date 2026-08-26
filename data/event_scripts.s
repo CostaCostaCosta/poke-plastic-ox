@@ -1787,3 +1787,8 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/Gate_SaffronCity_Route5_hns/scripts.inc"
 	.include "data/maps/SaffronCity_hns/scripts.inc"
 	.include "data/maps/Gate_SaffronCity_Route6_hns/scripts.inc"
+	.include "data/maps/Route7_hns/scripts.inc"
+	.include "data/maps/CinnabarIsland_hns/scripts.inc"
+	.include "data/maps/Route21_hns/scripts.inc"
+	.include "data/maps/Route12_hns/scripts.inc"
+	.include "data/maps/LavenderTown_hns/scripts.inc"

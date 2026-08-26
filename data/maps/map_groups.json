@@ -1207,7 +1207,12 @@
     "SaffronCity_hns",
     "Route5_hns",
     "BlackthornCity_hns",
-    "IndigoPlateau_hns"
+    "IndigoPlateau_hns",
+    "Route7_hns",
+    "LavenderTown_hns",
+    "Route12_hns",
+    "Route21_hns",
+    "CinnabarIsland_hns"
   ],
   "gMapGroup_PlasticOxDungeons": [
     "IlexForest_hns",

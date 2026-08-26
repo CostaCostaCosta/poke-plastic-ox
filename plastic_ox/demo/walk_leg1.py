@@ -136,16 +136,20 @@ def navigate(g, target, avoid=frozenset()):
 
 def enter_warp(g, approach, direction, expected_map, stage):
     """Walk onto `approach`, then tap `direction` until the warp fires."""
+    # A previous warp may still be mid-transition (the saveblock updates
+    # before the grid is filled); wait for the CURRENT map's grid first.
+    state = g.state()
+    if state:
+        g.wait_warp_complete((state["group"], state["num"]))
     try:
         navigate(g, approach)
     except AssertionError:
         pass  # the approach tile may itself be the warp; arriving IS entering
     state = g.state()
     if state and (state["group"], state["num"]) == expected_map:
-        for i in range(300):
+        g.wait_warp_complete(expected_map)
+        for i in range(120):
             g.frame(1)
-            if i % 50 == 0:
-                print("  settle", i, g.describe(), flush=True)
         W.assert_map(g, expected_map, stage)
         return
     key = DIRKEY[direction]
@@ -156,12 +160,9 @@ def enter_warp(g, approach, direction, expected_map, stage):
         flags = g.u32(g.symbol_address("gBattleTypeFlags"))
         assert flags == 0, f"unexpected battle during warp {stage}"
         if state and (state["group"], state["num"]) == expected_map:
-            for i in range(300):
+            g.wait_warp_complete(expected_map)
+            for i in range(120):
                 g.frame(1)
-                if 100 <= i <= 220 and i % 10 == 0:
-                    g.shot(f"debug_settle_{i:03d}.png")
-                if i % 50 == 0:
-                    print("  settle", i, g.describe(), flush=True)
             W.assert_map(g, expected_map, stage)
             return
     raise AssertionError(f"warp {stage} never fired from {g.describe()}")
@@ -228,7 +229,25 @@ def main():
 
     # ---- traverse the cave NW to the Route 31 mouth ----
     g.shot("leg1_07_darkcave.png")
-    enter_warp(g, (14, 19), "DOWN", MAP_R31, "r31_cave_mouth")
+    # The cave-mouth warp destination can race (rare misfire out the
+    # entrance); re-enter and retry until R31.
+    for _attempt in range(4):
+        try:
+            navigate(g, (14, 19), avoid={(14, 20), (56, 46)})
+        except AssertionError:
+            pass
+        try:
+            enter_warp(g, (14, 19), "DOWN", MAP_R31, "r31_cave_mouth")
+        except AssertionError:
+            pass
+        state = g.state()
+        if state and (state["group"], state["num"]) == MAP_R31:
+            break
+        try:
+            navigate(g, (20, 12))
+            enter_warp(g, (20, 12), "UP", MAP_DARKCAVE, "darkcave_reentry")
+        except AssertionError:
+            pass
 
     # ---- R31 south to Route30 ----
     g.shot("leg1_08_route31.png")

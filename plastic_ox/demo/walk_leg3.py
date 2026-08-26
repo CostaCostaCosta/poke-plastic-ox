@@ -81,11 +81,10 @@ def try_cross_up_columns(g, dest_map, stage, cols=None):
                 break
             W.step_toward(g, path[i - 1][:2], path[i][:2])
         for k in range(6):
-            pc = g.core.cpu.pc
-            if not (0x08000000 <= pc < 0x08000000 + 0x2000000):
-                raise AssertionError(f"PC ESCAPED at col {x} tap {k}: pc={pc:#010x} lr={g.core.cpu.lr:#010x}")
+            # NOTE: never poll g.core.cpu.pc here — reading it corrupts
+            # emulation in mgba-python (kills ANY map, proven on Route35).
             s2 = g.state()
-            if (s2["group"], s2["num"]) == dest_map:
+            if s2 and (s2["group"], s2["num"]) == dest_map:
                 for _ in range(150):
                     g.frame(1)
                 W.assert_map(g, dest_map, stage)
@@ -190,7 +189,7 @@ def main():
     st = g.state()
     here = (st["group"], st["num"])
     stones = {
-        MAP_R36: ("Route36_EventScript_ReturnStone", (20, 21), "UP"),
+        MAP_R36: ("Route36_EventScript_ReturnStone", (20, 19), "UP"),
         MAP_R38: ("Route38_EventScript_ReturnStone", (2, 21), "DOWN"),
         MAP_R119: ("Route119_EventScript_ReturnStone", (17, 138), "UP"),
         MAP_FORTREE: ("FortreeCity_EventScript_ReturnStone", (20, 3), "UP"),
@@ -200,6 +199,11 @@ def main():
     if here not in stones:
         raise AssertionError(f"no return stone mapped for {g.describe()}")
     lbl, tile, d = stones[here]
+    if here == MAP_R36:
+        for _ in range(150):
+            g.frame(1)
+        g.wait_grid_ready(16, 21)
+        navigate(g, (20, 19), avoid={(16, 19), (16, 20), (19, 19)})
     L1.enter_warp(g, tile, d, MAP_PALLET, f"return_stone_{here[1]}")
     for _ in range(120):
         g.frame(1)

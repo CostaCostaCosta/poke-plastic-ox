@@ -57,7 +57,8 @@ Rustboro Gym = native RustboroCity_Gym. Devon NPCs keep native scripts + new lin
   R14 remains reachable only through Goldenrod's canyon (scenic).
 - Rustboro City's NW and SE districts are internally split (native data);
   a city portal pair `(5,10)⇄(37,9)` bridges them. R116 far point hosts the
-  demo Return Stone (`warp MAP_PALLET_TOWN, 10, 4`).
+  demo Return Stone (`warp MAP_PALLET_TOWN, 10, 4`; wave 4 moved the R36
+  stone coord to (20,19) — off the R37-portal corridor and leg5's row-21 walk).
 - MtMoon_Cave keeps both original exits ((46,31)→R4-east landing,
   (4,12)→R4-west); traversed as an optional spur in alpha demos.
 
@@ -82,8 +83,9 @@ GoldenrodCity_BillsHouse_hns (Eevee gift site).
 GoldenrodCity_hns plaza coord portal (34,7) → Route35_hns (14,48)      # POX portal pair
 Gate_GoldenrodCity_Route35_hns interior wired both ways:               # canon gate kept walkable
   (7,9)→Goldenrod(33,8)   (7,1)→Route35(14,48)
-Route35_hns N coord (17,5) → NationalPark_Normal_hns (12,49)           # POX portal
-NationalPark_Normal E coord (40,19) ↔ Route36_hns W (16,20)            # POX portal pair
+Route35_hns N coord (17,5) → Route36_hns (16,21)                      # direct (wave 4)
+NationalPark_Normal_hns (39,20)/(39,26) ⇄ Route36_hns (16,19)/(16,20)  # park spur portals
+NationalPark_Normal (39,20)/(39,26) ⇄ Route36_hns (16,19)/(16,20)      # POX portal pair
 Route36_hns N seam → Route37_hns        # map connection, offset -22 (open cols 33-41 ↔ 12-19)
 Route37_hns N seam → EcruteakCity_hns   # map connection, offset -16 (open cols 16-19 ↔ 0-1)
 IlexForest_hns (20,13) → Route34_hns (31,66)  # wave-2 portal re-pointed to explicit landing coords
@@ -108,27 +110,35 @@ Weather Institute stays native on R119 (warps/NPCs untouched).
 # continues from Fortree.
 
 
-## Leg F — Fortree → Lavender (wave 4)
+## Leg F — Ecruteak → Route7 (wave 4) — SHIPPED (substituted entry)
 
 ```
-Route24_hns continues north past the R25 junction ↔ Route7_hns S        # calc
-Route7_hns E ↔ LavenderTown_hns W                                       # calc
+EcruteakCity_hns (15,31) portal ⇄ Route7_hns (4,25)     # "Kanto gate": the
+                                                        # R24/R25 spur has no
+                                                        # walkable entry, so
+                                                        # Leg F enters here
+Route24_hns (10,1) portal ⇄ Route7_hns (4,25)           # R24/R7 spur link
+Route7_hns (4,22) portal ⇄ LavenderTown_hns (1,10)      # R7 east edge is
+                                                        # walled at the seam
+                                                        # rows; portal instead
 ```
-(If R24's north end cannot host another seam, hang R7 off Route16's east end
-instead and run R24/R25 purely as the cottage spur; document whichever shipped.)
-Lavender Pokémon Tower door retargeted → MAP_POKEMON_TOWER_1F (FRLG set, present).
-Mr. Fuji site = LavenderTown_House1_hns.
+Imports: Route7_hns, LavenderTown_hns (Kanto_General_Hns primary already
+present; LavenderTown_Hns secondary added). R24/R25/R16 remain the unwired
+cottage spur except the R24⇄R7 portal above. Tower interior warp DEFERRED
+(interior loads to a black screen — see HANDOFF_WAVE4 addendum 3).
 
-## Leg G — Lavender → Cinnabar (wave 4)
+## Leg G — Lavender → Cinnabar (wave 4) — SHIPPED (portal across the water)
 
 ```
-LavenderTown_hns S ↔ Route12_hns N      # calc
-Route12_hns W ↔ Route13_hns E           # calc
-Route13_hns W ↔ Route19_hns N? use direct: Route12_hns S ↔ Route21_hns N   # calc (water)
-Route21_hns S ↔ CinnabarIsland_hns N    # calc (water)
+LavenderTown_hns (15,20) portal ⇄ CinnabarIsland_hns (8,6)
+CinnabarIsland_hns (8,8) portal ⇄ LavenderTown_hns (15,22)
+LavenderTown_hns S ↔ Route12_hns N      # seam DROPPED: elevation-severed
+                                        # from the town center
+Route12_hns S ↔ Route21_hns N           # seam kept (offset 9) for post-surf
 ```
-Cinnabar Gym door → MAP_CINNABAR_GYM (FRLG, present). Mansion entrance: add a warp
-on a free Cinnabar tile → MAP_POKEMON_MANSION_1F (FRLG, present; Entei chamber B1F).
+R12/R21 water legs are surf-gated (walking harness cannot cross) — same
+deferral class as Leg H. Cinnabar Gym interior warp DEFERRED (black-screen
+load). Mart/PC warps retargeted to the native FRLG interiors.
 
 ## Leg H — Cinnabar → Whirl Islands → Mossdeep (wave 5)
 

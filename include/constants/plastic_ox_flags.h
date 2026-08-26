@@ -86,4 +86,13 @@
 
 // Wave 2 (Legs B+C) items/hidden.
 #define FLAG_POX_HIDDEN_ROUTE6_3                 (POX_HIDDEN_ITEMS_BASE + 14)
+
+// Wave 4 (Legs F+G) items/hidden.
+#define FLAG_POX_HIDDEN_ROUTE12_14               (POX_HIDDEN_ITEMS_BASE + 200)
+#define FLAG_POX_HIDDEN_ROUTE12_15               (POX_HIDDEN_ITEMS_BASE + 201)
+#define FLAG_POX_HIDDEN_ROUTE12_7                (POX_HIDDEN_ITEMS_BASE + 202)
+#define FLAG_POX_HIDDEN_ROUTE12_9                (POX_HIDDEN_ITEMS_BASE + 203)
+#define FLAG_POX_HIDDEN_ROUTE21_16               (POX_HIDDEN_ITEMS_BASE + 204)
+#define FLAG_POX_HIDDEN_ROUTE21_17               (POX_HIDDEN_ITEMS_BASE + 205)
+#define FLAG_POX_HIDDEN_ROUTE21_18               (POX_HIDDEN_ITEMS_BASE + 206)
 #endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H

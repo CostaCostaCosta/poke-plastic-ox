@@ -142,7 +142,44 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 15,
+      "y": 31,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": "0",
+      "script": "EcruteakCity_EventScript_PoxPortal12_15_31"
+    },
+    {
+      "type": "trigger",
+      "x": 14,
+      "y": 33,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": "0",
+      "script": "EcruteakCity_EventScript_PoxPortal12_14_33"
+    },
+    {
+      "type": "trigger",
+      "x": 15,
+      "y": 31,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": "0",
+      "script": "EcruteakCity_EventScript_PoxPortal14_15_31"
+    },
+    {
+      "type": "trigger",
+      "x": 14,
+      "y": 33,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": "0",
+      "script": "EcruteakCity_EventScript_PoxPortal14_14_33"
+    }
+  ],
   "bg_events": [],
   "region": "REGION_HOENN"
 }

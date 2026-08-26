@@ -160,14 +160,9 @@ def main():
     L1.enter_warp(g, (34, 7), "UP", MAP_R35, "r35_from_goldenrod")
     stage("r35_south")
 
-    # ---------- R35 north portal -> PARK ----------
+    # ---------- R35 north portal -> R36 (wave-4 topology) ----------
     navigate(g, (17, 6))
-    L1.enter_warp(g, (17, 5), "UP", MAP_PARK, "park_from_r35")
-    stage("park")
-
-    # ---------- Park east portal -> R36 ----------
-    navigate(g, (40, 20))
-    L1.enter_warp(g, (40, 19), "UP", MAP_R36, "r36_from_park")
+    L1.enter_warp(g, (17, 5), "UP", MAP_R36, "r36_from_r35")
     stage("r36")
     g.shot("leg5_03_r36.png")
 

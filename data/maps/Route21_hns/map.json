@@ -1,0 +1,92 @@
+{
+  "id": "MAP_ROUTE21_HNS",
+  "name": "Route21_hns",
+  "layout": "LAYOUT_ROUTE21_HNS",
+  "music": "MUS_RG_ROUTE24",
+  "region_map_section": "MAPSEC_ROUTE_21",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_ROUTE12_HNS",
+      "direction": "up",
+      "offset": -9
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SWIMMER_F",
+      "x": 13,
+      "y": 78,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_SEQUENCE_UP_RIGHT_LEFT_DOWN",
+      "movement_range_x": 4,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "4",
+      "script": "Route21_EventScript_Npc1",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SWIMMER_M",
+      "x": 8,
+      "y": 50,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WALK_SEQUENCE_UP_RIGHT_LEFT_DOWN",
+      "movement_range_x": 4,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "4",
+      "script": "Route21_EventScript_Npc2",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_FISHERMAN_HNS",
+      "x": 16,
+      "y": 26,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 4,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route21_EventScript_Npc3",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 8,
+      "y": 73,
+      "elevation": 0,
+      "item": "ITEM_STARDUST",
+      "flag": "FLAG_POX_HIDDEN_ROUTE21_16"
+    },
+    {
+      "type": "hidden_item",
+      "x": 17,
+      "y": 43,
+      "elevation": 0,
+      "item": "ITEM_STARDUST",
+      "flag": "FLAG_POX_HIDDEN_ROUTE21_17"
+    },
+    {
+      "type": "hidden_item",
+      "x": 7,
+      "y": 29,
+      "elevation": 0,
+      "item": "ITEM_STARDUST",
+      "flag": "FLAG_POX_HIDDEN_ROUTE21_18"
+    }
+  ],
+  "region": "REGION_HOENN"
+}
