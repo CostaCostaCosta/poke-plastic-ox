@@ -14,8 +14,11 @@ MAP_NAMES = {(38,1): "PALLET_2F", (38,0): "PALLET_1F", (75,0): "PALLET_TOWN",
              (38,3): "OAK_LAB", (0,16): "ROUTE101", (0,10): "OLDALE"}
 
 class GBA:
-    def __init__(self, rom=ROM):
+    def __init__(self, rom=ROM, linker_map=None):
+        # linker_map: pass e.g. "pokeemerald-triggers.map" when testing a
+        # non-default ROM build (defaults to <rom>.map).
         self._symbol_addresses = None
+        self.linker_map = Path(linker_map) if linker_map else Path(rom).with_suffix(".map")
         self.core = mgba.core.load_path(rom)
         self.fb = mgba.image.Image(*self.core.desired_video_dimensions())
         self.core.set_video_buffer(self.fb)
@@ -99,14 +102,14 @@ class GBA:
         if self._symbol_addresses is None:
             self._symbol_addresses = {}
             pattern = re.compile(r"^\s*(0x[0-9a-fA-F]+)\s+([A-Za-z_][A-Za-z0-9_]*)\s*$")
-            with LINKER_MAP.open(encoding="utf-8", errors="replace") as linker_map:
+            with self.linker_map.open(encoding="utf-8", errors="replace") as linker_map:
                 for line in linker_map:
                     match = pattern.match(line)
                     if match:
                         self._symbol_addresses[match.group(2)] = int(match.group(1), 16)
         if name in self._symbol_addresses:
             return self._symbol_addresses[name]
-        raise KeyError(f"symbol not found in {LINKER_MAP}: {name}")
+        raise KeyError(f"symbol not found in {self.linker_map}: {name}")
     # ---- map introspection ----
     def mapheader_info(self):
         mh = self.symbol_address("gMapHeader")
@@ -165,6 +168,8 @@ class GBA:
         return True
     def collision_at(self, mx, my):
         mt, block = self.metatile_at(mx, my)
+        # Engine masks (include/global.fieldmap.h): collision = bits 10-11,
+        # elevation = bits 12-15. Callers unpack (collision, elev).
         return (block & 0x0C00) >> 10, (block & 0xF000) >> 12
     # ---- movement ----
     def walk(self, direction, target=None, timeout=4000, expect_map=None, mash_text=True):
@@ -206,7 +211,56 @@ class GBA:
         path = os.path.join("/home/eddie/repos/poke-plastic-ox/plastic_ox/demo/shots", name)
         self.fb.to_pil().convert("RGB").save(path)
         return path
-    # ---- generic ----
+    def wait_grid_ready(self, x, y, timeout=900):
+        """Wait until the backup grid at map-local (x, y) holds real data.
+
+        Portal/warp transitions update the saveblock location ~200 frames
+        BEFORE InitMapLayoutData fills the grid; during that window tiles
+        read MAPGRID_UNDEFINED (1023) and the engine refuses movement.
+        Never act on grid reads before this passes."""
+        for _ in range(timeout):
+            self.frame(1)
+            mt, _ = self.metatile_at(x, y)
+            if mt is not None and mt != 1023:
+                return True
+    def wait_warp_complete(self, expected, timeout=900):
+        """Wait until a warp has FULLY finished: the saveblock says `expected`
+        AND the backup grid width matches the destination map's layout.
+
+        Warps update the saveblock location early (ApplyCurrentWarp); the
+        grid is only filled by InitMapLayoutData at the end of the
+        transition. Acting between those points reads the previous map."""
+        import json, glob, re
+        if not hasattr(GBA, "_layout_widths"):
+            repo = "/home/eddie/repos/poke-plastic-ox"
+            lay = {l["id"]: l for l in json.load(
+                open(repo + "/data/layouts/layouts.json"))["layouts"]}
+            consts = open(repo + "/include/constants/map_groups.h").read()
+            widths = {}
+            for mf in glob.glob(repo + "/data/maps/*/map.json"):
+                try:
+                    d = json.load(open(mf))
+                    cm = re.search(r"\b" + d["id"] + r"\s*=\s*\((\d+) \| (\d+) << 8\)", consts)
+                    if cm and d["layout"] in lay:
+                        widths[(int(cm.group(2)), int(cm.group(1)))] = \
+                            lay[d["layout"]]["width"] + 15
+                except Exception:
+                    continue
+            GBA._layout_widths = widths
+        want = GBA._layout_widths.get((expected[0], expected[1]))
+        bl = self.symbol_address("gBackupMapLayout")
+        ir = self.core.memory.iwram
+        for _ in range(timeout):
+            self.frame(1)
+            st = self.state()
+            if st and (st["group"], st["num"]) == expected:
+                if want is None:
+                    return True
+                if ir.s32[bl - 0x03000000] == want:
+                    return True
+        return False
+
+
     def wait_for(self, pred, timeout_frames, step=30, label=""):
         for i in range(timeout_frames // step):
             self.frame(step)

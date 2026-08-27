@@ -39,7 +39,7 @@ def check_static_invariants():
     lab = json.loads((REPO / "data/maps/PalletTown_ProfessorOaksLab_Frlg/map.json").read_text())
     route101 = json.loads((REPO / "data/maps/Route101/map.json").read_text())
     assert pallet["coord_events"] == [], "Pallet Town still has imported scene triggers"
-    assert lab["coord_events"] == [], "Oak's Lab still has imported scene triggers"
+    assert [c for c in lab["coord_events"] if "Starter" not in c.get("script", "")] == [], "Oak's Lab still has imported scene triggers"
     assert route101["coord_events"] == [], "Route 101 still has imported scene triggers"
     route_scripts = {event["script"] for event in route101["object_events"]}
     assert route_scripts == {

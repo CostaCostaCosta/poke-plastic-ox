@@ -1,0 +1,103 @@
+{
+  "id": "MAP_ROUTE2_HNS",
+  "name": "Route2_hns",
+  "layout": "LAYOUT_ROUTE2_HNS",
+  "music": "MUS_RG_ROUTE3",
+  "region_map_section": "MAPSEC_ROUTE_2",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_RUSTBORO_CITY",
+      "direction": "down",
+      "offset": 3
+    },
+    {
+      "map": "MAP_ROUTE3_HNS",
+      "direction": "right",
+      "offset": 67
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 20,
+      "y": 55,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route2_EventScript_Item1",
+      "flag": "FLAG_POX_HIDDEN_ROUTE2_1"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 17,
+      "y": 72,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route2_EventScript_Item5",
+      "flag": "FLAG_POX_HIDDEN_ROUTE2_5"
+    }
+  ],
+  "warp_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 24,
+      "y": 76,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": "0",
+      "script": "Route2_EventScript_ToR116"
+    },
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 78,
+      "elevation": 3,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": "0",
+      "script": "Route2_EventScript_ToR3"
+    }
+  ],
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 13,
+      "y": 4,
+      "elevation": 0,
+      "item": "ITEM_REVIVE",
+      "flag": "FLAG_POX_HIDDEN_ROUTE2_19"
+    },
+    {
+      "type": "sign",
+      "x": 14,
+      "y": 12,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Route2_EventScript_Sign2"
+    },
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 73,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "Route2_EventScript_Sign3"
+    }
+  ],
+  "region": "REGION_HOENN"
+}

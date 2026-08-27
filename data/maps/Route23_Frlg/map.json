@@ -240,7 +240,7 @@
       "type": "trigger",
       "x": 1,
       "y": 32,
-      "elevation": 3,
+      "elevation": 0,
       "var": "VAR_MAP_SCENE_ROUTE23",
       "var_value": "7",
       "script": "Route23_EventScript_EarthBadgeGuardTrigger"
@@ -330,7 +330,7 @@
       "type": "trigger",
       "x": 5,
       "y": 92,
-      "elevation": 1,
+      "elevation": 0,
       "var": "VAR_MAP_SCENE_ROUTE23",
       "var_value": "5",
       "script": "Route23_EventScript_MarshBadgeGuardTrigger"
@@ -348,7 +348,7 @@
       "type": "trigger",
       "x": 4,
       "y": 92,
-      "elevation": 1,
+      "elevation": 0,
       "var": "VAR_MAP_SCENE_ROUTE23",
       "var_value": "5",
       "script": "Route23_EventScript_MarshBadgeGuardTrigger"
@@ -357,7 +357,7 @@
       "type": "trigger",
       "x": 3,
       "y": 92,
-      "elevation": 1,
+      "elevation": 0,
       "var": "VAR_MAP_SCENE_ROUTE23",
       "var_value": "5",
       "script": "Route23_EventScript_MarshBadgeGuardTrigger"
@@ -366,7 +366,7 @@
       "type": "trigger",
       "x": 2,
       "y": 92,
-      "elevation": 1,
+      "elevation": 0,
       "var": "VAR_MAP_SCENE_ROUTE23",
       "var_value": "5",
       "script": "Route23_EventScript_MarshBadgeGuardTrigger"
@@ -429,7 +429,7 @@
       "type": "trigger",
       "x": 8,
       "y": 109,
-      "elevation": 1,
+      "elevation": 0,
       "var": "VAR_MAP_SCENE_ROUTE23",
       "var_value": "4",
       "script": "Route23_EventScript_SoulBadgeGuardTrigger"
@@ -438,7 +438,7 @@
       "type": "trigger",
       "x": 9,
       "y": 109,
-      "elevation": 1,
+      "elevation": 0,
       "var": "VAR_MAP_SCENE_ROUTE23",
       "var_value": "4",
       "script": "Route23_EventScript_SoulBadgeGuardTrigger"
@@ -447,7 +447,7 @@
       "type": "trigger",
       "x": 10,
       "y": 109,
-      "elevation": 1,
+      "elevation": 0,
       "var": "VAR_MAP_SCENE_ROUTE23",
       "var_value": "4",
       "script": "Route23_EventScript_SoulBadgeGuardTrigger"
@@ -456,7 +456,7 @@
       "type": "trigger",
       "x": 11,
       "y": 109,
-      "elevation": 1,
+      "elevation": 0,
       "var": "VAR_MAP_SCENE_ROUTE23",
       "var_value": "4",
       "script": "Route23_EventScript_SoulBadgeGuardTrigger"
@@ -465,7 +465,7 @@
       "type": "trigger",
       "x": 12,
       "y": 109,
-      "elevation": 1,
+      "elevation": 0,
       "var": "VAR_MAP_SCENE_ROUTE23",
       "var_value": "4",
       "script": "Route23_EventScript_SoulBadgeGuardTrigger"

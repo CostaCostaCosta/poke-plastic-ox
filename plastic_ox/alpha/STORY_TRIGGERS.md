@@ -1,0 +1,73 @@
+# Story Triggers & Dialogue — Plastic Ox Alpha
+
+Builds: `gPlasticOxTriggersEnabled` (u8, src/plastic_ox.c new file; declared in
+include/plastic_ox.h). Set 1 in `CB2_InitPlasticOxDemo` path when compiled with
+`PLASTIC_OX_BUILD_TRIGGERS` (Makefile: `make PLASTIC_OX_BUILD=triggers` →
+`pokeemerald-triggers.gba`, define via CFLAGS). Default build = 0.
+
+When 0 (walkable):
+- `src/trainer_see.c`: early-return before any LOS check.
+- `src/wild_encounter.c`: early-return before encounter roll.
+- Trigger-build-only NPCs (guards, story objects) hidden at new game by setting
+  their FLAG_POX_HIDE_* flags inside the same init branch.
+
+Every coord_event script begins:
+```asm
+Special_PoxGate::
+	specialvar VAR_RESULT, PoxTriggersEnabled
+	goto_if_eq VAR_RESULT, FALSE, <skip_label>
+	<story logic>
+<skip_label>:
+	release
+	end
+```
+(Helper macro `poxgate <label>` may be added to asm/macros/event.inc to collapse
+the first three lines.)
+
+## Flag scheme
+
+`FLAG_POX_STORY_<BEAT>` — one per beat, set when completed. Badges native.
+
+## Beats (town-by-town test order)
+
+| # | Town/Map | Beat | Test assertion (headless) |
+|---|---|---|---|
+| 0 | Pallet bedroom | Mom heals; exit blocked until starter | walk blocked w/o flag; after event R29 guard gone |
+| 1 | Oak's Lab | Starter choice (multichoice Treecko/Torchic/Mudkip per repo-native starters) → `givemon`; Pokédex speech; FLAG_POX_STORY_STARTER | party_species(0) matches choice |
+| 2 | Cherrygrove | Guide Gent tour dialogue (convergence flavor) + running shoes remark | flags/text |
+| 3 | Ilex Forest | Farfetch'd-style side quest simplified: lost researcher NPC → escort dialogue → FLAG_POX_STORY_ILEX; gate opens Rustboro road | flag set |
+| 4 | Rustboro Gym | Roxanne LC-tier battle (trainers.party entry) → BADGE01 | battle occurs, badge flag set |
+| 5 | Mt. Moon | Rocket I: 2 grunts + "that isn't one of ours" scientist; fossil NPC; FLAG_POX_STORY_MTMOON after grunts beaten | grunts hidden after |
+| 6 | Goldenrod | Bill's family: mother/sister dialogue + Eevee gift #1 (`givemon SPECIES_EEVEE,5`) once; Whitney gym → BADGE02 | eevee in party/PC, badge |
+| 7 | National Park | Bug-catcher flavor NPCs; optional item | traversal only |
+| 8 | Ecruteak | Burned Tower cutscene (Morty dialogue, brief anomaly text), Kimono troupe optional battle → Eevee gift #2; Morty gym → BADGE03 | badges/gifts |
+| 9 | Weather Institute | Scientist explains boundaries still moving; one trainer; FLAG_POX_STORY_WEATHER | flag |
+| 10 | Fortree | Winona gym → BADGE04 | badge |
+| 11 | Sea Cottage | Note + Eevee gift #3; caretaker line about Bill being away | gift |
+| 12 | Lavender/Pokémon Tower | Rocket II: grunts on floors; Fuji rescue dialogue; Fuji house → Eevee gift #4 + points to Cinnabar | flags |
+| 13 | Cinnabar | Blaine gym open immediately → BADGE05 + Mansion Key item; Mansion: archives sign chain + static Entei encounter (optional); FLAG_POX_STORY_MANSION | badge+key |
+| 14 | Whirl Islands | Traversal + rare item | traversal |
+| 15 | Mossdeep | Tate&Liza double battle → BADGE06; Space Center researcher Eevee gift #5 + "traffic converges on Saffron" | badge+gift |
+| 16 | Saffron | Open order: Dojo Bruno → BADGE07; Silph: Rocket III grunts → Giovanni → system shutdown scene FLAG_POX_STORY_SILPH; route gates to Blackthorn need BOTH | both flags gate R26 NPC |
+| 17 | Blackthorn | Clair → BADGE08 | badge |
+| 18 | Victory Road | strong trainers | traversal/battles |
+| 19 | League | Wallace→Steven→Lance→Blue sequential rooms → Champion Bill reveal script + battle TRAINER_PLASTIC_OX_BILL | hall of fame flow |
+
+## Trainer parties
+
+Author in `src/data/trainers.party` (Showdown format; IDs appended in
+`include/constants/opponents.h` as TRAINER_PLASTIC_OX_*). Tier-flavored teams:
+Roxanne LC (unevolved lvl5-ish), Whitney PU, Morty NU, Winona RU, Blaine UU,
+Tate&Liza UUBL doubles, Bruno OU, Clair OU, Rockets themed, E4 canonical-ish,
+Bill: Eeveelution-led balanced OU team.
+
+## Dialogue voice rules
+
+- Grounded Gen1-3 tone; no fourth wall, no exposition dumps.
+- Locals remark casually on impossible geography ("A Johto coast off Kanto? My
+  grandfather would have fainted.").
+- Bill never named near technology/mystery; family lines domestic & warm;
+  Kimono/Eevee texture without explanation.
+- Rocket: annoyed criminals → curious investigators → power-hungry (3 stages).
+- Each rewritten NPC keeps the SPIRIT of its hns/original line but references the
+  merged region or current story beat.

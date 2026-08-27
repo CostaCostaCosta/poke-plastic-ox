@@ -20,6 +20,18 @@ ifeq (leafgreen, $(or $(BUILD), $(MAKECMDGOALS)))
 endif
 endif
 
+# Plastic Ox trigger-demo build: `make PLASTIC_OX_BUILD=triggers`, `make triggers`,
+# or any pokeemerald-triggers.* goal -> pokeemerald-triggers.gba/.elf/.map with
+# -DPLASTIC_OX_BUILD_TRIGGERS=1 (see src/plastic_ox.c, plastic_ox/alpha/PLAN.md).
+PLASTIC_OX_BUILD ?=
+ifneq (,$(filter-out triggers,$(PLASTIC_OX_BUILD)))
+$(error unknown PLASTIC_OX_BUILD "$(PLASTIC_OX_BUILD)" - supported value: triggers)
+endif
+POX_TRIGGERS := $(strip $(filter triggers,$(PLASTIC_OX_BUILD))$(filter triggers pokeemerald-triggers.%,$(MAKECMDGOALS)))
+ifneq (,$(POX_TRIGGERS))
+	BUILD_NAME   := emerald-triggers
+endif
+
 # GBA rom header
 MAKER_CODE  := 01
 REVISION    := 0
@@ -163,6 +175,9 @@ ifeq ($(RELEASE),1)
 		LTO := 1
 	endif
 endif
+ifneq (,$(POX_TRIGGERS))
+	override CPPFLAGS += -DPLASTIC_OX_BUILD_TRIGGERS=1
+endif
 ARMCC := $(PREFIX)gcc
 PATH_ARMCC := PATH="$(PATH)" $(ARMCC)
 CC1 := $(shell $(PATH_ARMCC) --print-prog-name=cc1) -quiet
@@ -269,7 +284,7 @@ MAKEFLAGS += --no-print-directory
 .DELETE_ON_ERROR:
 
 RULES_NO_SCAN += libagbsyscall clean clean-assets tidy tidymodern tidycheck tidyrelease generated clean-generated clean-teachables clean-teachables_intermediates
-.PHONY: all rom agbcc modern compare check debug release
+.PHONY: all rom agbcc modern compare check debug release triggers
 .PHONY: $(RULES_NO_SCAN)
 
 infoshell = $(foreach line, $(shell $1 | sed "s/ /__SPACE__/g"), $(info $(subst __SPACE__, ,$(line))))
@@ -592,6 +607,7 @@ $(ROM): $(ELF)
 emerald: all
 firered: all
 leafgreen: all
+triggers: all
 # Symbol file (`make syms`)
 $(SYM): $(ELF)
 	$(OBJDUMP) -t $< | sort -u | grep -E "^0[2389]" | $(PERL) -p -e 's/^(\w{8}) (\w).{6} \S+\t(\w{8}) (\S+)$$/\1 \2 \3 \4/g' > $@

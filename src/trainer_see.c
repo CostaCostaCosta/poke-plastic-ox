@@ -22,6 +22,7 @@
 #include "constants/field_effects.h"
 #include "constants/script_commands.h"
 #include "constants/trainer_types.h"
+#include "plastic_ox.h"
 
 // this file's functions
 static u8 CheckTrainer(u8 objectEventId);
@@ -440,6 +441,9 @@ bool8 CheckForTrainersWantingBattle(void)
     u8 i;
     u8 trainerObjects[OBJECT_EVENTS_COUNT] = {0};
     u8 trainerObjectsCount = 0;
+
+    if (gPlasticOxTriggersEnabled == 0)
+        return FALSE;
 
     if (FlagGet(OW_FLAG_NO_TRAINER_SEE))
         return FALSE;

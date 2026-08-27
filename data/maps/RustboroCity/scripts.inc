@@ -1288,3 +1288,12 @@ RustboroCity_Text_YouCanHave2On2Battle:
 	.string "they'll both challenge you.\p"
 	.string "Don't you think it'd be cool if you\n"
 	.string "could beat two TRAINERS by yourself?$"
+RustboroCity_EventScript_PortalEast::
+	warp MAP_RUSTBORO_CITY, 37, 9
+	waitstate
+	end
+
+RustboroCity_EventScript_PortalWest::
+	warp MAP_RUSTBORO_CITY, 5, 11
+	waitstate
+	end

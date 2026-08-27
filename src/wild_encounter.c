@@ -30,6 +30,7 @@
 #include "constants/items.h"
 #include "constants/layouts.h"
 #include "constants/weather.h"
+#include "plastic_ox.h"
 
 extern const u8 EventScript_SprayWoreOff[];
 
@@ -698,6 +699,9 @@ bool8 StandardWildEncounter(u16 curMetatileBehavior, u16 prevMetatileBehavior)
     enum TimeOfDay timeOfDay;
     struct Roamer *roamer;
 
+    if (gPlasticOxTriggersEnabled == 0)
+        return FALSE;
+
     if (sWildEncountersDisabled == TRUE)
         return FALSE;
 
@@ -843,6 +847,12 @@ void RockSmashWildEncounter(void)
     u32 headerId = GetCurrentMapWildMonHeaderId();
     enum TimeOfDay timeOfDay;
 
+    if (gPlasticOxTriggersEnabled == 0)
+    {
+        gSpecialVar_Result = FALSE;
+        return;
+    }
+
     if (headerId != HEADER_NONE)
     {
         timeOfDay = GetTimeOfDayForEncounters(headerId, WILD_AREA_ROCKS);
@@ -885,6 +895,9 @@ bool8 SweetScentWildEncounter(void)
     s16 x, y;
     u32 headerId;
     enum TimeOfDay timeOfDay;
+
+    if (gPlasticOxTriggersEnabled == 0)
+        return FALSE;
 
     PlayerGetDestCoords(&x, &y);
     headerId = GetCurrentMapWildMonHeaderId();
@@ -979,6 +992,9 @@ void FishingWildEncounter(u8 rod)
     u32 headerId;
     s16 x, y;
     enum TimeOfDay timeOfDay;
+
+    if (gPlasticOxTriggersEnabled == 0)
+        return;
 
     gIsFishingEncounter = TRUE;
     GetXYCoordsOneStepInFrontOfPlayer(&x, &y);

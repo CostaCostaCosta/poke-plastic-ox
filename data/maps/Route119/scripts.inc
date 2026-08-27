@@ -608,3 +608,8 @@ Route119_Text_TrainerTipsDecoration:
 	.string "Pick your favorite items and create\n"
 	.string "your very own SECRET BASE exactly the\l"
 	.string "way you want.$"
+
+Route119_EventScript_R38Portal::
+	warp MAP_ROUTE38_HNS, 1, 21
+	waitstate
+	end

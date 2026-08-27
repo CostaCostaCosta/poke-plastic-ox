@@ -1072,7 +1072,7 @@
     },
     {
       "id": "MAPSEC_POKEMON_MANSION",
-      "name": "POKéMON MANSION",
+      "name": "POK\u00e9MON MANSION",
       "x": 4,
       "y": 14,
       "width": 1,
@@ -1088,7 +1088,7 @@
     },
     {
       "id": "MAPSEC_POKEMON_LEAGUE",
-      "name": "POKéMON LEAGUE",
+      "name": "POK\u00e9MON LEAGUE",
       "x": 2,
       "y": 3,
       "width": 1,
@@ -1112,7 +1112,7 @@
     },
     {
       "id": "MAPSEC_POKEMON_TOWER",
-      "name": "POKéMON TOWER",
+      "name": "POK\u00e9MON TOWER",
       "x": 18,
       "y": 6,
       "width": 1,
@@ -1628,6 +1628,222 @@
       "name": "TRAINER HILL",
       "x": 8,
       "y": 4,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_ROUTE_38",
+      "name": "ROUTE 38",
+      "x": 19,
+      "y": 11,
+      "width": 2,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_ECRUTEAK_CITY",
+      "name": "ECRUTEAK CITY",
+      "x": 21,
+      "y": 11,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_ROUTE_37",
+      "name": "ROUTE 37",
+      "x": 22,
+      "y": 11,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_NATIONAL_PARK",
+      "name": "NATIONAL PARK",
+      "x": 23,
+      "y": 11,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_ROUTE_36",
+      "name": "ROUTE 36",
+      "x": 24,
+      "y": 11,
+      "width": 2,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_VIOLET_CITY",
+      "name": "VIOLET CITY",
+      "x": 26,
+      "y": 11,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_WHIRL_ISLANDS",
+      "name": "WHIRL ISLANDS",
+      "x": 19,
+      "y": 12,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_ROUTE_41",
+      "name": "ROUTE 41",
+      "x": 20,
+      "y": 12,
+      "width": 1,
+      "height": 2
+    },
+    {
+      "id": "MAPSEC_BURNED_TOWER",
+      "name": "BURNED TOWER",
+      "x": 21,
+      "y": 12,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_ROUTE_34",
+      "name": "ROUTE 34",
+      "x": 23,
+      "y": 12,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_ILEX_FOREST",
+      "name": "ILEX FOREST",
+      "x": 24,
+      "y": 12,
+      "width": 2,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_ROUTE_31",
+      "name": "ROUTE 31",
+      "x": 26,
+      "y": 12,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_SEA_COTTAGE",
+      "name": "SEA COTTAGE",
+      "x": 27,
+      "y": 12,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_CHERRYGROVE_CITY",
+      "name": "CHERRYGROVE CITY",
+      "x": 21,
+      "y": 13,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_ROUTE_35",
+      "name": "ROUTE 35",
+      "x": 22,
+      "y": 13,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_ROUTE_29",
+      "name": "ROUTE 29",
+      "x": 23,
+      "y": 13,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_NEW_BARK_TOWN",
+      "name": "NEW BARK TOWN",
+      "x": 24,
+      "y": 13,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_ROUTE_30",
+      "name": "ROUTE 30",
+      "x": 25,
+      "y": 13,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_DARK_CAVE",
+      "name": "DARK CAVE",
+      "x": 19,
+      "y": 14,
+      "width": 2,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_BLACKTHORN_CITY",
+      "name": "BLACKTHORN CITY",
+      "x": 21,
+      "y": 14,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_DRAGONS_DEN",
+      "name": "DRAGON'S DEN",
+      "x": 22,
+      "y": 14,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_ICE_PATH",
+      "name": "ICE PATH",
+      "x": 23,
+      "y": 14,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_ROUTE_45",
+      "name": "ROUTE 45",
+      "x": 24,
+      "y": 14,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_ROUTE_44",
+      "name": "ROUTE 44",
+      "x": 25,
+      "y": 14,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_ROUTE_46",
+      "name": "ROUTE 46",
+      "x": 26,
+      "y": 14,
+      "width": 1,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_ROUTE_26",
+      "name": "ROUTE 26",
+      "x": 19,
+      "y": 15,
+      "width": 8,
+      "height": 1
+    },
+    {
+      "id": "MAPSEC_GOLDENROD_CITY",
+      "name": "GOLDENROD CITY",
+      "x": 20,
+      "y": 12,
       "width": 1,
       "height": 1
     }

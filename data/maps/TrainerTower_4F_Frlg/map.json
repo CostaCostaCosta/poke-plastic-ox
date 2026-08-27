@@ -128,7 +128,7 @@
       "type": "trigger",
       "x": 9,
       "y": 12,
-      "elevation": 3,
+      "elevation": 0,
       "var": "VAR_TEMP_F",
       "var_value": "0",
       "script": "TrainerTower_EventScript_DoubleBattleTriggerTop"

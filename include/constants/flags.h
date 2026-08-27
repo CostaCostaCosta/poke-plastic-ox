@@ -4,6 +4,9 @@
 #include "constants/trainers.h"
 #include "constants/opponents.h"
 #include "constants/rematches.h"
+#if !IS_FRLG
+#include "constants/plastic_ox_flags.h"
+#endif
 
 
 // Temporary Flags

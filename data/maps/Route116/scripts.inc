@@ -467,4 +467,11 @@ Route116_Text_TrainerTipsBagHasPockets:
 	.string "placed in the appropriate POCKETS.\p"
 	.string "No TRAINER can afford to be without\n"
 	.string "a BAG of their own.$"
-
+Route116_EventScript_R34Warp::
+	warp MAP_ROUTE34_HNS, 0
+	waitstate
+	end
+Route116_EventScript_ReturnStone::
+	warp MAP_PALLET_TOWN, 10, 4
+	waitstate
+	end

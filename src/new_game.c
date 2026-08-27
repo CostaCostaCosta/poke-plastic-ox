@@ -52,6 +52,7 @@
 #include "difficulty.h"
 #include "follower_npc.h"
 #include "data.h"
+#include "plastic_ox.h"
 #include "constants/opponents.h"
 #include "gba/m4a_internal.h"
 
@@ -311,6 +312,12 @@ void CB2_InitPlasticOxDemo(void)
 {
     // Deterministic demo boot: initialize a fresh save in memory and enter the
     // Pallet bedroom directly, bypassing copyright/title/new-game naming UI.
+#ifdef PLASTIC_OX_BUILD_TRIGGERS
+    gPlasticOxTriggersEnabled = TRUE;
+    FlagSet(FLAG_POX_TRIGGERS_ENABLED);
+#else
+    gPlasticOxTriggersEnabled = FALSE;
+#endif
     SetSaveBlocksPointers(GetSaveBlocksPointersBaseOffset());
     ResetMenuAndMonGlobals();
     Save_ResetSaveCounters();
