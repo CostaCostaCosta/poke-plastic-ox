@@ -809,9 +809,11 @@ string generate_layout_headers_text(Json layouts_data) {
              << "\t.4byte " << json_to_string(layout, "primary_tileset") << "\n"
              << "\t.4byte " << json_to_string(layout, "secondary_tileset") << "\n";
         if (layout_version == "frlg")
-            text << "\t.byte TRUE\n";
+            text << "\t.byte 1\n"; // LAYOUT_VERSION_FRLG
+        else if (layout_version == "hns")
+            text << "\t.byte 2\n"; // LAYOUT_VERSION_HNS
         else
-            text << "\t.byte FALSE\n";
+            text << "\t.byte 0\n"; // LAYOUT_VERSION_EMERALD
 
         if (layout_version == "frlg")
         {

@@ -9352,7 +9352,9 @@
       "primary_tileset": "gTileset_Johto_Building_Hns",
       "secondary_tileset": "gTileset_Kanto_PokemonCenter_Hns",
       "border_filepath": "data/layouts/PokemonCenter_Johto_hns/border.bin",
-      "blockdata_filepath": "data/layouts/PokemonCenter_Johto_hns/map.bin"
+      "blockdata_filepath": "data/layouts/PokemonCenter_Johto_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_POKEMON_CENTER_KANTO_HNS",
@@ -9362,7 +9364,9 @@
       "primary_tileset": "gTileset_Johto_Building_Hns",
       "secondary_tileset": "gTileset_Kanto_PokemonCenter_Hns",
       "border_filepath": "data/layouts/PokemonCenter_Kanto_hns/border.bin",
-      "blockdata_filepath": "data/layouts/PokemonCenter_Kanto_hns/map.bin"
+      "blockdata_filepath": "data/layouts/PokemonCenter_Kanto_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_MART_JOHTO_HNS",
@@ -9372,7 +9376,9 @@
       "primary_tileset": "gTileset_Johto_Building_Hns",
       "secondary_tileset": "gTileset_JohtoMart_Hns",
       "border_filepath": "data/layouts/Mart_Johto_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Mart_Johto_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Mart_Johto_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_MART_KANTO_HNS",
@@ -9382,7 +9388,9 @@
       "primary_tileset": "gTileset_Kanto_Building_Hns",
       "secondary_tileset": "gTileset_KantoMart_Hns",
       "border_filepath": "data/layouts/Mart_Kanto_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Mart_Kanto_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Mart_Kanto_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_HOUSE_GENERIC_A_HNS",
@@ -9392,7 +9400,9 @@
       "primary_tileset": "gTileset_Johto_Building_Hns",
       "secondary_tileset": "gTileset_House_Lab_Hns",
       "border_filepath": "data/layouts/House_GenericA_hns/border.bin",
-      "blockdata_filepath": "data/layouts/House_GenericA_hns/map.bin"
+      "blockdata_filepath": "data/layouts/House_GenericA_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_HOUSE_GENERIC_B_HNS",
@@ -9402,7 +9412,9 @@
       "primary_tileset": "gTileset_Johto_Building_Hns",
       "secondary_tileset": "gTileset_House_Lab_Hns",
       "border_filepath": "data/layouts/House_GenericB_hns/border.bin",
-      "blockdata_filepath": "data/layouts/House_GenericB_hns/map.bin"
+      "blockdata_filepath": "data/layouts/House_GenericB_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_ROUTE29_HNS",
@@ -9412,7 +9424,9 @@
       "primary_tileset": "gTileset_Johto_General_Hns",
       "secondary_tileset": "gTileset_NewBarkTown_Hns",
       "border_filepath": "data/layouts/Route29_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route29_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Route29_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_ROUTE30_HNS",
@@ -9422,7 +9436,9 @@
       "primary_tileset": "gTileset_Johto_General_Hns",
       "secondary_tileset": "gTileset_CherrygroveCity_Hns",
       "border_filepath": "data/layouts/Route30_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route30_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Route30_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_ROUTE31_HNS",
@@ -9432,7 +9448,9 @@
       "primary_tileset": "gTileset_Johto_General_Hns",
       "secondary_tileset": "gTileset_CherrygroveCity_Hns",
       "border_filepath": "data/layouts/Route31_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route31_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Route31_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_ROUTE46_HNS",
@@ -9442,7 +9460,9 @@
       "primary_tileset": "gTileset_Johto_NorthEast_Hns",
       "secondary_tileset": "gTileset_CherrygroveCity_Hns",
       "border_filepath": "data/layouts/Route46_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route46_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Route46_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_DARK_CAVE_SOUTH_SIDE_HNS",
@@ -9452,7 +9472,9 @@
       "primary_tileset": "gTileset_Johto_General_Hns",
       "secondary_tileset": "gTileset_Cave_Default_Hns",
       "border_filepath": "data/layouts/DarkCave_SouthSide_hns/border.bin",
-      "blockdata_filepath": "data/layouts/DarkCave_SouthSide_hns/map.bin"
+      "blockdata_filepath": "data/layouts/DarkCave_SouthSide_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_CHERRYGROVE_CITY_HNS",
@@ -9462,7 +9484,9 @@
       "primary_tileset": "gTileset_Johto_General_Hns",
       "secondary_tileset": "gTileset_CherrygroveCity_Hns",
       "border_filepath": "data/layouts/CherrygroveCity_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CherrygroveCity_hns/map.bin"
+      "blockdata_filepath": "data/layouts/CherrygroveCity_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_GATE_AZALEA_TOWN_ILEX_FOREST_HNS",
@@ -9472,7 +9496,9 @@
       "primary_tileset": "gTileset_Johto_Building_Hns",
       "secondary_tileset": "gTileset_Gate_Standard_Hns",
       "border_filepath": "data/layouts/Gate_AzaleaTown_IlexForest_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Gate_AzaleaTown_IlexForest_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Gate_AzaleaTown_IlexForest_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_ILEX_FOREST_HNS",
@@ -9482,7 +9508,9 @@
       "primary_tileset": "gTileset_Johto_South_Hns",
       "secondary_tileset": "gTileset_IlexForest_Hns",
       "border_filepath": "data/layouts/IlexForest_hns/border.bin",
-      "blockdata_filepath": "data/layouts/IlexForest_hns/map.bin"
+      "blockdata_filepath": "data/layouts/IlexForest_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_ROUTE34_HNS",
@@ -9492,7 +9520,9 @@
       "primary_tileset": "gTileset_Johto_General_Hns",
       "secondary_tileset": "gTileset_Goldenrod_Hns",
       "border_filepath": "data/layouts/Route34_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route34_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Route34_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_ROUTE2_HNS",
@@ -9502,7 +9532,9 @@
       "primary_tileset": "gTileset_Kanto_General_Hns",
       "secondary_tileset": "gTileset_ViridianCity_Hns",
       "border_filepath": "data/layouts/Route2_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route2_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Route2_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_ROUTE3_HNS",
@@ -9512,7 +9544,9 @@
       "primary_tileset": "gTileset_Kanto_General_Hns",
       "secondary_tileset": "gTileset_PewterCity_Hns",
       "border_filepath": "data/layouts/Route3_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route3_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Route3_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_MT_MOON_CAVE_HNS",
@@ -9522,7 +9556,9 @@
       "primary_tileset": "gTileset_Johto_General_Hns",
       "secondary_tileset": "gTileset_Cave_MtMoon_Hns",
       "border_filepath": "data/layouts/MtMoon_Cave_hns/border.bin",
-      "blockdata_filepath": "data/layouts/MtMoon_Cave_hns/map.bin"
+      "blockdata_filepath": "data/layouts/MtMoon_Cave_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_ROUTE4_HNS",
@@ -9532,7 +9568,9 @@
       "primary_tileset": "gTileset_Kanto_General_Hns",
       "secondary_tileset": "gTileset_PewterCity_Hns",
       "border_filepath": "data/layouts/Route4_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route4_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Route4_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_ROUTE14_HNS",
@@ -9542,7 +9580,9 @@
       "primary_tileset": "gTileset_Kanto_General_Hns",
       "secondary_tileset": "gTileset_Fuchsia_Hns",
       "border_filepath": "data/layouts/Route14_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route14_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Route14_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_GOLDENROD_CITY_HNS",
@@ -9552,7 +9592,9 @@
       "primary_tileset": "gTileset_Johto_General_Hns",
       "secondary_tileset": "gTileset_Goldenrod_Hns",
       "border_filepath": "data/layouts/GoldenrodCity_hns/border.bin",
-      "blockdata_filepath": "data/layouts/GoldenrodCity_hns/map.bin"
+      "blockdata_filepath": "data/layouts/GoldenrodCity_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_GOLDENROD_CITY_BILLS_HOUSE_HNS",
@@ -9562,7 +9604,9 @@
       "primary_tileset": "gTileset_Johto_Building_Hns",
       "secondary_tileset": "gTileset_House_Lab_Hns",
       "border_filepath": "data/layouts/GoldenrodCity_BillsHouse_hns/border.bin",
-      "blockdata_filepath": "data/layouts/GoldenrodCity_BillsHouse_hns/map.bin"
+      "blockdata_filepath": "data/layouts/GoldenrodCity_BillsHouse_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_GATE_GOLDENROD_CITY_ROUTE35_HNS",
@@ -9572,7 +9616,9 @@
       "primary_tileset": "gTileset_Johto_Building_Hns",
       "secondary_tileset": "gTileset_Gate_Standard_Hns",
       "border_filepath": "data/layouts/Gate_GoldenrodCity_Route35_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Gate_GoldenrodCity_Route35_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Gate_GoldenrodCity_Route35_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_ROUTE35_HNS",
@@ -9582,7 +9628,9 @@
       "primary_tileset": "gTileset_Johto_General_Hns",
       "secondary_tileset": "gTileset_Goldenrod_Hns",
       "border_filepath": "data/layouts/Route35_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route35_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Route35_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_NATIONAL_PARK_NORMAL_HNS",
@@ -9592,7 +9640,9 @@
       "primary_tileset": "gTileset_Johto_General_Hns",
       "secondary_tileset": "gTileset_NationalPark_Hns",
       "border_filepath": "data/layouts/NationalPark_Normal_hns/border.bin",
-      "blockdata_filepath": "data/layouts/NationalPark_Normal_hns/map.bin"
+      "blockdata_filepath": "data/layouts/NationalPark_Normal_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_ROUTE36_HNS",
@@ -9602,7 +9652,9 @@
       "primary_tileset": "gTileset_Johto_General_Hns",
       "secondary_tileset": "gTileset_VioletCity_Hns",
       "border_filepath": "data/layouts/Route36_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route36_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Route36_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_ROUTE37_HNS",
@@ -9612,7 +9664,9 @@
       "primary_tileset": "gTileset_Johto_General_Hns",
       "secondary_tileset": "gTileset_Ecruteak_City_Hns",
       "border_filepath": "data/layouts/Route37_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route37_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Route37_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_ECRUTEAK_CITY_HNS",
@@ -9622,7 +9676,9 @@
       "primary_tileset": "gTileset_Johto_NorthWest_Hns",
       "secondary_tileset": "gTileset_Ecruteak_City_Hns",
       "border_filepath": "data/layouts/EcruteakCity_hns/border.bin",
-      "blockdata_filepath": "data/layouts/EcruteakCity_hns/map.bin"
+      "blockdata_filepath": "data/layouts/EcruteakCity_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_ROUTE38_HNS",
@@ -9632,7 +9688,9 @@
       "primary_tileset": "gTileset_Johto_General_Hns",
       "secondary_tileset": "gTileset_Route38_Farmland_Hns",
       "border_filepath": "data/layouts/Route38_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route38_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Route38_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_ROUTE16_HNS",
@@ -9642,7 +9700,9 @@
       "primary_tileset": "gTileset_Kanto_General_Hns",
       "secondary_tileset": "gTileset_CeladonCity_Hns",
       "border_filepath": "data/layouts/Route16_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route16_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Route16_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_ROUTE24_HNS",
@@ -9652,7 +9712,9 @@
       "primary_tileset": "gTileset_Kanto_General_Hns",
       "secondary_tileset": "gTileset_CeruleanCity_Hns",
       "border_filepath": "data/layouts/Route24_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route24_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Route24_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_ROUTE25_HNS",
@@ -9662,7 +9724,9 @@
       "primary_tileset": "gTileset_Kanto_General_Hns",
       "secondary_tileset": "gTileset_CeruleanCity_Hns",
       "border_filepath": "data/layouts/Route25_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route25_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Route25_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_ROUTE25_BILLS_HOUSE_HNS",
@@ -9672,7 +9736,9 @@
       "primary_tileset": "gTileset_Johto_Building_Hns",
       "secondary_tileset": "gTileset_SeaCottage_Hns",
       "border_filepath": "data/layouts/Route25_BillsHouse_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route25_BillsHouse_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Route25_BillsHouse_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_ROUTE6_HNS",
@@ -9682,7 +9748,9 @@
       "primary_tileset": "gTileset_Kanto_General_Hns",
       "secondary_tileset": "gTileset_Vermilion_Hns",
       "border_filepath": "data/layouts/Route6_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route6_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Route6_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_GATE_SAFFRON_CITY_ROUTE6_HNS",
@@ -9692,7 +9760,9 @@
       "primary_tileset": "gTileset_Kanto_Building_Hns",
       "secondary_tileset": "gTileset_Gate_Standard_Hns",
       "border_filepath": "data/layouts/Gate_SaffronCity_Route6_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Gate_SaffronCity_Route6_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Gate_SaffronCity_Route6_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_SAFFRON_CITY_HNS",
@@ -9702,7 +9772,9 @@
       "primary_tileset": "gTileset_Kanto_General_Hns",
       "secondary_tileset": "gTileset_SaffronCity_Hns",
       "border_filepath": "data/layouts/SaffronCity_hns/border.bin",
-      "blockdata_filepath": "data/layouts/SaffronCity_hns/map.bin"
+      "blockdata_filepath": "data/layouts/SaffronCity_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_GATE_SAFFRON_CITY_ROUTE5_HNS",
@@ -9712,7 +9784,9 @@
       "primary_tileset": "gTileset_Kanto_Building_Hns",
       "secondary_tileset": "gTileset_Gate_Standard_Hns",
       "border_filepath": "data/layouts/Gate_SaffronCity_Route5_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Gate_SaffronCity_Route5_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Gate_SaffronCity_Route5_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_ROUTE5_HNS",
@@ -9722,7 +9796,9 @@
       "primary_tileset": "gTileset_Kanto_General_Hns",
       "secondary_tileset": "gTileset_CeruleanCity_Hns",
       "border_filepath": "data/layouts/Route5_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route5_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Route5_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_BLACKTHORN_CITY_HNS",
@@ -9732,7 +9808,9 @@
       "primary_tileset": "gTileset_Johto_NorthEast_Hns",
       "secondary_tileset": "gTileset_Blackthorn_Hns",
       "border_filepath": "data/layouts/BlackthornCity_hns/border.bin",
-      "blockdata_filepath": "data/layouts/BlackthornCity_hns/map.bin"
+      "blockdata_filepath": "data/layouts/BlackthornCity_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_INDIGO_PLATEAU_HNS",
@@ -9742,7 +9820,9 @@
       "primary_tileset": "gTileset_Kanto_General_Hns",
       "secondary_tileset": "gTileset_IndigoPlateau_Hns",
       "border_filepath": "data/layouts/IndigoPlateau_hns/border.bin",
-      "blockdata_filepath": "data/layouts/IndigoPlateau_hns/map.bin"
+      "blockdata_filepath": "data/layouts/IndigoPlateau_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_INDIGO_PLATEAU_POKEMON_CENTER_HNS",
@@ -9752,7 +9832,9 @@
       "primary_tileset": "gTileset_Johto_Building_Hns",
       "secondary_tileset": "gTileset_PokemonCenter_White_Hns",
       "border_filepath": "data/layouts/IndigoPlateau_PokemonCenter_hns/border.bin",
-      "blockdata_filepath": "data/layouts/IndigoPlateau_PokemonCenter_hns/map.bin"
+      "blockdata_filepath": "data/layouts/IndigoPlateau_PokemonCenter_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_ROUTE7_HNS",
@@ -9762,7 +9844,9 @@
       "primary_tileset": "gTileset_Kanto_General_Hns",
       "secondary_tileset": "gTileset_CeladonCity_Hns",
       "border_filepath": "data/layouts/Route7_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route7_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Route7_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_LAVENDER_TOWN_HNS",
@@ -9772,7 +9856,9 @@
       "primary_tileset": "gTileset_Kanto_General_Hns",
       "secondary_tileset": "gTileset_LavenderTown_Hns",
       "border_filepath": "data/layouts/LavenderTown_hns/border.bin",
-      "blockdata_filepath": "data/layouts/LavenderTown_hns/map.bin"
+      "blockdata_filepath": "data/layouts/LavenderTown_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_ROUTE12_HNS",
@@ -9782,7 +9868,9 @@
       "primary_tileset": "gTileset_Kanto_General_Hns",
       "secondary_tileset": "gTileset_Route40_Hns",
       "border_filepath": "data/layouts/Route12_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route12_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Route12_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_ROUTE21_HNS",
@@ -9792,7 +9880,9 @@
       "primary_tileset": "gTileset_Kanto_General_Hns",
       "secondary_tileset": "gTileset_PalletTown_Hns",
       "border_filepath": "data/layouts/Route21_hns/border.bin",
-      "blockdata_filepath": "data/layouts/Route21_hns/map.bin"
+      "blockdata_filepath": "data/layouts/Route21_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     },
     {
       "id": "LAYOUT_CINNABAR_ISLAND_HNS",
@@ -9802,7 +9892,9 @@
       "primary_tileset": "gTileset_Kanto_General_Hns",
       "secondary_tileset": "gTileset_Lavaridge_Hns",
       "border_filepath": "data/layouts/CinnabarIsland_hns/border.bin",
-      "blockdata_filepath": "data/layouts/CinnabarIsland_hns/map.bin"
+      "blockdata_filepath": "data/layouts/CinnabarIsland_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": ["emerald"]
     }
   ]
 }

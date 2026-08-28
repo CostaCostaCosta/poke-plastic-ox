@@ -83,3 +83,8 @@ Route31_EventScript_GateWarp::
 	warp MAP_GATE_AZALEA_TOWN_ILEX_FOREST_HNS, 0
 	waitstate
 	end
+
+Route31_EventScript_DarkCaveWarp::
+	warp MAP_DARK_CAVE_SOUTH_SIDE_HNS, 14, 19
+	waitstate
+	end

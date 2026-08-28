@@ -239,6 +239,11 @@ def exercise_route101_ledge(g):
     ledge = (9, 13)
     landing = (9, 14)
     navigate_to(g, approach)
+    ledge_metatile, _ = g.metatile_at(*ledge)
+    assert ledge_metatile == 135, (
+        f"Route 101 ledge artwork moved off its behavior coordinate: "
+        f"expected metatile 135 at {ledge}, got {ledge_metatile}"
+    )
     assert g.behavior_at(*ledge)[0] == LEDGE_BEHAVIOR_BY_DIRECTION["DOWN"], (
         f"{ledge} is no longer a south-jump ledge"
     )

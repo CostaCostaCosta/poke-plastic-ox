@@ -494,7 +494,9 @@ def copy_layout(name):
     lay = load(lp)
     if not any(l["id"] == lid for l in lay["layouts"]):
         e = dict(he)
-        e.pop("game_version", None); e.pop("layout_version", None)
+        e.pop("game_version", None)
+        e["layout_version"] = "hns"
+        e["include_in_versions"] = ["emerald"]
         e["border_filepath"] = f"data/layouts/{dirbase}/border.bin"
         e["blockdata_filepath"] = f"data/layouts/{dirbase}/map.bin"
         lay["layouts"].append(e)

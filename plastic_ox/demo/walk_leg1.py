@@ -229,25 +229,11 @@ def main():
 
     # ---- traverse the cave NW to the Route 31 mouth ----
     g.shot("leg1_07_darkcave.png")
-    # The cave-mouth warp destination can race (rare misfire out the
-    # entrance); re-enter and retry until R31.
-    for _attempt in range(4):
-        try:
-            navigate(g, (14, 19), avoid={(14, 20), (56, 46)})
-        except AssertionError:
-            pass
-        try:
-            enter_warp(g, (14, 19), "DOWN", MAP_R31, "r31_cave_mouth")
-        except AssertionError:
-            pass
-        state = g.state()
-        if state and (state["group"], state["num"]) == MAP_R31:
-            break
-        try:
-            navigate(g, (20, 12))
-            enter_warp(g, (20, 12), "UP", MAP_DARKCAVE, "darkcave_reentry")
-        except AssertionError:
-            pass
+    # Correct HNS layout semantics make the source cave collision authoritative;
+    # do not mask a bad path/warp with retry loops or stale-grid bounce-backs.
+    navigate(g, (14, 19), avoid={(14, 20), (56, 46)})
+    enter_warp(g, (14, 19), "DOWN", MAP_R31, "r31_cave_mouth")
+    W.assert_map(g, MAP_R31, "r31_after_cave")
 
     # ---- R31 south to Route30 ----
     g.shot("leg1_08_route31.png")
@@ -264,19 +250,21 @@ def main():
     print("at gent:", g.describe(), flush=True)
 
     # ================= REVERSE =================
-    # Return along the eastern shore: Cherrygrove -> R29 -> R46 -> Oldale ->
-    # Pallet. The DarkCave's R31-side mouth deposits the player inside solid
-    # rock (hns data does this too), so the round trip crosses the cave exactly
-    # once, in the working direction.
-    navigate(g, (64, 9))  # Cherrygrove east border, inside the walkable band
-    W.cross_connection(g, "RIGHT", MAP_R29, "r29_west_return")
-    print("r29 return landing:", g.describe(), flush=True)
-    g.shot("leg1_12_route29_return.png")
+    # Exercise the reciprocal route too: Cherrygrove -> R30 -> R31 ->
+    # Dark Cave -> R46 -> R29. This catches bad return landings and transition
+    # races that a one-way reachability check cannot see.
+    navigate(g, (34, 0))
+    W.cross_connection(g, "UP", MAP_R30, "r30_south_return")
+    navigate(g, (23, 0))
+    W.cross_connection(g, "UP", MAP_R31, "r31_south_return")
+    g.shot("leg1_12_route31_return.png")
 
-    navigate(g, (38, 4))
-    navigate(g, (38, 0))
-    W.cross_connection(g, "UP", MAP_R46, "r46_south_return2")
-    g.shot("leg1_13_route46_return.png")
+    navigate(g, (48, 10))
+    enter_warp(g, (48, 10), "UP", MAP_DARKCAVE, "darkcave_r31_return")
+    g.shot("leg1_13_darkcave_return.png")
+    navigate(g, (56, 45), avoid={(14, 20), (56, 46)})
+    enter_warp(g, (56, 45), "DOWN", MAP_R46, "r46_cave_return")
+    g.shot("leg1_14_route46_return.png")
 
     W.walk_to_edge(g, "south")
     W.cross_connection(g, "DOWN", MAP_R29, "r29_north_return")

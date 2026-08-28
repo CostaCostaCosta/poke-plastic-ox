@@ -888,7 +888,7 @@ bool8 LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
 
     ApplyCurrentWarp();
     LoadCurrentMapData();
-    primaryTilesetChanged = previousMapLayout->isFrlg != gMapHeader.mapLayout->isFrlg
+    primaryTilesetChanged = previousMapLayout->layoutVersion != gMapHeader.mapLayout->layoutVersion
                          || previousMapLayout->primaryTileset != gMapHeader.mapLayout->primaryTileset;
     LoadObjEventTemplatesFromHeader();
     TrySetMapSaveWarpStatus();

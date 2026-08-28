@@ -96,8 +96,22 @@ def main():
         st = g.state()
         if st and (st["group"], st["num"]) == MAP_R31:
             break
+    g.wait_warp_complete(MAP_R31)
+    g.frame(120)
     stage("r31_mouth")
     g.shot("leg2_01_r31.png")
+
+    # Route 31's cave and gate halves meet at a diagonal Gen 2 stair.  Reach
+    # its east lip, then exercise the real westward stair movement.
+    navigate(g, (27, 10))
+    g.shot("leg2_01b_r31_stair.png")
+    assert g.behavior_at(26, 10)[0] == 0x4C, "Route 31 stair entry behavior drifted"
+    for expected in ((26, 10), (25, 11), (24, 12)):
+        g.tap(K.KEY_LEFT, hold=10, wait=18)
+        after = g.state()
+        assert (after["x"], after["y"]) == expected, (
+            f"Route 31 diagonal stair missed {expected}: {g.describe()}"
+        )
 
     # ---------- R31 west door (coord) -> gate ----------
     L1.enter_warp(g, (10, 9), "LEFT", MAP_GATE, "gate_in")

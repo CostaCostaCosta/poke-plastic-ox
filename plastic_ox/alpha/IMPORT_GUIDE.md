@@ -26,9 +26,13 @@ Target: this repo. Never edit generated artifacts (`include/constants/map_groups
    like `data/maps/OldaleTown/scripts.inc`).
 8. `bg_events`: keep signs (rewrite text), convert hidden items to
    `FLAG_POX_HIDDEN_*` flags (§2).
-9. Add the layout entry to `data/layouts/layouts.json`: copy hns entry, delete
-   `game_version`, delete the `layout_version: "hns"` line (defaults to emerald).
-   Copy `data/layouts/<Name>_hns/{border.bin,map.bin}` verbatim.
+9. Add the layout entry to `data/layouts/layouts.json`: copy the hns entry,
+   delete `game_version`, preserve `"layout_version": "hns"`, and add
+   `"include_in_versions": ["emerald"]`. HNS layouts use a 640-metatile,
+   7-palette primary partition but Emerald-format 16-bit attributes; silently
+   defaulting them to Emerald shifts secondary metatiles by 128 and corrupts
+   both rendering and collision. Copy
+   `data/layouts/<Name>_hns/{border.bin,map.bin}` verbatim.
 10. Register the map in `data/maps/map_groups.json` under the proper group
     (see §6). Build; fix errors; headless-verify the leg.
 
@@ -165,4 +169,3 @@ Append names to `group_order` too. No cap issues until group 256.
    its current tile's elevation (0 stays 0), and mismatch is rejected only when
    BOTH mover and destination elevations are nonzero and differ. e=0 transition
    tiles make every neighbor elevation legal from them.
-

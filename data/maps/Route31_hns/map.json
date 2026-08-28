@@ -119,6 +119,15 @@
   "coord_events": [
     {
       "type": "trigger",
+      "x": 48,
+      "y": 9,
+      "elevation": 3,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": "0",
+      "script": "Route31_EventScript_DarkCaveWarp"
+    },
+    {
+      "type": "trigger",
       "x": 10,
       "y": 9,
       "elevation": 3,

@@ -20,8 +20,9 @@ suffix) plus native Emerald Hoenn maps already in this repo.
 
 - **Keep `_hns` map/layout/symbol names** when importing (mechanical, collision-free).
 - **Region gating**: imported maps set `"region": "REGION_HOENN"` and drop
-  `game_version`; layouts drop `layout_version: "hns"` (=> emerald). This is exactly
-  what the committed FRLG import did for Pallet.
+  `game_version`; layouts preserve `layout_version: "hns"` and opt into the
+  Emerald build with `include_in_versions: ["emerald"]`. HNS has its own
+  640-primary/7-palette partition and must not be decoded as Emerald.
 - **Shared interiors**: one Johto PC, one Kanto PC, one Johto Mart, one Kanto Mart,
   two generic houses. Every town's doors retarget to these (hns interiors are
   byte-identical duplicates anyway). Unique interiors only for: Pallet set, 8 gyms,

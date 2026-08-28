@@ -142,8 +142,8 @@ class GBA:
         mt, block = self.metatile_at(mx, my)
         mh = self.symbol_address("gMapHeader")
         layout = self.core.memory.wram.u32[mh-0x02000000]
-        is_frlg = self.u8(layout+0x18) != 0
-        primary_count = 640 if is_frlg else 512
+        layout_version = self.u8(layout+0x18)
+        primary_count = 640 if layout_version in (1, 2) else 512
         if mt < primary_count:
             tileset = self.u32(layout+0x10)
             attr_index = mt
@@ -151,7 +151,10 @@ class GBA:
             tileset = self.u32(layout+0x14)
             attr_index = mt - primary_count
         attrs = self.u32(tileset+0x10)
-        if is_frlg:
+        # HNS shares FRLG's 640-entry primary partition, but its attributes
+        # remain Emerald-format u16 values. Treating layout version 2 as a
+        # boolean FRLG flag invents behaviors and breaks the headless BFS.
+        if layout_version == 1:
             behavior = self.u32(attrs + attr_index*4) & 0x1FF
         else:
             behavior = self.u16(attrs + attr_index*2) & 0xFF
