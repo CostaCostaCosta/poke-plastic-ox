@@ -40,7 +40,3 @@ Route3_EventScript_Npc3_Text:
 
 Route3_EventScript_Npc4_Text:
 	.string "Roads keep ending somewhere they\ndidn't used to.$"
-Route3_EventScript_MtMoonWarp::
-	warp MAP_MT_MOON_CAVE_HNS, 0
-	waitstate
-	end

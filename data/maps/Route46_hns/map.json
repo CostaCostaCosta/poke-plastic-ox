@@ -1,133 +1,105 @@
 {
-  "id": "MAP_ROUTE46_HNS",
-  "name": "Route46_hns",
-  "layout": "LAYOUT_ROUTE46_HNS",
-  "music": "MUS_RG_ROUTE1",
-  "region": "REGION_HOENN",
-  "region_map_section": "MAPSEC_ROUTE_46",
-  "requires_flash": false,
-  "weather": "WEATHER_NONE",
-  "map_type": "MAP_TYPE_ROUTE",
-  "allow_cycling": true,
-  "allow_escaping": false,
-  "allow_running": true,
-  "show_map_name": true,
-  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": [],
-  "object_events": [
-    {
-      "graphics_id": "OBJ_EVENT_GFX_CAMPER",
-      "x": 6,
-      "y": 18,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 5,
-      "movement_range_y": 5,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route46_EventScript_Ted",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_PICNICKER_HNS",
-      "x": 4,
-      "y": 18,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 5,
-      "movement_range_y": 5,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route46_EventScript_Erin",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_HIKER",
-      "x": 19,
-      "y": 25,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_LEFT",
-      "movement_range_x": 5,
-      "movement_range_y": 5,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route46_EventScript_Bailey",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-      "x": 2,
-      "y": 21,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route46_EventScript_ItemRevive",
-      "flag": "FLAG_POX_HIDDEN_R46_REVIVE"
-    }
-  ],
-  "warp_events": [
-    {
-      "x": 10,
-      "y": 40,
-      "elevation": 0,
-      "dest_map": "MAP_GATE_ROUTE29_ROUTE46_HNS",
-      "dest_warp_id": 0
-    },
-    {
-      "x": 11,
-      "y": 40,
-      "elevation": 0,
-      "dest_map": "MAP_GATE_ROUTE29_ROUTE46_HNS",
-      "dest_warp_id": 0
-    },
-    {
-      "x": 20,
-      "y": 11,
-      "elevation": 0,
-      "dest_map": "MAP_DARK_CAVE_SOUTH_SIDE_HNS",
-      "dest_warp_id": 1
-    }
-  ],
-  "coord_events": [
-    {
-      "type": "trigger",
-      "x": 10,
-      "y": 40,
-      "elevation": 3,
-      "var": "VAR_POX_PORTAL_GATE",
-      "var_value": "0",
-      "script": "Route46_EventScript_Route29GateWarp"
-    },
-    {
-      "type": "trigger",
-      "x": 11,
-      "y": 40,
-      "elevation": 3,
-      "var": "VAR_POX_PORTAL_GATE",
-      "var_value": "0",
-      "script": "Route46_EventScript_Route29GateWarp"
-    },
-    {
-      "type": "trigger",
-      "x": 20,
-      "y": 11,
-      "elevation": 3,
-      "var": "VAR_POX_PORTAL_GATE",
-      "var_value": "0",
-      "script": "Route46_EventScript_DarkCaveWarp"
-    }
-  ],
-  "bg_events": [
-    {
-      "type": "sign",
-      "x": 11,
-      "y": 35,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "Route46_EventScript_Sign"
-    }
-  ]
+    "id": "MAP_ROUTE46_HNS",
+    "name": "Route46_hns",
+    "layout": "LAYOUT_ROUTE46_HNS",
+    "music": "MUS_RG_ROUTE1",
+    "region": "REGION_HOENN",
+    "region_map_section": "MAPSEC_ROUTE_46",
+    "requires_flash": false,
+    "weather": "WEATHER_NONE",
+    "map_type": "MAP_TYPE_ROUTE",
+    "allow_cycling": true,
+    "allow_escaping": false,
+    "allow_running": true,
+    "show_map_name": true,
+    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+    "connections": [],
+    "object_events": [
+        {
+            "graphics_id": "OBJ_EVENT_GFX_CAMPER",
+            "x": 6,
+            "y": 18,
+            "elevation": 0,
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "movement_range_x": 5,
+            "movement_range_y": 5,
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "trainer_sight_or_berry_tree_id": "0",
+            "script": "Route46_EventScript_Ted",
+            "flag": "0"
+        },
+        {
+            "graphics_id": "OBJ_EVENT_GFX_PICNICKER_HNS",
+            "x": 4,
+            "y": 18,
+            "elevation": 0,
+            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+            "movement_range_x": 5,
+            "movement_range_y": 5,
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "trainer_sight_or_berry_tree_id": "0",
+            "script": "Route46_EventScript_Erin",
+            "flag": "0"
+        },
+        {
+            "graphics_id": "OBJ_EVENT_GFX_HIKER",
+            "x": 19,
+            "y": 25,
+            "elevation": 0,
+            "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_LEFT",
+            "movement_range_x": 5,
+            "movement_range_y": 5,
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "trainer_sight_or_berry_tree_id": "0",
+            "script": "Route46_EventScript_Bailey",
+            "flag": "0"
+        },
+        {
+            "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+            "x": 2,
+            "y": 21,
+            "elevation": 0,
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "movement_range_x": 0,
+            "movement_range_y": 0,
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "trainer_sight_or_berry_tree_id": "0",
+            "script": "Route46_EventScript_ItemRevive",
+            "flag": "FLAG_POX_HIDDEN_R46_REVIVE"
+        }
+    ],
+    "warp_events": [
+        {
+            "x": 10,
+            "y": 40,
+            "elevation": 0,
+            "dest_map": "MAP_GATE_ROUTE29_ROUTE46_HNS",
+            "dest_warp_id": 0
+        },
+        {
+            "x": 11,
+            "y": 40,
+            "elevation": 0,
+            "dest_map": "MAP_GATE_ROUTE29_ROUTE46_HNS",
+            "dest_warp_id": 0
+        },
+        {
+            "x": 20,
+            "y": 11,
+            "elevation": 0,
+            "dest_map": "MAP_DARK_CAVE_SOUTH_SIDE_HNS",
+            "dest_warp_id": 1
+        }
+    ],
+    "coord_events": [],
+    "bg_events": [
+        {
+            "type": "sign",
+            "x": 11,
+            "y": 35,
+            "elevation": 0,
+            "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+            "script": "Route46_EventScript_Sign"
+        }
+    ]
 }

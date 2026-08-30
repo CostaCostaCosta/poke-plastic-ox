@@ -246,15 +246,3 @@ GoldenrodCity_EventScript_Sign7_Text:
 
 GoldenrodCity_EventScript_Sign8_Text:
 	.string "GOLDENROD CITY\nFLOWER SHOP: Johto-Hoenn hybrids.$"
-GoldenrodCity_EventScript_R4Portal::
-	warp MAP_ROUTE4_HNS, 255, 16, 11
-	waitstate
-	end
-GoldenrodCity_EventScript_Portal8::
-	warp MAP_ROUTE35_HNS, 14, 48
-	waitstate
-	end
-GoldenrodCity_EventScript_ReturnStone::
-	warp MAP_PALLET_TOWN, 10, 4
-	waitstate
-	end

@@ -71,26 +71,3 @@ EcruteakCity_EventScript_Npc6_Text:
 EcruteakCity_EventScript_Npc7_Text:
 	.string "Roads keep ending somewhere they\ndidn't used to.$"
 
-
-
-
-
-EcruteakCity_EventScript_PoxPortal12_15_31::
-	warp MAP_ROUTE7_HNS, 4, 25
-	waitstate
-	end
-
-EcruteakCity_EventScript_PoxPortal12_14_33::
-	warp MAP_ROUTE37_HNS, 18, 39
-	waitstate
-	end
-
-EcruteakCity_EventScript_PoxPortal14_15_31::
-	warp MAP_ROUTE7_HNS, 4, 25
-	waitstate
-	end
-
-EcruteakCity_EventScript_PoxPortal14_14_33::
-	warp MAP_ROUTE37_HNS, 18, 39
-	waitstate
-	end

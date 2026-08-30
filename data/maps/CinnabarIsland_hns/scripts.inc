@@ -35,8 +35,3 @@ CinnabarIsland_EventScript_Sign1_Text:
 CinnabarIsland_EventScript_Sign2_Text:
 	.string "A sign from the old routes.$"
 
-
-CinnabarIsland_EventScript_PoxPortal12_8_8::
-	warp MAP_LAVENDER_TOWN_HNS, 15, 22
-	waitstate
-	end

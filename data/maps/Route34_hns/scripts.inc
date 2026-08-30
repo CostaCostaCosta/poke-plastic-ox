@@ -158,19 +158,3 @@ Route34_EventScript_Sign3_Text:
 
 Route34_EventScript_Sign4_Text:
 	.string "ROUTE 34\nWatch for trainers crossing regions.$"
-Route34_EventScript_R116Warp::
-	warp MAP_ROUTE116, 0
-	waitstate
-	end
-Route34_EventScript_ToIlex::
-	warp MAP_ILEX_FOREST_HNS, 20, 14
-	waitstate
-	end
-Route34_EventScript_ToR116::
-	warp MAP_ROUTE116, 40, 1
-	waitstate
-	end
-Route34_EventScript_ReturnStone::
-	warp MAP_PALLET_TOWN, 10, 4
-	waitstate
-	end

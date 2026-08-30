@@ -1,16 +1,6 @@
 Gate_Route29_Route46_hns_MapScripts::
 	.byte 0
 
-Gate_Route29_Route46_EventScript_ToRoute46::
-	warp MAP_ROUTE46_HNS, 0
-	waitstate
-	end
-
-Gate_Route29_Route46_EventScript_ToRoute29::
-	warp MAP_ROUTE29_HNS, 0
-	waitstate
-	end
-
 Gate_Route29_Route46_EventScript_Officer::
 	lock
 	faceplayer

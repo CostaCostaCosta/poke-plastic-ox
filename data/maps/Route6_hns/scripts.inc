@@ -24,7 +24,3 @@ Route6_EventScript_Npc1_Text:
 
 Route6_EventScript_Npc2_Text:
 	.string "Roads keep ending somewhere they\ndidn't used to.$"
-Route6_EventScript_P41_6::
-	warp MAP_SAFFRON_CITY_HNS, 29, 6
-	waitstate
-	end

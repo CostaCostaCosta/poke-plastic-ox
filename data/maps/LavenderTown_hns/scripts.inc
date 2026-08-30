@@ -69,13 +69,3 @@ LavenderTown_EventScript_Sign3_Text:
 LavenderTown_EventScript_Sign4_Text:
 	.string "A sign from the old routes.$"
 
-
-LavenderTown_EventScript_PoxPortal12_1_12::
-	warp MAP_ROUTE7_HNS, 4, 23
-	waitstate
-	end
-
-LavenderTown_EventScript_PoxPortal12_15_20::
-	warp MAP_CINNABAR_ISLAND_HNS, 8, 6
-	waitstate
-	end

@@ -40,11 +40,6 @@ Route29_EventScript_ItemPotion::
 	finditem ITEM_POTION
 	end
 
-Route29_EventScript_GateWarp::
-	warp MAP_GATE_ROUTE29_ROUTE46_HNS, 1
-	waitstate
-	end
-
 Route29_EventScript_SignEast::
 	msgbox Route29_Text_SignEast, MSGBOX_SIGN
 	end

@@ -48,7 +48,3 @@ Route4_EventScript_Npc4_Text:
 
 Route4_EventScript_Npc6_Text:
 	.string "Mountains keep showing up where fields\nused to be. Good training though.$"
-Route4_EventScript_GoldenrodPortal::
-	warp MAP_GOLDENROD_CITY_HNS, 2
-	waitstate
-	end

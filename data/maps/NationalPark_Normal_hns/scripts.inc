@@ -8,13 +8,6 @@ NationalPark_Normal_EventScript_Npc1::
 	release
 	end
 
-NationalPark_Normal_EventScript_Npc2::
-	lock
-	faceplayer
-	msgbox NationalPark_Normal_EventScript_Npc2_Text, MSGBOX_NPC
-	release
-	end
-
 NationalPark_Normal_EventScript_Npc3::
 	lock
 	faceplayer
@@ -83,16 +76,6 @@ NationalPark_Normal_EventScript_Npc12::
 	faceplayer
 	msgbox NationalPark_Normal_EventScript_Npc12_Text, MSGBOX_NPC
 	release
-	end
-
-NationalPark_Normal_EventScript_Portal5::
-	warp MAP_ROUTE36_HNS, 16, 20
-	waitstate
-	end
-
-NationalPark_Normal_EventScript_Portal6::
-	warp MAP_ROUTE36_HNS, 16, 20
-	waitstate
 	end
 
 NationalPark_Normal_EventScript_Npc1_Text:

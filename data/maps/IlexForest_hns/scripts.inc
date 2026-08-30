@@ -15,13 +15,6 @@ IlexForest_EventScript_Npc2::
 	release
 	end
 
-IlexForest_EventScript_Npc3::
-	lock
-	faceplayer
-	msgbox IlexForest_EventScript_Npc3_Text, MSGBOX_NPC
-	release
-	end
-
 IlexForest_EventScript_Npc4::
 	lock
 	faceplayer

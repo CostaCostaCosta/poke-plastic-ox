@@ -1,16 +1,6 @@
 Route46_hns_MapScripts::
 	.byte 0
 
-Route46_EventScript_Route29GateWarp::
-	warp MAP_GATE_ROUTE29_ROUTE46_HNS, 0
-	waitstate
-	end
-
-Route46_EventScript_DarkCaveWarp::
-	warp MAP_DARK_CAVE_SOUTH_SIDE_HNS, 56, 45
-	waitstate
-	end
-
 Route46_EventScript_Ted::
 	lock
 	faceplayer

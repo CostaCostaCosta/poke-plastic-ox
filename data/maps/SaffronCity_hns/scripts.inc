@@ -90,7 +90,3 @@ SaffronCity_EventScript_Npc8_Text:
 
 SaffronCity_EventScript_Npc9_Text:
 	.string "Roads keep ending somewhere they\ndidn't used to.$"
-SaffronCity_EventScript_P28_4::
-	warp MAP_ROUTE5_HNS, 24, 36
-	waitstate
-	end

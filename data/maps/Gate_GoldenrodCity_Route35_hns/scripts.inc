@@ -22,16 +22,6 @@ Gate_GoldenrodCity_Route35_EventScript_Npc3::
 	release
 	end
 
-Gate_GoldenrodCity_Route35_EventScript_Portal2::
-	warp MAP_GOLDENROD_CITY_HNS, 33, 8
-	waitstate
-	end
-
-Gate_GoldenrodCity_Route35_EventScript_Portal3::
-	warp MAP_ROUTE35_HNS, 14, 48
-	waitstate
-	end
-
 Gate_GoldenrodCity_Route35_EventScript_Npc1_Text:
 	.string "Roads keep ending somewhere they\ndidn't used to.$"
 

@@ -85,26 +85,6 @@ Route35_EventScript_Npc12::
 	release
 	end
 
-Route35_EventScript_Portal0::
-	warp MAP_GOLDENROD_CITY_HNS, 34, 7
-	waitstate
-	end
-
-Route35_EventScript_Portal3::
-	warp MAP_GATE_GOLDENROD_CITY_ROUTE35_HNS, 7, 1
-	waitstate
-	end
-
-Route35_EventScript_Portal4::
-	warp MAP_ROUTE36_HNS, 16, 21
-	waitstate
-	end
-
-Route35_EventScript_Portal8::
-	warp MAP_GOLDENROD_CITY_HNS, 34, 7
-	waitstate
-	end
-
 Route35_EventScript_Npc1_Text:
 	.string "The park charges no entry fee. The squirrels work for tips.$"
 

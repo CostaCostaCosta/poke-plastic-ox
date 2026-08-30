@@ -60,7 +60,3 @@ BlackthornCity_EventScript_Npc5_Text:
 
 BlackthornCity_EventScript_Npc6_Text:
 	.string "Roads keep ending somewhere they\ndidn't used to.$"
-BlackthornCity_EventScript_P42_22::
-	warp MAP_INDIGO_PLATEAU_HNS, 11, 13
-	waitstate
-	end
