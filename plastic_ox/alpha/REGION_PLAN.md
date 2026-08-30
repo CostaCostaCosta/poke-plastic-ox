@@ -16,7 +16,7 @@ fresh offsets from layout dimensions in `data/layouts/layouts.json`.
 ```
 PalletTown_Frlg (native-stitched) N ↔ Route101 (native) N ↔ OldaleTown (native)
 OldaleTown W ↔ Route29_hns E            # R29 east slot replaces NewBark (hns had offset 5); calc both sides
-Route29_hns N ↔ Route46_hns S           # verbatim hns (-24/24)
+Route29_hns gate ↔ Gate_Route29_Route46_hns ↔ Route46_hns lower entrance
 Route46_hns → DarkCave_SouthSide_hns    # warp pair; cave exit → Route31_hns warp
 Route31_hns S ↔ Route30_hns N           # verbatim hns (-10/10)
 Route30_hns S ↔ CherrygroveCity_hns N   # verbatim hns (-9/9)
@@ -27,10 +27,25 @@ Drop: Route29's NewBark connection. DarkCave_NorthSide not imported in alpha.
 R46/R31 keep their item balls as FLAG_POX_ITEM_* hidden items.
 
 Imports: Route29_hns, Route30_hns, Route31_hns, Route46_hns,
-DarkCave_SouthSide_hns, CherrygroveCity_hns.
+Gate_Route29_Route46_hns, Route30_House_hns,
+Route30_MrPokemonsHouse_hns, DarkCave_SouthSide_hns, CherrygroveCity_hns.
 Tilesets (from recon): primaries Johto_General_Hns; secondaries NewBarkTown_Hns,
 CherrygroveCity_Hns, Cave_Default_Hns.
-Shared interiors wired here: PC_Johto, Mart_Johto, House_Generic ×2.
+Shared interiors wired here: PC_Johto, Mart_Johto, House_Generic ×2, plus both
+Route 30 houses and the Route 29/46 gate at their source door coordinates.
+
+The gate and house restoration uses pokehns-expansion revision
+`44f50eedefe58691b0444973e4138e9190d8fafc`: the three source map/layout pairs
+are HNS-format (640 primary metatiles, 2x2 border, Emerald u16 attributes), use
+`Johto_Building_Hns` with `Gate_Standard_Hns` or `House_Lab_Hns`, and retain
+their reciprocal source warp coordinates. Verification commands are:
+
+```
+python3 /home/eddie/.codex/skills/plastic-ox-map-port/scripts/audit_imports.py /home/eddie/repos/poke-plastic-ox
+make -j$(nproc) TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM modern
+LD_LIBRARY_PATH="$HOME/.venvs/mgba311/lib:$HOME/.venvs/mgba311/lib64" "$HOME/.venvs/mgba311/bin/python" plastic_ox/demo/walk_leg1.py
+LD_LIBRARY_PATH="$HOME/.venvs/mgba311/lib:$HOME/.venvs/mgba311/lib64" "$HOME/.venvs/mgba311/bin/python" plastic_ox/demo/walk_leg2.py
+```
 
 ## Leg B — Ilex → Rustboro (wave 2) — SHIPPED (with substitutions, see below)
 

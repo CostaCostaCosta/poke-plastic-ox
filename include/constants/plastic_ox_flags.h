@@ -35,6 +35,12 @@
 #define FLAG_POX_HIDE_SILPH_GIOVANNI    (POX_FLAGS_START + 0x15)
 #define FLAG_POX_HIDE_SAFFRON_GATE_NPC  (POX_FLAGS_START + 0x16) // beat 16: Blackthorn-route gate check NPC
 
+// Battle-demo NPCs hidden in the walkable/trigger alpha builds; visible only
+// in the PLASTIC_OX_BUILD=battle build (see Makefile, src/new_game.c).
+#define FLAG_POX_HIDE_BATTLE_OAK_PALLET  (POX_FLAGS_START + 0x17) // Oak in PalletTown (ADV OU team gift)
+#define FLAG_POX_HIDE_BATTLE_OAK_LAB     (POX_FLAGS_START + 0x18) // Oak in Oak's Lab (ADV OU team gift)
+#define FLAG_POX_HIDE_BATTLE_LANCE       (POX_FLAGS_START + 0x19) // Lance in OldaleTown (battle trigger)
+
 // Item balls / hidden items for imported maps: allocate sequentially from
 // POX_HIDDEN_ITEMS_BASE, one flag per placement (IMPORT_GUIDE section 2).
 #define POX_HIDDEN_ITEMS_BASE           (POX_FLAGS_START + 0x1C) // 0x280; run ends at 0x2BB

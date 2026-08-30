@@ -135,7 +135,6 @@ WARP_RULES = {
 # (mapA, xA, yA, mapB, xB, yB)
 PORTALS = [
     ("GoldenrodCity_hns", 34, 7, "Route35_hns", 14, 48),
-    ("IlexForest_hns", 20, 13, "Route34_hns", 31, 67),
     ("Gate_GoldenrodCity_Route35_hns", 7, 9, "GoldenrodCity_hns", 33, 8),
     ("Gate_GoldenrodCity_Route35_hns", 7, 1, "Route35_hns", 14, 48),
     ("Route35_hns", 17, 5, "Route36_hns", 16, 21),
@@ -143,7 +142,6 @@ PORTALS = [
     ("Route36_hns", 16, 20, "NationalPark_Normal_hns", 40, 19),
     ("Route38_hns", 0, 21, "Route119", 18, 138),
     ("GoldenrodCity_hns", 34, 7, "Route35_hns", 14, 48),
-    ("IlexForest_hns", 20, 13, "Route34_hns", 31, 66),
 ]
 
 NPC_LINES = {  # per map: list of (gfx_key_or_None, text) consumed in order by gfx prefix match

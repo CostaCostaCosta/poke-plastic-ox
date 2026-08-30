@@ -23,11 +23,6 @@
       "map": "MAP_OLDALE_TOWN",
       "offset": 6,
       "direction": "right"
-    },
-    {
-      "map": "MAP_ROUTE46_HNS",
-      "offset": 24,
-      "direction": "up"
     }
   ],
   "object_events": [
@@ -110,8 +105,42 @@
       "flag": "FLAG_POX_HIDDEN_R29_POTION"
     }
   ],
-  "warp_events": [],
-  "coord_events": [],
+  "warp_events": [
+    {
+      "x": 34,
+      "y": 10,
+      "elevation": 0,
+      "dest_map": "MAP_GATE_ROUTE29_ROUTE46_HNS",
+      "dest_warp_id": 1
+    },
+    {
+      "x": 35,
+      "y": 10,
+      "elevation": 0,
+      "dest_map": "MAP_GATE_ROUTE29_ROUTE46_HNS",
+      "dest_warp_id": 1
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 34,
+      "y": 10,
+      "elevation": 3,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": "0",
+      "script": "Route29_EventScript_GateWarp"
+    },
+    {
+      "type": "trigger",
+      "x": 35,
+      "y": 10,
+      "elevation": 3,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": "0",
+      "script": "Route29_EventScript_GateWarp"
+    }
+  ],
   "bg_events": [
     {
       "type": "sign",

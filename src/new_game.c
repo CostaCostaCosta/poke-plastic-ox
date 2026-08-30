@@ -54,6 +54,7 @@
 #include "data.h"
 #include "plastic_ox.h"
 #include "constants/opponents.h"
+#include "constants/flags.h"
 #include "gba/m4a_internal.h"
 
 extern const u8 EventScript_ResetAllMapFlags[];
@@ -243,6 +244,18 @@ void NewGameInitData(void)
     ResetItemFlags();
     ResetDexNav();
     ClearFollowerNPCData();
+
+    // Hide battle-demo NPCs in walkable and trigger alpha builds.
+    // The PLASTIC_OX_BUILD=battle build leaves these cleared so the NPCs appear.
+#ifndef PLASTIC_OX_BUILD_BATTLE
+    FlagSet(FLAG_POX_HIDE_BATTLE_OAK_PALLET);
+    FlagSet(FLAG_POX_HIDE_BATTLE_OAK_LAB);
+    FlagSet(FLAG_POX_HIDE_BATTLE_LANCE);
+#endif
+
+    // Plastic Ox skips the vanilla starter flow, so unblock vanilla gates that
+    // expect the adventure-started flag (notably Oldale's west exit).
+    FlagSet(FLAG_ADVENTURE_STARTED);
 }
 
 void GivePlasticOxPlayerParty(void)
@@ -317,6 +330,11 @@ void CB2_InitPlasticOxDemo(void)
     FlagSet(FLAG_POX_TRIGGERS_ENABLED);
 #else
     gPlasticOxTriggersEnabled = FALSE;
+#endif
+#ifdef PLASTIC_OX_BUILD_BATTLE
+    gPlasticOxBattleDemoEnabled = TRUE;
+#else
+    gPlasticOxBattleDemoEnabled = FALSE;
 #endif
     SetSaveBlocksPointers(GetSaveBlocksPointersBaseOffset());
     ResetMenuAndMonGlobals();

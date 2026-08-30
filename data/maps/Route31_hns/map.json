@@ -109,9 +109,9 @@
       "dest_warp_id": 0
     },
     {
-      "x": 10,
-      "y": 9,
-      "elevation": 3,
+      "x": 4,
+      "y": 10,
+      "elevation": 0,
       "dest_map": "MAP_GATE_AZALEA_TOWN_ILEX_FOREST_HNS",
       "dest_warp_id": "0"
     }
@@ -128,8 +128,8 @@
     },
     {
       "type": "trigger",
-      "x": 10,
-      "y": 9,
+      "x": 4,
+      "y": 10,
       "elevation": 3,
       "var": "VAR_POX_PORTAL_GATE",
       "var_value": "0",

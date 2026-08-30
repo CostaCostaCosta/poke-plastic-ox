@@ -11,7 +11,9 @@ import json, os, re, struct, sys
 DRY = "--dry" in sys.argv
 WARPISH = set()
 for name in ("MB_ANIMATED_DOOR", "MB_NON_ANIMATED_DOOR", "MB_CAVE_EXIT",
-             "MB_LADDER", "MB_ESCALATOR", "MB_WATER_DOOR"):
+             "MB_LADDER", "MB_ESCALATOR", "MB_WATER_DOOR",
+             "MB_NORTH_ARROW_WARP", "MB_SOUTH_ARROW_WARP",
+             "MB_EAST_ARROW_WARP", "MB_WEST_ARROW_WARP"):
     pass  # resolved after reading enum below
 
 # parse behavior enum values from the header (handles explicit values too)
@@ -28,7 +30,11 @@ NONANIM = beh_vals.get("MB_NON_ANIMATED_DOOR")
 WARPISH = {DOOR, NONANIM,
            beh_vals.get("MB_CAVE_EXIT"), beh_vals.get("MB_LADDER"),
            beh_vals.get("MB_ESCALATOR"), beh_vals.get("MB_STAIRS_UP_LEFT"),
-           beh_vals.get("MB_STAIRS_UP_RIGHT")} - {None}
+           beh_vals.get("MB_STAIRS_UP_RIGHT"),
+           beh_vals.get("MB_NORTH_ARROW_WARP"),
+           beh_vals.get("MB_SOUTH_ARROW_WARP"),
+           beh_vals.get("MB_EAST_ARROW_WARP"),
+           beh_vals.get("MB_WEST_ARROW_WARP")} - {None}
 print("door behaviors:", sorted(hex(v) for v in WARPISH))
 
 layouts = {l["id"]: l for l in json.load(open("data/layouts/layouts.json"))["layouts"]}
@@ -96,7 +102,7 @@ def main():
             if key not in fixed:
                 fixed[key] = bytearray(open(ap, "rb").read())
             fixed[key][2 * idx:2 * idx + 2] = struct.pack("<H", new)
-            print(f"{mp}: ({x},{y}) mt{mt} [{cname} #{idx}] beh {hex(beh)} -> {hex(NONANIM)}")
+            print(f"{mp}: ({x},{y}) mt{mt} [{cname} #{idx}] beh {hex(beh)} -> {hex(DOOR)}")
     for ap, data in fixed.items():
         if DRY:
             print("WOULD WRITE", ap); continue

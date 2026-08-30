@@ -65,7 +65,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "PalletTown_EventScript_ProfOakTeam",
-      "flag": "0"
+      "flag": "FLAG_POX_HIDE_BATTLE_OAK_PALLET"
     }
   ],
   "warp_events": [

@@ -13,8 +13,11 @@ suffix) plus native Emerald Hoenn maps already in this repo.
 2. **Trigger demo** (`make PLASTIC_OX_BUILD=triggers` → `pokeemerald-triggers.gba`):
    same region with story events, gates, trainers, gifts. Tested town-by-town
    headlessly.
-3. Custom NPC dialogue everywhere (new-region flavor per story v0.6.1).
-4. Frequent commits; each wave lands only when it builds green + headless check passes.
+3. **Battle demo** (`make battle` → `pokeemerald-battle.gba`): preserves the
+   standalone Oak team gift and Lance battle. Those demo-only NPCs are hidden in
+   both region-alpha builds.
+4. Custom NPC dialogue everywhere (new-region flavor per story v0.6.1).
+5. Frequent commits; each wave lands only when it builds green + headless check passes.
 
 ## Architecture decisions
 
@@ -59,6 +62,7 @@ export DEVKITARM=/home/eddie/devkitpro/opt/devkitpro/devkitARM
 export DEVKITPRO=$HOME/devkitpro/opt/devkitpro
 make -j$(nproc) pokeemerald.gba            # walkable build
 make -j$(nproc) pokeemerald-triggers.gba   # trigger build (after wave 1)
+make -j$(nproc) pokeemerald-battle.gba     # standalone battle demo
 LD_LIBRARY_PATH="$HOME/.venvs/mgba311/lib:$HOME/.venvs/mgba311/lib64" \
   ~/.venvs/mgba311/bin/python plastic_ox/demo/<test>.py
 ```

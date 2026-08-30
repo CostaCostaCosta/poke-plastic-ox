@@ -25,6 +25,6 @@ Gate_AzaleaTown_IlexForest_EventScript_ToIlex::
 	waitstate
 	end
 Gate_AzaleaTown_IlexForest_EventScript_ToR31::
-	warp MAP_ROUTE31_HNS, 10, 9
+	warp MAP_ROUTE31_HNS, 4, 10
 	waitstate
 	end

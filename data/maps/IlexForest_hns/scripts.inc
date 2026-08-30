@@ -120,16 +120,3 @@ IlexForest_EventScript_Sign1_Text:
 
 IlexForest_EventScript_Sign2_Text:
 	.string "ILEX FOREST\nShrine of the forest guardian.$"
-IlexForest_EventScript_ToGate::
-	warp MAP_GATE_AZALEA_TOWN_ILEX_FOREST_HNS, 1
-	waitstate
-	end
-IlexForest_EventScript_ToR34::
-	warp MAP_ROUTE34_HNS, 31, 66
-	waitstate
-	end
-
-IlexForest_EventScript_ToR34North::
-	warp MAP_ROUTE34_HNS, 31, 66
-	waitstate
-	end

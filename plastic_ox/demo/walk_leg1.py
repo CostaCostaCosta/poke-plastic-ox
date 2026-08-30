@@ -2,7 +2,7 @@
 """Wave 1C headless verification: Leg A round trip.
 
 Pallet bedroom -> Pallet -> Route101 -> Oldale -> (W) Route29_hns ->
-(N) Route46_hns -> (warp) DarkCave_SouthSide_hns -> (warp) Route31_hns ->
+(gate) Route46_hns -> (warp) DarkCave_SouthSide_hns -> (warp) Route31_hns ->
 (S) Route30_hns -> (S) CherrygroveCity_hns, then the whole thing in reverse
 back to the bedroom's front lawn. Fails on any battle or wrong map.
 """
@@ -27,6 +27,9 @@ MAP_R31 = (77, 2)
 MAP_R46 = (77, 3)
 MAP_DARKCAVE = (77, 4)
 MAP_CHERRYGROVE = (77, 5)
+MAP_R29_GATE = (76, 13)
+MAP_R30_HOUSE = (76, 14)
+MAP_R30_MR_POKEMONS_HOUSE = (76, 15)
 
 FLAG_ADVENTURE_STARTED = 0x74
 EXTRA_AVOID = set()  # tiles discovered hazardous at runtime (e.g. secret-base doors)
@@ -168,6 +171,19 @@ def enter_warp(g, approach, direction, expected_map, stage):
     raise AssertionError(f"warp {stage} never fired from {g.describe()}")
 
 
+def route29_to_route46(g):
+    """Cross the restored Route 29 gate northbound."""
+    enter_warp(g, (34, 11), "UP", MAP_R29_GATE, "r29_gate_in")
+    g.shot("leg1_05_r29_gate.png")
+    enter_warp(g, (7, 2), "UP", MAP_R46, "r46_gate_out")
+
+
+def route46_to_route29(g):
+    """Cross the restored Route 29 gate southbound."""
+    enter_warp(g, (10, 39), "DOWN", MAP_R29_GATE, "r46_gate_in")
+    enter_warp(g, (7, 8), "DOWN", MAP_R29, "r29_gate_out")
+
+
 def main():
     g = GBA()
     print(f"ROM {g.core.game_code}", flush=True)
@@ -214,11 +230,8 @@ def main():
     assert state["x"] >= 66, f"R29 entry landed oddly: {g.describe()}"
     g.shot("leg1_04_route29.png")
 
-    # ---- R29 north carve to R46 ----
-    navigate(g, (38, 4))
-    g.shot("leg1_05_r29_carved_path.png")
-    navigate(g, (38, 0))
-    W.cross_connection(g, "UP", MAP_R46, "r46_south_entry")
+    # ---- R29 gate to the lower end of R46 ----
+    route29_to_route46(g)
 
     # ---- R46 climb to the Dark Cave mouth ----
     g.shot("leg1_06_route46.png")
@@ -242,6 +255,12 @@ def main():
 
     # ---- R30 south to Cherrygrove ----
     g.shot("leg1_09_route30.png")
+    enter_warp(g, (35, 5), "UP", MAP_R30_MR_POKEMONS_HOUSE, "r30_mr_pokemon_in")
+    g.shot("leg1_09a_r30_mr_pokemon_house.png")
+    enter_warp(g, (5, 7), "DOWN", MAP_R30, "r30_mr_pokemon_out")
+    enter_warp(g, (26, 40), "UP", MAP_R30_HOUSE, "r30_house_in")
+    g.shot("leg1_09b_r30_house.png")
+    enter_warp(g, (4, 7), "DOWN", MAP_R30, "r30_house_out")
     navigate(g, (25, 57))
     W.cross_connection(g, "DOWN", MAP_CHERRYGROVE, "cherrygrove_north_entry")
     print("cherrygrove landing:", g.describe(), flush=True)
@@ -266,8 +285,7 @@ def main():
     enter_warp(g, (56, 45), "DOWN", MAP_R46, "r46_cave_return")
     g.shot("leg1_14_route46_return.png")
 
-    W.walk_to_edge(g, "south")
-    W.cross_connection(g, "DOWN", MAP_R29, "r29_north_return")
+    route46_to_route29(g)
     print("r29 north landing:", g.describe(), flush=True)
 
     navigate(g, (69, 16))

@@ -1,13 +1,13 @@
 {
-  "id": "MAP_GATE_AZALEA_TOWN_ILEX_FOREST_HNS",
-  "name": "Gate_AzaleaTown_IlexForest_hns",
-  "layout": "LAYOUT_GATE_AZALEA_TOWN_ILEX_FOREST_HNS",
-  "music": "MUS_RG_VIRIDIAN_FOREST",
-  "region_map_section": "MAPSEC_ILEX_FOREST",
+  "id": "MAP_GATE_ROUTE29_ROUTE46_HNS",
+  "name": "Gate_Route29_Route46_hns",
+  "layout": "LAYOUT_GATE_ROUTE29_ROUTE46_HNS",
+  "music": "MUS_RG_ROUTE1",
+  "region_map_section": "MAPSEC_ROUTE_29",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
   "map_type": "MAP_TYPE_INDOOR",
-  "allow_cycling": true,
+  "allow_cycling": false,
   "allow_escaping": false,
   "allow_running": true,
   "show_map_name": false,
@@ -16,65 +16,65 @@
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
-      "x": 6,
-      "y": 2,
+      "x": 3,
+      "y": 5,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Gate_AzaleaTown_IlexForest_EventScript_Npc1",
+      "script": "Gate_Route29_Route46_EventScript_Officer",
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN",
-      "x": 10,
-      "y": 2,
+      "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER_HNS",
+      "x": 9,
+      "y": 4,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Gate_AzaleaTown_IlexForest_EventScript_Npc2",
+      "script": "Gate_Route29_Route46_EventScript_Youngster",
       "flag": "0"
     }
   ],
   "warp_events": [
     {
-      "x": 11,
-      "y": 5,
+      "x": 7,
+      "y": 1,
       "elevation": 0,
-      "dest_map": "MAP_ROUTE31_HNS",
-      "dest_warp_id": "1"
+      "dest_map": "MAP_ROUTE46_HNS",
+      "dest_warp_id": 0
     },
     {
-      "x": 1,
-      "y": 5,
+      "x": 7,
+      "y": 9,
       "elevation": 0,
-      "dest_map": "MAP_ILEX_FOREST_HNS",
+      "dest_map": "MAP_ROUTE29_HNS",
       "dest_warp_id": 0
     }
   ],
   "coord_events": [
     {
       "type": "trigger",
-      "x": 1,
-      "y": 5,
+      "x": 7,
+      "y": 1,
       "elevation": 3,
       "var": "VAR_POX_PORTAL_GATE",
       "var_value": "0",
-      "script": "Gate_AzaleaTown_IlexForest_EventScript_ToIlex"
+      "script": "Gate_Route29_Route46_EventScript_ToRoute46"
     },
     {
       "type": "trigger",
-      "x": 11,
-      "y": 5,
+      "x": 7,
+      "y": 9,
       "elevation": 3,
       "var": "VAR_POX_PORTAL_GATE",
       "var_value": "0",
-      "script": "Gate_AzaleaTown_IlexForest_EventScript_ToR31"
+      "script": "Gate_Route29_Route46_EventScript_ToRoute29"
     }
   ],
   "bg_events": [],

@@ -1180,7 +1180,10 @@
     "Route25_BillsHouse_hns",
     "Gate_SaffronCity_Route6_hns",
     "Gate_SaffronCity_Route5_hns",
-    "IndigoPlateau_PokemonCenter_hns"
+    "IndigoPlateau_PokemonCenter_hns",
+    "Gate_Route29_Route46_hns",
+    "Route30_House_hns",
+    "Route30_MrPokemonsHouse_hns"
   ],
   "gMapGroup_PlasticOxJohtoKanto": [
     "Route29_hns",

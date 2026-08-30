@@ -117,8 +117,7 @@ def main():
     W.cross_connection(g, "UP", MAP_ROUTE101, "r101")
     W.walk_to_edge(g, "north"); W.cross_connection(g, "UP", MAP_OLDALE, "oldale")
     navigate(g, (1, 10)); W.cross_connection(g, "LEFT", MAP_R29, "r29e")
-    navigate(g, (38, 4)); navigate(g, (38, 0))
-    W.cross_connection(g, "UP", MAP_R46, "r46s")
+    L1.route29_to_route46(g)
     navigate(g, (20, 12)); L1.enter_warp(g, (20, 12), "UP", MAP_DARKCAVE, "dc_in")
     navigate(g, (14, 19), avoid={(14, 20), (56, 46)})
     for _ in range(30):
@@ -130,7 +129,7 @@ def main():
     g.shot("leg3_01_r31.png")
 
     # ---------- Azalea/Ilex gate -> Ilex Forest ----------
-    L1.enter_warp(g, (10, 9), "LEFT", MAP_GATE, "gate_in")
+    L1.enter_warp(g, (5, 10), "LEFT", MAP_GATE, "gate_in")
     stage("gate_in")
 
     # cross to the forest-side door (coord) and enter Ilex
