@@ -780,8 +780,8 @@ u8 GetEggMoves(struct Pokemon *pokemon, u16 *eggMoves)
 
     for (i = 0; eggMoveLearnset[i] != MOVE_UNAVAILABLE; i++)
     {
-        eggMoves[i] = eggMoveLearnset[i];
-        numEggMoves++;
+        if (!IsRemovedMove(eggMoveLearnset[i]))
+            eggMoves[numEggMoves++] = eggMoveLearnset[i];
     }
 
     return numEggMoves;
@@ -798,8 +798,8 @@ u8 GetEggMovesBySpecies(enum Species species, u16 *eggMoves)
 
     for (i = 0; eggMoveLearnset[i] != MOVE_UNAVAILABLE; i++)
     {
-        eggMoves[i] = eggMoveLearnset[i];
-        numEggMoves++;
+        if (!IsRemovedMove(eggMoveLearnset[i]))
+            eggMoves[numEggMoves++] = eggMoveLearnset[i];
     }
 
     return numEggMoves;
@@ -809,6 +809,9 @@ bool8 SpeciesCanLearnEggMove(enum Species species, enum Move move) //Move search
 {
     u32 i;
     const u16 *eggMoveLearnset = GetSpeciesEggMoves(species);
+
+    if (IsRemovedMove(move))
+        return FALSE;
 
     for (i = 0; eggMoveLearnset[i] != MOVE_UNAVAILABLE; i++)
     {

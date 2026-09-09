@@ -1488,6 +1488,31 @@ u8 GetLevelFromBoxMonExp(struct BoxPokemon *boxMon)
     return level - 1;
 }
 
+bool32 IsRemovedMove(enum Move move)
+{
+    switch (move)
+    {
+    case MOVE_DRAGON_RAGE:
+    case MOVE_SONIC_BOOM:
+    case MOVE_SWAGGER:
+    case MOVE_DOUBLE_TEAM:
+    case MOVE_MINIMIZE:
+    case MOVE_FLASH:
+    case MOVE_KINESIS:
+    case MOVE_SAND_ATTACK:
+    case MOVE_SMOKESCREEN:
+    case MOVE_ACUPRESSURE:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
+static bool32 IsRemovedHeldItem(enum Item item)
+{
+    return item == ITEM_BRIGHT_POWDER;
+}
+
 u16 GiveMoveToMon(struct Pokemon *mon, enum Move move)
 {
     return GiveMoveToBoxMon(&mon->box, move);
@@ -1496,6 +1521,9 @@ u16 GiveMoveToMon(struct Pokemon *mon, enum Move move)
 u16 GiveMoveToBoxMon(struct BoxPokemon *boxMon, enum Move move)
 {
     s32 i;
+
+    if (IsRemovedMove(move))
+        return MON_ALREADY_KNOWS_MOVE;
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
         enum Move existingMove = GetBoxMonData(boxMon, MON_DATA_MOVE1 + i);
@@ -1515,6 +1543,9 @@ u16 GiveMoveToBoxMon(struct BoxPokemon *boxMon, enum Move move)
 u16 GiveMoveToBattleMon(struct BattlePokemon *mon, enum Move move)
 {
     s32 i;
+
+    if (IsRemovedMove(move))
+        return MON_ALREADY_KNOWS_MOVE;
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
@@ -1536,6 +1567,9 @@ void SetMonMoveSlot(struct Pokemon *mon, enum Move move, u8 slot)
 
 void SetBoxMonMoveSlot(struct BoxPokemon *mon, enum Move move, u8 slot)
 {
+    if (IsRemovedMove(move))
+        move = MOVE_NONE;
+
     SetBoxMonData(mon, MON_DATA_MOVE1 + slot, &move);
     u32 pp = GetMovePP(move);
     SetBoxMonData(mon, MON_DATA_PP1 + slot, &pp);
@@ -1543,6 +1577,9 @@ void SetBoxMonMoveSlot(struct BoxPokemon *mon, enum Move move, u8 slot)
 
 static void SetMonMoveSlot_KeepPP(struct Pokemon *mon, enum Move move, u8 slot)
 {
+    if (IsRemovedMove(move))
+        move = MOVE_NONE;
+
     u8 ppBonuses = GetMonData(mon, MON_DATA_PP_BONUSES);
     u8 currPP = GetMonData(mon, MON_DATA_PP1 + slot);
     u8 newPP = CalculatePPWithBonus(move, ppBonuses, slot);
@@ -1554,6 +1591,9 @@ static void SetMonMoveSlot_KeepPP(struct Pokemon *mon, enum Move move, u8 slot)
 
 void SetBattleMonMoveSlot(struct BattlePokemon *mon, enum Move move, u8 slot)
 {
+    if (IsRemovedMove(move))
+        move = MOVE_NONE;
+
     mon->moves[slot] = move;
     mon->pp[slot] = GetMovePP(move);
 }
@@ -2606,6 +2646,29 @@ void SetMonData(struct Pokemon *mon, s32 field, const void *dataArg)
 void SetBoxMonData(struct BoxPokemon *boxMon, s32 field, const void *dataArg)
 {
     const u8 *data = dataArg;
+    u16 sanitizedValue;
+
+    if (field == MON_DATA_HELD_ITEM && IsRemovedHeldItem(*(const u16 *)dataArg))
+    {
+        sanitizedValue = ITEM_NONE;
+        data = (const u8 *)&sanitizedValue;
+    }
+    else if (field >= MON_DATA_MOVE1 && field <= MON_DATA_MOVE4 && IsRemovedMove(*(const u16 *)dataArg))
+    {
+        sanitizedValue = MOVE_NONE;
+        data = (const u8 *)&sanitizedValue;
+    }
+    // Plastic Ox gives every Pokemon the same innate potential, including
+    // wild encounters, gifts, eggs and explicitly authored trainer parties.
+    // Keep the engine's battle-test fixtures free to specify their own IVs.
+#if !TESTING
+    const u32 perfectIVs = 0x3FFFFFFF;
+    const u8 perfectIV = MAX_PER_STAT_IVS;
+    if (field == MON_DATA_IVS)
+        data = (const u8 *)&perfectIVs;
+    else if (field >= MON_DATA_HP_IV && field <= MON_DATA_SPDEF_IV)
+        data = &perfectIV;
+#endif
 
     if (field > MON_DATA_ENCRYPT_SEPARATOR)
     {
@@ -5136,6 +5199,8 @@ bool8 TryIncrementMonLevel(struct Pokemon *mon)
 u8 CanLearnTeachableMove(enum Species species, enum Move move)
 {
     const u16 *teachableLearnset = GetSpeciesTeachableLearnset(species);
+    if (IsRemovedMove(move))
+        return FALSE;
     if (species == SPECIES_EGG)
         return FALSE;
     for (u32 i = 0; teachableLearnset[i] != MOVE_UNAVAILABLE; i++)
@@ -5153,7 +5218,8 @@ u8 GetLevelUpMovesBySpecies(enum Species species, u16 *moves)
     const struct LevelUpMove *learnset = GetSpeciesLevelUpLearnset(species);
 
     for (i = 0; i < MAX_LEVEL_UP_MOVES && learnset[i].move != LEVEL_UP_MOVE_END; i++)
-         moves[numMoves++] = learnset[i].move;
+        if (!IsRemovedMove(learnset[i].move))
+            moves[numMoves++] = learnset[i].move;
 
      return numMoves;
 }
