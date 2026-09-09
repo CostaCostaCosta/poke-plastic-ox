@@ -14,7 +14,7 @@
     "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
     "connections": [
         {
-            "map": "MAP_ECRUTEAKCITY_HNS",
+            "map": "MAP_ECRUTEAK_CITY_HNS",
             "direction": "left",
             "offset": -19
         }

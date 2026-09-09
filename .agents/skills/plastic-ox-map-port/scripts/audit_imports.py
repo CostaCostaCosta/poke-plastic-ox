@@ -32,6 +32,9 @@ def tileset_headers(text: str) -> dict[str, dict[str, str]]:
         r"const struct Tileset\s+(gTileset_\w+)\s*=\s*\{(.*?)\n\};", text, re.S
     ):
         values = {}
+        for field in ("isCompressed", "isSecondary"):
+            match = re.search(rf"\.{field}\s*=\s*(TRUE|FALSE)", body)
+            values[field] = match.group(1) if match else "FALSE"
         for field in ("tiles", "palettes", "metatiles", "metatileAttributes"):
             match = re.search(rf"\.{field}\s*=\s*(g\w+)", body)
             if match:
@@ -111,6 +114,10 @@ def main() -> int:
                 errors.append(f"{label}: unknown {role} tileset {tileset_symbol}")
                 continue
             used = [value - start for value in block_ids if start <= value < start + capacity]
+            if header["isCompressed"] != "TRUE":
+                errors.append(f"{label}: {tileset_symbol} must decompress its fastSmol graphics")
+            if header["isSecondary"] != ("TRUE" if role == "secondary" else "FALSE"):
+                errors.append(f"{label}: {tileset_symbol} has wrong isSecondary palette offset")
             max_used = max(used, default=-1)
 
             tile_path = tile_paths.get(header.get("tiles", ""))

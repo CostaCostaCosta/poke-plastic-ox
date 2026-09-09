@@ -203,7 +203,11 @@ Do not:
 - blame Team Rocket
 - tell the player they are destined to solve anything
 
-The player receives a starter and Pokédex assignment.
+Professor Elm and Professor Birch are visiting Oak to compare the changed habitats. Each introduces their research and offers advice about caring for Pokémon and exploring.
+
+The player chooses one level-5 starter: **Treecko** from Birch, **Squirtle** from Oak, or **Cyndaquil** from Elm. Oak provides a Pokédex assignment and five Poké Balls, then points the player toward Oldale and Cherrygrove. All Pokémon have perfect **31 IVs in every stat**.
+
+Mom offers directions before the lab visit and healing afterward. Daisy explains the nearby roads, and the professors remain available for follow-up conversations.
 
 Pallet should feel safe and familiar.
 

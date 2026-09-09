@@ -52,6 +52,10 @@ For a new seam, cave transition, or ledge, read
 [references/port-verification.md](references/port-verification.md) before
 editing. It contains the required coordinate and runtime assertions.
 
+For repeated buildings or sliced trees after a camera connection, also use the
+"Camera redraw and border phase" section of that reference. Check redraw
+timing and border repetition before changing map geometry or connection offsets.
+
 ## Prove the result
 
 Build with the repository's configured devkitARM command. Re-run the relevant

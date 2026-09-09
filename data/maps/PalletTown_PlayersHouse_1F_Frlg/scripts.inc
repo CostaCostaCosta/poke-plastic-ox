@@ -4,6 +4,9 @@ PalletTown_PlayersHouse_1F_Frlg_MapScripts::
 PalletTown_PlayersHouse_1F_EventScript_Mom::
 	lock
 	faceplayer
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PalletTown_Mom_Rest
+	goto_if_unset FLAG_POX_STORY_STARTER, PalletTown_Mom_BeforeStarter
+PalletTown_Mom_Rest::
 	msgbox PalletTown_PlayersHouse_1F_Text_YouShouldTakeQuickRest
 	closemessage
 	call Common_EventScript_OutOfCenterPartyHeal
@@ -25,3 +28,16 @@ PalletTown_PlayersHouse_1F_Text_LookingGreatTakeCare::
 PalletTown_PlayersHouse_1F_Text_TV::
 	.string "A travel program is showing roads\n"
 	.string "that connect distant regions.$"
+
+PalletTown_Mom_BeforeStarter::
+	msgbox PalletTown_Mom_Text_Lab, MSGBOX_DEFAULT
+	release
+	end
+
+PalletTown_Mom_Text_Lab::
+	.string "MOM: Today's the day, {PLAYER}!\n"
+	.string "PROFESSOR OAK is waiting at his lab.\p"
+	.string "His friends ELM and BIRCH brought\n"
+	.string "POKéMON for you to meet.\p"
+	.string "The lab is southeast of our house.\n"
+	.string "Come home whenever you need a rest!$"

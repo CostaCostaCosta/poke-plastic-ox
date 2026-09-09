@@ -60,3 +60,36 @@ For each direction across a seam or warp, assert:
 Fresh screenshots are mandatory for malformed-tile regressions. Compare them
 to the source map or a known-good target-family map, not to an old corrupted
 Plastic-Ox capture.
+
+## Camera redraw and border phase
+
+Pallet Town / Route 101 at revision `7fa02b70f0` exposed two independent
+rendering bugs without incorrect source blockmaps or connection offsets:
+
+- `CameraMove` changed the destination position and redrew the whole map before
+  `AddCameraTileOffset` advanced the circular BG buffer. Scrolling then replaced
+  rows against an offset full view, making roofs and trees appear duplicated.
+  Clear the saved source view there, but request the full redraw for
+  `RedrawMapSlicesForCameraUpdate`, after the tile offset advances. Both camera
+  update variants must consume the request; a full draw/reset clears it.
+- The incompatible-tileset margin fallback stretched one blocked edge row,
+  repeating partial trees. Use `GetBorderBlockAt` for blocked edge terrain so
+  the layout's border width/height and coordinate phase remain intact. Extend
+  walkable edge blocks to keep the entrance open. Never copy foreign metatile
+  IDs to make the neighbor visible under the current tileset.
+
+Run the focused regression on a freshly built ROM:
+
+```sh
+LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 \
+  /home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_camera_seam.py
+```
+
+Add `--triggers` to test the separately rebuilt story ROM. The test warps to
+Route 101's south entrance, walks both seam directions, checks Pallet's border
+phase and open path, checks every crossing frame for forced blank, and compares
+the maintained 15x15-metatile BG view with a stationary full redraw at identical
+coordinates. Exclude the unused sixteenth buffer row/column from that comparison.
+Inspect `plastic_ox/demo/shots/camera_*.png`, including the view after walking
+farther into Pallet. A stationary reference redraw repairs corruption, so take
+the actual screenshot and buffers before invoking it.

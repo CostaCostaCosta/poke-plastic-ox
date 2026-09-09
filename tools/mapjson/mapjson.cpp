@@ -216,6 +216,7 @@ string generate_map_connections_text(Json map_data) {
     text << get_generated_warning("data/maps/" + mapName + "/map.json", true);
     text << mapName << "_MapConnectionsList:\n";
 
+    size_t connectionCount = 0;
     for (auto &connection : map_data["connections"].array_items()) {
         auto it = find(existing_maps.begin(), existing_maps.end(), json_to_string(connection, "map"));
         if (it == existing_maps.end())
@@ -224,10 +225,11 @@ string generate_map_connections_text(Json map_data) {
              << json_to_string(connection, "direction") << ", "
              << json_to_string(connection, "offset") << ", "
              << json_to_string(connection, "map") << "\n";
+        connectionCount++;
     }
 
     text << "\n" << mapName << "_MapConnections:\n"
-         << "\t.4byte " << map_data["connections"].array_items().size() << "\n"
+         << "\t.4byte " << connectionCount << "\n"
          << "\t.4byte " << mapName << "_MapConnectionsList\n\n";
 
     return text.str();

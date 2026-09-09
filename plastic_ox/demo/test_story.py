@@ -86,6 +86,14 @@ class StoryGame(GBA):
         assert self.u8(mon+19)&7 == 2, 'Bad Egg/empty/egg party slot'
         return word&2047
 
+    def box_ivs(self, mon):
+        stride = self.sizes['gParties'] // 24
+        personality = self.u32(mon)
+        offset = self.u8(self.syms['sSubstructOffsets'] + 3 * 24 + personality % 24)
+        block = (stride - 32 - 20) // 4
+        word = self.u32(mon + 32 + block * offset + 4) ^ personality ^ self.u32(mon + 4)
+        return [(word >> (5 * stat)) & 31 for stat in range(6)]
+
     def begin(self,name):
         assert self.u8(self.syms['sGlobalScriptContextStatus'])==2, 'previous field script still active'
         ctx=self.syms['sGlobalScriptContext']
@@ -124,15 +132,114 @@ class StoryGame(GBA):
 
 
 def starter_tests():
-    for name,species in [('Treecko',252),('Torchic',255),('Mudkip',258)]:
+    for name,species in [('Treecko',252),('Squirtle',7),('Cyndaquil',155)]:
         g=StoryGame()
         assert g.flag('FLAG_POX_TRIGGERS_ENABLED')
         g.run('Pox_'+name)
         assert g.count()==1 and g.party_species()==species,(name,g.count(),g.party_species())
+        assert g.box_ivs(g.syms['gParties']) == [31]*6
+        assert g.flag('FLAG_POX_LAB_INTRO')
         assert g.flag('FLAG_POX_STORY_STARTER') and g.flag('FLAG_SYS_POKEDEX_GET')
-        g.run('Pox_Treecko')
-        assert g.count()==1,'starter duplicated'
-        print(name+': correct species, no duplicate, Pokedex enabled',flush=True)
+        assert g.flag('FLAG_POX_STARTER_SUPPLIES')
+        assert g.flag('FLAG_POX_ELM_TMS')
+        pocket = g.syms['gBagPockets'] + 2 * (g.sizes['gBagPockets'] // 5)
+        slots = g.u32(pocket)
+        assert set(range(582, 632)).issubset(
+            {g.u16(slots + 4 * i) for i in range(64)}), 'missing TMs'
+        for other in ['Treecko','Squirtle','Cyndaquil','Oak','Elm','Birch']:
+            g.run('Pox_'+other)
+            assert g.count()==1,'starter duplicated'
+        print(name+': correct species, six 31 IVs, no duplicates, introduction, Pokedex and supplies PASS',flush=True)
+
+    g=StoryGame()
+    g.begin('Pox_Squirtle')
+    for _ in range(600):
+        g.tap(K.KEY_B,hold=2,wait=10)
+        if g.u8(g.syms['sGlobalScriptContextStatus'])==2:
+            break
+    else:
+        raise AssertionError('declining starter did not release controls')
+    assert g.count()==0 and not g.flag('FLAG_POX_STORY_STARTER')
+    g.run('Pox_Cyndaquil')
+    assert g.party_species()==155
+    print('Decline leaves every starter available; another choice succeeds PASS',flush=True)
+
+    g=StoryGame()
+    g.warp('PalletTown_ProfessorOaksLab_Frlg',6,11)
+    for _ in range(600):
+        g.tap(K.KEY_A,hold=2,wait=10)
+        if g.flag('FLAG_POX_LAB_INTRO') and g.u8(g.syms['sGlobalScriptContextStatus'])==2:
+            break
+    else:
+        raise AssertionError('lab entrance introduction did not finish')
+    assert g.count()==0,'lab entrance forced a starter'
+    assert (g.state()['x'], g.state()['y']) == (6, 6), 'player did not approach Oak'
+    data=json.loads((ROOT/'data/maps/PalletTown_ProfessorOaksLab_Frlg/map.json').read_text())
+    for obj in data['object_events']:
+        if obj['script'] in ['Pox_Oak','Pox_Elm','Pox_Birch','Pox_Treecko','Pox_Squirtle','Pox_Cyndaquil']:
+            ox,oy=obj['x'],obj['y']
+            path=find_path_elev(g,lambda x,y,_w,_h:abs(x-ox)+abs(y-oy)==1)
+            assert path,('unreachable lab actor',obj['script'])
+    navigate(g,(9,5))
+    g.tap(K.KEY_UP,hold=2,wait=12)
+    for _ in range(600):
+        g.tap(K.KEY_A,hold=2,wait=10)
+        if g.flag('FLAG_POX_STARTER_SUPPLIES') and g.u8(g.syms['sGlobalScriptContextStatus'])==2:
+            break
+    assert g.count()==1 and g.party_species()==7,'middle ball must give Squirtle'
+    g.shot('pallet_lab_starter.png')
+    g.warp('PalletTown_Frlg',16,14)
+    g.warp('PalletTown_ProfessorOaksLab_Frlg',6,11)
+    assert g.u8(g.syms['sGlobalScriptContextStatus'])==2,'introduction replayed'
+    assert g.count()==1
+    print('Lab entry, every professor/ball reachable, physical middle-ball choice, return visit PASS',flush=True)
+
+
+def iv_tests():
+    g=StoryGame()
+    stride=g.sizes['gParties']//24
+    def opcode(native):
+        table=g.syms['gScriptCmdTable']
+        for i in range((g.syms['gScriptCmdTableEnd']-table)//4):
+            if g.u32(table+i*4)&~0x02000001 == g.syms[native]&~1:
+                return i
+        raise AssertionError('missing opcode: '+native)
+    def bytecode(code):
+        ptr=g.syms['gStringVar4']
+        for i,b in enumerate(code+bytes([2])):
+            g.write(ptr+i,b)
+        g.run(ptr)
+    # A gift explicitly requests zero IVs in every stat. The gameplay rule
+    # must override individual stat writes, not just random generation.
+    code=bytes([opcode('ScrCmd_callnative')])+struct.pack('<I',g.syms['ScrCmd_createmon']|1)
+    code+=struct.pack('<BBHHI',0,6,7,5,sum(1<<i for i in range(11,17)))
+    code+=struct.pack('<6H',0,0,0,0,0,0)
+    bytecode(code)
+    assert g.party_species()==7 and g.box_ivs(g.syms['gParties'])==[31]*6
+    bytecode(bytes([opcode('ScrCmd_giveegg')])+struct.pack('<H',155))
+    assert g.count()==2
+    assert g.u8(g.syms['gParties']+stride+19)&4,'gift is not an egg'
+    assert g.box_ivs(g.syms['gParties']+stride)==[31]*6
+    print('Explicit zero-IV gift and egg creation: six 31 IVs PASS',flush=True)
+
+    g.run('Pox_Treecko')
+    g.flag('FLAG_POX_STORY_ILEX',True)
+    data=json.loads((ROOT/'data/maps/RustboroCity_Gym/map.json').read_text())
+    obj=next(o for o in data['object_events'] if o['script']=='Pox_Roxanne')
+    g.warp('RustboroCity_Gym',obj['x'],obj['y']+1)
+    g.tap(K.KEY_UP,hold=2,wait=12)
+    for _ in range(300):
+        g.tap(K.KEY_A,hold=2,wait=10)
+        if g.u32(g.syms['gBattleTypeFlags'])&8:
+            break
+    else:
+        raise AssertionError('IV test trainer battle did not start')
+    g.frame(240)
+    count=g.u8(g.syms['gPartiesCount']+1)
+    assert count>0
+    for slot in range(count):
+        assert g.box_ivs(g.syms['gParties']+(6+slot)*stride)==[31]*6
+    print('Trainer party packed IV assignment: six 31 IVs on every opponent PASS',flush=True)
 
 
 def gift_tests():
@@ -148,6 +255,7 @@ def gift_tests():
         count=g.count()
         g.run('Pox_'+name)
         assert g.count()==count+1 and g.party_species(count)==133,name
+        assert g.box_ivs(g.syms['gParties'] + count * (g.sizes['gParties']//24)) == [31]*6
         g.run('Pox_'+name)
         assert g.count()==count+1,'repeat gift: '+name
         print(name+': prerequisites and one-time Eevee PASS',flush=True)
@@ -164,6 +272,16 @@ def gift_tests():
     g.run('Pox_Space')
     assert not g.flag('FLAG_POX_GIFT_SPACE') and g.count()==6
     print('Full party sends Eevee to PC; full PC leaves gift retryable: PASS',flush=True)
+    g.flag('FLAG_POX_STORY_STARTER',False)
+    g.run('Pox_Cyndaquil')
+    assert not g.flag('FLAG_POX_STORY_STARTER') and g.count()==6
+    for i in range(boxsize):
+        g.write(storage+i,0)
+    g.run('Pox_Cyndaquil')
+    assert g.flag('FLAG_POX_STORY_STARTER') and g.box_species(storage)==155
+    assert g.box_ivs(storage)==[31]*6
+    print('Full storage preserves starter choice; freeing a PC slot permits retry PASS',flush=True)
+
 
 
 def gate_tests():
@@ -285,8 +403,8 @@ def travel_tests():
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser()
-    parser.add_argument('suite',choices=['starters','gifts','gates','travel','battles','callbacks','all'],default='all',nargs='?')
+    parser.add_argument('suite',choices=['starters','ivs','gifts','gates','travel','battles','callbacks','all'],default='all',nargs='?')
     args=parser.parse_args()
-    for name,fn in [('starters',starter_tests),('gifts',gift_tests),('gates',gate_tests),('travel',travel_tests),('battles',battle_tests),('callbacks',callback_tests)]:
+    for name,fn in [('starters',starter_tests),('ivs',iv_tests),('gifts',gift_tests),('gates',gate_tests),('travel',travel_tests),('battles',battle_tests),('callbacks',callback_tests)]:
         if args.suite in [name,'all']:
             fn()

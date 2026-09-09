@@ -7,6 +7,18 @@
       "script": "Pox_Oak"
     },
     {
+      "map": "PalletTown_ProfessorOaksLab_Frlg",
+      "x": 4,
+      "y": 5,
+      "script": "Pox_Elm"
+    },
+    {
+      "map": "PalletTown_ProfessorOaksLab_Frlg",
+      "x": 11,
+      "y": 5,
+      "script": "Pox_Birch"
+    },
+    {
       "map": "CherrygroveCity_hns",
       "x": 57,
       "y": 8,

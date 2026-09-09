@@ -242,23 +242,23 @@ for label, text in [("NotReady", "There is still something to do before you can 
     emit(f"Pox_{label}::\n\tmsgbox Pox_Text_{label}, MSGBOX_DEFAULT\n\treleaseall\n\tend")
     speech("Pox_Text_" + label, text)
 
-# Pallet: each ball has its own choice; declined/full gifts do not consume it.
-for name, species in [("Treecko", "TREECKO"), ("Torchic", "TORCHIC"), ("Mudkip", "MUDKIP")]:
-    start(name)
-    emit(f"\tgoto_if_set {starter}, Pox_Done\n\tmsgbox Pox_Text_{name}, MSGBOX_YESNO\n\tgoto_if_eq VAR_RESULT, NO, Pox_Release\n\tgivemon SPECIES_{species}, 5\n\tgoto_if_eq VAR_RESULT, MON_CANT_GIVE, Pox_NoRoom\n\tsetflag {starter}\n\tsetflag FLAG_SYS_POKEMON_GET\n\tsetflag FLAG_SYS_POKEDEX_GET\n\tsetflag FLAG_POX_HIDE_R29_GUARD\n\tmsgbox Pox_Text_Oak, MSGBOX_DEFAULT")
-    finish()
-    speech("Pox_Text_" + name, f"OAK: Will you choose {species}?")
-speech("Pox_Text_Oak", "OAK: ELM, BIRCH and I are comparing the changed habitats.|Take this POKéDEX. Meet POKéMON, earn BADGES, and tell us what you find. CHERRYGROVE is west of OLDALE.")
+# Pallet's authored dialogue lives separately from the chapter manifest.
+emit('.include "data/scripts/plastic_ox_pallet.inc"')
 lab = load_map("PalletTown_ProfessorOaksLab_Frlg")
-balls = [o for o in lab['object_events'] if 'Ball' in o['script'] or o['script'] in ['Pox_Treecko','Pox_Torchic','Pox_Mudkip']]
+balls = [o for o in lab['object_events'] if o['graphics_id'] == 'OBJ_EVENT_GFX_ITEM_BALL']
 assert len(balls) == 3
-for obj, name in zip(balls, ["Treecko", "Torchic", "Mudkip"]):
+for obj, name in zip(balls, ["Treecko", "Squirtle", "Cyndaquil"]):
     obj['script'] = 'Pox_' + name
+    obj['flag'] = starter
+# Remove the old automatic Treecko choice and unused imported rival.
+lab['coord_events'] = []
+for obj in lab['object_events']:
+    if obj['script'] == 'PalletTown_ProfessorOaksLab_EventScript_Rival':
+        obj['flag'] = 'FLAG_POX_HIDE_UNUSED_ACTOR'
 save_map("PalletTown_ProfessorOaksLab_Frlg", lab)
-start("Oak")
-emit("\tmsgbox Pox_Text_Oak, MSGBOX_DEFAULT")
-finish()
 add_npc("PalletTown_ProfessorOaksLab_Frlg", "Oak", 6, 5, "OBJ_EVENT_GFX_PROF_OAK")
+add_npc("PalletTown_ProfessorOaksLab_Frlg", "Elm", 4, 5, "OBJ_EVENT_GFX_SCIENTIST")
+add_npc("PalletTown_ProfessorOaksLab_Frlg", "Birch", 11, 5, "OBJ_EVENT_GFX_PROF_BIRCH")
 start("StarterGate")
 emit(f"\tgoto_if_set {starter}, Pox_Release\n\tmsgbox Pox_Text_StarterGate, MSGBOX_DEFAULT\n\twarp MAP_PALLET_TOWN, 10, 4\n\twaitstate")
 finish()

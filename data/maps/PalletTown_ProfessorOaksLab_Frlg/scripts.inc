@@ -1,5 +1,10 @@
 PalletTown_ProfessorOaksLab_Frlg_MapScripts::
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, PalletTown_Lab_OnFrame
 	.byte 0
+
+PalletTown_Lab_OnFrame:
+	map_script_2 VAR_TEMP_1, 0, Pox_LabEntrance
+	.2byte 0
 
 PalletTown_ProfessorOaksLab_EventScript_ProfOak::
 	lock
@@ -77,18 +82,16 @@ PalletTown_ProfessorOaksLab_Text_Visitor::
 	.string "I'm studying how regions connect.$"
 
 PalletTown_ProfessorOaksLab_Text_Aide::
-	.string "We're cataloging reused map assets.$"
+	.string "We're comparing POKéMON habitats.$"
 
 PalletTown_ProfessorOaksLab_Text_PokeBall::
 	.string "The POKé BALL is for display.$"
 
 PalletTown_ProfessorOaksLab_Text_Pokedex::
-	.string "A POKéDEX rests on the table.$"
+	.string "A POKéDEX! It records information\nabout POKéMON seen and caught.$"
 
 PalletTown_ProfessorOaksLab_Text_Computer::
-	.string "Research notes fill the screen.$"
+	.string "Notes compare KANTO, JOHTO, and\nHOENN habitats along the new roads.$"
 
 PalletTown_ProfessorOaksLab_Text_Sign::
 	.string "POKéMON RESEARCH NOTES$"
-PalletTown_ProfessorOaksLab_EventScript_StarterBall::
-	goto Pox_Treecko

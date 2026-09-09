@@ -264,9 +264,9 @@ static bool8 AreConnectionTilesetsCompatible(const struct MapHeader *mapHeader, 
 // A connection normally copies the neighboring map's blocks into the current
 // map's seven-block camera margin. That only renders correctly when both maps
 // use the same tilesets: metatile ids have no meaning outside their tileset.
-// For cross-generation stitches, extend the current map's touching edge into
-// the margin instead. The connection geometry and collision remain intact,
-// while foreign metatile ids are never drawn with the wrong graphics.
+// For cross-generation stitches, extend walkable edge blocks into the margin
+// and use the current map's repeating border for blocked terrain. Stretching
+// a single blocked edge row/column repeats partial trees instead of whole ones.
 static void FillConnectionWithCurrentMapEdge(const struct MapHeader *mapHeader, enum Connection direction, s32 x, s32 y, s32 width, s32 height)
 {
     const struct MapLayout *mapLayout = mapHeader->mapLayout;
@@ -297,7 +297,11 @@ static void FillConnectionWithCurrentMapEdge(const struct MapHeader *mapHeader, 
                 srcX = mapLayout->width - 1;
 
             if (srcX >= 0 && srcX < mapLayout->width && srcY >= 0 && srcY < mapLayout->height)
+            {
                 block = mapLayout->map[srcX + srcY * mapLayout->width];
+                if (block & MAPGRID_COLLISION_MASK)
+                    block = GetBorderBlockAt(destX, destY);
+            }
             else
                 block = GetBorderBlockAt(destX, destY);
 
@@ -847,9 +851,9 @@ bool8 CameraMove(s32 x, s32 y)
         if (redrawMapView)
         {
             // Saved map views contain metatile ids from the source map. They
-            // cannot be reused after switching primary tilesets.
+            // cannot be reused after switching either tileset.
             ClearSavedMapView();
-            DrawWholeMapView();
+            RequestWholeMapViewRedraw();
         }
         else
         {

@@ -947,7 +947,10 @@ bool8 LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
             ShowMapNamePopup();
     }
     SetMinimumOWESpawnTimer();
-    return primaryTilesetChanged;
+    // Even a secondary-only change makes saved source metatile IDs unsafe.
+    // The connection margins also differ when either tileset differs.
+    return primaryTilesetChanged
+        || previousMapLayout->secondaryTileset != gMapHeader.mapLayout->secondaryTileset;
 }
 
 static void LoadMapFromWarp(bool32 a1)

@@ -23,6 +23,11 @@
 #define FLAG_POX_STORY_SILPH     (POX_FLAGS_START + 0x05)
 #define FLAG_POX_TRIGGERS_ENABLED (POX_FLAGS_START + 0x06)
 
+// Pallet opening: persistent introduction and retryable supply gift.
+#define FLAG_POX_LAB_INTRO (POX_FLAGS_START + 0x07)
+#define FLAG_POX_STARTER_SUPPLIES (POX_FLAGS_START + 0x08)
+#define FLAG_POX_ELM_TMS (POX_FLAGS_START + 0x09)
+
 // Trigger-build-only NPCs hidden in the walkable build (and re-hidden/removed
 // by their story beats in the trigger build).
 #define FLAG_POX_HIDE_R29_GUARD         (POX_FLAGS_START + 0x0C) // beat 0: R29 gate guard leaves once starter is chosen

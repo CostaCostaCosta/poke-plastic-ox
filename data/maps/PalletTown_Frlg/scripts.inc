@@ -46,12 +46,14 @@ PalletTown_EventScript_TrainerTips::
 
 PalletTown_Text_FatMan::
 	.string "Technology is incredible!\p"
-	.string "Paths can join places from entirely\n"
-	.string "different adventures.$"
+	.string "A POKéDEX can record every POKéMON\n"
+	.string "you meet on your travels.$"
 
 PalletTown_Text_SignLady::
-	.string "This is PALLET TOWN.\p"
-	.string "ROUTE 101 is just ahead.$"
+	.string "PROFESSORS ELM and BIRCH are visiting\n"
+	.string "OAK at his lab.\p"
+	.string "Three professors in our little town!\n"
+	.string "They seem excited about something.$"
 
 PalletTown_Text_ProfOakTeam::
 	.string "OAK: Before you head to LANCE, I've\n"
@@ -73,7 +75,7 @@ PalletTown_Text_PlayersHouseSign::
 	.string "{PLAYER}'s house$"
 
 PalletTown_Text_RivalsHouseSign::
-	.string "A quiet house in PALLET TOWN$"
+	.string "DAISY and BLUE's house$"
 
 PalletTown_Text_TownSign::
 	.string "PALLET TOWN\n"

@@ -86,14 +86,14 @@ EXPLICIT_CONNS = {
     ],
     "Route37_hns": [
         {"map": "MAP_ROUTE36_HNS", "direction": "down", "offset": -22},
-        {"map": "MAP_ECRUTEAKCITY_HNS", "direction": "up", "offset": 16},
+        {"map": "MAP_ECRUTEAK_CITY_HNS", "direction": "up", "offset": 16},
     ],
     "EcruteakCity_hns": [
         {"map": "MAP_ROUTE37_HNS", "direction": "down", "offset": -16},
         {"map": "MAP_ROUTE38_HNS", "direction": "right", "offset": 19},
     ],
     "Route38_hns": [
-        {"map": "MAP_ECRUTEAKCITY_HNS", "direction": "left", "offset": -19},
+        {"map": "MAP_ECRUTEAK_CITY_HNS", "direction": "left", "offset": -19},
     ],
 }
 VERBATIM_CONNS = {

@@ -33,7 +33,7 @@ the first three lines.)
 | # | Town/Map | Beat | Test assertion (headless) |
 |---|---|---|---|
 | 0 | Pallet bedroom | Mom heals; exit blocked until starter | walk blocked w/o flag; after event R29 guard gone |
-| 1 | Oak's Lab | Starter choice (multichoice Treecko/Torchic/Mudkip per repo-native starters) → `givemon`; Pokédex speech; FLAG_POX_STORY_STARTER | party_species(0) matches choice |
+| 1 | Oak's Lab | Oak/Elm/Birch introduction; choose a level-5 Treecko, Squirtle, or Cyndaquil from the three balls; Pokédex assignment and five Poké Balls | species, six 31 IVs, cancellation, no duplicate gifts, physical ball interaction and revisit |
 | 2 | Cherrygrove | Guide Gent tour dialogue (convergence flavor) + running shoes remark | flags/text |
 | 3 | Ilex Forest | Farfetch'd-style side quest simplified: lost researcher NPC → escort dialogue → FLAG_POX_STORY_ILEX; gate opens Rustboro road | flag set |
 | 4 | Rustboro Gym | Roxanne LC-tier battle (trainers.party entry) → BADGE01 | battle occurs, badge flag set |
@@ -71,3 +71,42 @@ Bill: Eeveelution-led balanced OU team.
 - Rocket: annoyed criminals → curious investigators → power-hungry (3 stages).
 - Each rewritten NPC keeps the SPIRIT of its hns/original line but references the
   merged region or current story beat.
+
+## Pallet opening implementation
+
+The story ROM is `pokeemerald-triggers.gba`. Build with:
+
+```sh
+make -j8 TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM PLASTIC_OX_BUILD=triggers modern
+```
+
+`data/scripts/plastic_ox_pallet.inc` contains the authored lab dialogue and
+starter flow. `build_story.py` includes it and maintains the lab placements.
+Oak introduces the changed geography without revealing the central plot; Elm
+and Birch introduce themselves and their research. The entrance scene runs
+once, and each professor has dialogue before and after the choice. Elm uses
+the existing scientist overworld sprite; Oak and Birch use their own sprites.
+The left, middle and right balls contain Treecko, Squirtle and Cyndaquil.
+Declining preserves the choice; a full party and PC does not consume it.
+Once chosen, the three balls disappear and the northern starter gate opens.
+Oak supplies five Poké Balls once, with retry dialogue if the pocket is full.
+The Pokédex supports species from all three regions. Mom provides directions
+before selection and healing afterward; Daisy provides local travel advice.
+
+All Pokémon IV writes in gameplay are fixed at 31 in `SetBoxMonData`, covering
+random generation, individual overrides and packed trainer IVs. This applies
+across Plastic Ox builds. Battle-test fixtures retain control over their IVs.
+Existing save data is not migrated by this change.
+
+Validation:
+
+```sh
+python3 plastic_ox/alpha/build_story.py --check
+LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 /home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_story.py starters
+LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 /home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_story.py gifts
+LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 /home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_story.py ivs
+```
+
+### Pallet and Oldale opening fixes
+
+On the first lab visit, the player walks up the center aisle to Oak at (6, 6) before the professors introduce themselves. Elm gives all 50 configured TMs after starter selection; players who already chose a starter can collect them by speaking to Elm. The gift skips TMs already owned and can be retried if the pocket is full. Oldale’s mart employee explains the shop and gives a Potion in place, without an escort walk.
