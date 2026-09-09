@@ -17008,3 +17008,710 @@ Relaxed Nature
 - Surf
 - Ice Beam
 - Protect
+
+=== TRAINER_PLASTIC_OX_ROXANNE ===
+Name: ROXANNE
+Class: Leader
+Pic: Leader Roxanne
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Geodude
+Level: 5
+- Rock Throw
+- Tackle
+
+Onix
+Level: 5
+- Rock Tomb
+- Bind
+
+Nosepass
+Level: 5
+- Rock Tomb
+- Tackle
+
+=== TRAINER_PLASTIC_OX_WHITNEY ===
+Name: WHITNEY
+Class: Leader
+Pic: Leader Roxanne
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Delcatty
+Level: 18
+- Fake Out
+- Attract
+- Return
+
+Furret
+Level: 18
+- Quick Attack
+- Defense Curl
+- Return
+
+Miltank
+Level: 18
+- Rollout
+- Milk Drink
+- Stomp
+
+=== TRAINER_PLASTIC_OX_MORTY ===
+Name: MORTY
+Class: Leader
+Pic: Leader Roxanne
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Haunter
+Level: 25
+- Hypnosis
+- Shadow Ball
+- Night Shade
+
+Misdreavus
+Level: 25
+- Confuse Ray
+- Psybeam
+- Shadow Ball
+
+Sableye
+Level: 25
+- Fake Out
+- Night Shade
+- Recover
+
+=== TRAINER_PLASTIC_OX_WINONA ===
+Name: WINONA
+Class: Leader
+Pic: Leader Roxanne
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Swellow
+Level: 32
+- Quick Attack
+- Aerial Ace
+- Facade
+
+Pelipper
+Level: 32
+- Water Pulse
+- Protect
+- Wing Attack
+
+Altaria
+Level: 32
+- Dragon Dance
+- Dragon Breath
+- Aerial Ace
+
+=== TRAINER_PLASTIC_OX_BLAINE ===
+Name: BLAINE
+Class: Leader
+Pic: Leader Roxanne
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Ninetales
+Level: 38
+- Flamethrower
+- Will O Wisp
+- Confuse Ray
+
+Rapidash
+Level: 38
+- Fire Blast
+- Return
+- Sunny Day
+
+Arcanine
+Level: 38
+- Flamethrower
+- Extreme Speed
+- Crunch
+
+=== TRAINER_PLASTIC_OX_TATELIZA ===
+Name: TATE&LIZA
+Class: Leader
+Pic: Leader Roxanne
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Claydol
+Level: 44
+- Earthquake
+- Psychic
+- Protect
+
+Xatu
+Level: 44
+- Psychic
+- Reflect
+- Protect
+
+Lunatone
+Level: 44
+- Psychic
+- Hypnosis
+- Protect
+
+Solrock
+Level: 44
+- Rock Slide
+- Sunny Day
+- Protect
+
+=== TRAINER_PLASTIC_OX_BRUNO ===
+Name: BRUNO
+Class: Leader
+Pic: Leader Roxanne
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Heracross
+Level: 50
+- Megahorn
+- Brick Break
+- Rock Slide
+
+Machamp
+Level: 50
+- Cross Chop
+- Rock Slide
+- Bulk Up
+
+Hariyama
+Level: 50
+- Fake Out
+- Brick Break
+- Knock Off
+
+Snorlax
+Level: 50
+- Return
+- Rest
+- Curse
+
+=== TRAINER_PLASTIC_OX_CLAIR ===
+Name: CLAIR
+Class: Leader
+Pic: Leader Roxanne
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Gyarados
+Level: 55
+- Dragon Dance
+- Return
+- Earthquake
+
+Flygon
+Level: 55
+- Earthquake
+- Rock Slide
+- Dragon Claw
+
+Kingdra
+Level: 55
+- Rain Dance
+- Surf
+- Ice Beam
+
+Salamence
+Level: 55
+- Dragon Dance
+- Earthquake
+- Aerial Ace
+
+=== TRAINER_PLASTIC_OX_MOONGRUNT1 ===
+Name: GRUNT
+Class: Team Aqua
+Pic: Aqua Grunt M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Zubat
+Level: 12
+- Bite
+- Wing Attack
+
+Rattata
+Level: 12
+- Hyper Fang
+- Quick Attack
+
+=== TRAINER_PLASTIC_OX_MOONGRUNT2 ===
+Name: GRUNT
+Class: Team Aqua
+Pic: Aqua Grunt M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Zubat
+Level: 12
+- Bite
+- Wing Attack
+
+Rattata
+Level: 12
+- Hyper Fang
+- Quick Attack
+
+=== TRAINER_PLASTIC_OX_KIMONOVAPOREON ===
+Name: NAOKO
+Class: Beauty
+Pic: Beauty
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Vaporeon
+Level: 24
+- Quick Attack
+- Water Pulse
+
+=== TRAINER_PLASTIC_OX_KIMONOJOLTEON ===
+Name: SAYO
+Class: Beauty
+Pic: Beauty
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Jolteon
+Level: 24
+- Quick Attack
+- Shock Wave
+
+=== TRAINER_PLASTIC_OX_KIMONOFLAREON ===
+Name: ZUKI
+Class: Beauty
+Pic: Beauty
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Flareon
+Level: 24
+- Quick Attack
+- Flamethrower
+
+=== TRAINER_PLASTIC_OX_KIMONOESPEON ===
+Name: KUNI
+Class: Beauty
+Pic: Beauty
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Espeon
+Level: 24
+- Quick Attack
+- Psybeam
+
+=== TRAINER_PLASTIC_OX_KIMONOUMBREON ===
+Name: MIKI
+Class: Beauty
+Pic: Beauty
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Umbreon
+Level: 24
+- Quick Attack
+- Faint Attack
+
+=== TRAINER_PLASTIC_OX_WEATHER ===
+Name: RESEARCHER
+Class: Scientist Frlg
+Pic: Scientist Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Castform
+Level: 28
+- Water Pulse
+- Shock Wave
+- Weather Ball
+
+Magnemite
+Level: 28
+- Thunder Wave
+- Spark
+
+=== TRAINER_PLASTIC_OX_TOWERGRUNT1 ===
+Name: GRUNT
+Class: Team Aqua
+Pic: Aqua Grunt M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Golbat
+Level: 35
+- Bite
+- Wing Attack
+- Confuse Ray
+
+Weezing
+Level: 35
+- Sludge
+- Smokescreen
+- Self Destruct
+
+=== TRAINER_PLASTIC_OX_TOWERGRUNT2 ===
+Name: GRUNT
+Class: Team Aqua
+Pic: Aqua Grunt M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Golbat
+Level: 35
+- Bite
+- Wing Attack
+- Confuse Ray
+
+Weezing
+Level: 35
+- Sludge
+- Smokescreen
+- Self Destruct
+
+=== TRAINER_PLASTIC_OX_SILPHGRUNT1 ===
+Name: GRUNT
+Class: Team Aqua
+Pic: Aqua Grunt M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Muk
+Level: 48
+- Sludge Bomb
+- Minimize
+- Body Slam
+
+Golbat
+Level: 48
+- Bite
+- Confuse Ray
+- Wing Attack
+
+=== TRAINER_PLASTIC_OX_SILPHGRUNT2 ===
+Name: GRUNT
+Class: Team Aqua
+Pic: Aqua Grunt M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Muk
+Level: 48
+- Sludge Bomb
+- Minimize
+- Body Slam
+
+Golbat
+Level: 48
+- Bite
+- Confuse Ray
+- Wing Attack
+
+=== TRAINER_PLASTIC_OX_SILPHGRUNT3 ===
+Name: GRUNT
+Class: Team Aqua
+Pic: Aqua Grunt M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Muk
+Level: 48
+- Sludge Bomb
+- Minimize
+- Body Slam
+
+Golbat
+Level: 48
+- Bite
+- Confuse Ray
+- Wing Attack
+
+=== TRAINER_PLASTIC_OX_GIOVANNI ===
+Name: GIOVANNI
+Class: Leader
+Pic: Leader Giovanni Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Nidoking
+Level: 52
+- Earthquake
+- Ice Beam
+- Thunderbolt
+
+Kangaskhan
+Level: 52
+- Return
+- Shadow Ball
+- Fake Out
+
+Dugtrio
+Level: 52
+- Earthquake
+- Rock Slide
+- Aerial Ace
+
+Rhydon
+Level: 52
+- Earthquake
+- Rock Slide
+- Megahorn
+
+=== TRAINER_PLASTIC_OX_WALLACE ===
+Name: WALLACE
+Class: Elite Four
+Pic: Leader Roxanne
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Milotic
+Level: 60
+- Surf
+- Ice Beam
+- Recover
+
+Ludicolo
+Level: 60
+- Surf
+- Giga Drain
+- Rain Dance
+
+Gyarados
+Level: 60
+- Dragon Dance
+- Earthquake
+- Return
+
+Starmie
+Level: 60
+- Surf
+- Psychic
+- Thunderbolt
+
+=== TRAINER_PLASTIC_OX_STEVEN ===
+Name: STEVEN
+Class: Elite Four
+Pic: Leader Roxanne
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Skarmory
+Level: 61
+- Spikes
+- Roar
+- Drill Peck
+
+Claydol
+Level: 61
+- Earthquake
+- Psychic
+- Rapid Spin
+
+Metagross
+Level: 61
+- Meteor Mash
+- Earthquake
+- Agility
+
+Cradily
+Level: 61
+- Recover
+- Toxic
+- Rock Slide
+
+=== TRAINER_PLASTIC_OX_LEAGUELANCE ===
+Name: LANCE
+Class: Elite Four
+Pic: Leader Roxanne
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Salamence
+Level: 62
+- Dragon Dance
+- Earthquake
+- Aerial Ace
+
+Aerodactyl
+Level: 62
+- Rock Slide
+- Earthquake
+- Double Edge
+
+Gyarados
+Level: 62
+- Dragon Dance
+- Earthquake
+- Return
+
+Dragonite
+Level: 62
+- Dragon Claw
+- Thunderbolt
+- Ice Beam
+
+=== TRAINER_PLASTIC_OX_BLUE ===
+Name: BLUE
+Class: Elite Four
+Pic: Leader Roxanne
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Tyranitar
+Level: 63
+- Rock Slide
+- Earthquake
+- Dragon Dance
+
+Alakazam
+Level: 63
+- Psychic
+- Calm Mind
+- Recover
+
+Swampert
+Level: 63
+- Surf
+- Earthquake
+- Ice Beam
+
+Arcanine
+Level: 63
+- Flamethrower
+- Extreme Speed
+- Crunch
+
+Exeggutor
+Level: 63
+- Psychic
+- Giga Drain
+- Sleep Powder
+
+=== TRAINER_PLASTIC_OX_BILL ===
+Name: BILL
+Class: Champion
+Pic: Champion Wallace
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Jolteon
+Level: 64
+- Thunderbolt
+- Baton Pass
+- Substitute
+
+Metagross
+Level: 64
+- Meteor Mash
+- Earthquake
+- Explosion
+
+Swampert
+Level: 64
+- Earthquake
+- Surf
+- Ice Beam
+
+Snorlax
+Level: 64
+- Return
+- Shadow Ball
+- Curse
+
+Gengar
+Level: 64
+- Thunderbolt
+- Ice Punch
+- Will O Wisp
+
+Salamence
+Level: 64
+- Dragon Dance
+- Earthquake
+- Aerial Ace
+
+=== TRAINER_PLASTIC_OX_VICTORYROAD ===
+Name: ACE
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Metagross
+Level: 57
+- Meteor Mash
+- Earthquake
+- Agility
+
+Starmie
+Level: 57
+- Surf
+- Psychic
+- Thunderbolt
+
+Salamence
+Level: 57
+- Dragon Claw
+- Earthquake
+- Aerial Ace

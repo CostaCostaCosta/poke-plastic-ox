@@ -256,6 +256,25 @@ void NewGameInitData(void)
     // Plastic Ox skips the vanilla starter flow, so unblock vanilla gates that
     // expect the adventure-started flag (notably Oldale's west exit).
     FlagSet(FLAG_ADVENTURE_STARTED);
+    FlagSet(FLAG_POX_HIDE_UNUSED_ACTOR);
+
+    // Set this after the save block has been initialized, never before its
+    // pointers are installed or before ResetAllMapFlags clears the flags.
+#ifdef PLASTIC_OX_BUILD_TRIGGERS
+    FlagSet(FLAG_POX_TRIGGERS_ENABLED);
+#else
+    FlagSet(FLAG_POX_HIDE_STORY_NPCS);
+    FlagSet(FLAG_POX_HIDE_R29_GUARD);
+    FlagSet(FLAG_POX_HIDE_MTMOON_GRUNT_1);
+    FlagSet(FLAG_POX_HIDE_MTMOON_GRUNT_2);
+    FlagSet(FLAG_POX_HIDE_LAVENDER_GRUNT_1);
+    FlagSet(FLAG_POX_HIDE_LAVENDER_GRUNT_2);
+    FlagSet(FLAG_POX_HIDE_SILPH_GRUNT_1);
+    FlagSet(FLAG_POX_HIDE_SILPH_GRUNT_2);
+    FlagSet(FLAG_POX_HIDE_SILPH_GRUNT_3);
+    FlagSet(FLAG_POX_HIDE_SILPH_GIOVANNI);
+    FlagSet(FLAG_POX_ENTEI);
+#endif
 }
 
 void GivePlasticOxPlayerParty(void)
@@ -327,7 +346,6 @@ void CB2_InitPlasticOxDemo(void)
     // Pallet bedroom directly, bypassing copyright/title/new-game naming UI.
 #ifdef PLASTIC_OX_BUILD_TRIGGERS
     gPlasticOxTriggersEnabled = TRUE;
-    FlagSet(FLAG_POX_TRIGGERS_ENABLED);
 #else
     gPlasticOxTriggersEnabled = FALSE;
 #endif

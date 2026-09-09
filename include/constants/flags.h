@@ -1344,7 +1344,14 @@
 // See constants/opponents.h. The values there + FLAG_TRAINER_FLAG_START are the flag IDs
 
 #define TRAINER_FLAGS_START                                         0x500
-#define TRAINER_FLAGS_END                                           (TRAINER_FLAGS_START + MAX_TRAINERS_COUNT - 1) // 0x85F
+// Plastic Ox stores additional trainer victories in unused general flags so
+// the system flags and save-block layout retain their existing addresses.
+#if IS_FRLG
+#define TRAINER_FLAGS_END                                           (TRAINER_FLAGS_START + MAX_TRAINERS_COUNT_FRLG - 1)
+#else
+#define TRAINER_FLAGS_END                                           (TRAINER_FLAGS_START + 864 - 1)
+#endif
+#define TRAINER_FLAG(id) ((!IS_FRLG && (id) >= 857) ? (0x4A0 + (id) - 857) : (TRAINER_FLAGS_START + (id)))
 
 // System Flags
 

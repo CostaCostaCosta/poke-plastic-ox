@@ -78,7 +78,8 @@
     "gMapGroup_PlasticOx",
     "gMapGroup_PlasticOxInteriors",
     "gMapGroup_PlasticOxJohtoKanto",
-    "gMapGroup_PlasticOxDungeons"
+    "gMapGroup_PlasticOxDungeons",
+    "gMapGroup_PlasticOxStory"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",
@@ -1221,5 +1222,25 @@
     "IlexForest_hns",
     "MtMoon_Cave_hns",
     "NationalPark_Normal_hns"
+  ],
+  "gMapGroup_PlasticOxStory": [
+    "PlasticOx_WhitneyGym",
+    "PlasticOx_MortyGym",
+    "PlasticOx_BlaineGym",
+    "PlasticOx_BrunoGym",
+    "PlasticOx_ClairGym",
+    "PlasticOx_DanceTheater",
+    "PlasticOx_BurnedTower",
+    "PlasticOx_PokemonTower",
+    "PlasticOx_FujiHouse",
+    "PlasticOx_Mansion",
+    "PlasticOx_Silph",
+    "PlasticOx_WallaceRoom",
+    "PlasticOx_StevenRoom",
+    "PlasticOx_LeagueLanceRoom",
+    "PlasticOx_BlueRoom",
+    "PlasticOx_BillRoom",
+    "PlasticOx_WhirlIslands",
+    "PlasticOx_VictoryRoad"
   ]
 }

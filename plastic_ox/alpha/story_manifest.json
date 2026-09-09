@@ -1,0 +1,635 @@
+{
+  "events": [
+    {
+      "map": "PalletTown_ProfessorOaksLab_Frlg",
+      "x": 6,
+      "y": 5,
+      "script": "Pox_Oak"
+    },
+    {
+      "map": "CherrygroveCity_hns",
+      "x": 57,
+      "y": 8,
+      "script": "Pox_Cherrygrove"
+    },
+    {
+      "map": "IlexForest_hns",
+      "x": 26,
+      "y": 42,
+      "script": "Pox_Ilex"
+    },
+    {
+      "map": "IlexForest_hns",
+      "x": 27,
+      "y": 42,
+      "script": "Pox_IlexRoad"
+    },
+    {
+      "map": "PlasticOx_WhitneyGym",
+      "x": 5,
+      "y": 2,
+      "script": "Pox_Whitney"
+    },
+    {
+      "map": "PlasticOx_WhitneyGym",
+      "x": 4,
+      "y": 17,
+      "script": "Pox_WhitneyGymExit"
+    },
+    {
+      "map": "GoldenrodCity_hns",
+      "x": 25,
+      "y": 13,
+      "script": "Pox_WhitneyGuide"
+    },
+    {
+      "map": "PlasticOx_MortyGym",
+      "x": 5,
+      "y": 2,
+      "script": "Pox_Morty"
+    },
+    {
+      "map": "PlasticOx_MortyGym",
+      "x": 4,
+      "y": 17,
+      "script": "Pox_MortyGymExit"
+    },
+    {
+      "map": "EcruteakCity_hns",
+      "x": 35,
+      "y": 43,
+      "script": "Pox_MortyGuide"
+    },
+    {
+      "map": "PlasticOx_BlaineGym",
+      "x": 5,
+      "y": 2,
+      "script": "Pox_Blaine"
+    },
+    {
+      "map": "PlasticOx_BlaineGym",
+      "x": 4,
+      "y": 17,
+      "script": "Pox_BlaineGymExit"
+    },
+    {
+      "map": "CinnabarIsland_hns",
+      "x": 37,
+      "y": 28,
+      "script": "Pox_BlaineGuide"
+    },
+    {
+      "map": "PlasticOx_BrunoGym",
+      "x": 5,
+      "y": 2,
+      "script": "Pox_Bruno"
+    },
+    {
+      "map": "PlasticOx_BrunoGym",
+      "x": 4,
+      "y": 17,
+      "script": "Pox_BrunoGymExit"
+    },
+    {
+      "map": "SaffronCity_hns",
+      "x": 16,
+      "y": 22,
+      "script": "Pox_BrunoGuide"
+    },
+    {
+      "map": "PlasticOx_ClairGym",
+      "x": 5,
+      "y": 2,
+      "script": "Pox_Clair"
+    },
+    {
+      "map": "PlasticOx_ClairGym",
+      "x": 4,
+      "y": 17,
+      "script": "Pox_ClairGymExit"
+    },
+    {
+      "map": "BlackthornCity_hns",
+      "x": 16,
+      "y": 28,
+      "script": "Pox_ClairGuide"
+    },
+    {
+      "map": "MtMoon_Cave_hns",
+      "x": 10,
+      "y": 10,
+      "script": "Pox_MoonGrunt1"
+    },
+    {
+      "map": "MtMoon_Cave_hns",
+      "x": 17,
+      "y": 4,
+      "script": "Pox_MoonGrunt2"
+    },
+    {
+      "map": "MtMoon_Cave_hns",
+      "x": 16,
+      "y": 4,
+      "script": "Pox_MoonScientist"
+    },
+    {
+      "map": "GoldenrodCity_BillsHouse_hns",
+      "x": 5,
+      "y": 4,
+      "script": "Pox_Family"
+    },
+    {
+      "map": "PlasticOx_DanceTheater",
+      "x": 3,
+      "y": 9,
+      "script": "Pox_KimonoVaporeon"
+    },
+    {
+      "map": "PlasticOx_DanceTheater",
+      "x": 5,
+      "y": 2,
+      "script": "Pox_KimonoJolteon"
+    },
+    {
+      "map": "PlasticOx_DanceTheater",
+      "x": 7,
+      "y": 8,
+      "script": "Pox_KimonoFlareon"
+    },
+    {
+      "map": "PlasticOx_DanceTheater",
+      "x": 3,
+      "y": 12,
+      "script": "Pox_KimonoEspeon"
+    },
+    {
+      "map": "PlasticOx_DanceTheater",
+      "x": 7,
+      "y": 14,
+      "script": "Pox_KimonoUmbreon"
+    },
+    {
+      "map": "PlasticOx_DanceTheater",
+      "x": 5,
+      "y": 15,
+      "script": "Pox_Kimono"
+    },
+    {
+      "map": "PlasticOx_DanceTheater",
+      "x": 4,
+      "y": 17,
+      "script": "Pox_DanceTheaterExit"
+    },
+    {
+      "map": "EcruteakCity_hns",
+      "x": 36,
+      "y": 32,
+      "script": "Pox_DanceGuide"
+    },
+    {
+      "map": "PlasticOx_BurnedTower",
+      "x": 5,
+      "y": 5,
+      "script": "Pox_BurnedTower"
+    },
+    {
+      "map": "PlasticOx_BurnedTower",
+      "x": 4,
+      "y": 6,
+      "script": "Pox_BurnedTowerExit"
+    },
+    {
+      "map": "EcruteakCity_hns",
+      "x": 19,
+      "y": 22,
+      "script": "Pox_BurnedGuide"
+    },
+    {
+      "map": "Route119_WeatherInstitute_2F",
+      "x": 18,
+      "y": 6,
+      "script": "Pox_Weather"
+    },
+    {
+      "map": "Route25_BillsHouse_hns",
+      "x": 7,
+      "y": 6,
+      "script": "Pox_Cottage"
+    },
+    {
+      "map": "Route25_BillsHouse_hns",
+      "x": 7,
+      "y": 8,
+      "script": "Pox_CottageExit"
+    },
+    {
+      "map": "FortreeCity",
+      "x": 7,
+      "y": 7,
+      "script": "Pox_CottageGuide"
+    },
+    {
+      "map": "PlasticOx_PokemonTower",
+      "x": 3,
+      "y": 12,
+      "script": "Pox_TowerGrunt1"
+    },
+    {
+      "map": "PlasticOx_PokemonTower",
+      "x": 7,
+      "y": 9,
+      "script": "Pox_TowerGrunt2"
+    },
+    {
+      "map": "PlasticOx_PokemonTower",
+      "x": 5,
+      "y": 2,
+      "script": "Pox_FujiRescue"
+    },
+    {
+      "map": "PlasticOx_PokemonTower",
+      "x": 4,
+      "y": 10,
+      "script": "Pox_PokemonTowerExit"
+    },
+    {
+      "map": "LavenderTown_hns",
+      "x": 17,
+      "y": 7,
+      "script": "Pox_TowerGuide"
+    },
+    {
+      "map": "PlasticOx_FujiHouse",
+      "x": 5,
+      "y": 2,
+      "script": "Pox_Fuji"
+    },
+    {
+      "map": "PlasticOx_FujiHouse",
+      "x": 4,
+      "y": 8,
+      "script": "Pox_FujiHouseExit"
+    },
+    {
+      "map": "LavenderTown_hns",
+      "x": 12,
+      "y": 10,
+      "script": "Pox_FujiGuide"
+    },
+    {
+      "map": "PlasticOx_Mansion",
+      "x": 3,
+      "y": 8,
+      "script": "Pox_Archive1"
+    },
+    {
+      "map": "PlasticOx_Mansion",
+      "x": 7,
+      "y": 8,
+      "script": "Pox_Archive2"
+    },
+    {
+      "map": "PlasticOx_Mansion",
+      "x": 5,
+      "y": 2,
+      "script": "Pox_Archive3"
+    },
+    {
+      "map": "PlasticOx_Mansion",
+      "x": 3,
+      "y": 7,
+      "script": "Pox_Entei"
+    },
+    {
+      "map": "PlasticOx_Mansion",
+      "x": 4,
+      "y": 8,
+      "script": "Pox_MansionExit"
+    },
+    {
+      "map": "CinnabarIsland_hns",
+      "x": 40,
+      "y": 21,
+      "script": "Pox_MansionGuide"
+    },
+    {
+      "map": "MossdeepCity_SpaceCenter_1F",
+      "x": 7,
+      "y": 2,
+      "script": "Pox_SpaceReport"
+    },
+    {
+      "map": "MossdeepCity_SpaceCenter_1F",
+      "x": 5,
+      "y": 7,
+      "script": "Pox_Space"
+    },
+    {
+      "map": "PlasticOx_Silph",
+      "x": 3,
+      "y": 8,
+      "script": "Pox_SilphGrunt1"
+    },
+    {
+      "map": "PlasticOx_Silph",
+      "x": 7,
+      "y": 8,
+      "script": "Pox_SilphGrunt2"
+    },
+    {
+      "map": "PlasticOx_Silph",
+      "x": 3,
+      "y": 9,
+      "script": "Pox_SilphGrunt3"
+    },
+    {
+      "map": "PlasticOx_Silph",
+      "x": 7,
+      "y": 9,
+      "script": "Pox_Giovanni"
+    },
+    {
+      "map": "PlasticOx_Silph",
+      "x": 5,
+      "y": 2,
+      "script": "Pox_SilphCore"
+    },
+    {
+      "map": "PlasticOx_Silph",
+      "x": 4,
+      "y": 9,
+      "script": "Pox_SilphExit"
+    },
+    {
+      "map": "SaffronCity_hns",
+      "x": 26,
+      "y": 15,
+      "script": "Pox_SilphGuide"
+    },
+    {
+      "map": "RustboroCity",
+      "x": 22,
+      "y": 34,
+      "script": "Pox_MoonRoad"
+    },
+    {
+      "map": "MtMoon_Cave_hns",
+      "x": 12,
+      "y": 10,
+      "script": "Pox_GoldenrodRoad"
+    },
+    {
+      "map": "GoldenrodCity_hns",
+      "x": 20,
+      "y": 30,
+      "script": "Pox_ParkRoad"
+    },
+    {
+      "map": "NationalPark_Normal_hns",
+      "x": 22,
+      "y": 39,
+      "script": "Pox_EcruteakRoad"
+    },
+    {
+      "map": "EcruteakCity_hns",
+      "x": 22,
+      "y": 42,
+      "script": "Pox_WeatherRoad"
+    },
+    {
+      "map": "FortreeCity",
+      "x": 8,
+      "y": 8,
+      "script": "Pox_LavenderRoad"
+    },
+    {
+      "map": "LavenderTown_hns",
+      "x": 15,
+      "y": 17,
+      "script": "Pox_CinnabarRoad"
+    },
+    {
+      "map": "CinnabarIsland_hns",
+      "x": 38,
+      "y": 28,
+      "script": "Pox_MossdeepRoad"
+    },
+    {
+      "map": "MossdeepCity",
+      "x": 38,
+      "y": 12,
+      "script": "Pox_SaffronRoad"
+    },
+    {
+      "map": "SaffronCity_hns",
+      "x": 56,
+      "y": 15,
+      "script": "Pox_BlackthornRoad"
+    },
+    {
+      "map": "BlackthornCity_hns",
+      "x": 25,
+      "y": 27,
+      "script": "Pox_LeagueRoad"
+    },
+    {
+      "map": "PlasticOx_WallaceRoom",
+      "x": 5,
+      "y": 3,
+      "script": "Pox_Wallace"
+    },
+    {
+      "map": "PlasticOx_WallaceRoom",
+      "x": 5,
+      "y": 13,
+      "script": "Pox_WallaceRoomExit"
+    },
+    {
+      "map": "PlasticOx_StevenRoom",
+      "x": 5,
+      "y": 3,
+      "script": "Pox_Steven"
+    },
+    {
+      "map": "PlasticOx_StevenRoom",
+      "x": 5,
+      "y": 13,
+      "script": "Pox_StevenRoomExit"
+    },
+    {
+      "map": "PlasticOx_LeagueLanceRoom",
+      "x": 5,
+      "y": 3,
+      "script": "Pox_LeagueLance"
+    },
+    {
+      "map": "PlasticOx_LeagueLanceRoom",
+      "x": 5,
+      "y": 13,
+      "script": "Pox_LeagueLanceRoomExit"
+    },
+    {
+      "map": "PlasticOx_BlueRoom",
+      "x": 5,
+      "y": 3,
+      "script": "Pox_Blue"
+    },
+    {
+      "map": "PlasticOx_BlueRoom",
+      "x": 5,
+      "y": 13,
+      "script": "Pox_BlueRoomExit"
+    },
+    {
+      "map": "PlasticOx_BillRoom",
+      "x": 5,
+      "y": 3,
+      "script": "Pox_Bill"
+    },
+    {
+      "map": "PlasticOx_BillRoom",
+      "x": 5,
+      "y": 12,
+      "script": "Pox_BillRoomExit"
+    },
+    {
+      "map": "IndigoPlateau_PokemonCenter_hns",
+      "x": 10,
+      "y": 10,
+      "script": "Pox_LeagueEntry"
+    },
+    {
+      "map": "PokemonCenter_Johto_hns",
+      "x": 7,
+      "y": 2,
+      "script": "Pox_Heal"
+    },
+    {
+      "map": "PokemonCenter_Kanto_hns",
+      "x": 7,
+      "y": 2,
+      "script": "Pox_Heal"
+    },
+    {
+      "map": "IndigoPlateau_PokemonCenter_hns",
+      "x": 19,
+      "y": 10,
+      "script": "Pox_Heal"
+    },
+    {
+      "map": "PlasticOx_WhirlIslands",
+      "x": 5,
+      "y": 2,
+      "script": "Pox_WhirlItem"
+    },
+    {
+      "map": "PlasticOx_WhirlIslands",
+      "x": 3,
+      "y": 17,
+      "script": "Pox_WhirlIslandsExit"
+    },
+    {
+      "map": "CinnabarIsland_hns",
+      "x": 39,
+      "y": 28,
+      "script": "Pox_WhirlGuide"
+    },
+    {
+      "map": "PlasticOx_VictoryRoad",
+      "x": 5,
+      "y": 6,
+      "script": "Pox_VictoryRoad"
+    },
+    {
+      "map": "PlasticOx_VictoryRoad",
+      "x": 4,
+      "y": 9,
+      "script": "Pox_VictoryRoadExit"
+    },
+    {
+      "map": "PlasticOx_VictoryRoad",
+      "x": 5,
+      "y": 10,
+      "script": "Pox_LeagueContinue"
+    }
+  ],
+  "flags": [
+    "FLAG_POX_STORY_BURNED_TOWER",
+    "FLAG_POX_STORY_FUJI",
+    "FLAG_POX_STORY_SPACE_CENTER",
+    "FLAG_POX_HIDE_STORY_NPCS",
+    "FLAG_POX_STORY_CHERRYGROVE",
+    "FLAG_POX_MANSION_KEY",
+    "FLAG_POX_GIFT_FAMILY",
+    "FLAG_POX_KIMONO_VAPOREON",
+    "FLAG_POX_KIMONO_JOLTEON",
+    "FLAG_POX_KIMONO_FLAREON",
+    "FLAG_POX_KIMONO_ESPEON",
+    "FLAG_POX_KIMONO_UMBREON",
+    "FLAG_POX_GIFT_KIMONO",
+    "FLAG_POX_GIFT_COTTAGE",
+    "FLAG_POX_GIFT_FUJI",
+    "FLAG_POX_ARCHIVE_1",
+    "FLAG_POX_ARCHIVE_2",
+    "FLAG_POX_ENTEI",
+    "FLAG_POX_GIFT_SPACE",
+    "FLAG_POX_LEAGUE_WALLACE",
+    "FLAG_POX_LEAGUE_STEVEN",
+    "FLAG_POX_LEAGUE_LEAGUELANCE",
+    "FLAG_POX_LEAGUE_BLUE",
+    "FLAG_POX_LEAGUE_BILL",
+    "FLAG_POX_HIDE_UNUSED_ACTOR",
+    "FLAG_POX_WHIRL_ITEM",
+    "FLAG_POX_VICTORY_ROAD"
+  ],
+  "trainers": [
+    "TRAINER_PLASTIC_OX_ROXANNE",
+    "TRAINER_PLASTIC_OX_WHITNEY",
+    "TRAINER_PLASTIC_OX_MORTY",
+    "TRAINER_PLASTIC_OX_WINONA",
+    "TRAINER_PLASTIC_OX_BLAINE",
+    "TRAINER_PLASTIC_OX_TATELIZA",
+    "TRAINER_PLASTIC_OX_BRUNO",
+    "TRAINER_PLASTIC_OX_CLAIR",
+    "TRAINER_PLASTIC_OX_MOONGRUNT1",
+    "TRAINER_PLASTIC_OX_MOONGRUNT2",
+    "TRAINER_PLASTIC_OX_KIMONOVAPOREON",
+    "TRAINER_PLASTIC_OX_KIMONOJOLTEON",
+    "TRAINER_PLASTIC_OX_KIMONOFLAREON",
+    "TRAINER_PLASTIC_OX_KIMONOESPEON",
+    "TRAINER_PLASTIC_OX_KIMONOUMBREON",
+    "TRAINER_PLASTIC_OX_WEATHER",
+    "TRAINER_PLASTIC_OX_TOWERGRUNT1",
+    "TRAINER_PLASTIC_OX_TOWERGRUNT2",
+    "TRAINER_PLASTIC_OX_SILPHGRUNT1",
+    "TRAINER_PLASTIC_OX_SILPHGRUNT2",
+    "TRAINER_PLASTIC_OX_SILPHGRUNT3",
+    "TRAINER_PLASTIC_OX_GIOVANNI",
+    "TRAINER_PLASTIC_OX_WALLACE",
+    "TRAINER_PLASTIC_OX_STEVEN",
+    "TRAINER_PLASTIC_OX_LEAGUELANCE",
+    "TRAINER_PLASTIC_OX_BLUE",
+    "TRAINER_PLASTIC_OX_BILL",
+    "TRAINER_PLASTIC_OX_VICTORYROAD"
+  ],
+  "rooms": [
+    "PlasticOx_WhitneyGym",
+    "PlasticOx_MortyGym",
+    "PlasticOx_BlaineGym",
+    "PlasticOx_BrunoGym",
+    "PlasticOx_ClairGym",
+    "PlasticOx_DanceTheater",
+    "PlasticOx_BurnedTower",
+    "PlasticOx_PokemonTower",
+    "PlasticOx_FujiHouse",
+    "PlasticOx_Mansion",
+    "PlasticOx_Silph",
+    "PlasticOx_WallaceRoom",
+    "PlasticOx_StevenRoom",
+    "PlasticOx_LeagueLanceRoom",
+    "PlasticOx_BlueRoom",
+    "PlasticOx_BillRoom",
+    "PlasticOx_WhirlIslands",
+    "PlasticOx_VictoryRoad"
+  ]
+}

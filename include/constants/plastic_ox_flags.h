@@ -1,6 +1,8 @@
 #ifndef GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H
 #define GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H
 
+#include "constants/plastic_ox_story.h"
+
 // Plastic Ox alpha flags (emerald build only).
 //
 // Allocation: the documented-unused general-flag run 0x264-0x2BB in
