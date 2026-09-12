@@ -786,7 +786,6 @@ bool32 RemovePyramidBagItem(enum Item itemId, u16 count)
 static u16 SanitizeItemId(enum Item itemId)
 {
     if (itemId == ITEM_BRIGHT_POWDER
-     || itemId == ITEM_TM_DOUBLE_TEAM
      || itemId == ITEM_HM_FLASH)
         return ITEM_NONE;
 

@@ -144,8 +144,11 @@ def starter_tests():
         assert g.flag('FLAG_POX_ELM_TMS')
         pocket = g.syms['gBagPockets'] + 2 * (g.sizes['gBagPockets'] // 5)
         slots = g.u32(pocket)
-        assert set(range(582, 632)).issubset(
-            {g.u16(slots + 4 * i) for i in range(64)}), 'missing TMs'
+        tm_items = {g.u16(slots + 4 * i) for i in range(64)}
+        assert set(range(582, 632)).issubset(tm_items), 'missing TMs'
+        key_pocket = g.syms['gBagPockets'] + 4 * (g.sizes['gBagPockets'] // 5)
+        key_slots = g.u32(key_pocket)
+        assert 874 in {g.u16(key_slots + 4 * i) for i in range(64)}, 'missing Move Compendium'
         for other in ['Treecko','Squirtle','Cyndaquil','Oak','Elm','Birch']:
             g.run('Pox_'+other)
             assert g.count()==1,'starter duplicated'

@@ -428,6 +428,7 @@ static void CB2_InitLearnMoveReturnFromSelectMove(void)
 static void StoreMoveText(void)
 {
     if (P_ENABLE_MOVE_RELEARNERS || P_TM_MOVES_RELEARNER
+    || CheckBagHasItem(ITEM_MOVE_COMPENDIUM, 1)
     || FlagGet(P_FLAG_EGG_MOVES) || FlagGet(P_FLAG_TUTOR_MOVES))
         StringCopy(gStringVar3, sRelearnTypes[gMoveRelearnerState].moveText);
     else
@@ -869,7 +870,9 @@ static bool32 IsTmAvailable(enum Item item)
 static u32 GetRelearnerLevelUpMoves(struct BoxPokemon *mon, u16 *moves)
 {
     enum Species species = GetBoxMonData(mon, MON_DATA_SPECIES);
-    u32 level = (P_ENABLE_ALL_LEVEL_UP_MOVES ? MAX_LEVEL : GetLevelFromBoxMonExp(mon));
+    u32 level = (P_ENABLE_ALL_LEVEL_UP_MOVES || CheckBagHasItem(ITEM_MOVE_COMPENDIUM, 1))
+              ? MAX_LEVEL
+              : GetLevelFromBoxMonExp(mon);
     u32 numMoves = 0;
     do
     {
@@ -1011,7 +1014,9 @@ bool32 HasMoveToRelearn(struct BoxPokemon *boxMon, enum MoveRelearnerStates stat
 static bool32 HasRelearnerLevelUpMoves(struct BoxPokemon *boxMon)
 {
     enum Species species = GetBoxMonData(boxMon, MON_DATA_SPECIES);
-    u32 level = (P_ENABLE_ALL_LEVEL_UP_MOVES == TRUE) ? MAX_LEVEL : GetLevelFromBoxMonExp(boxMon);
+    u32 level = (P_ENABLE_ALL_LEVEL_UP_MOVES || CheckBagHasItem(ITEM_MOVE_COMPENDIUM, 1))
+              ? MAX_LEVEL
+              : GetLevelFromBoxMonExp(boxMon);
 
     do
     {
@@ -1108,7 +1113,9 @@ static bool32 IsLevelUpMoveRelearnerActive(void)
 
 static bool32 IsEggMoveRelearnerActive(void)
 {
-    return (FlagGet(P_FLAG_EGG_MOVES) || P_ENABLE_MOVE_RELEARNERS);
+    return (CheckBagHasItem(ITEM_MOVE_COMPENDIUM, 1)
+         || FlagGet(P_FLAG_EGG_MOVES)
+         || P_ENABLE_MOVE_RELEARNERS);
 }
 
 static bool32 IsTMMoveRelearnerActive(void)
@@ -1118,5 +1125,7 @@ static bool32 IsTMMoveRelearnerActive(void)
 
 static bool32 IsTutorMoveRelearnerActive(void)
 {
-    return (FlagGet(P_FLAG_TUTOR_MOVES) || P_ENABLE_MOVE_RELEARNERS);
+    return (CheckBagHasItem(ITEM_MOVE_COMPENDIUM, 1)
+         || FlagGet(P_FLAG_TUTOR_MOVES)
+         || P_ENABLE_MOVE_RELEARNERS);
 }

@@ -262,6 +262,11 @@ Pox_Text_BirchAfter::
 
 Pox_ElmTMs::
     goto_if_set FLAG_POX_ELM_TMS, Pox_ElmTMsDone
+    checkitem ITEM_MOVE_COMPENDIUM, 1
+    goto_if_eq VAR_RESULT, TRUE, Pox_ElmTMNextCompendium
+    additem ITEM_MOVE_COMPENDIUM, 1
+    goto_if_eq VAR_RESULT, FALSE, Pox_ElmCompendiumFull
+Pox_ElmTMNextCompendium::
     checkitem ITEM_TM_FOCUS_PUNCH, 1
     goto_if_eq VAR_RESULT, TRUE, Pox_ElmTMNext0
     additem ITEM_TM_FOCUS_PUNCH, 1
@@ -417,9 +422,9 @@ Pox_ElmTMNext29::
     additem ITEM_TM_BRICK_BREAK, 1
     goto_if_eq VAR_RESULT, FALSE, Pox_ElmTMsFull
 Pox_ElmTMNext30::
-    checkitem ITEM_TM_DOUBLE_TEAM, 1
+    checkitem ITEM_TM_SUBSTITUTE, 1
     goto_if_eq VAR_RESULT, TRUE, Pox_ElmTMNext31
-    additem ITEM_TM_DOUBLE_TEAM, 1
+    additem ITEM_TM_SUBSTITUTE, 1
     goto_if_eq VAR_RESULT, FALSE, Pox_ElmTMsFull
 Pox_ElmTMNext31::
     checkitem ITEM_TM_REFLECT, 1
@@ -427,9 +432,9 @@ Pox_ElmTMNext31::
     additem ITEM_TM_REFLECT, 1
     goto_if_eq VAR_RESULT, FALSE, Pox_ElmTMsFull
 Pox_ElmTMNext32::
-    checkitem ITEM_TM_SHOCK_WAVE, 1
+    checkitem ITEM_TM_BODY_SLAM, 1
     goto_if_eq VAR_RESULT, TRUE, Pox_ElmTMNext33
-    additem ITEM_TM_SHOCK_WAVE, 1
+    additem ITEM_TM_BODY_SLAM, 1
     goto_if_eq VAR_RESULT, FALSE, Pox_ElmTMsFull
 Pox_ElmTMNext33::
     checkitem ITEM_TM_FLAMETHROWER, 1
@@ -492,14 +497,14 @@ Pox_ElmTMNext44::
     additem ITEM_TM_THIEF, 1
     goto_if_eq VAR_RESULT, FALSE, Pox_ElmTMsFull
 Pox_ElmTMNext45::
-    checkitem ITEM_TM_STEEL_WING, 1
+    checkitem ITEM_TM_EXPLOSION, 1
     goto_if_eq VAR_RESULT, TRUE, Pox_ElmTMNext46
-    additem ITEM_TM_STEEL_WING, 1
+    additem ITEM_TM_EXPLOSION, 1
     goto_if_eq VAR_RESULT, FALSE, Pox_ElmTMsFull
 Pox_ElmTMNext46::
-    checkitem ITEM_TM_SKILL_SWAP, 1
+    checkitem ITEM_TM_ROCK_SLIDE, 1
     goto_if_eq VAR_RESULT, TRUE, Pox_ElmTMNext47
-    additem ITEM_TM_SKILL_SWAP, 1
+    additem ITEM_TM_ROCK_SLIDE, 1
     goto_if_eq VAR_RESULT, FALSE, Pox_ElmTMsFull
 Pox_ElmTMNext47::
     checkitem ITEM_TM_SNATCH, 1
@@ -521,7 +526,12 @@ Pox_ElmTMsDone::
 Pox_ElmTMsFull::
     msgbox Pox_Text_ElmTMsFull, MSGBOX_DEFAULT
     return
+Pox_ElmCompendiumFull::
+    msgbox Pox_Text_ElmCompendiumFull, MSGBOX_DEFAULT
+    return
 Pox_Text_ElmTMs::
-    .string "ELM: Here is a full set of TMs!\nTry teaching your partner\psome different moves.\p{PLAYER} received every TM!$"
+    .string "ELM: Here is a full set of TMs!\nI've included a MOVE COMPENDIUM\pfor level, Egg, and tutor moves.\p{PLAYER} received every TM and the\nMOVE COMPENDIUM!$"
 Pox_Text_ElmTMsFull::
     .string "ELM: Make room in your TM\npocket, then speak to me.\pI'll give you the rest!$"
+Pox_Text_ElmCompendiumFull::
+    .string "ELM: Make room in your KEY ITEMS\npocket, then speak to me again.$"

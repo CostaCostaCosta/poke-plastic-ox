@@ -20,6 +20,12 @@ MoveRelearner_Text_SeeYa:
 MoveRelearner_Text_AnythingElse:
 	.string "Is there anything else I may do for you?$"
 
+MoveRelearner_Text_CompendiumPrompt:
+	.string "Which kind of move should your\nPokémon learn?$"
+
+MoveRelearner_Text_CloseCompendium:
+	.string "CLOSE$"
+
 MoveRelearner_Text_ChoosePkmn:
 	.string "Please choose your Pokémon.$"
 

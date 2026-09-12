@@ -109,4 +109,4 @@ LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 
 
 ### Pallet and Oldale opening fixes
 
-On the first lab visit, the player walks up the center aisle to Oak at (6, 6) before the professors introduce themselves. Elm gives all 50 configured TMs after starter selection; players who already chose a starter can collect them by speaking to Elm. The gift skips TMs already owned and can be retried if the pocket is full. Oldale’s mart employee explains the shop and gives a Potion in place, without an escort walk.
+On the first lab visit, the player walks up the center aisle to Oak at (6, 6) before the professors introduce themselves. Elm gives all 50 reusable TMs and the Move Compendium after starter selection; players who already chose a starter can collect them by speaking to Elm. The reusable Key Item first selects a Pokémon, then teaches any compatible level-up move regardless of its current level, along with Egg and tutor moves. The gift skips items already owned and can be retried if a pocket is full. Oldale’s mart employee explains the shop and gives a Potion in place, without an escort walk.
