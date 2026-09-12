@@ -83,8 +83,10 @@ def main():
                 continue
             v = struct.unpack_from("<H", blocks, 2 * (y * W + x))[0]
             mt = v & 0x03FF
-            cname = prim if mt < 512 else sec
-            idx = mt if mt < 512 else mt - 512
+            assert lay.get("layout_version") != "frlg", "FRLG attributes require u32 conversion"
+            primary_count = 640 if lay.get("layout_version") == "hns" else 512
+            cname = prim if mt < primary_count else sec
+            idx = mt if mt < primary_count else mt - primary_count
             ap = attrs_path(cname)
             if not ap:
                 print("no attrs file for", cname); continue
@@ -93,10 +95,10 @@ def main():
             if idx >= n:
                 continue
             old = struct.unpack_from("<H", data, 2 * idx)[0]
-            beh = old & 0x1FF
+            beh = old & 0xFF
             if beh in WARPISH:
                 continue
-            new = (old & ~0x1FF) | DOOR  # animated door: required by IsWarpDoor
+            new = (old & ~0xFF) | DOOR  # animated door: required by IsWarpDoor
             data[2 * idx:2 * idx + 2] = struct.pack("<H", new)
             key = ap
             if key not in fixed:

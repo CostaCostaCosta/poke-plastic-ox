@@ -110,10 +110,10 @@ WARP_RULES = {
     "Route3_hns": [],  # east door appended programmatically
     "MtMoon_Cave_hns": [
         {"x": 46, "y": 31, "dest_map": "MAP_ROUTE4_HNS", "dest_warp_id": "0"},
-        {"x": 4, "y": 12, "dest_map": "MAP_ROUTE4_HNS", "dest_warp_id": "1"},
+        {"x": 4, "y": 12, "dest_map": "MAP_ROUTE3_HNS", "dest_warp_id": "0"},
     ],
     "Route4_hns": [
-        {"x": 18, "y": 9, "dest_map": "MAP_MT_MOON_CAVE_HNS", "dest_warp_id": "1"},
+        {"x": 18, "y": 9, "dest_map": "MAP_MT_MOON_CAVE_HNS", "dest_warp_id": "0"},
     ],
     "Route14_hns": [],
     "GoldenrodCity_hns": [
@@ -439,7 +439,7 @@ def import_map(name):
         runs = edge_runs("LAYOUT_ROUTE3_HNS", "right")
         r = max(runs, key=lambda t: t[1]-t[0])
         ydoor = (r[0]+r[1])//2
-        rules = rules + [{"x": 83, "y": ydoor, "dest_map": "MAP_MT_MOON_CAVE_HNS", "dest_warp_id": "0"}]
+        rules = rules + [{"x": 83, "y": ydoor, "dest_map": "MAP_MT_MOON_CAVE_HNS", "dest_warp_id": "1"}]
         print("R3 east door at (83,%d)" % ydoor)
     d["warp_events"] = [{"x": r["x"], "y": r["y"], "elevation": 0,
                          "dest_map": r["dest_map"], "dest_warp_id": r["dest_warp_id"]} for r in rules]
