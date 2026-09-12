@@ -74,7 +74,7 @@ Hoenn,3,115,N/S,vertical,mixed,beach cliffs; Meteor Falls mouth,filler,
 Hoenn,3,116,E/W,horizontal,land,rocky grass; Rusturf Tunnel mouth,dark-port,candidate Hoenn Dark Cave mouth
 Hoenn,3,117,E/W,horizontal,land,flower meadow; daycare,filler,
 Hoenn,3,118,N/E/W,3-way,mixed,river crossing; strong 3-way junction,filler,
-Hoenn,3,119,N/S,vertical,mixed,rain; tall grass; river; Weather Institute,story,Weather Institute host route
+Hoenn,3,119,E/S,elbow,mixed,rain; tall grass; river; Weather Institute,story,Weather Institute host route
 Hoenn,3,120,N/S,vertical,mixed,rainforest bridges; Scorched Slab,filler,
 Hoenn,3,121,N/E/S,3-way,mixed,Safari grassland; coast junction,filler,
 Hoenn,3,122,N/S,vertical,water,river around Mt. Pyre,filler,
@@ -95,19 +95,66 @@ Hoenn,3,134,E/W,horizontal,water,westbound current route; Sealed Chamber,filler,
 STORY_REQUIRED_ROUTE_IDS = {"R35", "R36", "R37", "R41", "R119"}
 STORY_LINKED_OPTIONAL_ROUTE_IDS = {"R21", "R24", "R25"}
 
+# Physical transition types at source-route endpoints. These are separate
+# from progression gates such as badges or story flags.
+# A cave mouth or gatehouse replaces the corresponding seamless map edge in
+# the high-level topology. The direction is therefore removed and represented
+# below as a typed transition endpoint.
+ROUTE_PORT_REMOVALS = {
+    "R3": {"E"},
+    "R4": {"W"},
+    "R5": {"S"},
+    "R6": {"N"},
+    "R7": {"E"},
+    "R8": {"W"},
+    "R33": {"W"},
+    "R35": {"N", "S"},
+    "R36": {"W"},
+    "R44": {"E"},
+}
+
+# Additional route-local cave mouths. Unlike facility/building warps, these
+# count as regional endpoints when routes are classified in the editor.
+ROUTE_TRANSITION_PORTS = {
+    "R2": [("DIGLETT", "Diglett's Cave", "cave")],
+    "R10": [("ROCK", "Rock Tunnel", "cave")],
+    "R11": [("DIGLETT", "Diglett's Cave", "cave")],
+    "R3": [("MT_MOON", "Mt. Moon", "cave")],
+    "R4": [("MT_MOON", "Mt. Moon", "cave")],
+    "R5": [("SAFFRON", "Saffron Gate", "gate")],
+    "R6": [("SAFFRON", "Saffron Gate", "gate")],
+    "R7": [("SAFFRON", "Saffron Gate", "gate")],
+    "R8": [("SAFFRON", "Saffron Gate", "gate")],
+    "R31": [("DARK", "Dark Cave", "cave")],
+    "R32": [("UNION", "Union Cave", "cave")],
+    "R33": [("UNION", "Union Cave", "cave")],
+    "R35": [("GOLDENROD", "Goldenrod Gate", "gate"), ("PARK", "National Park Gate", "gate")],
+    "R36": [("PARK", "National Park Gate", "gate")],
+    "R42": [("MORTAR_W", "Mt. Mortar West", "cave"), ("MORTAR_E", "Mt. Mortar East", "cave"), ("MORTAR_C", "Mt. Mortar Center", "cave")],
+    "R44": [("ICE_PATH", "Ice Path", "cave")],
+    "R45": [("DARK", "Dark Cave", "cave")],
+    "R46": [("DARK", "Dark Cave", "cave")],
+    "R106": [("GRANITE", "Granite Cave", "cave")],
+    "R112": [("FIERY_W", "Fiery Path West", "cave"), ("FIERY_E", "Fiery Path East", "cave")],
+    "R115": [("METEOR", "Meteor Falls", "cave")],
+    "R116": [("RUSTURF", "Rusturf Tunnel", "cave")],
+    "R120": [("SCORCHED", "Scorched Slab", "cave")],
+    "R125": [("SHOAL", "Shoal Cave", "cave")],
+}
+
 # v0.6.1 required towns and their source-map ports.
 TOWNS = [
     dict(id="PAL", name="Pallet Town", region="Kanto", kind="town", ports={"N":"land", "S":"water"}, asset="PAL.png", required=True, story_order=1, notes="Start. North land; south water continuity route."),
     dict(id="CHERRY", name="Cherrygrove City", region="Johto", kind="town", ports={"N":"land", "E":"land", "W":"water"}, asset="CHERRY.png", required=True, story_order=2, notes="Two native land seams plus natural west coast."),
     dict(id="RUST", name="Rustboro City", region="Hoenn", kind="town", ports={"N":"land", "E":"land", "S":"land"}, asset="RUST.png", required=True, story_order=4, notes="High-value three-port land city."),
     dict(id="GOLD", name="Goldenrod City", region="Johto", kind="town", ports={"N":"gate", "S":"land"}, special_ports=[{"id":"TRAIN","label":"Train","type":"transit"}], asset="GOLD.png", required=True, story_order=6, notes="North/south overworld; Magnet Train is a late transit edge."),
-    dict(id="ECRU", name="Ecruteak City", region="Johto", kind="town", ports={"E":"land", "S":"land", "W":"land"}, special_ports=[{"id":"BURNED","label":"Burned Tower","type":"warp"}], asset="ECRU.png", required=True, story_order=8, notes="Three useful land ports; north is reserved for Bell Tower context."),
+    dict(id="ECRU", name="Ecruteak City", region="Johto", kind="town", ports={"E":"gate", "S":"land", "W":"gate"}, special_ports=[{"id":"BURNED","label":"Burned Tower","type":"warp"}], asset="ECRU.png", required=True, story_order=8, notes="East and west use gatehouses; south is a land seam; north is reserved for Bell Tower context."),
     dict(id="FORT", name="Fortree City", region="Hoenn", kind="town", ports={"E":"land", "W":"land"}, asset="FORT.png", required=True, story_order=10, notes="Clean east-west pass-through town."),
     dict(id="LAV", name="Lavender Town", region="Kanto", kind="town", ports={"N":"land", "S":"land", "W":"land"}, special_ports=[{"id":"PKTOWER","label":"Pokémon Tower","type":"warp"}], asset="LAV.png", required=True, story_order=12, notes="Three useful land ports."),
     dict(id="CINN", name="Cinnabar Island", region="Kanto", kind="town", ports={"N":"water", "E":"water"}, special_ports=[{"id":"MANSION","label":"Mansion","type":"warp"}], asset="CINN.png", required=True, story_order=13, notes="Island. Use only proven north/east water seams."),
     dict(id="MOSS", name="Mossdeep City", region="Hoenn", kind="town", ports={"N":"water", "S":"water", "W":"water"}, asset="MOSS.png", required=True, story_order=15, notes="Three proven water seams; no invented east exit."),
     dict(id="SAFF", name="Saffron City", region="Kanto", kind="town", ports={"N":"gate", "E":"gate", "S":"gate", "W":"gate"}, special_ports=[{"id":"TRAIN","label":"Train","type":"transit"},{"id":"SILPH","label":"Silph","type":"warp"},{"id":"DOJO","label":"Dojo","type":"warp"}], asset="SAFF.png", required=True, story_order=16, notes="Use all four gatehouse ports when possible; late-game gating is encouraged."),
-    dict(id="BLACK", name="Blackthorn City", region="Johto", kind="town", ports={"N":"cave", "S":"land"}, asset="BLACK.png", required=True, story_order=17, notes="North represents Ice Path arrival; south represents Route 45 descent."),
+    dict(id="BLACK", name="Blackthorn City", region="Johto", kind="town", ports={"S":"land"}, port_labels={"S":"Route 45"}, special_ports=[{"id":"ICE_PATH","label":"Ice Path","type":"cave","regional":True}], asset="BLACK.png", required=True, story_order=17, notes="Includes an explicit Ice Path cave link; south descends to Route 45."),
     dict(id="OLDALE", name="Oldale Town", region="Hoenn", kind="town", ports={"N":"land", "S":"land", "W":"land"}, asset="OLDALE.png", required=False, notes="Optional Hoenn starter-area town. South connects to Route 101; west to Route 102; north to Route 103."),
     dict(id="PACIF", name="Pacifidlog Town", region="Hoenn", kind="town", ports={"E":"water", "W":"water"}, asset="PACIF.png", required=False, notes="Optional Hoenn water town on the southern ocean. West connects to Route 131; east to Route 132."),
 ]
@@ -193,21 +240,35 @@ def port_type_for_route(traversal: str) -> str:
     return "water" if traversal == "water" else "mixed" if traversal == "mixed" else "land"
 
 
+def topology_class(port_count: int) -> str:
+    if port_count <= 1:
+        return "terminal"
+    if port_count == 2:
+        return "corridor"
+    if port_count == 3:
+        return "junction"
+    return "hub"
+
+
 def make_route(row: dict[str, str]) -> dict:
     route = row["route"]
     rid = f"R{route}"
     ports = [p.strip() for p in row["ports"].split("/") if p.strip()]
     ptype = port_type_for_route(row["traversal"])
     port_map = {p: ptype for p in ports}
+    for port in ROUTE_PORT_REMOVALS.get(rid, set()):
+        port_map.pop(port, None)
     asset = f"R{route}.png"
     required_status = "required" if rid in STORY_REQUIRED_ROUTE_IDS else "optional-story" if rid in STORY_LINKED_OPTIONAL_ROUTE_IDS else "library"
-    special_ports = []
+    special_ports = [
+        {"id": port_id, "label": label, "type": transition_type, "regional": True}
+        for port_id, label, transition_type in ROUTE_TRANSITION_PORTS.get(rid, [])
+    ]
     if rid == "R119": special_ports.append({"id":"WEATHER","label":"Weather Institute","type":"warp"})
     if rid == "R41": special_ports.append({"id":"WHIRL","label":"Whirl Islands","type":"warp"})
     if rid == "R25": special_ports.append({"id":"COTTAGE","label":"Sea Cottage","type":"warp"})
     if rid == "R110": special_ports.append({"id":"NEW_MAUVILLE","label":"New Mauville","type":"warp"})
-    if rid == "R125": special_ports.append({"id":"C","label":"C","type":"cave"})
-    if rid in {"R31","R42","R116"}: special_ports.append({"id":"C","label":"C","type":"cave"})
+    regional_port_count = len(port_map) + sum(bool(p.get("regional")) for p in special_ports)
     return {
         "id": rid,
         "name": f"Route {route}",
@@ -216,6 +277,8 @@ def make_route(row: dict[str, str]) -> dict:
         "kind": "route",
         "ports": port_map,
         "special_ports": special_ports,
+        "regional_port_count": regional_port_count,
+        "topology_class": topology_class(regional_port_count),
         "shape": row["shape"],
         "traversal": row["traversal"],
         "theme": row["theme"],
@@ -231,7 +294,16 @@ def make_route(row: dict[str, str]) -> dict:
 def make_library_dungeon(spec: tuple[str, str, str, str, int]) -> dict:
     did, name, region, subtype, count = spec
     asset = ASSET_ALIASES.get(did, f"{did}.png")
-    specials = [{"id": f"P{i+1}", "label": f"Entrance {i+1}", "type": "warp"} for i in range(count)]
+    transition_type = "cave" if subtype == "cave" else "warp"
+    specials = [
+        {
+            "id": f"P{i+1}",
+            "label": f"Entrance {i+1}",
+            "type": transition_type,
+            "regional": subtype == "cave",
+        }
+        for i in range(count)
+    ]
     return {
         "id": did,
         "name": name,

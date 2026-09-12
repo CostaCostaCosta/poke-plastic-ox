@@ -6,8 +6,10 @@ A manual drag-and-drop Gradio editor for assembling the Plastic Ox overworld fro
 
 - Large central topology canvas (resizable vertically) with a 2600×1800 workspace.
 - Drag required towns, story-linked routes, required dungeons/landmarks, any unused numbered Gen I–III route, and a reusable dungeon/landmark inventory onto the canvas.
-- Preserves each source map's cardinal port geometry. Cardinal-to-cardinal connections require opposite-facing ports; cave/warp/transit links may ignore orientation because they are warps rather than seamless map boundaries.
-- Shows route categories by orientation and number of connections: vertical, horizontal, elbow, T-junction, and four-way.
+- Shows each source map's cardinal port geometry as guidance, but allows otherwise compatible ports to connect regardless of direction.
+- Models cave mouths and gatehouses as physical endpoint types, distinct from edge progression requirements such as Surf, badges, and story flags. Cave endpoints only join caves, and gate endpoints only join gates.
+- Color-codes gate endpoints in gold (with cave and water endpoints given their own contrasting colors) on cards and placed nodes.
+- Classifies routes by total regional endpoints (terminal, corridor, junction, or hub), counting cave mouths and gatehouses while excluding local building warps. Geometric orientation remains available as a filter.
 - Shows actual map PNG previews whenever `assets/images/<asset>.png` exists. Missing assets automatically fall back to an abstract topology preview.
 - Each source map is unique by default, so you cannot accidentally place the same route twice.
 - Choose a gate (`Surf`, `Cut`, `Badge`, `Story flag`, `Late-game`, etc.) before connecting ports. Gated edges are dashed.

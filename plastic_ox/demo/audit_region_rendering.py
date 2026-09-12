@@ -18,6 +18,8 @@ from walk_demo import step_toward, cross_connection
 OUT = ROOT / 'plastic_ox/demo/shots/region_audit'
 if '--only-seams' in sys.argv:
     OUT = OUT.with_name('region_seams')
+if '--triggers' in sys.argv:
+    OUT = OUT.with_name(OUT.name + '_triggers')
 OUT.mkdir(exist_ok=True)
 groups = json.loads((ROOT / 'data/maps/map_groups.json').read_text())
 maps = {name: json.loads((ROOT / 'data/maps' / name / 'map.json').read_text())
@@ -63,8 +65,8 @@ def visual(g, label):
     mismatches = 0
     for y in range(15):
         for x in range(15):
-            mt, _ = g.metatile_at(state['x'] + x - 7, state['y'] + y - 7)
-            if mt == 1023:
+            mt, block = g.metatile_at(state['x'] + x - 7, state['y'] + y - 7)
+            if block == 0x03FF:  # MAPGRID_UNDEFINED, not every block with ID 1023
                 # Unfilled margin resolves through the layout border at draw time.
                 bx, by = state['x'] + x - 7, state['y'] + y - 7
                 bw, bh = (g.u8(layout+25), g.u8(layout+26)) if version == 1 else (2, 2)
@@ -142,7 +144,7 @@ def main():
                     record['isolated_samples'].append(target)
                     record['views'].append(visual(g, name+f'_{i:03}_isolated'))
         except Exception as error:
-            record['error'] = str(error)
+            record['error'] = str(error) or repr(error)
             traceback.print_exc()
         report['maps'].append(record)
         print('RESULT', name, len(record['views']), 'views', sum(v['mismatches'] for v in record['views']), 'mismatches', record.get('error', ''), flush=True)
@@ -151,6 +153,13 @@ def main():
         for conn in maps[name].get('connections') or []:
             dest = by_id[conn['map']]
             record = {'source': name, 'destination': dest, 'direction': conn['direction']}
+            if conn['direction'] not in ('up', 'down', 'left', 'right'):
+                record['status'] = 'not_a_camera_seam'
+                record['reason'] = 'dive/emerge transitions require a separate movement test'
+                report['connections'].append(record)
+                print('TRANSITION', record, flush=True)
+                (OUT/'report.json').write_text(json.dumps(report, indent=2))
+                continue
             try:
                 w,h,b = geometry(name)
                 dw,dh,db = geometry(dest)
@@ -164,11 +173,18 @@ def main():
                         candidates.append((x,y))
                 assert candidates, 'no open matching edge tiles'
                 g = setup()
-                g.warp(name, *candidates[len(candidates)//2])
+                x, y = candidates[len(candidates)//2]
+                # Door-like arrival animations can step across an edge before
+                # the explicit crossing test begins. Start one tile inland.
+                ix, iy = {'up': (x, y+1), 'down': (x, y-1),
+                          'left': (x+1, y), 'right': (x-1, y)}[direction]
+                if 0 <= ix < w and 0 <= iy < h and not b[iy*w+ix] & 0xC00:
+                    x, y = ix, iy
+                g.warp(name, x, y)
                 cross_connection(g, direction.upper(), ids[dest], name+'_'+dest)
                 record['view'] = visual(g, 'seam_'+name+'_'+dest)
             except Exception as error:
-                record['error'] = str(error)
+                record['error'] = str(error) or repr(error)
             report['connections'].append(record)
             print('SEAM', record, flush=True)
             (OUT/'report.json').write_text(json.dumps(report, indent=2))
