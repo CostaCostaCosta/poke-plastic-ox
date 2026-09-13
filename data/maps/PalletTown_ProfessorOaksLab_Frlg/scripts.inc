@@ -12,6 +12,7 @@ PalletTown_ProfessorOaksLab_EventScript_ProfOak::
 	msgbox PalletTown_ProfessorOaksLab_Text_ProfOak, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, PalletTown_ProfessorOaksLab_EventScript_ProfOakDeclined
 	special GivePlasticOxPlayerParty
+	additem ITEM_GOOD_ROD
 	msgbox PalletTown_ProfessorOaksLab_Text_ProfOakTeamGiven, MSGBOX_DEFAULT
 	release
 	end

@@ -891,13 +891,23 @@
 #define TRAINER_PLASTIC_OX_BLUE 882
 #define TRAINER_PLASTIC_OX_BILL 883
 #define TRAINER_PLASTIC_OX_VICTORYROAD 884
+#define TRAINER_PLASTIC_OX_ROUTE101 885
+#define TRAINER_PLASTIC_OX_ROUTE103 886
+#define TRAINER_PLASTIC_OX_ROUTE29 887
+#define TRAINER_PLASTIC_OX_ROUTE46 888
+#define TRAINER_PLASTIC_OX_ROUTE1 889
+#define TRAINER_PLASTIC_OX_ROUTE31 890
+#define TRAINER_PLASTIC_OX_ROUTE104 891
+#define TRAINER_PLASTIC_OX_ROUTE24 892
+#define TRAINER_PLASTIC_OX_ROUTE25 893
+#define TRAINER_PLASTIC_OX_ROUTE44 894
 // End Plastic Ox story trainers.
 
 // NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 9 additional trainers before trainer flag space overflows
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define TRAINERS_COUNT_EMERALD 885
+#define TRAINERS_COUNT_EMERALD 895
 #define MAX_TRAINERS_COUNT_EMERALD 896
 
 #if IS_FRLG

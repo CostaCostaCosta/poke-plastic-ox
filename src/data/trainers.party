@@ -17715,3 +17715,168 @@ Level: 57
 - Dragon Claw
 - Earthquake
 - Aerial Ace
+
+=== TRAINER_PLASTIC_OX_ROUTE101 ===
+Name: CAL
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Wurmple
+Level: 3
+
+Poochyena
+Level: 3
+
+=== TRAINER_PLASTIC_OX_ROUTE103 ===
+Name: DAISY
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Wingull
+Level: 4
+
+Lotad
+Level: 4
+
+=== TRAINER_PLASTIC_OX_ROUTE29 ===
+Name: JOEY
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Sentret
+Level: 4
+
+Mareep
+Level: 4
+
+=== TRAINER_PLASTIC_OX_ROUTE46 ===
+Name: TED
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Geodude
+Level: 5
+
+Machop
+Level: 5
+
+=== TRAINER_PLASTIC_OX_ROUTE1 ===
+Name: BEN
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Spearow
+Level: 5
+
+Mankey
+Level: 5
+
+=== TRAINER_PLASTIC_OX_ROUTE31 ===
+Name: WADE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Weedle
+Level: 6
+
+Bellsprout
+Level: 6
+
+Venonat
+Level: 6
+
+=== TRAINER_PLASTIC_OX_ROUTE104 ===
+Name: HALEY
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Taillow
+Level: 8
+
+Skitty
+Level: 8
+
+Electrike
+Level: 8
+
+=== TRAINER_PLASTIC_OX_ROUTE24 ===
+Name: ETHAN
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Pichu
+Level: 9
+
+Cleffa
+Level: 9
+
+Tyrogue
+Level: 9
+
+=== TRAINER_PLASTIC_OX_ROUTE25 ===
+Name: LARA
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Swablu
+Level: 10
+
+Magby
+Level: 10
+
+Meowth
+Level: 10
+
+=== TRAINER_PLASTIC_OX_ROUTE44 ===
+Name: MARCUS
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Hiker
+Double Battle: No
+AI: Basic Trainer
+
+Shellder
+Level: 11
+
+Slowpoke
+Level: 11
+
+Dratini
+Level: 11

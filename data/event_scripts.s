@@ -1818,6 +1818,7 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/Route44_hns/scripts.inc"
 	.include "data/maps/Route45_hns/scripts.inc"
 	.include "data/scripts/plastic_ox_region.inc"
+	.include "data/scripts/plastic_ox_route_trainers.inc"
 	.include "data/maps/PlasticOx_Harbor/scripts.inc"
 	.include "data/maps/PlasticOx_Route20West/scripts.inc"
 	.include "data/maps/PlasticOx_Route20East/scripts.inc"

@@ -183,6 +183,24 @@ u32 ChooseWildMonIndex_Land(void)
     bool8 swap = FALSE;
     u8 rand = Random() % ENCOUNTER_CHANCE_LAND_MONS_TOTAL;
 
+    // Plastic Ox v4.4 tables use twenty uniform slots so their authored
+    // 5%-granularity distributions remain exact.
+    switch (gMapHeader.mapLayoutId)
+    {
+    case LAYOUT_ROUTE101:
+    case LAYOUT_ROUTE103:
+    case LAYOUT_ROUTE29_HNS:
+    case LAYOUT_ROUTE46_HNS:
+    case LAYOUT_ROUTE1:
+    case LAYOUT_ROUTE31_HNS:
+    case LAYOUT_DARK_CAVE_SOUTH_SIDE_HNS:
+    case LAYOUT_ILEX_FOREST_HNS:
+    case LAYOUT_ROUTE104:
+    case LAYOUT_ROUTE24_HNS:
+    case LAYOUT_ROUTE25_HNS:
+        return Random() % 20;
+    }
+
     if (rand < ENCOUNTER_CHANCE_LAND_MONS_SLOT_0)
         wildMonIndex = 0;
     else if (rand >= ENCOUNTER_CHANCE_LAND_MONS_SLOT_0 && rand < ENCOUNTER_CHANCE_LAND_MONS_SLOT_1)
@@ -345,15 +363,36 @@ static u32 ChooseWildMonIndex_Fishing(u8 rod)
             wildMonIndex = 1 - wildMonIndex;
         break;
     case GOOD_ROD:
-        if (rand < ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_2)
-            wildMonIndex = 2;
-        if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_2 && rand < ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_3)
-            wildMonIndex = 3;
-        if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_3 && rand < ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_4)
-            wildMonIndex = 4;
+        // Plastic Ox's early fishing pools use twenty equally weighted slots
+        // so the authored 5% increments remain exact. Other maps retain
+        // standard Good Rod behavior.
+        switch (gMapHeader.mapLayoutId)
+        {
+        case LAYOUT_PALLET_TOWN:
+        case LAYOUT_OLDALE_TOWN:
+        case LAYOUT_ROUTE103:
+        case LAYOUT_CHERRYGROVE_CITY_HNS:
+        case LAYOUT_ROUTE31_HNS:
+        case LAYOUT_ROUTE104:
+        case LAYOUT_ROUTE24_HNS:
+        case LAYOUT_ROUTE25_HNS:
+        case LAYOUT_ROUTE44_HNS:
+            wildMonIndex = Random() % 20;
+            if (swap)
+                wildMonIndex = 19 - wildMonIndex;
+            break;
+        default:
+            if (rand < ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_2)
+                wildMonIndex = 2;
+            if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_2 && rand < ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_3)
+                wildMonIndex = 3;
+            if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_3 && rand < ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_4)
+                wildMonIndex = 4;
 
-        if (swap)
-            wildMonIndex = 6 - wildMonIndex;
+            if (swap)
+                wildMonIndex = 6 - wildMonIndex;
+            break;
+        }
         break;
     case SUPER_ROD:
         if (rand < ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_5)
