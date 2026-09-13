@@ -8,6 +8,7 @@ import argparse
 import copy
 import difflib
 import json
+import os
 from pathlib import Path
 import re
 import shutil
@@ -15,24 +16,34 @@ import struct
 import sys
 
 ROOT = Path(__file__).resolve().parents[2]
-DONOR = Path('/home/eddie/repos/pokehns-expansion')
 ROUTES = ['Route33_hns', 'Route44_hns', 'Route45_hns']
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--assets', action='store_true')
+    parser.add_argument(
+        '--donor',
+        type=Path,
+        default=os.environ.get('POX_DONOR'),
+        help='path to the pokehns-expansion checkout (or set POX_DONOR)',
+    )
     args = parser.parse_args()
+    if args.donor is None:
+        parser.error('provide --donor PATH or set POX_DONOR')
+    donor = args.donor.expanduser().resolve()
+    if not (donor/'data/layouts/layouts.json').is_file():
+        parser.error(f'donor checkout is missing data/layouts/layouts.json: {donor}')
     changes = {}
     layouts = json.loads((ROOT/'data/layouts/layouts.json').read_text())
-    donor_layouts = {l['id']: l for l in json.loads((DONOR/'data/layouts/layouts.json').read_text())['layouts']}
+    donor_layouts = {l['id']: l for l in json.loads((donor/'data/layouts/layouts.json').read_text())['layouts']}
     groups = json.loads((ROOT/'data/maps/map_groups.json').read_text())
     group = 'gMapGroup_PlasticOxV7'
     if group not in groups['group_order']:
         groups['group_order'].append(group)
     groups.setdefault(group, [])
     for name in ROUTES:
-        data = json.loads((DONOR/f'data/maps/{name}/map.json').read_text())
+        data = json.loads((donor/f'data/maps/{name}/map.json').read_text())
         layout = copy.deepcopy(donor_layouts[data['layout']])
         layout.pop('game_version', None)
         layout['include_in_versions'] = ['emerald']
@@ -42,7 +53,7 @@ def main():
             path = ROOT/layout[key]
             if not path.exists() and args.assets:
                 path.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copyfile(DONOR/layout[key], path)
+                shutil.copyfile(donor/layout[key], path)
         if name not in groups[group]:
             groups[group].append(name)
         if not (ROOT/f'data/maps/{name}/map.json').exists():
@@ -68,7 +79,7 @@ def main():
     # new tileset, and retains its own geometry/graphics/palettes as a unit.
     asset = 'data/tilesets/secondary/azalea_town_hns'
     if args.assets and not (ROOT/asset).exists():
-        shutil.copytree(DONOR/asset, ROOT/asset)
+        shutil.copytree(donor/asset, ROOT/asset)
         sys.path.insert(0, str(ROOT/'plastic_ox/agent'))
         from remap_metatile_behaviors import build_mapping
         mapping = build_mapping()[2]
@@ -77,7 +88,7 @@ def main():
         words = struct.unpack('<'+'H'*(len(raw)//2), raw)
         path.write_bytes(struct.pack('<'+'H'*len(words), *[(v&0xFF00)|mapping[v&255][0] for v in words]))
     symbol = 'AzaleaTown_Hns'
-    donor_mt = (DONOR/'src/data/tilesets/metatiles.h').read_text()
+    donor_mt = (donor/'src/data/tilesets/metatiles.h').read_text()
     for path, addition in [
         ('include/tilesets.h', f'extern const struct Tileset gTileset_{symbol};\n'),
         ('src/data/tilesets/headers.h', f'\nconst struct Tileset gTileset_{symbol} = {{ .isCompressed = TRUE, .isSecondary = TRUE, .tiles = gTilesetTiles_{symbol}, .palettes = gTilesetPalettes_{symbol}, .metatiles = gMetatiles_{symbol}, .metatileAttributes = gMetatileAttributes_{symbol}, .callback = NULL }};\n'),

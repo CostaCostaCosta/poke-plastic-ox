@@ -212,9 +212,6 @@ def apply_region(read, put):
     save('Route7_hns',d)
     for name in ['UndergroundPath_EastEntrance_Frlg','UndergroundPath_WestEntrance_Frlg','UndergroundPath_EastWestTunnel_Frlg']:
         d=load(name);d['region']='REGION_HOENN';d['coord_events']=[]
-        if name=='UndergroundPath_WestEntrance_Frlg':
-            for w in d['warp_events'][:3]:
-                w['dest_map']=mid('Route7_hns');w['dest_warp_id']='0'
         save(name,d)
 
     # External Seafoam exits lead to distinct coastal maps: there is no

@@ -8,7 +8,9 @@ cleanup below applies to donor events during import, not to existing authored
 Plastic Ox maps. Native Emerald and FRLG assets require their own format and
 build-inclusion checks; this HNS recipe is not a universal format conversion.
 
-Source repo: `/home/eddie/repos/pokehns-expansion` (paths below relative to it).
+Source repo: a local `pokehns-expansion` checkout (paths below relative to it).
+Pass its path to `prepare_region_assets.py --donor`, or set `POX_DONOR` before
+running that script.
 Target: this repo. Never edit generated artifacts (`include/constants/map_groups.h`,
 `src/data/wild_encounters.h`, `data/maps/groups.inc`, …) — regenerate by building.
 
