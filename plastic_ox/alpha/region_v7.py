@@ -53,6 +53,7 @@ TRAILS = [
     ('goldenrod_route35','GoldenrodCity_hns',(33,8),'Route35_hns','S',['FLAG_BADGE02_GET']),
     ('route35_park','Route35_hns',(17,5),'NationalPark_Normal_hns',(24,51),[]),
     ('park_route36','NationalPark_Normal_hns',(39,20),'Route36_hns',(16,21),[]),
+    ('route37_ecruteak','Route37_hns','N','EcruteakCity_hns','S',[]),
     ('ecruteak_route119','EcruteakCity_hns','E','Route119','S',['FLAG_BADGE03_GET']),
     ('route119_fortree','Route119',(39,8),'FortreeCity','W',['FLAG_POX_STORY_WEATHER']),
     ('fortree_route110','FortreeCity','E','Route110','N',['FLAG_BADGE04_GET']),
@@ -132,12 +133,25 @@ def apply_region(read, put):
             continue
         d=json.loads(raw)
         d['connections']=[c for c in d.get('connections') or [] if c['map'] in keep.get(name,set())]
+        if name in retired:
+            d['warp_events']=[]
         if name in active:
             d['region']='REGION_HOENN'
             d['object_events']=[o for o in d.get('object_events',[]) if not o.get('script','').startswith('PoxRegion_') or not o.get('script','').endswith('_Sign')]
             d['bg_events']=[o for o in d.get('bg_events',[]) if not o.get('script','').startswith('PoxRegion_') or not o.get('script','').endswith('_Sign')]
             # Remove source-world quest triggers; authored Pallet starter gate survives.
             d['coord_events']=[c for c in d.get('coord_events',[]) if c.get('script')=='Pox_StarterGate']
+            if name == 'IlexForest_hns':
+                # Imported HNS NPC sprites reset Emerald as they enter the
+                # camera; retain the NPCs with equivalent native graphics.
+                native_gfx = {
+                    'OBJ_EVENT_GFX_PICNICKER_HNS':'OBJ_EVENT_GFX_PICNICKER',
+                    'OBJ_EVENT_GFX_FAT_MAN_HNS':'OBJ_EVENT_GFX_FAT_MAN',
+                    'OBJ_EVENT_GFX_BUG_CATCHER_HNS':'OBJ_EVENT_GFX_BUG_CATCHER',
+                    'OBJ_EVENT_GFX_KIMONO_HNS':'OBJ_EVENT_GFX_WOMAN_3',
+                }
+                for o in d.get('object_events',[]):
+                    o['graphics_id']=native_gfx.get(o.get('graphics_id'),o.get('graphics_id'))
             for o in d.get('object_events',[]):
                 if name.endswith('_hns') and o.get('trainer_type')=='TRAINER_TYPE_NORMAL':
                     local_script=read(f'data/maps/{name}/scripts.inc')
@@ -324,7 +338,10 @@ def apply_region(read, put):
             scripts.append(f'{script}_Sign::\n\tmsgbox {script}_Text, MSGBOX_SIGN\n\tend\n{script}_Text::\n\t.string "{label[:30]}\\nMarked passage ahead.$"')
 
     for key,a,at,b,bt,requirements in TRAILS:
-        pa=port(key+'_a',a,at)
+        overrides={('route110_lavender','Route110'):((17,5),(17,0)),
+                   ('route103_cinnabar','Route103'):((75,15),(78,11))}
+        pa_target,pa_anchor=overrides.get((key,a),(at,None))
+        pa=port(key+'_a',a,pa_target,pa_anchor)
         pb=port(key+'_b',b,bt)
         endpoint(key+'_a',a,pa,b,pb['approach'],requirements,b.replace('_hns','').replace('_Frlg','').replace('PlasticOx_',''))
         # Native ledges plus no reverse transition preserve the downhill return.

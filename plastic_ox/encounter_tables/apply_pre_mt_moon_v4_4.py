@@ -28,6 +28,7 @@ MAPS = {
     "Route 44": "MAP_ROUTE44_HNS",
 }
 SPECIES_FIX = {"Nidoran♀": "NIDORAN_F", "Nidoran♂": "NIDORAN_M"}
+LAND_WEIGHTS = (20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1)
 
 
 def species(name: str) -> str:
@@ -72,6 +73,38 @@ def weighted_slots(weighted):
     return [name for weight, name in weighted for _ in range(weight // 5)]
 
 
+def land_slots(weighted):
+    """Fit authored rates to the engine's fixed 12 land slots."""
+    targets = [weight for weight, _ in weighted]
+    # Seed one slot per species, choosing the remaining assignments greedily
+    # by the largest current deficit. This retains the complete species pool.
+    assignment = list(range(len(weighted)))
+    for slot in range(len(weighted), len(LAND_WEIGHTS)):
+        current = [sum(LAND_WEIGHTS[i] for i, owner in enumerate(assignment) if owner == j)
+                   for j in range(len(weighted))]
+        assignment.append(max(range(len(weighted)), key=lambda j: targets[j] - current[j]))
+    # Improve the seed by exhaustive single-slot substitutions.
+    while True:
+        current = [sum(LAND_WEIGHTS[i] for i, owner in enumerate(assignment) if owner == j)
+                   for j in range(len(weighted))]
+        score = sum(abs(current[j] - targets[j]) for j in range(len(weighted)))
+        best = None
+        for slot, old in enumerate(assignment):
+            if assignment.count(old) == 1:
+                continue
+            for new in range(len(weighted)):
+                trial = current.copy()
+                trial[old] -= LAND_WEIGHTS[slot]
+                trial[new] += LAND_WEIGHTS[slot]
+                trial_score = sum(abs(trial[j] - targets[j]) for j in range(len(weighted)))
+                if trial_score < score and (best is None or trial_score < best[0]):
+                    best = trial_score, slot, new
+        if best is None:
+            break
+        assignment[best[1]] = best[2]
+    return [weighted[owner][1] for owner in assignment]
+
+
 def mons(names, levels):
     lo, hi = levels
     return [{"min_level": lo, "max_level": hi, "species": species(name)} for name in names]
@@ -92,7 +125,7 @@ def entries():
                 weighted = [(int(row[0].rstrip("%")), row[col]) for row in rows]
             else:
                 weighted = [(int(row[1].rstrip("%")), row[0]) for row in rows]
-            names = weighted_slots(weighted)
+            names = land_slots(weighted)
             suffix = f"_{time}" if time else ""
             result.append({"map": MAPS[area], "base_label": f"gPox{MAPS[area][4:].title().replace('_', '')}{suffix}",
                            "land_mons": {"encounter_rate": 20, "mons": mons(names, levels)}})

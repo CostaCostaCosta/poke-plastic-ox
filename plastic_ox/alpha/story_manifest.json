@@ -236,7 +236,7 @@
     },
     {
       "map": "PlasticOx_PokemonTower",
-      "x": 3,
+      "x": 6,
       "y": 12,
       "script": "Pox_TowerGrunt1"
     },
@@ -254,8 +254,8 @@
     },
     {
       "map": "PlasticOx_PokemonTower",
-      "x": 4,
-      "y": 10,
+      "x": 3,
+      "y": 12,
       "script": "Pox_PokemonTowerExit"
     },
     {

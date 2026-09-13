@@ -325,7 +325,7 @@ for i, (name, display, town, prereq, level, team) in enumerate(gymdata):
     extra = "\tmsgbox Pox_Text_Badge, MSGBOX_DEFAULT"
     repeat = "Pox_Done"
     if name == 'Blaine':
-        extra += "\n\tgoto Pox_MansionKey"
+        extra += "\n\tgoto Pox_MansionKey_Award"
         repeat = "Pox_MansionKey"
     battle(name, display, f"{display}: Show me what you and your POKéMON have learned!", team, level, badges[i], prereq, extra, double=name=='TateLiza', repeat=repeat)
     if name in ['Roxanne','Winona','TateLiza']:
@@ -341,6 +341,7 @@ for i, (name, display, town, prereq, level, team) in enumerate(gymdata):
 speech("Pox_Text_Badge", "You received a GYM BADGE! A new challenge waits on the next road.")
 start("MansionKey", [badges[4]])
 keyflag = flag('MANSION_KEY')
+emit("Pox_MansionKey_Award:")
 for machine in ['ITEM_HM04', 'ITEM_HM06', 'ITEM_HM05']:
     emit(f'\tcheckitem {machine}\n\tgoto_if_eq VAR_RESULT, TRUE, Pox_MansionKey_{machine}\n\tgiveitem {machine}\n\tgoto_if_eq VAR_RESULT, FALSE, Pox_Release\nPox_MansionKey_{machine}::')
 emit(f"\tgoto_if_set {keyflag}, Pox_Done\n\tgiveitem ITEM_SECRET_KEY\n\tgoto_if_eq VAR_RESULT, FALSE, Pox_Release\n\tsetflag {keyflag}\n\tmsgbox Pox_Text_MansionKey, MSGBOX_DEFAULT")
@@ -394,7 +395,7 @@ lav2='FLAG_POX_HIDE_LAVENDER_GRUNT_2'
 for n,f,req in [(1,lav1,[badges[3]]),(2,lav2,[lav1])]:
     battle('TowerGrunt'+str(n),'GRUNT',"FUJI knows something about reconstructing POKéMON. He'll answer our questions!", [('Golbat',['Bite','Wing Attack','Confuse Ray']),('Weezing',['Sludge','Smokescreen','Self Destruct'])],35,f,req,pic='Team Aqua M',cls='Team Aqua')
 beat('FujiRescue', "FUJI: Thank you. They asked about preserving living states... old work I hoped never to hear of again.|The archives on CINNABAR may explain more. Ask BLAINE for access.|Take the UNDERGROUND PATH from ROUTE 8 to ROUTE 7, then cross ROUTE 103. This SURF machine will help you cross the water.",fuji,[lav1,lav2], '\tgiveitem ITEM_HM03\n\tgoto_if_eq VAR_RESULT, FALSE, Pox_Release')
-ptower=room('PokemonTower','LavenderTown_hns',None,objects=[npc('TowerGrunt1',3,13,'OBJ_EVENT_GFX_ROCKET_GRUNT_M',lav1),npc('TowerGrunt2',7,9,'OBJ_EVENT_GFX_ROCKET_GRUNT_M',lav2),npc('FujiRescue',5,2,'OBJ_EVENT_GFX_OLD_MAN')],return_xy=(17,8))
+ptower=room('PokemonTower','LavenderTown_hns',None,objects=[npc('TowerGrunt1',5,12,'OBJ_EVENT_GFX_ROCKET_GRUNT_M',lav1),npc('TowerGrunt2',7,9,'OBJ_EVENT_GFX_ROCKET_GRUNT_M',lav2),npc('FujiRescue',5,2,'OBJ_EVENT_GFX_OLD_MAN')],return_xy=(17,8))
 guide('LavenderTown_hns',0,'TowerGuide',ptower,'TEAM ROCKET is holding MR. FUJI in the POKéMON TOWER.',[badges[3]])
 gift('Fuji','FUJI: This EEVEE was abandoned. You have shown it what kindness looks like.|BLAINE keeps the key to the CINNABAR archives.',[fuji])
 house=room('FujiHouse','LavenderTown_hns','Fuji',return_xy=(12,11))
@@ -542,16 +543,22 @@ if '#include "constants/plastic_ox_story.h"' not in s:
 put(path,s)
 path='include/constants/opponents.h'
 s=read(path)
+route_defs=re.findall(r'^#define TRAINER_PLASTIC_OX_ROUTE\w+\s+\d+\n',s,flags=re.M)
 s=re.sub(r'// Plastic Ox story trainers\.\n.*?// End Plastic Ox story trainers\.\n\n','',s,flags=re.S)
-defs='// Plastic Ox story trainers.\n'+''.join(f'#define {tid} {857+i}\n' for i,(tid,_) in enumerate(trainers))+'// End Plastic Ox story trainers.\n'
+defs='// Plastic Ox story trainers.\n'+''.join(f'#define {tid} {857+i}\n' for i,(tid,_) in enumerate(trainers))+''.join(route_defs)+'// End Plastic Ox story trainers.\n'
 s=s.replace('// NOTE: Because each Trainer',defs+'\n// NOTE: Because each Trainer')
-s=re.sub(r'#define TRAINERS_COUNT_EMERALD\s+\d+',f'#define TRAINERS_COUNT_EMERALD {857+len(trainers)}',s)
+route_ids=[int(value) for value in re.findall(r'#define TRAINER_PLASTIC_OX_ROUTE\w+\s+(\d+)',s)]
+s=re.sub(r'#define TRAINERS_COUNT_EMERALD\s+\d+',f'#define TRAINERS_COUNT_EMERALD {max([857+len(trainers), *[i+1 for i in route_ids]])}',s)
 s=re.sub(r'#define MAX_TRAINERS_COUNT_EMERALD\s+\d+','#define MAX_TRAINERS_COUNT_EMERALD 896',s)
 assert len(trainers)<=39
 put(path,s)
 path='src/data/trainers.party'
-s=read(path).split('=== TRAINER_PLASTIC_OX_ROXANNE ===')[0].rstrip()+'\n\n'
-put(path,s+'\n'.join(t for _,t in trainers))
+s=read(path)
+prefix=s.split('=== TRAINER_PLASTIC_OX_ROXANNE ===')[0].rstrip()+'\n\n'
+route_suffix=''
+if '=== TRAINER_PLASTIC_OX_ROUTE101 ===' in s:
+    route_suffix='\n\n=== TRAINER_PLASTIC_OX_ROUTE101 ==='+s.split('=== TRAINER_PLASTIC_OX_ROUTE101 ===',1)[1]
+put(path,prefix+'\n'.join(t for _,t in trainers)+route_suffix)
 put('plastic_ox/alpha/story_manifest.json',json.dumps(dict(events=[dict(map=m,x=x,y=y,script='Pox_'+s) for m,x,y,s in manifest],flags=flags,trainers=[t for t,_ in trainers],rooms=room_names),indent=2)+'\n')
 
 # Apply physical topology last so room/story regeneration cannot restore old

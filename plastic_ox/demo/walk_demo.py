@@ -157,13 +157,17 @@ def step_toward(g, current, nxt):
     distance = abs(nx - x) + abs(ny - y)
     assert distance in (1, 2), f"unsupported movement edge: {current} -> {nxt}"
     for _ in range(5):
-        actual = (g.state()["x"], g.state()["y"])
+        state = g.state()
+        assert state is not None, ("lost overworld state", current, nxt)
+        actual = (state["x"], state["y"])
         if actual == nxt:
             return
         assert actual == current, f"movement drifted from {current} toward {nxt}, got {actual}"
         g.tap(DIRKEY[direction], hold=8, wait=30 if distance == 2 else 18)
         assert_no_battle(g)
-    actual = (g.state()["x"], g.state()["y"])
+    state = g.state()
+    assert state is not None, ("lost overworld state", current, nxt)
+    actual = (state["x"], state["y"])
     assert actual == nxt, f"movement did not advance from {current} toward {nxt}, got {actual}"
 
 

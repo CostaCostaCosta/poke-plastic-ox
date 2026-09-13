@@ -302,7 +302,7 @@ Pox_Blaine_Won::
 	setflag FLAG_BADGE05_GET
 
 msgbox Pox_Text_Badge, MSGBOX_DEFAULT
-	goto Pox_MansionKey
+	goto Pox_MansionKey_Award
 
 releaseall
 	end
@@ -484,6 +484,8 @@ Pox_MansionKey::
 	lockall
 
 goto_if_unset FLAG_BADGE05_GET, Pox_NotReady
+
+Pox_MansionKey_Award:
 
 checkitem ITEM_HM04
 	goto_if_eq VAR_RESULT, TRUE, Pox_MansionKey_ITEM_HM04
@@ -993,7 +995,7 @@ goto_if_unset FLAG_BADGE04_GET, Pox_NotReady
 
 msgbox Pox_Text_TowerGuide, MSGBOX_DEFAULT
 
-warp MAP_PLASTIC_OX_POKEMON_TOWER, 6, 12
+warp MAP_PLASTIC_OX_POKEMON_TOWER, 5, 10
 	waitstate
 
 releaseall

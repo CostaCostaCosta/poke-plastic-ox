@@ -41,7 +41,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_PICNICKER_HNS",
+      "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
       "x": 37,
       "y": 21,
       "elevation": 0,
@@ -54,7 +54,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_FAT_MAN_HNS",
+      "graphics_id": "OBJ_EVENT_GFX_FAT_MAN",
       "x": 42,
       "y": 26,
       "elevation": 0,
@@ -67,7 +67,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER_HNS",
+      "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER",
       "x": 39,
       "y": 8,
       "elevation": 0,
@@ -134,7 +134,7 @@
     },
     {
       "local_id": "LOCALID_ILEX_FOREST_KIMONO",
-      "graphics_id": "OBJ_EVENT_GFX_KIMONO_HNS",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_3",
       "x": 54,
       "y": 9,
       "elevation": 0,

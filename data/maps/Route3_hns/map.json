@@ -67,15 +67,7 @@
       "flag": "0"
     }
   ],
-  "warp_events": [
-    {
-      "x": 83,
-      "y": 12,
-      "elevation": 0,
-      "dest_map": "MAP_MT_MOON_CAVE_HNS",
-      "dest_warp_id": "1"
-    }
-  ],
+  "warp_events": [],
   "coord_events": [],
   "bg_events": [
     {

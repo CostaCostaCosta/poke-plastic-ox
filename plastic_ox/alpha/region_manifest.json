@@ -499,6 +499,46 @@
       "label": "NationalPark_Normal"
     },
     {
+      "id": "route37_ecruteak_a",
+      "source": "Route37_hns",
+      "destination": "EcruteakCity_hns",
+      "tile": [
+        19,
+        11
+      ],
+      "approach": [
+        18,
+        11
+      ],
+      "direction": "E",
+      "landing": [
+        33,
+        53
+      ],
+      "requires": [],
+      "label": "EcruteakCity"
+    },
+    {
+      "id": "route37_ecruteak_b",
+      "source": "EcruteakCity_hns",
+      "destination": "Route37_hns",
+      "tile": [
+        33,
+        54
+      ],
+      "approach": [
+        33,
+        53
+      ],
+      "direction": "S",
+      "landing": [
+        18,
+        11
+      ],
+      "requires": [],
+      "label": "Route37"
+    },
+    {
       "id": "ecruteak_route119_a",
       "source": "EcruteakCity_hns",
       "destination": "Route119",
@@ -679,12 +719,12 @@
       "source": "Route110",
       "destination": "LavenderTown_hns",
       "tile": [
-        20,
-        99
+        16,
+        5
       ],
       "approach": [
-        19,
-        99
+        15,
+        5
       ],
       "direction": "E",
       "landing": [
@@ -710,8 +750,8 @@
       ],
       "direction": "E",
       "landing": [
-        19,
-        99
+        15,
+        5
       ],
       "requires": [
         "FLAG_BADGE04_GET"
@@ -943,14 +983,14 @@
       "source": "Route103",
       "destination": "CinnabarIsland_hns",
       "tile": [
-        10,
+        75,
         15
       ],
       "approach": [
-        9,
-        15
+        75,
+        14
       ],
-      "direction": "E",
+      "direction": "S",
       "landing": [
         35,
         12
@@ -974,8 +1014,8 @@
       ],
       "direction": "E",
       "landing": [
-        9,
-        15
+        75,
+        14
       ],
       "requires": [
         "FLAG_POX_STORY_FUJI"

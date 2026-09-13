@@ -9,10 +9,14 @@ from collections import deque
 import json
 import re
 import struct
+import sys
+from pathlib import Path
 
 from test_story import StoryGame,ROOT
 from walklib import K
 from walk_demo import object_tiles, step_toward
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'alpha'))
+from region_geometry import Geometry
 
 KEYS={'N':K.KEY_UP,'S':K.KEY_DOWN,'E':K.KEY_RIGHT,'W':K.KEY_LEFT}
 DELTAS={'N':(0,-1),'S':(0,1),'E':(1,0),'W':(-1,0)}
@@ -21,6 +25,7 @@ GROUPS=json.loads((ROOT/'data/maps/map_groups.json').read_text())
 IDS={n:(i,j) for i,k in enumerate(GROUPS['group_order']) for j,n in enumerate(GROUPS[k])}
 MAPS={n:json.loads((ROOT/f'data/maps/{n}/map.json').read_text()) for n in IDS}
 BYID={d['id']:n for n,d in MAPS.items()}
+GEOMETRY={n:Geometry(n,MAPS[n]) for n in IDS}
 PORTS={p['id']:p for p in json.loads((ROOT/'plastic_ox/alpha/region_manifest.json').read_text())['transitions']}
 LEGS={
  'early':('PalletTown_Frlg',(13,10),[
@@ -29,7 +34,7 @@ LEGS={
      'rustboro_cottage_a','route24_route25_a',('warp',0),('warp',0),'route24_route25_b','rustboro_cottage_b',
      'rustboro_route44_a','route44_moon_a','moon_route33_a','route33_goldenrod_a']),
  'central':('GoldenrodCity_hns',(28,37),['goldenrod_route35_a','route35_park_a','park_route36_a',
-     ('seam','N','Route37_hns'),('seam','N','EcruteakCity_hns'),'ecruteak_route119_a','route119_fortree_a','fortree_route110_a','route110_lavender_a']),
+     ('seam','N','Route37_hns'),'route37_ecruteak_a','ecruteak_route119_a','route119_fortree_a','fortree_route110_a','route110_lavender_a']),
  'underground':('LavenderTown_hns',(9,7),['lavender_route8_a',('warp',0),('warp',3),('warp',1),'underground_return_6','route7_route103_a','route103_cinnabar_a']),
  'north':('MossdeepCity',(28,17),['mossdeep_route19_a','route19_saffron_a','saffron_route5_a','route5_route115_a',('warp',0),'meteor_blackthorn_a','blackthorn_route45_a','route45_route46_a',('warp',2),('warp',0)]),
  'postgame':('LavenderTown_hns',(9,7),['lavender_harbor_a','harbor_frontier_a','harbor_frontier_b','lavender_harbor_b']),
@@ -148,7 +153,17 @@ def main():
                 p=PORTS[step];assert current(g)==p['source'];navigate(g,lambda x,y:(x,y)==tuple(p['approach']));cross(g,p['direction'],p['destination'])
             elif step[0]=='seam':
                 _,direction,dest=step;info=g.mapheader_info();dx,dy=DELTAS[direction]
-                navigate(g,lambda x,y:(direction=='N' and y==0) or (direction=='S' and y==info['h']-1) or (direction=='W' and x==0) or (direction=='E' and x==info['w']-1))
+                source=current(g); sg,dg=GEOMETRY[source],GEOMETRY[dest]
+                connection=next(c for c in MAPS[source]['connections'] if BYID[c['map']]==dest)
+                offset=connection['offset']
+                def open_seam(x,y):
+                    if direction=='N': tx,ty=x-offset,dg.h-1
+                    elif direction=='S': tx,ty=x-offset,0
+                    elif direction=='W': tx,ty=dg.w-1,y-offset
+                    else: tx,ty=0,y-offset
+                    edge=(direction=='N' and y==0) or (direction=='S' and y==sg.h-1) or (direction=='W' and x==0) or (direction=='E' and x==sg.w-1)
+                    return edge and sg.passable(x,y,g.test_water) and dg.passable(tx,ty,g.test_water)
+                navigate(g,open_seam)
                 cross(g,direction,dest)
             else:
                 w=MAPS[current(g)]['warp_events'][step[1]];dest=BYID[w['dest_map']]

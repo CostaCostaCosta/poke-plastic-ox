@@ -606,6 +606,48 @@ PoxRegion_park_route36_b_Sign::
 PoxRegion_park_route36_b_Text::
 	.string "NationalPark_Normal\nMarked passage ahead.$"
 
+PoxRegion_route37_ecruteak_a::
+	lockall
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route37_ecruteak_a_Open
+PoxRegion_route37_ecruteak_a_Open::
+	warp MAP_ECRUTEAK_CITY_HNS, 33, 53
+	waitstate
+	releaseall
+	end
+PoxRegion_route37_ecruteak_a_Closed::
+	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
+	warp MAP_ROUTE37_HNS, 18, 11
+	waitstate
+	releaseall
+	end
+
+PoxRegion_route37_ecruteak_a_Sign::
+	msgbox PoxRegion_route37_ecruteak_a_Text, MSGBOX_SIGN
+	end
+PoxRegion_route37_ecruteak_a_Text::
+	.string "EcruteakCity\nMarked passage ahead.$"
+
+PoxRegion_route37_ecruteak_b::
+	lockall
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route37_ecruteak_b_Open
+PoxRegion_route37_ecruteak_b_Open::
+	warp MAP_ROUTE37_HNS, 18, 11
+	waitstate
+	releaseall
+	end
+PoxRegion_route37_ecruteak_b_Closed::
+	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
+	warp MAP_ECRUTEAK_CITY_HNS, 33, 53
+	waitstate
+	releaseall
+	end
+
+PoxRegion_route37_ecruteak_b_Sign::
+	msgbox PoxRegion_route37_ecruteak_b_Text, MSGBOX_SIGN
+	end
+PoxRegion_route37_ecruteak_b_Text::
+	.string "Route37\nMarked passage ahead.$"
+
 PoxRegion_ecruteak_route119_a::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_ecruteak_route119_a_Open
@@ -769,23 +811,17 @@ PoxRegion_route110_lavender_a_Open::
 	end
 PoxRegion_route110_lavender_a_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE110, 19, 99
+	warp MAP_ROUTE110, 15, 5
 	waitstate
 	releaseall
 	end
-
-PoxRegion_route110_lavender_a_Sign::
-	msgbox PoxRegion_route110_lavender_a_Text, MSGBOX_SIGN
-	end
-PoxRegion_route110_lavender_a_Text::
-	.string "LavenderTown\nMarked passage ahead.$"
 
 PoxRegion_route110_lavender_b::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route110_lavender_b_Open
 	goto_if_unset FLAG_BADGE04_GET, PoxRegion_route110_lavender_b_Closed
 PoxRegion_route110_lavender_b_Open::
-	warp MAP_ROUTE110, 19, 99
+	warp MAP_ROUTE110, 15, 5
 	waitstate
 	releaseall
 	end
@@ -1027,7 +1063,7 @@ PoxRegion_route103_cinnabar_a_Open::
 	end
 PoxRegion_route103_cinnabar_a_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE103, 9, 15
+	warp MAP_ROUTE103, 75, 14
 	waitstate
 	releaseall
 	end
@@ -1043,7 +1079,7 @@ PoxRegion_route103_cinnabar_b::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route103_cinnabar_b_Open
 	goto_if_unset FLAG_POX_STORY_FUJI, PoxRegion_route103_cinnabar_b_Closed
 PoxRegion_route103_cinnabar_b_Open::
-	warp MAP_ROUTE103, 9, 15
+	warp MAP_ROUTE103, 75, 14
 	waitstate
 	releaseall
 	end

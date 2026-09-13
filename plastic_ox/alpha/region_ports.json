@@ -263,17 +263,6 @@
     ],
     "direction": "E"
   },
-  "route110_lavender_a": {
-    "tile": [
-      20,
-      99
-    ],
-    "approach": [
-      19,
-      99
-    ],
-    "direction": "E"
-  },
   "route110_lavender_b": {
     "tile": [
       16,
@@ -392,17 +381,6 @@
     "approach": [
       9,
       20
-    ],
-    "direction": "E"
-  },
-  "route103_cinnabar_a": {
-    "tile": [
-      10,
-      15
-    ],
-    "approach": [
-      9,
-      15
     ],
     "direction": "E"
   },
@@ -821,6 +799,50 @@
     "approach": [
       39,
       28
+    ],
+    "direction": "S"
+  },
+  "route37_ecruteak_a": {
+    "tile": [
+      19,
+      11
+    ],
+    "approach": [
+      18,
+      11
+    ],
+    "direction": "E"
+  },
+  "route37_ecruteak_b": {
+    "tile": [
+      33,
+      54
+    ],
+    "approach": [
+      33,
+      53
+    ],
+    "direction": "S"
+  },
+  "route110_lavender_a": {
+    "tile": [
+      16,
+      5
+    ],
+    "approach": [
+      15,
+      5
+    ],
+    "direction": "E"
+  },
+  "route103_cinnabar_a": {
+    "tile": [
+      75,
+      15
+    ],
+    "approach": [
+      75,
+      14
     ],
     "direction": "S"
   }

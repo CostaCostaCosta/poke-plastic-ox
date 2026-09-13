@@ -10,7 +10,7 @@ ASSIGNMENTS = {
     "Route29_hns": ("Route29_EventScript_Youngster", "PoxRouteTrainer_Route29"),
     "Route46_hns": ("Route46_EventScript_Ted", "PoxRouteTrainer_Route46"),
     "Route1_Frlg": ("Route1_EventScript_Boy", "PoxRouteTrainer_Route1"),
-    "Route31_hns": ("Route31_EventScript_Wade", "PoxRouteTrainer_Route31"),
+    "Route31_hns": ("Route31_EventScript_Youngster", "PoxRouteTrainer_Route31"),
     "Route104": ("Route104_EventScript_Haley", "PoxRouteTrainer_Route104"),
     "Route24_hns": ("Route24_EventScript_Npc2", "PoxRouteTrainer_Route24"),
     "Route25_hns": ("Route25_EventScript_Npc2", "PoxRouteTrainer_Route25"),

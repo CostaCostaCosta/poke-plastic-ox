@@ -37,7 +37,8 @@ def main():
         got_mons = matching[0][field]["mons"]
         want_mons = wanted[field]["mons"]
         assert got_mons == want_mons, f"table mismatch for {key}"
-        assert len(got_mons) == 20, f"{key} is not a 20-slot weighted table"
+        expected_slots = 12 if field == "land_mons" else 20
+        assert len(got_mons) == expected_slots, f"{key} has the wrong slot count"
 
     available = defaultdict(set)
     for entry in expected:

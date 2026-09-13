@@ -93,22 +93,7 @@
       "flag": "0"
     }
   ],
-  "warp_events": [
-    {
-      "x": 18,
-      "y": 9,
-      "elevation": 0,
-      "dest_map": "MAP_MT_MOON_CAVE_HNS",
-      "dest_warp_id": "0"
-    },
-    {
-      "x": 16,
-      "y": 10,
-      "elevation": 3,
-      "dest_map": "MAP_GOLDENROD_CITY_HNS",
-      "dest_warp_id": "2"
-    }
-  ],
+  "warp_events": [],
   "coord_events": [],
   "bg_events": [
     {

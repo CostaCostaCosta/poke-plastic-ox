@@ -185,22 +185,7 @@
       "flag": "0"
     }
   ],
-  "warp_events": [
-    {
-      "x": 20,
-      "y": 14,
-      "elevation": 3,
-      "dest_map": "MAP_ILEX_FOREST_HNS",
-      "dest_warp_id": "-1"
-    },
-    {
-      "x": 31,
-      "y": 89,
-      "elevation": 3,
-      "dest_map": "MAP_ROUTE116",
-      "dest_warp_id": "1"
-    }
-  ],
+  "warp_events": [],
   "coord_events": [],
   "bg_events": [
     {
