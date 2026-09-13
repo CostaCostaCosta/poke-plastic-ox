@@ -184,7 +184,7 @@ def travel(name, destination, x, y, text, prerequisites=()):
     # Regional movement is now owned by physical trail/gate/cave transitions.
     # Retain these actors as directions, never as town-skipping transports.
     regional_hints = {
-        'IlexRoad':'Follow the northern forest path to ROUTE 104 and RUSTBORO.',
+        'IlexRoad':'Follow the northern forest path to ROUTE 2 and RUSTBORO.',
         'MoonRoad':'The east road crosses ROUTE 44 to MT. MOON.',
         'GoldenrodRoad':'The far cave exit leads to ROUTE 33 and GOLDENROD.',
         'ParkRoad':'Take ROUTE 35 north to NATIONAL PARK.',

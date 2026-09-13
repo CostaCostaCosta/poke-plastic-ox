@@ -4,11 +4,14 @@ RustboroCity_CuttersHouse_MapScripts::
 RustboroCity_CuttersHouse_EventScript_Cutter::
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_HM_CUT, RustboroCity_CuttersHouse_EventScript_ExplainCut
+	checkitem ITEM_CUT
+	goto_if_eq VAR_RESULT, TRUE, RustboroCity_CuttersHouse_EventScript_ExplainCut
 	msgbox RustboroCity_CuttersHouse_Text_YouCanPutThisHMToGoodUse, MSGBOX_DEFAULT
-	giveitem ITEM_HM_CUT
+	giveitem ITEM_CUT
+	goto_if_eq VAR_RESULT, FALSE, RustboroCity_CuttersHouse_EventScript_End
 	setflag FLAG_RECEIVED_HM_CUT
 	msgbox RustboroCity_CuttersHouse_Text_ExplainCut, MSGBOX_DEFAULT
+RustboroCity_CuttersHouse_EventScript_End:
 	release
 	end
 
@@ -22,31 +25,21 @@ RustboroCity_CuttersHouse_EventScript_Lass::
 	end
 
 RustboroCity_CuttersHouse_Text_YouCanPutThisHMToGoodUse:
-	.string "That determined expression…\n"
-	.string "That limber way you move…\l"
-	.string "And your well-trained POKéMON…\p"
-	.string "You're obviously a skilled TRAINER!\p"
-	.string "No, wait, don't say a word.\n"
-	.string "I can tell just by looking at you.\p"
-	.string "I'm sure that you can put this\n"
-	.string "HIDDEN MACHINE to good use.\p"
-	.string "No need to be modest or shy.\n"
-	.string "Go on, take it!$"
+	.string "I'm the CUTTER! I help keep the\n"
+	.string "paths around RUSTBORO clear.\p"
+	.string "Take this CUT tool. You can use\n"
+	.string "it to clear thin trees yourself!$"
 
 RustboroCity_CuttersHouse_Text_ExplainCut:
-	.string "That HIDDEN MACHINE, or HM for\n"
-	.string "short, is CUT.\p"
-	.string "An HM move is one that can be used\n"
-	.string "by POKéMON outside of battle.\p"
-	.string "Any POKéMON that's learned CUT can\n"
-	.string "chop down thin trees if the TRAINER\l"
-	.string "has earned the STONE BADGE.\p"
-	.string "And, unlike a TM, an HM can be used\n"
-	.string "more than once.$"
+	.string "Face a thin tree and press A,\n"
+	.string "or use CUT from your KEY ITEMS.\p"
+	.string "You can use it right away! No\n"
+	.string "BADGE or POKéMON move is needed.\p"
+	.string "The tool can be used again and\n"
+	.string "again, so keep it handy!$"
 
 RustboroCity_CuttersHouse_Text_DadHelpedClearLandOfTrees:
 	.string "When they were expanding the city of\n"
 	.string "RUSTBORO, my dad helped out.\p"
 	.string "He made his POKéMON use CUT to clear\n"
 	.string "the land of trees.$"
-

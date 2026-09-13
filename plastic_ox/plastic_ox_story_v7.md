@@ -196,7 +196,7 @@ The player receives a starter and Pokédex assignment.
 
 The current topology uses the early western network to create an extended LC team-building phase:
 
-**Pallet → Route 101 → Oldale → Route 29 → Cherrygrove → Route 1 / Route 31 → Ilex Forest → Route 104 → Rustboro**
+**Pallet → Route 101 → Oldale → Route 29 → Cherrygrove → Route 2 south → Ilex Forest → Route 2 north → Rustboro**
 
 The exact local seam order should follow the map implementation, but the narrative intent is fixed: the player crosses multiple familiar regional visual identities before the first Gym.
 

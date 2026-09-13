@@ -2078,6 +2078,16 @@ const struct Tileset gTileset_AzaleaTown_Hns =
 };
 
 #if !IS_FRLG // Plastic Ox v7 native FRLG route assets
+const struct Tileset gTileset_ViridianCity =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_ViridianCity,
+    .palettes = gTilesetPalettes_ViridianCity,
+    .metatiles = gMetatiles_ViridianCity,
+    .metatileAttributes = gMetatileAttributes_ViridianCity,
+    .callback = NULL,
+};
 const struct Tileset gTileset_LavenderTown =
 {
     .isCompressed = TRUE,

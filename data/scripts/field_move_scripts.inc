@@ -1,6 +1,8 @@
 @ Interact with cuttable tree
 EventScript_CutTree::
 	lockall
+	checkitem ITEM_CUT
+	goto_if_eq VAR_RESULT, TRUE, EventScript_CutTreeWithTool
 	checkfieldmove FIELD_MOVE_CUT, TRUE
 	goto_if_eq VAR_RESULT, PARTY_SIZE, EventScript_CheckTreeCantCut
 	setfieldeffectargument 0, VAR_RESULT
@@ -23,6 +25,19 @@ EventScript_CutTreeDown:: @ fallthrough
 	removeobject VAR_LAST_TALKED
 	releaseall
 	end
+
+@ Use the reusable key item without a Pokemon field-move animation.
+EventScript_CutTreeWithTool::
+	lockall
+	msgbox Text_WantToCut, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, EventScript_CancelCut
+	msgbox Text_PlayerUsedCutTool, MSGBOX_DEFAULT
+	closemessage
+	setvar VAR_0x8004, FALSE
+	goto EventScript_CutTreeDown
+
+Text_PlayerUsedCutTool:
+	.string "{PLAYER} used the CUT tool!$"
 
 @ Use cut from party menu
 EventScript_UseCut::

@@ -2050,6 +2050,24 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_RareCandy,
     },
 
+    [ITEM_CANDY_BAG] =
+    {
+        .name = ITEM_NAME("Candy Bag"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "A bottomless bag\n"
+            "of Rare Candies.\n"
+            "It never runs out."),
+        .pocket = POCKET_KEY_ITEMS,
+        .sortType = ITEM_TYPE_LEVEL_UP_ITEM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
+        .effect = gItemEffect_RareCandy,
+        .iconPic = gItemIcon_RareCandy,
+        .iconPalette = gItemIconPalette_RareCandy,
+    },
+
     [ITEM_EXP_CANDY_XS] =
     {
         .name = ITEM_NAME("Exp. Candy XS"),
@@ -13880,6 +13898,22 @@ const struct ItemInfo gItemsInfo[] =
         .secondaryId = OLD_ROD,
         .iconPic = gItemIcon_OldRod,
         .iconPalette = gItemIconPalette_OldRod,
+    },
+
+    [ITEM_CUT] =
+    {
+        .name = ITEM_NAME("Cut"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A reusable tool for\n"
+            "cutting thin trees.\n"
+            "No badge needed."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_Cut,
+        .iconPic = gItemIcon_RazorClaw,
+        .iconPalette = gItemIconPalette_RazorClaw,
     },
 
     [ITEM_GOOD_ROD] =

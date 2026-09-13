@@ -199,7 +199,13 @@ def starter_tests():
     g.warp('PalletTown_ProfessorOaksLab_Frlg',6,11)
     assert g.u8(g.syms['sGlobalScriptContextStatus'])==2,'introduction replayed'
     assert g.count()==1
-    print('Lab entry, every professor/ball reachable, physical middle-ball choice, return visit PASS',flush=True)
+    for exit_x in (5, 6, 7):
+        g.warp('PalletTown_ProfessorOaksLab_Frlg',exit_x,11)
+        g.hold(K.KEY_DOWN,120)
+        g.frame(180)
+        assert (g.state()['group'],g.state()['num'])==(75,0),('lab exit failed',exit_x,g.describe())
+        assert g.bottom_whiteness() < 0.95,('lab exit remained blank',exit_x,g.hash())
+    print('Lab entry, every professor/ball reachable, physical middle-ball choice, all three exits PASS',flush=True)
 
 
 def iv_tests():

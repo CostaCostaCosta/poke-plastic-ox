@@ -3969,7 +3969,7 @@ static void Cmd_getexp(void)
             else
             {
                 *exp = calculatedExp;
-                gBattleStruct->expShareExpValue = calculatedExp / 2;
+                gBattleStruct->expShareExpValue = calculatedExp;
                 if (gBattleStruct->expShareExpValue == 0)
                     gBattleStruct->expShareExpValue = 1;
             }
@@ -4058,12 +4058,7 @@ static void Cmd_getexp(void)
                     {
                         PrepareStringBattle(STRINGID_PKMNGAINEDEXP, 0);
                     }
-                    else if (IsGen6ExpShareEnabled() && !gBattleStruct->teamGotExpMsgPrinted) // Print 'the rest of your team got exp' message once, when all of the sent-in mons were given experience
-                    {
-                        gLastUsedItem = ITEM_EXP_SHARE;
-                        PrepareStringBattle(STRINGID_TEAMGAINEDEXP, 0);
-                        gBattleStruct->teamGotExpMsgPrinted = TRUE;
-                    }
+                    // Plastic Ox awards bench experience silently.
 
                     MonGainEVs(&gParties[B_TRAINER_PLAYER][*expMonId], faintedSpecies);
                 }
@@ -13891,4 +13886,3 @@ void BS_RestoreStatChangeQueue(void)
     ClearOtherStatChangeValues(gBattlerAttacker);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
-

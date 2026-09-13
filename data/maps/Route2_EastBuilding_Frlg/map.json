@@ -3,7 +3,7 @@
   "name": "Route2_EastBuilding_Frlg",
   "layout": "LAYOUT_ROUTE2_ENTRANCE",
   "music": "MUS_RG_PEWTER",
-  "region": "REGION_KANTO",
+  "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_ROUTE_2",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -27,7 +27,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route2_EastBuilding_EventScript_Aide",
+      "script": "PoxRoute2_Local",
       "flag": "0"
     },
     {
@@ -41,7 +41,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route2_EastBuilding_EventScript_Rocker",
+      "script": "PoxRoute2_Local",
       "flag": "0"
     }
   ],

@@ -28,9 +28,12 @@ BYID={d['id']:n for n,d in MAPS.items()}
 GEOMETRY={n:Geometry(n,MAPS[n]) for n in IDS}
 PORTS={p['id']:p for p in json.loads((ROOT/'plastic_ox/alpha/region_manifest.json').read_text())['transitions']}
 LEGS={
+ 'route2':('CherrygroveCity_hns',(33,1),[
+     'cherry_route2_a',('warp',2),('warp',3),'ilex_route2_north',('warp',3),'route2_rustboro_a',
+     'route2_rustboro_b',('warp',0),('warp',1),('warp',0),('warp',1),'cherry_route2_b']),
  'early':('PalletTown_Frlg',(13,10),[
      ('seam','N','Route101'),('seam','N','OldaleTown'),('seam','W','Route29_hns'),('seam','W','CherrygroveCity_hns'),
-     'cherry_route1_a','route1_route31_a',('warp',1),('warp',1),'ilex_route104_a',('seam','N','RustboroCity'),
+     'cherry_route2_a',('warp',2),('warp',3),'ilex_route2_north',('warp',3),'route2_rustboro_a',
      'rustboro_cottage_a','route24_route25_a',('warp',0),('warp',0),'route24_route25_b','rustboro_cottage_b',
      'rustboro_route44_a','route44_moon_a','moon_route33_a','route33_goldenrod_a']),
  'central':('GoldenrodCity_hns',(28,37),['goldenrod_route35_a','route35_park_a','park_route36_a',
@@ -81,7 +84,8 @@ def pathfind(g,goal,avoid):
 
 def navigate(g,goal):
     name=current(g); d=MAPS[name]
-    avoid={(p['x'],p['y']) for p in d['coord_events']+d['warp_events'] if p.get('script') != 'Pox_StarterGate'}
+    warps=[w for i,w in enumerate(d['warp_events']) if not (name=='IlexForest_hns' and i==1)]
+    avoid={(p['x'],p['y']) for p in d['coord_events']+warps if p.get('script') != 'Pox_StarterGate'}
     for _ in range(1500):
         s=g.state()
         assert current(g)==name,('unexpected transition',name,current(g))
@@ -144,7 +148,7 @@ def setup():
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('leg',choices=LEGS);args=parser.parse_args()
-    name,xy,steps=LEGS[args.leg];g=setup();g.test_water=args.leg not in ('early','central');g.warp(name,*xy)
+    name,xy,steps=LEGS[args.leg];g=setup();g.test_water=args.leg not in ('early','central','route2');g.warp(name,*xy)
     out=ROOT/'plastic_ox/demo/shots/region_walk';out.mkdir(exist_ok=True)
     for index,step in enumerate(steps):
         print(index,current(g),g.state()['x'],g.state()['y'],'->',step,flush=True)

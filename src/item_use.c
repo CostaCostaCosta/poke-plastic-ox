@@ -251,23 +251,12 @@ STATIC_ASSERT(I_EXP_SHARE_ITEM < GEN_6 || I_EXP_SHARE_FLAG > TEMP_FLAGS_END, You
 void ItemUseOutOfBattle_ExpShare(u8 taskId)
 {
 #if I_EXP_SHARE_ITEM >= GEN_6
-    if (IsGen6ExpShareEnabled())
-    {
-        PlaySE(SE_PC_OFF);
-        if (!gTasks[taskId].data[2]) // to account for pressing select in the overworld
-            DisplayItemMessageOnField(taskId, gText_ExpShareOff, Task_CloseCantUseKeyItemMessage);
-        else
-            DisplayItemMessage(taskId, FONT_NORMAL, gText_ExpShareOff, CloseItemMessage);
-    }
+    FlagSet(I_EXP_SHARE_FLAG);
+    PlaySE(SE_EXP_MAX);
+    if (!gTasks[taskId].data[2]) // to account for pressing select in the overworld
+        DisplayItemMessageOnField(taskId, gText_ExpShareOn, Task_CloseCantUseKeyItemMessage);
     else
-    {
-        PlaySE(SE_EXP_MAX);
-        if (!gTasks[taskId].data[2]) // to account for pressing select in the overworld
-            DisplayItemMessageOnField(taskId, gText_ExpShareOn, Task_CloseCantUseKeyItemMessage);
-        else
-            DisplayItemMessage(taskId, FONT_NORMAL, gText_ExpShareOn, CloseItemMessage);
-    }
-    FlagToggle(I_EXP_SHARE_FLAG);
+        DisplayItemMessage(taskId, FONT_NORMAL, gText_ExpShareOn, CloseItemMessage);
 #else
     DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
 #endif
@@ -346,6 +335,35 @@ void ItemUseOutOfBattle_Rod(u8 taskId)
     if (CanFish() == TRUE)
     {
         sItemUseOnFieldCB = ItemUseOnFieldCB_Rod;
+        SetUpItemUseOnFieldCallback(taskId);
+    }
+    else
+    {
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    }
+}
+
+static void ItemUseOnFieldCB_Cut(u8 taskId)
+{
+    extern const u8 EventScript_CutTreeWithTool[];
+    LockPlayerFieldControls();
+    ScriptContext_SetupScript(EventScript_CutTreeWithTool);
+    DestroyTask(taskId);
+}
+
+void ItemUseOutOfBattle_Cut(u8 taskId)
+{
+    s16 x, y;
+    u8 objectId;
+
+    GetXYCoordsOneStepInFrontOfPlayer(&x, &y);
+    objectId = GetObjectEventIdByPosition(x, y, PlayerGetElevation());
+    if (objectId < OBJECT_EVENTS_COUNT
+     && (gObjectEvents[objectId].graphicsId == OBJ_EVENT_GFX_CUTTABLE_TREE
+      || gObjectEvents[objectId].graphicsId == OBJ_EVENT_GFX_CUTTABLE_TREE_FRLG))
+    {
+        gSpecialVar_LastTalked = gObjectEvents[objectId].localId;
+        sItemUseOnFieldCB = ItemUseOnFieldCB_Cut;
         SetUpItemUseOnFieldCallback(taskId);
     }
     else

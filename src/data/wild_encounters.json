@@ -37219,7 +37219,7 @@
           }
         },
         {
-          "map": "MAP_ROUTE31_HNS",
+          "map": "MAP_ROUTE2",
           "base_label": "gPoxRoute31Hns_Morning",
           "land_mons": {
             "encounter_rate": 20,
@@ -37288,7 +37288,7 @@
           }
         },
         {
-          "map": "MAP_ROUTE31_HNS",
+          "map": "MAP_ROUTE2",
           "base_label": "gPoxRoute31Hns_Day",
           "land_mons": {
             "encounter_rate": 20,
@@ -37357,7 +37357,7 @@
           }
         },
         {
-          "map": "MAP_ROUTE31_HNS",
+          "map": "MAP_ROUTE2",
           "base_label": "gPoxRoute31Hns_Night",
           "land_mons": {
             "encounter_rate": 20,
@@ -37426,7 +37426,7 @@
           }
         },
         {
-          "map": "MAP_ROUTE31_HNS",
+          "map": "MAP_ROUTE2",
           "base_label": "gPoxRoute31Hns",
           "fishing_mons": {
             "encounter_rate": 20,

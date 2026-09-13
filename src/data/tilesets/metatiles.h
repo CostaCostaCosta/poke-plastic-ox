@@ -607,6 +607,8 @@ const u16 gMetatiles_AzaleaTown_Hns[] = INCBIN_U16("data/tilesets/secondary/azal
 const u16 gMetatileAttributes_AzaleaTown_Hns[] = INCBIN_U16("data/tilesets/secondary/azalea_town_hns/metatile_attributes.bin");
 
 #if !IS_FRLG // Plastic Ox v7 native FRLG route assets
+const u16 gMetatiles_ViridianCity[] = INCBIN_U16("data/tilesets/secondary/viridian_city_frlg/metatiles.bin");
+const u16 gMetatileAttributes_ViridianCity[] = INCBIN_U16("data/tilesets/secondary/viridian_city_frlg/metatile_attributes.bin");
 const u16 gMetatiles_LavenderTown[] = INCBIN_U16("data/tilesets/secondary/lavender_town_frlg/metatiles.bin");
 
 const u16 gMetatileAttributes_LavenderTown[] = INCBIN_U16("data/tilesets/secondary/lavender_town_frlg/metatile_attributes.bin");

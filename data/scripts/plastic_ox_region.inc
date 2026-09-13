@@ -142,127 +142,85 @@ PoxRegion_MonFlewAway::
 PoxRegion_MonFlewAwayText::
 	.string "The POKéMON flew away!$"
 
-PoxRegion_cherry_route1_a::
+PoxRegion_cherry_route2_a::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_cherry_route1_a_Open
-PoxRegion_cherry_route1_a_Open::
-	warp MAP_ROUTE1, 12, 38
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_cherry_route2_a_Open
+PoxRegion_cherry_route2_a_Open::
+	warp MAP_ROUTE2, 10, 79
 	waitstate
 	releaseall
 	end
-PoxRegion_cherry_route1_a_Closed::
+PoxRegion_cherry_route2_a_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
 	warp MAP_CHERRYGROVE_CITY_HNS, 33, 1
 	waitstate
 	releaseall
 	end
 
-PoxRegion_cherry_route1_a_Sign::
-	msgbox PoxRegion_cherry_route1_a_Text, MSGBOX_SIGN
+PoxRegion_cherry_route2_a_Sign::
+	msgbox PoxRegion_cherry_route2_a_Text, MSGBOX_SIGN
 	end
-PoxRegion_cherry_route1_a_Text::
-	.string "Route1\nMarked passage ahead.$"
+PoxRegion_cherry_route2_a_Text::
+	.string "Route2\nMarked passage ahead.$"
 
-PoxRegion_cherry_route1_b::
+PoxRegion_cherry_route2_b::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_cherry_route1_b_Open
-PoxRegion_cherry_route1_b_Open::
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_cherry_route2_b_Open
+PoxRegion_cherry_route2_b_Open::
 	warp MAP_CHERRYGROVE_CITY_HNS, 33, 1
 	waitstate
 	releaseall
 	end
-PoxRegion_cherry_route1_b_Closed::
+PoxRegion_cherry_route2_b_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE1, 12, 38
+	warp MAP_ROUTE2, 10, 79
 	waitstate
 	releaseall
 	end
 
-PoxRegion_cherry_route1_b_Sign::
-	msgbox PoxRegion_cherry_route1_b_Text, MSGBOX_SIGN
+PoxRegion_cherry_route2_b_Sign::
+	msgbox PoxRegion_cherry_route2_b_Text, MSGBOX_SIGN
 	end
-PoxRegion_cherry_route1_b_Text::
+PoxRegion_cherry_route2_b_Text::
 	.string "CherrygroveCity\nMarked passage ahead.$"
 
-PoxRegion_route1_route31_a::
+PoxRegion_route2_rustboro_a::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route1_route31_a_Open
-PoxRegion_route1_route31_a_Open::
-	warp MAP_ROUTE31_HNS, 32, 21
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route2_rustboro_a_Open
+	goto_if_unset FLAG_POX_STORY_ILEX, PoxRegion_route2_rustboro_a_Closed
+PoxRegion_route2_rustboro_a_Open::
+	warp MAP_RUSTBORO_CITY, 18, 59
 	waitstate
 	releaseall
 	end
-PoxRegion_route1_route31_a_Closed::
+PoxRegion_route2_rustboro_a_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE1, 11, 0
+	warp MAP_ROUTE2, 5, 2
 	waitstate
 	releaseall
 	end
 
-PoxRegion_route1_route31_a_Sign::
-	msgbox PoxRegion_route1_route31_a_Text, MSGBOX_SIGN
-	end
-PoxRegion_route1_route31_a_Text::
-	.string "Route31\nMarked passage ahead.$"
-
-PoxRegion_route1_route31_b::
+PoxRegion_route2_rustboro_b::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route1_route31_b_Open
-PoxRegion_route1_route31_b_Open::
-	warp MAP_ROUTE1, 11, 0
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route2_rustboro_b_Open
+	goto_if_unset FLAG_POX_STORY_ILEX, PoxRegion_route2_rustboro_b_Closed
+PoxRegion_route2_rustboro_b_Open::
+	warp MAP_ROUTE2, 5, 2
 	waitstate
 	releaseall
 	end
-PoxRegion_route1_route31_b_Closed::
+PoxRegion_route2_rustboro_b_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE31_HNS, 32, 21
+	warp MAP_RUSTBORO_CITY, 18, 59
 	waitstate
 	releaseall
 	end
 
-PoxRegion_route1_route31_b_Sign::
-	msgbox PoxRegion_route1_route31_b_Text, MSGBOX_SIGN
+PoxRegion_route2_rustboro_b_Sign::
+	msgbox PoxRegion_route2_rustboro_b_Text, MSGBOX_SIGN
 	end
-PoxRegion_route1_route31_b_Text::
-	.string "Route1\nMarked passage ahead.$"
-
-PoxRegion_ilex_route104_a::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_ilex_route104_a_Open
-	goto_if_unset FLAG_POX_STORY_ILEX, PoxRegion_ilex_route104_a_Closed
-PoxRegion_ilex_route104_a_Open::
-	warp MAP_ROUTE104, 11, 29
-	waitstate
-	releaseall
-	end
-PoxRegion_ilex_route104_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ILEX_FOREST_HNS, 19, 14
-	waitstate
-	releaseall
-	end
-
-PoxRegion_ilex_route104_a_Sign::
-	msgbox PoxRegion_ilex_route104_a_Text, MSGBOX_SIGN
-	end
-PoxRegion_ilex_route104_a_Text::
-	.string "Route104\nMarked passage ahead.$"
-
-PoxRegion_ilex_route104_b::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_ilex_route104_b_Open
-	goto_if_unset FLAG_POX_STORY_ILEX, PoxRegion_ilex_route104_b_Closed
-PoxRegion_ilex_route104_b_Open::
-	warp MAP_ILEX_FOREST_HNS, 19, 14
-	waitstate
-	releaseall
-	end
-PoxRegion_ilex_route104_b_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE104, 11, 29
-	waitstate
-	releaseall
-	end
+PoxRegion_route2_rustboro_b_Text::
+	.string "Route2\nMarked passage ahead.$"
 
 PoxRegion_rustboro_cottage_a::
 	lockall
@@ -1722,6 +1680,42 @@ PoxRegion_underground_return_7_Closed::
 	releaseall
 	end
 
+PoxRegion_ilex_route2_north::
+	lockall
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_ilex_route2_north_Open
+	goto_if_unset FLAG_POX_STORY_ILEX, PoxRegion_ilex_route2_north_Closed
+PoxRegion_ilex_route2_north_Open::
+	warp MAP_ROUTE2_VIRIDIAN_FOREST_NORTH_ENTRANCE, 7, 9
+	waitstate
+	releaseall
+	end
+PoxRegion_ilex_route2_north_Closed::
+	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
+	warp MAP_ILEX_FOREST_HNS, 20, 15
+	waitstate
+	releaseall
+	end
+
+PoxRegion_ilex_route2_north_Sign::
+	msgbox PoxRegion_ilex_route2_north_Text, MSGBOX_SIGN
+	end
+PoxRegion_ilex_route2_north_Text::
+	.string "Route 2 north gate\nMarked passage ahead.$"
+
+PoxRoute2_Ether::
+	finditem ITEM_ETHER
+	end
+
+PoxRoute2_ParalyzeHeal::
+	finditem ITEM_PARALYZE_HEAL
+	end
+
+PoxRoute2_Local::
+	msgbox PoxRoute2_LocalText, MSGBOX_NPC
+	end
+PoxRoute2_LocalText::
+	.string "ILEX FOREST joins the two ends\nof ROUTE 2. DARK CAVE lies east.$"
+
 PoxRegion_Arrival_BattleFrontier_OutsideWest::
 PoxRegion_Arrival_BattleFrontier_OutsideWest_End::
 	end
@@ -1816,10 +1810,6 @@ PoxRegion_Arrival_Route103::
 PoxRegion_Arrival_Route103_End::
 	end
 
-PoxRegion_Arrival_Route104::
-PoxRegion_Arrival_Route104_End::
-	end
-
 PoxRegion_Arrival_Route110::
 PoxRegion_Arrival_Route110_End::
 	end
@@ -1839,10 +1829,6 @@ PoxRegion_Arrival_Route19_Frlg::
 PoxRegion_Arrival_Route19_Frlg_End::
 	end
 
-PoxRegion_Arrival_Route1_Frlg::
-PoxRegion_Arrival_Route1_Frlg_End::
-	end
-
 PoxRegion_Arrival_Route24_hns::
 PoxRegion_Arrival_Route24_hns_End::
 	end
@@ -1855,8 +1841,8 @@ PoxRegion_Arrival_Route29_hns::
 PoxRegion_Arrival_Route29_hns_End::
 	end
 
-PoxRegion_Arrival_Route31_hns::
-PoxRegion_Arrival_Route31_hns_End::
+PoxRegion_Arrival_Route2_Frlg::
+PoxRegion_Arrival_Route2_Frlg_End::
 	end
 
 PoxRegion_Arrival_Route33_hns::

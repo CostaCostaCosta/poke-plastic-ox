@@ -19,8 +19,8 @@ BADGES = [f'FLAG_BADGE{i:02}_GET' for i in range(1,9)]
 # name: exploration anchor; the source component containing it owns the ports.
 ANCHORS = {
     'PalletTown_Frlg':(13,10), 'Route101':(10,10), 'OldaleTown':(10,10),
-    'Route29_hns':(60,20), 'CherrygroveCity_hns':(47,8), 'Route1_Frlg':(12,35),
-    'Route31_hns':(48,10), 'IlexForest_hns':(22,62), 'Route104':(10,29),
+    'Route29_hns':(60,20), 'CherrygroveCity_hns':(47,8), 'Route2_Frlg':(6,75),
+    'IlexForest_hns':(22,62),
     'RustboroCity':(27,20), 'Route24_hns':(10,20), 'Route25_hns':(5,23),
     'Route44_hns':(1,15), 'MtMoon_Cave_hns':(10,11), 'Route33_hns':(27,18),
     'GoldenrodCity_hns':(28,37), 'Route35_hns':(15,47), 'NationalPark_Normal_hns':(39,24),
@@ -41,9 +41,8 @@ WATER = {'Route103','Route19_Frlg','Route115','MossdeepCity','CinnabarIsland_hns
 # Explicit source/destination port targets. A target may name a compass edge;
 # coordinates denote a native gate plaza, cave mouth, or dock.
 TRAILS = [
-    ('cherry_route1','CherrygroveCity_hns','N','Route1_Frlg','S',[]),
-    ('route1_route31','Route1_Frlg','N','Route31_hns','S',[]),
-    ('ilex_route104','IlexForest_hns',(20,13),'Route104',(10,29),['FLAG_POX_STORY_ILEX']),
+    ('cherry_route2','CherrygroveCity_hns','N','Route2_Frlg','S',[]),
+    ('route2_rustboro','Route2_Frlg','N','RustboroCity','S',['FLAG_POX_STORY_ILEX']),
     ('rustboro_cottage','RustboroCity','N','Route24_hns','S',[]),
     ('route24_route25','Route24_hns','N','Route25_hns','W',[]),
     ('rustboro_route44','RustboroCity','E','Route44_hns','W',['FLAG_BADGE01_GET']),
@@ -86,7 +85,8 @@ def apply_region(read, put):
     def load(name):
         return json.loads(read(f'data/maps/{name}/map.json'))
     def save(name, data):
-        put(f'data/maps/{name}/map.json',json.dumps(data,indent=2)+'\n')
+        indent=4 if name in {'DarkCave_SouthSide_hns','Gate_AzaleaTown_IlexForest_hns'} else 2
+        put(f'data/maps/{name}/map.json',json.dumps(data,indent=indent)+'\n')
     def mid(name):
         return load(name)['id']
 
@@ -107,14 +107,17 @@ def apply_region(read, put):
         'OldaleTown':{'MAP_ROUTE101','MAP_ROUTE29_HNS'},
         'Route29_hns':{'MAP_OLDALE_TOWN','MAP_CHERRYGROVE_CITY_HNS'},
         'CherrygroveCity_hns':{'MAP_ROUTE29_HNS'},
-        'Route104':{'MAP_RUSTBORO_CITY'}, 'RustboroCity':{'MAP_ROUTE104'},
+        'RustboroCity':set(),
         'Route36_hns':{'MAP_ROUTE37_HNS'}, 'Route37_hns':{'MAP_ROUTE36_HNS','MAP_ECRUTEAK_CITY_HNS'},
         'EcruteakCity_hns':{'MAP_ROUTE37_HNS'},
         'BattleFrontier_OutsideWest':{'MAP_BATTLE_FRONTIER_OUTSIDE_EAST'},
     }
     retired={'Route2_hns','Route3_hns','Route4_hns','Route14_hns','Route16_hns','Route26_hns','Route34_hns','Route38_hns','Route41_hns','Route6_hns'}
+    retired.update({'Route1_Frlg','Route31_hns','Route104','Gate_AzaleaTown_IlexForest_hns'})
     active=set(ANCHORS)
     extra_frlg=['UndergroundPath_EastEntrance_Frlg','UndergroundPath_WestEntrance_Frlg','UndergroundPath_EastWestTunnel_Frlg']+[f'SeafoamIslands_{floor}_Frlg' for floor in ['1F','B1F','B2F','B3F','B4F']]
+    route2_rooms=['Route2_ViridianForest_NorthEntrance_Frlg','Route2_ViridianForest_SouthEntrance_Frlg','Route2_House_Frlg','Route2_EastBuilding_Frlg']
+    extra_frlg += route2_rooms
     for name in extra_frlg:
         d=load(name);d['region']='REGION_HOENN'
         d['object_events']=[o for o in d.get('object_events',[]) if not o.get('script','').startswith('PoxRegion_')]
@@ -135,6 +138,12 @@ def apply_region(read, put):
         d['connections']=[c for c in d.get('connections') or [] if c['map'] in keep.get(name,set())]
         if name in retired:
             d['warp_events']=[]
+            d['coord_events']=[]
+            for field in ['object_events','bg_events']:
+                d[field]=[o for o in d.get(field,[]) if not o.get('script','').startswith('PoxRegion_')]
+            script_path=f'data/maps/{name}/scripts.inc'
+            old=read(script_path)
+            put(script_path,re.sub(r'\A.*?\t.byte 0',name+'_MapScripts::\n\t.byte 0',old,count=1,flags=re.S))
         if name in active:
             d['region']='REGION_HOENN'
             d['object_events']=[o for o in d.get('object_events',[]) if not o.get('script','').startswith('PoxRegion_') or not o.get('script','').endswith('_Sign')]
@@ -224,6 +233,7 @@ def apply_region(read, put):
     # Select ports once. Pinning coordinates keeps actor/flag edits from moving roads.
     path='plastic_ox/alpha/region_ports.json'
     ports=json.loads(read(path)) if read(path) else {}
+    ports={k:v for k,v in ports.items() if not k.startswith(('cherry_route1','route1_route31','ilex_route104'))}
     reserved={}
     for key,a,at,b,bt,requirements in TRAILS:
         for suffix,name in [('_a',a),('_b',b)]:
@@ -335,7 +345,8 @@ def apply_region(read, put):
             scripts.append(f'{script}_Sign::\n\tmsgbox {script}_Text, MSGBOX_SIGN\n\tend\n{script}_Text::\n\t.string "{label[:30]}\\nMarked passage ahead.$"')
 
     for key,a,at,b,bt,requirements in TRAILS:
-        overrides={('route110_lavender','Route110'):((17,5),(17,0)),
+        overrides={('route2_rustboro','Route2_Frlg'):((6,0),(6,5)),
+                   ('route110_lavender','Route110'):((17,5),(17,0)),
                    ('route103_cinnabar','Route103'):((75,15),(78,11))}
         pa_target,pa_anchor=overrides.get((key,a),(at,None))
         pa=port(key+'_a',a,pa_target,pa_anchor)
@@ -359,6 +370,53 @@ def apply_region(read, put):
         q={'tile':[x,7],'approach':[x,6],'direction':'S'}
         endpoint('underground_return_'+str(x),'UndergroundPath_WestEntrance_Frlg',q,'Route7_hns',p['approach'],[], 'Route 7')
 
+    # Route 2 retains its native gatehouses, local buildings and cave mouth.
+    # Ilex's northern doorway was removed by the original import: use its
+    # proven walkable plaza and an explicit return trigger there.
+    south,north=route2_rooms[1],route2_rooms[0]
+    d=load('Route2_Frlg')
+    d['object_events']=[o for o in d['object_events'] if o.get('type')!='clone']
+    d['warp_events'][3].update(dest_map=mid('DarkCave_SouthSide_hns'),dest_warp_id='0')
+    for o in d['object_events']:
+        if o.get('script')=='Route2_EventScript_ItemEther':
+            o.update(script='PoxRoute2_Ether',flag='FLAG_POX_ROUTE2_ETHER')
+        if o.get('script')=='Route2_EventScript_ItemParalyzeHeal':
+            o.update(script='PoxRoute2_ParalyzeHeal',flag='FLAG_POX_ROUTE2_PARALYZE_HEAL')
+    save('Route2_Frlg',d)
+    d=load('DarkCave_SouthSide_hns');d['warp_events'][0].update(dest_map=mid('Route2_Frlg'),dest_warp_id='3');save('DarkCave_SouthSide_hns',d)
+    d=load(south);d['warp_events'][3].update(dest_map=mid('IlexForest_hns'),dest_warp_id='0');save(south,d)
+    d=load(north)
+    for w in d['warp_events'][:3]:w.update(dest_map=mid('IlexForest_hns'),dest_warp_id='1')
+    save(north,d)
+    d=load('IlexForest_hns')
+    d['warp_events']=[dict(x=22,y=63,elevation=0,dest_map=mid(south),dest_warp_id='3'),dict(x=20,y=15,elevation=0,dest_map=mid(north),dest_warp_id='1')]
+    save('IlexForest_hns',d)
+    p={'tile':[20,14],'approach':[20,15],'direction':'N'}
+    reserved.setdefault('IlexForest_hns',[]).extend([tuple(p['tile']),tuple(p['approach'])])
+    endpoint('ilex_route2_north','IlexForest_hns',p,north,[7,9],['FLAG_POX_STORY_ILEX'],'Route 2 north gate')
+    scripts.extend(['PoxRoute2_Ether::\n\tfinditem ITEM_ETHER\n\tend','PoxRoute2_ParalyzeHeal::\n\tfinditem ITEM_PARALYZE_HEAL\n\tend'])
+    # Source FRLG trade/aide handlers depend on Kanto-only state. Retain the
+    # inhabitants with local dialogue while preserving their building warps.
+    for name in route2_rooms:
+        d=load(name)
+        for o in d['object_events']:
+            if name in route2_rooms[2:]:o['script']='PoxRoute2_Local'
+        save(name,d)
+        if name in route2_rooms[2:]:
+            put(f'data/maps/{name}/scripts.inc',f'{name}_MapScripts::\n\t.byte 0\n')
+    scripts.append('PoxRoute2_Local::\n\tmsgbox PoxRoute2_LocalText, MSGBOX_NPC\n\tend\nPoxRoute2_LocalText::\n\t.string "ILEX FOREST joins the two ends\\nof ROUTE 2. DARK CAVE lies east.$"')
+    header=read('include/constants/plastic_ox_flags.h')
+    for name,index in [('ETHER',58),('PARALYZE_HEAL',59)]:
+        flag='FLAG_POX_ROUTE2_'+name
+        if '#define '+flag+' ' not in header:
+            header=header.replace('#endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H',f'#define {flag} (POX_HIDDEN_ITEMS_BASE + {index})\n#endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H')
+    put('include/constants/plastic_ox_flags.h',header)
+    encounters=json.loads(read('src/data/wild_encounters.json'))
+    for group in encounters['wild_encounter_groups']:
+        for entry in group.get('encounters',[]):
+            if entry.get('map')=='MAP_ROUTE31_HNS':
+                entry['map']='MAP_ROUTE2'
+    put('src/data/wild_encounters.json',json.dumps(encounters,indent=2)+'\n')
     put(path,json.dumps(ports,indent=2)+'\n')
     put('plastic_ox/alpha/region_manifest.json',json.dumps({'version':7,'donor_revision':'44f50eedefe58691b0444973e4138e9190d8fafc','transitions':records,'native_seams':{n:sorted(v) for n,v in keep.items()}},indent=2)+'\n')
     # Native local callbacks remain for puzzles; outdoor story callbacks are
@@ -388,6 +446,10 @@ def apply_region(read, put):
     if marker not in s:
         s+='\n'+marker+'\n.if !IS_FRLG\n'+''.join(f'\t.include "data/maps/{n}/scripts.inc"\n' for n in ['Route1_Frlg','Route8_Frlg','Route19_Frlg','Route20_Frlg']+extra_frlg)+'.endif\n'
     s=s.replace('.if GAME_VERSION == VERSION_EMERALD','.if !IS_FRLG')
+    for name in ['Route2_Frlg']+route2_rooms:
+        line=f'\t.include "data/maps/{name}/scripts.inc"\n'
+        if line not in s[s.index(marker):]:
+            s+='\n.if !IS_FRLG\n'+line+'.endif\n'
     for p in ['data/scripts/plastic_ox_region.inc','data/maps/PlasticOx_Harbor/scripts.inc','data/maps/PlasticOx_Route20West/scripts.inc','data/maps/PlasticOx_Route20East/scripts.inc']:
         line=f'\t.include "{p}"\n'
         if line not in s:

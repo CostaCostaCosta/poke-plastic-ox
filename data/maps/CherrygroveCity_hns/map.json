@@ -10,7 +10,7 @@
   "map_type": "MAP_TYPE_CITY",
   "allow_cycling": true,
   "allow_escaping": false,
-  "allow_running": false,
+  "allow_running": true,
   "show_map_name": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
@@ -83,7 +83,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PoxRegion_cherry_route1_a_Sign",
+      "script": "PoxRegion_cherry_route2_a_Sign",
       "flag": "0"
     }
   ],
@@ -132,7 +132,7 @@
       "elevation": 0,
       "var": "VAR_POX_PORTAL_GATE",
       "var_value": 0,
-      "script": "PoxRegion_cherry_route1_a"
+      "script": "PoxRegion_cherry_route2_a"
     }
   ],
   "bg_events": [
@@ -166,7 +166,7 @@
       "y": 2,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "PoxRegion_cherry_route1_a_Sign"
+      "script": "PoxRegion_cherry_route2_a_Sign"
     }
   ]
 }

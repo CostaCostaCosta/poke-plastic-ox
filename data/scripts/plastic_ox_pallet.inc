@@ -140,6 +140,7 @@ Pox_StarterReceived::
     msgbox Pox_Text_ElmAdvice, MSGBOX_DEFAULT
     msgbox Pox_Text_BirchAdvice, MSGBOX_DEFAULT
     call Pox_StarterSupplies
+    call Pox_ElmExpAll
     call Pox_ElmTMs
     msgbox Pox_Text_OakAfter, MSGBOX_DEFAULT
     releaseall
@@ -186,10 +187,32 @@ Pox_Elm::
     release
     end
 Pox_ElmAfter::
+    call Pox_ElmExpAll
     call Pox_ElmTMs
     msgbox Pox_Text_ElmAfter, MSGBOX_DEFAULT
     release
     end
+
+Pox_ElmExpAll::
+    goto_if_set FLAG_POX_ELM_EXP_ALL, Pox_ElmExpAllDone
+    additem ITEM_EXP_ALL
+    goto_if_eq VAR_RESULT, FALSE, Pox_ElmExpAllFull
+    setflag FLAG_POX_ELM_EXP_ALL
+    setflag FLAG_POX_EXP_ALL
+    playfanfare MUS_OBTAIN_ITEM
+    msgbox Pox_Text_ElmExpAll, MSGBOX_DEFAULT
+    waitfanfare
+Pox_ElmExpAllDone::
+    return
+Pox_ElmExpAllFull::
+    msgbox Pox_Text_ElmExpAllFull, MSGBOX_DEFAULT
+    return
+
+Pox_Text_ElmExpAll::
+    .string "ELM: Take this EXP. ALL. Every\nPOKéMON in your party will receive\pthe full Exp. from battle!$"
+
+Pox_Text_ElmExpAllFull::
+    .string "ELM: Make room in your KEY ITEMS\npocket, then speak to me again. I\pstill have your EXP. ALL.$"
 
 Pox_Birch::
     goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End

@@ -11,7 +11,7 @@ OUT = ROOT / "parts_catalog.json"
 # Route inventory from the project's Gen I-III route inventory.
 ROUTE_ROWS = r'''region,generation,route,ports,shape,traversal,theme,status,notes
 Kanto,1,1,N/S,vertical,land,starter meadow; grass and ledges,filler,
-Kanto,1,2,N/E/S,3-way,land,forest-edge corridor; Diglett's Cave access,filler,
+Kanto,1,2,N/S,vertical,land,forest-edge corridor; Ilex Forest and Dark Cave,story-route,Replaces Route 1 / Route 31 / Route 104 Top. South reaches Cherrygrove; north reaches Rustboro. Two forest gatehouses lead to Ilex; the former Diglett mouth leads to Dark Cave. Cut trees retain the native eastern shortcut.
 Kanto,1,3,E/W,horizontal,land,rocky foothills; trainer-heavy open road,filler,
 Kanto,1,4,E/W,horizontal,land,mountain plateau; Mt. Moon exit,avoid,split by Mt. Moon in source
 Kanto,1,5,N/S,vertical,land,suburban slope; daycare,filler,
@@ -92,7 +92,7 @@ Hoenn,3,133,E/W,horizontal,water,westbound current route,filler,
 Hoenn,3,134,E/W,horizontal,water,westbound current route; Sealed Chamber,filler,
 '''
 
-STORY_REQUIRED_ROUTE_IDS = {"R35", "R36", "R37", "R41", "R119"}
+STORY_REQUIRED_ROUTE_IDS = {"R2", "R35", "R36", "R37", "R41", "R119"}
 STORY_LINKED_OPTIONAL_ROUTE_IDS = {"R21", "R24", "R25"}
 
 # Physical transition types at source-route endpoints. These are separate
@@ -117,7 +117,7 @@ ROUTE_PORT_REMOVALS = {
 # Additional route-local cave mouths. Unlike facility/building warps, these
 # count as regional endpoints when routes are classified in the editor.
 ROUTE_TRANSITION_PORTS = {
-    "R2": [("DIGLETT", "Diglett's Cave", "cave")],
+    "R2": [("DARK", "Dark Cave", "cave"), ("ILEX_SOUTH", "Ilex South Gate", "gate"), ("ILEX_NORTH", "Ilex North Gate", "gate")],
     "R10": [("ROCK", "Rock Tunnel", "cave")],
     "R11": [("DIGLETT", "Diglett's Cave", "cave")],
     "R3": [("MT_MOON", "Mt. Moon", "cave")],
@@ -164,7 +164,7 @@ TOWNS = [
 
 # Required non-town story areas. Some are landmarks/facilities rather than literal caves.
 REQUIRED_DUNGEONS = [
-    dict(id="ILEX", name="Ilex Forest", region="Johto", kind="dungeon", subtype="forest", ports={"N":"forest", "E":"forest"}, asset="ILEX.png", required=True, story_order=3, notes="Mandatory pre-Roxanne exploration."),
+    dict(id="ILEX", name="Ilex Forest", region="Johto", kind="dungeon", subtype="forest", ports={"N":"gate", "E":"gate"}, asset="ILEX.png", required=True, story_order=3, notes="Mandatory pre-Roxanne exploration. North gate returns to Route 2 north after the Ilex objective; the native east-facing lower exit joins Route 2 south through its south gatehouse. Replaces Viridian Forest; no Route 31 or Route 104 Top link."),
     dict(id="MTMOON", name="Mt. Moon", region="Kanto", kind="dungeon", subtype="cave", ports={"W":"cave", "E":"cave"}, asset="MTMOON.png", required=True, story_order=5, notes="Rocket I; through-dungeon between mountain routes."),
     dict(id="PARK", name="National Park", region="Johto", kind="dungeon", subtype="landmark", ports={"S":"gate", "E":"gate"}, asset="PARK.png", required=True, story_order=7, notes="Mandatory breathing-space traversal between Goldenrod and Ecruteak."),
     dict(id="BURNED", name="Burned Tower", region="Johto", kind="dungeon", subtype="tower", ports={}, special_ports=[{"id":"ENTRY","label":"Entry","type":"warp"}], asset="BURNED.png", required=True, story_order=8.5, notes="Local Ecruteak story dungeon; usually attached to Ecruteak rather than used as a regional through-edge."),

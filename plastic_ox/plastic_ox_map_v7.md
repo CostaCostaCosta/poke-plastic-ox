@@ -63,11 +63,11 @@ OLDALE TOWN
   ↓
 CHERRYGROVE CITY
   ↓
-Route 1 / Route 31
+Route 2 (south)
   ↓
 ILEX FOREST
   ↓
-Route 104 Top
+Route 2 (north; Dark Cave at the former Diglett's Cave mouth)
   ↓
 RUSTBORO CITY [GYM 1 — ROXANNE]
   ↳ Route 24 → Route 25 → BILL'S SEA COTTAGE [optional; Eevee #1]

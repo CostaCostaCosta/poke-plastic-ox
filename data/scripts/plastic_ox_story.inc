@@ -90,6 +90,8 @@ goto_if_set FLAG_POX_STORY_CHERRYGROVE, Pox_Done
 msgbox Pox_Text_Cherrygrove, MSGBOX_DEFAULT
 
 setflag FLAG_SYS_B_DASH
+	playfanfare MUS_OBTAIN_ITEM
+	waitfanfare
 
 setflag FLAG_POX_STORY_CHERRYGROVE
 
@@ -97,7 +99,7 @@ releaseall
 	end
 
 Pox_Text_Cherrygrove::
-	.string "GUIDE: The red roof is a POKéMON\nCENTER. The MART sells supplies.\pThese shoes are made for\nrunning. Hold B on the road!\pA KANTO road on a JOHTO coast...\nMy grandfather would have\pfainted! Head north through\nROUTE 31 to ILEX FOREST.$"
+	.string "GUIDE: The red roof is a POKéMON\nCENTER. The MART sells supplies.\pThese shoes are made for\nrunning. They're on by default;\nhold B when you want to walk.\pA KANTO road on a JOHTO coast...\nMy grandfather would have\pfainted! Head north through\nROUTE 31 to ILEX FOREST.$"
 
 Pox_Ilex::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -129,7 +131,7 @@ releaseall
 	end
 
 Pox_Text_IlexRoad::
-	.string "Follow the northern forest path\nto ROUTE 104 and RUSTBORO.$"
+	.string "Follow the northern forest path\nto ROUTE 2 and RUSTBORO.$"
 
 Pox_Roxanne::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End

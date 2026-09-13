@@ -1,5 +1,4 @@
 Route104_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_Route104
 	.byte 0
 
 Route104_OnFrame:

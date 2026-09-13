@@ -1,4 +1,5 @@
 Route2_Frlg_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_Route2_Frlg
 	.byte 0
 
 Route2_EventScript_RouteSign::
@@ -11,8 +12,7 @@ Route2_EventScript_DiglettsCaveSign::
 
 Route2_Text_RouteSign::
 	.string "ROUTE 2\n"
-	.string "VIRIDIAN CITY - PEWTER CITY$"
+	.string "CHERRYGROVE - RUSTBORO$"
 
 Route2_Text_DiglettsCave::
-	.string "DIGLETT'S CAVE$"
-
+	.string "DARK CAVE$"

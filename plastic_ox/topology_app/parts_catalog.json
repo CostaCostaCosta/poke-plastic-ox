@@ -349,30 +349,41 @@
       "kind": "route",
       "ports": {
         "N": "land",
-        "E": "land",
         "S": "land"
       },
       "special_ports": [
         {
-          "id": "DIGLETT",
-          "label": "Diglett's Cave",
+          "id": "DARK",
+          "label": "Dark Cave",
           "type": "cave",
+          "regional": true
+        },
+        {
+          "id": "ILEX_SOUTH",
+          "label": "Ilex South Gate",
+          "type": "gate",
+          "regional": true
+        },
+        {
+          "id": "ILEX_NORTH",
+          "label": "Ilex North Gate",
+          "type": "gate",
           "regional": true
         }
       ],
-      "regional_port_count": 4,
+      "regional_port_count": 5,
       "topology_class": "hub",
-      "shape": "3-way",
+      "shape": "vertical",
       "traversal": "land",
-      "theme": "forest-edge corridor; Diglett's Cave access",
-      "status": "filler",
-      "notes": "",
+      "theme": "forest-edge corridor; Ilex Forest and Dark Cave",
+      "status": "story-route",
+      "notes": "Replaces Route 1 / Route 31 / Route 104 Top. South reaches Cherrygrove; north reaches Rustboro. Two forest gatehouses lead to Ilex; the former Diglett mouth leads to Dark Cave. Cut trees retain the native eastern shortcut.",
       "asset": "R2.png",
-      "required_status": "library",
-      "required": false,
+      "required_status": "required",
+      "required": true,
       "dimensions": [
-        138,
-        138
+        88,
+        168
       ],
       "asset_available": true
     },
@@ -2774,13 +2785,13 @@
       "kind": "dungeon",
       "subtype": "forest",
       "ports": {
-        "N": "forest",
-        "E": "forest"
+        "N": "gate",
+        "E": "gate"
       },
       "asset": "ILEX.png",
       "required": true,
       "story_order": 3,
-      "notes": "Mandatory pre-Roxanne exploration.",
+      "notes": "Mandatory pre-Roxanne exploration. North gate returns to Route 2 north after the Ilex objective; the native east-facing lower exit joins Route 2 south through its south gatehouse. Replaces Viridian Forest; no Route 31 or Route 104 Top link.",
       "asset_available": true,
       "dimensions": [
         126,
@@ -4004,6 +4015,7 @@
   ],
   "story_required_route_ids": [
     "R119",
+    "R2",
     "R35",
     "R36",
     "R37",

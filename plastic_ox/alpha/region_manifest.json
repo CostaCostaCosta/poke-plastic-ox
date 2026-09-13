@@ -3,9 +3,9 @@
   "donor_revision": "44f50eedefe58691b0444973e4138e9190d8fafc",
   "transitions": [
     {
-      "id": "cherry_route1_a",
+      "id": "cherry_route2_a",
       "source": "CherrygroveCity_hns",
-      "destination": "Route1_Frlg",
+      "destination": "Route2_Frlg",
       "tile": [
         33,
         0
@@ -16,25 +16,25 @@
       ],
       "direction": "N",
       "landing": [
-        12,
-        38
+        10,
+        79
       ],
       "requires": [],
-      "label": "Route1"
+      "label": "Route2"
     },
     {
-      "id": "cherry_route1_b",
-      "source": "Route1_Frlg",
+      "id": "cherry_route2_b",
+      "source": "Route2_Frlg",
       "destination": "CherrygroveCity_hns",
       "tile": [
-        12,
-        39
+        11,
+        79
       ],
       "approach": [
-        12,
-        38
+        10,
+        79
       ],
-      "direction": "S",
+      "direction": "E",
       "landing": [
         33,
         1
@@ -43,88 +43,48 @@
       "label": "CherrygroveCity"
     },
     {
-      "id": "route1_route31_a",
-      "source": "Route1_Frlg",
-      "destination": "Route31_hns",
+      "id": "route2_rustboro_a",
+      "source": "Route2_Frlg",
+      "destination": "RustboroCity",
       "tile": [
-        12,
-        0
+        6,
+        2
       ],
       "approach": [
-        11,
-        0
+        5,
+        2
       ],
       "direction": "E",
       "landing": [
-        32,
-        21
-      ],
-      "requires": [],
-      "label": "Route31"
-    },
-    {
-      "id": "route1_route31_b",
-      "source": "Route31_hns",
-      "destination": "Route1_Frlg",
-      "tile": [
-        32,
-        22
-      ],
-      "approach": [
-        32,
-        21
-      ],
-      "direction": "S",
-      "landing": [
-        11,
-        0
-      ],
-      "requires": [],
-      "label": "Route1"
-    },
-    {
-      "id": "ilex_route104_a",
-      "source": "IlexForest_hns",
-      "destination": "Route104",
-      "tile": [
-        20,
-        14
-      ],
-      "approach": [
-        19,
-        14
-      ],
-      "direction": "E",
-      "landing": [
-        11,
-        29
+        18,
+        59
       ],
       "requires": [
         "FLAG_POX_STORY_ILEX"
       ],
-      "label": "Route104"
+      "label": "RustboroCity"
     },
     {
-      "id": "ilex_route104_b",
-      "source": "Route104",
-      "destination": "IlexForest_hns",
+      "id": "route2_rustboro_b",
+      "source": "RustboroCity",
+      "destination": "Route2_Frlg",
       "tile": [
-        10,
-        29
+        19,
+        59
       ],
       "approach": [
-        11,
-        29
+        18,
+        59
       ],
-      "direction": "W",
+      "direction": "E",
       "landing": [
-        19,
-        14
+        5,
+        2
       ],
       "requires": [
         "FLAG_POX_STORY_ILEX"
       ],
-      "label": "IlexForest"
+      "label": "Route2"
     },
     {
       "id": "rustboro_cottage_a",
@@ -1719,6 +1679,28 @@
       ],
       "requires": [],
       "label": "Route 7"
+    },
+    {
+      "id": "ilex_route2_north",
+      "source": "IlexForest_hns",
+      "destination": "Route2_ViridianForest_NorthEntrance_Frlg",
+      "tile": [
+        20,
+        14
+      ],
+      "approach": [
+        20,
+        15
+      ],
+      "direction": "N",
+      "landing": [
+        7,
+        9
+      ],
+      "requires": [
+        "FLAG_POX_STORY_ILEX"
+      ],
+      "label": "Route 2 north gate"
     }
   ],
   "native_seams": {
@@ -1740,12 +1722,7 @@
     "CherrygroveCity_hns": [
       "MAP_ROUTE29_HNS"
     ],
-    "Route104": [
-      "MAP_RUSTBORO_CITY"
-    ],
-    "RustboroCity": [
-      "MAP_ROUTE104"
-    ],
+    "RustboroCity": [],
     "Route36_hns": [
       "MAP_ROUTE37_HNS"
     ],

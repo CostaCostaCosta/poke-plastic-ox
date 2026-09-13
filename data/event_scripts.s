@@ -1838,3 +1838,23 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/SeafoamIslands_B3F_Frlg/scripts.inc"
 	.include "data/maps/SeafoamIslands_B4F_Frlg/scripts.inc"
 .endif
+
+.if !IS_FRLG
+	.include "data/maps/Route2_Frlg/scripts.inc"
+.endif
+
+.if !IS_FRLG
+	.include "data/maps/Route2_ViridianForest_NorthEntrance_Frlg/scripts.inc"
+.endif
+
+.if !IS_FRLG
+	.include "data/maps/Route2_ViridianForest_SouthEntrance_Frlg/scripts.inc"
+.endif
+
+.if !IS_FRLG
+	.include "data/maps/Route2_House_Frlg/scripts.inc"
+.endif
+
+.if !IS_FRLG
+	.include "data/maps/Route2_EastBuilding_Frlg/scripts.inc"
+.endif

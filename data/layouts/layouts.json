@@ -4944,7 +4944,10 @@
       "secondary_tileset": "gTileset_GenericBuilding2",
       "border_filepath": "data/layouts/House2_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/House2_Frlg/map.bin",
-      "layout_version": "frlg"
+      "layout_version": "frlg",
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_POKEMON_CENTER_1F_FRLG",
@@ -5549,7 +5552,10 @@
       "secondary_tileset": "gTileset_ViridianCity",
       "border_filepath": "data/layouts/Route2_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/Route2_Frlg/map.bin",
-      "layout_version": "frlg"
+      "layout_version": "frlg",
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE3",
@@ -7266,7 +7272,10 @@
       "secondary_tileset": "gTileset_GenericBuilding2",
       "border_filepath": "data/layouts/Route2_Entrance_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/Route2_Entrance_Frlg/map.bin",
-      "layout_version": "frlg"
+      "layout_version": "frlg",
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE22_NORTH_ENTRANCE",

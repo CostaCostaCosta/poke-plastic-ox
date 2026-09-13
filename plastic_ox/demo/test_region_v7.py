@@ -101,8 +101,9 @@ def main():
 def native_warps(g,ids,out,only):
     maps={name:json.loads((ROOT/f'data/maps/{name}/map.json').read_text()) for name in ids}
     byid={d['id']:n for n,d in maps.items()}
-    selected={'Route31_hns','IlexForest_hns','Route46_hns','DarkCave_SouthSide_hns',
-              'Gate_AzaleaTown_IlexForest_hns','Route25_hns','Route25_BillsHouse_hns',
+    selected={'Route2_Frlg','IlexForest_hns','Route46_hns','DarkCave_SouthSide_hns',
+              'Route2_ViridianForest_NorthEntrance_Frlg','Route2_ViridianForest_SouthEntrance_Frlg',
+              'Route2_House_Frlg','Route2_EastBuilding_Frlg','Route25_hns','Route25_BillsHouse_hns',
               'Route115','Route8_Frlg','Route7_hns','PlasticOx_Route20West','PlasticOx_Route20East'}
     selected.update(n for n in maps if n.startswith(('SeafoamIslands_','UndergroundPath_','MeteorFalls_','VictoryRoad_')) and maps[n].get('region','REGION_HOENN') == 'REGION_HOENN')
     # Isolate traversal from native puzzle state. Boulder mechanics are tested
@@ -118,7 +119,7 @@ def native_warps(g,ids,out,only):
             dest=byid.get(w['dest_map'])
             if dest not in selected or dest == name:
                 continue
-            landing_only={'SeafoamIslands_B1F_Frlg':{9,10},'SeafoamIslands_B2F_Frlg':{7,8},'SeafoamIslands_B3F_Frlg':{5,6},'SeafoamIslands_B4F_Frlg':{2,3}}
+            landing_only={'IlexForest_hns':{1},'SeafoamIslands_B1F_Frlg':{9,10},'SeafoamIslands_B2F_Frlg':{7,8},'SeafoamIslands_B3F_Frlg':{5,6},'SeafoamIslands_B4F_Frlg':{2,3}}
             if index in landing_only.get(name,set()):
                 records.append(dict(source=name,warp=index,destination=dest,passed=True,landing_only=True))
                 continue

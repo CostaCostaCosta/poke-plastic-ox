@@ -1,59 +1,4 @@
 {
-  "cherry_route1_a": {
-    "tile": [
-      33,
-      0
-    ],
-    "approach": [
-      33,
-      1
-    ],
-    "direction": "N"
-  },
-  "cherry_route1_b": {
-    "tile": [
-      12,
-      39
-    ],
-    "approach": [
-      12,
-      38
-    ],
-    "direction": "S"
-  },
-  "route1_route31_a": {
-    "tile": [
-      12,
-      0
-    ],
-    "approach": [
-      11,
-      0
-    ],
-    "direction": "E"
-  },
-  "route1_route31_b": {
-    "tile": [
-      32,
-      22
-    ],
-    "approach": [
-      32,
-      21
-    ],
-    "direction": "S"
-  },
-  "ilex_route104_b": {
-    "tile": [
-      10,
-      29
-    ],
-    "approach": [
-      11,
-      29
-    ],
-    "direction": "W"
-  },
   "rustboro_cottage_a": {
     "tile": [
       20,
@@ -659,17 +604,6 @@
     ],
     "direction": "E"
   },
-  "ilex_route104_a": {
-    "tile": [
-      20,
-      14
-    ],
-    "approach": [
-      19,
-      14
-    ],
-    "direction": "E"
-  },
   "rustboro_cottage_b": {
     "tile": [
       16,
@@ -845,5 +779,49 @@
       14
     ],
     "direction": "S"
+  },
+  "cherry_route2_a": {
+    "tile": [
+      33,
+      0
+    ],
+    "approach": [
+      33,
+      1
+    ],
+    "direction": "N"
+  },
+  "cherry_route2_b": {
+    "tile": [
+      11,
+      79
+    ],
+    "approach": [
+      10,
+      79
+    ],
+    "direction": "E"
+  },
+  "route2_rustboro_a": {
+    "tile": [
+      6,
+      2
+    ],
+    "approach": [
+      5,
+      2
+    ],
+    "direction": "E"
+  },
+  "route2_rustboro_b": {
+    "tile": [
+      19,
+      59
+    ],
+    "approach": [
+      18,
+      59
+    ],
+    "direction": "E"
   }
 }

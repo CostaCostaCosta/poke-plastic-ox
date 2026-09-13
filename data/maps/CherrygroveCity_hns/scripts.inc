@@ -12,7 +12,20 @@ CherrygroveCity_EventScript_GuideGent::
 CherrygroveCity_EventScript_Fisherman::
 	lock
 	faceplayer
+	goto_if_set FLAG_RECEIVED_GOOD_ROD, CherrygroveCity_EventScript_FishermanAlreadyGaveRod
 	msgbox CherrygroveCity_Text_Fisherman, MSGBOX_NPC
+	giveitem ITEM_GOOD_ROD
+	goto_if_eq VAR_RESULT, FALSE, CherrygroveCity_EventScript_FishermanBagFull
+	setflag FLAG_RECEIVED_GOOD_ROD
+	msgbox CherrygroveCity_Text_ReceivedGoodRod, MSGBOX_DEFAULT
+	release
+	end
+CherrygroveCity_EventScript_FishermanBagFull::
+	msgbox CherrygroveCity_Text_BagFull, MSGBOX_DEFAULT
+	release
+	end
+CherrygroveCity_EventScript_FishermanAlreadyGaveRod::
+	msgbox CherrygroveCity_Text_FishermanAfter, MSGBOX_NPC
 	release
 	end
 
@@ -50,7 +63,20 @@ CherrygroveCity_Text_Fisherman:
 	.string "The tide brings in CORSOLA now.\n"
 	.string "CORSOLA! In JOHTO waters!\p"
 	.string "My grandkids think I'm making it\n"
-	.string "up. The CORAL doesn't lie.$"
+	.string "up. The CORAL doesn't lie.\p"
+	.string "Take this GOOD ROD and see what\n"
+	.string "you can catch!$"
+
+CherrygroveCity_Text_ReceivedGoodRod:
+	.string "{PLAYER} received the GOOD ROD!$"
+
+CherrygroveCity_Text_BagFull:
+	.string "Make room in your KEY ITEMS pocket,\n"
+	.string "then come back for the GOOD ROD.$"
+
+CherrygroveCity_Text_FishermanAfter:
+	.string "Cast that GOOD ROD wherever the\n"
+	.string "water looks promising!$"
 
 CherrygroveCity_Text_Boy:
 	.string "A road appeared north of town and\n"
