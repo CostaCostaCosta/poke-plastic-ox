@@ -12,18 +12,7 @@
   "allow_running": true,
   "show_map_name": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": [
-    {
-      "map": "MAP_ROUTE14_HNS",
-      "direction": "up",
-      "offset": 11
-    },
-    {
-      "map": "MAP_ROUTE34_HNS",
-      "direction": "down",
-      "offset": 7
-    }
-  ],
+  "connections": [],
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_LASS_HNS",
@@ -272,6 +261,19 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "GoldenrodCity_EventScript_Npc19",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SIGN",
+      "x": 32,
+      "y": 43,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxRegion_route33_goldenrod_b_Sign",
+      "flag": "0"
     }
   ],
   "warp_events": [
@@ -288,16 +290,28 @@
       "elevation": 0,
       "dest_map": "MAP_GOLDENROD_CITY_BILLS_HOUSE_HNS",
       "dest_warp_id": "0"
-    },
-    {
-      "x": 32,
-      "y": 8,
-      "elevation": 3,
-      "dest_map": "MAP_ROUTE4_HNS",
-      "dest_warp_id": "2"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 32,
+      "y": 45,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": 0,
+      "script": "PoxRegion_route33_goldenrod_b"
+    },
+    {
+      "type": "trigger",
+      "x": 33,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": 0,
+      "script": "PoxRegion_goldenrod_route35_a"
+    }
+  ],
   "bg_events": [
     {
       "type": "sign",
@@ -362,6 +376,14 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "GoldenrodCity_EventScript_Sign8"
+    },
+    {
+      "type": "sign",
+      "x": 32,
+      "y": 43,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PoxRegion_route33_goldenrod_b_Sign"
     }
   ],
   "region": "REGION_HOENN"

@@ -1,5 +1,5 @@
 VictoryRoad_1F_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, VictoryRoad_1F_OnTransition
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_VictoryRoad_1F
 	.byte 0
 
 VictoryRoad_1F_OnTransition:

@@ -2,12 +2,22 @@
 
 A manual drag-and-drop Gradio editor for assembling the Plastic Ox overworld from existing Gen I–III map modules.
 
+The current alpha target is described by [map v7](../plastic_ox_map_v7.md),
+[story v7](../plastic_ox_story_v7.md), and the exported
+[topology SVG](../plastic_ox_topology.svg). See the
+[implementation plan](../alpha/PLAN.md) for reconciliation and migration work.
+The SVG is a physical design, not a verified ROM graph: required interiors,
+Seafoam, Underground traversal and progression gates must also follow the
+written specifications. Catalog requirements and preview coverage below are
+legacy metadata pending the v7 alignment pass; successful editor validation
+does not certify v7 story progression.
+
 ## What it does
 
 - Large central topology canvas (resizable vertically) with a 2600×1800 workspace.
 - Drag required towns, story-linked routes, required dungeons/landmarks, any unused numbered Gen I–III route, and a reusable dungeon/landmark inventory onto the canvas.
 - Shows each source map's cardinal port geometry as guidance, but allows otherwise compatible ports to connect regardless of direction.
-- Models cave mouths and gatehouses as physical endpoint types, distinct from edge progression requirements such as Surf, badges, and story flags. Cave endpoints only join caves, and gate endpoints only join gates.
+- Models cave mouths and gatehouses as visually distinct endpoint types, separate from edge progression requirements such as Surf, badges, and story flags. Cave endpoints only join caves; gate endpoints do not block otherwise compatible land connections.
 - Color-codes gate endpoints in gold (with cave and water endpoints given their own contrasting colors) on cards and placed nodes.
 - Classifies routes by total regional endpoints (terminal, corridor, junction, or hub), counting cave mouths and gatehouses while excluding local building warps. Geometric orientation remains available as a filter.
 - Shows actual map PNG previews whenever `assets/images/<asset>.png` exists. Missing assets automatically fall back to an abstract topology preview.

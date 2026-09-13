@@ -1,7 +1,5 @@
 Route115_MapScripts::
-	map_script MAP_SCRIPT_ON_LOAD, Route115_OnLoad
-	map_script MAP_SCRIPT_ON_TRANSITION, Route115_OnTransition
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route115_OnFrame
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_Route115
 	.byte 0
 
 Route115_OnLoad:
@@ -142,4 +140,3 @@ Route115_Text_RouteSignRustboro:
 Route115_Text_MeteorFallsSign:
 	.string "METEOR FALLS\n"
 	.string "FALLARBOR TOWN THROUGH HERE$"
-

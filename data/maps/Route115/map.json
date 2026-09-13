@@ -13,25 +13,14 @@
   "allow_running": true,
   "show_map_name": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": [
-    {
-      "map": "MAP_RUSTBORO_CITY",
-      "offset": 0,
-      "direction": "down"
-    },
-    {
-      "map": "MAP_ROUTE114",
-      "offset": -40,
-      "direction": "right"
-    }
-  ],
+  "connections": [],
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
       "x": 18,
       "y": 68,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -324,6 +313,19 @@
       "trainer_sight_or_berry_tree_id": "ITEM_HEAL_POWDER",
       "script": "Common_EventScript_FindItem",
       "flag": "FLAG_ITEM_ROUTE_115_HEAL_POWDER"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SIGN",
+      "x": 19,
+      "y": 78,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxRegion_route5_route115_b_Sign",
+      "flag": "0"
     }
   ],
   "warp_events": [
@@ -338,18 +340,28 @@
       "x": 21,
       "y": 6,
       "elevation": 0,
-      "dest_map": "MAP_TERRA_CAVE_ENTRANCE",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_ROUTE115",
+      "dest_warp_id": "1"
     },
     {
       "x": 36,
       "y": 10,
       "elevation": 0,
-      "dest_map": "MAP_TERRA_CAVE_ENTRANCE",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_ROUTE115",
+      "dest_warp_id": "2"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 20,
+      "y": 79,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": 0,
+      "script": "PoxRegion_route5_route115_b"
+    }
+  ],
   "bg_events": [
     {
       "type": "secret_base",
@@ -451,6 +463,14 @@
       "elevation": 3,
       "item": "ITEM_HEART_SCALE",
       "flag": "FLAG_HIDDEN_ITEM_ROUTE_115_HEART_SCALE"
+    },
+    {
+      "type": "sign",
+      "x": 19,
+      "y": 78,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PoxRegion_route5_route115_b_Sign"
     }
   ]
 }

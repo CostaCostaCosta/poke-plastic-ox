@@ -1,4 +1,5 @@
 MtMoon_Cave_hns_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_MtMoon_Cave_hns
 	.byte 0
 
 MtMoon_Cave_EventScript_Npc1::
@@ -37,4 +38,3 @@ MtMoon_Cave_EventScript_Npc3_Text:
 
 MtMoon_Cave_EventScript_Sign2_Text:
 	.string "MT.MOON\nSomewhere inside, the sky is underground.$"
-

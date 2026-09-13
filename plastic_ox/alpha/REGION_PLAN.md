@@ -1,197 +1,68 @@
-# Region Plan — Plastic Ox Alpha
+# Region Plan — Plastic Ox Alpha v7
 
-Legend: `A ↔ B (dir, off)` = seamless camera connection; `A → B` = warp pair.
-Offsets marked `calc` are computed by the implementing agent using the reciprocal
-formula and verified by headless walk. Native maps already in this repo are marked
-**(native)**.
+Status: target topology, pending implementation. See [PLAN.md](PLAN.md) for
+milestones, assumptions, and acceptance. Earlier wave sketches and shipped
+substitutions are retained only in [LEGACY_REGION_PLAN.md](LEGACY_REGION_PLAN.md).
 
-Reciprocal offset rule (from committed demo): for A(up,+n)↔B(down,−n), n =
-(width_A − width_B)/2 when the seam is vertical; analogous with heights for
-horizontal seams. When reusing an hns connection verbatim (both endpoints imported),
-keep hns offsets. When substituting a different map into an existing slot, compute
-fresh offsets from layout dimensions in `data/layouts/layouts.json`.
+The [v7 map](../plastic_ox_map_v7.md) supplies traversal rules and the
+[SVG](../plastic_ox_topology.svg) supplies the physical arrangement. Diagram
+ports identify intent; exact ROM seams, warp indices, landing coordinates,
+collision and offsets must be measured during M0 and each map milestone.
 
-## Leg A — Start & Johto loop (wave 1)
+## Target legs and migration inventory
 
-```
-PalletTown_Frlg (native-stitched) N ↔ Route101 (native) N ↔ OldaleTown (native)
-OldaleTown W ↔ Route29_hns E            # R29 east slot replaces NewBark (hns had offset 5); calc both sides
-Route29_hns gate ↔ Gate_Route29_Route46_hns ↔ Route46_hns lower entrance
-Route46_hns → DarkCave_SouthSide_hns    # warp pair; cave exit → Route31_hns warp
-Route31_hns S ↔ Route30_hns N           # verbatim hns (-10/10)
-Route30_hns S ↔ CherrygroveCity_hns N   # verbatim hns (-9/9)
-Route29_hns W ↔ CherrygroveCity_hns E   # verbatim hns (6/-6)
-Route31_hns W end → gate → ILEX is wave 2 (Leg B)
-```
-Drop: Route29's NewBark connection. DarkCave_NorthSide not imported in alpha.
-R46/R31 keep their item balls as FLAG_POX_ITEM_* hidden items.
+| Leg | Required journey | Asset candidates and changes |
+|---|---|---|
+| A — Opening | Pallet → Route 101 → Oldale → Route 29 → Cherrygrove → Route 1/31 → Ilex | Keep existing Pallet, Route101, Oldale, Route29_hns, CherrygroveCity_hns, Route31_hns, IlexForest_hns. Route1_Frlg exists on disk; verify build registration/format before reuse. Resolve the Route 1/31 seam order from SVG ports and walkable entrances. Route30 remains optional only if it cannot skip Ilex. |
+| A-return — Western loop | Blackthorn → Route 45 → Route 46 → early network; Dark Cave side links | Preserve native downhill ledges and repaired DarkCave_SouthSide_hns exits. Audit all cave mouths and upper Route46 access; no early climb or cave route to Blackthorn. |
+| B — Gym 1 | Ilex → Route 104 Top → Rustboro | Reuse northern Route104 and RustboroCity, isolate southern/native side exits. Replace the old Route34/116 approach and any Ilex→Goldenrod bypass. |
+| B-side — Cottage | Rustboro portion → Route 24 → Route 25 → Bill's Sea Cottage, then return | Route24_hns, Route25_hns, Route25_BillsHouse_hns exist. Wire the actual branch near Rustboro; restore a local Cottage exit. Remove Fortree CottageGuide/CottageExit transport and Route24→Route7 escape. |
+| C — Rocket I/Gym 2 | Rustboro → Route 44 → Mt. Moon → Route 33 → Goldenrod | Route44_hns and Route33_hns require donor import/registration (verify during M0); reuse MtMoon_Cave_hns with measured entrance/exit pairing. Retire Route2/3/4/14 mainline substitutions and town-skip travel actors. Make dungeon completion required on the forward path. |
+| D — Gym 3 | Goldenrod → Route 35 → National Park → Route 36 → Route 37 → Ecruteak | Reuse HNS modules/gatehouses. Park must be on the main path, not an optional spur off Route35→36. Preserve measured working Route36/37/Ecruteak seams where compatible. |
+| E — Gym 4 | Ecruteak east → Route 119 → Weather Institute → Fortree | Rewire east access; retire west Route38 route and direct Weather Institute transport. Reuse native Route119/Fortree and Institute interiors with authored callbacks. Require Morty and Weather progression. |
+| E-shortcut | Route 36 east ↔ Route 110 west | Block until legitimate Fortree arrival; permanently bidirectional afterward. Remove native Route103→110 as an early bypass or gate it under the same progression contract. |
+| F — Rocket II | Fortree → Route 110 → Lavender | Reuse native Route110 and LavenderTown_hns. Retire Ecruteak→Route7/Lavender and direct Fortree→Lavender transport. Tower/Fuji directs the next journey underground. |
+| G — Gym 5 | Lavender → Route 8 → Underground Path → Route 7 → Route 103 → Cinnabar | Route8_Frlg, UndergroundPath_EastEntrance_Frlg, EastWestTunnel_Frlg, WestEntrance_Frlg are candidates already on disk; integrate with Route7_hns and native Route103. Audit all doors/versions. Gate Oldale-side access to the southern route until the intended segment. Remove direct Lavender→Cinnabar transport and obsolete south mainline. |
+| H — Gym 6 | Cinnabar → Route 20 west coast → Seafoam → Route 20 east coast → Mossdeep | SVG specifies Route20; native FRLG Route20 and SeafoamIslands_1F/B1F/B2F/B3F/B4F_Frlg exist on disk. Select necessary floors, verify tilesets/build inclusion, currents and boulder logic. Split/isolate water halves if needed; no Surf-around path. Whirl room/service leaves the mainline. Route41 is only a documented fallback allowed by map v7. |
+| I — Saffron hub | Mossdeep → Route 19/south approach → Saffron; Route 7/8 surface entrances | SVG Route19 candidate is Route19_Frlg; replace Route125/128/6 detour as needed. All surface ingress checks Space Center completion. Underground remains independent. North opens with the city; neither Bruno nor Silph gates Blackthorn or Clair. |
+| J — Gym 8 | Saffron → Route 5 → Route 115 → Meteor Falls → Blackthorn | Reuse Route5_hns if registered, native Route115 and MeteorFalls floors; audit native Rustboro/Route114 access and every cave branch. No Ice Path/Route26 substitution or direct BlackthornRoad service. Blackthorn return joins leg A-return. |
+| K — League | Ecruteak west → Hoenn Victory Road → League → Wallace/Steven/Lance/Blue → Bill | SVG selects native VictoryRoad_1F/B1F/B2F. Reuse alpha League rooms/Indigo service hub where suitable, checking all exits. Replace synthetic PlasticOx_VictoryRoad and Blackthorn LeagueRoad/portal as main approach. Require all eight badges at Ecruteak. |
+| L — Postgame | Lavender south → harbor/ferry → Battle Frontier → later islands | Add a visible closed harbor approach and functional round-trip Frontier entry after Champion. Exact harbor map/warp endpoints and island roster are M0/M7 deliverables, not present in the SVG. |
 
-Imports: Route29_hns, Route30_hns, Route31_hns, Route46_hns,
-Gate_Route29_Route46_hns, Route30_House_hns,
-Route30_MrPokemonsHouse_hns, DarkCave_SouthSide_hns, CherrygroveCity_hns.
-Tilesets (from recon): primaries Johto_General_Hns; secondaries NewBarkTown_Hns,
-CherrygroveCity_Hns, Cave_Default_Hns.
-Shared interiors wired here: PC_Johto, Mart_Johto, House_Generic ×2, plus both
-Route 30 houses and the Route 29/46 gate at their source door coordinates.
+Asset existence does not establish Emerald inclusion, safe attributes, correct
+warps, or reachable entrances. Record source revision, source map/layout,
+destination group, tilesets, event policy, encounters, and exact verification
+commands for each import. Reuse HNS IDs where appropriate; do not rename native
+maps to match a diagram label without a reason.
 
-The gate and house restoration uses pokehns-expansion revision
-`44f50eedefe58691b0444973e4138e9190d8fafc`: the three source map/layout pairs
-are HNS-format (640 primary metatiles, 2x2 border, Emerald u16 attributes), use
-`Johto_Building_Hns` with `Gate_Standard_Hns` or `House_Lab_Hns`, and retain
-their reciprocal source warp coordinates. Verification commands are:
+## Required edge conditions
 
-```
-python3 /home/eddie/.codex/skills/plastic-ox-map-port/scripts/audit_imports.py /home/eddie/repos/poke-plastic-ox
-make -j$(nproc) TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM modern
-LD_LIBRARY_PATH="$HOME/.venvs/mgba311/lib:$HOME/.venvs/mgba311/lib64" "$HOME/.venvs/mgba311/bin/python" plastic_ox/demo/walk_leg1.py
-LD_LIBRARY_PATH="$HOME/.venvs/mgba311/lib:$HOME/.venvs/mgba311/lib64" "$HOME/.venvs/mgba311/bin/python" plastic_ox/demo/walk_leg2.py
-```
+| Edge | Condition in trigger build |
+|---|---|
+| Early world → Rustboro | Starter/opening progression and mandatory Ilex traversal |
+| Rustboro → Goldenrod | Roxanne, then mandatory Mt. Moon Rocket I completion |
+| Goldenrod → Ecruteak | Whitney; travel through National Park |
+| Ecruteak → Route119/Fortree | Morty; Weather investigation before forward progression |
+| Route36 ↔ Route110 | Reached Fortree |
+| Fortree → Lavender story | Winona |
+| Lavender → Cinnabar story | Fuji rescue; Underground available while Saffron closed |
+| Cinnabar → mandatory Seafoam/Mossdeep passage | Blaine/key and Mansion investigation; usable Surf |
+| All Saffron surface entries | Space Center complete after Gym 6 |
+| Saffron north → Route5/Blackthorn/Clair | Space Center complete; independent of Bruno and Silph |
+| Ecruteak west → Victory Road | All eight native badge flags |
+| Lavender south → harbor | Successful Champion/Hall of Fame completion |
 
-## Leg B — Ilex → Rustboro (wave 2) — SHIPPED (with substitutions, see below)
+These conditions must cover ordinary map links and alternate entry mechanisms.
+Objective NPC prerequisites alone do not prevent physical sequence breaks.
 
-```
-Route31_hns W-end door → Gate_AzaleaTown_IlexForest_hns → IlexForest_hns E-side warp
-IlexForest_hns N ↔ Route34_hns N        # verbatim hns (-39)
-Route34_hns S ↔ Route116 (native) W     # calc; cross-tileset seam accepted
-Route116 E ↔ RustboroCity (native)      # native offsets already correct
-```
-Gate interior is small; retarget its two doors (R31 side / Ilex side).
-Rustboro Gym = native RustboroCity_Gym. Devon NPCs keep native scripts + new lines.
+## Per-leg completion record
 
-### Wave 2 shipped topology (differs from the sketch above — logged per plan rules)
-- Ilex↔Route34: the hns north seam (-39) exists but its crossing columns are
-  walled; Route34's own south edge is sealed. Shipped instead: coord-warp
-  portals `IlexForest (20,13) ⇄ Route34 (31,67)` (gate plaza), plus
-  `Route34 (31,89) ⇄ Route116 (40,1)` for the southward leg.
-- Goldenrod attaches to Route34's verbatim `up/-7` seam (north edge), so the
-  walking order is Ilex → R34 → GOLDENROD → R14 → R4 → Mt.Moon(spur) → R3 →
-  R2 → Rustboro → R116. Leg C's `R14 S ↔ Goldenrod S` was geometrically
-  impossible (Goldenrod's south is R34); replaced by the canyon portal pair.
-- Route2 east slot ↔ Route3 west slot works verbatim-free via calc offsets;
-  R4↔R14 elbow DROPPED (both R14 link slots were isolated pockets);
-  R14 remains reachable only through Goldenrod's canyon (scenic).
-- Rustboro City's NW and SE districts are internally split (native data);
-  a city portal pair `(5,10)⇄(37,9)` bridges them. R116 far point hosts the
-  demo Return Stone (`warp MAP_PALLET_TOWN, 10, 4`; wave 4 moved the R36
-  stone coord to (20,19) — off the R37-portal corridor and leg5's row-21 walk).
-- MtMoon_Cave keeps both original exits ((46,31)→R4-east landing,
-  (4,12)→R4-west); traversed as an optional spur in alpha demos.
+At implementation time append: actual map IDs and tile coordinates; seam
+directions and reciprocal offsets or warp indices; removed legacy links;
+required and optional story events; ability availability; valid return route;
+generator/import-tool changes; tests and screenshots. Any substitution must
+preserve the mandatory towns/dungeons, gate timing and return paths above.
 
-## Leg C — Rustboro → Mt. Moon → Goldenrod (wave 2)
-
-```
-RustboroCity N ↔ Route2_hns S           # calc
-Route2_hns E ↔ Route3_hns W             # calc (elbow)
-Route3_hns E door → MtMoon_Cave_hns     # through-dungeon warp pair
-MtMoon_Cave_hns → Route4_hns W door
-Route4_hns E ↔ Route13_hns W? NO — use: Route4_hns E ↔ Route14_hns N  # calc elbow via shared corner tiles
-Route14_hns S ↔ GoldenrodCity_hns S     # calc
-```
-If the R4↔R14 elbow geometry fights the layouts, substitute any unused vertical
-Kanto route (R5/R6/R26) — record the substitution here.
-Goldenrod Gym (Whitney) = GoldenrodCity_Gym_hns. Bill family house =
-GoldenrodCity_BillsHouse_hns (Eevee gift site).
-
-## Leg D — Goldenrod → Park → Ecruteak (wave 3) — SHIPPED
-
-```
-GoldenrodCity_hns plaza coord portal (34,7) → Route35_hns (14,48)      # POX portal pair
-Gate_GoldenrodCity_Route35_hns interior wired both ways:               # canon gate kept walkable
-  (7,9)→Goldenrod(33,8)   (7,1)→Route35(14,48)
-Route35_hns N coord (17,5) → Route36_hns (16,21)                      # direct (wave 4)
-NationalPark_Normal_hns (39,20)/(39,26) ⇄ Route36_hns (16,19)/(16,20)  # park spur portals
-NationalPark_Normal (39,20)/(39,26) ⇄ Route36_hns (16,19)/(16,20)      # POX portal pair
-Route36_hns N seam → Route37_hns        # map connection, offset -22 (open cols 33-41 ↔ 12-19)
-Route37_hns N seam → EcruteakCity_hns   # map connection, offset -16 (open cols 16-19 ↔ 0-1)
-IlexForest_hns (20,13) → Route34_hns (31,66)  # wave-2 portal re-pointed to explicit landing coords
-```
-Ecruteak Gym / Burned Tower / Dance Theater interiors NOT imported in wave 3
-(city exterior only).
-
-## Leg E — Ecruteak → Route119 → Fortree (+ Sea Cottage spur) (wave 3) — SHIPPED
-
-```
-EcruteakCity_hns W seam → Route38_hns   # map connection, offset -19
-                                        # open rows 33-36 on Ecruteak ↔ 14-17 on R38
-Route38_hns W coord portal (0,21) → Route119 native (18,138)     # POX portal pair
-Route119 native W coord (0,86) → Route38_hns (1,21)              # reverse direction
-Route119 traverse north on foot (native map; no HM gates)
-Route119 E exit rows 6-10 → FortreeCity   # NATIVE right-connection, offset 0
-FortreeCity Return Stone coord (20,4) → Pallet Town (10,4)       # wave-end shortcut home
-```
-Weather Institute stays native on R119 (warps/NPCs untouched).
-# Sea Cottage spur: Route16/24/25_hns + Route25_BillsHouse_hns imported in
-# wave 3 but NOT yet wired into the walkable graph (no portals/seams); wave 4
-# continues from Fortree.
-
-
-## Leg F — Ecruteak → Route7 (wave 4) — SHIPPED (substituted entry)
-
-```
-EcruteakCity_hns (15,31) portal ⇄ Route7_hns (4,25)     # "Kanto gate": the
-                                                        # R24/R25 spur has no
-                                                        # walkable entry, so
-                                                        # Leg F enters here
-Route24_hns (10,1) portal ⇄ Route7_hns (4,25)           # R24/R7 spur link
-Route7_hns (4,22) portal ⇄ LavenderTown_hns (1,10)      # R7 east edge is
-                                                        # walled at the seam
-                                                        # rows; portal instead
-```
-Imports: Route7_hns, LavenderTown_hns (Kanto_General_Hns primary already
-present; LavenderTown_Hns secondary added). R24/R25/R16 remain the unwired
-cottage spur except the R24⇄R7 portal above. Tower interior warp DEFERRED
-(interior loads to a black screen — see HANDOFF_WAVE4 addendum 3).
-
-## Leg G — Lavender → Cinnabar (wave 4) — SHIPPED (portal across the water)
-
-```
-LavenderTown_hns (15,20) portal ⇄ CinnabarIsland_hns (8,6)
-CinnabarIsland_hns (8,8) portal ⇄ LavenderTown_hns (15,22)
-LavenderTown_hns S ↔ Route12_hns N      # seam DROPPED: elevation-severed
-                                        # from the town center
-Route12_hns S ↔ Route21_hns N           # seam kept (offset 9) for post-surf
-```
-R12/R21 water legs are surf-gated (walking harness cannot cross) — same
-deferral class as Leg H. Cinnabar Gym interior warp DEFERRED (black-screen
-load). Mart/PC warps retargeted to the native FRLG interiors.
-
-## Leg H — Cinnabar → Whirl Islands → Mossdeep (wave 5)
-
-```
-CinnabarIsland_hns E ↔ Route41_hns W    # calc (water)
-Route41_hns island warp → WhirlIslands_1F_hns (through to B1F optional)
-Route41_hns E ↔ MossdeepCity (native) W # native water port; calc
-```
-
-## Leg I — Mossdeep → Saffron (wave 5)
-
-```
-MossdeepCity N ↔ Route125 (native) S    # native/calc
-Route125 N ↔ Route128 (native) E        # native/calc (water elbows)
-Route128 W ↔ Route6_hns S               # calc (land)
-Route6_hns N → Gate_SaffronCity_Route6_hns → SaffronCity_hns S          # hns canon
-```
-
-## Leg J — SHIPPED variant note: R26/IcePath/R45/VictoryRoad replaced by portal pair Blackthorn(42,22)⇄IndigoPlateau(11,13); Indigo PC interior reachable (door 11,6). Leg H Cinnabar↔R41/Mossdeep water legs DEFERRED (surf-gated; walking harness cannot cross) — Mossdeep/R125/R128 remain native-wired for post-surf play. — Saffron → Blackthorn → League (wave 5)
-
-```
-SaffronCity_hns N → Gate_SaffronCity_Route5_hns → Route5_hns S          # hns canon
-Route5_hns N ↔ Route44_hns E? prefer: Route5 N ↔ Route26_hns S          # calc
-Route26_hns N ↔ IcePath_1F_hns W-entrance warp                          # calc
-IcePath_1F_hns E-exit warp ↔ Route45_hns N                              # calc
-Route45_hns S ↔ BlackthornCity_hns S                                    # calc
-BlackthornCity_hns N → VictoryRoadKanto_1F_hns (→B1F) → IndigoPlateau_hns S
-IndigoPlateau_hns → IndigoPlateau_PokemonCenter_hns → League door →
-MAP_ROUTE23_CHAMPION / FRLG PokemonLeague rooms (present) → Champion Bill room
-```
-Substitute routes freely within Kanto N-S fillers (R26/R27/R28/R44/R45) if geometry
-demands; log substitutions here. Fighting Dojo (Bruno) = SaffronCity_FightingDojo_hns;
-Silph climax = SaffronCity_SilphCo_hns (single-floor alpha).
-
-## MAPSEC additions
-
-Add sections for every imported outdoor map + dungeon/town (Johto/Kanto names from
-hns `src/data/region_map/region_map_sections.json` `hns_map_sections`) into this
-repo's `src/data/region_map/region_map_sections.json`, each with a region-map entry
-row (x/y/w/h/name — place loosely on the Hoenn grid edges; display cosmetics only).
-Regenerates `include/constants/region_map_sections.h` + `region_map_entries.h`.
+Retain HNS 640-primary/7-palette partitioning, Emerald u16 attributes and 2×2
+borders. Use the import guide and map-port verification guidance for physical
+conversion. Preserve Dark Cave landing repairs and Ilex visual coherence.

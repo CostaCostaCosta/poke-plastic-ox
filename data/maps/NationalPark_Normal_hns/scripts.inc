@@ -1,4 +1,5 @@
 NationalPark_Normal_hns_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_NationalPark_Normal_hns
 	.byte 0
 
 NationalPark_Normal_EventScript_Npc1::
@@ -113,4 +114,3 @@ NationalPark_Normal_EventScript_Npc11_Text:
 
 NationalPark_Normal_EventScript_Npc12_Text:
 	.string "Roads keep ending somewhere they\ndidn't used to.$"
-

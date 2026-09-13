@@ -220,7 +220,7 @@ def make_html(catalog: dict) -> str:
       <div data-role="nodes"></div>
     </div>
   </div>
-  <p class="po-help">Drag a part from a tray onto the map (or double-click a card to add it at the visible map center). Drag placed parts to snap them to the grid. Click one port, then a compatible second port, to make a connection. Cardinal direction is advisory, so any two otherwise compatible endpoints can connect. Physical gate endpoints (gold) only match other gate endpoints. Cave, local warp, and transit endpoints also only match their own physical type. Progression-gated connections are drawn dashed.</p>
+  <p class="po-help">Drag a part from a tray onto the map (or double-click a card to add it at the visible map center). Drag placed parts to snap them to the grid. Click one port, then a compatible second port, to make a connection. Cardinal direction is advisory, so any two otherwise compatible endpoints can connect. Gate endpoints are visually marked but do not block otherwise compatible land connections. Cave, local warp, and transit endpoints only match their own physical type. Progression-gated connections are drawn dashed.</p>
 
   <div class="po-metrics">
     <div class="po-metric"><b data-metric="coverage">0/0</b><span>required parts placed</span></div>
@@ -491,7 +491,6 @@ if (!element.__plasticOxInitialized) {
     const exactTransitions = new Map([
       ['transit', 'Transit ports only connect to transit ports.'],
       ['cave', 'Cave entrances/exits only connect to cave entrances/exits.'],
-      ['gate', 'Gate entrances/exits only connect to gate entrances/exits.'],
       ['warp', 'Local warp ports only connect to local warp ports.'],
     ]);
     for (const [type, why] of exactTransitions) {

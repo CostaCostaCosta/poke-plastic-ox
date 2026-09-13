@@ -1,4 +1,5 @@
 Route119_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_Route119
 	.byte 0
 
 Route119_Movement_PlayerWatchRivalExit1:
@@ -398,4 +399,3 @@ Route119_Text_TrainerTipsDecoration:
 	.string "Pick your favorite items and create\n"
 	.string "your very own SECRET BASE exactly the\l"
 	.string "way you want.$"
-

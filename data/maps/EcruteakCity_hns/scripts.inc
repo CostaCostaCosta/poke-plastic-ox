@@ -1,4 +1,5 @@
 EcruteakCity_hns_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_EcruteakCity_hns
 	.byte 0
 
 EcruteakCity_EventScript_Npc1::
@@ -70,4 +71,3 @@ EcruteakCity_EventScript_Npc6_Text:
 
 EcruteakCity_EventScript_Npc7_Text:
 	.string "Roads keep ending somewhere they\ndidn't used to.$"
-

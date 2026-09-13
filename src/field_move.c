@@ -39,6 +39,10 @@ static bool32 IsFieldMoveUnlocked_Strength(void)
 
 static bool32 IsFieldMoveUnlocked_Surf(void)
 {
+    // The v7 Underground/Route103 journey precedes Blaine. Fuji supplies
+    // Surf after Winona; physical gates prevent earlier coastal bypasses.
+    if (FlagGet(FLAG_POX_TRIGGERS_ENABLED))
+        return FlagGet(FLAG_BADGE04_GET);
     return FlagGet(FLAG_BADGE05_GET);
 }
 

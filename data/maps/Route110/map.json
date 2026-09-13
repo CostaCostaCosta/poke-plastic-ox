@@ -13,23 +13,7 @@
   "allow_running": true,
   "show_map_name": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": [
-    {
-      "map": "MAP_MAUVILLE_CITY",
-      "offset": 0,
-      "direction": "up"
-    },
-    {
-      "map": "MAP_SLATEPORT_CITY",
-      "offset": 0,
-      "direction": "down"
-    },
-    {
-      "map": "MAP_ROUTE103",
-      "offset": 60,
-      "direction": "left"
-    }
-  ],
+  "connections": [],
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_CAMPER",
@@ -62,7 +46,7 @@
       "x": 14,
       "y": 69,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_WANDER_UP_AND_DOWN",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -75,7 +59,7 @@
       "x": 9,
       "y": 57,
       "elevation": 4,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -88,7 +72,7 @@
       "x": 10,
       "y": 11,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -101,7 +85,7 @@
       "x": 27,
       "y": 24,
       "elevation": 4,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
       "movement_range_y": 3,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -114,7 +98,7 @@
       "x": 15,
       "y": 7,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -368,7 +352,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
-      "flag": "FLAG_HIDE_ROUTE_110_TEAM_AQUA"
+      "flag": "FLAG_POX_HIDE_UNUSED_ACTOR"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_CYCLING_TRIATHLETE_M",
@@ -395,7 +379,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
-      "flag": "FLAG_HIDE_ROUTE_110_RIVAL"
+      "flag": "FLAG_POX_HIDE_UNUSED_ACTOR"
     },
     {
       "local_id": "LOCALID_ROUTE110_RIVAL_ON_BIKE",
@@ -409,7 +393,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
-      "flag": "FLAG_HIDE_ROUTE_110_RIVAL_ON_BIKE"
+      "flag": "FLAG_POX_HIDE_UNUSED_ACTOR"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
@@ -501,7 +485,20 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
-      "flag": "FLAG_HIDE_ROUTE_110_BIRCH"
+      "flag": "FLAG_POX_HIDE_UNUSED_ACTOR"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SIGN",
+      "x": 19,
+      "y": 98,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxRegion_route110_lavender_a_Sign",
+      "flag": "0"
     }
   ],
   "warp_events": [
@@ -551,84 +548,30 @@
   "coord_events": [
     {
       "type": "trigger",
-      "x": 28,
-      "y": 92,
-      "elevation": 3,
-      "var": "VAR_CYCLING_CHALLENGE_STATE",
-      "var_value": "2",
-      "script": "Route110_EventScript_CyclingChallengeEnd"
+      "x": 18,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": 0,
+      "script": "PoxRegion_fortree_route110_b"
     },
     {
       "type": "trigger",
-      "x": 29,
-      "y": 92,
-      "elevation": 3,
-      "var": "VAR_CYCLING_CHALLENGE_STATE",
-      "var_value": "2",
-      "script": "Route110_EventScript_CyclingChallengeEnd"
+      "x": 1,
+      "y": 67,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": 0,
+      "script": "PoxRegion_route36_shortcut_b"
     },
     {
       "type": "trigger",
-      "x": 33,
-      "y": 56,
-      "elevation": 3,
-      "var": "VAR_ROUTE110_STATE",
-      "var_value": "0",
-      "script": "Route110_EventScript_RivalTrigger1"
-    },
-    {
-      "type": "trigger",
-      "x": 34,
-      "y": 56,
-      "elevation": 3,
-      "var": "VAR_ROUTE110_STATE",
-      "var_value": "0",
-      "script": "Route110_EventScript_RivalTrigger2"
-    },
-    {
-      "type": "trigger",
-      "x": 35,
-      "y": 56,
-      "elevation": 3,
-      "var": "VAR_ROUTE110_STATE",
-      "var_value": "0",
-      "script": "Route110_EventScript_RivalTrigger3"
-    },
-    {
-      "type": "trigger",
-      "x": 7,
-      "y": 85,
-      "elevation": 3,
-      "var": "VAR_REGISTER_BIRCH_STATE",
-      "var_value": "1",
-      "script": "Route110_EventScript_BirchScene1"
-    },
-    {
-      "type": "trigger",
-      "x": 8,
-      "y": 85,
-      "elevation": 3,
-      "var": "VAR_REGISTER_BIRCH_STATE",
-      "var_value": "1",
-      "script": "Route110_EventScript_BirchScene2"
-    },
-    {
-      "type": "trigger",
-      "x": 9,
-      "y": 85,
-      "elevation": 3,
-      "var": "VAR_REGISTER_BIRCH_STATE",
-      "var_value": "1",
-      "script": "Route110_EventScript_BirchScene3"
-    },
-    {
-      "type": "trigger",
-      "x": 10,
-      "y": 85,
-      "elevation": 3,
-      "var": "VAR_REGISTER_BIRCH_STATE",
-      "var_value": "1",
-      "script": "Route110_EventScript_BirchScene4"
+      "x": 20,
+      "y": 99,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": 0,
+      "script": "PoxRegion_route110_lavender_a"
     }
   ],
   "bg_events": [
@@ -765,6 +708,14 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route110_EventScript_CyclingRoadSign"
+    },
+    {
+      "type": "sign",
+      "x": 19,
+      "y": 98,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PoxRegion_route110_lavender_a_Sign"
     }
   ]
 }

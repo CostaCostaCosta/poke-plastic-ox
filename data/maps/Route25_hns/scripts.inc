@@ -1,4 +1,5 @@
 Route25_hns_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_Route25_hns
 	.byte 0
 
 Route25_EventScript_Npc1::
@@ -120,4 +121,3 @@ Route25_EventScript_Npc11_Text:
 
 Route25_EventScript_Npc12_Text:
 	.string "Roads keep ending somewhere they\ndidn't used to.$"
-

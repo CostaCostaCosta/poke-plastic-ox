@@ -3,7 +3,7 @@
 
 Run from the repository root. This tool never writes files itself. --check
 checks that the checked-in sources match the story manifest below.
-Existing layouts are reused, not copied or converted. See STORY_IMPLEMENTATION.md.
+Existing layouts are reused, not copied or converted. See STORY_TRIGGERS.md.
 """
 import copy
 import difflib
@@ -37,6 +37,10 @@ scripts = []
 flags = []
 trainers = []
 manifest = []
+flag_allocations = json.loads(Path('plastic_ox/alpha/story_flags.json').read_text())
+flag_values = [int(value, 0) for value in flag_allocations.values()]
+assert len(flag_values) == len(set(flag_values)), 'Duplicate persistent story flag IDs'
+assert all(0x020 <= value <= 0x04F for value in flag_values), 'Story flag outside reserved run'
 layouts = {l['id']: l for l in json.loads(Path('data/layouts/layouts.json').read_text())['layouts']}
 
 
@@ -54,6 +58,8 @@ def floor_cell(mapname, x, y, exclude=None):
 
 def flag(name):
     name = "FLAG_POX_" + name
+    if name not in flag_allocations:
+        raise ValueError(f'Allocate a stable ID for {name} in story_flags.json first')
     if name not in flags:
         flags.append(name)
     return name
@@ -175,6 +181,30 @@ def mapid(name):
 
 
 def travel(name, destination, x, y, text, prerequisites=()):
+    # Regional movement is now owned by physical trail/gate/cave transitions.
+    # Retain these actors as directions, never as town-skipping transports.
+    regional_hints = {
+        'IlexRoad':'Follow the northern forest path to ROUTE 104 and RUSTBORO.',
+        'MoonRoad':'The east road crosses ROUTE 44 to MT. MOON.',
+        'GoldenrodRoad':'The far cave exit leads to ROUTE 33 and GOLDENROD.',
+        'ParkRoad':'Take ROUTE 35 north to NATIONAL PARK.',
+        'EcruteakRoad':'The east exit leads through ROUTES 36 and 37 to ECRUTEAK.',
+        'WeatherRoad':'Take the east road to ROUTE 119 and the WEATHER INSTITUTE.',
+        'CottageGuide':'BILL\'s SEA COTTAGE is near RUSTBORO, beyond ROUTES 24 and 25.',
+        'LavenderRoad':'The east road joins ROUTE 110. Follow it south to LAVENDER.',
+        'CinnabarRoad':'Take ROUTE 8 west. The UNDERGROUND PATH bypasses closed SAFFRON.|From ROUTE 7, cross ROUTE 103 to CINNABAR.',
+        'MossdeepRoad':'Follow the southern coast through SEAFOAM ISLANDS to MOSSDEEP.',
+        'SaffronRoad':'The northern coast leads through ROUTE 19 to SAFFRON.',
+        'BlackthornRoad':'Take SAFFRON\'s north exit through ROUTES 5 and 115 and METEOR FALLS to BLACKTHORN.',
+        'LeagueRoad':'The LEAGUE gate is west of ECRUTEAK. Bring all eight BADGES.',
+        'WhirlGuide':'SEAFOAM ISLANDS lie along the coast to MOSSDEEP.',
+    }
+    if name in regional_hints:
+        start(name)
+        msg=message(name,regional_hints[name])
+        finish()
+        speech(*msg)
+        return
     x,y=floor_cell(destination,x,y)
     start(name, prerequisites)
     msg = message(name, text)
@@ -234,6 +264,10 @@ silph = "FLAG_POX_STORY_SILPH"
 burned = flag("STORY_BURNED_TOWER")
 fuji = flag("STORY_FUJI")
 space = flag("STORY_SPACE_CENTER")
+# Saffron and the entire northern OU region open together. Keep the same
+# prerequisite on travel, Clair's guide, and her battle so optional OU
+# objectives cannot accidentally restore the old Bruno + Silph lock.
+northern_ou = [space]
 flag("HIDE_STORY_NPCS")
 badges = [f"FLAG_BADGE{i:02}_GET" for i in range(1, 9)]
 
@@ -285,7 +319,7 @@ gymdata = [
  ("Blaine", "BLAINE", "CinnabarIsland_hns", [badges[3],fuji], 38, [('Ninetales',['Flamethrower','Will O Wisp','Confuse Ray']),('Rapidash',['Fire Blast','Return','Sunny Day']),('Arcanine',['Flamethrower','Extreme Speed','Crunch'])]),
  ("TateLiza", "TATE & LIZA", "MossdeepCity", [badges[4],mansion], 44, [('Claydol',['Earthquake','Psychic','Protect']),('Xatu',['Psychic','Reflect','Protect']),('Lunatone',['Psychic','Hypnosis','Protect']),('Solrock',['Rock Slide','Sunny Day','Protect'])]),
  ("Bruno", "BRUNO", "SaffronCity_hns", [badges[5],space], 50, [('Heracross',['Megahorn','Brick Break','Rock Slide']),('Machamp',['Cross Chop','Rock Slide','Bulk Up']),('Hariyama',['Fake Out','Brick Break','Knock Off']),('Snorlax',['Return','Rest','Curse'])]),
- ("Clair", "CLAIR", "BlackthornCity_hns", [badges[6],silph], 55, [('Gyarados',['Dragon Dance','Return','Earthquake']),('Flygon',['Earthquake','Rock Slide','Dragon Claw']),('Kingdra',['Rain Dance','Surf','Ice Beam']),('Salamence',['Dragon Dance','Earthquake','Aerial Ace'])]),
+ ("Clair", "CLAIR", "BlackthornCity_hns", northern_ou, 55, [('Gyarados',['Dragon Dance','Return','Earthquake']),('Flygon',['Earthquake','Rock Slide','Dragon Claw']),('Kingdra',['Rain Dance','Surf','Ice Beam']),('Salamence',['Dragon Dance','Earthquake','Aerial Ace'])]),
 ]
 for i, (name, display, town, prereq, level, team) in enumerate(gymdata):
     extra = "\tmsgbox Pox_Text_Badge, MSGBOX_DEFAULT"
@@ -307,9 +341,11 @@ for i, (name, display, town, prereq, level, team) in enumerate(gymdata):
 speech("Pox_Text_Badge", "You received a GYM BADGE! A new challenge waits on the next road.")
 start("MansionKey", [badges[4]])
 keyflag = flag('MANSION_KEY')
+for machine in ['ITEM_HM04', 'ITEM_HM06', 'ITEM_HM05']:
+    emit(f'\tcheckitem {machine}\n\tgoto_if_eq VAR_RESULT, TRUE, Pox_MansionKey_{machine}\n\tgiveitem {machine}\n\tgoto_if_eq VAR_RESULT, FALSE, Pox_Release\nPox_MansionKey_{machine}::')
 emit(f"\tgoto_if_set {keyflag}, Pox_Done\n\tgiveitem ITEM_SECRET_KEY\n\tgoto_if_eq VAR_RESULT, FALSE, Pox_Release\n\tsetflag {keyflag}\n\tmsgbox Pox_Text_MansionKey, MSGBOX_DEFAULT")
 finish()
-speech('Pox_Text_MansionKey', "BLAINE: This MANSION KEY opens the archives. The old records may help you understand what FUJI meant.")
+speech('Pox_Text_MansionKey', "BLAINE: This MANSION KEY opens the archives. The old records may help you understand what FUJI meant.|These STRENGTH, ROCK SMASH and FLASH machines will help you explore the caves ahead.")
 
 # Rocket I, deliberately mundane criminals. Each grunt has an independent flag.
 moon1 = 'FLAG_POX_HIDE_MTMOON_GRUNT_1'
@@ -349,7 +385,7 @@ cottage['object_events']=cottage['object_events'][:1]
 cottage['warp_events']=[]
 save_map('Route25_BillsHouse_hns',cottage)
 add_npc('Route25_BillsHouse_hns','CottageExit',7,8)
-travel('CottageExit','FortreeCity',7,8,'Safe travels!')
+travel('CottageExit','Route25_hns',85,14,'Safe travels!')
 travel('CottageGuide','Route25_BillsHouse_hns',7,7,'The SEA COTTAGE is a short trip from here.',[badges[3]])
 add_npc('FortreeCity','CottageGuide',7,7)
 
@@ -357,7 +393,7 @@ lav1='FLAG_POX_HIDE_LAVENDER_GRUNT_1'
 lav2='FLAG_POX_HIDE_LAVENDER_GRUNT_2'
 for n,f,req in [(1,lav1,[badges[3]]),(2,lav2,[lav1])]:
     battle('TowerGrunt'+str(n),'GRUNT',"FUJI knows something about reconstructing POKéMON. He'll answer our questions!", [('Golbat',['Bite','Wing Attack','Confuse Ray']),('Weezing',['Sludge','Smokescreen','Self Destruct'])],35,f,req,pic='Team Aqua M',cls='Team Aqua')
-beat('FujiRescue', "FUJI: Thank you. They asked about preserving living states... old work I hoped never to hear of again.|The archives on CINNABAR may explain more. Ask BLAINE for access.|I'll return to the POKéMON HOUSE. Come visit us.",fuji,[lav1,lav2])
+beat('FujiRescue', "FUJI: Thank you. They asked about preserving living states... old work I hoped never to hear of again.|The archives on CINNABAR may explain more. Ask BLAINE for access.|Take the UNDERGROUND PATH from ROUTE 8 to ROUTE 7, then cross ROUTE 103. This SURF machine will help you cross the water.",fuji,[lav1,lav2], '\tgiveitem ITEM_HM03\n\tgoto_if_eq VAR_RESULT, FALSE, Pox_Release')
 ptower=room('PokemonTower','LavenderTown_hns',None,objects=[npc('TowerGrunt1',3,13,'OBJ_EVENT_GFX_ROCKET_GRUNT_M',lav1),npc('TowerGrunt2',7,9,'OBJ_EVENT_GFX_ROCKET_GRUNT_M',lav2),npc('FujiRescue',5,2,'OBJ_EVENT_GFX_OLD_MAN')],return_xy=(17,8))
 guide('LavenderTown_hns',0,'TowerGuide',ptower,'TEAM ROCKET is holding MR. FUJI in the POKéMON TOWER.',[badges[3]])
 gift('Fuji','FUJI: This EEVEE was abandoned. You have shown it what kindness looks like.|BLAINE keeps the key to the CINNABAR archives.',[fuji])
@@ -390,9 +426,9 @@ for n in range(1,4):
     battle('SilphGrunt'+str(n),'GRUNT',"These terminals won't obey us. But the BOSS will make this system his!",[('Muk',['Sludge Bomb','Minimize','Body Slam']),('Golbat',['Bite','Confuse Ray','Wing Attack'])],48,f,req,pic='Team Aqua M',cls='Team Aqua')
 gio='FLAG_POX_HIDE_SILPH_GIOVANNI'
 battle('Giovanni','GIOVANNI',"We did not make this world. We followed a signal, then the old man's research.|A system that can rearrange a region can give its owner anything. Stand aside!",[('Nidoking',['Earthquake','Ice Beam','Thunderbolt']),('Kangaskhan',['Return','Shadow Ball','Fake Out']),('Dugtrio',['Earthquake','Rock Slide','Aerial Ace']),('Rhydon',['Earthquake','Rock Slide','Megahorn'])],52,gio,[silphgrunts[-1]],pic='Leader Giovanni Frlg')
-beat('SilphCore','TERMINAL: ADAPTIVE TRAINER SYSTEM.|Battle profiles: BLUE, LANCE, STEVEN, WALLACE. Objective: improve training conditions.|Habitat isolation detected. Regional transfer links reconciled. Environmental restructuring active.|You isolate the environmental controls. The transfer links fall silent.|The existing region remains. Its boundaries have stopped moving.',silph,[gio], '\tsetflag FLAG_POX_HIDE_SAFFRON_GATE_NPC')
+beat('SilphCore','TERMINAL: ADAPTIVE TRAINER SYSTEM.|Battle profiles: BLUE, LANCE, STEVEN, WALLACE. Objective: improve training conditions.|Habitat isolation detected. Regional transfer links reconciled. Environmental restructuring active.|You isolate the environmental controls. The transfer links fall silent.|The existing region remains. Its boundaries have stopped moving.',silph,[gio])
 sroom=room('Silph','SaffronCity_hns',None,objects=[npc('SilphGrunt1',3,13,'OBJ_EVENT_GFX_ROCKET_GRUNT_M',silphgrunts[0]),npc('SilphGrunt2',7,13,'OBJ_EVENT_GFX_ROCKET_GRUNT_M',silphgrunts[1]),npc('SilphGrunt3',3,9,'OBJ_EVENT_GFX_ROCKET_GRUNT_M',silphgrunts[2]),npc('Giovanni',7,9,'OBJ_EVENT_GFX_MAN_3',gio),npc('SilphCore',5,2,'OBJ_EVENT_GFX_SCIENTIST')],return_xy=(26,16))
-guide('SaffronCity_hns',1,'SilphGuide',sroom,'SILPH needs help. BRUNO is accepting challenges at the DOJO. You can visit either first.',[space])
+guide('SaffronCity_hns',1,'SilphGuide',sroom,'SILPH needs help. BRUNO is accepting challenges at the DOJO, and the northern road leads to CLAIR in BLACKTHORN.|You can choose where to go first.',[space])
 
 # Travel services join the currently disconnected demo legs. Prerequisites
 # remain at the objectives as well as at these connections.
@@ -405,7 +441,7 @@ links=[('RustboroCity',0,'MoonRoad','MtMoon_Cave_hns',10,11,'The mountain trail 
  ('LavenderTown_hns',2,'CinnabarRoad','CinnabarIsland_hns',37,29,'A boat is leaving for CINNABAR.',[fuji]),
  ('CinnabarIsland_hns',None,'MossdeepRoad','MossdeepCity',38,13,'Our next port is MOSSDEEP.',[mansion]),
  ('MossdeepCity',0,'SaffronRoad','SaffronCity_hns',16,23,'The mainland service goes to SAFFRON.',[space]),
- ('SaffronCity_hns',2,'BlackthornRoad','BlackthornCity_hns',16,29,'With BRUNO defeated and SILPH stable, the mountain road to BLACKTHORN is open.',[badges[6],silph]),
+ ('SaffronCity_hns',2,'BlackthornRoad','BlackthornCity_hns',16,29,'The northern road to BLACKTHORN is open. CLAIR welcomes challengers whenever you are ready.',northern_ou),
  ('BlackthornCity_hns',1,'LeagueRoad','IndigoPlateau_hns',11,13,'The LEAGUE approach is open to holders of all eight BADGES.',badges),]
 for town,index,name,dest,x,y,text,req in links:
     travel(name,dest,x,y,text,req)
@@ -496,9 +532,9 @@ if 'gMapGroup_PlasticOxStory' not in groups['group_order']:
     groups['group_order'].append('gMapGroup_PlasticOxStory')
 put('data/maps/map_groups.json',json.dumps(groups,indent=2)+'\n')
 
-# Additional story flags occupy the previously unused 0x020..0x04F run.
-assert len(flags)<=48
-put('include/constants/plastic_ox_story.h','#ifndef GUARD_PLASTIC_OX_STORY_CONSTANTS_H\n#define GUARD_PLASTIC_OX_STORY_CONSTANTS_H\n\n// Reserved unused general flags. Never allocate trainer/daily flags here.\n'+''.join(f'#define {f} 0x{0x20+i:03X}\n' for i,f in enumerate(flags))+'\n#endif\n')
+# IDs are independent of event order. Keep retired allocations reserved so
+# moving a gift or adding a scene cannot reinterpret an existing save flag.
+put('include/constants/plastic_ox_story.h','#ifndef GUARD_PLASTIC_OX_STORY_CONSTANTS_H\n#define GUARD_PLASTIC_OX_STORY_CONSTANTS_H\n\n// Generated from plastic_ox/alpha/story_flags.json; IDs must remain stable.\n// Reserved unused general flags. Never allocate trainer/daily flags here.\n'+''.join(f'#define {f} {value}\n' for f,value in flag_allocations.items())+'\n#endif\n')
 path='include/constants/plastic_ox_flags.h'
 s=read(path)
 if '#include "constants/plastic_ox_story.h"' not in s:
@@ -516,6 +552,13 @@ put(path,s)
 path='src/data/trainers.party'
 s=read(path).split('=== TRAINER_PLASTIC_OX_ROXANNE ===')[0].rstrip()+'\n\n'
 put(path,s+'\n'.join(t for _,t in trainers))
+put('plastic_ox/alpha/story_manifest.json',json.dumps(dict(events=[dict(map=m,x=x,y=y,script='Pox_'+s) for m,x,y,s in manifest],flags=flags,trainers=[t for t,_ in trainers],rooms=room_names),indent=2)+'\n')
+
+# Apply physical topology last so room/story regeneration cannot restore old
+# entrances, callbacks, or travel bypasses.
+from region_v7 import apply_region
+apply_region(read, put)
+manifest=[(m,x,y,s) for m,x,y,s in manifest if any(o.get('script') == 'Pox_'+s and (o['x'],o['y']) == (x,y) for o in load_map(m)['object_events'])]
 put('plastic_ox/alpha/story_manifest.json',json.dumps(dict(events=[dict(map=m,x=x,y=y,script='Pox_'+s) for m,x,y,s in manifest],flags=flags,trainers=[t for t,_ in trainers],rooms=room_names),indent=2)+'\n')
 
 different={p:t for p,t in changes.items() if not Path(p).exists() or Path(p).read_text()!=t}

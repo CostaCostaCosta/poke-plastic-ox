@@ -1,4 +1,5 @@
 FortreeCity_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_FortreeCity
 	.byte 0
 
 FortreeCity_EventScript_Man::

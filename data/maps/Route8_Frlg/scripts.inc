@@ -1,4 +1,5 @@
 Route8_Frlg_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_Route8_Frlg
 	.byte 0
 
 Route8_EventScript_UndergroundPathSign::

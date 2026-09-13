@@ -29,7 +29,7 @@
       "x": 3,
       "y": 10,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
       "movement_range_y": 4,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -44,7 +44,7 @@
       "x": 13,
       "y": 17,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 6,
       "movement_range_y": 2,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -307,6 +307,15 @@
       "var": "VAR_TEMP_0",
       "var_value": 0,
       "script": "Pox_StarterGate"
+    },
+    {
+      "type": "trigger",
+      "x": 12,
+      "y": 19,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": 0,
+      "script": "PoxRegion_pallet_coast_a"
     }
   ],
   "bg_events": [

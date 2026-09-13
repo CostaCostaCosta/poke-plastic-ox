@@ -229,12 +229,6 @@
       "script": "Pox_Cottage"
     },
     {
-      "map": "Route25_BillsHouse_hns",
-      "x": 7,
-      "y": 8,
-      "script": "Pox_CottageExit"
-    },
-    {
       "map": "FortreeCity",
       "x": 7,
       "y": 7,

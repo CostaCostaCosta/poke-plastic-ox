@@ -67,6 +67,19 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Pox_WhirlGuide",
       "flag": "FLAG_POX_HIDE_STORY_NPCS"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SIGN",
+      "x": 47,
+      "y": 20,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxRegion_cinnabar_sea_a_Sign",
+      "flag": "0"
     }
   ],
   "warp_events": [
@@ -78,7 +91,35 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 36,
+      "y": 12,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": 0,
+      "script": "PoxRegion_route103_cinnabar_b"
+    },
+    {
+      "type": "trigger",
+      "x": 37,
+      "y": 12,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": 0,
+      "script": "PoxRegion_pallet_coast_b"
+    },
+    {
+      "type": "trigger",
+      "x": 48,
+      "y": 21,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": 0,
+      "script": "PoxRegion_cinnabar_sea_a"
+    }
+  ],
   "bg_events": [
     {
       "type": "sign",
@@ -95,6 +136,14 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "CinnabarIsland_EventScript_Sign2"
+    },
+    {
+      "type": "sign",
+      "x": 47,
+      "y": 20,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PoxRegion_cinnabar_sea_a_Sign"
     }
   ],
   "region": "REGION_HOENN"

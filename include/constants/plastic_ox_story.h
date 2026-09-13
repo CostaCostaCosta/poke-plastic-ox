@@ -1,6 +1,7 @@
 #ifndef GUARD_PLASTIC_OX_STORY_CONSTANTS_H
 #define GUARD_PLASTIC_OX_STORY_CONSTANTS_H
 
+// Generated from plastic_ox/alpha/story_flags.json; IDs must remain stable.
 // Reserved unused general flags. Never allocate trainer/daily flags here.
 #define FLAG_POX_STORY_BURNED_TOWER 0x020
 #define FLAG_POX_STORY_FUJI 0x021
@@ -29,5 +30,6 @@
 #define FLAG_POX_HIDE_UNUSED_ACTOR 0x038
 #define FLAG_POX_WHIRL_ITEM 0x039
 #define FLAG_POX_VICTORY_ROAD 0x03A
+#define FLAG_POX_REACHED_FORTREE 0x03B
 
 #endif

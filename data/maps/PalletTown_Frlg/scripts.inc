@@ -1,4 +1,5 @@
 PalletTown_Frlg_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_PalletTown_Frlg
 	.byte 0
 
 PalletTown_EventScript_FatMan::

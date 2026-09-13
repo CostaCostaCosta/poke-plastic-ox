@@ -1,0 +1,40 @@
+{
+  "id": "MAP_PLASTIC_OX_ROUTE20_EAST",
+  "name": "PlasticOx_Route20East",
+  "layout": "LAYOUT_PLASTIC_OX_ROUTE20_EAST",
+  "music": "MUS_RG_ROUTE3",
+  "region": "REGION_HOENN",
+  "region_map_section": "MAPSEC_ROUTE_20",
+  "requires_flash": false,
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "floor_number": 0,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [],
+  "object_events": [],
+  "warp_events": [
+    {
+      "x": 6,
+      "y": 14,
+      "elevation": 3,
+      "dest_map": "MAP_SEAFOAM_ISLANDS_1F",
+      "dest_warp_id": "4"
+    }
+  ],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 53,
+      "y": 10,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": 0,
+      "script": "PoxRegion_sea_mossdeep_a"
+    }
+  ],
+  "bg_events": []
+}

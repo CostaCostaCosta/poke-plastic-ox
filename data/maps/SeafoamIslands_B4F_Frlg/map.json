@@ -3,7 +3,7 @@
   "name": "SeafoamIslands_B4F_Frlg",
   "layout": "LAYOUT_SEAFOAM_ISLANDS_B4F",
   "music": "MUS_RG_VIRIDIAN_FOREST",
-  "region": "REGION_KANTO",
+  "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_SEAFOAM_ISLANDS",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -28,7 +28,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
-      "flag": "FLAG_HIDE_SEAFOAM_B4F_BOULDER_1"
+      "flag": "FLAG_POX_HIDE_SEAFOAM_B4F_BOULDER_1"
     },
     {
       "type": "object",
@@ -42,7 +42,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
-      "flag": "FLAG_HIDE_SEAFOAM_B4F_BOULDER_2"
+      "flag": "FLAG_POX_HIDE_SEAFOAM_B4F_BOULDER_2"
     },
     {
       "type": "object",
@@ -56,7 +56,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SeafoamIslands_B4F_EventScript_Articuno",
-      "flag": "FLAG_HIDE_ARTICUNO"
+      "flag": "FLAG_POX_HIDE_ARTICUNO"
     },
     {
       "type": "object",
@@ -70,7 +70,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "SeafoamIslands_B4F_EventScript_ItemUltraBall",
-      "flag": "FLAG_HIDE_SEAFOAM_ISLANDS_B4F_ULTRA_BALL"
+      "flag": "FLAG_POX_HIDE_SEAFOAM_ISLANDS_B4F_ULTRA_BALL"
     }
   ],
   "warp_events": [
@@ -109,7 +109,7 @@
       "x": 26,
       "y": 19,
       "elevation": 1,
-      "var": "VAR_MAP_SCENE_SEAFOAM_ISLANDS_B4F",
+      "var": "VAR_POX_SEAFOAM_STATE",
       "var_value": "0",
       "script": "SeafoamIslands_B4F_EventScript_UpwardCurrent"
     },
@@ -118,7 +118,7 @@
       "x": 27,
       "y": 19,
       "elevation": 1,
-      "var": "VAR_MAP_SCENE_SEAFOAM_ISLANDS_B4F",
+      "var": "VAR_POX_SEAFOAM_STATE",
       "var_value": "0",
       "script": "SeafoamIslands_B4F_EventScript_UpwardCurrent"
     },
@@ -127,7 +127,7 @@
       "x": 28,
       "y": 19,
       "elevation": 1,
-      "var": "VAR_MAP_SCENE_SEAFOAM_ISLANDS_B4F",
+      "var": "VAR_POX_SEAFOAM_STATE",
       "var_value": "0",
       "script": "SeafoamIslands_B4F_EventScript_UpwardCurrent"
     }
@@ -139,7 +139,7 @@
       "y": 8,
       "elevation": 0,
       "item": "ITEM_WATER_STONE",
-      "flag": "FLAG_HIDDEN_ITEM_SEAFOAM_ISLANDS_B4F_WATER_STONE",
+      "flag": "FLAG_POX_HIDDEN_V7_57",
       "quantity": 1,
       "underfoot": false
     },

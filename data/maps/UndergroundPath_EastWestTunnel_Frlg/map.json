@@ -3,7 +3,7 @@
   "name": "UndergroundPath_EastWestTunnel_Frlg",
   "layout": "LAYOUT_UNDERGROUND_PATH_EAST_WEST_TUNNEL",
   "music": "MUS_RG_ROUTE1",
-  "region": "REGION_KANTO",
+  "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_UNDERGROUND_PATH_2",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -40,7 +40,7 @@
       "y": 3,
       "elevation": 3,
       "item": "ITEM_POTION",
-      "flag": "FLAG_HIDDEN_ITEM_UNDERGROUND_PATH_EAST_WEST_TUNNEL_POTION",
+      "flag": "FLAG_POX_HIDDEN_V7_49",
       "quantity": 1,
       "underfoot": false
     },
@@ -50,7 +50,7 @@
       "y": 5,
       "elevation": 3,
       "item": "ITEM_PARALYZE_HEAL",
-      "flag": "FLAG_HIDDEN_ITEM_UNDERGROUND_PATH_EAST_WEST_TUNNEL_PARALYZE_HEAL",
+      "flag": "FLAG_POX_HIDDEN_V7_50",
       "quantity": 1,
       "underfoot": false
     },
@@ -60,7 +60,7 @@
       "y": 4,
       "elevation": 3,
       "item": "ITEM_AWAKENING",
-      "flag": "FLAG_HIDDEN_ITEM_UNDERGROUND_PATH_EAST_WEST_TUNNEL_AWAKENING",
+      "flag": "FLAG_POX_HIDDEN_V7_51",
       "quantity": 1,
       "underfoot": false
     },
@@ -70,7 +70,7 @@
       "y": 3,
       "elevation": 3,
       "item": "ITEM_BURN_HEAL",
-      "flag": "FLAG_HIDDEN_ITEM_UNDERGROUND_PATH_EAST_WEST_TUNNEL_BURN_HEAL",
+      "flag": "FLAG_POX_HIDDEN_V7_52",
       "quantity": 1,
       "underfoot": false
     },
@@ -80,7 +80,7 @@
       "y": 3,
       "elevation": 3,
       "item": "ITEM_ICE_HEAL",
-      "flag": "FLAG_HIDDEN_ITEM_UNDERGROUND_PATH_EAST_WEST_TUNNEL_ICE_HEAL",
+      "flag": "FLAG_POX_HIDDEN_V7_53",
       "quantity": 1,
       "underfoot": false
     },
@@ -90,7 +90,7 @@
       "y": 2,
       "elevation": 3,
       "item": "ITEM_ETHER",
-      "flag": "FLAG_HIDDEN_ITEM_UNDERGROUND_PATH_EAST_WEST_TUNNEL_ETHER",
+      "flag": "FLAG_POX_HIDDEN_V7_54",
       "quantity": 1,
       "underfoot": false
     },
@@ -100,7 +100,7 @@
       "y": 5,
       "elevation": 3,
       "item": "ITEM_ANTIDOTE",
-      "flag": "FLAG_HIDDEN_ITEM_UNDERGROUND_PATH_EAST_WEST_TUNNEL_ANTIDOTE",
+      "flag": "FLAG_POX_HIDDEN_V7_55",
       "quantity": 1,
       "underfoot": false
     }

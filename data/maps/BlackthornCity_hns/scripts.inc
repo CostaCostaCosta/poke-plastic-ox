@@ -1,4 +1,5 @@
 BlackthornCity_hns_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_BlackthornCity_hns
 	.byte 0
 
 BlackthornCity_EventScript_Npc1::

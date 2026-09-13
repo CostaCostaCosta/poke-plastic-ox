@@ -42,7 +42,7 @@ Johto,2,29,N/E/W,3-way,land,starter grassland; ledges and branching,filler,
 Johto,2,30,N/S,vertical,land,wooded stream; berry houses,filler,
 Johto,2,31,S/W,elbow,land,grassland junction; cave mouth,filler,
 Johto,2,32,N/E/S,3-way,mixed,long coastal road; fishing; ruins/cave approaches,filler,
-Johto,2,33,E/W,horizontal,land,short rainy valley; cave exit,filler,
+Johto,2,33,W,horizontal,land,short rainy valley; Union Cave exit,filler,
 Johto,2,34,N/S,vertical,land,open grassland; daycare,filler,
 Johto,2,35,N/S,vertical,land,city fringe; National Park gate,filler,
 Johto,2,36,N/E/S/W,4-way,land,four-way wooded junction; ruins/Sudowoodo,filler,
@@ -65,7 +65,7 @@ Hoenn,3,106,N/S,vertical,water,island coast; Granite Cave access,filler,
 Hoenn,3,107,E/W,horizontal,water,open sea,filler,
 Hoenn,3,108,E/W,horizontal,water,open sea; Abandoned Ship,filler,
 Hoenn,3,109,N/W,elbow,mixed,beach resort coast,filler,
-Hoenn,3,110,N/E/S,3-way,mixed,cycling road; river; urban corridor,story,New Mauville host route
+Hoenn,3,110,N/W/S,3-way,mixed,cycling road; river; urban corridor,story,New Mauville host route
 Hoenn,3,111,N/W/S,3-way,land,desert-edge highway; rocky junction,filler,excellent 3-way adapter
 Hoenn,3,112,E/W,horizontal,land,volcanic foothills; Fiery Path/Jagged Pass,filler,
 Hoenn,3,113,E/W,horizontal,land,ash-covered fields; distinctive visual biome,filler,
@@ -107,7 +107,8 @@ ROUTE_PORT_REMOVALS = {
     "R6": {"N"},
     "R7": {"E"},
     "R8": {"W"},
-    "R33": {"W"},
+    "R15": {"W"},
+    "R19": {"N"},
     "R35": {"N", "S"},
     "R36": {"W"},
     "R44": {"E"},
@@ -125,6 +126,8 @@ ROUTE_TRANSITION_PORTS = {
     "R6": [("SAFFRON", "Saffron Gate", "gate")],
     "R7": [("SAFFRON", "Saffron Gate", "gate")],
     "R8": [("SAFFRON", "Saffron Gate", "gate")],
+    "R15": [("R15_WEST_GATE", "Route 15 West Gate", "gate")],
+    "R19": [("R19_NORTH_GATE", "Route 19 North Gate", "gate")],
     "R31": [("DARK", "Dark Cave", "cave")],
     "R32": [("UNION", "Union Cave", "cave")],
     "R33": [("UNION", "Union Cave", "cave")],
@@ -154,7 +157,7 @@ TOWNS = [
     dict(id="CINN", name="Cinnabar Island", region="Kanto", kind="town", ports={"N":"water", "E":"water"}, special_ports=[{"id":"MANSION","label":"Mansion","type":"warp"}], asset="CINN.png", required=True, story_order=13, notes="Island. Use only proven north/east water seams."),
     dict(id="MOSS", name="Mossdeep City", region="Hoenn", kind="town", ports={"N":"water", "S":"water", "W":"water"}, asset="MOSS.png", required=True, story_order=15, notes="Three proven water seams; no invented east exit."),
     dict(id="SAFF", name="Saffron City", region="Kanto", kind="town", ports={"N":"gate", "E":"gate", "S":"gate", "W":"gate"}, special_ports=[{"id":"TRAIN","label":"Train","type":"transit"},{"id":"SILPH","label":"Silph","type":"warp"},{"id":"DOJO","label":"Dojo","type":"warp"}], asset="SAFF.png", required=True, story_order=16, notes="Use all four gatehouse ports when possible; late-game gating is encouraged."),
-    dict(id="BLACK", name="Blackthorn City", region="Johto", kind="town", ports={"S":"land"}, port_labels={"S":"Route 45"}, special_ports=[{"id":"ICE_PATH","label":"Ice Path","type":"cave","regional":True}], asset="BLACK.png", required=True, story_order=17, notes="Includes an explicit Ice Path cave link; south descends to Route 45."),
+    dict(id="BLACK", name="Blackthorn City", region="Johto", kind="town", ports={"N":"cave", "S":"land"}, port_labels={"N":"Dragon's Den", "S":"Route 45"}, special_ports=[{"id":"ICE_PATH","label":"Ice Path","type":"cave","regional":True}], asset="BLACK.png", required=True, story_order=17, notes="North opens to the Dragon's Den cave; the explicit Ice Path cave link remains available; south descends to Route 45."),
     dict(id="OLDALE", name="Oldale Town", region="Hoenn", kind="town", ports={"N":"land", "S":"land", "W":"land"}, asset="OLDALE.png", required=False, notes="Optional Hoenn starter-area town. South connects to Route 101; west to Route 102; north to Route 103."),
     dict(id="PACIF", name="Pacifidlog Town", region="Hoenn", kind="town", ports={"E":"water", "W":"water"}, asset="PACIF.png", required=False, notes="Optional Hoenn water town on the southern ocean. West connects to Route 131; east to Route 132."),
 ]
@@ -291,6 +294,30 @@ def make_route(row: dict[str, str]) -> dict:
     }
 
 
+def make_route_variant(
+    row: dict[str, str],
+    route_id: str,
+    name: str,
+    ports: dict[str, str],
+    shape: str,
+    theme: str,
+    notes: str,
+) -> dict:
+    route = make_route(row)
+    route.update({
+        "id": route_id,
+        "name": name,
+        "ports": ports,
+        "regional_port_count": len(ports) + sum(bool(p.get("regional")) for p in route["special_ports"]),
+        "topology_class": topology_class(len(ports) + sum(bool(p.get("regional")) for p in route["special_ports"])),
+        "shape": shape,
+        "theme": theme,
+        "notes": notes,
+        "dimensions": route_dimensions(shape),
+    })
+    return route
+
+
 def make_library_dungeon(spec: tuple[str, str, str, str, int]) -> dict:
     did, name, region, subtype, count = spec
     asset = ASSET_ALIASES.get(did, f"{did}.png")
@@ -320,7 +347,17 @@ def make_library_dungeon(spec: tuple[str, str, str, str, int]) -> dict:
 
 
 def main() -> None:
-    routes = [make_route(r) for r in csv.DictReader(ROUTE_ROWS.splitlines())]
+    route_rows = list(csv.DictReader(ROUTE_ROWS.splitlines()))
+    routes = []
+    for row in route_rows:
+        if row["route"] == "10":
+            routes.append(make_route_variant(row, "R10_TOP", "Route 10 Top", {"N": "mixed"}, "vertical", "river canyon; Rock Tunnel", "North segment; north exit and Rock Tunnel cave link."))
+            routes.append(make_route_variant(row, "R10_SOUTH", "Route 10 South", {"S": "mixed"}, "vertical", "river canyon; Rock Tunnel", "South segment; Rock Tunnel cave link and south exit."))
+        elif row["route"] == "104":
+            routes.append(make_route_variant(row, "R104_TOP", "Route 104 Top", {"N": "land", "S": "land"}, "vertical", "forest-edge route", "Top segment; north and south land exits."))
+            routes.append(make_route_variant(row, "R104_BOTTOM", "Route 104 Bottom", {"N": "land", "E": "land", "S": "water"}, "3-way", "beach and forest-edge adapter", "Bottom segment; north and east land exits with a south water exit."))
+        else:
+            routes.append(make_route(row))
     required_ids = {d["id"] for d in REQUIRED_DUNGEONS}
     dungeon_library = [make_library_dungeon(x) for x in DUNGEON_LIBRARY if x[0] not in required_ids]
 

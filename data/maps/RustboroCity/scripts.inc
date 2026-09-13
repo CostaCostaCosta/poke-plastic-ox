@@ -1,4 +1,5 @@
 RustboroCity_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_RustboroCity
 	.byte 0
 
 RustboroCity_Movement_ScientistWalkInPlaceDown:

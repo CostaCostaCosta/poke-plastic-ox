@@ -1,4 +1,5 @@
 Route46_hns_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_Route46_hns
 	.byte 0
 
 Route46_EventScript_Ted::

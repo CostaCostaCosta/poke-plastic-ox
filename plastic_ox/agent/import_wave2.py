@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Alpha wave 2 importer: Legs B+C per REGION_PLAN.
+"""Historical pre-v7 importer; topology refers to alpha/LEGACY_REGION_PLAN.md.
+
+Do not use this importer for v7 regeneration: it restores obsolete routes and
+uses legacy item-flag allocation. See alpha/PLAN.md and alpha/audit_alpha.py.
 
 Run from repo root: python3 plastic_ox/agent/import_wave2.py [--dry]
 """

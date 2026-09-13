@@ -1,5 +1,10 @@
 # Plastic Ox town-map concept
 
+Version status: these rendered assets predate the v7 implementation plan and
+must be refreshed after its topology is verified. Current design references
+are [map v7](../plastic_ox_map_v7.md), [topology](../plastic_ox_topology.svg), and
+the [alpha implementation plan](../alpha/PLAN.md).
+
 A high-level visual based on the current Plastic Ox region and the supplied
 Johto town-map reference. Land shapes and diagram coordinates are authored for
 legibility, not geographic or map-tile accuracy. This is a presentation asset;
@@ -19,8 +24,9 @@ portals, and intermediate maps; secondary disconnected routes and ordinary
 interiors are omitted. Dotted lines summarize guided travel and can require
 story progression. Ecruteak–Fortree represents the regional journey via the
 Route 38/Route 119 leg, not a claim of a direct seamless connection. For exact
-map boundaries, cave warp endpoints, and directed connections use
-`../region_layout.svg`; for remaining navigation findings see
+map boundaries, cave warp endpoints, and directed connections regenerate an
+implemented-layout view with `../demo/render_region_layout.py` (the previous
+`region_layout.svg` has been removed); for historical navigation findings see
 `../demo/REGION_RENDERING_REVIEW.md`.
 
 Regenerate all assets with Python, Pillow, and Chrome/Chromium:

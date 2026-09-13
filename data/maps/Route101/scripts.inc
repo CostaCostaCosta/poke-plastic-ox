@@ -1,4 +1,5 @@
 Route101_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_Route101
 	.byte 0
 
 Route101_EventScript_Youngster::

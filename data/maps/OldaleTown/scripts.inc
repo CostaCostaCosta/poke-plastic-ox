@@ -1,4 +1,5 @@
 OldaleTown_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_OldaleTown
 	.byte 0
 
 OldaleTown_EventScript_TownSign::

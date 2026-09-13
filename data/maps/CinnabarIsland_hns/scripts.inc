@@ -1,4 +1,5 @@
 CinnabarIsland_hns_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_CinnabarIsland_hns
 	.byte 0
 
 CinnabarIsland_EventScript_Npc1::
@@ -34,4 +35,3 @@ CinnabarIsland_EventScript_Sign1_Text:
 
 CinnabarIsland_EventScript_Sign2_Text:
 	.string "A sign from the old routes.$"
-

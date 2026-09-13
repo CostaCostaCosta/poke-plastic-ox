@@ -1,0 +1,3 @@
+PlasticOx_Route20West_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_PlasticOx_Route20West
+	.byte 0

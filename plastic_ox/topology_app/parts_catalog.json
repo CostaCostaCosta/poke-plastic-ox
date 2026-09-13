@@ -250,9 +250,11 @@
       "region": "Johto",
       "kind": "town",
       "ports": {
+        "N": "cave",
         "S": "land"
       },
       "port_labels": {
+        "N": "Dragon's Den",
         "S": "Route 45"
       },
       "special_ports": [
@@ -266,7 +268,7 @@
       "asset": "BLACK.png",
       "required": true,
       "story_order": 17,
-      "notes": "Includes an explicit Ice Path cave link; south descends to Route 45.",
+      "notes": "North opens to the Dragon's Den cave; the explicit Ice Path cave link remains available; south descends to Route 45.",
       "asset_available": true,
       "dimensions": [
         132,
@@ -600,13 +602,45 @@
       "asset_available": true
     },
     {
-      "id": "R10",
-      "name": "Route 10",
+      "id": "R10_TOP",
+      "name": "Route 10 Top",
       "region": "Kanto",
       "generation": 1,
       "kind": "route",
       "ports": {
-        "N": "mixed",
+        "N": "mixed"
+      },
+      "special_ports": [
+        {
+          "id": "ROCK",
+          "label": "Rock Tunnel",
+          "type": "cave",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
+      "shape": "vertical",
+      "traversal": "mixed",
+      "theme": "river canyon; Rock Tunnel",
+      "status": "dark-port",
+      "notes": "North segment; north exit and Rock Tunnel cave link.",
+      "asset": "R10.png",
+      "required_status": "library",
+      "required": false,
+      "dimensions": [
+        88,
+        168
+      ],
+      "asset_available": true
+    },
+    {
+      "id": "R10_SOUTH",
+      "name": "Route 10 South",
+      "region": "Kanto",
+      "generation": 1,
+      "kind": "route",
+      "ports": {
         "S": "mixed"
       },
       "special_ports": [
@@ -617,13 +651,13 @@
           "regional": true
         }
       ],
-      "regional_port_count": 3,
-      "topology_class": "junction",
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "vertical",
       "traversal": "mixed",
-      "theme": "river canyon; Rock Tunnel/Power Plant",
+      "theme": "river canyon; Rock Tunnel",
       "status": "dark-port",
-      "notes": "candidate Kanto Dark Cave mouth",
+      "notes": "South segment; Rock Tunnel cave link and south exit.",
       "asset": "R10.png",
       "required_status": "library",
       "required": false,
@@ -757,10 +791,16 @@
       "generation": 1,
       "kind": "route",
       "ports": {
-        "E": "land",
-        "W": "land"
+        "E": "land"
       },
-      "special_ports": [],
+      "special_ports": [
+        {
+          "id": "R15_WEST_GATE",
+          "label": "Route 15 West Gate",
+          "type": "gate",
+          "regional": true
+        }
+      ],
       "regional_port_count": 2,
       "topology_class": "corridor",
       "shape": "horizontal",
@@ -865,10 +905,16 @@
       "generation": 1,
       "kind": "route",
       "ports": {
-        "N": "mixed",
         "S": "mixed"
       },
-      "special_ports": [],
+      "special_ports": [
+        {
+          "id": "R19_NORTH_GATE",
+          "label": "Route 19 North Gate",
+          "type": "gate",
+          "regional": true
+        }
+      ],
       "regional_port_count": 2,
       "topology_class": "corridor",
       "shape": "vertical",
@@ -1265,7 +1311,7 @@
       "generation": 2,
       "kind": "route",
       "ports": {
-        "E": "land"
+        "W": "land"
       },
       "special_ports": [
         {
@@ -1279,7 +1325,7 @@
       "topology_class": "corridor",
       "shape": "horizontal",
       "traversal": "land",
-      "theme": "short rainy valley; cave exit",
+      "theme": "short rainy valley; Union Cave exit",
       "status": "filler",
       "notes": "",
       "asset": "R33.png",
@@ -1788,24 +1834,51 @@
       "asset_available": true
     },
     {
-      "id": "R104",
-      "name": "Route 104",
+      "id": "R104_TOP",
+      "name": "Route 104 Top",
       "region": "Hoenn",
       "generation": 3,
       "kind": "route",
       "ports": {
-        "N": "mixed",
-        "E": "mixed",
-        "S": "mixed"
+        "N": "land",
+        "S": "land"
+      },
+      "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
+      "shape": "vertical",
+      "traversal": "mixed",
+      "theme": "forest-edge route",
+      "status": "story-adapter",
+      "notes": "Top segment; north and south land exits.",
+      "asset": "R104.png",
+      "required_status": "library",
+      "required": false,
+      "dimensions": [
+        88,
+        168
+      ],
+      "asset_available": true
+    },
+    {
+      "id": "R104_BOTTOM",
+      "name": "Route 104 Bottom",
+      "region": "Hoenn",
+      "generation": 3,
+      "kind": "route",
+      "ports": {
+        "N": "land",
+        "E": "land",
+        "S": "water"
       },
       "special_ports": [],
       "regional_port_count": 3,
       "topology_class": "junction",
       "shape": "3-way",
       "traversal": "mixed",
-      "theme": "beach + forest-edge transition",
+      "theme": "beach and forest-edge adapter",
       "status": "story-adapter",
-      "notes": "excellent land-to-water adapter",
+      "notes": "Bottom segment; north and east land exits with a south water exit.",
       "asset": "R104.png",
       "required_status": "library",
       "required": false,
@@ -1965,7 +2038,7 @@
       "kind": "route",
       "ports": {
         "N": "mixed",
-        "E": "mixed",
+        "W": "mixed",
         "S": "mixed"
       },
       "special_ports": [

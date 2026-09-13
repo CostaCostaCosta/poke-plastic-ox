@@ -1,4 +1,5 @@
 LavenderTown_hns_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_LavenderTown_hns
 	.byte 0
 
 LavenderTown_EventScript_Npc1::
@@ -68,4 +69,3 @@ LavenderTown_EventScript_Sign3_Text:
 
 LavenderTown_EventScript_Sign4_Text:
 	.string "A sign from the old routes.$"
-

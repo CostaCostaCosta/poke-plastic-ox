@@ -602,3 +602,28 @@ const u16 gMetatileAttributes_Lavaridge_Hns[] = INCBIN_U16("data/tilesets/second
 
 const u16 gMetatiles_LavenderTown_Hns[] = INCBIN_U16("data/tilesets/secondary/lavender_town_hns/metatiles.bin");
 const u16 gMetatileAttributes_LavenderTown_Hns[] = INCBIN_U16("data/tilesets/secondary/lavender_town_hns/metatile_attributes.bin");
+
+const u16 gMetatiles_AzaleaTown_Hns[] = INCBIN_U16("data/tilesets/secondary/azalea_town_hns/metatiles.bin");
+const u16 gMetatileAttributes_AzaleaTown_Hns[] = INCBIN_U16("data/tilesets/secondary/azalea_town_hns/metatile_attributes.bin");
+
+#if !IS_FRLG // Plastic Ox v7 native FRLG route assets
+const u16 gMetatiles_LavenderTown[] = INCBIN_U16("data/tilesets/secondary/lavender_town_frlg/metatiles.bin");
+
+const u16 gMetatileAttributes_LavenderTown[] = INCBIN_U16("data/tilesets/secondary/lavender_town_frlg/metatile_attributes.bin");
+
+const u16 gMetatiles_FuchsiaCity[] = INCBIN_U16("data/tilesets/secondary/fuchsia_city_frlg/metatiles.bin");
+
+const u16 gMetatileAttributes_FuchsiaCity[] = INCBIN_U16("data/tilesets/secondary/fuchsia_city_frlg/metatile_attributes.bin");
+
+const u16 gMetatiles_CinnabarIsland[] = INCBIN_U16("data/tilesets/secondary/cinnabar_island_frlg/metatiles.bin");
+
+const u16 gMetatileAttributes_CinnabarIsland[] = INCBIN_U16("data/tilesets/secondary/cinnabar_island_frlg/metatile_attributes.bin");
+
+const u16 gMetatiles_SeafoamIslands[] = INCBIN_U16("data/tilesets/secondary/seafoam_islands_frlg/metatiles.bin");
+
+const u16 gMetatileAttributes_SeafoamIslands[] = INCBIN_U16("data/tilesets/secondary/seafoam_islands_frlg/metatile_attributes.bin");
+
+const u16 gMetatiles_UndergroundPath[] = INCBIN_U16("data/tilesets/secondary/underground_path_frlg/metatiles.bin");
+
+const u16 gMetatileAttributes_UndergroundPath[] = INCBIN_U16("data/tilesets/secondary/underground_path_frlg/metatile_attributes.bin");
+#endif

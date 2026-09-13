@@ -288,14 +288,58 @@ def gift_tests():
 
 
 def gate_tests():
-    for bruno,silph in [(False,False),(True,False),(False,True),(True,True)]:
-        g=StoryGame()
-        g.flag('FLAG_BADGE07_GET',bruno)
-        g.flag('FLAG_POX_STORY_SILPH',silph)
-        g.run('Pox_BlackthornRoad')
-        arrived=(g.state()['group'],g.state()['num'])==(77,23)
-        assert arrived==(bruno and silph),(bruno,silph,g.describe())
-        print(f'Blackthorn Bruno={bruno}, Silph={silph}: PASS',flush=True)
+    groups=json.loads((ROOT/'data/maps/map_groups.json').read_text())
+    ids={m:(i,j) for i,group in enumerate(groups['group_order']) for j,m in enumerate(groups[group])}
+    def location(g):
+        return g.state()['group'],g.state()['num']
+
+    for space in [False,True]:
+        for bruno,silph in [(False,False),(True,False),(False,True),(True,True)]:
+            g=StoryGame()
+            g.run('Pox_Treecko')
+            g.flag('FLAG_POX_STORY_SPACE_CENTER',space)
+            g.flag('FLAG_BADGE07_GET',bruno)
+            g.flag('FLAG_POX_STORY_SILPH',silph)
+            initial=location(g)
+            g.run('Pox_BlackthornRoad')
+            assert location(g)==(ids['BlackthornCity_hns'] if space else initial),(space,bruno,silph,g.describe())
+            g.run('Pox_ClairGuide')
+            assert location(g)==(ids['PlasticOx_ClairGym'] if space else initial)
+            assert not g.flag('FLAG_BADGE08_GET')
+            if not space:
+                g.run('Pox_Clair')
+                assert not g.u32(g.syms['gBattleTypeFlags']),'Clair started before Space Center'
+            else:
+                # Interact with the actual gym actor, not its reward callback.
+                data=json.loads((ROOT/'data/maps/PlasticOx_ClairGym/map.json').read_text())
+                obj=next(o for o in data['object_events'] if o['script']=='Pox_Clair')
+                g.warp('PlasticOx_ClairGym',obj['x'],obj['y']+1)
+                g.tap(K.KEY_UP,hold=2,wait=12)
+                for _ in range(300):
+                    g.tap(K.KEY_A,hold=2,wait=10)
+                    if g.u32(g.syms['gBattleTypeFlags'])&8:
+                        break
+                else:
+                    raise AssertionError(f'Clair unavailable: Bruno={bruno}, Silph={silph}')
+                g.frame(180)
+                assert g.u16(g.syms['gTrainerBattleParameter']+2)==g.const('TRAINER_PLASTIC_OX_CLAIR')
+                assert not g.flag('FLAG_BADGE08_GET'),'badge awarded before victory'
+                if not bruno and not silph:
+                    g.frame(600)  # Let the trainer transition finish before capturing evidence.
+                    g.shot('story_clair_open_ou.png')
+            print(f'Northern OU travel/guide/battle SpaceCenter={space}, Bruno={bruno}, Silph={silph}: PASS',flush=True)
+
+    g=StoryGame()
+    for i in range(1,9):
+        g.flag(f'FLAG_BADGE{i:02}_GET',i!=7)
+    g.flag('FLAG_POX_STORY_SILPH',False)
+    before=location(g)
+    g.run('Pox_LeagueRoad')
+    assert location(g)==before,'Clair before Bruno bypassed the eight-badge League check'
+    g.flag('FLAG_BADGE07_GET',True)
+    g.run('Pox_LeagueRoad')
+    assert location(g)==ids['PlasticOx_VictoryRoad']
+    print('Clair before Bruno: League closed with seven badges, open with all eight PASS',flush=True)
     g=StoryGame()
     for name,flag in [('Morty','FLAG_BADGE03_GET'),('Blaine','FLAG_BADGE05_GET'),('SilphCore','FLAG_POX_STORY_SILPH'),('Archive3','FLAG_POX_STORY_MANSION')]:
         g.run('Pox_'+name)

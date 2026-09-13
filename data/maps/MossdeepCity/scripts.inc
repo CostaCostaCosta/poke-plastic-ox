@@ -1,5 +1,5 @@
 MossdeepCity_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, MossdeepCity_OnTransition
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_MossdeepCity
 	.byte 0
 
 MossdeepCity_OnTransition:
@@ -425,4 +425,3 @@ MossdeepCity_Text_SootopolisNewGymLeader:
 	.string "LEADER come in.\p"
 	.string "People tell me the new LEADER once\n"
 	.string "mentored WALLACE.$"
-

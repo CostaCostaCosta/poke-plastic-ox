@@ -1,0 +1,1723 @@
+{
+  "version": 7,
+  "donor_revision": "44f50eedefe58691b0444973e4138e9190d8fafc",
+  "transitions": [
+    {
+      "id": "cherry_route1_a",
+      "source": "CherrygroveCity_hns",
+      "destination": "Route1_Frlg",
+      "tile": [
+        33,
+        0
+      ],
+      "approach": [
+        33,
+        1
+      ],
+      "direction": "N",
+      "landing": [
+        12,
+        38
+      ],
+      "requires": [],
+      "label": "Route1"
+    },
+    {
+      "id": "cherry_route1_b",
+      "source": "Route1_Frlg",
+      "destination": "CherrygroveCity_hns",
+      "tile": [
+        12,
+        39
+      ],
+      "approach": [
+        12,
+        38
+      ],
+      "direction": "S",
+      "landing": [
+        33,
+        1
+      ],
+      "requires": [],
+      "label": "CherrygroveCity"
+    },
+    {
+      "id": "route1_route31_a",
+      "source": "Route1_Frlg",
+      "destination": "Route31_hns",
+      "tile": [
+        12,
+        0
+      ],
+      "approach": [
+        11,
+        0
+      ],
+      "direction": "E",
+      "landing": [
+        32,
+        21
+      ],
+      "requires": [],
+      "label": "Route31"
+    },
+    {
+      "id": "route1_route31_b",
+      "source": "Route31_hns",
+      "destination": "Route1_Frlg",
+      "tile": [
+        32,
+        22
+      ],
+      "approach": [
+        32,
+        21
+      ],
+      "direction": "S",
+      "landing": [
+        11,
+        0
+      ],
+      "requires": [],
+      "label": "Route1"
+    },
+    {
+      "id": "ilex_route104_a",
+      "source": "IlexForest_hns",
+      "destination": "Route104",
+      "tile": [
+        20,
+        14
+      ],
+      "approach": [
+        19,
+        14
+      ],
+      "direction": "E",
+      "landing": [
+        11,
+        29
+      ],
+      "requires": [
+        "FLAG_POX_STORY_ILEX"
+      ],
+      "label": "Route104"
+    },
+    {
+      "id": "ilex_route104_b",
+      "source": "Route104",
+      "destination": "IlexForest_hns",
+      "tile": [
+        10,
+        29
+      ],
+      "approach": [
+        11,
+        29
+      ],
+      "direction": "W",
+      "landing": [
+        19,
+        14
+      ],
+      "requires": [
+        "FLAG_POX_STORY_ILEX"
+      ],
+      "label": "IlexForest"
+    },
+    {
+      "id": "rustboro_cottage_a",
+      "source": "RustboroCity",
+      "destination": "Route24_hns",
+      "tile": [
+        20,
+        0
+      ],
+      "approach": [
+        19,
+        0
+      ],
+      "direction": "E",
+      "landing": [
+        16,
+        20
+      ],
+      "requires": [],
+      "label": "Route24"
+    },
+    {
+      "id": "rustboro_cottage_b",
+      "source": "Route24_hns",
+      "destination": "RustboroCity",
+      "tile": [
+        16,
+        21
+      ],
+      "approach": [
+        16,
+        20
+      ],
+      "direction": "S",
+      "landing": [
+        19,
+        0
+      ],
+      "requires": [],
+      "label": "RustboroCity"
+    },
+    {
+      "id": "route24_route25_a",
+      "source": "Route24_hns",
+      "destination": "Route25_hns",
+      "tile": [
+        16,
+        0
+      ],
+      "approach": [
+        16,
+        1
+      ],
+      "direction": "N",
+      "landing": [
+        5,
+        16
+      ],
+      "requires": [],
+      "label": "Route25"
+    },
+    {
+      "id": "route24_route25_b",
+      "source": "Route25_hns",
+      "destination": "Route24_hns",
+      "tile": [
+        5,
+        17
+      ],
+      "approach": [
+        5,
+        16
+      ],
+      "direction": "S",
+      "landing": [
+        16,
+        1
+      ],
+      "requires": [],
+      "label": "Route24"
+    },
+    {
+      "id": "rustboro_route44_a",
+      "source": "RustboroCity",
+      "destination": "Route44_hns",
+      "tile": [
+        35,
+        30
+      ],
+      "approach": [
+        34,
+        30
+      ],
+      "direction": "E",
+      "landing": [
+        0,
+        15
+      ],
+      "requires": [
+        "FLAG_BADGE01_GET"
+      ],
+      "label": "Route44"
+    },
+    {
+      "id": "rustboro_route44_b",
+      "source": "Route44_hns",
+      "destination": "RustboroCity",
+      "tile": [
+        0,
+        16
+      ],
+      "approach": [
+        0,
+        15
+      ],
+      "direction": "S",
+      "landing": [
+        34,
+        30
+      ],
+      "requires": [
+        "FLAG_BADGE01_GET"
+      ],
+      "label": "RustboroCity"
+    },
+    {
+      "id": "route44_moon_a",
+      "source": "Route44_hns",
+      "destination": "MtMoon_Cave_hns",
+      "tile": [
+        68,
+        13
+      ],
+      "approach": [
+        67,
+        13
+      ],
+      "direction": "E",
+      "landing": [
+        3,
+        11
+      ],
+      "requires": [],
+      "label": "MtMoon_Cave"
+    },
+    {
+      "id": "route44_moon_b",
+      "source": "MtMoon_Cave_hns",
+      "destination": "Route44_hns",
+      "tile": [
+        4,
+        11
+      ],
+      "approach": [
+        3,
+        11
+      ],
+      "direction": "E",
+      "landing": [
+        67,
+        13
+      ],
+      "requires": [],
+      "label": "Route44"
+    },
+    {
+      "id": "moon_route33_a",
+      "source": "MtMoon_Cave_hns",
+      "destination": "Route33_hns",
+      "tile": [
+        46,
+        30
+      ],
+      "approach": [
+        45,
+        30
+      ],
+      "direction": "E",
+      "landing": [
+        26,
+        18
+      ],
+      "requires": [
+        "FLAG_POX_STORY_MTMOON"
+      ],
+      "label": "Route33"
+    },
+    {
+      "id": "moon_route33_b",
+      "source": "Route33_hns",
+      "destination": "MtMoon_Cave_hns",
+      "tile": [
+        27,
+        18
+      ],
+      "approach": [
+        26,
+        18
+      ],
+      "direction": "E",
+      "landing": [
+        45,
+        30
+      ],
+      "requires": [
+        "FLAG_POX_STORY_MTMOON"
+      ],
+      "label": "MtMoon_Cave"
+    },
+    {
+      "id": "route33_goldenrod_a",
+      "source": "Route33_hns",
+      "destination": "GoldenrodCity_hns",
+      "tile": [
+        0,
+        22
+      ],
+      "approach": [
+        0,
+        23
+      ],
+      "direction": "N",
+      "landing": [
+        32,
+        44
+      ],
+      "requires": [],
+      "label": "GoldenrodCity"
+    },
+    {
+      "id": "route33_goldenrod_b",
+      "source": "GoldenrodCity_hns",
+      "destination": "Route33_hns",
+      "tile": [
+        32,
+        45
+      ],
+      "approach": [
+        32,
+        44
+      ],
+      "direction": "S",
+      "landing": [
+        0,
+        23
+      ],
+      "requires": [],
+      "label": "Route33"
+    },
+    {
+      "id": "goldenrod_route35_a",
+      "source": "GoldenrodCity_hns",
+      "destination": "Route35_hns",
+      "tile": [
+        33,
+        9
+      ],
+      "approach": [
+        32,
+        9
+      ],
+      "direction": "E",
+      "landing": [
+        15,
+        47
+      ],
+      "requires": [
+        "FLAG_BADGE02_GET"
+      ],
+      "label": "Route35"
+    },
+    {
+      "id": "goldenrod_route35_b",
+      "source": "Route35_hns",
+      "destination": "GoldenrodCity_hns",
+      "tile": [
+        16,
+        47
+      ],
+      "approach": [
+        15,
+        47
+      ],
+      "direction": "E",
+      "landing": [
+        32,
+        9
+      ],
+      "requires": [
+        "FLAG_BADGE02_GET"
+      ],
+      "label": "GoldenrodCity"
+    },
+    {
+      "id": "route35_park_a",
+      "source": "Route35_hns",
+      "destination": "NationalPark_Normal_hns",
+      "tile": [
+        17,
+        7
+      ],
+      "approach": [
+        16,
+        7
+      ],
+      "direction": "E",
+      "landing": [
+        39,
+        28
+      ],
+      "requires": [],
+      "label": "NationalPark_Normal"
+    },
+    {
+      "id": "route35_park_b",
+      "source": "NationalPark_Normal_hns",
+      "destination": "Route35_hns",
+      "tile": [
+        39,
+        29
+      ],
+      "approach": [
+        39,
+        28
+      ],
+      "direction": "S",
+      "landing": [
+        16,
+        7
+      ],
+      "requires": [],
+      "label": "Route35"
+    },
+    {
+      "id": "park_route36_a",
+      "source": "NationalPark_Normal_hns",
+      "destination": "Route36_hns",
+      "tile": [
+        39,
+        22
+      ],
+      "approach": [
+        39,
+        23
+      ],
+      "direction": "N",
+      "landing": [
+        17,
+        21
+      ],
+      "requires": [],
+      "label": "Route36"
+    },
+    {
+      "id": "park_route36_b",
+      "source": "Route36_hns",
+      "destination": "NationalPark_Normal_hns",
+      "tile": [
+        16,
+        21
+      ],
+      "approach": [
+        17,
+        21
+      ],
+      "direction": "W",
+      "landing": [
+        39,
+        23
+      ],
+      "requires": [],
+      "label": "NationalPark_Normal"
+    },
+    {
+      "id": "ecruteak_route119_a",
+      "source": "EcruteakCity_hns",
+      "destination": "Route119",
+      "tile": [
+        53,
+        32
+      ],
+      "approach": [
+        52,
+        32
+      ],
+      "direction": "E",
+      "landing": [
+        19,
+        127
+      ],
+      "requires": [
+        "FLAG_BADGE03_GET"
+      ],
+      "label": "Route119"
+    },
+    {
+      "id": "ecruteak_route119_b",
+      "source": "Route119",
+      "destination": "EcruteakCity_hns",
+      "tile": [
+        20,
+        127
+      ],
+      "approach": [
+        19,
+        127
+      ],
+      "direction": "E",
+      "landing": [
+        52,
+        32
+      ],
+      "requires": [
+        "FLAG_BADGE03_GET"
+      ],
+      "label": "EcruteakCity"
+    },
+    {
+      "id": "route119_fortree_a",
+      "source": "Route119",
+      "destination": "FortreeCity",
+      "tile": [
+        39,
+        8
+      ],
+      "approach": [
+        38,
+        8
+      ],
+      "direction": "E",
+      "landing": [
+        0,
+        9
+      ],
+      "requires": [
+        "FLAG_POX_STORY_WEATHER"
+      ],
+      "label": "FortreeCity"
+    },
+    {
+      "id": "route119_fortree_b",
+      "source": "FortreeCity",
+      "destination": "Route119",
+      "tile": [
+        0,
+        10
+      ],
+      "approach": [
+        0,
+        9
+      ],
+      "direction": "S",
+      "landing": [
+        38,
+        8
+      ],
+      "requires": [
+        "FLAG_POX_STORY_WEATHER"
+      ],
+      "label": "Route119"
+    },
+    {
+      "id": "fortree_route110_a",
+      "source": "FortreeCity",
+      "destination": "Route110",
+      "tile": [
+        39,
+        10
+      ],
+      "approach": [
+        38,
+        10
+      ],
+      "direction": "E",
+      "landing": [
+        17,
+        0
+      ],
+      "requires": [
+        "FLAG_BADGE04_GET"
+      ],
+      "label": "Route110"
+    },
+    {
+      "id": "fortree_route110_b",
+      "source": "Route110",
+      "destination": "FortreeCity",
+      "tile": [
+        18,
+        0
+      ],
+      "approach": [
+        17,
+        0
+      ],
+      "direction": "E",
+      "landing": [
+        38,
+        10
+      ],
+      "requires": [
+        "FLAG_BADGE04_GET"
+      ],
+      "label": "FortreeCity"
+    },
+    {
+      "id": "route36_shortcut_a",
+      "source": "Route36_hns",
+      "destination": "Route110",
+      "tile": [
+        65,
+        18
+      ],
+      "approach": [
+        64,
+        18
+      ],
+      "direction": "E",
+      "landing": [
+        0,
+        67
+      ],
+      "requires": [
+        "FLAG_POX_REACHED_FORTREE"
+      ],
+      "label": "Route110"
+    },
+    {
+      "id": "route36_shortcut_b",
+      "source": "Route110",
+      "destination": "Route36_hns",
+      "tile": [
+        1,
+        67
+      ],
+      "approach": [
+        0,
+        67
+      ],
+      "direction": "E",
+      "landing": [
+        64,
+        18
+      ],
+      "requires": [
+        "FLAG_POX_REACHED_FORTREE"
+      ],
+      "label": "Route36"
+    },
+    {
+      "id": "route110_lavender_a",
+      "source": "Route110",
+      "destination": "LavenderTown_hns",
+      "tile": [
+        20,
+        99
+      ],
+      "approach": [
+        19,
+        99
+      ],
+      "direction": "E",
+      "landing": [
+        15,
+        0
+      ],
+      "requires": [
+        "FLAG_BADGE04_GET"
+      ],
+      "label": "LavenderTown"
+    },
+    {
+      "id": "route110_lavender_b",
+      "source": "LavenderTown_hns",
+      "destination": "Route110",
+      "tile": [
+        16,
+        0
+      ],
+      "approach": [
+        15,
+        0
+      ],
+      "direction": "E",
+      "landing": [
+        19,
+        99
+      ],
+      "requires": [
+        "FLAG_BADGE04_GET"
+      ],
+      "label": "Route110"
+    },
+    {
+      "id": "lavender_route8_a",
+      "source": "LavenderTown_hns",
+      "destination": "Route8_Frlg",
+      "tile": [
+        1,
+        15
+      ],
+      "approach": [
+        1,
+        16
+      ],
+      "direction": "N",
+      "landing": [
+        70,
+        10
+      ],
+      "requires": [
+        "FLAG_POX_STORY_FUJI"
+      ],
+      "label": "Route8"
+    },
+    {
+      "id": "lavender_route8_b",
+      "source": "Route8_Frlg",
+      "destination": "LavenderTown_hns",
+      "tile": [
+        71,
+        10
+      ],
+      "approach": [
+        70,
+        10
+      ],
+      "direction": "E",
+      "landing": [
+        1,
+        16
+      ],
+      "requires": [
+        "FLAG_POX_STORY_FUJI"
+      ],
+      "label": "LavenderTown"
+    },
+    {
+      "id": "route8_saffron_a",
+      "source": "Route8_Frlg",
+      "destination": "SaffronCity_hns",
+      "tile": [
+        8,
+        10
+      ],
+      "approach": [
+        8,
+        11
+      ],
+      "direction": "N",
+      "landing": [
+        60,
+        27
+      ],
+      "requires": [
+        "FLAG_POX_STORY_SPACE_CENTER"
+      ],
+      "label": "SaffronCity"
+    },
+    {
+      "id": "route8_saffron_b",
+      "source": "SaffronCity_hns",
+      "destination": "Route8_Frlg",
+      "tile": [
+        61,
+        27
+      ],
+      "approach": [
+        60,
+        27
+      ],
+      "direction": "E",
+      "landing": [
+        8,
+        11
+      ],
+      "requires": [
+        "FLAG_POX_STORY_SPACE_CENTER"
+      ],
+      "label": "Route8"
+    },
+    {
+      "id": "route7_saffron_a",
+      "source": "Route7_hns",
+      "destination": "SaffronCity_hns",
+      "tile": [
+        6,
+        22
+      ],
+      "approach": [
+        5,
+        22
+      ],
+      "direction": "E",
+      "landing": [
+        2,
+        25
+      ],
+      "requires": [
+        "FLAG_POX_STORY_SPACE_CENTER"
+      ],
+      "label": "SaffronCity"
+    },
+    {
+      "id": "route7_saffron_b",
+      "source": "SaffronCity_hns",
+      "destination": "Route7_hns",
+      "tile": [
+        2,
+        26
+      ],
+      "approach": [
+        2,
+        25
+      ],
+      "direction": "S",
+      "landing": [
+        5,
+        22
+      ],
+      "requires": [
+        "FLAG_POX_STORY_SPACE_CENTER"
+      ],
+      "label": "Route7"
+    },
+    {
+      "id": "route7_route103_a",
+      "source": "Route7_hns",
+      "destination": "Route103",
+      "tile": [
+        1,
+        22
+      ],
+      "approach": [
+        1,
+        23
+      ],
+      "direction": "N",
+      "landing": [
+        78,
+        11
+      ],
+      "requires": [
+        "FLAG_POX_STORY_FUJI"
+      ],
+      "label": "Route103"
+    },
+    {
+      "id": "route7_route103_b",
+      "source": "Route103",
+      "destination": "Route7_hns",
+      "tile": [
+        79,
+        11
+      ],
+      "approach": [
+        78,
+        11
+      ],
+      "direction": "E",
+      "landing": [
+        1,
+        23
+      ],
+      "requires": [
+        "FLAG_POX_STORY_FUJI"
+      ],
+      "label": "Route7"
+    },
+    {
+      "id": "oldale_route103_a",
+      "source": "OldaleTown",
+      "destination": "Route103",
+      "tile": [
+        10,
+        0
+      ],
+      "approach": [
+        9,
+        0
+      ],
+      "direction": "E",
+      "landing": [
+        9,
+        20
+      ],
+      "requires": [
+        "FLAG_POX_STORY_FUJI"
+      ],
+      "label": "Route103"
+    },
+    {
+      "id": "oldale_route103_b",
+      "source": "Route103",
+      "destination": "OldaleTown",
+      "tile": [
+        10,
+        20
+      ],
+      "approach": [
+        9,
+        20
+      ],
+      "direction": "E",
+      "landing": [
+        9,
+        0
+      ],
+      "requires": [
+        "FLAG_POX_STORY_FUJI"
+      ],
+      "label": "OldaleTown"
+    },
+    {
+      "id": "route103_cinnabar_a",
+      "source": "Route103",
+      "destination": "CinnabarIsland_hns",
+      "tile": [
+        10,
+        15
+      ],
+      "approach": [
+        9,
+        15
+      ],
+      "direction": "E",
+      "landing": [
+        35,
+        12
+      ],
+      "requires": [
+        "FLAG_POX_STORY_FUJI"
+      ],
+      "label": "CinnabarIsland"
+    },
+    {
+      "id": "route103_cinnabar_b",
+      "source": "CinnabarIsland_hns",
+      "destination": "Route103",
+      "tile": [
+        36,
+        12
+      ],
+      "approach": [
+        35,
+        12
+      ],
+      "direction": "E",
+      "landing": [
+        9,
+        15
+      ],
+      "requires": [
+        "FLAG_POX_STORY_FUJI"
+      ],
+      "label": "Route103"
+    },
+    {
+      "id": "pallet_coast_a",
+      "source": "PalletTown_Frlg",
+      "destination": "CinnabarIsland_hns",
+      "tile": [
+        12,
+        19
+      ],
+      "approach": [
+        11,
+        19
+      ],
+      "direction": "E",
+      "landing": [
+        37,
+        13
+      ],
+      "requires": [
+        "FLAG_POX_STORY_MANSION"
+      ],
+      "label": "CinnabarIsland"
+    },
+    {
+      "id": "pallet_coast_b",
+      "source": "CinnabarIsland_hns",
+      "destination": "PalletTown_Frlg",
+      "tile": [
+        37,
+        12
+      ],
+      "approach": [
+        37,
+        13
+      ],
+      "direction": "N",
+      "landing": [
+        11,
+        19
+      ],
+      "requires": [
+        "FLAG_POX_STORY_MANSION"
+      ],
+      "label": "PalletTown"
+    },
+    {
+      "id": "cinnabar_sea_a",
+      "source": "CinnabarIsland_hns",
+      "destination": "PlasticOx_Route20West",
+      "tile": [
+        48,
+        21
+      ],
+      "approach": [
+        47,
+        21
+      ],
+      "direction": "E",
+      "landing": [
+        0,
+        11
+      ],
+      "requires": [
+        "FLAG_POX_STORY_MANSION"
+      ],
+      "label": "Route20West"
+    },
+    {
+      "id": "cinnabar_sea_b",
+      "source": "PlasticOx_Route20West",
+      "destination": "CinnabarIsland_hns",
+      "tile": [
+        0,
+        10
+      ],
+      "approach": [
+        0,
+        11
+      ],
+      "direction": "N",
+      "landing": [
+        47,
+        21
+      ],
+      "requires": [
+        "FLAG_POX_STORY_MANSION"
+      ],
+      "label": "CinnabarIsland"
+    },
+    {
+      "id": "sea_mossdeep_a",
+      "source": "PlasticOx_Route20East",
+      "destination": "MossdeepCity",
+      "tile": [
+        53,
+        10
+      ],
+      "approach": [
+        52,
+        10
+      ],
+      "direction": "E",
+      "landing": [
+        0,
+        21
+      ],
+      "requires": [
+        "FLAG_POX_STORY_MANSION"
+      ],
+      "label": "MossdeepCity"
+    },
+    {
+      "id": "sea_mossdeep_b",
+      "source": "MossdeepCity",
+      "destination": "PlasticOx_Route20East",
+      "tile": [
+        0,
+        20
+      ],
+      "approach": [
+        0,
+        21
+      ],
+      "direction": "N",
+      "landing": [
+        52,
+        10
+      ],
+      "requires": [
+        "FLAG_POX_STORY_MANSION"
+      ],
+      "label": "Route20East"
+    },
+    {
+      "id": "mossdeep_route19_a",
+      "source": "MossdeepCity",
+      "destination": "Route19_Frlg",
+      "tile": [
+        40,
+        0
+      ],
+      "approach": [
+        39,
+        0
+      ],
+      "direction": "E",
+      "landing": [
+        11,
+        56
+      ],
+      "requires": [],
+      "label": "Route19"
+    },
+    {
+      "id": "mossdeep_route19_b",
+      "source": "Route19_Frlg",
+      "destination": "MossdeepCity",
+      "tile": [
+        12,
+        56
+      ],
+      "approach": [
+        11,
+        56
+      ],
+      "direction": "E",
+      "landing": [
+        39,
+        0
+      ],
+      "requires": [],
+      "label": "MossdeepCity"
+    },
+    {
+      "id": "route19_saffron_a",
+      "source": "Route19_Frlg",
+      "destination": "SaffronCity_hns",
+      "tile": [
+        12,
+        0
+      ],
+      "approach": [
+        11,
+        0
+      ],
+      "direction": "E",
+      "landing": [
+        31,
+        44
+      ],
+      "requires": [
+        "FLAG_POX_STORY_SPACE_CENTER"
+      ],
+      "label": "SaffronCity"
+    },
+    {
+      "id": "route19_saffron_b",
+      "source": "SaffronCity_hns",
+      "destination": "Route19_Frlg",
+      "tile": [
+        32,
+        44
+      ],
+      "approach": [
+        31,
+        44
+      ],
+      "direction": "E",
+      "landing": [
+        11,
+        0
+      ],
+      "requires": [
+        "FLAG_POX_STORY_SPACE_CENTER"
+      ],
+      "label": "Route19"
+    },
+    {
+      "id": "saffron_route5_a",
+      "source": "SaffronCity_hns",
+      "destination": "Route5_hns",
+      "tile": [
+        30,
+        6
+      ],
+      "approach": [
+        29,
+        6
+      ],
+      "direction": "E",
+      "landing": [
+        31,
+        38
+      ],
+      "requires": [
+        "FLAG_POX_STORY_SPACE_CENTER"
+      ],
+      "label": "Route5"
+    },
+    {
+      "id": "saffron_route5_b",
+      "source": "Route5_hns",
+      "destination": "SaffronCity_hns",
+      "tile": [
+        32,
+        38
+      ],
+      "approach": [
+        31,
+        38
+      ],
+      "direction": "E",
+      "landing": [
+        29,
+        6
+      ],
+      "requires": [
+        "FLAG_POX_STORY_SPACE_CENTER"
+      ],
+      "label": "SaffronCity"
+    },
+    {
+      "id": "route5_route115_a",
+      "source": "Route5_hns",
+      "destination": "Route115",
+      "tile": [
+        32,
+        0
+      ],
+      "approach": [
+        31,
+        0
+      ],
+      "direction": "E",
+      "landing": [
+        19,
+        79
+      ],
+      "requires": [
+        "FLAG_POX_STORY_SPACE_CENTER"
+      ],
+      "label": "Route115"
+    },
+    {
+      "id": "route5_route115_b",
+      "source": "Route115",
+      "destination": "Route5_hns",
+      "tile": [
+        20,
+        79
+      ],
+      "approach": [
+        19,
+        79
+      ],
+      "direction": "E",
+      "landing": [
+        31,
+        0
+      ],
+      "requires": [
+        "FLAG_POX_STORY_SPACE_CENTER"
+      ],
+      "label": "Route5"
+    },
+    {
+      "id": "meteor_blackthorn_a",
+      "source": "MeteorFalls_1F_1R",
+      "destination": "BlackthornCity_hns",
+      "tile": [
+        26,
+        18
+      ],
+      "approach": [
+        25,
+        18
+      ],
+      "direction": "E",
+      "landing": [
+        29,
+        26
+      ],
+      "requires": [
+        "FLAG_POX_STORY_SPACE_CENTER"
+      ],
+      "label": "BlackthornCity"
+    },
+    {
+      "id": "meteor_blackthorn_b",
+      "source": "BlackthornCity_hns",
+      "destination": "MeteorFalls_1F_1R",
+      "tile": [
+        30,
+        26
+      ],
+      "approach": [
+        29,
+        26
+      ],
+      "direction": "E",
+      "landing": [
+        25,
+        18
+      ],
+      "requires": [
+        "FLAG_POX_STORY_SPACE_CENTER"
+      ],
+      "label": "MeteorFalls_1F_1R"
+    },
+    {
+      "id": "blackthorn_route45_a",
+      "source": "BlackthornCity_hns",
+      "destination": "Route45_hns",
+      "tile": [
+        25,
+        59
+      ],
+      "approach": [
+        24,
+        59
+      ],
+      "direction": "E",
+      "landing": [
+        25,
+        1
+      ],
+      "requires": [
+        "FLAG_POX_STORY_SPACE_CENTER"
+      ],
+      "label": "Route45"
+    },
+    {
+      "id": "blackthorn_route45_b",
+      "source": "Route45_hns",
+      "destination": "BlackthornCity_hns",
+      "tile": [
+        25,
+        0
+      ],
+      "approach": [
+        25,
+        1
+      ],
+      "direction": "N",
+      "landing": [
+        24,
+        59
+      ],
+      "requires": [
+        "FLAG_POX_STORY_SPACE_CENTER"
+      ],
+      "label": "BlackthornCity"
+    },
+    {
+      "id": "route45_route46_a",
+      "source": "Route45_hns",
+      "destination": "Route46_hns",
+      "tile": [
+        15,
+        90
+      ],
+      "approach": [
+        15,
+        89
+      ],
+      "direction": "S",
+      "landing": [
+        12,
+        10
+      ],
+      "requires": [
+        "FLAG_POX_STORY_SPACE_CENTER"
+      ],
+      "label": "Route46"
+    },
+    {
+      "id": "ecruteak_league_a",
+      "source": "EcruteakCity_hns",
+      "destination": "VictoryRoad_1F",
+      "tile": [
+        8,
+        34
+      ],
+      "approach": [
+        9,
+        34
+      ],
+      "direction": "W",
+      "landing": [
+        14,
+        39
+      ],
+      "requires": [
+        "FLAG_BADGE01_GET",
+        "FLAG_BADGE02_GET",
+        "FLAG_BADGE03_GET",
+        "FLAG_BADGE04_GET",
+        "FLAG_BADGE05_GET",
+        "FLAG_BADGE06_GET",
+        "FLAG_BADGE07_GET",
+        "FLAG_BADGE08_GET"
+      ],
+      "label": "VictoryRoad_1F"
+    },
+    {
+      "id": "ecruteak_league_b",
+      "source": "VictoryRoad_1F",
+      "destination": "EcruteakCity_hns",
+      "tile": [
+        15,
+        39
+      ],
+      "approach": [
+        14,
+        39
+      ],
+      "direction": "E",
+      "landing": [
+        9,
+        34
+      ],
+      "requires": [
+        "FLAG_BADGE01_GET",
+        "FLAG_BADGE02_GET",
+        "FLAG_BADGE03_GET",
+        "FLAG_BADGE04_GET",
+        "FLAG_BADGE05_GET",
+        "FLAG_BADGE06_GET",
+        "FLAG_BADGE07_GET",
+        "FLAG_BADGE08_GET"
+      ],
+      "label": "EcruteakCity"
+    },
+    {
+      "id": "victory_indigo_a",
+      "source": "VictoryRoad_1F",
+      "destination": "IndigoPlateau_hns",
+      "tile": [
+        38,
+        5
+      ],
+      "approach": [
+        37,
+        5
+      ],
+      "direction": "E",
+      "landing": [
+        11,
+        19
+      ],
+      "requires": [
+        "FLAG_BADGE01_GET",
+        "FLAG_BADGE02_GET",
+        "FLAG_BADGE03_GET",
+        "FLAG_BADGE04_GET",
+        "FLAG_BADGE05_GET",
+        "FLAG_BADGE06_GET",
+        "FLAG_BADGE07_GET",
+        "FLAG_BADGE08_GET"
+      ],
+      "label": "IndigoPlateau"
+    },
+    {
+      "id": "victory_indigo_b",
+      "source": "IndigoPlateau_hns",
+      "destination": "VictoryRoad_1F",
+      "tile": [
+        12,
+        19
+      ],
+      "approach": [
+        11,
+        19
+      ],
+      "direction": "E",
+      "landing": [
+        37,
+        5
+      ],
+      "requires": [
+        "FLAG_BADGE01_GET",
+        "FLAG_BADGE02_GET",
+        "FLAG_BADGE03_GET",
+        "FLAG_BADGE04_GET",
+        "FLAG_BADGE05_GET",
+        "FLAG_BADGE06_GET",
+        "FLAG_BADGE07_GET",
+        "FLAG_BADGE08_GET"
+      ],
+      "label": "VictoryRoad_1F"
+    },
+    {
+      "id": "lavender_harbor_a",
+      "source": "LavenderTown_hns",
+      "destination": "PlasticOx_Harbor",
+      "tile": [
+        19,
+        22
+      ],
+      "approach": [
+        18,
+        22
+      ],
+      "direction": "E",
+      "landing": [
+        10,
+        13
+      ],
+      "requires": [
+        "FLAG_SYS_GAME_CLEAR"
+      ],
+      "label": "Harbor"
+    },
+    {
+      "id": "lavender_harbor_b",
+      "source": "PlasticOx_Harbor",
+      "destination": "LavenderTown_hns",
+      "tile": [
+        11,
+        13
+      ],
+      "approach": [
+        10,
+        13
+      ],
+      "direction": "E",
+      "landing": [
+        18,
+        22
+      ],
+      "requires": [
+        "FLAG_SYS_GAME_CLEAR"
+      ],
+      "label": "LavenderTown"
+    },
+    {
+      "id": "harbor_frontier_a",
+      "source": "PlasticOx_Harbor",
+      "destination": "BattleFrontier_OutsideWest",
+      "tile": [
+        16,
+        14
+      ],
+      "approach": [
+        15,
+        14
+      ],
+      "direction": "E",
+      "landing": [
+        25,
+        66
+      ],
+      "requires": [
+        "FLAG_SYS_GAME_CLEAR"
+      ],
+      "label": "BattleFrontier_OutsideWest"
+    },
+    {
+      "id": "harbor_frontier_b",
+      "source": "BattleFrontier_OutsideWest",
+      "destination": "PlasticOx_Harbor",
+      "tile": [
+        26,
+        66
+      ],
+      "approach": [
+        25,
+        66
+      ],
+      "direction": "E",
+      "landing": [
+        15,
+        14
+      ],
+      "requires": [
+        "FLAG_SYS_GAME_CLEAR"
+      ],
+      "label": "Harbor"
+    },
+    {
+      "id": "underground_west",
+      "source": "Route7_hns",
+      "destination": "UndergroundPath_WestEntrance_Frlg",
+      "tile": [
+        4,
+        22
+      ],
+      "approach": [
+        3,
+        22
+      ],
+      "direction": "E",
+      "landing": [
+        6,
+        6
+      ],
+      "requires": [],
+      "label": "Underground Path"
+    },
+    {
+      "id": "underground_return_5",
+      "source": "UndergroundPath_WestEntrance_Frlg",
+      "destination": "Route7_hns",
+      "tile": [
+        5,
+        7
+      ],
+      "approach": [
+        5,
+        6
+      ],
+      "direction": "S",
+      "landing": [
+        3,
+        22
+      ],
+      "requires": [],
+      "label": "Route 7"
+    },
+    {
+      "id": "underground_return_6",
+      "source": "UndergroundPath_WestEntrance_Frlg",
+      "destination": "Route7_hns",
+      "tile": [
+        6,
+        7
+      ],
+      "approach": [
+        6,
+        6
+      ],
+      "direction": "S",
+      "landing": [
+        3,
+        22
+      ],
+      "requires": [],
+      "label": "Route 7"
+    },
+    {
+      "id": "underground_return_7",
+      "source": "UndergroundPath_WestEntrance_Frlg",
+      "destination": "Route7_hns",
+      "tile": [
+        7,
+        7
+      ],
+      "approach": [
+        7,
+        6
+      ],
+      "direction": "S",
+      "landing": [
+        3,
+        22
+      ],
+      "requires": [],
+      "label": "Route 7"
+    }
+  ],
+  "native_seams": {
+    "PalletTown_Frlg": [
+      "MAP_ROUTE101"
+    ],
+    "Route101": [
+      "MAP_OLDALE_TOWN",
+      "MAP_PALLET_TOWN"
+    ],
+    "OldaleTown": [
+      "MAP_ROUTE101",
+      "MAP_ROUTE29_HNS"
+    ],
+    "Route29_hns": [
+      "MAP_CHERRYGROVE_CITY_HNS",
+      "MAP_OLDALE_TOWN"
+    ],
+    "CherrygroveCity_hns": [
+      "MAP_ROUTE29_HNS"
+    ],
+    "Route104": [
+      "MAP_RUSTBORO_CITY"
+    ],
+    "RustboroCity": [
+      "MAP_ROUTE104"
+    ],
+    "Route36_hns": [
+      "MAP_ROUTE37_HNS"
+    ],
+    "Route37_hns": [
+      "MAP_ECRUTEAK_CITY_HNS",
+      "MAP_ROUTE36_HNS"
+    ],
+    "EcruteakCity_hns": [
+      "MAP_ROUTE37_HNS"
+    ],
+    "BattleFrontier_OutsideWest": [
+      "MAP_BATTLE_FRONTIER_OUTSIDE_EAST"
+    ]
+  }
+}

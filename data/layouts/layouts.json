@@ -5533,7 +5533,10 @@
       "secondary_tileset": "gTileset_PalletTown",
       "border_filepath": "data/layouts/Route1_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/Route1_Frlg/map.bin",
-      "layout_version": "frlg"
+      "layout_version": "frlg",
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE2",
@@ -5624,7 +5627,10 @@
       "secondary_tileset": "gTileset_LavenderTown",
       "border_filepath": "data/layouts/Route8_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/Route8_Frlg/map.bin",
-      "layout_version": "frlg"
+      "layout_version": "frlg",
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE9",
@@ -5767,7 +5773,10 @@
       "secondary_tileset": "gTileset_FuchsiaCity",
       "border_filepath": "data/layouts/Route19_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/Route19_Frlg/map.bin",
-      "layout_version": "frlg"
+      "layout_version": "frlg",
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE20",
@@ -6404,7 +6413,10 @@
       "secondary_tileset": "gTileset_SeafoamIslands",
       "border_filepath": "data/layouts/SeafoamIslands_1F_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/SeafoamIslands_1F_Frlg/map.bin",
-      "layout_version": "frlg"
+      "layout_version": "frlg",
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_SEAFOAM_ISLANDS_B1F",
@@ -6417,7 +6429,10 @@
       "secondary_tileset": "gTileset_SeafoamIslands",
       "border_filepath": "data/layouts/SeafoamIslands_B1F_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/SeafoamIslands_B1F_Frlg/map.bin",
-      "layout_version": "frlg"
+      "layout_version": "frlg",
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_SEAFOAM_ISLANDS_B2F",
@@ -6430,7 +6445,10 @@
       "secondary_tileset": "gTileset_SeafoamIslands",
       "border_filepath": "data/layouts/SeafoamIslands_B2F_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/SeafoamIslands_B2F_Frlg/map.bin",
-      "layout_version": "frlg"
+      "layout_version": "frlg",
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_SEAFOAM_ISLANDS_B3F",
@@ -6443,7 +6461,10 @@
       "secondary_tileset": "gTileset_SeafoamIslands",
       "border_filepath": "data/layouts/SeafoamIslands_B3F_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/SeafoamIslands_B3F_Frlg/map.bin",
-      "layout_version": "frlg"
+      "layout_version": "frlg",
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_SEAFOAM_ISLANDS_B4F",
@@ -6456,7 +6477,10 @@
       "secondary_tileset": "gTileset_SeafoamIslands",
       "border_filepath": "data/layouts/SeafoamIslands_B4F_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/SeafoamIslands_B4F_Frlg/map.bin",
-      "layout_version": "frlg"
+      "layout_version": "frlg",
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_POKEMON_TOWER_1F",
@@ -6612,7 +6636,10 @@
       "secondary_tileset": "gTileset_GenericBuilding2",
       "border_filepath": "data/layouts/UndergroundPath_Entrance_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/UndergroundPath_Entrance_Frlg/map.bin",
-      "layout_version": "frlg"
+      "layout_version": "frlg",
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_UNDERGROUND_PATH_EAST_WEST_TUNNEL",
@@ -6625,7 +6652,10 @@
       "secondary_tileset": "gTileset_UndergroundPath",
       "border_filepath": "data/layouts/UndergroundPath_EastWestTunnel_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/UndergroundPath_EastWestTunnel_Frlg/map.bin",
-      "layout_version": "frlg"
+      "layout_version": "frlg",
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_UNDERGROUND_PATH_NORTH_SOUTH_TUNNEL",
@@ -7977,7 +8007,10 @@
       "secondary_tileset": "gTileset_SeafoamIslands",
       "border_filepath": "data/layouts/SeafoamIslands_B3F_CurrentStopped_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/SeafoamIslands_B3F_CurrentStopped_Frlg/map.bin",
-      "layout_version": "frlg"
+      "layout_version": "frlg",
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_SEAFOAM_ISLANDS_B4F_CURRENT_STOPPED",
@@ -7990,7 +8023,10 @@
       "secondary_tileset": "gTileset_SeafoamIslands",
       "border_filepath": "data/layouts/SeafoamIslands_B4F_CurrentStopped_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/SeafoamIslands_B4F_CurrentStopped_Frlg/map.bin",
-      "layout_version": "frlg"
+      "layout_version": "frlg",
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_MT_EMBER_EXTERIOR",
@@ -9354,7 +9390,9 @@
       "border_filepath": "data/layouts/PokemonCenter_Johto_hns/border.bin",
       "blockdata_filepath": "data/layouts/PokemonCenter_Johto_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_POKEMON_CENTER_KANTO_HNS",
@@ -9366,7 +9404,9 @@
       "border_filepath": "data/layouts/PokemonCenter_Kanto_hns/border.bin",
       "blockdata_filepath": "data/layouts/PokemonCenter_Kanto_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_MART_JOHTO_HNS",
@@ -9378,7 +9418,9 @@
       "border_filepath": "data/layouts/Mart_Johto_hns/border.bin",
       "blockdata_filepath": "data/layouts/Mart_Johto_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_MART_KANTO_HNS",
@@ -9390,7 +9432,9 @@
       "border_filepath": "data/layouts/Mart_Kanto_hns/border.bin",
       "blockdata_filepath": "data/layouts/Mart_Kanto_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_HOUSE_GENERIC_A_HNS",
@@ -9402,7 +9446,9 @@
       "border_filepath": "data/layouts/House_GenericA_hns/border.bin",
       "blockdata_filepath": "data/layouts/House_GenericA_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_HOUSE_GENERIC_B_HNS",
@@ -9414,7 +9460,9 @@
       "border_filepath": "data/layouts/House_GenericB_hns/border.bin",
       "blockdata_filepath": "data/layouts/House_GenericB_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_GATE_ROUTE29_ROUTE46_HNS",
@@ -9426,7 +9474,9 @@
       "border_filepath": "data/layouts/Gate_Route29_Route46_hns/border.bin",
       "blockdata_filepath": "data/layouts/Gate_Route29_Route46_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE30_HOUSE_HNS",
@@ -9438,7 +9488,9 @@
       "border_filepath": "data/layouts/Route30_House_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route30_House_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE30_MR_POKEMONS_HOUSE_HNS",
@@ -9450,7 +9502,9 @@
       "border_filepath": "data/layouts/Route30_MrPokemonsHouse_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route30_MrPokemonsHouse_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE29_HNS",
@@ -9462,7 +9516,9 @@
       "border_filepath": "data/layouts/Route29_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route29_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE30_HNS",
@@ -9474,7 +9530,9 @@
       "border_filepath": "data/layouts/Route30_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route30_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE31_HNS",
@@ -9486,7 +9544,9 @@
       "border_filepath": "data/layouts/Route31_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route31_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE46_HNS",
@@ -9498,7 +9558,9 @@
       "border_filepath": "data/layouts/Route46_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route46_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_DARK_CAVE_SOUTH_SIDE_HNS",
@@ -9510,7 +9572,9 @@
       "border_filepath": "data/layouts/DarkCave_SouthSide_hns/border.bin",
       "blockdata_filepath": "data/layouts/DarkCave_SouthSide_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_CHERRYGROVE_CITY_HNS",
@@ -9522,7 +9586,9 @@
       "border_filepath": "data/layouts/CherrygroveCity_hns/border.bin",
       "blockdata_filepath": "data/layouts/CherrygroveCity_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_GATE_AZALEA_TOWN_ILEX_FOREST_HNS",
@@ -9534,7 +9600,9 @@
       "border_filepath": "data/layouts/Gate_AzaleaTown_IlexForest_hns/border.bin",
       "blockdata_filepath": "data/layouts/Gate_AzaleaTown_IlexForest_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ILEX_FOREST_HNS",
@@ -9546,7 +9614,9 @@
       "border_filepath": "data/layouts/IlexForest_hns/border.bin",
       "blockdata_filepath": "data/layouts/IlexForest_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE34_HNS",
@@ -9558,7 +9628,9 @@
       "border_filepath": "data/layouts/Route34_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route34_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE2_HNS",
@@ -9570,7 +9642,9 @@
       "border_filepath": "data/layouts/Route2_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route2_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE3_HNS",
@@ -9582,7 +9656,9 @@
       "border_filepath": "data/layouts/Route3_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route3_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_MT_MOON_CAVE_HNS",
@@ -9594,7 +9670,9 @@
       "border_filepath": "data/layouts/MtMoon_Cave_hns/border.bin",
       "blockdata_filepath": "data/layouts/MtMoon_Cave_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE4_HNS",
@@ -9606,7 +9684,9 @@
       "border_filepath": "data/layouts/Route4_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route4_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE14_HNS",
@@ -9618,7 +9698,9 @@
       "border_filepath": "data/layouts/Route14_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route14_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_GOLDENROD_CITY_HNS",
@@ -9630,7 +9712,9 @@
       "border_filepath": "data/layouts/GoldenrodCity_hns/border.bin",
       "blockdata_filepath": "data/layouts/GoldenrodCity_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_GOLDENROD_CITY_BILLS_HOUSE_HNS",
@@ -9642,7 +9726,9 @@
       "border_filepath": "data/layouts/GoldenrodCity_BillsHouse_hns/border.bin",
       "blockdata_filepath": "data/layouts/GoldenrodCity_BillsHouse_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_GATE_GOLDENROD_CITY_ROUTE35_HNS",
@@ -9654,7 +9740,9 @@
       "border_filepath": "data/layouts/Gate_GoldenrodCity_Route35_hns/border.bin",
       "blockdata_filepath": "data/layouts/Gate_GoldenrodCity_Route35_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE35_HNS",
@@ -9666,7 +9754,9 @@
       "border_filepath": "data/layouts/Route35_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route35_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_NATIONAL_PARK_NORMAL_HNS",
@@ -9678,7 +9768,9 @@
       "border_filepath": "data/layouts/NationalPark_Normal_hns/border.bin",
       "blockdata_filepath": "data/layouts/NationalPark_Normal_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE36_HNS",
@@ -9690,7 +9782,9 @@
       "border_filepath": "data/layouts/Route36_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route36_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE37_HNS",
@@ -9702,7 +9796,9 @@
       "border_filepath": "data/layouts/Route37_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route37_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ECRUTEAK_CITY_HNS",
@@ -9714,7 +9810,9 @@
       "border_filepath": "data/layouts/EcruteakCity_hns/border.bin",
       "blockdata_filepath": "data/layouts/EcruteakCity_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE38_HNS",
@@ -9726,7 +9824,9 @@
       "border_filepath": "data/layouts/Route38_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route38_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE16_HNS",
@@ -9738,7 +9838,9 @@
       "border_filepath": "data/layouts/Route16_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route16_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE24_HNS",
@@ -9750,7 +9852,9 @@
       "border_filepath": "data/layouts/Route24_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route24_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE25_HNS",
@@ -9762,7 +9866,9 @@
       "border_filepath": "data/layouts/Route25_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route25_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE25_BILLS_HOUSE_HNS",
@@ -9774,7 +9880,9 @@
       "border_filepath": "data/layouts/Route25_BillsHouse_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route25_BillsHouse_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE6_HNS",
@@ -9786,7 +9894,9 @@
       "border_filepath": "data/layouts/Route6_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route6_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_GATE_SAFFRON_CITY_ROUTE6_HNS",
@@ -9798,7 +9908,9 @@
       "border_filepath": "data/layouts/Gate_SaffronCity_Route6_hns/border.bin",
       "blockdata_filepath": "data/layouts/Gate_SaffronCity_Route6_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_SAFFRON_CITY_HNS",
@@ -9810,7 +9922,9 @@
       "border_filepath": "data/layouts/SaffronCity_hns/border.bin",
       "blockdata_filepath": "data/layouts/SaffronCity_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_GATE_SAFFRON_CITY_ROUTE5_HNS",
@@ -9822,7 +9936,9 @@
       "border_filepath": "data/layouts/Gate_SaffronCity_Route5_hns/border.bin",
       "blockdata_filepath": "data/layouts/Gate_SaffronCity_Route5_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE5_HNS",
@@ -9834,7 +9950,9 @@
       "border_filepath": "data/layouts/Route5_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route5_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_BLACKTHORN_CITY_HNS",
@@ -9846,7 +9964,9 @@
       "border_filepath": "data/layouts/BlackthornCity_hns/border.bin",
       "blockdata_filepath": "data/layouts/BlackthornCity_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_INDIGO_PLATEAU_HNS",
@@ -9858,7 +9978,9 @@
       "border_filepath": "data/layouts/IndigoPlateau_hns/border.bin",
       "blockdata_filepath": "data/layouts/IndigoPlateau_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_INDIGO_PLATEAU_POKEMON_CENTER_HNS",
@@ -9870,7 +9992,9 @@
       "border_filepath": "data/layouts/IndigoPlateau_PokemonCenter_hns/border.bin",
       "blockdata_filepath": "data/layouts/IndigoPlateau_PokemonCenter_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE7_HNS",
@@ -9882,7 +10006,9 @@
       "border_filepath": "data/layouts/Route7_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route7_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_LAVENDER_TOWN_HNS",
@@ -9894,7 +10020,9 @@
       "border_filepath": "data/layouts/LavenderTown_hns/border.bin",
       "blockdata_filepath": "data/layouts/LavenderTown_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE12_HNS",
@@ -9906,7 +10034,9 @@
       "border_filepath": "data/layouts/Route12_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route12_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE21_HNS",
@@ -9918,7 +10048,9 @@
       "border_filepath": "data/layouts/Route21_hns/border.bin",
       "blockdata_filepath": "data/layouts/Route21_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_CINNABAR_ISLAND_HNS",
@@ -9930,7 +10062,83 @@
       "border_filepath": "data/layouts/CinnabarIsland_hns/border.bin",
       "blockdata_filepath": "data/layouts/CinnabarIsland_hns/map.bin",
       "layout_version": "hns",
-      "include_in_versions": ["emerald"]
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
+      "id": "LAYOUT_ROUTE33_HNS",
+      "name": "Route33_hns_Layout",
+      "width": 44,
+      "height": 40,
+      "primary_tileset": "gTileset_Johto_South_Hns",
+      "secondary_tileset": "gTileset_AzaleaTown_Hns",
+      "border_filepath": "data/layouts/Route33_hns/border.bin",
+      "blockdata_filepath": "data/layouts/Route33_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
+      "id": "LAYOUT_ROUTE44_HNS",
+      "name": "Route44_hns_Layout",
+      "width": 78,
+      "height": 36,
+      "primary_tileset": "gTileset_Johto_NorthEast_Hns",
+      "secondary_tileset": "gTileset_CianwoodCity_Hns",
+      "border_filepath": "data/layouts/Route44_hns/border.bin",
+      "blockdata_filepath": "data/layouts/Route44_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
+      "id": "LAYOUT_ROUTE45_HNS",
+      "name": "Route45_hns_Layout",
+      "width": 46,
+      "height": 100,
+      "primary_tileset": "gTileset_Johto_NorthEast_Hns",
+      "secondary_tileset": "gTileset_Blackthorn_Hns",
+      "border_filepath": "data/layouts/Route45_hns/border.bin",
+      "blockdata_filepath": "data/layouts/Route45_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
+      "id": "LAYOUT_PLASTIC_OX_ROUTE20_WEST",
+      "name": "PlasticOx_Route20West_Layout",
+      "width": 66,
+      "height": 20,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General_Frlg",
+      "secondary_tileset": "gTileset_CinnabarIsland",
+      "border_filepath": "data/layouts/PlasticOx_Route20West/border.bin",
+      "blockdata_filepath": "data/layouts/PlasticOx_Route20West/map.bin",
+      "layout_version": "frlg",
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
+      "id": "LAYOUT_PLASTIC_OX_ROUTE20_EAST",
+      "name": "PlasticOx_Route20East_Layout",
+      "width": 54,
+      "height": 20,
+      "border_width": 2,
+      "border_height": 2,
+      "primary_tileset": "gTileset_General_Frlg",
+      "secondary_tileset": "gTileset_CinnabarIsland",
+      "border_filepath": "data/layouts/PlasticOx_Route20East/border.bin",
+      "blockdata_filepath": "data/layouts/PlasticOx_Route20East/map.bin",
+      "layout_version": "frlg",
+      "include_in_versions": [
+        "emerald"
+      ]
     }
   ]
 }

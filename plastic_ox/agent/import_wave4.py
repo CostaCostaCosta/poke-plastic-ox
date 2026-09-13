@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Alpha wave 4 importer: Legs F+G per REGION_PLAN.
+"""Historical pre-v7 importer; topology refers to alpha/LEGACY_REGION_PLAN.md.
+
+Do not use this importer for v7 regeneration: it restores obsolete routes and
+uses legacy item-flag allocation. See alpha/PLAN.md and alpha/audit_alpha.py.
 
 Imports Route7_hns, LavenderTown_hns, Route12_hns, Route21_hns,
 CinnabarIsland_hns; wires the Kanto east chain seams; retargets town

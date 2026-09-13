@@ -1,4 +1,5 @@
 Route31_hns_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_Route31_hns
 	.byte 0
 
 Route31_EventScript_Wade::

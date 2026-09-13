@@ -123,18 +123,13 @@ Pox_IlexRoad::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_POX_STORY_ILEX, Pox_NotReady
-
 msgbox Pox_Text_IlexRoad, MSGBOX_DEFAULT
-
-warp MAP_RUSTBORO_CITY, 16, 20
-	waitstate
 
 releaseall
 	end
 
 Pox_Text_IlexRoad::
-	.string "The trail to RUSTBORO is marked.\nFollow me.$"
+	.string "Follow the northern forest path\nto ROUTE 104 and RUSTBORO.$"
 
 Pox_Roxanne::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -431,9 +426,7 @@ Pox_Clair::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_BADGE07_GET, Pox_NotReady
-
-goto_if_unset FLAG_POX_STORY_SILPH, Pox_NotReady
+goto_if_unset FLAG_POX_STORY_SPACE_CENTER, Pox_NotReady
 
 goto_if_set FLAG_BADGE08_GET, Pox_Done
 
@@ -470,9 +463,7 @@ Pox_ClairGuide::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_BADGE07_GET, Pox_NotReady
-
-goto_if_unset FLAG_POX_STORY_SILPH, Pox_NotReady
+goto_if_unset FLAG_POX_STORY_SPACE_CENTER, Pox_NotReady
 
 msgbox Pox_Text_ClairGuide, MSGBOX_DEFAULT
 
@@ -494,6 +485,24 @@ Pox_MansionKey::
 
 goto_if_unset FLAG_BADGE05_GET, Pox_NotReady
 
+checkitem ITEM_HM04
+	goto_if_eq VAR_RESULT, TRUE, Pox_MansionKey_ITEM_HM04
+	giveitem ITEM_HM04
+	goto_if_eq VAR_RESULT, FALSE, Pox_Release
+Pox_MansionKey_ITEM_HM04::
+
+checkitem ITEM_HM06
+	goto_if_eq VAR_RESULT, TRUE, Pox_MansionKey_ITEM_HM06
+	giveitem ITEM_HM06
+	goto_if_eq VAR_RESULT, FALSE, Pox_Release
+Pox_MansionKey_ITEM_HM06::
+
+checkitem ITEM_HM05
+	goto_if_eq VAR_RESULT, TRUE, Pox_MansionKey_ITEM_HM05
+	giveitem ITEM_HM05
+	goto_if_eq VAR_RESULT, FALSE, Pox_Release
+Pox_MansionKey_ITEM_HM05::
+
 goto_if_set FLAG_POX_MANSION_KEY, Pox_Done
 	giveitem ITEM_SECRET_KEY
 	goto_if_eq VAR_RESULT, FALSE, Pox_Release
@@ -504,7 +513,7 @@ releaseall
 	end
 
 Pox_Text_MansionKey::
-	.string "BLAINE: This MANSION KEY opens\nthe archives. The old records\pmay help you understand what\nFUJI meant.$"
+	.string "BLAINE: This MANSION KEY opens\nthe archives. The old records\pmay help you understand what\nFUJI meant.\pThese STRENGTH, ROCK SMASH and\nFLASH machines will help you\pexplore the caves ahead.$"
 
 Pox_MoonGrunt1::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -873,7 +882,7 @@ Pox_CottageExit::
 
 msgbox Pox_Text_CottageExit, MSGBOX_DEFAULT
 
-warp MAP_FORTREE_CITY, 7, 8
+warp MAP_ROUTE25_HNS, 85, 14
 	waitstate
 
 releaseall
@@ -886,18 +895,13 @@ Pox_CottageGuide::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_BADGE04_GET, Pox_NotReady
-
 msgbox Pox_Text_CottageGuide, MSGBOX_DEFAULT
-
-warp MAP_ROUTE25_BILLS_HOUSE_HNS, 7, 7
-	waitstate
 
 releaseall
 	end
 
 Pox_Text_CottageGuide::
-	.string "The SEA COTTAGE is a short trip\nfrom here.$"
+	.string "BILL's SEA COTTAGE is near\nRUSTBORO, beyond ROUTES 24 and\p25.$"
 
 Pox_TowerGrunt1::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -955,7 +959,8 @@ goto_if_set FLAG_POX_STORY_FUJI, Pox_Done
 
 msgbox Pox_Text_FujiRescue, MSGBOX_DEFAULT
 
-
+giveitem ITEM_HM03
+	goto_if_eq VAR_RESULT, FALSE, Pox_Release
 
 setflag FLAG_POX_STORY_FUJI
 
@@ -963,7 +968,7 @@ releaseall
 	end
 
 Pox_Text_FujiRescue::
-	.string "FUJI: Thank you. They asked\nabout preserving living\pstates... old work I hoped never\nto hear of again.\pThe archives on CINNABAR may\nexplain more. Ask BLAINE for\paccess.\pI'll return to the POKéMON\nHOUSE. Come visit us.$"
+	.string "FUJI: Thank you. They asked\nabout preserving living\pstates... old work I hoped never\nto hear of again.\pThe archives on CINNABAR may\nexplain more. Ask BLAINE for\paccess.\pTake the UNDERGROUND PATH from\nROUTE 8 to ROUTE 7, then cross\pROUTE 103. This SURF machine\nwill help you cross the water.$"
 
 Pox_PokemonTowerExit::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -1306,7 +1311,7 @@ goto_if_set FLAG_POX_STORY_SILPH, Pox_Done
 
 msgbox Pox_Text_SilphCore, MSGBOX_DEFAULT
 
-setflag FLAG_POX_HIDE_SAFFRON_GATE_NPC
+
 
 setflag FLAG_POX_STORY_SILPH
 
@@ -1346,210 +1351,139 @@ releaseall
 	end
 
 Pox_Text_SilphGuide::
-	.string "SILPH needs help. BRUNO is\naccepting challenges at the\pDOJO. You can visit either\nfirst.$"
+	.string "SILPH needs help. BRUNO is\naccepting challenges at the\pDOJO, and the northern road\nleads to CLAIR in BLACKTHORN.\pYou can choose where to go\nfirst.$"
 
 Pox_MoonRoad::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_BADGE01_GET, Pox_NotReady
-
 msgbox Pox_Text_MoonRoad, MSGBOX_DEFAULT
-
-warp MAP_MT_MOON_CAVE_HNS, 10, 11
-	waitstate
 
 releaseall
 	end
 
 Pox_Text_MoonRoad::
-	.string "The mountain trail leads to MT.\nMOON.$"
+	.string "The east road crosses ROUTE 44\nto MT. MOON.$"
 
 Pox_GoldenrodRoad::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_POX_STORY_MTMOON, Pox_NotReady
-
 msgbox Pox_Text_GoldenrodRoad, MSGBOX_DEFAULT
-
-warp MAP_GOLDENROD_CITY_HNS, 25, 14
-	waitstate
 
 releaseall
 	end
 
 Pox_Text_GoldenrodRoad::
-	.string "The road is clear to GOLDENROD.$"
+	.string "The far cave exit leads to ROUTE\n33 and GOLDENROD.$"
 
 Pox_ParkRoad::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
-
 msgbox Pox_Text_ParkRoad, MSGBOX_DEFAULT
-
-warp MAP_NATIONAL_PARK_NORMAL_HNS, 39, 20
-	waitstate
 
 releaseall
 	end
 
 Pox_Text_ParkRoad::
-	.string "Take a break at the NATIONAL\nPARK before ECRUTEAK.$"
+	.string "Take ROUTE 35 north to NATIONAL\nPARK.$"
 
 Pox_EcruteakRoad::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
-
 msgbox Pox_Text_EcruteakRoad, MSGBOX_DEFAULT
-
-warp MAP_ECRUTEAK_CITY_HNS, 35, 44
-	waitstate
 
 releaseall
 	end
 
 Pox_Text_EcruteakRoad::
-	.string "ECRUTEAK lies beyond the park.$"
+	.string "The east exit leads through\nROUTES 36 and 37 to ECRUTEAK.$"
 
 Pox_WeatherRoad::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_BADGE03_GET, Pox_NotReady
-
 msgbox Pox_Text_WeatherRoad, MSGBOX_DEFAULT
-
-warp MAP_ROUTE119_WEATHER_INSTITUTE_1F, 6, 8
-	waitstate
 
 releaseall
 	end
 
 Pox_Text_WeatherRoad::
-	.string "The WEATHER INSTITUTE is asking\nfor a field assistant.$"
+	.string "Take the east road to ROUTE 119\nand the WEATHER INSTITUTE.$"
 
 Pox_LavenderRoad::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_BADGE04_GET, Pox_NotReady
-
 msgbox Pox_Text_LavenderRoad, MSGBOX_DEFAULT
-
-warp MAP_LAVENDER_TOWN_HNS, 12, 11
-	waitstate
 
 releaseall
 	end
 
 Pox_Text_LavenderRoad::
-	.string "The eastern road reaches\nLAVENDER.$"
+	.string "The east road joins ROUTE 110.\nFollow it south to LAVENDER.$"
 
 Pox_CinnabarRoad::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_POX_STORY_FUJI, Pox_NotReady
-
 msgbox Pox_Text_CinnabarRoad, MSGBOX_DEFAULT
-
-warp MAP_CINNABAR_ISLAND_HNS, 37, 29
-	waitstate
 
 releaseall
 	end
 
 Pox_Text_CinnabarRoad::
-	.string "A boat is leaving for CINNABAR.$"
+	.string "Take ROUTE 8 west. The\nUNDERGROUND PATH bypasses closed\pSAFFRON.\pFrom ROUTE 7, cross ROUTE 103 to\nCINNABAR.$"
 
 Pox_MossdeepRoad::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_POX_STORY_MANSION, Pox_NotReady
-
 msgbox Pox_Text_MossdeepRoad, MSGBOX_DEFAULT
-
-warp MAP_MOSSDEEP_CITY, 38, 13
-	waitstate
 
 releaseall
 	end
 
 Pox_Text_MossdeepRoad::
-	.string "Our next port is MOSSDEEP.$"
+	.string "Follow the southern coast\nthrough SEAFOAM ISLANDS to\pMOSSDEEP.$"
 
 Pox_SaffronRoad::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_POX_STORY_SPACE_CENTER, Pox_NotReady
-
 msgbox Pox_Text_SaffronRoad, MSGBOX_DEFAULT
-
-warp MAP_SAFFRON_CITY_HNS, 16, 23
-	waitstate
 
 releaseall
 	end
 
 Pox_Text_SaffronRoad::
-	.string "The mainland service goes to\nSAFFRON.$"
+	.string "The northern coast leads through\nROUTE 19 to SAFFRON.$"
 
 Pox_BlackthornRoad::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_BADGE07_GET, Pox_NotReady
-
-goto_if_unset FLAG_POX_STORY_SILPH, Pox_NotReady
-
 msgbox Pox_Text_BlackthornRoad, MSGBOX_DEFAULT
-
-warp MAP_BLACKTHORN_CITY_HNS, 16, 29
-	waitstate
 
 releaseall
 	end
 
 Pox_Text_BlackthornRoad::
-	.string "With BRUNO defeated and SILPH\nstable, the mountain road to\pBLACKTHORN is open.$"
+	.string "Take SAFFRON's north exit\nthrough ROUTES 5 and 115 and\pMETEOR FALLS to BLACKTHORN.$"
 
 Pox_LeagueRoad::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_BADGE01_GET, Pox_NotReady
-
-goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
-
-goto_if_unset FLAG_BADGE03_GET, Pox_NotReady
-
-goto_if_unset FLAG_BADGE04_GET, Pox_NotReady
-
-goto_if_unset FLAG_BADGE05_GET, Pox_NotReady
-
-goto_if_unset FLAG_BADGE06_GET, Pox_NotReady
-
-goto_if_unset FLAG_BADGE07_GET, Pox_NotReady
-
-goto_if_unset FLAG_BADGE08_GET, Pox_NotReady
-
 msgbox Pox_Text_LeagueRoad, MSGBOX_DEFAULT
-
-warp MAP_PLASTIC_OX_VICTORY_ROAD, 5, 17
-	waitstate
 
 releaseall
 	end
 
 Pox_Text_LeagueRoad::
-	.string "The LEAGUE approach is open to\nholders of all eight BADGES.$"
+	.string "The LEAGUE gate is west of\nECRUTEAK. Bring all eight\pBADGES.$"
 
 Pox_WallaceRoomExit::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -1919,18 +1853,13 @@ Pox_WhirlGuide::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_POX_STORY_MANSION, Pox_NotReady
-
 msgbox Pox_Text_WhirlGuide, MSGBOX_DEFAULT
-
-warp MAP_PLASTIC_OX_WHIRL_ISLANDS, 5, 15
-	waitstate
 
 releaseall
 	end
 
 Pox_Text_WhirlGuide::
-	.string "We can visit the WHIRL ISLANDS\nbefore sailing on to MOSSDEEP.$"
+	.string "SEAFOAM ISLANDS lie along the\ncoast to MOSSDEEP.$"
 
 Pox_VictoryRoad::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End

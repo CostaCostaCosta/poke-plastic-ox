@@ -1,4 +1,5 @@
 Route1_Frlg_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_Route1_Frlg
 	.byte 0
 
 Route1_EventScript_MartClerk::
@@ -61,4 +62,3 @@ Route1_Text_CanJumpFromLedges::
 Route1_Text_RouteSign::
 	.string "ROUTE 1\n"
 	.string "PALLET TOWN - VIRIDIAN CITY$"
-

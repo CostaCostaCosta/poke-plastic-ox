@@ -2065,3 +2065,71 @@ const struct Tileset gTileset_LavenderTown_Hns =
     .metatiles = gMetatiles_LavenderTown_Hns,
     .metatileAttributes = gMetatileAttributes_LavenderTown_Hns,
 };
+
+const struct Tileset gTileset_AzaleaTown_Hns =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_AzaleaTown_Hns,
+    .palettes = gTilesetPalettes_AzaleaTown_Hns,
+    .metatiles = gMetatiles_AzaleaTown_Hns,
+    .metatileAttributes = gMetatileAttributes_AzaleaTown_Hns,
+    .callback = NULL,
+};
+
+#if !IS_FRLG // Plastic Ox v7 native FRLG route assets
+const struct Tileset gTileset_LavenderTown =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_LavenderTown,
+    .palettes = gTilesetPalettes_LavenderTown,
+    .metatiles = gMetatiles_LavenderTown,
+    .metatileAttributes = gMetatileAttributes_LavenderTown,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_FuchsiaCity =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_FuchsiaCity,
+    .palettes = gTilesetPalettes_FuchsiaCity,
+    .metatiles = gMetatiles_FuchsiaCity,
+    .metatileAttributes = gMetatileAttributes_FuchsiaCity,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_CinnabarIsland =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_CinnabarIsland,
+    .palettes = gTilesetPalettes_CinnabarIsland,
+    .metatiles = gMetatiles_CinnabarIsland,
+    .metatileAttributes = gMetatileAttributes_CinnabarIsland,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_SeafoamIslands =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_SeafoamIslands,
+    .palettes = gTilesetPalettes_SeafoamIslands,
+    .metatiles = gMetatiles_SeafoamIslands,
+    .metatileAttributes = gMetatileAttributes_SeafoamIslands,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_UndergroundPath =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_UndergroundPath,
+    .palettes = gTilesetPalettes_UndergroundPath,
+    .metatiles = gMetatiles_UndergroundPath,
+    .metatileAttributes = gMetatileAttributes_UndergroundPath,
+    .callback = NULL,
+};
+#endif

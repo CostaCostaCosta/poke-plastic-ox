@@ -1,4 +1,5 @@
 Route29_hns_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_Route29_hns
 	.byte 0
 
 Route29_EventScript_OldMan::

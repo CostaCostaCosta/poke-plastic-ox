@@ -1,76 +1,116 @@
-# Story Triggers & Dialogue — Plastic Ox Alpha
+# Story Triggers & Dialogue — Plastic Ox Alpha v7
 
-Builds: `gPlasticOxTriggersEnabled` (u8, src/plastic_ox.c new file; declared in
-include/plastic_ox.h). Set 1 in `CB2_InitPlasticOxDemo` path when compiled with
-`PLASTIC_OX_BUILD_TRIGGERS` (Makefile: `make PLASTIC_OX_BUILD=triggers` →
-`pokeemerald-triggers.gba`, define via CFLAGS). Default build = 0.
+Status: v7 target contract with the northern OU access change implemented in
+the existing alpha scripts; full physical migration remains pending. The Pallet
+implementation notes below describe existing work to preserve. Migration order
+and source ambiguities are in [PLAN.md](PLAN.md); physical legs are in
+[REGION_PLAN.md](REGION_PLAN.md).
 
-When 0 (walkable):
-- `src/trainer_see.c`: early-return before any LOS check.
-- `src/wild_encounter.c`: early-return before encounter roll.
-- Trigger-build-only NPCs (guards, story objects) hidden at new game by setting
-  their FLAG_POX_HIDE_* flags inside the same init branch.
+## Authoring and build modes
 
-Every coord_event script begins:
-```asm
-Special_PoxGate::
-	specialvar VAR_RESULT, PoxTriggersEnabled
-	goto_if_eq VAR_RESULT, FALSE, <skip_label>
-	<story logic>
-<skip_label>:
-	release
-	end
-```
-(Helper macro `poxgate <label>` may be added to asm/macros/event.inc to collapse
-the first three lines.)
+Author generated story content in `plastic_ox/alpha/build_story.py`, which
+emits an apply_patch patch. `data/scripts/plastic_ox_story.inc`,
+`plastic_ox/alpha/story_manifest.json`, generated flag definitions and room/event
+data must remain consistent with it. The Pallet script is separately authored
+in `data/scripts/plastic_ox_pallet.inc` and included by the generator.
 
-## Flag scheme
+Keep `gPlasticOxTriggersEnabled` and the existing build initialization contract.
+In the walkable build, story blockers are relaxed and trainer LOS/wild
+encounters disabled. In the trigger build, shared predicates must govern
+physical blockers as well as scripted transport, doors, map callbacks and
+objective access. Recompute visibility on map load from persistent state so
+either objective order, revisits, and save/load produce the same gates.
+Distinguish presentation flags from authoritative completion flags.
 
-`FLAG_POX_STORY_<BEAT>` — one per beat, set when completed. Badges native.
+## Persistent state and gate contract
 
-## Beats (town-by-town test order)
+Existing symbols below are reuse candidates; new symbolic names are proposed
+until M0 allocates unique flags. `story_flags.json` now owns stable story IDs;
+add new allocations there without renumbering or reusing retired entries.
+Do not copy suggested numeric IDs from prose.
+Audit both Plastic Ox flag headers, native/trainer/daily reservations and every
+item placement; preserve gift identities and document save compatibility.
 
-| # | Town/Map | Beat | Test assertion (headless) |
-|---|---|---|---|
-| 0 | Pallet bedroom | Mom heals; exit blocked until starter | walk blocked w/o flag; after event R29 guard gone |
-| 1 | Oak's Lab | Oak/Elm/Birch introduction; choose a level-5 Treecko, Squirtle, or Cyndaquil from the three balls; Pokédex assignment and five Poké Balls | species, six 31 IVs, cancellation, no duplicate gifts, physical ball interaction and revisit |
-| 2 | Cherrygrove | Guide Gent tour dialogue (convergence flavor) + running shoes remark | flags/text |
-| 3 | Ilex Forest | Farfetch'd-style side quest simplified: lost researcher NPC → escort dialogue → FLAG_POX_STORY_ILEX; gate opens Rustboro road | flag set |
-| 4 | Rustboro Gym | Roxanne LC-tier battle (trainers.party entry) → BADGE01 | battle occurs, badge flag set |
-| 5 | Mt. Moon | Rocket I: 2 grunts + "that isn't one of ours" scientist; fossil NPC; FLAG_POX_STORY_MTMOON after grunts beaten | grunts hidden after |
-| 6 | Goldenrod | Bill's family: mother/sister dialogue + Eevee gift #1 (`givemon SPECIES_EEVEE,5`) once; Whitney gym → BADGE02 | eevee in party/PC, badge |
-| 7 | National Park | Bug-catcher flavor NPCs; optional item | traversal only |
-| 8 | Ecruteak | Burned Tower cutscene (Morty dialogue, brief anomaly text), Kimono troupe optional battle → Eevee gift #2; Morty gym → BADGE03 | badges/gifts |
-| 9 | Weather Institute | Scientist explains boundaries still moving; one trainer; FLAG_POX_STORY_WEATHER | flag |
-| 10 | Fortree | Winona gym → BADGE04 | badge |
-| 11 | Sea Cottage | Note + Eevee gift #3; caretaker line about Bill being away | gift |
-| 12 | Lavender/Pokémon Tower | Rocket II: grunts on floors; Fuji rescue dialogue; Fuji house → Eevee gift #4 + points to Cinnabar | flags |
-| 13 | Cinnabar | Blaine gym open immediately → BADGE05 + Mansion Key item; Mansion: archives sign chain + static Entei encounter (optional); FLAG_POX_STORY_MANSION | badge+key |
-| 14 | Whirl Islands | Traversal + rare item | traversal |
-| 15 | Mossdeep | Tate&Liza double battle → BADGE06; Space Center researcher Eevee gift #5 + "traffic converges on Saffron" | badge+gift |
-| 16 | Saffron | Open order: Dojo Bruno → BADGE07; Silph: Rocket III grunts → Giovanni → system shutdown scene FLAG_POX_STORY_SILPH; route gates to Blackthorn need BOTH | both flags gate R26 NPC |
-| 17 | Blackthorn | Clair → BADGE08 | badge |
-| 18 | Victory Road | strong trainers | traversal/battles |
-| 19 | League | Wallace→Steven→Lance→Blue sequential rooms → Champion Bill reveal script + battle TRAINER_PLASTIC_OX_BILL | hall of fame flow |
+| State / predicate | Existing or proposed representation | When set / consumers |
+|---|---|---|
+| Starter, Ilex, Mt. Moon, Weather | Existing `FLAG_POX_STORY_STARTER/ILEX/MTMOON/WEATHER` | Completed opening and route objectives; retain existing starter behavior. |
+| Burned Tower | Existing `FLAG_POX_STORY_BURNED_TOWER` | After the anomaly; returns Morty to Gym. Dance Theater provides the lead; optional troupe battles are not mandatory. |
+| Reached Fortree | Proposed `FLAG_POX_REACHED_FORTREE` | First legitimate arrival through the Morty/Weather route; permanently opens both sides of Route36/110. |
+| Fuji rescued | Existing `FLAG_POX_STORY_FUJI` | Rocket II resolved; directions to Route8 Underground and Cinnabar. |
+| Mansion key / investigation | Existing `FLAG_POX_MANSION_KEY`, `FLAG_POX_STORY_MANSION` | Key delivery after Blaine must retry if bag full; archives completion enables onward sea progression. |
+| Space Center complete | Existing `FLAG_POX_STORY_SPACE_CENTER` | Investigation after badge 6; opens every Saffron surface entrance. |
+| Bruno defeated | Native `FLAG_BADGE07_GET` | Successful Dojo battle; separate from Silph. |
+| Silph resolved | Existing `FLAG_POX_STORY_SILPH` | Giovanni defeated and core shut down; creator unnamed. |
+| Saffron north open | Same Space Center flag as city access | Bruno, Silph and Clair are open-ended OU objectives. Neither badge 7 nor Silph completion gates northern travel, Clair's guide, or her battle. The legacy gate visibility flag is not an access predicate. |
+| League gate open | Derived: all eight `FLAG_BADGE0x_GET` flags | Ecruteak west; badge 8 alone is insufficient in inconsistent/debug saves. |
+| Champion | Existing `FLAG_POX_LEAGUE_BILL` plus audited Hall of Fame completion semantics | Successful finale only; if a separate completed-Champion flag is needed, allocate it explicitly. Opens Lavender harbor and postgame destinations. |
+| Legendary sage defeated | Proposed per-encounter persistent flag | Won sage battle enables that legendary's first-ball guarantee; independent of caught/defeated encounter state and tier eligibility. |
 
-## Trainer parties
+Saffron north truth table: before Space Center → closed for every Bruno/Silph
+combination; after Space Center → open for every combination. Test travel,
+Clair's guide and her battle with neither objective complete, and verify the
+League still requires all eight badges if Clair is defeated before Bruno.
 
-Author in `src/data/trainers.party` (Showdown format; IDs appended in
-`include/constants/opponents.h` as TRAINER_PLASTIC_OX_*). Tier-flavored teams:
-Roxanne LC (unevolved lvl5-ish), Whitney PU, Morty NU, Winona RU, Blaine UU,
-Tate&Liza UUBL doubles, Bruno OU, Clair OU, Rockets themed, E4 canonical-ish,
-Bill: Eeveelution-led balanced OU team.
+## Beats and acceptance
 
-## Dialogue voice rules
+| Order | Place | Target event and required assertions |
+|---|---|---|
+| 0 | Pallet/Oldale | Preserve current starter/professor, supplies, TM/Compendium, IV, Mom and mart flows. Minimal convergence explanation; no Bill/system/Rocket reveal. |
+| 1 | Cherrygrove/Ilex | Casual geographic changes and exploration; no major mystery reveal. Mandatory Ilex route before Roxanne; existing researcher beat may remain if consistent. |
+| 2 | Rustboro | Roxanne LC challenge → badge 1/PU availability. Devon remains ordinary infrastructure. |
+| 2a optional | Route24/25 Cottage | First available gift Eevee; Bill absent, harmless note/caretaker. Return to Route25, never Fortree. Skipping branch does not block story or other gifts. |
+| 3 | Mt. Moon | Rocket I fossil theft and unexplained receiver; grunts and completion before Goldenrod. |
+| 4 | Goldenrod | Whitney PU → badge 2; domestic Bill family dialogue and proposed Eevee gift #2. |
+| 5 | National Park | Mandatory geographic passage, catching/trainer respite; no plot escalation. |
+| 6 | Ecruteak | Dance Theater lead → Burned Tower brief visible restoration → Morty returns → NU Gym/badge 3. No beast release. Optional troupe reward is proposed Eevee #3. |
+| 7 | Weather Institute | Boundaries are still changing; complete investigation on Route119 before forward progression. |
+| 8 | Fortree/Route110 | Arrival opens Route36 shortcut permanently; Winona RU → badge 4; then Lavender. |
+| 9 | Lavender/Tower | Rocket II, Fuji rescue; research directions explicitly name the Underground bypass and Cinnabar archives. Proposed Fuji Eevee #4. South harbor stays closed. |
+| 10 | Underground/Route103 | Traverse around locked Saffron. All city entrances blocked, Underground usable; Oldale/Pallet cannot provide early south access. |
+| 11 | Cinnabar/Mansion | Gym open immediately; Blaine UU → badge 5, retryable key; mandatory archives. Entei UUBL encounter after tier unlock and sage victory, optional capture. |
+| 12 | Seafoam | Mandatory west-to-east dungeon, rare encounters/items, no major exposition; no Surf bypass. |
+| 13 | Mossdeep | Tate & Liza UUBL double battle → badge 6; Space Center finds training-oriented geography and Silph traffic. Completion opens Saffron; proposed Eevee #5. |
+| 14a | Fighting Dojo | Bruno OU → badge 7. Can precede or follow Silph. |
+| 14b | Silph | Rocket III/Giovanni followed by autonomous system shutdown; Rocket did not create it; creator unnamed. Independent of Bruno and Clair; no northern gate side effect. |
+| 15 | Meteor Falls/Blackthorn | Space Center complete → northern OU region → Clair OU/badge 8, even before Bruno/Silph. No renewed villain crisis; dialogue must support Silph still being unresolved. Downhill return available. |
+| 16 | Ecruteak west/Victory Road | All eight badges open League road; exploration and trainers, no direct Blackthorn transport. |
+| 17 | League | Wallace → Steven → Lance → Blue → Champion Bill. Bill's infrastructure role explained only after winning his battle; defeat/retry and Hall of Fame work. |
+| 18 | Lavender harbor | Champion unlock, round-trip ferry/Frontier hub, no pre-Champion entry. Full island content tracked separately in PLAN. |
 
-- Grounded Gen1-3 tone; no fourth wall, no exposition dumps.
-- Locals remark casually on impossible geography ("A Johto coast off Kanto? My
-  grandfather would have fainted.").
-- Bill never named near technology/mystery; family lines domestic & warm;
-  Kimono/Eevee texture without explanation.
-- Rocket: annoyed criminals → curious investigators → power-hungry (3 stages).
-- Each rewritten NPC keeps the SPIRIT of its hns/original line but references the
-  merged region or current story beat.
+The four later Eevee sites retain existing alpha placements as a planning
+choice; v7 fixes only the Cottage as first available and five gifts total.
+Keep gifts optional, once-only, and retryable on full party/storage. Reaching a
+later gift without collecting Cottage must remain valid.
+
+## Legendary sage behavior
+
+Implement a reusable sage/legendary interaction, starting with Mansion Entei.
+A won sage battle and legal species tier enable guaranteed capture on the
+first thrown ball of any usable type. Losing or declining the sage battle
+does not unlock it. Specify and test encounter retry after flee/KO, party and
+PC full conditions, save/load, and repeat interaction after capture. Scope the
+capture override to the authorized static legendary encounter; ordinary wild
+battles must retain normal behavior. Future legendary sites must use the same
+contract; Uber sites remain Champion-only.
+
+## Trainer and dialogue rules
+
+Author parties in the generator's supported trainer source flow and keep
+generated trainer registrations consistent. Gym battle tiers are LC, PU, NU,
+RU, UU, UUBL, OU, OU. Encounter pools, caps and evolution eligibility follow
+the separate encounter specification; do not invent new tier rules here.
+
+Use grounded Gen I–III dialogue. Bill's family/Cottage are ordinary character
+texture. Keep his name away from mystery research until the Champion reveal.
+Rocket escalates from theft to investigation to attempted seizure in exactly
+three main arcs. Burned Tower needs an actual brief visual anomaly; text alone
+is an interim implementation. Mansion and Silph retain the merged world after
+the crisis ends. Blackthorn and League return attention to Trainer progression.
+
+Audit native Gym/HM callbacks, facilities, respawns and shared-interior returns
+for original-game story leakage. Replace obsolete travel services and their
+actors in both generator and checked-in maps. Do not assume a hidden NPC
+means its old warp or map callback is gone.
 
 ## Pallet opening implementation
 

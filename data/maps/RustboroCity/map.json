@@ -15,24 +15,9 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_ROUTE115",
-      "offset": 0,
-      "direction": "up"
-    },
-    {
       "map": "MAP_ROUTE104",
       "offset": 0,
       "direction": "down"
-    },
-    {
-      "map": "MAP_ROUTE116",
-      "offset": 0,
-      "direction": "right"
-    },
-    {
-      "map": "MAP_ROUTE2_HNS",
-      "direction": "up",
-      "offset": -3
     }
   ],
   "object_events": [
@@ -80,7 +65,7 @@
       "x": 21,
       "y": 46,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_WANDER_UP_AND_DOWN",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -168,14 +153,14 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
-      "flag": "FLAG_HIDE_RUSTBORO_CITY_AQUA_GRUNT"
+      "flag": "FLAG_POX_HIDE_UNUSED_ACTOR"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_DEVON_EMPLOYEE",
       "x": 13,
       "y": 34,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -235,7 +220,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
-      "flag": "FLAG_HIDE_RUSTBORO_CITY_SCIENTIST"
+      "flag": "FLAG_POX_HIDE_UNUSED_ACTOR"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BOY_1",
@@ -248,6 +233,19 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "RustboroCity_EventScript_Boy1",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SIGN",
+      "x": 34,
+      "y": 29,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxRegion_rustboro_route44_a_Sign",
       "flag": "0"
     }
   ],
@@ -335,16 +333,28 @@
       "elevation": 0,
       "dest_map": "MAP_RUSTBORO_CITY_HOUSE3",
       "dest_warp_id": "0"
-    },
-    {
-      "x": 6,
-      "y": 3,
-      "elevation": 3,
-      "dest_map": "MAP_RUSTBORO_CITY",
-      "dest_warp_id": "12"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 20,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": 0,
+      "script": "PoxRegion_rustboro_cottage_a"
+    },
+    {
+      "type": "trigger",
+      "x": 35,
+      "y": 30,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": 0,
+      "script": "PoxRegion_rustboro_route44_a"
+    }
+  ],
   "bg_events": [
     {
       "type": "sign",
@@ -425,6 +435,14 @@
       "elevation": 3,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "RustboroCity_EventScript_CuttersHouseSign"
+    },
+    {
+      "type": "sign",
+      "x": 34,
+      "y": 29,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PoxRegion_rustboro_route44_a_Sign"
     }
   ]
 }

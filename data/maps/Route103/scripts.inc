@@ -1,6 +1,5 @@
 Route103_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, Route103_OnTransition
-	map_script MAP_SCRIPT_ON_LOAD, Route103_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_Route103
 	.byte 0
 
 Route103_OnTransition:
@@ -350,4 +349,3 @@ Route103_Text_ShortcutToOldale:
 Route103_Text_RouteSign:
 	.string "ROUTE 103\n"
 	.string "{DOWN_ARROW} OLDALE TOWN$"
-

@@ -3,7 +3,7 @@
   "name": "Route8_Frlg",
   "layout": "LAYOUT_ROUTE8",
   "music": "MUS_RG_ROUTE3",
-  "region": "REGION_KANTO",
+  "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_ROUTE_8",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -14,18 +14,7 @@
   "show_map_name": true,
   "floor_number": 0,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": [
-    {
-      "map": "MAP_SAFFRON_CITY_CONNECTION",
-      "offset": -10,
-      "direction": "left"
-    },
-    {
-      "map": "MAP_LAVENDER_TOWN",
-      "offset": 0,
-      "direction": "right"
-    }
-  ],
+  "connections": [],
   "object_events": [
     {
       "type": "object",
@@ -36,7 +25,7 @@
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "6",
       "script": "Route8_EventScript_Julia",
       "flag": "0"
@@ -50,7 +39,7 @@
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "Route8_EventScript_Rich",
       "flag": "0"
@@ -64,7 +53,7 @@
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "4",
       "script": "Route8_EventScript_Glenn",
       "flag": "0"
@@ -78,7 +67,7 @@
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "Route8_EventScript_Paige",
       "flag": "0"
@@ -92,7 +81,7 @@
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "6",
       "script": "Route8_EventScript_Leslie",
       "flag": "0"
@@ -106,7 +95,7 @@
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "Route8_EventScript_Andrea",
       "flag": "0"
@@ -120,7 +109,7 @@
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "6",
       "script": "Route8_EventScript_Megan",
       "flag": "0"
@@ -134,7 +123,7 @@
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "1",
       "script": "Route8_EventScript_Stan",
       "flag": "0"
@@ -148,7 +137,7 @@
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "4",
       "script": "Route8_EventScript_Aidan",
       "flag": "0"
@@ -190,7 +179,7 @@
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "1",
       "script": "Route8_EventScript_Eli",
       "flag": "0"
@@ -204,7 +193,7 @@
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "1",
       "script": "Route8_EventScript_Anne",
       "flag": "0"
@@ -218,7 +207,7 @@
       "movement_type": "MOVEMENT_TYPE_WALK_SEQUENCE_RIGHT_DOWN_LEFT_UP",
       "movement_range_x": 5,
       "movement_range_y": 2,
-      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "1",
       "script": "Route8_EventScript_Ricardo",
       "flag": "0"
@@ -232,9 +221,35 @@
       "movement_type": "MOVEMENT_TYPE_WALK_SEQUENCE_RIGHT_UP_DOWN_LEFT",
       "movement_range_x": 5,
       "movement_range_y": 5,
-      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "1",
       "script": "Route8_EventScript_Jaren",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SIGN",
+      "x": 70,
+      "y": 9,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxRegion_lavender_route8_b_Sign",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SIGN",
+      "x": 9,
+      "y": 11,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxRegion_route8_saffron_a_Sign",
       "flag": "0"
     }
   ],
@@ -245,16 +260,28 @@
       "elevation": 0,
       "dest_map": "MAP_UNDERGROUND_PATH_EAST_ENTRANCE",
       "dest_warp_id": "1"
-    },
-    {
-      "x": 7,
-      "y": 10,
-      "elevation": 3,
-      "dest_map": "MAP_ROUTE8_WEST_ENTRANCE",
-      "dest_warp_id": "2"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 71,
+      "y": 10,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": 0,
+      "script": "PoxRegion_lavender_route8_b"
+    },
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 10,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": 0,
+      "script": "PoxRegion_route8_saffron_a"
+    }
+  ],
   "bg_events": [
     {
       "type": "sign",
@@ -270,7 +297,7 @@
       "y": 10,
       "elevation": 3,
       "item": "ITEM_RAWST_BERRY",
-      "flag": "FLAG_HIDDEN_ITEM_ROUTE8_RAWST_BERRY",
+      "flag": "FLAG_POX_HIDDEN_V7_46",
       "quantity": 1,
       "underfoot": false
     },
@@ -280,7 +307,7 @@
       "y": 11,
       "elevation": 3,
       "item": "ITEM_LUM_BERRY",
-      "flag": "FLAG_HIDDEN_ITEM_ROUTE8_LUM_BERRY",
+      "flag": "FLAG_POX_HIDDEN_V7_47",
       "quantity": 1,
       "underfoot": false
     },
@@ -290,9 +317,25 @@
       "y": 15,
       "elevation": 3,
       "item": "ITEM_LEPPA_BERRY",
-      "flag": "FLAG_HIDDEN_ITEM_ROUTE8_LEPPA_BERRY",
+      "flag": "FLAG_POX_HIDDEN_V7_48",
       "quantity": 1,
       "underfoot": false
+    },
+    {
+      "type": "sign",
+      "x": 70,
+      "y": 9,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PoxRegion_lavender_route8_b_Sign"
+    },
+    {
+      "type": "sign",
+      "x": 9,
+      "y": 11,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PoxRegion_route8_saffron_a_Sign"
     }
   ]
 }

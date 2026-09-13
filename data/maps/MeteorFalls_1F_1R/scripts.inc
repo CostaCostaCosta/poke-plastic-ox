@@ -1,5 +1,5 @@
 MeteorFalls_1F_1R_MapScripts::
-	map_script MAP_SCRIPT_ON_LOAD, MeteorFalls_1F_1R_OnLoad
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_MeteorFalls_1F_1R
 	.byte 0
 
 MeteorFalls_1F_1R_OnLoad:

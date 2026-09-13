@@ -1,6 +1,11 @@
 # Region rendering review — 2026-09-10
 
-The reproducible layout is [region_layout.svg](../region_layout.svg), generated
+This is a historical pre-v7 audit. Current targets are in the
+[v7 implementation plan](../alpha/PLAN.md). The previous `region_layout.svg`
+has been removed; it can be regenerated as a view of implemented ROM data and
+must not be confused with the authored `plastic_ox_topology.svg` design.
+
+The audited layout was `region_layout.svg`, generated
 from map JSON, layout dimensions, connection offsets, warp events, and direct
 story-script cave warps by `render_region_layout.py`. It includes 46 surface
 maps, four caves, eight ordinary directed cave warps, and seven story-script

@@ -13,7 +13,7 @@
   "allow_running": true,
   "show_map_name": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": null,
+  "connections": [],
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_MAN_3",
@@ -66,7 +66,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "VictoryRoad_1F_EventScript_EntranceWally",
-      "flag": "FLAG_HIDE_VICTORY_ROAD_ENTRANCE_WALLY"
+      "flag": "FLAG_POX_HIDE_UNUSED_ACTOR"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
@@ -105,7 +105,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "VictoryRoad_1F_EventScript_ExitWally",
-      "flag": "FLAG_HIDE_VICTORY_ROAD_EXIT_WALLY"
+      "flag": "FLAG_POX_HIDE_UNUSED_ACTOR"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_5",
@@ -132,6 +132,32 @@
       "trainer_sight_or_berry_tree_id": "2",
       "script": "VictoryRoad_1F_EventScript_Quincy",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SIGN",
+      "x": 13,
+      "y": 39,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxRegion_ecruteak_league_b_Sign",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SIGN",
+      "x": 37,
+      "y": 4,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxRegion_victory_indigo_a_Sign",
+      "flag": "0"
     }
   ],
   "warp_events": [
@@ -139,15 +165,15 @@
       "x": 15,
       "y": 40,
       "elevation": 3,
-      "dest_map": "MAP_EVER_GRANDE_CITY",
-      "dest_warp_id": "2"
+      "dest_map": "MAP_VICTORY_ROAD_1F",
+      "dest_warp_id": "0"
     },
     {
       "x": 39,
       "y": 5,
       "elevation": 3,
-      "dest_map": "MAP_EVER_GRANDE_CITY",
-      "dest_warp_id": "3"
+      "dest_map": "MAP_VICTORY_ROAD_1F",
+      "dest_warp_id": "1"
     },
     {
       "x": 21,
@@ -174,21 +200,21 @@
   "coord_events": [
     {
       "type": "trigger",
-      "x": 2,
-      "y": 23,
-      "elevation": 4,
-      "var": "VAR_VICTORY_ROAD_1F_STATE",
-      "var_value": "0",
-      "script": "VictoryRoad_1F_EventScript_WallyBattleTrigger1"
+      "x": 15,
+      "y": 39,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": 0,
+      "script": "PoxRegion_ecruteak_league_b"
     },
     {
       "type": "trigger",
-      "x": 3,
-      "y": 23,
-      "elevation": 4,
-      "var": "VAR_VICTORY_ROAD_1F_STATE",
-      "var_value": "0",
-      "script": "VictoryRoad_1F_EventScript_WallyBattleTrigger2"
+      "x": 38,
+      "y": 5,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": 0,
+      "script": "PoxRegion_victory_indigo_a"
     }
   ],
   "bg_events": [
@@ -199,6 +225,22 @@
       "elevation": 4,
       "item": "ITEM_ULTRA_BALL",
       "flag": "FLAG_HIDDEN_ITEM_VICTORY_ROAD_1F_ULTRA_BALL"
+    },
+    {
+      "type": "sign",
+      "x": 13,
+      "y": 39,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PoxRegion_ecruteak_league_b_Sign"
+    },
+    {
+      "type": "sign",
+      "x": 37,
+      "y": 4,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PoxRegion_victory_indigo_a_Sign"
     }
   ]
 }

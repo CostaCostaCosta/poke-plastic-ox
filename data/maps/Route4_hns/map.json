@@ -1,130 +1,124 @@
 {
-    "id": "MAP_ROUTE4_HNS",
-    "name": "Route4_hns",
-    "layout": "LAYOUT_ROUTE4_HNS",
-    "music": "MUS_RG_ROUTE3",
-    "region_map_section": "MAPSEC_ROUTE_4",
-    "requires_flash": false,
-    "weather": "WEATHER_NONE",
-    "map_type": "MAP_TYPE_ROUTE",
-    "allow_cycling": true,
-    "allow_escaping": false,
-    "allow_running": true,
-    "show_map_name": true,
-    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-    "connections": [
-        {
-            "map": "MAP_ROUTE3_HNS",
-            "direction": "down",
-            "offset": -60
-        }
-    ],
-    "object_events": [
-        {
-            "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-            "x": 94,
-            "y": 3,
-            "elevation": 0,
-            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "trainer_type": "TRAINER_TYPE_NONE",
-            "trainer_sight_or_berry_tree_id": "0",
-            "script": "Route4_EventScript_Item1",
-            "flag": "FLAG_POX_HIDDEN_ROUTE4_1"
-        },
-        {
-            "graphics_id": "OBJ_EVENT_GFX_PICNICKER_HNS",
-            "x": 67,
-            "y": 4,
-            "elevation": 0,
-            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "movement_range_x": 7,
-            "movement_range_y": 4,
-            "trainer_type": "TRAINER_TYPE_NORMAL",
-            "trainer_sight_or_berry_tree_id": "4",
-            "script": "Route4_EventScript_Npc2",
-            "flag": "0"
-        },
-        {
-            "graphics_id": "OBJ_EVENT_GFX_ROCKER",
-            "x": 57,
-            "y": 8,
-            "elevation": 0,
-            "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-            "movement_range_x": 7,
-            "movement_range_y": 4,
-            "trainer_type": "TRAINER_TYPE_NORMAL",
-            "trainer_sight_or_berry_tree_id": "4",
-            "script": "Route4_EventScript_Npc3",
-            "flag": "0"
-        },
-        {
-            "graphics_id": "OBJ_EVENT_GFX_PICNICKER_HNS",
-            "x": 61,
-            "y": 17,
-            "elevation": 0,
-            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "movement_range_x": 7,
-            "movement_range_y": 5,
-            "trainer_type": "TRAINER_TYPE_NORMAL",
-            "trainer_sight_or_berry_tree_id": "4",
-            "script": "Route4_EventScript_Npc4",
-            "flag": "0"
-        },
-        {
-            "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
-            "x": 4,
-            "y": 4,
-            "elevation": 0,
-            "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-            "movement_range_x": 0,
-            "movement_range_y": 0,
-            "trainer_type": "TRAINER_TYPE_NONE",
-            "trainer_sight_or_berry_tree_id": "0",
-            "script": "Route4_EventScript_Item5",
-            "flag": "FLAG_POX_HIDDEN_ROUTE4_5"
-        },
-        {
-            "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
-            "x": 50,
-            "y": 3,
-            "elevation": 3,
-            "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
-            "movement_range_x": 3,
-            "movement_range_y": 3,
-            "trainer_type": "TRAINER_TYPE_NONE",
-            "trainer_sight_or_berry_tree_id": "0",
-            "script": "Route4_EventScript_Npc6",
-            "flag": "0"
-        }
-    ],
-    "warp_events": [
-        {
-            "x": 18,
-            "y": 9,
-            "elevation": 0,
-            "dest_map": "MAP_MT_MOON_CAVE_HNS",
-            "dest_warp_id": "0"
-        },
-        {
-            "x": 16,
-            "y": 10,
-            "elevation": 3,
-            "dest_map": "MAP_GOLDENROD_CITY_HNS",
-            "dest_warp_id": "2"
-        }
-    ],
-    "coord_events": [],
-    "bg_events": [
-        {
-            "type": "hidden_item",
-            "x": 4,
-            "y": 10,
-            "elevation": 0,
-            "item": "ITEM_BIG_MUSHROOM",
-            "flag": "FLAG_POX_HIDDEN_ROUTE4_22"
-        }
-    ],
-    "region": "REGION_HOENN"
+  "id": "MAP_ROUTE4_HNS",
+  "name": "Route4_hns",
+  "layout": "LAYOUT_ROUTE4_HNS",
+  "music": "MUS_RG_ROUTE3",
+  "region_map_section": "MAPSEC_ROUTE_4",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 94,
+      "y": 3,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route4_EventScript_Item1",
+      "flag": "FLAG_POX_HIDDEN_ROUTE4_1"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_PICNICKER_HNS",
+      "x": 67,
+      "y": 4,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 7,
+      "movement_range_y": 4,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "4",
+      "script": "Route4_EventScript_Npc2",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ROCKER",
+      "x": 57,
+      "y": 8,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 7,
+      "movement_range_y": 4,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "4",
+      "script": "Route4_EventScript_Npc3",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_PICNICKER_HNS",
+      "x": 61,
+      "y": 17,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 7,
+      "movement_range_y": 5,
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "4",
+      "script": "Route4_EventScript_Npc4",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 4,
+      "y": 4,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route4_EventScript_Item5",
+      "flag": "FLAG_POX_HIDDEN_ROUTE4_5"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT",
+      "x": 50,
+      "y": 3,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_WALK_IN_PLACE_DOWN",
+      "movement_range_x": 3,
+      "movement_range_y": 3,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route4_EventScript_Npc6",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 18,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_MT_MOON_CAVE_HNS",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 16,
+      "y": 10,
+      "elevation": 3,
+      "dest_map": "MAP_GOLDENROD_CITY_HNS",
+      "dest_warp_id": "2"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "hidden_item",
+      "x": 4,
+      "y": 10,
+      "elevation": 0,
+      "item": "ITEM_BIG_MUSHROOM",
+      "flag": "FLAG_POX_HIDDEN_ROUTE4_22"
+    }
+  ],
+  "region": "REGION_HOENN"
 }

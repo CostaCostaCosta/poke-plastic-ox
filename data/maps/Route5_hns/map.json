@@ -1,21 +1,84 @@
 {
-    "id": "MAP_ROUTE5_HNS",
-    "name": "Route5_hns",
-    "layout": "LAYOUT_ROUTE5_HNS",
-    "music": "MUS_RG_ROUTE3",
-    "region_map_section": "MAPSEC_ROUTE_5",
-    "requires_flash": false,
-    "weather": "WEATHER_NONE",
-    "map_type": "MAP_TYPE_ROUTE",
-    "allow_cycling": true,
-    "allow_escaping": false,
-    "allow_running": true,
-    "show_map_name": true,
-    "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-    "connections": [],
-    "object_events": [],
-    "warp_events": [],
-    "coord_events": [],
-    "bg_events": [],
-    "region": "REGION_HOENN"
+  "id": "MAP_ROUTE5_HNS",
+  "name": "Route5_hns",
+  "layout": "LAYOUT_ROUTE5_HNS",
+  "music": "MUS_RG_ROUTE3",
+  "region_map_section": "MAPSEC_ROUTE_5",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SIGN",
+      "x": 31,
+      "y": 37,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxRegion_saffron_route5_b_Sign",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SIGN",
+      "x": 31,
+      "y": 1,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxRegion_route5_route115_a_Sign",
+      "flag": "0"
+    }
+  ],
+  "warp_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 32,
+      "y": 38,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": 0,
+      "script": "PoxRegion_saffron_route5_b"
+    },
+    {
+      "type": "trigger",
+      "x": 32,
+      "y": 0,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_GATE",
+      "var_value": 0,
+      "script": "PoxRegion_route5_route115_a"
+    }
+  ],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 31,
+      "y": 37,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PoxRegion_saffron_route5_b_Sign"
+    },
+    {
+      "type": "sign",
+      "x": 31,
+      "y": 1,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PoxRegion_route5_route115_a_Sign"
+    }
+  ],
+  "region": "REGION_HOENN"
 }

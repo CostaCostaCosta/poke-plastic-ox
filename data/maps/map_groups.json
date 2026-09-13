@@ -79,7 +79,8 @@
     "gMapGroup_PlasticOxInteriors",
     "gMapGroup_PlasticOxJohtoKanto",
     "gMapGroup_PlasticOxDungeons",
-    "gMapGroup_PlasticOxStory"
+    "gMapGroup_PlasticOxStory",
+    "gMapGroup_PlasticOxV7"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",
@@ -1242,5 +1243,13 @@
     "PlasticOx_BillRoom",
     "PlasticOx_WhirlIslands",
     "PlasticOx_VictoryRoad"
+  ],
+  "gMapGroup_PlasticOxV7": [
+    "Route33_hns",
+    "Route44_hns",
+    "Route45_hns",
+    "PlasticOx_Route20West",
+    "PlasticOx_Route20East",
+    "PlasticOx_Harbor"
   ]
 }

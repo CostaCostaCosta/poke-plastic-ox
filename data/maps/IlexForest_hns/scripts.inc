@@ -1,4 +1,5 @@
 IlexForest_hns_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_IlexForest_hns
 	.byte 0
 
 IlexForest_EventScript_Npc1::

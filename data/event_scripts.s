@@ -1814,3 +1814,26 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/PlasticOx_BillRoom/scripts.inc"
 	.include "data/maps/PlasticOx_WhirlIslands/scripts.inc"
 	.include "data/maps/PlasticOx_VictoryRoad/scripts.inc"
+	.include "data/maps/Route33_hns/scripts.inc"
+	.include "data/maps/Route44_hns/scripts.inc"
+	.include "data/maps/Route45_hns/scripts.inc"
+	.include "data/scripts/plastic_ox_region.inc"
+	.include "data/maps/PlasticOx_Harbor/scripts.inc"
+	.include "data/maps/PlasticOx_Route20West/scripts.inc"
+	.include "data/maps/PlasticOx_Route20East/scripts.inc"
+
+@ Plastic Ox v7 FRLG modules (Emerald inclusion).
+.if !IS_FRLG
+	.include "data/maps/Route1_Frlg/scripts.inc"
+	.include "data/maps/Route8_Frlg/scripts.inc"
+	.include "data/maps/Route19_Frlg/scripts.inc"
+	.include "data/maps/Route20_Frlg/scripts.inc"
+	.include "data/maps/UndergroundPath_EastEntrance_Frlg/scripts.inc"
+	.include "data/maps/UndergroundPath_WestEntrance_Frlg/scripts.inc"
+	.include "data/maps/UndergroundPath_EastWestTunnel_Frlg/scripts.inc"
+	.include "data/maps/SeafoamIslands_1F_Frlg/scripts.inc"
+	.include "data/maps/SeafoamIslands_B1F_Frlg/scripts.inc"
+	.include "data/maps/SeafoamIslands_B2F_Frlg/scripts.inc"
+	.include "data/maps/SeafoamIslands_B3F_Frlg/scripts.inc"
+	.include "data/maps/SeafoamIslands_B4F_Frlg/scripts.inc"
+.endif

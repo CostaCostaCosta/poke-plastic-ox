@@ -111,4 +111,6 @@ extern const struct Tileset gTileset_VioletCity_Hns;
 extern const struct Tileset gTileset_Lavaridge_Hns;
 extern const struct Tileset gTileset_LavenderTown_Hns;
 
+extern const struct Tileset gTileset_AzaleaTown_Hns;
+
 #endif //GUARD_tilesets_H

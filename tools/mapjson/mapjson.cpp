@@ -472,16 +472,22 @@ string generate_groups_text(Json groups_data, vector<string> &invalid_maps) {
     for (auto &key : groups_data["group_order"].array_items()) {
         string group = json_to_string(key);
         vector<string> valid_maps;
+        bool has_valid_map = false;
         auto maps = groups_data[group].array_items();
         for (Json &map_name : maps) {
             string map_name_str = json_to_string(map_name);
             auto it = find(invalid_maps.begin(), invalid_maps.end(), map_name_str);
             if (it == invalid_maps.end()) {
                 valid_maps.push_back(map_name_str);
+                has_valid_map = true;
+            } else {
+                // Map constants keep original indices, even when only part
+                // of a cross-version group is included in this ROM.
+                valid_maps.push_back("NULL");
             }
         }
 
-        if (valid_maps.size() > 0) {
+        if (has_valid_map) {
             text << group << "::\n";
             for (string map : valid_maps)
                 text << "\t.4byte " << map << "\n";
