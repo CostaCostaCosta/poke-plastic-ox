@@ -1558,7 +1558,7 @@ const struct Tileset gTileset_Johto_General_Hns =
     .palettes = gTilesetPalettes_Johto_General_Hns,
     .metatiles = gMetatiles_Johto_General_Hns,
     .metatileAttributes = gMetatileAttributes_Johto_General_Hns,
-    .callback = NULL,
+    .callback = InitTilesetAnim_JohtoGeneral,
 };
 
 const struct Tileset gTileset_Kanto_General_Hns =
@@ -1569,7 +1569,7 @@ const struct Tileset gTileset_Kanto_General_Hns =
     .palettes = gTilesetPalettes_Kanto_General_Hns,
     .metatiles = gMetatiles_Kanto_General_Hns,
     .metatileAttributes = gMetatileAttributes_Kanto_General_Hns,
-    .callback = NULL,
+    .callback = InitTilesetAnim_JohtoGeneral,
 };
 
 const struct Tileset gTileset_Johto_South_Hns =
@@ -1580,7 +1580,7 @@ const struct Tileset gTileset_Johto_South_Hns =
     .palettes = gTilesetPalettes_Johto_South_Hns,
     .metatiles = gMetatiles_Johto_South_Hns,
     .metatileAttributes = gMetatileAttributes_Johto_South_Hns,
-    .callback = NULL,
+    .callback = InitTilesetAnim_JohtoGeneral,
 };
 
 const struct Tileset gTileset_Johto_Building_Hns =
@@ -1613,7 +1613,7 @@ const struct Tileset gTileset_Johto_NorthEast_Hns =
     .palettes = gTilesetPalettes_Johto_NorthEast_Hns,
     .metatiles = gMetatiles_Johto_NorthEast_Hns,
     .metatileAttributes = gMetatileAttributes_Johto_NorthEast_Hns,
-    .callback = NULL,
+    .callback = InitTilesetAnim_JohtoGeneral,
 };
 
 const struct Tileset gTileset_NewBarkTown_Hns =
@@ -1745,7 +1745,7 @@ const struct Tileset gTileset_NationalPark_Hns =
     .palettes = gTilesetPalettes_NationalPark_Hns,
     .metatiles = gMetatiles_NationalPark_Hns,
     .metatileAttributes = gMetatileAttributes_NationalPark_Hns,
-    .callback = NULL,
+    .callback = InitTilesetAnim_NationalPark,
 };
 
 const struct Tileset gTileset_EcruteakCity_Gym_Hns =
@@ -2035,6 +2035,7 @@ const struct Tileset gTileset_Johto_NorthWest_Hns =
  .palettes = gTilesetPalettes_Johto_NorthWest_Hns,
  .metatiles = gMetatiles_Johto_NorthWest_Hns,
  .metatileAttributes = gMetatileAttributes_Johto_NorthWest_Hns,
+ .callback = InitTilesetAnim_JohtoGeneral,
 };
 const struct Tileset gTileset_VioletCity_Hns =
 {
@@ -2142,4 +2143,76 @@ const struct Tileset gTileset_UndergroundPath =
     .metatileAttributes = gMetatileAttributes_UndergroundPath,
     .callback = NULL,
 };
+// LeoB ORAS: compatible Hoenn variants; see plastic_ox/assets/hoenn_provenance.md.
+const struct Tileset gTileset_HoennOrasGeneral = {
+    .isCompressed = TRUE, .isSecondary = FALSE,
+    .tiles = gTilesetTiles_HoennOrasGeneral, .palettes = gTilesetPalettes_HoennOrasGeneral,
+    .metatiles = gMetatiles_HoennOrasGeneral, .metatileAttributes = gMetatileAttributes_HoennOrasGeneral,
+    .callback = InitTilesetAnim_HoennOrasGeneral,
+};
+
+const struct Tileset gTileset_HoennOrasPetalburg = {
+    .isCompressed = TRUE, .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennOrasPetalburg, .palettes = gTilesetPalettes_HoennOrasPetalburg,
+    .metatiles = gMetatiles_HoennOrasPetalburg, .metatileAttributes = gMetatileAttributes_HoennOrasPetalburg,
+    .callback = InitTilesetAnim_Petalburg,
+};
+
+const struct Tileset gTileset_HoennOrasRustboro = {
+    .isCompressed = TRUE, .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennOrasRustboro, .palettes = gTilesetPalettes_HoennOrasRustboro,
+    .metatiles = gMetatiles_HoennOrasRustboro, .metatileAttributes = gMetatileAttributes_HoennOrasRustboro,
+    .callback = InitTilesetAnim_HoennOrasRustboro,
+};
+
+const struct Tileset gTileset_HoennOrasMauville = {
+    .isCompressed = TRUE, .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennOrasMauville, .palettes = gTilesetPalettes_HoennOrasMauville,
+    .metatiles = gMetatiles_HoennOrasMauville, .metatileAttributes = gMetatileAttributes_HoennOrasMauville,
+    .callback = InitTilesetAnim_Mauville,
+};
+
+const struct Tileset gTileset_HoennOrasFallarbor = {
+    .isCompressed = TRUE, .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennOrasFallarbor, .palettes = gTilesetPalettes_HoennOrasFallarbor,
+    .metatiles = gMetatiles_HoennOrasFallarbor, .metatileAttributes = gMetatileAttributes_HoennOrasFallarbor,
+    .callback = InitTilesetAnim_Fallarbor,
+};
+
+const struct Tileset gTileset_HoennOrasFortree = {
+    .isCompressed = TRUE, .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennOrasFortree, .palettes = gTilesetPalettes_HoennOrasFortree,
+    .metatiles = gMetatiles_HoennOrasFortree, .metatileAttributes = gMetatileAttributes_HoennOrasFortree,
+    .callback = InitTilesetAnim_Fortree,
+};
+
+const struct Tileset gTileset_HoennOrasMossdeep = {
+    .isCompressed = TRUE, .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennOrasMossdeep, .palettes = gTilesetPalettes_HoennOrasMossdeep,
+    .metatiles = gMetatiles_HoennOrasMossdeep, .metatileAttributes = gMetatileAttributes_HoennOrasMossdeep,
+    .callback = InitTilesetAnim_Mossdeep,
+};
 #endif
+
+
+const struct Tileset gTileset_HoennOrasBattleFrontierOutsideWest = {
+    .isCompressed = TRUE, .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennOrasBattleFrontierOutsideWest, .palettes = gTilesetPalettes_HoennOrasBattleFrontierOutsideWest,
+    .metatiles = gMetatiles_HoennOrasBattleFrontierOutsideWest, .metatileAttributes = gMetatileAttributes_HoennOrasBattleFrontierOutsideWest,
+    .callback = InitTilesetAnim_BattleFrontierOutsideWest,
+};
+
+const struct Tileset gTileset_HoennOrasBattleFrontierOutsideEast = {
+    .isCompressed = TRUE, .isSecondary = TRUE,
+    .tiles = gTilesetTiles_HoennOrasBattleFrontierOutsideEast, .palettes = gTilesetPalettes_HoennOrasBattleFrontierOutsideEast,
+    .metatiles = gMetatiles_HoennOrasBattleFrontierOutsideEast, .metatileAttributes = gMetatileAttributes_HoennOrasBattleFrontierOutsideEast,
+    .callback = InitTilesetAnim_BattleFrontierOutsideEast,
+};
+
+// Frontier's donor reserves palette 12 for buildings and uses small trees.
+const struct Tileset gTileset_HoennOrasFrontierGeneral = {
+    .isCompressed = TRUE, .isSecondary = FALSE,
+    .tiles = gTilesetTiles_HoennOrasGeneral, .palettes = gTilesetPalettes_HoennOrasGeneral,
+    .metatiles = gMetatiles_HoennOrasFrontierGeneral, .metatileAttributes = gMetatileAttributes_HoennOrasGeneral,
+    .callback = InitTilesetAnim_HoennOrasGeneral,
+};

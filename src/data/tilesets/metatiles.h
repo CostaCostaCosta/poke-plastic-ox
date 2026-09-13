@@ -628,4 +628,34 @@ const u16 gMetatileAttributes_SeafoamIslands[] = INCBIN_U16("data/tilesets/secon
 const u16 gMetatiles_UndergroundPath[] = INCBIN_U16("data/tilesets/secondary/underground_path_frlg/metatiles.bin");
 
 const u16 gMetatileAttributes_UndergroundPath[] = INCBIN_U16("data/tilesets/secondary/underground_path_frlg/metatile_attributes.bin");
+// LeoB ORAS: compatible Hoenn variants; see plastic_ox/assets/hoenn_provenance.md.
+const u16 gMetatiles_HoennOrasGeneral[] = INCBIN_U16("data/tilesets/primary/hoenn_oras_general/metatiles.bin");
+const u16 gMetatileAttributes_HoennOrasGeneral[] = INCBIN_U16("data/tilesets/primary/hoenn_oras_general/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennOrasPetalburg[] = INCBIN_U16("data/tilesets/secondary/hoenn_oras_petalburg/metatiles.bin");
+const u16 gMetatileAttributes_HoennOrasPetalburg[] = INCBIN_U16("data/tilesets/secondary/hoenn_oras_petalburg/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennOrasRustboro[] = INCBIN_U16("data/tilesets/secondary/hoenn_oras_rustboro/metatiles.bin");
+const u16 gMetatileAttributes_HoennOrasRustboro[] = INCBIN_U16("data/tilesets/secondary/hoenn_oras_rustboro/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennOrasMauville[] = INCBIN_U16("data/tilesets/secondary/hoenn_oras_mauville/metatiles.bin");
+const u16 gMetatileAttributes_HoennOrasMauville[] = INCBIN_U16("data/tilesets/secondary/hoenn_oras_mauville/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennOrasFallarbor[] = INCBIN_U16("data/tilesets/secondary/hoenn_oras_fallarbor/metatiles.bin");
+const u16 gMetatileAttributes_HoennOrasFallarbor[] = INCBIN_U16("data/tilesets/secondary/hoenn_oras_fallarbor/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennOrasFortree[] = INCBIN_U16("data/tilesets/secondary/hoenn_oras_fortree/metatiles.bin");
+const u16 gMetatileAttributes_HoennOrasFortree[] = INCBIN_U16("data/tilesets/secondary/hoenn_oras_fortree/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennOrasMossdeep[] = INCBIN_U16("data/tilesets/secondary/hoenn_oras_mossdeep/metatiles.bin");
+const u16 gMetatileAttributes_HoennOrasMossdeep[] = INCBIN_U16("data/tilesets/secondary/hoenn_oras_mossdeep/metatile_attributes.bin");
 #endif
+
+
+const u16 gMetatiles_HoennOrasBattleFrontierOutsideWest[] = INCBIN_U16("data/tilesets/secondary/hoenn_oras_battle_frontier_outside_west/metatiles.bin");
+const u16 gMetatileAttributes_HoennOrasBattleFrontierOutsideWest[] = INCBIN_U16("data/tilesets/secondary/hoenn_oras_battle_frontier_outside_west/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennOrasBattleFrontierOutsideEast[] = INCBIN_U16("data/tilesets/secondary/hoenn_oras_battle_frontier_outside_east/metatiles.bin");
+const u16 gMetatileAttributes_HoennOrasBattleFrontierOutsideEast[] = INCBIN_U16("data/tilesets/secondary/hoenn_oras_battle_frontier_outside_east/metatile_attributes.bin");
+
+const u16 gMetatiles_HoennOrasFrontierGeneral[] = INCBIN_U16("data/tilesets/primary/hoenn_oras_general/frontier_metatiles.bin");

@@ -113,4 +113,16 @@ extern const struct Tileset gTileset_LavenderTown_Hns;
 
 extern const struct Tileset gTileset_AzaleaTown_Hns;
 
+// Plastic Ox: LeoB ORAS Hoenn variants.
+extern const struct Tileset gTileset_HoennOrasGeneral;
+extern const struct Tileset gTileset_HoennOrasPetalburg;
+extern const struct Tileset gTileset_HoennOrasRustboro;
+extern const struct Tileset gTileset_HoennOrasMauville;
+extern const struct Tileset gTileset_HoennOrasFallarbor;
+extern const struct Tileset gTileset_HoennOrasFortree;
+extern const struct Tileset gTileset_HoennOrasMossdeep;
+
+extern const struct Tileset gTileset_HoennOrasBattleFrontierOutsideWest;
+extern const struct Tileset gTileset_HoennOrasBattleFrontierOutsideEast;
+extern const struct Tileset gTileset_HoennOrasFrontierGeneral;
 #endif //GUARD_tilesets_H
