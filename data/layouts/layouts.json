@@ -5497,7 +5497,10 @@
       "secondary_tileset": "gTileset_CinnabarIsland",
       "border_filepath": "data/layouts/CinnabarIsland_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/CinnabarIsland_Frlg/map.bin",
-      "layout_version": "frlg"
+      "layout_version": "frlg",
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_INDIGO_PLATEAU_EXTERIOR",
@@ -5808,7 +5811,10 @@
       "secondary_tileset": "gTileset_PalletTown",
       "border_filepath": "data/layouts/Route21_North_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/Route21_North_Frlg/map.bin",
-      "layout_version": "frlg"
+      "layout_version": "frlg",
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ROUTE22",
@@ -6250,7 +6256,10 @@
       "secondary_tileset": "gTileset_PokemonMansion",
       "border_filepath": "data/layouts/PokemonMansion_1F_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/PokemonMansion_1F_Frlg/map.bin",
-      "layout_version": "frlg"
+      "layout_version": "frlg",
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_POKEMON_MANSION_2F",
@@ -7246,7 +7255,10 @@
       "secondary_tileset": "gTileset_CinnabarIsland",
       "border_filepath": "data/layouts/Route21_South_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/Route21_South_Frlg/map.bin",
-      "layout_version": "frlg"
+      "layout_version": "frlg",
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_ENTRANCE_2F",

@@ -145,14 +145,22 @@ def starter_tests():
         assert g.flag('FLAG_POX_LAB_INTRO')
         assert g.flag('FLAG_POX_STORY_STARTER') and g.flag('FLAG_SYS_POKEDEX_GET')
         assert g.flag('FLAG_POX_STARTER_SUPPLIES')
+        assert g.flag('FLAG_POX_ELM_EXP_ALL')
         assert g.flag('FLAG_POX_ELM_TMS')
+        pocket_size = g.sizes['gBagPockets'] // 5
+        ball_slots = g.u32(g.syms['gBagPockets'] + pocket_size)
+        balls = {g.u16(ball_slots + 4 * i): g.u16(ball_slots + 4 * i + 2) for i in range(64)}
+        empty_quantity = next(g.u16(ball_slots + 4 * i + 2) for i in range(64) if g.u16(ball_slots + 4 * i) == 0)
+        assert balls.get(1,0) ^ empty_quantity == 5, 'Oak did not give five Poke Balls'
         pocket = g.syms['gBagPockets'] + 2 * (g.sizes['gBagPockets'] // 5)
         slots = g.u32(pocket)
         tm_items = {g.u16(slots + 4 * i) for i in range(64)}
         assert set(range(582, 632)).issubset(tm_items), 'missing TMs'
         key_pocket = g.syms['gBagPockets'] + 4 * (g.sizes['gBagPockets'] // 5)
         key_slots = g.u32(key_pocket)
-        assert 874 in {g.u16(key_slots + 4 * i) for i in range(64)}, 'missing Move Compendium'
+        key_items = {g.u16(key_slots + 4 * i) for i in range(64)}
+        assert 461 in key_items, 'missing EXP Share'
+        assert 874 in key_items, 'missing Move Compendium'
         for other in ['Treecko','Squirtle','Cyndaquil','Oak','Elm','Birch']:
             g.run('Pox_'+other)
             assert g.count()==1,'starter duplicated'
@@ -182,6 +190,13 @@ def starter_tests():
     assert g.count()==0,'lab entrance forced a starter'
     assert (g.state()['x'], g.state()['y']) == (6, 6), 'player did not approach Oak'
     data=json.loads((ROOT/'data/maps/PalletTown_ProfessorOaksLab_Frlg/map.json').read_text())
+    story_objects = {obj['script']: obj for obj in data['object_events'] if obj['script'].startswith('Pox_')}
+    assert (story_objects['Pox_Oak']['x'],story_objects['Pox_Oak']['y']) == (6,4)
+    assert (story_objects['Pox_Elm']['x'],story_objects['Pox_Elm']['y']) == (3,6)
+    assert (story_objects['Pox_Birch']['x'],story_objects['Pox_Birch']['y']) == (11,6)
+    assert story_objects['Pox_Elm']['flag'] == 'FLAG_POX_ELM_EXP_ALL'
+    assert story_objects['Pox_Birch']['flag'] == 'FLAG_POX_ELM_TMS'
+    assert all(story_objects[name]['flag'] == '0' for name in ['Pox_Treecko','Pox_Squirtle','Pox_Cyndaquil'])
     for obj in data['object_events']:
         if obj['script'] in ['Pox_Oak','Pox_Elm','Pox_Birch','Pox_Treecko','Pox_Squirtle','Pox_Cyndaquil']:
             ox,oy=obj['x'],obj['y']
@@ -194,6 +209,7 @@ def starter_tests():
         if g.flag('FLAG_POX_STARTER_SUPPLIES') and g.u8(g.syms['sGlobalScriptContextStatus'])==2:
             break
     assert g.count()==1 and g.party_species()==7,'middle ball must give Squirtle'
+    assert g.flag('FLAG_POX_ELM_EXP_ALL') and g.flag('FLAG_POX_ELM_TMS'), 'visiting professors did not finish their gifts'
     g.shot('pallet_lab_starter.png')
     g.warp('PalletTown_Frlg',16,14)
     g.warp('PalletTown_ProfessorOaksLab_Frlg',6,11)
@@ -206,6 +222,19 @@ def starter_tests():
         assert (g.state()['group'],g.state()['num'])==(75,0),('lab exit failed',exit_x,g.describe())
         assert g.bottom_whiteness() < 0.95,('lab exit remained blank',exit_x,g.hash())
     print('Lab entry, every professor/ball reachable, physical middle-ball choice, all three exits PASS',flush=True)
+
+    g=StoryGame()
+    g.run('Pox_Squirtle')
+    mon=g.syms['gParties']
+    max_hp=g.u16(mon+0x58)
+    g.write(mon+0x56,1,2)
+    g.run('PalletTown_PlayersHouse_1F_EventScript_Mom')
+    assert g.var(0x40FF)==1 and g.u16(mon+0x56)==1, 'Mom healed during her first conversation'
+    g.run('PalletTown_PlayersHouse_1F_EventScript_Mom')
+    assert g.u16(mon+0x56)==max_hp, 'Mom did not heal on a later conversation'
+    daisy=(ROOT/'data/maps/PalletTown_RivalsHouse_Frlg/scripts.inc').read_text()
+    assert "My TOWN MAP doesn't work" in daisy
+    print('Mom first talk is dialogue-only, later healing works, and Daisy reports her broken map PASS',flush=True)
 
 
 def iv_tests():

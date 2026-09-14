@@ -4,7 +4,7 @@ from test_story import StoryGame, ROOT
 from walklib import K
 from walk_demo import object_tiles
 
-CUT = 876
+CUT_KEY = 876
 
 
 def finish(g):
@@ -25,7 +25,7 @@ def key_items(g):
 def cut_quantity_raw(g):
     pocket = g.syms['gBagPockets'] + 4 * (g.sizes['gBagPockets']//5)
     slots = g.u32(pocket)
-    return g.u16(slots+4*key_items(g).index(CUT)+2)
+    return g.u16(slots+4*key_items(g).index(CUT_KEY)+2)
 
 
 def tree(g):
@@ -51,7 +51,7 @@ def main():
     g.tap(K.KEY_LEFT, hold=2, wait=20)
     g.tap(K.KEY_A, hold=2, wait=20)
     finish(g)
-    assert key_items(g).count(CUT) == 1, key_items(g)
+    assert key_items(g).count(CUT_KEY) == 1, key_items(g)
     before = key_items(g)
     quantity = cut_quantity_raw(g)
     g.tap(K.KEY_A, hold=2, wait=20)
@@ -67,25 +67,25 @@ def main():
     g.tap(K.KEY_A, hold=2, wait=20)
     finish(g)
     assert (11, 13) not in object_tiles(g), 'Direct interaction failed'
-    assert CUT in key_items(g), 'Tool was consumed'
+    assert CUT_KEY in key_items(g), 'Cut Key was consumed'
     out = ROOT/'plastic_ox/demo/shots'
     g.fb.to_pil().convert('RGB').save(out/'cut_tool_direct.png')
 
     # Reload the map to restore its temporary tree, then exercise the normal
     # registered-item task and field callback through the Select button.
     tree(g)
-    g.write(int(g.state()['ptr'], 16)+0x496, CUT, 2)
+    g.write(int(g.state()['ptr'], 16)+0x496, CUT_KEY, 2)
     g.tap(K.KEY_SELECT, hold=2, wait=60)
     finish(g)
     assert (11, 13) not in object_tiles(g), 'Registered item failed'
-    assert CUT in key_items(g) and g.count() == 0
+    assert CUT_KEY in key_items(g) and g.count() == 0
     assert not g.flag('FLAG_BADGE01_GET')
     g.fb.to_pil().convert('RGB').save(out/'cut_tool_registered.png')
     # Using the registered tool while facing empty ground must fail cleanly.
     g.tap(K.KEY_SELECT, hold=2, wait=60)
     finish(g)
-    assert CUT in key_items(g) and (11, 13) not in object_tiles(g)
-    print('PASS: Cutter gift, legacy-HM migration, no duplicate, direct and registered Cut, reusable with zero badges and zero Pokemon')
+    assert CUT_KEY in key_items(g) and (11, 13) not in object_tiles(g)
+    print('PASS: Cutter gives Cut Key; no duplicate; direct and registered Cut work with zero badges and zero Pokemon')
 
 
 if __name__ == '__main__':

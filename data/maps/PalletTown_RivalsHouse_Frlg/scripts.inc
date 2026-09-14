@@ -19,16 +19,15 @@ PalletTown_RivalsHouse_EventScript_Picture::
 	end
 
 PalletTown_RivalsHouse_Text_Daisy::
-	.string "DAISY: The road north leads to\n"
-	.string "ROUTE 101 and OLDALE TOWN.\p"
-	.string "There is a POKéMON CENTER there.\n"
-	.string "CHERRYGROVE is farther west.\p"
-	.string "BLUE is already out exploring.\n"
-	.string "Travel at your own pace, okay?$"
+	.string "DAISY: My TOWN MAP doesn't work\n"
+	.string "anymore!\p"
+	.string "All the roads lead somewhere new.\n"
+	.string "I suppose you'll have to make your\n"
+	.string "own map as you explore!$"
 
 PalletTown_RivalsHouse_Text_TownMap::
-	.string "It's a map of PALLET TOWN and the\n"
-	.string "nearby roads.$"
+	.string "It's DAISY's old TOWN MAP. The\n"
+	.string "nearby roads no longer match it.$"
 
 PalletTown_RivalsHouse_Text_Bookshelf::
 	.string "Books about POKéMON fill the shelf.$"

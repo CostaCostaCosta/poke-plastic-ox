@@ -39,6 +39,8 @@ LEGS={
  'central':('GoldenrodCity_hns',(28,37),['goldenrod_route35_a','route35_park_a','park_route36_a',
      ('seam','N','Route37_hns'),'route37_ecruteak_a','ecruteak_route119_a','route119_fortree_a','fortree_route110_a','route110_lavender_a']),
  'underground':('LavenderTown_hns',(9,7),['lavender_route8_a',('warp',0),('warp',3),('warp',1),'underground_return_6','route7_route103_a','route103_cinnabar_a']),
+ 'coast':('PalletTown_Frlg',(12,18),[('surfwarp','S','Route21_North_Frlg',(7,18)),('seam','S','Route21_South_Frlg'),
+     ('seam','S','CinnabarIsland_Frlg')]),
  'north':('MossdeepCity',(28,17),['mossdeep_route19_a','route19_saffron_a','saffron_route5_a','route5_route115_a',('warp',0),'meteor_blackthorn_a','blackthorn_route45_a','route45_route46_a',('warp',2),('warp',0)]),
  'postgame':('LavenderTown_hns',(9,7),['lavender_harbor_a','harbor_frontier_a','harbor_frontier_b','lavender_harbor_b']),
 }
@@ -148,7 +150,10 @@ def setup():
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('leg',choices=LEGS);args=parser.parse_args()
-    name,xy,steps=LEGS[args.leg];g=setup();g.test_water=args.leg not in ('early','central','route2');g.warp(name,*xy)
+    name,xy,steps=LEGS[args.leg];g=setup();g.test_water=args.leg not in ('early','central','route2')
+    if args.leg == 'coast':
+        g.flag('FLAG_POX_TRIGGERS_ENABLED',False);g.flag('FLAG_BADGE05_GET',True)
+    g.warp(name,*xy)
     out=ROOT/'plastic_ox/demo/shots/region_walk';out.mkdir(exist_ok=True)
     for index,step in enumerate(steps):
         print(index,current(g),g.state()['x'],g.state()['y'],'->',step,flush=True)
@@ -168,6 +173,10 @@ def main():
                     edge=(direction=='N' and y==0) or (direction=='S' and y==sg.h-1) or (direction=='W' and x==0) or (direction=='E' and x==sg.w-1)
                     return edge and sg.passable(x,y,g.test_water) and dg.passable(tx,ty,g.test_water)
                 navigate(g,open_seam)
+                cross(g,direction,dest)
+            elif step[0]=='surfwarp':
+                _,direction,dest,approach=step
+                navigate(g,lambda x,y:(x,y)==approach)
                 cross(g,direction,dest)
             else:
                 w=MAPS[current(g)]['warp_events'][step[1]];dest=BYID[w['dest_map']]

@@ -310,12 +310,39 @@
     },
     {
       "type": "trigger",
-      "x": 12,
+      "x": 7,
       "y": 19,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
+      "var": "VAR_TEMP_0",
       "var_value": 0,
-      "script": "PoxRegion_pallet_coast_a"
+      "script": "PalletTown_SurfToRoute21"
+    },
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 19,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": 0,
+      "script": "PalletTown_SurfToRoute21"
+    },
+    {
+      "type": "trigger",
+      "x": 9,
+      "y": 19,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": 0,
+      "script": "PalletTown_SurfToRoute21"
+    },
+    {
+      "type": "trigger",
+      "x": 10,
+      "y": 19,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": 0,
+      "script": "PalletTown_SurfToRoute21"
     }
   ],
   "bg_events": [

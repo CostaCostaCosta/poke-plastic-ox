@@ -1858,3 +1858,23 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 .if !IS_FRLG
 	.include "data/maps/Route2_EastBuilding_Frlg/scripts.inc"
 .endif
+
+.if !IS_FRLG
+	.include "data/maps/Route21_North_Frlg/scripts.inc"
+.endif
+
+.if !IS_FRLG
+	.include "data/maps/Route21_South_Frlg/scripts.inc"
+.endif
+
+.if !IS_FRLG
+	.include "data/maps/CinnabarIsland_Frlg/scripts.inc"
+.endif
+
+.if !IS_FRLG
+	.include "data/maps/PokemonMansion_1F_Frlg/scripts.inc"
+.endif
+
+.if !IS_FRLG
+	.include "data/scripts/pokemon_mansion.inc"
+.endif

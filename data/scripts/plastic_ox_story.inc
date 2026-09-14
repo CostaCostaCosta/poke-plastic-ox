@@ -316,7 +316,7 @@ Pox_BlaineGymExit::
 
 msgbox Pox_Text_BlaineGymExit, MSGBOX_DEFAULT
 
-warp MAP_CINNABAR_ISLAND_HNS, 37, 29
+warp MAP_CINNABAR_ISLAND, 11, 10
 	waitstate
 
 releaseall
@@ -961,8 +961,16 @@ goto_if_set FLAG_POX_STORY_FUJI, Pox_Done
 
 msgbox Pox_Text_FujiRescue, MSGBOX_DEFAULT
 
-giveitem ITEM_HM03
+checkitem ITEM_SURF_KEY
+	goto_if_eq VAR_RESULT, TRUE, Pox_FujiRescue_HasSurfKey
+	giveitem ITEM_SURF_KEY
 	goto_if_eq VAR_RESULT, FALSE, Pox_Release
+Pox_FujiRescue_HasSurfKey::
+	checkitem ITEM_HM03
+	goto_if_eq VAR_RESULT, TRUE, Pox_FujiRescue_HasRewards
+	giveitem ITEM_HM03
+	goto_if_eq VAR_RESULT, FALSE, Pox_Release
+Pox_FujiRescue_HasRewards::
 
 setflag FLAG_POX_STORY_FUJI
 
@@ -970,7 +978,7 @@ releaseall
 	end
 
 Pox_Text_FujiRescue::
-	.string "FUJI: Thank you. They asked\nabout preserving living\pstates... old work I hoped never\nto hear of again.\pThe archives on CINNABAR may\nexplain more. Ask BLAINE for\paccess.\pTake the UNDERGROUND PATH from\nROUTE 8 to ROUTE 7, then cross\pROUTE 103. This SURF machine\nwill help you cross the water.$"
+	.string "FUJI: Thank you. They asked\nabout preserving living\pstates... old work I hoped never\nto hear of again.\pThe archives on CINNABAR may\nexplain more. Ask BLAINE for\paccess.\pTake the UNDERGROUND PATH from\nROUTE 8 to ROUTE 7, then cross\pROUTE 103. This SURF KEY and HM\nwill help you cross the water.$"
 
 Pox_PokemonTowerExit::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -1146,7 +1154,7 @@ Pox_MansionExit::
 
 msgbox Pox_Text_MansionExit, MSGBOX_DEFAULT
 
-warp MAP_CINNABAR_ISLAND_HNS, 40, 22
+warp MAP_CINNABAR_ISLAND, 14, 5
 	waitstate
 
 releaseall
@@ -1842,7 +1850,7 @@ Pox_WhirlIslandsExit::
 
 msgbox Pox_Text_WhirlIslandsExit, MSGBOX_DEFAULT
 
-warp MAP_CINNABAR_ISLAND_HNS, 37, 29
+warp MAP_CINNABAR_ISLAND, 12, 12
 	waitstate
 
 releaseall

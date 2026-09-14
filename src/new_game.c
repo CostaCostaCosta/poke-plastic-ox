@@ -258,9 +258,13 @@ void NewGameInitData(void)
     FlagSet(FLAG_ADVENTURE_STARTED);
     FlagSet(FLAG_POX_HIDE_UNUSED_ACTOR);
 
-    // Set this after the save block has been initialized, never before its
-    // pointers are installed or before ResetAllMapFlags clears the flags.
-#ifdef PLASTIC_OX_BUILD_TRIGGERS
+    // The authored Plastic Ox story is the normal game flow. Keep only the
+    // dedicated battle-demo build in its open-world fixture state. Set this
+    // after the save block has been initialized, never before its pointers are
+    // installed or before ResetAllMapFlags clears the flags.
+    // Normal and trigger-test ROMs both run the authored region encounters,
+    // trainers, and gates. The battle demo deliberately suppresses them.
+#ifndef PLASTIC_OX_BUILD_BATTLE
     FlagSet(FLAG_POX_TRIGGERS_ENABLED);
 #else
     FlagSet(FLAG_POX_HIDE_STORY_NPCS);
@@ -344,7 +348,7 @@ void CB2_InitPlasticOxDemo(void)
 {
     // Deterministic demo boot: initialize a fresh save in memory and enter the
     // Pallet bedroom directly, bypassing copyright/title/new-game naming UI.
-#ifdef PLASTIC_OX_BUILD_TRIGGERS
+#ifndef PLASTIC_OX_BUILD_BATTLE
     gPlasticOxTriggersEnabled = TRUE;
 #else
     gPlasticOxTriggersEnabled = FALSE;

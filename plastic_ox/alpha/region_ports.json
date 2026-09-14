@@ -571,17 +571,6 @@
     ],
     "direction": "E"
   },
-  "route103_cinnabar_b": {
-    "tile": [
-      36,
-      12
-    ],
-    "approach": [
-      35,
-      12
-    ],
-    "direction": "E"
-  },
   "pallet_coast_b": {
     "tile": [
       37,
@@ -592,17 +581,6 @@
       13
     ],
     "direction": "N"
-  },
-  "cinnabar_sea_a": {
-    "tile": [
-      48,
-      21
-    ],
-    "approach": [
-      47,
-      21
-    ],
-    "direction": "E"
   },
   "saffron_route5_a": {
     "tile": [
@@ -777,6 +755,28 @@
     "approach": [
       11,
       13
+    ],
+    "direction": "E"
+  },
+  "route103_cinnabar_b": {
+    "tile": [
+      12,
+      12
+    ],
+    "approach": [
+      12,
+      13
+    ],
+    "direction": "N"
+  },
+  "cinnabar_sea_a": {
+    "tile": [
+      23,
+      10
+    ],
+    "approach": [
+      22,
+      10
     ],
     "direction": "E"
   },

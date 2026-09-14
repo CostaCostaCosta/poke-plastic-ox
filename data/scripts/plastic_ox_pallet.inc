@@ -130,18 +130,19 @@ Pox_StarterReceived::
     setflag FLAG_SYS_POKEDEX_GET
     special EnableNationalPokedex
     setflag FLAG_POX_HIDE_R29_GUARD
-    removeobject LOCALID_BULBASAUR_BALL
-    removeobject LOCALID_SQUIRTLE_BALL
-    removeobject LOCALID_CHARMANDER_BALL
     playfanfare MUS_OBTAIN_ITEM
     msgbox Pox_Text_ReceivedStarter, MSGBOX_DEFAULT
     waitfanfare
+    playfanfare MUS_RG_OBTAIN_KEY_ITEM
     msgbox Pox_Text_Assignment, MSGBOX_DEFAULT
-    msgbox Pox_Text_ElmAdvice, MSGBOX_DEFAULT
-    msgbox Pox_Text_BirchAdvice, MSGBOX_DEFAULT
+    waitfanfare
     call Pox_StarterSupplies
+    msgbox Pox_Text_ElmAdvice, MSGBOX_DEFAULT
     call Pox_ElmExpAll
+    call Pox_ElmLeave
+    msgbox Pox_Text_BirchAdvice, MSGBOX_DEFAULT
     call Pox_ElmTMs
+    call Pox_BirchLeave
     msgbox Pox_Text_OakAfter, MSGBOX_DEFAULT
     releaseall
     end
@@ -170,10 +171,8 @@ Pox_Oak::
     release
     end
 Pox_OakAfter::
-
-call Pox_StarterSupplies
-
-msgbox Pox_Text_OakAfter, MSGBOX_DEFAULT
+    call Pox_StarterSupplies
+    msgbox Pox_Text_OakAfter, MSGBOX_DEFAULT
     release
     end
 
@@ -188,14 +187,17 @@ Pox_Elm::
     end
 Pox_ElmAfter::
     call Pox_ElmExpAll
-    call Pox_ElmTMs
-    msgbox Pox_Text_ElmAfter, MSGBOX_DEFAULT
+    goto_if_set FLAG_POX_ELM_EXP_ALL, Pox_ElmDepartAfterTalk
+    release
+    end
+Pox_ElmDepartAfterTalk::
+    call Pox_ElmLeave
     release
     end
 
 Pox_ElmExpAll::
     goto_if_set FLAG_POX_ELM_EXP_ALL, Pox_ElmExpAllDone
-    additem ITEM_EXP_ALL
+    additem ITEM_EXP_SHARE
     goto_if_eq VAR_RESULT, FALSE, Pox_ElmExpAllFull
     setflag FLAG_POX_ELM_EXP_ALL
     setflag FLAG_POX_EXP_ALL
@@ -209,10 +211,10 @@ Pox_ElmExpAllFull::
     return
 
 Pox_Text_ElmExpAll::
-    .string "ELM: Take this EXP. ALL. Every\nPOKéMON in your party will receive\pthe full Exp. from battle!$"
+    .string "ELM: Take this EXP. SHARE. Every\nPOKéMON in your party will receive\pthe full Exp. from battle!$"
 
 Pox_Text_ElmExpAllFull::
-    .string "ELM: Make room in your KEY ITEMS\npocket, then speak to me again. I\pstill have your EXP. ALL.$"
+    .string "ELM: Make room in your KEY ITEMS\npocket, then speak to me again. I\pstill have your EXP. SHARE.$"
 
 Pox_Birch::
     goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -224,8 +226,12 @@ Pox_Birch::
     release
     end
 Pox_BirchAfter::
-
-msgbox Pox_Text_BirchAfter, MSGBOX_DEFAULT
+    call Pox_ElmTMs
+    goto_if_set FLAG_POX_ELM_TMS, Pox_BirchDepartAfterTalk
+    release
+    end
+Pox_BirchDepartAfterTalk::
+    call Pox_BirchLeave
     release
     end
 
@@ -245,19 +251,19 @@ Pox_Text_TakeYourTime::
 	.string "OAK: No hurry! Get to know all\nthree before you decide.$"
 
 Pox_Text_AlreadyChosen::
-	.string "OAK: You've chosen your\npartner. ELM, BIRCH and I will\pcare for the other two.$"
+	.string "OAK: You've chosen your\npartner. The other two are safe\pin their POKé BALLS here.$"
 
 Pox_Text_ReceivedStarter::
 	.string "{PLAYER} received {STR_VAR_1}!$"
 
 Pox_Text_Assignment::
-	.string "OAK: And this is your POKéDEX!\nIt records the POKéMON you see\pand catch.\pIt can record species from all\nthree regions.\pWould you help us learn which\nPOKéMON live along the new\proads?\pMeet POKéMON, visit towns, and\nchallenge GYMS if you like.\pCome tell us what you find!$"
+	.string "OAK: And this is your POKéDEX!\nIt records the POKéMON you see\pand catch.\p{PLAYER} received the POKéDEX!\pIt can record species from all\nthree regions.\pWould you help us learn which\nPOKéMON live along the new\proads?\pMeet POKéMON, visit towns, and\nchallenge GYMS if you like.\pCome tell us what you find!$"
 
 Pox_Text_ElmAdvice::
-	.string "ELM: Watch how your partner\ngrows. Even a short journey\pcan teach you both a great\ndeal.\pIf it gets tired, visit a\nPOKéMON CENTER. Your mother\pcan help you rest here, too.$"
+	.string "ELM: Watch how your partner\ngrows. Even a short journey\pcan teach you both a great\ndeal.\pI brought something that will\nhelp your whole team grow.$"
 
 Pox_Text_BirchAdvice::
-	.string "BIRCH: Wild POKéMON live in\ntall grass. Weaken one in\pbattle, then try a POKé BALL!\pLook around and enjoy\nyourself. There's no need to\prush past everything!$"
+	.string "BIRCH: Wild POKéMON live in\ntall grass. Weaken one in\pbattle, then try a POKé BALL!\pTake these TMs and my MOVE\nCOMPENDIUM. They'll help you\pexperiment with new moves!$"
 
 Pox_Text_Supplies::
 	.string "OAK: Here are five POKé BALLS\nto get you started!\p{PLAYER} put the POKé BALLS in\nthe BAG.$"
@@ -278,10 +284,10 @@ Pox_Text_OakAfter::
 	.string "OAK: Head north through ROUTE\n101 to OLDALE TOWN.\pThe road west of OLDALE leads\ntoward CHERRYGROVE.\pOur lab is always open. Enjoy\nyour journey, {PLAYER}!$"
 
 Pox_Text_ElmAfter::
-	.string "ELM: How is your partner\nsettling in?\pTry different moves as it\ngrows. Learning what works is\ppart of being a TRAINER.$"
+	.string "ELM: I should return to my own\nlab in JOHTO. Take good care of\pyour new partner!$"
 
 Pox_Text_BirchAfter::
-	.string "BIRCH: Noticed any POKéMON in\nunexpected habitats?\pThat's exactly the sort of\nthing we're recording. Your\pPOKéDEX will be a big help!$"
+	.string "BIRCH: Time for me to get back\nto fieldwork in HOENN! Record\pevery unexpected habitat you\nfind.$"
 
 Pox_ElmTMs::
     goto_if_set FLAG_POX_ELM_TMS, Pox_ElmTMsDone
@@ -553,8 +559,52 @@ Pox_ElmCompendiumFull::
     msgbox Pox_Text_ElmCompendiumFull, MSGBOX_DEFAULT
     return
 Pox_Text_ElmTMs::
-    .string "ELM: Here is a full set of TMs!\nI've included a MOVE COMPENDIUM\pfor level, Egg, and tutor moves.\p{PLAYER} received every TM and the\nMOVE COMPENDIUM!$"
+    .string "BIRCH: Here is a full set of TMs!\nI've included a MOVE COMPENDIUM\pfor level, Egg, and tutor moves.\p{PLAYER} received every TM and the\nMOVE COMPENDIUM!$"
 Pox_Text_ElmTMsFull::
-    .string "ELM: Make room in your TM\npocket, then speak to me.\pI'll give you the rest!$"
+    .string "BIRCH: Make room in your TM\npocket, then speak to me.\pI'll give you the rest!$"
 Pox_Text_ElmCompendiumFull::
-    .string "ELM: Make room in your KEY ITEMS\npocket, then speak to me again.$"
+    .string "BIRCH: Make room in your KEY ITEMS\npocket, then speak to me again.$"
+
+Pox_ElmLeave::
+    goto_if_unset FLAG_POX_ELM_EXP_ALL, Pox_ElmLeaveDone
+    msgbox Pox_Text_ElmAfter, MSGBOX_DEFAULT
+    applymovement 12, Pox_ElmLeaveMovement
+    waitmovement 0
+    removeobject 12
+Pox_ElmLeaveDone::
+    return
+
+Pox_BirchLeave::
+    goto_if_unset FLAG_POX_ELM_TMS, Pox_BirchLeaveDone
+    msgbox Pox_Text_BirchAfter, MSGBOX_DEFAULT
+    applymovement 13, Pox_BirchLeaveMovement
+    waitmovement 0
+    removeobject 13
+Pox_BirchLeaveDone::
+    return
+
+Pox_ElmLeaveMovement:
+    walk_right
+    walk_right
+    walk_down
+    walk_down
+    walk_down
+    walk_down
+    walk_down
+    walk_down
+    walk_down
+    step_end
+
+Pox_BirchLeaveMovement:
+    walk_left
+    walk_left
+    walk_left
+    walk_left
+    walk_down
+    walk_down
+    walk_down
+    walk_down
+    walk_down
+    walk_down
+    walk_down
+    step_end

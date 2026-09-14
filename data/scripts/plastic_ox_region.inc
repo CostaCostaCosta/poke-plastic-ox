@@ -110,6 +110,46 @@ Route19_EventScript_Luc::
 	msgbox Route19_Text_LucPostBattle, MSGBOX_NPC
 	end
 
+Route21_North_EventScript_Ronald::
+	msgbox Route21_North_Text_RonaldPostBattle, MSGBOX_NPC
+	end
+
+Route21_North_EventScript_Wade::
+	msgbox Route21_North_Text_WadePostBattle, MSGBOX_NPC
+	end
+
+Route21_North_EventScript_Spencer::
+	msgbox Route21_North_Text_SpencerPostBattle, MSGBOX_NPC
+	end
+
+Route21_North_EventScript_Lil::
+	msgbox Route21_North_Text_LilPostBattle, MSGBOX_NPC
+	end
+
+Route21_North_EventScript_Ian::
+	msgbox Route21_North_Text_IanPostBattle, MSGBOX_NPC
+	end
+
+Route21_South_EventScript_Claude::
+	msgbox Route21_South_Text_ClaudePostBattle, MSGBOX_NPC
+	end
+
+Route21_South_EventScript_Nolan::
+	msgbox Route21_South_Text_NolanPostBattle, MSGBOX_NPC
+	end
+
+Route21_South_EventScript_Jack::
+	msgbox Route21_South_Text_JackPostBattle, MSGBOX_NPC
+	end
+
+Route21_South_EventScript_Jerome::
+	msgbox Route21_South_Text_JeromePostBattle, MSGBOX_NPC
+	end
+
+Route21_South_EventScript_Roland::
+	msgbox Route21_South_Text_RolandPostBattle, MSGBOX_NPC
+	end
+
 SeafoamIslands_1F_EventScript_ItemIceHeal::
 	finditem ITEM_ICE_HEAL
 	end
@@ -1015,7 +1055,7 @@ PoxRegion_route103_cinnabar_a::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route103_cinnabar_a_Open
 	goto_if_unset FLAG_POX_STORY_FUJI, PoxRegion_route103_cinnabar_a_Closed
 PoxRegion_route103_cinnabar_a_Open::
-	warp MAP_CINNABAR_ISLAND_HNS, 35, 12
+	warp MAP_CINNABAR_ISLAND, 12, 13
 	waitstate
 	releaseall
 	end
@@ -1043,42 +1083,16 @@ PoxRegion_route103_cinnabar_b_Open::
 	end
 PoxRegion_route103_cinnabar_b_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_CINNABAR_ISLAND_HNS, 35, 12
+	warp MAP_CINNABAR_ISLAND, 12, 13
 	waitstate
 	releaseall
 	end
 
-PoxRegion_pallet_coast_a::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_pallet_coast_a_Open
-	goto_if_unset FLAG_POX_STORY_MANSION, PoxRegion_pallet_coast_a_Closed
-PoxRegion_pallet_coast_a_Open::
-	warp MAP_CINNABAR_ISLAND_HNS, 37, 13
-	waitstate
-	releaseall
+PoxRegion_route103_cinnabar_b_Sign::
+	msgbox PoxRegion_route103_cinnabar_b_Text, MSGBOX_SIGN
 	end
-PoxRegion_pallet_coast_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_PALLET_TOWN, 11, 19
-	waitstate
-	releaseall
-	end
-
-PoxRegion_pallet_coast_b::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_pallet_coast_b_Open
-	goto_if_unset FLAG_POX_STORY_MANSION, PoxRegion_pallet_coast_b_Closed
-PoxRegion_pallet_coast_b_Open::
-	warp MAP_PALLET_TOWN, 11, 19
-	waitstate
-	releaseall
-	end
-PoxRegion_pallet_coast_b_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_CINNABAR_ISLAND_HNS, 37, 13
-	waitstate
-	releaseall
-	end
+PoxRegion_route103_cinnabar_b_Text::
+	.string "Route103\nMarked passage ahead.$"
 
 PoxRegion_cinnabar_sea_a::
 	lockall
@@ -1091,7 +1105,7 @@ PoxRegion_cinnabar_sea_a_Open::
 	end
 PoxRegion_cinnabar_sea_a_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_CINNABAR_ISLAND_HNS, 47, 21
+	warp MAP_CINNABAR_ISLAND, 22, 10
 	waitstate
 	releaseall
 	end
@@ -1107,7 +1121,7 @@ PoxRegion_cinnabar_sea_b::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_cinnabar_sea_b_Open
 	goto_if_unset FLAG_POX_STORY_MANSION, PoxRegion_cinnabar_sea_b_Closed
 PoxRegion_cinnabar_sea_b_Open::
-	warp MAP_CINNABAR_ISLAND_HNS, 47, 21
+	warp MAP_CINNABAR_ISLAND, 22, 10
 	waitstate
 	releaseall
 	end
@@ -1734,8 +1748,8 @@ PoxRegion_Arrival_CherrygroveCity_hns::
 PoxRegion_Arrival_CherrygroveCity_hns_End::
 	end
 
-PoxRegion_Arrival_CinnabarIsland_hns::
-PoxRegion_Arrival_CinnabarIsland_hns_End::
+PoxRegion_Arrival_CinnabarIsland_Frlg::
+PoxRegion_Arrival_CinnabarIsland_Frlg_End::
 	end
 
 PoxRegion_Arrival_EcruteakCity_hns::
@@ -1833,6 +1847,14 @@ PoxRegion_Arrival_Route119_End::
 
 PoxRegion_Arrival_Route19_Frlg::
 PoxRegion_Arrival_Route19_Frlg_End::
+	end
+
+PoxRegion_Arrival_Route21_North_Frlg::
+PoxRegion_Arrival_Route21_North_Frlg_End::
+	end
+
+PoxRegion_Arrival_Route21_South_Frlg::
+PoxRegion_Arrival_Route21_South_Frlg_End::
 	end
 
 PoxRegion_Arrival_Route24_hns::

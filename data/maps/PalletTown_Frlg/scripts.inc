@@ -2,6 +2,11 @@ PalletTown_Frlg_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_PalletTown_Frlg
 	.byte 0
 
+PalletTown_SurfToRoute21::
+	warp MAP_ROUTE21_NORTH, 7, 1
+	waitstate
+	end
+
 PalletTown_EventScript_FatMan::
 	msgbox PalletTown_Text_FatMan, MSGBOX_NPC
 	end

@@ -1,0 +1,58 @@
+general
+get characters to show their faces when talking like in those japanese games
+pocket watch item to change the clock time and day of the week given in cherrygrove
+leaf storm available as a move tutor move? I don't think that's a move in gen 3
+party is fully healed before every trainer battle
+lead pokemon should be your follower 
+headbutt mechanics
+berry mechanics - put berries in the trees that can be gathered once daily. items/berries consumed during trainer battles will be added back after the battle. 
+
+pokedex shows tier, evolution, location with our town map
+fly map help
+
+create an auto generated wiki with the encounter tables, trainer battles, items, key NPCs, etc on each route inspired by bulbapedia
+
+
+pallet town
+mother's first conversation should not be healing.
+professors standing in different spots, then have elm/birch leave the lab since it's oak's. 
+Oak gives the pokedex to the player, and 5 pokeballs
+Elm gives the EXP Share
+Birch gives the TMs and Move compedium
+
+The other starter balls should not be removed from the table for the rest of the game.
+
+Daisy's should say her map doesn't work anymore!
+
+route 101:
+npc says grass is quiet, fix that
+probably remove first trainer battle - give a warning
+
+oldale:
+simplify mart lady
+when i go north it says the passage is still closed, but it should let out to route 103. the first trainer battle should be there
+
+route 29:
+
+route 46:
+remove the opening/gap that allows you to jump up towards dark cave. we are no longer concerned with the walking the region test
+
+route 45 should naturally connect down into route 46. the top of route 46 seems like it has a duplicated cave and is using the original tile sprite?
+
+two tiles left and one tile above the sign at the bottom of route 46 makes the player disappear behind the walking path. same with the sign level height and all the way to the left 
+
+cherrygrove:
+walking into the bottom right npc house permanently traps you inside it. there's also an invisible man sitting at the table
+
+good rod should be given by an NPC either outside by the water, or in a house near the water.
+
+route 2:
+trade stantler for mr mime in the normal mr mime npc house 
+
+ilex forest: 
+
+Rustboro city:
+an ev and nature setting key item should be given by an NPC . this should be able to be applied to any pokemon in the active party
+
+Route 25:
+Bill's grandfather should be at the cottage, first reward the player with an eevee, and then proceed with the fossil gating.

@@ -1,5 +1,11 @@
 Route21_North_Frlg_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_Route21_North_Frlg
 	.byte 0
+
+Route21_North_SurfToPallet::
+	warp MAP_PALLET_TOWN, 7, 18
+	waitstate
+	end
 
 Route21_North_Text_RonaldIntro::
 	.string "You want to know if the fish are\n"

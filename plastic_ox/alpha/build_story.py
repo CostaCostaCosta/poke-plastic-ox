@@ -166,12 +166,12 @@ def replace_npc(mapname, index, script, gfx=None, hidden=None):
     manifest.append((mapname, obj['x'], obj['y'], script))
 
 
-def add_npc(mapname, script, x, y, gfx="OBJ_EVENT_GFX_MAN_3"):
+def add_npc(mapname, script, x, y, gfx="OBJ_EVENT_GFX_MAN_3", hidden="FLAG_POX_HIDE_STORY_NPCS"):
     data = load_map(mapname)
     data["object_events"] = [o for o in data["object_events"] if o["script"] != "Pox_" + script]
     save_map(mapname,data)
     x,y=floor_cell(mapname,x,y)
-    data["object_events"].append(npc(script, x, y, gfx))
+    data["object_events"].append(npc(script, x, y, gfx, hidden))
     save_map(mapname, data)
     manifest.append((mapname, x, y, script))
 
@@ -283,16 +283,16 @@ balls = [o for o in lab['object_events'] if o['graphics_id'] == 'OBJ_EVENT_GFX_I
 assert len(balls) == 3
 for obj, name in zip(balls, ["Treecko", "Squirtle", "Cyndaquil"]):
     obj['script'] = 'Pox_' + name
-    obj['flag'] = starter
+    obj['flag'] = '0'
 # Remove the old automatic Treecko choice and unused imported rival.
 lab['coord_events'] = []
 for obj in lab['object_events']:
     if obj['script'] == 'PalletTown_ProfessorOaksLab_EventScript_Rival':
         obj['flag'] = 'FLAG_POX_HIDE_UNUSED_ACTOR'
 save_map("PalletTown_ProfessorOaksLab_Frlg", lab)
-add_npc("PalletTown_ProfessorOaksLab_Frlg", "Oak", 6, 5, "OBJ_EVENT_GFX_PROF_OAK")
-add_npc("PalletTown_ProfessorOaksLab_Frlg", "Elm", 4, 5, "OBJ_EVENT_GFX_SCIENTIST")
-add_npc("PalletTown_ProfessorOaksLab_Frlg", "Birch", 11, 5, "OBJ_EVENT_GFX_PROF_BIRCH")
+add_npc("PalletTown_ProfessorOaksLab_Frlg", "Oak", 6, 4, "OBJ_EVENT_GFX_PROF_OAK")
+add_npc("PalletTown_ProfessorOaksLab_Frlg", "Elm", 3, 6, "OBJ_EVENT_GFX_SCIENTIST", hidden="FLAG_POX_ELM_EXP_ALL")
+add_npc("PalletTown_ProfessorOaksLab_Frlg", "Birch", 11, 6, "OBJ_EVENT_GFX_PROF_BIRCH", hidden="FLAG_POX_ELM_TMS")
 start("StarterGate")
 emit(f"\tgoto_if_set {starter}, Pox_Release\n\tmsgbox Pox_Text_StarterGate, MSGBOX_DEFAULT\n\twarp MAP_PALLET_TOWN, 10, 4\n\twaitstate")
 finish()
@@ -316,7 +316,7 @@ gymdata = [
  ("Whitney", "WHITNEY", "GoldenrodCity_hns", [badges[0],moon], 18, [('Delcatty',['Fake Out','Attract','Return']),('Furret',['Quick Attack','Defense Curl','Return']),('Miltank',['Rollout','Milk Drink','Stomp'])]),
  ("Morty", "MORTY", "EcruteakCity_hns", [badges[1],burned], 25, [('Haunter',['Hypnosis','Shadow Ball','Night Shade']),('Misdreavus',['Confuse Ray','Psybeam','Shadow Ball']),('Sableye',['Fake Out','Night Shade','Recover'])]),
  ("Winona", "WINONA", "FortreeCity", [badges[2],weather], 32, [('Swellow',['Quick Attack','Aerial Ace','Facade']),('Pelipper',['Water Pulse','Protect','Wing Attack']),('Altaria',['Dragon Dance','Dragon Breath','Aerial Ace'])]),
- ("Blaine", "BLAINE", "CinnabarIsland_hns", [badges[3],fuji], 38, [('Ninetales',['Flamethrower','Will O Wisp','Confuse Ray']),('Rapidash',['Fire Blast','Return','Sunny Day']),('Arcanine',['Flamethrower','Extreme Speed','Crunch'])]),
+ ("Blaine", "BLAINE", "CinnabarIsland_Frlg", [badges[3],fuji], 38, [('Ninetales',['Flamethrower','Will O Wisp','Confuse Ray']),('Rapidash',['Fire Blast','Return','Sunny Day']),('Arcanine',['Flamethrower','Extreme Speed','Crunch'])]),
  ("TateLiza", "TATE & LIZA", "MossdeepCity", [badges[4],mansion], 44, [('Claydol',['Earthquake','Psychic','Protect']),('Xatu',['Psychic','Reflect','Protect']),('Lunatone',['Psychic','Hypnosis','Protect']),('Solrock',['Rock Slide','Sunny Day','Protect'])]),
  ("Bruno", "BRUNO", "SaffronCity_hns", [badges[5],space], 50, [('Heracross',['Megahorn','Brick Break','Rock Slide']),('Machamp',['Cross Chop','Rock Slide','Bulk Up']),('Hariyama',['Fake Out','Brick Break','Knock Off']),('Snorlax',['Return','Rest','Curse'])]),
  ("Clair", "CLAIR", "BlackthornCity_hns", northern_ou, 55, [('Gyarados',['Dragon Dance','Return','Earthquake']),('Flygon',['Earthquake','Rock Slide','Dragon Claw']),('Kingdra',['Rain Dance','Surf','Ice Beam']),('Salamence',['Dragon Dance','Earthquake','Aerial Ace'])]),
@@ -336,7 +336,7 @@ for i, (name, display, town, prereq, level, team) in enumerate(gymdata):
                 obj['script'] = 'Pox_' + name
         save_map(native, data)
     else:
-        dest = room(name + 'Gym', town, name, return_xy={'Whitney':(25,14),'Morty':(35,44),'Blaine':(37,29),'Bruno':(16,23),'Clair':(16,29)}[name])
+        dest = room(name + 'Gym', town, name, return_xy={'Whitney':(25,14),'Morty':(35,44),'Blaine':(11,11),'Bruno':(16,23),'Clair':(16,29)}[name])
         guide(town, {'Whitney':0,'Morty':0,'Blaine':1,'Bruno':0,'Clair':0}[name], name+'Guide', dest, f"{display}'s challenge is this way.", prereq if name=='Clair' else ())
 speech("Pox_Text_Badge", "You received a GYM BADGE! A new challenge waits on the next road.")
 start("MansionKey", [badges[4]])
@@ -394,7 +394,16 @@ lav1='FLAG_POX_HIDE_LAVENDER_GRUNT_1'
 lav2='FLAG_POX_HIDE_LAVENDER_GRUNT_2'
 for n,f,req in [(1,lav1,[badges[3]]),(2,lav2,[lav1])]:
     battle('TowerGrunt'+str(n),'GRUNT',"FUJI knows something about reconstructing POKéMON. He'll answer our questions!", [('Golbat',['Bite','Wing Attack','Confuse Ray']),('Weezing',['Sludge','Smokescreen','Self Destruct'])],35,f,req,pic='Team Aqua M',cls='Team Aqua')
-beat('FujiRescue', "FUJI: Thank you. They asked about preserving living states... old work I hoped never to hear of again.|The archives on CINNABAR may explain more. Ask BLAINE for access.|Take the UNDERGROUND PATH from ROUTE 8 to ROUTE 7, then cross ROUTE 103. This SURF machine will help you cross the water.",fuji,[lav1,lav2], '\tgiveitem ITEM_HM03\n\tgoto_if_eq VAR_RESULT, FALSE, Pox_Release')
+beat('FujiRescue', "FUJI: Thank you. They asked about preserving living states... old work I hoped never to hear of again.|The archives on CINNABAR may explain more. Ask BLAINE for access.|Take the UNDERGROUND PATH from ROUTE 8 to ROUTE 7, then cross ROUTE 103. This SURF KEY and HM will help you cross the water.",fuji,[lav1,lav2], '''\tcheckitem ITEM_SURF_KEY
+\tgoto_if_eq VAR_RESULT, TRUE, Pox_FujiRescue_HasSurfKey
+\tgiveitem ITEM_SURF_KEY
+\tgoto_if_eq VAR_RESULT, FALSE, Pox_Release
+Pox_FujiRescue_HasSurfKey::
+\tcheckitem ITEM_HM03
+\tgoto_if_eq VAR_RESULT, TRUE, Pox_FujiRescue_HasRewards
+\tgiveitem ITEM_HM03
+\tgoto_if_eq VAR_RESULT, FALSE, Pox_Release
+Pox_FujiRescue_HasRewards::''')
 ptower=room('PokemonTower','LavenderTown_hns',None,objects=[npc('TowerGrunt1',5,12,'OBJ_EVENT_GFX_ROCKET_GRUNT_M',lav1),npc('TowerGrunt2',7,9,'OBJ_EVENT_GFX_ROCKET_GRUNT_M',lav2),npc('FujiRescue',5,2,'OBJ_EVENT_GFX_OLD_MAN')],return_xy=(17,8))
 guide('LavenderTown_hns',0,'TowerGuide',ptower,'TEAM ROCKET is holding MR. FUJI in the POKéMON TOWER.',[badges[3]])
 gift('Fuji','FUJI: This EEVEE was abandoned. You have shown it what kindness looks like.|BLAINE keeps the key to the CINNABAR archives.',[fuji])
@@ -411,8 +420,8 @@ start('Entei',[mansion])
 emit(f'\tgoto_if_set {entei}, Pox_Done\n\tmsgbox Pox_Text_Entei, MSGBOX_YESNO\n\tgoto_if_eq VAR_RESULT, NO, Pox_Release\n\tsetwildbattle SPECIES_ENTEI, 40, ITEM_NONE\n\tdowildbattle\n\tspecialvar VAR_RESULT, GetBattleOutcome\n\tgoto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, Pox_EnteiDone\n\tgoto_if_ne VAR_RESULT, B_OUTCOME_WON, Pox_Release\nPox_EnteiDone::\n\tsetflag {entei}')
 finish()
 speech('Pox_Text_Entei','A low growl echoes from the ruined hall. Approach ENTEI?')
-man=room('Mansion','CinnabarIsland_hns',None,objects=[npc('Archive1',3,13,'OBJ_EVENT_GFX_SCIENTIST'),npc('Archive2',7,9,'OBJ_EVENT_GFX_SCIENTIST'),npc('Archive3',5,2,'OBJ_EVENT_GFX_SCIENTIST'),npc('Entei',3,9,'OBJ_EVENT_GFX_MAN_3',entei)],return_xy=(40,22))
-guide('CinnabarIsland_hns',0,'MansionGuide',man,'The MANSION archives are sealed. BLAINE has the key.',[keyflag])
+man=room('Mansion','CinnabarIsland_Frlg',None,objects=[npc('Archive1',3,13,'OBJ_EVENT_GFX_SCIENTIST'),npc('Archive2',7,9,'OBJ_EVENT_GFX_SCIENTIST'),npc('Archive3',5,2,'OBJ_EVENT_GFX_SCIENTIST'),npc('Entei',3,9,'OBJ_EVENT_GFX_MAN_3',entei)],return_xy=(14,6))
+guide('CinnabarIsland_Frlg',0,'MansionGuide',man,'The MANSION archives are sealed. BLAINE has the key.',[keyflag])
 
 beat('SpaceReport','The region is not arranged randomly. Habitats and strong TRAINERS have become easier to reach.|It looks like an environment arranged for training.|Transfer traffic is converging on SAFFRON, at SILPH CO. We cannot identify its source.',space,[badges[5]])
 gift('Space','This EEVEE helped us study adaptation. Our observations are complete. Please take it on your journey.',[space])
@@ -439,8 +448,8 @@ links=[('RustboroCity',0,'MoonRoad','MtMoon_Cave_hns',10,11,'The mountain trail 
  ('NationalPark_Normal_hns',0,'EcruteakRoad','EcruteakCity_hns',35,44,'ECRUTEAK lies beyond the park.',[badges[1]]),
  ('EcruteakCity_hns',2,'WeatherRoad','Route119_WeatherInstitute_1F',6,8,'The WEATHER INSTITUTE is asking for a field assistant.',[badges[2]]),
  ('FortreeCity',None,'LavenderRoad','LavenderTown_hns',12,11,'The eastern road reaches LAVENDER.',[badges[3]]),
- ('LavenderTown_hns',2,'CinnabarRoad','CinnabarIsland_hns',37,29,'A boat is leaving for CINNABAR.',[fuji]),
- ('CinnabarIsland_hns',None,'MossdeepRoad','MossdeepCity',38,13,'Our next port is MOSSDEEP.',[mansion]),
+ ('LavenderTown_hns',2,'CinnabarRoad','CinnabarIsland_Frlg',12,12,'A boat is leaving for CINNABAR.',[fuji]),
+ ('CinnabarIsland_Frlg',None,'MossdeepRoad','MossdeepCity',38,13,'Our next port is MOSSDEEP.',[mansion]),
  ('MossdeepCity',0,'SaffronRoad','SaffronCity_hns',16,23,'The mainland service goes to SAFFRON.',[space]),
  ('SaffronCity_hns',2,'BlackthornRoad','BlackthornCity_hns',16,29,'The northern road to BLACKTHORN is open. CLAIR welcomes challengers whenever you are ready.',northern_ou),
  ('BlackthornCity_hns',1,'LeagueRoad','IndigoPlateau_hns',11,13,'The LEAGUE approach is open to holders of all eight BADGES.',badges),]
@@ -449,7 +458,7 @@ for town,index,name,dest,x,y,text,req in links:
     if index is not None:
         replace_npc(town,index,name)
     else:
-        add_npc(town,name,*{'MtMoon_Cave_hns':(11,10),'FortreeCity':(8,7),'CinnabarIsland_hns':(38,28)}[town])
+        add_npc(town,name,*{'MtMoon_Cave_hns':(11,10),'FortreeCity':(8,7),'CinnabarIsland_Frlg':(11,12)}[town])
 
 # Sequential League rooms: repeat interaction advances without granting a
 # second victory; losing a battle never runs its completion script.
@@ -504,8 +513,8 @@ for pc in ['PokemonCenter_Johto_hns','PokemonCenter_Kanto_hns','IndigoPlateau_Po
 
 # Optional exploration rewards, with an explicit stop on the League approach.
 beat('WhirlItem','You found a pearl tucked among the tide-worn stones.',flag('WHIRL_ITEM'),[mansion], '\tgiveitem ITEM_BIG_PEARL\n\tgoto_if_eq VAR_RESULT, FALSE, Pox_Release')
-whirl=room('WhirlIslands','CinnabarIsland_hns','WhirlItem',return_xy=(37,29))
-add_npc('CinnabarIsland_hns','WhirlGuide',39,28)
+whirl=room('WhirlIslands','CinnabarIsland_Frlg','WhirlItem',return_xy=(12,12))
+add_npc('CinnabarIsland_Frlg','WhirlGuide',13,12)
 travel('WhirlGuide',whirl,5,17,'We can visit the WHIRL ISLANDS before sailing on to MOSSDEEP.',[mansion])
 vrflag=flag('VICTORY_ROAD')
 battle('VictoryRoad','ACE','One last test before the LEAGUE!', [('Metagross',['Meteor Mash','Earthquake','Agility']),('Starmie',['Surf','Psychic','Thunderbolt']),('Salamence',['Dragon Claw','Earthquake','Aerial Ace'])],57,vrflag,badges,pic='Cool Trainer M',cls='Cooltrainer')

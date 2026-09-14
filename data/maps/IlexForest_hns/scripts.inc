@@ -30,6 +30,20 @@ IlexForest_EventScript_Npc5::
 	release
 	end
 
+Pox_IlexForest_EventScript_HeadbuttKey::
+	lock
+	faceplayer
+	checkitem ITEM_HEADBUTT_KEY
+	goto_if_eq VAR_RESULT, TRUE, Pox_IlexForest_EventScript_ExplainHeadbuttKey
+	msgbox Pox_IlexForest_Text_HeadbuttKeyIntro, MSGBOX_DEFAULT
+	giveitem ITEM_HEADBUTT_KEY
+	goto_if_eq VAR_RESULT, FALSE, Pox_IlexForest_EventScript_HeadbuttKeyEnd
+Pox_IlexForest_EventScript_ExplainHeadbuttKey::
+	msgbox Pox_IlexForest_Text_HeadbuttKeyOwned, MSGBOX_DEFAULT
+Pox_IlexForest_EventScript_HeadbuttKeyEnd::
+	release
+	end
+
 IlexForest_EventScript_Npc6::
 	lock
 	faceplayer
@@ -96,6 +110,14 @@ IlexForest_EventScript_Npc4_Text:
 
 IlexForest_EventScript_Npc5_Text:
 	.string "I fish where the trees let me. The\nriver doesn't care which region it's\nin.$"
+
+Pox_IlexForest_Text_HeadbuttKeyIntro:
+	.string "The trees here hide all kinds of\n"
+	.string "POKéMON. Take this HEADBUTT KEY!$"
+
+Pox_IlexForest_Text_HeadbuttKeyOwned:
+	.string "That HEADBUTT KEY belongs with a\n"
+	.string "TRAINER who respects the forest.$"
 
 IlexForest_EventScript_Npc6_Text:
 	.string "Something in these woods isn't in any\ndex I've seen. Probably nothing!$"

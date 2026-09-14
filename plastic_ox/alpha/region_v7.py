@@ -27,7 +27,9 @@ ANCHORS = {
     'Route36_hns':(16,21), 'Route37_hns':(16,39), 'EcruteakCity_hns':(39,48),
     'Route119':(18,138), 'FortreeCity':(8,8), 'Route110':(15,95),
     'LavenderTown_hns':(9,7), 'Route8_Frlg':(60,20), 'Route7_hns':(4,25),
-    'Route103':(10,10), 'CinnabarIsland_hns':(40,30), 'MossdeepCity':(28,17),
+    'Route103':(10,10), 'Route21_North_Frlg':(12,10),
+    'Route21_South_Frlg':(12,10), 'CinnabarIsland_Frlg':(12,10),
+    'MossdeepCity':(28,17),
     'Route19_Frlg':(12,8), 'SaffronCity_hns':(16,23), 'Route5_hns':(25,35),
     'Route115':(27,38), 'MeteorFalls_1F_1R':(6,38), 'BlackthornCity_hns':(27,49),
     'Route45_hns':(15,5), 'Route46_hns':(20,12), 'VictoryRoad_1F':(15,39),
@@ -35,7 +37,8 @@ ANCHORS = {
     'PlasticOx_Route20West':(50,12), 'PlasticOx_Route20East':(15,12),
     'BattleFrontier_OutsideWest':(26,66),
 }
-WATER = {'Route103','Route19_Frlg','Route115','MossdeepCity','CinnabarIsland_hns',
+WATER = {'Route103','Route19_Frlg','Route21_North_Frlg','Route21_South_Frlg',
+         'Route115','MossdeepCity','CinnabarIsland_Frlg',
          'PlasticOx_Route20West','PlasticOx_Route20East'}
 
 # Explicit source/destination port targets. A target may name a compass edge;
@@ -63,9 +66,8 @@ TRAILS = [
     ('route7_saffron','Route7_hns','E','SaffronCity_hns','W',SPACE),
     ('route7_route103','Route7_hns','W','Route103','E',FUJI),
     ('oldale_route103','OldaleTown','N','Route103',(10,20),FUJI),
-    ('route103_cinnabar','Route103',(10,15),'CinnabarIsland_hns','N',FUJI),
-    ('pallet_coast','PalletTown_Frlg','S','CinnabarIsland_hns',(36,5),MANSION),
-    ('cinnabar_sea','CinnabarIsland_hns','E','PlasticOx_Route20West','W',MANSION),
+    ('route103_cinnabar','Route103',(10,15),'CinnabarIsland_Frlg',(12,12),FUJI),
+    ('cinnabar_sea','CinnabarIsland_Frlg','E','PlasticOx_Route20West','W',MANSION),
     ('sea_mossdeep','PlasticOx_Route20East','E','MossdeepCity','W',MANSION),
     ('mossdeep_route19','MossdeepCity','N','Route19_Frlg','S',[]),
     ('route19_saffron','Route19_Frlg','N','SaffronCity_hns','S',SPACE),
@@ -103,7 +105,11 @@ def apply_region(read, put):
     # Remove only obsolete outdoor connections; keep the proven opening seams
     # and native north/south joins that agree with v7.
     keep = {
-        'PalletTown_Frlg':{'MAP_ROUTE101'}, 'Route101':{'MAP_PALLET_TOWN','MAP_OLDALE_TOWN'},
+        'PalletTown_Frlg':{'MAP_ROUTE101'},
+        'Route21_North_Frlg':{'MAP_ROUTE21_SOUTH'},
+        'Route21_South_Frlg':{'MAP_ROUTE21_NORTH','MAP_CINNABAR_ISLAND'},
+        'CinnabarIsland_Frlg':{'MAP_ROUTE21_SOUTH'},
+        'Route101':{'MAP_PALLET_TOWN','MAP_OLDALE_TOWN'},
         'OldaleTown':{'MAP_ROUTE101','MAP_ROUTE29_HNS'},
         'Route29_hns':{'MAP_OLDALE_TOWN','MAP_CHERRYGROVE_CITY_HNS'},
         'CherrygroveCity_hns':{'MAP_ROUTE29_HNS'},
@@ -113,9 +119,10 @@ def apply_region(read, put):
         'BattleFrontier_OutsideWest':{'MAP_BATTLE_FRONTIER_OUTSIDE_EAST'},
     }
     retired={'Route2_hns','Route3_hns','Route4_hns','Route14_hns','Route16_hns','Route26_hns','Route34_hns','Route38_hns','Route41_hns','Route6_hns'}
-    retired.update({'Route1_Frlg','Route31_hns','Route104','Gate_AzaleaTown_IlexForest_hns'})
+    retired.update({'Route1_Frlg','Route31_hns','Route104','Gate_AzaleaTown_IlexForest_hns','CinnabarIsland_hns'})
     active=set(ANCHORS)
     extra_frlg=['UndergroundPath_EastEntrance_Frlg','UndergroundPath_WestEntrance_Frlg','UndergroundPath_EastWestTunnel_Frlg']+[f'SeafoamIslands_{floor}_Frlg' for floor in ['1F','B1F','B2F','B3F','B4F']]
+    story_frlg=['PokemonMansion_1F_Frlg']
     route2_rooms=['Route2_ViridianForest_NorthEntrance_Frlg','Route2_ViridianForest_SouthEntrance_Frlg','Route2_House_Frlg','Route2_EastBuilding_Frlg']
     extra_frlg += route2_rooms
     for name in extra_frlg:
@@ -124,7 +131,7 @@ def apply_region(read, put):
         d['bg_events']=[o for o in d.get('bg_events',[]) if not o.get('script','').startswith('PoxRegion_')]
         save(name,d)
     layouts=json.loads(read('data/layouts/layouts.json'))
-    needed={load(n)['layout'] for n in active | set(extra_frlg)}
+    needed={load(n)['layout'] for n in active | set(extra_frlg) | set(story_frlg)}
     needed.update(['LAYOUT_SEAFOAM_ISLANDS_B3F_CURRENT_STOPPED','LAYOUT_SEAFOAM_ISLANDS_B4F_CURRENT_STOPPED'])
     for layout in layouts['layouts']:
         if layout['id'] in needed and layout.get('layout_version')=='frlg':
@@ -178,6 +185,33 @@ def apply_region(read, put):
                 geometry=Geometry(name,d)
                 d['object_events']=[o for o in d['object_events'] if 0<=o['x']<geometry.w and 0<=o['y']<geometry.h]
         save(name,d)
+
+    # Restore the native FRLG coastal chain south of Route 21. Pallet's edge is
+    # intentionally handled by water-tile triggers: a native connection accepts
+    # walking across every overlapping tile and therefore cannot enforce Surf.
+    coastal_connections = {
+        'PalletTown_Frlg': [
+            {'map':'MAP_ROUTE101','offset':2,'direction':'up'},
+        ],
+        'Route21_North_Frlg': [
+            {'map':'MAP_ROUTE21_SOUTH','offset':0,'direction':'down'},
+        ],
+        'Route21_South_Frlg': [
+            {'map':'MAP_ROUTE21_NORTH','offset':0,'direction':'up'},
+            {'map':'MAP_CINNABAR_ISLAND','offset':0,'direction':'down'},
+        ],
+        'CinnabarIsland_Frlg': [
+            {'map':'MAP_ROUTE21_SOUTH','offset':0,'direction':'up'},
+        ],
+    }
+    for name, connections in coastal_connections.items():
+        d=load(name);d['connections']=connections;save(name,d)
+    d=load('PalletTown_Frlg')
+    d['coord_events'] += [dict(type='trigger',x=x,y=19,elevation=0,var='VAR_TEMP_0',var_value=0,script='PalletTown_SurfToRoute21') for x in range(7,11)]
+    save('PalletTown_Frlg',d)
+    d=load('Route21_North_Frlg')
+    d['coord_events'] = [dict(type='trigger',x=x,y=0,elevation=0,var='VAR_TEMP_0',var_value=0,script='Route21_North_SurfToPallet') for x in range(7,11)]
+    save('Route21_North_Frlg',d)
 
     # Explicit warp closures prevent original-world doors/caves from becoming
     # alternate routes. Preserve local homes, shops, and intentional dungeons.
@@ -247,13 +281,16 @@ def apply_region(read, put):
              'PoxRegion_ClosedText::\n\t.string "This passage is still closed.\\nReturn after your next objective.$"']
     # FRLG trainer IDs aren't part of Emerald's trainer table. Keep these
     # people and their authored dialogue without invoking unrelated trainers.
-    for name in ['Route8_Frlg','Route19_Frlg']:
+    for name in ['Route8_Frlg','Route19_Frlg','Route21_North_Frlg','Route21_South_Frlg']:
         d=load(name)
+        dialogue_sources=read(f'data/maps/{name}/scripts.inc')
+        if name.startswith('Route21_'):
+            dialogue_sources+='\n'+read('data/maps/Route21_North_Frlg/scripts.inc')+'\n'+read('data/maps/Route21_South_Frlg/scripts.inc')
         for obj in d['object_events']:
-            if '_EventScript_' in obj['script']:
+            if '_EventScript_' in obj.get('script',''):
                 label=obj['script']
                 dialogue=label.replace('_EventScript_','_Text_')+'PostBattle'
-                if dialogue+'::' in read(f'data/maps/{name}/scripts.inc'):
+                if dialogue+'::' in dialogue_sources:
                     obj['trainer_type']='TRAINER_TYPE_NONE'
                     scripts.append(f'{label}::\n\tmsgbox {dialogue}, MSGBOX_NPC\n\tend')
         save(name,d)
@@ -276,6 +313,13 @@ def apply_region(read, put):
                 header=header.replace('#endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H',f'#define {flag} (POX_HIDDEN_ITEMS_BASE + {item_number})\n#endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H')
             item_number+=1
         save(name,d)
+    d=load('Route21_North_Frlg')
+    for item in d.get('bg_events',[]):
+        if item.get('type')=='hidden_item':
+            item['flag']='FLAG_POX_HIDDEN_V7_60'
+    save('Route21_North_Frlg',d)
+    if '#define FLAG_POX_HIDDEN_V7_60 ' not in header:
+        header=header.replace('#endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H','#define FLAG_POX_HIDDEN_V7_60 (POX_HIDDEN_ITEMS_BASE + 60)\n#endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H')
     # Native FRLG flag/var aliases are zero in Emerald. Reserve independent
     # persistent state for the retained boulder puzzle, pickups and Articuno.
     native_flags=['FLAG_STOPPED_SEAFOAM_B3F_CURRENT','FLAG_STOPPED_SEAFOAM_B4F_CURRENT']
@@ -427,7 +471,9 @@ def apply_region(read, put):
         old=read(p)
         callback='PoxRegion_Arrival_'+name
         header=f'{name}_MapScripts::\n\tmap_script MAP_SCRIPT_ON_TRANSITION, {callback}\n\t.byte 0'
-        if old:
+        if name=='CinnabarIsland_Frlg':
+            old=header+'\n\nCinnabarIsland_EventScript_IslandSign::\n\tmsgbox CinnabarIsland_Text_IslandSign, MSGBOX_SIGN\n\tend\nCinnabarIsland_Text_IslandSign::\n\t.string "CINNABAR ISLAND\\nThe Fiery Town of Burning Desire$"\n\nCinnabarIsland_EventScript_PokemonLabSign::\n\tmsgbox CinnabarIsland_Text_PokemonLabSign, MSGBOX_SIGN\n\tend\nCinnabarIsland_Text_PokemonLabSign::\n\t.string "POKéMON LAB$"\n\nCinnabarIsland_EventScript_GymSign::\n\tmsgbox CinnabarIsland_Text_GymSign, MSGBOX_SIGN\n\tend\nCinnabarIsland_Text_GymSign::\n\t.string "CINNABAR ISLAND POKéMON GYM$"\n'
+        elif old:
             old=re.sub(r'\A.*?\t.byte 0',lambda _:header,old,count=1,flags=re.S)
         else:
             old=header+'\n'
@@ -445,9 +491,12 @@ def apply_region(read, put):
     s=read('data/event_scripts.s')
     marker='@ Plastic Ox v7 FRLG modules (Emerald inclusion).'
     if marker not in s:
-        s+='\n'+marker+'\n.if !IS_FRLG\n'+''.join(f'\t.include "data/maps/{n}/scripts.inc"\n' for n in ['Route1_Frlg','Route8_Frlg','Route19_Frlg','Route20_Frlg']+extra_frlg)+'.endif\n'
+        s+='\n'+marker+'\n.if !IS_FRLG\n'+''.join(f'\t.include "data/maps/{n}/scripts.inc"\n' for n in ['Route1_Frlg','Route8_Frlg','Route19_Frlg','Route20_Frlg','Route21_North_Frlg','Route21_South_Frlg','CinnabarIsland_Frlg']+extra_frlg)+'.endif\n'
     s=s.replace('.if GAME_VERSION == VERSION_EMERALD','.if !IS_FRLG')
-    for name in ['Route2_Frlg']+route2_rooms:
+    mansion_common='.if !IS_FRLG\n\t.include "data/scripts/pokemon_mansion.inc"\n.endif\n'
+    if mansion_common not in s:
+        s+='\n'+mansion_common
+    for name in ['Route2_Frlg','Route21_North_Frlg','Route21_South_Frlg','CinnabarIsland_Frlg']+story_frlg+route2_rooms:
         line=f'\t.include "data/maps/{name}/scripts.inc"\n'
         if line not in s[s.index(marker):]:
             s+='\n.if !IS_FRLG\n'+line+'.endif\n'

@@ -4,10 +4,10 @@ RustboroCity_CuttersHouse_MapScripts::
 RustboroCity_CuttersHouse_EventScript_Cutter::
 	lock
 	faceplayer
-	checkitem ITEM_CUT
+	checkitem ITEM_CUT_KEY
 	goto_if_eq VAR_RESULT, TRUE, RustboroCity_CuttersHouse_EventScript_ExplainCut
 	msgbox RustboroCity_CuttersHouse_Text_YouCanPutThisHMToGoodUse, MSGBOX_DEFAULT
-	giveitem ITEM_CUT
+	giveitem ITEM_CUT_KEY
 	goto_if_eq VAR_RESULT, FALSE, RustboroCity_CuttersHouse_EventScript_End
 	setflag FLAG_RECEIVED_HM_CUT
 	msgbox RustboroCity_CuttersHouse_Text_ExplainCut, MSGBOX_DEFAULT
@@ -27,12 +27,12 @@ RustboroCity_CuttersHouse_EventScript_Lass::
 RustboroCity_CuttersHouse_Text_YouCanPutThisHMToGoodUse:
 	.string "I'm the CUTTER! I help keep the\n"
 	.string "paths around RUSTBORO clear.\p"
-	.string "Take this CUT tool. You can use\n"
+	.string "Take this CUT KEY. You can use\n"
 	.string "it to clear thin trees yourself!$"
 
 RustboroCity_CuttersHouse_Text_ExplainCut:
 	.string "Face a thin tree and press A,\n"
-	.string "or use CUT from your KEY ITEMS.\p"
+	.string "or use the CUT KEY from your bag.\p"
 	.string "You can use it right away! No\n"
 	.string "BADGE or POKéMON move is needed.\p"
 	.string "The tool can be used again and\n"

@@ -2122,6 +2122,17 @@ const struct Tileset gTileset_CinnabarIsland =
     .callback = NULL,
 };
 
+const struct Tileset gTileset_PokemonMansion =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_PokemonMansion,
+    .palettes = gTilesetPalettes_PokemonMansion,
+    .metatiles = gMetatiles_PokemonMansion,
+    .metatileAttributes = gMetatileAttributes_PokemonMansion,
+    .callback = NULL,
+};
+
 const struct Tileset gTileset_SeafoamIslands =
 {
     .isCompressed = TRUE,

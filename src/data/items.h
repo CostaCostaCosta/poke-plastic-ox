@@ -13508,6 +13508,54 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
+    [ITEM_STRENGTH_KEY] =
+    {
+        .name = ITEM_NAME("Strength Key"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A heavy key that\n"
+            "permits STRENGTH\n"
+            "outside battle."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_SecretKey,
+        .iconPalette = gItemIconPalette_SecretKey,
+    },
+
+    [ITEM_SURF_KEY] =
+    {
+        .name = ITEM_NAME("Surf Key"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A sea-blue key that\n"
+            "permits SURF outside\n"
+            "battle."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_SecretKey,
+        .iconPalette = gItemIconPalette_SecretKey,
+    },
+
+    [ITEM_HEADBUTT_KEY] =
+    {
+        .name = ITEM_NAME("Headbutt Key"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A forest key tied\n"
+            "to the technique\n"
+            "HEADBUTT."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_SecretKey,
+        .iconPalette = gItemIconPalette_SecretKey,
+    },
+
     [ITEM_HM_FLASH] =
     {
         .name = ITEM_NAME("HM05"),
@@ -13900,14 +13948,14 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_OldRod,
     },
 
-    [ITEM_CUT] =
+    [ITEM_CUT_KEY] =
     {
-        .name = ITEM_NAME("Cut"),
+        .name = ITEM_NAME("Cut Key"),
         .price = 0,
         .description = COMPOUND_STRING(
-            "A reusable tool for\n"
-            "cutting thin trees.\n"
-            "No badge needed."),
+            "A reusable key that\n"
+            "permits cutting\n"
+            "thin trees."),
         .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_FIELD,

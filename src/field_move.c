@@ -3,8 +3,10 @@
 #include "field_move.h"
 #include "fldeff.h"
 #include "fldeff_misc.h"
+#include "item.h"
 #include "party_menu.h"
 #include "constants/field_move.h"
+#include "constants/items.h"
 #include "constants/moves.h"
 #include "constants/party_menu.h"
 
@@ -34,15 +36,17 @@ static bool32 IsFieldMoveUnlocked_RockSmash(void)
 
 static bool32 IsFieldMoveUnlocked_Strength(void)
 {
+    if (FlagGet(FLAG_POX_TRIGGERS_ENABLED))
+        return CheckBagHasItem(ITEM_STRENGTH_KEY, 1);
+
     return FlagGet(FLAG_BADGE04_GET);
 }
 
 static bool32 IsFieldMoveUnlocked_Surf(void)
 {
-    // The v7 Underground/Route103 journey precedes Blaine. Fuji supplies
-    // Surf after Winona; physical gates prevent earlier coastal bypasses.
     if (FlagGet(FLAG_POX_TRIGGERS_ENABLED))
-        return FlagGet(FLAG_BADGE04_GET);
+        return CheckBagHasItem(ITEM_SURF_KEY, 1);
+
     return FlagGet(FLAG_BADGE05_GET);
 }
 

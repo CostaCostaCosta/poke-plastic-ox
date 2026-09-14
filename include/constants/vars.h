@@ -350,6 +350,7 @@
 #define VAR_POX_SILPH_STATE        0x40FA // beat 16: Rocket III progress
 #define VAR_POX_PORTAL_GATE        0x40FC // always 0; gates coord-warp portals
 #define VAR_POX_EEVEE_GIFTS        0x40FB // count of Eevee gifts received (beats 6/8/11/12/15)
-#define POX_VARS_END               0x40FB // 0x40FC-0x40FF remain free for future POX vars
+#define VAR_POX_MOM_STATE           0x40FF // 0 before Mom's dialogue-only first conversation, 1 afterward
+#define POX_VARS_END               0x40FF // upper persistent-var range is fully allocated
 
 #endif // GUARD_CONSTANTS_VARS_H

@@ -1,7 +1,7 @@
 @ Interact with cuttable tree
 EventScript_CutTree::
 	lockall
-	checkitem ITEM_CUT
+	checkitem ITEM_CUT_KEY
 	goto_if_eq VAR_RESULT, TRUE, EventScript_CutTreeWithTool
 	checkfieldmove FIELD_MOVE_CUT, TRUE
 	goto_if_eq VAR_RESULT, PARTY_SIZE, EventScript_CheckTreeCantCut
@@ -37,7 +37,7 @@ EventScript_CutTreeWithTool::
 	goto EventScript_CutTreeDown
 
 Text_PlayerUsedCutTool:
-	.string "{PLAYER} used the CUT tool!$"
+	.string "{PLAYER} used the CUT KEY!$"
 
 @ Use cut from party menu
 EventScript_UseCut::

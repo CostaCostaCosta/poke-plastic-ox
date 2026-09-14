@@ -941,7 +941,7 @@
     {
       "id": "route103_cinnabar_a",
       "source": "Route103",
-      "destination": "CinnabarIsland_hns",
+      "destination": "CinnabarIsland_Frlg",
       "tile": [
         75,
         15
@@ -952,8 +952,8 @@
       ],
       "direction": "S",
       "landing": [
-        35,
-        12
+        12,
+        13
       ],
       "requires": [
         "FLAG_POX_STORY_FUJI"
@@ -962,17 +962,17 @@
     },
     {
       "id": "route103_cinnabar_b",
-      "source": "CinnabarIsland_hns",
+      "source": "CinnabarIsland_Frlg",
       "destination": "Route103",
       "tile": [
-        36,
+        12,
         12
       ],
       "approach": [
-        35,
-        12
+        12,
+        13
       ],
-      "direction": "E",
+      "direction": "N",
       "landing": [
         75,
         14
@@ -983,60 +983,16 @@
       "label": "Route103"
     },
     {
-      "id": "pallet_coast_a",
-      "source": "PalletTown_Frlg",
-      "destination": "CinnabarIsland_hns",
-      "tile": [
-        12,
-        19
-      ],
-      "approach": [
-        11,
-        19
-      ],
-      "direction": "E",
-      "landing": [
-        37,
-        13
-      ],
-      "requires": [
-        "FLAG_POX_STORY_MANSION"
-      ],
-      "label": "CinnabarIsland"
-    },
-    {
-      "id": "pallet_coast_b",
-      "source": "CinnabarIsland_hns",
-      "destination": "PalletTown_Frlg",
-      "tile": [
-        37,
-        12
-      ],
-      "approach": [
-        37,
-        13
-      ],
-      "direction": "N",
-      "landing": [
-        11,
-        19
-      ],
-      "requires": [
-        "FLAG_POX_STORY_MANSION"
-      ],
-      "label": "PalletTown"
-    },
-    {
       "id": "cinnabar_sea_a",
-      "source": "CinnabarIsland_hns",
+      "source": "CinnabarIsland_Frlg",
       "destination": "PlasticOx_Route20West",
       "tile": [
-        48,
-        21
+        23,
+        10
       ],
       "approach": [
-        47,
-        21
+        22,
+        10
       ],
       "direction": "E",
       "landing": [
@@ -1051,7 +1007,7 @@
     {
       "id": "cinnabar_sea_b",
       "source": "PlasticOx_Route20West",
-      "destination": "CinnabarIsland_hns",
+      "destination": "CinnabarIsland_Frlg",
       "tile": [
         48,
         13
@@ -1062,8 +1018,8 @@
       ],
       "direction": "N",
       "landing": [
-        47,
-        21
+        22,
+        10
       ],
       "requires": [
         "FLAG_POX_STORY_MANSION"
@@ -1706,6 +1662,16 @@
   "native_seams": {
     "PalletTown_Frlg": [
       "MAP_ROUTE101"
+    ],
+    "Route21_North_Frlg": [
+      "MAP_ROUTE21_SOUTH"
+    ],
+    "Route21_South_Frlg": [
+      "MAP_CINNABAR_ISLAND",
+      "MAP_ROUTE21_NORTH"
+    ],
+    "CinnabarIsland_Frlg": [
+      "MAP_ROUTE21_SOUTH"
     ],
     "Route101": [
       "MAP_OLDALE_TOWN",
