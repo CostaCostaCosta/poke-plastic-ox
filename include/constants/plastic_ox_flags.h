@@ -14,6 +14,9 @@
 
 #define POX_FLAGS_START 0x264
 
+// Scripts may set/clear this to keep frame-sensitive field sequences at 1x.
+#define FLAG_PREVENT_OVERWORLD_SPEEDUP 0x27F
+
 // Story beats, one per completed beat (see plastic_ox/alpha/STORY_TRIGGERS.md).
 #define FLAG_POX_STORY_STARTER   (POX_FLAGS_START + 0x00)
 #define FLAG_POX_STORY_ILEX      (POX_FLAGS_START + 0x01)

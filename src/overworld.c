@@ -1,6 +1,7 @@
 #include "global.h"
 #include "overworld.h"
 #include "battle_pyramid.h"
+#include "battle_pike.h"
 #include "battle_setup.h"
 #include "battle_util.h"
 #include "berry.h"
@@ -58,6 +59,7 @@
 #include "save.h"
 #include "save_location.h"
 #include "script.h"
+#include "script_movement.h"
 #include "script_pokemon_util.h"
 #include "secret_base.h"
 #include "sound.h"
@@ -1895,12 +1897,69 @@ void CB2_OverworldBasic(void)
     OverworldBasic();
 }
 
+static bool32 sOverworldSpeedupIteration;
+
+u32 GetOverworldSpeedOption(void)
+{
+    u32 option = VarGet(VAR_POX_WORLD_SPEED);
+    return option <= OPTIONS_OVERWORLD_SPEED_8X ? option : OPTIONS_OVERWORLD_SPEED_1X;
+}
+
+bool32 IsOverworldSpeedupIteration(void)
+{
+    return sOverworldSpeedupIteration;
+}
+
+bool32 CanUseOverworldSpeedup(void)
+{
+    // Only the ordinary, player-controlled field callback is eligible.
+    if (gMain.callback2 != CB2_Overworld || gMain.callback1 != CB1_Overworld
+     || gMain.inBattle || gPaletteFade.active
+     || gReceivedRemoteLinkPlayers || gWirelessCommType || gLinkTransferringData
+     || IsLinkConnectionEstablished() || InUnionRoom()
+     || ArePlayerFieldControlsLocked() || ScriptContext_IsEnabled()
+     || gPlayerAvatar.preventStep || !IsFieldMessageBoxHidden()
+     || !ScriptMovement_IsAllObjectMovementFinished()
+     || GetFollowerNPCData(FNPC_DATA_IN_PROGRESS)
+     || InBattlePyramid_() || InBattlePike() || InTrainerHill()
+     || FlagGet(FLAG_SYS_CYCLING_ROAD) || FlagGet(FLAG_SYS_SAFARI_MODE)
+     || FlagGet(FLAG_SYS_CRUISE_MODE)
+     || gMapHeader.mapLayoutId == LAYOUT_FORTREE_CITY_GYM
+     || FlagGet(FLAG_PREVENT_OVERWORLD_SPEEDUP) || JOY_HELD(R_BUTTON))
+        return FALSE;
+
+    // These optional systems have their own frame-sensitive sprite behavior.
+    // R belongs to DexNav if it is enabled in a future build.
+    if (DEXNAV_ENABLED || WE_OW_ENCOUNTERS || OW_FOLLOWERS_ENABLED)
+        return FALSE;
+
+    for (u32 i = 0; i < OBJECT_EVENTS_COUNT; i++)
+    {
+        if (i != gPlayerAvatar.objectEventId && gObjectEvents[i].active
+         && gObjectEvents[i].heldMovementActive)
+            return FALSE;
+    }
+    return TRUE;
+}
+
 void CB2_Overworld(void)
 {
     bool32 fading = (gPaletteFade.active != 0);
+    bool32 canSpeedup = CanUseOverworldSpeedup();
+    u32 extraIterations = (1 << GetOverworldSpeedOption()) - 1;
     if (fading)
         SetVBlankCallback(NULL);
     OverworldBasic();
+    // HashtagMarky ab8d603: 0/1/3/7 extra animation passes, never extra
+    // script, task, input, encounter, timer, music or main-loop updates.
+    for (u32 i = 0; canSpeedup && i < extraIterations && CanUseOverworldSpeedup(); i++)
+    {
+        sOverworldSpeedupIteration = TRUE;
+        AnimateSprites();
+        CameraUpdate();
+        UpdateCameraPanning();
+        sOverworldSpeedupIteration = FALSE;
+    }
     if (fading)
     {
         SetFieldVBlankCallback();

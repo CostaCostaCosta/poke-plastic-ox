@@ -6899,6 +6899,19 @@ u8 ObjectEventGetHeldMovementActionId(struct ObjectEvent *objectEvent)
 
 void UpdateObjectEventCurrentMovement(struct ObjectEvent *objectEvent, struct Sprite *sprite, bool8 (*callback)(struct ObjectEvent *, struct Sprite *))
 {
+    if (IsOverworldSpeedupIteration())
+    {
+        // Only advance a move already approved by the normal field update.
+        // Do not re-enter wandering/trainer decisions or collision checks.
+        if (objectEvent->heldMovementActive && !objectEvent->heldMovementFinished)
+            ObjectEventExecHeldMovementAction(objectEvent, sprite);
+        else if (!objectEvent->frozen && objectEvent->singleMovementActive)
+            callback(objectEvent, sprite);
+        UpdateObjectEventSpriteAnimPause(objectEvent, sprite);
+        UpdateObjectEventVisibility(objectEvent, sprite);
+        ObjectEventUpdateSubpriority(objectEvent, sprite);
+        return;
+    }
     DoGroundEffects_OnSpawn(objectEvent, sprite);
     TryEnableObjectEventAnim(objectEvent, sprite);
 
