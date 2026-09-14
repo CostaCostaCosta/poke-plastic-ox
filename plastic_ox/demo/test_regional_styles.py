@@ -20,6 +20,8 @@ SAMPLES = {
     "FortreeCity": (20, 9), "MossdeepCity": (22, 20),
     "MeteorFalls_1F_1R": (14, 17), "IlexForest_hns": (14, 32),
     "BlackthornCity_hns": (20, 20), "Route2_Frlg": (10, 65),
+    "Route8_Frlg": (34, 20), "Route19_Frlg": (12, 30),
+    "PlasticOx_Route20West": (48, 12), "PlasticOx_Route20East": (12, 12),
     "Route103": (40, 12), "Route110": (15, 67),
     "Route115": (10, 45), "Route119": (20, 70),
     "NationalPark_Normal_hns": (26, 20), "DarkCave_SouthSide_hns": (14, 20),

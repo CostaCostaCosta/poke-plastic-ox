@@ -26,7 +26,7 @@ ANCHORS = {
     'GoldenrodCity_hns':(28,37), 'Route35_hns':(15,47), 'NationalPark_Normal_hns':(39,24),
     'Route36_hns':(16,21), 'Route37_hns':(16,39), 'EcruteakCity_hns':(39,48),
     'Route119':(18,138), 'FortreeCity':(8,8), 'Route110':(15,95),
-    'LavenderTown_hns':(9,7), 'Route8_Frlg':(67,10), 'Route7_hns':(4,25),
+    'LavenderTown_hns':(9,7), 'Route8_Frlg':(60,20), 'Route7_hns':(4,25),
     'Route103':(10,10), 'CinnabarIsland_hns':(40,30), 'MossdeepCity':(28,17),
     'Route19_Frlg':(12,8), 'SaffronCity_hns':(16,23), 'Route5_hns':(25,35),
     'Route115':(27,38), 'MeteorFalls_1F_1R':(6,38), 'BlackthornCity_hns':(27,49),
@@ -59,7 +59,7 @@ TRAILS = [
     ('route36_shortcut','Route36_hns','E','Route110',(1,67),['FLAG_POX_REACHED_FORTREE']),
     ('route110_lavender','Route110','S','LavenderTown_hns','N',['FLAG_BADGE04_GET']),
     ('lavender_route8','LavenderTown_hns','W','Route8_Frlg','E',FUJI),
-    ('route8_saffron','Route8_Frlg',(8,10),'SaffronCity_hns','E',SPACE),
+    ('route8_saffron','Route8_Frlg',(8,20),'SaffronCity_hns','E',SPACE),
     ('route7_saffron','Route7_hns','E','SaffronCity_hns','W',SPACE),
     ('route7_route103','Route7_hns','W','Route103','E',FUJI),
     ('oldale_route103','OldaleTown','N','Route103',(10,20),FUJI),
@@ -233,7 +233,8 @@ def apply_region(read, put):
     # Select ports once. Pinning coordinates keeps actor/flag edits from moving roads.
     path='plastic_ox/alpha/region_ports.json'
     ports=json.loads(read(path)) if read(path) else {}
-    ports={k:v for k,v in ports.items() if not k.startswith(('cherry_route1','route1_route31','ilex_route104'))}
+    ports={k:v for k,v in ports.items() if not k.startswith(('cherry_route1','route1_route31','ilex_route104',
+                                                             'lavender_route8','route8_saffron'))}
     reserved={}
     for key,a,at,b,bt,requirements in TRAILS:
         for suffix,name in [('_a',a),('_b',b)]:

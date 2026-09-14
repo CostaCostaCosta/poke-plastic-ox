@@ -1,7 +1,7 @@
 {
   "id": "MAP_ROUTE2_EAST_BUILDING",
   "name": "Route2_EastBuilding_Frlg",
-  "layout": "LAYOUT_ROUTE2_ENTRANCE",
+  "layout": "LAYOUT_GATE_ROUTE2_HNS",
   "music": "MUS_RG_PEWTER",
   "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_ROUTE_2",
@@ -48,21 +48,21 @@
   "warp_events": [
     {
       "x": 6,
-      "y": 10,
+      "y": 9,
       "elevation": 0,
       "dest_map": "MAP_ROUTE2",
       "dest_warp_id": "5"
     },
     {
       "x": 7,
-      "y": 10,
+      "y": 9,
       "elevation": 3,
       "dest_map": "MAP_ROUTE2",
       "dest_warp_id": "5"
     },
     {
       "x": 8,
-      "y": 10,
+      "y": 9,
       "elevation": 3,
       "dest_map": "MAP_ROUTE2",
       "dest_warp_id": "5"
@@ -70,7 +70,7 @@
     {
       "x": 7,
       "y": 1,
-      "elevation": 3,
+      "elevation": 0,
       "dest_map": "MAP_ROUTE2",
       "dest_warp_id": "6"
     }

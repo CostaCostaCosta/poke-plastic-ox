@@ -1,5 +1,44 @@
 # Johto visual assets
 
+## SoulGold regional migration
+
+Eemeliri/SoulGold revision `768612c8ebcecf69c0083e918039e083ca1a5ba4`
+was evaluated as the preferred donor. It is not runtime-compatible with this
+engine: SoulGold defines `NUM_METATILES_IN_PRIMARY` as 1024, while Plastic Ox
+supports Emerald's 512-primary and HnS/FRLG's 640-primary layout families.
+Complete imports built, but fresh mGBA inspection showed secondary art as
+striped primary-tile corruption. The attempted wider transplant also failed
+16 of 78 progression crossings before adaptation. Retiling or truncating the
+maps would violate the map-geometry/art identity rule, so all active Johto
+maps remain on their complete HnS implementations. The pinned audit/import
+harness is `plastic_ox/assets/import_soulgold_johto.py`; runtime generation is
+deliberately disabled until Plastic Ox gains a 1024-primary layout version.
+
+| Plastic Ox map | Region | Donor map | Donor project | Tileset family | Status |
+| --- | --- | --- | --- | --- | --- |
+| CherrygroveCity_hns | Johto | CherrygroveCity_hns | Pokémon HnS | HnS Johto General / Cherrygrove | retained; SoulGold 1024-primary incompatibility |
+| IlexForest_hns | Johto | IlexForest_hns | Pokémon HnS | HnS Johto South / Ilex Forest | retained; SoulGold 1024-primary incompatibility |
+| Route33_hns | Johto | Route33_hns | Pokémon HnS | HnS Johto South / Azalea | retained; SoulGold broke Mt. Moon/Goldenrod crossings |
+| GoldenrodCity_hns | Johto | GoldenrodCity_hns | Pokémon HnS | HnS Johto General / Goldenrod | retained; SoulGold broke both progression edges |
+| Route35_hns | Johto | Route35_hns | Pokémon HnS | HnS Johto General / Goldenrod | retained; SoulGold broke park chain landings |
+| NationalPark_Normal_hns | Johto | NationalPark_Normal_hns | Pokémon HnS | HnS Johto General / National Park | retained; SoulGold broke both progression edges |
+| Route36_hns | Johto | Route36_hns | Pokémon HnS | HnS Johto General / Violet | retained; SoulGold edge geometry incompatible |
+| Route37_hns | Johto | Route37_hns | Pokémon HnS | HnS Johto General / Ecruteak | retained; SoulGold broke Ecruteak landing |
+| EcruteakCity_hns | Johto | EcruteakCity_hns | Pokémon HnS | HnS Johto NorthWest / Ecruteak | retained; SoulGold broke Route 119 and League portals |
+| DarkCave_SouthSide_hns | Johto | DarkCave_SouthSide_hns | Pokémon HnS | HnS Johto General / Cave Default | retained; SoulGold 1024-primary incompatibility |
+| Route44_hns | Johto | Route44_hns | Pokémon HnS | HnS Johto NorthEast / Cianwood | retained; SoulGold 1024-primary incompatibility |
+| BlackthornCity_hns | Johto | BlackthornCity_hns | Pokémon HnS | HnS Johto NorthEast / Blackthorn | retained; SoulGold broke Route 45 edge |
+
+Routes 29-46, Cherrygrove, Ilex, Goldenrod, National Park, Ecruteak, Dark
+Cave, and Blackthorn therefore remain HnS. This retains Plastic Ox scripts,
+objects, trainers, items, encounters, warps, connections, and collision
+repairs without mixing SoulGold geometry with HnS artwork. The retained set
+passes all 78 actual D-pad progression crossings.
+`PlasticOx_BurnedTower` remains the existing Plastic Ox interior: it is a
+story-specific map rather than the prior HnS `BurnedTower_1F`, so replacing it
+would materially change authored progression. Existing gates and interiors
+also remain HnS until their outdoor doorway contracts are migrated as a unit.
+
 ## Source and reuse record
 
 | Field | Record |

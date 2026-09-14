@@ -219,50 +219,6 @@
     ],
     "direction": "E"
   },
-  "lavender_route8_a": {
-    "tile": [
-      1,
-      15
-    ],
-    "approach": [
-      1,
-      16
-    ],
-    "direction": "N"
-  },
-  "lavender_route8_b": {
-    "tile": [
-      71,
-      10
-    ],
-    "approach": [
-      70,
-      10
-    ],
-    "direction": "E"
-  },
-  "route8_saffron_a": {
-    "tile": [
-      8,
-      10
-    ],
-    "approach": [
-      8,
-      11
-    ],
-    "direction": "N"
-  },
-  "route8_saffron_b": {
-    "tile": [
-      61,
-      27
-    ],
-    "approach": [
-      60,
-      27
-    ],
-    "direction": "E"
-  },
   "route7_saffron_a": {
     "tile": [
       6,
@@ -340,28 +296,6 @@
     ],
     "direction": "E"
   },
-  "cinnabar_sea_b": {
-    "tile": [
-      0,
-      10
-    ],
-    "approach": [
-      0,
-      11
-    ],
-    "direction": "N"
-  },
-  "sea_mossdeep_a": {
-    "tile": [
-      53,
-      10
-    ],
-    "approach": [
-      52,
-      10
-    ],
-    "direction": "E"
-  },
   "sea_mossdeep_b": {
     "tile": [
       0,
@@ -381,17 +315,6 @@
     "approach": [
       39,
       0
-    ],
-    "direction": "E"
-  },
-  "mossdeep_route19_b": {
-    "tile": [
-      12,
-      56
-    ],
-    "approach": [
-      11,
-      56
     ],
     "direction": "E"
   },
@@ -821,6 +744,83 @@
     "approach": [
       18,
       59
+    ],
+    "direction": "E"
+  },
+  "cinnabar_sea_b": {
+    "tile": [
+      48,
+      13
+    ],
+    "approach": [
+      48,
+      14
+    ],
+    "direction": "N"
+  },
+  "sea_mossdeep_a": {
+    "tile": [
+      12,
+      12
+    ],
+    "approach": [
+      12,
+      13
+    ],
+    "direction": "N"
+  },
+  "mossdeep_route19_b": {
+    "tile": [
+      12,
+      13
+    ],
+    "approach": [
+      11,
+      13
+    ],
+    "direction": "E"
+  },
+  "lavender_route8_a": {
+    "tile": [
+      1,
+      15
+    ],
+    "approach": [
+      1,
+      16
+    ],
+    "direction": "N"
+  },
+  "lavender_route8_b": {
+    "tile": [
+      67,
+      20
+    ],
+    "approach": [
+      66,
+      20
+    ],
+    "direction": "E"
+  },
+  "route8_saffron_a": {
+    "tile": [
+      8,
+      20
+    ],
+    "approach": [
+      7,
+      20
+    ],
+    "direction": "E"
+  },
+  "route8_saffron_b": {
+    "tile": [
+      61,
+      27
+    ],
+    "approach": [
+      60,
+      27
     ],
     "direction": "E"
   }

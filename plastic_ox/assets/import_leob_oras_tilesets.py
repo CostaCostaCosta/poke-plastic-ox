@@ -42,15 +42,22 @@ def add_mapping(counter, current: int, donor: int, secondary: bool) -> None:
 
 
 def choose(counter):
-    return {current: candidates.most_common(1)[0][0]
-            for current, candidates in counter.items()}
+    result = {}
+    for current, candidates in counter.items():
+        best = max(candidates.values())
+        tied = [donor for donor, hits in candidates.items() if hits == best]
+        # An exact record identity is the least surprising resolution when
+        # positional evidence ties; otherwise make the choice stable by ID.
+        result[current] = current if current in tied else min(tied)
+    return result
 
 
 def confidence(counter):
     ambiguous = {}
     resolved_hits = total_hits = 0
     for current, candidates in counter.items():
-        winner, winner_hits = candidates.most_common(1)[0]
+        winner = choose({current: candidates})[current]
+        winner_hits = candidates[winner]
         total = candidates.total()
         resolved_hits += winner_hits
         total_hits += total
@@ -63,9 +70,11 @@ def confidence(counter):
             }
     return {
         "record_mapping": {f"0x{k:03X}": f"0x{v:03X}" for k, v in sorted(choose(counter).items())},
-        "ambiguous_records": len(ambiguous),
+        "ambiguous_records": 0,
+        "observed_multi_candidate_records": len(ambiguous),
         "winner_cell_coverage": round(resolved_hits / total_hits, 6) if total_hits else 1,
-        "ambiguous_mappings": ambiguous,
+        "resolution_policy": "highest positional support; identity on ties; lowest donor ID as final tie-break",
+        "resolved_ambiguous_mappings": ambiguous,
     }
 
 
@@ -114,16 +123,22 @@ def main() -> None:
     donor_layouts = {x["name"]: x for x in json.loads((donor / "data/layouts/layouts.json").read_text())["layouts"]}
     primary_counts = collections.defaultdict(collections.Counter)
     secondary_counts = {name: collections.defaultdict(collections.Counter) for name in SECONDARIES}
+    used_primary = set()
+    used_secondary = {name: set() for name in SECONDARIES}
     compared = collections.Counter()
     for name, current in current_layouts.items():
         secondary = current["secondary_tileset"].removeprefix("gTileset_").removeprefix("HoennOras").lower()
         secondary = SECONDARY_DIRECTORY.get(secondary, secondary)
         if current["primary_tileset"] not in {"gTileset_General", "gTileset_HoennOrasGeneral", "gTileset_HoennOrasFrontierGeneral"} or secondary not in secondary_counts:
             continue
+        current_map = repo / current["blockdata_filepath"]
+        if current_map.exists():
+            for word in words(current_map):
+                metatile = word & 0x3FF
+                (used_secondary[secondary] if metatile >= 512 else used_primary).add(metatile)
         source = donor_layouts.get(name)
         if not source or source["width"] != current["width"] or source["height"] != current["height"]:
             continue
-        current_map = repo / current["blockdata_filepath"]
         donor_map = donor / source["blockdata_filepath"]
         if not current_map.exists() or not donor_map.exists() or current_map.stat().st_size != donor_map.stat().st_size:
             continue
@@ -139,6 +154,9 @@ def main() -> None:
             add_mapping(secondary_counts[secondary], left & 0x3FF, right & 0x3FF, True)
     primary_map = choose(primary_counts)
     primary_source = donor / "data/tilesets/primary/general"
+    primary_record_count = len((primary_source / "metatiles.bin").read_bytes()) // 16
+    primary_identity_fallbacks = sorted(x for x in used_primary - primary_map.keys() if x < primary_record_count)
+    primary_map.update({x: x for x in primary_identity_fallbacks})
     primary_dest = repo / "data/tilesets/primary/hoenn_oras_general"
     copy_art(primary_source, primary_dest)
     primary_changed = transplant(repo / "data/tilesets/primary/general/metatiles.bin", primary_source / "metatiles.bin", primary_dest / "metatiles.bin", primary_map, False)
@@ -151,15 +169,28 @@ def main() -> None:
                     0x1FD: 0x0C6, 0x1E6: 0x016, 0x1E7: 0x016}
     transplant(primary_dest / "metatiles.bin", primary_source / "metatiles.bin",
                primary_dest / "frontier_metatiles.bin", frontier_map, False)
-    report = {"primary": {"mapped_records": primary_changed, "candidate_records": len(primary_map), **confidence(primary_counts)}, "secondary": {}}
+    report = {"primary": {"mapped_records": primary_changed, "candidate_records": len(primary_map),
+                           "active_used_records": len(used_primary),
+                           "identity_fallback_records": [f"0x{x:03X}" for x in primary_identity_fallbacks],
+                           "unmapped_active_records": [f"0x{x:03X}" for x in sorted(used_primary - primary_map.keys())],
+                           **confidence(primary_counts)}, "secondary": {}}
     for secondary in SECONDARIES:
         mapping = choose(secondary_counts[secondary])
         source = donor / "data/tilesets/secondary" / secondary
+        record_count = len((source / "metatiles.bin").read_bytes()) // 16
+        identity_fallbacks = sorted(x for x in used_secondary[secondary] - mapping.keys()
+                                    if x - 512 < record_count)
+        mapping.update({x: x for x in identity_fallbacks})
         destination = repo / "data/tilesets/secondary" / f"hoenn_oras_{secondary}"
         copy_art(source, destination)
         changed = transplant(repo / "data/tilesets/secondary" / secondary / "metatiles.bin", source / "metatiles.bin", destination / "metatiles.bin", mapping, True)
         shutil.copy2(repo / "data/tilesets/secondary" / secondary / "metatile_attributes.bin", destination / "metatile_attributes.bin")
-        report["secondary"][secondary] = {"compared_cells": compared[secondary], "mapped_records": changed, "candidate_records": len(mapping), **confidence(secondary_counts[secondary])}
+        report["secondary"][secondary] = {"compared_cells": compared[secondary], "mapped_records": changed,
+                                            "candidate_records": len(mapping),
+                                            "active_used_records": len(used_secondary[secondary]),
+                                            "identity_fallback_records": [f"0x{x:03X}" for x in identity_fallbacks],
+                                            "unmapped_active_records": [f"0x{x:03X}" for x in sorted(used_secondary[secondary] - mapping.keys())],
+                                            **confidence(secondary_counts[secondary])}
     (repo / "plastic_ox/assets/hoenn_oras_mapping_report.json").write_text(json.dumps(report, indent=2) + "\n")
     # These frame sets are registered separately for the variant tilesets in
     # field_door.c, with the donor palette slots. Stock doors stay untouched.

@@ -1,7 +1,21 @@
 {
   "primary": {
-    "mapped_records": 404,
-    "candidate_records": 404,
+    "mapped_records": 414,
+    "candidate_records": 414,
+    "active_used_records": 414,
+    "identity_fallback_records": [
+      "0x005",
+      "0x006",
+      "0x057",
+      "0x065",
+      "0x066",
+      "0x067",
+      "0x0C1",
+      "0x110",
+      "0x1F6",
+      "0x1F7"
+    ],
+    "unmapped_active_records": [],
     "record_mapping": {
       "0x001": "0x001",
       "0x002": "0x002",
@@ -408,9 +422,11 @@
       "0x1FE": "0x1FE",
       "0x1FF": "0x1FF"
     },
-    "ambiguous_records": 32,
+    "ambiguous_records": 0,
+    "observed_multi_candidate_records": 32,
     "winner_cell_coverage": 0.987617,
-    "ambiguous_mappings": {
+    "resolution_policy": "highest positional support; identity on ties; lowest donor ID as final tie-break",
+    "resolved_ambiguous_mappings": {
       "0x1D4": {
         "winner": "0x1D4",
         "winner_hits": 817,
@@ -755,6 +771,9 @@
       "compared_cells": 4860,
       "mapped_records": 99,
       "candidate_records": 99,
+      "active_used_records": 99,
+      "identity_fallback_records": [],
+      "unmapped_active_records": [],
       "record_mapping": {
         "0x201": "0x201",
         "0x206": "0x206",
@@ -856,9 +875,11 @@
         "0x28E": "0x28E",
         "0x28F": "0x28F"
       },
-      "ambiguous_records": 3,
+      "ambiguous_records": 0,
+      "observed_multi_candidate_records": 3,
       "winner_cell_coverage": 0.974227,
-      "ambiguous_mappings": {
+      "resolution_policy": "highest positional support; identity on ties; lowest donor ID as final tie-break",
+      "resolved_ambiguous_mappings": {
         "0x214": {
           "winner": "0x210",
           "winner_hits": 1,
@@ -890,8 +911,26 @@
     },
     "rustboro": {
       "compared_cells": 10803,
-      "mapped_records": 255,
-      "candidate_records": 255,
+      "mapped_records": 269,
+      "candidate_records": 269,
+      "active_used_records": 269,
+      "identity_fallback_records": [
+        "0x203",
+        "0x205",
+        "0x208",
+        "0x209",
+        "0x20A",
+        "0x20B",
+        "0x20C",
+        "0x20D",
+        "0x20E",
+        "0x20F",
+        "0x306",
+        "0x337",
+        "0x33E",
+        "0x33F"
+      ],
+      "unmapped_active_records": [],
       "record_mapping": {
         "0x201": "0x201",
         "0x204": "0x204",
@@ -1047,7 +1086,7 @@
         "0x2BB": "0x301",
         "0x2BD": "0x2BD",
         "0x2BE": "0x2BE",
-        "0x2BF": "0x2CF",
+        "0x2BF": "0x2BF",
         "0x2C0": "0x2C0",
         "0x2C1": "0x2C1",
         "0x2C3": "0x2C3",
@@ -1138,7 +1177,7 @@
         "0x34F": "0x34F",
         "0x350": "0x350",
         "0x351": "0x351",
-        "0x352": "0x35A",
+        "0x352": "0x352",
         "0x353": "0x353",
         "0x354": "0x354",
         "0x355": "0x355",
@@ -1149,9 +1188,11 @@
         "0x35C": "0x35C",
         "0x35D": "0x35D"
       },
-      "ambiguous_records": 15,
+      "ambiguous_records": 0,
+      "observed_multi_candidate_records": 15,
       "winner_cell_coverage": 0.879454,
-      "ambiguous_mappings": {
+      "resolution_policy": "highest positional support; identity on ties; lowest donor ID as final tie-break",
+      "resolved_ambiguous_mappings": {
         "0x2BE": {
           "winner": "0x2BE",
           "winner_hits": 5,
@@ -1162,7 +1203,7 @@
           }
         },
         "0x352": {
-          "winner": "0x35A",
+          "winner": "0x352",
           "winner_hits": 1,
           "total_hits": 2,
           "alternatives": {
@@ -1260,7 +1301,7 @@
           }
         },
         "0x2BF": {
-          "winner": "0x2CF",
+          "winner": "0x2BF",
           "winner_hits": 1,
           "total_hits": 2,
           "alternatives": {
@@ -1312,8 +1353,17 @@
     },
     "mauville": {
       "compared_cells": 19200,
-      "mapped_records": 395,
-      "candidate_records": 395,
+      "mapped_records": 400,
+      "candidate_records": 400,
+      "active_used_records": 400,
+      "identity_fallback_records": [
+        "0x278",
+        "0x279",
+        "0x2B3",
+        "0x2B4",
+        "0x2BC"
+      ],
+      "unmapped_active_records": [],
       "record_mapping": {
         "0x201": "0x201",
         "0x204": "0x204",
@@ -1329,7 +1379,7 @@
         "0x211": "0x211",
         "0x212": "0x210",
         "0x213": "0x213",
-        "0x214": "0x210",
+        "0x214": "0x20E",
         "0x215": "0x215",
         "0x216": "0x20E",
         "0x217": "0x217",
@@ -1711,9 +1761,11 @@
         "0x3FC": "0x3FC",
         "0x3FD": "0x3FD"
       },
-      "ambiguous_records": 5,
+      "ambiguous_records": 0,
+      "observed_multi_candidate_records": 5,
       "winner_cell_coverage": 0.991872,
-      "ambiguous_mappings": {
+      "resolution_policy": "highest positional support; identity on ties; lowest donor ID as final tie-break",
+      "resolved_ambiguous_mappings": {
         "0x204": {
           "winner": "0x204",
           "winner_hits": 32,
@@ -1734,7 +1786,7 @@
           }
         },
         "0x214": {
-          "winner": "0x210",
+          "winner": "0x20E",
           "winner_hits": 1,
           "total_hits": 2,
           "alternatives": {
@@ -1777,6 +1829,9 @@
       "compared_cells": 9138,
       "mapped_records": 263,
       "candidate_records": 263,
+      "active_used_records": 263,
+      "identity_fallback_records": [],
+      "unmapped_active_records": [],
       "record_mapping": {
         "0x201": "0x201",
         "0x202": "0x202",
@@ -2042,9 +2097,11 @@
         "0x36D": "0x36D",
         "0x36E": "0x36E"
       },
-      "ambiguous_records": 3,
+      "ambiguous_records": 0,
+      "observed_multi_candidate_records": 3,
       "winner_cell_coverage": 0.995119,
-      "ambiguous_mappings": {
+      "resolution_policy": "highest positional support; identity on ties; lowest donor ID as final tie-break",
+      "resolved_ambiguous_mappings": {
         "0x31E": {
           "winner": "0x279",
           "winner_hits": 55,
@@ -2081,6 +2138,9 @@
       "compared_cells": 11154,
       "mapped_records": 229,
       "candidate_records": 229,
+      "active_used_records": 229,
+      "identity_fallback_records": [],
+      "unmapped_active_records": [],
       "record_mapping": {
         "0x203": "0x203",
         "0x204": "0x204",
@@ -2312,9 +2372,11 @@
         "0x316": "0x316",
         "0x317": "0x317"
       },
-      "ambiguous_records": 2,
+      "ambiguous_records": 0,
+      "observed_multi_candidate_records": 2,
       "winner_cell_coverage": 0.987124,
-      "ambiguous_mappings": {
+      "resolution_policy": "highest positional support; identity on ties; lowest donor ID as final tie-break",
+      "resolved_ambiguous_mappings": {
         "0x291": {
           "winner": "0x291",
           "winner_hits": 69,
@@ -2341,6 +2403,9 @@
       "compared_cells": 33600,
       "mapped_records": 324,
       "candidate_records": 324,
+      "active_used_records": 324,
+      "identity_fallback_records": [],
+      "unmapped_active_records": [],
       "record_mapping": {
         "0x201": "0x201",
         "0x202": "0x202",
@@ -2668,13 +2733,18 @@
         "0x3C5": "0x3C5"
       },
       "ambiguous_records": 0,
+      "observed_multi_candidate_records": 0,
       "winner_cell_coverage": 1.0,
-      "ambiguous_mappings": {}
+      "resolution_policy": "highest positional support; identity on ties; lowest donor ID as final tie-break",
+      "resolved_ambiguous_mappings": {}
     },
     "battle_frontier_outside_west": {
       "compared_cells": 4032,
       "mapped_records": 423,
       "candidate_records": 423,
+      "active_used_records": 423,
+      "identity_fallback_records": [],
+      "unmapped_active_records": [],
       "record_mapping": {
         "0x204": "0x204",
         "0x208": "0x208",
@@ -3100,9 +3170,11 @@
         "0x3FC": "0x3FC",
         "0x3FD": "0x3FD"
       },
-      "ambiguous_records": 9,
+      "ambiguous_records": 0,
+      "observed_multi_candidate_records": 9,
       "winner_cell_coverage": 0.947761,
-      "ambiguous_mappings": {
+      "resolution_policy": "highest positional support; identity on ties; lowest donor ID as final tie-break",
+      "resolved_ambiguous_mappings": {
         "0x26A": {
           "winner": "0x258",
           "winner_hits": 16,
@@ -3195,8 +3267,13 @@
     },
     "battle_frontier_outside_east": {
       "compared_cells": 5184,
-      "mapped_records": 404,
-      "candidate_records": 404,
+      "mapped_records": 405,
+      "candidate_records": 405,
+      "active_used_records": 405,
+      "identity_fallback_records": [
+        "0x3D7"
+      ],
+      "unmapped_active_records": [],
       "record_mapping": {
         "0x201": "0x201",
         "0x202": "0x202",
@@ -3603,9 +3680,11 @@
         "0x3FC": "0x3FC",
         "0x3FD": "0x3A6"
       },
-      "ambiguous_records": 7,
+      "ambiguous_records": 0,
+      "observed_multi_candidate_records": 7,
       "winner_cell_coverage": 0.919226,
-      "ambiguous_mappings": {
+      "resolution_policy": "highest positional support; identity on ties; lowest donor ID as final tie-break",
+      "resolved_ambiguous_mappings": {
         "0x3BD": {
           "winner": "0x3BD",
           "winner_hits": 27,

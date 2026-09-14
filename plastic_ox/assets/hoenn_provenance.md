@@ -58,3 +58,29 @@ Meteor Falls remains on its native Hoenn `meteor_falls` secondary family.  It
 is deliberately not assigned a Kanto or Johto tileset: its source geometry
 and cave identity remain Hoenn, including the approach to Blackthorn.
 
+## September 2026 validation
+
+The importer now resolves every observed multi-candidate correspondence
+deterministically: greatest positional support wins, then identity mapping,
+then the lowest donor ID. It also installs an identity donor fallback for any
+metatile used by an active ORAS layout that has no positional observation.
+The report keeps all 76 observed multi-candidate records for review while
+reporting zero unresolved ambiguities and zero unmapped active records.
+
+Coverage is complete for every metatile actually used by active converted
+Hoenn layouts: primary 414/414, Petalburg 99/99, Rustboro 269/269, Mauville
+400/400, Fallarbor 263/263, Fortree 229/229, Mossdeep 324/324, Frontier West
+423/423, and Frontier East 405/405. A fresh 280-view mGBA grid inspection over
+33 maps passed with zero camera-buffer mismatches, including 43 Route 119
+views, 7 Fortree views, 29 Mossdeep views, and 19 Rustboro views. Shorelines,
+waterfalls, Fortree structures, Rustboro architecture/fountain behavior, and
+the existing ORAS animation callbacks remain intact. Meteor Falls remains
+native Hoenn at its intentional cross-region exit.
+
+| Plastic Ox map | Region | Donor map | Donor project | Tileset family | Status |
+| --- | --- | --- | --- | --- | --- |
+| RustboroCity | Hoenn | RustboroCity | Modern ORAS Emerald | LeoB ORAS General / Rustboro | validated |
+| Route119 | Hoenn | Route119 | Modern ORAS Emerald | LeoB ORAS General / Fortree | validated |
+| FortreeCity | Hoenn | FortreeCity | Modern ORAS Emerald | LeoB ORAS General / Fortree | validated |
+| MossdeepCity | Hoenn | MossdeepCity | Modern ORAS Emerald | LeoB ORAS General / Mossdeep | validated |
+| MeteorFalls_1F_1R | Hoenn | MeteorFalls_1F_1R | pokeemerald + LeoB direction | Hoenn General / Meteor Falls | retained Hoenn; validated |

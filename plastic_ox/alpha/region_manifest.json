@@ -732,8 +732,8 @@
       ],
       "direction": "N",
       "landing": [
-        70,
-        10
+        66,
+        20
       ],
       "requires": [
         "FLAG_POX_STORY_FUJI"
@@ -745,12 +745,12 @@
       "source": "Route8_Frlg",
       "destination": "LavenderTown_hns",
       "tile": [
-        71,
-        10
+        67,
+        20
       ],
       "approach": [
-        70,
-        10
+        66,
+        20
       ],
       "direction": "E",
       "landing": [
@@ -768,13 +768,13 @@
       "destination": "SaffronCity_hns",
       "tile": [
         8,
-        10
+        20
       ],
       "approach": [
-        8,
-        11
+        7,
+        20
       ],
-      "direction": "N",
+      "direction": "E",
       "landing": [
         60,
         27
@@ -798,8 +798,8 @@
       ],
       "direction": "E",
       "landing": [
-        8,
-        11
+        7,
+        20
       ],
       "requires": [
         "FLAG_POX_STORY_SPACE_CENTER"
@@ -1040,8 +1040,8 @@
       ],
       "direction": "E",
       "landing": [
-        0,
-        11
+        48,
+        14
       ],
       "requires": [
         "FLAG_POX_STORY_MANSION"
@@ -1053,12 +1053,12 @@
       "source": "PlasticOx_Route20West",
       "destination": "CinnabarIsland_hns",
       "tile": [
-        0,
-        10
+        48,
+        13
       ],
       "approach": [
-        0,
-        11
+        48,
+        14
       ],
       "direction": "N",
       "landing": [
@@ -1075,14 +1075,14 @@
       "source": "PlasticOx_Route20East",
       "destination": "MossdeepCity",
       "tile": [
-        53,
-        10
+        12,
+        12
       ],
       "approach": [
-        52,
-        10
+        12,
+        13
       ],
-      "direction": "E",
+      "direction": "N",
       "landing": [
         0,
         21
@@ -1106,8 +1106,8 @@
       ],
       "direction": "N",
       "landing": [
-        52,
-        10
+        12,
+        13
       ],
       "requires": [
         "FLAG_POX_STORY_MANSION"
@@ -1129,7 +1129,7 @@
       "direction": "E",
       "landing": [
         11,
-        56
+        13
       ],
       "requires": [],
       "label": "Route19"
@@ -1140,11 +1140,11 @@
       "destination": "MossdeepCity",
       "tile": [
         12,
-        56
+        13
       ],
       "approach": [
         11,
-        56
+        13
       ],
       "direction": "E",
       "landing": [

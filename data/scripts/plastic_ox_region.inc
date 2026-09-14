@@ -801,7 +801,7 @@ PoxRegion_lavender_route8_a::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_lavender_route8_a_Open
 	goto_if_unset FLAG_POX_STORY_FUJI, PoxRegion_lavender_route8_a_Closed
 PoxRegion_lavender_route8_a_Open::
-	warp MAP_ROUTE8, 70, 10
+	warp MAP_ROUTE8, 66, 20
 	waitstate
 	releaseall
 	end
@@ -829,7 +829,7 @@ PoxRegion_lavender_route8_b_Open::
 	end
 PoxRegion_lavender_route8_b_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE8, 70, 10
+	warp MAP_ROUTE8, 66, 20
 	waitstate
 	releaseall
 	end
@@ -851,7 +851,7 @@ PoxRegion_route8_saffron_a_Open::
 	end
 PoxRegion_route8_saffron_a_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE8, 8, 11
+	warp MAP_ROUTE8, 7, 20
 	waitstate
 	releaseall
 	end
@@ -867,7 +867,7 @@ PoxRegion_route8_saffron_b::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route8_saffron_b_Open
 	goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxRegion_route8_saffron_b_Closed
 PoxRegion_route8_saffron_b_Open::
-	warp MAP_ROUTE8, 8, 11
+	warp MAP_ROUTE8, 7, 20
 	waitstate
 	releaseall
 	end
@@ -1085,7 +1085,7 @@ PoxRegion_cinnabar_sea_a::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_cinnabar_sea_a_Open
 	goto_if_unset FLAG_POX_STORY_MANSION, PoxRegion_cinnabar_sea_a_Closed
 PoxRegion_cinnabar_sea_a_Open::
-	warp MAP_PLASTIC_OX_ROUTE20_WEST, 0, 11
+	warp MAP_PLASTIC_OX_ROUTE20_WEST, 48, 14
 	waitstate
 	releaseall
 	end
@@ -1113,7 +1113,7 @@ PoxRegion_cinnabar_sea_b_Open::
 	end
 PoxRegion_cinnabar_sea_b_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_PLASTIC_OX_ROUTE20_WEST, 0, 11
+	warp MAP_PLASTIC_OX_ROUTE20_WEST, 48, 14
 	waitstate
 	releaseall
 	end
@@ -1129,7 +1129,7 @@ PoxRegion_sea_mossdeep_a_Open::
 	end
 PoxRegion_sea_mossdeep_a_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_PLASTIC_OX_ROUTE20_EAST, 52, 10
+	warp MAP_PLASTIC_OX_ROUTE20_EAST, 12, 13
 	waitstate
 	releaseall
 	end
@@ -1139,7 +1139,7 @@ PoxRegion_sea_mossdeep_b::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_sea_mossdeep_b_Open
 	goto_if_unset FLAG_POX_STORY_MANSION, PoxRegion_sea_mossdeep_b_Closed
 PoxRegion_sea_mossdeep_b_Open::
-	warp MAP_PLASTIC_OX_ROUTE20_EAST, 52, 10
+	warp MAP_PLASTIC_OX_ROUTE20_EAST, 12, 13
 	waitstate
 	releaseall
 	end
@@ -1154,7 +1154,7 @@ PoxRegion_mossdeep_route19_a::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_mossdeep_route19_a_Open
 PoxRegion_mossdeep_route19_a_Open::
-	warp MAP_ROUTE19, 11, 56
+	warp MAP_ROUTE19, 11, 13
 	waitstate
 	releaseall
 	end
@@ -1175,10 +1175,16 @@ PoxRegion_mossdeep_route19_b_Open::
 	end
 PoxRegion_mossdeep_route19_b_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE19, 11, 56
+	warp MAP_ROUTE19, 11, 13
 	waitstate
 	releaseall
 	end
+
+PoxRegion_mossdeep_route19_b_Sign::
+	msgbox PoxRegion_mossdeep_route19_b_Text, MSGBOX_SIGN
+	end
+PoxRegion_mossdeep_route19_b_Text::
+	.string "MossdeepCity\nMarked passage ahead.$"
 
 PoxRegion_route19_saffron_a::
 	lockall

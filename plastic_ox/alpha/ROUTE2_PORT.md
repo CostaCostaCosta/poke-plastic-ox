@@ -6,7 +6,7 @@ working-tree changes preserved. No blockmaps or tileset binaries were copied
 or edited. Route 2 replaces Route 1, Route 31, and Route 104 Top in the active
 opening graph; the old map IDs remain registered for save compatibility.
 
-Route 2 uses `LAYOUT_ROUTE2` (24 × 80), `gTileset_General_Frlg`, and
+Route 2 uses `LAYOUT_ROUTE2_HNS` (24 × 80), `gTileset_Kanto_General_Hns`, and
 `gTileset_ViridianCity`. Its existing `viridian_city_frlg` tiles, 16 palettes,
 metatiles, and 32-bit FRLG attributes are now included in Emerald. Layout
 partitioning remains `frlg`. Both forest gatehouses, the house, and the east

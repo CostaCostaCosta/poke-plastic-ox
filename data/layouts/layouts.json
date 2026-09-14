@@ -10124,11 +10124,11 @@
       "height": 20,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General_Frlg",
-      "secondary_tileset": "gTileset_CinnabarIsland",
+      "primary_tileset": "gTileset_Kanto_General_Hns",
+      "secondary_tileset": "gTileset_Lavaridge_Hns",
       "border_filepath": "data/layouts/PlasticOx_Route20West/border.bin",
       "blockdata_filepath": "data/layouts/PlasticOx_Route20West/map.bin",
-      "layout_version": "frlg",
+      "layout_version": "hns",
       "include_in_versions": [
         "emerald"
       ]
@@ -10140,11 +10140,109 @@
       "height": 20,
       "border_width": 2,
       "border_height": 2,
-      "primary_tileset": "gTileset_General_Frlg",
-      "secondary_tileset": "gTileset_CinnabarIsland",
+      "primary_tileset": "gTileset_Kanto_General_Hns",
+      "secondary_tileset": "gTileset_Lavaridge_Hns",
       "border_filepath": "data/layouts/PlasticOx_Route20East/border.bin",
       "blockdata_filepath": "data/layouts/PlasticOx_Route20East/map.bin",
-      "layout_version": "frlg",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
+      "id": "LAYOUT_PALLET_TOWN_HNS",
+      "name": "PalletTown_hns_Layout",
+      "width": 24,
+      "height": 20,
+      "primary_tileset": "gTileset_Kanto_General_Hns",
+      "secondary_tileset": "gTileset_PalletTown_Hns",
+      "border_filepath": "data/layouts/PalletTown_hns/border.bin",
+      "blockdata_filepath": "data/layouts/PalletTown_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
+      "id": "LAYOUT_ROUTE8_HNS",
+      "name": "Route8_hns_Layout",
+      "width": 68,
+      "height": 40,
+      "primary_tileset": "gTileset_Kanto_General_Hns",
+      "secondary_tileset": "gTileset_LavenderTown_Hns",
+      "border_filepath": "data/layouts/Route8_hns/border.bin",
+      "blockdata_filepath": "data/layouts/Route8_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
+      "id": "LAYOUT_ROUTE19_HNS",
+      "name": "Route19_hns_Layout",
+      "width": 24,
+      "height": 60,
+      "primary_tileset": "gTileset_Kanto_General_Hns",
+      "secondary_tileset": "gTileset_Fuchsia_Hns",
+      "border_filepath": "data/layouts/Route19_hns/border.bin",
+      "blockdata_filepath": "data/layouts/Route19_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
+      "id": "LAYOUT_ROUTE2_HOUSE_HNS",
+      "name": "Route2_House_hns_Layout",
+      "width": 13,
+      "height": 10,
+      "primary_tileset": "gTileset_Johto_Building_Hns",
+      "secondary_tileset": "gTileset_House_Lab_Hns",
+      "border_filepath": "data/layouts/Route2_House_hns/border.bin",
+      "blockdata_filepath": "data/layouts/Route2_House_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
+      "id": "LAYOUT_GATE_VIRIDIAN_FOREST_ROUTE2_HNS",
+      "name": "Gate_ViridianForest_Route2_hns_Layout",
+      "width": 15,
+      "height": 12,
+      "primary_tileset": "gTileset_Kanto_Building_Hns",
+      "secondary_tileset": "gTileset_Gate_Standard_Hns",
+      "border_filepath": "data/layouts/Gate_ViridianForest_Route2_hns/border.bin",
+      "blockdata_filepath": "data/layouts/Gate_ViridianForest_Route2_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
+      "id": "LAYOUT_GATE_ROUTE2_VIRIDIAN_FOREST_HNS",
+      "name": "Gate_Route2_ViridianForest_hns_Layout",
+      "width": 15,
+      "height": 12,
+      "primary_tileset": "gTileset_Kanto_Building_Hns",
+      "secondary_tileset": "gTileset_Gate_Standard_Hns",
+      "border_filepath": "data/layouts/Gate_Route2_ViridianForest_hns/border.bin",
+      "blockdata_filepath": "data/layouts/Gate_Route2_ViridianForest_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
+      "id": "LAYOUT_GATE_ROUTE2_HNS",
+      "name": "Gate_Route2_hns_Layout",
+      "width": 15,
+      "height": 12,
+      "primary_tileset": "gTileset_Kanto_Building_Hns",
+      "secondary_tileset": "gTileset_Gate_Standard_Hns",
+      "border_filepath": "data/layouts/Gate_Route2_hns/border.bin",
+      "blockdata_filepath": "data/layouts/Gate_Route2_hns/map.bin",
+      "layout_version": "hns",
       "include_in_versions": [
         "emerald"
       ]
