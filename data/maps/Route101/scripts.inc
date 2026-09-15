@@ -15,13 +15,14 @@ Route101_EventScript_RouteSign::
 	end
 
 Route101_Text_TakeTiredPokemonToPokeCenter::
-	.string "If POKéMON get tired, take them to\n"
-	.string "a POKéMON CENTER.\p"
-	.string "There's one in OLDALE TOWN.$"
+	.string "The TRAINERS on the routes ahead are\n"
+	.string "strong!\p"
+	.string "Catch more POKéMON before you take\n"
+	.string "them on.$"
 
 Route101_Text_QuietGrass::
-	.string "The tall grass is quiet today.\p"
-	.string "No wild POKéMON are appearing.$"
+	.string "Wild POKéMON hide in the tall grass.\p"
+	.string "Walk through it and one may appear.$"
 
 Route101_Text_RouteSign::
 	.string "ROUTE 101\n"

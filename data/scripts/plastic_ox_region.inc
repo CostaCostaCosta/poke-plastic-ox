@@ -1008,16 +1008,8 @@ PoxRegion_route7_route103_b_Text::
 
 PoxRegion_oldale_route103_a::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_oldale_route103_a_Open
-	goto_if_unset FLAG_POX_STORY_FUJI, PoxRegion_oldale_route103_a_Closed
 PoxRegion_oldale_route103_a_Open::
 	warp MAP_ROUTE103, 9, 20
-	waitstate
-	releaseall
-	end
-PoxRegion_oldale_route103_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_OLDALE_TOWN, 9, 0
 	waitstate
 	releaseall
 	end
@@ -1030,16 +1022,8 @@ PoxRegion_oldale_route103_a_Text::
 
 PoxRegion_oldale_route103_b::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_oldale_route103_b_Open
-	goto_if_unset FLAG_POX_STORY_FUJI, PoxRegion_oldale_route103_b_Closed
 PoxRegion_oldale_route103_b_Open::
 	warp MAP_OLDALE_TOWN, 9, 0
-	waitstate
-	releaseall
-	end
-PoxRegion_oldale_route103_b_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE103, 9, 20
 	waitstate
 	releaseall
 	end

@@ -29,21 +29,16 @@ OldaleTown_EventScript_LanceDeclined::
 OldaleTown_EventScript_MartEmployee::
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_POTION_OLDALE, OldaleTown_EventScript_ExplainPotion
-	msgbox OldaleTown_Text_IWorkAtPokemonMart, MSGBOX_DEFAULT
-	goto OldaleTown_EventScript_ExplainPokemonMart
-
-OldaleTown_EventScript_ExplainPokemonMart::
-	msgbox OldaleTown_Text_ThisIsAPokemonMart, MSGBOX_DEFAULT
+	goto_if_set FLAG_RECEIVED_POTION_OLDALE, OldaleTown_EventScript_MartReminder
+	msgbox OldaleTown_Text_MartGift, MSGBOX_DEFAULT
 	giveitem ITEM_POTION
 	goto_if_eq VAR_RESULT, FALSE, OldaleTown_EventScript_BagIsFull
-	msgbox OldaleTown_Text_PotionExplanation, MSGBOX_DEFAULT
 	setflag FLAG_RECEIVED_POTION_OLDALE
 	release
 	end
 
-OldaleTown_EventScript_ExplainPotion::
-	msgbox OldaleTown_Text_PotionExplanation, MSGBOX_DEFAULT
+OldaleTown_EventScript_MartReminder::
+	msgbox OldaleTown_Text_MartReminder, MSGBOX_DEFAULT
 	release
 	end
 
@@ -182,23 +177,13 @@ OldaleTown_Text_LanceAfterBattle:
 	.string "LANCE: An excellent battle. Speak to me\n"
 	.string "again if you'd like a rematch.$"
 
-OldaleTown_Text_IWorkAtPokemonMart:
-	.string "Hi!\n"
-	.string "I work at a POKéMON MART.\p"
-	.string "Look for the blue roof!$"
+OldaleTown_Text_MartGift:
+	.string "The blue-roofed building is our\n"
+	.string "POKéMON MART. Here, take this POTION!$"
 
-OldaleTown_Text_ThisIsAPokemonMart:
-	.string "Our POKéMON MART is nearby.\n"
-	.string "Just look for our blue roof.\p"
-	.string "We sell a variety of goods including\n"
-	.string "POKé BALLS for catching POKéMON.\p"
-	.string "Here, I'd like you to have this as\n"
-	.string "a promotional item.$"
-
-OldaleTown_Text_PotionExplanation:
-	.string "A POTION can be used anytime, so it's\n"
-	.string "even more useful than a POKéMON CENTER\l"
-	.string "in certain situations.$"
+OldaleTown_Text_MartReminder:
+	.string "Visit the blue-roofed POKéMON MART\n"
+	.string "when you need supplies.$"
 
 OldaleTown_Text_WaitDontComeInHere:
 	.string "Aaaaah! Wait!\n"
