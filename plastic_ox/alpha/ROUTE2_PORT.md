@@ -17,7 +17,7 @@ Dark Cave retain their existing HNS layouts, graphics, and behavior conversion.
 | Entrance | Destination / return |
 | --- | --- |
 | Cherrygrove north trail | Route 2 south; reciprocal trail |
-| Route 2 north trail | Rustboro south; reciprocal trail, Ilex objective required in story mode |
+| Route 2 north trail | Rustboro south; reciprocal camera seam, Ilex objective required in story mode |
 | Route 2 `(5,51)` / `(6,51)`, warps 2 / 9 | South forest gatehouse; its north exit reaches Ilex warp 0 |
 | Ilex `(22,63)`, warp 0 | South gatehouse warp 3; returns to Route 2 warp 2 |
 | Route 2 `(5,13)` / `(6,13)`, warps 0 / 1 | North forest gatehouse; its south exit reaches Ilex's northern plaza |
@@ -26,9 +26,13 @@ Dark Cave retain their existing HNS layouts, graphics, and behavior conversion.
 | Route 2 `(17,11)`, warp 3 | Dark Cave South Side warp 0 `(14,20)`; returns to Route 2 warp 3 |
 | Dark Cave warp 1 | Existing Route 46 connection retained |
 
-Exact town trail coordinates and requirements are generated into
-`region_manifest.json` and pinned in `region_ports.json`. There are no new
-camera seams or connection offsets. Route 2's Cut trees and east-side shortcut
+The Cherrygrove town trail is a native reciprocal camera connection using
+offsets `22` and `-22`. Route 2 and Rustboro now use a reciprocal camera seam
+with offsets `-8` and `8`, aligning Route 2 `(8, 0)` with Rustboro `(16, 59)`.
+An Ilex-flagged ranger blocks the Route 2 edge until the objective is complete.
+The remaining trail coordinates and requirements are generated into
+`region_manifest.json` and pinned in `region_ports.json`.
+Route 2's Cut trees and east-side shortcut
 are retained; the Rustboro trail also checks Ilex completion so the shortcut
 cannot bypass that story objective. Local building warps, items, and signs
 remain; Kanto-only trade/aide handlers become local dialogue. The off-map
@@ -50,11 +54,10 @@ catalog. Route 2 exposes N/S land, two Ilex gatehouse, and one Dark Cave port;
 Ilex exposes N/E gate ports. The retired routes remain available as library
 parts, not active opening connections.
 
-Build both variants:
+Build the primary ROM:
 
 ```sh
 PATH=/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin:$PATH make -j8 TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM modern
-PATH=/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin:$PATH make -j8 TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM PLASTIC_OX_BUILD=triggers modern
 ```
 
 Run the following Python checks with
@@ -65,7 +68,7 @@ and `/home/eddie/.venvs/mgba311/bin/python`:
 - `plastic_ox/demo/test_region_v7.py --warps --only Route2`: native gatehouse, house, east building, and cave entries/returns pass.
 - `plastic_ox/demo/test_region_v7.py --warps --only IlexForest`: southern exit passes; northern arrival-only anchor excluded.
 - `plastic_ox/demo/test_region_v7.py --warps --only DarkCave`: both cave mouths pass.
-- `plastic_ox/demo/test_region_v7.py --build triggers --only route2 --closed`: all three Ilex requirement checks reject traversal correctly.
+- `plastic_ox/demo/test_region_v7.py --only route2 --closed`: all three Ilex requirement checks reject traversal correctly.
 - `plastic_ox/demo/test_region_walk.py route2`: twelve continuous D-pad transitions, Cherrygrove → Ilex → Rustboro → Ilex → Cherrygrove; no Surf or intermediate setup warps.
 - `plastic_ox/demo/test_route2_encounters.py`: actual grass battles after entering Route 2 from each town; enemy species match the authored encounter pool.
 

@@ -1,3 +1,12 @@
+CableClub_EventScript_Unavailable::
+	lockall
+	msgbox CableClub_Text_Unavailable, MSGBOX_DEFAULT
+	releaseall
+	end
+
+CableClub_Text_Unavailable:
+	.string "Link services are unavailable.$"
+
 CableClub_OnTransition:
 	call CableClub_EventScript_HideOrShowMysteryGiftMan
 	end
@@ -244,6 +253,9 @@ CableClub_Movement_PlayerApproachCounter:
 	step_end
 
 CableClub_EventScript_WelcomeToCableClub::
+#if !POX_LINK_ENABLED
+	goto CableClub_EventScript_Unavailable
+#endif
 	message CableClub_Text_WelcomeWhichCableClubService
 	waitmessage
 	delay 28
@@ -277,6 +289,9 @@ CableClub_EventScript_CableClubUnlockedRecordCorner::
 	end
 
 CableClub_EventScript_Colosseum::
+#if !POX_LINK_ENABLED
+	goto CableClub_EventScript_Unavailable
+#endif
 	copyvar VAR_0x8007, VAR_LAST_TALKED
 	goto CableClub_EventScript_SelectBattleMode
 	end
@@ -410,6 +425,9 @@ CableClub_EventScript_ConfirmNumberAndRestart::
 	end
 
 CableClub_EventScript_TradeCenter::
+#if !POX_LINK_ENABLED
+	goto CableClub_EventScript_Unavailable
+#endif
 	copyvar VAR_0x8007, VAR_LAST_TALKED
 	call CableClub_EventScript_CheckPartyTradeRequirements
 	goto_if_eq VAR_RESULT, 0, CableClub_EventScript_AbortLink
@@ -474,6 +492,9 @@ CableClub_EventScript_CantTradeEnigmaBerry::
 	return
 
 CableClub_EventScript_RecordCorner::
+#if !POX_LINK_ENABLED
+	goto CableClub_EventScript_Unavailable
+#endif
 	copyvar VAR_0x8007, VAR_LAST_TALKED
 	call Common_EventScript_SaveGame
 	goto_if_eq VAR_RESULT, 0, CableClub_EventScript_AbortLink
@@ -821,6 +842,9 @@ EventScript_DoLinkRoomExit::
 	end
 
 CableClub_EventScript_UnionRoomAttendant::
+#if !POX_LINK_ENABLED
+	goto CableClub_EventScript_Unavailable
+#endif
 	lock
 	faceplayer
 	setvar VAR_FRONTIER_FACILITY, FACILITY_UNION_ROOM
@@ -907,6 +931,9 @@ CableClub_EventScript_UnionRoomAdapterNotConnected::
 	return
 
 CableClub_EventScript_WirelessClubAttendant::
+#if !POX_LINK_ENABLED
+	goto CableClub_EventScript_Unavailable
+#endif
 	lock
 	faceplayer
 	goto_if_unset FLAG_SYS_POKEDEX_GET, CableClub_EventScript_WirelessClubAdjustements
@@ -922,6 +949,9 @@ CableClub_EventScript_DontAskAboutLinking::
 	return
 
 CableClub_EventScript_DirectCornerAttendant::
+#if !POX_LINK_ENABLED
+	goto CableClub_EventScript_Unavailable
+#endif
 	lock
 	faceplayer
 	setvar VAR_FRONTIER_FACILITY, FACILITY_MULTI_OR_EREADER  @ Set preemptively for multi battles, ignored otherwise
@@ -1260,6 +1290,9 @@ MossdeepCity_GameCorner_1F_EventScript_MinigameInfoExit::
 	end
 
 MossdeepCity_GameCorner_1F_EventScript_OldMan2::
+#if !POX_LINK_ENABLED
+	goto CableClub_EventScript_Unavailable
+#endif
 	lock
 	faceplayer
 	message MossdeepCity_GameCorner_1F_Text_WelcomeCanYouWait

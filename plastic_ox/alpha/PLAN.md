@@ -142,7 +142,7 @@ python3 plastic_ox/alpha/build_story.py --check
 python3 /home/eddie/.codex/skills/plastic-ox-map-port/scripts/audit_imports.py /home/eddie/repos/poke-plastic-ox
 ```
 
-For implementation, build each variant sequentially with the configured toolchain:
+For implementation, build the normal ROM and optional battle demo sequentially with the configured toolchain:
 
 ```sh
 export PATH=/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin:$PATH
@@ -150,7 +150,6 @@ export CPATH=/home/eddie/toolchains/hostlibs/usr/include
 export LIBRARY_PATH=/home/eddie/toolchains/hostlibs/usr/lib/x86_64-linux-gnu
 export PKG_CONFIG_PATH=/home/eddie/toolchains/hostlibs/usr/lib/x86_64-linux-gnu/pkgconfig
 make -j8 TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM modern
-make -j8 TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM PLASTIC_OX_BUILD=triggers modern
 make -j8 TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM PLASTIC_OX_BUILD=battle modern
 ```
 
@@ -164,9 +163,14 @@ Use the existing mGBA environment:
 ```sh
 export LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64
 /home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_story.py all
-/home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_cave_connections.py --triggers
-/home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_camera_seam.py --triggers
+/home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_cave_connections.py
+/home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_camera_seam.py
 ```
+
+Headless tests must use the deterministic bootstrap documented in
+`plastic_ox/demo/TESTING.md`; the playable ROM now stops at the title screen.
+Prefer `StoryGame(..., spawn=(map_name, x, y))` for isolated towns, maps, and
+route legs. Use `boot_to_bedroom()` only for opening-flow coverage.
 
 Test individual gates with controlled state, but also traverse the complete
 journey from a fresh game without debug warps, injected completion flags, or

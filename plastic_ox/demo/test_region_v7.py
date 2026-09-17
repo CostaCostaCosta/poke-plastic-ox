@@ -18,7 +18,6 @@ KEYS = dict(N=K.KEY_UP, S=K.KEY_DOWN, W=K.KEY_LEFT, E=K.KEY_RIGHT)
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--build', default='')
     parser.add_argument('--only', default='')
     parser.add_argument('--closed', action='store_true', help='Deny each required flag independently')
     parser.add_argument('--warps', action='store_true', help='Test retained native dungeon/door crossings')
@@ -26,9 +25,9 @@ def main():
     manifest = json.loads((ROOT/'plastic_ox/alpha/region_manifest.json').read_text())
     groups = json.loads((ROOT/'data/maps/map_groups.json').read_text())
     ids = {n: (i,j) for i,k in enumerate(groups['group_order']) for j,n in enumerate(groups[k])}
-    out = ROOT/'plastic_ox/demo/shots'/('region_v7'+('_'+args.build if args.build else ''))
+    out = ROOT/'plastic_ox/demo/shots/region_v7'
     out.mkdir(parents=True, exist_ok=True)
-    g = StoryGame(build=args.build)
+    g = StoryGame()
     g.flag('FLAG_POX_STORY_STARTER', True)
     g.flag('FLAG_ADVENTURE_STARTED', True)
     g.flag('FLAG_POX_HIDE_UNUSED_ACTOR', True)
@@ -48,7 +47,6 @@ def main():
         if args.only and args.only not in p['id']:
             continue
         if args.closed:
-            assert args.build == 'triggers', 'Closed gates require the trigger ROM'
             for missing in p['requires']:
                 for flag in p['requires']:
                     g.flag(flag, True)

@@ -114,10 +114,10 @@ means its old warp or map callback is gone.
 
 ## Pallet opening implementation
 
-The story ROM is `pokeemerald-triggers.gba`. Build with:
+The story runs in the primary `pokeemerald.gba`. Build with:
 
 ```sh
-make -j8 TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM PLASTIC_OX_BUILD=triggers modern
+make -j8 TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM modern
 ```
 
 `data/scripts/plastic_ox_pallet.inc` contains the authored lab dialogue and

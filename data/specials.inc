@@ -177,6 +177,7 @@ gSpecials::
 	def_special Overworld_PlaySpecialMapMusic
 	def_special StartWallClock, waitstate=1
 	def_special Special_ViewWallClock, waitstate=1
+	def_special Special_SetPocketWatchWeekday
 	def_special ChooseStarter, waitstate=1
 	def_special StartWallyTutorialBattle, waitstate=1
 	def_special ChangePokemonNickname, waitstate=1
@@ -566,6 +567,7 @@ gSpecials::
 	def_special EnterCode
 	def_special GetCodeFeedback
 	def_special SetHiddenNature
+	def_special SetTrainingKitEVs
 	def_special SetAbility
 	def_special CanTeachMoveBoxMon
 	def_special ObjectEventInteractionGetApricornTreeData

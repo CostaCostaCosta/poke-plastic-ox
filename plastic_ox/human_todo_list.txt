@@ -1,58 +1,93 @@
-general
+development:
+The emulator screenshot suite could not boot past its shared “direct demo boot never reached bedroom” setup error, which also affected unrelated existing seams.
+
+General
 get characters to show their faces when talking like in those japanese games
-pocket watch item to change the clock time and day of the week given in cherrygrove
-leaf storm available as a move tutor move? I don't think that's a move in gen 3
-party is fully healed before every trainer battle
 lead pokemon should be your follower 
 headbutt mechanics
-berry mechanics - put berries in the trees that can be gathered once daily. items/berries consumed during trainer battles will be added back after the battle. 
-
+berry mechanics - put berries in the trees that can be gathered once daily. items/berries consumed during trainer battles items will be restored back after the battle.
+move compendium should only interact with pokemon in the party
 pokedex shows tier, evolution, location with our town map
-fly map help
+fly/area map help and build
+
+Items
+test pocket watch item
+headbutt key not working on trees. if the player has a headbutt key, they should be able to headbutt trees whenever interacting with trees. if the player does not have the headbutt key, then this will not work.
+
+trainers should use random competitive smogon sets.
+trainers should not say "that was a good route battle" - we should look at text from bulbapedia/original
 
 create an auto generated wiki with the encounter tables, trainer battles, items, key NPCs, etc on each route inspired by bulbapedia
 
-
-pallet town
-mother's first conversation should not be healing.
-professors standing in different spots, then have elm/birch leave the lab since it's oak's. 
-Oak gives the pokedex to the player, and 5 pokeballs
-Elm gives the EXP Share
-Birch gives the TMs and Move compedium
-
-The other starter balls should not be removed from the table for the rest of the game.
-
-Daisy's should say her map doesn't work anymore!
+pallet town:
+the pokeball you select does not leave the table, it should
+the pokedex given to you by oak does not leave the table, it should
+professor elm says he's going back to his lab, but he actually ends up in goldenrod
+professor birch
+pallet town border in the south has the water cut off with trees, when it should fit naturally into route 21
 
 route 101:
 npc says grass is quiet, fix that
-probably remove first trainer battle - give a warning
+probably remove first trainer battle - give a warning that all the trainers on the routes moving forward are strong and you should catch more pokemon to help you
 
 oldale:
-simplify mart lady
-when i go north it says the passage is still closed, but it should let out to route 103. the first trainer battle should be there
+the transition north is really weird.
+
+route 103:
+May's overworld sprite is really weird, it's an old guy. this probably shouldn't have any special mechanics, and should just be a regular NPC.
 
 route 29:
+there's a weird grass patch on the right side of the gate to route 46
+there's invisible npc to the left of the gate
+weird transition with the trees into cherrygrove
+walking directly out of oldale leads to an invisible NPC
+npc closest to cherrygrove talks about a hoenn route emptying into cherrygrove, but it's actually a kanto route now
 
 route 46:
-remove the opening/gap that allows you to jump up towards dark cave. we are no longer concerned with the walking the region test
 
-route 45 should naturally connect down into route 46. the top of route 46 seems like it has a duplicated cave and is using the original tile sprite?
 
-two tiles left and one tile above the sign at the bottom of route 46 makes the player disappear behind the walking path. same with the sign level height and all the way to the left 
 
 cherrygrove:
-walking into the bottom right npc house permanently traps you inside it. there's also an invisible man sitting at the table
+cherrygrove pokemon center is empty, add npcs
+invisible npcs in the town
+
+walking into the bottom right npc house permanently traps you inside it. there's also an invisible man sitting at the table. this house and behavior is cloned in the house closest to the water, let's put the fisherman with the good rod here.
 
 good rod should be given by an NPC either outside by the water, or in a house near the water.
 
+setting the time on the clock in the pokecenter resets the game. the clock shouldn't be available in the pokecenter
+
+transitioning up to route 2 is weird visually
+
 route 2:
-trade stantler for mr mime in the normal mr mime npc house 
+the bottom route 2 encounters feel like forest encounters, address the encounter tables between route 2 top/bottom and ilex forest.
+
+the connection between route 2 and ilex has npcs walking on the border where there's usually a guard.
 
 ilex forest: 
+walking around in the forest animation is weird
+headbutt npc is walking into the wall
+turn down the encounter rate
+switch pokeball drop with net ball
+npc towards the top has a weird cutoff sentence interaction
+
+northern gate has weird npc interaction
+
+route 2 north:
+the rustboro city to the north could be improved, there's a sign floating into nowhere
+the npc's house with the mr mime stantler trade cannot be exited.
+
+dark cave:
+remove the rock smash rock and edge blocking the route through the bottom of route 31 side.
 
 Rustboro city:
-an ev and nature setting key item should be given by an NPC . this should be able to be applied to any pokemon in the active party
+an ev and nature setting key item should be given by an NPC in the trainer school, remove the quick claw item and have
+
+the tiled pathway visualization is weird and it cuts off the character and npcs
+the east exit to route 44 is busted?
 
 Route 25:
 Bill's grandfather should be at the cottage, first reward the player with an eevee, and then proceed with the fossil gating.
+
+route 44:
+we should be able to explore route 44, and the NPC blocking is at the entrance to mt moon

@@ -163,9 +163,11 @@ Water routes require Surf-aware tests. A debug placement or NPC town-skip warp
 does not prove continuous traversal or progression safety.
 
 1. `make -j$(nproc) pokeemerald.gba` green.
-2. Extend/author `plastic_ox/demo/walk_leg<N>.py` using walklib (`GBA()`,
-   `boot_to_bedroom(g)`, `walk(...)`, `expect_map=`, battle-flag poll) walking the
-   full leg both directions over seams.
+2. Extend `plastic_ox/demo/test_region_walk.py` with a named leg and its
+   `(map_name, x, y)` setup spawn, then walk the full leg both directions over
+   seams. Use `StoryGame(..., spawn=...)` for isolated map checks. Reserve
+   `boot_to_bedroom(g)` for tests that intentionally cover the opening journey.
+   See `plastic_ox/demo/TESTING.md` for the fixture contract and commands.
 
 ## 8. Known hns porting pitfalls (learned in wave 1C)
 

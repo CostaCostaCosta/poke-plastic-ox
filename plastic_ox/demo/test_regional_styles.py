@@ -33,7 +33,6 @@ SAMPLES = {
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--triggers", action="store_true")
     parser.add_argument("--label", default="after")
     parser.add_argument("--grid", action="store_true", help="sample all upgraded outdoor maps across their extent")
     args = parser.parse_args()

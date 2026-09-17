@@ -32,4 +32,13 @@
 #define FLAG_POX_VICTORY_ROAD 0x03A
 #define FLAG_POX_REACHED_FORTREE 0x03B
 
+// Legacy Bill's-grandfather reward flags. New scripts consolidate the ordered
+// rewards into VAR_POX_GRANDPA_PROGRESS. Keep these safe old-save inputs
+// reserved; 0x071 is deliberately omitted because retained Cave of Origin
+// scripts read that vanilla flag and therefore make it unsafe to repurpose.
+#define FLAG_POX_LEGACY_GRANDPA_DOME_FOSSIL 0x054
+#define FLAG_POX_LEGACY_GRANDPA_CLAW_FOSSIL 0x055
+#define FLAG_POX_LEGACY_GRANDPA_ROOT_FOSSIL 0x068
+#define FLAG_POX_LEGACY_GRANDPA_OLD_AMBER   0x096
+
 #endif

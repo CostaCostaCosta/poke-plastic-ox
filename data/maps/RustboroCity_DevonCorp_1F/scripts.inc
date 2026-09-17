@@ -60,6 +60,13 @@ RustboroCity_DevonCorp_1F_EventScript_Greeter::
 	release
 	end
 
+RustboroCity_DevonCorp_1F_EventScript_TrainingKit::
+	lock
+	faceplayer
+	msgbox RustboroCity_DevonCorp_1F_Text_TrainingKitDisplay, MSGBOX_DEFAULT
+	release
+	end
+
 RustboroCity_DevonCorp_1F_EventScript_WelcomeToDevonCorp::
 	msgbox RustboroCity_DevonCorp_1F_Text_WelcomeToDevonCorp, MSGBOX_DEFAULT
 	release
@@ -142,3 +149,7 @@ RustboroCity_DevonCorp_1F_Text_ProductDisplay:
 	.string "tools for POKéMON TRAINERS, including\l"
 	.string "POKé BALLS and POKéNAV systems.”$"
 
+RustboroCity_DevonCorp_1F_Text_TrainingKitDisplay:
+	.string "DEVON helped develop the TRAINING KIT\n"
+	.string "used at the POKéMON TRAINER'S SCHOOL.\p"
+	.string "Their teacher can give you one.$"

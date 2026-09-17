@@ -44,11 +44,8 @@ WATER = {'Route103','Route19_Frlg','Route21_North_Frlg','Route21_South_Frlg',
 # Explicit source/destination port targets. A target may name a compass edge;
 # coordinates denote a native gate plaza, cave mouth, or dock.
 TRAILS = [
-    ('cherry_route2','CherrygroveCity_hns','N','Route2_Frlg','S',[]),
-    ('route2_rustboro','Route2_Frlg','N','RustboroCity','S',['FLAG_POX_STORY_ILEX']),
     ('rustboro_cottage','RustboroCity','N','Route24_hns','S',[]),
-    ('route24_route25','Route24_hns','N','Route25_hns','W',[]),
-    ('rustboro_route44','RustboroCity','E','Route44_hns','W',['FLAG_BADGE01_GET']),
+    ('rustboro_route44','RustboroCity',(38,10),'Route44_hns',(1,13),[]),
     ('route44_moon','Route44_hns',(68,13),'MtMoon_Cave_hns',(4,11),[]),
     ('moon_route33','MtMoon_Cave_hns',(46,30),'Route33_hns',(27,18),['FLAG_POX_STORY_MTMOON']),
     ('route33_goldenrod','Route33_hns','W','GoldenrodCity_hns','S',[]),
@@ -112,8 +109,9 @@ def apply_region(read, put):
         'Route101':{'MAP_PALLET_TOWN','MAP_OLDALE_TOWN'},
         'OldaleTown':{'MAP_ROUTE101','MAP_ROUTE29_HNS'},
         'Route29_hns':{'MAP_OLDALE_TOWN','MAP_CHERRYGROVE_CITY_HNS'},
-        'CherrygroveCity_hns':{'MAP_ROUTE29_HNS'},
-        'RustboroCity':set(),
+        'CherrygroveCity_hns':{'MAP_ROUTE29_HNS','MAP_ROUTE2'},
+        'Route2_Frlg':{'MAP_CHERRYGROVE_CITY_HNS','MAP_RUSTBORO_CITY'},
+        'RustboroCity':{'MAP_ROUTE2'},
         'Route36_hns':{'MAP_ROUTE37_HNS'}, 'Route37_hns':{'MAP_ROUTE36_HNS','MAP_ECRUTEAK_CITY_HNS'},
         'EcruteakCity_hns':{'MAP_ROUTE37_HNS'},
         'BattleFrontier_OutsideWest':{'MAP_BATTLE_FRONTIER_OUTSIDE_EAST'},
@@ -153,8 +151,8 @@ def apply_region(read, put):
             put(script_path,re.sub(r'\A.*?\t.byte 0',name+'_MapScripts::\n\t.byte 0',old,count=1,flags=re.S))
         if name in active:
             d['region']='REGION_HOENN'
-            d['object_events']=[o for o in d.get('object_events',[]) if not o.get('script','').startswith('PoxRegion_') or not o.get('script','').endswith('_Sign')]
-            d['bg_events']=[o for o in d.get('bg_events',[]) if not o.get('script','').startswith('PoxRegion_') or not o.get('script','').endswith('_Sign')]
+            d['object_events']=[o for o in d.get('object_events',[]) if o.get('script') == 'PoxRegion_cherry_route2_b_Sign' or not o.get('script','').startswith('PoxRegion_') or not o.get('script','').endswith('_Sign')]
+            d['bg_events']=[o for o in d.get('bg_events',[]) if o.get('script') == 'PoxRegion_cherry_route2_b_Sign' or not o.get('script','').startswith('PoxRegion_') or not o.get('script','').endswith('_Sign')]
             # Remove source-world quest triggers; authored Pallet starter gate survives.
             d['coord_events']=[c for c in d.get('coord_events',[]) if c.get('script')=='Pox_StarterGate']
             if name == 'IlexForest_hns':
@@ -186,10 +184,28 @@ def apply_region(read, put):
                 d['object_events']=[o for o in d['object_events'] if 0<=o['x']<geometry.w and 0<=o['y']<geometry.h]
         save(name,d)
 
-    # Restore the native FRLG coastal chain south of Route 21. Pallet's edge is
+    # Restore stable camera connections, including Cherrygrove's Route 2 trail
+    # and the native FRLG coastal chain south of Route 21. Pallet's edge is
     # intentionally handled by water-tile triggers: a native connection accepts
     # walking across every overlapping tile and therefore cannot enforce Surf.
     coastal_connections = {
+        'CherrygroveCity_hns': [
+            {'map':'MAP_ROUTE29_HNS','offset':-6,'direction':'right'},
+            {'map':'MAP_ROUTE2','offset':22,'direction':'up'},
+        ],
+        'Route2_Frlg': [
+            {'map':'MAP_RUSTBORO_CITY','offset':-6,'direction':'up'},
+            {'map':'MAP_CHERRYGROVE_CITY_HNS','offset':-22,'direction':'down'},
+        ],
+        'RustboroCity': [
+            {'map':'MAP_ROUTE2','offset':6,'direction':'down'},
+        ],
+        'Route24_hns': [
+            {'map':'MAP_ROUTE25_HNS','offset':0,'direction':'up'},
+        ],
+        'Route25_hns': [
+            {'map':'MAP_ROUTE24_HNS','offset':0,'direction':'down'},
+        ],
         'PalletTown_Frlg': [
             {'map':'MAP_ROUTE101','offset':2,'direction':'up'},
         ],
@@ -268,7 +284,8 @@ def apply_region(read, put):
     path='plastic_ox/alpha/region_ports.json'
     ports=json.loads(read(path)) if read(path) else {}
     ports={k:v for k,v in ports.items() if not k.startswith(('cherry_route1','route1_route31','ilex_route104',
-                                                             'lavender_route8','route8_saffron'))}
+                                                             'lavender_route8','route8_saffron','route2_rustboro',
+                                                             'route24_route25'))}
     reserved={}
     for key,a,at,b,bt,requirements in TRAILS:
         for suffix,name in [('_a',a),('_b',b)]:
@@ -279,6 +296,14 @@ def apply_region(read, put):
     scripts=['PoxRegion_TrailHint::\n\tmsgbox PoxRegion_TrailText, MSGBOX_SIGN\n\tend',
              'PoxRegion_TrailText::\n\t.string "Follow the marked trails to the\\nnext town.$"',
              'PoxRegion_ClosedText::\n\t.string "This passage is still closed.\\nReturn after your next objective.$"']
+    # Cherrygrove now joins Route 2 by a seam, not a portal. Keep its sign.
+    scripts.append('PoxRegion_cherry_route2_b_Sign::\n\tmsgbox PoxRegion_cherry_route2_b_Text, MSGBOX_SIGN\n\tend\nPoxRegion_cherry_route2_b_Text::\n\t.string "CHERRYGROVE CITY\\nThe road south leads to town.$"')
+    sign_text = {
+        'rustboro_cottage_b': 'RUSTBORO CITY lies south.\\nThe cottage path leads north.$',
+        'ilex_route2_north': 'ROUTE 2 NORTH GATE\\nRUSTBORO lies beyond ROUTE 2.$',
+        'route7_route103_b': 'ROUTE 7\\nKeep to the marked passage.$',
+        'route103_cinnabar_a': 'CINNABAR ISLAND\\nFollow the passage south.$'
+    }
     # FRLG trainer IDs aren't part of Emerald's trainer table. Keep these
     # people and their authored dialogue without invoking unrelated trainers.
     for name in ['Route8_Frlg','Route19_Frlg','Route21_North_Frlg','Route21_South_Frlg']:
@@ -319,14 +344,14 @@ def apply_region(read, put):
             item['flag']='FLAG_POX_HIDDEN_V7_60'
     save('Route21_North_Frlg',d)
     if '#define FLAG_POX_HIDDEN_V7_60 ' not in header:
-        header=header.replace('#endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H','#define FLAG_POX_HIDDEN_V7_60 (POX_HIDDEN_ITEMS_BASE + 60)\n#endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H')
+        header=header.replace('#endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H','#define FLAG_POX_HIDDEN_V7_60 0x493\n#endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H')
     # Native FRLG flag/var aliases are zero in Emerald. Reserve independent
     # persistent state for the retained boulder puzzle, pickups and Articuno.
     native_flags=['FLAG_STOPPED_SEAFOAM_B3F_CURRENT','FLAG_STOPPED_SEAFOAM_B4F_CURRENT']
     native_flags += [f'FLAG_HIDE_SEAFOAM_{floor}_BOULDER_{i}' for floor,count in [('1F',2),('B1F',2),('B2F',2),('B3F',6),('B4F',2)] for i in range(1,count+1)]
     native_flags += ['FLAG_FOUGHT_ARTICUNO','FLAG_HIDE_ARTICUNO']
     native_flags += [f'FLAG_HIDE_SEAFOAM_ISLANDS_{item}' for item in ['1F_ICE_HEAL','B1F_REVIVE','B1F_WATER_STONE','B2F_BIG_PEARL','B4F_ULTRA_BALL']]
-    allocations=list(range(0x03C,0x050))+[0x26E,0x26F,0x27E]
+    allocations=list(range(0x03C,0x050))+[0x0E9,0x1AA,0x27E]
     replacements={flag:flag.replace('FLAG_','FLAG_POX_',1) for flag in native_flags}
     for flag,value in zip(native_flags,allocations,strict=True):
         new=replacements[flag]
@@ -387,7 +412,8 @@ def apply_region(read, put):
             d['bg_events'].append(dict(type='sign',x=sx,y=sy,elevation=0,player_facing_dir='BG_EVENT_PLAYER_FACING_ANY',script=script+'_Sign'))
             d['object_events'].append(dict(graphics_id='OBJ_EVENT_GFX_SIGN',x=sx,y=sy,elevation=0,movement_type='MOVEMENT_TYPE_NONE',movement_range_x=0,movement_range_y=0,trainer_type='TRAINER_TYPE_NONE',trainer_sight_or_berry_tree_id='0',script=script+'_Sign',flag='0'))
             save(name,d)
-            scripts.append(f'{script}_Sign::\n\tmsgbox {script}_Text, MSGBOX_SIGN\n\tend\n{script}_Text::\n\t.string "{label[:30]}\\nMarked passage ahead.$"')
+            text=sign_text.get(key, f'{label[:30]}\\nMarked passage ahead.$')
+            scripts.append(f'{script}_Sign::\n\tmsgbox {script}_Text, MSGBOX_SIGN\n\tend\n{script}_Text::\n\t.string "{text}"')
 
     for key,a,at,b,bt,requirements in TRAILS:
         overrides={('route2_rustboro','Route2_Frlg'):((6,0),(6,5)),
@@ -400,6 +426,18 @@ def apply_region(read, put):
         # Native ledges plus no reverse transition preserve the downhill return.
         if key!='route45_route46':
             endpoint(key+'_b',b,pb,a,pa['approach'],requirements,a.replace('_hns','').replace('_Frlg','').replace('PlasticOx_',''))
+
+    # A badge-hidden object on the Route 44 portal tile physically blocks the
+    # Mt. Moon transition from every adjacent approach while
+    # preserving the portal itself for old saves that already have the badge.
+    d=load('Route44_hns')
+    if not any(o.get('script') == 'PoxRoute44_MtMoonGate' for o in d['object_events']):
+        d['object_events'].append(dict(graphics_id='OBJ_EVENT_GFX_HIKER',x=68,y=13,elevation=0,
+            movement_type='MOVEMENT_TYPE_FACE_LEFT',movement_range_x=0,movement_range_y=0,
+            trainer_type='TRAINER_TYPE_NONE',trainer_sight_or_berry_tree_id='0',
+            script='PoxRoute44_MtMoonGate',flag='FLAG_BADGE01_GET'))
+    save('Route44_hns',d)
+    # Route 44's gate handler and dialogue are authored in its local scripts.
 
     # HNS Route7 lacks the FRLG tunnel mouth; a marked stair passage uses the
     # existing tunnel entrance room rather than skipping the tunnel.
@@ -440,16 +478,33 @@ def apply_region(read, put):
     reserved.setdefault('IlexForest_hns',[]).extend([tuple(p['tile']),tuple(p['approach'])])
     endpoint('ilex_route2_north','IlexForest_hns',p,north,[7,9],['FLAG_POX_STORY_ILEX'],'Route 2 north gate')
     scripts.extend(['PoxRoute2_Ether::\n\tfinditem ITEM_ETHER\n\tend','PoxRoute2_ParalyzeHeal::\n\tfinditem ITEM_PARALYZE_HEAL\n\tend'])
-    # Source FRLG trade/aide handlers depend on Kanto-only state. Retain the
-    # inhabitants with local dialogue while preserving their building warps.
-    for name in route2_rooms:
-        d=load(name)
-        for o in d['object_events']:
-            if name in route2_rooms[2:]:o['script']='PoxRoute2_Local'
-        save(name,d)
-        if name in route2_rooms[2:]:
-            put(f'data/maps/{name}/scripts.inc',f'{name}_MapScripts::\n\t.byte 0\n')
-    scripts.append('PoxRoute2_Local::\n\tmsgbox PoxRoute2_LocalText, MSGBOX_NPC\n\tend\nPoxRoute2_LocalText::\n\t.string "ILEX FOREST joins the two ends\\nof ROUTE 2. DARK CAVE lies east.$"')
+    # Route 2 and Rustboro share a real north/south camera seam. Before Ilex is
+    # complete, a visible ranger occupies the one-tile trail; the normal object
+    # flag rule removes him once the objective is complete.
+    d=load('Route2_Frlg')
+    if not any(o.get('script') == 'PoxRoute2_RustboroGate' for o in d['object_events']):
+        d['object_events'].append(dict(graphics_id='OBJ_EVENT_GFX_HIKER',x=8,y=0,elevation=3,
+            movement_type='MOVEMENT_TYPE_FACE_DOWN',movement_range_x=0,movement_range_y=0,
+            trainer_type='TRAINER_TYPE_NONE',trainer_sight_or_berry_tree_id='0',
+            script='PoxRoute2_RustboroGate',flag='FLAG_POX_STORY_ILEX'))
+    save('Route2_Frlg',d)
+    scripts.append('PoxRoute2_RustboroGate::\n\tmsgbox PoxRoute2_RustboroGate_Text, MSGBOX_NPC\n\tend\n'
+                   'PoxRoute2_RustboroGate_Text::\n\t.string "RUSTBORO will have to wait.\\nTake the ILEX FOREST trail first.\\pWatch those roots in the woods.\\nThey nearly tripped me twice!$"')
+    # Gatehouse and trade-house actors and scripts are authored in local maps;
+    # do not replace the house trade or the gate guards with shared dialogue.
+    # The imported HNS trade house has one real animated door at (4, 8), not
+    # the three-tile FRLG exit strip. Keep the exterior and interior indices
+    # reciprocal so entering and leaving cannot strand the player.
+    d=load('Route2_Frlg')
+    d['warp_events'][4]['dest_warp_id']='0'
+    save('Route2_Frlg',d)
+    d=load('Route2_House_Frlg')
+    d['warp_events']=[
+        dict(x=4,y=7,elevation=0,dest_map=mid('Route2_House_Frlg'),dest_warp_id='0'),
+        dict(x=4,y=8,elevation=0,dest_map=mid('Route2_Frlg'),dest_warp_id='4'),
+    ]
+    save('Route2_House_Frlg',d)
+    scripts.append('PoxRoute2_Local::\n\tmsgbox PoxRoute2_LocalText, MSGBOX_NPC\n\tend\nPoxRoute2_LocalText::\n\t.string "I keep losing at this game.\\nThe other kid picks ALAKAZAM!\\pDo you think a real POKéMON\\nbattle would be easier?$"')
     header=read('include/constants/plastic_ox_flags.h')
     for name,index in [('ETHER',58),('PARALYZE_HEAL',59)]:
         flag='FLAG_POX_ROUTE2_'+name

@@ -8,11 +8,29 @@ is meant to be run to generate a pre-processed store of data that should not cha
 thus, it can safely be pre-computed in order to speed up incremental builds for end-users.
 """
 
-from functools import reduce
-
 import json
 import pathlib
 import sys
+
+
+# P_LVL_UP_LEARNSETS is pinned to GEN_3 in Plastic Ox.  Match that policy for
+# teachable and Egg Move data: use RSE for every species that existed then, and
+# the first main-series generation in which a later species appeared.
+LEARNSET_SOURCE_ORDER = (
+    "rse.json",
+    "dp.json",
+    "bw.json",
+    "xy.json",
+    "sm.json",
+    "swsh.json",
+    "sv.json",
+)
+
+# Plastic Ox exposes signature moves through the move compendium.  Treecko's
+# family had Leaf Blade in Gen III, so make it available to Treecko as requested.
+SPECIES_MOVE_ADDITIONS = {
+    "TREECKO": {"MOVE_LEAF_BLADE"},
+}
 
 
 def from_single(fname: pathlib.Path) -> dict[str, set[str]]:
@@ -27,14 +45,17 @@ def from_single(fname: pathlib.Path) -> dict[str, set[str]]:
 
 
 def from_batch(dir: pathlib.Path) -> dict[str, set[str]]:
-    return reduce(
-        lambda acc, single: {
-            species: acc.get(species, set()) | single.get(species, set())
-            for species in acc.keys() | single.keys()
-        },
-        map(from_single, dir.glob("*.json")),
-        {},
-    )
+    learnables = {}
+    for source_name in LEARNSET_SOURCE_ORDER:
+        source_path = dir / source_name
+        assert source_path.is_file(), f"{source_path=} does not exist"
+        for species, moves in from_single(source_path).items():
+            learnables.setdefault(species, moves)
+
+    for species, moves in SPECIES_MOVE_ADDITIONS.items():
+        learnables[species] |= moves
+
+    return learnables
 
 
 def main():

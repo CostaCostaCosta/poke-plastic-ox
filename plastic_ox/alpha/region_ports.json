@@ -10,38 +10,27 @@
     ],
     "direction": "E"
   },
-  "route24_route25_b": {
-    "tile": [
-      5,
-      17
-    ],
-    "approach": [
-      5,
-      16
-    ],
-    "direction": "S"
-  },
   "rustboro_route44_a": {
     "tile": [
-      35,
-      30
+      38,
+      10
     ],
     "approach": [
-      34,
-      30
+      37,
+      10
     ],
     "direction": "E"
   },
   "rustboro_route44_b": {
     "tile": [
-      0,
-      16
+      1,
+      13
     ],
     "approach": [
-      0,
-      15
+      2,
+      13
     ],
-    "direction": "S"
+    "direction": "W"
   },
   "route44_moon_a": {
     "tile": [
@@ -538,17 +527,6 @@
     ],
     "direction": "S"
   },
-  "route24_route25_a": {
-    "tile": [
-      16,
-      0
-    ],
-    "approach": [
-      16,
-      1
-    ],
-    "direction": "N"
-  },
   "goldenrod_route35_a": {
     "tile": [
       33,
@@ -700,28 +678,6 @@
     "approach": [
       10,
       79
-    ],
-    "direction": "E"
-  },
-  "route2_rustboro_a": {
-    "tile": [
-      6,
-      2
-    ],
-    "approach": [
-      5,
-      2
-    ],
-    "direction": "E"
-  },
-  "route2_rustboro_b": {
-    "tile": [
-      19,
-      59
-    ],
-    "approach": [
-      18,
-      59
     ],
     "direction": "E"
   },

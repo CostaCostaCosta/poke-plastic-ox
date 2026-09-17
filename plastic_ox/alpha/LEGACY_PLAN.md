@@ -1,8 +1,9 @@
 # Historical alpha documentation — superseded by v7
 
 Archived 2026-09-12. Preserved as implementation history; use [PLAN.md](PLAN.md)
-and [REGION_PLAN.md](REGION_PLAN.md) for current targets. Old paths and commands
-below may no longer be valid.
+and [REGION_PLAN.md](REGION_PLAN.md) for current targets. The trigger ROM
+mentioned below was retired; build pokeemerald.gba for the authored story.
+Old paths and commands below may no longer be valid.
 
 # Plastic Ox Alpha 0.1 — Plan of Record
 

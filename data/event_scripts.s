@@ -614,6 +614,7 @@ gStdScripts_End::
 	.include "data/maps/Mart_Johto_hns/scripts.inc"
 	.include "data/maps/Mart_Kanto_hns/scripts.inc"
 	.include "data/maps/House_GenericA_hns/scripts.inc"
+	.include "data/maps/CherrygroveCity_SoutheastHouse_hns/scripts.inc"
 	.include "data/maps/House_GenericB_hns/scripts.inc"
 
 	@ Plastic Ox: Leg A outdoors (Pallet-Oldale-R29/R46/DarkCave/R31/R30-Cherrygrove),

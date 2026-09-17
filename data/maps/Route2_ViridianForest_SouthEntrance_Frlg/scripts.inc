@@ -9,12 +9,24 @@ Route2_ViridianForest_SouthEntrance_EventScript_Woman2::
 	msgbox Route2_ViridianForest_SouthEntrance_Text_RattataHasWickedBite, MSGBOX_NPC
 	end
 
+Route2_ViridianForest_SouthEntrance_EventScript_Guard::
+	msgbox Route2_ViridianForest_SouthEntrance_Text_Guard, MSGBOX_NPC
+	end
+
 Route2_ViridianForest_SouthEntrance_Text_ForestIsMaze::
-	.string "Are you going to ILEX FOREST?\n"
-	.string "It's a natural maze in there.\l"
-	.string "Be careful you don't get lost.$"
+	.string "I tried counting the turns in\n"
+	.string "ILEX FOREST. I lost count!\p"
+	.string "I'll rest my feet here before\n"
+	.string "I give that path another try.$"
 
 Route2_ViridianForest_SouthEntrance_Text_RattataHasWickedBite::
-	.string "RATTATA may be small, but don't\n"
-	.string "underestimate its wicked bite.\p"
-	.string "Have you caught one already?$"
+	.string "A RATTATA nipped my bag strap\n"
+	.string "when I set it in the grass.\p"
+	.string "Now I keep my lunch packed\n"
+	.string "right at the bottom!$"
+
+Route2_ViridianForest_SouthEntrance_Text_Guard::
+	.string "The north door leads into\n"
+	.string "ILEX FOREST.\p"
+	.string "The south door is ROUTE 2.\n"
+	.string "Keep the carpet clear, please.$"

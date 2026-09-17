@@ -230,6 +230,18 @@ static const u8 sText_FORMS_Buttons_Submenu_Decapped_PE[] = _("{DPAD_NONE}Forms 
 static const u8 sText_FORMS_NONE[] = _("{STR_VAR_1} has no alternate forms.");
 static const u8 sText_PlusSymbol[] = _("+");
 
+static const u8 sText_TierNames[NUM_EVOLUTION_TIERS][5] =
+{
+    [EVO_TIER_NONE] = _("N/A"),
+    [EVO_TIER_LC]   = _("LC"),
+    [EVO_TIER_PU]   = _("PU"),
+    [EVO_TIER_NU]   = _("NU"),
+    [EVO_TIER_RU]   = _("RU"),
+    [EVO_TIER_UU]   = _("UU"),
+    [EVO_TIER_UUBL] = _("UUBL"),
+    [EVO_TIER_OU]   = _("OU"),
+};
+
 // static .rodata graphics
 
 static const u16 sPokedexPlusHGSS_Default_Pal[] = INCGFX_U16("graphics/pokedex/hgss/palette_default.pal", ".gbapal");
@@ -4425,6 +4437,17 @@ static void PrintMonInfo(u32 num, u32 value, u32 owned, u32 newEntry)
     }
     PrintInfoScreenText(category, 123, 31);
     PrintMonMeasurements(species,owned);
+    if (species != SPECIES_NONE)
+    {
+        enum EvolutionTier tier = GetSpeciesEvolutionTier(species);
+
+        StringCopy(gStringVar4, COMPOUND_STRING("TIER: "));
+        StringAppend(gStringVar4, sText_TierNames[tier]);
+        StringAppend(gStringVar4, COMPOUND_STRING("   BADGES: "));
+        ConvertIntToDecimalStringN(gStringVar2, GetSpeciesEvolutionBadgeRequirement(species), STR_CONV_MODE_LEFT_ALIGN, 1);
+        StringAppend(gStringVar4, gStringVar2);
+        PrintInfoScreenTextSmall(gStringVar4, FONT_SMALL, 123, 76);
+    }
     if (owned)
         description = GetSpeciesPokedexDescription(species);
     else

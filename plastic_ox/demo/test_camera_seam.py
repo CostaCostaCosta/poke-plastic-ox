@@ -45,10 +45,9 @@ def check_view(g, stage):
 
 
 def main():
-    g = StoryGame(build='triggers' if '--triggers' in sys.argv else '')
-    if '--triggers' in sys.argv:
-        # Isolate rendering with the north-exit story gate already completed.
-        g.flag('FLAG_POX_STORY_STARTER', True)
+    g = StoryGame()
+    # Isolate rendering with the north-exit story gate already completed.
+    g.flag('FLAG_POX_STORY_STARTER', True)
     g.warp('Route101', 10, 19)
     cross_connection(g, 'DOWN', MAP_PALLET, 'camera_pallet_return')
     # Pallet's two-row forest border must retain its phase through the entire

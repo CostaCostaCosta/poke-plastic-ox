@@ -3410,7 +3410,7 @@ static const u8 sEvolutionTierBadgeRequirement[NUM_EVOLUTION_TIERS] =
     [EVO_TIER_OU]   = 6,
 };
 
-static enum EvolutionTier GetSpeciesEvolutionTier(enum Species species)
+enum EvolutionTier GetSpeciesEvolutionTier(enum Species species)
 {
     return sSpeciesEvolutionTier[SanitizeSpeciesId(species)];
 }

@@ -29,12 +29,12 @@ GEOMETRY={n:Geometry(n,MAPS[n]) for n in IDS}
 PORTS={p['id']:p for p in json.loads((ROOT/'plastic_ox/alpha/region_manifest.json').read_text())['transitions']}
 LEGS={
  'route2':('CherrygroveCity_hns',(33,1),[
-     'cherry_route2_a',('warp',2),('warp',3),'ilex_route2_north',('warp',3),'route2_rustboro_a',
-     'route2_rustboro_b',('warp',0),('warp',1),('warp',0),('warp',1),'cherry_route2_b']),
+     ('seam','N','Route2_Frlg'),('warp',2),('warp',3),'ilex_route2_north',('warp',3),
+     ('seam','N','RustboroCity'),('seam','S','Route2_Frlg'),('warp',0),('warp',1),('warp',0),('warp',1),('seam','S','CherrygroveCity_hns')]),
  'early':('PalletTown_Frlg',(13,10),[
      ('seam','N','Route101'),('seam','N','OldaleTown'),('seam','W','Route29_hns'),('seam','W','CherrygroveCity_hns'),
-     'cherry_route2_a',('warp',2),('warp',3),'ilex_route2_north',('warp',3),'route2_rustboro_a',
-     'rustboro_cottage_a','route24_route25_a',('warp',0),('warp',0),'route24_route25_b','rustboro_cottage_b',
+     'cherry_route2_a',('warp',2),('warp',3),'ilex_route2_north',('warp',3),('seam','N','RustboroCity'),
+     'rustboro_cottage_a',('seam','N','Route25_hns'),('warp',0),('warp',0),('seam','S','Route24_hns'),'rustboro_cottage_b',
      'rustboro_route44_a','route44_moon_a','moon_route33_a','route33_goldenrod_a']),
  'central':('GoldenrodCity_hns',(28,37),['goldenrod_route35_a','route35_park_a','park_route36_a',
      ('seam','N','Route37_hns'),'route37_ecruteak_a','ecruteak_route119_a','route119_fortree_a','fortree_route110_a','route110_lavender_a']),
@@ -131,8 +131,8 @@ def cross(g,direction,dest):
     raise AssertionError(('crossing failed',dest,g.state()))
 
 
-def setup():
-    g=StoryGame('triggers');g.run('Pox_Squirtle')
+def setup(spawn=None):
+    g=StoryGame(spawn=spawn);g.run('Pox_Squirtle')
     g.write(g.syms['sWildEncountersDisabled'],1)
     for p in PORTS.values():
         for f in p['requires']:g.flag(f,True)
@@ -150,10 +150,9 @@ def setup():
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('leg',choices=LEGS);args=parser.parse_args()
-    name,xy,steps=LEGS[args.leg];g=setup();g.test_water=args.leg not in ('early','central','route2')
+    name,xy,steps=LEGS[args.leg];g=setup((name,*xy));g.test_water=args.leg not in ('early','central','route2')
     if args.leg == 'coast':
         g.flag('FLAG_POX_TRIGGERS_ENABLED',False);g.flag('FLAG_BADGE05_GET',True)
-    g.warp(name,*xy)
     out=ROOT/'plastic_ox/demo/shots/region_walk';out.mkdir(exist_ok=True)
     for index,step in enumerate(steps):
         print(index,current(g),g.state()['x'],g.state()['y'],'->',step,flush=True)

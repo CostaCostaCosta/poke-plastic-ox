@@ -72,8 +72,7 @@ End walk_leg5 at Champion door; final full-region harness = leg1..leg5 chained
 - gPlasticOxTriggersEnabled plumbing exists. Every coord_event gate uses the
   Special_PoxGate pattern; trainer battles via trainers.party Showdown ids
   TRAINER_PLASTIC_OX_* (start 855); five Eevee gifts (givemon SPECIES_EEVEE,5).
-- Town-by-town headless tests on pokeemerald-triggers.gba using
-  GBA(linker_map="pokeemerald-triggers.map") pattern from walklib.
+- Town-by-town headless tests now use pokeemerald.gba and pokeemerald.map.
 
 ## Gotchas that cost hours (do not repeat)
 - mapjson silently DROPS connections whose dest constant isn't in

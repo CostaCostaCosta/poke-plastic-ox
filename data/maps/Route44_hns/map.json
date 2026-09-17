@@ -37,7 +37,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PoxRegion_TrailHint",
+      "script": "PoxRoute44_LunchHiker",
       "flag": "0"
     },
     {
@@ -50,7 +50,7 @@
       "movement_range_y": 4,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PoxRegion_TrailHint",
+      "script": "PoxRoute44_StoneCollector",
       "flag": "0"
     },
     {
@@ -63,7 +63,7 @@
       "movement_range_y": 4,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PoxRegion_TrailHint",
+      "script": "PoxRoute44_LostNavigator",
       "flag": "0"
     },
     {
@@ -76,7 +76,7 @@
       "movement_range_y": 4,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PoxRegion_TrailHint",
+      "script": "PoxRoute44_CaveWalker",
       "flag": "0"
     },
     {
@@ -89,7 +89,7 @@
       "movement_range_y": 4,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PoxRegion_TrailHint",
+      "script": "PoxRoute44_PebbleInBoot",
       "flag": "0"
     },
     {
@@ -102,7 +102,7 @@
       "movement_range_y": 4,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PoxRegion_TrailHint",
+      "script": "PoxRoute44_CityWalker",
       "flag": "0"
     },
     {
@@ -117,14 +117,27 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "PoxRegion_rustboro_route44_b_Sign",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_HIKER",
+      "x": 68,
+      "y": 13,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxRoute44_MtMoonGate",
+      "flag": "FLAG_BADGE01_GET"
     }
   ],
   "warp_events": [],
   "coord_events": [
     {
       "type": "trigger",
-      "x": 0,
-      "y": 16,
+      "x": 1,
+      "y": 13,
       "elevation": 0,
       "var": "VAR_POX_PORTAL_GATE",
       "var_value": 0,

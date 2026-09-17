@@ -110,7 +110,7 @@ void EnableMysteryEvent(void)
 
 bool32 IsMysteryEventEnabled(void)
 {
-    return FlagGet(FLAG_SYS_MYSTERY_EVENT_ENABLE);
+    return POX_LINK_ENABLED && FlagGet(FLAG_SYS_MYSTERY_EVENT_ENABLE);
 }
 
 void DisableMysteryGift(void)
@@ -125,7 +125,7 @@ void EnableMysteryGift(void)
 
 bool32 IsMysteryGiftEnabled(void)
 {
-    return FlagGet(FLAG_SYS_MYSTERY_GIFT_ENABLE);
+    return POX_LINK_ENABLED && FlagGet(FLAG_SYS_MYSTERY_GIFT_ENABLE);
 }
 
 void ClearMysteryGiftFlags(void)

@@ -16,9 +16,13 @@ Gate_Route29_Route46_EventScript_Youngster::
 	end
 
 Gate_Route29_Route46_Text_Officer:
-	.string "This gate connects ROUTE 29 to the\n"
-	.string "lower end of ROUTE 46.$"
+	.string "ROUTE 46 is through the north\n"
+	.string "door. ROUTE 29 lies south.\p"
+	.string "No need to stop at my desk.\n"
+	.string "I'm here for directions.$"
 
 Gate_Route29_Route46_Text_Youngster:
-	.string "The mountain path starts just past\n"
-	.string "the north door.$"
+	.string "I came down from ROUTE 46.\n"
+	.string "My legs are still wobbling!\p"
+	.string "I'll rest here a little longer.\n"
+	.string "You go on ahead.$"

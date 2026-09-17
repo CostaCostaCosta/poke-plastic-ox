@@ -85,6 +85,24 @@
 #define GFXTAG_MULTICHOICE_SCROLL_ARROWS 2000
 #define PALTAG_MULTICHOICE_SCROLL_ARROWS 100
 
+void Special_SetPocketWatchWeekday(void)
+{
+    u32 targetWeekday = gSpecialVar_Result;
+    u32 currentWeekday;
+    u32 daysToAdd;
+
+    if (targetWeekday >= WEEKDAY_COUNT)
+        return;
+
+    RtcCalcLocalTime();
+    currentWeekday = GetDayOfWeek();
+    daysToAdd = (targetWeekday - currentWeekday + WEEKDAY_COUNT) % WEEKDAY_COUNT;
+    RtcCalcLocalTimeOffset(gLocalTime.days + daysToAdd,
+                           gLocalTime.hours,
+                           gLocalTime.minutes,
+                           gLocalTime.seconds);
+}
+
 #define ELEVATOR_WINDOW_WIDTH  3
 #define ELEVATOR_WINDOW_HEIGHT 3
 #define ELEVATOR_LIGHT_STAGES  3
@@ -4592,6 +4610,29 @@ void SetHiddenNature(void)
     u32 hiddenNature = gSpecialVar_Result;
     SetMonData(&gParties[B_TRAINER_PLAYER][gSpecialVar_0x8004], MON_DATA_HIDDEN_NATURE, &hiddenNature);
     CalculateMonStats(&gParties[B_TRAINER_PLAYER][gSpecialVar_0x8004]);
+}
+
+void SetTrainingKitEVs(void)
+{
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][gSpecialVar_0x8004];
+    u32 stat = gSpecialVar_0x8005;
+    u32 requested = gSpecialVar_0x8006;
+    u32 otherTotal = 0;
+    u8 value;
+
+    if (gSpecialVar_0x8004 >= gPlayerPartyCount || stat >= NUM_STATS)
+        return;
+
+    for (u32 i = 0; i < NUM_STATS; i++)
+    {
+        if (i != stat)
+            otherTotal += GetMonData(mon, MON_DATA_HP_EV + i);
+    }
+
+    value = min(requested, min(MAX_PER_STAT_EVS, MAX_TOTAL_EVS - min(otherTotal, MAX_TOTAL_EVS)));
+    value -= value % 4;
+    SetMonData(mon, MON_DATA_HP_EV + stat, &value);
+    CalculateMonStats(mon);
 }
 
 void SetAbility(void)

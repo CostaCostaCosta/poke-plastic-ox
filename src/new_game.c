@@ -24,6 +24,7 @@
 #include "tv.h"
 #include "coins.h"
 #include "text.h"
+#include "title_screen.h"
 #include "overworld.h"
 #include "mail.h"
 #include "battle_records.h"
@@ -245,7 +246,7 @@ void NewGameInitData(void)
     ResetDexNav();
     ClearFollowerNPCData();
 
-    // Hide battle-demo NPCs in walkable and trigger alpha builds.
+    // Hide battle-demo NPCs in the normal story build.
     // The PLASTIC_OX_BUILD=battle build leaves these cleared so the NPCs appear.
 #ifndef PLASTIC_OX_BUILD_BATTLE
     FlagSet(FLAG_POX_HIDE_BATTLE_OAK_PALLET);
@@ -262,8 +263,8 @@ void NewGameInitData(void)
     // dedicated battle-demo build in its open-world fixture state. Set this
     // after the save block has been initialized, never before its pointers are
     // installed or before ResetAllMapFlags clears the flags.
-    // Normal and trigger-test ROMs both run the authored region encounters,
-    // trainers, and gates. The battle demo deliberately suppresses them.
+    // The normal ROM runs authored encounters, trainers, and gates.
+    // The battle demo deliberately suppresses them.
 #ifndef PLASTIC_OX_BUILD_BATTLE
     FlagSet(FLAG_POX_TRIGGERS_ENABLED);
 #else
@@ -344,10 +345,10 @@ void GivePlasticOxPlayerParty(void)
     SavePlayerParty();
 }
 
-void CB2_InitPlasticOxDemo(void)
+void CB2_InitPlasticOxTitleScreen(void)
 {
-    // Deterministic demo boot: initialize a fresh save in memory and enter the
-    // Pallet bedroom directly, bypassing copyright/title/new-game naming UI.
+    // Skip the copyright and intro cinematics, but retain the normal title and
+    // main menu so an existing save can be continued.
 #ifndef PLASTIC_OX_BUILD_BATTLE
     gPlasticOxTriggersEnabled = TRUE;
 #else
@@ -361,9 +362,11 @@ void CB2_InitPlasticOxDemo(void)
     SetSaveBlocksPointers(GetSaveBlocksPointersBaseOffset());
     ResetMenuAndMonGlobals();
     Save_ResetSaveCounters();
-    Sav2_ClearSetDefault();
+    LoadGameSave(SAVE_NORMAL);
+    if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_CORRUPT)
+        Sav2_ClearSetDefault();
     SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
-    SetMainCallback2(CB2_NewGame);
+    SetMainCallback2(CB2_InitTitleScreen);
 }
 
 static void ResetMiniGamesRecords(void)

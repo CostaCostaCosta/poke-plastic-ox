@@ -357,6 +357,9 @@ BattleFrontier_BattleTowerLobby_EventScript_ExplainMultisChallenge::
 	end
 
 BattleFrontier_BattleTowerLobby_EventScript_LinkMultisAttendant::
+#if !POX_LINK_ENABLED
+	goto CableClub_EventScript_Unavailable
+#endif
 	lock
 	faceplayer
 	setvar VAR_FRONTIER_FACILITY, FRONTIER_FACILITY_TOWER

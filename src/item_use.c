@@ -62,6 +62,8 @@ static void CheckForHiddenItemsInMapConnection(u8);
 static void Task_OpenRegisteredPokeblockCase(u8);
 static void Task_AccessPokemonBoxLink(u8);
 static void Task_OpenMoveCompendium(u8);
+static void Task_OpenTrainingKit(u8);
+static void Task_OpenPocketWatch(u8);
 static void ItemUseOnFieldCB_Bike(u8);
 static void ItemUseOnFieldCB_Rod(u8);
 static void ItemUseOnFieldCB_Itemfinder(u8);
@@ -97,6 +99,7 @@ static const u8 sText_UsedVar2WildRepelled[] = _("{PLAYER} used the\n{STR_VAR_2}
 static const u8 sText_PlayedPokeFluteCatchy[] = _("Played the POKé FLUTE.\pNow, that's a catchy tune!{PAUSE_UNTIL_PRESS}");
 static const u8 sText_PlayedPokeFlute[] = _("Played the POKé FLUTE.");
 static const u8 sText_PokeFluteAwakenedMon[] = _("The POKé FLUTE awakened sleeping\nPOKéMON.{PAUSE_UNTIL_PRESS}");
+static const u8 sText_PocketWatchIndoorsOnly[] = _("The POCKET WATCH can only be\nadjusted inside a building.{PAUSE_UNTIL_PRESS}");
 
 // EWRAM variables
 EWRAM_DATA static TaskFunc sItemUseOnFieldCB = NULL;
@@ -774,6 +777,36 @@ void ItemUseOutOfBattle_MoveCompendium(u8 taskId)
 static void Task_OpenMoveCompendium(u8 taskId)
 {
     ScriptContext_SetupScript(EventScript_MoveCompendium);
+    DestroyTask(taskId);
+}
+
+void ItemUseOutOfBattle_TrainingKit(u8 taskId)
+{
+    sItemUseOnFieldCB = Task_OpenTrainingKit;
+    SetUpItemUseOnFieldCallback(taskId);
+}
+
+static void Task_OpenTrainingKit(u8 taskId)
+{
+    ScriptContext_SetupScript(EventScript_TrainingKit);
+    DestroyTask(taskId);
+}
+
+void ItemUseOutOfBattle_PocketWatch(u8 taskId)
+{
+    if (!IsMapTypeIndoors(gMapHeader.mapType))
+    {
+        DisplayCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem, sText_PocketWatchIndoorsOnly);
+        return;
+    }
+
+    sItemUseOnFieldCB = Task_OpenPocketWatch;
+    SetUpItemUseOnFieldCallback(taskId);
+}
+
+static void Task_OpenPocketWatch(u8 taskId)
+{
+    ScriptContext_SetupScript(EventScript_PocketWatch);
     DestroyTask(taskId);
 }
 

@@ -120,7 +120,20 @@ def trainer(name, display, team, level, pic="Leader Roxanne", cls="Leader", doub
     display = display.replace('TATE & LIZA', 'TATE&LIZA')
     pic = pic.replace('Team Aqua M', 'Aqua Grunt M')
     pic = pic.replace('Cool Trainer M', 'Cooltrainer M')
-    trainers.append((tid, f"=== {tid} ===\nName: {display}\nClass: {cls}\nPic: {pic}\nGender: Male\nMusic: {'Leader' if cls == 'Leader' else 'Male'}\nDouble Battle: {'Yes' if double else 'No'}\nAI: Basic Trainer / Smart Switching / PP Stall Prevention\n\n" + "\n\n".join(f"{species}\nLevel: {level}\n- " + "\n- ".join(moves) for species, moves in team) + "\n"))
+    party = []
+    for species, moves, *details in team:
+        attributes = details[0] if details else {}
+        item = attributes.get('item')
+        if item == 'Leftovers' and level < 25:
+            item = 'Sitrus Berry'
+        lines = [f'{species} @ {item}' if item else species, f'Level: {level}']
+        if 'evs' in attributes:
+            lines.append('EVs: ' + attributes['evs'])
+        if 'nature' in attributes:
+            lines.append(attributes['nature'] + ' Nature')
+        lines.extend('- ' + move for move in moves)
+        party.append('\n'.join(lines))
+    trainers.append((tid, f"=== {tid} ===\nName: {display}\nClass: {cls}\nPic: {pic}\nGender: Male\nMusic: {'Leader' if cls == 'Leader' else 'Male'}\nDouble Battle: {'Yes' if double else 'No'}\nAI: Basic Trainer / Smart Switching / PP Stall Prevention\n\n" + "\n\n".join(party) + "\n"))
     trainers[-1] = (tid, trainers[-1][1].replace('Music: Leader', 'Music: Male'))
     return tid
 
@@ -184,7 +197,7 @@ def travel(name, destination, x, y, text, prerequisites=()):
     # Regional movement is now owned by physical trail/gate/cave transitions.
     # Retain these actors as directions, never as town-skipping transports.
     regional_hints = {
-        'IlexRoad':'Follow the northern forest path to ROUTE 2 and RUSTBORO.',
+        'IlexRoad':"I came through the north gate. That's the way to ROUTE 2.|RUSTBORO is farther north. I'm resting before I head back.",
         'MoonRoad':'The east road crosses ROUTE 44 to MT. MOON.',
         'GoldenrodRoad':'The far cave exit leads to ROUTE 33 and GOLDENROD.',
         'ParkRoad':'Take ROUTE 35 north to NATIONAL PARK.',
@@ -302,9 +315,9 @@ pallet['coord_events'] = [c for c in pallet['coord_events'] if c['script'] != 'P
 pallet['coord_events'] += [dict(type='trigger', x=x, y=1, elevation=0, var='VAR_TEMP_0', var_value=0, script='Pox_StarterGate') for x in range(24)]
 save_map("PalletTown_Frlg", pallet)
 
-beat("Cherrygrove", "GUIDE: The red roof is a POKéMON CENTER. The MART sells supplies.|These shoes are made for running. Hold B on the road!|A KANTO road on a JOHTO coast... My grandfather would have fainted! Head north through ROUTE 31 to ILEX FOREST.", flag("STORY_CHERRYGROVE"), [starter], "\tsetflag FLAG_SYS_B_DASH")
+beat("Cherrygrove", "GUIDE: The red roof is a POKéMON CENTER. The MART sells supplies.|These shoes are made for running. Hold B on the road!|A KANTO road on a JOHTO coast... My grandfather would have fainted! Head north through ROUTE 2 to ILEX FOREST.", flag("STORY_CHERRYGROVE"), [starter], "\tsetflag FLAG_SYS_B_DASH")
 replace_npc("CherrygroveCity_hns", 0, "Cherrygrove")
-beat("Ilex", "You found me! I was mapping the old forest path and lost the signposts.|Let's mark the trail together. The road beyond leads to RUSTBORO now. I still can't get used to that.", ilex, [starter])
+beat("Ilex", "I walk this trail to warm up. Watch your footing on the roots.|The north path meets ROUTE 2. Beyond it is RUSTBORO, in HOENN.", ilex, [starter])
 replace_npc("IlexForest_hns", 0, "Ilex")
 travel("IlexRoad", "RustboroCity", 16, 20, "The trail to RUSTBORO is marked. Follow me.", [ilex])
 replace_npc("IlexForest_hns", 1, "IlexRoad")
@@ -312,7 +325,9 @@ replace_npc("IlexForest_hns", 1, "IlexRoad")
 # Gym order and roster. Alpha teams express each intended tier; competitive
 # balance/encounter release is separate from the trigger implementation.
 gymdata = [
- ("Roxanne", "ROXANNE", "RustboroCity", [ilex], 5, [('Geodude',['Rock Throw','Tackle']),('Onix',['Rock Tomb','Bind']),('Nosepass',['Rock Tomb','Tackle'])]),
+ # Randomly selected from gen3_movesets.json: Onix gen3lc/stats/Showdown Usage;
+ # Nosepass gen3zu/dex/Wall. Geodude has no dataset entry.
+ ("Roxanne", "ROXANNE", "RustboroCity", [ilex], 5, [('Geodude',['Rock Throw','Tackle']),('Onix',['Earthquake','Explosion','Rock Slide','Sunny Day'],dict(item='Sitrus Berry',nature='Jolly',evs='236 Atk / 76 SpD / 196 Spe')),('Nosepass',['Earthquake','Protect','Explosion','Thunder Wave'],dict(item='Leftovers',nature='Careful',evs='252 HP / 60 Atk / 196 SpD'))]),
  ("Whitney", "WHITNEY", "GoldenrodCity_hns", [badges[0],moon], 18, [('Delcatty',['Fake Out','Attract','Return']),('Furret',['Quick Attack','Defense Curl','Return']),('Miltank',['Rollout','Milk Drink','Stomp'])]),
  ("Morty", "MORTY", "EcruteakCity_hns", [badges[1],burned], 25, [('Haunter',['Hypnosis','Shadow Ball','Night Shade']),('Misdreavus',['Confuse Ray','Psybeam','Shadow Ball']),('Sableye',['Fake Out','Night Shade','Recover'])]),
  ("Winona", "WINONA", "FortreeCity", [badges[2],weather], 32, [('Swellow',['Quick Attack','Aerial Ace','Facade']),('Pelipper',['Water Pulse','Protect','Wing Attack']),('Altaria',['Dragon Dance','Dragon Breath','Aerial Ace'])]),
@@ -378,7 +393,120 @@ guide('EcruteakCity_hns',3,'BurnedGuide',tower,'MORTY needs help in the old towe
 battle('Weather','RESEARCHER','Help me test our field instruments. The weather lines have moved since yesterday.', [('Castform',['Water Pulse','Shock Wave','Weather Ball']),('Magnemite',['Thunder Wave','Spark'])], 28, weather, [badges[2]], '\tmsgbox Pox_Text_WeatherReport, MSGBOX_DEFAULT', pic='Scientist Frlg',cls='Scientist Frlg')
 speech('Pox_Text_WeatherReport', 'These are new changes. The boundaries are still moving!|It is not just damage left by the convergence. Something is still changing our habitats.')
 replace_npc('Route119_WeatherInstitute_2F',4,'Weather',hidden='FLAG_POX_HIDE_STORY_NPCS')
-gift('Cottage', "The note says: 'For a visiting TRAINER. Please give EEVEE a good home.'|He's hardly ever here when he gets interested in something. That's nothing new.", [starter])
+# Bill's grandfather gives Eevee once, then tracks five strictly ordered fossil
+# rewards in one small progression variable. Safe legacy flags are imported on
+# first interaction; old 0x071 is intentionally not read because Cave of Origin
+# still uses it.
+start('Cottage',[starter])
+emit('''\tgoto_if_set FLAG_POX_GIFT_COTTAGE, Pox_CottageFossils
+\tmsgbox Pox_Text_Cottage, MSGBOX_DEFAULT
+\tgivemon SPECIES_EEVEE, 5
+\tgoto_if_eq VAR_RESULT, MON_CANT_GIVE, Pox_NoRoom
+\tsetflag FLAG_POX_GIFT_COTTAGE
+\tmsgbox Pox_Text_GiftReceived, MSGBOX_DEFAULT
+\tgoto Pox_CottageFossils
+Pox_CottageFossils::
+\tgoto_if_ne VAR_POX_GRANDPA_PROGRESS, 0, Pox_CottageFossilsDispatch
+\tgoto_if_set FLAG_POX_LEGACY_GRANDPA_OLD_AMBER, Pox_CottageMigrate5
+\tgoto_if_set FLAG_POX_LEGACY_GRANDPA_ROOT_FOSSIL, Pox_CottageMigrate3
+\tgoto_if_set FLAG_POX_LEGACY_GRANDPA_CLAW_FOSSIL, Pox_CottageMigrate2
+\tgoto_if_set FLAG_POX_LEGACY_GRANDPA_DOME_FOSSIL, Pox_CottageMigrate1
+Pox_CottageFossilsDispatch::
+\tgoto_if_eq VAR_POX_GRANDPA_PROGRESS, 0, Pox_CottageRalts
+\tgoto_if_eq VAR_POX_GRANDPA_PROGRESS, 1, Pox_CottagePhanpy
+\tgoto_if_eq VAR_POX_GRANDPA_PROGRESS, 2, Pox_CottageTeddiursa
+\tgoto_if_eq VAR_POX_GRANDPA_PROGRESS, 3, Pox_CottageYanma
+\tgoto_if_eq VAR_POX_GRANDPA_PROGRESS, 4, Pox_CottageMagikarp
+\tmsgbox Pox_Text_CottageFossilsDone, MSGBOX_DEFAULT
+\treleaseall
+\tend
+Pox_CottageMigrate5::
+\tsetvar VAR_POX_GRANDPA_PROGRESS, 5
+\tgoto Pox_CottageFossilsDispatch
+Pox_CottageMigrate3::
+\tsetvar VAR_POX_GRANDPA_PROGRESS, 3
+\tgoto Pox_CottageFossilsDispatch
+Pox_CottageMigrate2::
+\tsetvar VAR_POX_GRANDPA_PROGRESS, 2
+\tgoto Pox_CottageFossilsDispatch
+Pox_CottageMigrate1::
+\tsetvar VAR_POX_GRANDPA_PROGRESS, 1
+\tgoto Pox_CottageFossilsDispatch
+Pox_CottageRalts::
+\tcheckspecies SPECIES_RALTS
+\tgoto_if_eq VAR_RESULT, TRUE, Pox_CottageGiveDomeFossil
+\tmsgbox Pox_Text_CottageAskRalts, MSGBOX_DEFAULT
+\treleaseall
+\tend
+Pox_CottageGiveDomeFossil::
+\tcheckitemspace ITEM_DOME_FOSSIL
+\tgoto_if_eq VAR_RESULT, FALSE, Pox_NoRoom
+\tgiveitem_msg Pox_Text_CottageGiveDomeFossil, ITEM_DOME_FOSSIL, 1, MUS_RG_OBTAIN_KEY_ITEM
+\tsetvar VAR_POX_GRANDPA_PROGRESS, 1
+\tgoto Pox_CottageFossils
+Pox_CottagePhanpy::
+\tcheckspecies SPECIES_PHANPY
+\tgoto_if_eq VAR_RESULT, TRUE, Pox_CottageGiveClawFossil
+\tmsgbox Pox_Text_CottageAskPhanpy, MSGBOX_DEFAULT
+\treleaseall
+\tend
+Pox_CottageGiveClawFossil::
+\tcheckitemspace ITEM_CLAW_FOSSIL
+\tgoto_if_eq VAR_RESULT, FALSE, Pox_NoRoom
+\tgiveitem_msg Pox_Text_CottageGiveClawFossil, ITEM_CLAW_FOSSIL, 1, MUS_RG_OBTAIN_KEY_ITEM
+\tsetvar VAR_POX_GRANDPA_PROGRESS, 2
+\tgoto Pox_CottageFossils
+Pox_CottageTeddiursa::
+\tcheckspecies SPECIES_TEDDIURSA
+\tgoto_if_eq VAR_RESULT, TRUE, Pox_CottageGiveRootFossil
+\tmsgbox Pox_Text_CottageAskTeddiursa, MSGBOX_DEFAULT
+\treleaseall
+\tend
+Pox_CottageGiveRootFossil::
+\tcheckitemspace ITEM_ROOT_FOSSIL
+\tgoto_if_eq VAR_RESULT, FALSE, Pox_NoRoom
+\tgiveitem_msg Pox_Text_CottageGiveRootFossil, ITEM_ROOT_FOSSIL, 1, MUS_RG_OBTAIN_KEY_ITEM
+\tsetvar VAR_POX_GRANDPA_PROGRESS, 3
+\tgoto Pox_CottageFossils
+Pox_CottageYanma::
+\tcheckspecies SPECIES_YANMA
+\tgoto_if_eq VAR_RESULT, TRUE, Pox_CottageGiveHelixFossil
+\tmsgbox Pox_Text_CottageAskYanma, MSGBOX_DEFAULT
+\treleaseall
+\tend
+Pox_CottageGiveHelixFossil::
+\tcheckitemspace ITEM_HELIX_FOSSIL
+\tgoto_if_eq VAR_RESULT, FALSE, Pox_NoRoom
+\tgiveitem_msg Pox_Text_CottageGiveHelixFossil, ITEM_HELIX_FOSSIL, 1, MUS_RG_OBTAIN_KEY_ITEM
+\tsetvar VAR_POX_GRANDPA_PROGRESS, 4
+\tgoto Pox_CottageFossils
+Pox_CottageMagikarp::
+\tcheckspecies SPECIES_MAGIKARP
+\tgoto_if_eq VAR_RESULT, TRUE, Pox_CottageGiveOldAmber
+\tmsgbox Pox_Text_CottageAskMagikarp, MSGBOX_DEFAULT
+\treleaseall
+\tend
+Pox_CottageGiveOldAmber::
+\tcheckitemspace ITEM_OLD_AMBER
+\tgoto_if_eq VAR_RESULT, FALSE, Pox_NoRoom
+\tgiveitem_msg Pox_Text_CottageGiveOldAmber, ITEM_OLD_AMBER, 1, MUS_RG_OBTAIN_KEY_ITEM
+\tsetvar VAR_POX_GRANDPA_PROGRESS, 5
+\tgoto Pox_CottageFossils''')
+finish()
+speech('Pox_Text_Cottage', "I'm BILL's grandfather. My grandson is away working on a project right now. This EEVEE needs a good TRAINER. Take it!")
+for name,text in [
+ ('CottageAskRalts','I\'d love to see a RALTS. Bring one along sometime.'),
+ ('CottageGiveDomeFossil','Ah, RALTS! Just as I hoped. Please take this DOME FOSSIL.'),
+ ('CottageAskPhanpy','Next, I\'d love to see a PHANPY. Bring one along.'),
+ ('CottageGiveClawFossil','What a fine PHANPY! Please take this CLAW FOSSIL.'),
+ ('CottageAskTeddiursa','Now I\'d love to see a TEDDIURSA. Bring one along.'),
+ ('CottageGiveRootFossil','TEDDIURSA is delightful! Please take this ROOT FOSSIL.'),
+ ('CottageAskYanma','Next, I\'d love to see a YANMA. Bring one along.'),
+ ('CottageGiveHelixFossil','That\'s a splendid YANMA! Please take this HELIX FOSSIL.'),
+ ('CottageAskMagikarp','Finally, I\'d love to see a MAGIKARP. Bring one along.'),
+ ('CottageGiveOldAmber','MAGIKARP never disappoints! Please take this OLD AMBER.'),
+ ('CottageFossilsDone','Thank you for showing me all those wonderful POKéMON!')]:
+    speech('Pox_Text_'+name,text)
 replace_npc('Route25_BillsHouse_hns',0,'Cottage')
 # Direct return makes this unique interior safe without a dynamic-warp setup.
 cottage=load_map('Route25_BillsHouse_hns')
@@ -544,7 +672,17 @@ put('data/maps/map_groups.json',json.dumps(groups,indent=2)+'\n')
 
 # IDs are independent of event order. Keep retired allocations reserved so
 # moving a gift or adding a scene cannot reinterpret an existing save flag.
-put('include/constants/plastic_ox_story.h','#ifndef GUARD_PLASTIC_OX_STORY_CONSTANTS_H\n#define GUARD_PLASTIC_OX_STORY_CONSTANTS_H\n\n// Generated from plastic_ox/alpha/story_flags.json; IDs must remain stable.\n// Reserved unused general flags. Never allocate trainer/daily flags here.\n'+''.join(f'#define {f} {value}\n' for f,value in flag_allocations.items())+'\n#endif\n')
+legacy_grandpa = '''
+// Legacy Bill's-grandfather reward flags. New scripts consolidate the ordered
+// rewards into VAR_POX_GRANDPA_PROGRESS. Keep these safe old-save inputs
+// reserved; 0x071 is deliberately omitted because retained Cave of Origin
+// scripts read that vanilla flag and therefore make it unsafe to repurpose.
+#define FLAG_POX_LEGACY_GRANDPA_DOME_FOSSIL 0x054
+#define FLAG_POX_LEGACY_GRANDPA_CLAW_FOSSIL 0x055
+#define FLAG_POX_LEGACY_GRANDPA_ROOT_FOSSIL 0x068
+#define FLAG_POX_LEGACY_GRANDPA_OLD_AMBER   0x096
+'''
+put('include/constants/plastic_ox_story.h','#ifndef GUARD_PLASTIC_OX_STORY_CONSTANTS_H\n#define GUARD_PLASTIC_OX_STORY_CONSTANTS_H\n\n// Generated from plastic_ox/alpha/story_flags.json; IDs must remain stable.\n// Reserved unused general flags. Never allocate trainer/daily flags here.\n'+''.join(f'#define {f} {value}\n' for f,value in flag_allocations.items())+legacy_grandpa+'\n#endif\n')
 path='include/constants/plastic_ox_flags.h'
 s=read(path)
 if '#include "constants/plastic_ox_story.h"' not in s:

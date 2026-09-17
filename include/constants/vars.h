@@ -338,7 +338,7 @@
 #define TESTING_VAR_UNUSED_7                (TESTING_VARS_START + 0x7)
 #endif // TESTING
 
-// Plastic Ox alpha vars.
+// Plastic Ox persistent vars. Reserved range: 0x40F7-0x40FF.
 // Ids above VARS_END (e.g. 0x5100) are NOT usable: GetVarPointer()
 // (src/event_data.c) maps every id below SPECIAL_VARS_START onto
 // gSaveBlock1Ptr->vars[id - VARS_START], so anything past 0x40FF indexes past
@@ -348,9 +348,12 @@
 #define VAR_POX_ILEX_STATE         0x40F8 // beat 3: escort quest state
 #define VAR_POX_MTMOON_STATE       0x40F9 // beat 5: Rocket I progress
 #define VAR_POX_SILPH_STATE        0x40FA // beat 16: Rocket III progress
-#define VAR_POX_PORTAL_GATE        0x40FC // always 0; gates coord-warp portals
-#define VAR_POX_EEVEE_GIFTS        0x40FB // count of Eevee gifts received (beats 6/8/11/12/15)
+#define VAR_POX_GRANDPA_PROGRESS   0x40FB // 0-5: next ordered Bill's-grandfather request
+#define VAR_POX_PORTAL_GATE        0x40FC // trigger sentinel; must remain zero
 #define VAR_POX_MOM_STATE           0x40FF // 0 before Mom's dialogue-only first conversation, 1 afterward
-#define POX_VARS_END               0x40FF // upper persistent-var range is fully allocated
+#define POX_VARS_END               0x40FF
+// No persistent variable slot is currently available. Prefer a flag for an
+// independent boolean or pack ordered states into an existing progression var.
+// Never allocate above VARS_END; doing so indexes beyond SaveBlock1::vars.
 
 #endif // GUARD_CONSTANTS_VARS_H

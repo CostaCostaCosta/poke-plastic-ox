@@ -20,16 +20,9 @@ ifeq (leafgreen, $(or $(BUILD), $(MAKECMDGOALS)))
 endif
 endif
 
-# Plastic Ox trigger-demo build: `make PLASTIC_OX_BUILD=triggers`, `make triggers`,
-# or any pokeemerald-triggers.* goal -> pokeemerald-triggers.gba/.elf/.map with
-# -DPLASTIC_OX_BUILD_TRIGGERS=1 (see src/plastic_ox.c, plastic_ox/alpha/PLAN.md).
 PLASTIC_OX_BUILD ?=
-ifneq (,$(filter-out triggers battle,$(PLASTIC_OX_BUILD)))
-$(error unknown PLASTIC_OX_BUILD "$(PLASTIC_OX_BUILD)" - supported values: triggers, battle)
-endif
-POX_TRIGGERS := $(strip $(filter triggers,$(PLASTIC_OX_BUILD))$(filter triggers pokeemerald-triggers.%,$(MAKECMDGOALS)))
-ifneq (,$(POX_TRIGGERS))
-	BUILD_NAME   := emerald-triggers
+ifneq (,$(filter-out battle,$(PLASTIC_OX_BUILD)))
+$(error unknown PLASTIC_OX_BUILD "$(PLASTIC_OX_BUILD)" - supported value: battle)
 endif
 POX_BATTLE := $(strip $(filter battle,$(PLASTIC_OX_BUILD))$(filter battle pokeemerald-battle.%,$(MAKECMDGOALS)))
 ifneq (,$(POX_BATTLE))
@@ -179,9 +172,6 @@ ifeq ($(RELEASE),1)
 		LTO := 1
 	endif
 endif
-ifneq (,$(POX_TRIGGERS))
-	override CPPFLAGS += -DPLASTIC_OX_BUILD_TRIGGERS=1
-endif
 ifneq (,$(POX_BATTLE))
 	override CPPFLAGS += -DPLASTIC_OX_BUILD_BATTLE=1
 endif
@@ -262,6 +252,7 @@ LEARNSET_HELPERS_DIR := $(TOOLS_DIR)/learnset_helpers
 LEARNSET_HELPERS_DATA_DIR := $(LEARNSET_HELPERS_DIR)/porymoves_files
 LEARNSET_HELPERS_BUILD_DIR := $(LEARNSET_HELPERS_DIR)/build
 ALL_LEARNABLES_JSON := $(DATA_SRC_SUBDIR)/pokemon/all_learnables.json
+EGG_MOVES_HEADER := $(DATA_SRC_SUBDIR)/pokemon/egg_moves.h
 ALL_TUTORS_JSON := $(LEARNSET_HELPERS_BUILD_DIR)/all_tutors.json
 ALL_TEACHING_TYPES_JSON := $(LEARNSET_HELPERS_BUILD_DIR)/all_teaching_types.json
 
@@ -569,6 +560,13 @@ $(LEARNSET_HELPERS_BUILD_DIR):
 $(ALL_LEARNABLES_JSON):
 	python3 $(LEARNSET_HELPERS_DIR)/make_learnables.py $(LEARNSET_HELPERS_DATA_DIR) $@
 
+.PHONY: gen3-learnsets
+gen3-learnsets:
+	python3 $(LEARNSET_HELPERS_DIR)/make_learnables.py $(LEARNSET_HELPERS_DATA_DIR) $(ALL_LEARNABLES_JSON)
+	python3 $(LEARNSET_HELPERS_DIR)/make_egg_moves.py $(LEARNSET_HELPERS_DATA_DIR) $(EGG_MOVES_HEADER)
+	@touch $(LEARNSET_HELPERS_DIR)/make_teachables.py
+	$(MAKE) $(DATA_SRC_SUBDIR)/pokemon/teachable_learnsets.h
+
 $(ALL_TUTORS_JSON): $(shell find data/ -type f -name '*.inc')  $(LEARNSET_HELPERS_DIR)/make_tutors.py | $(LEARNSET_HELPERS_BUILD_DIR)
 	python3 $(LEARNSET_HELPERS_DIR)/make_tutors.py $@
 
@@ -614,7 +612,6 @@ $(ROM): $(ELF)
 emerald: all
 firered: all
 leafgreen: all
-triggers: all
 
 # Plastic Ox battle-demo build: `make PLASTIC_OX_BUILD=battle`, `make battle`,
 # or any pokeemerald-battle.* goal -> pokeemerald-battle.gba/.elf/.map with

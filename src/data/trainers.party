@@ -17023,15 +17023,23 @@ Level: 5
 - Rock Throw
 - Tackle
 
-Onix
+Onix @ Sitrus Berry
 Level: 5
-- Rock Tomb
-- Bind
+EVs: 236 Atk / 76 SpD / 196 Spe
+Jolly Nature
+- Earthquake
+- Explosion
+- Rock Slide
+- Sunny Day
 
-Nosepass
+Nosepass @ Sitrus Berry
 Level: 5
-- Rock Tomb
-- Tackle
+EVs: 252 HP / 60 Atk / 196 SpD
+Careful Nature
+- Earthquake
+- Protect
+- Explosion
+- Thunder Wave
 
 === TRAINER_PLASTIC_OX_WHITNEY ===
 Name: WHITNEY
@@ -17744,8 +17752,14 @@ AI: Basic Trainer
 Wingull
 Level: 4
 
-Lotad
+Lotad @ Sitrus Berry
 Level: 4
+EVs: 36 HP / 36 Def / 116 SpA / 196 SpD / 116 Spe
+Calm Nature
+- Giga Drain
+- Surf
+- Rain Dance
+- Thief
 
 === TRAINER_PLASTIC_OX_ROUTE29 ===
 Name: JOEY
@@ -17774,8 +17788,15 @@ AI: Basic Trainer
 Geodude
 Level: 5
 
-Machop
+Machop @ Sitrus Berry
 Level: 5
+IVs: 31 HP / 31 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 36 HP / 116 Atk / 40 Def / 240 SpD / 76 Spe
+Adamant Nature
+- Bulk Up
+- Cross Chop
+- Hidden Power
+- Endure
 
 === TRAINER_PLASTIC_OX_ROUTE1 ===
 Name: BEN
@@ -17789,8 +17810,14 @@ AI: Basic Trainer
 Spearow
 Level: 5
 
-Mankey
+Mankey @ Choice Band
 Level: 5
+EVs: 252 Atk / 4 SpD / 252 Spe
+Jolly Nature
+- Cross Chop
+- Earthquake
+- Rock Slide
+- Focus Punch
 
 === TRAINER_PLASTIC_OX_ROUTE31 ===
 Name: WADE
@@ -17804,8 +17831,15 @@ AI: Basic Trainer
 Weedle
 Level: 6
 
-Bellsprout
+Bellsprout @ Sitrus Berry
 Level: 6
+IVs: 31 HP / 30 Atk / 31 Def / 30 SpA / 31 SpD / 30 Spe
+EVs: 80 Atk / 200 SpA / 200 Spe
+Rash Nature
+- Sunny Day
+- Solar Beam
+- Hidden Power
+- Sludge Bomb
 
 Venonat
 Level: 6
@@ -17819,11 +17853,24 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Taillow
+Taillow @ Choice Band
 Level: 8
+IVs: 31 HP / 31 Atk / 31 Def / 30 SpA / 30 SpD / 31 Spe
+EVs: 252 Atk / 4 Def / 252 Spe
+Jolly Nature
+- Double Edge
+- Aerial Ace
+- Hidden Power
+- Quick Attack
 
-Skitty
+Skitty @ Oran Berry
 Level: 8
+EVs: 1 Spe
+Hasty Nature
+- Double Slap
+- Tackle
+- Sing
+- Attract
 
 Electrike
 Level: 8
@@ -17858,11 +17905,23 @@ AI: Basic Trainer
 Swablu
 Level: 10
 
-Magby
+Magby @ Sitrus Berry
 Level: 10
+EVs: 76 Atk / 116 SpA / 252 Spe
+Hasty Nature
+- Fire Blast
+- Focus Punch
+- Toxic
+- Substitute
 
-Meowth
+Meowth @ Sitrus Berry
 Level: 10
+EVs: 36 HP / 236 Atk / 36 SpD / 196 Spe
+Jolly Nature
+- Fake Out
+- Double Edge
+- Shadow Ball
+- Taunt
 
 === TRAINER_PLASTIC_OX_ROUTE44 ===
 Name: MARCUS

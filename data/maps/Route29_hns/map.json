@@ -27,19 +27,6 @@
   ],
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_HNS",
-      "x": 61,
-      "y": 16,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 2,
-      "movement_range_y": 2,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route29_EventScript_OldMan",
-      "flag": "0"
-    },
-    {
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER_HNS",
       "x": 35,
       "y": 22,
@@ -63,19 +50,6 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route29_EventScript_Boy",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_FAT_MAN_HNS",
-      "x": 25,
-      "y": 12,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 2,
-      "movement_range_y": 2,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route29_EventScript_Tuscany",
       "flag": "0"
     },
     {

@@ -535,6 +535,9 @@ BerryBlender_Movement_BlendLeaderWalkInPlace:
 	step_end
 
 BerryBlender_EventScript_BerryBlenderLink::
+#if !POX_LINK_ENABLED
+	goto CableClub_EventScript_Unavailable
+#endif
 	lockall
 	specialvar VAR_RESULT, PlayerHasBerries
 	goto_if_eq VAR_RESULT, FALSE, BerryBlender_EventScript_LinkBlenderNoBerries

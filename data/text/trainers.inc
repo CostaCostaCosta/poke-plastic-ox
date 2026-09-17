@@ -70,180 +70,197 @@ Route102_Text_TianaPostBattle:
 	.string "I have to catch more POKéMON.$"
 
 Route103_Text_DaisyIntro:
-	.string "Did you feel the tug of our\n"
-	.string "soul-soothing fragrance?$"
+	.string "The breeze carries our fragrance\n"
+	.string "right along the path.\p"
+	.string "Take a deep breath.\n"
+	.string "Let's begin our battle.$"
 
 Route103_Text_DaisyDefeated:
-	.string "You weren't led astray by our aroma…$"
+	.string "You kept a clear head.$"
 
 Route103_Text_DaisyPostBattle:
-	.string "Aromatherapy is a form of mental\n"
-	.string "healing that works with fragrances.$"
+	.string "I find a familiar scent calming.\n"
+	.string "It helps after a loss, too.$"
 
 Route103_Text_AmyIntro:
-	.string "AMY: I'm AMY.\n"
-	.string "And this is my little sister LIV.\l"
-	.string "We battle together!$"
+	.string "AMY: LIV and I made a plan.\n"
+	.string "Now we get to try it on you!$"
 
 Route103_Text_AmyDefeated:
-	.string "AMY: Uh-oh, we lost.$"
+	.string "AMY: We skipped a step!$"
 
 Route103_Text_AmyPostBattle:
-	.string "AMY: You have to think about all\n"
-	.string "kinds of things when you're battling\l"
-	.string "against two TRAINERS.$"
+	.string "AMY: I planned my moves, but not\n"
+	.string "what LIV would do beside me.\p"
+	.string "Being the big sister doesn't\n"
+	.string "mean I know everything.$"
 
 Route103_Text_AmyNotEnoughPokemon:
-	.string "AMY: Uh-oh, you have only one\n"
-	.string "POKéMON with you.\l"
-	.string "You can't battle us like that.$"
+	.string "AMY: You'll need two POKéMON\n"
+	.string "that can battle.\p"
+	.string "LIV and I always battle\n"
+	.string "together.$"
 
 Route103_Text_LivIntro:
-	.string "LIV: We battle together as one\n"
-	.string "team.$"
+	.string "LIV: AMY made the plan.\n"
+	.string "I thought up the surprise!$"
 
 Route103_Text_LivDefeated:
-	.string "LIV: Oh, we lost, big sister…$"
+	.string "LIV: That surprised me, too!$"
 
 Route103_Text_LivPostBattle:
-	.string "LIV: We work perfectly together,\n"
-	.string "me and my big sister…\p"
-	.string "But we still lost…$"
+	.string "LIV: I should tell AMY what my\n"
+	.string "surprise is before we battle.\p"
+	.string "But then it isn't a surprise!$"
 
 Route103_Text_AmyLivRegister:
-	.string "LIV: Really, we're a lot better…\n"
-	.string "It's true! We'll show you next time!$"
+	.string "LIV: Put us in your POKéNAV!\n"
+	.string "We have more plans to try.\p"
+	.string "AMY: We'll call when we've\n"
+	.string "practiced them together.$"
 
 Route103_Text_LivNotEnoughPokemon:
-	.string "LIV: If you want to battle us,\n"
-	.string "you have to have two POKéMON!\l"
-	.string "It's not fair if you don't!$"
+	.string "LIV: We send out two POKéMON.\n"
+	.string "You need two that can battle!$"
 
 Route103_Text_AmyRematchIntro:
-	.string "AMY: I'm AMY.\n"
-	.string "And this is my little sister LIV.\l"
-	.string "We battle together!$"
+	.string "AMY: We practiced listening\n"
+	.string "to each other. Ready, LIV?$"
 
 Route103_Text_AmyRematchDefeated:
-	.string "AMY: Aww, boo!\n"
-	.string "We couldn't win again…$"
+	.string "AMY: You read our plan!$"
 
 Route103_Text_AmyRematchPostBattle:
-	.string "AMY: You have to think about all\n"
-	.string "kinds of things when you're battling\l"
-	.string "against two TRAINERS.$"
+	.string "AMY: We worked together better.\n"
+	.string "That's worth practicing for.\p"
+	.string "Next time, we need a plan for\n"
+	.string "when our first plan fails.$"
 
 Route103_Text_AmyRematchNotEnoughPokemon:
-	.string "AMY: Uh-oh, you have only one\n"
-	.string "POKéMON with you.\l"
-	.string "You can't battle us like that.$"
+	.string "AMY: Our plan needs a full match.\n"
+	.string "Bring two POKéMON that can fight.$"
 
 Route103_Text_LivRematchIntro:
-	.string "LIV: We battle together as one\n"
-	.string "team.$"
+	.string "LIV: I told AMY my surprise!\n"
+	.string "But I'm not telling you!$"
 
 Route103_Text_LivRematchDefeated:
-	.string "LIV: Awww, we lost again…\n"
-	.string "Big sister…$"
+	.string "LIV: How did you guess?$"
 
 Route103_Text_LivRematchPostBattle:
-	.string "LIV: We work perfectly together,\n"
-	.string "me and my big sister…\p"
-	.string "But why did we lose again?$"
+	.string "LIV: AMY listened to my idea!\n"
+	.string "Now we're thinking up another.\p"
+	.string "This one needs more practice\n"
+	.string "and a much shorter name.$"
 
 Route103_Text_LivRematchNotEnoughPokemon:
-	.string "LIV: If you want to battle us, you\n"
-	.string "have to have two POKéMON!\l"
-	.string "It's not fair if you don't!$"
+	.string "LIV: You still need two POKéMON\n"
+	.string "that can battle. We'll wait!$"
 
 Route103_Text_AndrewIntro:
-	.string "Gah! My fishing line's all snarled up!\n"
-	.string "I'm getting frustrated and mean!\l"
-	.string "That's it! Battle me!$"
+	.string "Another knot in my fishing line!\n"
+	.string "I need to put this rod down.\p"
+	.string "How about a battle while I\n"
+	.string "still have some patience?$"
 
 Route103_Text_AndrewDefeated:
-	.string "Gah! Lost it!\n"
-	.string "I'm even more annoyed now!$"
+	.string "I tied myself in knots!$"
 
 Route103_Text_AndrewPostBattle:
-	.string "Gah, I'm still boiling mad…\n"
-	.string "Grrrrr…$"
+	.string "Pulling harder only tightens it.\n"
+	.string "You'd think I'd remember that.\p"
+	.string "I'll sit down and work this out,\n"
+	.string "one loop at a time.$"
 
 Route103_Text_MiguelIntro:
-	.string "My POKéMON is delightfully adorable!\n"
-	.string "Don't be shy--I'll show you!$"
+	.string "My POKéMON has been practicing.\n"
+	.string "You simply must see it!$"
 
 Route103_Text_MiguelDefeated:
-	.string "Oh, my gosh!\n"
-	.string "My darling POKéMON!$"
+	.string "You did your best, darling!$"
 
 Route103_Text_MiguelPostBattle:
-	.string "My delightful POKéMON looks darling\n"
-	.string "even when it's fainted!$"
+	.string "My POKéMON turns to look at me\n"
+	.string "after every move.\p"
+	.string "I cheer just as loudly whether\n"
+	.string "it wins or loses.$"
 
 Route103_Text_MiguelRegister:
-	.string "I'll get you to come out and look in\n"
-	.string "on my delightful POKéMON again!$"
+	.string "Let me register your POKéNAV.\n"
+	.string "I'll call after we practice.\p"
+	.string "My darling deserves another\n"
+	.string "chance to show you its moves!$"
 
 Route103_Text_MiguelRematchIntro:
-	.string "Hi, you! My delightfully adorable\n"
-	.string "POKéMON has become more darling!$"
+	.string "You're back! We've practiced\n"
+	.string "all along this little path.\p"
+	.string "Show our guest what you learned,\n"
+	.string "darling!$"
 
 Route103_Text_MiguelRematchDefeated:
-	.string "Oh!\n"
-	.string "My darling POKéMON!$"
+	.string "I'm still proud of you!$"
 
 Route103_Text_MiguelRematchPostBattle:
-	.string "The more I spend time with it,\n"
-	.string "the more adorable my POKéMON becomes.$"
+	.string "It tried something new today.\n"
+	.string "Did you notice?\p"
+	.string "We'll rest now. Even my darling\n"
+	.string "needs a break from my cheering.$"
 
 Route103_Text_PeteIntro:
-	.string "This sort of distance…\n"
-	.string "You should just swim it!$"
+	.string "I measure this crossing in\n"
+	.string "strokes, not steps.\p"
+	.string "Let's see how you measure up\n"
+	.string "in a battle!$"
 
 Route103_Text_PeteDefeated:
-	.string "Oh, that's good going!$"
+	.string "You left me in your wake!$"
 
 Route103_Text_PetePostBattle:
-	.string "Oh, I understand where you're coming\n"
-	.string "from now.\p"
-	.string "If I had a POKéMON that trusty,\n"
-	.string "I'd want to SURF on it, too!$"
+	.string "I swim because I enjoy it.\n"
+	.string "Your POKéMON likes carrying you.\p"
+	.string "I suppose we're both crossing\n"
+	.string "the water in good company.$"
 
 Route103_Text_IsabelleIntro:
-	.string "Watch where you're going!\n"
-	.string "We're going to crash!$"
+	.string "Sorry! I drift when I turn.\n"
+	.string "A battle might steady my nerves!$"
 
 Route103_Text_IsabelleDefeated:
-	.string "Groan…$"
+	.string "I lost my rhythm.$"
 
 Route103_Text_IsabellePostBattle:
-	.string "I'm a poor swimmer so I was practicing…\n"
-	.string "Sorry for almost crashing into you.$"
+	.string "I practice between these banks\n"
+	.string "so I can see how far I've gone.\p"
+	.string "Straight lines are easy.\n"
+	.string "It's turning that gets me.$"
 
 Route103_Text_RhettIntro:
-	.string "Whoa!\n"
-	.string "How'd you get into a space this small?$"
+	.string "There's no room for fancy\n"
+	.string "footwork in this little clearing.\p"
+	.string "Plant your feet and face me!$"
 
 Route103_Text_RhettDefeated:
-	.string "Whoa!\n"
-	.string "The kid can rock!$"
+	.string "You held your ground!$"
 
 Route103_Text_RhettPostBattle:
-	.string "Do you like cramped quarters\n"
-	.string "like this?$"
+	.string "The trees keep my movements\n"
+	.string "small and precise.\p"
+	.string "They also catch my elbows when\n"
+	.string "I forget. I learn fast!$"
 
 Route103_Text_MarcosIntro:
-	.string "Did my guitar's wailing draw you in?$"
+	.string "I came here to practice guitar.\n"
+	.string "The birds keep singing over me!\p"
+	.string "Let's make some noise together!$"
 
 Route103_Text_MarcosDefeated:
-	.string "My one-man show is ruined…$"
+	.string "You stole the show!$"
 
 Route103_Text_MarcosPostBattle:
-	.string "I was playing my guitar where few\n"
-	.string "people were around, but a lot of fans\l"
-	.string "have gathered.\p"
-	.string "Heh, maybe I should turn pro.$"
+	.string "That fellow up by the trees\n"
+	.string "keeps moving to my rhythm.\p"
+	.string "Training, he says. I say he's\n"
+	.string "my first fan.$"
 
 Route104_Text_GinaIntro:
 	.string "GINA: Okay, let's battle with our\n"

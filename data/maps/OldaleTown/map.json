@@ -23,6 +23,11 @@
       "map": "MAP_ROUTE29_HNS",
       "offset": -6,
       "direction": "left"
+    },
+    {
+      "map": "MAP_ROUTE103",
+      "offset": 0,
+      "direction": "up"
     }
   ],
   "object_events": [
@@ -94,19 +99,6 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "OldaleTown_EventScript_Lance",
       "flag": "FLAG_POX_HIDE_BATTLE_LANCE"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_SIGN",
-      "x": 9,
-      "y": 1,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "PoxRegion_oldale_route103_a_Sign",
-      "flag": "0"
     }
   ],
   "warp_events": [
@@ -139,17 +131,7 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [
-    {
-      "type": "trigger",
-      "x": 10,
-      "y": 0,
-      "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
-      "var_value": 0,
-      "script": "PoxRegion_oldale_route103_a"
-    }
-  ],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "sign",
@@ -190,14 +172,6 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
       "script": "Common_EventScript_ShowPokemartSign"
-    },
-    {
-      "type": "sign",
-      "x": 9,
-      "y": 1,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "PoxRegion_oldale_route103_a_Sign"
     }
   ]
 }

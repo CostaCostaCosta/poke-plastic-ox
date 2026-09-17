@@ -31,13 +31,13 @@ Route24_EventScript_Npc4::
 	end
 
 Route24_EventScript_Npc1_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "I'm just taking a break.\nEven I need fresh air.\pThat fellow keeps asking me\nfor a battle. I said no!$"
 
 Route24_EventScript_Npc2_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "I walk out here after work.\nIt gets the dust off my boots.\pA good battle does more for me\nthan sitting around at home.$"
 
 Route24_EventScript_Npc3_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "RUSTBORO is just south of here.\nThe cottage lies farther north.\pI only meant to take a short\nwalk. I say that every time!$"
 
 Route24_EventScript_Npc4_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "I brought lunch and some bait.\nThey're in separate tins.\pLast time I mixed them up.\nI checked twice today.$"

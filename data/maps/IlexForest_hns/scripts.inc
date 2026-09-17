@@ -97,42 +97,69 @@ IlexForest_EventScript_Sign2::
 	end
 
 IlexForest_EventScript_Npc1_Text:
-	.string "The forest paths loop past each other\nnow. Some mornings I end up in KANTO\nby accident.$"
+	.string "I train by walking this trail.\n"
+	.string "My legs quit before my POKéMON!$"
 
 IlexForest_EventScript_Npc2_Text:
-	.string "A BUG-CATCHER told me the bugs out\nwest count double. I'm going to catch\nso many.$"
+	.string "My net keeps catching twigs.\n"
+	.string "The bugs make it look so easy!$"
 
 IlexForest_EventScript_Npc3_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "I stop here to hear the leaves.\n"
+	.string "Go on. The road can wait.$"
 
 IlexForest_EventScript_Npc4_Text:
-	.string "This wood feels older than the map\nsays. The signposts disagree with\neach other.$"
+	.string "I packed a lunch for the walk.\n"
+	.string "A leaf landed in my sandwich!\p"
+	.string "I came here for the scenery,\n"
+	.string "not to eat it.$"
 
 IlexForest_EventScript_Npc5_Text:
-	.string "I fish where the trees let me. The\nriver doesn't care which region it's\nin.$"
+	.string "I found a fine fishing spot.\n"
+	.string "The branches caught my line.\p"
+	.string "Well, I said it was fine.\n"
+	.string "I didn't say it was roomy!$"
 
 Pox_IlexForest_Text_HeadbuttKeyIntro:
-	.string "The trees here hide all kinds of\n"
-	.string "POKéMON. Take this HEADBUTT KEY!$"
+	.string "Hear that rustle overhead?\n"
+	.string "POKéMON hide in the branches.\p"
+	.string "Take this HEADBUTT KEY.\n"
+	.string "Keep it safe on your travels!$"
 
 Pox_IlexForest_Text_HeadbuttKeyOwned:
-	.string "That HEADBUTT KEY belongs with a\n"
-	.string "TRAINER who respects the forest.$"
+	.string "Take care of that HEADBUTT KEY.\n"
+	.string "These trees have plenty of life.\p"
+	.string "I could sit here all afternoon\n"
+	.string "just listening to the branches.$"
 
 IlexForest_EventScript_Npc6_Text:
-	.string "Something in these woods isn't in any\ndex I've seen. Probably nothing!$"
+	.string "I heard wings and ran this way.\n"
+	.string "It was only a falling leaf.\p"
+	.string "Next time, I'm looking up\n"
+	.string "before I start chasing!$"
 
 IlexForest_EventScript_Npc10_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "These trees have stood here\n"
+	.string "longer than I've been alive.\p"
+	.string "Give their roots some room.\n"
+	.string "They were on this path first.$"
 
 IlexForest_EventScript_Npc11_Text:
-	.string "We dance for the forest. It has been\nvery patient with all these new\nroads.$"
+	.string "I practice my steps here.\n"
+	.string "The leaves are my audience.\p"
+	.string "They rustle at every turn.\n"
+	.string "I call that applause.$"
 
 IlexForest_EventScript_Npc12_Text:
-	.string "Two routes start at the north edge.\nNeither one is on Grandpa's map.$"
+	.string "I tried counting all the trees.\n"
+	.string "I ran out of numbers back there!\p"
+	.string "Now I'm counting mushrooms.\n"
+	.string "Don't tell me the answer!$"
 
 IlexForest_EventScript_Sign1_Text:
-	.string "ILEX FOREST\nThe trees lean away from the new road.$"
+	.string "ILEX FOREST\n"
+	.string "Please stay on the worn path.$"
 
 IlexForest_EventScript_Sign2_Text:
-	.string "ILEX FOREST\nShrine of the forest guardian.$"
+	.string "FOREST GUARDIAN'S SHRINE\n"
+	.string "Please keep the clearing quiet.$"

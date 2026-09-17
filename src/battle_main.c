@@ -475,6 +475,13 @@ const u8 *const gStatusConditionStringsTable[][2] =
 
 void CB2_InitBattle(void)
 {
+    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER
+     && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED)))
+    {
+        for (u32 i = 0; i < gPartiesCount[B_TRAINER_PLAYER]; i++)
+            HealPokemon(&gParties[B_TRAINER_PLAYER][i]);
+    }
+
     if (!gTestRunnerEnabled)
         MoveSaveBlocks_ResetHeap();
     AllocateBattleResources();

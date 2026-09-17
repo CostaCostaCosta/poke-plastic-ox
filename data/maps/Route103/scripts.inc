@@ -16,6 +16,16 @@ Route103_EventScript_OpenAlteringCave::
 	setmetatile 45, 6, METATILE_General_CaveEntrance_Bottom, FALSE
 	return
 
+Route103_EventScript_May::
+	msgbox Route103_Text_MayRegularNpc, MSGBOX_NPC
+	end
+
+Route103_Text_MayRegularNpc:
+	.string "MAY: I came to count POKéMON.\n"
+	.string "I keep watching them instead.\p"
+	.string "They slip into the grass as soon\n"
+	.string "as I open my notebook!$"
+
 Route103_EventScript_Rival::
 	lockall
 	checkplayergender
@@ -286,65 +296,56 @@ Route103_EventScript_Isabelle::
 	end
 
 Route103_Text_MayRoute103Pokemon:
-	.string "MAY: Let's see… The POKéMON found\n"
-	.string "on ROUTE 103 include…$"
+	.string "MAY: The grass is moving again.\n"
+	.string "I'd better keep my pencil ready.$"
 
 Route103_Text_MayLetsBattle:
-	.string "Oh, hi, {PLAYER}{KUN}!\p"
-	.string "…Oh, I see, my dad gave you\n"
-	.string "a POKéMON as a gift.\p"
-	.string "Since we're here, let's have a quick\n"
-	.string "battle!\p"
-	.string "I'll give you a taste of what being\n"
-	.string "a TRAINER is like.$"
+	.string "MAY: Oh, hello, {PLAYER}!\n"
+	.string "You caught me taking notes.\p"
+	.string "Let's give our POKéMON a turn\n"
+	.string "to show us what they can do!$"
 
 Route103_Text_MayDefeated:
-	.string "Wow! That's great!\n"
-	.string "{PLAYER}{KUN}, you're pretty good!$"
+	.string "You gave me plenty to study!$"
 
 Route103_Text_MayTimeToHeadBack:
-	.string "MAY: I think I know why my dad has\n"
-	.string "an eye out for you now.\p"
-	.string "I mean, you just got that POKéMON,\n"
-	.string "but it already likes you.\p"
-	.string "You might be able to befriend any\n"
-	.string "kind of POKéMON easily.\p"
-	.string "Well, it's time to head back to\n"
-	.string "the LAB.$"
+	.string "MAY: Your POKéMON watched you\n"
+	.string "closely for every command.\p"
+	.string "That trust matters more than\n"
+	.string "anything in my notebook.\p"
+	.string "I'd better head back to the LAB.\n"
+	.string "See you there!$"
 
 Route103_Text_BrendanRoute103Pokemon:
-	.string "BRENDAN: Okay, so it's this one and\n"
-	.string "that one that live on ROUTE 103…$"
+	.string "BRENDAN: That's the same patch.\n"
+	.string "Did I count that POKéMON twice?$"
 
 Route103_Text_BrendanLetsBattle:
-	.string "Hey, it's {PLAYER}!\p"
-	.string "…Oh, yeah, Dad gave you a POKéMON.\p"
-	.string "Since we're here, how about a little\n"
-	.string "battle?\p"
-	.string "I'll teach you what being a TRAINER's\n"
-	.string "about!$"
+	.string "BRENDAN: Hey, {PLAYER}!\n"
+	.string "I could use a break from notes.\p"
+	.string "How about a battle?\n"
+	.string "I'll keep score this time!$"
 
 Route103_Text_BrendanDefeated:
-	.string "Huh, {PLAYER}, you're not too shabby.$"
+	.string "That score speaks for itself!$"
 
 Route103_Text_BrendanTimeToHeadBack:
-	.string "BRENDAN: I think I get it.\n"
-	.string "I think I know why my dad has his eye\l"
-	.string "out for you now.\p"
-	.string "Look, your POKéMON already likes you,\n"
-	.string "even though you just got it.\p"
-	.string "{PLAYER}, I get the feeling that you\n"
-	.string "could befriend any POKéMON with ease.\p"
-	.string "We should head back to the LAB.$"
+	.string "BRENDAN: I rushed my commands.\n"
+	.string "You waited for the right moment.\p"
+	.string "I'll remember that next time.\n"
+	.string "Let's head back to the LAB.$"
 
 Route103_Text_ShouldHaveBroughtPotion:
-	.string "My POKéMON is staggeringly tired…\n"
-	.string "I should have brought a POTION…$"
+	.string "I packed a snack for myself,\n"
+	.string "but no POTION for my POKéMON.\p"
+	.string "We're resting here for a bit.\n"
+	.string "I didn't think that through.$"
 
 Route103_Text_ShortcutToOldale:
-	.string "If you cross the sea from here,\n"
-	.string "it'll be a shortcut to OLDALE TOWN.\p"
-	.string "Fufufu, that's useful, isn't it?$"
+	.string "OLDALE is across the water.\n"
+	.string "Looks close from here, eh?\p"
+	.string "I call it a shortcut. My feet\n"
+	.string "call it a very wet walk.$"
 
 Route103_Text_RouteSign:
 	.string "ROUTE 103\n"

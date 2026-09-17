@@ -15665,6 +15665,38 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_TMCase,
     },
 
+    [ITEM_TRAINING_KIT] =
+    {
+        .name = ITEM_NAME("Training Kit"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Sets a party\n"
+            "Pokémon's nature\n"
+            "and base points."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_TrainingKit,
+        .iconPic = gItemIcon_TMCase,
+        .iconPalette = gItemIconPalette_TMCase,
+    },
+
+    [ITEM_POCKET_WATCH] =
+    {
+        .name = ITEM_NAME("Pocket Watch"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Adjusts the time\n"
+            "and weekday while\n"
+            "inside a building."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_PocketWatch,
+        .iconPic = gItemIcon_CoinCase,
+        .iconPalette = gItemIconPalette_CoinCase,
+    },
+
     [ITEM_METAL_ALLOY] =
     {
         .name = ITEM_NAME("Metal Alloy"),

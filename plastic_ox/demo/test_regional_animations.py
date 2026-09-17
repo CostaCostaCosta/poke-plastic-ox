@@ -28,7 +28,7 @@ def check(game, name, point, ranges):
 
 
 def main():
-    game = StoryGame(build="triggers")
+    game = StoryGame()
     game.flag("FLAG_POX_STORY_STARTER", True)
     game.flag("FLAG_ADVENTURE_STARTED", True)
     hns = [

@@ -43,50 +43,6 @@
       "label": "CherrygroveCity"
     },
     {
-      "id": "route2_rustboro_a",
-      "source": "Route2_Frlg",
-      "destination": "RustboroCity",
-      "tile": [
-        6,
-        2
-      ],
-      "approach": [
-        5,
-        2
-      ],
-      "direction": "E",
-      "landing": [
-        18,
-        59
-      ],
-      "requires": [
-        "FLAG_POX_STORY_ILEX"
-      ],
-      "label": "RustboroCity"
-    },
-    {
-      "id": "route2_rustboro_b",
-      "source": "RustboroCity",
-      "destination": "Route2_Frlg",
-      "tile": [
-        19,
-        59
-      ],
-      "approach": [
-        18,
-        59
-      ],
-      "direction": "E",
-      "landing": [
-        5,
-        2
-      ],
-      "requires": [
-        "FLAG_POX_STORY_ILEX"
-      ],
-      "label": "Route2"
-    },
-    {
       "id": "rustboro_cottage_a",
       "source": "RustboroCity",
       "destination": "Route24_hns",
@@ -127,65 +83,23 @@
       "label": "RustboroCity"
     },
     {
-      "id": "route24_route25_a",
-      "source": "Route24_hns",
-      "destination": "Route25_hns",
-      "tile": [
-        16,
-        0
-      ],
-      "approach": [
-        16,
-        1
-      ],
-      "direction": "N",
-      "landing": [
-        5,
-        16
-      ],
-      "requires": [],
-      "label": "Route25"
-    },
-    {
-      "id": "route24_route25_b",
-      "source": "Route25_hns",
-      "destination": "Route24_hns",
-      "tile": [
-        5,
-        17
-      ],
-      "approach": [
-        5,
-        16
-      ],
-      "direction": "S",
-      "landing": [
-        16,
-        1
-      ],
-      "requires": [],
-      "label": "Route24"
-    },
-    {
       "id": "rustboro_route44_a",
       "source": "RustboroCity",
       "destination": "Route44_hns",
       "tile": [
-        35,
-        30
+        38,
+        10
       ],
       "approach": [
-        34,
-        30
+        37,
+        10
       ],
       "direction": "E",
       "landing": [
-        0,
-        15
+        2,
+        13
       ],
-      "requires": [
-        "FLAG_BADGE01_GET"
-      ],
+      "requires": [],
       "label": "Route44"
     },
     {
@@ -193,21 +107,19 @@
       "source": "Route44_hns",
       "destination": "RustboroCity",
       "tile": [
-        0,
-        16
+        1,
+        13
       ],
       "approach": [
-        0,
-        15
+        2,
+        13
       ],
-      "direction": "S",
+      "direction": "W",
       "landing": [
-        34,
-        30
+        37,
+        10
       ],
-      "requires": [
-        "FLAG_BADGE01_GET"
-      ],
+      "requires": [],
       "label": "RustboroCity"
     },
     {

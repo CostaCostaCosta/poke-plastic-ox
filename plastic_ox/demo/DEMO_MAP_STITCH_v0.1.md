@@ -62,7 +62,9 @@ the conservative full-regeneration route (`rm -f .map_version` followed by
 the normal build).
 
 Run the authoritative headless mGBA verifier with the local mGBA Python
-environment:
+environment. The compatibility fixture initializes a deterministic new game;
+it does not wait at or drive the playable title screen. See `TESTING.md` before
+authoring new tests, especially tests that can start directly on another map:
 
 ```sh
 LD_LIBRARY_PATH="$HOME/.venvs/mgba311/lib:$HOME/.venvs/mgba311/lib64" \
@@ -143,7 +145,7 @@ shifts the circular BG view one metatile and makes buildings appear duplicated
 as subsequent scrolling replaces rows. `plastic_ox/demo/test_camera_seam.py`
 checks both crossing directions, the Pallet forest border and open entrance,
 and the maintained scrolling BG buffers against a stationary full redraw.
-Run it in the mGBA Python environment; add `--triggers` for the story ROM.
+Run it in the mGBA Python environment against the primary story ROM.
 
 ### Route 101 ledge mechanics
 

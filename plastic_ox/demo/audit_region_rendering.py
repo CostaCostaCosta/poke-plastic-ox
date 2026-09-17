@@ -18,8 +18,6 @@ from walk_demo import step_toward, cross_connection
 OUT = ROOT / 'plastic_ox/demo/shots/region_audit'
 if '--only-seams' in sys.argv:
     OUT = OUT.with_name('region_seams')
-if '--triggers' in sys.argv:
-    OUT = OUT.with_name(OUT.name + '_triggers')
 OUT.mkdir(exist_ok=True)
 groups = json.loads((ROOT / 'data/maps/map_groups.json').read_text())
 maps = {name: json.loads((ROOT / 'data/maps' / name / 'map.json').read_text())
@@ -42,7 +40,7 @@ def geometry(name):
 
 
 def setup():
-    g = StoryGame(build='triggers' if '--triggers' in sys.argv else '')
+    g = StoryGame()
     g.flag('FLAG_POX_STORY_STARTER', True)
     g.flag('FLAG_ADVENTURE_STARTED', True)
     # Test-only completed trainers prevent sight battles during visual walks.

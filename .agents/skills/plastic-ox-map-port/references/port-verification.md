@@ -85,7 +85,7 @@ LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 
   /home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_camera_seam.py
 ```
 
-Add `--triggers` to test the separately rebuilt story ROM. The test warps to
+The primary ROM includes the authored story. The test warps to
 Route 101's south entrance, walks both seam directions, checks Pallet's border
 phase and open path, checks every crossing frame for forced blank, and compares
 the maintained 15x15-metatile BG view with a stationary full redraw at identical

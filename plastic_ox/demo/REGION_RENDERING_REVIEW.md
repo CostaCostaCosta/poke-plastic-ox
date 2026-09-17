@@ -48,20 +48,18 @@ No NPC, trainer, item, story event, encounter table, or cave artwork was removed
 python3 plastic_ox/demo/render_region_layout.py
 python3 /home/eddie/.codex/skills/plastic-ox-map-port/scripts/audit_imports.py "$PWD"
 make -j8 TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM modern
-make -j8 TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM PLASTIC_OX_BUILD=triggers modern
 export LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64
 /home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/audit_region_rendering.py
 /home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_cave_connections.py
-/home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_cave_connections.py --triggers
 /home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_camera_seam.py
-/home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_camera_seam.py --triggers
 git diff --check
 ```
 
 Cave tests exercise all eight ordinary directed cave crossings, check reciprocal
 indices, actual map identity, landing collision, rendering, and a 300-frame
-post-transition soak. Both ROM variants pass. Screenshots and JSON reports are
-in `shots/region_audit` and `shots/region_audit_triggers`. The seven conditional
+post-transition soak. The historical results covered both former ROM variants.
+Screenshots and JSON reports are in `shots/region_audit` and
+`shots/region_audit_triggers`. The seven conditional
 story-script links in the SVG are statically extracted, not covered by this
 ordinary-warp test.
 

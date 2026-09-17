@@ -5,9 +5,9 @@
 
 // Plastic Ox alpha flags (emerald build only).
 //
-// Allocation: the documented-unused general-flag run 0x264-0x2BB in
-// constants/flags.h (FLAG_UNUSED_0x264 .. FLAG_UNUSED_0x2BB). Every value
-// here MUST stay inside that range: FLAGS_COUNT (= DAILY_FLAGS_END + 1)
+// Primary allocation: documented-unused general flags 0x264-0x2BB. The run is
+// full. Supplemental allocations use only explicitly audited unused Emerald
+// flags listed below. FLAGS_COUNT (= DAILY_FLAGS_END + 1)
 // sizes the save-block flag array, so anything at or above it would write
 // out of bounds, and the 0x500+ / 0x920+ sub-ranges belong to trainer and
 // daily flags.
@@ -53,8 +53,8 @@
 #define FLAG_POX_HIDE_BATTLE_OAK_LAB     (POX_FLAGS_START + 0x18) // Oak in Oak's Lab (ADV OU team gift)
 #define FLAG_POX_HIDE_BATTLE_LANCE       (POX_FLAGS_START + 0x19) // Lance in OldaleTown (battle trigger)
 
-// Item balls / hidden items for imported maps: allocate sequentially from
-// POX_HIDDEN_ITEMS_BASE, one flag per placement (IMPORT_GUIDE section 2).
+// Item balls / hidden items for imported maps. This run is full at +59;
+// additions must use the audited supplemental range, never continue into 0x2BC.
 #define POX_HIDDEN_ITEMS_BASE           (POX_FLAGS_START + 0x1C) // 0x280; run ends at 0x2BB
 
 // Wave 1C (Leg A) item placements.
@@ -145,15 +145,21 @@
 #define FLAG_POX_HIDE_ARTICUNO 0x04D
 #define FLAG_POX_HIDE_SEAFOAM_ISLANDS_1F_ICE_HEAL 0x04E
 #define FLAG_POX_HIDE_SEAFOAM_ISLANDS_B1F_REVIVE 0x04F
-#define FLAG_POX_HIDE_SEAFOAM_ISLANDS_B1F_WATER_STONE 0x26E
-#define FLAG_POX_HIDE_SEAFOAM_ISLANDS_B2F_BIG_PEARL 0x26F
+#define FLAG_POX_HIDE_SEAFOAM_ISLANDS_B1F_WATER_STONE 0x0E9
+#define FLAG_POX_HIDE_SEAFOAM_ISLANDS_B2F_BIG_PEARL 0x1AA
 #define FLAG_POX_HIDE_SEAFOAM_ISLANDS_B4F_ULTRA_BALL 0x27E
 #define VAR_POX_SEAFOAM_STATE 0x40FD
 #define FLAG_POX_ROUTE2_ETHER (POX_HIDDEN_ITEMS_BASE + 58)
 #define FLAG_POX_ROUTE2_PARALYZE_HEAL (POX_HIDDEN_ITEMS_BASE + 59)
-#define FLAG_POX_HIDDEN_V7_60 (POX_HIDDEN_ITEMS_BASE + 60)
-#define FLAG_POX_MANSION_1F_CARBOS (POX_HIDDEN_ITEMS_BASE + 61)
-#define FLAG_POX_MANSION_1F_ESCAPE_ROPE (POX_HIDDEN_ITEMS_BASE + 62)
-#define FLAG_POX_MANSION_1F_PROTEIN (POX_HIDDEN_ITEMS_BASE + 63)
-#define FLAG_POX_MANSION_1F_MOON_STONE (POX_HIDDEN_ITEMS_BASE + 64)
+#define FLAG_POX_HIDDEN_V7_60             0x493
+#define FLAG_POX_MANSION_1F_CARBOS        0x1DA
+#define FLAG_POX_MANSION_1F_ESCAPE_ROPE   0x1DE
+#define FLAG_POX_MANSION_1F_PROTEIN       0x1DF
+#define FLAG_POX_MANSION_1F_MOON_STONE    0x494
+
+// Supplemental Plastic Ox flags deliberately repurpose Emerald symbols marked
+// unused: 0x0E9, 0x1AA, 0x1DA, and 0x1DE-0x1DF; hidden-item-compatible
+// 0x493-0x494 are reserved for hidden items. Next audited candidates are
+// 0x1AB/0x1E0-0x1E3 (objects) and 0x495 (hidden items), but allocate only
+// after extending audit_alpha.py.
 #endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H

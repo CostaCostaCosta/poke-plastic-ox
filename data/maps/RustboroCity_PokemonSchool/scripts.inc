@@ -77,16 +77,16 @@ RustboroCity_PokemonSchool_EventScript_StudentNotebook::
 RustboroCity_PokemonSchool_EventScript_Teacher::
 	lock
 	faceplayer
-	goto_if_set FLAG_RECEIVED_QUICK_CLAW, RustboroCity_PokemonSchool_EventScript_GaveQuickClaw
+	checkitem ITEM_TRAINING_KIT, 1
+	goto_if_eq VAR_RESULT, TRUE, RustboroCity_PokemonSchool_EventScript_GaveTrainingKit
 	call_if_eq VAR_FACING, DIR_EAST, RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsEast
 	call_if_eq VAR_FACING, DIR_WEST, RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsWest
-	msgbox RustboroCity_PokemonSchool_Text_StudentsWhoDontStudyGetQuickClaw, MSGBOX_DEFAULT
-	giveitem ITEM_QUICK_CLAW
+	msgbox RustboroCity_PokemonSchool_Text_TrainingKitIntro, MSGBOX_DEFAULT
+	giveitem ITEM_TRAINING_KIT
 	goto_if_eq VAR_RESULT, 0, Common_EventScript_ShowBagIsFull
 	closemessage
 	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
-	setflag FLAG_RECEIVED_QUICK_CLAW
 	release
 	end
 
@@ -100,8 +100,8 @@ RustboroCity_PokemonSchool_EventScript_TeacherCheckOnStudentsWest::
 	waitmovement 0
 	return
 
-RustboroCity_PokemonSchool_EventScript_GaveQuickClaw::
-	msgbox RustboroCity_PokemonSchool_Text_ExplainQuickClaw, MSGBOX_DEFAULT
+RustboroCity_PokemonSchool_EventScript_GaveTrainingKit::
+	msgbox RustboroCity_PokemonSchool_Text_ExplainTrainingKit, MSGBOX_DEFAULT
 	closemessage
 	applymovement VAR_LAST_TALKED, Common_Movement_WalkInPlaceFasterDown
 	waitmovement 0
@@ -243,21 +243,16 @@ RustboroCity_PokemonSchool_Text_ExplainFreeze:
 	.string "It will remain frozen after battle.\n"
 	.string "Thaw it out using an ICE HEAL.$"
 
-RustboroCity_PokemonSchool_Text_StudentsWhoDontStudyGetQuickClaw:
-	.string "Students who don't study get a little\n"
-	.string "taste of my QUICK CLAW.\p"
-	.string "Whether or not you are a good student \n"
-	.string "will be evident from the way you use\l"
-	.string "this item.$"
+RustboroCity_PokemonSchool_Text_TrainingKitIntro:
+	.string "A good TRAINER studies how nature and\n"
+	.string "training shape a POKéMON.\p"
+	.string "Use this TRAINING KIT to set the\n"
+	.string "nature and EVs of your party.$"
 
-RustboroCity_PokemonSchool_Text_ExplainQuickClaw:
-	.string "A POKéMON holding the QUICK CLAW will\n"
-	.string "occasionally speed up and get to move\l"
-	.string "before its opponent.\p"
-	.string "There are many other items that are\n"
-	.string "meant to be held by POKéMON.\p"
-	.string "Just those alone will give you many\n"
-	.string "topics to study!$"
+RustboroCity_PokemonSchool_Text_ExplainTrainingKit:
+	.string "The TRAINING KIT works on every\n"
+	.string "non-EGG POKéMON in your active party.\p"
+	.string "Use it from the KEY ITEMS pocket.$"
 
 RustboroCity_PokemonSchool_Text_TradingRightNow:
 	.string "I'm trading POKéMON with my friend\n"
@@ -348,4 +343,3 @@ RustboroCity_PokemonSchool_Text_ScottMetAlreadyStoneBadge:
 	.string "you in battle.\p"
 	.string "It's hard to tell what you're like as\n"
 	.string "a TRAINER from a LEAGUE BADGE.$"
-

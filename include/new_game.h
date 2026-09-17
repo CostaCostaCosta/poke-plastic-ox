@@ -12,6 +12,6 @@ void CopyTrainerId(u8 *dst, u8 *src);
 void NewGameInitData(void);
 void ResetMenuAndMonGlobals(void);
 void Sav2_ClearSetDefault(void);
-void CB2_InitPlasticOxDemo(void);
+void CB2_InitPlasticOxTitleScreen(void);
 
 #endif // GUARD_NEW_GAME_H

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Town-by-town engine tests for the compiled trigger ROM.
+"""Town-by-town engine tests for the primary ROM.
 
 Injects scripts into the engine's ordinary field script context to isolate
 chapter preconditions. It does not emulate script opcodes in Python. Travel
@@ -15,7 +15,7 @@ import struct
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from walklib import GBA, K, boot_to_bedroom
+from walklib import GBA, K, assert_test_player, boot_test_game
 from walk_leg1 import find_path_elev, navigate
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -23,7 +23,7 @@ NM = '/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin/arm-none-eabi-nm'
 
 
 class StoryGame(GBA):
-    def __init__(self, build='triggers'):
+    def __init__(self, build='', spawn=None):
         rom = ROOT / ('pokeemerald' + ('-'+build if build else '') + '.gba')
         super().__init__(str(rom))
         result = subprocess.check_output([NM, '-S', str(rom.with_suffix('.elf'))], text=True)
@@ -43,7 +43,10 @@ class StoryGame(GBA):
             for name, value in re.findall(r'^#define (\w+)\s+([^\n]+)', (ROOT/'include/constants'/header).read_text(), re.M):
                 self.defs[name] = value.split('//')[0].strip()
         self.defs['SYSTEM_FLAGS']='0x860'
-        boot_to_bedroom(self)
+        boot_test_game(self)
+        assert_test_player(self)
+        if spawn is not None:
+            self.warp(*spawn)
         self.set_text_speed_fast()
         # Deterministic topology/story tests must not be interrupted by random
         # battles now that the alpha region has real encounter tables.

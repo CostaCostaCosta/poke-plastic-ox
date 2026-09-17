@@ -19,7 +19,7 @@ CASES = [
 
 
 def main():
-    game = StoryGame(build="triggers")
+    game = StoryGame()
     game.flag("FLAG_POX_STORY_STARTER", True)
     game.flag("FLAG_ADVENTURE_STARTED", True)
     game.flag("FLAG_SYS_GAME_CLEAR", True)
