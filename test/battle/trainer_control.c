@@ -3,6 +3,7 @@
 #include "battle.h"
 #include "battle_main.h"
 #include "data.h"
+#include "event_data.h"
 #include "malloc.h"
 #include "random.h"
 #include "string_util.h"
@@ -10,6 +11,8 @@
 #include "constants/item.h"
 #include "constants/abilities.h"
 #include "constants/trainers.h"
+#include "constants/flags.h"
+#include "constants/plastic_ox_flags.h"
 #include "constants/battle.h"
 #include "constants/battle_ai.h"
 
@@ -87,6 +90,27 @@ TEST("CreateNPCTrainerPartyForTrainer generates customized Pokémon")
     EXPECT_EQ(GetMonData(&testParty[0], MON_DATA_DYNAMAX_LEVEL), 5);
     EXPECT_EQ(GetMonData(&testParty[1], MON_DATA_DYNAMAX_LEVEL), 10);
 
+    Free(testParty);
+}
+
+TEST("Mossdeep badge raises opposing trainer party to its highest selected level")
+{
+    struct Pokemon *testParty = Alloc(6 * sizeof(struct Pokemon));
+    const struct Trainer *trainer = GetTrainerStructFromId(3);
+
+    FlagSet(FLAG_POX_TRIGGERS_ENABLED);
+    FlagClear(FLAG_BADGE06_GET);
+    CreateNPCTrainerPartyFromTrainer(testParty, trainer, FALSE, BATTLE_TYPE_TRAINER);
+    EXPECT_EQ(GetMonData(&testParty[1], MON_DATA_LEVEL), 5);
+
+    FlagSet(FLAG_BADGE06_GET);
+    CreateNPCTrainerPartyFromTrainer(testParty, trainer, FALSE, BATTLE_TYPE_TRAINER);
+    EXPECT_EQ(GetMonData(&testParty[0], MON_DATA_LEVEL), 67);
+    EXPECT_EQ(GetMonData(&testParty[1], MON_DATA_LEVEL), 67);
+    EXPECT_EQ(GetMonData(&testParty[2], MON_DATA_LEVEL), 67);
+
+    FlagClear(FLAG_BADGE06_GET);
+    FlagClear(FLAG_POX_TRIGGERS_ENABLED);
     Free(testParty);
 }
 
