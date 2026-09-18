@@ -6,6 +6,7 @@
 #include "main.h"
 #include "pokeblock.h"
 #include "safari_zone.h"
+#include "plastic_ox_contest.h"
 #include "script.h"
 #include "string_util.h"
 #include "tv.h"
@@ -27,6 +28,7 @@ extern const u8 SafariZone_EventScript_TimesUp[];
 extern const u8 SafariZone_EventScript_RetirePrompt[];
 extern const u8 SafariZone_EventScript_OutOfBallsMidBattle[];
 extern const u8 SafariZone_EventScript_OutOfBalls[];
+extern const u8 PlasticOxContest_EventScript_Retire[];
 
 EWRAM_DATA u8 gNumSafariBalls = 0;
 EWRAM_DATA u16 gSafariZoneStepCounter = 0;
@@ -77,6 +79,8 @@ void ExitSafariMode(void)
 
 bool8 SafariZoneTakeStep(void)
 {
+    if (PlasticOxContest_TakeStep())
+        return TRUE;
     if (GetSafariZoneFlag() == FALSE)
     {
         return FALSE;
@@ -94,7 +98,8 @@ bool8 SafariZoneTakeStep(void)
 
 void SafariZoneRetirePrompt(void)
 {
-    ScriptContext_SetupScript(SafariZone_EventScript_RetirePrompt);
+    ScriptContext_SetupScript(PlasticOxContest_HasSession()
+        ? PlasticOxContest_EventScript_Retire : SafariZone_EventScript_RetirePrompt);
 }
 
 void CB2_EndSafariBattle(void)

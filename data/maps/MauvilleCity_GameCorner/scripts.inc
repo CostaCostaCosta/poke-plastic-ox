@@ -15,7 +15,9 @@ MauvilleCity_GameCorner_MapScripts::
 MauvilleCity_GameCorner_EventScript_CoinsClerk::
 	lock
 	faceplayer
-	msgbox MauvilleCity_GameCorner_Text_ThisIsMauvilleGameCorner, MSGBOX_DEFAULT
+	msgbox POX_PU_Text_CoinWelcome, MSGBOX_DEFAULT
+	checkitem ITEM_COIN_CASE
+	call_if_eq VAR_RESULT, FALSE, POX_PU_GiveCoinCase
 	checkitem ITEM_COIN_CASE
 	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NeedCoinCase
 	message MauvilleCity_GameCorner_Text_WereYouLookingForCoins
@@ -754,3 +756,11 @@ MauvilleCity_GameCorner_Text_HeresSomeSlotsInfo:
 MauvilleCity_GameCorner_Text_CantPlayWithNoCoinCase:
 	.string "You can't play if you don't have\n"
 	.string "a COIN CASE.$"
+
+POX_PU_GiveCoinCase::
+	giveitem ITEM_COIN_CASE
+	return
+
+POX_PU_Text_CoinWelcome:
+	.string "Welcome to GOLDENROD GAME CORNER!\n"
+	.string "Your first COIN CASE is free!$"

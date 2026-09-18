@@ -138,6 +138,10 @@ def make_html(catalog: dict) -> str:
     #po-topology .po-section-head {{ display:flex; gap:8px; align-items:baseline; justify-content:space-between; flex-wrap:wrap; margin-bottom:7px; }}
     #po-topology .po-section-head h3 {{ margin:0; font-size:15px; }}
     #po-topology .po-section-head p {{ margin:0; color:var(--po-muted); font-size:11px; }}
+    #po-topology .po-legendary-list {{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:7px; }}
+    #po-topology .po-legendary {{ display:flex; flex-direction:column; gap:5px; padding:8px; border:1px solid var(--po-line); border-radius:8px; background:var(--po-panel); font-size:12px; }}
+    #po-topology .po-legendary select {{ width:100%; }}
+    #po-topology .po-node-legendaries {{ position:absolute; left:5px; right:5px; top:29px; z-index:2; color:#ffe29a; background:rgba(10,15,25,.8); border-radius:4px; padding:2px 4px; font-size:9px; text-align:center; pointer-events:none; }}
     #po-topology .po-parts {{ display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:7px; }}
     #po-topology .po-part {{
       min-height:92px; display:grid; grid-template-columns:66px 1fr 40px; gap:7px; align-items:center; padding:6px;
@@ -249,6 +253,11 @@ def make_html(catalog: dict) -> str:
     </section>
 
     <section class="po-section">
+      <div class="po-section-head"><div><h3>Legendary Pokémon</h3><p>Assign each encounter to a map. Locations are saved with the topology JSON and shown on placed maps.</p></div></div>
+      <div class="po-legendary-list" data-tray="legendaries"></div>
+    </section>
+
+    <section class="po-section">
       <div class="po-section-head"><div><h3>Unused Gen I–III route library</h3><p>Grouped by total regional endpoints, including cave mouths and gatehouses. Local building warps do not change a route’s classification.</p></div></div>
       <div class="po-library-controls">
         <input type="text" placeholder="Search route/theme…" data-filter="route-search" />
@@ -290,6 +299,7 @@ if (!element.__plasticOxInitialized) {
   const statusEl = root.querySelector('[data-role="status"]');
   const allParts = [...catalog.towns, ...catalog.routes, ...catalog.required_dungeons, ...catalog.dungeon_library];
   const partById = new Map(allParts.map(p => [p.id, p]));
+  const legendaries = ['Articuno', 'Zapdos', 'Moltres', 'Raikou', 'Entei', 'Suicune', 'Celebi', 'Regice', 'Regirock', 'Registeel', 'Jirachi'];
   const requiredIds = new Set([
     ...catalog.towns.filter(p => p.required).map(p => p.id),
     ...catalog.routes.filter(p => p.required).map(p => p.id),
@@ -298,7 +308,7 @@ if (!element.__plasticOxInitialized) {
   const storyRouteIds = new Set([...catalog.story_required_route_ids, ...catalog.story_linked_optional_route_ids]);
 
   const state = {
-    nodes: [], edges: [], selectedNode: null, selectedEdge: null, pendingPort: null,
+    nodes: [], edges: [], legendaryLocations: {}, selectedNode: null, selectedEdge: null, pendingPort: null,
     snap: true, grid: 24, gate: 'open', zCounter: 10
   };
   window.__plasticOxTopologyState = state;
@@ -308,6 +318,17 @@ if (!element.__plasticOxInitialized) {
   }
   function snap(v) { return state.snap ? Math.round(v / state.grid) * state.grid : Math.round(v); }
   function placedIds() { return new Set(state.nodes.map(n => n.partId)); }
+  function renderLegendaries() {
+    const locations = [...allParts].sort((a,b) => a.name.localeCompare(b.name));
+    const tray = root.querySelector('[data-tray="legendaries"]');
+    tray.innerHTML = legendaries.map(name => `<label class="po-legendary"><strong>${esc(name)}</strong><select data-legendary="${esc(name)}" aria-label="${esc(name)} location"><option value="">Location unassigned</option>${locations.map(part => `<option value="${esc(part.id)}" ${state.legendaryLocations[name]===part.id?'selected':''}>${esc(part.name)} (${esc(part.region)})</option>`).join('')}</select></label>`).join('');
+    tray.querySelectorAll('[data-legendary]').forEach(select => select.addEventListener('change', () => {
+      if (select.value) state.legendaryLocations[select.dataset.legendary] = select.value;
+      else delete state.legendaryLocations[select.dataset.legendary];
+      renderNodes();
+      setStatus(`${select.dataset.legendary} location ${select.value ? `set to ${partById.get(select.value).name}` : 'cleared'}.`, 'good');
+    }));
+  }
   function partDimensions(part) {
     const d = part.dimensions || [126,112];
     return {w:Number(d[0]), h:Number(d[1])};
@@ -528,6 +549,7 @@ if (!element.__plasticOxInitialized) {
 
   function nodeMarkup(node) {
     const part = partById.get(node.partId); if (!part) return '';
+    const encounters = legendaries.filter(name => state.legendaryLocations[name] === node.partId);
     const image = part.image_data ? `<img class="po-node-img" src="${part.image_data}" alt="">` : `<div class="po-node-schematic"><div>${topologySvg(part)}<div>abstract ${esc(part.shape || part.subtype || part.kind)}</div></div></div>`;
     const ports = Object.entries(part.ports || {}).map(([dir,type]) => {
       const used = isPortUsed(node.id,dir); const pending = state.pendingPort && state.pendingPort.nodeId===node.id && state.pendingPort.portId===dir;
@@ -540,7 +562,7 @@ if (!element.__plasticOxInitialized) {
     }).join('');
     const reqClass = part.required ? 'required' : 'optional';
     return `<div class="po-node ${reqClass} ${state.selectedNode===node.id?'selected':''}" data-node-id="${node.id}" style="left:${node.x}px;top:${node.y}px;width:${node.w}px;height:${node.h}px;z-index:${node.z||2}" title="${esc(portSummary(part))}">
-      <div class="po-node-title">${esc(part.name)}</div>${image}${ports}${specials?`<div class="po-specials">${specials}</div>`:''}
+      <div class="po-node-title">${esc(part.name)}</div>${image}${encounters.length?`<div class="po-node-legendaries">${esc(encounters.join(', '))}</div>`:''}${ports}${specials?`<div class="po-specials">${specials}</div>`:''}
     </div>`;
   }
 
@@ -670,7 +692,7 @@ if (!element.__plasticOxInitialized) {
   }
 
   function serialize() {
-    return {version:'plastic-ox-topology-layout-v0.1', catalog_version:catalog.version, nodes:state.nodes, edges:state.edges, world:{width:2600,height:1800,grid:state.grid,snap:state.snap}};
+    return {version:'plastic-ox-topology-layout-v0.1', catalog_version:catalog.version, nodes:state.nodes, edges:state.edges, legendary_locations:state.legendaryLocations, world:{width:2600,height:1800,grid:state.grid,snap:state.snap}};
   }
   function downloadText(filename,text,type='application/json') {
     const blob=new Blob([text],{type}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
@@ -685,13 +707,19 @@ if (!element.__plasticOxInitialized) {
   function importLayout(obj) {
     if(!obj || !Array.isArray(obj.nodes) || !Array.isArray(obj.edges)) throw new Error('Layout JSON must contain nodes and edges arrays.');
     const validNodes=obj.nodes.filter(n=>partById.has(n.partId)); const ids=new Set(validNodes.map(n=>n.id));
+    const blackthornNodes=new Set(validNodes.filter(n=>n.partId==='BLACK').map(n=>n.id));
     state.nodes=validNodes.map(n=>({...n,w:Number(n.w)||partDimensions(partById.get(n.partId)).w,h:Number(n.h)||partDimensions(partById.get(n.partId)).h}));
-    state.edges=obj.edges.filter(e=>ids.has(e.aNode)&&ids.has(e.bNode)); state.grid=Number(obj.world?.grid)||24; state.snap=obj.world?.snap!==false;
+    state.edges=obj.edges.filter(e=>ids.has(e.aNode)&&ids.has(e.bNode)).map(e=>({
+      ...e,
+      aPort:blackthornNodes.has(e.aNode)&&e.aPort==='N'?'DRAGONS_DEN':e.aPort,
+      bPort:blackthornNodes.has(e.bNode)&&e.bPort==='N'?'DRAGONS_DEN':e.bPort,
+    })); state.legendaryLocations=Object.fromEntries(Object.entries(obj.legendary_locations||{}).filter(([name, partId])=>legendaries.includes(name)&&partById.has(partId)));
+    state.grid=Number(obj.world?.grid)||24; state.snap=obj.world?.snap!==false;
     root.querySelector('[data-role="grid-size"]').value=String(state.grid); root.querySelector('[data-role="snap"]').checked=state.snap;
     state.selectedNode=null;state.selectedEdge=null;state.pendingPort=null;renderAll();setStatus(`Imported ${state.nodes.length} parts and ${state.edges.length} connections.`, 'good');
   }
 
-  function renderAll() { renderNodes(); renderEdges(); renderTrays(); updateMetrics(); }
+  function renderAll() { renderNodes(); renderEdges(); renderTrays(); renderLegendaries(); updateMetrics(); }
 
   world.addEventListener('dragover', ev=>{ev.preventDefault();ev.dataTransfer.dropEffect='copy';});
   world.addEventListener('drop', ev=>{ev.preventDefault();const id=ev.dataTransfer.getData('application/x-plastic-ox-part')||ev.dataTransfer.getData('text/plain'); if(!partById.has(id))return;const r=world.getBoundingClientRect();addNode(id,ev.clientX-r.left,ev.clientY-r.top);});

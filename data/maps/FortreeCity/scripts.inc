@@ -6,6 +6,26 @@ FortreeCity_EventScript_Man::
 	msgbox FortreeCity_Text_SawGiganticPokemonInSky, MSGBOX_NPC
 	end
 
+FortreeCity_EventScript_GabbyRoadblock::
+	lock
+	faceplayer
+	msgbox FortreeCity_Text_GabbyRoadblock, MSGBOX_NPC
+	release
+	end
+
+FortreeCity_EventScript_TyRoadblock::
+	lock
+	faceplayer
+	msgbox FortreeCity_Text_TyRoadblock, MSGBOX_NPC
+	release
+	end
+
+FortreeCity_Text_GabbyRoadblock:
+	.string "GABBY: We're waiting to interview\nFortree's newest GYM champion!\pBeat WINONA and earn her BADGE,\nthen we'll clear the road.$"
+
+FortreeCity_Text_TyRoadblock:
+	.string "TY: The route opens after you\nearn WINONA's BADGE.$"
+
 FortreeCity_EventScript_Woman::
 	lock
 	faceplayer

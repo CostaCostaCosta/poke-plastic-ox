@@ -2,6 +2,7 @@
 #define GUARD_ITEM_USE_H
 
 void ItemUseOutOfBattle_Cut(u8 taskId);
+void ItemUseOutOfBattle_Headbutt(u8 taskId);
 
 void ItemUseOutOfBattle_Mail(u8 taskId);
 void ItemUseOutOfBattle_Bike(u8 taskId);

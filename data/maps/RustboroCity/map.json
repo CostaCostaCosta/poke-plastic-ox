@@ -237,21 +237,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SIGN",
-      "x": 13,
-      "y": 57,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "PoxRegion_route2_rustboro_b_Sign",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_SIGN",
-      "x": 36,
-      "y": 7,
+      "x": 37,
+      "y": 9,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -351,7 +338,7 @@
   "coord_events": [
     {
       "type": "trigger",
-      "x": 20,
+      "x": 21,
       "y": 0,
       "elevation": 0,
       "var": "VAR_POX_PORTAL_GATE",
@@ -360,7 +347,7 @@
     },
     {
       "type": "trigger",
-      "x": 38,
+      "x": 39,
       "y": 10,
       "elevation": 0,
       "var": "VAR_POX_PORTAL_GATE",
@@ -451,16 +438,8 @@
     },
     {
       "type": "sign",
-      "x": 13,
-      "y": 57,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "PoxRegion_route2_rustboro_b_Sign"
-    },
-    {
-      "type": "sign",
-      "x": 34,
-      "y": 29,
+      "x": 37,
+      "y": 9,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "PoxRegion_rustboro_route44_a_Sign"

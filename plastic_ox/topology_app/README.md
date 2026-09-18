@@ -25,6 +25,7 @@ does not certify v7 story progression.
 - Choose a gate (`Surf`, `Cut`, `Badge`, `Story flag`, `Late-game`, etc.) before connecting ports. Gated edges are dashed.
 - Validation reports required-part coverage, unused exterior town ports, isolated pieces, early/open cycle rank, physical/endgame cycle rank, and a bounding-box footprint proxy.
 - Export/import the topology as JSON. Export a schematic SVG for review.
+- Assign Articuno, Zapdos, Moltres, Raikou, Entei, Suicune, Celebi, Regice, Regirock, Registeel, and Jirachi to catalog maps in the Legendary Pokémon section. Assigned encounters appear on placed map nodes and persist in topology JSON exports.
 
 ## Run
 

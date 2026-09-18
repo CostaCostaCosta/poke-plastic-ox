@@ -59,6 +59,52 @@ RustboroCity_DevonCorp_2F_EventScript_FossilScientist::
 	faceplayer
 	goto_if_eq VAR_FOSSIL_RESURRECTION_STATE, 2, RustboroCity_DevonCorp_2F_EventScript_FossilMonReady
 	goto_if_eq VAR_FOSSIL_RESURRECTION_STATE, 1, RustboroCity_DevonCorp_2F_EventScript_StillRegenerating
+	checkitem ITEM_HELIX_FOSSIL
+	goto_if_eq VAR_RESULT, TRUE, POX_PU_HelixRevival
+	goto RustboroCity_DevonCorp_2F_EventScript_CheckDomeFossil
+
+RustboroCity_DevonCorp_2F_EventScript_CheckDomeFossil::
+	checkitem ITEM_DOME_FOSSIL
+	goto_if_eq VAR_RESULT, TRUE, RustboroCity_DevonCorp_2F_EventScript_OfferDomeFossil
+	goto RustboroCity_DevonCorp_2F_EventScript_CheckOldAmber
+
+RustboroCity_DevonCorp_2F_EventScript_OfferDomeFossil::
+	bufferitemname STR_VAR_1, ITEM_DOME_FOSSIL
+	bufferspeciesname STR_VAR_2, SPECIES_KABUTO
+	msgbox RustboroCity_DevonCorp_2F_Text_OfferOtherFossil, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RustboroCity_DevonCorp_2F_EventScript_CheckOldAmber
+	givemon SPECIES_KABUTO, 15
+	goto_if_eq VAR_RESULT, MON_CANT_GIVE, POX_PU_FossilNoRoom
+	copyvar VAR_0x8005, VAR_RESULT
+	removeitem ITEM_DOME_FOSSIL
+	goto RustboroCity_DevonCorp_2F_EventScript_ReceivedOtherFossilMon
+
+RustboroCity_DevonCorp_2F_EventScript_CheckOldAmber::
+	checkitem ITEM_OLD_AMBER
+	goto_if_eq VAR_RESULT, TRUE, RustboroCity_DevonCorp_2F_EventScript_OfferOldAmber
+	goto RustboroCity_DevonCorp_2F_EventScript_CheckHoennFossils
+
+RustboroCity_DevonCorp_2F_EventScript_OfferOldAmber::
+	bufferitemname STR_VAR_1, ITEM_OLD_AMBER
+	bufferspeciesname STR_VAR_2, SPECIES_AERODACTYL
+	msgbox RustboroCity_DevonCorp_2F_Text_OfferOtherFossil, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, RustboroCity_DevonCorp_2F_EventScript_CheckHoennFossils
+	givemon SPECIES_AERODACTYL, 15
+	goto_if_eq VAR_RESULT, MON_CANT_GIVE, POX_PU_FossilNoRoom
+	copyvar VAR_0x8005, VAR_RESULT
+	removeitem ITEM_OLD_AMBER
+	goto RustboroCity_DevonCorp_2F_EventScript_ReceivedOtherFossilMon
+
+RustboroCity_DevonCorp_2F_EventScript_ReceivedOtherFossilMon::
+	setflag FLAG_RECEIVED_REVIVED_FOSSIL_MON
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox RustboroCity_DevonCorp_2F_Text_ReceivedOtherFossilMon, MSGBOX_DEFAULT
+	waitfanfare
+	goto_if_ne VAR_0x8005, MON_GIVEN_TO_PC, POX_PU_Release
+	msgbox POX_PU_Text_SentToPC, MSGBOX_DEFAULT
+	goto POX_PU_Release
+
+RustboroCity_DevonCorp_2F_EventScript_CheckHoennFossils::
 	msgbox RustboroCity_DevonCorp_2F_Text_DevelopDeviceToResurrectFossils, MSGBOX_DEFAULT
 	checkitem ITEM_ROOT_FOSSIL
 	goto_if_eq VAR_RESULT, TRUE, RustboroCity_DevonCorp_2F_EventScript_NoticeRootFossil
@@ -316,6 +362,15 @@ RustboroCity_DevonCorp_2F_Text_DevelopDeviceToResurrectFossils:
 	.string "that resurrects POKéMON from fossils…\p"
 	.string "And, it's working!$"
 
+RustboroCity_DevonCorp_2F_Text_OfferOtherFossil:
+	.string "I can revive {STR_VAR_1} as a\n"
+	.string "Lv. 15 {STR_VAR_2}.\p"
+	.string "Shall I revive it for you?$"
+
+RustboroCity_DevonCorp_2F_Text_ReceivedOtherFossilMon:
+	.string "{STR_VAR_1} came back to life!\n"
+	.string "You received {STR_VAR_2} at Lv. 15!$"
+
 RustboroCity_DevonCorp_2F_Text_WantToBringFossilBackToLife:
 	.string "Wait! That thing you have there…\n"
 	.string "Is that a POKéMON fossil?\p"
@@ -379,4 +434,3 @@ RustboroCity_DevonCorp_2F_Text_WhatToWorkOnNext:
 	.string "inspirations into reality.\p"
 	.string "One couldn't ask for a better\n"
 	.string "environment as an engineer.$"
-

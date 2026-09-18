@@ -16,8 +16,9 @@ HEADERS = ["include/constants/plastic_ox_flags.h", "include/constants/plastic_ox
 POX_FLAG_RANGES = ((0x020, 0x04F), (0x264, 0x2BB))
 POX_SUPPLEMENTAL_FLAGS = {0x054, 0x055, 0x068, 0x096, 0x0E9, 0x1AA, 0x1AB,
                           0x1DA, 0x1DE, 0x1DF, 0x1E0, 0x1E1, 0x1E2, 0x1E3,
-                          0x493, 0x494, 0x495}
+                          0x493, 0x494, 0x495, 0x496}
 POX_VAR_RANGE = range(0x40F7, 0x4100)
+POX_SUPPLEMENTAL_VARS = {0x40DC}
 
 
 def flag_audit():
@@ -84,8 +85,18 @@ def flag_audit():
         if unsafe:
             errors.append(f"Supplemental flag 0x{number:03X} aliases retained state: {', '.join(unsafe)}")
 
+    opponents = (ROOT / 'include/constants/opponents.h').read_text()
+    trainer_count = int(re.search(r'^#define TRAINERS_COUNT_EMERALD\s+(\d+)', opponents, re.M)[1])
+    for number in range(0x4A0, 0x4A0 + max(0, trainer_count - 857)):
+        if number in by_value or not aliases[number] or any(not name.startswith('FLAG_UNUSED_') for name in aliases[number]):
+            errors.append(f"Supplemental trainer flag 0x{number:03X} overlaps retained state")
+
     var_defs = {}
     var_text = (ROOT / 'include/constants/vars.h').read_text()
+    for number in POX_SUPPLEMENTAL_VARS:
+        names = re.findall(r'^#define (VAR_\w+)\s+0x' + f'{number:04X}' + r'\b', var_text, re.M)
+        if not names or any(not name.startswith(('VAR_UNUSED_', 'VAR_POX_')) for name in names):
+            errors.append(f"Supplemental var 0x{number:04X} aliases retained state: {', '.join(names)}")
     for symbol, number in re.findall(r'^#define (VAR_POX_\w+)\s+(0x[0-9A-Fa-f]+)', var_text, re.M):
         var_defs[symbol] = int(number, 0)
     var_defs.update({symbol: int(number, 0) for symbol, number in
@@ -94,7 +105,7 @@ def flag_audit():
     var_values = defaultdict(list)
     for symbol, number in var_defs.items():
         var_values[number].append(symbol)
-        if number not in POX_VAR_RANGE:
+        if number not in POX_VAR_RANGE and number not in POX_SUPPLEMENTAL_VARS:
             errors.append(f"Persistent var outside reserved/save range: {symbol}=0x{number:04X}")
     for number, symbols in var_values.items():
         if len(symbols) > 1:

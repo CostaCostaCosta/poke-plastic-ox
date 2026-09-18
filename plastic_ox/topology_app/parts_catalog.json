@@ -250,11 +250,9 @@
       "region": "Johto",
       "kind": "town",
       "ports": {
-        "N": "cave",
         "S": "land"
       },
       "port_labels": {
-        "N": "Dragon's Den",
         "S": "Route 45"
       },
       "special_ports": [
@@ -263,12 +261,18 @@
           "label": "Ice Path",
           "type": "cave",
           "regional": true
+        },
+        {
+          "id": "DRAGONS_DEN",
+          "label": "Dragon's Den",
+          "type": "cave",
+          "regional": true
         }
       ],
       "asset": "BLACK.png",
       "required": true,
       "story_order": 17,
-      "notes": "North opens to the Dragon's Den cave; the explicit Ice Path cave link remains available; south descends to Route 45.",
+      "notes": "North opens to Dragon's Den; Ice Path has a separate cave link; south descends to Route 45.",
       "asset_available": true,
       "dimensions": [
         132,
@@ -534,10 +538,16 @@
           "label": "Saffron Gate",
           "type": "gate",
           "regional": true
+        },
+        {
+          "id": "UNDERGROUND",
+          "label": "Underground",
+          "type": "cave",
+          "regional": true
         }
       ],
-      "regional_port_count": 2,
-      "topology_class": "corridor",
+      "regional_port_count": 3,
+      "topology_class": "junction",
       "shape": "horizontal",
       "traversal": "land",
       "theme": "short urban connector; Saffron/Celadon gate",
@@ -567,10 +577,16 @@
           "label": "Saffron Gate",
           "type": "gate",
           "regional": true
+        },
+        {
+          "id": "UNDERGROUND",
+          "label": "Underground",
+          "type": "cave",
+          "regional": true
         }
       ],
-      "regional_port_count": 2,
-      "topology_class": "corridor",
+      "regional_port_count": 3,
+      "topology_class": "junction",
       "shape": "horizontal",
       "traversal": "land",
       "theme": "fenced grass; urban gate; Underground Path",
@@ -952,9 +968,22 @@
         "E": "water",
         "W": "water"
       },
-      "special_ports": [],
-      "regional_port_count": 2,
-      "topology_class": "corridor",
+      "special_ports": [
+        {
+          "id": "SEAFOAM_1",
+          "label": "Seafoam Islands Entrance 1",
+          "type": "cave",
+          "regional": true
+        },
+        {
+          "id": "SEAFOAM_2",
+          "label": "Seafoam Islands Entrance 2",
+          "type": "cave",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 4,
+      "topology_class": "hub",
       "shape": "horizontal",
       "traversal": "water",
       "theme": "open sea; Seafoam corridor",
@@ -1060,9 +1089,16 @@
         "N": "mixed",
         "S": "mixed"
       },
-      "special_ports": [],
-      "regional_port_count": 2,
-      "topology_class": "corridor",
+      "special_ports": [
+        {
+          "id": "CERULEAN_CAVE",
+          "label": "Cerulean Cave",
+          "type": "cave",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 3,
+      "topology_class": "junction",
       "shape": "vertical",
       "traversal": "mixed",
       "theme": "Nugget Bridge; river and trainers",
@@ -3112,6 +3148,37 @@
       "entrance_count": 2,
       "notes": "Reusable Gen I-III location. Entrance count is a topology aid; verify exact source-map warp geometry before implementation.",
       "asset_available": true,
+      "dimensions": [
+        126,
+        112
+      ]
+    },
+    {
+      "id": "UNDERGROUND",
+      "name": "Underground Path",
+      "region": "Kanto",
+      "kind": "dungeon",
+      "subtype": "cave",
+      "ports": {},
+      "special_ports": [
+        {
+          "id": "P1",
+          "label": "Entrance 1",
+          "type": "cave",
+          "regional": true
+        },
+        {
+          "id": "P2",
+          "label": "Entrance 2",
+          "type": "cave",
+          "regional": true
+        }
+      ],
+      "asset": "UNDERGROUND.png",
+      "required": false,
+      "entrance_count": 2,
+      "notes": "Reusable Gen I-III location. Entrance count is a topology aid; verify exact source-map warp geometry before implementation.",
+      "asset_available": false,
       "dimensions": [
         126,
         112

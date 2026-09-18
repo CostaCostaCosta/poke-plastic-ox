@@ -127,11 +127,15 @@ def trainer(name, display, team, level, pic="Leader Roxanne", cls="Leader", doub
         if item == 'Leftovers' and level < 25:
             item = 'Sitrus Berry'
         lines = [f'{species} @ {item}' if item else species, f'Level: {level}']
+        if 'ability' in attributes:
+            lines.append('Ability: ' + attributes['ability'])
+        if 'ivs' in attributes:
+            lines.append('IVs: ' + attributes['ivs'])
         if 'evs' in attributes:
             lines.append('EVs: ' + attributes['evs'])
         if 'nature' in attributes:
             lines.append(attributes['nature'] + ' Nature')
-        lines.extend('- ' + move for move in moves)
+        lines.extend('- ' + move.split(' [', 1)[0] for move in moves)
         party.append('\n'.join(lines))
     trainers.append((tid, f"=== {tid} ===\nName: {display}\nClass: {cls}\nPic: {pic}\nGender: Male\nMusic: {'Leader' if cls == 'Leader' else 'Male'}\nDouble Battle: {'Yes' if double else 'No'}\nAI: Basic Trainer / Smart Switching / PP Stall Prevention\n\n" + "\n\n".join(party) + "\n"))
     trainers[-1] = (tid, trainers[-1][1].replace('Music: Leader', 'Music: Male'))
@@ -291,6 +295,9 @@ for label, text in [("NotReady", "There is still something to do before you can 
 
 # Pallet's authored dialogue lives separately from the chapter manifest.
 emit('.include "data/scripts/plastic_ox_pallet.inc"')
+# Authored item scripts (Training Kit, Pocket Watch) live separately from the
+# chapter manifest so regeneration cannot drop them.
+emit('.include "data/scripts/plastic_ox_items.inc"')
 lab = load_map("PalletTown_ProfessorOaksLab_Frlg")
 balls = [o for o in lab['object_events'] if o['graphics_id'] == 'OBJ_EVENT_GFX_ITEM_BALL']
 assert len(balls) == 3
@@ -325,10 +332,15 @@ replace_npc("IlexForest_hns", 1, "IlexRoad")
 # Gym order and roster. Alpha teams express each intended tier; competitive
 # balance/encounter release is separate from the trigger implementation.
 gymdata = [
- # Randomly selected from gen3_movesets.json: Onix gen3lc/stats/Showdown Usage;
- # Nosepass gen3zu/dex/Wall. Geodude has no dataset entry.
- ("Roxanne", "ROXANNE", "RustboroCity", [ilex], 5, [('Geodude',['Rock Throw','Tackle']),('Onix',['Earthquake','Explosion','Rock Slide','Sunny Day'],dict(item='Sitrus Berry',nature='Jolly',evs='236 Atk / 76 SpD / 196 Spe')),('Nosepass',['Earthquake','Protect','Explosion','Thunder Wave'],dict(item='Leftovers',nature='Careful',evs='252 HP / 60 Atk / 196 SpD'))]),
- ("Whitney", "WHITNEY", "GoldenrodCity_hns", [badges[0],moon], 18, [('Delcatty',['Fake Out','Attract','Return']),('Furret',['Quick Attack','Defense Curl','Return']),('Miltank',['Rollout','Milk Drink','Stomp'])]),
+ ("Roxanne", "ROXANNE", "RustboroCity", [ilex], 13, [
+     ('Voltorb', ['Thunderbolt', 'Hidden Power [Grass]', 'Substitute', 'Explosion'], dict(item='Sitrus Berry', ability='Static', ivs='30 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe', evs='36 HP / 36 Def / 240 SpA / 196 Spe', nature='Modest')),
+     ('Trapinch', ['Earthquake', 'Quick Attack', 'Hidden Power [Ghost]', 'Endure'], dict(item='Sitrus Berry', ability='Arena Trap', ivs='31 HP / 30 Atk / 31 Def / 31 SpA / 30 SpD / 31 Spe', evs='156 HP / 36 Atk / 160 SpD / 116 Spe', nature='Adamant')),
+     ('Cacnea', ['Spikes', 'Giga Drain', 'Hidden Power [Ice]', 'Encore'], dict(item='Sitrus Berry', ability='Sand Veil', ivs='31 HP / 2 Atk / 30 Def / 31 SpA / 31 SpD / 31 Spe', evs='116 HP / 40 Def / 196 SpD / 156 Spe', nature='Calm')),
+     ('Chinchou', ['Thunderbolt', 'Hidden Power [Grass]', 'Surf', 'Ice Beam'], dict(item='Sitrus Berry', ability='Volt Absorb', ivs='31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe', evs='52 Def / 152 SpA / 68 SpD / 220 Spe', nature='Timid')),
+     ('Anorith', ['Swords Dance', 'Hidden Power [Bug]', 'Rock Blast', 'Brick Break'], dict(item='Sitrus Berry', ability='Battle Armor', ivs='31 HP / 31 Atk / 31 Def / 31 SpA / 30 SpD / 30 Spe', evs='76 HP / 76 Atk / 116 Def / 240 Spe', nature='Jolly')),
+     ('Lileep', ['Rock Slide', 'Giga Drain', 'Barrier', 'Recover'], dict(item='Sitrus Berry', ability='Suction Cups', evs='148 HP / 108 Atk / 60 Def / 28 SpA / 140 SpD / 12 Spe', nature='Brave')),
+ ]),
+ ("Whitney", "WHITNEY", "GoldenrodCity_hns", [badges[0],moon], 20, [('Furret',['Quick Attack','Brick Break','Return','Defense Curl']),('Delcatty',['Fake Out','Attract','Return','Sing']),('Wigglytuff',['Body Slam','Rollout','Defense Curl','Disable'],dict(item='Sitrus Berry'))]),
  ("Morty", "MORTY", "EcruteakCity_hns", [badges[1],burned], 25, [('Haunter',['Hypnosis','Shadow Ball','Night Shade']),('Misdreavus',['Confuse Ray','Psybeam','Shadow Ball']),('Sableye',['Fake Out','Night Shade','Recover'])]),
  ("Winona", "WINONA", "FortreeCity", [badges[2],weather], 32, [('Swellow',['Quick Attack','Aerial Ace','Facade']),('Pelipper',['Water Pulse','Protect','Wing Attack']),('Altaria',['Dragon Dance','Dragon Breath','Aerial Ace'])]),
  ("Blaine", "BLAINE", "CinnabarIsland_Frlg", [badges[3],fuji], 38, [('Ninetales',['Flamethrower','Will O Wisp','Confuse Ray']),('Rapidash',['Fire Blast','Return','Sunny Day']),('Arcanine',['Flamethrower','Extreme Speed','Crunch'])]),
@@ -366,11 +378,15 @@ speech('Pox_Text_MansionKey', "BLAINE: This MANSION KEY opens the archives. The 
 # Rocket I, deliberately mundane criminals. Each grunt has an independent flag.
 moon1 = 'FLAG_POX_HIDE_MTMOON_GRUNT_1'
 moon2 = 'FLAG_POX_HIDE_MTMOON_GRUNT_2'
+moon_teams = [
+    [('Zubat',['Bite','Wing Attack','Supersonic']),('Rattata',['Hyper Fang','Quick Attack','Tail Whip'])],
+    [('Ekans',['Bite','Glare','Wrap']),('Koffing',['Sludge','Smokescreen','Tackle'])],
+]
 for n, completion, prereq in [(1,moon1,[badges[0]]),(2,moon2,[moon1])]:
-    battle(f'MoonGrunt{n}', 'GRUNT', "These fossils belong to TEAM ROCKET now!", [('Zubat',['Bite','Wing Attack']),('Rattata',['Hyper Fang','Quick Attack'])], 12, completion, prereq, pic='Team Aqua M', cls='Team Aqua')
+    battle(f'MoonGrunt{n}', 'GRUNT', "These fossils belong to TEAM ROCKET now!", moon_teams[n-1], 14+n, completion, prereq, pic='Team Aqua M', cls='Team Aqua')
     replace_npc('MtMoon_Cave_hns', n-1, f'MoonGrunt{n}', 'OBJ_EVENT_GFX_ROCKET_GRUNT_M', completion)
-beat('MoonScientist', "That isn't one of ours. We didn't install this receiver!|The ROCKETS left the fossils behind. Take one for safekeeping.", moon, [moon1,moon2], '\tgiveitem ITEM_HELIX_FOSSIL\n\tgoto_if_eq VAR_RESULT, FALSE, Pox_Release')
-replace_npc('MtMoon_Cave_hns', 2, 'MoonScientist', 'OBJ_EVENT_GFX_SCIENTIST')
+beat('MoonRocketMap', "You beat both of our grunts! Fine, take this TOWN MAP and leave TEAM ROCKET alone.", moon, [moon1,moon2], '\tgiveitem ITEM_TOWN_MAP\n\tgoto_if_eq VAR_RESULT, FALSE, Pox_Release')
+replace_npc('MtMoon_Cave_hns', 2, 'MoonRocketMap', 'OBJ_EVENT_GFX_ROCKET_GRUNT_M')
 gift('Family', "BILL never visits enough. His first POKéMON was ABRA, you know.|I used to dance in ECRUTEAK when I was young.|This EEVEE needs someone with time for long walks. Will you look after it?", [starter])
 replace_npc('GoldenrodCity_BillsHouse_hns', 0, 'Family')
 
@@ -656,6 +672,69 @@ for i,s in enumerate(scripts):
         if i and any('Pox_LeagueRoad::' in p for p in scripts[max(0,i-12):i]):
             scripts[i]=f'warp {mapid(vr)}, 5, 17\n\twaitstate\n'
 
+# Append PU opponents after the stable story roster; their IDs follow the LC
+# route block, never renumbering victory flags in existing saves.
+pu_trainer_start = len(trainers)
+pu_trainers = [
+    ('PU_ROUTE33', 'ANTHONY', 'Route33_hns', 0, 16, 'Hiker', 'Hiker', 'OBJ_EVENT_GFX_HIKER',
+     [('Geodude',['Rock Throw','Defense Curl','Magnitude']),('Spinda',['Psybeam','Dizzy Punch','Teeter Dance'])],
+     'The mountain made us tough. Show me what you found in the cave!', 'A steady pace gets you up any mountain.'),
+    ('PU_ROUTE35', 'BROOKE', 'Route35_hns', 0, 18, 'Picnicker', 'Picnicker', 'OBJ_EVENT_GFX_PICNICKER',
+     [('Nidorina',['Double Kick','Poison Sting','Bite']),('Farfetch\'d',['Aerial Ace','Fury Attack','Sand Attack'])],
+     'The city is fun, but my partners prefer the meadow!', 'Different habitats make a balanced team.'),
+    ('PU_PARK', 'WILLIAM', 'NationalPark_Normal_hns', 4, 19, 'Bug Catcher', 'Bug Catcher', 'OBJ_EVENT_GFX_BUG_CATCHER',
+     [('Ledian',['Light Screen','Comet Punch','Supersonic']),('Butterfree',['Confusion','Stun Spore','Gust'])],
+     'I train the bugs I catch here. Let me show you their strength!', 'The Contest is for catching. This meadow is for training!'),
+    ('PU_ROUTE36', 'MARK', 'Route36_hns', 3, 20, 'Psychic', 'Psychic M', 'OBJ_EVENT_GFX_PSYCHIC_M',
+     [('Natu',['Night Shade','Confuse Ray','Peck']),('Drowzee',['Confusion','Headbutt','Hypnosis']),('Baltoy',['Psybeam','Rock Tomb','Rapid Spin'])],
+     'These old trees have seen so many battles. Ours will be another!', 'That strange tree ahead seems to move when nobody watches.'),
+]
+for name, display, mapname, index, level, cls, pic, gfx, team, intro, after in pu_trainers:
+    tid = trainer(name, display, team, level, pic, cls)
+    contest_guard = '\tspecial PlasticOxContest_Status\n\tgoto_if_eq VAR_RESULT, 1, Pox_End\n' if name == 'PU_PARK' else ''
+    emit(f'Pox_{name}::\n{contest_guard}\ttrainerbattle_single {tid}, Pox_Text_{name}, Pox_Text_Defeat\n\tmsgbox Pox_Text_{name}_After, MSGBOX_AUTOCLOSE\n\tend')
+    speech('Pox_Text_'+name, intro)
+    speech('Pox_Text_'+name+'_After', after)
+    replace_npc(mapname, index, name, gfx, '0')
+    data = load_map(mapname)
+    data['object_events'][index].update(trainer_type='TRAINER_TYPE_NONE' if name == 'PU_PARK' else 'TRAINER_TYPE_NORMAL', trainer_sight_or_berry_tree_id='3')
+    save_map(mapname, data)
+
+# The bottle is a dedicated persistent key item, available only after Whitney.
+start('SquirtBottle')
+emit('''\tgoto_if_unset FLAG_BADGE02_GET, Pox_SquirtBottle_Wait
+\tcheckitem ITEM_SQUIRT_BOTTLE
+\tgoto_if_eq VAR_RESULT, TRUE, Pox_SquirtBottle_Have
+\tgiveitem ITEM_SQUIRT_BOTTLE
+\tgoto_if_eq VAR_RESULT, FALSE, Pox_Release
+Pox_SquirtBottle_Have::
+\tmsgbox Pox_Text_SquirtBottle, MSGBOX_DEFAULT''')
+finish()
+emit('Pox_SquirtBottle_Wait::\n\tmsgbox Pox_Text_SquirtBottle_Wait, MSGBOX_DEFAULT\n\treleaseall\n\tend')
+speech('Pox_Text_SquirtBottle_Wait', 'The odd tree on ROUTE 36 hates water. Beat WHITNEY, then I can lend you my SQUIRTBOTTLE.')
+speech('Pox_Text_SquirtBottle', 'Use my SQUIRTBOTTLE when you examine the odd tree on ROUTE 36. Be ready for a battle!')
+add_npc('GoldenrodCity_hns', 'SquirtBottle', 27, 15, 'OBJ_EVENT_GFX_WOMAN_2', '0')
+start('Sudowoodo')
+emit('''\tgoto_if_set FLAG_POX_SUDOWOODO_CLEARED, Pox_Release
+\tgoto_if_unset FLAG_BADGE02_GET, Pox_Sudowoodo_Wait
+\tcheckitem ITEM_SQUIRT_BOTTLE
+\tgoto_if_eq VAR_RESULT, FALSE, Pox_Sudowoodo_Wait
+\tmsgbox Pox_Text_Sudowoodo, MSGBOX_YESNO
+\tgoto_if_eq VAR_RESULT, NO, Pox_Release
+\tsetwildbattle SPECIES_SUDOWOODO, 20, ITEM_NONE
+\tspecial PlasticOx_PrepareSudowoodoMoves
+\tdowildbattle
+\tspecialvar VAR_RESULT, GetBattleOutcome
+\tgoto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, Pox_Sudowoodo_Cleared
+\tgoto_if_ne VAR_RESULT, B_OUTCOME_WON, Pox_Release
+Pox_Sudowoodo_Cleared::
+\tsetflag FLAG_POX_SUDOWOODO_CLEARED
+\tremoveobject VAR_LAST_TALKED''')
+finish()
+emit('Pox_Sudowoodo_Wait::\n\tmsgbox Pox_Text_Sudowoodo_Wait, MSGBOX_DEFAULT\n\treleaseall\n\tend')
+speech('Pox_Text_Sudowoodo', 'The odd tree blocks the path. Sprinkle it with the SQUIRTBOTTLE?')
+speech('Pox_Text_Sudowoodo_Wait', 'This tree feels like stone! The flower grower near WHITNEY\'s GYM might know what to do.')
+
 put('data/scripts/plastic_ox_story.inc','@ Generated by plastic_ox/alpha/build_story.py. Edit the manifest there.\n\n'+'\n'.join(scripts))
 path='data/event_scripts.s'
 s=read(path)
@@ -692,20 +771,20 @@ path='include/constants/opponents.h'
 s=read(path)
 route_defs=re.findall(r'^#define TRAINER_PLASTIC_OX_ROUTE\w+\s+\d+\n',s,flags=re.M)
 s=re.sub(r'// Plastic Ox story trainers\.\n.*?// End Plastic Ox story trainers\.\n\n','',s,flags=re.S)
-defs='// Plastic Ox story trainers.\n'+''.join(f'#define {tid} {857+i}\n' for i,(tid,_) in enumerate(trainers))+''.join(route_defs)+'// End Plastic Ox story trainers.\n'
+defs='// Plastic Ox story trainers.\n'+''.join(f'#define {tid} {857+i if i < pu_trainer_start else 895+i-pu_trainer_start}\n' for i,(tid,_) in enumerate(trainers))+''.join(route_defs)+'// End Plastic Ox story trainers.\n'
 s=s.replace('// NOTE: Because each Trainer',defs+'\n// NOTE: Because each Trainer')
 route_ids=[int(value) for value in re.findall(r'#define TRAINER_PLASTIC_OX_ROUTE\w+\s+(\d+)',s)]
-s=re.sub(r'#define TRAINERS_COUNT_EMERALD\s+\d+',f'#define TRAINERS_COUNT_EMERALD {max([857+len(trainers), *[i+1 for i in route_ids]])}',s)
-s=re.sub(r'#define MAX_TRAINERS_COUNT_EMERALD\s+\d+','#define MAX_TRAINERS_COUNT_EMERALD 896',s)
-assert len(trainers)<=39
+s=re.sub(r'#define TRAINERS_COUNT_EMERALD\s+\d+',f'#define TRAINERS_COUNT_EMERALD {895+len(trainers)-pu_trainer_start}',s)
+s=re.sub(r'#define MAX_TRAINERS_COUNT_EMERALD\s+\d+','#define MAX_TRAINERS_COUNT_EMERALD 899',s)
+assert pu_trainer_start == 28 and len(trainers) == 32
 put(path,s)
 path='src/data/trainers.party'
 s=read(path)
 prefix=s.split('=== TRAINER_PLASTIC_OX_ROXANNE ===')[0].rstrip()+'\n\n'
 route_suffix=''
 if '=== TRAINER_PLASTIC_OX_ROUTE101 ===' in s:
-    route_suffix='\n\n=== TRAINER_PLASTIC_OX_ROUTE101 ==='+s.split('=== TRAINER_PLASTIC_OX_ROUTE101 ===',1)[1]
-put(path,prefix+'\n'.join(t for _,t in trainers)+route_suffix)
+    route_suffix='\n\n=== TRAINER_PLASTIC_OX_ROUTE101 ==='+s.split('=== TRAINER_PLASTIC_OX_ROUTE101 ===',1)[1].split('=== TRAINER_PLASTIC_OX_PU_ROUTE33 ===',1)[0].rstrip()+'\n'
+put(path,prefix+'\n'.join(t for _,t in trainers[:pu_trainer_start])+route_suffix+'\n'+'\n'.join(t for _,t in trainers[pu_trainer_start:]))
 put('plastic_ox/alpha/story_manifest.json',json.dumps(dict(events=[dict(map=m,x=x,y=y,script='Pox_'+s) for m,x,y,s in manifest],flags=flags,trainers=[t for t,_ in trainers],rooms=room_names),indent=2)+'\n')
 
 # Apply physical topology last so room/story regeneration cannot restore old

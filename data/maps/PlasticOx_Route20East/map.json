@@ -28,8 +28,8 @@
   "coord_events": [
     {
       "type": "trigger",
-      "x": 12,
-      "y": 12,
+      "x": 53,
+      "y": 10,
       "elevation": 0,
       "var": "VAR_POX_PORTAL_GATE",
       "var_value": 0,

@@ -1,4 +1,5 @@
 #include "global.h"
+#include "plastic_ox_contest.h"
 #include "config/save.h"
 #include "battle_pike.h"
 #include "battle_pyramid.h"
@@ -299,7 +300,7 @@ static void BuildStartMenuActions(void)
     {
         BuildUnionRoomStartMenu();
     }
-    else if (GetSafariZoneFlag() == TRUE)
+    else if (GetSafariZoneFlag() == TRUE || PlasticOxContest_HasSession())
     {
         BuildSafariZoneStartMenu();
     }
@@ -474,7 +475,7 @@ static void ShowPyramidFloorWindow(void)
 
 static void RemoveExtraStartMenuWindows(void)
 {
-    if (GetSafariZoneFlag())
+    if (GetSafariZoneFlag() || PlasticOxContest_HasSession())
     {
         ClearStdWindowAndFrameToTransparent(sSafariBallsWindowId, FALSE);
         CopyWindowToVram(sSafariBallsWindowId, COPYWIN_GFX);
@@ -538,7 +539,7 @@ static bool32 InitStartMenuStep(void)
         sInitStartMenuData[0]++;
         break;
     case 3:
-        if (GetSafariZoneFlag())
+        if (GetSafariZoneFlag() || PlasticOxContest_HasSession())
             ShowSafariBallsWindow();
         if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE)
             ShowPyramidFloorWindow();

@@ -1,4 +1,5 @@
 #include "global.h"
+#include "plastic_ox_contest.h"
 #include "battle.h"
 #include "battle_hold_effects.h"
 #include "battle_message.h"
@@ -10078,6 +10079,13 @@ static void Cmd_givecaughtmon(void)
 {
     CMD_ARGS(const u8 *passInstr);
     enum GiveCaughtMonStates state = gBattleCommunication[MULTIUSE_STATE];
+    if (PlasticOxContest_IsActive())
+    {
+        PlasticOxContest_StageCatch(GetBattlerMon(GetCatchingBattler()));
+        gBattleCommunication[MULTIUSE_STATE] = 0;
+        gBattlescriptCurrInstr = cmd->passInstr;
+        return;
+    }
     // Restore players party in order to handle properly the case when a wild mon is caught.
     if (IsNPCFollowerWildBattle())
         LoadPlayerParty();

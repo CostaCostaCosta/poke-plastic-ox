@@ -184,3 +184,58 @@ TEST("Tier gating: Nincada evolves into Ninjask normally once UU is unlocked (4 
     // The normal path handles the evolution; the split helper stays out of the way.
     EXPECT(!TryGenerateTierBlockedSplitEvolution(&mon));
 }
+
+TEST("Tier gating: Everstone blocks Shedinja until removed from Nincada")
+{
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][0];
+    enum Item heldItem = ITEM_EVERSTONE;
+    SetBadges(1);
+    ZeroPlayerPartyMons();
+    CreateMon(mon, SPECIES_NINCADA, 20, 0, OTID_STRUCT_PLAYER_ID);
+    CalculatePlayerPartyCount();
+    AddBagItem(ITEM_POKE_BALL, 1);
+    SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
+
+    EXPECT(!TryGenerateTierBlockedSplitEvolution(mon));
+    EXPECT_EQ(gPartiesCount[B_TRAINER_PLAYER], 1);
+    EXPECT_EQ(GetMonData(mon, MON_DATA_SPECIES), SPECIES_NINCADA);
+    EXPECT(CheckBagHasItem(ITEM_POKE_BALL, 1));
+
+    heldItem = ITEM_NONE;
+    SetMonData(mon, MON_DATA_HELD_ITEM, &heldItem);
+    EXPECT(TryGenerateTierBlockedSplitEvolution(mon));
+    EXPECT_EQ(gPartiesCount[B_TRAINER_PLAYER], 2);
+    EXPECT_EQ(GetMonData(mon, MON_DATA_SPECIES), SPECIES_NINCADA);
+    EXPECT_EQ(GetMonData(&gParties[B_TRAINER_PLAYER][1], MON_DATA_SPECIES), SPECIES_SHEDINJA);
+    EXPECT(!CheckBagHasItem(ITEM_POKE_BALL, 1));
+}
+
+TEST("Tier gating: Nincada cannot shed without a Poke Ball")
+{
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][0];
+    SetBadges(1);
+    ZeroPlayerPartyMons();
+    CreateMon(mon, SPECIES_NINCADA, 20, 0, OTID_STRUCT_PLAYER_ID);
+    CalculatePlayerPartyCount();
+    AddBagItem(ITEM_GREAT_BALL, 1);
+
+    EXPECT(!TryGenerateTierBlockedSplitEvolution(mon));
+    EXPECT_EQ(gPartiesCount[B_TRAINER_PLAYER], 1);
+    EXPECT_EQ(GetMonData(mon, MON_DATA_SPECIES), SPECIES_NINCADA);
+    EXPECT(CheckBagHasItem(ITEM_GREAT_BALL, 1));
+}
+
+TEST("Tier gating: Nincada cannot shed below level 20")
+{
+    struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][0];
+    SetBadges(1);
+    ZeroPlayerPartyMons();
+    CreateMon(mon, SPECIES_NINCADA, 19, 0, OTID_STRUCT_PLAYER_ID);
+    CalculatePlayerPartyCount();
+    AddBagItem(ITEM_POKE_BALL, 1);
+
+    EXPECT(!TryGenerateTierBlockedSplitEvolution(mon));
+    EXPECT_EQ(gPartiesCount[B_TRAINER_PLAYER], 1);
+    EXPECT_EQ(GetMonData(mon, MON_DATA_SPECIES), SPECIES_NINCADA);
+    EXPECT(CheckBagHasItem(ITEM_POKE_BALL, 1));
+}

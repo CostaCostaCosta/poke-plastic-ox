@@ -10,6 +10,12 @@ PoxRegion_TrailText::
 PoxRegion_ClosedText::
 	.string "This passage is still closed.\nReturn after your next objective.$"
 
+PoxRegion_cherry_route2_b_Sign::
+	msgbox PoxRegion_cherry_route2_b_Text, MSGBOX_SIGN
+	end
+PoxRegion_cherry_route2_b_Text::
+	.string "CHERRYGROVE CITY\nThe road south leads to town.$"
+
 Route8_EventScript_Julia::
 	msgbox Route8_Text_JuliaPostBattle, MSGBOX_NPC
 	end
@@ -182,108 +188,17 @@ PoxRegion_MonFlewAway::
 PoxRegion_MonFlewAwayText::
 	.string "The POKéMON flew away!$"
 
-PoxRegion_cherry_route2_a::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_cherry_route2_a_Open
-PoxRegion_cherry_route2_a_Open::
-	warp MAP_ROUTE2, 10, 79
-	waitstate
-	releaseall
-	end
-PoxRegion_cherry_route2_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_CHERRYGROVE_CITY_HNS, 33, 1
-	waitstate
-	releaseall
-	end
-
-PoxRegion_cherry_route2_a_Sign::
-	msgbox PoxRegion_cherry_route2_a_Text, MSGBOX_SIGN
-	end
-PoxRegion_cherry_route2_a_Text::
-	.string "Route2\nMarked passage ahead.$"
-
-PoxRegion_cherry_route2_b::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_cherry_route2_b_Open
-PoxRegion_cherry_route2_b_Open::
-	warp MAP_CHERRYGROVE_CITY_HNS, 33, 1
-	waitstate
-	releaseall
-	end
-PoxRegion_cherry_route2_b_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE2, 10, 79
-	waitstate
-	releaseall
-	end
-
-PoxRegion_cherry_route2_b_Sign::
-	msgbox PoxRegion_cherry_route2_b_Text, MSGBOX_SIGN
-	end
-PoxRegion_cherry_route2_b_Text::
-	.string "CHERRYGROVE CITY\n"
-	.string "The road south leads to town.$"
-
-PoxRegion_route2_rustboro_a::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route2_rustboro_a_Open
-	goto_if_unset FLAG_POX_STORY_ILEX, PoxRegion_route2_rustboro_a_Closed
-PoxRegion_route2_rustboro_a_Open::
-	warp MAP_RUSTBORO_CITY, 18, 59
-	waitstate
-	releaseall
-	end
-PoxRegion_route2_rustboro_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE2, 8, 1
-	waitstate
-	releaseall
-	end
-
-PoxRegion_route2_rustboro_b::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route2_rustboro_b_Open
-	goto_if_unset FLAG_POX_STORY_ILEX, PoxRegion_route2_rustboro_b_Closed
-PoxRegion_route2_rustboro_b_Open::
-	warp MAP_ROUTE2, 8, 1
-	waitstate
-	releaseall
-	end
-PoxRegion_route2_rustboro_b_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_RUSTBORO_CITY, 18, 59
-	waitstate
-	releaseall
-	end
-
-PoxRegion_route2_rustboro_b_Sign::
-	msgbox PoxRegion_route2_rustboro_b_Text, MSGBOX_SIGN
-	end
-PoxRegion_route2_rustboro_b_Text::
-	.string "Route2\nMarked passage ahead.$"
-
-PoxRoute2_RustboroGate::
-	msgbox PoxRoute2_RustboroGate_Text, MSGBOX_NPC
-	end
-
-PoxRoute2_RustboroGate_Text::
-	.string "RUSTBORO will have to wait.\n"
-	.string "Take the ILEX FOREST trail first.\p"
-	.string "Watch those roots in the woods.\n"
-	.string "They nearly tripped me twice!$"
-
 PoxRegion_rustboro_cottage_a::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_rustboro_cottage_a_Open
 PoxRegion_rustboro_cottage_a_Open::
-	warp MAP_ROUTE24_HNS, 16, 20
+	warp MAP_ROUTE24_HNS, 18, 20
 	waitstate
 	releaseall
 	end
 PoxRegion_rustboro_cottage_a_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_RUSTBORO_CITY, 19, 0
+	warp MAP_RUSTBORO_CITY, 21, 1
 	waitstate
 	releaseall
 	end
@@ -292,13 +207,13 @@ PoxRegion_rustboro_cottage_b::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_rustboro_cottage_b_Open
 PoxRegion_rustboro_cottage_b_Open::
-	warp MAP_RUSTBORO_CITY, 19, 0
+	warp MAP_RUSTBORO_CITY, 21, 1
 	waitstate
 	releaseall
 	end
 PoxRegion_rustboro_cottage_b_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE24_HNS, 16, 20
+	warp MAP_ROUTE24_HNS, 18, 20
 	waitstate
 	releaseall
 	end
@@ -309,47 +224,17 @@ PoxRegion_rustboro_cottage_b_Sign::
 PoxRegion_rustboro_cottage_b_Text::
 	.string "RUSTBORO CITY lies south.\nThe cottage path leads north.$"
 
-PoxRegion_route24_route25_a::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route24_route25_a_Open
-PoxRegion_route24_route25_a_Open::
-	warp MAP_ROUTE25_HNS, 5, 16
-	waitstate
-	releaseall
-	end
-PoxRegion_route24_route25_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE24_HNS, 16, 1
-	waitstate
-	releaseall
-	end
-
-PoxRegion_route24_route25_a_Sign::
-	msgbox PoxRegion_route24_route25_a_Text, MSGBOX_SIGN
-	end
-PoxRegion_route24_route25_a_Text::
-	.string "Route25\nMarked passage ahead.$"
-
-PoxRegion_route24_route25_b::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route24_route25_b_Open
-PoxRegion_route24_route25_b_Open::
-	warp MAP_ROUTE24_HNS, 16, 1
-	waitstate
-	releaseall
-	end
-PoxRegion_route24_route25_b_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE25_HNS, 5, 16
-	waitstate
-	releaseall
-	end
-
 PoxRegion_rustboro_route44_a::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_rustboro_route44_a_Open
 PoxRegion_rustboro_route44_a_Open::
-	warp MAP_ROUTE44_HNS, 2, 13
+	warp MAP_ROUTE44_HNS, 1, 13
+	waitstate
+	releaseall
+	end
+PoxRegion_rustboro_route44_a_Closed::
+	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
+	warp MAP_RUSTBORO_CITY, 38, 10
 	waitstate
 	releaseall
 	end
@@ -364,7 +249,13 @@ PoxRegion_rustboro_route44_b::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_rustboro_route44_b_Open
 PoxRegion_rustboro_route44_b_Open::
-	warp MAP_RUSTBORO_CITY, 37, 10
+	warp MAP_RUSTBORO_CITY, 38, 10
+	waitstate
+	releaseall
+	end
+PoxRegion_rustboro_route44_b_Closed::
+	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
+	warp MAP_ROUTE44_HNS, 1, 13
 	waitstate
 	releaseall
 	end
@@ -500,7 +391,6 @@ PoxRegion_route33_goldenrod_b_Text::
 PoxRegion_goldenrod_route35_a::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_goldenrod_route35_a_Open
-	goto_if_unset FLAG_BADGE02_GET, PoxRegion_goldenrod_route35_a_Closed
 PoxRegion_goldenrod_route35_a_Open::
 	warp MAP_ROUTE35_HNS, 15, 47
 	waitstate
@@ -516,7 +406,6 @@ PoxRegion_goldenrod_route35_a_Closed::
 PoxRegion_goldenrod_route35_b::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_goldenrod_route35_b_Open
-	goto_if_unset FLAG_BADGE02_GET, PoxRegion_goldenrod_route35_b_Closed
 PoxRegion_goldenrod_route35_b_Open::
 	warp MAP_GOLDENROD_CITY_HNS, 32, 9
 	waitstate
@@ -1005,8 +894,16 @@ PoxRegion_route7_route103_b_Text::
 
 PoxRegion_oldale_route103_a::
 	lockall
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_oldale_route103_a_Open
+	goto_if_unset FLAG_POX_STORY_FUJI, PoxRegion_oldale_route103_a_Closed
 PoxRegion_oldale_route103_a_Open::
 	warp MAP_ROUTE103, 9, 20
+	waitstate
+	releaseall
+	end
+PoxRegion_oldale_route103_a_Closed::
+	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
+	warp MAP_OLDALE_TOWN, 9, 0
 	waitstate
 	releaseall
 	end
@@ -1019,8 +916,16 @@ PoxRegion_oldale_route103_a_Text::
 
 PoxRegion_oldale_route103_b::
 	lockall
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_oldale_route103_b_Open
+	goto_if_unset FLAG_POX_STORY_FUJI, PoxRegion_oldale_route103_b_Closed
 PoxRegion_oldale_route103_b_Open::
 	warp MAP_OLDALE_TOWN, 9, 0
+	waitstate
+	releaseall
+	end
+PoxRegion_oldale_route103_b_Closed::
+	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
+	warp MAP_ROUTE103, 9, 20
 	waitstate
 	releaseall
 	end
@@ -1124,7 +1029,7 @@ PoxRegion_sea_mossdeep_a_Open::
 	end
 PoxRegion_sea_mossdeep_a_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_PLASTIC_OX_ROUTE20_EAST, 12, 13
+	warp MAP_PLASTIC_OX_ROUTE20_EAST, 52, 10
 	waitstate
 	releaseall
 	end
@@ -1134,7 +1039,7 @@ PoxRegion_sea_mossdeep_b::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_sea_mossdeep_b_Open
 	goto_if_unset FLAG_POX_STORY_MANSION, PoxRegion_sea_mossdeep_b_Closed
 PoxRegion_sea_mossdeep_b_Open::
-	warp MAP_PLASTIC_OX_ROUTE20_EAST, 12, 13
+	warp MAP_PLASTIC_OX_ROUTE20_EAST, 52, 10
 	waitstate
 	releaseall
 	end
@@ -1701,8 +1606,7 @@ PoxRegion_ilex_route2_north_Sign::
 	msgbox PoxRegion_ilex_route2_north_Text, MSGBOX_SIGN
 	end
 PoxRegion_ilex_route2_north_Text::
-	.string "ROUTE 2 NORTH GATE\n"
-	.string "RUSTBORO lies beyond ROUTE 2.$"
+	.string "ROUTE 2 NORTH GATE\nRUSTBORO lies beyond ROUTE 2.$"
 
 PoxRoute2_Ether::
 	finditem ITEM_ETHER
@@ -1712,14 +1616,17 @@ PoxRoute2_ParalyzeHeal::
 	finditem ITEM_PARALYZE_HEAL
 	end
 
+PoxRoute2_RustboroGate::
+	msgbox PoxRoute2_RustboroGate_Text, MSGBOX_NPC
+	end
+PoxRoute2_RustboroGate_Text::
+	.string "RUSTBORO will have to wait.\nTake the ILEX FOREST trail first.\pWatch those roots in the woods.\nThey nearly tripped me twice!$"
+
 PoxRoute2_Local::
 	msgbox PoxRoute2_LocalText, MSGBOX_NPC
 	end
 PoxRoute2_LocalText::
-	.string "I keep losing at this game.\n"
-	.string "The other kid picks ALAKAZAM!\p"
-	.string "Do you think a real POKéMON\n"
-	.string "battle would be easier?$"
+	.string "I keep losing at this game.\nThe other kid picks ALAKAZAM!\pDo you think a real POKéMON\nbattle would be easier?$"
 
 PoxRegion_Arrival_BattleFrontier_OutsideWest::
 PoxRegion_Arrival_BattleFrontier_OutsideWest_End::
@@ -1773,6 +1680,18 @@ PoxRegion_Arrival_MeteorFalls_1F_1R_End::
 
 PoxRegion_Arrival_MossdeepCity::
 PoxRegion_Arrival_MossdeepCity_End::
+	end
+
+PoxRegion_Arrival_MtMoon_1F_Frlg::
+PoxRegion_Arrival_MtMoon_1F_Frlg_End::
+	end
+
+PoxRegion_Arrival_MtMoon_B1F_Frlg::
+PoxRegion_Arrival_MtMoon_B1F_Frlg_End::
+	end
+
+PoxRegion_Arrival_MtMoon_B2F_Frlg::
+PoxRegion_Arrival_MtMoon_B2F_Frlg_End::
 	end
 
 PoxRegion_Arrival_MtMoon_Cave_hns::

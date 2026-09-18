@@ -29,7 +29,6 @@ FALLBACKS = {
     'MB_SHOP_SHELF_DEPARTMENT_FORWARD': 'MB_UNUSED_82',         # shop-shelf-ish
     'MB_TALL_GRASS_IMPASSABLE_NORTH':   'MB_TALL_GRASS',
     'MB_CAVE_IMPASSABLE_NORTH':         'MB_CAVE',
-    'MB_HEADBUTT_TREE':                 'MB_NORMAL',            # headbutt unsupported here
     'MB_WATER_NORTH_ARROW_WARP':        'MB_NORTH_ARROW_WARP',
     'MB_BRIDGE_OVER_ICE':               'MB_ICE',
 }

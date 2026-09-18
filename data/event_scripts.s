@@ -617,6 +617,10 @@ gStdScripts_End::
 	.include "data/maps/CherrygroveCity_SoutheastHouse_hns/scripts.inc"
 	.include "data/maps/House_GenericB_hns/scripts.inc"
 
+	@ Plastic Ox: Headbutt tree field method (shared by all PU routes).
+	.include "data/scripts/plastic_ox_headbutt.inc"
+	.include "data/scripts/plastic_ox_berry_trees.inc"
+
 	@ Plastic Ox: Leg A outdoors (Pallet-Oldale-R29/R46/DarkCave/R31/R30-Cherrygrove),
 	@ compiled in all builds.
 	.include "data/maps/Route29_hns/scripts.inc"
@@ -1823,6 +1827,8 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/PlasticOx_Harbor/scripts.inc"
 	.include "data/maps/PlasticOx_Route20West/scripts.inc"
 	.include "data/maps/PlasticOx_Route20East/scripts.inc"
+	.include "data/scripts/plastic_ox_pu_acquisitions.inc"
+	.include "data/scripts/plastic_ox_contest.inc"
 
 @ Plastic Ox v7 FRLG modules (Emerald inclusion).
 .if !IS_FRLG
@@ -1878,4 +1884,16 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 
 .if !IS_FRLG
 	.include "data/scripts/pokemon_mansion.inc"
+.endif
+
+.if !IS_FRLG
+	.include "data/maps/MtMoon_1F_Frlg/scripts.inc"
+.endif
+
+.if !IS_FRLG
+	.include "data/maps/MtMoon_B1F_Frlg/scripts.inc"
+.endif
+
+.if !IS_FRLG
+	.include "data/maps/MtMoon_B2F_Frlg/scripts.inc"
 .endif

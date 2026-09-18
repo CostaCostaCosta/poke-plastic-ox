@@ -351,9 +351,11 @@
 #define VAR_POX_GRANDPA_PROGRESS   0x40FB // 0-5: next ordered Bill's-grandfather request
 #define VAR_POX_PORTAL_GATE        0x40FC // trigger sentinel; must remain zero
 #define VAR_POX_MOM_STATE           0x40FF // 0 before Mom's dialogue-only first conversation, 1 afterward
+// Supplemental unused Emerald var; retained within the existing save array.
+#define VAR_POX_DELIBIRD_IDENTITY   0x40DC
 #define POX_VARS_END               0x40FF
-// No persistent variable slot is currently available. Prefer a flag for an
-// independent boolean or pack ordered states into an existing progression var.
+// No slot remains in the primary reserved run. Supplemental variables must
+// repurpose audited unused Emerald slots and extend audit_alpha.py.
 // Never allocate above VARS_END; doing so indexes beyond SaveBlock1::vars.
 
 #endif // GUARD_CONSTANTS_VARS_H

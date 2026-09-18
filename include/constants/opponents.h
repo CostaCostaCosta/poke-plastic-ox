@@ -891,6 +891,10 @@
 #define TRAINER_PLASTIC_OX_BLUE 882
 #define TRAINER_PLASTIC_OX_BILL 883
 #define TRAINER_PLASTIC_OX_VICTORYROAD 884
+#define TRAINER_PLASTIC_OX_PU_ROUTE33 895
+#define TRAINER_PLASTIC_OX_PU_ROUTE35 896
+#define TRAINER_PLASTIC_OX_PU_PARK 897
+#define TRAINER_PLASTIC_OX_PU_ROUTE36 898
 #define TRAINER_PLASTIC_OX_ROUTE101 885
 #define TRAINER_PLASTIC_OX_ROUTE103 886
 #define TRAINER_PLASTIC_OX_ROUTE29 887
@@ -907,8 +911,8 @@
 //       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
 //       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
 
-#define TRAINERS_COUNT_EMERALD 895
-#define MAX_TRAINERS_COUNT_EMERALD 896
+#define TRAINERS_COUNT_EMERALD 899
+#define MAX_TRAINERS_COUNT_EMERALD 899
 
 #if IS_FRLG
 #define TRAINERS_COUNT                      TRAINERS_COUNT_FRLG

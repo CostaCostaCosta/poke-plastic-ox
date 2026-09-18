@@ -15,6 +15,7 @@
 #include "event_object_movement.h"
 #include "event_scripts.h"
 #include "fieldmap.h"
+#include "field_control_avatar.h"
 #include "field_effect.h"
 #include "field_player_avatar.h"
 #include "field_screen_effect.h"
@@ -367,6 +368,27 @@ void ItemUseOutOfBattle_Cut(u8 taskId)
     {
         gSpecialVar_LastTalked = gObjectEvents[objectId].localId;
         sItemUseOnFieldCB = ItemUseOnFieldCB_Cut;
+        SetUpItemUseOnFieldCallback(taskId);
+    }
+    else
+    {
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    }
+}
+
+static void ItemUseOnFieldCB_Headbutt(u8 taskId)
+{
+    extern const u8 PlasticOx_EventScript_HeadbuttTree[];
+    LockPlayerFieldControls();
+    ScriptContext_SetupScript(PlasticOx_EventScript_HeadbuttTree);
+    DestroyTask(taskId);
+}
+
+void ItemUseOutOfBattle_Headbutt(u8 taskId)
+{
+    if (IsPlayerFacingHeadbuttTree())
+    {
+        sItemUseOnFieldCB = ItemUseOnFieldCB_Headbutt;
         SetUpItemUseOnFieldCallback(taskId);
     }
     else

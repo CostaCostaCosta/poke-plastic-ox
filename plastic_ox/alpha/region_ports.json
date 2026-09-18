@@ -1,33 +1,44 @@
 {
   "rustboro_cottage_a": {
     "tile": [
-      20,
+      21,
       0
     ],
     "approach": [
-      19,
-      0
+      21,
+      1
     ],
-    "direction": "E"
+    "direction": "N"
+  },
+  "rustboro_cottage_b": {
+    "tile": [
+      18,
+      21
+    ],
+    "approach": [
+      18,
+      20
+    ],
+    "direction": "S"
   },
   "rustboro_route44_a": {
     "tile": [
-      38,
+      39,
       10
     ],
     "approach": [
-      37,
+      38,
       10
     ],
     "direction": "E"
   },
   "rustboro_route44_b": {
     "tile": [
-      1,
+      0,
       13
     ],
     "approach": [
-      2,
+      1,
       13
     ],
     "direction": "W"
@@ -516,17 +527,6 @@
     ],
     "direction": "E"
   },
-  "rustboro_cottage_b": {
-    "tile": [
-      16,
-      21
-    ],
-    "approach": [
-      16,
-      20
-    ],
-    "direction": "S"
-  },
   "goldenrod_route35_a": {
     "tile": [
       33,
@@ -692,17 +692,6 @@
     ],
     "direction": "N"
   },
-  "sea_mossdeep_a": {
-    "tile": [
-      12,
-      12
-    ],
-    "approach": [
-      12,
-      13
-    ],
-    "direction": "N"
-  },
   "mossdeep_route19_b": {
     "tile": [
       12,
@@ -732,6 +721,17 @@
     ],
     "approach": [
       22,
+      10
+    ],
+    "direction": "E"
+  },
+  "sea_mossdeep_a": {
+    "tile": [
+      53,
+      10
+    ],
+    "approach": [
+      52,
       10
     ],
     "direction": "E"

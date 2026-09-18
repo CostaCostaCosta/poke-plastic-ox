@@ -5879,7 +5879,10 @@
       "secondary_tileset": "gTileset_Cave_Frlg",
       "border_filepath": "data/layouts/MtMoon_1F_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/MtMoon_1F_Frlg/map.bin",
-      "layout_version": "frlg"
+      "layout_version": "frlg",
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_MT_MOON_B1F",
@@ -5892,7 +5895,10 @@
       "secondary_tileset": "gTileset_Cave_Frlg",
       "border_filepath": "data/layouts/MtMoon_B1F_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/MtMoon_B1F_Frlg/map.bin",
-      "layout_version": "frlg"
+      "layout_version": "frlg",
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_MT_MOON_B2F",
@@ -5905,7 +5911,10 @@
       "secondary_tileset": "gTileset_Cave_Frlg",
       "border_filepath": "data/layouts/MtMoon_B2F_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/MtMoon_B2F_Frlg/map.bin",
-      "layout_version": "frlg"
+      "layout_version": "frlg",
+      "include_in_versions": [
+        "emerald"
+      ]
     },
     {
       "id": "LAYOUT_VIRIDIAN_FOREST",

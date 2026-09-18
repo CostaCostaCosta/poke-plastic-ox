@@ -13,7 +13,6 @@ const struct Tileset gTileset_SecretBase =
     .metatileAttributes = gMetatileAttributes_SecretBasePrimary,
     .callback = NULL,
 };
-
 const struct Tileset gTileset_SecretBaseRedCave =
 {
     .isCompressed = FALSE,
@@ -837,8 +836,6 @@ const struct Tileset gTileset_UnionRoom =
 
 // FRLG tilesets
 
-
-
 const struct Tileset gTileset_ViridianCity =
 {
     .isCompressed = TRUE,
@@ -968,17 +965,6 @@ const struct Tileset gTileset_PokemonCenterFrlg =
     .palettes = gTilesetPalettes_PokemonCenter_Frlg,
     .metatiles = gMetatiles_PokemonCenter_Frlg,
     .metatileAttributes = gMetatileAttributes_PokemonCenter_Frlg,
-    .callback = NULL,
-};
-
-const struct Tileset gTileset_Cave_Frlg =
-{
-    .isCompressed = TRUE,
-    .isSecondary = TRUE,
-    .tiles = gTilesetTiles_Cave_Frlg,
-    .palettes = gTilesetPalettes_Cave_Frlg,
-    .metatiles = gMetatiles_Cave_Frlg,
-    .metatileAttributes = gMetatileAttributes_Cave_Frlg,
     .callback = NULL,
 };
 
@@ -2226,4 +2212,15 @@ const struct Tileset gTileset_HoennOrasFrontierGeneral = {
     .tiles = gTilesetTiles_HoennOrasGeneral, .palettes = gTilesetPalettes_HoennOrasGeneral,
     .metatiles = gMetatiles_HoennOrasFrontierGeneral, .metatileAttributes = gMetatileAttributes_HoennOrasGeneral,
     .callback = InitTilesetAnim_HoennOrasGeneral,
+};
+// Plastic Ox v7: Mount Moon's native FRLG floors stay active in Emerald too.
+const struct Tileset gTileset_Cave_Frlg =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_Cave_Frlg,
+    .palettes = gTilesetPalettes_Cave_Frlg,
+    .metatiles = gMetatiles_Cave_Frlg,
+    .metatileAttributes = gMetatileAttributes_Cave_Frlg,
+    .callback = NULL,
 };

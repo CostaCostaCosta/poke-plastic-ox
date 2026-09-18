@@ -45,6 +45,8 @@
 #include "constants/songs.h"
 #include "constants/trainer_hill.h"
 
+extern const u8 PlasticOx_EventScript_HeadbuttTree[];
+
 static EWRAM_DATA u8 sWildEncounterImmunitySteps = 0;
 static EWRAM_DATA u16 sPrevMetatileBehavior = 0;
 
@@ -475,9 +477,20 @@ static const u8 *GetInteractedBackgroundEventScript(struct MapPosition *position
     return bgEvent->bgUnion.script;
 }
 
+bool32 IsPlayerFacingHeadbuttTree(void)
+{
+    struct MapPosition position;
+
+    GetInFrontOfPlayerPosition(&position);
+    return GetInteractionScript(&position, MapGridGetMetatileBehaviorAt(position.x, position.y), GetPlayerFacingDirection()) == PlasticOx_EventScript_HeadbuttTree;
+}
+
 static const u8 *GetInteractedMetatileScript(struct MapPosition *position, u8 metatileBehavior, enum Direction direction)
 {
     s8 elevation;
+
+    if (metatileBehavior == MB_HEADBUTT_TREE)
+        return PlasticOx_EventScript_HeadbuttTree;
 
     if (MetatileBehavior_IsPlayerFacingTVScreen(metatileBehavior, direction) == TRUE)
     {

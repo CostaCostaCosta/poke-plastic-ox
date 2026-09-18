@@ -45,11 +45,11 @@ WATER = {'Route103','Route19_Frlg','Route21_North_Frlg','Route21_South_Frlg',
 # coordinates denote a native gate plaza, cave mouth, or dock.
 TRAILS = [
     ('rustboro_cottage','RustboroCity','N','Route24_hns','S',[]),
-    ('rustboro_route44','RustboroCity',(38,10),'Route44_hns',(1,13),[]),
+    ('rustboro_route44','RustboroCity',(39,10),'Route44_hns',(0,13),[]),
     ('route44_moon','Route44_hns',(68,13),'MtMoon_Cave_hns',(4,11),[]),
     ('moon_route33','MtMoon_Cave_hns',(46,30),'Route33_hns',(27,18),['FLAG_POX_STORY_MTMOON']),
     ('route33_goldenrod','Route33_hns','W','GoldenrodCity_hns','S',[]),
-    ('goldenrod_route35','GoldenrodCity_hns',(33,8),'Route35_hns','S',['FLAG_BADGE02_GET']),
+    ('goldenrod_route35','GoldenrodCity_hns',(33,8),'Route35_hns','S',[]),
     ('route35_park','Route35_hns',(17,5),'NationalPark_Normal_hns',(24,51),[]),
     ('park_route36','NationalPark_Normal_hns',(39,20),'Route36_hns',(16,21),[]),
     ('route37_ecruteak','Route37_hns','N','EcruteakCity_hns','S',[]),
@@ -120,7 +120,7 @@ def apply_region(read, put):
     retired.update({'Route1_Frlg','Route31_hns','Route104','Gate_AzaleaTown_IlexForest_hns','CinnabarIsland_hns'})
     active=set(ANCHORS)
     extra_frlg=['UndergroundPath_EastEntrance_Frlg','UndergroundPath_WestEntrance_Frlg','UndergroundPath_EastWestTunnel_Frlg']+[f'SeafoamIslands_{floor}_Frlg' for floor in ['1F','B1F','B2F','B3F','B4F']]
-    story_frlg=['PokemonMansion_1F_Frlg']
+    story_frlg=['PokemonMansion_1F_Frlg','MtMoon_1F_Frlg','MtMoon_B1F_Frlg','MtMoon_B2F_Frlg']
     route2_rooms=['Route2_ViridianForest_NorthEntrance_Frlg','Route2_ViridianForest_SouthEntrance_Frlg','Route2_House_Frlg','Route2_EastBuilding_Frlg']
     extra_frlg += route2_rooms
     for name in extra_frlg:
@@ -129,6 +129,9 @@ def apply_region(read, put):
         d['bg_events']=[o for o in d.get('bg_events',[]) if not o.get('script','').startswith('PoxRegion_')]
         save(name,d)
     layouts=json.loads(read('data/layouts/layouts.json'))
+    for name in ['MtMoon_1F_Frlg','MtMoon_B1F_Frlg','MtMoon_B2F_Frlg']:
+        d=load(name);d['region']='REGION_HOENN'
+        save(name,d)
     needed={load(n)['layout'] for n in active | set(extra_frlg) | set(story_frlg)}
     needed.update(['LAYOUT_SEAFOAM_ISLANDS_B3F_CURRENT_STOPPED','LAYOUT_SEAFOAM_ISLANDS_B4F_CURRENT_STOPPED'])
     for layout in layouts['layouts']:
@@ -437,6 +440,68 @@ def apply_region(read, put):
             trainer_type='TRAINER_TYPE_NONE',trainer_sight_or_berry_tree_id='0',
             script='PoxRoute44_MtMoonGate',flag='FLAG_BADGE01_GET'))
     save('Route44_hns',d)
+
+    # PU acquisitions retain their dedicated script implementations while this
+    # generator owns stable, reachable placements and physical door routing.
+    # Authored trainers and pickups live in the HNS upper cave. Imported FRLG
+    # floors supply geometry and encounters, not the incompatible Kanto quest.
+    active.update({'MtMoon_1F_Frlg','MtMoon_B1F_Frlg','MtMoon_B2F_Frlg'})
+    for name in ['MtMoon_1F_Frlg','MtMoon_B1F_Frlg','MtMoon_B2F_Frlg']:
+        d=load(name)
+        d['coord_events']=[]
+        d['bg_events']=[]
+        d['object_events']=[]
+        save(name,d)
+        put(f'data/maps/{name}/scripts.inc', f'{name}_MapScripts::\n\t.byte 0\n')
+    for name, index, script, gfx in [
+        ('Route33_hns', 1, 'POX_PU_MailRecipient', 'OBJ_EVENT_GFX_HIKER'),
+        ('Route35_hns', 6, 'POX_PU_MailGuard', 'OBJ_EVENT_GFX_MAN_3'),
+        ('NationalPark_Normal_hns', 1, 'PlasticOxContest_EventScript_Attendant', 'OBJ_EVENT_GFX_GAMEBOY_KID'),
+    ]:
+        d=load(name)
+        d['object_events'][index].update(script=script,graphics_id=gfx,flag='0',
+            trainer_type='TRAINER_TYPE_NONE',movement_type='MOVEMENT_TYPE_FACE_DOWN')
+        save(name,d)
+    for number, target in [(1,(13,10)),(2,(44,29))]:
+        name='MtMoon_Cave_hns'; d=load(name); label=f'POX_PU_MoonStone{number}'
+        d['object_events']=[o for o in d['object_events'] if o.get('script') != label]
+        g=Geometry(name,d)
+        reserved_tiles={(o['x'],o['y']) for o in d['object_events']} | {(c['x'],c['y']) for c in d['coord_events']}
+        x,y=min(g.component(ANCHORS[name])-reserved_tiles,key=lambda p:(abs(p[0]-target[0])+abs(p[1]-target[1]),p))
+        d['object_events'].append(dict(graphics_id='OBJ_EVENT_GFX_ITEM_BALL',x=x,y=y,elevation=3,
+            movement_type='MOVEMENT_TYPE_NONE',movement_range_x=0,movement_range_y=0,
+            trainer_type='TRAINER_TYPE_NONE',trainer_sight_or_berry_tree_id='0',script=label,
+            flag=f'FLAG_POX_MTMOON_MOON_STONE_{number}'))
+        save(name,d)
+    d=load('GoldenrodCity_hns')
+    d['warp_events']=[w for w in d['warp_events'] if w['dest_map'] != mid('MauvilleCity_GameCorner')]
+    corner_warp=len(d['warp_events'])
+    d['warp_events'].append(dict(x=21,y=38,elevation=0,dest_map=mid('MauvilleCity_GameCorner'),dest_warp_id='0'))
+    save('GoldenrodCity_hns',d)
+    # Headbutt populations hang on visible, already-solid trees at the edge of
+    # each area's connected walkable component. A facing trigger lets the
+    for name, x, y in [('IlexForest_hns',39,7),('Route33_hns',8,17),('Route35_hns',14,4),
+                       ('NationalPark_Normal_hns',40,22),('Route36_hns',39,2)]:
+        d=load(name)
+        d['bg_events']=[b for b in d.get('bg_events',[]) if b.get('script') != 'PlasticOx_EventScript_HeadbuttTree']
+        d['bg_events'].append(dict(type='sign',x=x,y=y,elevation=0,
+            player_facing_dir='BG_EVENT_PLAYER_FACING_ANY',
+            script='PlasticOx_EventScript_HeadbuttTree'))
+        save(name,d)
+    d=load('MauvilleCity_GameCorner')
+    d['object_events'][3]['script']='POX_PU_CoinPrizes'
+    for w in d['warp_events']:
+        w.update(dest_map=mid('GoldenrodCity_hns'),dest_warp_id=str(corner_warp))
+    save('MauvilleCity_GameCorner',d)
+    # This native one-tile path is an articulation point between the park
+    # arrival and every north-seam tile. One real object closes the route.
+    d=load('Route36_hns')
+    d['object_events']=[o for o in d['object_events'] if o.get('script') != 'Pox_Sudowoodo']
+    d['object_events'].append(dict(graphics_id='OBJ_EVENT_GFX_SUDOWOODO',x=39,y=20,elevation=3,
+        movement_type='MOVEMENT_TYPE_NONE',movement_range_x=0,movement_range_y=0,
+        trainer_type='TRAINER_TYPE_NONE',trainer_sight_or_berry_tree_id='0',
+        script='Pox_Sudowoodo',flag='FLAG_POX_SUDOWOODO_CLEARED'))
+    save('Route36_hns',d)
     # Route 44's gate handler and dialogue are authored in its local scripts.
 
     # HNS Route7 lacks the FRLG tunnel mouth; a marked stair passage uses the
@@ -560,3 +625,5 @@ def apply_region(read, put):
         if line not in s:
             s+=line
     put('data/event_scripts.s',s)
+    from trees import install as install_fruit_trees
+    install_fruit_trees()

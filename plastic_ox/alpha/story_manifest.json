@@ -142,7 +142,7 @@
       "map": "MtMoon_Cave_hns",
       "x": 16,
       "y": 4,
-      "script": "Pox_MoonScientist"
+      "script": "Pox_MoonRocketMap"
     },
     {
       "map": "GoldenrodCity_BillsHouse_hns",
@@ -557,6 +557,36 @@
       "x": 5,
       "y": 10,
       "script": "Pox_LeagueContinue"
+    },
+    {
+      "map": "Route33_hns",
+      "x": 17,
+      "y": 20,
+      "script": "Pox_PU_ROUTE33"
+    },
+    {
+      "map": "Route35_hns",
+      "x": 10,
+      "y": 38,
+      "script": "Pox_PU_ROUTE35"
+    },
+    {
+      "map": "NationalPark_Normal_hns",
+      "x": 25,
+      "y": 30,
+      "script": "Pox_PU_PARK"
+    },
+    {
+      "map": "Route36_hns",
+      "x": 24,
+      "y": 24,
+      "script": "Pox_PU_ROUTE36"
+    },
+    {
+      "map": "GoldenrodCity_hns",
+      "x": 27,
+      "y": 15,
+      "script": "Pox_SquirtBottle"
     }
   ],
   "flags": [
@@ -573,7 +603,6 @@
     "FLAG_POX_KIMONO_ESPEON",
     "FLAG_POX_KIMONO_UMBREON",
     "FLAG_POX_GIFT_KIMONO",
-    "FLAG_POX_GIFT_COTTAGE",
     "FLAG_POX_GIFT_FUJI",
     "FLAG_POX_ARCHIVE_1",
     "FLAG_POX_ARCHIVE_2",
@@ -616,7 +645,11 @@
     "TRAINER_PLASTIC_OX_LEAGUELANCE",
     "TRAINER_PLASTIC_OX_BLUE",
     "TRAINER_PLASTIC_OX_BILL",
-    "TRAINER_PLASTIC_OX_VICTORYROAD"
+    "TRAINER_PLASTIC_OX_VICTORYROAD",
+    "TRAINER_PLASTIC_OX_PU_ROUTE33",
+    "TRAINER_PLASTIC_OX_PU_ROUTE35",
+    "TRAINER_PLASTIC_OX_PU_PARK",
+    "TRAINER_PLASTIC_OX_PU_ROUTE36"
   ],
   "rooms": [
     "PlasticOx_WhitneyGym",

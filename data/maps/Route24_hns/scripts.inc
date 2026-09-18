@@ -31,7 +31,7 @@ Route24_EventScript_Npc4::
 	end
 
 Route24_EventScript_Npc1_Text:
-	.string "I'm just taking a break.\nEven I need fresh air.\pThat fellow keeps asking me\nfor a battle. I said no!$"
+	.string "I was told to go to a cave,\nbut I got lost out here.\pDon't tell the BOSS you saw me!$"
 
 Route24_EventScript_Npc2_Text:
 	.string "I walk out here after work.\nIt gets the dust off my boots.\pA good battle does more for me\nthan sitting around at home.$"

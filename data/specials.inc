@@ -642,3 +642,15 @@ gSpecials::
 	def_special UpdateTrainerCardPhotoIcons
 	def_special StickerManGetBragFlags
 	def_special CheckAddCoins
+	def_special PlasticOx_HeadbuttEncounter
+	def_special PlasticOx_CheckHeadbutt
+	def_special PlasticOx_PrepareSudowoodoMoves
+	def_special PlasticOxContest_Status
+	def_special PlasticOxContest_Start
+	def_special PlasticOxContest_AcceptCatch
+	def_special PlasticOxContest_Judge
+	def_special PlasticOxContest_ClaimPrize
+	def_special PlasticOxBuyCoinPrize
+	def_special PlasticOxReviveHelix
+	def_special PlasticOxGiveMailDelibird
+	def_special PlasticOxDeliverMail

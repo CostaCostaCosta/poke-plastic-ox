@@ -33,6 +33,7 @@
 #include "util.h"
 #include "constants/battle_string_ids.h"
 #include "constants/items.h"
+#include "constants/hold_effects.h"
 #include "constants/party_menu.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
@@ -615,11 +616,26 @@ bool32 TryGenerateTierBlockedSplitEvolution(struct Pokemon *mon)
 {
     enum Species species;
     enum Species blockedTarget;
+    enum Item heldItem;
+    enum HoldEffect holdEffect;
     u32 level;
     u32 i, j;
     const struct Evolution *evolutions;
 
     if (!P_EVOLUTION_TIER_GATING)
+        return FALSE;
+
+    // Match the normal evolution path, including custom Enigma Berry effects.
+    heldItem = GetMonData(mon, MON_DATA_HELD_ITEM);
+    if (heldItem == ITEM_ENIGMA_BERRY_E_READER)
+    #if FREE_ENIGMA_BERRY == FALSE
+        holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
+    #else
+        holdEffect = 0;
+    #endif
+    else
+        holdEffect = GetItemHoldEffect(heldItem);
+    if (holdEffect == HOLD_EFFECT_PREVENT_EVOLVE)
         return FALSE;
 
     species = GetMonData(mon, MON_DATA_SPECIES, 0);

@@ -285,9 +285,6 @@ const u16 gMetatileAttributes_Mart[] = INCBIN_U16("data/tilesets/secondary/mart_
 const u16 gMetatiles_PokemonCenter_Frlg[] = INCBIN_U16("data/tilesets/secondary/pokemon_center_frlg/metatiles.bin");
 const u16 gMetatileAttributes_PokemonCenter_Frlg[] = INCBIN_U16("data/tilesets/secondary/pokemon_center_frlg/metatile_attributes.bin");
 
-const u16 gMetatiles_Cave_Frlg[] = INCBIN_U16("data/tilesets/secondary/cave_frlg/metatiles.bin");
-const u16 gMetatileAttributes_Cave_Frlg[] = INCBIN_U16("data/tilesets/secondary/cave_frlg/metatile_attributes.bin");
-
 const u16 gMetatiles_GameCorner[] = INCBIN_U16("data/tilesets/secondary/game_corner_frlg/metatiles.bin");
 const u16 gMetatileAttributes_GameCorner[] = INCBIN_U16("data/tilesets/secondary/game_corner_frlg/metatile_attributes.bin");
 
@@ -662,3 +659,5 @@ const u16 gMetatiles_HoennOrasBattleFrontierOutsideEast[] = INCBIN_U16("data/til
 const u16 gMetatileAttributes_HoennOrasBattleFrontierOutsideEast[] = INCBIN_U16("data/tilesets/secondary/hoenn_oras_battle_frontier_outside_east/metatile_attributes.bin");
 
 const u16 gMetatiles_HoennOrasFrontierGeneral[] = INCBIN_U16("data/tilesets/primary/hoenn_oras_general/frontier_metatiles.bin");
+const u16 gMetatiles_Cave_Frlg[] = INCBIN_U16("data/tilesets/secondary/cave_frlg/metatiles.bin");
+const u16 gMetatileAttributes_Cave_Frlg[] = INCBIN_U16("data/tilesets/secondary/cave_frlg/metatile_attributes.bin");

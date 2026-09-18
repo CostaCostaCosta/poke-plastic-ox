@@ -59,7 +59,7 @@ League still requires all eight badges if Clair is defeated before Bruno.
 | 1 | Cherrygrove/Ilex | Casual geographic changes and exploration; no major mystery reveal. Mandatory Ilex route before Roxanne; existing researcher beat may remain if consistent. |
 | 2 | Rustboro | Roxanne LC challenge → badge 1/PU availability. Devon remains ordinary infrastructure. |
 | 2a optional | Route24/25 Cottage | First available gift Eevee; Bill absent, harmless note/caretaker. Return to Route25, never Fortree. Skipping branch does not block story or other gifts. |
-| 3 | Mt. Moon | Rocket I fossil theft and unexplained receiver; grunts and completion before Goldenrod. |
+| 3 | Mt. Moon | Rocket I fossil theft and unexplained receiver; after both grunts, a Rocket member gives a one-time Town Map (not a fossil), completing the gate before Goldenrod. |
 | 4 | Goldenrod | Whitney PU → badge 2; domestic Bill family dialogue and proposed Eevee gift #2. |
 | 5 | National Park | Mandatory geographic passage, catching/trainer respite; no plot escalation. |
 | 6 | Ecruteak | Dance Theater lead → Burned Tower brief visible restoration → Morty returns → NU Gym/badge 3. No beast release. Optional troupe reward is proposed Eevee #3. |

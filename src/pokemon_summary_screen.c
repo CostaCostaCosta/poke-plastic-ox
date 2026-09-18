@@ -329,6 +329,7 @@ void ExtractMonSkillIvData(struct Pokemon *mon, struct PokeSummary *sum);
 void ExtractMonSkillEvData(struct Pokemon *mon, struct PokeSummary *sum);
 static void PrintTextOnWindow(u8 windowId, const u8 *string, u8 x, u8 y, u8 lineSpacing, u8 colorId);
 static void PrintTextOnWindowWithFont(u8 windowId, const u8 *string, u8 x, u8 y, u8 lineSpacing, u8 colorId, u32 fontId);
+static void PrintTextOnWindowToFitPx(u8 windowId, const u8 *string, u8 x, u8 y, u8 lineSpacing, u8 colorId, u32 width);
 static const u8 *GetLetterGrade(u32 stat);
 static u8 AddWindowFromTemplateList(const struct WindowTemplate *template, u8 templateId);
 static u8 IncrementSkillsStatsMode(u8 mode);
@@ -768,6 +769,7 @@ static const TaskFunc sTextPrinterTasks[] =
 };
 
 static const u8 sText_Relearn[] = _("{START_BUTTON} RELEARN"); // future note: don't decap this, because it mimics the summary screen BG graphics which will not get decapped
+static const u8 sText_HiddenPower[] = _("HIDDEN POWER");
 
 static const u8 *const sRelearnTexts[MOVE_RELEARNER_COUNT] =
 {
@@ -1902,6 +1904,21 @@ static void ShowMonSkillsInfo(u8 taskId, s16 mode)
     PrintLeftColumnStats();
     BufferRightColumnStats();
     PrintRightColumnStats();
+
+    FillWindowPixelBuffer(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP, PIXEL_FILL(0));
+    FillWindowPixelBuffer(sMonSummaryScreen->windowIds[PSS_DATA_WINDOW_EXP], PIXEL_FILL(0));
+    if (mode == SUMMARY_SKILLS_MODE_STATS)
+    {
+        PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP, gText_ExpPoints, 6, 1, 0, 1);
+        PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP, gText_NextLv, 6, 17, 0, 1);
+        PrintExpPointsNextLevel();
+    }
+    else
+    {
+        enum Type type = CheckDynamicMoveType(mon, MOVE_HIDDEN_POWER, 0, MON_OUTSIDE_BATTLE);
+        PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP, sText_HiddenPower, 6, 9, 0, 1);
+        PrintTextOnWindowToFitPx(sMonSummaryScreen->windowIds[PSS_DATA_WINDOW_EXP], gTypesInfo[type].name, 2, 9, 0, 0, 44);
+    }
     gTasks[taskId].func = Task_HandleInput;
 }
 

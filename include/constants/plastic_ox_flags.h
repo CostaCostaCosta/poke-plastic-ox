@@ -14,6 +14,13 @@
 
 #define POX_FLAGS_START 0x264
 
+// Unused daily flags, cleared by the existing RTC daily update. No save resize.
+#define FLAG_POX_DAILY_R29_SITRUS 0x923
+#define FLAG_POX_DAILY_R46_LUM    0x924
+#define FLAG_POX_DAILY_R46_LIECHI 0x925
+#define FLAG_POX_DAILY_R44_SALAC  0x926
+#define FLAG_POX_DAILY_R44_PETAYA 0x927
+
 // Scripts may set/clear this to keep frame-sensitive field sequences at 1x.
 #define FLAG_PREVENT_OVERWORLD_SPEEDUP 0x27F
 
@@ -157,9 +164,16 @@
 #define FLAG_POX_MANSION_1F_PROTEIN       0x1DF
 #define FLAG_POX_MANSION_1F_MOON_STONE    0x494
 
+// PU acquisitions and the Route 36 obstruction. Audited unused Emerald flags.
+#define FLAG_POX_SUDOWOODO_CLEARED       0x1AB
+#define FLAG_POX_MTMOON_MOON_STONE_1     0x1E0
+#define FLAG_POX_MTMOON_MOON_STONE_2     0x1E1
+#define FLAG_POX_DELIBIRD_RECEIVED       0x1E2
+#define FLAG_POX_DELIBIRD_DELIVERED      0x1E3
+#define FLAG_POX_CONTEST_PRIZE_PENDING   0x495
+#define FLAG_POX_ROUTE24_NUGGET          0x496
+
 // Supplemental Plastic Ox flags deliberately repurpose Emerald symbols marked
-// unused: 0x0E9, 0x1AA, 0x1DA, and 0x1DE-0x1DF; hidden-item-compatible
-// 0x493-0x494 are reserved for hidden items. Next audited candidates are
-// 0x1AB/0x1E0-0x1E3 (objects) and 0x495 (hidden items), but allocate only
-// after extending audit_alpha.py.
+// unused. Hidden-item flags must additionally satisfy FLAG_HIDDEN_ITEMS_START.
+// Keep supplemental allocations synchronized with audit_alpha.py.
 #endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H

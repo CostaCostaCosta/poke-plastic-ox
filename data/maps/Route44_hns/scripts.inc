@@ -9,19 +9,19 @@ PoxRoute44_MtMoonGate::
 PoxRoute44_MtMoonGate_Text::
 	.string "MT. MOON is rough going.\nI need to see the STONE BADGE.\pROXANNE runs the RUSTBORO GYM.\nBeat her, and I'll let you pass.$"
 
-PoxRoute44_LunchHiker::
-	msgbox PoxRoute44_LunchHiker_Text, MSGBOX_NPC
+PoxRoute44_LunchFisherman::
+	msgbox PoxRoute44_LunchFisherman_Text, MSGBOX_NPC
 	end
 
-PoxRoute44_LunchHiker_Text::
-	.string "I packed lunch for the summit.\nI ate it here instead.\pThat was an excellent lunch.\nThat is a very tall mountain.$"
+PoxRoute44_LunchFisherman_Text::
+	.string "I packed lunch for a long day\nof fishing.\pThe fish aren't biting, but\nat least the lunch was good.$"
 
-PoxRoute44_StoneCollector::
-	msgbox PoxRoute44_StoneCollector_Text, MSGBOX_NPC
+PoxRoute44_FishingSpot::
+	msgbox PoxRoute44_FishingSpot_Text, MSGBOX_NPC
 	end
 
-PoxRoute44_StoneCollector_Text::
-	.string "I pick up one stone per hike.\nJust one!\pThen I find a nicer one.\nYou can see why my pack is full.$"
+PoxRoute44_FishingSpot_Text::
+	.string "I keep coming back to this\nfishing spot.\pI catch more stories than\nPOKéMON, but I don't mind.$"
 
 PoxRoute44_LostNavigator::
 	msgbox PoxRoute44_LostNavigator_Text, MSGBOX_NPC

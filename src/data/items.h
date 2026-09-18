@@ -13545,13 +13545,13 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Headbutt Key"),
         .price = 0,
         .description = COMPOUND_STRING(
-            "A forest key tied\n"
-            "to the technique\n"
-            "HEADBUTT."),
+            "Shakes sturdy trees\n"
+            "to find wild\n"
+            "POKéMON."),
         .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
-        .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_Headbutt,
         .iconPic = gItemIcon_SecretKey,
         .iconPalette = gItemIconPalette_SecretKey,
     },
@@ -14142,6 +14142,22 @@ const struct ItemInfo gItemsInfo[] =
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_FIELD,
         .fieldUseFunc = ItemUseOutOfBattle_WailmerPail,
+        .iconPic = gItemIcon_WailmerPail,
+        .iconPalette = gItemIconPalette_WailmerPail,
+    },
+
+    [ITEM_SQUIRT_BOTTLE] =
+    {
+        .name = ITEM_NAME("SquirtBottle"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A bottle for watering\n"
+            "plants. Check the odd\n"
+            "tree on ROUTE 36."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_WailmerPail,
         .iconPalette = gItemIconPalette_WailmerPail,
     },

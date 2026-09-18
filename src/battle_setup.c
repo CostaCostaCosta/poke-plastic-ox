@@ -7,6 +7,7 @@
 #include "main.h"
 #include "task.h"
 #include "safari_zone.h"
+#include "plastic_ox_contest.h"
 #include "script.h"
 #include "event_data.h"
 #include "metatile_behavior.h"
@@ -331,7 +332,7 @@ static bool8 CheckSilphScopeInPokemonTower(u16 mapGroup, u16 mapNum)
 
 void BattleSetup_StartWildBattle(void)
 {
-    if (GetSafariZoneFlag())
+    if (GetSafariZoneFlag() || PlasticOxContest_IsActive())
         DoSafariBattle();
     else if (CheckSilphScopeInPokemonTower(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum))
         DoGhostBattle();
@@ -412,7 +413,7 @@ static void DoSafariBattle(void)
     LockPlayerFieldControls();
     FreezeObjectEvents();
     StopPlayerAvatar();
-    gMain.savedCallback = CB2_EndSafariBattle;
+    gMain.savedCallback = PlasticOxContest_IsActive() ? PlasticOxContest_EndBattle : CB2_EndSafariBattle;
     gBattleTypeFlags = BATTLE_TYPE_SAFARI;
     CreateBattleStartTask(GetWildBattleTransition(), 0);
 }

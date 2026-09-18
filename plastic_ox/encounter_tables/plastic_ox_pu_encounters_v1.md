@@ -101,17 +101,14 @@ The two Mt. Moon tables share the same ecological family but shift their anchors
 
 ---
 
-## Mt. Moon — Helix Fossil
+## Mt. Moon — Team Rocket's Town Map
 
-A **Helix Fossil** is obtained in Mt. Moon.
+After both Mt. Moon grunts are defeated, a Team Rocket member hands over a
+**Town Map**. This is a one-time reward; receiving it completes the Mt. Moon
+story gate. Mt. Moon does not award a fossil or Omanyte.
 
-It should **not** be mutually exclusive with another fossil.
-
-The player can return to Devon in Rustboro to revive:
-
-**Omanyte — Lv. 15**
-
-If fossil revival is not already active by this point, Devon revival should be enabled when the player obtains the Helix Fossil so that Omanyte is genuinely available during PU.
+The later Route 25 Cottage fossil rewards remain separate. Devon can revive
+a Helix Fossil obtained there into **Omanyte — Lv. 15**.
 
 ---
 
@@ -556,7 +553,7 @@ Unown is deliberately skipped, leaving **24 intended PU lines** to place in this
 | Tangela | Route 36 | Wild grass | 10% |
 | Ditto | Route 35 | Wild grass | 5% |
 | Porygon | Goldenrod | Game Corner prize | Premium prize |
-| Omanyte | Mt. Moon / Devon | Fossil revival | Helix Fossil from Mt. Moon |
+| Omanyte | Route 25 Cottage / Devon | Fossil revival | Later Cottage Helix Fossil reward; not Mt. Moon |
 | Aipom | Route 33 | Headbutt | 30% tree anchor |
 | Yanma | Route 35 | Wild grass | 5% |
 | Unown | — | Intentionally skipped | No forced Ruins encounter |
@@ -702,7 +699,7 @@ This preserves both tier gates without requiring a wild Shedinja encounter.
 
 | Pokémon | Location | Method |
 |---|---|---|
-| Omanyte | Mt. Moon → Devon | Helix Fossil revival |
+| Omanyte | Route 25 Cottage → Devon | Helix Fossil revival; not a Mt. Moon reward |
 | Abra | Goldenrod | Game Corner prize |
 | Luvdisc | Goldenrod | Game Corner prize |
 | Castform | Goldenrod | Game Corner prize |
@@ -989,7 +986,7 @@ The static encounter preserves one of Johto's signature progression moments whil
 - Mawile
 - Meditite
 - Shuckle
-- Omanyte fossil
+- Town Map from Team Rocket
 - Moon Stones
 
 → **Route 33**
@@ -1034,8 +1031,8 @@ The static encounter preserves one of Johto's signature progression moments whil
 
 - [ ] Add Mt. Moon 1F encounter table.
 - [ ] Add Mt. Moon B1F/B2F encounter table.
-- [ ] Place Helix Fossil in Mt. Moon.
-- [ ] Ensure Devon can revive Omanyte during PU.
+- [x] Give a Town Map from Team Rocket after both Mt. Moon grunts; no fossil reward.
+- [ ] Preserve Devon Omanyte revival for the separate Cottage Helix Fossil source.
 - [ ] Place at least two PU-accessible Moon Stones in Mt. Moon.
 - [ ] Add Route 33 grass table.
 - [ ] Add Route 33 Headbutt table.

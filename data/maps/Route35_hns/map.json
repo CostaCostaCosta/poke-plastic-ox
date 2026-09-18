@@ -15,16 +15,16 @@
   "connections": [],
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_PICNICKER_HNS",
+      "graphics_id": "OBJ_EVENT_GFX_PICNICKER",
       "x": 10,
       "y": 38,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 5,
       "movement_range_y": 5,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "5",
-      "script": "Route35_EventScript_Npc1",
+      "trainer_type": "TRAINER_TYPE_NORMAL",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "Pox_PU_ROUTE35",
       "flag": "0"
     },
     {
@@ -93,7 +93,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
+      "graphics_id": "OBJ_EVENT_GFX_MAN_3",
       "x": 20,
       "y": 6,
       "elevation": 0,
@@ -102,7 +102,7 @@
       "movement_range_y": 3,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "3",
-      "script": "Route35_EventScript_Npc7",
+      "script": "POX_PU_MailGuard",
       "flag": "0"
     },
     {
@@ -213,6 +213,14 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "PoxRegion_goldenrod_route35_b_Sign"
+    },
+    {
+      "type": "sign",
+      "x": 14,
+      "y": 4,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PlasticOx_EventScript_HeadbuttTree"
     }
   ],
   "region": "REGION_HOENN"

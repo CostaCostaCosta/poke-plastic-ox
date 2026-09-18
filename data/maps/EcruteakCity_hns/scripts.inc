@@ -9,6 +9,16 @@ EcruteakCity_EventScript_Npc1::
 	release
 	end
 
+EcruteakCity_EventScript_KimonoRoadblock::
+	lock
+	faceplayer
+	msgbox EcruteakCity_Text_KimonoRoadblock, MSGBOX_NPC
+	release
+	end
+
+EcruteakCity_Text_KimonoRoadblock:
+	.string "Please help MORTY at the BURNED\nTOWER, then earn his GYM BADGE.\pAfter that, you may pass east.$"
+
 EcruteakCity_EventScript_Npc2::
 	lock
 	faceplayer

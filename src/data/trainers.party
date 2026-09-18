@@ -17018,28 +17018,70 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer / Smart Switching / PP Stall Prevention
 
-Geodude
-Level: 5
-- Rock Throw
-- Tackle
+Voltorb @ Sitrus Berry
+Level: 13
+Ability: Static
+IVs: 30 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 36 HP / 36 Def / 240 SpA / 196 Spe
+Modest Nature
+- Thunderbolt
+- Hidden Power
+- Substitute
+- Explosion
 
-Onix @ Sitrus Berry
-Level: 5
-EVs: 236 Atk / 76 SpD / 196 Spe
+Trapinch @ Sitrus Berry
+Level: 13
+Ability: Arena Trap
+IVs: 31 HP / 30 Atk / 31 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 156 HP / 36 Atk / 160 SpD / 116 Spe
+Adamant Nature
+- Earthquake
+- Quick Attack
+- Hidden Power
+- Endure
+
+Cacnea @ Sitrus Berry
+Level: 13
+Ability: Sand Veil
+IVs: 31 HP / 2 Atk / 30 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 116 HP / 40 Def / 196 SpD / 156 Spe
+Calm Nature
+- Spikes
+- Giga Drain
+- Hidden Power
+- Encore
+
+Chinchou @ Sitrus Berry
+Level: 13
+Ability: Volt Absorb
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 52 Def / 152 SpA / 68 SpD / 220 Spe
+Timid Nature
+- Thunderbolt
+- Hidden Power
+- Surf
+- Ice Beam
+
+Anorith @ Sitrus Berry
+Level: 13
+Ability: Battle Armor
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 30 SpD / 30 Spe
+EVs: 76 HP / 76 Atk / 116 Def / 240 Spe
 Jolly Nature
-- Earthquake
-- Explosion
-- Rock Slide
-- Sunny Day
+- Swords Dance
+- Hidden Power
+- Rock Blast
+- Brick Break
 
-Nosepass @ Sitrus Berry
-Level: 5
-EVs: 252 HP / 60 Atk / 196 SpD
-Careful Nature
-- Earthquake
-- Protect
-- Explosion
-- Thunder Wave
+Lileep @ Sitrus Berry
+Level: 13
+Ability: Suction Cups
+EVs: 148 HP / 108 Atk / 60 Def / 28 SpA / 140 SpD / 12 Spe
+Brave Nature
+- Rock Slide
+- Giga Drain
+- Barrier
+- Recover
 
 === TRAINER_PLASTIC_OX_WHITNEY ===
 Name: WHITNEY
@@ -17050,23 +17092,68 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer / Smart Switching / PP Stall Prevention
 
-Delcatty
-Level: 18
-- Fake Out
-- Attract
-- Return
+Yanma @ Leftovers
+Level: 20
+Ability: Compound Eyes
+IVs: 31 HP / 31 Atk / 30 Def / 30 SpA / 31 SpD / 30 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Substitute
+- Hypnosis
+- Psychic
+- Hidden Power
 
-Furret
-Level: 18
-- Quick Attack
-- Defense Curl
-- Return
+Dragonair @ Leftovers
+Level: 20
+Ability: Shed Skin
+IVs: 31 HP / 31 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Adamant Nature
+- Dragon Dance
+- Double-Edge
+- Iron Tail
+- Hidden Power
 
-Miltank
-Level: 18
-- Rollout
-- Milk Drink
-- Stomp
+Mawile @ Leftovers
+Level: 20
+Ability: Intimidate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 132 HP / 252 Atk / 124 Spe
+Adamant Nature
+- Swords Dance
+- Brick Break
+- Hidden Power
+- Substitute
+
+Ariados @ Leftovers
+Level: 20
+Ability: Swarm
+EVs: 252 HP / 252 Def / 4 Atk
+Impish Nature
+- Psychic
+- Sludge Bomb
+- Baton Pass
+- Signal Beam
+
+Lickitung @ Leftovers
+Level: 20
+Ability: Own Tempo
+EVs: 252 HP / 4 Atk / 252 SpD
+Careful Nature
+- Curse
+- Rest
+- Shadow Ball
+- Body Slam
+
+Minun @ Leftovers
+Level: 20
+Ability: Minus
+EVs: 252 HP / 4 SpA / 252 Spe
+Timid Nature
+- Substitute
+- Encore
+- Baton Pass
+- Thunderbolt
 
 === TRAINER_PLASTIC_OX_MORTY ===
 Name: MORTY
@@ -17258,14 +17345,16 @@ Double Battle: No
 AI: Basic Trainer / Smart Switching / PP Stall Prevention
 
 Zubat
-Level: 12
+Level: 15
 - Bite
 - Wing Attack
+- Supersonic
 
 Rattata
-Level: 12
+Level: 15
 - Hyper Fang
 - Quick Attack
+- Tail Whip
 
 === TRAINER_PLASTIC_OX_MOONGRUNT2 ===
 Name: GRUNT
@@ -17276,15 +17365,17 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer / Smart Switching / PP Stall Prevention
 
-Zubat
-Level: 12
+Ekans
+Level: 16
 - Bite
-- Wing Attack
+- Glare
+- Wrap
 
-Rattata
-Level: 12
-- Hyper Fang
-- Quick Attack
+Koffing
+Level: 16
+- Sludge
+- Smokescreen
+- Tackle
 
 === TRAINER_PLASTIC_OX_KIMONOVAPOREON ===
 Name: NAOKO
@@ -17940,3 +18031,93 @@ Level: 11
 
 Dratini
 Level: 11
+
+=== TRAINER_PLASTIC_OX_PU_ROUTE33 ===
+Name: ANTHONY
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Geodude
+Level: 16
+- Rock Throw
+- Defense Curl
+- Magnitude
+
+Spinda
+Level: 16
+- Psybeam
+- Dizzy Punch
+- Teeter Dance
+
+=== TRAINER_PLASTIC_OX_PU_ROUTE35 ===
+Name: BROOKE
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Nidorina
+Level: 18
+- Double Kick
+- Poison Sting
+- Bite
+
+Farfetch'd
+Level: 18
+- Aerial Ace
+- Fury Attack
+- Sand Attack
+
+=== TRAINER_PLASTIC_OX_PU_PARK ===
+Name: WILLIAM
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Ledian
+Level: 19
+- Light Screen
+- Comet Punch
+- Supersonic
+
+Butterfree
+Level: 19
+- Confusion
+- Stun Spore
+- Gust
+
+=== TRAINER_PLASTIC_OX_PU_ROUTE36 ===
+Name: MARK
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Natu
+Level: 20
+- Night Shade
+- Confuse Ray
+- Peck
+
+Drowzee
+Level: 20
+- Confusion
+- Headbutt
+- Hypnosis
+
+Baltoy
+Level: 20
+- Psybeam
+- Rock Tomb
+- Rapid Spin

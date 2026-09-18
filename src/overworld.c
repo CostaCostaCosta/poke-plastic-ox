@@ -12,6 +12,7 @@
 #include "dexnav.h"
 #include "event_data.h"
 #include "event_object_movement.h"
+#include "plastic_ox_contest.h"
 #include "event_scripts.h"
 #include "fake_rtc.h"
 #include "field_camera.h"
@@ -706,6 +707,7 @@ static void SetPlayerCoordsFromWarp(void)
 
 void WarpIntoMap(void)
 {
+    PlasticOxContest_OnMapChange();
     ApplyCurrentWarp();
     LoadCurrentMapData();
     SetPlayerCoordsFromWarp();

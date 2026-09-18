@@ -3,60 +3,20 @@
   "donor_revision": "44f50eedefe58691b0444973e4138e9190d8fafc",
   "transitions": [
     {
-      "id": "cherry_route2_a",
-      "source": "CherrygroveCity_hns",
-      "destination": "Route2_Frlg",
-      "tile": [
-        33,
-        0
-      ],
-      "approach": [
-        33,
-        1
-      ],
-      "direction": "N",
-      "landing": [
-        10,
-        79
-      ],
-      "requires": [],
-      "label": "Route2"
-    },
-    {
-      "id": "cherry_route2_b",
-      "source": "Route2_Frlg",
-      "destination": "CherrygroveCity_hns",
-      "tile": [
-        11,
-        79
-      ],
-      "approach": [
-        10,
-        79
-      ],
-      "direction": "E",
-      "landing": [
-        33,
-        1
-      ],
-      "requires": [],
-      "label": "CherrygroveCity"
-    },
-    {
       "id": "rustboro_cottage_a",
       "source": "RustboroCity",
       "destination": "Route24_hns",
       "tile": [
-        20,
+        21,
         0
       ],
       "approach": [
-        19,
-        0
+        21,
+        1
       ],
-      "direction": "E",
+      "direction": "N",
       "landing": [
-        16,
+        18,
         20
       ],
       "requires": [],
@@ -67,17 +27,17 @@
       "source": "Route24_hns",
       "destination": "RustboroCity",
       "tile": [
-        16,
+        18,
         21
       ],
       "approach": [
-        16,
+        18,
         20
       ],
       "direction": "S",
       "landing": [
-        19,
-        0
+        21,
+        1
       ],
       "requires": [],
       "label": "RustboroCity"
@@ -87,16 +47,16 @@
       "source": "RustboroCity",
       "destination": "Route44_hns",
       "tile": [
-        38,
+        39,
         10
       ],
       "approach": [
-        37,
+        38,
         10
       ],
       "direction": "E",
       "landing": [
-        2,
+        1,
         13
       ],
       "requires": [],
@@ -107,16 +67,16 @@
       "source": "Route44_hns",
       "destination": "RustboroCity",
       "tile": [
-        1,
+        0,
         13
       ],
       "approach": [
-        2,
+        1,
         13
       ],
       "direction": "W",
       "landing": [
-        37,
+        38,
         10
       ],
       "requires": [],
@@ -263,9 +223,7 @@
         15,
         47
       ],
-      "requires": [
-        "FLAG_BADGE02_GET"
-      ],
+      "requires": [],
       "label": "Route35"
     },
     {
@@ -285,9 +243,7 @@
         32,
         9
       ],
-      "requires": [
-        "FLAG_BADGE02_GET"
-      ],
+      "requires": [],
       "label": "GoldenrodCity"
     },
     {
@@ -943,14 +899,14 @@
       "source": "PlasticOx_Route20East",
       "destination": "MossdeepCity",
       "tile": [
-        12,
-        12
+        53,
+        10
       ],
       "approach": [
-        12,
-        13
+        52,
+        10
       ],
-      "direction": "N",
+      "direction": "E",
       "landing": [
         0,
         21
@@ -974,8 +930,8 @@
       ],
       "direction": "N",
       "landing": [
-        12,
-        13
+        52,
+        10
       ],
       "requires": [
         "FLAG_POX_STORY_MANSION"
@@ -1598,9 +1554,16 @@
       "MAP_OLDALE_TOWN"
     ],
     "CherrygroveCity_hns": [
+      "MAP_ROUTE2",
       "MAP_ROUTE29_HNS"
     ],
-    "RustboroCity": [],
+    "Route2_Frlg": [
+      "MAP_CHERRYGROVE_CITY_HNS",
+      "MAP_RUSTBORO_CITY"
+    ],
+    "RustboroCity": [
+      "MAP_ROUTE2"
+    ],
     "Route36_hns": [
       "MAP_ROUTE37_HNS"
     ],

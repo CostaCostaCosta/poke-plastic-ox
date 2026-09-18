@@ -139,6 +139,9 @@ def main():
     target_maps = set(MAPS.values())
     group["encounters"] = [e for e in group["encounters"] if e["map"] not in target_maps]
     group["encounters"].extend(entries())
+    # PU establishes Pineco as Ilex Headbutt-only, including after LC regeneration.
+    from apply_pu_v1 import remove_non_ilex_pineco
+    remove_non_ilex_pineco(data)
     JSON.write_text(json.dumps(data, indent=2) + "\n")
 
 

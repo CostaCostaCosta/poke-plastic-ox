@@ -3,6 +3,7 @@ RustboroCity_DevonCorp_1F_MapScripts::
 	.byte 0
 
 RustboroCity_DevonCorp_1F_OnTransition:
+	goto_if_set FLAG_POX_STORY_MTMOON, RustboroCity_DevonCorp_1F_EventScript_OpenFossilLab
 	call_if_unset FLAG_RETURNED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_BlockStairs
 	end
 
@@ -10,6 +11,11 @@ RustboroCity_DevonCorp_1F_EventScript_BlockStairs::
 	setobjectxyperm LOCALID_DEVON_CORP_STAIR_GUARD, 14, 2
 	setobjectmovementtype LOCALID_DEVON_CORP_STAIR_GUARD, MOVEMENT_TYPE_FACE_DOWN
 	return
+
+RustboroCity_DevonCorp_1F_EventScript_OpenFossilLab::
+	setobjectxyperm LOCALID_DEVON_CORP_STAIR_GUARD, 15, 5
+	setobjectmovementtype LOCALID_DEVON_CORP_STAIR_GUARD, MOVEMENT_TYPE_FACE_DOWN
+	end
 
 RustboroCity_DevonCorp_1F_EventScript_Employee::
 	lock
@@ -33,6 +39,7 @@ RustboroCity_DevonCorp_1F_EventScript_GoodsRecovered::
 RustboroCity_DevonCorp_1F_EventScript_StairGuard::
 	lock
 	faceplayer
+	goto_if_set FLAG_POX_STORY_MTMOON, RustboroCity_DevonCorp_1F_EventScript_AlwaysWelcome
 	goto_if_set FLAG_RETURNED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_AlwaysWelcome
 	goto_if_set FLAG_RECOVERED_DEVON_GOODS, RustboroCity_DevonCorp_1F_EventScript_GotRobbed
 	goto_if_set FLAG_DEVON_GOODS_STOLEN, RustboroCity_DevonCorp_1F_EventScript_GotRobbed
