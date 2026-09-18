@@ -1873,7 +1873,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
 {
     u32 personalityValue;
     u8 monsCount;
-    u8 highestPartyLevel = 0;
+    u8 highestPlayerLevel = 0;
     if (battleTypeFlags & BATTLE_TYPE_TRAINER && !(battleTypeFlags & (BATTLE_TYPE_FRONTIER
                                                                         | BATTLE_TYPE_EREADER_TRAINER
                                                                         | BATTLE_TYPE_TRAINER_HILL)))
@@ -1895,17 +1895,22 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
         u32 monIndices[monsCount];
         DoTrainerPartyPool(trainer, monIndices, monsCount, battleTypeFlags);
 
-        // After Mossdeep, each opposing trainer uses the highest level in their selected party.
+        // After Mossdeep, opposing trainers match the strongest non-Egg in the player's party.
         if (party != gParties[B_TRAINER_PLAYER]
          && !(battleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED))
          && FlagGet(FLAG_POX_TRIGGERS_ENABLED)
          && FlagGet(FLAG_BADGE06_GET))
         {
-            for (s32 i = 0; i < monsCount; i++)
+            for (s32 i = 0; i < PARTY_SIZE; i++)
             {
-                u8 level = trainer->party[monIndices[i]].lvl;
-                if (level > highestPartyLevel)
-                    highestPartyLevel = level;
+                struct Pokemon *playerMon = &gParties[B_TRAINER_PLAYER][i];
+                enum Species species = GetMonData(playerMon, MON_DATA_SPECIES_OR_EGG);
+                if (species != SPECIES_NONE && species != SPECIES_EGG)
+                {
+                    u8 level = GetMonData(playerMon, MON_DATA_LEVEL);
+                    if (level > highestPlayerLevel)
+                        highestPlayerLevel = level;
+                }
             }
         }
 
@@ -1939,7 +1944,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 otId.value = HIHALF(personalityValue) ^ LOHALF(personalityValue);
             }
             CreateMon(&party[i], partyData[monIndex].species,
-                      highestPartyLevel ? highestPartyLevel : partyData[monIndex].lvl,
+                      highestPlayerLevel ? highestPlayerLevel : partyData[monIndex].lvl,
                       personalityValue, otId);
             SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[monIndex].heldItem);
 

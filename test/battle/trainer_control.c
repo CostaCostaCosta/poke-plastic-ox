@@ -93,10 +93,14 @@ TEST("CreateNPCTrainerPartyForTrainer generates customized Pokémon")
     Free(testParty);
 }
 
-TEST("Mossdeep badge raises opposing trainer party to its highest selected level")
+TEST("Mossdeep badge makes opposing trainer party match the player's highest level")
 {
     struct Pokemon *testParty = Alloc(6 * sizeof(struct Pokemon));
     const struct Trainer *trainer = GetTrainerStructFromId(3);
+
+    ZeroPartyMons(gParties[B_TRAINER_PLAYER]);
+    CreateMon(&gParties[B_TRAINER_PLAYER][0], SPECIES_PIKACHU, 42, 0, OTID_STRUCT_RANDOM_NO_SHINY);
+    CreateMon(&gParties[B_TRAINER_PLAYER][1], SPECIES_EEVEE, 35, 0, OTID_STRUCT_RANDOM_NO_SHINY);
 
     FlagSet(FLAG_POX_TRIGGERS_ENABLED);
     FlagClear(FLAG_BADGE06_GET);
@@ -105,12 +109,13 @@ TEST("Mossdeep badge raises opposing trainer party to its highest selected level
 
     FlagSet(FLAG_BADGE06_GET);
     CreateNPCTrainerPartyFromTrainer(testParty, trainer, FALSE, BATTLE_TYPE_TRAINER);
-    EXPECT_EQ(GetMonData(&testParty[0], MON_DATA_LEVEL), 67);
-    EXPECT_EQ(GetMonData(&testParty[1], MON_DATA_LEVEL), 67);
-    EXPECT_EQ(GetMonData(&testParty[2], MON_DATA_LEVEL), 67);
+    EXPECT_EQ(GetMonData(&testParty[0], MON_DATA_LEVEL), 42);
+    EXPECT_EQ(GetMonData(&testParty[1], MON_DATA_LEVEL), 42);
+    EXPECT_EQ(GetMonData(&testParty[2], MON_DATA_LEVEL), 42);
 
     FlagClear(FLAG_BADGE06_GET);
     FlagClear(FLAG_POX_TRIGGERS_ENABLED);
+    ZeroPartyMons(gParties[B_TRAINER_PLAYER]);
     Free(testParty);
 }
 
