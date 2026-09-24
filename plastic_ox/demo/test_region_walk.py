@@ -33,8 +33,8 @@ LEGS={
      ('seam','N','RustboroCity'),('seam','S','Route2_Frlg'),('warp',0),('warp',1),('warp',0),('warp',1),('seam','S','CherrygroveCity_hns')]),
  'early':('PalletTown_Frlg',(13,10),[
      ('seam','N','Route101'),('seam','N','OldaleTown'),('seam','W','Route29_hns'),('seam','W','CherrygroveCity_hns'),
-     'cherry_route2_a',('warp',2),('warp',3),'ilex_route2_north',('warp',3),('seam','N','RustboroCity'),
-     'rustboro_cottage_a',('seam','N','Route25_hns'),('warp',0),('warp',0),('seam','S','Route24_hns'),'rustboro_cottage_b',
+     ('seam','N','Route2_Frlg'),('warp',2),('warp',3),'ilex_route2_north',('warp',3),('seam','N','RustboroCity'),
+     ('seam','N','Route24_hns'),('seam','N','Route25_hns'),('warp',0),('warp',0),('seam','S','Route24_hns'),('seam','S','RustboroCity'),
      'rustboro_route44_a','route44_moon_a','moon_route33_a','route33_goldenrod_a']),
  'central':('GoldenrodCity_hns',(28,37),['goldenrod_route35_a','route35_park_a','park_route36_a',
      ('seam','N','Route37_hns'),'route37_ecruteak_a','ecruteak_route119_a','route119_fortree_a','fortree_route110_a','route110_lavender_a']),

@@ -28,6 +28,9 @@ def main():
     out = ROOT/'plastic_ox/demo/shots/region_v7'
     out.mkdir(parents=True, exist_ok=True)
     g = StoryGame()
+    # Gate tests must exercise prerequisites even if the test save was booted
+    # with story triggers disabled. Open traversal also checks the real gates.
+    g.flag('FLAG_POX_TRIGGERS_ENABLED', True)
     g.flag('FLAG_POX_STORY_STARTER', True)
     g.flag('FLAG_ADVENTURE_STARTED', True)
     g.flag('FLAG_POX_HIDE_UNUSED_ACTOR', True)
@@ -117,7 +120,7 @@ def native_warps(g,ids,out,only):
             dest=byid.get(w['dest_map'])
             if dest not in selected or dest == name:
                 continue
-            landing_only={'IlexForest_hns':{1},'SeafoamIslands_B1F_Frlg':{9,10},'SeafoamIslands_B2F_Frlg':{7,8},'SeafoamIslands_B3F_Frlg':{5,6},'SeafoamIslands_B4F_Frlg':{2,3}}
+            landing_only={'SeafoamIslands_B1F_Frlg':{9,10},'SeafoamIslands_B2F_Frlg':{7,8},'SeafoamIslands_B3F_Frlg':{5,6},'SeafoamIslands_B4F_Frlg':{2,3}}
             if index in landing_only.get(name,set()):
                 records.append(dict(source=name,warp=index,destination=dest,passed=True,landing_only=True))
                 continue

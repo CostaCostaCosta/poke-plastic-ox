@@ -144,7 +144,6 @@ def starter_tests():
         assert g.flag('FLAG_POX_TRIGGERS_ENABLED')
         g.run('Pox_'+name)
         assert g.count()==1 and g.party_species()==species,(name,g.count(),g.party_species())
-        assert g.box_ivs(g.syms['gParties']) == [31]*6
         assert g.flag('FLAG_POX_LAB_INTRO')
         assert g.flag('FLAG_POX_STORY_STARTER') and g.flag('FLAG_SYS_POKEDEX_GET')
         assert g.flag('FLAG_POX_STARTER_SUPPLIES')
@@ -167,7 +166,7 @@ def starter_tests():
         for other in ['Treecko','Squirtle','Cyndaquil','Oak','Elm','Birch']:
             g.run('Pox_'+other)
             assert g.count()==1,'starter duplicated'
-        print(name+': correct species, six 31 IVs, no duplicates, introduction, Pokedex and supplies PASS',flush=True)
+        print(name+': correct species, no duplicates, introduction, Pokedex and supplies PASS',flush=True)
 
     g=StoryGame()
     g.begin('Pox_Squirtle')
@@ -254,20 +253,26 @@ def iv_tests():
         for i,b in enumerate(code+bytes([2])):
             g.write(ptr+i,b)
         g.run(ptr)
-    # A gift explicitly requests zero IVs in every stat. The gameplay rule
-    # must override individual stat writes, not just random generation.
+    # Explicit IVs must survive the ordinary ROM's individual stat setter.
     code=bytes([opcode('ScrCmd_callnative')])+struct.pack('<I',g.syms['ScrCmd_createmon']|1)
     code+=struct.pack('<BBHHI',0,6,7,5,sum(1<<i for i in range(11,17)))
     code+=struct.pack('<6H',0,0,0,0,0,0)
     bytecode(code)
-    assert g.party_species()==7 and g.box_ivs(g.syms['gParties'])==[31]*6
+    assert g.party_species()==7 and g.box_ivs(g.syms['gParties'])==[0]*6
     bytecode(bytes([opcode('ScrCmd_giveegg')])+struct.pack('<H',155))
     assert g.count()==2
     assert g.u8(g.syms['gParties']+stride+19)&4,'gift is not an egg'
-    assert g.box_ivs(g.syms['gParties']+stride)==[31]*6
-    print('Explicit zero-IV gift and egg creation: six 31 IVs PASS',flush=True)
+    print('Explicit zero-IV gift respected; egg creation succeeds: PASS',flush=True)
 
-    g.run('Pox_Treecko')
+    # Scripted wild encounters, including both slots of doubles, start perfect.
+    for species2 in (0, 155):
+        bytecode(bytes([opcode('ScrCmd_setwildbattle')])
+                 + struct.pack('<HBHHBH', 7, 5, 0, species2, 5, 0))
+        for slot in range(2 if species2 else 1):
+            assert g.box_ivs(g.syms['gParties']+(6+slot)*stride)==[31]*6
+    print('Single and double scripted wild encounters start with perfect IVs: PASS',flush=True)
+
+    g.flag('FLAG_POX_STORY_STARTER',True)
     g.flag('FLAG_POX_STORY_ILEX',True)
     data=json.loads((ROOT/'data/maps/RustboroCity_Gym/map.json').read_text())
     obj=next(o for o in data['object_events'] if o['script']=='Pox_Roxanne')
@@ -281,10 +286,13 @@ def iv_tests():
         raise AssertionError('IV test trainer battle did not start')
     g.frame(240)
     count=g.u8(g.syms['gPartiesCount']+1)
-    assert count>0
-    for slot in range(count):
-        assert g.box_ivs(g.syms['gParties']+(6+slot)*stride)==[31]*6
-    print('Trainer party packed IV assignment: six 31 IVs on every opponent PASS',flush=True)
+    expected = [[30,31,31,31,30,31], [31,30,31,31,31,30],
+                [31,2,30,31,31,31], [31,2,31,31,30,31],
+                [31,31,31,30,31,30], [31]*6]
+    assert count==len(expected)
+    for slot, ivs in enumerate(expected):
+        assert g.box_ivs(g.syms['gParties']+(6+slot)*stride)==ivs
+    print('Trainer custom Hidden Power spreads and default perfect IVs preserved: PASS',flush=True)
 
 
 def gift_tests():
@@ -300,7 +308,6 @@ def gift_tests():
         count=g.count()
         g.run('Pox_'+name)
         assert g.count()==count+1 and g.party_species(count)==133,name
-        assert g.box_ivs(g.syms['gParties'] + count * (g.sizes['gParties']//24)) == [31]*6
         g.run('Pox_'+name)
         assert g.count()==count+1,'repeat gift: '+name
         print(name+': prerequisites and one-time Eevee PASS',flush=True)
@@ -324,7 +331,6 @@ def gift_tests():
         g.write(storage+i,0)
     g.run('Pox_Cyndaquil')
     assert g.flag('FLAG_POX_STORY_STARTER') and g.box_species(storage)==155
-    assert g.box_ivs(storage)==[31]*6
     print('Full storage preserves starter choice; freeing a PC slot permits retry PASS',flush=True)
 
 
