@@ -7,9 +7,8 @@
 
 u32 GetCurrentLevelCap(void)
 {
-    // Plastic Ox: level-cap ladder from plasticox_encounters_v1.md
-    // (LC 13 / PU 20 / NU 30 / RU 36 / UU 42 / UUBL 50 / OU 55 / Gym 8 OU 60).
-    // No champion entry: the cap returns to MAX_LEVEL after badge 8.
+    // Plastic Ox: level caps apply through the sixth Gym segment.
+    // Receiving badge 6 clears the final cap and returns to MAX_LEVEL.
     static const u32 sLevelCapFlagMap[][2] =
     {
         {FLAG_BADGE01_GET, 13},
@@ -18,8 +17,6 @@ u32 GetCurrentLevelCap(void)
         {FLAG_BADGE04_GET, 36},
         {FLAG_BADGE05_GET, 42},
         {FLAG_BADGE06_GET, 50},
-        {FLAG_BADGE07_GET, 55},
-        {FLAG_BADGE08_GET, 60},
     };
 
     u32 i;
