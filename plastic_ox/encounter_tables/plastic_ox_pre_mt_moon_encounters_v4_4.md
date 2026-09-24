@@ -25,6 +25,16 @@
 
 **All audit checks pass.**
 
+## Route 2 naming
+
+Route 2 is the active map on both sides of Ilex Forest.  The two sections
+below retain the encounter schedules formerly documented as Route 1 and Route
+31, but use their in-game Route 2 geography: **south** is the Cherrygrove
+side, and **north** is the Rustboro side.  The game currently has one Route 2
+wild-encounter header, so the Route 2 North schedule is used on both ends at
+runtime; the Route 2 South schedule remains the preserved former Route 1
+table.
+
 ------------------------------------------------------------------------
 
 # 1. Pallet Town
@@ -187,7 +197,7 @@
 
 ------------------------------------------------------------------------
 
-# 8. Route 1
+# 8. Route 2 South (former Route 1)
 
 ## Grass — Lv. 4–6
 
@@ -218,7 +228,7 @@
 
 ------------------------------------------------------------------------
 
-# 9. Route 31
+# 9. Route 2 North (former Route 31)
 
 ## Grass — Lv. 5–7
 

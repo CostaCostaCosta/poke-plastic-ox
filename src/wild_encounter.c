@@ -368,36 +368,15 @@ static u32 ChooseWildMonIndex_Fishing(u8 rod)
             wildMonIndex = 1 - wildMonIndex;
         break;
     case GOOD_ROD:
-        // Plastic Ox's early fishing pools use twenty equally weighted slots
-        // so the authored 5% increments remain exact. Other maps retain
-        // standard Good Rod behavior.
-        switch (gMapHeader.mapLayoutId)
-        {
-        case LAYOUT_PALLET_TOWN:
-        case LAYOUT_OLDALE_TOWN:
-        case LAYOUT_ROUTE103:
-        case LAYOUT_CHERRYGROVE_CITY_HNS:
-        case LAYOUT_ROUTE31_HNS:
-        case LAYOUT_ROUTE104:
-        case LAYOUT_ROUTE24_HNS:
-        case LAYOUT_ROUTE25_HNS:
-        case LAYOUT_ROUTE44_HNS:
-            wildMonIndex = Random() % 20;
-            if (swap)
-                wildMonIndex = 19 - wildMonIndex;
-            break;
-        default:
-            if (rand < ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_2)
-                wildMonIndex = 2;
-            if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_2 && rand < ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_3)
-                wildMonIndex = 3;
-            if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_3 && rand < ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_4)
-                wildMonIndex = 4;
+        if (rand < ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_2)
+            wildMonIndex = 2;
+        if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_2 && rand < ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_3)
+            wildMonIndex = 3;
+        if (rand >= ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_3 && rand < ENCOUNTER_CHANCE_FISHING_MONS_GOOD_ROD_SLOT_4)
+            wildMonIndex = 4;
 
-            if (swap)
-                wildMonIndex = 6 - wildMonIndex;
-            break;
-        }
+        if (swap)
+            wildMonIndex = 6 - wildMonIndex;
         break;
     case SUPER_ROD:
         if (rand < ENCOUNTER_CHANCE_FISHING_MONS_SUPER_ROD_SLOT_5)
@@ -470,6 +449,13 @@ u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon, u8 wildMonIndex, en
 u16 GetCurrentMapWildMonHeaderId(void)
 {
     u16 i;
+    // Route 2 is one physical map split by Ilex Forest. Its south section
+    // begins at the southern gate, while the north section occupies the
+    // remainder of the map. The encounter data contains two consecutive
+    // MAP_ROUTE2 headers, south first and north second.
+    u8 route2HeadersToSkip = (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_ROUTE2)
+                           && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ROUTE2)
+                           && gSaveBlock1Ptr->pos.y < 51);
 
     for (i = 0; ; i++)
     {
@@ -480,6 +466,11 @@ u16 GetCurrentMapWildMonHeaderId(void)
         if (gWildMonHeaders[i].mapGroup == gSaveBlock1Ptr->location.mapGroup &&
             gWildMonHeaders[i].mapNum == gSaveBlock1Ptr->location.mapNum)
         {
+            if (route2HeadersToSkip != 0)
+            {
+                route2HeadersToSkip--;
+                continue;
+            }
             if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_ALTERING_CAVE) &&
                 gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ALTERING_CAVE))
             {
@@ -563,7 +554,8 @@ void CreateWildMon(enum Species species, u8 level)
 {
     ZeroEnemyPartyMons();
     u32 personality = GetMonPersonality(species, GetSynchronizedGender(WILDMON_ORIGIN, species), PickWildMonNature(species), RANDOM_UNOWN_LETTER);
-    CreateMonWithIVs(&gParties[B_TRAINER_OPPONENT_A][0], species, level, personality, OTID_STRUCT_PLAYER_ID, USE_RANDOM_IVS);
+    // Perfect IVs are a creation default, so later Training Kit edits persist.
+    CreateMonWithIVs(&gParties[B_TRAINER_OPPONENT_A][0], species, level, personality, OTID_STRUCT_PLAYER_ID, MAX_PER_STAT_IVS);
     GiveMonInitialMoveset(&gParties[B_TRAINER_OPPONENT_A][0]);
 }
 

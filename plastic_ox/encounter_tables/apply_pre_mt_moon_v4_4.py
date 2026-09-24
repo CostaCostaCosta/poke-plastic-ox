@@ -18,9 +18,11 @@ MAPS = {
     "Route 29": "MAP_ROUTE29_HNS",
     "Route 46": "MAP_ROUTE46_HNS",
     "Cherrygrove City": "MAP_CHERRYGROVE_CITY_HNS",
-    "Route 1": "MAP_ROUTE1",
-    # Route 2 inherits the authored Route 31 encounter schedule.
-    "Route 31": "MAP_ROUTE2",
+    # Route 2 is split by Ilex geographically, though the runtime map has
+    # only one encounter header. The south table is retained on the legacy
+    # Route 1 ID; Route 2 itself uses the northern (former Route 31) table.
+    "Route 2 South (former Route 1)": "MAP_ROUTE1",
+    "Route 2 North (former Route 31)": "MAP_ROUTE2",
     "Dark Cave": "MAP_DARK_CAVE_SOUTH_SIDE_HNS",
     "Ilex Forest": "MAP_ILEX_FOREST_HNS",
     "Route 104": "MAP_ROUTE104",
