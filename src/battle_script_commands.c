@@ -313,8 +313,6 @@ static const s32 sExperienceScalingFactors[] =
     159767,
 };
 
-static const u16 sWhiteOutBadgeMoney[9] = { 8, 16, 24, 36, 48, 64, 80, 100, 120 };
-
 enum GiveCaughtMonStates
 {
     GIVECAUGHTMON_CHECK_PARTY_SIZE,
@@ -5788,7 +5786,7 @@ static u32 GetTrainerMoneyToGive(u16 trainerId)
     {
         const struct TrainerMon *party = GetTrainerPartyFromId(trainerId);
         if (party == NULL)
-            return 20;
+            return 40;
         lastMonLevel = party[GetTrainerPartySizeFromId(trainerId) - 1].lvl;
         trainerMoney = gTrainerClasses[GetTrainerClassFromId(trainerId)].money ?: 5;
 
@@ -5800,7 +5798,7 @@ static u32 GetTrainerMoneyToGive(u16 trainerId)
             moneyReward = 4 * lastMonLevel * gBattleStruct->moneyMultiplier * trainerMoney;
     }
 
-    return moneyReward;
+    return moneyReward * 2;
 }
 
 static void Cmd_getmoneyreward(void)
@@ -5808,7 +5806,6 @@ static void Cmd_getmoneyreward(void)
     CMD_ARGS();
 
     u32 money;
-    u8 sPartyLevel = 1;
 
     if (gBattleOutcome == B_OUTCOME_WON)
     {
@@ -5819,32 +5816,10 @@ static void Cmd_getmoneyreward(void)
     }
     else
     {
-        if (B_WHITEOUT_MONEY <= GEN_3)
-        {
-            money = GetMoney(&gSaveBlock1Ptr->money) / 2;
-        }
-        else
-        {
-            s32 i, count;
-            for (i = 0; i < PARTY_SIZE; i++)
-            {
-                if (GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
-                && GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG)
-                {
-                    if (GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_LEVEL) > sPartyLevel)
-                        sPartyLevel = GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_LEVEL);
-                }
-            }
-            for (count = 0, i = 0; i < ARRAY_COUNT(gBadgeFlags); i++)
-            {
-                if (FlagGet(gBadgeFlags[i]) == TRUE)
-                    ++count;
-            }
-            money = sWhiteOutBadgeMoney[count] * sPartyLevel;
-        }
-        if (!IsEnoughMoney(&gSaveBlock1Ptr->money, money))
-            money = GetMoney(&gSaveBlock1Ptr->money);
+        money = GetMoney(&gSaveBlock1Ptr->money) > 0 ? 1 : 0;
         RemoveMoney(&gSaveBlock1Ptr->money, money);
+        // Trainer forfeits also use this command and count as whiteouts.
+        IncrementGameStat(GAME_STAT_WHITEOUTS);
     }
 
     PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 5, money);
@@ -10219,8 +10194,9 @@ static void Cmd_givecaughtmon(void)
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SOMEONES_BOX_FULL;
             }
 
-            // Change to B_MSG_SENT_LANETTES_PC or B_MSG_LANETTES_BOX_FULL
-            if (FlagGet(FLAG_SYS_PC_LANETTE))
+            if (FlagGet(FLAG_POX_KNOWS_BILL_PC))
+                gBattleCommunication[MULTISTRING_CHOOSER] += 2;
+            else if (FlagGet(FLAG_SYS_PC_LANETTE))
                 gBattleCommunication[MULTISTRING_CHOOSER]++;
         }
 

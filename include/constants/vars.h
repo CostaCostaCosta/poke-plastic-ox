@@ -162,7 +162,7 @@
 #define VAR_LITTLEROOT_HOUSES_STATE_BRENDAN              0x408C
 #define VAR_LITTLEROOT_RIVAL_STATE                       0x408D
 #define VAR_BOARD_BRINEY_BOAT_STATE                      0x408E
-#define VAR_DEVON_CORP_3F_STATE                          0x408F
+#define VAR_DEVON_CORP_1F_GREETING                        0x408F
 #define VAR_BRINEY_HOUSE_STATE                           0x4090
 #define VAR_UNUSED_0x4091                                0x4091 // Unused Var
 #define VAR_LITTLEROOT_INTRO_STATE                       0x4092
@@ -271,7 +271,7 @@
 #define VAR_UNUSED_0x40F9                                0x40F9 // Unused Var
 #define VAR_UNUSED_0x40FA                                0x40FA // Unused Var
 #define VAR_UNUSED_0x40FB                                0x40FB // Unused Var
-#define VAR_UNUSED_0x40FC                                0x40FC // Unused Var
+#define VAR_POX_SAVE_MIGRATION_VERSION                   0x40FC
 #define VAR_UNUSED_0x40FD                                0x40FD // Unused Var
 #define VAR_POX_WORLD_SPEED                             0x40FE // Options: 0/1/2/3 = 1x/2x/4x/8x; zero on old/new saves
 #define VAR_UNUSED_0x40FF                                0x40FF // Unused Var

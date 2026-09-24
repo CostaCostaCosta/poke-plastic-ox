@@ -30,13 +30,17 @@ EventScript_TrainingKit::
 TrainingKit_ActionMenu::
 	dynmultipush TrainingKit_Text_Nature, 0
 	dynmultipush TrainingKit_Text_EVs, 1
-	dynmultipush TrainingKit_Text_ChooseAnother, 2
-	dynmultipush TrainingKit_Text_Close, 3
-	dynmultistack 0, 0, FALSE, 4, FALSE, 0, NULL
+	dynmultipush TrainingKit_Text_HiddenPower, 2
+	dynmultipush TrainingKit_Text_Ability, 3
+	dynmultipush TrainingKit_Text_ChooseAnother, 4
+	dynmultipush TrainingKit_Text_Close, 5
+	dynmultistack 0, 0, FALSE, 6, FALSE, 0, NULL
 	switch VAR_RESULT
 	case 0, TrainingKit_NatureMenu
 	case 1, TrainingKit_EVStatMenu
-	case 2, EventScript_TrainingKit
+	case 2, TrainingKit_HiddenPowerMenu
+	case 3, TrainingKit_AbilityMenu
+	case 4, EventScript_TrainingKit
 	goto TrainingKit_Close
 
 TrainingKit_NatureMenu::
@@ -75,9 +79,9 @@ TrainingKit_EVStatMenu::
 	dynmultipush TrainingKit_Text_HP, 0
 	dynmultipush TrainingKit_Text_Attack, 1
 	dynmultipush TrainingKit_Text_Defense, 2
-	dynmultipush TrainingKit_Text_Speed, 3
 	dynmultipush TrainingKit_Text_SpAttack, 4
 	dynmultipush TrainingKit_Text_SpDefense, 5
+	dynmultipush TrainingKit_Text_Speed, 3
 	dynmultipush TrainingKit_Text_Back, 6
 	dynmultistack 0, 0, FALSE, 7, FALSE, 0, NULL
 	goto_if_ge VAR_RESULT, 6, TrainingKit_ActionMenu
@@ -156,6 +160,45 @@ TrainingKit_EVValueMenu::
 	msgbox TrainingKit_Text_EVsSet, MSGBOX_DEFAULT
 	goto TrainingKit_EVStatMenu
 
+TrainingKit_HiddenPowerMenu::
+	dynmultipush TrainingKit_Text_Fighting, TYPE_FIGHTING
+	dynmultipush TrainingKit_Text_Flying, TYPE_FLYING
+	dynmultipush TrainingKit_Text_Poison, TYPE_POISON
+	dynmultipush TrainingKit_Text_Ground, TYPE_GROUND
+	dynmultipush TrainingKit_Text_Rock, TYPE_ROCK
+	dynmultipush TrainingKit_Text_Bug, TYPE_BUG
+	dynmultipush TrainingKit_Text_Ghost, TYPE_GHOST
+	dynmultipush TrainingKit_Text_Steel, TYPE_STEEL
+	dynmultipush TrainingKit_Text_Fire, TYPE_FIRE
+	dynmultipush TrainingKit_Text_Water, TYPE_WATER
+	dynmultipush TrainingKit_Text_Grass, TYPE_GRASS
+	dynmultipush TrainingKit_Text_Electric, TYPE_ELECTRIC
+	dynmultipush TrainingKit_Text_Psychic, TYPE_PSYCHIC
+	dynmultipush TrainingKit_Text_Ice, TYPE_ICE
+	dynmultipush TrainingKit_Text_Dragon, TYPE_DRAGON
+	dynmultipush TrainingKit_Text_Dark, TYPE_DARK
+	dynmultistack 0, 0, TRUE, 7, FALSE, 0, NULL
+	goto_if_eq VAR_RESULT, MULTI_B_PRESSED, TrainingKit_ActionMenu
+	special SetTrainingKitHiddenPower
+	msgbox TrainingKit_Text_HiddenPowerSet, MSGBOX_DEFAULT
+	goto TrainingKit_ActionMenu
+
+TrainingKit_AbilityMenu::
+	special PrepareTrainingKitAbilityMenu
+	dynmultipush gStringVar1, 0
+	dynmultipush gStringVar2, 1
+	dynmultipush TrainingKit_Text_Back, 2
+	dynmultistack 0, 0, FALSE, 3, FALSE, 0, NULL
+	goto_if_ge VAR_RESULT, 2, TrainingKit_ActionMenu
+	special SetTrainingKitAbility
+	goto_if_eq VAR_RESULT, FALSE, TrainingKit_AbilityUnavailable
+	msgbox TrainingKit_Text_AbilitySet, MSGBOX_DEFAULT
+	goto TrainingKit_ActionMenu
+
+TrainingKit_AbilityUnavailable::
+	msgbox TrainingKit_Text_AbilityUnavailable, MSGBOX_DEFAULT
+	goto TrainingKit_AbilityMenu
+
 TrainingKit_Egg::
 	msgbox TrainingKit_Text_Egg, MSGBOX_DEFAULT
 	goto EventScript_TrainingKit
@@ -169,6 +212,10 @@ TrainingKit_Text_Nature:
 	.string "Set nature$"
 TrainingKit_Text_EVs:
 	.string "Set EVs$"
+TrainingKit_Text_HiddenPower:
+	.string "Set Hidden Power$"
+TrainingKit_Text_Ability:
+	.string "Set ability$"
 TrainingKit_Text_ChooseAnother:
 	.string "Choose another$"
 TrainingKit_Text_Close:
@@ -185,6 +232,38 @@ TrainingKit_Text_SpAttack:
 	.string "Sp. Atk$"
 TrainingKit_Text_SpDefense:
 	.string "Sp. Def$"
+TrainingKit_Text_Fighting:
+	.string "Fighting$"
+TrainingKit_Text_Flying:
+	.string "Flying$"
+TrainingKit_Text_Poison:
+	.string "Poison$"
+TrainingKit_Text_Ground:
+	.string "Ground$"
+TrainingKit_Text_Rock:
+	.string "Rock$"
+TrainingKit_Text_Bug:
+	.string "Bug$"
+TrainingKit_Text_Ghost:
+	.string "Ghost$"
+TrainingKit_Text_Steel:
+	.string "Steel$"
+TrainingKit_Text_Fire:
+	.string "Fire$"
+TrainingKit_Text_Water:
+	.string "Water$"
+TrainingKit_Text_Grass:
+	.string "Grass$"
+TrainingKit_Text_Electric:
+	.string "Electric$"
+TrainingKit_Text_Psychic:
+	.string "Psychic$"
+TrainingKit_Text_Ice:
+	.string "Ice$"
+TrainingKit_Text_Dragon:
+	.string "Dragon$"
+TrainingKit_Text_Dark:
+	.string "Dark$"
 TrainingKit_Text_EV000:
 	.string "0 EVs$"
 TrainingKit_Text_EV004:
@@ -319,6 +398,12 @@ TrainingKit_Text_NatureSet:
 	.string "The POKéMON's nature was set.$"
 TrainingKit_Text_EVsSet:
 	.string "Its EVs were set within the 510-point limit.$"
+TrainingKit_Text_HiddenPowerSet:
+	.string "Its HIDDEN POWER type was set.$"
+TrainingKit_Text_AbilitySet:
+	.string "Its ability was set to {STR_VAR_1}.$"
+TrainingKit_Text_AbilityUnavailable:
+	.string "This POKéMON doesn't have that ability.$"
 TrainingKit_Text_Egg:
 	.string "The TRAINING KIT can't be used on an EGG.$"
 TrainingKit_Text_NoPokemon:

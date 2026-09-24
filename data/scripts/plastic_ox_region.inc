@@ -10,11 +10,11 @@ PoxRegion_TrailText::
 PoxRegion_ClosedText::
 	.string "This passage is still closed.\nReturn after your next objective.$"
 
-PoxRegion_cherry_route2_b_Sign::
-	msgbox PoxRegion_cherry_route2_b_Text, MSGBOX_SIGN
+PoxRustboroNorthSign::
+	msgbox PoxRustboroNorthSign_Text, MSGBOX_SIGN
 	end
-PoxRegion_cherry_route2_b_Text::
-	.string "CHERRYGROVE CITY\nThe road south leads to town.$"
+PoxRustboroNorthSign_Text::
+	.string "ROUTE 24 - NORTH\nBILL'S COTTAGE via ROUTE 25$"
 
 Route8_EventScript_Julia::
 	msgbox Route8_Text_JuliaPostBattle, MSGBOX_NPC
@@ -187,42 +187,6 @@ PoxRegion_MonFlewAway::
 	end
 PoxRegion_MonFlewAwayText::
 	.string "The POKéMON flew away!$"
-
-PoxRegion_rustboro_cottage_a::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_rustboro_cottage_a_Open
-PoxRegion_rustboro_cottage_a_Open::
-	warp MAP_ROUTE24_HNS, 18, 20
-	waitstate
-	releaseall
-	end
-PoxRegion_rustboro_cottage_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_RUSTBORO_CITY, 21, 1
-	waitstate
-	releaseall
-	end
-
-PoxRegion_rustboro_cottage_b::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_rustboro_cottage_b_Open
-PoxRegion_rustboro_cottage_b_Open::
-	warp MAP_RUSTBORO_CITY, 21, 1
-	waitstate
-	releaseall
-	end
-PoxRegion_rustboro_cottage_b_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE24_HNS, 18, 20
-	waitstate
-	releaseall
-	end
-
-PoxRegion_rustboro_cottage_b_Sign::
-	msgbox PoxRegion_rustboro_cottage_b_Text, MSGBOX_SIGN
-	end
-PoxRegion_rustboro_cottage_b_Text::
-	.string "RUSTBORO CITY lies south.\nThe cottage path leads north.$"
 
 PoxRegion_rustboro_route44_a::
 	lockall
@@ -892,50 +856,6 @@ PoxRegion_route7_route103_b_Sign::
 PoxRegion_route7_route103_b_Text::
 	.string "ROUTE 7\nKeep to the marked passage.$"
 
-PoxRegion_oldale_route103_a::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_oldale_route103_a_Open
-	goto_if_unset FLAG_POX_STORY_FUJI, PoxRegion_oldale_route103_a_Closed
-PoxRegion_oldale_route103_a_Open::
-	warp MAP_ROUTE103, 9, 20
-	waitstate
-	releaseall
-	end
-PoxRegion_oldale_route103_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_OLDALE_TOWN, 9, 0
-	waitstate
-	releaseall
-	end
-
-PoxRegion_oldale_route103_a_Sign::
-	msgbox PoxRegion_oldale_route103_a_Text, MSGBOX_SIGN
-	end
-PoxRegion_oldale_route103_a_Text::
-	.string "Route103\nMarked passage ahead.$"
-
-PoxRegion_oldale_route103_b::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_oldale_route103_b_Open
-	goto_if_unset FLAG_POX_STORY_FUJI, PoxRegion_oldale_route103_b_Closed
-PoxRegion_oldale_route103_b_Open::
-	warp MAP_OLDALE_TOWN, 9, 0
-	waitstate
-	releaseall
-	end
-PoxRegion_oldale_route103_b_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE103, 9, 20
-	waitstate
-	releaseall
-	end
-
-PoxRegion_oldale_route103_b_Sign::
-	msgbox PoxRegion_oldale_route103_b_Text, MSGBOX_SIGN
-	end
-PoxRegion_oldale_route103_b_Text::
-	.string "OldaleTown\nMarked passage ahead.$"
-
 PoxRegion_route103_cinnabar_a::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route103_cinnabar_a_Open
@@ -1585,28 +1505,6 @@ PoxRegion_underground_return_7_Closed::
 	waitstate
 	releaseall
 	end
-
-PoxRegion_ilex_route2_north::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_ilex_route2_north_Open
-	goto_if_unset FLAG_POX_STORY_ILEX, PoxRegion_ilex_route2_north_Closed
-PoxRegion_ilex_route2_north_Open::
-	warp MAP_ROUTE2_VIRIDIAN_FOREST_NORTH_ENTRANCE, 7, 9
-	waitstate
-	releaseall
-	end
-PoxRegion_ilex_route2_north_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ILEX_FOREST_HNS, 20, 15
-	waitstate
-	releaseall
-	end
-
-PoxRegion_ilex_route2_north_Sign::
-	msgbox PoxRegion_ilex_route2_north_Text, MSGBOX_SIGN
-	end
-PoxRegion_ilex_route2_north_Text::
-	.string "ROUTE 2 NORTH GATE\nRUSTBORO lies beyond ROUTE 2.$"
 
 PoxRoute2_Ether::
 	finditem ITEM_ETHER

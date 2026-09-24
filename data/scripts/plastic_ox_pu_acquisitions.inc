@@ -163,10 +163,10 @@ POX_PU_Text_NoCoins:
 POX_PU_Text_NeedCase:
 	.string "Please visit the coin cashier\nto the left for a free COIN CASE.$"
 POX_PU_Text_ReviveHelix:
-	.string "That's a HELIX FOSSIL! We can now\nrevive it as a Lv. 15 OMANYTE.\p"
+	.string "That's a HELIX FOSSIL! We can now\nrevive it as a Lv. 10 OMANYTE.\p"
 	.string "Shall I revive it for you?$"
 POX_PU_Text_OmanyteReceived:
-	.string "Your HELIX FOSSIL came back to life!\nYou received OMANYTE at Lv. 15!$"
+	.string "Your HELIX FOSSIL came back to life!\nYou received OMANYTE at Lv. 10!$"
 POX_PU_Text_FossilNoRoom:
 	.string "Your party and PC are both full.\nKeep your fossil and come back!$"
 POX_PU_Text_MailOffer:

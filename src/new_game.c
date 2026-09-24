@@ -49,7 +49,9 @@
 #include "mystery_gift.h"
 #include "union_room_chat.h"
 #include "constants/map_groups.h"
+#include "constants/heal_locations.h"
 #include "constants/items.h"
+#include "constants/vars.h"
 #include "difficulty.h"
 #include "follower_npc.h"
 #include "data.h"
@@ -213,6 +215,8 @@ void NewGameInitData(void)
     DeactivateAllRoamers();
     gSaveBlock1Ptr->registeredItem = ITEM_NONE;
     ClearBag();
+    AddBagItem(ITEM_WARP_BLOCK, 1);
+    SetLastHealLocationWarp(HEAL_LOCATION_PALLET_TOWN);
     NewGameInitPCItems();
     ClearPokeblocks();
     ClearDecorationInventories();
@@ -258,6 +262,7 @@ void NewGameInitData(void)
     // expect the adventure-started flag (notably Oldale's west exit).
     FlagSet(FLAG_ADVENTURE_STARTED);
     FlagSet(FLAG_POX_HIDE_UNUSED_ACTOR);
+    VarSet(VAR_POX_SAVE_MIGRATION_VERSION, 1);
 
     // The authored Plastic Ox story is the normal game flow. Keep only the
     // dedicated battle-demo build in its open-world fixture state. Set this

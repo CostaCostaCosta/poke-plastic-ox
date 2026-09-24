@@ -17877,10 +17877,10 @@ Double Battle: No
 AI: Basic Trainer
 
 Geodude
-Level: 5
+Level: 11
 
 Machop @ Sitrus Berry
-Level: 5
+Level: 12
 IVs: 31 HP / 31 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
 EVs: 36 HP / 116 Atk / 40 Def / 240 SpD / 76 Spe
 Adamant Nature
@@ -17888,6 +17888,21 @@ Adamant Nature
 - Cross Chop
 - Hidden Power
 - Endure
+
+=== TRAINER_PLASTIC_OX_ROUTE46_ERIN ===
+Name: ERIN
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Sentret
+Level: 11
+
+Mareep
+Level: 12
 
 === TRAINER_PLASTIC_OX_ROUTE1 ===
 Name: BEN
@@ -17989,15 +18004,24 @@ Name: LARA
 Class: Lass
 Pic: Lass
 Gender: Female
-Music: Female
+Music: Male
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
 
-Swablu
+Doduo @ Sitrus Berry
 Level: 10
+Ability: Early Bird
+IVs: 29 HP
+EVs: 236 Atk / 236 Spe
+Jolly Nature
+- Drill Peck
+- Body Slam
+- Quick Attack
+- Substitute
 
 Magby @ Sitrus Berry
 Level: 10
+Ability: Flame Body
 EVs: 76 Atk / 116 SpA / 252 Spe
 Hasty Nature
 - Fire Blast
@@ -18007,10 +18031,11 @@ Hasty Nature
 
 Meowth @ Sitrus Berry
 Level: 10
+Ability: Pickup
 EVs: 36 HP / 236 Atk / 36 SpD / 196 Spe
 Jolly Nature
 - Fake Out
-- Double Edge
+- Double-Edge
 - Shadow Ball
 - Taunt
 
@@ -18019,18 +18044,479 @@ Name: MARCUS
 Class: Fisherman
 Pic: Fisherman
 Gender: Male
-Music: Hiker
+Music: Male
 Double Battle: No
-AI: Basic Trainer
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
 
-Shellder
+Clamperl @ Deep Sea Tooth
 Level: 11
+Ability: Shell Armor
+IVs: 30 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Modest Nature
+- Surf
+- Ice Beam
+- Hidden Power
+- Substitute
 
-Slowpoke
+Seaking @ Leftovers
 Level: 11
+Ability: Water Veil
+IVs: 31 HP / 31 Atk / 30 Def / 31 SpA / 30 SpD / 30 Spe
+EVs: 252 HP / 176 Atk / 20 SpD / 60 Spe
+Lonely Nature
+- Hydro Pump
+- Megahorn
+- Hidden Power
+- Protect
 
-Dratini
+Octillery @ Leftovers
 Level: 11
+Ability: Suction Cups
+IVs: 31 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 244 HP / 12 Def / 252 SpA
+Modest Nature
+- Surf
+- Fire Blast
+- Hidden Power
+- Thunder Wave
+
+=== TRAINER_PLASTIC_OX_ROUTE44_EDGAR ===
+Name: EDGAR
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Clamperl @ Deep Sea Tooth
+Level: 11
+Ability: Shell Armor
+IVs: 30 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Modest Nature
+- Surf
+- Ice Beam
+- Hidden Power
+- Substitute
+
+Azumarill @ Leftovers
+Level: 11
+Ability: Huge Power
+IVs: 31 HP / 30 Atk / 31 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 176 HP / 192 Atk / 80 Def / 60 SpD
+Careful Nature
+- Return
+- Brick Break
+- Hidden Power
+- Refresh
+
+=== TRAINER_PLASTIC_OX_ROUTE44_WILTON ===
+Name: WILTON
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Seaking @ Leftovers
+Level: 12
+Ability: Water Veil
+IVs: 31 HP / 31 Atk / 30 Def / 31 SpA / 30 SpD / 30 Spe
+EVs: 252 HP / 176 Atk / 20 SpD / 60 Spe
+Lonely Nature
+- Hydro Pump
+- Megahorn
+- Hidden Power
+- Protect
+
+Octillery @ Leftovers
+Level: 12
+Ability: Suction Cups
+IVs: 31 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 244 HP / 12 Def / 252 SpA
+Modest Nature
+- Surf
+- Fire Blast
+- Hidden Power
+- Thunder Wave
+
+=== TRAINER_PLASTIC_OX_ROUTE44_ZACH ===
+Name: ZACH
+Class: Super Nerd Frlg
+Pic: Super Nerd Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Octillery @ Leftovers
+Level: 12
+Ability: Suction Cups
+IVs: 31 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 244 HP / 12 Def / 252 SpA
+Modest Nature
+- Surf
+- Fire Blast
+- Hidden Power
+- Thunder Wave
+
+Dewgong @ Leftovers
+Level: 12
+Ability: Thick Fat
+EVs: 252 HP / 252 SpD / 4 Spe
+Calm Nature
+- Ice Beam
+- Surf
+- Rest
+- Sleep Talk
+
+=== TRAINER_PLASTIC_OX_ROUTE44_ALLEN ===
+Name: ALLEN
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Azumarill @ Leftovers
+Level: 13
+Ability: Huge Power
+IVs: 31 HP / 30 Atk / 31 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 176 HP / 192 Atk / 80 Def / 60 SpD
+Careful Nature
+- Return
+- Brick Break
+- Hidden Power
+- Refresh
+
+Dewgong @ Leftovers
+Level: 13
+Ability: Thick Fat
+EVs: 252 HP / 252 SpD / 4 Spe
+Calm Nature
+- Ice Beam
+- Surf
+- Rest
+- Sleep Talk
+
+Dragonair @ Leftovers
+Level: 13
+Ability: Shed Skin
+IVs: 0 Atk
+EVs: 252 HP / 160 SpD / 96 Spe
+Calm Nature
+- Thunder Wave
+- Rest
+- Thunderbolt
+- Ice Beam
+
+=== TRAINER_PLASTIC_OX_ROUTE44_CYBIL ===
+Name: CYBIL
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Clamperl @ Deep Sea Tooth
+Level: 13
+Ability: Shell Armor
+IVs: 30 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Modest Nature
+- Surf
+- Ice Beam
+- Hidden Power
+- Substitute
+
+Seaking @ Leftovers
+Level: 13
+Ability: Water Veil
+IVs: 31 HP / 31 Atk / 30 Def / 31 SpA / 30 SpD / 30 Spe
+EVs: 252 HP / 176 Atk / 20 SpD / 60 Spe
+Lonely Nature
+- Hydro Pump
+- Megahorn
+- Hidden Power
+- Protect
+
+Dragonair @ Leftovers
+Level: 13
+Ability: Shed Skin
+IVs: 0 Atk
+EVs: 252 HP / 160 SpD / 96 Spe
+Calm Nature
+- Thunder Wave
+- Rest
+- Thunderbolt
+- Ice Beam
+
+=== TRAINER_PLASTIC_OX_ROUTE44_VANCE ===
+Name: VANCE
+Class: Guitarist
+Pic: Guitarist
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Octillery @ Leftovers
+Level: 13
+Ability: Suction Cups
+IVs: 31 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 244 HP / 12 Def / 252 SpA
+Modest Nature
+- Surf
+- Fire Blast
+- Hidden Power
+- Thunder Wave
+
+Azumarill @ Leftovers
+Level: 13
+Ability: Huge Power
+IVs: 31 HP / 30 Atk / 31 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 176 HP / 192 Atk / 80 Def / 60 SpD
+Careful Nature
+- Return
+- Brick Break
+- Hidden Power
+- Refresh
+
+=== TRAINER_PLASTIC_OX_ROUTE_ILEX ===
+Name: WAYNE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Oddish @ Sitrus Berry
+Level: 15
+Ability: Chlorophyll
+IVs: 2 Atk / 30 Def
+EVs: 76 HP / 80 Def / 236 SpA / 116 Spe
+Modest Nature
+- Sunny Day
+- Solar Beam
+- Hidden Power
+- Bullet Seed
+
+Shuppet @ Leftovers
+Level: 15
+Ability: Insomnia
+IVs: 31 HP / 31 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Shadow Ball
+- Hidden Power
+- Substitute
+- Thunder Wave
+
+=== TRAINER_PLASTIC_OX_ROUTE25_DUDLEY ===
+Name: DUDLEY
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Meowth @ Sitrus Berry
+Level: 10
+Ability: Pickup
+EVs: 36 HP / 236 Atk / 36 SpD / 196 Spe
+Jolly Nature
+- Fake Out
+- Double-Edge
+- Shadow Ball
+- Taunt
+
+Doduo @ Sitrus Berry
+Level: 10
+Ability: Early Bird
+IVs: 29 HP
+EVs: 236 Atk / 236 Spe
+Jolly Nature
+- Drill Peck
+- Body Slam
+- Quick Attack
+- Substitute
+
+=== TRAINER_PLASTIC_OX_ROUTE25_JOE ===
+Name: JOE
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Doduo @ Sitrus Berry
+Level: 10
+Ability: Early Bird
+IVs: 29 HP
+EVs: 236 Atk / 236 Spe
+Jolly Nature
+- Drill Peck
+- Body Slam
+- Quick Attack
+- Substitute
+
+Snubbull @ Sitrus Berry
+Level: 10
+Ability: Intimidate
+EVs: 196 HP / 116 Atk / 36 Def / 120 SpD / 36 Spe
+Careful Nature
+- Double-Edge
+- Earthquake
+- Shadow Ball
+- Bulk Up
+
+=== TRAINER_PLASTIC_OX_ROUTE25_LAURA ===
+Name: LAURA
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Ponyta @ Sitrus Berry
+Level: 11
+Ability: Flash Fire
+EVs: 76 Def / 236 SpA / 196 Spe
+Timid Nature
+- Sunny Day
+- Fire Blast
+- Solar Beam
+- Substitute
+
+Growlithe @ Lum Berry
+Level: 11
+Ability: Intimidate
+IVs: 30 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 76 Def / 252 SpA / 180 Spe
+Timid Nature
+- Overheat
+- Flamethrower
+- Hidden Power
+- Toxic
+
+Smoochum @ Leftovers
+Level: 11
+Ability: Oblivious
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Calm Mind
+- Ice Beam
+- Psychic
+- Substitute
+
+=== TRAINER_PLASTIC_OX_ROUTE25_LLOYD ===
+Name: LLOYD
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Growlithe @ Lum Berry
+Level: 11
+Ability: Intimidate
+IVs: 30 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 76 Def / 252 SpA / 180 Spe
+Timid Nature
+- Overheat
+- Flamethrower
+- Hidden Power
+- Toxic
+
+Magby @ Sitrus Berry
+Level: 11
+Ability: Flame Body
+EVs: 76 Atk / 116 SpA / 252 Spe
+Hasty Nature
+- Fire Blast
+- Focus Punch
+- Toxic
+- Substitute
+
+=== TRAINER_PLASTIC_OX_ROUTE25_ELLEN ===
+Name: ELLEN
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Drowzee @ Leftovers
+Level: 11
+Ability: Insomnia
+IVs: 0 Atk
+EVs: 252 HP / 4 SpA / 252 SpD
+Calm Nature
+- Psychic
+- Toxic
+- Wish
+- Protect
+
+Snubbull @ Sitrus Berry
+Level: 11
+Ability: Intimidate
+EVs: 196 HP / 116 Atk / 36 Def / 120 SpD / 36 Spe
+Careful Nature
+- Double-Edge
+- Earthquake
+- Shadow Ball
+- Bulk Up
+
+=== TRAINER_PLASTIC_OX_ROUTE25_PAT ===
+Name: PAT
+Class: Super Nerd Frlg
+Pic: Super Nerd Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Drowzee @ Leftovers
+Level: 12
+Ability: Insomnia
+IVs: 0 Atk
+EVs: 252 HP / 4 SpA / 252 SpD
+Calm Nature
+- Psychic
+- Toxic
+- Wish
+- Protect
+
+Meowth @ Sitrus Berry
+Level: 12
+Ability: Pickup
+EVs: 36 HP / 236 Atk / 36 SpD / 196 Spe
+Jolly Nature
+- Fake Out
+- Double-Edge
+- Shadow Ball
+- Taunt
+
+Ponyta @ Sitrus Berry
+Level: 12
+Ability: Flash Fire
+EVs: 76 Def / 236 SpA / 196 Spe
+Timid Nature
+- Sunny Day
+- Fire Blast
+- Solar Beam
+- Substitute
 
 === TRAINER_PLASTIC_OX_PU_ROUTE33 ===
 Name: ANTHONY
@@ -18121,3 +18607,24 @@ Level: 20
 - Psybeam
 - Rock Tomb
 - Rapid Spin
+
+=== TRAINER_PLASTIC_OX_ROUTE24_ROCKET ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Aqua
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Rattata
+Level: 12
+- Hyper Fang
+- Quick Attack
+- Tail Whip
+
+Zubat
+Level: 12
+- Bite
+- Wing Attack
+- Supersonic

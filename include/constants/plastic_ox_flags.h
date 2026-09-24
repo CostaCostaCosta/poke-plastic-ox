@@ -20,6 +20,7 @@
 #define FLAG_POX_DAILY_R46_LIECHI 0x925
 #define FLAG_POX_DAILY_R44_SALAC  0x926
 #define FLAG_POX_DAILY_R44_PETAYA 0x927
+#define FLAG_POX_DAILY_R35_PERSIM 0x928
 
 // Scripts may set/clear this to keep frame-sensitive field sequences at 1x.
 #define FLAG_PREVENT_OVERWORLD_SPEEDUP 0x27F
@@ -172,6 +173,7 @@
 #define FLAG_POX_DELIBIRD_DELIVERED      0x1E3
 #define FLAG_POX_CONTEST_PRIZE_PENDING   0x495
 #define FLAG_POX_ROUTE24_NUGGET          0x496
+#define FLAG_POX_HIDE_DEVON_3F_GUARD     0x497
 
 // Supplemental Plastic Ox flags deliberately repurpose Emerald symbols marked
 // unused. Hidden-item flags must additionally satisfy FLAG_HIDDEN_ITEMS_START.

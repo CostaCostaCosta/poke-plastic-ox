@@ -546,6 +546,46 @@ Pox_ElmTMNext48::
     additem ITEM_TM_OVERHEAT, 1
     goto_if_eq VAR_RESULT, FALSE, Pox_ElmTMsFull
 Pox_ElmTMNext49::
+    checkitem ITEM_HM_CUT, 1
+    goto_if_eq VAR_RESULT, TRUE, Pox_ElmHMNext1
+    additem ITEM_HM_CUT, 1
+    goto_if_eq VAR_RESULT, FALSE, Pox_ElmTMsFull
+Pox_ElmHMNext1::
+    checkitem ITEM_HM_FLY, 1
+    goto_if_eq VAR_RESULT, TRUE, Pox_ElmHMNext2
+    additem ITEM_HM_FLY, 1
+    goto_if_eq VAR_RESULT, FALSE, Pox_ElmTMsFull
+Pox_ElmHMNext2::
+    checkitem ITEM_HM_SURF, 1
+    goto_if_eq VAR_RESULT, TRUE, Pox_ElmHMNext3
+    additem ITEM_HM_SURF, 1
+    goto_if_eq VAR_RESULT, FALSE, Pox_ElmTMsFull
+Pox_ElmHMNext3::
+    checkitem ITEM_HM_STRENGTH, 1
+    goto_if_eq VAR_RESULT, TRUE, Pox_ElmHMNext4
+    additem ITEM_HM_STRENGTH, 1
+    goto_if_eq VAR_RESULT, FALSE, Pox_ElmTMsFull
+Pox_ElmHMNext4::
+    checkitem ITEM_HM_FLASH, 1
+    goto_if_eq VAR_RESULT, TRUE, Pox_ElmHMNext5
+    additem ITEM_HM_FLASH, 1
+    goto_if_eq VAR_RESULT, FALSE, Pox_ElmTMsFull
+Pox_ElmHMNext5::
+    checkitem ITEM_HM_ROCK_SMASH, 1
+    goto_if_eq VAR_RESULT, TRUE, Pox_ElmHMNext6
+    additem ITEM_HM_ROCK_SMASH, 1
+    goto_if_eq VAR_RESULT, FALSE, Pox_ElmTMsFull
+Pox_ElmHMNext6::
+    checkitem ITEM_HM_WATERFALL, 1
+    goto_if_eq VAR_RESULT, TRUE, Pox_ElmHMNext7
+    additem ITEM_HM_WATERFALL, 1
+    goto_if_eq VAR_RESULT, FALSE, Pox_ElmTMsFull
+Pox_ElmHMNext7::
+    checkitem ITEM_HM_DIVE, 1
+    goto_if_eq VAR_RESULT, TRUE, Pox_ElmAllMachinesDone
+    additem ITEM_HM_DIVE, 1
+    goto_if_eq VAR_RESULT, FALSE, Pox_ElmTMsFull
+Pox_ElmAllMachinesDone::
     setflag FLAG_POX_ELM_TMS
     playfanfare MUS_OBTAIN_ITEM
     msgbox Pox_Text_ElmTMs, MSGBOX_DEFAULT
@@ -559,7 +599,7 @@ Pox_ElmCompendiumFull::
     msgbox Pox_Text_ElmCompendiumFull, MSGBOX_DEFAULT
     return
 Pox_Text_ElmTMs::
-    .string "BIRCH: Here is a full set of TMs!\nI've included a MOVE COMPENDIUM\pfor level, Egg, and tutor moves.\p{PLAYER} received every TM and the\nMOVE COMPENDIUM!$"
+    .string "BIRCH: Here is a full set of TMs\nand HMs! I've included a MOVE\pCOMPENDIUM for level, Egg, and\ntutor moves.\p{PLAYER} received every TM, every\nHM, and the MOVE COMPENDIUM!$"
 Pox_Text_ElmTMsFull::
     .string "BIRCH: Make room in your TM\npocket, then speak to me.\pI'll give you the rest!$"
 Pox_Text_ElmCompendiumFull::

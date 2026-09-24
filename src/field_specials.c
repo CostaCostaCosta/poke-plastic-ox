@@ -30,6 +30,7 @@
 #include "main.h"
 #include "match_call.h"
 #include "menu.h"
+#include "move.h"
 #include "metatile_behavior.h"
 #include "mystery_gift.h"
 #include "overworld.h"
@@ -81,6 +82,70 @@
 #include "chooseboxmon.h"
 
 #define TAG_ITEM_ICON 5500
+
+// Returns the first Little Cup violation and buffers its Pokemon and move/item names.
+u16 CheckRustboroGymLittleCupRules(void)
+{
+    u32 i, j;
+
+    for (i = 0; i < gPartiesCount[B_TRAINER_PLAYER]; i++)
+    {
+        struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][i];
+        enum Item item;
+
+        if (!GetMonData(mon, MON_DATA_SANITY_HAS_SPECIES) || GetMonData(mon, MON_DATA_IS_EGG))
+            continue;
+
+        GetMonData(mon, MON_DATA_NICKNAME, gStringVar1);
+        for (j = 0; j < MAX_MON_MOVES; j++)
+        {
+            enum Move move = GetMonData(mon, MON_DATA_MOVE1 + j);
+            u32 effectIndex;
+            bool32 isBannedMove = FALSE;
+
+            if (move == MOVE_NONE || move == MOVE_REST)
+                continue;
+
+            switch (move)
+            {
+            case MOVE_DRAGON_RAGE:
+            case MOVE_SONIC_BOOM:
+            case MOVE_BATON_PASS:
+            case MOVE_SWAGGER:
+            case MOVE_THUNDER_WAVE:
+            case MOVE_SECRET_POWER:
+            case MOVE_DIRE_CLAW:
+                isBannedMove = TRUE;
+                break;
+            default:
+                if (GetMoveNonVolatileStatus(move) == MOVE_EFFECT_SLEEP)
+                    isBannedMove = TRUE;
+                for (effectIndex = 0; effectIndex < GetMoveAdditionalEffectCount(move); effectIndex++)
+                {
+                    enum MoveEffect effect = GetMoveAdditionalEffectById(move, effectIndex)->moveEffect;
+                    if (effect == MOVE_EFFECT_SLEEP || effect == MOVE_EFFECT_YAWN_FOE || effect == MOVE_EFFECT_EFFECT_SPORE_SIDE)
+                        isBannedMove = TRUE;
+                }
+                break;
+            }
+
+            if (isBannedMove)
+            {
+                StringCopy(gStringVar2, GetMoveName(move));
+                return 1;
+            }
+        }
+
+        item = GetMonData(mon, MON_DATA_HELD_ITEM);
+        if (item == ITEM_DEEP_SEA_TOOTH)
+        {
+            CopyItemName(item, gStringVar2);
+            return 2;
+        }
+    }
+
+    return 0;
+}
 
 #define GFXTAG_MULTICHOICE_SCROLL_ARROWS 2000
 #define PALTAG_MULTICHOICE_SCROLL_ARROWS 100
@@ -4633,6 +4698,79 @@ void SetTrainingKitEVs(void)
     value -= value % 4;
     SetMonData(mon, MON_DATA_HP_EV + stat, &value);
     CalculateMonStats(mon);
+}
+
+void SetTrainingKitHiddenPower(void)
+{
+    struct Pokemon *mon;
+    u32 desiredType = gSpecialVar_Result;
+    u32 typeIndex = 0;
+    u32 typeCount = 0;
+    u32 typeBits;
+    u8 iv;
+
+    if (gSpecialVar_0x8004 >= gPartiesCount[B_TRAINER_PLAYER]
+     || desiredType >= NUMBER_OF_MON_TYPES
+     || !gTypesInfo[desiredType].isHiddenPowerType)
+        return;
+
+    mon = &gParties[B_TRAINER_PLAYER][gSpecialVar_0x8004];
+
+    for (u32 i = 0; i < NUMBER_OF_MON_TYPES; i++)
+    {
+        if (!gTypesInfo[i].isHiddenPowerType)
+            continue;
+        if (i == desiredType)
+            typeIndex = typeCount;
+        typeCount++;
+    }
+
+    if (typeCount < 2)
+        return;
+
+    // Use the highest IV parity value that maps to the selected type. Keeping
+    // every IV at 30 or 31 also preserves Hidden Power's maximum Gen III power.
+    typeBits = min((((typeIndex + 1) * 63) - 1) / (typeCount - 1), 63);
+    for (u32 i = 0; i < NUM_STATS; i++)
+    {
+        iv = 30 + ((typeBits >> i) & 1);
+        SetMonData(mon, MON_DATA_HP_IV + i, &iv);
+    }
+    CalculateMonStats(mon);
+}
+
+void PrepareTrainingKitAbilityMenu(void)
+{
+    enum Species species;
+
+    if (gSpecialVar_0x8004 >= gPartiesCount[B_TRAINER_PLAYER])
+        return;
+
+    species = GetMonData(&gParties[B_TRAINER_PLAYER][gSpecialVar_0x8004], MON_DATA_SPECIES);
+    StringCopy(gStringVar1, gAbilitiesInfo[GetSpeciesAbility(species, 0)].name);
+    StringCopy(gStringVar2, gAbilitiesInfo[GetSpeciesAbility(species, 1)].name);
+}
+
+void SetTrainingKitAbility(void)
+{
+    struct Pokemon *mon;
+    enum Species species;
+    enum Ability ability;
+    u32 abilityNum = gSpecialVar_Result;
+
+    gSpecialVar_Result = FALSE;
+    if (gSpecialVar_0x8004 >= gPartiesCount[B_TRAINER_PLAYER] || abilityNum >= NUM_NORMAL_ABILITY_SLOTS)
+        return;
+
+    mon = &gParties[B_TRAINER_PLAYER][gSpecialVar_0x8004];
+    species = GetMonData(mon, MON_DATA_SPECIES);
+    ability = GetSpeciesAbility(species, abilityNum);
+    if (ability == ABILITY_NONE)
+        return;
+
+    SetMonData(mon, MON_DATA_ABILITY_NUM, &abilityNum);
+    StringCopy(gStringVar1, gAbilitiesInfo[ability].name);
+    gSpecialVar_Result = TRUE;
 }
 
 void SetAbility(void)

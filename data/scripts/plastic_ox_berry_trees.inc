@@ -1,4 +1,4 @@
-@ Fixed Gen 2 fruit trees: one berry per tree per day, with no planting.
+@ Fixed Gen 2 fruit trees: five berries per tree per day, with no planting.
 	.macro pox_fruit_tree name:req, berry:req, picked:req
 	.global PlasticOx_BerryTree_\name
 PlasticOx_BerryTree_\name\():
@@ -8,7 +8,7 @@ PlasticOx_BerryTree_\name\():
 	bufferitemname STR_VAR_1, \berry
 	msgbox PlasticOx_BerryTree_Ask, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, PlasticOx_BerryTree_End
-	giveitem \berry, 1
+	giveitem \berry, 5
 	goto_if_eq VAR_RESULT, FALSE, PlasticOx_BerryTree_BagFull
 	setflag \picked
 	goto PlasticOx_BerryTree_End
@@ -19,6 +19,7 @@ PlasticOx_BerryTree_\name\():
 	pox_fruit_tree Liechi, ITEM_LIECHI_BERRY, FLAG_POX_DAILY_R46_LIECHI
 	pox_fruit_tree Salac, ITEM_SALAC_BERRY, FLAG_POX_DAILY_R44_SALAC
 	pox_fruit_tree Petaya, ITEM_PETAYA_BERRY, FLAG_POX_DAILY_R44_PETAYA
+	pox_fruit_tree Persim, ITEM_PERSIM_BERRY, FLAG_POX_DAILY_R35_PERSIM
 	.purgem pox_fruit_tree
 
 PlasticOx_BerryTree_InitClock:

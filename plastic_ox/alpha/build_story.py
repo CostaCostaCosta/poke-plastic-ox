@@ -414,8 +414,11 @@ replace_npc('Route119_WeatherInstitute_2F',4,'Weather',hidden='FLAG_POX_HIDE_STO
 # first interaction; old 0x071 is intentionally not read because Cave of Origin
 # still uses it.
 start('Cottage',[starter])
-emit('''\tgoto_if_set FLAG_POX_GIFT_COTTAGE, Pox_CottageFossils
+emit('''\tgoto_if_set FLAG_POX_KNOWS_BILL_PC, Pox_CottageGift
 \tmsgbox Pox_Text_Cottage, MSGBOX_DEFAULT
+\tsetflag FLAG_POX_KNOWS_BILL_PC
+Pox_CottageGift::
+\tgoto_if_set FLAG_POX_GIFT_COTTAGE, Pox_CottageFossils
 \tgivemon SPECIES_EEVEE, 5
 \tgoto_if_eq VAR_RESULT, MON_CANT_GIVE, Pox_NoRoom
 \tsetflag FLAG_POX_GIFT_COTTAGE
@@ -509,7 +512,7 @@ Pox_CottageGiveOldAmber::
 \tsetvar VAR_POX_GRANDPA_PROGRESS, 5
 \tgoto Pox_CottageFossils''')
 finish()
-speech('Pox_Text_Cottage', "I'm BILL's grandfather. My grandson is away working on a project right now. This EEVEE needs a good TRAINER. Take it!")
+speech('Pox_Text_Cottage', "I'm BILL's grandfather. My grandson designed the POKéMON Storage System on the PC. He's away on a project right now.|This EEVEE needs a good TRAINER. Take it!")
 for name,text in [
  ('CottageAskRalts','I\'d love to see a RALTS. Bring one along sometime.'),
  ('CottageGiveDomeFossil','Ah, RALTS! Just as I hoped. Please take this DOME FOSSIL.'),
@@ -774,8 +777,9 @@ s=re.sub(r'// Plastic Ox story trainers\.\n.*?// End Plastic Ox story trainers\.
 defs='// Plastic Ox story trainers.\n'+''.join(f'#define {tid} {857+i if i < pu_trainer_start else 895+i-pu_trainer_start}\n' for i,(tid,_) in enumerate(trainers))+''.join(route_defs)+'// End Plastic Ox story trainers.\n'
 s=s.replace('// NOTE: Because each Trainer',defs+'\n// NOTE: Because each Trainer')
 route_ids=[int(value) for value in re.findall(r'#define TRAINER_PLASTIC_OX_ROUTE\w+\s+(\d+)',s)]
-s=re.sub(r'#define TRAINERS_COUNT_EMERALD\s+\d+',f'#define TRAINERS_COUNT_EMERALD {895+len(trainers)-pu_trainer_start}',s)
-s=re.sub(r'#define MAX_TRAINERS_COUNT_EMERALD\s+\d+','#define MAX_TRAINERS_COUNT_EMERALD 899',s)
+trainer_count=max([895+len(trainers)-pu_trainer_start, *(value + 1 for value in route_ids)])
+s=re.sub(r'#define TRAINERS_COUNT_EMERALD\s+\d+',f'#define TRAINERS_COUNT_EMERALD {trainer_count}',s)
+s=re.sub(r'#define MAX_TRAINERS_COUNT_EMERALD\s+\d+',f'#define MAX_TRAINERS_COUNT_EMERALD {trainer_count}',s)
 assert pu_trainer_start == 28 and len(trainers) == 32
 put(path,s)
 path='src/data/trainers.party'

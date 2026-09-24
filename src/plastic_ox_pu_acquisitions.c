@@ -98,7 +98,7 @@ void PlasticOxReviveHelix(void)
     gSpecialVar_Result = ACQUISITION_UNAVAILABLE;
     if (!CheckBagHasItem(ITEM_HELIX_FOSSIL, 1))
         return;
-    result = ScriptGiveMon(SPECIES_OMANYTE, 15, ITEM_NONE);
+    result = ScriptGiveMon(SPECIES_OMANYTE, 10, ITEM_NONE);
     if (result != MON_CANT_GIVE)
         RemoveBagItem(ITEM_HELIX_FOSSIL, 1);
     gSpecialVar_Result = result;

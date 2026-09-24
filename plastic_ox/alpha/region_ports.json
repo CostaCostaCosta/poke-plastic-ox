@@ -1,26 +1,4 @@
 {
-  "rustboro_cottage_a": {
-    "tile": [
-      21,
-      0
-    ],
-    "approach": [
-      21,
-      1
-    ],
-    "direction": "N"
-  },
-  "rustboro_cottage_b": {
-    "tile": [
-      18,
-      21
-    ],
-    "approach": [
-      18,
-      20
-    ],
-    "direction": "S"
-  },
   "rustboro_route44_a": {
     "tile": [
       39,
@@ -716,11 +694,11 @@
   },
   "cinnabar_sea_a": {
     "tile": [
-      23,
+      22,
       10
     ],
     "approach": [
-      22,
+      21,
       10
     ],
     "direction": "E"

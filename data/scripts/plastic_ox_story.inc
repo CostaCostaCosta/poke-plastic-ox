@@ -863,8 +863,11 @@ Pox_Cottage::
 
 goto_if_unset FLAG_POX_STORY_STARTER, Pox_NotReady
 
-goto_if_set FLAG_POX_GIFT_COTTAGE, Pox_CottageFossils
+	goto_if_set FLAG_POX_KNOWS_BILL_PC, Pox_CottageGift
 	msgbox Pox_Text_Cottage, MSGBOX_DEFAULT
+	setflag FLAG_POX_KNOWS_BILL_PC
+Pox_CottageGift::
+	goto_if_set FLAG_POX_GIFT_COTTAGE, Pox_CottageFossils
 	givemon SPECIES_EEVEE, 5
 	goto_if_eq VAR_RESULT, MON_CANT_GIVE, Pox_NoRoom
 	setflag FLAG_POX_GIFT_COTTAGE
@@ -962,7 +965,7 @@ releaseall
 	end
 
 Pox_Text_Cottage::
-	.string "I'm BILL's grandfather. My\ngrandson is away working on a\pproject right now. This EEVEE\nneeds a good TRAINER. Take it!$"
+	.string "I'm BILL's grandfather. My\ngrandson designed the POKéMON\pStorage System on the PC. He's\naway on a project right now.\pThis EEVEE needs a good TRAINER.\nTake it!$"
 
 Pox_Text_CottageAskRalts::
 	.string "I'd love to see a RALTS. Bring\none along sometime.$"

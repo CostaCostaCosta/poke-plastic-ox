@@ -19,33 +19,30 @@ MauvilleCity_Mart_Pokemart:
 	.2byte ITEM_ANTIDOTE
 	.2byte ITEM_PARALYZE_HEAL
 	.2byte ITEM_AWAKENING
-	.2byte ITEM_X_SPEED
-	.2byte ITEM_X_ATTACK
-	.2byte ITEM_X_DEFENSE
-	.2byte ITEM_GUARD_SPEC
-	.2byte ITEM_DIRE_HIT
-	.2byte ITEM_X_ACCURACY
+	.2byte ITEM_QUICK_BALL
+	.2byte ITEM_DUSK_BALL
+	.2byte ITEM_THUNDER_STONE
+	.2byte ITEM_WATER_STONE
+	.2byte ITEM_LEAF_STONE
+	.2byte ITEM_SUN_STONE
 	pokemartlistend
 
 MauvilleCity_Mart_EventScript_ExpertM::
-	msgbox MauvilleCity_Mart_Text_ItemsToTemporarilyElevateStats, MSGBOX_NPC
+	msgbox MauvilleCity_Mart_Text_EvolutionStones, MSGBOX_NPC
 	end
 
 MauvilleCity_Mart_EventScript_Man::
 	msgbox MauvilleCity_Mart_Text_DecisionsDetermineBattle, MSGBOX_NPC
 	end
 
-MauvilleCity_Mart_Text_ItemsToTemporarilyElevateStats:
-	.string "There are items that temporarily\n"
-	.string "elevate the stats of POKéMON.\p"
-	.string "The ones I know you use in battle\n"
-	.string "are X ATTACK and X DEFEND…\p"
-	.string "I do believe that there are others\n"
-	.string "like them.$"
+MauvilleCity_Mart_Text_EvolutionStones:
+	.string "There are stones that can make\n"
+	.string "certain POKéMON evolve.\p"
+	.string "The THUNDER STONE is especially\n"
+	.string "fitting for MAUVILLE.$"
 
 MauvilleCity_Mart_Text_DecisionsDetermineBattle:
 	.string "Use a certain move, or use an item\n"
 	.string "instead…\p"
 	.string "The TRAINER's decisions determine how\n"
 	.string "battles turn out, I think.$"
-

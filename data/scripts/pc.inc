@@ -32,8 +32,14 @@ EventScript_AccessPlayersPC::
 
 EventScript_AccessPokemonStorage::
 	playse SE_PC_LOGIN
+	goto_if_set FLAG_POX_KNOWS_BILL_PC, EventScript_AccessBillsPC
 	call_if_unset FLAG_SYS_PC_LANETTE, EventScript_AccessSomeonesPC
 	call_if_set FLAG_SYS_PC_LANETTE, EventScript_AccessLanettesPC
+	goto EventScript_OpenPokemonStorage
+
+EventScript_AccessBillsPC::
+	msgbox gText_AccessedBillsPC, MSGBOX_DEFAULT
+EventScript_OpenPokemonStorage::
 	msgbox gText_StorageSystemOpened, MSGBOX_DEFAULT
 	special ShowPokemonStorageSystemPC
 	goto EventScript_PCMainMenu

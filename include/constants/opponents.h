@@ -905,14 +905,29 @@
 #define TRAINER_PLASTIC_OX_ROUTE24 892
 #define TRAINER_PLASTIC_OX_ROUTE25 893
 #define TRAINER_PLASTIC_OX_ROUTE44 894
+#define TRAINER_PLASTIC_OX_ROUTE_ILEX 899
+#define TRAINER_PLASTIC_OX_ROUTE44_EDGAR 900
+#define TRAINER_PLASTIC_OX_ROUTE44_WILTON 901
+#define TRAINER_PLASTIC_OX_ROUTE44_ZACH 902
+#define TRAINER_PLASTIC_OX_ROUTE44_ALLEN 903
+#define TRAINER_PLASTIC_OX_ROUTE44_CYBIL 904
+#define TRAINER_PLASTIC_OX_ROUTE44_VANCE 905
+#define TRAINER_PLASTIC_OX_ROUTE25_DUDLEY 906
+#define TRAINER_PLASTIC_OX_ROUTE25_JOE 907
+#define TRAINER_PLASTIC_OX_ROUTE25_LAURA 908
+#define TRAINER_PLASTIC_OX_ROUTE25_LLOYD 909
+#define TRAINER_PLASTIC_OX_ROUTE25_ELLEN 910
+#define TRAINER_PLASTIC_OX_ROUTE25_PAT 911
+#define TRAINER_PLASTIC_OX_ROUTE24_ROCKET 912
+#define TRAINER_PLASTIC_OX_ROUTE46_ERIN 913
 // End Plastic Ox story trainers.
 
-// NOTE: Because each Trainer uses a flag to determine when they are defeated, there is only space for 9 additional trainers before trainer flag space overflows
-//       More space can be made by shifting flags around in constants/flags.h or changing how trainer flags are handled
-//       MAX_TRAINERS_COUNT can be increased but will take up additional saveblock space
+// Plastic Ox trainer victories above ID 856 use the reserved general flags in
+// constants/flags.h, preserving the original system-flag and save-block layout.
+// Keep new IDs below the end of that reserved range.
 
-#define TRAINERS_COUNT_EMERALD 899
-#define MAX_TRAINERS_COUNT_EMERALD 899
+#define TRAINERS_COUNT_EMERALD 914
+#define MAX_TRAINERS_COUNT_EMERALD 914
 
 #if IS_FRLG
 #define TRAINERS_COUNT                      TRAINERS_COUNT_FRLG

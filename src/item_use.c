@@ -397,6 +397,20 @@ void ItemUseOutOfBattle_Headbutt(u8 taskId)
     }
 }
 
+static void ItemUseOnFieldCB_WarpBlock(u8 taskId)
+{
+    RemoveFollowingPokemon();
+    Overworld_ResetStateAfterTeleport();
+    FldEff_TeleportWarpOut();
+    DestroyTask(taskId);
+}
+
+void ItemUseOutOfBattle_WarpBlock(u8 taskId)
+{
+    sItemUseOnFieldCB = ItemUseOnFieldCB_WarpBlock;
+    SetUpItemUseOnFieldCallback(taskId);
+}
+
 static void ItemUseOnFieldCB_Rod(u8 taskId)
 {
     StartFishing(GetItemSecondaryId(gSpecialVar_ItemId));

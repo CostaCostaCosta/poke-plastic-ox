@@ -22,12 +22,12 @@ VerdanturfTown_Mart_Pokemart:
 	.2byte ITEM_BURN_HEAL
 	.2byte ITEM_ICE_HEAL
 	.2byte ITEM_REPEL
-	.2byte ITEM_X_SP_ATK
+	.2byte ITEM_LEAF_STONE
 	.2byte ITEM_FLUFFY_TAIL
 	pokemartlistend
 
 VerdanturfTown_Mart_EventScript_Boy::
-	msgbox VerdanturfTown_Mart_Text_XSpecialIsCrucial, MSGBOX_NPC
+	msgbox VerdanturfTown_Mart_Text_LeafStone, MSGBOX_NPC
 	end
 
 VerdanturfTown_Mart_EventScript_ExpertF::
@@ -38,11 +38,11 @@ VerdanturfTown_Mart_EventScript_Lass::
 	msgbox VerdanturfTown_Mart_Text_NestBallOnWeakenedPokemon, MSGBOX_NPC
 	end
 
-VerdanturfTown_Mart_Text_XSpecialIsCrucial:
-	.string "For any POKéMON match, X SPECIAL\n"
-	.string "is crucial.\p"
-	.string "It jacks up the power of some moves\n"
-	.string "even though it's only for one battle.$"
+VerdanturfTown_Mart_Text_LeafStone:
+	.string "A LEAF STONE can make certain\n"
+	.string "POKéMON evolve.\p"
+	.string "It makes me think of the greenery\n"
+	.string "around VERDANTURF.$"
 
 VerdanturfTown_Mart_Text_NoStrategyGuidesForBattleTent:
 	.string "They don't seem to sell any winning\n"
@@ -55,4 +55,3 @@ VerdanturfTown_Mart_Text_NestBallOnWeakenedPokemon:
 	.string "weakened POKéMON.\p"
 	.string "VERDANTURF is the only place you can\n"
 	.string "buy it.$"
-

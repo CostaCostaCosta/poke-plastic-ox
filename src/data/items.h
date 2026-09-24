@@ -13556,6 +13556,38 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_SecretKey,
     },
 
+    [ITEM_WARP_BLOCK] =
+    {
+        .name = ITEM_NAME("Warp Block"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A debug tool that\n"
+            "returns you to your\n"
+            "last healing spot."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_WarpBlock,
+        .iconPic = gItemIcon_EscapeRope,
+        .iconPalette = gItemIconPalette_EscapeRope,
+    },
+
+    [ITEM_ROCK_SMASH_KEY] =
+    {
+        .name = ITEM_NAME("Rock Smash Key"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A rugged key that\n"
+            "smashes cracked\n"
+            "rocks in the field."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_SecretKey,
+        .iconPalette = gItemIconPalette_SecretKey,
+    },
+
     [ITEM_HM_FLASH] =
     {
         .name = ITEM_NAME("HM05"),
@@ -15686,9 +15718,10 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("Training Kit"),
         .price = 0,
         .description = COMPOUND_STRING(
-            "Sets a party\n"
-            "Pokémon's nature\n"
-            "and base points."),
+            "Sets a Pokémon's\n"
+            "nature, base points,\n"
+            "and Hidden Power\n"
+            "type."),
         .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_FIELD,

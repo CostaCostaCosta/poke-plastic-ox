@@ -722,6 +722,7 @@ static void CreatePCMultichoice(void)
     {
         pixelWidth = DisplayTextAndGetWidth(sPCNameStrings[i], pixelWidth);
     }
+    pixelWidth = DisplayTextAndGetWidth(gText_BillsPc, pixelWidth);
 
     if (FlagGet(FLAG_SYS_GAME_CLEAR))
     {
@@ -747,8 +748,10 @@ static void CreatePCMultichoice(void)
         AddTextPrinterParameterized(windowId, FONT_NORMAL, gText_LogOff, x, 33, TEXT_SKIP_DRAW, NULL);
     }
 
-    // Change PC name if player has met Lanette
-    if (FlagGet(FLAG_SYS_PC_LANETTE))
+    // Bill's grandfather identifies the storage system independently of Lanette.
+    if (FlagGet(FLAG_POX_KNOWS_BILL_PC))
+        AddTextPrinterParameterized(windowId, FONT_NORMAL, gText_BillsPc, x, 1, TEXT_SKIP_DRAW, NULL);
+    else if (FlagGet(FLAG_SYS_PC_LANETTE))
     {
         if (IS_FRLG)
             AddTextPrinterParameterized(windowId, FONT_NORMAL, gText_BillsPc, x, 1, TEXT_SKIP_DRAW, NULL);

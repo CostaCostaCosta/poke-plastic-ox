@@ -568,6 +568,9 @@ gSpecials::
 	def_special GetCodeFeedback
 	def_special SetHiddenNature
 	def_special SetTrainingKitEVs
+	def_special SetTrainingKitHiddenPower
+	def_special PrepareTrainingKitAbilityMenu
+	def_special SetTrainingKitAbility
 	def_special SetAbility
 	def_special CanTeachMoveBoxMon
 	def_special ObjectEventInteractionGetApricornTreeData
@@ -654,3 +657,4 @@ gSpecials::
 	def_special PlasticOxReviveHelix
 	def_special PlasticOxGiveMailDelibird
 	def_special PlasticOxDeliverMail
+	def_special CheckRustboroGymLittleCupRules

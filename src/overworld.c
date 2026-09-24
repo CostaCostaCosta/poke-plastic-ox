@@ -86,6 +86,9 @@
 #include "constants/songs.h"
 #include "constants/trainer_hill.h"
 #include "constants/weather.h"
+#include "constants/vars.h"
+
+#define POX_SAVE_MIGRATION_VERSION 1
 
 STATIC_ASSERT((B_FLAG_FOLLOWERS_DISABLED == 0 || OW_FOLLOWERS_ENABLED), FollowersFlagAssignedWithoutEnablingThem);
 
@@ -2200,6 +2203,16 @@ void CB2_ContinueSavedGame(void)
     ResetSafariZoneFlag_();
     if (gSaveFileStatus == SAVE_STATUS_ERROR)
         ResetWinStreaks();
+
+    // Route 103 May used these bits before she became a normal trainer. Clear
+    // them once so old saves cannot accidentally complete future story flags
+    // when the now-unused IDs are reassigned.
+    if (VarGet(VAR_POX_SAVE_MIGRATION_VERSION) < POX_SAVE_MIGRATION_VERSION)
+    {
+        FlagClear(0x82);
+        FlagClear(0x2D3);
+        VarSet(VAR_POX_SAVE_MIGRATION_VERSION, POX_SAVE_MIGRATION_VERSION);
+    }
 
     LoadSaveblockMapHeader();
     ClearDiveAndHoleWarps();

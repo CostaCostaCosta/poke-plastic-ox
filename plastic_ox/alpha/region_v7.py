@@ -41,10 +41,27 @@ WATER = {'Route103','Route19_Frlg','Route21_North_Frlg','Route21_South_Frlg',
          'Route115','MossdeepCity','CinnabarIsland_Frlg',
          'PlasticOx_Route20West','PlasticOx_Route20East'}
 
+# Only these authored portals have a reviewed outdoor throat wide enough to
+# warrant adjacent coordinate triggers. Cave mouths, facilities, one-tile
+# shortcuts, and gated/object-blocked mouths retain their canonical center
+# trigger. The geometry/occupancy checks below still veto an individual lane.
+LANE_PORTALS = {
+    'rustboro_route44','route33_goldenrod','goldenrod_route35','route35_park',
+    'park_route36','route37_ecruteak','route119_fortree','route36_shortcut',
+    'route110_lavender','lavender_route8','route8_saffron','route7_saffron',
+    'route7_route103','oldale_route103','route103_cinnabar','cinnabar_sea',
+    'sea_mossdeep','mossdeep_route19','route19_saffron','saffron_route5',
+    'route5_route115','blackthorn_route45','route45_route46',
+    'lavender_harbor','harbor_frontier',
+}
+
+# These transitions are visually self-explanatory roads.  Extra object signs
+# narrowed their approaches and duplicated nearby native wayfinding.
+SIGNLESS_TRAILS = {'rustboro_route44'}
+
 # Explicit source/destination port targets. A target may name a compass edge;
 # coordinates denote a native gate plaza, cave mouth, or dock.
 TRAILS = [
-    ('rustboro_cottage','RustboroCity','N','Route24_hns','S',[]),
     ('rustboro_route44','RustboroCity',(39,10),'Route44_hns',(0,13),[]),
     ('route44_moon','Route44_hns',(68,13),'MtMoon_Cave_hns',(4,11),[]),
     ('moon_route33','MtMoon_Cave_hns',(46,30),'Route33_hns',(27,18),['FLAG_POX_STORY_MTMOON']),
@@ -111,7 +128,9 @@ def apply_region(read, put):
         'Route29_hns':{'MAP_OLDALE_TOWN','MAP_CHERRYGROVE_CITY_HNS'},
         'CherrygroveCity_hns':{'MAP_ROUTE29_HNS','MAP_ROUTE2'},
         'Route2_Frlg':{'MAP_CHERRYGROVE_CITY_HNS','MAP_RUSTBORO_CITY'},
-        'RustboroCity':{'MAP_ROUTE2'},
+        'RustboroCity':{'MAP_ROUTE2','MAP_ROUTE24_HNS'},
+        'Route24_hns':{'MAP_RUSTBORO_CITY','MAP_ROUTE25_HNS'},
+        'Route25_hns':{'MAP_ROUTE24_HNS'},
         'Route36_hns':{'MAP_ROUTE37_HNS'}, 'Route37_hns':{'MAP_ROUTE36_HNS','MAP_ECRUTEAK_CITY_HNS'},
         'EcruteakCity_hns':{'MAP_ROUTE37_HNS'},
         'BattleFrontier_OutsideWest':{'MAP_BATTLE_FRONTIER_OUTSIDE_EAST'},
@@ -154,8 +173,8 @@ def apply_region(read, put):
             put(script_path,re.sub(r'\A.*?\t.byte 0',name+'_MapScripts::\n\t.byte 0',old,count=1,flags=re.S))
         if name in active:
             d['region']='REGION_HOENN'
-            d['object_events']=[o for o in d.get('object_events',[]) if o.get('script') == 'PoxRegion_cherry_route2_b_Sign' or not o.get('script','').startswith('PoxRegion_') or not o.get('script','').endswith('_Sign')]
-            d['bg_events']=[o for o in d.get('bg_events',[]) if o.get('script') == 'PoxRegion_cherry_route2_b_Sign' or not o.get('script','').startswith('PoxRegion_') or not o.get('script','').endswith('_Sign')]
+            d['object_events']=[o for o in d.get('object_events',[]) if not o.get('script','').startswith('PoxRegion_') or not o.get('script','').endswith('_Sign')]
+            d['bg_events']=[o for o in d.get('bg_events',[]) if not o.get('script','').startswith('PoxRegion_') or not o.get('script','').endswith('_Sign')]
             # Remove source-world quest triggers; authored Pallet starter gate survives.
             d['coord_events']=[c for c in d.get('coord_events',[]) if c.get('script')=='Pox_StarterGate']
             if name == 'IlexForest_hns':
@@ -194,17 +213,19 @@ def apply_region(read, put):
     coastal_connections = {
         'CherrygroveCity_hns': [
             {'map':'MAP_ROUTE29_HNS','offset':-6,'direction':'right'},
-            {'map':'MAP_ROUTE2','offset':22,'direction':'up'},
+            {'map':'MAP_ROUTE2','offset':25,'direction':'up'},
         ],
         'Route2_Frlg': [
             {'map':'MAP_RUSTBORO_CITY','offset':-6,'direction':'up'},
-            {'map':'MAP_CHERRYGROVE_CITY_HNS','offset':-22,'direction':'down'},
+            {'map':'MAP_CHERRYGROVE_CITY_HNS','offset':-25,'direction':'down'},
         ],
         'RustboroCity': [
             {'map':'MAP_ROUTE2','offset':6,'direction':'down'},
+            {'map':'MAP_ROUTE24_HNS','offset':3,'direction':'up'},
         ],
         'Route24_hns': [
             {'map':'MAP_ROUTE25_HNS','offset':0,'direction':'up'},
+            {'map':'MAP_RUSTBORO_CITY','offset':-3,'direction':'down'},
         ],
         'Route25_hns': [
             {'map':'MAP_ROUTE24_HNS','offset':0,'direction':'down'},
@@ -225,6 +246,19 @@ def apply_region(read, put):
     }
     for name, connections in coastal_connections.items():
         d=load(name);d['connections']=connections;save(name,d)
+    # Wayfinding belongs beside the four-lane entrance, not on the bridge.
+    d=load('RustboroCity')
+    d['bg_events']=[b for b in d.get('bg_events',[]) if b.get('script') != 'RustboroCity_EventScript_TunnelSign']
+    d['object_events']=[o for o in d['object_events'] if o.get('script') != 'PoxRustboroNorthSign']
+    d['object_events'].append(dict(graphics_id='OBJ_EVENT_GFX_SIGN',x=23,y=6,elevation=3,
+        movement_type='MOVEMENT_TYPE_NONE',movement_range_x=0,movement_range_y=0,
+        trainer_type='TRAINER_TYPE_NONE',trainer_sight_or_berry_tree_id='0',
+        script='PoxRustboroNorthSign',flag='0'))
+    save('RustboroCity',d)
+    d=load('Route44_hns')
+    d['bg_events']=[b for b in d.get('bg_events',[])
+                    if (b.get('x'),b.get('y')) not in {(5,17),(66,13)}]
+    save('Route44_hns',d)
     d=load('PalletTown_Frlg')
     d['coord_events'] += [dict(type='trigger',x=x,y=19,elevation=0,var='VAR_TEMP_0',var_value=0,script='PalletTown_SurfToRoute21') for x in range(7,11)]
     save('PalletTown_Frlg',d)
@@ -299,11 +333,8 @@ def apply_region(read, put):
     scripts=['PoxRegion_TrailHint::\n\tmsgbox PoxRegion_TrailText, MSGBOX_SIGN\n\tend',
              'PoxRegion_TrailText::\n\t.string "Follow the marked trails to the\\nnext town.$"',
              'PoxRegion_ClosedText::\n\t.string "This passage is still closed.\\nReturn after your next objective.$"']
-    # Cherrygrove now joins Route 2 by a seam, not a portal. Keep its sign.
-    scripts.append('PoxRegion_cherry_route2_b_Sign::\n\tmsgbox PoxRegion_cherry_route2_b_Text, MSGBOX_SIGN\n\tend\nPoxRegion_cherry_route2_b_Text::\n\t.string "CHERRYGROVE CITY\\nThe road south leads to town.$"')
+    scripts.append('PoxRustboroNorthSign::\n\tmsgbox PoxRustboroNorthSign_Text, MSGBOX_SIGN\n\tend\nPoxRustboroNorthSign_Text::\n\t.string "ROUTE 24 - NORTH\\nBILL\'S COTTAGE via ROUTE 25$"')
     sign_text = {
-        'rustboro_cottage_b': 'RUSTBORO CITY lies south.\\nThe cottage path leads north.$',
-        'ilex_route2_north': 'ROUTE 2 NORTH GATE\\nRUSTBORO lies beyond ROUTE 2.$',
         'route7_route103_b': 'ROUTE 7\\nKeep to the marked passage.$',
         'route103_cinnabar_a': 'CINNABAR ISLAND\\nFollow the passage south.$'
     }
@@ -393,7 +424,53 @@ def apply_region(read, put):
         script='PoxRegion_'+key
         reserved.setdefault(name,[])
         d=load(name)
-        d['coord_events'].append(dict(type='trigger',x=p['tile'][0],y=p['tile'][1],elevation=0,var='VAR_POX_PORTAL_GATE',var_value=0,script=script))
+        # A portal often represents a visible plaza/road throat rather than a
+        # one-cell doorway.  Cover only the immediately adjacent lanes that
+        # have the same approach geometry.  The hard width cap keeps a broad
+        # walkable plaza from becoming an invisible whole-map teleport, while
+        # the occupancy checks protect signs, NPCs, warps, and other portals.
+        g=Geometry(name,d)
+        water=name in WATER
+        dx,dy=DIRECTIONS[p['direction']]
+        px,py=-dy,dx
+        occupied={(o['x'],o['y']) for o in d.get('object_events',[])}
+        occupied |= {(w['x'],w['y']) for w in d.get('warp_events',[])}
+        physical_occupied=set(occupied)
+        occupied |= set(reserved[name])
+        # port() reserves its own canonical pair so another endpoint cannot
+        # select it; that reservation must not suppress this endpoint's
+        # canonical trigger.
+        occupied.discard(tuple(p['tile']))
+        occupied.discard(tuple(p['approach']))
+        # Return-mouth helper endpoints (for example Underground Path) are
+        # intentionally not regional anchors; their approach is the only
+        # required component seed.
+        component=g.component(ANCHORS.get(name,p['approach']),water)
+        trigger_tiles=[]
+        lanes=(0,-1,1) if key[:-2] in LANE_PORTALS else (0,)
+        # An object/warp on the canonical mouth is an intentional physical
+        # gate (Route 44/Mt. Moon and similar blockers). Never route around it
+        # through a newly expanded invisible lane.
+        canonical_blocked=(tuple(p['tile']) in physical_occupied or
+                           tuple(p['approach']) in physical_occupied)
+        for lane in lanes:
+            tx,ty=p['tile'][0]+px*lane,p['tile'][1]+py*lane
+            ax,ay=tx-dx,ty-dy
+            if lane != 0 and canonical_blocked:
+                continue
+            if lane != 0 and ((tx,ty) in occupied or (ax,ay) in occupied):
+                continue
+            if (tx,ty) not in component or (ax,ay) not in component:
+                continue
+            if not g.passable(tx,ty,water) or not g.passable(ax,ay,water):
+                continue
+            trigger_tiles.append((tx,ty))
+        # Keep the central lane first for deterministic generated output.
+        trigger_tiles.sort(key=lambda t: (abs((t[0]-p['tile'][0])*px+(t[1]-p['tile'][1])*py), t[1], t[0]))
+        # Remove stale copies before adding the current geometry-derived set.
+        d['coord_events']=[c for c in d.get('coord_events',[]) if c.get('script') != script]
+        d['coord_events'] += [dict(type='trigger',x=x,y=y,elevation=0,var='VAR_POX_PORTAL_GATE',var_value=0,script=script)
+                              for x,y in trigger_tiles]
         save(name,d)
         body=f'{script}::\n\tlockall\n\tgoto_if_unset FLAG_POX_TRIGGERS_ENABLED, {script}_Open\n'
         for flag in requirements:
@@ -406,9 +483,9 @@ def apply_region(read, put):
         # A visible sign next to the approach identifies every authored trail.
         g=Geometry(name,load(name));x,y=p['approach']
         occupied={(o['x'],o['y']) for o in load(name).get('object_events',[])}
-        candidates=[] if name in extra_frlg else [(x+dx,y+dy) for dx,dy in DIRECTIONS.values() if g.passable(x+dx,y+dy,False) and (x+dx,y+dy) not in reserved[name] and (x+dx,y+dy) not in occupied and sum(g.passable(x+dx+ddx,y+dy+ddy,False) for ddx,ddy in DIRECTIONS.values())>=3]
+        candidates=[] if name in extra_frlg or key[:-2] in SIGNLESS_TRAILS else [(x+dx,y+dy) for dx,dy in DIRECTIONS.values() if g.passable(x+dx,y+dy,False) and (x+dx,y+dy) not in reserved[name] and (x+dx,y+dy) not in occupied and sum(g.passable(x+dx+ddx,y+dy+ddy,False) for ddx,ddy in DIRECTIONS.values())>=3]
         trigger_tiles={(c['x'],c['y']) for c in d['coord_events']}
-        candidates=[c for c in candidates if tuple(p['approach']) in g.component(ANCHORS[name],name in WATER,occupied | trigger_tiles | {c})]
+        candidates=[c for c in candidates if tuple(p['approach']) in g.component(ANCHORS.get(name,p['approach']),name in WATER,occupied | trigger_tiles | {c})]
         if candidates:
             sx,sy=candidates[0];d=load(name)
             d['bg_events']=[b for b in d.get('bg_events',[]) if b.get('script') != script+'_Sign']
@@ -519,8 +596,9 @@ def apply_region(read, put):
         endpoint('underground_return_'+str(x),'UndergroundPath_WestEntrance_Frlg',q,'Route7_hns',p['approach'],[], 'Route 7')
 
     # Route 2 retains its native gatehouses, local buildings and cave mouth.
-    # Ilex's northern doorway was removed by the original import: use its
-    # proven walkable plaza and an explicit return trigger there.
+    # Ilex's north threshold uses a dedicated, visually identical north-arrow
+    # metatile installed by agent/fix_ilex_north_gate.py. Keep this a native
+    # reciprocal door warp rather than an invisible coordinate-script portal.
     south,north=route2_rooms[1],route2_rooms[0]
     d=load('Route2_Frlg')
     d['object_events']=[o for o in d['object_events'] if o.get('type')!='clone']
@@ -538,10 +616,10 @@ def apply_region(read, put):
     save(north,d)
     d=load('IlexForest_hns')
     d['warp_events']=[dict(x=22,y=63,elevation=0,dest_map=mid(south),dest_warp_id='3'),dict(x=20,y=15,elevation=0,dest_map=mid(north),dest_warp_id='1')]
+    d['coord_events']=[e for e in d.get('coord_events',[]) if e.get('script') != 'PoxRegion_ilex_route2_north']
+    d['object_events']=[e for e in d.get('object_events',[]) if e.get('script') != 'PoxRegion_ilex_route2_north_Sign']
+    d['bg_events']=[e for e in d.get('bg_events',[]) if e.get('script') != 'PoxRegion_ilex_route2_north_Sign']
     save('IlexForest_hns',d)
-    p={'tile':[20,14],'approach':[20,15],'direction':'N'}
-    reserved.setdefault('IlexForest_hns',[]).extend([tuple(p['tile']),tuple(p['approach'])])
-    endpoint('ilex_route2_north','IlexForest_hns',p,north,[7,9],['FLAG_POX_STORY_ILEX'],'Route 2 north gate')
     scripts.extend(['PoxRoute2_Ether::\n\tfinditem ITEM_ETHER\n\tend','PoxRoute2_ParalyzeHeal::\n\tfinditem ITEM_PARALYZE_HEAL\n\tend'])
     # Route 2 and Rustboro share a real north/south camera seam. Before Ilex is
     # complete, a visible ranger occupies the one-tile trail; the normal object

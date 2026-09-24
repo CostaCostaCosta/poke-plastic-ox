@@ -3,46 +3,6 @@
   "donor_revision": "44f50eedefe58691b0444973e4138e9190d8fafc",
   "transitions": [
     {
-      "id": "rustboro_cottage_a",
-      "source": "RustboroCity",
-      "destination": "Route24_hns",
-      "tile": [
-        21,
-        0
-      ],
-      "approach": [
-        21,
-        1
-      ],
-      "direction": "N",
-      "landing": [
-        18,
-        20
-      ],
-      "requires": [],
-      "label": "Route24"
-    },
-    {
-      "id": "rustboro_cottage_b",
-      "source": "Route24_hns",
-      "destination": "RustboroCity",
-      "tile": [
-        18,
-        21
-      ],
-      "approach": [
-        18,
-        20
-      ],
-      "direction": "S",
-      "landing": [
-        21,
-        1
-      ],
-      "requires": [],
-      "label": "RustboroCity"
-    },
-    {
       "id": "rustboro_route44_a",
       "source": "RustboroCity",
       "destination": "Route44_hns",
@@ -1503,28 +1463,6 @@
       ],
       "requires": [],
       "label": "Route 7"
-    },
-    {
-      "id": "ilex_route2_north",
-      "source": "IlexForest_hns",
-      "destination": "Route2_ViridianForest_NorthEntrance_Frlg",
-      "tile": [
-        20,
-        14
-      ],
-      "approach": [
-        20,
-        15
-      ],
-      "direction": "N",
-      "landing": [
-        7,
-        9
-      ],
-      "requires": [
-        "FLAG_POX_STORY_ILEX"
-      ],
-      "label": "Route 2 north gate"
     }
   ],
   "native_seams": {
@@ -1562,7 +1500,15 @@
       "MAP_RUSTBORO_CITY"
     ],
     "RustboroCity": [
-      "MAP_ROUTE2"
+      "MAP_ROUTE2",
+      "MAP_ROUTE24_HNS"
+    ],
+    "Route24_hns": [
+      "MAP_ROUTE25_HNS",
+      "MAP_RUSTBORO_CITY"
+    ],
+    "Route25_hns": [
+      "MAP_ROUTE24_HNS"
     ],
     "Route36_hns": [
       "MAP_ROUTE37_HNS"
