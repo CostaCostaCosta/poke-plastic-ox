@@ -74,9 +74,9 @@
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 6,
       "movement_range_y": 6,
-      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "6",
-      "script": "IlexForest_EventScript_Npc6",
+      "script": "IlexForest_EventScript_BugcatcherWayne",
       "flag": "0"
     },
     {
@@ -172,19 +172,6 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "IlexForest_EventScript_Item13",
       "flag": "FLAG_POX_HIDDEN_ILEXFOREST_13"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_SIGN",
-      "x": 20,
-      "y": 16,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "PoxRegion_ilex_route2_north_Sign",
-      "flag": "0"
     }
   ],
   "warp_events": [
@@ -203,17 +190,7 @@
       "dest_warp_id": "1"
     }
   ],
-  "coord_events": [
-    {
-      "type": "trigger",
-      "x": 20,
-      "y": 14,
-      "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
-      "var_value": 0,
-      "script": "PoxRegion_ilex_route2_north"
-    }
-  ],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "sign",
@@ -262,14 +239,6 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "PlasticOx_EventScript_HeadbuttTree"
-    },
-    {
-      "type": "sign",
-      "x": 20,
-      "y": 16,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "PoxRegion_ilex_route2_north_Sign"
     }
   ],
   "region": "REGION_HOENN"

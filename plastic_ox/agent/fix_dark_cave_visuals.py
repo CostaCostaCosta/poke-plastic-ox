@@ -52,16 +52,25 @@ def main():
         attribute = struct.unpack_from("<H", attributes, offset)[0]
         struct.pack_into("<H", attributes, offset, (attribute & ~0xFF) | water)
 
-    # These two shoreline shapes were the only walkable holes into the pool.
-    # Mark their Dark Cave placements impassable too, so runtime compatibility
-    # initialization cannot turn the shoreline back into ordinary foot terrain.
+    # The imported pool lost its HNS elevation bits during an earlier blockmap
+    # repair.  At elevation 0 it matches the surrounding cave floor, allowing
+    # the player to walk onto the water.  Restore the donor's water elevation
+    # for every water-behavior placement, not just the two shoreline shapes.
+    # Keep those shoreline shapes explicitly impassable as an extra guard.
     map_path = LAYOUT / "map.bin"
     blocks = bytearray(map_path.read_bytes())
     assert len(blocks) == 78 * 50 * 2
     for offset in range(0, len(blocks), 2):
         block = struct.unpack_from("<H", blocks, offset)[0]
-        if block & 0x03FF in (811, 820):
-            struct.pack_into("<H", blocks, offset, block | 0x0C00)
+        metatile_id = block & 0x03FF
+        if metatile_id < 640:
+            continue
+        attribute = struct.unpack_from("<H", attributes, 2 * (metatile_id - 640))[0]
+        if attribute & 0xFF == water:
+            block = (block & ~0xF000) | 0x1000
+            if metatile_id in (811, 820):
+                block |= 0x0C00
+            struct.pack_into("<H", blocks, offset, block)
 
     # The donor's filler block (657) can expose entrance-like animation along
     # the camera margin.  Use the solid cave-wall block already surrounding the

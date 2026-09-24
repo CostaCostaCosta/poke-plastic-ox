@@ -21,7 +21,7 @@
     },
     {
       "map": "MAP_ROUTE2",
-      "offset": 22,
+      "offset": 25,
       "direction": "up"
     }
   ],
@@ -85,7 +85,7 @@
       "x": 34,
       "y": 13,
       "elevation": 0,
-      "dest_map": "MAP_HOUSE_GENERIC_A_HNS",
+      "dest_map": "MAP_CHERRYGROVE_CITY_SOUTHEAST_HOUSE_HNS",
       "dest_warp_id": 0
     },
     {
@@ -99,7 +99,7 @@
       "x": 50,
       "y": 17,
       "elevation": 0,
-      "dest_map": "MAP_CHERRYGROVE_CITY_SOUTHEAST_HOUSE_HNS",
+      "dest_map": "MAP_HOUSE_GENERIC_A_HNS",
       "dest_warp_id": 0
     }
   ],

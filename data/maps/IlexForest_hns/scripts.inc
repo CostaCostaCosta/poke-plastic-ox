@@ -44,11 +44,9 @@ Pox_IlexForest_EventScript_HeadbuttKeyEnd::
 	release
 	end
 
-IlexForest_EventScript_Npc6::
-	lock
-	faceplayer
-	msgbox IlexForest_EventScript_Npc6_Text, MSGBOX_NPC
-	release
+IlexForest_EventScript_BugcatcherWayne::
+	trainerbattle_single TRAINER_PLASTIC_OX_ROUTE_ILEX, IlexForest_Text_BugCatcherWayneSeen, IlexForest_Text_BugCatcherWayneBeaten
+	msgbox IlexForest_Text_BugCatcherWayneAfter, MSGBOX_AUTOCLOSE
 	end
 
 IlexForest_EventScript_Item7::
@@ -132,11 +130,19 @@ Pox_IlexForest_Text_HeadbuttKeyOwned:
 	.string "I could sit here all afternoon\n"
 	.string "just listening to the branches.$"
 
-IlexForest_EventScript_Npc6_Text:
-	.string "I heard wings and ran this way.\n"
-	.string "It was only a falling leaf.\p"
-	.string "Next time, I'm looking up\n"
-	.string "before I start chasing!$"
+IlexForest_Text_BugCatcherWayneSeen:
+	.string "Don't sneak up on me like that!\p"
+	.string "You frightened a POKéMON away!$"
+
+IlexForest_Text_BugCatcherWayneBeaten:
+	.string "I hadn't seen that POKéMON before…$"
+
+IlexForest_Text_BugCatcherWayneAfter:
+	.string "A POKéMON I've never seen before\n"
+	.string "fell out of the tree when I used\l"
+	.string "HEADBUTT.\p"
+	.string "I ought to use HEADBUTT in other\n"
+	.string "places too.$"
 
 IlexForest_EventScript_Npc10_Text:
 	.string "These trees have stood here\n"

@@ -246,12 +246,14 @@ RustboroCity_PokemonSchool_Text_ExplainFreeze:
 RustboroCity_PokemonSchool_Text_TrainingKitIntro:
 	.string "A good TRAINER studies how nature and\n"
 	.string "training shape a POKéMON.\p"
-	.string "Use this TRAINING KIT to set the\n"
-	.string "nature and EVs of your party.$"
+	.string "Use it to set nature, EVs, abilities,\n"
+	.string "and HIDDEN POWER types.$"
 
 RustboroCity_PokemonSchool_Text_ExplainTrainingKit:
 	.string "The TRAINING KIT works on every\n"
 	.string "non-EGG POKéMON in your active party.\p"
+	.string "It sets nature, EVs, abilities, and\n"
+	.string "HIDDEN POWER types.\p"
 	.string "Use it from the KEY ITEMS pocket.$"
 
 RustboroCity_PokemonSchool_Text_TradingRightNow:

@@ -22,7 +22,7 @@
     },
     {
       "map": "MAP_CHERRYGROVE_CITY_HNS",
-      "offset": -22,
+      "offset": -25,
       "direction": "down"
     }
   ],
@@ -110,19 +110,6 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "PoxRoute2_ParalyzeHeal",
       "flag": "FLAG_POX_ROUTE2_PARALYZE_HEAL"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_SIGN",
-      "x": 10,
-      "y": 78,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "PoxRegion_cherry_route2_b_Sign",
-      "flag": "0"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_HIKER",

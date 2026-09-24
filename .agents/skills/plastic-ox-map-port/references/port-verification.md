@@ -1,5 +1,34 @@
 # Port verification
 
+## Outdoor entrance width
+
+Rustboro's former north exit had five walkable columns but only one coordinate
+warp. The replacement connects city columns 19..22 to Route 24 bridge columns
+16..19 with offsets +3/-3. Test all four lanes, not just the center. The east
+riverside path must terminate visibly before crossing into the city's trees.
+Keep signs beside the approach and use each layout's own road/forest assets.
+
+Reproduce geometry with `python3 plastic_ox/agent/improve_rustboro_north.py`.
+Topology and sign generation live in `plastic_ox/alpha/region_v7.py`; inspect
+the patch from `build_story.py` before applying unrelated regeneration drift.
+Run `plastic_ox/demo/test_rustboro_north.py` in the mGBA environment below for
+all-lane round trips, blocked shoulders, blank-frame checks and scrolling
+redraw comparisons. Inspect its fresh `rustboro_north_*.png` screenshots.
+
+Source comparisons inspected 2026-09-18:
+
+- [Emerald Enhanced Route135](https://github.com/Enhanced-Projects/Emerald-Enhanced/blob/8feeffde06a160c3f7a0e94689c0fd2ed13214f7/data/maps/Route135/map.json)
+  uses a south connection at +20 to Pacifidlog; the town returns at -20.
+- [Wishes of Tomorrow's MunenVillage gate](https://github.com/jmaloney95/Wishes-Game/blob/343c9ff548d20f1d946433fa60e6570dc42b26df/data/maps/MunenVillage/scripts.inc)
+  checks story flags and then permits walking over its ordinary connection.
+  Its map data covers all three gate lanes with the check.
+
+Inference for Plastic-Ox: prefer reciprocal connections for continuous outdoor
+roads; keep story checks separate and preserve intentional warp entrances.
+These examples do not validate our cross-primary renderer. Emerald Enhanced
+and the expansion-based Wishes project are distinct bases; do not present
+them as multiple verified Enhanced custom-region forks.
+
 Read this reference for any new import, seam/warp change, cross-layout
 transition, malformed-map repair, or ledge regression.
 

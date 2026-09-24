@@ -3,10 +3,8 @@ Route25_hns_MapScripts::
 	.byte 0
 
 Route25_EventScript_Npc1::
-	lock
-	faceplayer
-	msgbox Route25_EventScript_Npc1_Text, MSGBOX_NPC
-	release
+	trainerbattle_single TRAINER_PLASTIC_OX_ROUTE25_DUDLEY, Route25_DudleyChallenge_Text, Route25_DudleyDefeat_Text
+	msgbox Route25_EventScript_Npc1_Text, MSGBOX_AUTOCLOSE
 	end
 
 Route25_EventScript_Npc2::
@@ -17,31 +15,23 @@ Route25_EventScript_Npc2::
 	end
 
 Route25_EventScript_Npc3::
-	lock
-	faceplayer
-	msgbox Route25_EventScript_Npc3_Text, MSGBOX_NPC
-	release
+	trainerbattle_single TRAINER_PLASTIC_OX_ROUTE25_JOE, Route25_JoeChallenge_Text, Route25_JoeDefeat_Text
+	msgbox Route25_EventScript_Npc3_Text, MSGBOX_AUTOCLOSE
 	end
 
 Route25_EventScript_Npc4::
-	lock
-	faceplayer
-	msgbox Route25_EventScript_Npc4_Text, MSGBOX_NPC
-	release
+	trainerbattle_single TRAINER_PLASTIC_OX_ROUTE25_LAURA, Route25_LauraChallenge_Text, Route25_LauraDefeat_Text
+	msgbox Route25_EventScript_Npc4_Text, MSGBOX_AUTOCLOSE
 	end
 
 Route25_EventScript_Npc5::
-	lock
-	faceplayer
-	msgbox Route25_EventScript_Npc5_Text, MSGBOX_NPC
-	release
+	trainerbattle_single TRAINER_PLASTIC_OX_ROUTE25_LLOYD, Route25_LloydChallenge_Text, Route25_LloydDefeat_Text
+	msgbox Route25_EventScript_Npc5_Text, MSGBOX_AUTOCLOSE
 	end
 
 Route25_EventScript_Npc6::
-	lock
-	faceplayer
-	msgbox Route25_EventScript_Npc6_Text, MSGBOX_NPC
-	release
+	trainerbattle_single TRAINER_PLASTIC_OX_ROUTE25_ELLEN, Route25_EllenChallenge_Text, Route25_EllenDefeat_Text
+	msgbox Route25_EventScript_Npc6_Text, MSGBOX_AUTOCLOSE
 	end
 
 Route25_EventScript_Npc7::
@@ -121,3 +111,47 @@ Route25_EventScript_Npc11_Text:
 
 Route25_EventScript_Npc12_Text:
 	.string "BILL's grandfather is looking\nafter the cottage while he's out.\pHe was brushing an EEVEE when\nI visited. There was fur on him!$"
+
+Route25_EventScript_Pat::
+	trainerbattle_single TRAINER_PLASTIC_OX_ROUTE25_PAT, Route25_PatChallenge_Text, Route25_PatDefeat_Text
+	msgbox Route25_EventScript_Pat_Text, MSGBOX_AUTOCLOSE
+	end
+
+Route25_DudleyChallenge_Text::
+	.string "I counted every bend on this\nroute. Now I'll count your turns!$"
+
+Route25_DudleyDefeat_Text::
+	.string "I lost count again!$"
+
+Route25_JoeChallenge_Text::
+	.string "My POKéMON tripped me once.\nLet's see how they battle!$"
+
+Route25_JoeDefeat_Text::
+	.string "At least I stayed on my feet!$"
+
+Route25_LauraChallenge_Text::
+	.string "One step at a time. Show me\nhow you lead your POKéMON!$"
+
+Route25_LauraDefeat_Text::
+	.string "Your team kept perfect pace.$"
+
+Route25_LloydChallenge_Text::
+	.string "I brought lunch for the cape.\nFirst, let's work up an appetite!$"
+
+Route25_LloydDefeat_Text::
+	.string "Now I really need that lunch.$"
+
+Route25_EllenChallenge_Text::
+	.string "My son ran ahead again.\nKeep me company with a battle!$"
+
+Route25_EllenDefeat_Text::
+	.string "You have his energy, too!$"
+
+Route25_PatChallenge_Text::
+	.string "I've been studying the POKéMON\nhere. Let's test my notes!$"
+
+Route25_PatDefeat_Text::
+	.string "Back to the notebook, then.$"
+
+Route25_EventScript_Pat_Text::
+	.string "I study the POKéMON here\nbetween battles.$"

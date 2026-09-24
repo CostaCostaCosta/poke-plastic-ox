@@ -56,6 +56,10 @@ For repeated buildings or sliced trees after a camera connection, also use the
 "Camera redraw and border phase" section of that reference. Check redraw
 timing and border repetition before changing map geometry or connection offsets.
 
+For city/route exits, read the "Outdoor entrance width" section of
+[references/port-verification.md](references/port-verification.md). It records
+the Rustboro / Route 24 regression and source-backed transition patterns.
+
 ## Prove the result
 
 Build with the repository's configured devkitARM command. Re-run the relevant

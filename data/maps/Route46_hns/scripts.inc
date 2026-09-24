@@ -10,10 +10,8 @@ Route46_EventScript_Ted::
 	end
 
 Route46_EventScript_Erin::
-	lock
-	faceplayer
-	msgbox Route46_Text_Erin, MSGBOX_NPC
-	release
+	trainerbattle_single TRAINER_PLASTIC_OX_ROUTE46_ERIN, Route46_Text_Erin, Route46_Text_Erin_Defeat
+	msgbox Route46_Text_Erin_After, MSGBOX_AUTOCLOSE
 	end
 
 Route46_EventScript_Bailey::
@@ -38,10 +36,15 @@ Route46_Text_Ted:
 	.string "still counts as a hike!$"
 
 Route46_Text_Erin:
+	.string "I packed lunch for the hike.\n"
+	.string "My POKéMON packed a battle!$"
+
+Route46_Text_Erin_Defeat:
+	.string "Time for a lunch break!$"
+
+Route46_Text_Erin_After:
 	.string "I spread my lunch on a rock.\n"
-	.string "The wind took the napkin.\p"
-	.string "If it catches my sandwich,\n"
-	.string "I'm going home.$"
+	.string "The wind took the napkin!$"
 
 Route46_Text_Bailey:
 	.string "I came down from the mountains.\n"

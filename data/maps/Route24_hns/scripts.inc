@@ -3,10 +3,8 @@ Route24_hns_MapScripts::
 	.byte 0
 
 Route24_EventScript_Npc1::
-	lock
-	faceplayer
-	msgbox Route24_EventScript_Npc1_Text, MSGBOX_NPC
-	release
+	trainerbattle_single TRAINER_PLASTIC_OX_ROUTE24_ROCKET, Route24_RocketChallenge_Text, Route24_RocketDefeat_Text
+	msgbox Route24_EventScript_Npc1_Text, MSGBOX_AUTOCLOSE
 	end
 
 Route24_EventScript_Npc2::
@@ -32,6 +30,12 @@ Route24_EventScript_Npc4::
 
 Route24_EventScript_Npc1_Text:
 	.string "I was told to go to a cave,\nbut I got lost out here.\pDon't tell the BOSS you saw me!$"
+
+Route24_RocketChallenge_Text:
+	.string "The BOSS sent me to a cave,\nand I ended up on this bridge!\pYou won't tell him, will you?\nThen let's battle!$"
+
+Route24_RocketDefeat_Text:
+	.string "Great. Now I'm lost and beaten.$"
 
 Route24_EventScript_Npc2_Text:
 	.string "I walk out here after work.\nIt gets the dust off my boots.\pA good battle does more for me\nthan sitting around at home.$"

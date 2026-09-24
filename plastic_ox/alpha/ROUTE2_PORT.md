@@ -39,10 +39,15 @@ remain; Kanto-only trade/aide handlers become local dialogue. The off-map
 Viridian tree clone is removed. Two item pickups use unique persistent flags
 at offsets 58 and 59 of the existing item flag run.
 
-Route 2 uses the existing authored Route 31 morning/day/night grass and fishing
-tables. Their labels are retained, but their runtime map ID is `MAP_ROUTE2`.
-The encounter installer also targets Route 2 for the Route 31 document section.
-Ilex and Dark Cave encounter tables are unchanged.
+The Cherrygrove side is **Route 2 South** (`y >= 51`) and uses the authored
+Route 2 South morning/day/night grass tables. The Rustboro and Dark Cave side
+is **Route 2 North** (`y < 51`) and uses the independent Route 2 North tables.
+Both sections belong to the live `MAP_ROUTE2`; encounter-header selection uses
+the southern Ilex gate row as the boundary. Neither section has water or
+fishing encounters. The inert `MAP_ROUTE2_HNS` registration remains solely to
+preserve map-group numbering and save compatibility, but owns no encounters.
+The obsolete Route 1, Route 31, and upper Route 104 Plastic Ox encounter
+records were removed; the HNS Route 2 layout remains the live map's layout.
 
 ## Regeneration and verification
 

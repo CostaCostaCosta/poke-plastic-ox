@@ -4,7 +4,21 @@ RustboroCity_DevonCorp_2F_MapScripts::
 
 RustboroCity_DevonCorp_2F_OnTransition:
 	call_if_eq VAR_FOSSIL_RESURRECTION_STATE, 1, RustboroCity_DevonCorp_2F_EventScript_SetFossilReady
+	goto_if_set FLAG_BADGE05_GET, RustboroCity_DevonCorp_2F_EventScript_OpenThirdFloor
+	clearflag FLAG_POX_HIDE_DEVON_3F_GUARD
 	end
+
+RustboroCity_DevonCorp_2F_EventScript_OpenThirdFloor::
+	setflag FLAG_POX_HIDE_DEVON_3F_GUARD
+	end
+
+RustboroCity_DevonCorp_2F_EventScript_ThirdFloorGuard::
+	msgbox RustboroCity_DevonCorp_2F_Text_ThirdFloorRestricted, MSGBOX_NPC
+	end
+
+RustboroCity_DevonCorp_2F_Text_ThirdFloorRestricted:
+	.string "The third floor is closed for\n"
+	.string "research. Please come back later.$"
 
 RustboroCity_DevonCorp_2F_EventScript_SetFossilReady::
 	setvar VAR_FOSSIL_RESURRECTION_STATE, 2
@@ -73,7 +87,7 @@ RustboroCity_DevonCorp_2F_EventScript_OfferDomeFossil::
 	bufferspeciesname STR_VAR_2, SPECIES_KABUTO
 	msgbox RustboroCity_DevonCorp_2F_Text_OfferOtherFossil, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, RustboroCity_DevonCorp_2F_EventScript_CheckOldAmber
-	givemon SPECIES_KABUTO, 15
+	givemon SPECIES_KABUTO, 10
 	goto_if_eq VAR_RESULT, MON_CANT_GIVE, POX_PU_FossilNoRoom
 	copyvar VAR_0x8005, VAR_RESULT
 	removeitem ITEM_DOME_FOSSIL
@@ -89,7 +103,7 @@ RustboroCity_DevonCorp_2F_EventScript_OfferOldAmber::
 	bufferspeciesname STR_VAR_2, SPECIES_AERODACTYL
 	msgbox RustboroCity_DevonCorp_2F_Text_OfferOtherFossil, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, RustboroCity_DevonCorp_2F_EventScript_CheckHoennFossils
-	givemon SPECIES_AERODACTYL, 15
+	givemon SPECIES_AERODACTYL, 10
 	goto_if_eq VAR_RESULT, MON_CANT_GIVE, POX_PU_FossilNoRoom
 	copyvar VAR_0x8005, VAR_RESULT
 	removeitem ITEM_OLD_AMBER
@@ -189,7 +203,7 @@ RustboroCity_DevonCorp_2F_EventScript_AnorithReady::
 
 RustboroCity_DevonCorp_2F_EventScript_ReceiveLileep::
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_LILEEP
-	givemon SPECIES_LILEEP, 20
+	givemon SPECIES_LILEEP, 10
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, RustboroCity_DevonCorp_2F_EventScript_ReceiveLileepParty
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PC, RustboroCity_DevonCorp_2F_EventScript_ReceiveLileepPC
 	goto Common_EventScript_NoMoreRoomForPokemon
@@ -234,7 +248,7 @@ RustboroCity_DevonCorp_2F_EventScript_FinishReceivingLileep::
 
 RustboroCity_DevonCorp_2F_EventScript_ReceiveAnorith::
 	setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_ANORITH
-	givemon SPECIES_ANORITH, 20
+	givemon SPECIES_ANORITH, 10
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PARTY, RustboroCity_DevonCorp_2F_EventScript_ReceiveAnorithParty
 	goto_if_eq VAR_RESULT, MON_GIVEN_TO_PC, RustboroCity_DevonCorp_2F_EventScript_ReceiveAnorithPC
 	goto Common_EventScript_NoMoreRoomForPokemon
@@ -364,12 +378,12 @@ RustboroCity_DevonCorp_2F_Text_DevelopDeviceToResurrectFossils:
 
 RustboroCity_DevonCorp_2F_Text_OfferOtherFossil:
 	.string "I can revive {STR_VAR_1} as a\n"
-	.string "Lv. 15 {STR_VAR_2}.\p"
+	.string "Lv. 10 {STR_VAR_2}.\p"
 	.string "Shall I revive it for you?$"
 
 RustboroCity_DevonCorp_2F_Text_ReceivedOtherFossilMon:
 	.string "{STR_VAR_1} came back to life!\n"
-	.string "You received {STR_VAR_2} at Lv. 15!$"
+	.string "You received {STR_VAR_2} at Lv. 10!$"
 
 RustboroCity_DevonCorp_2F_Text_WantToBringFossilBackToLife:
 	.string "Wait! That thing you have there…\n"

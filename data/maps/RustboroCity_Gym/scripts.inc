@@ -56,8 +56,45 @@ RustboroCity_Gym_EventScript_Marc::
 RustboroCity_Gym_EventScript_GymGuide::
 	lock
 	faceplayer
-	goto_if_set FLAG_DEFEATED_RUSTBORO_GYM, RustboroCity_Gym_EventScript_GymGuidePostVictory
+	goto_if_set FLAG_BADGE01_GET, RustboroCity_Gym_EventScript_GymGuidePostVictory
+	specialvar VAR_RESULT, CheckRustboroGymLittleCupRules
+	goto_if_eq VAR_RESULT, 1, RustboroCity_Gym_EventScript_GymGuideBannedMove
+	goto_if_eq VAR_RESULT, 2, RustboroCity_Gym_EventScript_GymGuideBannedItem
 	msgbox RustboroCity_Gym_Text_GymGuideAdvice, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_Gym_EventScript_EntranceCheck::
+	lockall
+	goto_if_set FLAG_BADGE01_GET, RustboroCity_Gym_EventScript_EntranceClear
+	specialvar VAR_RESULT, CheckRustboroGymLittleCupRules
+	goto_if_eq VAR_RESULT, 1, RustboroCity_Gym_EventScript_EntranceBannedMove
+	goto_if_eq VAR_RESULT, 2, RustboroCity_Gym_EventScript_EntranceBannedItem
+RustboroCity_Gym_EventScript_EntranceClear::
+	releaseall
+	end
+
+RustboroCity_Gym_EventScript_EntranceBannedMove::
+	msgbox RustboroCity_Gym_Text_GymGuideBannedMove, MSGBOX_DEFAULT
+	goto RustboroCity_Gym_EventScript_TurnAway
+
+RustboroCity_Gym_EventScript_EntranceBannedItem::
+	msgbox RustboroCity_Gym_Text_GymGuideBannedItem, MSGBOX_DEFAULT
+	goto RustboroCity_Gym_EventScript_TurnAway
+
+RustboroCity_Gym_EventScript_TurnAway::
+	warp MAP_RUSTBORO_CITY, 27, 20
+	waitstate
+	releaseall
+	end
+
+RustboroCity_Gym_EventScript_GymGuideBannedMove::
+	msgbox RustboroCity_Gym_Text_GymGuideBannedMove, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_Gym_EventScript_GymGuideBannedItem::
+	msgbox RustboroCity_Gym_Text_GymGuideBannedItem, MSGBOX_DEFAULT
 	release
 	end
 
@@ -136,6 +173,19 @@ RustboroCity_Gym_Text_GymGuidePostVictory:
 	.string "You've climbed the first step on\n"
 	.string "the stairs to the CHAMPIONSHIP!\p"
 	.string "That's got to feel awesome!$"
+
+RustboroCity_Gym_Text_GymGuideBannedMove:
+	.string "This GYM follows LITTLE CUP rules.\p"
+	.string "{STR_VAR_1} knows {STR_VAR_2}.\p"
+	.string "That move is banned here.\n"
+	.string "Please change it before entering.$"
+
+RustboroCity_Gym_Text_GymGuideBannedItem:
+	.string "This GYM follows LITTLE CUP rules.\p"
+	.string "{STR_VAR_1} is holding\n"
+	.string "{STR_VAR_2}.\p"
+	.string "That item is banned here.\n"
+	.string "Please remove it before entering.$"
 
 RustboroCity_Gym_Text_JoshIntro:
 	.string "Don't take us GYM TRAINERS lightly!\n"
