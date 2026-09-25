@@ -1,4 +1,5 @@
 #include "global.h"
+#include "metamon_trainer.h"
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_ai_record.h"
@@ -3201,6 +3202,7 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
                     toCpy = GetMoveName(gBattleMsgDataPtr->originallyUsedMove);
                 break;
             case B_TXT_LAST_ITEM: // last used item
+                MetamonPublicItem(gPotentialItemEffectBattler, gLastUsedItem);
                 if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK))
                 {
                     if (gLastUsedItem == ITEM_ENIGMA_BERRY_E_READER)
@@ -3246,18 +3248,23 @@ u32 BattleStringExpandPlaceholders(const u8 *src, u8 *dst, u32 dstSize)
                 }
                 break;
             case B_TXT_LAST_ABILITY: // last used ability
+                MetamonPublicAbility(gBattlerAbility, gLastUsedAbility);
                 toCpy = gAbilitiesInfo[gLastUsedAbility].name;
                 break;
             case B_TXT_ATK_ABILITY: // attacker ability
+                MetamonPublicAbility(gBattlerAttacker, sBattlerAbilities[gBattlerAttacker]);
                 toCpy = gAbilitiesInfo[sBattlerAbilities[gBattlerAttacker]].name;
                 break;
             case B_TXT_DEF_ABILITY: // target ability
+                MetamonPublicAbility(gBattlerTarget, sBattlerAbilities[gBattlerTarget]);
                 toCpy = gAbilitiesInfo[sBattlerAbilities[gBattlerTarget]].name;
                 break;
             case B_TXT_SCR_ACTIVE_ABILITY: // scripting active ability
+                MetamonPublicAbility(gBattleScripting.battler, sBattlerAbilities[gBattleScripting.battler]);
                 toCpy = gAbilitiesInfo[sBattlerAbilities[gBattleScripting.battler]].name;
                 break;
             case B_TXT_EFF_ABILITY: // effect battler ability
+                MetamonPublicAbility(gEffectBattler, sBattlerAbilities[gEffectBattler]);
                 toCpy = gAbilitiesInfo[sBattlerAbilities[gEffectBattler]].name;
                 break;
             case B_TXT_TRAINER1_CLASS: // trainer class name

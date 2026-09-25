@@ -1,4 +1,5 @@
 #include "global.h"
+#include "metamon_trainer.h"
 #include "plastic_ox_contest.h"
 #include "battle.h"
 #include "battle_hold_effects.h"
@@ -1102,6 +1103,7 @@ static void Cmd_printattackstring(void)
     if (gBattleControllerExecFlags)
         return;
 
+    MetamonPublicMove(gBattlerAttacker, gCurrentMove);
     PrepareStringBattle(STRINGID_USEDMOVE, gBattlerAttacker);
     gBattleCommunication[MSG_DISPLAY] = 0;
     gBattlescriptCurrInstr = cmd->nextInstr;
@@ -1705,6 +1707,7 @@ static void Cmd_datahpupdate(void)
         MoveDamageDataHpUpdate(battler, cmd->battler, cmd->nextInstr);
         break;
     }
+    MetamonPublicHP(battler);
     if (gBattleMons[battler].hp > gBattleMons[battler].maxHP / 2)
         gBattleStruct->battlerState[battler].wasAboveHalfHp = TRUE;
 
@@ -5936,6 +5939,7 @@ static void ResetValuesForCalledMove(void)
 static void Cmd_jumptocalledmove(void)
 {
     CMD_ARGS(bool8 notChosenMove);
+    MetamonCalledMove();
 
     if (cmd->notChosenMove)
         gCurrentMove = gCalledMove;
@@ -6150,6 +6154,7 @@ static void Cmd_removeitem(void)
      && GetMoveEffect(gCurrentMove) != EFFECT_CORROSIVE_GAS)
         GetBattlerPartyState(battler)->usedHeldItem = itemId; // Remember if switched out
 
+    MetamonPublicItem(battler, ITEM_NONE);
     gBattleMons[battler].item = ITEM_NONE;
     gBattleStruct->battlerState[battler].canPickupItem = TRUE;
     gBattleStruct->adrenalineOrbActivated = FALSE;
@@ -7824,6 +7829,7 @@ static void Cmd_mimicattackcopy(void)
 static void Cmd_setcalledmove(void)
 {
     CMD_ARGS();
+    MetamonCalledMove();
     gCurrentMove = gBattleStruct->baseMove = gCalledMove;
     gBattlescriptCurrInstr = cmd->nextInstr;
 }

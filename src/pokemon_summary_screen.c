@@ -1,4 +1,5 @@
 #include "global.h"
+#include "metamon_heap_trace.h"
 #include "main.h"
 #include "battle.h"
 #include "battle_anim.h"
@@ -1200,6 +1201,7 @@ u32 GetAdjustedIvData(struct Pokemon *mon, u32 stat)
 
 void ShowPokemonSummaryScreen(u8 mode, void *mons, u8 monIndex, u8 maxMonIndex, void (*callback)(void))
 {
+    MmHeapMark(MM_HEAP_SUMMARY);
     sMonSummaryScreen = AllocZeroed(sizeof(*sMonSummaryScreen));
     sMonSummaryScreen->mode = mode;
     if (monIndex == PC_MON_CHOSEN)

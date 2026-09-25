@@ -3,6 +3,8 @@
 #include "battle_anim.h"
 #include "battle_controllers.h"
 #include "malloc.h"
+#include "metamon_heap_trace.h"
+#include "metamon_trainer.h"
 #include "pokemon.h"
 #include "trainer_hill.h"
 #include "trainer_tower.h"
@@ -34,6 +36,7 @@ void CloseMainBattleScreen(void)
 
 void AllocateBattleResources(void)
 {
+    MmHeapMark(MM_HEAP_RESOURCES);
     if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_TOWER && gMapHeader.regionMapSectionId == MAPSEC_TRAINER_TOWER_2)
         InitTrainerTowerBattleStruct();
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
@@ -56,9 +59,14 @@ void AllocateBattleResources(void)
     gBattleResources->battleCallbackStack = AllocZeroed(sizeof(*gBattleResources->battleCallbackStack));
     gBattleResources->beforeLvlUp = AllocZeroed(sizeof(*gBattleResources->beforeLvlUp));
 
-    gLinkBattleSendBuffer = AllocZeroed(BATTLE_BUFFER_LINK_SIZE);
-    gLinkBattleRecvBuffer = AllocZeroed(BATTLE_BUFFER_LINK_SIZE);
+    MmHeapMark(MM_HEAP_LINK_BUFFERS);
+    if (gBattleTypeFlags & BATTLE_TYPE_LINK)
+    {
+        gLinkBattleSendBuffer = AllocZeroed(BATTLE_BUFFER_LINK_SIZE);
+        gLinkBattleRecvBuffer = AllocZeroed(BATTLE_BUFFER_LINK_SIZE);
+    }
 
+    MmHeapMark(MM_HEAP_GRAPHICS);
     AllocateBattleGfxResources();
 
     if (gBattleTypeFlags & BATTLE_TYPE_SECRET_BASE)
@@ -70,6 +78,8 @@ void AllocateBattleResources(void)
 
 void FreeBattleResources(void)
 {
+    MmHeapMark(MM_HEAP_TEARDOWN);
+    MetamonBattleFree();
     if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_TOWER && gMapHeader.regionMapSectionId == MAPSEC_TRAINER_TOWER_2)
         FreeTrainerTowerBattleStruct();
     else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER_HILL)
@@ -96,6 +106,7 @@ void FreeBattleResources(void)
 
         FreeBattleGfxResources();
     }
+    MmHeapMark(MM_HEAP_RESOURCES_FREED);
 }
 
 void AdjustFriendshipOnBattleFaint(enum BattlerId battler)

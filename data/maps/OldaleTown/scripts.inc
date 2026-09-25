@@ -163,7 +163,7 @@ OldaleTown_Text_SavingMyProgress:
 
 OldaleTown_Text_LanceChallenge:
 	.string "LANCE: P, your team is ready for a\n"
-	.string "proper ADV OU battle.\p"
+	.string "six-on-six ADV OU battle.\p"
 	.string "Will you battle me?$"
 
 OldaleTown_Text_LanceDeclined:

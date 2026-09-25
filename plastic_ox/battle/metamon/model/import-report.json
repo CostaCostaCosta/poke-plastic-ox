@@ -1,0 +1,21 @@
+{
+  "source_sha256": "182b7438cb88513a68a4ea4311c690bc73f211e270626ffc618d1ccf8b80763d",
+  "schema": "dfd5b2755d72052bbcd86cbd97a0c8dff63f6e3c51349e03ca947861bbf864d4",
+  "export_bytes": 1040166,
+  "aligned_tensor_bytes": 1038928,
+  "parameters": 1011355,
+  "macs_by_layer": {
+    "move_encoder.0": 55296,
+    "pokemon_encoder.0": 150528,
+    "pokemon_encoder.2": 49152,
+    "event_encoder.0": 16384,
+    "global_encoder.0": 6144,
+    "fusion.0": 174080,
+    "fusion.2": 40960,
+    "gru.weight_ih_l0": 294912,
+    "gru.weight_hh_l0": 442368,
+    "actor": 5760
+  },
+  "macs_per_decision": 1235584,
+  "note": "MAC counts exclude embeddings, quantization, nonlinearities and observation encoding."
+}

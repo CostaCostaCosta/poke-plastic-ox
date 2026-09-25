@@ -1,4 +1,5 @@
 #include "global.h"
+#include "metamon_trainer.h"
 #include "crt0.h"
 #include "malloc.h"
 #include "link.h"
@@ -384,7 +385,7 @@ static void VBlankIntr(void)
     if (POX_LINK_ENABLED)
         TryReceiveLinkBattleData();
 
-    if (!gTestRunnerEnabled && (!gMain.inBattle || !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_RECORDED))))
+    if (!MetamonBusy() && !gTestRunnerEnabled && (!gMain.inBattle || !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_RECORDED))))
         AdvanceRandom();
 
     if (POX_LINK_ENABLED)

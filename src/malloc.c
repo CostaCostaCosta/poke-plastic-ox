@@ -1,5 +1,6 @@
 #include "global.h"
 #include "malloc.h"
+#include "metamon_heap_trace.h"
 #if TESTING
 #include "test/test.h"
 #endif
@@ -77,12 +78,16 @@ static void *AllocInternal(void *heapStart, u32 size, const char *location)
                 pos->locationHi = ((uintptr_t)location) >> 14;
                 pos->locationLo = (uintptr_t)location;
 
+                MmHeapRecord(MM_HEAP_ALLOC, pos->data, size, location);
                 return pos->data;
             }
         }
 
         if (pos->next == head)
+        {
+            MmHeapRecord(MM_HEAP_ALLOC, NULL, size, location);
             return NULL;
+        }
 
         pos = pos->next;
     }
@@ -96,6 +101,7 @@ static void FreeInternal(void *heapStart, void *pointer)
         struct MemBlock *block = (struct MemBlock *)((u8 *)pointer - sizeof(struct MemBlock));
         AGB_ASSERT(block->magic == MALLOC_SYSTEM_ID);
         AGB_ASSERT(block->allocated == TRUE);
+        MmHeapRecord(MM_HEAP_FREE, pointer, 0, NULL);
         block->allocated = FALSE;
 
         // If the freed block isn't the last one, merge with the next block
@@ -178,6 +184,7 @@ void InitHeap(void *heapStart, u32 heapSize)
     sHeapStart = heapStart;
     sHeapSize = heapSize;
     PutFirstMemBlockHeader(heapStart, heapSize);
+    MmHeapRecord(MM_HEAP_RESET, heapStart, heapSize, NULL);
 }
 
 void PrintHeap(void)

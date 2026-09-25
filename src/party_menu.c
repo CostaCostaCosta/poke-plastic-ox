@@ -1,4 +1,5 @@
 #include "global.h"
+#include "metamon_heap_trace.h"
 #include "malloc.h"
 #include "battle.h"
 #include "battle_anim.h"
@@ -517,6 +518,7 @@ static const u8 sText_CannotSendMonToBoxPartner[] = _("Cannot send a mon that do
 // code
 static void InitPartyMenu(enum PartyMenuType menuType, enum PartyMenuLayout layout, u8 partyAction, bool8 keepCursorPos, u8 messageId, TaskFunc task, MainCallback callback)
 {
+    MmHeapMark(MM_HEAP_PARTY_MENU);
     u16 i;
 
     ResetPartyMenu();

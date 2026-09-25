@@ -1,4 +1,6 @@
 #include "global.h"
+#include "metamon_heap_trace.h"
+#include "metamon_trainer.h"
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_ai_main.h"
@@ -485,6 +487,8 @@ void CB2_InitBattle(void)
 
     if (!gTestRunnerEnabled)
         MoveSaveBlocks_ResetHeap();
+    MmHeapMark(MM_HEAP_BATTLE_START);
+    MetamonBattleInit();
     AllocateBattleResources();
     AllocateBattleSpritesData();
     AllocateMonSpritesGfx();
@@ -2994,6 +2998,7 @@ void BeginBattleIntroDummy(void)
 
 void BeginBattleIntro(void)
 {
+    MmHeapMark(MM_HEAP_READY);
     BattleStartClearSetData();
     gBattleCommunication[1] = 0;
     gBattleStruct->eventState.battleIntro = 0;
@@ -4099,7 +4104,7 @@ static void HandleTurnActionSelectionState(void)
 {
     s32 i;
 
-    bool32 reverseBattlerLogicOrder = RandomPercentage(RNG_AI_REVERSE_BATTLER_LOGIC_ORDER, GetConfig(AI_REVERSE_BATTLER_LOGIC_ORDER_CHANCE)) && IsDoubleBattle();
+    bool32 reverseBattlerLogicOrder = !MetamonBusy() && RandomPercentage(RNG_AI_REVERSE_BATTLER_LOGIC_ORDER, GetConfig(AI_REVERSE_BATTLER_LOGIC_ORDER_CHANCE)) && IsDoubleBattle();
 
     gBattleCommunication[ACTIONS_CONFIRMED_COUNT] = 0;
     for (enum BattlerId battlerIndex = 0; battlerIndex < gBattlersCount; battlerIndex++)
@@ -4109,13 +4114,17 @@ static void HandleTurnActionSelectionState(void)
         switch (gBattleCommunication[battler])
         {
         case STATE_TURN_START_RECORD: // Recorded battle related action on start of every turn.
+            if (GetBattlerPosition(battler) == B_POSITION_OPPONENT_LEFT)
+                MmHeapMark(MM_HEAP_DECISION);
             RecordedBattle_CopyBattlerMoves(battler);
             gBattleCommunication[battler] = STATE_BEFORE_ACTION_CHOSEN;
             bool32 isAiBattler = (gBattleTypeFlags & BATTLE_TYPE_HAS_AI || IsWildMonSmart()) && (BattlerHasAi(battler) && !(gBattleTypeFlags & BATTLE_TYPE_PALACE));
-            if (isAiBattler)
+            if (isAiBattler && !MetamonControls(battler))
             {
                 ComputeAiBattlerDecisions(battler); // Do AI score computations here so we can use them in AI_TrySwitchOrUseItem
             }
+            if (GetBattlerPosition(battler) == B_POSITION_OPPONENT_LEFT)
+                MmHeapMark(MM_HEAP_DECISION_END);
             // fallthrough
         case STATE_BEFORE_ACTION_CHOSEN: // Choose an action.
             gBattleStruct->monToSwitchIntoId[battler] = PARTY_SIZE;
@@ -4626,6 +4635,7 @@ static void HandleTurnActionSelectionState(void)
                 gChosenActionByBattler[GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)] = B_ACTION_NOTHING_FAINTED;
         }
 
+        MmHeapMark(MM_HEAP_ACTION_COMMITTED);
         gBattleMainFunc = SetActionsAndBattlersTurnOrder;
 
         if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)

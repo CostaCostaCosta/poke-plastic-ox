@@ -1,4 +1,5 @@
 #include "global.h"
+#include "metamon_trainer.h"
 #include "battle.h"
 #include "battle_ai_switch.h"
 #include "battle_ai_util.h"
@@ -426,12 +427,14 @@ static void OpponentHandleTrainerSlideBack(enum BattlerId battler)
 
 static void OpponentHandleChooseAction(enum BattlerId battler)
 {
+    if (MetamonChooseAction(battler)) return;
     AI_TrySwitchOrUseItem(battler);
     BtlController_Complete(battler);
 }
 
 static void OpponentHandleChooseMove(enum BattlerId battler)
 {
+    if (MetamonChooseMove(battler)) return;
     if (gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_FIRST_BATTLE | BATTLE_TYPE_SAFARI | BATTLE_TYPE_ROAMER)
      || IsWildMonSmart())
     {
@@ -518,6 +521,7 @@ static void OpponentHandleChooseItem(enum BattlerId battler)
 
 static void OpponentHandleChoosePokemon(enum BattlerId battler)
 {
+    if (MetamonChoosePokemon(battler)) return;
     s32 chosenMonId;
     enum SwitchType switchType = SWITCH_AFTER_KO;
 

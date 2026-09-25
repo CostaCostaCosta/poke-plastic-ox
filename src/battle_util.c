@@ -1,4 +1,5 @@
 #include "global.h"
+#include "metamon_trainer.h"
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_arena.h"
@@ -412,6 +413,7 @@ static bool32 IsUnnerveAbilityOnOpposingSide(enum BattlerId battler)
 // Functions
 void HandleAction_UseMove(void)
 {
+    MetamonMoveStart();
     gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
     if (gAbsentBattlerFlags & 1u << gBattlerAttacker
      || gBattleStruct->battlerState[gBattlerAttacker].commandingDondozo
