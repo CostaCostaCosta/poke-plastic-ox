@@ -62,3 +62,10 @@ PoxRoute44_Challenge_Text::
 
 PoxRoute44_Defeat_Text::
 	.string "You know this road well!$"
+
+PoxMoon_EnterFromRoute44::
+	lockall
+	warp MAP_MT_MOON_1F, 18, 36
+	waitstate
+	releaseall
+	end

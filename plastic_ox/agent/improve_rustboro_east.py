@@ -2,10 +2,10 @@
 """Continue Rustboro's native stone road through the Route 44 east exit.
 
 The Route 44 link is a scripted full map load because the two maps use
-different primary tilesets.  This patch changes only Rustboro-native blocks;
-Route 44 keeps its own authored dirt approach.  It also restores collision to
-covered Route 44 scenery: the HNS donor map leaves those tree and cliff blocks
-walkable, which lets the player disappear beneath their upper layer.
+different primary tilesets. Route 44 keeps its donor's authored collision:
+its upper drawing layer also contains walkable roads and overhangs. A previous
+blanket rule made 559 of those tiles solid and stranded the player at the west
+entrance. Keep collision edits tied to specific authored geometry.
 """
 from pathlib import Path
 import struct
@@ -50,29 +50,6 @@ def main():
     for x in range(66, 69):
         struct.pack_into("<H", route, 2 * (13 * route_width + x), 0x30D8)
 
-    # HNS metatile attributes use bit 12 for the covered layer.  A covered
-    # block with collision 0 is both walkable and drawn above the player.  The
-    # affected Route 44 blocks are scenery, not authored underpasses, so make
-    # them solid while retaining their art and elevation.
-    primary_attrs = ROOT / "data/tilesets/primary/johto_north_east_hns/metatile_attributes.bin"
-    secondary_attrs = ROOT / "data/tilesets/secondary/cianwood_city_hns/metatile_attributes.bin"
-    attrs = [primary_attrs.read_bytes(), secondary_attrs.read_bytes()]
-    partition = 640
-    repaired = 0
-    for index in range(route_width * route_height):
-        value = struct.unpack_from("<H", route, 2 * index)[0]
-        metatile = value & 0x3FF
-        bank = metatile >= partition
-        attr_index = metatile - partition if bank else metatile
-        attr = struct.unpack_from("<H", attrs[bank], 2 * attr_index)[0]
-        layer_type = (attr >> 12) & 3
-        collision = (value >> 10) & 3
-        if layer_type == 1 and collision == 0:
-            struct.pack_into("<H", route, 2 * index, value | 0x0400)
-            repaired += 1
-    # Re-running an already repaired layout touches only the explicitly
-    # restored stale-write coordinate above.
-    assert repaired <= 560, repaired
     ROUTE_PATH.write_bytes(route)
 
 

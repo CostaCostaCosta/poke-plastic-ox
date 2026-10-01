@@ -142,7 +142,7 @@
       "x": 16,
       "y": 0,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
+      "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
       "script": "PoxRegion_route110_lavender_b"
     },
@@ -151,7 +151,7 @@
       "x": 1,
       "y": 15,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
+      "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
       "script": "PoxRegion_lavender_route8_a"
     },
@@ -160,7 +160,7 @@
       "x": 19,
       "y": 22,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
+      "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
       "script": "PoxRegion_lavender_harbor_a"
     }

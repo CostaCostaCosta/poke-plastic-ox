@@ -340,7 +340,7 @@ def apply_portals():
         if any(e.get("script") == lbl for e in d["coord_events"]):
             continue
         d["coord_events"].append({"type": "trigger", "x": x, "y": y, "elevation": 0,
-                                  "var": "VAR_POX_PORTAL_GATE", "var_value": "0",
+                                  "var": "VAR_POX_PORTAL_TRIGGER", "var_value": "0",
                                   "script": lbl})
         save(p, d)
         sp = f"data/maps/{m}/scripts.inc"

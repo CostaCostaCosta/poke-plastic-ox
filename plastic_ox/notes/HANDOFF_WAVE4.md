@@ -107,7 +107,7 @@ End walk_leg5 at Champion door; final full-region harness = leg1..leg5 chained
 Definitive live-RAM verification on Oak's Lab: coord event table correct at
 runtime ((9,11) e=3, script ptr valid, trigger var correct), player steps
 onto the tile with matching elevation — script still never runs. Tried:
-var-gated (VAR_POX_PORTAL_GATE), TRIGGER_RUN_IMMEDIATELY (var=0), warp-first
+var-gated (VAR_POX_PORTAL_TRIGGER at 0x40DB), warp-first; immediate triggers cannot resume a paused warp script
 body, setvar-first body, object A-interaction retarget. All silent.
 Working coords (r116/fortree/plateau/r36/goldenrod/r35/blackthorn stones and
 portals) use the identical emission path.

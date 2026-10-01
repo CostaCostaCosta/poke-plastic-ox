@@ -182,7 +182,7 @@
       "x": 33,
       "y": 54,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
+      "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
       "script": "PoxRegion_route37_ecruteak_b"
     },
@@ -191,7 +191,7 @@
       "x": 53,
       "y": 32,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
+      "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
       "script": "PoxRegion_ecruteak_route119_a"
     },
@@ -200,7 +200,7 @@
       "x": 8,
       "y": 34,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
+      "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
       "script": "PoxRegion_ecruteak_league_a"
     }

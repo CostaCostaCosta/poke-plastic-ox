@@ -256,7 +256,7 @@
       "x": 0,
       "y": 10,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
+      "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
       "script": "PoxRegion_route119_fortree_b"
     },
@@ -265,7 +265,7 @@
       "x": 39,
       "y": 10,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
+      "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
       "script": "PoxRegion_fortree_route110_a"
     }

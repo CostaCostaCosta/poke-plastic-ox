@@ -4785,6 +4785,20 @@ void DaisyMassageServices(void)
     VarSet(VAR_MASSAGE_COOLDOWN_STEP_COUNTER, 0);
 }
 
+// Haircuts affect only the party member chosen by ChoosePartyMon.
+void PoxMaximizeSelectedMonFriendship(void)
+{
+    u8 friendship = MAX_FRIENDSHIP;
+    u16 slot = gSpecialVar_0x8004;
+
+    if (slot >= gPartiesCount[B_TRAINER_PLAYER]
+        || GetMonData(&gParties[B_TRAINER_PLAYER][slot], MON_DATA_SPECIES) == SPECIES_NONE
+        || GetMonData(&gParties[B_TRAINER_PLAYER][slot], MON_DATA_IS_EGG))
+        return;
+
+    SetMonData(&gParties[B_TRAINER_PLAYER][slot], MON_DATA_FRIENDSHIP, &friendship);
+}
+
 u8 GetLeadMonFriendship(void)
 {
     struct Pokemon * pokemon = &gParties[B_TRAINER_PLAYER][GetLeadMonIndex()];

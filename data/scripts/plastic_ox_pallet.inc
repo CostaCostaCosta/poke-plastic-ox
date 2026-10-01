@@ -566,11 +566,7 @@ Pox_ElmHMNext3::
     additem ITEM_HM_STRENGTH, 1
     goto_if_eq VAR_RESULT, FALSE, Pox_ElmTMsFull
 Pox_ElmHMNext4::
-    checkitem ITEM_HM_FLASH, 1
-    goto_if_eq VAR_RESULT, TRUE, Pox_ElmHMNext5
-    additem ITEM_HM_FLASH, 1
-    goto_if_eq VAR_RESULT, FALSE, Pox_ElmTMsFull
-Pox_ElmHMNext5::
+    @ HM Flash is retired and rejected by SanitizeItemId.
     checkitem ITEM_HM_ROCK_SMASH, 1
     goto_if_eq VAR_RESULT, TRUE, Pox_ElmHMNext6
     additem ITEM_HM_ROCK_SMASH, 1

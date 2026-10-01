@@ -1137,6 +1137,19 @@ static const struct MenuAction MultichoiceList_PocketWatchWeekdays[] =
     {COMPOUND_STRING("Saturday")},
 };
 
+static const struct MenuAction MultichoiceList_GoldenrodFloors[] =
+{
+    {COMPOUND_STRING("B1F")},
+    {gText_1F},
+    {gText_2F},
+    {gText_3F},
+    {gText_4F},
+    {gText_5F},
+    {COMPOUND_STRING("6F")},
+    {COMPOUND_STRING("ROOFTOP")},
+    {gText_Exit},
+};
+
 struct MultichoiceListStruct
 {
     const struct MenuAction *list;
@@ -1305,6 +1318,7 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_EGGS_VICTORIES_QUIT]                        = MULTICHOICE(sMultichoiceList_Eggs_Victories_Quit),
     [MULTI_HOF_EGGS_VICTORIES_QUIT]                    = MULTICHOICE(sMultichoiceList_HOF_Eggs_Victories_Quit),
     [MULTI_POCKET_WATCH_WEEKDAYS]                      = MULTICHOICE(MultichoiceList_PocketWatchWeekdays),
+    [MULTI_POX_GOLDENROD_FLOORS] = MULTICHOICE(MultichoiceList_GoldenrodFloors),
 };
 
 const u8 *const gStdStrings[] =

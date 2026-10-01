@@ -125,4 +125,24 @@ extern const struct Tileset gTileset_HoennOrasMossdeep;
 extern const struct Tileset gTileset_HoennOrasBattleFrontierOutsideWest;
 extern const struct Tileset gTileset_HoennOrasBattleFrontierOutsideEast;
 extern const struct Tileset gTileset_HoennOrasFrontierGeneral;
+extern const struct Tileset gTileset_DepartmentStore_Hns;
+
+extern const struct Tileset gTileset_GameCorner_Hns;
+
+extern const struct Tileset gTileset_GoldenrodCity_TrainStation_Hns;
+
+extern const struct Tileset gTileset_GoldenrodUndergroundRocket_Hns;
+
+extern const struct Tileset gTileset_GoldenrodUndergroundTunnel_Hns;
+
+extern const struct Tileset gTileset_Goldenrod_Underground_Storage_Hns;
+
+extern const struct Tileset gTileset_JohtoBikeShop_Hns;
+
+extern const struct Tileset gTileset_PokemonDayCare_Hns;
+
+extern const struct Tileset gTileset_ShopRooftop_Hns;
+
+extern const struct Tileset gTileset_GoldenrodBuilding_Hns;
+
 #endif //GUARD_tilesets_H

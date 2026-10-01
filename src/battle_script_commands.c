@@ -8071,7 +8071,7 @@ static void Cmd_copymovepermanently(void)
             struct MovePPInfo movePPData;
 
             gBattleMons[gBattlerAttacker].moves[gCurrMovePos] = gLastPrintedMoves[gBattlerTarget];
-            gBattleMons[gBattlerAttacker].pp[gCurrMovePos] = GetMovePP(gLastPrintedMoves[gBattlerTarget]);
+            gBattleMons[gBattlerAttacker].pp[gCurrMovePos] = CalculatePPWithBonus(gLastPrintedMoves[gBattlerTarget], 0xFF, gCurrMovePos);
 
             for (i = 0; i < MAX_MON_MOVES; i++)
             {

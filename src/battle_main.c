@@ -52,6 +52,7 @@
 #include "safari_zone.h"
 #include "scanline_effect.h"
 #include "script.h"
+#include "script_pokemon_util.h"
 #include "sound.h"
 #include "sprite.h"
 #include "string_util.h"
@@ -1867,7 +1868,7 @@ void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon 
 
     for (j = 0; j < MAX_MON_MOVES; ++j)
     {
-        u32 pp = GetMovePP(partyEntry->moves[j]);
+        u32 pp = CalculatePPWithBonus(partyEntry->moves[j], 0xFF, 0);
         SetMonData(mon, MON_DATA_MOVE1 + j, &partyEntry->moves[j]);
         SetMonData(mon, MON_DATA_PP1 + j, &pp);
     }
@@ -5711,6 +5712,10 @@ static void WaitForEvoSceneToFinish(void)
 
 static void ReturnFromBattleToOverworld(void)
 {
+    // Heal after stat recalculation and any post-battle evolutions have finished.
+    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+        HealPlayerParty();
+
     if (!(gBattleTypeFlags & BATTLE_TYPE_LINK))
     {
         CalculatePlayerPartyCount();

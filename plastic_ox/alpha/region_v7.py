@@ -62,9 +62,7 @@ SIGNLESS_TRAILS = {'rustboro_route44'}
 # Explicit source/destination port targets. A target may name a compass edge;
 # coordinates denote a native gate plaza, cave mouth, or dock.
 TRAILS = [
-    ('rustboro_route44','RustboroCity',(39,10),'Route44_hns',(0,13),[]),
-    ('route44_moon','Route44_hns',(68,13),'MtMoon_Cave_hns',(4,11),[]),
-    ('moon_route33','MtMoon_Cave_hns',(46,30),'Route33_hns',(27,18),['FLAG_POX_STORY_MTMOON']),
+    ('rustboro_route44','RustboroCity',(39,10),'Route44_hns',(0,15),[]),
     ('route33_goldenrod','Route33_hns','W','GoldenrodCity_hns','S',[]),
     ('goldenrod_route35','GoldenrodCity_hns',(33,8),'Route35_hns','S',[]),
     ('route35_park','Route35_hns',(17,5),'NationalPark_Normal_hns',(24,51),[]),
@@ -393,8 +391,6 @@ def apply_region(read, put):
             header=header.replace('#endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H',f'#define {new} 0x{value:03X}\n#endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H')
     replacements['VAR_MAP_SCENE_SEAFOAM_ISLANDS_B4F']='VAR_POX_SEAFOAM_STATE'
     replacements.update(EventScript_RemoveStaticMon='PoxRegion_RemoveStaticMon',EventScript_MonFlewAway='PoxRegion_MonFlewAway')
-    if '#define VAR_POX_SEAFOAM_STATE ' not in header:
-        header=header.replace('#endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H','#define VAR_POX_SEAFOAM_STATE 0x40FD\n#endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H')
     def remap(text):
         return re.sub(r'\b(?:'+ '|'.join(replacements)+r')\b',lambda m:replacements[m[0]],text)
     for name in extra_frlg+['Route20_Frlg']:
@@ -469,7 +465,7 @@ def apply_region(read, put):
         trigger_tiles.sort(key=lambda t: (abs((t[0]-p['tile'][0])*px+(t[1]-p['tile'][1])*py), t[1], t[0]))
         # Remove stale copies before adding the current geometry-derived set.
         d['coord_events']=[c for c in d.get('coord_events',[]) if c.get('script') != script]
-        d['coord_events'] += [dict(type='trigger',x=x,y=y,elevation=0,var='VAR_POX_PORTAL_GATE',var_value=0,script=script)
+        d['coord_events'] += [dict(type='trigger',x=x,y=y,elevation=0,var='VAR_POX_PORTAL_TRIGGER',var_value=0,script=script)
                               for x,y in trigger_tiles]
         save(name,d)
         body=f'{script}::\n\tlockall\n\tgoto_if_unset FLAG_POX_TRIGGERS_ENABLED, {script}_Open\n'
@@ -520,16 +516,7 @@ def apply_region(read, put):
 
     # PU acquisitions retain their dedicated script implementations while this
     # generator owns stable, reachable placements and physical door routing.
-    # Authored trainers and pickups live in the HNS upper cave. Imported FRLG
-    # floors supply geometry and encounters, not the incompatible Kanto quest.
     active.update({'MtMoon_1F_Frlg','MtMoon_B1F_Frlg','MtMoon_B2F_Frlg'})
-    for name in ['MtMoon_1F_Frlg','MtMoon_B1F_Frlg','MtMoon_B2F_Frlg']:
-        d=load(name)
-        d['coord_events']=[]
-        d['bg_events']=[]
-        d['object_events']=[]
-        save(name,d)
-        put(f'data/maps/{name}/scripts.inc', f'{name}_MapScripts::\n\t.byte 0\n')
     for name, index, script, gfx in [
         ('Route33_hns', 1, 'POX_PU_MailRecipient', 'OBJ_EVENT_GFX_HIKER'),
         ('Route35_hns', 6, 'POX_PU_MailGuard', 'OBJ_EVENT_GFX_MAN_3'),
@@ -539,22 +526,8 @@ def apply_region(read, put):
         d['object_events'][index].update(script=script,graphics_id=gfx,flag='0',
             trainer_type='TRAINER_TYPE_NONE',movement_type='MOVEMENT_TYPE_FACE_DOWN')
         save(name,d)
-    for number, target in [(1,(13,10)),(2,(44,29))]:
-        name='MtMoon_Cave_hns'; d=load(name); label=f'POX_PU_MoonStone{number}'
-        d['object_events']=[o for o in d['object_events'] if o.get('script') != label]
-        g=Geometry(name,d)
-        reserved_tiles={(o['x'],o['y']) for o in d['object_events']} | {(c['x'],c['y']) for c in d['coord_events']}
-        x,y=min(g.component(ANCHORS[name])-reserved_tiles,key=lambda p:(abs(p[0]-target[0])+abs(p[1]-target[1]),p))
-        d['object_events'].append(dict(graphics_id='OBJ_EVENT_GFX_ITEM_BALL',x=x,y=y,elevation=3,
-            movement_type='MOVEMENT_TYPE_NONE',movement_range_x=0,movement_range_y=0,
-            trainer_type='TRAINER_TYPE_NONE',trainer_sight_or_berry_tree_id='0',script=label,
-            flag=f'FLAG_POX_MTMOON_MOON_STONE_{number}'))
-        save(name,d)
-    d=load('GoldenrodCity_hns')
-    d['warp_events']=[w for w in d['warp_events'] if w['dest_map'] != mid('MauvilleCity_GameCorner')]
-    corner_warp=len(d['warp_events'])
-    d['warp_events'].append(dict(x=21,y=38,elevation=0,dest_map=mid('MauvilleCity_GameCorner'),dest_warp_id='0'))
-    save('GoldenrodCity_hns',d)
+    # Goldenrod's donor interiors and city doors are restored by goldenrod.install
+    # below; the former shared Game Corner doorway is now the south Underground.
     # Headbutt populations hang on visible, already-solid trees at the edge of
     # each area's connected walkable component. A facing trigger lets the
     for name, x, y in [('IlexForest_hns',39,7),('Route33_hns',8,17),('Route35_hns',14,4),
@@ -567,8 +540,6 @@ def apply_region(read, put):
         save(name,d)
     d=load('MauvilleCity_GameCorner')
     d['object_events'][3]['script']='POX_PU_CoinPrizes'
-    for w in d['warp_events']:
-        w.update(dest_map=mid('GoldenrodCity_hns'),dest_warp_id=str(corner_warp))
     save('MauvilleCity_GameCorner',d)
     # This native one-tile path is an articulation point between the park
     # arrival and every north-seam tile. One real object closes the route.
@@ -705,3 +676,8 @@ def apply_region(read, put):
     put('data/event_scripts.s',s)
     from trees import install as install_fruit_trees
     install_fruit_trees()
+
+    from mt_moon import install as install_mt_moon
+    install_mt_moon(read, put)
+    from goldenrod import install as install_goldenrod
+    install_goldenrod(read, put)

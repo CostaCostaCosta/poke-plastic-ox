@@ -340,7 +340,7 @@ s32 LearnMove(const struct MoveLearnUI *ui, u8 taskId)
         u32 slot = GetMoveSlotToReplace();
         RemoveBoxMonPPBonus(boxmon, slot);
         u32 originalPP = GetBoxMonData(boxmon, MON_DATA_PP1 + slot);
-        u32 pp = GetMovePP(move);
+        u32 pp = CalculatePPWithBonus(move, 0xFF, 0);
         SetBoxMonData(boxmon, MON_DATA_MOVE1 + slot, &move);
         if (recoverPP || (pp < originalPP))
             SetBoxMonData(boxmon, MON_DATA_PP1 + slot, &pp);

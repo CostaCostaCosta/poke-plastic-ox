@@ -35,7 +35,7 @@ LEGS={
      ('seam','N','Route101'),('seam','N','OldaleTown'),('seam','W','Route29_hns'),('seam','W','CherrygroveCity_hns'),
      ('seam','N','Route2_Frlg'),('warp',2),('warp',3),'ilex_route2_north',('warp',3),('seam','N','RustboroCity'),
      ('seam','N','Route24_hns'),('seam','N','Route25_hns'),('warp',0),('warp',0),('seam','S','Route24_hns'),('seam','S','RustboroCity'),
-     'rustboro_route44_a','route44_moon_a','moon_route33_a','route33_goldenrod_a']),
+     'rustboro_route44_a',('warp',0),('warp',0),('warp',3),('warp',3),('warp',7),'route33_goldenrod_a']),
  'central':('GoldenrodCity_hns',(28,37),['goldenrod_route35_a','route35_park_a','park_route36_a',
      ('seam','N','Route37_hns'),'route37_ecruteak_a','ecruteak_route119_a','route119_fortree_a','fortree_route110_a','route110_lavender_a']),
  'underground':('LavenderTown_hns',(9,7),['lavender_route8_a',('warp',0),('warp',3),('warp',1),'underground_return_6','route7_route103_a','route103_cinnabar_a']),
@@ -133,6 +133,8 @@ def cross(g,direction,dest):
 
 def setup(spawn=None):
     g=StoryGame(spawn=spawn);g.run('Pox_Squirtle')
+    g.setvar(0x40F9,2)  # Completed fossil choice for topology-only walks.
+    for tid in range(857,926):g.flag(0x4A0+tid-857,True)
     g.write(g.syms['sWildEncountersDisabled'],1)
     for p in PORTS.values():
         for f in p['requires']:g.flag(f,True)

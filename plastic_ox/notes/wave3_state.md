@@ -1,7 +1,7 @@
 # Wave 3 continuation notes (for finishing agent)
 
 ## Proven mechanisms (from waves 1c/2)
-- Coord-warp portals work: {"type":"trigger","x","y","elevation":3,"var":"VAR_POX_PORTAL_GATE","var_value":"0","script":LBL}
+- Coord-warp portals use the dedicated zero-valued `VAR_POX_PORTAL_TRIGGER` (0x40DB), allowing warp scripts to pause and resume.
   + scripts.inc body: LBL:: / warp MAP_DEST, x, y / waitstate / end
   (two-arg coords variant; single-arg = dest warp id; three-arg invalid)
 - Doors need MB_ANIMATED_DOOR behavior on their metatile (fix_door_behaviors.py).

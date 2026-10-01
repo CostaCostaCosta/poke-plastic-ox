@@ -111,3 +111,14 @@ Also run `plastic_ox/demo/test_story.py` and the map-port audit before the
 full build. Inspect both directions of every changed portal, including the
 three trigger lanes where present, and verify no blocked shoulder or unrelated
 object/warp was consumed.
+
+## Route 44 collision audit (2026-09-25)
+
+A blanket upper-layer collision edit made 559 donor tiles solid, including the
+colored road, bridge, and land approaches. The west walkable component shrank
+to 36 tiles. Restoring authored HNS collision from `pokehns-expansion` revision
+`44f50eedef` gives a 558-tile west component reaching Mt. Moon. The blockmap
+now differs from the donor only at four intentional visible edits: `(5,17)`
+and `(66..68,13)`. The Rustboro portal lands on the road at `(1,15)` and
+returns through `(0,15)`. `test_route44_transitions.py` walks the full route
+in both directions on the built ROM.

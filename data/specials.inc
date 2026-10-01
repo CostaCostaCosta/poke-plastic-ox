@@ -658,3 +658,4 @@ gSpecials::
 	def_special PlasticOxGiveMailDelibird
 	def_special PlasticOxDeliverMail
 	def_special CheckRustboroGymLittleCupRules
+	def_special PoxMaximizeSelectedMonFriendship

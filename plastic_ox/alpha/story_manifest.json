@@ -127,24 +127,6 @@
       "script": "Pox_ClairGuide"
     },
     {
-      "map": "MtMoon_Cave_hns",
-      "x": 10,
-      "y": 10,
-      "script": "Pox_MoonGrunt1"
-    },
-    {
-      "map": "MtMoon_Cave_hns",
-      "x": 17,
-      "y": 4,
-      "script": "Pox_MoonGrunt2"
-    },
-    {
-      "map": "MtMoon_Cave_hns",
-      "x": 16,
-      "y": 4,
-      "script": "Pox_MoonRocketMap"
-    },
-    {
       "map": "GoldenrodCity_BillsHouse_hns",
       "x": 5,
       "y": 4,
@@ -377,12 +359,6 @@
       "x": 22,
       "y": 34,
       "script": "Pox_MoonRoad"
-    },
-    {
-      "map": "MtMoon_Cave_hns",
-      "x": 12,
-      "y": 10,
-      "script": "Pox_GoldenrodRoad"
     },
     {
       "map": "GoldenrodCity_hns",

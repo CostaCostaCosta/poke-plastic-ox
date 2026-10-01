@@ -384,9 +384,9 @@ moon_teams = [
 ]
 for n, completion, prereq in [(1,moon1,[badges[0]]),(2,moon2,[moon1])]:
     battle(f'MoonGrunt{n}', 'GRUNT', "These fossils belong to TEAM ROCKET now!", moon_teams[n-1], 14+n, completion, prereq, pic='Team Aqua M', cls='Team Aqua')
-    replace_npc('MtMoon_Cave_hns', n-1, f'MoonGrunt{n}', 'OBJ_EVENT_GFX_ROCKET_GRUNT_M', completion)
+    # Retired trainer IDs stay reserved for existing saves.
 beat('MoonRocketMap', "You beat both of our grunts! Fine, take this TOWN MAP and leave TEAM ROCKET alone.", moon, [moon1,moon2], '\tgiveitem ITEM_TOWN_MAP\n\tgoto_if_eq VAR_RESULT, FALSE, Pox_Release')
-replace_npc('MtMoon_Cave_hns', 2, 'MoonRocketMap', 'OBJ_EVENT_GFX_ROCKET_GRUNT_M')
+# Mt. Moon now uses the FireRed floor actors and fossil quest.
 gift('Family', "BILL never visits enough. His first POKéMON was ABRA, you know.|I used to dance in ECRUTEAK when I was young.|This EEVEE needs someone with time for long walks. Will you look after it?", [starter])
 replace_npc('GoldenrodCity_BillsHouse_hns', 0, 'Family')
 

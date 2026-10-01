@@ -15713,6 +15713,38 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_TMCase,
     },
 
+    [ITEM_ANCIENT_ICE_TABLET] =
+    {
+        .name = ITEM_NAME("Ancient Ice Tablet"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "An ancient tablet\n"
+            "said to unlock\n"
+            "Regice's seal."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_Plate,
+        .iconPalette = gItemIconPalette_IciclePlate,
+    },
+
+    [ITEM_ANCIENT_ROCK_TABLET] =
+    {
+        .name = ITEM_NAME("Ancient Rock Tablet"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "An ancient tablet\n"
+            "said to unlock\n"
+            "Regirock's seal."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_Plate,
+        .iconPalette = gItemIconPalette_StonePlate,
+    },
+
     [ITEM_TRAINING_KIT] =
     {
         .name = ITEM_NAME("Training Kit"),

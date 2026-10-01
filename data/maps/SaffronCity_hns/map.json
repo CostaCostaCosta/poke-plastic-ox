@@ -186,7 +186,7 @@
       "x": 61,
       "y": 27,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
+      "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
       "script": "PoxRegion_route8_saffron_b"
     },
@@ -195,7 +195,7 @@
       "x": 2,
       "y": 26,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
+      "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
       "script": "PoxRegion_route7_saffron_b"
     },
@@ -204,7 +204,7 @@
       "x": 32,
       "y": 44,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
+      "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
       "script": "PoxRegion_route19_saffron_b"
     },
@@ -213,7 +213,7 @@
       "x": 30,
       "y": 6,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
+      "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
       "script": "PoxRegion_saffron_route5_a"
     }

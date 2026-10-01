@@ -42,19 +42,6 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SIGN",
-      "x": 26,
-      "y": 19,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "PoxRegion_moon_route33_b_Sign",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_SIGN",
       "x": 0,
       "y": 24,
       "elevation": 0,
@@ -67,36 +54,27 @@
       "flag": "0"
     }
   ],
-  "warp_events": [],
-  "coord_events": [
+  "warp_events": [
     {
-      "type": "trigger",
       "x": 27,
-      "y": 18,
+      "y": 17,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
-      "var_value": 0,
-      "script": "PoxRegion_moon_route33_b"
-    },
+      "dest_map": "MAP_MT_MOON_B1F",
+      "dest_warp_id": "7"
+    }
+  ],
+  "coord_events": [
     {
       "type": "trigger",
       "x": 0,
       "y": 22,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
+      "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
       "script": "PoxRegion_route33_goldenrod_a"
     }
   ],
   "bg_events": [
-    {
-      "type": "sign",
-      "x": 26,
-      "y": 19,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "PoxRegion_moon_route33_b_Sign"
-    },
     {
       "type": "sign",
       "x": 0,

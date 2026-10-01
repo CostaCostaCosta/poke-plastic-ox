@@ -203,7 +203,7 @@
       "x": 15,
       "y": 39,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
+      "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
       "script": "PoxRegion_ecruteak_league_b"
     },
@@ -212,7 +212,7 @@
       "x": 38,
       "y": 5,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
+      "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
       "script": "PoxRegion_victory_indigo_a"
     }

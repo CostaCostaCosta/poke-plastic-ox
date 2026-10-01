@@ -178,14 +178,14 @@
       "y": 10,
       "elevation": 3,
       "dest_map": "MAP_GOLDENROD_CITY_HNS",
-      "dest_warp_id": "2"
+      "dest_warp_id": "11"
     },
     {
       "x": 12,
       "y": 10,
       "elevation": 3,
       "dest_map": "MAP_GOLDENROD_CITY_HNS",
-      "dest_warp_id": "2"
+      "dest_warp_id": "11"
     }
   ],
   "coord_events": [],

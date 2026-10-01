@@ -218,7 +218,7 @@
       "x": 12,
       "y": 13,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
+      "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
       "script": "PoxRegion_mossdeep_route19_b"
     },
@@ -227,7 +227,7 @@
       "x": 12,
       "y": 0,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
+      "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
       "script": "PoxRegion_route19_saffron_a"
     }

@@ -9201,6 +9201,18 @@ void SortBattlersBySpeed(enum BattlerId *battlers, bool32 slowToFast)
 
 void TryRestoreHeldItems(void)
 {
+    // Plastic Ox: trainer battles never permanently consume or exchange held items.
+    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+    {
+        for (u32 i = 0; i < PARTY_SIZE; i++)
+        {
+            u16 item = gBattleStruct->itemLost[B_TRAINER_PLAYER][i].originalItem;
+            SetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_HELD_ITEM,
+                       &item);
+        }
+        return;
+    }
+
     if (!B_TRAINERS_KNOCK_OFF_ITEMS && B_RESTORE_HELD_BATTLE_ITEMS < GEN_9)
         return;
 

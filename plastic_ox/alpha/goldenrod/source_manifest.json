@@ -1,0 +1,3570 @@
+{
+  "donor": "/home/eddie/repos/pokehns-expansion",
+  "revision": "44f50eedefe58691b0444973e4138e9190d8fafc",
+  "group": "gMapGroup_PlasticOxInteriors",
+  "maps": {
+    "GoldenrodCity_BikeShop_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_BIKE_SHOP_HNS",
+        "name": "GoldenrodCity_BikeShop_hns_Layout",
+        "width": 11,
+        "height": 10,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_JohtoBikeShop_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_BikeShop_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_BikeShop_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 5,
+          "y": 8,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_HNS",
+          "dest_warp_id": "14"
+        }
+      ],
+      "source_objects": [
+        {
+          "graphics_id": "OBJ_EVENT_GFX_BALDING_MAN_HNS",
+          "x": 4,
+          "y": 4,
+          "elevation": 3,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP",
+          "movement_range_x": 2,
+          "movement_range_y": 2,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_BikeShop_EventScript_Clerk",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_MART_EMPLOYEE_HNS",
+          "x": 2,
+          "y": 6,
+          "elevation": 3,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+          "movement_range_x": 2,
+          "movement_range_y": 2,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_BikeShop_EventScript_Clerk2",
+          "flag": "0"
+        }
+      ],
+      "open_gate_tiles": [],
+      "source_map_sha256": "48c4b1dfc1bf514a291da8ca0c0ada85c315b7eb7b73fbb46430aef5b0a83e0c",
+      "converted_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "8b04d09781e3a1c7328a4f13b4e6a15a35dbc4e53e46287c7e86cacfb42624b1"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "8b04d09781e3a1c7328a4f13b4e6a15a35dbc4e53e46287c7e86cacfb42624b1"
+      }
+    },
+    "GoldenrodCity_DepartmentStoreBasement_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_DEPARTMENT_STORE_BASEMENT_HNS",
+        "name": "GoldenrodCity_DepartmentStoreBasement_hns_Layout",
+        "width": 30,
+        "height": 24,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_Goldenrod_Underground_Storage_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_DepartmentStoreBasement_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_DepartmentStoreBasement_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 20,
+          "y": 2,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_UNDERGROUND_STORAGE_HNS",
+          "dest_warp_id": "0"
+        }
+      ],
+      "source_objects": [
+        {
+          "local_id": "LOCALID_GOLDENROD_BOULDER1",
+          "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER_HNS",
+          "x": 4,
+          "y": 11,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "NULL",
+          "flag": "0"
+        },
+        {
+          "local_id": "LOCALID_GOLDENROD_BOULDER2",
+          "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER_HNS",
+          "x": 13,
+          "y": 11,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "NULL",
+          "flag": "0"
+        },
+        {
+          "local_id": "LOCALID_GOLDENROD_BOULDER3",
+          "graphics_id": "OBJ_EVENT_GFX_PUSHABLE_BOULDER_HNS",
+          "x": 13,
+          "y": 16,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "NULL",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
+          "x": 16,
+          "y": 3,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_DepartmentStoreBasement_EventScript_Item_AmuletCoin",
+          "flag": "FLAG_ITEM_GOLDENROD_UNDERGROUND_AMULET_COIN"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
+          "x": 7,
+          "y": 3,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_DepartmentStoreBasement_EventScript_Item_UltraBall",
+          "flag": "FLAG_ITEM_GOLDENROD_UNDERGROUND_ULTRA_BALL"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
+          "x": 17,
+          "y": 19,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_DepartmentStoreBasement_EventScript_Item_ExpShare",
+          "flag": "FLAG_ITEM_GOLDENROD_UNDERGROUND_EXP_SHARE"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
+          "x": 10,
+          "y": 20,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_DepartmentStoreBasement_EventScript_Item_Ether",
+          "flag": "FLAG_ITEM_GOLDENROD_UNDERGROUND_ETHER"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT_HNS",
+          "x": 16,
+          "y": 11,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_DepartmentStoreBasement_EventScript_BlackBelt2",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT_HNS",
+          "x": 5,
+          "y": 9,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+          "movement_range_x": 1,
+          "movement_range_y": 1,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_DepartmentStoreBasement_EventScript_BlackBelt1",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT_HNS",
+          "x": 12,
+          "y": 14,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+          "movement_range_x": 2,
+          "movement_range_y": 2,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_DepartmentStoreBasement_EventScript_BlackBelt3",
+          "flag": "0"
+        },
+        {
+          "local_id": "LOCALID_GOLDENROD_MACHOKE1",
+          "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_MACHOKE",
+          "x": 5,
+          "y": 11,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_DepartmentStoreBasement_EventScript_Machoke",
+          "flag": "0"
+        },
+        {
+          "local_id": "LOCALID_GOLDENROD_MACHOKE2",
+          "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_MACHOKE",
+          "x": 14,
+          "y": 11,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_DepartmentStoreBasement_EventScript_Machoke",
+          "flag": "0"
+        },
+        {
+          "local_id": "LOCALID_GOLDENROD_MACHOKE3",
+          "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_MACHOKE",
+          "x": 12,
+          "y": 16,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_DepartmentStoreBasement_EventScript_Machoke",
+          "flag": "0"
+        }
+      ],
+      "open_gate_tiles": [],
+      "source_map_sha256": "df930fdcc0075eeacd7fa285c019ea8f69c33e17a253a78a1b7f2577fd3057f0",
+      "converted_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "fa62e2a04c280f49b48ae59d3d77c384172c2896eac8941ea07af097c70df9a7"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "fa62e2a04c280f49b48ae59d3d77c384172c2896eac8941ea07af097c70df9a7"
+      }
+    },
+    "GoldenrodCity_DepartmentStoreElevator_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_DEPARTMENT_STORE_ELEVATOR_HNS",
+        "name": "GoldenrodCity_DepartmentStoreElevator_hns_Layout",
+        "width": 5,
+        "height": 7,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_GoldenrodUndergroundRocket_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_DepartmentStoreElevator_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_DepartmentStoreElevator_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 2,
+          "y": 5,
+          "elevation": 3,
+          "dest_map": "MAP_DYNAMIC",
+          "dest_warp_id": "WARP_ID_DYNAMIC"
+        }
+      ],
+      "source_objects": [],
+      "open_gate_tiles": [],
+      "source_map_sha256": "8c75b4f211ccba1c0b4c41437dc17ed940694860eef6aa3ed822f007abbd57b0",
+      "converted_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "84557c1c0d7fec4344fd62a18b9c32fcdaab83cc8f63416012089328dc5344cd"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "84557c1c0d7fec4344fd62a18b9c32fcdaab83cc8f63416012089328dc5344cd"
+      }
+    },
+    "GoldenrodCity_DepartmentStore_1F_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_DEPARTMENT_STORE_1F_HNS",
+        "name": "GoldenrodCity_DepartmentStore_1F_hns_Layout",
+        "width": 32,
+        "height": 16,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_DepartmentStore_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_DepartmentStore_1F_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_DepartmentStore_1F_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 15,
+          "y": 11,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_HNS",
+          "dest_warp_id": "13"
+        },
+        {
+          "x": 22,
+          "y": 5,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_DEPARTMENT_STORE_2F_HNS",
+          "dest_warp_id": "1"
+        },
+        {
+          "x": 9,
+          "y": 3,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_DEPARTMENT_STORE_ELEVATOR_HNS",
+          "dest_warp_id": "0"
+        }
+      ],
+      "source_objects": [
+        {
+          "graphics_id": "OBJ_EVENT_GFX_WOMAN_3_HNS",
+          "x": 11,
+          "y": 9,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore1_EventScript_PokefanF",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_LITTLE_BOY_HNS",
+          "x": 10,
+          "y": 9,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore1_EventScript_BugCatcher",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN_HNS",
+          "x": 21,
+          "y": 9,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore1_EventScript_Gentleman",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_WORKER_F_HNS",
+          "x": 15,
+          "y": 5,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore1_EventScript_Receptionist",
+          "flag": "0"
+        }
+      ],
+      "open_gate_tiles": [],
+      "source_map_sha256": "5f6a49311a4cb24b930f472585434377ef5d747a4f4471a8868ff7621f6bca81",
+      "converted_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "9d7cc1eb03496f0ed0a8d45974fab5f825d4b9beefc66f11a84e415506ef758b"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "9d7cc1eb03496f0ed0a8d45974fab5f825d4b9beefc66f11a84e415506ef758b"
+      }
+    },
+    "GoldenrodCity_DepartmentStore_2F_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_DEPARTMENT_STORE_2F_HNS",
+        "name": "GoldenrodCity_DepartmentStore_2F_hns_Layout",
+        "width": 32,
+        "height": 19,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_DepartmentStore_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_DepartmentStore_2F_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_DepartmentStore_2F_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 17,
+          "y": 5,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_DEPARTMENT_STORE_3F_HNS",
+          "dest_warp_id": "1"
+        },
+        {
+          "x": 24,
+          "y": 5,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_DEPARTMENT_STORE_1F_HNS",
+          "dest_warp_id": "1"
+        },
+        {
+          "x": 9,
+          "y": 3,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_DEPARTMENT_STORE_ELEVATOR_HNS",
+          "dest_warp_id": "0"
+        }
+      ],
+      "source_objects": [
+        {
+          "graphics_id": "OBJ_EVENT_GFX_MART_EMPLOYEE_HNS",
+          "x": 14,
+          "y": 11,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore2_EventScript_Clerk",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_BALDING_MAN_HNS",
+          "x": 10,
+          "y": 9,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore2_EventScript_Gent",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER_HNS",
+          "x": 13,
+          "y": 6,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore2_EventScript_Youngster",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_WOMAN_1_HNS",
+          "x": 20,
+          "y": 9,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore2_EventScript_CooltrainerF",
+          "flag": "0"
+        }
+      ],
+      "open_gate_tiles": [],
+      "source_map_sha256": "929c0303183207f2fff489d4b1998ef481e9441ead2d0d6088fdc23a415a3b17",
+      "converted_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "f5cef9f1a7f2dbc8e8065443b80063471e13415d053947957fcb590df7436e14"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "f5cef9f1a7f2dbc8e8065443b80063471e13415d053947957fcb590df7436e14"
+      }
+    },
+    "GoldenrodCity_DepartmentStore_3F_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_DEPARTMENT_STORE_3F_HNS",
+        "name": "GoldenrodCity_DepartmentStore_3F_hns_Layout",
+        "width": 33,
+        "height": 16,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_DepartmentStore_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_DepartmentStore_3F_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_DepartmentStore_3F_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 24,
+          "y": 5,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_DEPARTMENT_STORE_4F_HNS",
+          "dest_warp_id": "1"
+        },
+        {
+          "x": 22,
+          "y": 5,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_DEPARTMENT_STORE_2F_HNS",
+          "dest_warp_id": "0"
+        },
+        {
+          "x": 9,
+          "y": 3,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_DEPARTMENT_STORE_ELEVATOR_HNS",
+          "dest_warp_id": "0"
+        }
+      ],
+      "source_objects": [
+        {
+          "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL_HNS",
+          "x": 11,
+          "y": 9,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+          "movement_range_x": 1,
+          "movement_range_y": 1,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore3_EventScript_Nerd",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ROCKER_HNS",
+          "x": 23,
+          "y": 10,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+          "movement_range_x": 1,
+          "movement_range_y": 1,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore3_EventScript_Rocker",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_MART_EMPLOYEE_HNS",
+          "x": 15,
+          "y": 5,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore3_EventScript_Clerk",
+          "flag": "0"
+        }
+      ],
+      "open_gate_tiles": [],
+      "source_map_sha256": "dd298511c07ba5666903ad1f14e97604cbcfad6bf26301edcda4e85194a8f38c",
+      "converted_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "88676832f4291405193500016d5f4c0e15b4d60a4dde067db5542f7b66a916f9"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "88676832f4291405193500016d5f4c0e15b4d60a4dde067db5542f7b66a916f9"
+      }
+    },
+    "GoldenrodCity_DepartmentStore_4F_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_DEPARTMENT_STORE_4F_HNS",
+        "name": "GoldenrodCity_DepartmentStore_4F_hns_Layout",
+        "width": 32,
+        "height": 19,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_DepartmentStore_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_DepartmentStore_4F_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_DepartmentStore_4F_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 17,
+          "y": 5,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_DEPARTMENT_STORE_5F_HNS",
+          "dest_warp_id": "1"
+        },
+        {
+          "x": 24,
+          "y": 5,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_DEPARTMENT_STORE_3F_HNS",
+          "dest_warp_id": "0"
+        },
+        {
+          "x": 9,
+          "y": 3,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_DEPARTMENT_STORE_ELEVATOR_HNS",
+          "dest_warp_id": "0"
+        }
+      ],
+      "source_objects": [
+        {
+          "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER_HNS",
+          "x": 20,
+          "y": 11,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore4_EventScript_BugCatcher",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_WORKER_M_HNS",
+          "x": 13,
+          "y": 6,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore4_EventScript_Cooltrainer",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_GAMEBOY_KID_HNS",
+          "x": 11,
+          "y": 5,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore4_EventScript_GBAKid",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_MART_EMPLOYEE_HNS",
+          "x": 24,
+          "y": 11,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore4_EventScript_Clerk",
+          "flag": "0"
+        }
+      ],
+      "open_gate_tiles": [],
+      "source_map_sha256": "8f0a5db886198e1165f735f57d1702f380b1256f665bce153ae676509aac9051",
+      "converted_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "f675660c1084d66fc2a02ffe4138ac390aaa9d9bf01cb0c57008273b11023e43"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "f675660c1084d66fc2a02ffe4138ac390aaa9d9bf01cb0c57008273b11023e43"
+      }
+    },
+    "GoldenrodCity_DepartmentStore_5F_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_DEPARTMENT_STORE_5F_HNS",
+        "name": "GoldenrodCity_DepartmentStore_5F_hns_Layout",
+        "width": 33,
+        "height": 16,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_DepartmentStore_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_DepartmentStore_5F_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_DepartmentStore_5F_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 24,
+          "y": 5,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_DEPARTMENT_STORE_6F_HNS",
+          "dest_warp_id": "0"
+        },
+        {
+          "x": 22,
+          "y": 5,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_DEPARTMENT_STORE_4F_HNS",
+          "dest_warp_id": "0"
+        },
+        {
+          "x": 9,
+          "y": 3,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_DEPARTMENT_STORE_ELEVATOR_HNS",
+          "dest_warp_id": "0"
+        }
+      ],
+      "source_objects": [
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ATTENDANT_F_HNS",
+          "x": 14,
+          "y": 11,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore5_EventScript_Receptionist",
+          "flag": "FLAG_DAY_POKEMON"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_WOMAN_1_HNS",
+          "x": 9,
+          "y": 10,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+          "movement_range_x": 1,
+          "movement_range_y": 1,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore5_EventScript_Girl",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_LASS_HNS",
+          "x": 13,
+          "y": 5,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN_LEFT_AND_RIGHT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore5_EventScript_Lass",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_HIKER_HNS",
+          "x": 23,
+          "y": 10,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+          "movement_range_x": 1,
+          "movement_range_y": 1,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore5_EventScript_PokefanM",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_MART_EMPLOYEE_HNS",
+          "x": 17,
+          "y": 11,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore5_EventScript_Clerk",
+          "flag": "0"
+        }
+      ],
+      "open_gate_tiles": [],
+      "source_map_sha256": "cf00cda43ef717de6af3446c4e921711dfa3c393f7f4324e48419003ff4796c9",
+      "converted_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "d50ddfc0ceb789271bf41e58317e0ae336abb0d64564b1ea7e9e2d8d2c489ce3"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "d50ddfc0ceb789271bf41e58317e0ae336abb0d64564b1ea7e9e2d8d2c489ce3"
+      }
+    },
+    "GoldenrodCity_DepartmentStore_6F_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_DEPARTMENT_STORE_6F_HNS",
+        "name": "GoldenrodCity_DepartmentStore_6F_hns_Layout",
+        "width": 32,
+        "height": 19,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_DepartmentStore_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_DepartmentStore_6F_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_DepartmentStore_6F_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 24,
+          "y": 5,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_DEPARTMENT_STORE_5F_HNS",
+          "dest_warp_id": "0"
+        },
+        {
+          "x": 9,
+          "y": 3,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_DEPARTMENT_STORE_ELEVATOR_HNS",
+          "dest_warp_id": "0"
+        },
+        {
+          "x": 17,
+          "y": 5,
+          "elevation": 3,
+          "dest_map": "MAP_GOLDENROD_CITY_DEPARTMENT_STORE_7F_HNS",
+          "dest_warp_id": "0"
+        }
+      ],
+      "source_objects": [
+        {
+          "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER_HNS",
+          "x": 11,
+          "y": 8,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore6_EventScript_Nerd",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_BATTLE_GIRL_HNS",
+          "x": 14,
+          "y": 6,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore6_EventScript_Lass",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_FAT_MAN_HNS",
+          "x": 13,
+          "y": 10,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_DepartmentStore_6F_EventScript_Jose",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_WHITNEY_HNS",
+          "x": 20,
+          "y": 9,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore6_EventScript_Whitney",
+          "flag": "FLAG_HIDE_DEPTSTORE_WHITNEY",
+          "local_id": "LOCALID_STORE_WHITNEY"
+        }
+      ],
+      "open_gate_tiles": [],
+      "source_map_sha256": "eba1bc04b7bd9eadf96b4c9e5cf898e9f7e78c1171df9b6de7ce5612b44ba581",
+      "converted_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "aafa4055c80065654061021a736b25f2702de9480f44a1a78b83c8a47b57026e"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "aafa4055c80065654061021a736b25f2702de9480f44a1a78b83c8a47b57026e"
+      }
+    },
+    "GoldenrodCity_DepartmentStore_7FNight_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_DEPARTMENT_STORE_7FNIGHT_HNS",
+        "name": "GoldenrodCity_DepartmentStore_7FNight_hns_Layout",
+        "width": 32,
+        "height": 19,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_ShopRooftop_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_DepartmentStore_7FNight_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_DepartmentStore_7FNight_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 22,
+          "y": 5,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_DEPARTMENT_STORE_6F_HNS",
+          "dest_warp_id": "2"
+        }
+      ],
+      "source_objects": [
+        {
+          "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD_HNS",
+          "x": 22,
+          "y": 11,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore7_EventScript_Nerd",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_FAT_MAN_HNS",
+          "x": 11,
+          "y": 6,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore7_EventScript_PokefanM",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER_HNS",
+          "x": 12,
+          "y": 10,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore7_EventScript_Bugcatcher",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_WOMAN_2_HNS",
+          "x": 19,
+          "y": 8,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+          "movement_range_x": 1,
+          "movement_range_y": 1,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore7_EventScript_PokefanF",
+          "flag": "0"
+        }
+      ],
+      "open_gate_tiles": [],
+      "source_map_sha256": "b81e74d4bb9b5d5ca8e8699954af5c4f0b0a4e61d302b25cf7c9b85530abf698",
+      "converted_layout_sha256": {
+        "border_filepath": "a0c2f3a3348377dd2435fe6f532bc25cd5bb5b6872bad0d52a450db73ed34c19",
+        "blockdata_filepath": "2030401a3d7d5c082d55e962f274f4a2b28ad24df75dfc70587c367953ca2573"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "a0c2f3a3348377dd2435fe6f532bc25cd5bb5b6872bad0d52a450db73ed34c19",
+        "blockdata_filepath": "2030401a3d7d5c082d55e962f274f4a2b28ad24df75dfc70587c367953ca2573"
+      }
+    },
+    "GoldenrodCity_DepartmentStore_7F_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_DEPARTMENT_STORE_7F_HNS",
+        "name": "GoldenrodCity_DepartmentStore_7F_hns_Layout",
+        "width": 32,
+        "height": 19,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_ShopRooftop_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_DepartmentStore_7F_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_DepartmentStore_7F_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 22,
+          "y": 5,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_DEPARTMENT_STORE_6F_HNS",
+          "dest_warp_id": "2"
+        }
+      ],
+      "source_objects": [
+        {
+          "local_id": "LOCALID_GOLDENROD_ROOF_NERD",
+          "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD_HNS",
+          "x": 22,
+          "y": 11,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore7_EventScript_Nerd",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_WOMAN_2_HNS",
+          "x": 19,
+          "y": 8,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+          "movement_range_x": 1,
+          "movement_range_y": 1,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore7_EventScript_PokefanF",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_FAT_MAN_HNS",
+          "x": 11,
+          "y": 6,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore7_EventScript_PokefanM",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER_HNS",
+          "x": 12,
+          "y": 10,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodDeptStore7_EventScript_Bugcatcher",
+          "flag": "0"
+        }
+      ],
+      "open_gate_tiles": [],
+      "source_map_sha256": "2c6198c7620879442a9c1f0c0543dfe504531e41474e10fbbb954a64486a5693",
+      "converted_layout_sha256": {
+        "border_filepath": "a6178c4337b5b909ae8cff6b6ae27d8dce53b4a16119d964dd357deaef90e526",
+        "blockdata_filepath": "5f29bf077a4862f763579cfc33504ffe07bc17e1fd15230ae2ecf7a3a9008acc"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "a6178c4337b5b909ae8cff6b6ae27d8dce53b4a16119d964dd357deaef90e526",
+        "blockdata_filepath": "5f29bf077a4862f763579cfc33504ffe07bc17e1fd15230ae2ecf7a3a9008acc"
+      }
+    },
+    "GoldenrodCity_FlowerShop_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_FLOWER_SHOP_HNS",
+        "name": "GoldenrodCity_FlowerShop_hns_Layout",
+        "width": 13,
+        "height": 11,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_PokemonDayCare_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_FlowerShop_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_FlowerShop_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 6,
+          "y": 9,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_HNS",
+          "dest_warp_id": "5"
+        }
+      ],
+      "source_objects": [
+        {
+          "graphics_id": "OBJ_EVENT_GFX_GIRL_1_HNS",
+          "x": 2,
+          "y": 4,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP_AND_LEFT",
+          "movement_range_x": 1,
+          "movement_range_y": 1,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_FlowerShop_EventScript_Owner",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_WOMAN_2_HNS",
+          "x": 10,
+          "y": 8,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_RIGHT",
+          "movement_range_x": 1,
+          "movement_range_y": 1,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_FlowerShop_EventScript_RandomBerryGirl",
+          "flag": "0"
+        },
+        {
+          "local_id": "LOCALID_MINT_CLERK",
+          "graphics_id": "OBJ_EVENT_GFX_ATTENDANT_F_HNS",
+          "x": 8,
+          "y": 4,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_FlowerShop_EventScript_MintClerk",
+          "flag": "FLAG_MINTS_DISABLED"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_TWIN_HNS",
+          "x": 11,
+          "y": 5,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_FlowerShop_EventScript_Floria1",
+          "flag": "0"
+        }
+      ],
+      "open_gate_tiles": [],
+      "source_map_sha256": "77acfe5e08a86073bf42cf24462ad0b9c8c7e85b77d5df39fb827d53892b4d4b",
+      "converted_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "5befcc9285e18445ab1c67f5ec66e523ed83941df2cf7fe7aa1cf1f5596a8040"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "5befcc9285e18445ab1c67f5ec66e523ed83941df2cf7fe7aa1cf1f5596a8040"
+      }
+    },
+    "GoldenrodCity_GameCorner_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_GAME_CORNER_HNS",
+        "name": "GoldenrodCity_GameCorner_hns_Layout",
+        "width": 23,
+        "height": 15,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_GameCorner_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_GameCorner_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_GameCorner_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 2,
+          "y": 12,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_HNS",
+          "dest_warp_id": "10"
+        }
+      ],
+      "source_objects": [
+        {
+          "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_2_HNS",
+          "x": 3,
+          "y": 2,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "MauvilleCity_GameCorner_EventScript_CoinsClerk",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ATTENDANT_F_HNS",
+          "x": 16,
+          "y": 2,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_GameCorner_PrizeRoom_EventScript_PrizeClerkMons",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ATTENDANT_M_HNS",
+          "x": 18,
+          "y": 2,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_GameCorner_PrizeRoom_EventScript_PrizeClerkTMs",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_FAT_MAN_HNS",
+          "x": 2,
+          "y": 6,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_GameCorner_EventScript_PokefanM",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_GAMEBOY_KID_HNS",
+          "x": 12,
+          "y": 2,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_GameCorner_EventScript_PokefanM2",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN_HNS",
+          "x": 4,
+          "y": 9,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_GameCorner_EventScript_Gentleman",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_BALDING_MAN_HNS",
+          "x": 9,
+          "y": 8,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_GameCorner_EventScript_Pharmacist",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ROCKER_HNS",
+          "x": 12,
+          "y": 8,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_GameCorner_EventScript_CooltrainerM",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_HIKER_HNS",
+          "x": 7,
+          "y": 6,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_GameCorner_EventScript_Hiker",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_WORKER_M_HNS",
+          "x": 16,
+          "y": 5,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_GameCorner_EventScript_VFAttendant2",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_WORKER_F_HNS",
+          "x": 16,
+          "y": 8,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_GameCorner_EventScript_VFAttendant1",
+          "flag": "0"
+        }
+      ],
+      "open_gate_tiles": [],
+      "source_map_sha256": "a340a66ed3acc133d7365d9323bf06049c9d2689cbe6eb4fc1b2c82f6b4110ff",
+      "converted_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "75e7c8ffa8de6232c88ec019a8899a3a771f23e5e443d1d3ffa9730138bcfdb6"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "75e7c8ffa8de6232c88ec019a8899a3a771f23e5e443d1d3ffa9730138bcfdb6"
+      }
+    },
+    "GoldenrodCity_Gym_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_GYM_HNS",
+        "name": "GoldenrodCity_Gym_hns_Layout",
+        "width": 34,
+        "height": 27,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_Cafe_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_Gym_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_Gym_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 9,
+          "y": 22,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_HNS",
+          "dest_warp_id": "4"
+        }
+      ],
+      "source_objects": [
+        {
+          "graphics_id": "OBJ_EVENT_GFX_GYM_GUY_HNS",
+          "x": 10,
+          "y": 20,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_Gym_EventScript_Gym_Guy",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_WOMAN_1_HNS",
+          "x": 7,
+          "y": 7,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_RIGHT",
+          "movement_range_x": 5,
+          "movement_range_y": 5,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "5",
+          "script": "GoldenrodCity_Gym_EventScript_Carrie",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_WOMAN_2_HNS",
+          "x": 15,
+          "y": 18,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP_LEFT_AND_RIGHT",
+          "movement_range_x": 5,
+          "movement_range_y": 3,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "5",
+          "script": "GoldenrodCity_Gym_EventScript_Victoria",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_WHITNEY_HNS",
+          "x": 15,
+          "y": 8,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_Gym_EventScript_Whitney",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_BEAUTY_HNS",
+          "x": 26,
+          "y": 10,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_LEFT",
+          "movement_range_x": 2,
+          "movement_range_y": 1,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "2",
+          "script": "GoldenrodCity_Gym_EventScript_Samantha",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_GIRL_1_HNS",
+          "x": 16,
+          "y": 11,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "1",
+          "script": "GoldenrodCity_Gym_EventScript_Bridget",
+          "flag": "0",
+          "local_id": "LOCALID_GOLDENROD_CITY_GYM_BRIDGET"
+        }
+      ],
+      "open_gate_tiles": [],
+      "source_map_sha256": "7fc689d927311281de0f3674dc41a42a2a454c8afd31c7585b843e092e64837b",
+      "converted_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "1e7f4334f2191eeffd2f6b28cabce2172a42c415b243253f3203878544d6de76"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "1e7f4334f2191eeffd2f6b28cabce2172a42c415b243253f3203878544d6de76"
+      }
+    },
+    "GoldenrodCity_House1_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_HOUSE1_HNS",
+        "name": "GoldenrodCity_House1_hns_Layout",
+        "width": 13,
+        "height": 10,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_House_Lab_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_House1_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_House1_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 4,
+          "y": 8,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_HNS",
+          "dest_warp_id": "3"
+        }
+      ],
+      "source_objects": [
+        {
+          "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_HNS",
+          "x": 4,
+          "y": 4,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_RIGHT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_NameRatersHouse_EventScript_NameRater",
+          "flag": "0"
+        }
+      ],
+      "open_gate_tiles": [],
+      "source_map_sha256": "32c9e0b4b523f1ca02abe304bea4a142452d3947726f22f01ac0c8264e5db8f5",
+      "converted_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "7942a6e7e4835a0915ef8bdbfb9f01d2588a71a3347e3f55fc649f7c3041e5b8"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "7942a6e7e4835a0915ef8bdbfb9f01d2588a71a3347e3f55fc649f7c3041e5b8"
+      }
+    },
+    "GoldenrodCity_House2_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_HOUSE2_HNS",
+        "name": "GoldenrodCity_House2_hns_Layout",
+        "width": 13,
+        "height": 10,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_House_Lab_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_House2_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_House2_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 4,
+          "y": 8,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_HNS",
+          "dest_warp_id": "6"
+        }
+      ],
+      "source_objects": [
+        {
+          "graphics_id": "OBJ_EVENT_GFX_BALDING_MAN_HNS",
+          "x": 5,
+          "y": 4,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_House2_EventScript_Man",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_WOMAN_2_HNS",
+          "x": 8,
+          "y": 4,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_House2_EventScript_Woman",
+          "flag": "0"
+        }
+      ],
+      "open_gate_tiles": [],
+      "source_map_sha256": "33ac39d432af2c36eb300f0ab8cfaf0c018727bdb3a3a73922aeb85065d25435",
+      "converted_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "517191f70f60587e544d08097dc205e58ce11b5c389bba26e90818dcbeb096b4"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "517191f70f60587e544d08097dc205e58ce11b5c389bba26e90818dcbeb096b4"
+      }
+    },
+    "GoldenrodCity_House3_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_HOUSE3_HNS",
+        "name": "GoldenrodCity_House3_hns_Layout",
+        "width": 13,
+        "height": 10,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_House_Lab_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_House3_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_House3_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 4,
+          "y": 8,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_HNS",
+          "dest_warp_id": "9"
+        }
+      ],
+      "source_objects": [
+        {
+          "graphics_id": "OBJ_EVENT_GFX_LASS_HNS",
+          "x": 4,
+          "y": 5,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "VerdanturfTown_FriendshipRatersHouse_EventScript_FriendshipRater",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_FAT_MAN_HNS",
+          "x": 7,
+          "y": 4,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_House3_EventScript_PokefanM",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_TWIN_HNS",
+          "x": 7,
+          "y": 7,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+          "movement_range_x": 1,
+          "movement_range_y": 1,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_House3_EventScript_Twin",
+          "flag": "0"
+        }
+      ],
+      "open_gate_tiles": [],
+      "source_map_sha256": "a52c1a02b955a3840a25c80b41c4334290b93399b0d4c6439d97cebf859ae6f0",
+      "converted_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "5135420032c1608867993c52ba9dd92a06f94dab9910c20b374866a2a88f438b"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "5135420032c1608867993c52ba9dd92a06f94dab9910c20b374866a2a88f438b"
+      }
+    },
+    "GoldenrodCity_PokemonCenter_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_POKEMON_CENTER_HNS",
+        "name": "GoldenrodCity_PokemonCenter_hns_Layout",
+        "width": 19,
+        "height": 11,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_Kanto_PokemonCenter_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_PokemonCenter_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_PokemonCenter_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 9,
+          "y": 9,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_HNS",
+          "dest_warp_id": "12"
+        }
+      ],
+      "source_objects": [
+        {
+          "local_id": "LOCALID_NURSE",
+          "graphics_id": "OBJ_EVENT_GFX_NURSE_HNS",
+          "x": 5,
+          "y": 2,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+          "movement_range_x": 1,
+          "movement_range_y": 1,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "OldaleTown_PokemonCenter_1F_EventScript_Nurse",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_NURSE_CHANSEY_HNS",
+          "x": 6,
+          "y": 2,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "CherryGrove_Pokecenter_Chansey",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_LASS_HNS",
+          "x": 15,
+          "y": 9,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_PokemonCenter_EventScript_Lass",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_GAMEBOY_KID_HNS",
+          "x": 2,
+          "y": 7,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+          "movement_range_x": 1,
+          "movement_range_y": 1,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_PokemonCenter_EventScript_GbaKid1",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN_HNS",
+          "x": 5,
+          "y": 8,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_PokemonCenter_EventScript_Granny",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_GAMEBOY_KID_HNS",
+          "x": 3,
+          "y": 7,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+          "movement_range_x": 1,
+          "movement_range_y": 1,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_PokemonCenter_EventScript_GbaKid2",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_LINK_RECEPTIONIST_HNS",
+          "x": 14,
+          "y": 5,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_INVISIBLE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_PokemonCenter_EventScript_LinkNpc",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_LINK_RECEPTIONIST_HNS",
+          "x": 15,
+          "y": 5,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_INVISIBLE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_PokemonCenter_EventScript_LinkNpc",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_LINK_RECEPTIONIST_HNS",
+          "x": 16,
+          "y": 6,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_PokemonCenter_EventScript_LinkExplainerNpc",
+          "flag": "0"
+        }
+      ],
+      "open_gate_tiles": [],
+      "source_map_sha256": "18e93c10fbd93ca9756cb0f07c418fa91c2a9bbabb3dbbddb6f12c73dd2414a3",
+      "converted_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "5263f201967ef51f21699a641a94027745e249db1555c01d6d8ad6f25c4af9bd"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "5263f201967ef51f21699a641a94027745e249db1555c01d6d8ad6f25c4af9bd"
+      }
+    },
+    "GoldenrodCity_RadioTower_1F_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_RADIO_TOWER_1F_HNS",
+        "name": "GoldenrodCity_RadioTower_1F_hns_Layout",
+        "width": 32,
+        "height": 16,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_GoldenrodUndergroundRocket_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_RadioTower_1F_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_RadioTower_1F_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 9,
+          "y": 10,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_HNS",
+          "dest_warp_id": "7"
+        },
+        {
+          "x": 22,
+          "y": 5,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_RADIO_TOWER_2F_HNS",
+          "dest_warp_id": "0"
+        }
+      ],
+      "source_objects": [
+        {
+          "graphics_id": "OBJ_EVENT_GFX_BOY_2_HNS",
+          "x": 22,
+          "y": 8,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "RadioTower1F_EventScript_Youngster",
+          "flag": "FLAG_HIDE_GOLDENROD_NPCS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_WOMAN_1_HNS",
+          "x": 23,
+          "y": 8,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "RadioTower1F_EventScript_Lass",
+          "flag": "FLAG_HIDE_GOLDENROD_NPCS",
+          "local_id": "LOCALID_LOTTERY_CLERK"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ROCKET_M_HNS",
+          "x": 22,
+          "y": 5,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "RadioTower1F_EventScript_Grunt",
+          "flag": "FLAG_HIDE_ROCKET_GOLDENROD_RADIOTOWER_1",
+          "local_id": "LOCALID_GOLDENROD_RADIOTOWER_GRUNT"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ATTENDANT_M_HNS",
+          "x": 19,
+          "y": 10,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_RadioTower_1F_EventScript_LotteryClerk",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ATTENDANT_F_HNS",
+          "x": 14,
+          "y": 10,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "RadioTower1F_EventScript_Reception",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_WHITNEY_HNS",
+          "x": 13,
+          "y": 8,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "RadioTower1F_EventScript_Whitney",
+          "flag": "FLAG_ENABLE_RADIO",
+          "local_id": "LOCALID_GOLDENROD_RADIOTOWER_WHITNEY"
+        }
+      ],
+      "open_gate_tiles": [],
+      "source_map_sha256": "c31e20587fff3e3d1ec71daeb217ed55ec26f76e01abe6a22918ace699f69fd3",
+      "converted_layout_sha256": {
+        "border_filepath": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+        "blockdata_filepath": "99cedb05868835cba8d2c241f60c89b18e4193edb450298c041e92d5d3745a80"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+        "blockdata_filepath": "99cedb05868835cba8d2c241f60c89b18e4193edb450298c041e92d5d3745a80"
+      }
+    },
+    "GoldenrodCity_RadioTower_2F_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_RADIO_TOWER_2F_HNS",
+        "name": "GoldenrodCity_RadioTower_2F_hns_Layout",
+        "width": 32,
+        "height": 16,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_GoldenrodUndergroundRocket_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_RadioTower_2F_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_RadioTower_2F_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 27,
+          "y": 5,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_RADIO_TOWER_1F_HNS",
+          "dest_warp_id": "1"
+        },
+        {
+          "x": 10,
+          "y": 5,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_RADIO_TOWER_3F_HNS",
+          "dest_warp_id": "2"
+        }
+      ],
+      "source_objects": [
+        {
+          "graphics_id": "OBJ_EVENT_GFX_LASS_HNS",
+          "x": 29,
+          "y": 9,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+          "movement_range_x": 1,
+          "movement_range_y": 1,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_RadioTower_2F_EventScript_Teacher",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_JIGGLYPUFF",
+          "x": 29,
+          "y": 15,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_RadioTower_2F_EventScript_Jigglypuff",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_LITTLE_BOY_HNS",
+          "x": 14,
+          "y": 8,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_RadioTower_2F_EventScript_Boy",
+          "flag": "FLAG_HIDE_GOLDENROD_NPCS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ROCKET_M_HNS",
+          "x": 19,
+          "y": 11,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP",
+          "movement_range_x": 4,
+          "movement_range_y": 4,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "4",
+          "script": "GoldenrodRaidoTower2_EventScript_Grunt3",
+          "flag": "FLAG_HIDE_GOLDENROD_ROCKETS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ROCKET_M_HNS",
+          "x": 19,
+          "y": 5,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+          "movement_range_x": 4,
+          "movement_range_y": 3,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "3",
+          "script": "GoldenrodRaidoTower2_EventScript_Grunt5",
+          "flag": "FLAG_HIDE_GOLDENROD_ROCKETS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ROCKET_F_HNS",
+          "x": 7,
+          "y": 7,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+          "movement_range_x": 4,
+          "movement_range_y": 4,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "4",
+          "script": "GoldenrodRaidoTower2_EventScript_GruntF2",
+          "flag": "FLAG_HIDE_GOLDENROD_ROCKETS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ROCKET_M_HNS",
+          "x": 13,
+          "y": 7,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+          "movement_range_x": 4,
+          "movement_range_y": 4,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "4",
+          "script": "GoldenrodRaidoTower2_EventScript_Grunt4",
+          "flag": "FLAG_HIDE_GOLDENROD_ROCKETS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_BEAUTY_HNS",
+          "x": 28,
+          "y": 14,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+          "movement_range_x": 1,
+          "movement_range_y": 1,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_RadioTower_2F_EventScript_Buena",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_OFFICER_HNS",
+          "x": 10,
+          "y": 5,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_LEFT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_RadioTower_2F_EventScript_Policeman",
+          "flag": "FLAG_HIDE_GOLDENROD_ROCKET_SCOUT"
+        }
+      ],
+      "open_gate_tiles": [],
+      "source_map_sha256": "7052ab1b9c3051ba2219dba143494ad5ad91b28b42b4a4e5ce4d5062ddd46dc2",
+      "converted_layout_sha256": {
+        "border_filepath": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+        "blockdata_filepath": "5a1c72cd737b6e1d4aa07fa8b791653d34e9a25cd54f5c197c59725656d09c76"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+        "blockdata_filepath": "5a1c72cd737b6e1d4aa07fa8b791653d34e9a25cd54f5c197c59725656d09c76"
+      }
+    },
+    "GoldenrodCity_RadioTower_3F_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_RADIO_TOWER_3F_HNS",
+        "name": "GoldenrodCity_RadioTower_3F_hns_Layout",
+        "width": 32,
+        "height": 16,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_GoldenrodUndergroundRocket_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_RadioTower_3F_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_RadioTower_3F_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 19,
+          "y": 5,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_RADIO_TOWER_4F_HNS",
+          "dest_warp_id": "2"
+        },
+        {
+          "x": 29,
+          "y": 5,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_RADIO_TOWER_4F_HNS",
+          "dest_warp_id": "1"
+        },
+        {
+          "x": 9,
+          "y": 5,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_RADIO_TOWER_2F_HNS",
+          "dest_warp_id": "1"
+        }
+      ],
+      "source_objects": [
+        {
+          "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M_HNS",
+          "x": 17,
+          "y": 10,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+          "movement_range_x": 4,
+          "movement_range_y": 4,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "4",
+          "script": "GoldenrodRaidoTower3_EventScript_Scientist",
+          "flag": "FLAG_HIDE_GOLDENROD_ROCKETS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_F_HNS",
+          "x": 14,
+          "y": 13,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_RadioTower_3F_EventScript_Cooltrainer",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD_HNS",
+          "x": 12,
+          "y": 10,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_RadioTower_3F_EventScript_Nerd",
+          "flag": "FLAG_HIDE_GOLDENROD_NPCS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ROCKET_M_HNS",
+          "x": 16,
+          "y": 5,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+          "movement_range_x": 4,
+          "movement_range_y": 4,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "4",
+          "script": "GoldenrodRaidoTower3_EventScript_Grunt6",
+          "flag": "FLAG_HIDE_GOLDENROD_ROCKETS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ROCKET_M_HNS",
+          "x": 23,
+          "y": 10,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+          "movement_range_x": 4,
+          "movement_range_y": 4,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "4",
+          "script": "GoldenrodRaidoTower3_EventScript_Grunt7",
+          "flag": "FLAG_HIDE_GOLDENROD_ROCKETS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ROCKET_M_HNS",
+          "x": 25,
+          "y": 5,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_RIGHT",
+          "movement_range_x": 4,
+          "movement_range_y": 4,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "4",
+          "script": "GoldenrodRaidoTower3_EventScript_Grunt8",
+          "flag": "FLAG_HIDE_GOLDENROD_ROCKETS"
+        }
+      ],
+      "open_gate_tiles": [
+        [
+          "25",
+          "8",
+          "0x335"
+        ],
+        [
+          "25",
+          "9",
+          "0x335"
+        ],
+        [
+          "26",
+          "8",
+          "0X334"
+        ],
+        [
+          "26",
+          "9",
+          "0X334"
+        ],
+        [
+          "27",
+          "8",
+          "0X334"
+        ],
+        [
+          "27",
+          "9",
+          "0X334"
+        ],
+        [
+          "28",
+          "8",
+          "0X334"
+        ],
+        [
+          "28",
+          "9",
+          "0X334"
+        ],
+        [
+          "29",
+          "8",
+          "0X334"
+        ],
+        [
+          "29",
+          "9",
+          "0X334"
+        ],
+        [
+          "30",
+          "8",
+          "0X334"
+        ],
+        [
+          "30",
+          "9",
+          "0X334"
+        ],
+        [
+          "31",
+          "8",
+          "0X334"
+        ],
+        [
+          "31",
+          "9",
+          "0X334"
+        ]
+      ],
+      "source_map_sha256": "9890594e4acfceaed5f0e025fdd3a07e79e7cc49d18617def5a9629059f66a57",
+      "converted_layout_sha256": {
+        "border_filepath": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+        "blockdata_filepath": "f2e282fbca2680320b6ee2aa78b3240a602dda60fa877516b57b7b3de738578c"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+        "blockdata_filepath": "8e8f18c9b9bd77c23d3c72728a539cf126a308c6977830a25cf743a4f8d5cec7"
+      }
+    },
+    "GoldenrodCity_RadioTower_4F_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_RADIO_TOWER_4F_HNS",
+        "name": "GoldenrodCity_RadioTower_4F_hns_Layout",
+        "width": 32,
+        "height": 16,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_GoldenrodUndergroundRocket_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_RadioTower_4F_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_RadioTower_4F_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 19,
+          "y": 5,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_RADIO_TOWER_5F_HNS",
+          "dest_warp_id": "0"
+        },
+        {
+          "x": 27,
+          "y": 5,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_RADIO_TOWER_3F_HNS",
+          "dest_warp_id": "1"
+        },
+        {
+          "x": 9,
+          "y": 5,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_RADIO_TOWER_3F_HNS",
+          "dest_warp_id": "0"
+        },
+        {
+          "x": 29,
+          "y": 5,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_RADIO_TOWER_5F_HNS",
+          "dest_warp_id": "1"
+        }
+      ],
+      "source_objects": [
+        {
+          "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M_HNS",
+          "x": 12,
+          "y": 13,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP",
+          "movement_range_x": 4,
+          "movement_range_y": 4,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "4",
+          "script": "GoldenrodCity_RadioTower_4F4_EventScript_Scientist",
+          "flag": "FLAG_HIDE_GOLDENROD_ROCKETS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ROCKET_M_HNS",
+          "x": 15,
+          "y": 11,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP",
+          "movement_range_x": 4,
+          "movement_range_y": 4,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "67",
+          "script": "GoldenrodRaidoTower4_EventScript_Grunt9",
+          "flag": "FLAG_HIDE_GOLDENROD_ROCKETS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_FAT_MAN_HNS",
+          "x": 17,
+          "y": 10,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_RadioTower_4F4_EventScript_Fisher",
+          "flag": "FLAG_HIDE_GOLDENROD_NPCS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_GIRL_1_HNS",
+          "x": 28,
+          "y": 12,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_RadioTower_4F4_EventScript_Mary",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ROCKET_F_HNS",
+          "x": 15,
+          "y": 5,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+          "movement_range_x": 4,
+          "movement_range_y": 4,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "7",
+          "script": "GoldenrodRaidoTower4_EventScript_Grunt28",
+          "flag": "FLAG_HIDE_GOLDENROD_ROCKETS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_PROTON_HNS",
+          "x": 28,
+          "y": 9,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP",
+          "movement_range_x": 5,
+          "movement_range_y": 5,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "5",
+          "script": "GoldenrodRaidoTower4_EventScript_Proton",
+          "flag": "FLAG_HIDE_GOLDENROD_ROCKETS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_MON_BASE+SPECIES_MEOWTH",
+          "x": 26,
+          "y": 13,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_RadioTower_4F4_EventScript_Meowth",
+          "flag": "0"
+        }
+      ],
+      "open_gate_tiles": [],
+      "source_map_sha256": "97e829ace2e7d060283da0b9f17600ac79238c8aaee81f2bad7b6a6b3d097e9a",
+      "converted_layout_sha256": {
+        "border_filepath": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+        "blockdata_filepath": "a04269a81fa5d83a30447234ade3fe03a1255c5db5d01525df95505b37fb089f"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+        "blockdata_filepath": "a04269a81fa5d83a30447234ade3fe03a1255c5db5d01525df95505b37fb089f"
+      }
+    },
+    "GoldenrodCity_RadioTower_5F_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_RADIO_TOWER_5F_HNS",
+        "name": "GoldenrodCity_RadioTower_5F_hns_Layout",
+        "width": 34,
+        "height": 16,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_GoldenrodUndergroundRocket_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_RadioTower_5F_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_RadioTower_5F_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 11,
+          "y": 5,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_RADIO_TOWER_4F_HNS",
+          "dest_warp_id": "0"
+        },
+        {
+          "x": 24,
+          "y": 5,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_RADIO_TOWER_4F_HNS",
+          "dest_warp_id": "3"
+        }
+      ],
+      "source_objects": [
+        {
+          "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN_HNS",
+          "x": 11,
+          "y": 9,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_RadioTower_5F_EventScript_Petrel",
+          "flag": "FLAG_HIDE_GOLDENROD_RADIOTOWER_DIRECTOR",
+          "local_id": "LOCALID_DIRECTOR_OFFICE"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ARCHER_HNS",
+          "x": 25,
+          "y": 12,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_RadioTower_5F_EventScript_Archer",
+          "flag": "FLAG_HIDE_GOLDENROD_ROCKETS",
+          "local_id": "LOCALID_GOLDENROD_ARCHER"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ARIANA_HNS",
+          "x": 28,
+          "y": 10,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+          "movement_range_x": 4,
+          "movement_range_y": 4,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "4",
+          "script": "GoldenrodRaidoTower4_EventScript_ARIANA",
+          "flag": "FLAG_HIDE_GOLDENROD_ROCKETS",
+          "local_id": "LOCALID_GOLDENROD_ARIANA"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_PETREL_HNS",
+          "x": 11,
+          "y": 9,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_RadioTower_5F_EventScript_Petrel2",
+          "flag": "FLAG_HIDE_GOLDENROD_RADIOTOWER_PETREL",
+          "local_id": "LOCALID_PETREL_OFFICE"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN_HNS",
+          "x": 29,
+          "y": 5,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "NULL",
+          "flag": "FLAG_HIDE_GOLDENROD_RADIOTOWER_DIRECTOR_2",
+          "local_id": "LOCALID_DIRECTOR_STUDIO"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_WORKER_M_HNS",
+          "x": 20,
+          "y": 12,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_RadioTower_5F_EventScript_Ben",
+          "flag": "FLAG_HIDE_GOLDENROD_NPCS"
+        }
+      ],
+      "open_gate_tiles": [],
+      "source_map_sha256": "a1e69e6663959e569e1269b0116522abc2f57a741ab8818c09a3a32c9a484b97",
+      "converted_layout_sha256": {
+        "border_filepath": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+        "blockdata_filepath": "9da59bec168148e241e5622f3b8857221a92d8e666094f16060efffdc48d06b9"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+        "blockdata_filepath": "9da59bec168148e241e5622f3b8857221a92d8e666094f16060efffdc48d06b9"
+      }
+    },
+    "GoldenrodCity_TrainStation_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_TRAIN_STATION_HNS",
+        "name": "GoldenrodCity_TrainStation_hns_Layout",
+        "width": 154,
+        "height": 28,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_GoldenrodCity_TrainStation_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_TrainStation_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_TrainStation_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 16,
+          "y": 26,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_HNS",
+          "dest_warp_id": "8"
+        }
+      ],
+      "source_objects": [
+        {
+          "graphics_id": "OBJ_EVENT_GFX_OFFICER_HNS",
+          "x": 16,
+          "y": 20,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_TrainStation_EventScript_Attendant",
+          "flag": "0",
+          "local_id": "LOCALID_GOLDENROD_CITY_TRAIN_STATION_ATTENDANT"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN_HNS",
+          "x": 20,
+          "y": 23,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+          "movement_range_x": 1,
+          "movement_range_y": 1,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_TrainStation_EventScript_Gent",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ENGINEER_HNS",
+          "x": 13,
+          "y": 18,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP_AND_LEFT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "NULL",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT_HNS",
+          "x": 12,
+          "y": 18,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP_AND_RIGHT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "NULL",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_WOMAN_1_HNS",
+          "x": 21,
+          "y": 18,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP_AND_LEFT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "NULL",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN_HNS",
+          "x": 20,
+          "y": 18,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP_AND_RIGHT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "NULL",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_TRAIN_EAST_HNS",
+          "x": 1,
+          "y": 5,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "NULL",
+          "flag": "0",
+          "local_id": "LOCALID_GOLDENROD_CITY_TRAIN_STATION_TRAIN"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_LITTLE_BOY_HNS",
+          "x": 10,
+          "y": 22,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+          "movement_range_x": 1,
+          "movement_range_y": 1,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_TrainStation_EventScript_Boy",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_PSYCHIC_M_HNS",
+          "x": 11,
+          "y": 22,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+          "movement_range_x": 1,
+          "movement_range_y": 1,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_TrainStation_EventScript_Psychic",
+          "flag": "0"
+        }
+      ],
+      "open_gate_tiles": [],
+      "source_map_sha256": "ab3550e153be894a5792477a8f4037413d5340927802c3c7d14775371a80e823",
+      "converted_layout_sha256": {
+        "border_filepath": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+        "blockdata_filepath": "42512c5e0b11c551ce23d201be00150f86d90a489c28be298b28b3c50a480138"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc",
+        "blockdata_filepath": "42512c5e0b11c551ce23d201be00150f86d90a489c28be298b28b3c50a480138"
+      }
+    },
+    "GoldenrodCity_UndergroundEntrance_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_UNDERGROUND_ENTRANCE_HNS",
+        "name": "GoldenrodCity_UndergroundEntrance_hns_Layout",
+        "width": 28,
+        "height": 10,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_GoldenrodUndergroundTunnel_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_UndergroundEntrance_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_UndergroundEntrance_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 23,
+          "y": 3,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_UNDERGROUND_TUNNEL_HNS",
+          "dest_warp_id": "1"
+        },
+        {
+          "x": 4,
+          "y": 3,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_UNDERGROUND_TUNNEL_HNS",
+          "dest_warp_id": "0"
+        },
+        {
+          "x": 22,
+          "y": 7,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_HNS",
+          "dest_warp_id": "2"
+        },
+        {
+          "x": 5,
+          "y": 7,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_HNS",
+          "dest_warp_id": "15"
+        }
+      ],
+      "source_objects": [
+        {
+          "graphics_id": "OBJ_EVENT_GFX_PICNICKER_HNS",
+          "x": 5,
+          "y": 5,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodUnderground_EventScript_Teacher",
+          "flag": "FLAG_HIDE_GOLDENROD_NPCS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_CAMPER_HNS",
+          "x": 22,
+          "y": 5,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodUnderground_EventScript_SuperNerd",
+          "flag": "FLAG_HIDE_GOLDENROD_NPCS"
+        }
+      ],
+      "open_gate_tiles": [],
+      "source_map_sha256": "6adbc52ba8e3780bf5f941a146cf33ffe5df88e964c2baeb666fcdf06fa0fae7",
+      "converted_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "6315efb6439cbbcf03fea056818c8a85db81f25f8cf2a114f79682cd7837924d"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "6315efb6439cbbcf03fea056818c8a85db81f25f8cf2a114f79682cd7837924d"
+      }
+    },
+    "GoldenrodCity_UndergroundStorage_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_UNDERGROUND_STORAGE_HNS",
+        "name": "GoldenrodCity_UndergroundStorage_hns_Layout",
+        "width": 30,
+        "height": 19,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_Goldenrod_Underground_Storage_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_UndergroundStorage_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_UndergroundStorage_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 19,
+          "y": 2,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_DEPARTMENT_STORE_BASEMENT_HNS",
+          "dest_warp_id": "0"
+        },
+        {
+          "x": 3,
+          "y": 11,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_UNDERGROUND_SWITCHES_HNS",
+          "dest_warp_id": "0"
+        }
+      ],
+      "source_objects": [
+        {
+          "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
+          "x": 1,
+          "y": 2,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_UndergroundStorage_EventScript_Item_UltraBall",
+          "flag": "FLAG_ITEM_GOLDENROD_UNDERGROUND_ULTRA_BALL2"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
+          "x": 21,
+          "y": 16,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_UndergroundStorage_EventScript_Item_MaxEther",
+          "flag": "FLAG_ITEM_GOLDENROD_UNDERGROUND_MAX_ETHER"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
+          "x": 14,
+          "y": 9,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_UndergroundStorage_EventScript_Item_TM_CALM_MIND",
+          "flag": "FLAG_ITEM_GOLDENROD_UNDERGROUND_TM_CALM_MIND"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ROCKET_M_HNS",
+          "x": 11,
+          "y": 16,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP_AND_LEFT",
+          "movement_range_x": 4,
+          "movement_range_y": 4,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "3",
+          "script": "GoldenrodCity_UndergroundStorage_EventScript_Grunt12",
+          "flag": "FLAG_HIDE_GOLDENROD_ROCKETS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ROCKET_M_HNS",
+          "x": 11,
+          "y": 13,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_RIGHT",
+          "movement_range_x": 4,
+          "movement_range_y": 4,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "3",
+          "script": "GoldenrodCity_UndergroundStorage_EventScript_Grunt19",
+          "flag": "FLAG_HIDE_GOLDENROD_ROCKETS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ROCKET_M_HNS",
+          "x": 11,
+          "y": 7,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_UP",
+          "movement_range_x": 2,
+          "movement_range_y": 2,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "2",
+          "script": "GoldenrodCity_UndergroundStorage_EventScript_Eto",
+          "flag": "FLAG_HIDE_GOLDENROD_ROCKETS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_GENTLEMAN_HNS",
+          "x": 13,
+          "y": 8,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_RIGHT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_UndergroundStorage_EventScript_Director",
+          "flag": "FLAG_HIDE_GOLDENROD_ROCKETS"
+        }
+      ],
+      "open_gate_tiles": [],
+      "source_map_sha256": "769173767a410095832e027522d78eff43e3350dbe6f5ae662ee4855d1b29c16",
+      "converted_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "ae8546466d6c4746b3480b17ac93416d0f0b859974722583879247d7dbe5550a"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "ae8546466d6c4746b3480b17ac93416d0f0b859974722583879247d7dbe5550a"
+      }
+    },
+    "GoldenrodCity_UndergroundSwitches_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_UNDERGROUND_SWITCHES_HNS",
+        "name": "GoldenrodCity_UndergroundSwitches_hns_Layout",
+        "width": 60,
+        "height": 18,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_GoldenrodUndergroundRocket_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_UndergroundSwitches_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_UndergroundSwitches_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 30,
+          "y": 11,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_UNDERGROUND_STORAGE_HNS",
+          "dest_warp_id": "1"
+        },
+        {
+          "x": 34,
+          "y": 2,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_UNDERGROUND_TUNNEL_HNS",
+          "dest_warp_id": "2"
+        }
+      ],
+      "source_objects": [
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ROCKET_M_HNS",
+          "x": 6,
+          "y": 3,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+          "movement_range_x": 4,
+          "movement_range_y": 4,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "3",
+          "script": "GoldenrodCity_UndergroundSwitches_EventScript_Grunt11",
+          "flag": "FLAG_HIDE_GOLDENROD_ROCKETS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ROCKET_M_HNS",
+          "x": 15,
+          "y": 3,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+          "movement_range_x": 4,
+          "movement_range_y": 4,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "3",
+          "script": "GoldenrodCity_UndergroundSwitches_EventScript_Grunt20",
+          "flag": "FLAG_HIDE_GOLDENROD_ROCKETS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ROCKET_M_HNS",
+          "x": 20,
+          "y": 3,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+          "movement_range_x": 4,
+          "movement_range_y": 4,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "3",
+          "script": "GoldenrodCity_UndergroundSwitches_EventScript_Grunt10",
+          "flag": "FLAG_HIDE_GOLDENROD_ROCKETS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_BURGLAR_HNS",
+          "x": 3,
+          "y": 9,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+          "movement_range_x": 4,
+          "movement_range_y": 4,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "3",
+          "script": "GoldenrodCity_UndergroundSwitches_EventScript_Duncan",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_BURGLAR_HNS",
+          "x": 11,
+          "y": 13,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+          "movement_range_x": 9,
+          "movement_range_y": 1,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "9",
+          "script": "GoldenrodCity_UndergroundSwitches_EventScript_Eddie",
+          "flag": "0"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ROCKET_M_HNS",
+          "x": 28,
+          "y": 13,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+          "movement_range_x": 1,
+          "movement_range_y": 1,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "3",
+          "script": "GoldenrodCity_UndergroundSwitches_EventScript_Grunt27",
+          "flag": "FLAG_HIDE_GOLDENROD_ROCKETS"
+        },
+        {
+          "local_id": "LOCALID_GOLDENROD_UNDERGROUND_SILVER",
+          "graphics_id": "OBJ_EVENT_GFX_SILVER_HNS",
+          "x": 35,
+          "y": 2,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "NULL",
+          "flag": "FLAG_HIDE_GOLDENROD_UNDERGROUND_SILVER"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
+          "x": 19,
+          "y": 9,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_UndergroundSwitches_EventScript_Item_Revive",
+          "flag": "FLAG_ITEM_GOLDENROD_UNDERGROUND_REVIVE"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
+          "x": 20,
+          "y": 13,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_UndergroundSwitches_EventScript_Item_MaxPotion",
+          "flag": "FLAG_ITEM_GOLDENROD_UNDERGROUND_MAX_POTION"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
+          "x": 3,
+          "y": 13,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_UndergroundSwitches_EventScript_Item_SmokeBall",
+          "flag": "FLAG_ITEM_GOLDENROD_UNDERGROUND_SMOKE_BALL"
+        }
+      ],
+      "open_gate_tiles": [
+        [
+          "5",
+          "7",
+          "0x378"
+        ],
+        [
+          "6",
+          "7",
+          "0x379"
+        ],
+        [
+          "7",
+          "7",
+          "0x37A"
+        ],
+        [
+          "5",
+          "8",
+          "0x380"
+        ],
+        [
+          "6",
+          "8",
+          "0x381"
+        ],
+        [
+          "7",
+          "8",
+          "0x382"
+        ],
+        [
+          "14",
+          "7",
+          "0x378"
+        ],
+        [
+          "15",
+          "7",
+          "0x379"
+        ],
+        [
+          "16",
+          "7",
+          "0x37A"
+        ],
+        [
+          "14",
+          "8",
+          "0x380"
+        ],
+        [
+          "15",
+          "8",
+          "0x381"
+        ],
+        [
+          "16",
+          "8",
+          "0x382"
+        ],
+        [
+          "23",
+          "7",
+          "0x378"
+        ],
+        [
+          "24",
+          "7",
+          "0x379"
+        ],
+        [
+          "25",
+          "7",
+          "0x37A"
+        ],
+        [
+          "23",
+          "8",
+          "0x380"
+        ],
+        [
+          "24",
+          "8",
+          "0x381"
+        ],
+        [
+          "25",
+          "8",
+          "0x382"
+        ],
+        [
+          "5",
+          "11",
+          "0x378"
+        ],
+        [
+          "6",
+          "11",
+          "0x379"
+        ],
+        [
+          "7",
+          "11",
+          "0x37A"
+        ],
+        [
+          "5",
+          "12",
+          "0x380"
+        ],
+        [
+          "6",
+          "12",
+          "0x381"
+        ],
+        [
+          "7",
+          "12",
+          "0x382"
+        ],
+        [
+          "14",
+          "11",
+          "0x378"
+        ],
+        [
+          "15",
+          "11",
+          "0x379"
+        ],
+        [
+          "16",
+          "11",
+          "0x37A"
+        ],
+        [
+          "14",
+          "12",
+          "0x380"
+        ],
+        [
+          "15",
+          "12",
+          "0x381"
+        ],
+        [
+          "16",
+          "12",
+          "0x382"
+        ],
+        [
+          "23",
+          "11",
+          "0x378"
+        ],
+        [
+          "24",
+          "11",
+          "0x379"
+        ],
+        [
+          "25",
+          "11",
+          "0x37A"
+        ],
+        [
+          "23",
+          "12",
+          "0x380"
+        ],
+        [
+          "24",
+          "12",
+          "0x381"
+        ],
+        [
+          "25",
+          "12",
+          "0x382"
+        ]
+      ],
+      "source_map_sha256": "30eb9618023ceb4d6723b8b84497b880870d50da6f70218f9d7f0c3e997289b7",
+      "converted_layout_sha256": {
+        "border_filepath": "7ba4dc209f3ddd01c7a6d594db58788c08e345b796d8401a0d12d1eefa025ecd",
+        "blockdata_filepath": "a707f04a630ee12986072af8d3b6e472445b638d7e0851c5f9660d039ee7ac96"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "7ba4dc209f3ddd01c7a6d594db58788c08e345b796d8401a0d12d1eefa025ecd",
+        "blockdata_filepath": "e8b977eb0016d54cd5c0b58d447aa6cc93aaa38855df6e2a685bc423cf3b4681"
+      }
+    },
+    "GoldenrodCity_UndergroundTunnel_hns": {
+      "layout": {
+        "id": "LAYOUT_GOLDENROD_CITY_UNDERGROUND_TUNNEL_HNS",
+        "name": "GoldenrodCity_UndergroundTunnel_hns_Layout",
+        "width": 16,
+        "height": 36,
+        "primary_tileset": "gTileset_Johto_Building_Hns",
+        "secondary_tileset": "gTileset_GoldenrodUndergroundTunnel_Hns",
+        "border_filepath": "data/layouts/GoldenrodCity_UndergroundTunnel_hns/border.bin",
+        "blockdata_filepath": "data/layouts/GoldenrodCity_UndergroundTunnel_hns/map.bin",
+        "layout_version": "hns",
+        "include_in_versions": [
+          "emerald"
+        ]
+      },
+      "source_warps": [
+        {
+          "x": 3,
+          "y": 33,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_UNDERGROUND_ENTRANCE_HNS",
+          "dest_warp_id": "1"
+        },
+        {
+          "x": 2,
+          "y": 3,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_UNDERGROUND_ENTRANCE_HNS",
+          "dest_warp_id": "0"
+        },
+        {
+          "x": 12,
+          "y": 10,
+          "elevation": 0,
+          "dest_map": "MAP_GOLDENROD_CITY_UNDERGROUND_SWITCHES_HNS",
+          "dest_warp_id": "1"
+        }
+      ],
+      "source_objects": [
+        {
+          "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD_HNS",
+          "x": 4,
+          "y": 30,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+          "movement_range_x": 3,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "3",
+          "script": "GoldenrodUnderground_EventScript_Issac",
+          "flag": "FLAG_HIDE_GOLDENROD_NPCS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN_HNS",
+          "x": 6,
+          "y": 24,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "LavaridgeTown_HerbShop_EventScript_Clerk",
+          "flag": "FLAG_HIDE_GOLDENROD_NPCS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_WORKER_M_HNS",
+          "x": 6,
+          "y": 20,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodUnderground_EventScript_Brother_Haircut1",
+          "flag": "FLAG_DAY_POKEMON"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_MART_EMPLOYEE_HNS",
+          "x": 6,
+          "y": 16,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodUnderground_EventScript_Brother_Haircut2",
+          "flag": "FLAG_NIGHT_POKEMON"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD_HNS",
+          "x": 4,
+          "y": 10,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+          "movement_range_x": 3,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "3",
+          "script": "GoldenrodUnderground_EventScript_Teru",
+          "flag": "FLAG_HIDE_GOLDENROD_NPCS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD_HNS",
+          "x": 4,
+          "y": 7,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+          "movement_range_x": 3,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "3",
+          "script": "GoldenrodUnderground_EventScript_Eric",
+          "flag": "FLAG_HIDE_GOLDENROD_NPCS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_SUPER_NERD_HNS",
+          "x": 1,
+          "y": 27,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+          "movement_range_x": 3,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NORMAL",
+          "trainer_sight_or_berry_tree_id": "3",
+          "script": "GoldenrodUnderground_EventScript_Donald",
+          "flag": "FLAG_HIDE_GOLDENROD_NPCS"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL_HNS",
+          "x": 13,
+          "y": 13,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_UndergroundTunnel_EventScript_Item_CoinCase",
+          "flag": "FLAG_ITEM_GOLDENROD_UNDERGROUND_COIN_CASE"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL_HNS",
+          "x": 1,
+          "y": 8,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_UndergroundTunnel_EventScript_Item_ParalyzeHeal",
+          "flag": "FLAG_ITEM_GOLDENROD_UNDERGROUND_PARALYZE_HEAL"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL_HNS",
+          "x": 1,
+          "y": 23,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_UndergroundTunnel_EventScript_Item_Antidote",
+          "flag": "FLAG_ITEM_GOLDENROD_UNDERGROUND_ANTIDOTE"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL_HNS",
+          "x": 5,
+          "y": 26,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_NONE",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "GoldenrodCity_UndergroundTunnel_EventScript_Item_SuperPotion",
+          "flag": "FLAG_ITEM_GOLDENROD_UNDERGROUND_SUPER_POTION"
+        },
+        {
+          "graphics_id": "OBJ_EVENT_GFX_KIMONO_HNS",
+          "x": 13,
+          "y": 12,
+          "elevation": 0,
+          "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+          "movement_range_x": 0,
+          "movement_range_y": 0,
+          "trainer_type": "TRAINER_TYPE_NONE",
+          "trainer_sight_or_berry_tree_id": "0",
+          "script": "NULL",
+          "flag": "FLAG_HIDE_GOLDENROD_UNDERGROUND_KIMONO",
+          "local_id": "LOCALID_GOLDENROD_UNDERGROUND_KIMONO"
+        }
+      ],
+      "open_gate_tiles": [
+        [
+          "12",
+          "10",
+          "0x2DD"
+        ]
+      ],
+      "source_map_sha256": "b3181575babb20395bad96f51c0e22851e6068af6a053cbdc564a255ba0c8f7f",
+      "converted_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "5550bd2a0debfe802476231805ef9587ed3ad5e83e0c1a62cec40403760c1f3c"
+      },
+      "source_layout_sha256": {
+        "border_filepath": "e0d28e51c7e052913771ad123ea4ae85d601f22af3040d698e9b1f6a6ecb5196",
+        "blockdata_filepath": "0e420e3b968fc2e8bed23f06f6d68e5cd2a153f94585ec481e9680b44fcf5e0a"
+      }
+    }
+  },
+  "assets": [
+    "data/tilesets/secondary/cafe_hns",
+    "data/tilesets/secondary/department_store_hns",
+    "data/tilesets/secondary/game_corner_hns",
+    "data/tilesets/secondary/goldenrod_station_hns",
+    "data/tilesets/secondary/goldenrod_underground_rocket_hns",
+    "data/tilesets/secondary/goldenrod_underground_tunnel_hns",
+    "data/tilesets/secondary/goldenrod_underground_storage_hns",
+    "data/tilesets/secondary/house_lab_hns",
+    "data/tilesets/secondary/johto_bike_shop_hns",
+    "data/tilesets/primary/johto_building_hns",
+    "data/tilesets/secondary/kanto_pokemon_center_hns",
+    "data/tilesets/secondary/pokemon_day_care_hns",
+    "data/tilesets/secondary/shop_rooftop_hns"
+  ],
+  "encounters": "None in the imported interiors; existing city encounters unchanged.",
+  "events": "Local services and ambience; donor Rocket, train, rival and time-of-day stories removed. NPC movement pinned. Gates open."
+}

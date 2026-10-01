@@ -67,7 +67,7 @@
       "x": 5,
       "y": 7,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
+      "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
       "script": "PoxRegion_underground_return_5"
     },
@@ -76,7 +76,7 @@
       "x": 6,
       "y": 7,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
+      "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
       "script": "PoxRegion_underground_return_6"
     },
@@ -85,7 +85,7 @@
       "x": 7,
       "y": 7,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
+      "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
       "script": "PoxRegion_underground_return_7"
     }

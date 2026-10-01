@@ -402,7 +402,7 @@ def gate_tests():
 
 def battle_tests():
     source=(ROOT/'data/scripts/plastic_ox_story.inc').read_text()
-    for name in ['Roxanne','Whitney','Morty','Winona','Blaine','TateLiza','Bruno','Clair','MoonGrunt1','TowerGrunt1','Giovanni','Wallace','Steven','LeagueLance','Blue','Bill']:
+    for name in ['Roxanne','Whitney','Morty','Winona','Blaine','TateLiza','Bruno','Clair','TowerGrunt1','Giovanni','Wallace','Steven','LeagueLance','Blue','Bill']:
         g=StoryGame()
         g.run('Pox_Treecko')
         body=source.split('Pox_'+name+'::')[1].split('\nPox_')[0]

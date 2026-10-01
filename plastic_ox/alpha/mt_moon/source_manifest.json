@@ -1,0 +1,325 @@
+{
+  "source": "https://github.com/pret/pokefirered",
+  "revision": "037335f4c725d7c9aecdac87066f2002b4bd7e14",
+  "donor": "pokehns-expansion",
+  "donor_revision": "44f50eedefe58691b0444973e4138e9190d8fafc",
+  "floors": {
+    "1F": {
+      "layout_sha256": {
+        "map.bin": "f6583e731bf30ff82462f6bb067968b182d552f6b68e5086c72048877ef8c552",
+        "border.bin": "379f8d1e17cb9bcad3a11243c396f7ba3e3095d10727d201c0e7b49ecdad94b5"
+      },
+      "warp_events": [
+        {
+          "x": 5,
+          "y": 6,
+          "elevation": 3,
+          "dest_map": "MAP_MT_MOON_B1F",
+          "dest_warp_id": "0"
+        },
+        {
+          "x": 19,
+          "y": 14,
+          "elevation": 3,
+          "dest_map": "MAP_MT_MOON_B1F",
+          "dest_warp_id": "1"
+        },
+        {
+          "x": 31,
+          "y": 16,
+          "elevation": 3,
+          "dest_map": "MAP_MT_MOON_B1F",
+          "dest_warp_id": "2"
+        },
+        {
+          "x": 18,
+          "y": 37,
+          "elevation": 3,
+          "dest_map": "MAP_ROUTE4",
+          "dest_warp_id": "0"
+        }
+      ],
+      "object_positions": [
+        [
+          20,
+          26,
+          "MtMoon_1F_EventScript_Iris"
+        ],
+        [
+          36,
+          30,
+          "MtMoon_1F_EventScript_Robby"
+        ],
+        [
+          30,
+          35,
+          "MtMoon_1F_EventScript_Jovan"
+        ],
+        [
+          33,
+          4,
+          "MtMoon_1F_EventScript_Miriam"
+        ],
+        [
+          7,
+          26,
+          "MtMoon_1F_EventScript_Kent"
+        ],
+        [
+          13,
+          17,
+          "MtMoon_1F_EventScript_Josh"
+        ],
+        [
+          7,
+          10,
+          "MtMoon_1F_EventScript_Marcos"
+        ],
+        [
+          2,
+          22,
+          "MtMoon_1F_EventScript_ItemParalyzeHeal"
+        ],
+        [
+          11,
+          35,
+          "MtMoon_1F_EventScript_ItemTM09"
+        ],
+        [
+          26,
+          32,
+          "MtMoon_1F_EventScript_ItemPotion"
+        ],
+        [
+          42,
+          35,
+          "MtMoon_1F_EventScript_ItemRareCandy"
+        ],
+        [
+          44,
+          21,
+          "MtMoon_1F_EventScript_ItemEscapeRope"
+        ],
+        [
+          3,
+          2,
+          "MtMoon_1F_EventScript_ItemMoonStone"
+        ],
+        [
+          42,
+          7,
+          "MtMoon_1F_EventScript_BaldingMan"
+        ]
+      ],
+      "bg_positions": [
+        [
+          19,
+          26,
+          "sign"
+        ]
+      ]
+    },
+    "B1F": {
+      "layout_sha256": {
+        "map.bin": "0858396e292e6930d5ebe0cab6402cf91e40bfd3594b6d60e36ca82e6c900322",
+        "border.bin": "8c2ce8c2fa8ba4de35ec92ead919264ca0216fa1056c00e7bf476175a3075a61"
+      },
+      "warp_events": [
+        {
+          "x": 3,
+          "y": 3,
+          "elevation": 3,
+          "dest_map": "MAP_MT_MOON_1F",
+          "dest_warp_id": "0"
+        },
+        {
+          "x": 25,
+          "y": 4,
+          "elevation": 3,
+          "dest_map": "MAP_MT_MOON_1F",
+          "dest_warp_id": "1"
+        },
+        {
+          "x": 43,
+          "y": 21,
+          "elevation": 3,
+          "dest_map": "MAP_MT_MOON_1F",
+          "dest_warp_id": "2"
+        },
+        {
+          "x": 22,
+          "y": 18,
+          "elevation": 3,
+          "dest_map": "MAP_MT_MOON_B2F",
+          "dest_warp_id": "0"
+        },
+        {
+          "x": 17,
+          "y": 5,
+          "elevation": 3,
+          "dest_map": "MAP_MT_MOON_B2F",
+          "dest_warp_id": "1"
+        },
+        {
+          "x": 26,
+          "y": 36,
+          "elevation": 3,
+          "dest_map": "MAP_MT_MOON_B2F",
+          "dest_warp_id": "2"
+        },
+        {
+          "x": 39,
+          "y": 4,
+          "elevation": 3,
+          "dest_map": "MAP_MT_MOON_B2F",
+          "dest_warp_id": "3"
+        },
+        {
+          "x": 45,
+          "y": 4,
+          "elevation": 3,
+          "dest_map": "MAP_ROUTE4",
+          "dest_warp_id": "1"
+        }
+      ],
+      "object_positions": [],
+      "bg_positions": [
+        [
+          46,
+          2,
+          "hidden_item"
+        ],
+        [
+          26,
+          2,
+          "hidden_item"
+        ],
+        [
+          39,
+          34,
+          "hidden_item"
+        ],
+        [
+          24,
+          35,
+          "hidden_item"
+        ],
+        [
+          6,
+          12,
+          "hidden_item"
+        ],
+        [
+          25,
+          34,
+          "hidden_item"
+        ]
+      ]
+    },
+    "B2F": {
+      "layout_sha256": {
+        "map.bin": "399149cce6ac7542cef50fe38235938c281fcf3f79b2e255cdc2bf3c2e91b8e2",
+        "border.bin": "8c2ce8c2fa8ba4de35ec92ead919264ca0216fa1056c00e7bf476175a3075a61"
+      },
+      "warp_events": [
+        {
+          "x": 25,
+          "y": 21,
+          "elevation": 3,
+          "dest_map": "MAP_MT_MOON_B1F",
+          "dest_warp_id": "3"
+        },
+        {
+          "x": 31,
+          "y": 11,
+          "elevation": 3,
+          "dest_map": "MAP_MT_MOON_B1F",
+          "dest_warp_id": "4"
+        },
+        {
+          "x": 17,
+          "y": 31,
+          "elevation": 3,
+          "dest_map": "MAP_MT_MOON_B1F",
+          "dest_warp_id": "5"
+        },
+        {
+          "x": 5,
+          "y": 10,
+          "elevation": 3,
+          "dest_map": "MAP_MT_MOON_B1F",
+          "dest_warp_id": "6"
+        }
+      ],
+      "object_positions": [
+        [
+          13,
+          7,
+          "MtMoon_B2F_EventScript_DomeFossil"
+        ],
+        [
+          14,
+          7,
+          "MtMoon_B2F_EventScript_HelixFossil"
+        ],
+        [
+          13,
+          11,
+          "MtMoon_B2F_EventScript_Miguel"
+        ],
+        [
+          37,
+          21,
+          "MtMoon_B2F_EventScript_Grunt4"
+        ],
+        [
+          12,
+          20,
+          "MtMoon_B2F_EventScript_Grunt1"
+        ],
+        [
+          35,
+          12,
+          "MtMoon_B2F_EventScript_Grunt3"
+        ],
+        [
+          18,
+          27,
+          "MtMoon_B2F_EventScript_Grunt2"
+        ],
+        [
+          30,
+          26,
+          "MtMoon_B2F_EventScript_ItemStarPiece"
+        ],
+        [
+          35,
+          5,
+          "MtMoon_B2F_EventScript_ItemTM46"
+        ],
+        [
+          24,
+          6,
+          "MtMoon_B2F_EventScript_ItemRevive"
+        ],
+        [
+          3,
+          11,
+          "MtMoon_B2F_EventScript_ItemAntidote"
+        ]
+      ],
+      "bg_positions": [
+        [
+          20,
+          16,
+          "hidden_item"
+        ],
+        [
+          39,
+          11,
+          "hidden_item"
+        ]
+      ]
+    }
+  }
+}

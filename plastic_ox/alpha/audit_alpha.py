@@ -16,9 +16,11 @@ HEADERS = ["include/constants/plastic_ox_flags.h", "include/constants/plastic_ox
 POX_FLAG_RANGES = ((0x020, 0x04F), (0x264, 0x2BB))
 POX_SUPPLEMENTAL_FLAGS = {0x054, 0x055, 0x068, 0x096, 0x0E9, 0x1AA, 0x1AB,
                           0x1DA, 0x1DE, 0x1DF, 0x1E0, 0x1E1, 0x1E2, 0x1E3,
-                          0x493, 0x494, 0x495, 0x496}
+                          0x493, 0x494, 0x495, 0x496, 0x468, 0x470, 0x472, 0x479,
+                          *range(0x498, 0x4A0), *range(0x4E5, 0x4EB),
+                          *range(0x900, 0x90F)}
 POX_VAR_RANGE = range(0x40F7, 0x4100)
-POX_SUPPLEMENTAL_VARS = {0x40DC}
+POX_SUPPLEMENTAL_VARS = {0x40DB, 0x40DC}
 
 
 def flag_audit():
@@ -99,9 +101,15 @@ def flag_audit():
             errors.append(f"Supplemental var 0x{number:04X} aliases retained state: {', '.join(names)}")
     for symbol, number in re.findall(r'^#define (VAR_POX_\w+)\s+(0x[0-9A-Fa-f]+)', var_text, re.M):
         var_defs[symbol] = int(number, 0)
-    var_defs.update({symbol: int(number, 0) for symbol, number in
-                     re.findall(r'^#define (VAR_POX_\w+)\s+(0x[0-9A-Fa-f]+)',
-                                (ROOT / 'include/constants/plastic_ox_flags.h').read_text(), re.M)})
+    flag_header_vars = re.findall(r'^#define (VAR_POX_\w+)\s+(0x[0-9A-Fa-f]+)',
+                                  (ROOT / 'include/constants/plastic_ox_flags.h').read_text(), re.M)
+    if flag_header_vars:
+        errors.append('Define all VAR_POX_* allocations in include/constants/vars.h')
+    # A Plastic Ox name must own its save slot. An alias under a different
+    # non-unused name can silently change a coordinate trigger or story gate.
+    all_var_names = defaultdict(list)
+    for symbol, number in re.findall(r'^#define (VAR_\w+)\s+(0x[0-9A-Fa-f]+)', var_text, re.M):
+        all_var_names[int(number, 0)].append(symbol)
     var_values = defaultdict(list)
     for symbol, number in var_defs.items():
         var_values[number].append(symbol)
@@ -110,6 +118,20 @@ def flag_audit():
     for number, symbols in var_values.items():
         if len(symbols) > 1:
             errors.append(f"Shared persistent var 0x{number:04X}: {', '.join(symbols)}")
+        other_names = [name for name in all_var_names[number]
+                       if name not in symbols and not name.startswith('VAR_UNUSED_')]
+        if other_names:
+            errors.append(f"Plastic Ox var 0x{number:04X} aliases retained state: {', '.join(other_names)}")
+    if var_defs.get('VAR_POX_PORTAL_TRIGGER') != 0x40DB:
+        errors.append('Portal trigger must keep its dedicated 0x40DB save slot')
+    for path in [*(ROOT / 'data').rglob('*.inc'), *(ROOT / 'src').rglob('*.c')]:
+        for line_number, line in enumerate(path.read_text(errors='ignore').splitlines(), 1):
+            if 'VAR_POX_PORTAL_TRIGGER' in line and re.search(r'\b(setvar|addvar|subvar|copyvar|VarSet|VarSetIf|VarSetFrom)\b', line):
+                errors.append(f'Portal trigger is written: {path.relative_to(ROOT)}:{line_number}')
+    for path in (ROOT / 'data/maps').glob('*/map.json'):
+        for event in json.loads(path.read_text()).get('coord_events', []):
+            if event.get('script', '').startswith('PoxRegion_') and (event.get('var') != 'VAR_POX_PORTAL_TRIGGER' or str(event.get('var_value')) != '0'):
+                errors.append(f"Regional portal needs the reserved trigger: {path.parent.name} {event['script']}")
     return allocated, errors
 
 

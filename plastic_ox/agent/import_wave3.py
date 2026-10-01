@@ -368,7 +368,7 @@ def import_map(name):
         lbl=f"{name.split('_hns')[0]}_EventScript_Portal{i}"
         d["coord_events"]=[c for c in d["coord_events"] if c.get("script")!=lbl]
         d["coord_events"].append({"type":"trigger","x":xA if mA==name else xB,"y":yA if mA==name else yB,
-                                  "elevation":3,"var":"VAR_POX_PORTAL_GATE","var_value":"0","script":lbl})
+                                  "elevation":3,"var":"VAR_POX_PORTAL_TRIGGER","var_value":"0","script":lbl})
 
     bg_new, sgn = [], []
     hi = flag_n[0]

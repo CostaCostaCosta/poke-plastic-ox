@@ -1897,3 +1897,61 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 .if !IS_FRLG
 	.include "data/maps/MtMoon_B2F_Frlg/scripts.inc"
 .endif
+
+	.include "data/maps/GoldenrodCity_BikeShop_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DepartmentStoreBasement_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DepartmentStoreElevator_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DepartmentStore_1F_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DepartmentStore_2F_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DepartmentStore_3F_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DepartmentStore_4F_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DepartmentStore_5F_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DepartmentStore_6F_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DepartmentStore_7FNight_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DepartmentStore_7F_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_FlowerShop_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_GameCorner_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_Gym_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_House1_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_House2_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_House3_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_PokemonCenter_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_RadioTower_1F_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_RadioTower_2F_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_RadioTower_3F_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_RadioTower_4F_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_RadioTower_5F_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_TrainStation_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_UndergroundEntrance_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_UndergroundStorage_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_UndergroundSwitches_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_UndergroundTunnel_hns/scripts.inc"
+
+	.include "data/scripts/plastic_ox_goldenrod.inc"

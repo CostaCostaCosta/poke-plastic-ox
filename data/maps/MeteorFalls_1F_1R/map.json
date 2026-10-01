@@ -214,7 +214,7 @@
       "x": 26,
       "y": 18,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
+      "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
       "script": "PoxRegion_meteor_blackthorn_a"
     }

@@ -200,7 +200,7 @@ Pox_WhitneyGuide::
 
 msgbox Pox_Text_WhitneyGuide, MSGBOX_DEFAULT
 
-warp MAP_PLASTIC_OX_WHITNEY_GYM, 5, 17
+warp MAP_GOLDENROD_CITY_GYM_HNS, 10, 21
 	waitstate
 
 releaseall

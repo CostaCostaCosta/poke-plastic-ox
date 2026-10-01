@@ -6491,7 +6491,7 @@ static void SwapFusionMonMoves(struct Pokemon *mon, const u16 moveTable[][2], u3
         {
             if (move == moveTable[j][oldMoveIndex])
             {
-                u32 pp = GetMovePP(moveTable[j][newMoveIndex]);
+                u32 pp = CalculatePPWithBonus(moveTable[j][newMoveIndex], 0xFF, 0);
                 SetMonData(mon, MON_DATA_MOVE1 + i, &moveTable[j][newMoveIndex]);
                 SetMonData(mon, MON_DATA_PP1 + i, &pp);
             }

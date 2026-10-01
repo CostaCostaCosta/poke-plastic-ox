@@ -192,7 +192,7 @@ PoxRegion_rustboro_route44_a::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_rustboro_route44_a_Open
 PoxRegion_rustboro_route44_a_Open::
-	warp MAP_ROUTE44_HNS, 1, 13
+	warp MAP_ROUTE44_HNS, 1, 15
 	waitstate
 	releaseall
 	end
@@ -219,7 +219,7 @@ PoxRegion_rustboro_route44_b_Open::
 	end
 PoxRegion_rustboro_route44_b_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE44_HNS, 1, 13
+	warp MAP_ROUTE44_HNS, 1, 15
 	waitstate
 	releaseall
 	end
@@ -229,86 +229,6 @@ PoxRegion_rustboro_route44_b_Sign::
 	end
 PoxRegion_rustboro_route44_b_Text::
 	.string "RustboroCity\nMarked passage ahead.$"
-
-PoxRegion_route44_moon_a::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route44_moon_a_Open
-PoxRegion_route44_moon_a_Open::
-	warp MAP_MT_MOON_CAVE_HNS, 3, 11
-	waitstate
-	releaseall
-	end
-PoxRegion_route44_moon_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE44_HNS, 67, 13
-	waitstate
-	releaseall
-	end
-
-PoxRegion_route44_moon_b::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route44_moon_b_Open
-PoxRegion_route44_moon_b_Open::
-	warp MAP_ROUTE44_HNS, 67, 13
-	waitstate
-	releaseall
-	end
-PoxRegion_route44_moon_b_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_MT_MOON_CAVE_HNS, 3, 11
-	waitstate
-	releaseall
-	end
-
-PoxRegion_route44_moon_b_Sign::
-	msgbox PoxRegion_route44_moon_b_Text, MSGBOX_SIGN
-	end
-PoxRegion_route44_moon_b_Text::
-	.string "Route44\nMarked passage ahead.$"
-
-PoxRegion_moon_route33_a::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_moon_route33_a_Open
-	goto_if_unset FLAG_POX_STORY_MTMOON, PoxRegion_moon_route33_a_Closed
-PoxRegion_moon_route33_a_Open::
-	warp MAP_ROUTE33_HNS, 26, 18
-	waitstate
-	releaseall
-	end
-PoxRegion_moon_route33_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_MT_MOON_CAVE_HNS, 45, 30
-	waitstate
-	releaseall
-	end
-
-PoxRegion_moon_route33_a_Sign::
-	msgbox PoxRegion_moon_route33_a_Text, MSGBOX_SIGN
-	end
-PoxRegion_moon_route33_a_Text::
-	.string "Route33\nMarked passage ahead.$"
-
-PoxRegion_moon_route33_b::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_moon_route33_b_Open
-	goto_if_unset FLAG_POX_STORY_MTMOON, PoxRegion_moon_route33_b_Closed
-PoxRegion_moon_route33_b_Open::
-	warp MAP_MT_MOON_CAVE_HNS, 45, 30
-	waitstate
-	releaseall
-	end
-PoxRegion_moon_route33_b_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE33_HNS, 26, 18
-	waitstate
-	releaseall
-	end
-
-PoxRegion_moon_route33_b_Sign::
-	msgbox PoxRegion_moon_route33_b_Text, MSGBOX_SIGN
-	end
-PoxRegion_moon_route33_b_Text::
-	.string "MtMoon_Cave\nMarked passage ahead.$"
 
 PoxRegion_route33_goldenrod_a::
 	lockall

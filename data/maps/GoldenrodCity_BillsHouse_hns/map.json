@@ -59,8 +59,8 @@
       "x": 4,
       "y": 8,
       "elevation": 0,
-      "dest_map": "MAP_DYNAMIC",
-      "dest_warp_id": "WARP_ID_DYNAMIC"
+      "dest_map": "MAP_GOLDENROD_CITY_HNS",
+      "dest_warp_id": "1"
     }
   ],
   "coord_events": [],
