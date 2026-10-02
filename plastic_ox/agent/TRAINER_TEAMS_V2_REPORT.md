@@ -1,5 +1,11 @@
 # Trainer Teams v2 and Wild Encounter Audit
 
+> **Superseded in part (follow-up run).** `plastic_ox/plasticox_encounters_v1.md` and
+> `plastic_ox/encounter_tables/test_pre_mt_moon_v4_4.py` have since been deleted,
+> and the Route 29 / 46 / 44 / 24 / 25 Headbutt tables are gone. See
+> `plastic_ox/agent/ENCOUNTER_FOLLOWUPS_V2_REPORT.md`. This file is kept as the
+> record of that run.
+
 **Scope.** Part 1 audits every Plastic Ox wild-encounter table against the
 authoritative specification and fixes the divergences. Part 2 rewrites every
 reachable `TRAINER_PLASTIC_OX_*` party to a full, progression-legal six.

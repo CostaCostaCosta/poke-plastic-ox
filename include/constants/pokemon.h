@@ -332,7 +332,7 @@ enum EvolutionMethods {
 };
 
 // Plastic Ox: competitive tiers used to gate evolutions by badge count
-// (see plastic_ox/plasticox_encounters_v1.md). Value order mirrors the
+// (see src/data/pokemon/evolution_tier_gates.h). Value order mirrors the
 // badge-progression order; a tier is unlocked while the player holds the
 // badge count from sEvolutionTierBadgeRequirement (i.e. during that tier's
 // gym segment).

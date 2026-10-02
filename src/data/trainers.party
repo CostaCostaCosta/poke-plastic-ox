@@ -19156,14 +19156,14 @@ Timid Nature
 - Hidden Power
 - Toxic
 
-Ledyba @ Choice Band
+Spinarak @ Leftovers
 Level: 4
 Ability: Swarm
-EVs: 4 HP / 252 Atk / 252 Spe
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
 Adamant Nature
-- Aerial Ace
+- Sludge Bomb
+- Poison Sting
 - Hidden Power
-- Giga Drain
 - Toxic
 
 === TRAINER_PLASTIC_OX_ROUTE46 ===
@@ -21367,14 +21367,14 @@ Careful Nature
 - Rock Tomb
 - Explosion
 
-Natu @ Leftovers
+Meditite @ Leftovers
 Level: 12
-Ability: Synchronize
-EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Ability: Pure Power
+EVs: 252 Atk / 4 SpD / 252 Spe
 Adamant Nature
-- Psychic
-- Aerial Ace
-- Hidden Power
+- Substitute
+- Brick Break
+- Shadow Ball
 - Toxic
 
 Exeggcute @ Sitrus Berry
@@ -21439,14 +21439,14 @@ Careful Nature
 - Rock Tomb
 - Explosion
 
-Natu @ Leftovers
+Meditite @ Leftovers
 Level: 15
-Ability: Synchronize
-EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Ability: Pure Power
+EVs: 252 Atk / 4 SpD / 252 Spe
 Adamant Nature
-- Psychic
-- Aerial Ace
-- Hidden Power
+- Substitute
+- Brick Break
+- Shadow Ball
 - Toxic
 
 Exeggcute @ Sitrus Berry

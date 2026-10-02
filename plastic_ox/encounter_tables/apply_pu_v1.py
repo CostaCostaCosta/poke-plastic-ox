@@ -1,5 +1,15 @@
 #!/usr/bin/env python3
-"""Install exact PU encounter tables and area-specific Headbutt populations."""
+"""Install exact PU encounter tables and area-specific Headbutt populations.
+
+Run order: this script first (it rewrites src/data/plastic_ox_pu_encounters.h
+from scratch), then plastic_ox/encounter_tables/apply_nu_v1.py, which appends
+the Route 37 Headbutt pair to that same header.
+
+Route 29, Route 46, Route 44, Route 24 and Route 25 no longer get Headbutt
+tables: they have no PlasticOx_EventScript_HeadbuttTree object anywhere on their
+map, so their tables were unreachable in play. Every species those tables held is
+still obtainable from an area the player can actually reach.
+"""
 from __future__ import annotations
 
 import json
@@ -9,14 +19,12 @@ ROOT = Path(__file__).resolve().parents[2]
 JSON = ROOT / "src/data/wild_encounters.json"
 
 # (percentage, day species, optional night species). Morning uses the day table.
+#
+# Headbutt tables exist only for maps that carry a Headbutt tree object:
+# Ilex Forest, Route 33, Route 35, Route 36 and National Park. The former
+# Route 29 / Route 46 / Route 44 / Route 24 / Route 25 tables were dropped --
+# those maps have no tree, so the tables were unreachable.
 TABLES = {
-    # LC trees: v4.4 populations, with Pineco kept exclusive to Ilex by
-    # the later PU habitat rule. Route 44 has an early, shoreline tree pool.
-    # v5.5 supersedes the v4.4/PU headbutt populations for the pre-Mt. Moon
-    # trees: Route 29 and Route 46 drop Paras and re-weight Natu/Exeggcute.
-    "Route29Headbutt": (3, 5, [(25, "SLAKOTH"), (15, "SPEAROW"), (15, "LEDYBA", "SPINARAK"), (15, "NATU"), (15, "EXEGGCUTE"), (15, "HOOTHOOT")]),
-    "Route46Headbutt": (4, 6, [(35, "NATU"), (20, "EXEGGCUTE"), (15, "SPEAROW"), (15, "HOOTHOOT"), (15, "SLAKOTH")]),
-    "Route44Headbutt": (10, 13, [(25, "SPEAROW", "HOOTHOOT"), (20, "MEOWTH"), (15, "NATU"), (15, "EXEGGCUTE"), (15, "SLAKOTH"), (10, "LEDYBA", "SPINARAK")]),
     "MtMoon1F": (12, 14, [(25, "NOSEPASS"), (15, "ZUBAT"), (15, "GEODUDE"), (15, "PARAS"), (10, "MEDITITE"), (10, "CLEFAIRY"), (5, "MAWILE"), (5, "SHUCKLE")]),
     "MtMoonDeep": (14, 16, [(20, "CLEFAIRY"), (15, "NOSEPASS"), (15, "ZUBAT"), (15, "GEODUDE"), (10, "PARAS"), (10, "MAWILE"), (10, "SHUCKLE"), (5, "MEDITITE")]),
     "Route33Grass": (14, 16, [(25, "ZIGZAGOON"), (20, "SPEAROW", "RATTATA"), (15, "HOPPIP", "SPINARAK"), (10, "GEODUDE"), (10, "EKANS"), (10, "SPINDA"), (5, "SEVIPER"), (5, "ZUBAT")]),
@@ -29,9 +37,6 @@ TABLES = {
     "ParkHeadbutt": (17, 19, [(30, "LEDYBA", "SPINARAK"), (15, "EXEGGCUTE"), (15, "AIPOM"), (15, "TAILLOW"), (15, "WURMPLE"), (10, "SUNKERN")]),
     "Route36Grass": (18, 20, [(25, "BELLSPROUT"), (20, "NATU"), (10, "TANGELA"), (10, "VULPIX", "GASTLY"), (10, "PIDGEY", "HOOTHOOT"), (10, "HOPPIP"), (10, "DROWZEE"), (5, "BALTOY")]),
     "Route36Headbutt": (18, 20, [(30, "NATU"), (20, "SLAKOTH"), (15, "EXEGGCUTE"), (15, "AIPOM"), (10, "SHUPPET"), (10, "DUSKULL")]),
-    # v5.5 Headbutt populations for the two remaining pre-Mt. Moon tree areas.
-    "Route24Headbutt": (8, 11, [(25, "PICHU"), (20, "SUNKERN"), (15, "LEDYBA"), (15, "NATU"), (10, "HOOTHOOT"), (10, "EXEGGCUTE"), (5, "SLAKOTH")]),
-    "Route25Headbutt": (9, 12, [(25, "MEOWTH"), (15, "PICHU"), (15, "LEDYBA"), (15, "EXEGGCUTE"), (15, "SPEAROW"), (15, "SLAKOTH")]),
 }
 # LC tree population retained independently of PU; Pineco has no other habitat.
 ILEX = (6, 8, [(25, "LEDYBA", "SPINARAK"), (15, "PINECO"), (15, "EXEGGCUTE"), (15, "SUNKERN"), (10, "CATERPIE", "HOOTHOOT"), (10, "WEEDLE"), (10, "PARAS")])

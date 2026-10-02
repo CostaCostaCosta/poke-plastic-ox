@@ -1,5 +1,7 @@
-// Plastic Ox: competitive tier per species, used to gate evolutions (see
-// plastic_ox/plasticox_encounters_v1.md and plastic_ox/agent/plasticox_evolution_gating_plan_v1.md).
+// Plastic Ox: competitive tier per species, used to gate evolutions. This is
+// the engine's source of truth for the release schedule, superseding the retired
+// plastic_ox/plasticox_encounters_v1.md; see also
+// plastic_ox/agent/plasticox_evolution_gating_plan_v1.md.
 // Species not listed default to EVO_TIER_NONE (never gated).
 // Indexed by species id after SanitizeSpeciesId(); regional/alt forms have their
 // own species ids and are not covered by base-form entries.

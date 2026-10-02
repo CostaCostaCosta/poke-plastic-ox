@@ -56,18 +56,19 @@ def load_wild() -> dict[str, set[str]]:
 
 
 # Headbutt tables live in a C header rather than the JSON; symbol -> species.
+# Only these maps carry a PlasticOx_EventScript_HeadbuttTree object, so only
+# these tables are reachable in play. Route 29, Route 46, Route 44, Route 24
+# and Route 25 had tables with no tree and were dropped from the header.
 HEADBUTT_SYMBOLS = {
-    "MAP_ROUTE29_HNS": "sPoxRoute29Headbutt",
-    "MAP_ROUTE46_HNS": "sPoxRoute46Headbutt",
-    "MAP_ROUTE44_HNS": "sPoxRoute44Headbutt",
     "MAP_ILEX_FOREST_HNS": "sPoxIlexHeadbutt",
-    "MAP_ROUTE24_HNS": "sPoxRoute24Headbutt",
-    "MAP_ROUTE25_HNS": "sPoxRoute25Headbutt",
     "MAP_ROUTE33_HNS": "sPoxRoute33Headbutt",
     "MAP_ROUTE35_HNS": "sPoxRoute35Headbutt",
     "MAP_NATIONAL_PARK_NORMAL_HNS": "sPoxParkHeadbutt",
     "MAP_ROUTE36_HNS": "sPoxRoute36Headbutt",
+    "MAP_ROUTE37_HNS": "sPoxRoute37Headbutt",
 }
+# Kept separately so the NU-block analysis can say "reachable" vs "defined".
+HEADBUTT_TREE_MAPS = frozenset(HEADBUTT_SYMBOLS)
 
 
 def load_headbutt() -> dict[str, set[str]]:
@@ -94,16 +95,16 @@ CHECKPOINTS = [
     ("start",       "LC",   13, ["gPoxPalletTown", "gPoxRoute101"], []),
     ("oldale",      "LC",   13, ["gPoxOldaleTown"], []),
     ("route103",    "LC",   13, ["gPoxRoute103#"], []),
-    ("route29",     "LC",   13, ["gPoxRoute29Hns#"], ["MAP_ROUTE29_HNS"]),
+    ("route29",     "LC",   13, ["gPoxRoute29Hns#"], []),
     ("cherrygrove", "LC",   13, ["gPoxCherrygroveCityHns"], []),
     ("route2south", "LC",   13, ["gPoxRoute2South#"], []),
     ("ilex",        "LC",   13, ["gPoxIlexForestHns#"], ["MAP_ILEX_FOREST_HNS"]),
     ("route2north", "LC",   13, ["gPoxRoute2North#", "gPoxDarkCaveSouthSideHns#"], []),
-    ("route46",     "LC",   13, ["gPoxRoute46Hns#"], ["MAP_ROUTE46_HNS"]),
-    ("route24",     "LC",   13, ["gPoxRoute24Hns#"], ["MAP_ROUTE24_HNS"]),
-    ("route25",     "LC",   13, ["gPoxRoute25Hns#"], ["MAP_ROUTE25_HNS"]),
+    ("route46",     "LC",   13, ["gPoxRoute46Hns#"], []),
+    ("route24",     "LC",   13, ["gPoxRoute24Hns#"], []),
+    ("route25",     "LC",   13, ["gPoxRoute25Hns#"], []),
     ("gym1",        "LC",   13, [], []),                                    # Roxanne, Rustboro
-    ("route44",     "PU",   20, ["gPoxRoute44Hns"], ["MAP_ROUTE44_HNS"]),
+    ("route44",     "PU",   20, ["gPoxRoute44Hns"], []),
     ("mtmoon",      "PU",   20, ["gPoxPUMtMoonCaveHns#", "gPoxPUMtMoon1F#"], []),
     ("mtmoondeep",  "PU",   20, ["gPoxPUMtMoonB1F#", "gPoxPUMtMoonB2F#"], []),
     ("route33",     "PU",   20, ["gPoxPURoute33Hns#"], ["MAP_ROUTE33_HNS"]),
@@ -112,7 +113,9 @@ CHECKPOINTS = [
     ("park",        "NU",   30, ["gPoxPUNationalParkNormalHns#"], ["MAP_NATIONAL_PARK_NORMAL_HNS"]),
     ("route36",     "NU",   30, ["gPoxPURoute36Hns#"], ["MAP_ROUTE36_HNS"]),
     ("goldenrod",   "NU",   30, [], []),          # Bill's Eevee, Beldum trade, Game Corner, mail Delibird
-    ("ecruteak",    "NU",   30, [], []),          # Route 36 odd-tree Sudowoodo
+    ("ecruteak",    "NU",   30, [], []),          # Kimono Girls; Route 36 odd-tree Sudowoodo
+    ("route37",     "NU",   30, ["gPoxNURoute37Hns#"], ["MAP_ROUTE37_HNS"]),
+    ("burnedtower", "NU",   30, ["gPoxNUEcruteakCityHns", "gPoxNUBurnedTower1F"], []),
     ("gym3",        "NU",   30, [], []),          # Morty, Dance Theater
     ("fortree",     "RU",   36, [], []),          # Route 119, Weather Institute, Fortree
     ("cinnabar",    "UU",   42, [], []),          # Lavender tower, Cinnabar
@@ -135,8 +138,9 @@ SPECIALS = {
     "ecruteak": ["SPECIES_SUDOWOODO"],                                # Route 36 odd tree
 }
 
-# Evolution items and the checkpoint that distributes them, from
-# plastic_ox/plasticox_encounters_v1.md ("Evolution Items Released").
+# Evolution items and the checkpoint that distributes them. The source document
+# that used to own this schedule, plastic_ox/plasticox_encounters_v1.md, has been
+# retired; the table is embedded here so the model stays self-contained.
 ITEM_CHECKPOINT = {
     "ITEM_MOON_STONE": "gym2", "ITEM_SUN_STONE": "gym2",
     "ITEM_FIRE_STONE": "route35", "ITEM_DEEP_SEA_TOOTH": "route35",
@@ -315,16 +319,17 @@ def legal_at(checkpoint: str) -> dict[str, str]:
 # 25, Doduo on Route 25, and so on). plastic_ox/encounter_tables/
 # plastic_ox_pre_mt_moon_encounters_v5_5_agent_ready.md is the authoritative
 # end state for those tables, so the same species are legal for trainers in the
-# Gym 1 block even though the release schedule in
-# plastic_ox/plasticox_encounters_v1.md gates them at Gym 2.
+# Gym 1 block even though the shipped release schedule in
+# src/data/pokemon/evolution_tier_gates.h gates them at Gym 2.
 LC_BLOCK = ("start", "oldale", "route103", "route29", "cherrygrove", "route2south",
             "ilex", "route2north", "route46", "route24", "route25", "gym1")
 LC_BLOCK_WILD = ["gPoxPalletTown", "gPoxRoute101", "gPoxOldaleTown", "gPoxRoute103#",
                  "gPoxRoute29Hns#", "gPoxCherrygroveCityHns", "gPoxRoute2South#",
                  "gPoxIlexForestHns#", "gPoxRoute2North#", "gPoxDarkCaveSouthSideHns#",
                  "gPoxRoute46Hns#", "gPoxRoute24Hns#", "gPoxRoute25Hns#"]
-LC_BLOCK_HEADBUTT = ["MAP_ROUTE29_HNS", "MAP_ROUTE46_HNS", "MAP_ILEX_FOREST_HNS",
-                     "MAP_ROUTE24_HNS", "MAP_ROUTE25_HNS"]
+# Ilex Forest is the only LC area left with a Headbutt tree; Route 29, Route 46,
+# Route 24 and Route 25 lost their unreachable tables.
+LC_BLOCK_HEADBUTT = ["MAP_ILEX_FOREST_HNS"]
 
 
 def lc_block_exceptions() -> set[str]:

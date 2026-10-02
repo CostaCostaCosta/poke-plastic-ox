@@ -24,7 +24,9 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "agent"))
 import audit_encounters_v55 as audit  # noqa: E402
+import pox_progression as P  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[2]
 LAND_DEFAULT = [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1]
@@ -41,6 +43,59 @@ SUPER_ROD_TIERS = {
 SUPER_ROD_ALLOWED = set().union(*SUPER_ROD_TIERS.values())
 OU_ONLY_FAMILIES = {"Magikarp", "Gyarados", "Feebas", "Milotic", "Diglett", "Dugtrio",
                     "Shroomish", "Breloom"}
+
+# The region has EIGHT wet areas, not seven: Ilex Forest carries a full three-rod
+# table alongside Pallet, Oldale, Route 103, Cherrygrove, Route 24, Route 25 and
+# Route 44. Ilex is an LC pond that deliberately reaches RU with Azumarill and
+# Politoed; that exception is user-approved and is asserted here rather than
+# quietly accepted by the generic Super Rod check below.
+WET_AREAS = 8
+GOOD_ROD_SLOTS = 24           # 8 areas x 3 slots
+GOOD_ROD_DISTINCT_ROOTS = 20  # Poliwag is the only repeated species (3 times)
+GOOD_ROD_MIN_LEVEL = 10
+ILEX_FISHING = {
+    "old": {"SPECIES_MAGIKARP": 70, "SPECIES_POLIWAG": 30},
+    "good": {"SPECIES_POLIWAG": 60, "SPECIES_BARBOACH": 20, "SPECIES_CORPHISH": 20},
+    "super": {"SPECIES_POLIWHIRL": 40, "SPECIES_WHISCASH": 40, "SPECIES_CRAWDAUNT": 15,
+              "SPECIES_AZUMARILL": 4, "SPECIES_POLITOED": 1},
+}
+ILEX_ROD_SLOTS = {"old": (0, 1), "good": (2, 4), "super": (5, 9)}
+
+# Headbutt tables whose area has no Headbutt tree object anywhere on its map.
+REMOVED_HEADBUTT = ("sPoxRoute29Headbutt", "sPoxRoute46Headbutt", "sPoxRoute44Headbutt",
+                    "sPoxRoute24Headbutt", "sPoxRoute25Headbutt")
+
+MAPS_DIR = ROOT / "data/maps"
+
+
+def headbutt_tree_maps() -> set[str]:
+    """MAP_ constants for every map whose events reference the Headbutt script.
+
+    Headbutt trees are bg_sign_events (the player faces the trunk), so this scans
+    every map's generated events.inc and resolves its layout back to the map's
+    MAP_ constant through data/maps/*/map.json, the same binding the engine's
+    GetHeadbuttTable() switch works from.
+    """
+    found = set()
+    for events in MAPS_DIR.glob("*/events.inc"):
+        if "PlasticOx_EventScript_HeadbuttTree" not in events.read_text():
+            continue
+        map_json = events.parent / "map.json"
+        if not map_json.exists():
+            continue
+        found.add(json.loads(map_json.read_text())["id"])
+    return found
+
+
+def specced_headbutt_maps() -> set[str]:
+    """The maps this project still builds a Headbutt table for."""
+    return set(P.HEADBUTT_SYMBOLS)
+
+
+# Route 37's Headbutt table is specced by nu_encounters_v1.md but the map has no
+# Headbutt tree object, and this task was told not to add one. It is therefore
+# built and wired but unreachable until a tree is placed -- tracked, not hidden.
+KNOWN_TREELESS_HEADBUTT = {"MAP_ROUTE37_HNS"}
 
 
 def display(species: str) -> str:
@@ -150,6 +205,87 @@ def main() -> int:
     checked += 1
     if any("land_mons" in e for e in by_map.get("MAP_ROUTE44_HNS", [])):
         problems.append("MAP_ROUTE44_HNS has a grass table; v5.5 gates it behind Surf")
+
+    # --- the region has eight wet areas, not seven ----------------------------
+    # Scoped to the v5.5 block: the PU (Route 35) and NU (Ecruteak) blocks carry
+    # their own single-rod tables and are counted in test_nu_encounters_v1.py.
+    v55_fishing = [e for e in entries if e.get("fishing_mons")
+                   and e["map"] in audit.SPEC_FISHING]
+    # Ilex has one table per time of day, so areas are counted by map.
+    one_per_area = {}
+    for e in v55_fishing:
+        one_per_area.setdefault(e["map"], e)
+    checked += 1
+    if len(one_per_area) != WET_AREAS:
+        problems.append(f"{len(one_per_area)} Plastic Ox v5.5 fishing areas, want {WET_AREAS}")
+
+    # Ilex Forest: one identical ten-slot table per time of day, exactly as
+    # specified -- Old Rod Magikarp/Poliwag, Good Rod Poliwag/Barboach/Corphish,
+    # Super Rod Poliwhirl/Whiscash/Crawdaunt/Azumarill/Politoed.
+    ilex = [e for e in entries if e["map"] == "MAP_ILEX_FOREST_HNS" and e.get("fishing_mons")]
+    checked += 1
+    if len(ilex) != 3:
+        problems.append(f"Ilex Forest has {len(ilex)} fishing tables, want one per time of day")
+    for entry in ilex:
+        table = entry["fishing_mons"]
+        checked += 1
+        if len(table["mons"]) != 10:
+            problems.append(f"{entry['base_label']} has {len(table['mons'])} slots, want 10")
+        for rod, (lo, hi) in ILEX_ROD_SLOTS.items():
+            got = {}
+            for i in range(lo, hi + 1):
+                s = table["mons"][i]["species"]
+                got[s] = got.get(s, 0) + FISHING_DEFAULT[i]
+            checked += 1
+            if got != ILEX_FISHING[rod]:
+                problems.append(f"{entry['base_label']} {rod}: got {got} want {ILEX_FISHING[rod]}")
+
+    # Good Rod slot count, distinct-species count and the uniform level 10 floor.
+    good_slots, good_species = 0, set()
+    for entry in one_per_area.values():
+        table = entry["fishing_mons"]
+        if table.get("weights"):
+            continue                          # rod-specific table, already specced
+        lo, hi = ILEX_ROD_SLOTS["good"]
+        for i in range(lo, hi + 1):
+            checked += 1
+            if table["mons"][i]["min_level"] != GOOD_ROD_MIN_LEVEL:
+                problems.append(f"{entry['base_label']} Good Rod slot {i} starts at "
+                                f"Lv{table['mons'][i]['min_level']}, want Lv{GOOD_ROD_MIN_LEVEL}")
+            good_slots += 1
+            good_species.add(table["mons"][i]["species"])
+    checked += 1
+    if good_slots != GOOD_ROD_SLOTS:
+        problems.append(f"{good_slots} Good Rod slots, want {GOOD_ROD_SLOTS}")
+    checked += 1
+    if len(good_species) != GOOD_ROD_DISTINCT_ROOTS:
+        problems.append(f"{len(good_species)} distinct Good Rod species, "
+                        f"want {GOOD_ROD_DISTINCT_ROOTS}")
+
+    # --- the five unreachable Headbutt tables are gone -----------------------
+    symbols = set(re.findall(
+        r"static const struct WildPokemonInfo (sPox\w+) = \{", header))
+    for symbol in REMOVED_HEADBUTT:
+        checked += 1
+        if symbol in symbols:
+            problems.append(f"{symbol} still defined but its area has no Headbutt tree")
+
+    # Every Headbutt table that survives must belong to a map that actually has
+    # a Headbutt tree object; otherwise it is dead data again.
+    tree_maps = headbutt_tree_maps()
+    checked += 1
+    if not tree_maps:
+        problems.append("no map carries a PlasticOx_EventScript_HeadbuttTree object")
+    for map_name in sorted(specced_headbutt_maps() - KNOWN_TREELESS_HEADBUTT):
+        checked += 1
+        if map_name not in tree_maps:
+            problems.append(f"{map_name} has a Headbutt table but no Headbutt tree object")
+    for map_name in sorted(KNOWN_TREELESS_HEADBUTT):
+        checked += 1
+        if map_name in tree_maps:
+            continue
+        print(f"note: {map_name} has a Headbutt table but no Headbutt tree object; "
+              "it stays unreachable until one is placed")
 
     # Every Plastic Ox table's rates total 100
     for entry in entries:

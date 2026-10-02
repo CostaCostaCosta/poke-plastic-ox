@@ -590,21 +590,15 @@ static bool8 GenerateWeightedWildMon(const struct WildPokemonInfo *info, u8 flag
     return TRUE;
 }
 
+// Only layouts that actually carry a PlasticOx_EventScript_HeadbuttTree object
+// have a live table here. Route 29, Route 46, Route 44, Route 24 and Route 25
+// had tables but no tree, so they were unreachable and have been removed; their
+// species are still obtainable elsewhere (see the follow-up report).
 static const struct WildPokemonInfo *GetHeadbuttTable(void)
 {
     bool32 night = GetTimeOfDay() == TIME_NIGHT;
     switch (gMapHeader.mapLayoutId)
     {
-    case LAYOUT_ROUTE29_HNS:
-        return night ? &sPoxRoute29HeadbuttNight : &sPoxRoute29HeadbuttDay;
-    case LAYOUT_ROUTE46_HNS:
-        return night ? &sPoxRoute46HeadbuttNight : &sPoxRoute46HeadbuttDay;
-    case LAYOUT_ROUTE44_HNS:
-        return night ? &sPoxRoute44HeadbuttNight : &sPoxRoute44HeadbuttDay;
-    case LAYOUT_ROUTE24_HNS:
-        return night ? &sPoxRoute24HeadbuttNight : &sPoxRoute24HeadbuttDay;
-    case LAYOUT_ROUTE25_HNS:
-        return night ? &sPoxRoute25HeadbuttNight : &sPoxRoute25HeadbuttDay;
     case LAYOUT_ILEX_FOREST_HNS:
         return night ? &sPoxIlexHeadbuttNight : &sPoxIlexHeadbuttDay;
     case LAYOUT_ROUTE33_HNS:
@@ -615,6 +609,8 @@ static const struct WildPokemonInfo *GetHeadbuttTable(void)
         return night ? &sPoxParkHeadbuttNight : &sPoxParkHeadbuttDay;
     case LAYOUT_ROUTE36_HNS:
         return night ? &sPoxRoute36HeadbuttNight : &sPoxRoute36HeadbuttDay;
+    case LAYOUT_ROUTE37_HNS:
+        return night ? &sPoxRoute37HeadbuttNight : &sPoxRoute37HeadbuttDay;
     default:
         return NULL;
     }

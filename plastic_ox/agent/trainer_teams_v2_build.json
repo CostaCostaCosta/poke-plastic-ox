@@ -362,7 +362,7 @@
      "species": "SPECIES_TYRANITAR",
      "level": 64,
      "moves": [
-      "MOVE_FOCUS_PUNCH",
+      "MOVE_HYPER_BEAM",
       "MOVE_ROCK_SLIDE",
       "MOVE_EARTHQUAKE",
       "MOVE_HIDDEN_POWER"
@@ -378,7 +378,7 @@
      "set_name": "Bulky Dragon Dance",
      "set_source": "gen3_movesets.json",
      "notes": [
-      "Dragon Dance -> Focus Punch (egg or special-case only)",
+      "Dragon Dance -> Hyper Beam (egg or special-case only)",
       "Hidden Power type Bug dropped: trainerproc has no HP-type field in the .party format"
      ],
      "ivs": null,
@@ -778,7 +778,7 @@
       "MOVE_SURF",
       "MOVE_TOXIC",
       "MOVE_PROTECT",
-      "MOVE_FOCUS_PUNCH"
+      "MOVE_HYPER_BEAM"
      ],
      "ability": "Torrent",
      "item": "Leftovers",
@@ -792,7 +792,7 @@
      "set_name": "Surf Defensive",
      "set_source": "gen3_movesets.json",
      "notes": [
-      "Refresh -> Focus Punch (egg or special-case only)"
+      "Refresh -> Hyper Beam (egg or special-case only)"
      ],
      "ivs": null,
      "hp_type": null,
@@ -804,7 +804,7 @@
      "species": "SPECIES_TYRANITAR",
      "level": 59,
      "moves": [
-      "MOVE_FOCUS_PUNCH",
+      "MOVE_HYPER_BEAM",
       "MOVE_ROCK_SLIDE",
       "MOVE_EARTHQUAKE",
       "MOVE_HIDDEN_POWER"
@@ -820,7 +820,7 @@
      "set_name": "Fast Dragon Dance",
      "set_source": "gen3_movesets.json",
      "notes": [
-      "Dragon Dance -> Focus Punch (egg or special-case only)",
+      "Dragon Dance -> Hyper Beam (egg or special-case only)",
       "Hidden Power type Bug dropped: trainerproc has no HP-type field in the .party format"
      ],
      "ivs": null,
@@ -894,7 +894,7 @@
      "species": "SPECIES_TYRANITAR",
      "level": 55,
      "moves": [
-      "MOVE_FOCUS_PUNCH",
+      "MOVE_HYPER_BEAM",
       "MOVE_ROCK_SLIDE",
       "MOVE_EARTHQUAKE",
       "MOVE_HIDDEN_POWER"
@@ -910,7 +910,7 @@
      "set_name": "Fast Dragon Dance",
      "set_source": "gen3_movesets.json",
      "notes": [
-      "Dragon Dance -> Focus Punch (egg or special-case only)",
+      "Dragon Dance -> Hyper Beam (egg or special-case only)",
       "Hidden Power type Bug dropped: trainerproc has no HP-type field in the .party format"
      ],
      "ivs": null,
@@ -3397,9 +3397,9 @@
      "notes": [],
      "ivs": null,
      "hp_type": null,
-     "why_available": "wild / special acquisition",
+     "why_available": "signature exception",
      "tier": "LC",
-     "flagged": false
+     "flagged": true
     },
     {
      "species": "SPECIES_EXEGGCUTE",
@@ -3576,9 +3576,9 @@
      "notes": [],
      "ivs": null,
      "hp_type": null,
-     "why_available": "wild / special acquisition",
+     "why_available": "signature exception",
      "tier": "LC",
-     "flagged": false
+     "flagged": true
     },
     {
      "species": "SPECIES_EXEGGCUTE",
@@ -4681,7 +4681,7 @@
       "MOVE_ICE_BEAM",
       "MOVE_THUNDERBOLT",
       "MOVE_FIRE_BLAST",
-      "MOVE_FOCUS_PUNCH"
+      "MOVE_HYPER_BEAM"
      ],
      "ability": "Cute Charm",
      "item": "Leftovers",
@@ -4694,7 +4694,7 @@
      "set_name": "Special Attacker",
      "set_source": "gen3_movesets.json",
      "notes": [
-      "Wish -> Focus Punch (egg or special-case only)"
+      "Wish -> Hyper Beam (egg or special-case only)"
      ],
      "ivs": null,
      "hp_type": null,
@@ -5076,7 +5076,7 @@
      "level": 19,
      "moves": [
       "MOVE_SUBSTITUTE",
-      "MOVE_IRON_TAIL",
+      "MOVE_DOUBLE_EDGE",
       "MOVE_HIDDEN_POWER",
       "MOVE_SWORDS_DANCE"
      ],
@@ -5091,7 +5091,7 @@
      "set_name": "Swords Dance + Flail",
      "set_source": "gen3_movesets.json",
      "notes": [
-      "Flail -> Iron Tail (egg or special-case only)",
+      "Flail -> Double Edge (egg or special-case only)",
       "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
      ],
      "ivs": null,
@@ -7740,9 +7740,9 @@
      "notes": [],
      "ivs": null,
      "hp_type": null,
-     "why_available": "wild / special acquisition",
+     "why_available": "signature exception",
      "tier": "LC",
-     "flagged": false
+     "flagged": true
     }
    ]
   },
@@ -9753,7 +9753,7 @@
      "species": "SPECIES_HARIYAMA",
      "level": 51,
      "moves": [
-      "MOVE_FOCUS_PUNCH",
+      "MOVE_HYPER_BEAM",
       "MOVE_BRICK_BREAK",
       "MOVE_KNOCK_OFF",
       "MOVE_HIDDEN_POWER"
@@ -9769,7 +9769,7 @@
      "set_name": "Offensive",
      "set_source": "gen3_movesets.json",
      "notes": [
-      "Cross Chop -> Focus Punch (egg or special-case only)",
+      "Cross Chop -> Hyper Beam (egg or special-case only)",
       "Hidden Power type Bug dropped: trainerproc has no HP-type field in the .party format"
      ],
      "ivs": null,
@@ -10414,7 +10414,7 @@
      "level": 45,
      "moves": [
       "MOVE_BULK_UP",
-      "MOVE_FOCUS_PUNCH",
+      "MOVE_HYPER_BEAM",
       "MOVE_ROCK_SLIDE",
       "MOVE_HIDDEN_POWER"
      ],
@@ -10429,7 +10429,7 @@
      "set_name": "Bulk Up",
      "set_source": "gen3_movesets.json",
      "notes": [
-      "Cross Chop -> Focus Punch (level-up move needs Lv46)",
+      "Cross Chop -> Hyper Beam (level-up move needs Lv46)",
       "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
      ],
      "ivs": null,
@@ -10768,7 +10768,7 @@
      "moves": [
       "MOVE_SUNNY_DAY",
       "MOVE_EXPLOSION",
-      "MOVE_IRON_TAIL",
+      "MOVE_DOUBLE_EDGE",
       "MOVE_EARTHQUAKE"
      ],
      "ability": "Sturdy",
@@ -10782,7 +10782,7 @@
      "set_name": "Sunny Day Support",
      "set_source": "gen3_movesets.json",
      "notes": [
-      "Block -> Iron Tail (egg or special-case only)"
+      "Block -> Double Edge (egg or special-case only)"
      ],
      "ivs": null,
      "hp_type": null,
@@ -11691,7 +11691,7 @@
      "level": 34,
      "moves": [
       "MOVE_SUBSTITUTE",
-      "MOVE_IRON_TAIL",
+      "MOVE_DOUBLE_EDGE",
       "MOVE_HIDDEN_POWER",
       "MOVE_SWORDS_DANCE"
      ],
@@ -11706,7 +11706,7 @@
      "set_name": "Swords Dance + Flail",
      "set_source": "gen3_movesets.json",
      "notes": [
-      "Flail -> Iron Tail (egg or special-case only)",
+      "Flail -> Double Edge (egg or special-case only)",
       "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
      ],
      "ivs": null,

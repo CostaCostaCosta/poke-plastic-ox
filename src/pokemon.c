@@ -3368,7 +3368,7 @@ const struct Evolution *GetSpeciesEvolutions(enum Species species)
     return evolutions;
 }
 
-// Plastic Ox evolution tier gating (see plastic_ox/plasticox_encounters_v1.md).
+// Plastic Ox evolution tier gating (see src/data/pokemon/evolution_tier_gates.h).
 // Badge counts required to unlock each tier; a tier is playable during its
 // gym segment, matching the level-cap ladder in src/caps.c.
 static const u8 sEvolutionTierBadgeRequirement[NUM_EVOLUTION_TIERS] =

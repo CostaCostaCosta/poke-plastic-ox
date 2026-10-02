@@ -50,9 +50,13 @@ ROSTERS: dict[str, tuple[str, list[tuple[str, int]]]] = {
     "TRAINER_PLASTIC_OX_ROUTE103": ("route103", [
         ("SPECIES_WINGULL", 5), ("SPECIES_WHISMUR", 5), ("SPECIES_ELECTRIKE", 5),
         ("SPECIES_CACNEA", 5), ("SPECIES_GULPIN", 4), ("SPECIES_CORPHISH", 4)]),
+    # Route 29's sixth slot used to be Ledyba, whose only LC sources were the
+    # Route 29 / Route 24 / Route 25 Headbutt tables -- all of which have no
+    # Headbutt tree on their map and were removed. Spinarak keeps the Bug-type
+    # slot and is in Route 29's own night grass.
     "TRAINER_PLASTIC_OX_ROUTE29": ("route29", [
         ("SPECIES_SENTRET", 5), ("SPECIES_PIDGEY", 4), ("SPECIES_NIDORAN_F", 4),
-        ("SPECIES_NIDORAN_M", 4), ("SPECIES_MAREEP", 5), ("SPECIES_LEDYBA", 4)]),
+        ("SPECIES_NIDORAN_M", 4), ("SPECIES_MAREEP", 5), ("SPECIES_SPINARAK", 4)]),
     "TRAINER_PLASTIC_OX_ROUTE1": ("route2south", [
         ("SPECIES_MANKEY", 6), ("SPECIES_EKANS", 6), ("SPECIES_GROWLITHE", 6),
         ("SPECIES_VULPIX", 5), ("SPECIES_MEOWTH", 5), ("SPECIES_SLOWPOKE", 6)]),
@@ -161,12 +165,15 @@ ROSTERS: dict[str, tuple[str, list[tuple[str, int]]]] = {
     "TRAINER_PLASTIC_OX_MOON_HIKER_MARCOS": ("mtmoon", [
         ("SPECIES_MACHOP", 13), ("SPECIES_GEODUDE", 13), ("SPECIES_ONIX", 13),
         ("SPECIES_ARON", 13), ("SPECIES_SANDSHREW", 12), ("SPECIES_NUMEL", 12)]),
+    # The two Super Nerds used Natu, whose only PU-block source was Route 44's
+    # Headbutt table -- also removed as unreachable. Meditite comes straight
+    # from Mt. Moon grass and keeps the Psychic-type slot.
     "TRAINER_PLASTIC_OX_MOON_SUPER_NERD_JOVAN": ("mtmoon", [
         ("SPECIES_MAGNEMITE", 12), ("SPECIES_SPOINK", 12), ("SPECIES_BALTOY", 12),
-        ("SPECIES_NATU", 12), ("SPECIES_EXEGGCUTE", 12), ("SPECIES_ELEKID", 11)]),
+        ("SPECIES_MEDITITE", 12), ("SPECIES_EXEGGCUTE", 12), ("SPECIES_ELEKID", 11)]),
     "TRAINER_PLASTIC_OX_MOON_SUPER_NERD_MIGUEL": ("mtmoondeep", [
         ("SPECIES_MAGNEMITE", 15), ("SPECIES_SPOINK", 15), ("SPECIES_BALTOY", 15),
-        ("SPECIES_NATU", 15), ("SPECIES_EXEGGCUTE", 15), ("SPECIES_ELEKID", 15)]),
+        ("SPECIES_MEDITITE", 15), ("SPECIES_EXEGGCUTE", 15), ("SPECIES_ELEKID", 15)]),
 
     # ---- Route 33 and Gym 2, Goldenrod, PU cap 20 ------------------------
     "TRAINER_PLASTIC_OX_PU_ROUTE33": ("route33", [

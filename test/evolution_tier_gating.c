@@ -1,5 +1,5 @@
 // Plastic Ox: tests for tier-based evolution gating.
-// See plastic_ox/plasticox_encounters_v1.md and
+// See src/data/pokemon/evolution_tier_gates.h and
 // plastic_ox/agent/plasticox_evolution_gating_plan_v1.md.
 //
 // Tier unlock thresholds (badges held during the tier's gym segment):

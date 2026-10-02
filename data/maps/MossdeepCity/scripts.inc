@@ -244,6 +244,34 @@ MossdeepCity_EventScript_DeclineKingsRock::
 	release
 	end
 
+MossdeepCity_EventScript_OldRodFisherman::
+	lock
+	faceplayer
+	goto_if_set FLAG_RECEIVED_OLD_ROD, MossdeepCity_EventScript_OldRodAlreadyGave
+	goto_if_unset FLAG_BADGE06_GET, MossdeepCity_EventScript_OldRodNotReady
+	msgbox MossdeepCity_Text_OldRodFisherman, MSGBOX_DEFAULT
+	giveitem ITEM_OLD_ROD
+	goto_if_eq VAR_RESULT, FALSE, MossdeepCity_EventScript_OldRodBagFull
+	setflag FLAG_RECEIVED_OLD_ROD
+	msgbox MossdeepCity_Text_ReceivedOldRod, MSGBOX_DEFAULT
+	release
+	end
+
+MossdeepCity_EventScript_OldRodAlreadyGave::
+	msgbox MossdeepCity_Text_OldRodAfter, MSGBOX_DEFAULT
+	release
+	end
+
+MossdeepCity_EventScript_OldRodNotReady::
+	msgbox MossdeepCity_Text_OldRodNotReady, MSGBOX_DEFAULT
+	release
+	end
+
+MossdeepCity_EventScript_OldRodBagFull::
+	msgbox MossdeepCity_Text_OldRodBagFull, MSGBOX_DEFAULT
+	release
+	end
+
 MossdeepCity_EventScript_BlackBelt::
 	msgbox MossdeepCity_Text_SootopolisNewGymLeader, MSGBOX_NPC
 	end
@@ -321,6 +349,32 @@ MossdeepCity_Text_StevensHouseOverThere:
 MossdeepCity_Text_WhatToDoWithWeirdRock:
 	.string "Yeah, you think so, too! What are you\n"
 	.string "supposed to do with some weird rock?$"
+
+MossdeepCity_Text_OldRodFisherman:
+	.string "Thirty years I've fished these\n"
+	.string "steps, and I've caught mostly\n"
+	.string "MAGNEMITE.\p"
+	.string "The fellow two doors down is always\n"
+	.string "showing off his SUPER ROD.\p"
+	.string "You don't need the fuss.\n"
+	.string "Take this OLD ROD off my hands.$"
+
+MossdeepCity_Text_ReceivedOldRod:
+	.string "{PLAYER} received the OLD ROD!$"
+
+MossdeepCity_Text_OldRodBagFull:
+	.string "Make room in your KEY ITEMS pocket,\n"
+	.string "then come back for the OLD ROD.$"
+
+MossdeepCity_Text_OldRodAfter:
+	.string "Try it in the tide pools past the\n"
+	.string "SPACE CENTER. Watch your footing.$"
+
+MossdeepCity_Text_OldRodNotReady:
+	.string "Hold on there.\p"
+	.string "A man can fish before he has proven\n"
+	.string "anything at the GYM.\p"
+	.string "TATE & LIZA live above the sign.$"
 
 MossdeepCity_Text_WailmerWatching:
 	.string "Around MOSSDEEP, you can see wild\n"

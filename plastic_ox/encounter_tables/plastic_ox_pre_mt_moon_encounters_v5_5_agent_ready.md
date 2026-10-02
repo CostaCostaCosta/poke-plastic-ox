@@ -1,5 +1,11 @@
 # Pokémon Plastic Ox — Pre–Mt. Moon Encounters v5.5
 
+> **Amended by the follow-up run** (`plastic_ox/agent/ENCOUNTER_FOLLOWUPS_V2_REPORT.md`).
+> The changes are: Ilex Forest is a full eighth fishing area; the Good Rod has a
+> uniform level-10 floor; the rod award timings are recorded below; and the five
+> Headbutt areas that had no tree object (Route 29, Route 46, Route 44, Route 24,
+> Route 25) are removed. Everything else in this document still stands.
+
 **Status:** implementation-ready, standalone target specification. The implementation agent starts with the **v5 encounter implementation, including the already-migrated Route 2**. This document contains every encounter table required for this block; **do not require v5.1, v5.2, v5.3, v4.6, or an earlier encounter document**. Percentages below are conditional on an encounter occurring, not bite or Rock Smash success chances.
 
 ## Implementation handoff: apply v5 → v5.5
@@ -69,17 +75,46 @@ Remove **Onix, Geodude, Aron, and Whismur** from Dark Cave's *walking* tables. D
 2. Apply the four Good Rod swaps, apply all 19 Super Rod species substitutions, and replace Dark Cave's ordinary morning/day/night encounters. If the engine uses fixed weighted slots, compose its slots to yield the **exact aggregate percentages**; do not silently round to the nearest built-in rate. Retain Dark Cave's five Rock Smash slots and the separate encounter methods.
 3. Inspect fossil proof dialogue/comments if they encode catch probabilities. Update Teddiursa's morning rate to 10% without altering the actual fossil reward requirements, Devon revival, or ownership of the shown Pokémon.
 4. Assert each Dark Cave time-of-day walking table sums to 100%, has exactly five distinct species, matches its column above, and never includes Aron, Geodude, Onix, or Whismur. Confirm Swinub is 20% morning/day, Snorunt 20% night, Larvitar 5% all times, and Teddiursa 10% morning. Verify Rock Smash remains 60/30/5/4/1.
-5. Assert Oldale / Route 103 / Route 25 / Route 44 Good Rod species and percentages match the four target rows. Check all **seven** wet-area Good Rod tables contain exactly 3 slots and every one of the seven Old/Super Rod tables matches its **updated** table below. Assert no forbidden-tier species or OU-only family appears in any Super Rod table. Check there are no fishing entries on Route 2 North/South and no revived obsolete Route 1/31/upper Route 104 entries.
+5. Assert Oldale / Route 103 / Route 25 / Route 44 Good Rod species and percentages match the four target rows. Check all **eight** wet-area Good Rod tables contain exactly 3 slots, that every Good Rod slot starts at level 10, and that every one of the eight Old/Super Rod tables matches its **updated** table below. Assert no forbidden-tier species or OU-only family appears in any Super Rod table. Check there are no fishing entries on Route 2 North/South and no revived obsolete Route 1/31/upper Route 104 entries.
 6. Check the progression invariants: Good Rod and Rock Smash usable when the player reaches the LC areas, Old Rod cannot expose Magikarp before OU, Super Rod cannot expose RU species before RU is unlocked, and Route 24/25/44 bank access meets the explicit pre-Gym-1 dependency below. If access is not established, **report the blocker**; do not silently move encounters or redesign the map.
 7. Run the repository's existing encounter-data validation/build or relevant tests. Report the changed files, verified slot totals, any pre-existing divergences, tests run/results, and unresolved access/rod-award questions. Do not claim the game was play-tested if only static data was checked.
 
 ---
 
+## Rod award timing
+
+Confirmed against the live ROM rather than assumed. The v5.5 delta table above
+declined to move any award event; this section records what is actually wired.
+
+| Rod | Awarded at | Where | Gate |
+|---|---|---|---|
+| **Good Rod** | **Before Gym 1** | Cherrygrove City, the **southeast house** (`MAP_CHERRYGROVE_CITY_SOUTHEAST_HOUSE_HNS`), NPC `CherrygroveCity_EventScript_Fisherman` (`data/maps/CherrygroveCity_hns/scripts.inc`) | none — talk to him |
+| **Old Rod** | **After the Mossdeep-area gym badge** | Mossdeep City street at **(54, 4)**, NPC `MossdeepCity_EventScript_OldRodFisherman` (`data/maps/MossdeepCity/scripts.inc`) | `FLAG_BADGE06_GET`, set by `Pox_TateLiza` (`data/scripts/plastic_ox_story.inc`) after `TRAINER_PLASTIC_OX_TATELIZA` (Tate & Liza, the Mossdeep gym). Once-only guard `FLAG_RECEIVED_OLD_ROD`; a full bag stays retryable. |
+| **Super Rod** | **As found: Mossdeep City House 3** | `MAP_MOSSDEEP_CITY_HOUSE3`, NPC `MossdeepCity_House3_EventScript_SuperRodFisherman` | none — its door is a plain warp at (49, 6), no lock, key or flag |
+
+Notes that fall out of this:
+
+- The Good Rod giver is **not on the Cherrygrove town map**. The script lives in
+  `CherrygroveCity_hns/scripts.inc`, but the object event is in the southeast
+  house; the town warps there at (34, 13). Reachable before Gym 1 as required, so
+  it is left exactly as found.
+- The Old Rod was previously unobtainable anywhere in the story region (Dewford
+  Town is a native map outside it). The Mossdeep fisherman is what actually makes
+  the Old Rod's post-OU table reachable.
+- `FLAG_BADGE06_GET` is the sixth badge flag in the story's badge series, not a
+  Mossdeep-specific bit; nothing else on the story path sets it. The `FLAG_POX_*`
+  space in `include/constants/plastic_ox_flags.h` is full, so a dedicated bit
+  would need an audited slot — flagged rather than picked ad hoc.
+- Because the Old Rod appears only after badge 6 and the Super Rod only in
+  Mossdeep, the **Old Rod's Magikarp and every Super Rod slot are gated by
+  access**, not only by table design.
+
 ## Non-negotiable progression rules
 
+- The region has **eight** fishing areas (Pallet, Oldale, Route 103, Cherrygrove, Ilex, Route 24, Route 25, Route 44) and **24 Good Rod slots**.
 - LC cap is **13**. The **Good Rod is obtainable before Gym 1**. All LC-eligible aquatic roots from the v5 baseline appear in Good Rod tables (and not solely in later rods).
-- **Old Rod is not awarded until OU progression has begun.** Its first slot is Magikarp 70% in every fishing area; second slot is location-specific 30%. This preserves the Magikarp/Gyarados family's OU-only override.
-- Super Rod tables are **future-facing**, not LC encounter sources. All five slots per area are restricted to species released by **RU or earlier**. The rod must not be usable before the highest represented tier (RU), unless encounter eligibility is independently gated to prevent higher-tier catches. **Do not add, relocate, or promise a Super Rod award event**; preserve existing acquisition timing and flag any mismatch to the implementer. Feebas, Magikarp, and all UU/UUBL/OU/Ubers species are excluded from Super Rod everywhere.
+- **Old Rod is not awarded until OU progression has begun.** In practice it is awarded in Mossdeep City after badge 6 (see "Rod award timing"), which is later than OU begins; the rule stands and the award is simply conservative. Its first slot is Magikarp 70% in every fishing area; second slot is location-specific 30%. This preserves the Magikarp/Gyarados family's OU-only override.
+- Super Rod tables are **future-facing**, not LC encounter sources. All five slots per area are restricted to species released by **RU or earlier**. The rod must not be usable before the highest represented tier (RU), unless encounter eligibility is independently gated to prevent higher-tier catches. **Do not add, relocate, or promise a Super Rod award event**; preserve existing acquisition timing and flag any mismatch to the implementer. (Recorded as found: Mossdeep City House 3, ungated — see "Rod award timing".) Feebas, Magikarp, and all UU/UUBL/OU/Ubers species are excluded from Super Rod everywhere.
 - Rod distributions use the Generation III encounter slots exactly: Old **70/30**, Good **60/20/20**, Super **40/40/15/4/1**. Do not create extra slots or average species percentages across a rod.
 - **Route 2 South and Route 2 North have separate grass tables but NO water / fishing tables**. Route 2 replaces Route 1, Route 31, and Route 104-top; removed Route 104 fishing/Headbutt and Route 31 fishing/Headbutt tables do not survive as separate map encounters.
 - **Dark Cave has Rock Smash**, in addition to ordinary cave encounters. Aron, Geodude, and Onix are Rock Smash-only *within Dark Cave* (other routes may still feature them). Its standard five Rock Smash slots are **60/30/5/4/1**; the last two slots both use Onix to make its effective rate 5%. Standard Dark Cave encounters have five distinct species at any time of day. Whismur remains available on Route 103, not in Dark Cave.
@@ -92,11 +127,23 @@ Remove **Onix, Geodude, Aron, and Whismur** from Dark Cave's *walking* tables. D
 
 ## Fishing distribution at a glance
 
-Each area has its own full three-rod table below. Super Rod tables use LC–RU species only, not high-tier evolved forms. The Good Rod places **20 distinct aquatic LC roots into 21 slots**, repeating only Poliwag. Moving formerly 5% species such as Wailmer and Dratini into a fixed 20% slot increases their *conditional catch probability*; do not describe either as 5% any longer. Use encounter frequency or area access, not invented 5% slots, if more rarity is desired.
+The region has **eight wet areas**: Pallet Town, Oldale Town, Route 103, Cherrygrove City, **Ilex Forest**, Route 24, Route 25 and Route 44. Each has its own full three-rod table below. Super Rod tables use LC–RU species only, not high-tier evolved forms. The Good Rod places **20 distinct aquatic LC roots into 24 slots**, repeating only Poliwag (Pallet, Ilex and Route 44 each carry it). Moving formerly 5% species such as Wailmer and Dratini into a fixed 20% slot increases their *conditional catch probability*; do not describe either as 5% any longer. Use encounter frequency or area access, not invented 5% slots, if more rarity is desired.
+
+**Good Rod level rule.** Every Good Rod slot in every Plastic Ox table starts at
+**level 10**, regardless of the area's own band; the ceiling still follows the
+area (Pallet 10–10, Oldale 10–10, Route 103 10–10, Cherrygrove 10–10, Ilex 10–10,
+Route 24 10–11, Route 25 10–12, Route 44 10–13). This replaces the per-area Good
+Rod bands this document previously listed under each area heading; those headings
+now state the rod they serve, and the uniform floor above governs the Good Rod.
+Old Rod and Super Rod inherit the area band.
 
 ## 1. Pallet Town
 
-### Fishing — Good Rod Lv. 2–5
+### Fishing — area band Lv. 2–5
+
+The Old Rod and Super Rod rows below use this area's Lv. 2–5 band. The **Good Rod
+row floors at level 10** in every Plastic Ox area — see "Fishing distribution at
+a glance".
 
 | Rod | Slot 1 | Slot 2 | Slot 3 | Slot 4 | Slot 5 |
 |---|---|---|---|---|---|
@@ -124,7 +171,11 @@ Each area has its own full three-rod table below. Super Rod tables use LC–RU s
 
 ## 3. Oldale Town
 
-### Fishing — Good Rod Lv. 3–5
+### Fishing — area band Lv. 3–5
+
+The Old Rod and Super Rod rows below use this area's Lv. 3–5 band. The **Good Rod
+row floors at level 10** in every Plastic Ox area — see "Fishing distribution at
+a glance".
 
 | Rod | Slot 1 | Slot 2 | Slot 3 | Slot 4 | Slot 5 |
 |---|---|---|---|---|---|
@@ -151,7 +202,11 @@ Each area has its own full three-rod table below. Super Rod tables use LC–RU s
 
 
 
-### Fishing — Good Rod Lv. 3–6
+### Fishing — area band Lv. 3–6
+
+The Old Rod and Super Rod rows below use this area's Lv. 3–6 band. The **Good Rod
+row floors at level 10** in every Plastic Ox area — see "Fishing distribution at
+a glance".
 
 | Rod | Slot 1 | Slot 2 | Slot 3 | Slot 4 | Slot 5 |
 |---|---|---|---|---|---|
@@ -226,7 +281,11 @@ Each area has its own full three-rod table below. Super Rod tables use LC–RU s
 
 ## 7. Cherrygrove City
 
-### Fishing — Good Rod Lv. 4–6
+### Fishing — area band Lv. 4–6
+
+The Old Rod and Super Rod rows below use this area's Lv. 4–6 band. The **Good Rod
+row floors at level 10** in every Plastic Ox area — see "Fishing distribution at
+a glance".
 
 | Rod | Slot 1 | Slot 2 | Slot 3 | Slot 4 | Slot 5 |
 |---|---|---|---|---|---|
@@ -269,6 +328,31 @@ Each area has its own full three-rod table below. Super Rod tables use LC–RU s
 | 10% | Nincada | Nincada | Shuppet |
 | 5% | Lotad | Lotad | Lotad |
 | 5% | Seedot | Seedot | Seedot |
+
+
+
+### Fishing — Good Rod Lv. 6–8 (pond, eighth wet area)
+
+Ilex Forest is a **full fishing area**: the pond carries a complete ten-slot
+three-rod table, identical at morning, day and night.
+
+| Rod | Slot 1 | Slot 2 | Slot 3 | Slot 4 | Slot 5 |
+|---|---|---|---|---|---|
+| Old Rod (post-OU) | Magikarp · 70% | Poliwag · 30% | — | — | — |
+| Good Rod (LC) | Poliwag · 60% | Barboach · 20% | Corphish · 20% | — | — |
+| Super Rod (future-facing) | Poliwhirl · 40% | Whiscash · 40% | Crawdaunt · 15% | Azumarill · 4% | Politoed · 1% |
+
+**Approved RU exception.** This is an LC-tier pond, and its Super Rod slots
+deliberately reach **RU**: **Azumarill (4%)** and **Politoed (1%)**. This is a
+**user-approved exception** to the LC-only aquatic pool the other seven areas
+keep, and it is asserted as specified by
+`plastic_ox/encounter_tables/test_pre_mt_moon_v5_5.py`. It does not change the
+general rule that a rod may not expose a species before that species' tier is
+unlocked: the Super Rod itself is not awarded before RU, so these two slots
+cannot be reached early.
+
+Old Rod and Super Rod here inherit the area's 6–8 band; the Good Rod follows the
+uniform level-10 floor described under "Fishing distribution at a glance".
 
 
 
@@ -359,7 +443,11 @@ No ordinary wild Pokémon in this city plan. **Devon Beldum in-game trade** rema
 
 
 
-### Fishing — Good Rod Lv. 8–11
+### Fishing — area band Lv. 8–11
+
+The Old Rod and Super Rod rows below use this area's Lv. 8–11 band. The **Good Rod
+row floors at level 10** in every Plastic Ox area — see "Fishing distribution at
+a glance".
 
 | Rod | Slot 1 | Slot 2 | Slot 3 | Slot 4 | Slot 5 |
 |---|---|---|---|---|---|
@@ -402,7 +490,11 @@ No ordinary wild Pokémon in this city plan. **Devon Beldum in-game trade** rema
 
 
 
-### Fishing — Good Rod Lv. 9–12
+### Fishing — area band Lv. 9–12
+
+The Old Rod and Super Rod rows below use this area's Lv. 9–12 band. The **Good Rod
+row floors at level 10** in every Plastic Ox area — see "Fishing distribution at
+a glance".
 
 | Rod | Slot 1 | Slot 2 | Slot 3 | Slot 4 | Slot 5 |
 |---|---|---|---|---|---|
@@ -437,7 +529,11 @@ Bill’s grandfather rewards the fossils when the player **shows** each Pokémon
 
 ## 15. Route 44 — accessible fishing bank; grass locked behind Surf
 
-### Fishing — Good Rod Lv. 10–13
+### Fishing — area band Lv. 10–13
+
+The Old Rod and Super Rod rows below use this area's Lv. 10–13 band. The **Good Rod
+row floors at level 10** in every Plastic Ox area — see "Fishing distribution at
+a glance".
 
 | Rod | Slot 1 | Slot 2 | Slot 3 | Slot 4 | Slot 5 |
 |---|---|---|---|---|---|
@@ -452,8 +548,11 @@ Clamperl is the Route 44 Good Rod 20% slot; Dratini is now available from Route 
 ## Validation and implementation checklist
 
 - **103 / 103** expected ordinary-wild LC roots represented somewhere in the Good Rod / grass / Headbutt / cave / Rock Smash tables; **0 missing, 0 unexpected**. The design roster audit covers *species representation*, not actual in-game map accessibility or species tier legality beyond the established v5 roster.
-- **20 / 20** former aquatic LC roots remain in Good Rod; **21 Good Rod slots across seven wet areas**. The sole duplicated aquatic species is Poliwag.
-- **7 / 7 fishing areas** have two Old Rod slots (70/30), three Good Rod slots (60/20/20), and five Super Rod slots (40/40/15/4/1). All **19** formerly prohibited Super Rod occurrences were replaced; no UU, UUBL, OU, Uber, Magikarp, or Feebas remains in Super Rod. Magikarp appears in Old Rod slot 1 only (OU gated); Super Rod’s highest required unlock is RU.
+- **20 / 20** former aquatic LC roots remain in Good Rod; **24 Good Rod slots across eight wet areas**. The sole duplicated aquatic species is Poliwag (three times: Pallet, Ilex, Route 44).
+- **8 / 8 fishing areas** — Pallet, Oldale, Route 103, Cherrygrove, **Ilex**, Route 24, Route 25, Route 44 — have two Old Rod slots (70/30), three Good Rod slots (60/20/20), and five Super Rod slots (40/40/15/4/1). All **19** formerly prohibited Super Rod occurrences were replaced; no UU, UUBL, OU, Uber, Magikarp, or Feebas remains in Super Rod. Magikarp appears in Old Rod slot 1 only (OU gated); Super Rod’s highest required unlock is RU.
+- **Every Good Rod slot floors at level 10** in all eight areas, asserted per table by `test_pre_mt_moon_v5_5.py`.
+- **Ilex Forest's ten-slot pond table is present at all three times of day** and is asserted as specified. Its **Azumarill 4% and Politoed 1%** Super Rod slots are an explicitly **user-approved RU-tier exception** in an otherwise LC-tier pond; the generic "Super Rod is LC–RU only" rule still holds.
+- **Headbutt tables exist only where a Headbutt tree object exists**: Ilex Forest, Route 33, Route 35, Route 36 and National Park. Route 29, Route 46, Route 44, Route 24 and Route 25 had tables with no tree and have been **removed**; every species they held is still obtainable from an area the player can reach.
 - **1 / 1 Rock Smash tables** total 100% using 60/30/5/4/1. Effective minimum distinct-species rate remains 5%. Dark Cave ordinary walking encounters total 100% for morning, day, and night and expose five distinct species per period (down from nine); Swinub/Snorunt has the 20% slot, and Larvitar the 5% slot. Whismur persists on Route 103, while the three removed rocky species persist in Dark Cave Rock Smash.
 - Route 2 North and South have **zero fishing/water entries**. Route 31, Route 1, and Route 104-top are removed rather than double-counted. Pineco appears in exactly **one** wild encounter table (Ilex Headbutt, 15%).
 - Protect **day/night grass rules** and fossil proofs: Ralts 5% on Route 2 North; Phanpy 5% morning on Route 46; Teddiursa 10% morning in Dark Cave; Gastly 5% night on Route 2 North.

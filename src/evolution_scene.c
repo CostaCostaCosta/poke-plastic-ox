@@ -608,7 +608,8 @@ static void CreateShedinja(enum Species preEvoSpecies, enum Species postEvoSpeci
 // Plastic Ox: if the mon's level-based evolution is blocked ONLY by the tier
 // gate, but it has an EVO_SPLIT_FROM_EVO sibling whose tier IS unlocked,
 // generate the split species without evolving. This implements the
-// Nincada/Shedinja rule from plasticox_encounters_v1.md: at PU, a level-20+
+// Nincada/Shedinja rule (see plastic_ox/agent/plasticox_evolution_gating_plan_v1.md):
+// at PU, a level-20+
 // Nincada that levels up with a free party slot and a Poke Ball produces
 // Shedinja while staying Nincada; Ninjask evolution itself resumes at UU.
 // Returns TRUE if a split species was generated.

@@ -4,6 +4,10 @@
 The per-area and per-trainer tables are produced from the same model the data
 was generated from (pox_progression + trainer_teams_v2_build.json), so the
 report cannot drift from the ROM data.
+
+This reproduces the run-1 report as written then. It still mentions
+plastic_ox/plasticox_encounters_v1.md and test_pre_mt_moon_v4_4.py, both of
+which were deleted by the follow-up run; see ENCOUNTER_FOLLOWUPS_V2_REPORT.md.
 """
 from __future__ import annotations
 

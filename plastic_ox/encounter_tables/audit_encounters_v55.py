@@ -55,6 +55,14 @@ SPEC_FISHING = {
         ("good", [("Slowpoke", 60), ("Seel", 20), ("Shellder", 20)]),
         ("super", [("Slowpoke", 40), ("Dewgong", 40), ("Seadra", 15), ("Octillery", 4), ("Corsola", 1)]),
     ]),
+    # Ilex Forest is an eighth wet area with its own full three-rod table. It is
+    # an LC-tier pond, so Azumarill and Politoed (RU) are a deliberate,
+    # user-approved exception to the LC-only pool the other seven areas keep.
+    "MAP_ILEX_FOREST_HNS": ("gPoxIlexForestHns_Morning", (6, 8), [
+        ("old", [("Magikarp", 70), ("Poliwag", 30)]),
+        ("good", [("Poliwag", 60), ("Barboach", 20), ("Corphish", 20)]),
+        ("super", [("Poliwhirl", 40), ("Whiscash", 40), ("Crawdaunt", 15), ("Azumarill", 4), ("Politoed", 1)]),
+    ]),
     "MAP_ROUTE24_HNS": ("gPoxRoute24Hns", (8, 11), [
         ("old", [("Magikarp", 70), ("Psyduck", 30)]),
         ("good", [("Psyduck", 60), ("Chinchou", 20), ("Staryu", 20)]),
@@ -71,6 +79,13 @@ SPEC_FISHING = {
         ("super", [("Seaking", 40), ("Dewgong", 40), ("Dragonair", 15), ("Octillery", 4), ("Azumarill", 1)]),
     ]),
 }
+
+# Every Good Rod slot in every Plastic Ox table bottoms out at the single level
+# 10 rather than the area's own band; the ceiling still follows the area.
+# Confirmed by the user; asserted here so it cannot drift.
+GOOD_ROD_MIN_LEVEL = 10
+# Azumarill and Politoed are RU but appear in this LC pond on purpose.
+APPROVED_RU_EXCEPTIONS = {"Azumarill", "Politoed"}
 
 # (species, morning, day, night) with the authored percentage.
 SPEC_GRASS = {
@@ -136,16 +151,17 @@ SPEC_ROCK_SMASH = {
 }
 
 SPEC_HEADBUTT = {
-    "sPoxRoute29Headbutt": (3, 5, [("Slakoth", 25, 25), ("Spearow", 15, 15), ("Ledyba", 15, 0), ("Spinarak", 0, 15),
-                                   ("Natu", 15, 15), ("Exeggcute", 15, 15), ("Hoothoot", 15, 15)]),
-    "sPoxRoute46Headbutt": (4, 6, [("Natu", 35, 35), ("Exeggcute", 20, 20), ("Spearow", 15, 15), ("Hoothoot", 15, 15), ("Slakoth", 15, 15)]),
-    "sPoxRoute24Headbutt": (8, 11, [("Pichu", 25, 25), ("Sunkern", 20, 20), ("Ledyba", 15, 15), ("Natu", 15, 15),
-                                    ("Hoothoot", 10, 10), ("Exeggcute", 10, 10), ("Slakoth", 5, 5)]),
-    "sPoxRoute25Headbutt": (9, 12, [("Meowth", 25, 25), ("Pichu", 15, 15), ("Ledyba", 15, 15), ("Exeggcute", 15, 15),
-                                    ("Spearow", 15, 15), ("Slakoth", 15, 15)]),
+    "sPoxRoute33Headbutt": (14, 16, [("Aipom", 30, 30), ("Spearow", 25, 25), ("Exeggcute", 15, 15), ("Natu", 10, 10), ("Slakoth", 10, 10), ("Hoothoot", 10, 10)]),
+    "sPoxRoute35Headbutt": (16, 18, [("Spearow", 30, 0), ("Hoothoot", 0, 30), ("Exeggcute", 20, 20), ("Natu", 15, 15), ("Sunkern", 15, 15), ("Venonat", 10, 10), ("Hoothoot", 10, 0), ("Spearow", 0, 10)]),
+    "sPoxParkHeadbutt": (17, 19, [("Ledyba", 30, 0), ("Spinarak", 0, 30), ("Exeggcute", 15, 15), ("Aipom", 15, 15), ("Taillow", 15, 15), ("Wurmple", 15, 15), ("Sunkern", 10, 10)]),
+    "sPoxRoute36Headbutt": (18, 20, [("Natu", 30, 30), ("Slakoth", 20, 20), ("Exeggcute", 15, 15), ("Aipom", 15, 15), ("Shuppet", 10, 10), ("Duskull", 10, 10)]),
     "sPoxIlexHeadbutt": (6, 8, [("Ledyba", 25, 0), ("Spinarak", 0, 25), ("Pineco", 15, 15), ("Exeggcute", 15, 15),
                                 ("Sunkern", 15, 15), ("Caterpie", 10, 0), ("Hoothoot", 0, 10), ("Weedle", 10, 10), ("Paras", 10, 10)]),
 }
+# Route 29, Route 46, Route 44, Route 24 and Route 25 have no Headbutt tree
+# object anywhere on their map, so their tables were unreachable and removed.
+REMOVED_HEADBUTT = ("sPoxRoute29Headbutt", "sPoxRoute46Headbutt", "sPoxRoute44Headbutt",
+                    "sPoxRoute24Headbutt", "sPoxRoute25Headbutt")
 
 SPECIES_FIX = {"Nidoran♀": "SPECIES_NIDORAN_F", "Nidoran♂": "SPECIES_NIDORAN_M"}
 
@@ -216,6 +232,12 @@ def build_report() -> dict:
                     (t["weights"][i] if t.get("weights") else FISHING_DEFAULT[i])
             if got_rod != want:
                 problems.append(f"{rod}: got {got_rod} want {want}")
+        # Good Rod is the one rod with a uniform floor, not the area band.
+        for i in (2, 3, 4):
+            m = t["mons"][i]
+            if m["min_level"] != GOOD_ROD_MIN_LEVEL:
+                problems.append(f"Good Rod slot {i} starts at Lv{m['min_level']}, "
+                                f"want the uniform Lv{GOOD_ROD_MIN_LEVEL} floor")
         lv = levels(t)
         report["fishing"].append(ok(area=map_name, label=label, bands=lv, ok=not problems, problems=problems))
 
@@ -300,7 +322,15 @@ def build_report() -> dict:
                 report["invariants"].append(ok(area=map_name, check="super_rod_tier", ok=False,
                                               detail=f"slot {i} {name} is not an approved LC-RU species"))
     report["invariants"].append(ok(check="super_rod_no_forbidden", ok=True,
-                                   detail="all seven specced wet areas use only LC-PU-NU-RU Super Rod species"))
+                                   detail=f"all {len(SPEC_FISHING)} specced wet areas use only "
+                                          "LC-PU-NU-RU Super Rod species"))
+
+    # ---- the removed Headbutt tables must really be gone ---------------------
+    header = parse_headbutt_header()
+    for symbol in REMOVED_HEADBUTT:
+        report["invariants"].append(ok(check="headbutt_removed", ok=symbol not in header,
+                                       detail=f"{symbol} is absent" if symbol not in header
+                                       else f"{symbol} is still defined but has no Headbutt tree"))
 
     return report
 

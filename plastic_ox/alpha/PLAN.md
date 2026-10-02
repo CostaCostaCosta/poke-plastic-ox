@@ -11,7 +11,7 @@ This replaces the old wave plan, preserved in [LEGACY_PLAN.md](LEGACY_PLAN.md).
 - [Topology SVG](../plastic_ox_topology.svg): physical arrangement and route modules.
 - [REGION_PLAN.md](REGION_PLAN.md): target legs, candidate assets, and old links to retire.
 - [STORY_TRIGGERS.md](STORY_TRIGGERS.md): target event order and persistent gate conditions.
-- [Encounter specification](../plasticox_encounters_v1.md): tier availability, caps, evolution, and items.
+- [Encounter specification](../encounter_tables/plastic_ox_pre_mt_moon_encounters_v5_5_agent_ready.md): the authoritative area tables. Tier availability, level caps and evolution gating now live in `src/data/pokemon/evolution_tier_gates.h` (engine source of truth) and [plasticox_evolution_gating_plan_v1.md](../agent/plasticox_evolution_gating_plan_v1.md) (design); the old `plasticox_encounters_v1.md` master document has been retired.
 
 Implement the full main journey through Champion Bill, the four major traversal
 unlocks, and a working Champion-only Lavender harbor/Frontier connection. Full
