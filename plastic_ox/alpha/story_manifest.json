@@ -563,6 +563,18 @@
       "x": 27,
       "y": 15,
       "script": "Pox_SquirtBottle"
+    },
+    {
+      "map": "GoldenrodCity_FlowerShop_hns",
+      "x": 2,
+      "y": 4,
+      "script": "Pox_SquirtBottle"
+    },
+    {
+      "map": "Route36_hns",
+      "x": 39,
+      "y": 20,
+      "script": "Pox_Sudowoodo"
     }
   ],
   "flags": [

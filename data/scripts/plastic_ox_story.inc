@@ -2115,7 +2115,7 @@ goto_if_unset FLAG_BADGE02_GET, Pox_SquirtBottle_Wait
 	checkitem ITEM_SQUIRT_BOTTLE
 	goto_if_eq VAR_RESULT, TRUE, Pox_SquirtBottle_Have
 	giveitem ITEM_SQUIRT_BOTTLE
-	goto_if_eq VAR_RESULT, FALSE, Pox_Release
+	goto_if_eq VAR_RESULT, FALSE, Pox_SquirtBottle_Full
 Pox_SquirtBottle_Have::
 	msgbox Pox_Text_SquirtBottle, MSGBOX_DEFAULT
 
@@ -2127,11 +2127,21 @@ Pox_SquirtBottle_Wait::
 	releaseall
 	end
 
+@ Run 5 (P4): giveitem fails silently when the KEY ITEMS pocket is full, so
+@ the player never learned why ROUTE 36's tree kept refusing them.
+Pox_SquirtBottle_Full::
+	msgbox Pox_Text_SquirtBottle_Full, MSGBOX_DEFAULT
+	releaseall
+	end
+
 Pox_Text_SquirtBottle_Wait::
 	.string "The odd tree on ROUTE 36 hates\nwater. Beat WHITNEY, then I can\plend you my SQUIRTBOTTLE.$"
 
 Pox_Text_SquirtBottle::
 	.string "Use my SQUIRTBOTTLE when you\nexamine the odd tree on ROUTE\p36. Be ready for a battle!$"
+
+Pox_Text_SquirtBottle_Full::
+	.string "There is no room in your KEY ITEMS\nPOCKET right now. Come back once\nyou have made some space.$"
 
 Pox_Sudowoodo::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -2141,8 +2151,11 @@ goto_if_set FLAG_POX_SUDOWOODO_CLEARED, Pox_Release
 	goto_if_unset FLAG_BADGE02_GET, Pox_Sudowoodo_Wait
 	checkitem ITEM_SQUIRT_BOTTLE
 	goto_if_eq VAR_RESULT, FALSE, Pox_Sudowoodo_Wait
-	msgbox Pox_Text_Sudowoodo, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, Pox_Release
+@ Run 5 (P1): this used to be a MSGBOX_YESNO prompt, but B cannot choose NO on
+@ a field YES/NO box in this build, so the player could never decline it.
+@ Gen 2 and Gen 4 ask nothing here at all - using the bottle waters the tree
+@ and the battle starts.  Running away still leaves the tree in place.
+	msgbox Pox_Text_Sudowoodo, MSGBOX_DEFAULT
 	setwildbattle SPECIES_SUDOWOODO, 20, ITEM_NONE
 	special PlasticOx_PrepareSudowoodoMoves
 	dowildbattle
@@ -2151,6 +2164,9 @@ goto_if_set FLAG_POX_SUDOWOODO_CLEARED, Pox_Release
 	goto_if_ne VAR_RESULT, B_OUTCOME_WON, Pox_Release
 Pox_Sudowoodo_Cleared::
 	setflag FLAG_POX_SUDOWOODO_CLEARED
+	@ Run 5 (P3): nothing else consumes the bottle and it cannot be selected
+	@ from the bag, so it would occupy a KEY ITEMS slot forever.  Take it back.
+	removeitem ITEM_SQUIRT_BOTTLE
 	removeobject VAR_LAST_TALKED
 
 releaseall
@@ -2162,7 +2178,9 @@ Pox_Sudowoodo_Wait::
 	end
 
 Pox_Text_Sudowoodo::
-	.string "The odd tree blocks the path.\nSprinkle it with the\pSQUIRTBOTTLE?$"
+	.string "You spray the odd tree with the\nSQUIRTBOTTLE. It shivers!$"
 
+@ Run 5 (P2): the tree never actually blocked ROUTE 36, so it no longer claims
+@ to, and (P7) the hint no longer names a single giver.
 Pox_Text_Sudowoodo_Wait::
-	.string "This tree feels like stone! The\nflower grower near WHITNEY's GYM\pmight know what to do.$"
+	.string "This tree feels like stone! Someone\nnear WHITNEY's GYM has a SQUIRTBOTTLE\nthat might help.$"

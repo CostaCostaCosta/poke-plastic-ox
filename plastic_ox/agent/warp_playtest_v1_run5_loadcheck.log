@@ -1,0 +1,58 @@
+... load-check 25/391 (0 failed)
+... load-check 50/391 (19 failed)
+... load-check 75/391 (41 failed)
+... load-check 100/391 (53 failed)
+... load-check 125/391 (57 failed)
+... load-check 150/391 (65 failed)
+... load-check 175/391 (65 failed)
+... load-check 200/391 (76 failed)
+... load-check 225/391 (95 failed)
+... load-check 250/391 (112 failed)
+... load-check 275/391 (121 failed)
+... load-check 300/391 (131 failed)
+... load-check 325/391 (152 failed)
+... load-check 350/391 (177 failed)
+... load-check 375/391 (193 failed)
+wrote /tmp/lc5.json
+maps=417 static_warps=1278 static_seams=86
+static warp findings: 43
+   BattleFrontier_Lounge9 0 [1, 9] -> BattleFrontier_OutsideEast ['landing (21,45) is solid (MB_NORMAL) and not a transition tile']
+   BattleFrontier_Lounge9 1 [2, 9] -> BattleFrontier_OutsideEast ['landing (21,45) is solid (MB_NORMAL) and not a transition tile']
+   DiglettsCave_NorthEntrance_Frlg 1 [4, 6] -> Route2_Frlg ['landing warp Route2_Frlg[3] points at MAP_DARK_CAVE_SOUTH_SIDE_HNS, not back to MAP_DIGLETTS_CAVE_NORTH_ENTRANCE']
+   LavenderTown_PokemonCenter_2F_Frlg 1 [5, 1] -> UnionRoom_Frlg ['no standable approach to warp (5,1)']
+   LavenderTown_PokemonCenter_2F_Frlg 2 [9, 1] -> TradeCenter_Frlg ['no standable approach to warp (9,1)']
+   LavenderTown_hns 0 [4, 6] -> LavenderTown_Mart_Frlg ['landing warp LavenderTown_Mart_Frlg[0] points at MAP_LAVENDER_TOWN, not back to MAP_LAVENDER_TOWN_HNS']
+   LavenderTown_hns 1 [9, 6] -> LavenderTown_PokemonCenter_1F_Frlg ['landing warp LavenderTown_PokemonCenter_1F_Frlg[0] points at MAP_LAVENDER_TOWN, not back to MAP_LAVENDER_TOWN_HNS']
+   LavenderTown_hns 2 [8, 13] -> LavenderTown_House1_Frlg ['landing warp LavenderTown_House1_Frlg[0] points at MAP_LAVENDER_TOWN, not back to MAP_LAVENDER_TOWN_HNS']
+   LavenderTown_hns 3 [5, 19] -> LavenderTown_House2_Frlg ['landing warp LavenderTown_House2_Frlg[0] points at MAP_LAVENDER_TOWN, not back to MAP_LAVENDER_TOWN_HNS']
+   Route110_TrickHouseCorridor 2 [4, 23] -> Route110_TrickHouseEntrance ['landing warp Route110_TrickHouseEntrance[2] points at MAP_ROUTE110_TRICK_HOUSE_PUZZLE1, not back to MAP_ROUTE110_TRICK_HOUSE_CORRIDOR']
+   Route110_TrickHouseCorridor 3 [5, 23] -> Route110_TrickHouseEntrance ['landing warp Route110_TrickHouseEntrance[2] points at MAP_ROUTE110_TRICK_HOUSE_PUZZLE1, not back to MAP_ROUTE110_TRICK_HOUSE_CORRIDOR']
+   Route110_TrickHouseEnd 0 [10, 1] -> Route110_TrickHousePuzzle1 ['landing (13,1) is solid (MB_TRICK_HOUSE_PUZZLE_DOOR) and not a transition tile']
+   Route115 1 [21, 6] -> Route115 ['landing (21,6) is solid (MB_MOUNTAIN_TOP) and not a transition tile']
+   Route115 2 [36, 10] -> Route115 ['landing (36,10) is solid (MB_MOUNTAIN_TOP) and not a transition tile']
+   Route12_Frlg 2 [15, 15] -> Route12_NorthEntrance_1F_Frlg ['landing (6,1) is solid (MB_NORMAL) and not a transition tile']
+   Route4_Frlg 0 [19, 5] -> MtMoon_1F_Frlg ['landing warp MtMoon_1F_Frlg[3] points at MAP_ROUTE44_HNS, not back to MAP_ROUTE4']
+   Route4_Frlg 1 [32, 5] -> MtMoon_B1F_Frlg ['landing warp MtMoon_B1F_Frlg[7] points at MAP_ROUTE33_HNS, not back to MAP_ROUTE4']
+   Route7_Frlg 0 [7, 14] -> UndergroundPath_WestEntrance_Frlg ['landing warp UndergroundPath_WestEntrance_Frlg[1] points at MAP_UNDERGROUND_PATH_WEST_ENTRANCE, not back to MAP_ROUTE7']
+   Route8_WestEntrance_Frlg 2 [11, 5] -> Route8_Frlg ['dest_warp_id 1 out of range (target has 1)']
+   Route8_WestEntrance_Frlg 3 [11, 6] -> Route8_Frlg ['dest_warp_id 1 out of range (target has 1)']
+   SSAnne_1F_Corridor_Frlg 3 [20, 0] -> SSAnne_Exterior_Frlg ['landing (33,15) is solid (MB_OCEAN_WATER) and not a transition tile', 'landing (33,15) has no walkable exit -- softlock', 'no standable approach to warp (20,0)']
+   SSAnne_1F_Corridor_Frlg 4 [3, 20] -> SSAnne_Kitchen_Frlg ['no standable approach to warp (3,20)']
+   SSAnne_Exterior_Frlg 3 [33, 15] -> SSAnne_1F_Corridor_Frlg ['landing (20,0) is solid (MB_NORMAL) and not a transition tile', 'landing (20,0) has no walkable exit -- softlock', 'no standable approach to warp (33,15)']
+   SafariZone_Center_Frlg 5 [27, 5] -> SafariZone_North_Frlg ['landing (32,34) is solid (MB_NORMAL) and not a transition tile']
+   SafariZone_Center_Frlg 8 [8, 19] -> SafariZone_West_Frlg ['landing (40,28) is solid (MB_NORMAL) and not a transition tile']
+   SafariZone_Center_Frlg 11 [43, 17] -> SafariZone_East_Frlg ['landing (8,28) is solid (MB_NORMAL) and not a transition tile']
+   SafariZone_East_Frlg 2 [8, 11] -> SafariZone_North_Frlg ['landing (48,33) is solid (MB_NORMAL) and not a transition tile']
+   SafariZone_East_Frlg 5 [8, 28] -> SafariZone_Center_Frlg ['landing (43,17) is solid (MB_NORMAL) and not a transition tile']
+   SafariZone_North_Frlg 2 [12, 34] -> SafariZone_West_Frlg ['landing (32,5) is solid (MB_NORMAL) and not a transition tile']
+   SafariZone_North_Frlg 5 [22, 34] -> SafariZone_West_Frlg ['landing (39,5) is solid (MB_NORMAL) and not a transition tile']
+   SafariZone_North_Frlg 8 [48, 33] -> SafariZone_East_Frlg ['landing (8,11) is solid (MB_NORMAL) and not a transition tile']
+   SafariZone_North_Frlg 11 [32, 34] -> SafariZone_Center_Frlg ['landing (27,5) is solid (MB_NORMAL) and not a transition tile']
+   SafariZone_West_Frlg 2 [32, 5] -> SafariZone_North_Frlg ['landing (12,34) is solid (MB_NORMAL) and not a transition tile']
+   SafariZone_West_Frlg 5 [39, 5] -> SafariZone_North_Frlg ['landing (22,34) is solid (MB_NORMAL) and not a transition tile']
+   SafariZone_West_Frlg 8 [40, 28] -> SafariZone_Center_Frlg ['landing (8,19) is solid (MB_NORMAL) and not a transition tile']
+   SeafoamIslands_B2F_Frlg 9 [24, 8] -> SeafoamIslands_B3F_Frlg ['landing (23,9) has no walkable exit -- softlock']
+   SeafoamIslands_B2F_Frlg 10 [27, 8] -> SeafoamIslands_B3F_Frlg ['landing (24,9) has no walkable exit -- softlock']
+   SeafoamIslands_B3F_Frlg 5 [23, 9] -> SeafoamIslands_B2F_Frlg ['no standable approach to warp (23,9)']
+   SeafoamIslands_B3F_Frlg 6 [24, 9] -> SeafoamIslands_B2F_Frlg ['no standable approach to warp (24,9)']
+   SeafoamIslands_B3F_Frlg 7 [6, 18] -> SeafoamIslands_B4F_Frlg ['landing (8,17) has no walkable exit -- softlock']

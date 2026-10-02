@@ -50,8 +50,8 @@
       "x": 4,
       "y": 7,
       "elevation": 0,
-      "dest_map": "MAP_ROUTE2_HOUSE",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_ROUTE2",
+      "dest_warp_id": "4"
     },
     {
       "x": 4,

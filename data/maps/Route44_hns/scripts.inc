@@ -63,9 +63,15 @@ PoxRoute44_Challenge_Text::
 PoxRoute44_Defeat_Text::
 	.string "You know this road well!$"
 
+@ Run 5 warp playtest: this used to land on (18,36) while the matching return
+@ warp, MtMoon_1F warp 3, sits on (18,37).  The two ends of the ROUTE 44 ->
+@ MT. MOON link therefore disagreed, and the return leg could not be walked.
+@ (18,37) is Mt. Moon's own entrance tile: the player arrives on it facing
+@ down, (18,38) is the rock wall behind them, and stepping back down takes
+@ warp 3 straight out to ROUTE 44.
 PoxMoon_EnterFromRoute44::
 	lockall
-	warp MAP_MT_MOON_1F, 18, 36
+	warp MAP_MT_MOON_1F, 18, 37
 	waitstate
 	releaseall
 	end

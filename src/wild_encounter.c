@@ -662,6 +662,13 @@ void PlasticOx_HeadbuttEncounter(void)
 
 void PlasticOx_PrepareSudowoodoMoves(void)
 {
+    // Run 5 Sudowoodo playtest (P6): CreateScriptedWildMon() draws a random
+    // personality, so the ability slot was re-rolled on every attempt and the
+    // scripted encounter could come out as RUN AWAY.  A story encounter should
+    // always be the same Pokémon, so pin STURDY, Sudowoodo's second ability.
+    u8 abilityNum = ABILITY_STURDY;
+
+    SetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_ABILITY_NUM, &abilityNum);
     SetMonMoveSlot(&gParties[B_TRAINER_OPPONENT_A][0], MOVE_ROCK_THROW, 0);
     SetMonMoveSlot(&gParties[B_TRAINER_OPPONENT_A][0], MOVE_MIMIC, 1);
     SetMonMoveSlot(&gParties[B_TRAINER_OPPONENT_A][0], MOVE_FLAIL, 2);

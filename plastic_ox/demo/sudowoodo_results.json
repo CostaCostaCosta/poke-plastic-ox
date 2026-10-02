@@ -1,0 +1,457 @@
+[
+ {
+  "scenario": "1 gift refused before badge (flower_shop)",
+  "ok": true,
+  "detail": {
+   "dialogue": true,
+   "battle": false,
+   "text": [
+    "The odd tree on ROUTE 36 hates{page}water\u3002 Beat WHITNEY, then I can<FB>lend you my SQUIRTBOTTLE\u3002"
+   ],
+   "stopped": false,
+   "ctx": {
+    "status": 0,
+    "pc": "0x0",
+    "locked": 0
+   },
+   "bottle": 0
+  }
+ },
+ {
+  "scenario": "1 gift refused before badge (goldenrod_street)",
+  "ok": true,
+  "detail": {
+   "dialogue": true,
+   "battle": false,
+   "text": [
+    "The odd tree on ROUTE 36 hates{page}water\u3002 Beat WHITNEY, then I can<FB>lend you my SQUIRTBOTTLE\u3002"
+   ],
+   "stopped": false,
+   "ctx": {
+    "status": 0,
+    "pc": "0x0",
+    "locked": 0
+   },
+   "bottle": 0
+  }
+ },
+ {
+  "scenario": "2 bottle gifted by the real Flower Shop NPC, idempotent",
+  "ok": true,
+  "detail": {
+   "first": {
+    "dialogue": true,
+    "battle": false,
+    "text": [
+     "Obtained the SquirtBottle\uff01",
+     "P put away the SquirtBottle{page}in the KEY ITEMS POCKET\u3002",
+     "Use my SQUIRTBOTTLE when you{page}examine the odd tree on ROUTE<FB>36\u3002 Be ready for a battle\uff01"
+    ],
+    "stopped": false,
+    "ctx": {
+     "status": 0,
+     "pc": "0x0",
+     "locked": 0
+    }
+   },
+   "bottle_after_1": 1,
+   "second": {
+    "dialogue": true,
+    "battle": false,
+    "text": [
+     "Use my SQUIRTBOTTLE when you{page}examine the odd tree on ROUTE<FB>36\u3002 Be ready for a battle\uff01"
+    ],
+    "stopped": false,
+    "ctx": {
+     "status": 0,
+     "pc": "0x0",
+     "locked": 0
+    }
+   },
+   "bottle_after_2": 1
+  }
+ },
+ {
+  "scenario": "2b duplicate outdoor NPC also gifts the bottle",
+  "ok": true,
+  "detail": {
+   "text": [
+    "Obtained the SquirtBottle\uff01",
+    "P put away the SquirtBottle{page}in the KEY ITEMS POCKET\u3002",
+    "Use my SQUIRTBOTTLE when you{page}examine the odd tree on ROUTE<FB>36\u3002 Be ready for a battle\uff01"
+   ],
+   "bottle": 1
+  }
+ },
+ {
+  "scenario": "3 tree with badge but no bottle refuses",
+  "ok": true,
+  "detail": {
+   "dialogue": true,
+   "battle": false,
+   "text": [
+    "This tree feels like stone\uff01 Someone{page}near WHITNEY\\'s GYM has a SQUIRTBOTTLE{page}that might help\u3002"
+   ],
+   "stopped": false,
+   "ctx": {
+    "status": 0,
+    "pc": "0x0",
+    "locked": 0
+   },
+   "cleared": false
+  }
+ },
+ {
+  "scenario": "4a the tree shows a plain message, never a YES/NO box",
+  "ok": true,
+  "detail": {
+   "seen": [
+    "You spray the odd tree with the{page}SQUIRTBOTTLE\u3002 It shivers\uff01"
+   ],
+   "before": {
+    "status": 0,
+    "pc": "0x0",
+    "locked": 0
+   },
+   "after": {
+    "status": 0,
+    "pc": "0x8384018",
+    "locked": 1
+   },
+   "battle": true,
+   "cleared": false,
+   "bottle": 1,
+   "no_yesno_prompt": true,
+   "plain_message": true,
+   "after_b": {
+    "status": 0,
+    "pc": "0x8384018",
+    "locked": 1
+   },
+   "battle_after_b": true
+  }
+ },
+ {
+  "scenario": "4b FIXED (was: B cannot answer No): the message clears on B and the battle follows",
+  "ok": true,
+  "detail": {
+   "seen": [
+    "You spray the odd tree with the{page}SQUIRTBOTTLE\u3002 It shivers\uff01"
+   ],
+   "before": {
+    "status": 0,
+    "pc": "0x0",
+    "locked": 0
+   },
+   "after": {
+    "status": 0,
+    "pc": "0x8384018",
+    "locked": 1
+   },
+   "battle": true,
+   "cleared": false,
+   "bottle": 1,
+   "no_yesno_prompt": true,
+   "plain_message": true,
+   "after_b": {
+    "status": 0,
+    "pc": "0x8384018",
+    "locked": 1
+   },
+   "battle_after_b": true
+  }
+ },
+ {
+  "scenario": "5a accept -> wild battle, species/level/moves/IVs/no Metamon",
+  "ok": true,
+  "detail": {
+   "prompt": [
+    "You spray the odd tree with the{page}SQUIRTBOTTLE\u3002 It shivers\uff01"
+   ],
+   "enemy": {
+    "species": 185,
+    "level": 20,
+    "hp": 64,
+    "maxhp": 64,
+    "item": 0,
+    "ability": 69,
+    "attack": 51,
+    "moves": [
+     88,
+     102,
+     175,
+     67
+    ],
+    "pp": [
+     24,
+     16,
+     24,
+     32
+    ],
+    "ivs": [
+     31,
+     31,
+     31,
+     31,
+     31,
+     31
+    ]
+   },
+   "battle_type_flags": 4,
+   "metamon_arena": 0,
+   "metamon_fault": 0,
+   "metamon_decisions": 0,
+   "party_size": 6
+  }
+ },
+ {
+  "scenario": "5b win clears the tree, flag persists, no respawn on re-entry, bottle taken back (P3)",
+  "ok": true,
+  "detail": {
+   "outcome": 1,
+   "cleared": true,
+   "steps": 128,
+   "bottle_after": 0,
+   "revisit": {
+    "dialogue": false,
+    "battle": false,
+    "text": [],
+    "stopped": false,
+    "ctx": {
+     "status": 0,
+     "pc": "0x0",
+     "locked": 0
+    }
+   },
+   "post_battle_text": "",
+   "tree_sprite_removed": true,
+   "screen_with_tree": "3148cb4f",
+   "screen_after": "929f009c"
+  }
+ },
+ {
+  "scenario": "6 running away keeps the Sudowoodo, the flag unset and the player free",
+  "ok": true,
+  "detail": {
+   "outcome": 4,
+   "back_to_field_after": 0,
+   "settled": true,
+   "steps": {
+    "after_fight": {
+     "status": 0,
+     "pc": "0x8384018",
+     "locked": 1
+    },
+    "after_return": {
+     "status": 0,
+     "pc": "0x8384018",
+     "locked": 1
+    },
+    "after_300_idle": {
+     "status": 0,
+     "pc": "0x0",
+     "locked": 0
+    },
+    "after_drain": {
+     "status": 0,
+     "pc": "0x0",
+     "locked": 0
+    },
+    "before_reprompt": {
+     "status": 0,
+     "pc": "0x0",
+     "locked": 0
+    }
+   },
+   "cleared": false,
+   "moved_down": [
+    [
+     39,
+     21
+    ],
+    [
+     39,
+     27
+    ]
+   ],
+   "bottle": 1,
+   "re_prompt": [
+    "You spray the odd tree with the{page}SQUIRTBOTTLE\u3002 It shivers\uff01"
+   ],
+   "re_prompt_stopped": true
+  }
+ },
+ {
+  "scenario": "7 catching Sudowoodo (B_OUTCOME_CAUGHT) clears the obstruction and takes the bottle back (P3)",
+  "ok": true,
+  "detail": {
+   "balls_thrown": 1,
+   "back_to_overworld_after": 283,
+   "outcome": 7,
+   "cleared": true,
+   "party": [
+    227,
+    242,
+    344,
+    51,
+    94,
+    245
+   ],
+   "in_storage": true,
+   "bottle": 0,
+   "revisit": []
+  }
+ },
+ {
+  "scenario": "8 triggers disabled: scripts inert, no soft-lock",
+  "ok": true,
+  "detail": {
+   "shop": {
+    "dialogue": false,
+    "battle": false,
+    "text": [],
+    "stopped": false,
+    "ctx": {
+     "status": 0,
+     "pc": "0x0",
+     "locked": 0
+    }
+   },
+   "shop_bottle": 0,
+   "tree": {
+    "dialogue": false,
+    "battle": false,
+    "text": [],
+    "stopped": false,
+    "ctx": {
+     "status": 0,
+     "pc": "0x0",
+     "locked": 0
+    }
+   },
+   "battle": false,
+   "controls_locked": 0,
+   "walked": true,
+   "walk": [
+    [
+     39,
+     21
+    ],
+    [
+     39,
+     27
+    ]
+   ]
+  }
+ },
+ {
+  "scenario": "9 6 mons + 8 badges is still a plain wild battle (no Metamon)",
+  "ok": true,
+  "detail": {
+   "flags": 4,
+   "arena": 0,
+   "fault": 0,
+   "party": 6,
+   "enemy": {
+    "species": 185,
+    "level": 20,
+    "hp": 64,
+    "maxhp": 64,
+    "item": 0,
+    "ability": 69,
+    "attack": 51,
+    "moves": [
+     88,
+     102,
+     175,
+     67
+    ],
+    "pp": [
+     24,
+     16,
+     24,
+     32
+    ],
+    "ivs": [
+     31,
+     31,
+     31,
+     31,
+     31,
+     31
+    ]
+   },
+   "decisions": 0,
+   "fault_after_turn": 0
+  }
+ },
+ {
+  "scenario": "9b post-battle flag with 8 badges",
+  "ok": true,
+  "detail": {
+   "cleared": true,
+   "outcome": 1
+  }
+ },
+ {
+  "scenario": "10 CONTROL: B is equally inert on a vanilla YES/NO box",
+  "ok": true,
+  "detail": {
+   "text": [
+    "OAK: Before you head to LANCE, I\\'ve{page}prepared an ADV OU team for you\u3002<FB>Would you like to receive it\uff1f"
+   ],
+   "stopped": true,
+   "before_b": {
+    "status": 1,
+    "pc": "0x8321e1e",
+    "locked": 1
+   },
+   "after_b": {
+    "status": 1,
+    "pc": "0x8321e21",
+    "locked": 1
+   }
+  }
+ },
+ {
+  "scenario": "11 FIXED (was: ability re-rolled): three attempts give one Sudowoodo",
+  "ok": true,
+  "detail": {
+   "ability_ids": [
+    69,
+    69,
+    69
+   ],
+   "species": [
+    185,
+    185,
+    185
+   ],
+   "moves": [
+    [
+     88,
+     102,
+     175,
+     67
+    ],
+    [
+     88,
+     102,
+     175,
+     67
+    ],
+    [
+     88,
+     102,
+     175,
+     67
+    ]
+   ],
+   "levels": [
+    20,
+    20,
+    20
+   ]
+  }
+ }
+]
