@@ -8,8 +8,9 @@ Rules implemented here (see plastic_ox/agent/TRAINER_TEAMS_V2_REPORT.md):
   (pox_progression.CHECKPOINTS, derived from REGION_PLAN.md, the story manifest
   and the Part 1 encounter audit);
 * levels at or a couple below the story level cap for that checkpoint;
-* competitive tier unlocked at that checkpoint or lower;
-* moves taken from plastic_ox/gen3_movesets.json where that tier's dex has the
+* opening routes before Rustboro use level-up moves without held items or
+  competitive EV, IV, and nature selections;
+* later moves taken from plastic_ox/gen3_movesets.json where that tier's dex has the
   species, otherwise derived from the species' legal learnset at that level.
   Every move is re-checked against src/data/pokemon/all_learnables.json and the
   level-up learnsets, and illegal moves are substituted and recorded.
@@ -57,15 +58,24 @@ ROSTERS: dict[str, tuple[str, list[tuple[str, int]]]] = {
     "TRAINER_PLASTIC_OX_ROUTE29": ("route29", [
         ("SPECIES_SENTRET", 5), ("SPECIES_PIDGEY", 4), ("SPECIES_NIDORAN_F", 4),
         ("SPECIES_NIDORAN_M", 4), ("SPECIES_MAREEP", 5), ("SPECIES_SPINARAK", 4)]),
+    "TRAINER_PLASTIC_OX_ROUTE29_ELLA": ("route29", [
+        ("SPECIES_HOOTHOOT", 5), ("SPECIES_HOPPIP", 4), ("SPECIES_RATTATA", 4),
+        ("SPECIES_SPEAROW", 4), ("SPECIES_WOOPER", 5), ("SPECIES_SURSKIT", 4)]),
     "TRAINER_PLASTIC_OX_ROUTE1": ("route2south", [
         ("SPECIES_MANKEY", 6), ("SPECIES_EKANS", 6), ("SPECIES_GROWLITHE", 6),
         ("SPECIES_VULPIX", 5), ("SPECIES_MEOWTH", 5), ("SPECIES_SLOWPOKE", 6)]),
     "TRAINER_PLASTIC_OX_ROUTE31": ("route2north", [
-        ("SPECIES_LARVITAR", 9), ("SPECIES_ARON", 9), ("SPECIES_BALTOY", 8),
+        ("SPECIES_VENONAT", 9), ("SPECIES_ARON", 9), ("SPECIES_BALTOY", 8),
         ("SPECIES_SPOINK", 8), ("SPECIES_RALTS", 8), ("SPECIES_VOLTORB", 9)]),
     "TRAINER_PLASTIC_OX_ROUTE_ILEX": ("ilex", [
         ("SPECIES_PARAS", 8), ("SPECIES_VENONAT", 8), ("SPECIES_NINCADA", 8),
         ("SPECIES_ODDISH", 7), ("SPECIES_EXEGGCUTE", 8), ("SPECIES_PINECO", 7)]),
+    "TRAINER_PLASTIC_OX_ROUTE_ILEX_FINN": ("ilex", [
+        ("SPECIES_SPINARAK", 8), ("SPECIES_PARAS", 8), ("SPECIES_WURMPLE", 7),
+        ("SPECIES_VENONAT", 8), ("SPECIES_NINCADA", 7), ("SPECIES_PINECO", 8)]),
+    "TRAINER_PLASTIC_OX_ROUTE_ILEX_MAYA": ("ilex", [
+        ("SPECIES_HOOTHOOT", 9), ("SPECIES_ODDISH", 8), ("SPECIES_EXEGGCUTE", 8),
+        ("SPECIES_SUNKERN", 8), ("SPECIES_WOOPER", 8), ("SPECIES_SHUPPET", 9)]),
     "TRAINER_PLASTIC_OX_ROUTE46": ("route46", [
         ("SPECIES_MACHOP", 6), ("SPECIES_GEODUDE", 6), ("SPECIES_SANDSHREW", 6),
         ("SPECIES_BAGON", 6), ("SPECIES_NUMEL", 5), ("SPECIES_PHANPY", 6)]),
@@ -73,7 +83,7 @@ ROSTERS: dict[str, tuple[str, list[tuple[str, int]]]] = {
         ("SPECIES_ONIX", 7), ("SPECIES_GEODUDE", 6), ("SPECIES_LARVITAR", 7),
         ("SPECIES_MACHOP", 6), ("SPECIES_SANDSHREW", 6), ("SPECIES_BAGON", 6)]),
     "TRAINER_PLASTIC_OX_ROUTE104": ("route2north", [
-        ("SPECIES_ONIX", 10), ("SPECIES_GEODUDE", 9), ("SPECIES_LARVITAR", 10),
+        ("SPECIES_ONIX", 10), ("SPECIES_GEODUDE", 9), ("SPECIES_RHYHORN", 10),
         ("SPECIES_ARON", 9), ("SPECIES_SNORUNT", 9), ("SPECIES_ZUBAT", 9)]),
     "TRAINER_PLASTIC_OX_ROUTE24": ("route24", [
         ("SPECIES_CLEFFA", 10), ("SPECIES_SNUBBULL", 10), ("SPECIES_SPOINK", 11),
@@ -302,6 +312,9 @@ SIGNATURE_EXCEPTIONS = {
     "TRAINER_PLASTIC_OX_KIMONOESPEON": ["SPECIES_ESPEON"],
     "TRAINER_PLASTIC_OX_KIMONOUMBREON": ["SPECIES_UMBREON"],
 }
+
+OPENING_CHECKPOINTS = {"start", "route103", "route29", "route2south",
+                       "ilex", "route2north", "route46"}
 
 # ---------------------------------------------------------------------------
 # Set construction
@@ -538,6 +551,10 @@ def legalise_moves(species: str, level: int, moves: list[str],
 
 def build_mon(species: str, level: int, checkpoint: str, salt: int) -> dict:
     """One party slot: a set plus its provenance and any substitutions."""
+    if checkpoint in OPENING_CHECKPOINTS:
+        return {"species": species, "level": level, "simple": True,
+                "set_name": "level-up moves", "set_source": "opening route",
+                "notes": []}
     dex = P.dex_for_tier(P.tier_at(checkpoint))
     options = P.sets_for(dex, species)
     source = "derived"
@@ -610,6 +627,8 @@ def render_mon(mon: dict) -> str:
     name = mon["species"].removeprefix("SPECIES_").replace("_", "-").title().replace("'", "'")
     name = {"Nidoran-F": "Nidoran♀", "Nidoran-M": "Nidoran♂", "Mr-Mime": "Mr. Mime",
             "Ho-Oh": "Ho-Oh", "Farfetchd": "Farfetch'd"}.get(name, name)
+    if mon.get("simple"):
+        return f"{name}\nLevel: {mon['level']}"
     head = f"{name} @ {mon['item']}" if mon["item"] else name
     lines = [head, f"Level: {mon['level']}"]
     if mon["ability"]:
@@ -654,9 +673,15 @@ def split_block(body: str) -> tuple[list[str], list[str]]:
     return header, mons
 
 
-# A stable per-trainer salt so the set rotation differs between two trainers
-# that share a species.
-TRAINER_SALT = {name: i * 3 for i, name in enumerate(sorted(ROSTERS))}
+# Keep the established competitive set rotation when opening-route trainers
+# are added. Their simple parties do not use the salt, but including their
+# names in the sorted index would reshuffle later trainers' set selections.
+NEW_OPENING_TRAINERS = {"TRAINER_PLASTIC_OX_ROUTE29_ELLA",
+                        "TRAINER_PLASTIC_OX_ROUTE_ILEX_FINN",
+                        "TRAINER_PLASTIC_OX_ROUTE_ILEX_MAYA"}
+TRAINER_SALT = {name: i * 3 for i, name in enumerate(sorted(ROSTERS.keys() - NEW_OPENING_TRAINERS))}
+TRAINER_SALT.update({name: 3 * (len(ROSTERS) - len(NEW_OPENING_TRAINERS) + i)
+                     for i, name in enumerate(sorted(NEW_OPENING_TRAINERS))})
 
 
 def main() -> int:

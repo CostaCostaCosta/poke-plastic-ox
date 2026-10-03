@@ -1,0 +1,70 @@
+{
+  "id": "MAP_ECRUTEAK_CITY_SAGE_OFFICE2_HNS",
+  "name": "EcruteakCity_SageOffice2_hns",
+  "layout": "LAYOUT_ECRUTEAK_CITY_SAGE_OFFICE2_HNS",
+  "music": "MUS_RG_LAVENDER",
+  "region_map_section": "MAPSEC_ECRUTEAK_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_INDOOR",
+  "allow_cycling": false,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [],
+  "object_events": [],
+  "warp_events": [
+    {
+      "x": 4,
+      "y": 15,
+      "elevation": 0,
+      "dest_map": "MAP_ECRUTEAK_CITY_SAGE_OFFICE1_HNS",
+      "dest_warp_id": "1"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 10,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PoxEcruteak_EcruteakCity_SageOffice2_hns_Sign0"
+    },
+    {
+      "type": "sign",
+      "x": 7,
+      "y": 14,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PoxEcruteak_EcruteakCity_SageOffice2_hns_Sign1"
+    },
+    {
+      "type": "sign",
+      "x": 1,
+      "y": 14,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PoxEcruteak_EcruteakCity_SageOffice2_hns_Sign2"
+    },
+    {
+      "type": "sign",
+      "x": 1,
+      "y": 10,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PoxEcruteak_EcruteakCity_SageOffice2_hns_Sign3"
+    },
+    {
+      "type": "sign",
+      "x": 1,
+      "y": 6,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PoxEcruteak_EcruteakCity_SageOffice2_hns_Sign4"
+    }
+  ],
+  "region": "REGION_HOENN"
+}

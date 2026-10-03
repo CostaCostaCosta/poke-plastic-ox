@@ -932,14 +932,20 @@
 #define TRAINER_PLASTIC_OX_MOON_TEAM_ROCKET_GRUNT_3 923
 #define TRAINER_PLASTIC_OX_MOON_TEAM_ROCKET_GRUNT_4 924
 #define TRAINER_PLASTIC_OX_MOON_YOUNGSTER_JOSH 925
+#define TRAINER_PLASTIC_OX_ROUTE2_BEN 926
+#define TRAINER_PLASTIC_OX_ROUTE2_WADE 927
+#define TRAINER_PLASTIC_OX_ROUTE2_HALEY 928
+#define TRAINER_PLASTIC_OX_ROUTE29_ELLA 929
+#define TRAINER_PLASTIC_OX_ROUTE_ILEX_FINN 930
+#define TRAINER_PLASTIC_OX_ROUTE_ILEX_MAYA 931
 // End Plastic Ox story trainers.
 
 // Plastic Ox trainer victories above ID 856 use the reserved general flags in
 // constants/flags.h, preserving the original system-flag and save-block layout.
 // Keep new IDs below the end of that reserved range.
 
-#define TRAINERS_COUNT_EMERALD 926
-#define MAX_TRAINERS_COUNT_EMERALD 926
+#define TRAINERS_COUNT_EMERALD 932
+#define MAX_TRAINERS_COUNT_EMERALD 932
 
 #if IS_FRLG
 #define TRAINERS_COUNT                      TRAINERS_COUNT_FRLG

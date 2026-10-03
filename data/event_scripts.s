@@ -701,15 +701,6 @@ gStdScripts_End::
 	.include "data/maps/PokemonMansion_2F_Frlg/scripts.inc"
 	.include "data/maps/PokemonMansion_3F_Frlg/scripts.inc"
 	.include "data/maps/PokemonMansion_B1F_Frlg/scripts.inc"
-	.include "data/maps/SafariZone_Center_Frlg/scripts.inc"
-	.include "data/maps/SafariZone_East_Frlg/scripts.inc"
-	.include "data/maps/SafariZone_North_Frlg/scripts.inc"
-	.include "data/maps/SafariZone_West_Frlg/scripts.inc"
-	.include "data/maps/SafariZone_Center_RestHouse_Frlg/scripts.inc"
-	.include "data/maps/SafariZone_East_RestHouse_Frlg/scripts.inc"
-	.include "data/maps/SafariZone_North_RestHouse_Frlg/scripts.inc"
-	.include "data/maps/SafariZone_West_RestHouse_Frlg/scripts.inc"
-	.include "data/maps/SafariZone_SecretHouse_Frlg/scripts.inc"
 	.include "data/maps/CeruleanCave_1F_Frlg/scripts.inc"
 	.include "data/maps/CeruleanCave_2F_Frlg/scripts.inc"
 	.include "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
@@ -940,9 +931,7 @@ gStdScripts_End::
 	.include "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
 	.include "data/maps/CeladonCity_House1_Frlg/scripts.inc"
 	.include "data/maps/CeladonCity_Hotel_Frlg/scripts.inc"
-	.include "data/maps/FuchsiaCity_SafariZone_Entrance_Frlg/scripts.inc"
 	.include "data/maps/FuchsiaCity_Mart_Frlg/scripts.inc"
-	.include "data/maps/FuchsiaCity_SafariZone_Office_Frlg/scripts.inc"
 	.include "data/maps/FuchsiaCity_Gym_Frlg/scripts.inc"
 	.include "data/maps/FuchsiaCity_House1_Frlg/scripts.inc"
 	.include "data/maps/FuchsiaCity_PokemonCenter_1F_Frlg/scripts.inc"
@@ -1072,6 +1061,30 @@ gStdScripts_End::
 	.include "data/scripts/flavor_text.inc"
 	.include "data/scripts/pkmn_center_nurse_frlg.inc"
 
+.endif
+
+.if !IS_FRLG
+	@ Kanto maps explicitly opted into the Emerald Plastic Ox region.
+	.include "data/scripts/plastic_ox_kanto_maps.inc"
+	.include "data/scripts/fame_checker_frlg.inc"
+	.include "data/text/fame_checker_frlg.inc"
+	.include "data/scripts/item_ball_scripts_frlg.inc"
+	.include "data/scripts/silphco_doors.inc"
+	.include "data/scripts/move_tutors_frlg.inc"
+	.include "data/scripts/cable_club_frlg.inc"
+	.include "data/scripts/trainer_card_frlg.inc"
+	.include "data/text/trainer_card_frlg.inc"
+	.include "data/scripts/mystery_event_club.inc"
+	.include "data/scripts/day_care_frlg.inc"
+	.include "data/text/day_care_frlg.inc"
+	.include "data/scripts/seagallop.inc"
+	.include "data/scripts/static_pokemon.inc"
+	.include "data/scripts/aide.inc"
+	.include "data/scripts/trainers_frlg.inc"
+	.include "data/text/trainers_frlg.inc"
+	.include "data/text/ingame_trade_frlg.inc"
+	.include "data/scripts/pkmn_center_nurse_frlg.inc"
+	.include "data/scripts/plastic_ox_kanto_extra_text.inc"
 .endif
 
 	.include "data/scripts/std_msgbox.inc"
@@ -1955,3 +1968,23 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/GoldenrodCity_UndergroundTunnel_hns/scripts.inc"
 
 	.include "data/scripts/plastic_ox_goldenrod.inc"
+
+	.include "data/maps/EcruteakCity_Gym_hns/scripts.inc"
+
+	.include "data/maps/EcruteakCity_House1_hns/scripts.inc"
+
+	.include "data/maps/EcruteakCity_House2_hns/scripts.inc"
+
+	.include "data/maps/EcruteakCity_Mart_hns/scripts.inc"
+
+	.include "data/maps/EcruteakCity_PokemonCenter_hns/scripts.inc"
+
+	.include "data/maps/EcruteakCity_SageOffice1_hns/scripts.inc"
+
+	.include "data/maps/EcruteakCity_SageOffice2_hns/scripts.inc"
+
+	.include "data/maps/EcruteakCity_Theater_hns/scripts.inc"
+
+	.include "data/maps/Gate_EcruteakCity_Route38_hns/scripts.inc"
+
+	.include "data/maps/Gate_EcruteakCity_Route42_hns/scripts.inc"

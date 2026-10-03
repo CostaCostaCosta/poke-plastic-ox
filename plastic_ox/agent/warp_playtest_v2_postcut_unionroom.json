@@ -1,0 +1,732 @@
+{
+ "generated": "2026-10-02 11:25:19",
+ "head": "07fa6a3a36",
+ "rom": "/home/eddie/repos/poke-plastic-ox/pokeemerald.gba",
+ "rom_sha256": "c1fb0b62922ac24e028c3ca59cf103d38a71b0d3bd3592eb87c3ed975e7ba2e9",
+ "maps": [
+  "CinnabarIsland_PokemonCenter_2F_Frlg",
+  "FuchsiaCity_PokemonCenter_2F_Frlg",
+  "UnionRoom",
+  "UnionRoom_Frlg"
+ ],
+ "map_count": 4,
+ "warp_count": 9,
+ "connection_count": 0,
+ "static": {
+  "warps": [
+   {
+    "map": "CinnabarIsland_PokemonCenter_2F_Frlg",
+    "warp": 0,
+    "src_xy": [
+     1,
+     6
+    ],
+    "src_elevation": 4,
+    "dest_map": "MAP_CINNABAR_ISLAND_POKEMON_CENTER_1F",
+    "dest_warp_id": "3",
+    "issues": [],
+    "src_behavior": "MB_DOWN_ESCALATOR",
+    "class": "internal",
+    "dest_name": "CinnabarIsland_PokemonCenter_1F_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     1,
+     6
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_UP_ESCALATOR",
+    "dest_elevation": 4,
+    "dest_exits": [
+     "RIGHT"
+    ],
+    "approaches": [
+     "LEFT"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonCenter_2F_Frlg",
+    "warp": 1,
+    "src_xy": [
+     5,
+     1
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_UNION_ROOM_FRLG",
+    "dest_warp_id": "0",
+    "issues": [],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "class": "dynamic_return",
+    "dest_name": "UnionRoom_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     7,
+     11
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_BRIDGE_OVER_OCEAN",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonCenter_2F_Frlg",
+    "warp": 2,
+    "src_xy": [
+     9,
+     1
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_TRADE_CENTER_FRLG",
+    "dest_warp_id": "0",
+    "issues": [],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "class": "dynamic_return",
+    "dest_name": "TradeCenter_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     5,
+     8
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_PokemonCenter_2F_Frlg",
+    "warp": 0,
+    "src_xy": [
+     1,
+     6
+    ],
+    "src_elevation": 4,
+    "dest_map": "MAP_FUCHSIA_CITY_POKEMON_CENTER_1F",
+    "dest_warp_id": "3",
+    "issues": [],
+    "src_behavior": "MB_DOWN_ESCALATOR",
+    "class": "internal",
+    "dest_name": "FuchsiaCity_PokemonCenter_1F_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     1,
+     6
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_UP_ESCALATOR",
+    "dest_elevation": 4,
+    "dest_exits": [
+     "RIGHT"
+    ],
+    "approaches": [
+     "LEFT"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_PokemonCenter_2F_Frlg",
+    "warp": 1,
+    "src_xy": [
+     5,
+     1
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_UNION_ROOM_FRLG",
+    "dest_warp_id": "0",
+    "issues": [],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "class": "dynamic_return",
+    "dest_name": "UnionRoom_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     7,
+     11
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_BRIDGE_OVER_OCEAN",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_PokemonCenter_2F_Frlg",
+    "warp": 2,
+    "src_xy": [
+     9,
+     1
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_TRADE_CENTER_FRLG",
+    "dest_warp_id": "0",
+    "issues": [],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "class": "dynamic_return",
+    "dest_name": "TradeCenter_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     5,
+     8
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "UnionRoom",
+    "warp": 0,
+    "src_xy": [
+     7,
+     11
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_DYNAMIC",
+    "dest_warp_id": "WARP_ID_DYNAMIC",
+    "issues": [],
+    "src_behavior": "MB_BRIDGE_OVER_OCEAN",
+    "class": "dynamic"
+   },
+   {
+    "map": "UnionRoom",
+    "warp": 1,
+    "src_xy": [
+     8,
+     11
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_DYNAMIC",
+    "dest_warp_id": "WARP_ID_DYNAMIC",
+    "issues": [],
+    "src_behavior": "MB_BRIDGE_OVER_OCEAN",
+    "class": "dynamic"
+   },
+   {
+    "map": "UnionRoom_Frlg",
+    "warp": 0,
+    "src_xy": [
+     7,
+     11
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_DYNAMIC",
+    "dest_warp_id": "WARP_ID_DYNAMIC",
+    "issues": [],
+    "src_behavior": "MB_BRIDGE_OVER_OCEAN",
+    "class": "dynamic"
+   }
+  ],
+  "connections": []
+ },
+ "excluded": [],
+ "surf": {
+  "enabled": true,
+  "granted": [
+   true,
+   "surf holder=party[0] waterfall holder=0"
+  ],
+  "warps_walked_on_surf": 0,
+  "returns_walked_on_surf": 0,
+  "seams_walked_on_surf": 0
+ },
+ "dynamic": {
+  "warps": [
+   {
+    "map": "CinnabarIsland_PokemonCenter_2F_Frlg",
+    "warp": 0,
+    "class": "internal",
+    "src_xy": [
+     1,
+     6
+    ],
+    "src_behavior": "MB_DOWN_ESCALATOR",
+    "dest_map": "MAP_CINNABAR_ISLAND_POKEMON_CENTER_1F",
+    "dest_name": "CinnabarIsland_PokemonCenter_1F_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     1,
+     6
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "LEFT",
+     2,
+     6
+    ],
+    "arrived": [
+     46,
+     5
+    ],
+    "arrival_facing": "LEFT",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_UP_ESCALATOR",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "CinnabarIsland_PokemonCenter_1F_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "CinnabarIsland_PokemonCenter_1F_Frlg",
+    "landed_xy": [
+     1,
+     6
+    ],
+    "rest_xy": [
+     2,
+     6
+    ],
+    "post_warp_step": "RIGHT",
+    "notes": [
+     "arrival facing reads as the travel direction LEFT; the player is still completing the warp step off a MB_UP_ESCALATOR"
+    ],
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "LEFT",
+     2,
+     6
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "CinnabarIsland_PokemonCenter_2F_Frlg",
+     1,
+     6
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonCenter_2F_Frlg",
+    "warp": 1,
+    "class": "dynamic_return",
+    "src_xy": [
+     5,
+     1
+    ],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "dest_map": "MAP_UNION_ROOM_FRLG",
+    "dest_name": "UnionRoom_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     7,
+     11
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [],
+    "status": "PARTIAL",
+    "approach": [
+     "UP",
+     5,
+     2
+    ],
+    "arrived": [
+     34,
+     4
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_BRIDGE_OVER_OCEAN",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": null,
+    "shot": null,
+    "expect_name": "UnionRoom_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "UnionRoom_Frlg",
+    "landed_xy": [
+     7,
+     11
+    ],
+    "rest_xy": [
+     7,
+     11
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "notes": [
+     "INCONCLUSIVE return: no side of the return warp UnionRoom_Frlg[0] at (7,11) triggered a warp (tried ['DOWN', 'LEFT', 'RIGHT']; surf: UP@1: (7,12) is off-map; UP@2: (7,13) is off-map; UP@3: (7,14) is off-map)"
+    ],
+    "retried_after_reboot": true
+   },
+   {
+    "map": "CinnabarIsland_PokemonCenter_2F_Frlg",
+    "warp": 2,
+    "class": "dynamic_return",
+    "src_xy": [
+     9,
+     1
+    ],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "dest_map": "MAP_TRADE_CENTER_FRLG",
+    "dest_name": "TradeCenter_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     5,
+     8
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     9,
+     2
+    ],
+    "arrived": [
+     34,
+     1
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "TradeCenter_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "TradeCenter_Frlg",
+    "landed_xy": [
+     5,
+     8
+    ],
+    "rest_xy": [
+     5,
+     8
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     5,
+     7
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "CinnabarIsland_PokemonCenter_2F_Frlg",
+     9,
+     1
+    ]
+   },
+   {
+    "map": "FuchsiaCity_PokemonCenter_2F_Frlg",
+    "warp": 0,
+    "class": "internal",
+    "src_xy": [
+     1,
+     6
+    ],
+    "src_behavior": "MB_DOWN_ESCALATOR",
+    "dest_map": "MAP_FUCHSIA_CITY_POKEMON_CENTER_1F",
+    "dest_name": "FuchsiaCity_PokemonCenter_1F_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     1,
+     6
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "LEFT",
+     2,
+     6
+    ],
+    "arrived": [
+     45,
+     3
+    ],
+    "arrival_facing": "LEFT",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_UP_ESCALATOR",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "FuchsiaCity_PokemonCenter_1F_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "FuchsiaCity_PokemonCenter_1F_Frlg",
+    "landed_xy": [
+     1,
+     6
+    ],
+    "rest_xy": [
+     2,
+     6
+    ],
+    "post_warp_step": "RIGHT",
+    "notes": [
+     "arrival facing reads as the travel direction LEFT; the player is still completing the warp step off a MB_UP_ESCALATOR"
+    ],
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "LEFT",
+     2,
+     6
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "FuchsiaCity_PokemonCenter_2F_Frlg",
+     1,
+     6
+    ]
+   },
+   {
+    "map": "FuchsiaCity_PokemonCenter_2F_Frlg",
+    "warp": 1,
+    "class": "dynamic_return",
+    "src_xy": [
+     5,
+     1
+    ],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "dest_map": "MAP_UNION_ROOM_FRLG",
+    "dest_name": "UnionRoom_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     7,
+     11
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [],
+    "status": "PARTIAL",
+    "approach": [
+     "UP",
+     5,
+     2
+    ],
+    "arrived": [
+     34,
+     4
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_BRIDGE_OVER_OCEAN",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": null,
+    "shot": null,
+    "expect_name": "UnionRoom_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "UnionRoom_Frlg",
+    "landed_xy": [
+     7,
+     11
+    ],
+    "rest_xy": [
+     7,
+     11
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "notes": [
+     "INCONCLUSIVE return: no side of the return warp UnionRoom_Frlg[0] at (7,11) triggered a warp (tried ['DOWN', 'LEFT', 'RIGHT']; surf: UP@1: (7,12) is off-map; UP@2: (7,13) is off-map; UP@3: (7,14) is off-map)"
+    ],
+    "retried_after_reboot": true
+   },
+   {
+    "map": "FuchsiaCity_PokemonCenter_2F_Frlg",
+    "warp": 2,
+    "class": "dynamic_return",
+    "src_xy": [
+     9,
+     1
+    ],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "dest_map": "MAP_TRADE_CENTER_FRLG",
+    "dest_name": "TradeCenter_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     5,
+     8
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     9,
+     2
+    ],
+    "arrived": [
+     34,
+     1
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "TradeCenter_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "TradeCenter_Frlg",
+    "landed_xy": [
+     5,
+     8
+    ],
+    "rest_xy": [
+     5,
+     8
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     5,
+     7
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "FuchsiaCity_PokemonCenter_2F_Frlg",
+     9,
+     1
+    ]
+   },
+   {
+    "map": "UnionRoom",
+    "warp": 0,
+    "class": "dynamic",
+    "src_xy": [
+     7,
+     11
+    ],
+    "src_behavior": "MB_BRIDGE_OVER_OCEAN",
+    "dest_map": "MAP_DYNAMIC",
+    "dest_name": null,
+    "dest_warp": null,
+    "dest_xy": null,
+    "mutual": null,
+    "static_issues": [],
+    "issues": [
+     "MAP_DYNAMIC exit with no reachable door in the closure"
+    ],
+    "status": "UNTESTED",
+    "approach": null,
+    "arrived": null,
+    "arrival_facing": null,
+    "canonical_facing": null,
+    "landing_behavior": null,
+    "landing_walkable": null,
+    "can_move": null,
+    "return_ok": null,
+    "shot": null
+   },
+   {
+    "map": "UnionRoom",
+    "warp": 1,
+    "class": "dynamic",
+    "src_xy": [
+     8,
+     11
+    ],
+    "src_behavior": "MB_BRIDGE_OVER_OCEAN",
+    "dest_map": "MAP_DYNAMIC",
+    "dest_name": null,
+    "dest_warp": null,
+    "dest_xy": null,
+    "mutual": null,
+    "static_issues": [],
+    "issues": [
+     "MAP_DYNAMIC exit with no reachable door in the closure"
+    ],
+    "status": "UNTESTED",
+    "approach": null,
+    "arrived": null,
+    "arrival_facing": null,
+    "canonical_facing": null,
+    "landing_behavior": null,
+    "landing_walkable": null,
+    "can_move": null,
+    "return_ok": null,
+    "shot": null
+   },
+   {
+    "map": "UnionRoom_Frlg",
+    "warp": 0,
+    "class": "dynamic",
+    "src_xy": [
+     7,
+     11
+    ],
+    "src_behavior": "MB_BRIDGE_OVER_OCEAN",
+    "dest_map": "MAP_DYNAMIC",
+    "dest_name": null,
+    "dest_warp": null,
+    "dest_xy": null,
+    "mutual": null,
+    "static_issues": [],
+    "issues": [],
+    "status": "ISSUE",
+    "approach": null,
+    "arrived": [
+     34,
+     4
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_BRIDGE_OVER_OCEAN",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": false,
+    "shot": null,
+    "entrance": [
+     "CinnabarIsland_PokemonCenter_2F_Frlg",
+     1
+    ],
+    "arrived_map": "UnionRoom_Frlg",
+    "landed_xy": [
+     7,
+     11
+    ],
+    "rest_xy": [
+     7,
+     11
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "notes": [
+     "stepping the facility exit warp at (7,11) did not warp"
+    ]
+   }
+  ],
+  "connections": [],
+  "reboots": 2,
+  "elapsed_s": 7.7,
+  "untested": [],
+  "unloadable": []
+ }
+}

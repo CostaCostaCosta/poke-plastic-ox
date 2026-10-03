@@ -36,8 +36,7 @@ EventScript_MoveCompendium::
 
 MoveRelearner_EventScript_CompendiumChoosePkmn:
 	msgbox MoveRelearner_Text_ChoosePkmn, MSGBOX_DEFAULT
-	chooseboxmon SELECT_PC_MON_MOVE_RELEARNER
-	waitstate
+	special ChoosePartyMon
 	goto_if_eq VAR_0x8004, PARTY_NOTHING_CHOSEN, MoveRelearner_EventScript_CloseCompendium
 	special IsSelectedMonEgg
 	goto_if_eq VAR_RESULT, TRUE, MoveRelearner_EventScript_CompendiumCantTeachEgg

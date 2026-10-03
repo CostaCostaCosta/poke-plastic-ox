@@ -4,6 +4,7 @@
   "layout": "LAYOUT_SSANNE_DECK",
   "music": "MUS_RG_SS_ANNE",
   "region": "REGION_KANTO",
+  "include_in_versions": ["emerald"],
   "region_map_section": "MAPSEC_S_S_ANNE",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

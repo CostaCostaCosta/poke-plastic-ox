@@ -135,6 +135,8 @@ def setup(spawn=None):
     g=StoryGame(spawn=spawn);g.run('Pox_Squirtle')
     g.setvar(0x40F9,2)  # Completed fossil choice for topology-only walks.
     for tid in range(857,926):g.flag(0x4A0+tid-857,True)
+    for tid in range(926,931):g.flag(0x4EB+tid-926,True)
+    g.flag(0x4F9,True)
     g.write(g.syms['sWildEncountersDisabled'],1)
     for p in PORTS.values():
         for f in p['requires']:g.flag(f,True)

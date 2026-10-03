@@ -29,6 +29,7 @@ PokemonMansion_2F_EventScript_Arnie::
 	msgbox PokemonMansion_1F_Text_ArniePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 PokemonMansion_Text_PressSecretSwitch::
 	.string "A secret switch!\p"
 	.string "Press it?$"
@@ -38,6 +39,7 @@ PokemonMansion_Text_WhoWouldnt::
 
 PokemonMansion_Text_NotQuiteYet::
 	.string "Not quite yet!$"
+.endif
 
 PokemonMansion_1F_Text_ArnieIntro::
 	.string "I can't get out!\n"
@@ -61,4 +63,3 @@ PokemonMansion_1F_Text_ChristenedDiscoveredMonMew::
 	.string "Diary: July 10\n"
 	.string "We christened the newly discovered\l"
 	.string "POKéMON, MEW.$"
-

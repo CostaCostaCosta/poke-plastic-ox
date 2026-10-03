@@ -1900,11 +1900,10 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
         u32 monIndices[monsCount];
         DoTrainerPartyPool(trainer, monIndices, monsCount, battleTypeFlags);
 
-        // After Mossdeep, opposing trainers match the strongest non-Egg in the player's party.
+        // Every ordinary NPC trainer keeps its authored level or meets the
+        // strongest non-Egg in the player's party, whichever is higher.
         if (party != gParties[B_TRAINER_PLAYER]
-         && !(battleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED))
-         && FlagGet(FLAG_POX_TRIGGERS_ENABLED)
-         && FlagGet(FLAG_BADGE06_GET))
+         && !(battleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED)))
         {
             for (s32 i = 0; i < PARTY_SIZE; i++)
             {
@@ -1949,7 +1948,8 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 otId.value = HIHALF(personalityValue) ^ LOHALF(personalityValue);
             }
             CreateMon(&party[i], partyData[monIndex].species,
-                      highestPlayerLevel ? highestPlayerLevel : partyData[monIndex].lvl,
+                      highestPlayerLevel > partyData[monIndex].lvl
+                          ? highestPlayerLevel : partyData[monIndex].lvl,
                       personalityValue, otId);
             SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[monIndex].heldItem);
 

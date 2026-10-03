@@ -13,6 +13,11 @@ PoxRouteTrainer_Route29::
 	msgbox PoxRouteTrainer_Route29_Text_After, MSGBOX_AUTOCLOSE
 	end
 
+PoxRouteTrainer_Route29Ella::
+	trainerbattle_single TRAINER_PLASTIC_OX_ROUTE29_ELLA, PoxRouteTrainer_Route29Ella_Text_Challenge, PoxRouteTrainer_Route29Ella_Text_Defeat
+	msgbox PoxRouteTrainer_Route29Ella_Text_After, MSGBOX_AUTOCLOSE
+	end
+
 PoxRouteTrainer_Route46::
 	trainerbattle_single TRAINER_PLASTIC_OX_ROUTE46, PoxRouteTrainer_Route46_Text_Challenge, PoxRouteTrainer_Route46_Text_Defeat
 	msgbox PoxRouteTrainer_Route46_Text_After, MSGBOX_AUTOCLOSE
@@ -106,3 +111,12 @@ PoxRouteTrainer_Route29_Text_After::
 	.string "expects me to win every time.\p"
 	.string "I ought to spend less time\n"
 	.string "boasting and more time training.$"
+
+PoxRouteTrainer_Route29Ella_Text_Challenge::
+	.string "My team knows every bend on\n"
+	.string "this trail. Let's battle!$"
+PoxRouteTrainer_Route29Ella_Text_Defeat::
+	.string "You found the winning path!$"
+PoxRouteTrainer_Route29Ella_Text_After::
+	.string "HOOTHOOT keeps watch while the\n"
+	.string "rest of us explore.$"

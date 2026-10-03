@@ -18,38 +18,54 @@ ViridianForest_EventScript_ItemPotion::
 	finditem ITEM_POTION
 	end
 
+.if IS_FRLG
 MtMoon_1F_EventScript_ItemParalyzeHeal::
 	finditem ITEM_PARALYZE_HEAL
 	end
 
+.endif // IS_FRLG
+.if IS_FRLG
 MtMoon_1F_EventScript_ItemTM09::
 	finditem ITEM_TM09
 	end
 
+.endif // IS_FRLG
+.if IS_FRLG
 MtMoon_1F_EventScript_ItemPotion::
 	finditem ITEM_POTION
 	end
 
+.endif // IS_FRLG
+.if IS_FRLG
 MtMoon_1F_EventScript_ItemRareCandy::
 	finditem ITEM_RARE_CANDY
 	end
 
+.endif // IS_FRLG
+.if IS_FRLG
 MtMoon_1F_EventScript_ItemEscapeRope::
 	finditem ITEM_ESCAPE_ROPE
 	end
 
+.endif // IS_FRLG
+.if IS_FRLG
 MtMoon_1F_EventScript_ItemMoonStone::
 	finditem ITEM_MOON_STONE
 	end
 
+.endif // IS_FRLG
+.if IS_FRLG
 MtMoon_B2F_EventScript_ItemStarPiece::
 	finditem ITEM_STAR_PIECE
 	end
 
+.endif // IS_FRLG
+.if IS_FRLG
 MtMoon_B2F_EventScript_ItemTM46::
 	finditem ITEM_TM46
 	end
 
+.endif // IS_FRLG
 Route4_EventScript_ItemTM05::
 	finditem ITEM_TM05
 	end
@@ -178,50 +194,6 @@ Route15_EventScript_ItemTM18::
 	finditem ITEM_TM18
 	end
 
-SafariZone_Center_EventScript_ItemNugget::
-	finditem ITEM_NUGGET
-	end
-
-SafariZone_East_EventScript_ItemMaxPotion::
-	finditem ITEM_MAX_POTION
-	end
-
-SafariZone_East_EventScript_ItemFullRestore::
-	finditem ITEM_FULL_RESTORE
-	end
-
-SafariZone_East_EventScript_ItemTM11::
-	finditem ITEM_TM11
-	end
-
-SafariZone_East_EventScript_ItemLeafStone::
-	finditem ITEM_LEAF_STONE
-	end
-
-SafariZone_North_EventScript_ItemProtein::
-	finditem ITEM_PROTEIN
-	end
-
-SafariZone_North_EventScript_ItemTM47::
-	finditem ITEM_TM47
-	end
-
-SafariZone_West_EventScript_ItemTM32::
-	finditem ITEM_TM32
-	end
-
-SafariZone_West_EventScript_ItemGoldTeeth::
-	finditem ITEM_GOLD_TEETH
-	end
-
-SafariZone_West_EventScript_ItemMaxPotion::
-	finditem ITEM_MAX_POTION
-	end
-
-SafariZone_West_EventScript_ItemMaxRevive::
-	finditem ITEM_MAX_REVIVE
-	end
-
 SilphCo_3F_EventScript_ItemHyperPotion::
 	finditem ITEM_HYPER_POTION
 	end
@@ -298,14 +270,18 @@ PowerPlant_EventScript_ItemElixir::
 	finditem ITEM_ELIXIR
 	end
 
+.if IS_FRLG
 PokemonMansion_1F_EventScript_ItemCarbos::
 	finditem ITEM_CARBOS
 	end
 
+.endif // IS_FRLG
+.if IS_FRLG
 PokemonMansion_1F_EventScript_ItemEscapeRope::
 	finditem ITEM_ESCAPE_ROPE
 	end
 
+.endif // IS_FRLG
 PokemonMansion_2F_EventScript_ItemCalcium::
 	finditem ITEM_CALCIUM
 	end
@@ -414,14 +390,18 @@ ViridianForest_EventScript_ItemPotion2::
 	finditem ITEM_POTION
 	end
 
+.if IS_FRLG
 MtMoon_B2F_EventScript_ItemRevive::
 	finditem ITEM_REVIVE
 	end
 
+.endif // IS_FRLG
+.if IS_FRLG
 MtMoon_B2F_EventScript_ItemAntidote::
 	finditem ITEM_ANTIDOTE
 	end
 
+.endif // IS_FRLG
 Route11_EventScript_ItemXDefend::
 	finditem ITEM_X_DEFEND
 	end
@@ -458,10 +438,12 @@ SilphCo_11F_EventScript_ItemZinc::
 	finditem ITEM_ZINC
 	end
 
+.if IS_FRLG
 PokemonMansion_1F_EventScript_ItemProtein::
 	finditem ITEM_PROTEIN
 	end
 
+.endif // IS_FRLG
 PokemonMansion_2F_EventScript_ItemZinc::
 	finditem ITEM_ZINC
 	end
@@ -486,6 +468,14 @@ PokemonTower_5F_EventScript_ItemCleanseTag::
 	finditem ITEM_CLEANSE_TAG
 	end
 
+@ Relocated from SafariZone_West_Frlg when the FRLG Safari Zone family was
+@ removed on 2026-10-02. The Warden's GOLD TEETH exchange in
+@ FuchsiaCity_WardensHouse_Frlg still keys off this flag, so the item moves
+@ into the Warden's house rather than dying with the map.
+FuchsiaCity_WardensHouse_EventScript_ItemGoldTeeth::
+	finditem ITEM_GOLD_TEETH
+	end
+
 CeladonCity_EventScript_ItemEther::
 	finditem ITEM_ETHER
 	end
@@ -494,30 +484,36 @@ RocketHideout_B3F_EventScript_ItemBlackGlasses::
 	finditem ITEM_BLACK_GLASSES
 	end
 
-SafariZone_North_EventScript_ItemQuickClaw::
-	finditem ITEM_QUICK_CLAW
-	end
-
+.if IS_FRLG
 SeafoamIslands_1F_EventScript_ItemIceHeal::
 	finditem ITEM_ICE_HEAL
 	end
 
+.endif // IS_FRLG
+.if IS_FRLG
 SeafoamIslands_B1F_EventScript_ItemWaterStone::
 	finditem ITEM_WATER_STONE
 	end
 
+.endif // IS_FRLG
+.if IS_FRLG
 SeafoamIslands_B1F_EventScript_ItemRevive::
 	finditem ITEM_REVIVE
 	end
 
+.endif // IS_FRLG
+.if IS_FRLG
 SeafoamIslands_B2F_EventScript_ItemBigPearl::
 	finditem ITEM_BIG_PEARL
 	end
 
+.endif // IS_FRLG
+.if IS_FRLG
 SeafoamIslands_B4F_EventScript_ItemUltraBall::
 	finditem ITEM_ULTRA_BALL
 	end
 
+.endif // IS_FRLG
 FourIsland_EventScript_ItemStarPiece::
 	finditem ITEM_STAR_PIECE
 	end

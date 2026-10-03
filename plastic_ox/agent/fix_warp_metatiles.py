@@ -99,6 +99,16 @@ REPAIRS = {
     "MeteorFalls_1F_1R": ("MB_NORTH_ARROW_WARP", [(4, 2, (4, 3))]),
 }
 
+# The Route 8 Saffron gate uses two arrow directions in the same layout. The
+# middle lanes already work; preserve each end lane's own artwork while giving
+# its declared warp event the matching arrow behaviour.
+MIXED_REPAIRS = {
+    "Route8_WestEntrance_Frlg": [
+        ("MB_WEST_ARROW_WARP", [(1, 4, (1, 4))]),
+        ("MB_EAST_ARROW_WARP", [(11, 6, (11, 6))]),
+    ],
+}
+
 # Solid tiles that must become walkable floor before they can carry a warp
 # behaviour.  Each entry copies the whole block (metatile + collision +
 # elevation) of the walkable lane in front of the door.
@@ -182,12 +192,11 @@ def main():
     tilesets = {}
     log = []
 
-    for name in sorted(set(PATCH) | set(REPAIRS)):
+    for name in sorted(set(PATCH) | set(REPAIRS) | set(MIXED_REPAIRS)):
         data = maps[name]
         layout = layouts[data["layout"]]
         version = layout.get("layout_version", "emerald")
-        behavior = BEH[REPAIRS[name][0]] if name in REPAIRS else None
-        targets = REPAIRS.get(name, (None, ()))[1]
+        repair_sets = ([REPAIRS[name]] if name in REPAIRS else []) + MIXED_REPAIRS.get(name, [])
         blocks = Blocks(layout)
 
         def get(key):
@@ -227,42 +236,44 @@ def main():
         if CARVE.get(name):
             blocks.save()
 
-        for x, y, (sx, sy) in targets:
-            metatile, owner, index = cell(x, y)
-            art_block = blocks.get(sx, sy)
-            if owner.attr(index) & owner.mask == behavior:
-                # Already the right behaviour; still copy the source lane's
-                # collision bits, which is what makes a carved-out wall tile
-                # standable on a re-run.
-                fixed = (blocks.get(x, y) & ~0x0C00) | (art_block & 0x0C00)
-                if fixed != blocks.get(x, y):
-                    blocks.set(x, y, fixed)
-                    log.append(f"{name} ({x},{y}): collision bits taken from "
-                               f"({sx},{sy})")
-                continue
-            _src_mt, source, source_index = cell(sx, sy)
-            # Always clone into the secondary tileset: an hns/frlg primary is
-            # fixed at 640 metatiles, so a clone there would shift every
-            # secondary metatile id in the layout.
-            try:
-                new_id = get("secondary_tileset").clone(source, source_index, behavior)
-            except struct.error:
-                raise SystemExit(
-                    f"{name} ({x},{y}): cannot clone - source tileset "
-                    f"{source.dir.name} attr entry width {source.size} into "
-                    f"{get('secondary_tileset').dir.name} width "
-                    f"{get('secondary_tileset').size}")
-            old_behavior = owner.attr(index) & owner.mask
-            # A tile carved out of a wall keeps the wall's collision bits unless
-            # they are copied from the lane whose artwork it now uses.
-            # Only the metatile id changes; collision and elevation are taken
-            # from the lane whose artwork the tile now uses.  Building the block
-            # from scratch keeps the old metatile's bits from being OR-ed back
-            # in (709 | 710 == 711).
-            blocks.set(x, y, (art_block & 0xFC00) | new_id)
-            log.append(f"{name} ({x},{y}): metatile {metatile} -> {new_id}, "
-                       f"behaviour {old_behavior} -> {behavior:#x} "
-                       f"(artwork copied from ({sx},{sy}))")
+        for behavior_name, targets in repair_sets:
+            behavior = BEH[behavior_name]
+            for x, y, (sx, sy) in targets:
+                metatile, owner, index = cell(x, y)
+                art_block = blocks.get(sx, sy)
+                if owner.attr(index) & owner.mask == behavior:
+                    # Already the right behaviour; still copy the source lane's
+                    # collision bits, which is what makes a carved-out wall tile
+                    # standable on a re-run.
+                    fixed = (blocks.get(x, y) & ~0x0C00) | (art_block & 0x0C00)
+                    if fixed != blocks.get(x, y):
+                        blocks.set(x, y, fixed)
+                        log.append(f"{name} ({x},{y}): collision bits taken from "
+                                   f"({sx},{sy})")
+                    continue
+                _src_mt, source, source_index = cell(sx, sy)
+                # Always clone into the secondary tileset: an hns/frlg primary is
+                # fixed at 640 metatiles, so a clone there would shift every
+                # secondary metatile id in the layout.
+                try:
+                    new_id = get("secondary_tileset").clone(source, source_index, behavior)
+                except struct.error:
+                    raise SystemExit(
+                        f"{name} ({x},{y}): cannot clone - source tileset "
+                        f"{source.dir.name} attr entry width {source.size} into "
+                        f"{get('secondary_tileset').dir.name} width "
+                        f"{get('secondary_tileset').size}")
+                old_behavior = owner.attr(index) & owner.mask
+                # A tile carved out of a wall keeps the wall's collision bits unless
+                # they are copied from the lane whose artwork it now uses.
+                # Only the metatile id changes; collision and elevation are taken
+                # from the lane whose artwork the tile now uses.  Building the block
+                # from scratch keeps the old metatile's bits from being OR-ed back
+                # in (709 | 710 == 711).
+                blocks.set(x, y, (art_block & 0xFC00) | new_id)
+                log.append(f"{name} ({x},{y}): metatile {metatile} -> {new_id}, "
+                           f"behaviour {old_behavior} -> {behavior:#x} "
+                           f"(artwork copied from ({sx},{sy}))")
         blocks.save()
 
     for ts in tilesets.values():

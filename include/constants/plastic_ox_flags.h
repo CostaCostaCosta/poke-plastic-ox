@@ -3,6 +3,17 @@
 
 #include "constants/plastic_ox_story.h"
 
+// FRLG hidden-item flags need persistent storage in the Emerald build. Their
+// original IDs collide with Hoenn flags, so GetFlagPointer routes this virtual
+// range to SaveBlock3 without changing SaveBlock1's established offsets.
+#define POX_KANTO_HIDDEN_FLAGS_START 0xA00
+#define POX_KANTO_HIDDEN_FLAGS_COUNT 191
+#define POX_KANTO_HIDDEN_FLAGS_END (POX_KANTO_HIDDEN_FLAGS_START + POX_KANTO_HIDDEN_FLAGS_COUNT - 1)
+
+// Both games name an Ultra Ball in Victory Road 1F identically. Keep the
+// imported Kanto item separate from Emerald's original item.
+#define FLAG_POX_KANTO_HIDDEN_ITEM_VICTORY_ROAD_1F_ULTRA_BALL (POX_KANTO_HIDDEN_FLAGS_START + 37)
+
 // Plastic Ox alpha flags (emerald build only).
 //
 // Primary allocation: documented-unused general flags 0x264-0x2BB. The run is
@@ -15,8 +26,8 @@
 #define POX_FLAGS_START 0x264
 
 // Unused daily flags, cleared by the existing RTC daily update. No save resize.
-#define FLAG_POX_DAILY_R29_SITRUS 0x923
-#define FLAG_POX_DAILY_R46_LUM    0x924
+#define FLAG_POX_DAILY_R29_LUM    0x923
+#define FLAG_POX_DAILY_R46_SITRUS 0x924
 #define FLAG_POX_DAILY_R46_LIECHI 0x925
 #define FLAG_POX_DAILY_R44_SALAC  0x926
 #define FLAG_POX_DAILY_R44_PETAYA 0x927

@@ -103,9 +103,9 @@
       "local_id": "LOCALID_ECRUTEK_SILVER",
       "graphics_id": "OBJ_EVENT_GFX_SILVER_HNS",
       "x": 39,
-      "y": 40,
+      "y": 39,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -157,23 +157,65 @@
     {
       "x": 39,
       "y": 47,
-      "elevation": 3,
-      "dest_map": "MAP_POKEMON_CENTER_JOHTO_HNS",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_ECRUTEAK_CITY_POKEMON_CENTER_HNS",
+      "dest_warp_id": "0",
+      "elevation": 0
     },
     {
       "x": 48,
       "y": 40,
-      "elevation": 3,
-      "dest_map": "MAP_MART_JOHTO_HNS",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_ECRUTEAK_CITY_MART_HNS",
+      "dest_warp_id": "0",
+      "elevation": 0
     },
     {
       "x": 19,
       "y": 40,
-      "elevation": 3,
-      "dest_map": "MAP_HOUSE_GENERIC_A_HNS",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_ECRUTEAK_CITY_HOUSE1_HNS",
+      "dest_warp_id": "0",
+      "elevation": 0
+    },
+    {
+      "x": 39,
+      "y": 40,
+      "dest_map": "MAP_ECRUTEAK_CITY_THEATER_HNS",
+      "dest_warp_id": "0",
+      "elevation": 0
+    },
+    {
+      "x": 20,
+      "y": 48,
+      "dest_map": "MAP_ECRUTEAK_CITY_GYM_HNS",
+      "dest_warp_id": "0",
+      "elevation": 0
+    },
+    {
+      "x": 28,
+      "y": 47,
+      "dest_map": "MAP_ECRUTEAK_CITY_HOUSE2_HNS",
+      "dest_warp_id": "0",
+      "elevation": 0
+    },
+    {
+      "x": 39,
+      "y": 22,
+      "dest_map": "MAP_ECRUTEAK_CITY_SAGE_OFFICE1_HNS",
+      "dest_warp_id": "0",
+      "elevation": 0
+    },
+    {
+      "x": 8,
+      "y": 35,
+      "dest_map": "MAP_GATE_ECRUTEAK_CITY_ROUTE38_HNS",
+      "dest_warp_id": "0",
+      "elevation": 0
+    },
+    {
+      "x": 55,
+      "y": 42,
+      "dest_map": "MAP_GATE_ECRUTEAK_CITY_ROUTE42_HNS",
+      "dest_warp_id": "0",
+      "elevation": 0
     }
   ],
   "coord_events": [

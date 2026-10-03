@@ -4,6 +4,7 @@
   "layout": "LAYOUT_CELADON_CITY_DEPARTMENT_STORE_5F",
   "music": "MUS_RG_POKE_CENTER",
   "region": "REGION_KANTO",
+  "include_in_versions": ["emerald"],
   "region_map_section": "MAPSEC_CELADON_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

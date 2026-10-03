@@ -228,6 +228,19 @@ u8 *GetFlagPointer(u16 id)
 {
     if (id == 0)
         return NULL;
+#if !IS_FRLG
+    else if (id >= POX_KANTO_HIDDEN_FLAGS_START && id <= POX_KANTO_HIDDEN_FLAGS_END)
+    {
+        // Older saves used these SaveBlock3 bytes as spare space. Initialize
+        // them on first access so an upgrade does not hide every Kanto item.
+        if (gSaveBlock3Ptr->kantoHiddenItemsMagic != 0x504F5848)
+        {
+            memset(gSaveBlock3Ptr->kantoHiddenItems, 0, sizeof(gSaveBlock3Ptr->kantoHiddenItems));
+            gSaveBlock3Ptr->kantoHiddenItemsMagic = 0x504F5848;
+        }
+        return &gSaveBlock3Ptr->kantoHiddenItems[(id - POX_KANTO_HIDDEN_FLAGS_START) / 8];
+    }
+#endif
     else if (id < SPECIAL_FLAGS_START)
         return &gSaveBlock1Ptr->flags[id / 8];
 #if TESTING

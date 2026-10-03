@@ -16,6 +16,20 @@ For every warp it records, against the map JSON as the oracle:
 * whether the player can immediately step away (softlock probe),
 * the reverse leg, which must land back on the originating warp tile.
 
+Water
+-----
+Some warps can only be reached on the surfboard: the Seafoam Islands
+whirlpools (``MB_*_CURRENT`` tiles that carry the warp event itself) and the
+S.S. Anne's ocean dock sit on water, and some seams are water-to-water.  The
+walker therefore mounts Surf for real when the dry run-up does not exist: it
+grants a party mon that knows Surf and Waterfall plus ``ITEM_SURF_KEY``
+through the engine's own field-script commands (the fixture is a fresh game,
+not a battery save), swims to the run-up tile, steps onto the warp from the
+board and climbs waterfalls by facing ``MB_WATERFALL`` north.  Rows whose surf
+path cannot be built are reported ``UNTESTED`` with the engine's own reason
+(``surf path needed but not reachable: ...``) instead of a bare timeout.
+``--no-surf`` restores the pure on-foot walk.
+
 Usage
 -----
     LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 \
@@ -26,12 +40,17 @@ Usage
     ... --only Goldenrod       # substring filter on map dir names
     ... --limit 40             # first N warps (smoke runs)
     ... --connections-only
+    ... --no-surf              # on-foot only: no Surf/Waterfall expansion
 """
 from __future__ import annotations
 
 import argparse
+import collections
+import hashlib
 import json
 import re
+import struct
+import subprocess
 import sys
 import time
 from pathlib import Path
@@ -96,6 +115,58 @@ DOORISH = {"MB_ANIMATED_DOOR", "MB_NON_ANIMATED_DOOR", "MB_WATER_DOOR",
 # Solid behaviours that are still a legal landing (a hole you fall through is
 # not; these are the ones the engine explicitly supports landing on).
 HOLEISH = {"MB_CRACKED_FLOOR_HOLE", "MB_AQUA_HIDEOUT_WARP", "MB_LAVARIDGE_GYM_1F_WARP"}
+
+
+# ---------------------------------------------------------------------------
+# Surf / Waterfall / whirlpool movement
+# ---------------------------------------------------------------------------
+# The engine numbers (include/constants/moves.h, field_move.h, items.h and
+# global.fieldmap.h):
+MOVE_SURF, MOVE_WATERFALL = 57, 127
+FIELD_MOVE_SURF, FIELD_MOVE_WATERFALL = 4, 7
+ITEM_SURF_KEY = 878
+PARTY_SIZE = 6
+PLAYER_AVATAR_FLAG_SURFING = 1 << 3
+# include/global.fieldmap.h: this port numbers the walkable level 3, not 0.
+# The engine offers Surf from ELEVATION_DEFAULT only, and CanStopSurfing
+# dismounts onto ELEVATION_DEFAULT only, so both the harness's pre-check and
+# its shore search have to use the same number.
+ELEVATION_DEFAULT = 3
+# Metatile behaviours the engine offers the Surf prompt on, transcribed from
+# IsPlayerFacingSurfableFishableWater() (src/field_player_avatar.c).  A tile
+# that is merely "water" (MB_SHALLOW_WATER, bridges) never triggers it.
+SURFACE_BEHAVIORS = {"MB_POND_WATER", "MB_OCEAN_WATER", "MB_INTERIOR_DEEP_WATER",
+                     "MB_DEEP_WATER", "MB_NORTHWARD_CURRENT", "MB_SOUTHWARD_CURRENT"}
+# MB_WATERFALL is climbed with the same A press while surfing north, and the
+# FRLG whirlpools are MB_*_CURRENT tiles that carry the warp event itself, so
+# they are traversed by mounting Surf and stepping onto them.
+WATERFALL_BEHAVIORS = {"MB_WATERFALL"}
+
+
+def is_surface(behavior):
+    return behavior in SURFACE_BEHAVIORS
+
+
+# Metatile behaviours whose warp event the engine actually runs, transcribed
+# from IsWarpMetatileBehavior / IsArrowWarpMetatileBehavior /
+# IsDirectionalStairWarpMetatileBehavior in src/field_control_avatar.c.  A warp
+# event on anything else can never fire, on foot or on the surfboard, so the
+# harness says so instead of blaming the walk.
+WARP_FIRING_BEHAVIORS = {
+    "MB_ANIMATED_DOOR", "MB_NON_ANIMATED_DOOR", "MB_WATER_DOOR",
+    "MB_PETALBURG_GYM_DOOR", "MB_LADDER", "MB_UP_ESCALATOR", "MB_DOWN_ESCALATOR",
+    "MB_LAVARIDGE_B1F_WARP", "MB_LAVARIDGE_GYM_1F_WARP", "MB_AQUA_HIDEOUT_WARP",
+    "MB_MT_PYRE_HOLE", "MB_MOSSDEEP_GYM_WARP", "MB_UNION_ROOM_WARP",
+    "MB_NORTH_ARROW_WARP", "MB_SOUTH_ARROW_WARP", "MB_EAST_ARROW_WARP",
+    "MB_WEST_ARROW_WARP", "MB_DEEP_SOUTH_WARP", "MB_WATER_SOUTH_ARROW_WARP",
+    "MB_UP_RIGHT_STAIR_WARP", "MB_DOWN_RIGHT_STAIR_WARP",
+    "MB_UP_LEFT_STAIR_WARP", "MB_DOWN_LEFT_STAIR_WARP",
+    "MB_ROCK_STAIRS", "MB_SHOAL_CAVE_ENTRANCE", "MB_STAIRS_OUTSIDE_ABANDONED_SHIP",
+}
+
+
+def warp_metatile_can_fire(behavior):
+    return behavior in WARP_FIRING_BEHAVIORS
 
 
 # ---------------------------------------------------------------------------
@@ -423,6 +494,9 @@ class WarpPlaytestMixin:
         self._avatar = self.symbol_address("gPlayerAvatar")
         self._events = self.symbol_address("gObjectEvents")
         self.last_facing_sample = "landing"
+        # Surf kit state, or None when it has not been granted yet.
+        self.surf_kit = None
+        self.last_surf_note = ""
 
     # -- setup ------------------------------------------------------------
     def unlock(self):
@@ -461,6 +535,8 @@ class WarpPlaytestMixin:
         if self.health() is not None or not self._soft_reboot():
             self._hard_reboot()
         self.reboots += 1
+        # A reboot wipes the fixture, so the granted Surf kit has to go too.
+        self.surf_kit = None
         return self.health()
 
     def _soft_reboot(self):
@@ -629,11 +705,11 @@ class WarpPlaytestMixin:
         return False, "warp injection failed"
 
     def step_into(self, direction, expect_key=None, timeout=900, watch=1200,
-                  expect_xy=None):
+                  expect_xy=None, via_surf=False):
         """Hold `direction` until the map changes, then watch the arrival.
 
         Returns (outcome, landed, arrival_facing, rest).
-          outcome        'warped' | 'blocked' | 'timeout'
+          outcome        'warped' | 'blocked' | 'timeout' | 'surf-blocked'
           landed         the engine's warp landing tile, sampled the frame the
                          saveblock location flips
           arrival_facing avatar direction captured on the first frame after the
@@ -647,12 +723,28 @@ class WarpPlaytestMixin:
         warps, Victory Road's short cut, the Route 44 / Mt. Moon cave link),
         where the map id never changes; without the landing tile the harness
         could only ever report those as timeouts.
+
+        `via_surf` makes the step itself a Surf mount: a warp that sits on
+        water (the Seafoam whirlpools, the S.S. Anne's ocean dock) can only be
+        entered from the board, and the engine performs the one-tile step
+        itself when the player confirms the prompt.
         """
         key = DIRKEY[direction]
         start = self.state()
         start_xy = (start["x"], start["y"]) if start else None
         start_cb = self.callback()
-        self.core.set_keys(key)
+        if via_surf:
+            st = self.state()
+            ahead = ((st["x"], st["y"] - 1) if direction == "UP" else None)
+            if ahead is not None and self.live_behavior(*ahead) in WATERFALL_BEHAVIORS:
+                ok, note = self.use_waterfall()
+            else:
+                ok, note = self.mount_surf(direction)
+            self.last_surf_note = note
+            if not ok:
+                return "surf-blocked", None, None, None
+        else:
+            self.core.set_keys(key)
         frames = 0
         outcome = "timeout"
         landed = None
@@ -785,6 +877,395 @@ class WarpPlaytestMixin:
         self.frame(2)
         return moved is not None, before, moved or self.state()
 
+    # -- surf / waterfall kit --------------------------------------------
+    # The harness boots a fresh-game fixture (walklib.boot_test_game), so the
+    # player starts with an empty party and an empty bag: there is no battery
+    # save to edit.  Surf is granted in memory the same way the story scripts
+    # grant it -- through the engine's own field-script commands, so the bag
+    # encryption and the Gen 3 substruct layout stay the engine's business:
+    #
+    #   * a party mon (ScrCmd_createmon) that is taught Surf and Waterfall
+    #     (ScrCmd_setmonmove), because IsFieldMoveUnlocked_Surf *and*
+    #     PartyHasMonWithSurf() both have to be true for the A prompt,
+    #   * ITEM_SURF_KEY in the bag (ScrCmd_additem), because with
+    #     FLAG_POX_TRIGGERS_ENABLED set this ROM unlocks Surf from the key
+    #     item rather than from the Surf Badge (src/field_move.c),
+    #   * FLAG_BADGE07_GET, already set by unlock(), for Waterfall.
+    def script_opcode(self, native):
+        """Index of `native` in gScriptCmdTable (test_story does the same)."""
+        if native not in self.syms:
+            raise KeyError(f"{native} not in the ROM symbol table")
+        table = self.syms["gScriptCmdTable"]
+        end = self.syms["gScriptCmdTableEnd"]
+        for i in range((end - table) // 4):
+            if self.u32(table + i * 4) & ~0x02000001 == self.syms[native] & ~1:
+                return i
+        raise KeyError(f"no script opcode for {native}")
+
+    def run_bytecode(self, code):
+        """Run a short field-script byte string and return when it ends."""
+        ptr = self.syms["gStringVar4"]
+        for i, b in enumerate(bytes(code) + bytes([2])):  # 2 == ScrCmd_end
+            self.write(ptr + i, b)
+        return self.run(ptr)
+
+    def fieldmove_holder(self, field_move):
+        """Party index of a mon that knows the field move, or PARTY_SIZE.
+
+        This is exactly the engine's own `checkfieldmove` test, so a nonzero
+        result means the A prompt will really appear."""
+        self.write(self.syms["gSpecialVar_Result"], 0xFFFF)
+        opcode = self.script_opcode("ScrCmd_checkfieldmove")
+        self.run_bytecode(bytes([opcode, field_move, 1]))
+        return self.u16(self.syms["gSpecialVar_Result"])
+
+    def grant_surf_kit(self):
+        """Give the fixture player Surf (and Waterfall).  Returns (ok, note)."""
+        if self.surf_kit is not None:
+            return self.surf_kit
+        try:
+            if not self.release_scripts():
+                return False, "field script will not release"
+            if self.u8(self.syms["gPartiesCount"]) == 0:
+                opcode = self.script_opcode("ScrCmd_callnative")
+                code = bytes([opcode]) + struct.pack(
+                    "<I", self.syms["ScrCmd_createmon"] | 1)
+                # side=player, slot=6 (append), species=Squirtle, level=12,
+                # then six fixed IVs (all zero).
+                code += struct.pack("<BBHHI", 0, 6, 7, 12, sum(1 << i for i in range(11, 17)))
+                code += struct.pack("<6H", 0, 0, 0, 0, 0, 0)
+                self.run_bytecode(code)
+            if self.u8(self.syms["gPartiesCount"]) == 0:
+                self.surf_kit = (False, "the ROM refused to build a party mon")
+                return self.surf_kit
+            setmove = self.script_opcode("ScrCmd_setmonmove")
+            moves = [MOVE_SURF, MOVE_WATERFALL, MOVE_SURF, MOVE_SURF]
+            self.run_bytecode(b"".join(bytes([setmove, 0, slot]) + struct.pack("<H", move)
+                                      for slot, move in enumerate(moves)))
+            additem = self.script_opcode("ScrCmd_additem")
+            self.run_bytecode(bytes([additem]) + struct.pack("<HH", ITEM_SURF_KEY, 1))
+            surf = self.fieldmove_holder(FIELD_MOVE_SURF)
+            fall = self.fieldmove_holder(FIELD_MOVE_WATERFALL)
+            if surf >= PARTY_SIZE:
+                self.surf_kit = (False, "Surf is still locked after granting "
+                                        f"ITEM_SURF_KEY and a Surf mon (holder={surf})")
+            else:
+                self.surf_kit = (True, f"surf holder=party[{surf}] waterfall holder={fall}")
+        except Exception as exc:  # pragma: no cover - defensive
+            self.surf_kit = (False, f"could not grant Surf: {exc!r}")
+        return self.surf_kit
+
+    # -- surf state --------------------------------------------------------
+    def surfing(self):
+        """True when the avatar is on the board (PLAYER_AVATAR_FLAG_SURFING)."""
+        try:
+            return bool(self.u8(self._avatar) & PLAYER_AVATAR_FLAG_SURFING)
+        except Exception:
+            return False
+
+    def player_elevation(self):
+        """PlayerGetElevation(): the avatar's previousElevation nibble."""
+        try:
+            object_id = self.u8(self._avatar + 5)
+            return self.u8(self._events + object_id * self._obj_stride + 0x0B) >> 4
+        except Exception:
+            return ELEVATION_DEFAULT
+
+    def mount_surf(self, direction=None, timeout=1500):
+        """Put the player on the surfboard.  Returns (ok, note).
+
+        The engine offers the prompt only when the tile in front is surfable
+        water *and* the player stands at ELEVATION_DEFAULT (IsPlayerFacing-
+        SurfableFishableWater), so the pre-check reports the real reason
+        instead of a silent "did not warp" timeout.  Confirming the Gen 3
+        YES/NO box is done by mashing A, then retrying with the cursor nudged
+        in case the box opened on NO."""
+        if self.surfing():
+            return True, "already surfing"
+        ok, note = self.grant_surf_kit()
+        if not ok:
+            return False, note
+        if not self.release_scripts():
+            return False, "field script will not release"
+        st = self.state()
+        if st is None:
+            return False, "no saveblock"
+        if direction is None:
+            direction = DIR_NAME.get(self.facing())
+        if direction not in DIRS:
+            return False, "the player is not facing a cardinal direction"
+        dx, dy = DIRS[direction]
+        fx, fy = st["x"] + dx, st["y"] + dy
+        behavior = self.live_behavior(fx, fy)
+        if not is_surface(behavior):
+            return False, f"tile ({fx},{fy}) is {behavior}, not surfable water"
+        elevation = self.player_elevation()
+        if elevation != ELEVATION_DEFAULT:
+            return False, (f"the player stands at elevation {elevation}; the engine "
+                           f"only offers Surf from ELEVATION_DEFAULT "
+                           f"({ELEVATION_DEFAULT})")
+        self.tap(DIRKEY[direction], hold=2, wait=4)
+        status = self.syms["sGlobalScriptContextStatus"]
+        start = (st["x"], st["y"])
+        for attempt in range(4):
+            if attempt:
+                # The box can be left on NO; nudge the cursor left and retry.
+                self.tap(DIRKEY["LEFT"], hold=2, wait=6)
+            self.tap(K_A, hold=2, wait=24)
+            boarded = False
+            for _ in range(24):
+                self.frame(30)
+                if self.surfing():
+                    boarded = True
+                    break
+                if self.state() is None or self.u8(status) == 2:
+                    break
+            if not boarded:
+                continue
+            # SurfFieldEffect_Init sets PLAYER_AVATAR_FLAG_SURFING before the
+            # hop, so the flag alone is not "the player is on the board": wait
+            # for the one-tile step onto the water the engine is about to make.
+            for _ in range(30):
+                self.frame(10)
+                now = self.state()
+                if now is None or (now["x"], now["y"]) != start:
+                    break
+            now = self.state()
+            if now is not None and (now["x"], now["y"]) == start:
+                return False, (f"the player mounted but never left ({start[0]},{start[1]})")
+            return True, f"surfing at ({now['x']},{now['y']})"
+        self.release_scripts()
+        return False, (f"the Surf prompt at ({start[0]},{start[1]}) facing {direction} "
+                       f"never put the player on the board")
+
+    def use_waterfall(self, timeout=2400):
+        """Climb an MB_WATERFALL tile from the board.  Returns (ok, note).
+
+        The engine only offers the Waterfall prompt to a player who is already
+        surfing and facing north at a waterfall tile
+        (GetInteractedWaterScript), so this is the Surf prompt's sibling: A,
+        the YES/NO box, then the climb field effect, which is itself the step
+        that carries the player up (and onto whatever warp the climb ends on)."""
+        ok, note = self.grant_surf_kit()
+        if not ok:
+            return False, note
+        if not self.release_scripts():
+            return False, "field script will not release"
+        st = self.state()
+        if st is None:
+            return False, "no saveblock"
+        if not self.surfing():
+            # Waterfall needs the board: mount on any side that offers the
+            # prompt, then climb from wherever the engine put the player.
+            here = (st["x"], st["y"])
+            for d in ("UP", "DOWN", "LEFT", "RIGHT"):
+                dx, dy = DIRS[d]
+                if is_surface(self.live_behavior(here[0] + dx, here[1] + dy) or ""):
+                    ok, note = self.mount_surf(d)
+                    if ok:
+                        break
+            else:
+                return False, (f"the player is not on the board and no neighbouring "
+                               f"tile offers the Surf prompt at {here}")
+            st = self.state()
+            if st is None:
+                return False, "the emulator lost the saveblock"
+        behavior = self.live_behavior(st["x"], st["y"] - 1)
+        if behavior not in WATERFALL_BEHAVIORS:
+            return False, f"the tile north of ({st['x']},{st['y']}) is {behavior}, not a waterfall"
+        self.tap(DIRKEY["UP"], hold=2, wait=4)
+        start = (st["x"], st["y"])
+        status = self.syms["sGlobalScriptContextStatus"]
+        for attempt in range(4):
+            if attempt:
+                self.tap(DIRKEY["LEFT"], hold=2, wait=6)
+            self.tap(K_A, hold=2, wait=24)
+            for _ in range(timeout // 30):
+                self.frame(30)
+                now = self.state()
+                if now is None:
+                    return False, "the emulator lost the saveblock"
+                if (now["x"], now["y"]) != start:
+                    return True, f"climbed to ({now['x']},{now['y']})"
+                if self.u8(status) == 2:
+                    break
+        self.release_scripts()
+        return False, f"the waterfall north of ({start[0]},{start[1]}) never lifted the player"
+
+    def dismount_surf(self, timeout=1200):
+        """Walk back onto ELEVATION_DEFAULT land; the engine does the dismount.
+
+        CanStopSurfing() fires whenever a surfing player is about to step onto
+        an ELEVATION_DEFAULT tile, so the harness only has to hold a direction
+        towards dry ground."""
+        if not self.surfing():
+            return True, ""
+        here = self.state()
+        if here is None:
+            return False, "no saveblock"
+        shore = self.nearest_dry_tile()
+        if shore is None:
+            return False, "no dry land reachable from the surfboard"
+        dx, dy = shore[0] - here["x"], shore[1] - here["y"]
+        # The shore search is a 4-way flood fill, so the tile it returns can be
+        # diagonal from the player, which no single direction key can reach.
+        # Only a cardinally adjacent shore is worth a direct tap; everything
+        # else (multi-tile or diagonal) goes through the live pathfinder, which
+        # only ever emits cardinal steps.
+        if abs(dx) > 1 or abs(dy) > 1 or (dx != 0 and dy != 0):
+            ok, note = self.swim_to(shore[0], shore[1])
+            if ok:
+                return True, "stepped ashore"
+            return False, note
+        direction = next((d for d, v in DIRS.items() if v == (dx, dy)), None)
+        if direction is None:
+            return False, (f"the shore tile {shore} is not one cardinal step from "
+                           f"({here['x']},{here['y']})")
+        self.tap(DIRKEY[direction], hold=2, wait=8)
+        for _ in range(timeout // 20):
+            self.frame(20)
+            if not self.surfing():
+                return True, f"dismounted at {self.state()['x']},{self.state()['y']}"
+        return False, "the player stayed on the surfboard"
+
+    def ensure_footed(self):
+        """Never step into a warp or an injection while still on the board."""
+        if self.surfing():
+            ok, note = self.dismount_surf()
+            if not ok:
+                # A forced dismount is better than a stale surfing flag: the
+                # next injection re-derives the avatar state anyway.
+                self.write(self._avatar, self.u8(self._avatar) & ~PLAYER_AVATAR_FLAG_SURFING)
+                return False, note
+        return True, ""
+
+    # -- grid walking that tolerates water --------------------------------
+    def live_passable(self, x, y, allow_water, elevation=None):
+        walk, elev = self.grid_walkable(x, y)
+        if not walk:
+            return False
+        behavior = self.live_behavior(x, y)
+        if waterish(behavior) and not allow_water:
+            return False
+        if elevation is not None and elevation not in (0, 15) and elev not in (0, 15) \
+                and elev != elevation:
+            return False
+        return True
+
+    def nearest_dry_tile(self):
+        """Closest standable, non-water ELEVATION_DEFAULT tile on the live map.
+
+        ELEVATION_DEFAULT is the only level the engine will let a surfing
+        player step onto (CanStopSurfing), so it is also the only level a
+        dismount target can be on."""
+        st = self.state()
+        if st is None:
+            return None
+        w, h = self.live_size()
+        seen = {(st["x"], st["y"])}
+        queue = collections.deque([(st["x"], st["y"])])
+        while queue:
+            x, y = queue.popleft()
+            behavior = self.live_behavior(x, y)
+            if (x, y) != (st["x"], st["y"]) and not waterish(behavior or "") \
+                    and self.live_passable(x, y, False) \
+                    and self.grid_walkable(x, y)[1] == ELEVATION_DEFAULT:
+                return x, y
+            for dx, dy in DIRS.values():
+                nx, ny = x + dx, y + dy
+                if (nx, ny) in seen or not (0 <= nx < w and 0 <= ny < h):
+                    continue
+                if not self.live_passable(nx, ny, True):
+                    continue
+                seen.add((nx, ny))
+                queue.append((nx, ny))
+        return None
+
+    def _next_step_toward(self, tx, ty):
+        """First tile of a live-grid path to (tx,ty), or None."""
+        st = self.state()
+        if st is None:
+            return None
+        w, h = self.live_size()
+        start = (st["x"], st["y"])
+        if start == (tx, ty):
+            return ()
+        previous = {start: None}
+        queue = collections.deque([start])
+        while queue:
+            x, y = queue.popleft()
+            for direction, (dx, dy) in DIRS.items():
+                nxt = (x + dx, y + dy)
+                if nxt in previous or not (0 <= nxt[0] < w and 0 <= nxt[1] < h):
+                    continue
+                if nxt != (tx, ty) and not self.live_passable(nxt[0], nxt[1], True):
+                    continue
+                previous[nxt] = (x, y)
+                if nxt == (tx, ty):
+                    node = nxt
+                    while previous[node] is not None and previous[node] != start:
+                        node = previous[node]
+                    return None if node == start and nxt == start else (node[0] - start[0],
+                                                                        node[1] - start[1])
+                queue.append(nxt)
+        return None
+
+    def swim_to(self, tx, ty, budget=14):
+        """Walk or surf the player onto (tx,ty).  Returns (ok, note)."""
+        for _ in range(budget):
+            st = self.state()
+            if st is None:
+                return False, "no saveblock"
+            if (st["x"], st["y"]) == (tx, ty):
+                return True, ""
+            delta = self._next_step_toward(tx, ty)
+            if delta is None:
+                return False, f"no walkable path from ({st['x']},{st['y']}) to ({tx},{ty})"
+            direction = next((d for d, v in DIRS.items() if v == delta), None)
+            if direction is None:
+                return False, f"no cardinal step towards ({tx},{ty}) from ({st['x']},{st['y']})"
+            nx, ny = st["x"] + delta[0], st["y"] + delta[1]
+            behavior = self.live_behavior(nx, ny)
+            if waterish(behavior) and not self.surfing():
+                ok, note = self.mount_surf(direction)
+                if not ok:
+                    return False, f"surf needed for ({nx},{ny}): {note}"
+                continue
+            ok, before, after = self.step_one_tile(direction)
+            if not ok or (after["x"], after["y"]) == (before["x"], before["y"]):
+                if waterish(behavior):
+                    ok, note = self.mount_surf(direction)
+                    if ok:
+                        continue
+                return False, (f"blocked walking {direction} from "
+                               f"({before['x']},{before['y']}) onto {behavior} "
+                               f"({nx},{ny})")
+        return False, f"did not reach ({tx},{ty}) within {budget} steps"
+
+    def place_in_water(self, x, y, tries=3):
+        """Get the player onto a water tile (x,y) the way a player would.
+
+        Injects on the nearest dry tile, mounts Surf from the shore and swims
+        the rest of the way, so the run-up is a real mount-and-swim rather than
+        a warp-injection onto water."""
+        if not ALLOW_SURF:
+            return False, "surf expansion disabled (--no-surf)"
+        self.ensure_footed()
+        shore = self.nearest_dry_tile()
+        if shore is None:
+            return False, "no dry land to mount Surf from"
+        st = self.state()
+        here = MAP_NAMES.get((st["group"], st["num"])) if st else None
+        if shore != (x, y):
+            ok, note = self.goto(here, shore[0], shore[1])
+            if not ok:
+                return False, f"goto shore {shore} failed ({note})"
+        ok, note = self.swim_to(x, y)
+        if not ok:
+            return False, note
+        return True, f"surfing at ({x},{y})"
+
+
 
 # ---------------------------------------------------------------------------
 # Dynamic per-warp test
@@ -804,8 +1285,11 @@ APPROACH_FOR_BEHAVIOR = {
 }
 
 
-def static_approaches(name, wx, wy, catalog):
-    """Cardinal directions from which the player can legally stand next to a warp."""
+def static_approaches(name, wx, wy, catalog, allow_water=False):
+    """Cardinal directions from which the player can legally stand next to a warp.
+
+    `allow_water` adds the sides whose approach tile is water: those are only
+    reachable on the surfboard, so they are only tried by the surf pass."""
     geom = geometry(name, catalog)
     if geom is None:
         return ["UP", "DOWN", "LEFT", "RIGHT"]
@@ -819,7 +1303,7 @@ def static_approaches(name, wx, wy, catalog):
         if not (0 <= ax < geom.w and 0 <= ay < geom.h):
             continue
         c2, e2, b2 = geom.tile(ax, ay)
-        if c2 != 0 or waterish(b2):
+        if c2 != 0 or (waterish(b2) and not allow_water):
             continue
         if welev not in (0, 15) and e2 not in (0, 15) and e2 != welev:
             continue
@@ -835,6 +1319,27 @@ def static_approaches(name, wx, wy, catalog):
     return out
 
 
+def static_warp_is_wet(name, wx, wy, catalog):
+    """True when the warp tile itself is water (a whirlpool / ocean dock).
+
+    A warp on MB_*_CURRENT or MB_OCEAN_WATER cannot be entered on foot at
+    all, so the surf pass has to run before the on-foot one."""
+    geom = geometry(name, catalog)
+    if geom is None:
+        return False
+    try:
+        return waterish(geom.tile(wx, wy)[2])
+    except Exception:
+        return False
+
+
+def static_needs_surf(name, wx, wy, catalog):
+    """True when a dry approach does not exist, so only Surf can reach the warp."""
+    if static_warp_is_wet(name, wx, wy, catalog):
+        return True
+    return not static_approaches(name, wx, wy, catalog, allow_water=False)
+
+
 def on_approach_line(ax, ay, wx, wy, direction):
     """True when (ax,ay) is on the correct side of the warp to walk onto it."""
     if direction == "UP":
@@ -846,7 +1351,8 @@ def on_approach_line(ax, ay, wx, wy, direction):
     return ay == wy and ax <= wx - 1
 
 
-def place_for_warp(play, name, wx, wy, direction, distances=(1, 2, 3, 4, 5)):
+def place_for_warp(play, name, wx, wy, direction, distances=(1, 2, 3, 4, 5),
+                   via_surf=False):
     """Stand the player where they can walk `direction` onto the warp.
 
     A script warp makes the engine carry the player one tile in the arrival
@@ -855,6 +1361,13 @@ def place_for_warp(play, name, wx, wy, direction, distances=(1, 2, 3, 4, 5)):
     further back is what a real player does, so the harness tries a short run-up
     and accepts any landing that is still on the correct side of the warp on the
     correct axis.
+
+    `via_surf` reaches the run-up tile on the surfboard when the run-up itself
+    is water: the player is dropped on the nearest dry tile, mounts Surf from
+    the shore and swims the rest of the way.  The fifth element,
+    `step_via_surf`, is True when the step *into* the warp is a Surf mount as
+    well (the warp tile is water entered from dry land); the sixth,
+    `swam`, is True when the run-up itself was reached on the board.
     """
     dx, dy = DIRS[direction]
     width, height = MAP_SIZES.get(name, (128, 128))
@@ -869,10 +1382,17 @@ def place_for_warp(play, name, wx, wy, direction, distances=(1, 2, 3, 4, 5)):
         if not (0 <= ax < width and 0 <= ay < height):
             notes.append(f"{direction}@{dist}: ({ax},{ay}) is off-map")
             continue
-        ok, note = play.goto(name, ax, ay)
-        if not ok:
-            notes.append(f"{direction}@{dist}: goto failed ({note})")
-            continue
+        if via_surf:
+            ok, note = play.place_in_water(ax, ay)
+            if not ok:
+                notes.append(f"{direction}@{dist}: surf run-up failed ({note})")
+                continue
+        else:
+            play.ensure_footed()
+            ok, note = play.goto(name, ax, ay)
+            if not ok:
+                notes.append(f"{direction}@{dist}: goto failed ({note})")
+                continue
         st = play.state()
         if not on_approach_line(st["x"], st["y"], wx, wy, direction):
             notes.append(f"{direction}@{dist}: injected at ({ax},{ay}) but the "
@@ -881,31 +1401,38 @@ def place_for_warp(play, name, wx, wy, direction, distances=(1, 2, 3, 4, 5)):
         if not play.grid_walkable(st["x"], st["y"])[0]:
             notes.append(f"{direction}@{dist}: ({st['x']},{st['y']}) is not walkable")
             continue
-        return direction, st["x"], st["y"], ""
-    return None, None, None, "; ".join(notes[:3])
+        # A water warp entered from dry land can only be stepped onto by
+        # mounting Surf: a player standing on land cannot be on the board, and
+        # on foot the engine refuses the water tile.  From another water tile
+        # the ordinary direction hold is enough, because a surfing player
+        # already ignores water collision.
+        on_water = waterish(play.live_behavior(st["x"], st["y"]) or "")
+        warp_wet = waterish(play.live_behavior(wx, wy) or "")
+        warp_behavior = play.live_behavior(wx, wy) or ""
+        step_via_surf = dist == 1 and (
+            (warp_wet and not on_water) or warp_behavior in WATERFALL_BEHAVIORS)
+        return direction, st["x"], st["y"], "", step_via_surf, via_surf
+    return None, None, None, "; ".join(notes[:3]), False, False
 
 
-def pick_approach(play, name, wx, wy, record, direction_order=None):
-    """Choose a standable approach tile for warp (wx,wy) -> (dir, ax, ay, note)."""
+def pick_approach(play, name, wx, wy, record, direction_order=None, via_surf=False):
+    """Standable run-up for warp (wx,wy).
+
+    Returns (direction, ax, ay, note, step_via_surf, swam)."""
     order = direction_order or record.get("approaches") or ["UP", "DOWN", "LEFT", "RIGHT"]
+    order = list(order) + [o for o in ("UP", "DOWN", "LEFT", "RIGHT") if o not in order]
     notes = []
     for d in order:
-        direction, ax, ay, note = place_for_warp(play, name, wx, wy, d)
+        direction, ax, ay, note, surf, swam = place_for_warp(play, name, wx, wy, d,
+                                                             via_surf=via_surf)
         if direction is None:
             notes.append(f"{d}: {note}")
             continue
         if play.live_behavior(wx, wy) is None:
             notes.append(f"{d}: destination grid not readable at ({wx},{wy})")
             continue
-        return direction, ax, ay, ""
-    rest = [o for o in ("UP", "DOWN", "LEFT", "RIGHT") if o not in order]
-    for d in rest:
-        direction, ax, ay, note = place_for_warp(play, name, wx, wy, d)
-        if direction is None:
-            notes.append(f"{d}: {note}")
-            continue
-        return direction, ax, ay, ""
-    return None, None, None, "; ".join(notes)
+        return direction, ax, ay, "", surf, swam
+    return None, None, None, "; ".join(notes[:3]), False, False
 
 
 def arrival_checks(play, res, landed, facing, rest, expect_key=None, expect_xy=None,
@@ -1014,20 +1541,44 @@ def arrival_checks(play, res, landed, facing, rest, expect_key=None, expect_xy=N
 def try_warp_from_any_side(play, name, wx, wy, catalog, expect_key, expect_xy=None):
     """Walk onto a warp from every legal side until one fires.
 
-    Returns (ok, direction, approach, landed, rest)."""
-    order = static_approaches(name, wx, wy, catalog)
+    Each side is tried on foot first and, when the side or the warp tile is
+    water, again from the surfboard.  Returns
+    (ok, direction, approach, landed, rest, tried, via_surf, note)."""
+    dry = static_approaches(name, wx, wy, catalog)
+    wet = static_approaches(name, wx, wy, catalog, allow_water=True)
+    is_wet = static_warp_is_wet(name, wx, wy, catalog)
+    if ALLOW_SURF and is_wet:
+        # No dry side can work: the warp tile itself is water.
+        order = wet + [d for d in dry if d not in wet]
+    else:
+        order = dry + [d for d in wet if d not in dry]
     order += [d for d in ("UP", "DOWN", "LEFT", "RIGHT") if d not in order]
     tried = []
+    last_note = ""
     for d in order:
-        direction, ax, ay, _note = place_for_warp(play, name, wx, wy, d)
-        if direction is None:
-            continue
-        tried.append(d)
-        outcome, landed, _f, rest = play.step_into(direction, expect_key=expect_key,
-                                                   expect_xy=expect_xy)
-        if outcome == "warped" and landed is not None:
-            return True, direction, (ax, ay), landed, rest, tried
-    return False, None, None, None, None, tried
+        passes = [False]
+        if ALLOW_SURF and (is_wet or (static_needs_surf(name, wx, wy, catalog)
+                                      and d in wet)):
+            passes.append(True)
+        for pass_surf in passes:
+            direction, ax, ay, note, via_surf, swam = place_for_warp(
+                play, name, wx, wy, d, via_surf=pass_surf)
+            if direction is None:
+                if pass_surf:
+                    last_note = note
+                continue
+            if d not in tried:
+                tried.append(d)
+            outcome, landed, _f, rest = play.step_into(direction, expect_key=expect_key,
+                                                       expect_xy=expect_xy,
+                                                       via_surf=via_surf)
+            if outcome == "warped" and landed is not None:
+                return (True, direction, (ax, ay), landed, rest, tried,
+                        via_surf or swam, "")
+            if outcome == "surf-blocked":
+                last_note = play.last_surf_note
+            play.ensure_footed()
+    return False, None, None, None, None, tried, False, last_note
 
 
 def test_one_warp(play, name, index, record, catalog, by_id):
@@ -1060,26 +1611,75 @@ def test_one_warp(play, name, index, record, catalog, by_id):
 
     dx, dy = record["dest_xy"]
     res["expect_name"] = dest_name
-    direction, ax, ay, note = pick_approach(
-        play, name, record["src_xy"][0], record["src_xy"][1],
-        {"approaches": static_approaches(name, record["src_xy"][0],
-                                         record["src_xy"][1], catalog)})
+    wx, wy = record["src_xy"]
+    wet_warp = static_warp_is_wet(name, wx, wy, catalog)
+    needs_surf = static_needs_surf(name, wx, wy, catalog)
+    # A warp the engine's own trigger list does not accept can never fire, so
+    # the harness says that instead of blaming the walk (or the surfboard).
+    dead_metatile = record.get("src_behavior")
+    if dead_metatile is not None and not warp_metatile_can_fire(dead_metatile):
+        dead_reason = (f"the warp tile ({wx},{wy}) is {dead_metatile}, which the "
+                       f"engine's warp trigger (IsWarpMetatileBehavior / TryArrowWarp) "
+                       f"does not accept, so no walk or surf can fire it")
+    else:
+        dead_reason = ""
+    # A warp on water has no dry run-up at all, so the surf pass goes first;
+    # otherwise it is the fallback for the water-locked sides.
+    order = static_approaches(name, wx, wy, catalog, allow_water=wet_warp and ALLOW_SURF)
+    direction, ax, ay, note, via_surf, swam = pick_approach(
+        play, name, wx, wy, {"approaches": order}, via_surf=wet_warp and ALLOW_SURF)
+    if direction is None and ALLOW_SURF and needs_surf and not wet_warp:
+        # Only water-locked warps get the surf retry: for everything else the
+        # dry pass already covered every legal side.
+        direction, ax, ay, note, via_surf, swam = pick_approach(
+            play, name, wx, wy,
+            {"approaches": static_approaches(name, wx, wy, catalog, allow_water=True)},
+            via_surf=True)
     if direction is None:
-        res["status"] = "ISSUE"
-        res["issues"].append(f"no usable approach tile for ({res['src_xy'][0]},"
-                             f"{res['src_xy'][1]}): {note}")
+        if dead_reason:
+            res["status"] = "UNTESTED"
+            res["issues"].append(f"{dead_reason}; approach search also failed: {note}")
+        elif needs_surf and ALLOW_SURF:
+            res["status"] = "UNTESTED"
+            res["issues"].append(
+                f"surf path needed but not reachable for ({wx},{wy}) on {name}: {note}")
+        else:
+            res["status"] = "ISSUE"
+            res["issues"].append(f"no usable approach tile for ({wx},{wy}): {note}")
         res["shot"] = play.shot(f"{name}_{index}_noapproach")
         return res
     res["approach"] = [direction, ax, ay]
+    res["via_surf"] = bool(via_surf)
+    res["approach_via_surf"] = bool(swam)
 
     dst_key = group_ids[dest_name] if dest_name else None
     outcome, landed, afacing, rest = play.step_into(direction, expect_key=dst_key,
-                                                    expect_xy=(dx, dy))
-    if outcome != "warped" or landed is None:
-        res["status"] = "ISSUE"
+                                                    expect_xy=(dx, dy),
+                                                    via_surf=via_surf)
+    if outcome == "surf-blocked":
+        res["status"] = "UNTESTED"
         res["issues"].append(
-            f"stepping {direction} from ({ax},{ay}) onto "
-            f"({res['src_xy'][0]},{res['src_xy'][1]}) did not warp ({outcome})")
+            f"surf path needed but not reachable: {play.last_surf_note}")
+        res["shot"] = play.shot(f"{name}_{index}_surffail")
+        return res
+    if outcome != "warped" or landed is None:
+        if dead_reason:
+            # A warp on a metatile the engine never fires is a data defect, not
+            # a harness limitation: keep it an ISSUE and name the metatile.
+            res["status"] = "ISSUE"
+            res["issues"].append(
+                f"stepping {direction} from ({ax},{ay}) onto ({wx},{wy}) did not warp "
+                f"({outcome}): {dead_reason}")
+        elif needs_surf and ALLOW_SURF:
+            res["status"] = "UNTESTED"
+            res["issues"].append(
+                f"surf path needed but not reachable: stepping {direction} from "
+                f"({ax},{ay}) onto ({wx},{wy}) did not warp ({outcome})")
+        else:
+            res["status"] = "ISSUE"
+            res["issues"].append(
+                f"stepping {direction} from ({ax},{ay}) onto ({wx},{wy}) "
+                f"did not warp ({outcome})")
         res["shot"] = play.shot(f"{name}_{index}_nowarp")
         return res
     play.frame(10)
@@ -1103,17 +1703,20 @@ def test_one_warp(play, name, index, record, catalog, by_id):
     # --- return leg ------------------------------------------------------
     if dest_name and record.get("class") in ("internal", "landing_anchor",
                                              "dynamic_return", "chained_landing"):
-        rok, rdir, rapp, rlanded, _rrest, rtried = try_warp_from_any_side(
+        rok, rdir, rapp, rlanded, _rrest, rtried, rsurf, rnote = try_warp_from_any_side(
             play, dest_name, dx, dy, catalog, src_key,
             expect_xy=(res["src_xy"][0], res["src_xy"][1]))
         if rdir is not None:
             res["return_approach"] = [rdir, rapp[0], rapp[1]]
+        if rsurf:
+            res["return_via_surf"] = True
         if not rok:
             res["return_ok"] = None
             res.setdefault("notes", []).append(
                 f"INCONCLUSIVE return: no side of the return warp "
                 f"{dest_name}[{record['dest_warp']}] at ({dx},{dy}) triggered a warp "
-                f"(tried {rtried})")
+                f"(tried {rtried}"
+                + (f"; surf: {rnote}" if rnote else "") + ")")
             if res["status"] == "OK":
                 res["status"] = "PARTIAL"
         else:
@@ -1152,7 +1755,7 @@ def test_facility_exit(play, facility, index, record, res, catalog):
         return res
     e_name, e_index, e_record = entrances[0]
     res["entrance"] = [e_name, e_index]
-    direction, ax, ay, note = pick_approach(
+    direction, ax, ay, note, esurf, eswam = pick_approach(
         play, e_name, e_record["src_xy"][0], e_record["src_xy"][1],
         {"approaches": static_approaches(e_name, e_record["src_xy"][0],
                                          e_record["src_xy"][1], catalog)})
@@ -1161,7 +1764,8 @@ def test_facility_exit(play, facility, index, record, res, catalog):
         res["issues"].append(f"could not reach the entrance warp of {e_name}: {note}")
         return res
     outcome, landed, afacing, rest = play.step_into(direction,
-                                                    expect_key=GROUP_IDS[facility])
+                                                    expect_key=GROUP_IDS[facility],
+                                                    via_surf=esurf)
     if outcome != "warped":
         res["status"] = "ISSUE"
         res["issues"].append(f"entering {facility} through {e_name} did not warp")
@@ -1173,7 +1777,7 @@ def test_facility_exit(play, facility, index, record, res, catalog):
         res["status"] = "ISSUE"
 
     fx, fy = record["src_xy"]
-    rdir, rax, ray, rnote = pick_approach(
+    rdir, rax, ray, rnote, rsurf, rswam = pick_approach(
         play, facility, fx, fy,
         {"approaches": static_approaches(facility, fx, fy, catalog)})
     if rdir is None:
@@ -1183,7 +1787,8 @@ def test_facility_exit(play, facility, index, record, res, catalog):
         if res["status"] == "OK":
             res["status"] = "PARTIAL"
         return res
-    rout2, rlanded, _f, _r = play.step_into(rdir, expect_key=GROUP_IDS[e_name])
+    rout2, rlanded, _f, _r = play.step_into(rdir, expect_key=GROUP_IDS[e_name],
+                                            via_surf=rsurf)
     if rout2 != "warped" or rlanded is None:
         res["return_ok"] = False
         res.setdefault("notes", []).append(
@@ -1241,7 +1846,7 @@ def test_one_connection(play, name, index, conn, record, group_ids, catalog, lay
         return res
 
     # ---- outward leg: this map -> connected map ------------------------
-    lane, walk_ok, walk_note = _try_seam(play, name, d, lo, hi, layouts)
+    lane, walk_ok, walk_note, walk_surf = _try_seam(play, name, d, lo, hi, layouts)
     if not walk_ok:
         res["status"] = "ISSUE"
         res["issues"].append(f"{d} seam: {walk_note}")
@@ -1250,6 +1855,9 @@ def test_one_connection(play, name, index, conn, record, group_ids, catalog, lay
     landed, rest = walk_ok[0], walk_ok[1]
     leg = {"leg": "outward", "lane": lane, "direction": walk,
            "landed": list(landed) if landed else None}
+    if walk_surf:
+        leg["surf"] = True
+        res["via_surf"] = True
     if landed is None:
         leg["status"] = "ISSUE"
         leg["note"] = f"walked {walk} off the {d} edge and the map never changed"
@@ -1305,7 +1913,7 @@ def test_one_connection(play, name, index, conn, record, group_ids, catalog, lay
         boff = bconn["offset"]
         blo, bhi = _lane_range_for(dest, bconn, layouts)
         owalk = {"up": "UP", "down": "DOWN", "left": "LEFT", "right": "RIGHT"}[opposite]
-        plane, bwalk, bnote = _try_seam(play, dest, opposite, blo, bhi, layouts)
+        plane, bwalk, bnote, bsurf = _try_seam(play, dest, opposite, blo, bhi, layouts)
         if not bwalk:
             res["status"] = "ISSUE"
             res["issues"].append(f"{dest} {opposite} seam: {bnote}")
@@ -1314,6 +1922,9 @@ def test_one_connection(play, name, index, conn, record, group_ids, catalog, lay
             back_landed = bwalk[0]
             ileg = {"leg": "inward", "lane": plane, "direction": owalk,
                     "landed": list(back_landed) if back_landed else None}
+            if bsurf:
+                ileg["surf"] = True
+                res["via_surf"] = True
             if back_landed is None:
                 ileg["status"] = "ISSUE"
                 ileg["note"] = f"walked {owalk} off {dest} and the map never changed"
@@ -1377,43 +1988,65 @@ def _try_seam(play, name, direction, lo, hi, layouts, attempts=32):
     usable lanes sit at one end of its range (Ecruteak City's two-tile south
     gate at x=0,1) is only reachable with a wide enough sweep.
 
-    Returns (lane, (landed, rest), note).  Each candidate lane is really walked,
-    because a lane can be statically walkable and still blocked at run time by
-    an object event or by terrain one tile further out."""
+    Returns (lane, (landed, rest), note, via_surf).  Each candidate lane is really
+    walked, because a lane can be statically walkable and still blocked at run
+    time by an object event or by terrain one tile further out.
+
+    When every dry lane fails and the surf expansion is on, the lanes whose
+    probe tile is water are retried from the surfboard: a beach-to-beach
+    connection (Pallet's south shore into ROUTE 21) is a water seam, and the
+    on-foot walk can never cross it."""
     catalog = CATALOG
     w, h = layouts[catalog[name]["layout"]]["width"], layouts[catalog[name]["layout"]]["height"]
     geom = geometry(name, catalog)
     walk = {"up": "UP", "down": "DOWN", "left": "LEFT", "right": "RIGHT"}[direction]
     base = (lo + hi) // 2
     tried = []
+    wet_lanes = []
+
+    def probe_tile(lane):
+        if direction in ("up", "down"):
+            return (lane, 1 if direction == "up" else h - 2)
+        return (1 if direction == "left" else w - 2, lane)
+
     for offset in range(0, attempts):
         for lane in ((base + offset), (base - offset)) if offset else (base,):
             if not (lo <= lane <= hi):
                 continue
             if geom is not None:
-                if direction in ("up", "down"):
-                    probe = (lane, 1 if direction == "up" else h - 2)
-                else:
-                    probe = (1 if direction == "left" else w - 2, lane)
+                probe = probe_tile(lane)
                 if not (0 <= probe[0] < geom.w and 0 <= probe[1] < geom.h):
                     continue
                 c, _e, b = geom.tile(*probe)
-                if c != 0 or waterish(b):
+                if c != 0:
+                    continue
+                if waterish(b):
+                    wet_lanes.append(lane)
                     continue
             ok, landed, rest, why = _walk_off_edge(play, name, lane, walk, h, w)
             if ok:
-                return lane, (landed, rest), ""
+                return lane, (landed, rest), "", False
             tried.append((lane, why))
+    if ALLOW_SURF and wet_lanes:
+        for lane in wet_lanes:
+            ok, landed, rest, why = _walk_off_edge(play, name, lane, walk, h, w,
+                                                   via_surf=True)
+            if ok:
+                return lane, (landed, rest), "", True
+            tried.append((lane, "surf: " + why))
     return None, None, (f"walking {walk} off the {name} edge did not change map on "
                         f"any of {len(tried)} lanes tried: "
-                        + "; ".join(f"lane {l}: {why}" for l, why in tried[:3]))
+                        + "; ".join(f"lane {l}: {why}" for l, why in tried[:3])), False
 
 
-def _walk_off_edge(play, name, lane, walk, height, width, timeout=1500):
+def _walk_off_edge(play, name, lane, walk, height, width, timeout=1500,
+                   via_surf=False):
     """Hold `walk` until the map changes; returns (ok, landed_xy, rest_xy).
 
     The player is placed two tiles in from the edge on `lane` so the camera
-    still has room to scroll, exactly like a player walking out of town."""
+    still has room to scroll, exactly like a player walking out of town.  With
+    `via_surf` that starting tile is water, so it is reached the way a player
+    would reach it: mounted on the board and swum there."""
     d = walk.lower()
     if d == "up":
         at = (lane, 2)
@@ -1423,9 +2056,13 @@ def _walk_off_edge(play, name, lane, walk, height, width, timeout=1500):
         at = (2, lane)
     else:
         at = (width - 3, lane)
-    ok, note = play.goto(name, at[0], at[1])
+    if via_surf:
+        ok, note = play.place_in_water(at[0], at[1])
+    else:
+        play.ensure_footed()
+        ok, note = play.goto(name, at[0], at[1])
     if not ok:
-        return False, None, None, f"goto({at[0]},{at[1]}) failed: {note}"
+        return False, None, None, f"reaching ({at[0]},{at[1]}) failed: {note}"
     start = play.state()
     key = DIRKEY[walk]
     play.core.set_keys(key)
@@ -1463,6 +2100,9 @@ MAP_NAMES = {}
 ENTRANCES = {}
 CATALOG = {}
 BY_ID = {}
+# Surf / Waterfall movement expansion.  On by default; --no-surf restores the
+# pure on-foot walk of the earlier runs.
+ALLOW_SURF = True
 MAP_SIZES = {}   # map dir -> (width, height) of its own layout
 
 
@@ -1474,7 +2114,7 @@ def make_playtest(spawn=None):
 
 
 def main():
-    global GROUP_IDS, MAP_NAMES, ENTRANCES, CATALOG, BY_ID
+    global GROUP_IDS, MAP_NAMES, ENTRANCES, CATALOG, BY_ID, ALLOW_SURF
     ap = argparse.ArgumentParser()
     ap.add_argument("--json", type=Path, help="write full result JSON")
     ap.add_argument("--static-only", action="store_true")
@@ -1495,7 +2135,11 @@ def main():
     ap.add_argument("--load-report", type=Path,
                     help="load-check JSON the warp run consults to skip maps the "
                          "engine cannot load")
+    ap.add_argument("--no-surf", action="store_true",
+                    help="disable the Surf/Waterfall movement expansion and walk "
+                         "every warp on foot, as the earlier runs did")
     args = ap.parse_args()
+    ALLOW_SURF = not args.no_surf
 
     catalog, by_id, reached = closure()
     _, group_ids, layouts = (None, None, None)
@@ -1546,13 +2190,21 @@ def main():
 
     report = {
         "generated": time.strftime("%Y-%m-%d %H:%M:%S"),
-        "head": "04b27389ca",
+        "head": subprocess.check_output(
+            ["git", "rev-parse", "--short=10", "HEAD"], cwd=ROOT, text=True).strip(),
         "rom": str(ROOT / "pokeemerald.gba"),
+        "rom_sha256": hashlib.sha256((ROOT / "pokeemerald.gba").read_bytes()).hexdigest(),
+        "maps": names,
         "map_count": len(names),
         "warp_count": len(warp_records),
         "connection_count": len(conn_records),
         "static": {"warps": warp_records, "connections": conn_records},
         "excluded": excluded,
+        "surf": {"enabled": ALLOW_SURF,
+                 "granted": None,
+                 "warps_walked_on_surf": 0,
+                 "returns_walked_on_surf": 0,
+                 "seams_walked_on_surf": 0},
         "dynamic": {"warps": [], "connections": [], "reboots": 0,
                     "elapsed_s": 0, "untested": []},
     }
@@ -1576,6 +2228,11 @@ def main():
     done = set()
     if args.resume and args.resume.exists():
         old = json.loads(args.resume.read_text())
+        if old.get("rom_sha256") != report["rom_sha256"] or old.get("maps") != report["maps"]:
+            raise SystemExit("resume report was produced from a different ROM or map closure")
+        report["dynamic"]["warps"] = list(old.get("dynamic", {}).get("warps", []))
+        report["dynamic"]["connections"] = list(old.get("dynamic", {}).get("connections", []))
+        report["dynamic"]["untested"] = list(old.get("dynamic", {}).get("untested", []))
         for r in old.get("dynamic", {}).get("warps", []):
             done.add((r["map"], r["warp"]))
         for r in old.get("dynamic", {}).get("connections", []):
@@ -1603,8 +2260,8 @@ def main():
                           "dest_name": record.get("dest_name"),
                           "dest_xy": record.get("dest_xy"),
                           "mutual": record.get("mutual"),
-                          "issues": ["untestable: facility state machine; excluded "
-                                     "with --exclude"],
+                          "issues": ["untestable in the generic on-foot walk; "
+                                     "excluded with --exclude"],
                           "static_issues": record.get("issues", [])}
             elif unloadable and (name in unloadable or
                                  (record.get("dest_name") in unloadable)):
@@ -1683,7 +2340,7 @@ def main():
                     {"map": name, "connection": index, "direction": conn["direction"],
                      "offset": conn["offset"], "dest_name": record.get("dest_name"),
                      "status": "UNTESTED", "legs": [],
-                     "issues": ["untestable: excluded facility state machine" if
+                     "issues": ["untestable in the generic on-foot walk; excluded with --exclude" if
                                 any(f in name or f in (record.get("dest_name") or "")
                                     for f in args.exclude) else
                                 "untestable: the map (or its partner) cannot be loaded "
@@ -1717,27 +2374,51 @@ def main():
 
     report["dynamic"]["reboots"] = play.reboots
     report["dynamic"]["elapsed_s"] = round(time.time() - start, 1)
+    report["surf"]["granted"] = play.surf_kit
+    report["surf"]["warps_walked_on_surf"] = sum(
+        1 for r in report["dynamic"]["warps"]
+        if r.get("via_surf") or r.get("approach_via_surf"))
+    report["surf"]["returns_walked_on_surf"] = sum(
+        1 for r in report["dynamic"]["warps"] if r.get("return_via_surf"))
+    report["surf"]["seams_walked_on_surf"] = sum(
+        1 for c in report["dynamic"]["connections"]
+        for leg in c.get("legs", []) if leg.get("surf"))
     emit(report, args)
 
 
 def load_check(args, report, layouts):
-    """Boot once per map and prove the engine can actually load it.
+    """Boot once per map and check its live layout or intentional redirect.
 
-    A handful of the legacy FRLG Kanto city maps leave gMapHeader/gBackupMapLayout
-    unusable (garbage layout pointer, MAPGRID_UNDEFINED everywhere, player
-    frozen).  Everything after such a map in the same session is collateral, so
-    each map is checked in its own fresh boot."""
-    import importlib
+    A broken map can leave the engine unable to change maps again, so each map
+    is checked in its own fresh boot."""
+    # This retired map stays registered for old saves. Its on-frame script
+    # immediately sends the player to the active Mt. Moon 1F map.
+    expected_redirects = {"MtMoon_Cave_hns": "MtMoon_1F_Frlg"}
     out = {}
-    names = sorted({r["map"] for r in report["static"]["warps"]} |
-                   {r["map"] for r in report["static"]["connections"]})
+    names = report["maps"]
     for n, name in enumerate(names):
         width, height = MAP_SIZES.get(name, (8, 8))
         xy = (min(2, max(0, width - 1)), min(2, max(0, height - 1)))
+        geom = geometry(name, CATALOG)
+        if geom is not None:
+            # Some imported layouts use metatile 1023 as intentional solid
+            # filler. Probing one of those tiles reports an unloaded grid even
+            # when the engine copied the rest of the map correctly.
+            candidates = ((x, y) for x in range(min(width, 128)) for y in range(min(height, 128))
+                          if (geom.blocks[y * width + x] & 1023) != 1023)
+            xy = min(candidates, key=lambda p: (
+                (geom.blocks[p[1] * width + p[0]] >> 10) & 3 != 0,
+                abs(p[0] - 2) + abs(p[1] - 2), p[1], p[0]), default=xy)
         play = make_playtest()
         rec = {"xy": list(xy), "ok": False, "why": ""}
         try:
-            play.warp(name, xy[0], xy[1])
+            try:
+                play.warp(name, xy[0], xy[1])
+            except AssertionError:
+                actual = MAP_NAMES.get((play.state()["group"], play.state()["num"]))
+                if expected_redirects.get(name) != actual:
+                    raise
+                rec["redirected_to"] = actual
             play.frame(240)
             mh = play.symbol_address("gMapHeader")
             layout = play.core.memory.wram.u32[mh - 0x02000000]
@@ -1748,8 +2429,13 @@ def load_check(args, report, layouts):
             else:
                 grid = play.mapgrid_info()
                 rec["grid"] = [grid["width"], grid["height"]]
+                probe_xy = xy
+                if "redirected_to" in rec:
+                    state = play.state()
+                    probe_xy = (state["x"], state["y"])
+                    rec["probe_xy"] = list(probe_xy)
                 try:
-                    mt = play.metatile_at(*xy)[0]
+                    mt = play.metatile_at(*probe_xy)[0]
                 except Exception:
                     mt = None
                 rec["metatile"] = mt

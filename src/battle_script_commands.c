@@ -5775,6 +5775,26 @@ static void Cmd_hitanimation(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
+static bool32 IsPlasticOxOpeningRouteTrainer(u16 trainerId)
+{
+    switch (trainerId)
+    {
+    case TRAINER_PLASTIC_OX_ROUTE29:
+    case TRAINER_PLASTIC_OX_ROUTE29_ELLA:
+    case TRAINER_PLASTIC_OX_ROUTE46:
+    case TRAINER_PLASTIC_OX_ROUTE46_ERIN:
+    case TRAINER_PLASTIC_OX_ROUTE2_BEN:
+    case TRAINER_PLASTIC_OX_ROUTE2_WADE:
+    case TRAINER_PLASTIC_OX_ROUTE2_HALEY:
+    case TRAINER_PLASTIC_OX_ROUTE_ILEX:
+    case TRAINER_PLASTIC_OX_ROUTE_ILEX_FINN:
+    case TRAINER_PLASTIC_OX_ROUTE_ILEX_MAYA:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
 static u32 GetTrainerMoneyToGive(u16 trainerId)
 {
     u32 lastMonLevel = 0;
@@ -5801,7 +5821,14 @@ static u32 GetTrainerMoneyToGive(u16 trainerId)
             moneyReward = 4 * lastMonLevel * gBattleStruct->moneyMultiplier * trainerMoney;
     }
 
-    return moneyReward * 2;
+    moneyReward *= 2;
+    // These early-route battles should pay at least $2,000, with money-boosting
+    // effects still multiplying that guaranteed amount.
+    if (IsPlasticOxOpeningRouteTrainer(trainerId)
+     && moneyReward < 2000 * gBattleStruct->moneyMultiplier)
+        moneyReward = 2000 * gBattleStruct->moneyMultiplier;
+
+    return moneyReward;
 }
 
 static void Cmd_getmoneyreward(void)

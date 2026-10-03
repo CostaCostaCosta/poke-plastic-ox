@@ -89,7 +89,11 @@ def flag_audit():
 
     opponents = (ROOT / 'include/constants/opponents.h').read_text()
     trainer_count = int(re.search(r'^#define TRAINERS_COUNT_EMERALD\s+(\d+)', opponents, re.M)[1])
-    for number in range(0x4A0, 0x4A0 + max(0, trainer_count - 857)):
+    trainer_flags = list(range(0x4A0, 0x4A0 + max(0, min(trainer_count, 926) - 857)))
+    trainer_flags += list(range(0x4EB, 0x4EB + max(0, min(trainer_count, 931) - 926)))
+    if trainer_count > 931:
+        trainer_flags.append(0x4F9)
+    for number in trainer_flags:
         if number in by_value or not aliases[number] or any(not name.startswith('FLAG_UNUSED_') for name in aliases[number]):
             errors.append(f"Supplemental trainer flag 0x{number:03X} overlaps retained state")
 

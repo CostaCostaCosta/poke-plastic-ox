@@ -53,5 +53,6 @@
   "coord_events": [],
   "bg_events": [],
   "floor_number": 0,
-  "region": "REGION_KANTO"
+  "region": "REGION_KANTO",
+  "include_in_versions": ["emerald"]
 }

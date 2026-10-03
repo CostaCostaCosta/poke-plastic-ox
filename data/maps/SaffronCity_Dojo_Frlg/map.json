@@ -4,6 +4,7 @@
   "layout": "LAYOUT_SAFFRON_CITY_DOJO",
   "music": "MUS_RG_PEWTER",
   "region": "REGION_KANTO",
+  "include_in_versions": ["emerald"],
   "region_map_section": "MAPSEC_SAFFRON_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",

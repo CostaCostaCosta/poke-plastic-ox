@@ -681,3 +681,5 @@ def apply_region(read, put):
     install_mt_moon(read, put)
     from goldenrod import install as install_goldenrod
     install_goldenrod(read, put)
+    from ecruteak import install as install_ecruteak
+    install_ecruteak(read, put)

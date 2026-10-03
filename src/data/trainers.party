@@ -18968,65 +18968,23 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Taillow @ Leftovers
+Taillow
 Level: 4
-Ability: Guts
-EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
-Adamant Nature
-- Hidden Power
-- Aerial Ace
-- Mud-Slap
-- Toxic
 
-Poochyena @ Choice Band
+Poochyena
 Level: 3
-Ability: Run Away
-EVs: 4 HP / 252 Atk / 252 Spe
-Adamant Nature
-- Thief
-- Hidden Power
-- Shadow Ball
-- Toxic
 
-Goldeen @ Leftovers
+Goldeen
 Level: 3
-Ability: Swift Swim
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Surf
-- Water Pulse
-- Hidden Power
-- Toxic
 
-Lotad @ Leftovers
+Lotad
 Level: 3
-Ability: Swift Swim
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Surf
-- Giga Drain
-- Hidden Power
-- Toxic
 
-Surskit @ Leftovers
+Surskit
 Level: 3
-Ability: Swift Swim
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Water Pulse
-- Bubble
-- Hidden Power
-- Toxic
 
-Poliwag @ Leftovers
+Poliwag
 Level: 3
-Ability: Water Absorb
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Surf
-- Water Pulse
-- Hidden Power
-- Toxic
 
 === TRAINER_PLASTIC_OX_ROUTE103 ===
 Name: DAISY
@@ -19037,65 +18995,23 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Wingull @ Leftovers
+Wingull
 Level: 5
-Ability: Keen Eye
-EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
-Adamant Nature
-- Aerial Ace
-- Water Pulse
-- Hidden Power
-- Toxic
 
-Whismur @ Leftovers
+Whismur
 Level: 5
-Ability: Soundproof
-EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
-Adamant Nature
-- Hidden Power
-- Body Slam
-- Flamethrower
-- Toxic
 
-Electrike @ Leftovers
+Electrike
 Level: 5
-Ability: Static
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Thunderbolt
-- Thunder
-- Hidden Power
-- Toxic
 
-Cacnea @ Leftovers
+Cacnea
 Level: 5
-Ability: Sand Veil
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Giga Drain
-- Solar Beam
-- Hidden Power
-- Toxic
 
-Gulpin @ Leftovers
+Gulpin
 Level: 4
-Ability: Liquid Ooze
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Sludge Bomb
-- Hidden Power
-- Giga Drain
-- Toxic
 
-Corphish @ Leftovers
+Corphish
 Level: 4
-Ability: Hyper Cutter
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Surf
-- Water Pulse
-- Hidden Power
-- Toxic
 
 === TRAINER_PLASTIC_OX_ROUTE29 ===
 Name: JOEY
@@ -19106,65 +19022,23 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Sentret @ Leftovers
+Sentret
 Level: 5
-Ability: Run Away
-EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
-Adamant Nature
-- Hidden Power
-- Body Slam
-- Surf
-- Toxic
 
-Pidgey @ Leftovers
+Pidgey
 Level: 4
-Ability: Keen Eye
-EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
-Adamant Nature
-- Hidden Power
-- Aerial Ace
-- Mud-Slap
-- Toxic
 
-Nidoran♀ @ Leftovers
+Nidoran♀
 Level: 4
-Ability: Poison Point
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Sludge Bomb
-- Hidden Power
-- Thunderbolt
-- Toxic
 
-Nidoran♂ @ Leftovers
+Nidoran♂
 Level: 4
-Ability: Poison Point
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Sludge Bomb
-- Hidden Power
-- Thunderbolt
-- Toxic
 
-Mareep @ Leftovers
+Mareep
 Level: 5
-Ability: Static
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Thunderbolt
-- Thunder
-- Hidden Power
-- Toxic
 
-Spinarak @ Leftovers
+Spinarak
 Level: 4
-Ability: Swarm
-EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
-Adamant Nature
-- Sludge Bomb
-- Poison Sting
-- Hidden Power
-- Toxic
 
 === TRAINER_PLASTIC_OX_ROUTE46 ===
 Name: TED
@@ -19175,65 +19049,23 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Machop @ Sitrus Berry
+Machop
 Level: 6
-Ability: Guts
-EVs: 36 HP / 116 Atk / 40 Def / 240 SpD / 76 Spe
-Adamant Nature
-- Bulk Up
-- Focus Punch
-- Hidden Power
-- Endure
 
-Geodude @ Choice Band
+Geodude
 Level: 6
-Ability: Rock Head
-EVs: 4 HP / 252 Atk / 252 Spe
-Adamant Nature
-- Earthquake
-- Rock Slide
-- Hidden Power
-- Toxic
 
-Sandshrew @ Leftovers
+Sandshrew
 Level: 6
-Ability: Sand Veil
-EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
-Adamant Nature
-- Earthquake
-- Mud-Slap
-- Hidden Power
-- Toxic
 
-Bagon @ Sitrus Berry
+Bagon
 Level: 6
-Ability: Rock Head
-EVs: 76 HP / 76 Atk / 40 Def / 200 SpD / 116 Spe
-Careful Nature
-- Double-Edge
-- Brick Break
-- Hidden Power
-- Fire Blast
 
-Numel @ Leftovers
+Numel
 Level: 5
-Ability: Oblivious
-EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
-Adamant Nature
-- Earthquake
-- Flamethrower
-- Hidden Power
-- Toxic
 
-Phanpy @ Leftovers
+Phanpy
 Level: 6
-Ability: Pickup
-EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
-Adamant Nature
-- Earthquake
-- Mud-Slap
-- Hidden Power
-- Toxic
 
 === TRAINER_PLASTIC_OX_ROUTE46_ERIN ===
 Name: ERIN
@@ -19244,65 +19076,23 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Onix @ Sitrus Berry
+Onix
 Level: 7
-Ability: Rock Head
-EVs: 76 HP / 236 Atk / 196 Spe
-Jolly Nature
-- Rock Slide
-- Earthquake
-- Double-Edge
-- Explosion
 
-Geodude @ Choice Band
+Geodude
 Level: 6
-Ability: Rock Head
-EVs: 4 HP / 252 Atk / 252 Spe
-Adamant Nature
-- Earthquake
-- Rock Slide
-- Hidden Power
-- Toxic
 
-Larvitar @ Sitrus Berry
+Larvitar
 Level: 7
-Ability: Guts
-EVs: 164 Atk / 116 Def / 36 SpD / 188 Spe
-Jolly Nature
-- Hyper Beam
-- Rock Slide
-- Earthquake
-- Substitute
 
-Machop @ Sitrus Berry
+Machop
 Level: 6
-Ability: Guts
-EVs: 36 HP / 116 Atk / 40 Def / 240 SpD / 76 Spe
-Adamant Nature
-- Bulk Up
-- Focus Punch
-- Hidden Power
-- Endure
 
-Sandshrew @ Leftovers
+Sandshrew
 Level: 6
-Ability: Sand Veil
-EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
-Adamant Nature
-- Earthquake
-- Mud-Slap
-- Hidden Power
-- Toxic
 
-Bagon @ Sitrus Berry
+Bagon
 Level: 6
-Ability: Rock Head
-EVs: 76 HP / 76 Atk / 40 Def / 200 SpD / 116 Spe
-Careful Nature
-- Double-Edge
-- Brick Break
-- Hidden Power
-- Fire Blast
 
 === TRAINER_PLASTIC_OX_ROUTE1 ===
 Name: BEN
@@ -19313,65 +19103,23 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Mankey @ Salac Berry
+Mankey
 Level: 6
-Ability: Vital Spirit
-EVs: 36 HP / 196 Atk / 80 Def / 196 Spe
-Jolly Nature
-- Focus Punch
-- Hidden Power
-- Substitute
-- Endure
 
-Ekans @ Leftovers
+Ekans
 Level: 6
-Ability: Intimidate
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Sludge Bomb
-- Hidden Power
-- Giga Drain
-- Toxic
 
-Growlithe @ Leftovers
+Growlithe
 Level: 6
-Ability: Intimidate
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Flamethrower
-- Fire Blast
-- Hidden Power
-- Toxic
 
-Vulpix @ Leftovers
+Vulpix
 Level: 5
-Ability: Flash Fire
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Flamethrower
-- Fire Blast
-- Hidden Power
-- Toxic
 
-Meowth @ Sitrus Berry
+Meowth
 Level: 5
-Ability: Pickup
-EVs: 36 HP / 236 Atk / 36 SpD / 196 Spe
-Jolly Nature
-- Thunder
-- Double-Edge
-- Shadow Ball
-- Taunt
 
-Slowpoke @ Leftovers
+Slowpoke
 Level: 6
-Ability: Oblivious
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Surf
-- Psychic
-- Hidden Power
-- Toxic
 
 === TRAINER_PLASTIC_OX_ROUTE31 ===
 Name: WADE
@@ -19382,66 +19130,23 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer
 
-Larvitar @ Sitrus Berry
+Venonat
 Level: 9
-Ability: Guts
-EVs: 164 Atk / 116 Def / 36 SpD / 188 Spe
-Jolly Nature
-- Hyper Beam
-- Rock Slide
-- Earthquake
-- Substitute
 
-Aron @ Choice Band
+Aron
 Level: 9
-Ability: Sturdy
-EVs: 4 HP / 252 Atk / 252 Spe
-Adamant Nature
-- Rock Slide
-- Rock Tomb
-- Hidden Power
-- Toxic
 
-Baltoy @ Sitrus Berry
+Baltoy
 Level: 8
-Ability: Levitate
-EVs: 36 HP / 196 Atk / 156 Def / 36 SpD / 76 Spe
-Careful Nature
-- Earthquake
-- Shadow Ball
-- Rock Tomb
-- Explosion
 
-Spoink @ Leftovers
+Spoink
 Level: 8
-Ability: Thick Fat
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 36 HP / 156 Def / 116 SpD / 196 Spe
-Bold Nature
-- Thief
-- Psychic
-- Icy Wind
-- Taunt
 
-Ralts @ Leftovers
+Ralts
 Level: 8
-Ability: Synchronize
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Psychic
-- Dream Eater
-- Hidden Power
-- Toxic
 
-Voltorb @ Sitrus Berry
+Voltorb
 Level: 9
-Ability: Static
-EVs: 116 HP / 36 Def / 160 SpA / 196 Spe
-Timid Nature
-- Thunderbolt
-- Hidden Power
-- Thief
-- Explosion
 
 === TRAINER_PLASTIC_OX_ROUTE104 ===
 Name: HALEY
@@ -19452,66 +19157,23 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Onix @ Sitrus Berry
+Onix
 Level: 10
-Ability: Rock Head
-EVs: 76 HP / 236 Atk / 196 Spe
-Jolly Nature
-- Rock Slide
-- Earthquake
-- Double-Edge
-- Explosion
 
-Geodude @ Choice Band
+Geodude
 Level: 9
-Ability: Rock Head
-EVs: 4 HP / 252 Atk / 252 Spe
-Adamant Nature
-- Earthquake
-- Rock Slide
-- Hidden Power
-- Toxic
 
-Larvitar @ Sitrus Berry
+Rhyhorn
 Level: 10
-Ability: Guts
-EVs: 164 Atk / 116 Def / 36 SpD / 188 Spe
-Jolly Nature
-- Hyper Beam
-- Rock Slide
-- Earthquake
-- Substitute
 
-Aron @ Choice Band
+Aron
 Level: 9
-Ability: Sturdy
-EVs: 4 HP / 252 Atk / 252 Spe
-Adamant Nature
-- Rock Slide
-- Rock Tomb
-- Hidden Power
-- Toxic
 
-Snorunt @ Sitrus Berry
+Snorunt
 Level: 9
-Ability: Inner Focus
-IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
-EVs: 36 HP / 36 Def / 120 SpA / 116 SpD / 196 Spe
-Timid Nature
-- Blizzard
-- Ice Beam
-- Hidden Power
-- Toxic
 
-Zubat @ Leftovers
+Zubat
 Level: 9
-Ability: Inner Focus
-EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
-Adamant Nature
-- Sludge Bomb
-- Aerial Ace
-- Hidden Power
-- Toxic
 
 === TRAINER_PLASTIC_OX_ROUTE24 ===
 Name: ETHAN
@@ -20154,66 +19816,23 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer / Smart Switching / PP Stall Prevention
 
-Paras @ Leftovers
+Paras
 Level: 8
-Ability: Effect Spore
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Giga Drain
-- Solar Beam
-- Hidden Power
-- Toxic
 
-Venonat @ Leftovers
+Venonat
 Level: 8
-Ability: Compound Eyes
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Sludge Bomb
-- Hidden Power
-- Giga Drain
-- Toxic
 
-Nincada @ Leftovers
+Nincada
 Level: 8
-Ability: Compound Eyes
-EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
-Adamant Nature
-- Leech Life
-- Mud-Slap
-- Hidden Power
-- Toxic
 
-Oddish @ Sitrus Berry
+Oddish
 Level: 7
-Ability: Chlorophyll
-IVs: 31 HP / 2 Atk / 30 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 76 HP / 80 Def / 236 SpA / 116 Spe
-Modest Nature
-- Sunny Day
-- Solar Beam
-- Hidden Power
-- Bullet Seed
 
-Exeggcute @ Sitrus Berry
+Exeggcute
 Level: 8
-Ability: Chlorophyll
-EVs: 36 HP / 36 Atk / 36 Def / 196 SpA / 156 SpD / 36 Spe
-Mild Nature
-- Explosion
-- Sunny Day
-- Solar Beam
-- Psychic
 
-Pineco @ Leftovers
+Pineco
 Level: 7
-Ability: Sturdy
-EVs: 252 HP / 252 Def
-Bold Nature
-- Hidden Power
-- Giga Drain
-- Toxic
-- Earthquake
 
 === TRAINER_PLASTIC_OX_ROUTE25_DUDLEY ===
 Name: DUDLEY
@@ -20631,6 +20250,120 @@ Hasty Nature
 - Focus Punch
 - Toxic
 - Substitute
+
+=== TRAINER_PLASTIC_OX_ROUTE2_BEN ===
+Name: BEN
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+Party Size: 6
+Copy Pool: TRAINER_PLASTIC_OX_ROUTE1
+
+=== TRAINER_PLASTIC_OX_ROUTE2_WADE ===
+Name: WADE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+Party Size: 6
+Copy Pool: TRAINER_PLASTIC_OX_ROUTE31
+
+=== TRAINER_PLASTIC_OX_ROUTE2_HALEY ===
+Name: HALEY
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+Party Size: 6
+Copy Pool: TRAINER_PLASTIC_OX_ROUTE104
+
+=== TRAINER_PLASTIC_OX_ROUTE29_ELLA ===
+Name: ELLA
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Hoothoot
+Level: 5
+
+Hoppip
+Level: 4
+
+Rattata
+Level: 4
+
+Spearow
+Level: 4
+
+Wooper
+Level: 5
+
+Surskit
+Level: 4
+
+=== TRAINER_PLASTIC_OX_ROUTE_ILEX_FINN ===
+Name: FINN
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Spinarak
+Level: 8
+
+Paras
+Level: 8
+
+Wurmple
+Level: 7
+
+Venonat
+Level: 8
+
+Nincada
+Level: 7
+
+Pineco
+Level: 8
+
+=== TRAINER_PLASTIC_OX_ROUTE_ILEX_MAYA ===
+Name: MAYA
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Hoothoot
+Level: 9
+
+Oddish
+Level: 8
+
+Exeggcute
+Level: 8
+
+Sunkern
+Level: 8
+
+Wooper
+Level: 8
+
+Shuppet
+Level: 9
 
 === TRAINER_PLASTIC_OX_PU_ROUTE33 ===
 Name: ANTHONY

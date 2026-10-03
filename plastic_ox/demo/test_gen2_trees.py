@@ -57,8 +57,8 @@ def interact(g, accept=True):
 
 def fruit_tests():
     g = StoryGame()
-    trees = [("Route29_hns", 15, 11, "SITRUS", "R29_SITRUS"),
-             ("Route46_hns", 9, 11, "LUM", "R46_LUM"),
+    trees = [("Route29_hns", 15, 11, "LUM", "R29_LUM"),
+             ("Route46_hns", 9, 11, "SITRUS", "R46_SITRUS"),
              ("Route46_hns", 11, 11, "LIECHI", "R46_LIECHI"),
              ("Route44_hns", 7, 10, "SALAC", "R44_SALAC"),
              ("Route44_hns", 9, 10, "PETAYA", "R44_PETAYA")]
@@ -69,11 +69,11 @@ def fruit_tests():
         interact(g, accept=False)
         assert quantity(g, item) == 0 and not g.flag(flag)
         interact(g)
-        assert quantity(g, item) == 1 and g.flag(flag), berry
+        assert quantity(g, item) == 5 and g.flag(flag), berry
         assert g.flag("FLAG_SYS_CLOCK_SET")
         face(g, name, x, y)  # Leaving and returning cannot bypass the daily limit.
         interact(g)
-        assert quantity(g, item) == 1, berry
+        assert quantity(g, item) == 5, berry
         g.fb.to_pil().convert("RGB").save(SHOTS / (berry.lower() + ".png"))
 
     # Run the real RTC day update with the saved day deliberately one day old.
@@ -83,7 +83,7 @@ def fruit_tests():
     for _, _, _, _, flag in trees:
         assert not g.flag("FLAG_POX_DAILY_" + flag)
 
-    face(g, "Route29_hns", 15, 11)
+    face(g, "Route46_hns", 9, 11)
     slots, count = pocket(g, 3)
     saved = [g.u32(slots + 4*i) for i in range(count)]
     key = next(g.u16(slots + 4*i + 2) for i in range(count) if g.u16(slots + 4*i) == 0)
@@ -91,11 +91,11 @@ def fruit_tests():
         g.write(slots + 4*i, item_id("SITRUS_BERRY"), 2)
         g.write(slots + 4*i + 2, 999 ^ key, 2)
     interact(g)
-    assert not g.flag("FLAG_POX_DAILY_R29_SITRUS"), "Full bag consumed harvest"
+    assert not g.flag("FLAG_POX_DAILY_R46_SITRUS"), "Full bag consumed harvest"
     for i, value in enumerate(saved):
         g.write(slots + 4*i, value, 4)
     interact(g)
-    assert quantity(g, item_id("SITRUS_BERRY")) == 2
+    assert quantity(g, item_id("SITRUS_BERRY")) == 10
     print("PASS: all five berries; decline; daily limit across map reload; RTC regrowth; full bag retry", flush=True)
 
 

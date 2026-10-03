@@ -748,8 +748,19 @@ void process_groups(string groups_filepath, vector<string> &map_filepaths, strin
         }
         string map_name = json_to_string(map_data, "name");
 
-        if ((version == "emerald" && region != "REGION_HOENN")
-         || (version == "firered" && region != "REGION_KANTO")) {
+        bool include_in_version = false;
+        if (map_data.object_items().find("include_in_versions") != map_data.object_items().end()) {
+            for (auto &included_version : map_data["include_in_versions"].array_items()) {
+                if (json_to_string(included_version) == version) {
+                    include_in_version = true;
+                    break;
+                }
+            }
+        }
+
+        if (((version == "emerald" && region != "REGION_HOENN")
+          || (version == "firered" && region != "REGION_KANTO"))
+         && !include_in_version) {
             invalid_maps.push_back(map_name);
         }
     }

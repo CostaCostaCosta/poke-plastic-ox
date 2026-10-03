@@ -49,6 +49,16 @@ IlexForest_EventScript_BugcatcherWayne::
 	msgbox IlexForest_Text_BugCatcherWayneAfter, MSGBOX_AUTOCLOSE
 	end
 
+IlexForest_EventScript_BugcatcherFinn::
+	trainerbattle_single TRAINER_PLASTIC_OX_ROUTE_ILEX_FINN, IlexForest_Text_FinnSeen, IlexForest_Text_FinnBeaten
+	msgbox IlexForest_Text_FinnAfter, MSGBOX_AUTOCLOSE
+	end
+
+IlexForest_EventScript_PicnickerMaya::
+	trainerbattle_single TRAINER_PLASTIC_OX_ROUTE_ILEX_MAYA, IlexForest_Text_MayaSeen, IlexForest_Text_MayaBeaten
+	msgbox IlexForest_Text_MayaAfter, MSGBOX_AUTOCLOSE
+	end
+
 IlexForest_EventScript_Item7::
 	finditem ITEM_POKE_BALL
 	end
@@ -143,6 +153,28 @@ IlexForest_Text_BugCatcherWayneAfter:
 	.string "HEADBUTT.\p"
 	.string "I ought to use HEADBUTT in other\n"
 	.string "places too.$"
+
+IlexForest_Text_FinnSeen:
+	.string "My bug team knows the forest\n"
+	.string "paths. Show us your team!$"
+
+IlexForest_Text_FinnBeaten:
+	.string "I got tangled in that one!$"
+
+IlexForest_Text_FinnAfter:
+	.string "SPINARAK found a shortcut.\n"
+	.string "I still lost my way.$"
+
+IlexForest_Text_MayaSeen:
+	.string "We made it this far together.\n"
+	.string "Let's try a battle!$"
+
+IlexForest_Text_MayaBeaten:
+	.string "What a walk that was!$"
+
+IlexForest_Text_MayaAfter:
+	.string "We can rest under these trees\n"
+	.string "before we head north.$"
 
 IlexForest_EventScript_Npc10_Text:
 	.string "These trees have stood here\n"

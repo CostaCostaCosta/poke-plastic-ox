@@ -4,6 +4,7 @@
   "layout": "LAYOUT_FUCHSIA_CITY_HOUSE2",
   "music": "MUS_RG_FUCHSIA",
   "region": "REGION_KANTO",
+  "include_in_versions": ["emerald"],
   "region_map_section": "MAPSEC_FUCHSIA_CITY",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -37,28 +38,28 @@
       "y": 9,
       "elevation": 0,
       "dest_map": "MAP_FUCHSIA_CITY",
-      "dest_warp_id": "7"
+      "dest_warp_id": "5"
     },
     {
       "x": 3,
       "y": 8,
       "elevation": 3,
       "dest_map": "MAP_FUCHSIA_CITY",
-      "dest_warp_id": "7"
+      "dest_warp_id": "5"
     },
     {
       "x": 4,
       "y": 9,
       "elevation": 0,
       "dest_map": "MAP_FUCHSIA_CITY",
-      "dest_warp_id": "7"
+      "dest_warp_id": "5"
     },
     {
       "x": 3,
       "y": 1,
       "elevation": 3,
       "dest_map": "MAP_FUCHSIA_CITY",
-      "dest_warp_id": "8"
+      "dest_warp_id": "6"
     }
   ],
   "coord_events": [],

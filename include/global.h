@@ -271,6 +271,10 @@ struct SaveBlock3
 #if APRICORN_TREE_COUNT > 0
     u8 apricornTrees[NUM_APRICORN_TREE_BYTES];
 #endif
+#if !IS_FRLG
+    u32 kantoHiddenItemsMagic;
+    u8 kantoHiddenItems[ROUND_BITS_TO_BYTES(POX_KANTO_HIDDEN_FLAGS_COUNT)];
+#endif
 }; /* max size 1624 bytes */
 
 extern struct SaveBlock3 *gSaveBlock3Ptr;

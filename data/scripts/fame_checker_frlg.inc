@@ -43,6 +43,7 @@ Route4_EventScript_Boy::
 	release
 	end
 
+.if IS_FRLG
 MtMoon_1F_EventScript_BaldingMan::
 	lock
 	faceplayer
@@ -51,6 +52,7 @@ MtMoon_1F_EventScript_BaldingMan::
 	release
 	end
 
+.endif // IS_FRLG
 PewterCity_Museum_1F_EventScript_PokemonJournalBrock::
 	lockall
 	famechecker FAMECHECKER_BROCK, 5
@@ -107,14 +109,6 @@ FuchsiaCity_WardensHouse_EventScript_PokemonJournalKoga::
 	famechecker FAMECHECKER_KOGA, 4
 	textcolor NPC_TEXT_COLOR_NEUTRAL
 	msgbox PokemonJournal_Text_SpecialFeatureKoga
-	release
-	end
-
-SafariZone_North_RestHouse_EventScript_BaldingMan::
-	lock
-	faceplayer
-	famechecker FAMECHECKER_KOGA, 5
-	msgbox SafariZone_West_Text_KogaPatrolsSafariEverySoOften
 	release
 	end
 

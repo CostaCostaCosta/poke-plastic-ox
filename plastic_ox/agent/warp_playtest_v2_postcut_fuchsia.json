@@ -1,0 +1,8788 @@
+{
+ "generated": "2026-10-02 11:22:51",
+ "head": "07fa6a3a36",
+ "rom": "/home/eddie/repos/poke-plastic-ox/pokeemerald.gba",
+ "rom_sha256": "c1fb0b62922ac24e028c3ca59cf103d38a71b0d3bd3592eb87c3ed975e7ba2e9",
+ "maps": [
+  "CinnabarIsland_Frlg",
+  "CinnabarIsland_Gym_Frlg",
+  "CinnabarIsland_Mart_Frlg",
+  "CinnabarIsland_PokemonCenter_1F_Frlg",
+  "CinnabarIsland_PokemonCenter_2F_Frlg",
+  "CinnabarIsland_PokemonLab_Entrance_Frlg",
+  "CinnabarIsland_PokemonLab_ExperimentRoom_Frlg",
+  "CinnabarIsland_PokemonLab_Lounge_Frlg",
+  "CinnabarIsland_PokemonLab_ResearchRoom_Frlg",
+  "FuchsiaCity_Frlg",
+  "FuchsiaCity_Gym_Frlg",
+  "FuchsiaCity_House1_Frlg",
+  "FuchsiaCity_House2_Frlg",
+  "FuchsiaCity_House3_Frlg",
+  "FuchsiaCity_Mart_Frlg",
+  "FuchsiaCity_PokemonCenter_1F_Frlg",
+  "FuchsiaCity_PokemonCenter_2F_Frlg",
+  "FuchsiaCity_WardensHouse_Frlg",
+  "Route14_Frlg",
+  "Route15_Frlg",
+  "Route15_WestEntrance_1F_Frlg",
+  "Route15_WestEntrance_2F_Frlg",
+  "Route19_Frlg",
+  "Route2_EastBuilding_Frlg",
+  "Route2_Frlg",
+  "Route2_House_Frlg",
+  "Route2_ViridianForest_NorthEntrance_Frlg",
+  "Route2_ViridianForest_SouthEntrance_Frlg"
+ ],
+ "map_count": 28,
+ "warp_count": 92,
+ "connection_count": 10,
+ "static": {
+  "warps": [
+   {
+    "map": "CinnabarIsland_Frlg",
+    "warp": 0,
+    "src_xy": [
+     8,
+     3
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_POKEMON_MANSION_1F",
+    "dest_warp_id": "1",
+    "issues": [],
+    "src_behavior": "MB_NON_ANIMATED_DOOR",
+    "class": "internal",
+    "dest_name": "PokemonMansion_1F_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     8,
+     33
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_Frlg",
+    "warp": 1,
+    "src_xy": [
+     20,
+     4
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_CINNABAR_ISLAND_GYM",
+    "dest_warp_id": "1",
+    "issues": [],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "class": "internal",
+    "dest_name": "CinnabarIsland_Gym_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     25,
+     23
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_Frlg",
+    "warp": 2,
+    "src_xy": [
+     8,
+     9
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_CINNABAR_ISLAND_POKEMON_LAB_ENTRANCE",
+    "dest_warp_id": "1",
+    "issues": [],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "class": "internal",
+    "dest_name": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     4,
+     9
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_Frlg",
+    "warp": 3,
+    "src_xy": [
+     14,
+     11
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_CINNABAR_ISLAND_POKEMON_CENTER_1F",
+    "dest_warp_id": "0",
+    "issues": [],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "class": "internal",
+    "dest_name": "CinnabarIsland_PokemonCenter_1F_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     7,
+     8
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_Frlg",
+    "warp": 4,
+    "src_xy": [
+     19,
+     11
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_CINNABAR_ISLAND_MART",
+    "dest_warp_id": "1",
+    "issues": [],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "class": "internal",
+    "dest_name": "CinnabarIsland_Mart_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     4,
+     7
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_Gym_Frlg",
+    "warp": 0,
+    "src_xy": [
+     24,
+     23
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_CINNABAR_ISLAND",
+    "dest_warp_id": "1",
+    "issues": [],
+    "src_behavior": "MB_NORMAL",
+    "class": "landing_anchor",
+    "dest_name": "CinnabarIsland_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     20,
+     4
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_Gym_Frlg",
+    "warp": 1,
+    "src_xy": [
+     25,
+     23
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_CINNABAR_ISLAND",
+    "dest_warp_id": "1",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "internal",
+    "dest_name": "CinnabarIsland_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     20,
+     4
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_Gym_Frlg",
+    "warp": 2,
+    "src_xy": [
+     26,
+     23
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_CINNABAR_ISLAND",
+    "dest_warp_id": "1",
+    "issues": [],
+    "src_behavior": "MB_NORMAL",
+    "class": "landing_anchor",
+    "dest_name": "CinnabarIsland_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     20,
+     4
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_Mart_Frlg",
+    "warp": 0,
+    "src_xy": [
+     3,
+     7
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_CINNABAR_ISLAND",
+    "dest_warp_id": "4",
+    "issues": [],
+    "src_behavior": "MB_NORMAL",
+    "class": "landing_anchor",
+    "dest_name": "CinnabarIsland_Frlg",
+    "dest_warp": 4,
+    "dest_xy": [
+     19,
+     11
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_Mart_Frlg",
+    "warp": 1,
+    "src_xy": [
+     4,
+     7
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_CINNABAR_ISLAND",
+    "dest_warp_id": "4",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "internal",
+    "dest_name": "CinnabarIsland_Frlg",
+    "dest_warp": 4,
+    "dest_xy": [
+     19,
+     11
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_Mart_Frlg",
+    "warp": 2,
+    "src_xy": [
+     5,
+     7
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_CINNABAR_ISLAND",
+    "dest_warp_id": "4",
+    "issues": [],
+    "src_behavior": "MB_NORMAL",
+    "class": "landing_anchor",
+    "dest_name": "CinnabarIsland_Frlg",
+    "dest_warp": 4,
+    "dest_xy": [
+     19,
+     11
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonCenter_1F_Frlg",
+    "warp": 0,
+    "src_xy": [
+     7,
+     8
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_CINNABAR_ISLAND",
+    "dest_warp_id": "3",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "internal",
+    "dest_name": "CinnabarIsland_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     14,
+     11
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonCenter_1F_Frlg",
+    "warp": 1,
+    "src_xy": [
+     6,
+     8
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_CINNABAR_ISLAND",
+    "dest_warp_id": "3",
+    "issues": [],
+    "src_behavior": "MB_NORMAL",
+    "class": "landing_anchor",
+    "dest_name": "CinnabarIsland_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     14,
+     11
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonCenter_1F_Frlg",
+    "warp": 2,
+    "src_xy": [
+     8,
+     8
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_CINNABAR_ISLAND",
+    "dest_warp_id": "3",
+    "issues": [],
+    "src_behavior": "MB_NORMAL",
+    "class": "landing_anchor",
+    "dest_name": "CinnabarIsland_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     14,
+     11
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonCenter_1F_Frlg",
+    "warp": 3,
+    "src_xy": [
+     1,
+     6
+    ],
+    "src_elevation": 4,
+    "dest_map": "MAP_CINNABAR_ISLAND_POKEMON_CENTER_2F",
+    "dest_warp_id": "0",
+    "issues": [],
+    "src_behavior": "MB_UP_ESCALATOR",
+    "class": "internal",
+    "dest_name": "CinnabarIsland_PokemonCenter_2F_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     1,
+     6
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_DOWN_ESCALATOR",
+    "dest_elevation": 4,
+    "dest_exits": [
+     "RIGHT"
+    ],
+    "approaches": [
+     "LEFT"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonCenter_2F_Frlg",
+    "warp": 0,
+    "src_xy": [
+     1,
+     6
+    ],
+    "src_elevation": 4,
+    "dest_map": "MAP_CINNABAR_ISLAND_POKEMON_CENTER_1F",
+    "dest_warp_id": "3",
+    "issues": [],
+    "src_behavior": "MB_DOWN_ESCALATOR",
+    "class": "internal",
+    "dest_name": "CinnabarIsland_PokemonCenter_1F_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     1,
+     6
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_UP_ESCALATOR",
+    "dest_elevation": 4,
+    "dest_exits": [
+     "RIGHT"
+    ],
+    "approaches": [
+     "LEFT"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonCenter_2F_Frlg",
+    "warp": 1,
+    "src_xy": [
+     5,
+     1
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_UNION_ROOM_FRLG",
+    "dest_warp_id": "0",
+    "issues": [],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "class": "dynamic_return",
+    "dest_name": "UnionRoom_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     7,
+     11
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_BRIDGE_OVER_OCEAN",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonCenter_2F_Frlg",
+    "warp": 2,
+    "src_xy": [
+     9,
+     1
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_TRADE_CENTER_FRLG",
+    "dest_warp_id": "0",
+    "issues": [],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "class": "dynamic_return",
+    "dest_name": "TradeCenter_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     5,
+     8
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "warp": 0,
+    "src_xy": [
+     3,
+     9
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_CINNABAR_ISLAND",
+    "dest_warp_id": "2",
+    "issues": [],
+    "src_behavior": "MB_NORMAL",
+    "class": "landing_anchor",
+    "dest_name": "CinnabarIsland_Frlg",
+    "dest_warp": 2,
+    "dest_xy": [
+     8,
+     9
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "warp": 1,
+    "src_xy": [
+     4,
+     9
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_CINNABAR_ISLAND",
+    "dest_warp_id": "2",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "internal",
+    "dest_name": "CinnabarIsland_Frlg",
+    "dest_warp": 2,
+    "dest_xy": [
+     8,
+     9
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "warp": 2,
+    "src_xy": [
+     5,
+     9
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_CINNABAR_ISLAND",
+    "dest_warp_id": "2",
+    "issues": [],
+    "src_behavior": "MB_NORMAL",
+    "class": "landing_anchor",
+    "dest_name": "CinnabarIsland_Frlg",
+    "dest_warp": 2,
+    "dest_xy": [
+     8,
+     9
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "warp": 3,
+    "src_xy": [
+     13,
+     5
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_CINNABAR_ISLAND_POKEMON_LAB_LOUNGE",
+    "dest_warp_id": "0",
+    "issues": [],
+    "src_behavior": "MB_NON_ANIMATED_DOOR",
+    "class": "internal",
+    "dest_name": "CinnabarIsland_PokemonLab_Lounge_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     7,
+     9
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "warp": 4,
+    "src_xy": [
+     19,
+     5
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_CINNABAR_ISLAND_POKEMON_LAB_RESEARCH_ROOM",
+    "dest_warp_id": "0",
+    "issues": [],
+    "src_behavior": "MB_NON_ANIMATED_DOOR",
+    "class": "internal",
+    "dest_name": "CinnabarIsland_PokemonLab_ResearchRoom_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     7,
+     9
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "warp": 5,
+    "src_xy": [
+     25,
+     5
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM",
+    "dest_warp_id": "0",
+    "issues": [],
+    "src_behavior": "MB_NON_ANIMATED_DOOR",
+    "class": "internal",
+    "dest_name": "CinnabarIsland_PokemonLab_ExperimentRoom_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     7,
+     9
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonLab_ExperimentRoom_Frlg",
+    "warp": 0,
+    "src_xy": [
+     7,
+     9
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_CINNABAR_ISLAND_POKEMON_LAB_ENTRANCE",
+    "dest_warp_id": "5",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "internal",
+    "dest_name": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "dest_warp": 5,
+    "dest_xy": [
+     25,
+     5
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonLab_Lounge_Frlg",
+    "warp": 0,
+    "src_xy": [
+     7,
+     9
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_CINNABAR_ISLAND_POKEMON_LAB_ENTRANCE",
+    "dest_warp_id": "3",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "internal",
+    "dest_name": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     13,
+     5
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonLab_ResearchRoom_Frlg",
+    "warp": 0,
+    "src_xy": [
+     7,
+     9
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_CINNABAR_ISLAND_POKEMON_LAB_ENTRANCE",
+    "dest_warp_id": "4",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "internal",
+    "dest_name": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "dest_warp": 4,
+    "dest_xy": [
+     19,
+     5
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Frlg",
+    "warp": 0,
+    "src_xy": [
+     33,
+     31
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_FUCHSIA_CITY_WARDENS_HOUSE",
+    "dest_warp_id": "1",
+    "issues": [],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "class": "internal",
+    "dest_name": "FuchsiaCity_WardensHouse_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     6,
+     9
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Frlg",
+    "warp": 1,
+    "src_xy": [
+     11,
+     15
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_FUCHSIA_CITY_MART",
+    "dest_warp_id": "1",
+    "issues": [],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "class": "internal",
+    "dest_name": "FuchsiaCity_Mart_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     4,
+     7
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Frlg",
+    "warp": 2,
+    "src_xy": [
+     9,
+     32
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_FUCHSIA_CITY_GYM",
+    "dest_warp_id": "1",
+    "issues": [],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "class": "internal",
+    "dest_name": "FuchsiaCity_Gym_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     7,
+     21
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Frlg",
+    "warp": 3,
+    "src_xy": [
+     14,
+     31
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_FUCHSIA_CITY_HOUSE1",
+    "dest_warp_id": "1",
+    "issues": [],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "class": "internal",
+    "dest_name": "FuchsiaCity_House1_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     4,
+     7
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Frlg",
+    "warp": 4,
+    "src_xy": [
+     25,
+     31
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_FUCHSIA_CITY_POKEMON_CENTER_1F",
+    "dest_warp_id": "1",
+    "issues": [],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "class": "internal",
+    "dest_name": "FuchsiaCity_PokemonCenter_1F_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     7,
+     8
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Frlg",
+    "warp": 5,
+    "src_xy": [
+     38,
+     31
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_FUCHSIA_CITY_HOUSE2",
+    "dest_warp_id": "1",
+    "issues": [],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "class": "internal",
+    "dest_name": "FuchsiaCity_House2_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     3,
+     8
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Frlg",
+    "warp": 6,
+    "src_xy": [
+     39,
+     28
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_FUCHSIA_CITY_HOUSE2",
+    "dest_warp_id": "3",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "internal",
+    "dest_name": "FuchsiaCity_House2_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     3,
+     1
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Frlg",
+    "warp": 7,
+    "src_xy": [
+     39,
+     29
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_FUCHSIA_CITY_HOUSE2",
+    "dest_warp_id": "3",
+    "issues": [],
+    "src_behavior": "MB_NORMAL",
+    "class": "landing_anchor",
+    "dest_name": "FuchsiaCity_House2_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     3,
+     1
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Frlg",
+    "warp": 8,
+    "src_xy": [
+     19,
+     31
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_FUCHSIA_CITY_HOUSE3",
+    "dest_warp_id": "0",
+    "issues": [],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "class": "internal",
+    "dest_name": "FuchsiaCity_House3_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     4,
+     7
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Gym_Frlg",
+    "warp": 0,
+    "src_xy": [
+     6,
+     21
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_warp_id": "2",
+    "issues": [],
+    "src_behavior": "MB_NORMAL",
+    "class": "landing_anchor",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 2,
+    "dest_xy": [
+     9,
+     32
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Gym_Frlg",
+    "warp": 1,
+    "src_xy": [
+     7,
+     21
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_warp_id": "2",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "internal",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 2,
+    "dest_xy": [
+     9,
+     32
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Gym_Frlg",
+    "warp": 2,
+    "src_xy": [
+     8,
+     21
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_warp_id": "2",
+    "issues": [],
+    "src_behavior": "MB_NORMAL",
+    "class": "landing_anchor",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 2,
+    "dest_xy": [
+     9,
+     32
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_House1_Frlg",
+    "warp": 0,
+    "src_xy": [
+     3,
+     7
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_warp_id": "3",
+    "issues": [],
+    "src_behavior": "MB_NORMAL",
+    "class": "landing_anchor",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     14,
+     31
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_House1_Frlg",
+    "warp": 1,
+    "src_xy": [
+     4,
+     7
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_warp_id": "3",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "internal",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     14,
+     31
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_House1_Frlg",
+    "warp": 2,
+    "src_xy": [
+     5,
+     7
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_warp_id": "3",
+    "issues": [],
+    "src_behavior": "MB_NORMAL",
+    "class": "landing_anchor",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     14,
+     31
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_House2_Frlg",
+    "warp": 0,
+    "src_xy": [
+     2,
+     9
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_warp_id": "5",
+    "issues": [],
+    "src_behavior": "MB_NORMAL",
+    "class": "landing_anchor",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 5,
+    "dest_xy": [
+     38,
+     31
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_House2_Frlg",
+    "warp": 1,
+    "src_xy": [
+     3,
+     8
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_warp_id": "5",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "internal",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 5,
+    "dest_xy": [
+     38,
+     31
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_House2_Frlg",
+    "warp": 2,
+    "src_xy": [
+     4,
+     9
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_warp_id": "5",
+    "issues": [],
+    "src_behavior": "MB_NORMAL",
+    "class": "landing_anchor",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 5,
+    "dest_xy": [
+     38,
+     31
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_House2_Frlg",
+    "warp": 3,
+    "src_xy": [
+     3,
+     1
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_warp_id": "6",
+    "issues": [],
+    "src_behavior": "MB_NON_ANIMATED_DOOR",
+    "class": "internal",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 6,
+    "dest_xy": [
+     39,
+     28
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_House3_Frlg",
+    "warp": 0,
+    "src_xy": [
+     4,
+     7
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_warp_id": "8",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "internal",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 8,
+    "dest_xy": [
+     19,
+     31
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Mart_Frlg",
+    "warp": 0,
+    "src_xy": [
+     3,
+     7
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_warp_id": "1",
+    "issues": [],
+    "src_behavior": "MB_NORMAL",
+    "class": "landing_anchor",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     11,
+     15
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Mart_Frlg",
+    "warp": 1,
+    "src_xy": [
+     4,
+     7
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_warp_id": "1",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "internal",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     11,
+     15
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Mart_Frlg",
+    "warp": 2,
+    "src_xy": [
+     5,
+     7
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_warp_id": "1",
+    "issues": [],
+    "src_behavior": "MB_NORMAL",
+    "class": "landing_anchor",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     11,
+     15
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_PokemonCenter_1F_Frlg",
+    "warp": 0,
+    "src_xy": [
+     6,
+     8
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_warp_id": "4",
+    "issues": [],
+    "src_behavior": "MB_NORMAL",
+    "class": "landing_anchor",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 4,
+    "dest_xy": [
+     25,
+     31
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_PokemonCenter_1F_Frlg",
+    "warp": 1,
+    "src_xy": [
+     7,
+     8
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_warp_id": "4",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "internal",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 4,
+    "dest_xy": [
+     25,
+     31
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_PokemonCenter_1F_Frlg",
+    "warp": 2,
+    "src_xy": [
+     8,
+     8
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_warp_id": "4",
+    "issues": [],
+    "src_behavior": "MB_NORMAL",
+    "class": "landing_anchor",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 4,
+    "dest_xy": [
+     25,
+     31
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_PokemonCenter_1F_Frlg",
+    "warp": 3,
+    "src_xy": [
+     1,
+     6
+    ],
+    "src_elevation": 4,
+    "dest_map": "MAP_FUCHSIA_CITY_POKEMON_CENTER_2F",
+    "dest_warp_id": "0",
+    "issues": [],
+    "src_behavior": "MB_UP_ESCALATOR",
+    "class": "internal",
+    "dest_name": "FuchsiaCity_PokemonCenter_2F_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     1,
+     6
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_DOWN_ESCALATOR",
+    "dest_elevation": 4,
+    "dest_exits": [
+     "RIGHT"
+    ],
+    "approaches": [
+     "LEFT"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_PokemonCenter_2F_Frlg",
+    "warp": 0,
+    "src_xy": [
+     1,
+     6
+    ],
+    "src_elevation": 4,
+    "dest_map": "MAP_FUCHSIA_CITY_POKEMON_CENTER_1F",
+    "dest_warp_id": "3",
+    "issues": [],
+    "src_behavior": "MB_DOWN_ESCALATOR",
+    "class": "internal",
+    "dest_name": "FuchsiaCity_PokemonCenter_1F_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     1,
+     6
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_UP_ESCALATOR",
+    "dest_elevation": 4,
+    "dest_exits": [
+     "RIGHT"
+    ],
+    "approaches": [
+     "LEFT"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_PokemonCenter_2F_Frlg",
+    "warp": 1,
+    "src_xy": [
+     5,
+     1
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_UNION_ROOM_FRLG",
+    "dest_warp_id": "0",
+    "issues": [],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "class": "dynamic_return",
+    "dest_name": "UnionRoom_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     7,
+     11
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_BRIDGE_OVER_OCEAN",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_PokemonCenter_2F_Frlg",
+    "warp": 2,
+    "src_xy": [
+     9,
+     1
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_TRADE_CENTER_FRLG",
+    "dest_warp_id": "0",
+    "issues": [],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "class": "dynamic_return",
+    "dest_name": "TradeCenter_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     5,
+     8
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_WardensHouse_Frlg",
+    "warp": 0,
+    "src_xy": [
+     5,
+     10
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_warp_id": "0",
+    "issues": [],
+    "src_behavior": "MB_NORMAL",
+    "class": "landing_anchor",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     33,
+     31
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_WardensHouse_Frlg",
+    "warp": 1,
+    "src_xy": [
+     6,
+     9
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_warp_id": "0",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "internal",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     33,
+     31
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "FuchsiaCity_WardensHouse_Frlg",
+    "warp": 2,
+    "src_xy": [
+     7,
+     10
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_warp_id": "0",
+    "issues": [],
+    "src_behavior": "MB_NORMAL",
+    "class": "landing_anchor",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     33,
+     31
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN"
+    ]
+   },
+   {
+    "map": "Route15_Frlg",
+    "warp": 0,
+    "src_xy": [
+     9,
+     11
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_ROUTE15_WEST_ENTRANCE_1F",
+    "dest_warp_id": "0",
+    "issues": [],
+    "src_behavior": "MB_EAST_ARROW_WARP",
+    "class": "internal",
+    "dest_name": "Route15_WestEntrance_1F_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     1,
+     6
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_WEST_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "DOWN",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP",
+     "DOWN",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "Route15_Frlg",
+    "warp": 1,
+    "src_xy": [
+     16,
+     11
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_ROUTE15_WEST_ENTRANCE_1F",
+    "dest_warp_id": "2",
+    "issues": [],
+    "src_behavior": "MB_WEST_ARROW_WARP",
+    "class": "internal",
+    "dest_name": "Route15_WestEntrance_1F_Frlg",
+    "dest_warp": 2,
+    "dest_xy": [
+     11,
+     6
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_EAST_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "DOWN",
+     "LEFT"
+    ],
+    "approaches": [
+     "UP",
+     "DOWN",
+     "LEFT"
+    ]
+   },
+   {
+    "map": "Route15_WestEntrance_1F_Frlg",
+    "warp": 0,
+    "src_xy": [
+     1,
+     6
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_ROUTE15",
+    "dest_warp_id": "0",
+    "issues": [],
+    "src_behavior": "MB_WEST_ARROW_WARP",
+    "class": "internal",
+    "dest_name": "Route15_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     9,
+     11
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_EAST_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "DOWN",
+     "LEFT"
+    ],
+    "approaches": [
+     "UP",
+     "DOWN",
+     "LEFT"
+    ]
+   },
+   {
+    "map": "Route15_WestEntrance_1F_Frlg",
+    "warp": 1,
+    "src_xy": [
+     1,
+     7
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_ROUTE15",
+    "dest_warp_id": "0",
+    "issues": [],
+    "src_behavior": "MB_NORMAL",
+    "class": "landing_anchor",
+    "dest_name": "Route15_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     9,
+     11
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_EAST_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "DOWN",
+     "LEFT"
+    ],
+    "approaches": [
+     "UP",
+     "DOWN",
+     "LEFT"
+    ]
+   },
+   {
+    "map": "Route15_WestEntrance_1F_Frlg",
+    "warp": 2,
+    "src_xy": [
+     11,
+     6
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_ROUTE15",
+    "dest_warp_id": "1",
+    "issues": [],
+    "src_behavior": "MB_EAST_ARROW_WARP",
+    "class": "internal",
+    "dest_name": "Route15_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     16,
+     11
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_WEST_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "DOWN",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP",
+     "DOWN",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "Route15_WestEntrance_1F_Frlg",
+    "warp": 3,
+    "src_xy": [
+     11,
+     7
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_ROUTE15",
+    "dest_warp_id": "1",
+    "issues": [],
+    "src_behavior": "MB_NORMAL",
+    "class": "landing_anchor",
+    "dest_name": "Route15_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     16,
+     11
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_WEST_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "DOWN",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP",
+     "DOWN",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "Route15_WestEntrance_1F_Frlg",
+    "warp": 4,
+    "src_xy": [
+     9,
+     10
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_ROUTE15_WEST_ENTRANCE_2F",
+    "dest_warp_id": "0",
+    "issues": [],
+    "src_behavior": "MB_UP_RIGHT_STAIR_WARP",
+    "class": "internal",
+    "dest_name": "Route15_WestEntrance_2F_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     10,
+     9
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_DOWN_LEFT_STAIR_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "DOWN",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP",
+     "DOWN",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "Route15_WestEntrance_2F_Frlg",
+    "warp": 0,
+    "src_xy": [
+     10,
+     9
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_ROUTE15_WEST_ENTRANCE_1F",
+    "dest_warp_id": "4",
+    "issues": [],
+    "src_behavior": "MB_DOWN_LEFT_STAIR_WARP",
+    "class": "internal",
+    "dest_name": "Route15_WestEntrance_1F_Frlg",
+    "dest_warp": 4,
+    "dest_xy": [
+     9,
+     10
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_UP_RIGHT_STAIR_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "DOWN",
+     "LEFT"
+    ],
+    "approaches": [
+     "UP",
+     "DOWN",
+     "LEFT"
+    ]
+   },
+   {
+    "map": "Route2_EastBuilding_Frlg",
+    "warp": 0,
+    "src_xy": [
+     6,
+     9
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_ROUTE2",
+    "dest_warp_id": "5",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "landing_anchor",
+    "dest_name": "Route2_Frlg",
+    "dest_warp": 5,
+    "dest_xy": [
+     18,
+     46
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "DOWN",
+     "RIGHT"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "Route2_EastBuilding_Frlg",
+    "warp": 1,
+    "src_xy": [
+     7,
+     9
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_ROUTE2",
+    "dest_warp_id": "5",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "internal",
+    "dest_name": "Route2_Frlg",
+    "dest_warp": 5,
+    "dest_xy": [
+     18,
+     46
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "DOWN",
+     "RIGHT"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "Route2_EastBuilding_Frlg",
+    "warp": 2,
+    "src_xy": [
+     8,
+     9
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_ROUTE2",
+    "dest_warp_id": "5",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "landing_anchor",
+    "dest_name": "Route2_Frlg",
+    "dest_warp": 5,
+    "dest_xy": [
+     18,
+     46
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "DOWN",
+     "RIGHT"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "Route2_EastBuilding_Frlg",
+    "warp": 3,
+    "src_xy": [
+     7,
+     1
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_ROUTE2",
+    "dest_warp_id": "6",
+    "issues": [],
+    "src_behavior": "MB_NON_ANIMATED_DOOR",
+    "class": "internal",
+    "dest_name": "Route2_Frlg",
+    "dest_warp": 6,
+    "dest_xy": [
+     18,
+     40
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "Route2_Frlg",
+    "warp": 0,
+    "src_xy": [
+     5,
+     13
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_ROUTE2_VIRIDIAN_FOREST_NORTH_ENTRANCE",
+    "dest_warp_id": "3",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "internal",
+    "dest_name": "Route2_ViridianForest_NorthEntrance_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     7,
+     1
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "Route2_Frlg",
+    "warp": 1,
+    "src_xy": [
+     6,
+     13
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_ROUTE2_VIRIDIAN_FOREST_NORTH_ENTRANCE",
+    "dest_warp_id": "3",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "landing_anchor",
+    "dest_name": "Route2_ViridianForest_NorthEntrance_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     7,
+     1
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "Route2_Frlg",
+    "warp": 2,
+    "src_xy": [
+     5,
+     51
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_ROUTE2_VIRIDIAN_FOREST_SOUTH_ENTRANCE",
+    "dest_warp_id": "1",
+    "issues": [],
+    "src_behavior": "MB_NON_ANIMATED_DOOR",
+    "class": "internal",
+    "dest_name": "Route2_ViridianForest_SouthEntrance_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     7,
+     9
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP",
+     "LEFT"
+    ]
+   },
+   {
+    "map": "Route2_Frlg",
+    "warp": 3,
+    "src_xy": [
+     17,
+     11
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_DARK_CAVE_SOUTH_SIDE_HNS",
+    "dest_warp_id": "0",
+    "issues": [],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "class": "internal",
+    "dest_name": "DarkCave_SouthSide_hns",
+    "dest_warp": 0,
+    "dest_xy": [
+     14,
+     20
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_LADDER",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "Route2_Frlg",
+    "warp": 4,
+    "src_xy": [
+     17,
+     22
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_ROUTE2_HOUSE",
+    "dest_warp_id": "0",
+    "issues": [],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "class": "internal",
+    "dest_name": "Route2_House_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     4,
+     7
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "Route2_Frlg",
+    "warp": 5,
+    "src_xy": [
+     18,
+     46
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_ROUTE2_EAST_BUILDING",
+    "dest_warp_id": "1",
+    "issues": [],
+    "src_behavior": "MB_NON_ANIMATED_DOOR",
+    "class": "internal",
+    "dest_name": "Route2_EastBuilding_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     7,
+     9
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP",
+     "LEFT"
+    ]
+   },
+   {
+    "map": "Route2_Frlg",
+    "warp": 6,
+    "src_xy": [
+     18,
+     40
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_ROUTE2_EAST_BUILDING",
+    "dest_warp_id": "3",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "internal",
+    "dest_name": "Route2_EastBuilding_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     7,
+     1
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "Route2_Frlg",
+    "warp": 7,
+    "src_xy": [
+     19,
+     40
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_ROUTE2_EAST_BUILDING",
+    "dest_warp_id": "3",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "landing_anchor",
+    "dest_name": "Route2_EastBuilding_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     7,
+     1
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "Route2_Frlg",
+    "warp": 8,
+    "src_xy": [
+     19,
+     46
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_ROUTE2_EAST_BUILDING",
+    "dest_warp_id": "1",
+    "issues": [],
+    "src_behavior": "MB_NON_ANIMATED_DOOR",
+    "class": "landing_anchor",
+    "dest_name": "Route2_EastBuilding_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     7,
+     9
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "Route2_Frlg",
+    "warp": 9,
+    "src_xy": [
+     6,
+     51
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_ROUTE2_VIRIDIAN_FOREST_SOUTH_ENTRANCE",
+    "dest_warp_id": "1",
+    "issues": [],
+    "src_behavior": "MB_NON_ANIMATED_DOOR",
+    "class": "landing_anchor",
+    "dest_name": "Route2_ViridianForest_SouthEntrance_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     7,
+     9
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "Route2_House_Frlg",
+    "warp": 0,
+    "src_xy": [
+     4,
+     7
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_ROUTE2",
+    "dest_warp_id": "4",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "internal",
+    "dest_name": "Route2_Frlg",
+    "dest_warp": 4,
+    "dest_xy": [
+     17,
+     22
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "UP",
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "Route2_House_Frlg",
+    "warp": 1,
+    "src_xy": [
+     4,
+     8
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_ROUTE2",
+    "dest_warp_id": "4",
+    "issues": [],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "class": "landing_anchor",
+    "dest_name": "Route2_Frlg",
+    "dest_warp": 4,
+    "dest_xy": [
+     17,
+     22
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_ANIMATED_DOOR",
+    "dest_elevation": 0,
+    "dest_exits": [
+     "DOWN"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "Route2_ViridianForest_NorthEntrance_Frlg",
+    "warp": 0,
+    "src_xy": [
+     6,
+     9
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_ILEX_FOREST_HNS",
+    "dest_warp_id": "1",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "landing_anchor",
+    "dest_name": "IlexForest_hns",
+    "dest_warp": 1,
+    "dest_xy": [
+     20,
+     15
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_NORTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "Route2_ViridianForest_NorthEntrance_Frlg",
+    "warp": 1,
+    "src_xy": [
+     7,
+     9
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_ILEX_FOREST_HNS",
+    "dest_warp_id": "1",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "internal",
+    "dest_name": "IlexForest_hns",
+    "dest_warp": 1,
+    "dest_xy": [
+     20,
+     15
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_NORTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "Route2_ViridianForest_NorthEntrance_Frlg",
+    "warp": 2,
+    "src_xy": [
+     8,
+     9
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_ILEX_FOREST_HNS",
+    "dest_warp_id": "1",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "landing_anchor",
+    "dest_name": "IlexForest_hns",
+    "dest_warp": 1,
+    "dest_xy": [
+     20,
+     15
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_NORTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "Route2_ViridianForest_NorthEntrance_Frlg",
+    "warp": 3,
+    "src_xy": [
+     7,
+     1
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_ROUTE2",
+    "dest_warp_id": "0",
+    "issues": [],
+    "src_behavior": "MB_NON_ANIMATED_DOOR",
+    "class": "internal",
+    "dest_name": "Route2_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     5,
+     13
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "LEFT",
+     "RIGHT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   },
+   {
+    "map": "Route2_ViridianForest_SouthEntrance_Frlg",
+    "warp": 0,
+    "src_xy": [
+     6,
+     9
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_ROUTE2",
+    "dest_warp_id": "2",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "landing_anchor",
+    "dest_name": "Route2_Frlg",
+    "dest_warp": 2,
+    "dest_xy": [
+     5,
+     51
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "DOWN",
+     "RIGHT"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "Route2_ViridianForest_SouthEntrance_Frlg",
+    "warp": 1,
+    "src_xy": [
+     7,
+     9
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_ROUTE2",
+    "dest_warp_id": "2",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "internal",
+    "dest_name": "Route2_Frlg",
+    "dest_warp": 2,
+    "dest_xy": [
+     5,
+     51
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "DOWN",
+     "RIGHT"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "Route2_ViridianForest_SouthEntrance_Frlg",
+    "warp": 2,
+    "src_xy": [
+     8,
+     9
+    ],
+    "src_elevation": 3,
+    "dest_map": "MAP_ROUTE2",
+    "dest_warp_id": "2",
+    "issues": [],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "class": "landing_anchor",
+    "dest_name": "Route2_Frlg",
+    "dest_warp": 2,
+    "dest_xy": [
+     5,
+     51
+    ],
+    "mutual": false,
+    "dest_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "DOWN",
+     "RIGHT"
+    ],
+    "approaches": [
+     "DOWN",
+     "LEFT",
+     "RIGHT"
+    ]
+   },
+   {
+    "map": "Route2_ViridianForest_SouthEntrance_Frlg",
+    "warp": 3,
+    "src_xy": [
+     7,
+     1
+    ],
+    "src_elevation": 0,
+    "dest_map": "MAP_ILEX_FOREST_HNS",
+    "dest_warp_id": "0",
+    "issues": [],
+    "src_behavior": "MB_NON_ANIMATED_DOOR",
+    "class": "internal",
+    "dest_name": "IlexForest_hns",
+    "dest_warp": 0,
+    "dest_xy": [
+     22,
+     63
+    ],
+    "mutual": true,
+    "dest_behavior": "MB_EAST_ARROW_WARP",
+    "dest_elevation": 3,
+    "dest_exits": [
+     "UP",
+     "DOWN",
+     "LEFT"
+    ],
+    "approaches": [
+     "UP"
+    ]
+   }
+  ],
+  "connections": [
+   {
+    "map": "CinnabarIsland_Frlg",
+    "connection": 0,
+    "direction": "up",
+    "offset": 0,
+    "dest_map": "MAP_ROUTE21_SOUTH",
+    "dest_name": "Route21_South_Frlg",
+    "issues": [],
+    "class": "internal",
+    "self_size": [
+     24,
+     20
+    ],
+    "dest_size": [
+     24,
+     50
+    ],
+    "lane_range": [
+     0,
+     23
+    ],
+    "reciprocal_index": 1
+   },
+   {
+    "map": "FuchsiaCity_Frlg",
+    "connection": 0,
+    "direction": "down",
+    "offset": 12,
+    "dest_map": "MAP_ROUTE19",
+    "dest_name": "Route19_Frlg",
+    "issues": [
+     "no reciprocal up connection on Route19_Frlg back to FuchsiaCity_Frlg"
+    ],
+    "class": "internal",
+    "self_size": [
+     48,
+     40
+    ],
+    "dest_size": [
+     24,
+     60
+    ],
+    "lane_range": [
+     12,
+     35
+    ],
+    "reciprocal_index": null
+   },
+   {
+    "map": "FuchsiaCity_Frlg",
+    "connection": 1,
+    "direction": "left",
+    "offset": 10,
+    "dest_map": "MAP_ROUTE18",
+    "dest_name": "Route18_Frlg",
+    "issues": [],
+    "class": "internal",
+    "self_size": [
+     48,
+     40
+    ],
+    "dest_size": [
+     60,
+     20
+    ],
+    "lane_range": [
+     10,
+     29
+    ],
+    "reciprocal_index": 1
+   },
+   {
+    "map": "FuchsiaCity_Frlg",
+    "connection": 2,
+    "direction": "right",
+    "offset": 10,
+    "dest_map": "MAP_ROUTE15",
+    "dest_name": "Route15_Frlg",
+    "issues": [],
+    "class": "internal",
+    "self_size": [
+     48,
+     40
+    ],
+    "dest_size": [
+     72,
+     20
+    ],
+    "lane_range": [
+     10,
+     29
+    ],
+    "reciprocal_index": 0
+   },
+   {
+    "map": "Route14_Frlg",
+    "connection": 0,
+    "direction": "left",
+    "offset": 40,
+    "dest_map": "MAP_ROUTE15",
+    "dest_name": "Route15_Frlg",
+    "issues": [],
+    "class": "internal",
+    "self_size": [
+     24,
+     60
+    ],
+    "dest_size": [
+     72,
+     20
+    ],
+    "lane_range": [
+     40,
+     59
+    ],
+    "reciprocal_index": 1
+   },
+   {
+    "map": "Route14_Frlg",
+    "connection": 1,
+    "direction": "right",
+    "offset": 0,
+    "dest_map": "MAP_ROUTE13",
+    "dest_name": "Route13_Frlg",
+    "issues": [],
+    "class": "internal",
+    "self_size": [
+     24,
+     60
+    ],
+    "dest_size": [
+     72,
+     20
+    ],
+    "lane_range": [
+     0,
+     19
+    ],
+    "reciprocal_index": 1
+   },
+   {
+    "map": "Route15_Frlg",
+    "connection": 0,
+    "direction": "left",
+    "offset": -10,
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_name": "FuchsiaCity_Frlg",
+    "issues": [],
+    "class": "internal",
+    "self_size": [
+     72,
+     20
+    ],
+    "dest_size": [
+     48,
+     40
+    ],
+    "lane_range": [
+     0,
+     19
+    ],
+    "reciprocal_index": 2
+   },
+   {
+    "map": "Route15_Frlg",
+    "connection": 1,
+    "direction": "right",
+    "offset": -40,
+    "dest_map": "MAP_ROUTE14",
+    "dest_name": "Route14_Frlg",
+    "issues": [],
+    "class": "internal",
+    "self_size": [
+     72,
+     20
+    ],
+    "dest_size": [
+     24,
+     60
+    ],
+    "lane_range": [
+     0,
+     19
+    ],
+    "reciprocal_index": 0
+   },
+   {
+    "map": "Route2_Frlg",
+    "connection": 0,
+    "direction": "up",
+    "offset": -6,
+    "dest_map": "MAP_RUSTBORO_CITY",
+    "dest_name": "RustboroCity",
+    "issues": [],
+    "class": "internal",
+    "self_size": [
+     30,
+     80
+    ],
+    "dest_size": [
+     40,
+     60
+    ],
+    "lane_range": [
+     0,
+     29
+    ],
+    "reciprocal_index": 0
+   },
+   {
+    "map": "Route2_Frlg",
+    "connection": 1,
+    "direction": "down",
+    "offset": -25,
+    "dest_map": "MAP_CHERRYGROVE_CITY_HNS",
+    "dest_name": "CherrygroveCity_hns",
+    "issues": [],
+    "class": "internal",
+    "self_size": [
+     30,
+     80
+    ],
+    "dest_size": [
+     65,
+     42
+    ],
+    "lane_range": [
+     0,
+     29
+    ],
+    "reciprocal_index": 1
+   }
+  ]
+ },
+ "excluded": [],
+ "surf": {
+  "enabled": true,
+  "granted": [
+   true,
+   "surf holder=party[0] waterfall holder=0"
+  ],
+  "warps_walked_on_surf": 0,
+  "returns_walked_on_surf": 0,
+  "seams_walked_on_surf": 0
+ },
+ "dynamic": {
+  "warps": [
+   {
+    "map": "CinnabarIsland_Frlg",
+    "warp": 0,
+    "class": "internal",
+    "src_xy": [
+     8,
+     3
+    ],
+    "src_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_map": "MAP_POKEMON_MANSION_1F",
+    "dest_name": "PokemonMansion_1F_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     8,
+     33
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     8,
+     4
+    ],
+    "arrived": [
+     35,
+     59
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "PokemonMansion_1F_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "PokemonMansion_1F_Frlg",
+    "landed_xy": [
+     8,
+     33
+    ],
+    "rest_xy": [
+     8,
+     33
+    ],
+    "post_warp_step": null,
+    "notes": [
+     "arrival facing sampled after the transition finished, not on the landing tile"
+    ],
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     8,
+     32
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "CinnabarIsland_Frlg",
+     8,
+     3
+    ]
+   },
+   {
+    "map": "CinnabarIsland_Frlg",
+    "warp": 1,
+    "class": "internal",
+    "src_xy": [
+     20,
+     4
+    ],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "dest_map": "MAP_CINNABAR_ISLAND_GYM",
+    "dest_name": "CinnabarIsland_Gym_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     25,
+     23
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     20,
+     5
+    ],
+    "arrived": [
+     46,
+     0
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "CinnabarIsland_Gym_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "CinnabarIsland_Gym_Frlg",
+    "landed_xy": [
+     25,
+     23
+    ],
+    "rest_xy": [
+     25,
+     23
+    ],
+    "post_warp_step": null,
+    "notes": [
+     "arrival facing sampled after the transition finished, not on the landing tile"
+    ],
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     25,
+     22
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "CinnabarIsland_Frlg",
+     20,
+     4
+    ]
+   },
+   {
+    "map": "CinnabarIsland_Frlg",
+    "warp": 2,
+    "class": "internal",
+    "src_xy": [
+     8,
+     9
+    ],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "dest_map": "MAP_CINNABAR_ISLAND_POKEMON_LAB_ENTRANCE",
+    "dest_name": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     4,
+     9
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     8,
+     10
+    ],
+    "arrived": [
+     46,
+     1
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "landed_xy": [
+     4,
+     9
+    ],
+    "rest_xy": [
+     4,
+     9
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     4,
+     8
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "CinnabarIsland_Frlg",
+     8,
+     9
+    ]
+   },
+   {
+    "map": "CinnabarIsland_Frlg",
+    "warp": 3,
+    "class": "internal",
+    "src_xy": [
+     14,
+     11
+    ],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "dest_map": "MAP_CINNABAR_ISLAND_POKEMON_CENTER_1F",
+    "dest_name": "CinnabarIsland_PokemonCenter_1F_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     7,
+     8
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     14,
+     12
+    ],
+    "arrived": [
+     46,
+     5
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "CinnabarIsland_PokemonCenter_1F_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "CinnabarIsland_PokemonCenter_1F_Frlg",
+    "landed_xy": [
+     7,
+     8
+    ],
+    "rest_xy": [
+     7,
+     8
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     7,
+     7
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "CinnabarIsland_Frlg",
+     14,
+     11
+    ]
+   },
+   {
+    "map": "CinnabarIsland_Frlg",
+    "warp": 4,
+    "class": "internal",
+    "src_xy": [
+     19,
+     11
+    ],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "dest_map": "MAP_CINNABAR_ISLAND_MART",
+    "dest_name": "CinnabarIsland_Mart_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     4,
+     7
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     19,
+     12
+    ],
+    "arrived": [
+     46,
+     7
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "CinnabarIsland_Mart_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "CinnabarIsland_Mart_Frlg",
+    "landed_xy": [
+     4,
+     7
+    ],
+    "rest_xy": [
+     4,
+     7
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     4,
+     6
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "CinnabarIsland_Frlg",
+     19,
+     11
+    ]
+   },
+   {
+    "map": "CinnabarIsland_Gym_Frlg",
+    "warp": 0,
+    "class": "landing_anchor",
+    "src_xy": [
+     24,
+     23
+    ],
+    "src_behavior": "MB_NORMAL",
+    "dest_map": "MAP_CINNABAR_ISLAND",
+    "dest_name": "CinnabarIsland_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     20,
+     4
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [
+     "stepping DOWN from (24,22) onto (24,23) did not warp (timeout): the warp tile (24,23) is MB_NORMAL, which the engine's warp trigger (IsWarpMetatileBehavior / TryArrowWarp) does not accept, so no walk or surf can fire it"
+    ],
+    "status": "ISSUE",
+    "approach": [
+     "DOWN",
+     24,
+     22
+    ],
+    "arrived": null,
+    "arrival_facing": null,
+    "canonical_facing": null,
+    "landing_behavior": null,
+    "landing_walkable": null,
+    "can_move": null,
+    "return_ok": null,
+    "shot": "/home/eddie/repos/poke-plastic-ox/plastic_ox/demo/shots/warp_v1/CinnabarIsland_Gym_Frlg_0_nowarp.png",
+    "expect_name": "CinnabarIsland_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false
+   },
+   {
+    "map": "CinnabarIsland_Gym_Frlg",
+    "warp": 1,
+    "class": "internal",
+    "src_xy": [
+     25,
+     23
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_CINNABAR_ISLAND",
+    "dest_name": "CinnabarIsland_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     20,
+     4
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     25,
+     22
+    ],
+    "arrived": [
+     37,
+     7
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_ANIMATED_DOOR",
+    "landing_walkable": false,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "CinnabarIsland_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "CinnabarIsland_Frlg",
+    "landed_xy": [
+     20,
+     4
+    ],
+    "rest_xy": [
+     20,
+     5
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     20,
+     5
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "CinnabarIsland_Gym_Frlg",
+     25,
+     23
+    ]
+   },
+   {
+    "map": "CinnabarIsland_Gym_Frlg",
+    "warp": 2,
+    "class": "landing_anchor",
+    "src_xy": [
+     26,
+     23
+    ],
+    "src_behavior": "MB_NORMAL",
+    "dest_map": "MAP_CINNABAR_ISLAND",
+    "dest_name": "CinnabarIsland_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     20,
+     4
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [
+     "stepping DOWN from (26,22) onto (26,23) did not warp (timeout): the warp tile (26,23) is MB_NORMAL, which the engine's warp trigger (IsWarpMetatileBehavior / TryArrowWarp) does not accept, so no walk or surf can fire it"
+    ],
+    "status": "ISSUE",
+    "approach": [
+     "DOWN",
+     26,
+     22
+    ],
+    "arrived": null,
+    "arrival_facing": null,
+    "canonical_facing": null,
+    "landing_behavior": null,
+    "landing_walkable": null,
+    "can_move": null,
+    "return_ok": null,
+    "shot": "/home/eddie/repos/poke-plastic-ox/plastic_ox/demo/shots/warp_v1/CinnabarIsland_Gym_Frlg_2_nowarp.png",
+    "expect_name": "CinnabarIsland_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false
+   },
+   {
+    "map": "CinnabarIsland_Mart_Frlg",
+    "warp": 0,
+    "class": "landing_anchor",
+    "src_xy": [
+     3,
+     7
+    ],
+    "src_behavior": "MB_NORMAL",
+    "dest_map": "MAP_CINNABAR_ISLAND",
+    "dest_name": "CinnabarIsland_Frlg",
+    "dest_warp": 4,
+    "dest_xy": [
+     19,
+     11
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [
+     "stepping DOWN from (3,6) onto (3,7) did not warp (timeout): the warp tile (3,7) is MB_NORMAL, which the engine's warp trigger (IsWarpMetatileBehavior / TryArrowWarp) does not accept, so no walk or surf can fire it"
+    ],
+    "status": "ISSUE",
+    "approach": [
+     "DOWN",
+     3,
+     6
+    ],
+    "arrived": null,
+    "arrival_facing": null,
+    "canonical_facing": null,
+    "landing_behavior": null,
+    "landing_walkable": null,
+    "can_move": null,
+    "return_ok": null,
+    "shot": "/home/eddie/repos/poke-plastic-ox/plastic_ox/demo/shots/warp_v1/CinnabarIsland_Mart_Frlg_0_nowarp.png",
+    "expect_name": "CinnabarIsland_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false
+   },
+   {
+    "map": "CinnabarIsland_Mart_Frlg",
+    "warp": 1,
+    "class": "internal",
+    "src_xy": [
+     4,
+     7
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_CINNABAR_ISLAND",
+    "dest_name": "CinnabarIsland_Frlg",
+    "dest_warp": 4,
+    "dest_xy": [
+     19,
+     11
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     4,
+     6
+    ],
+    "arrived": [
+     37,
+     7
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_ANIMATED_DOOR",
+    "landing_walkable": false,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "CinnabarIsland_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "CinnabarIsland_Frlg",
+    "landed_xy": [
+     19,
+     11
+    ],
+    "rest_xy": [
+     19,
+     12
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     19,
+     12
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "CinnabarIsland_Mart_Frlg",
+     4,
+     7
+    ]
+   },
+   {
+    "map": "CinnabarIsland_Mart_Frlg",
+    "warp": 2,
+    "class": "landing_anchor",
+    "src_xy": [
+     5,
+     7
+    ],
+    "src_behavior": "MB_NORMAL",
+    "dest_map": "MAP_CINNABAR_ISLAND",
+    "dest_name": "CinnabarIsland_Frlg",
+    "dest_warp": 4,
+    "dest_xy": [
+     19,
+     11
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [
+     "stepping DOWN from (5,6) onto (5,7) did not warp (timeout): the warp tile (5,7) is MB_NORMAL, which the engine's warp trigger (IsWarpMetatileBehavior / TryArrowWarp) does not accept, so no walk or surf can fire it"
+    ],
+    "status": "ISSUE",
+    "approach": [
+     "DOWN",
+     5,
+     6
+    ],
+    "arrived": null,
+    "arrival_facing": null,
+    "canonical_facing": null,
+    "landing_behavior": null,
+    "landing_walkable": null,
+    "can_move": null,
+    "return_ok": null,
+    "shot": "/home/eddie/repos/poke-plastic-ox/plastic_ox/demo/shots/warp_v1/CinnabarIsland_Mart_Frlg_2_nowarp.png",
+    "expect_name": "CinnabarIsland_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false
+   },
+   {
+    "map": "CinnabarIsland_PokemonCenter_1F_Frlg",
+    "warp": 0,
+    "class": "internal",
+    "src_xy": [
+     7,
+     8
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_CINNABAR_ISLAND",
+    "dest_name": "CinnabarIsland_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     14,
+     11
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     7,
+     7
+    ],
+    "arrived": [
+     37,
+     7
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_ANIMATED_DOOR",
+    "landing_walkable": false,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "CinnabarIsland_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "CinnabarIsland_Frlg",
+    "landed_xy": [
+     14,
+     11
+    ],
+    "rest_xy": [
+     14,
+     12
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     14,
+     12
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "CinnabarIsland_PokemonCenter_1F_Frlg",
+     7,
+     8
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonCenter_1F_Frlg",
+    "warp": 1,
+    "class": "landing_anchor",
+    "src_xy": [
+     6,
+     8
+    ],
+    "src_behavior": "MB_NORMAL",
+    "dest_map": "MAP_CINNABAR_ISLAND",
+    "dest_name": "CinnabarIsland_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     14,
+     11
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [
+     "stepping DOWN from (6,7) onto (6,8) did not warp (timeout): the warp tile (6,8) is MB_NORMAL, which the engine's warp trigger (IsWarpMetatileBehavior / TryArrowWarp) does not accept, so no walk or surf can fire it"
+    ],
+    "status": "ISSUE",
+    "approach": [
+     "DOWN",
+     6,
+     7
+    ],
+    "arrived": null,
+    "arrival_facing": null,
+    "canonical_facing": null,
+    "landing_behavior": null,
+    "landing_walkable": null,
+    "can_move": null,
+    "return_ok": null,
+    "shot": "/home/eddie/repos/poke-plastic-ox/plastic_ox/demo/shots/warp_v1/CinnabarIsland_PokemonCenter_1F_Frlg_1_nowarp.png",
+    "expect_name": "CinnabarIsland_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false
+   },
+   {
+    "map": "CinnabarIsland_PokemonCenter_1F_Frlg",
+    "warp": 2,
+    "class": "landing_anchor",
+    "src_xy": [
+     8,
+     8
+    ],
+    "src_behavior": "MB_NORMAL",
+    "dest_map": "MAP_CINNABAR_ISLAND",
+    "dest_name": "CinnabarIsland_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     14,
+     11
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [
+     "stepping DOWN from (8,7) onto (8,8) did not warp (timeout): the warp tile (8,8) is MB_NORMAL, which the engine's warp trigger (IsWarpMetatileBehavior / TryArrowWarp) does not accept, so no walk or surf can fire it"
+    ],
+    "status": "ISSUE",
+    "approach": [
+     "DOWN",
+     8,
+     7
+    ],
+    "arrived": null,
+    "arrival_facing": null,
+    "canonical_facing": null,
+    "landing_behavior": null,
+    "landing_walkable": null,
+    "can_move": null,
+    "return_ok": null,
+    "shot": "/home/eddie/repos/poke-plastic-ox/plastic_ox/demo/shots/warp_v1/CinnabarIsland_PokemonCenter_1F_Frlg_2_nowarp.png",
+    "expect_name": "CinnabarIsland_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false
+   },
+   {
+    "map": "CinnabarIsland_PokemonCenter_1F_Frlg",
+    "warp": 3,
+    "class": "internal",
+    "src_xy": [
+     1,
+     6
+    ],
+    "src_behavior": "MB_UP_ESCALATOR",
+    "dest_map": "MAP_CINNABAR_ISLAND_POKEMON_CENTER_2F",
+    "dest_name": "CinnabarIsland_PokemonCenter_2F_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     1,
+     6
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "LEFT",
+     2,
+     6
+    ],
+    "arrived": [
+     46,
+     6
+    ],
+    "arrival_facing": "LEFT",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_DOWN_ESCALATOR",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "CinnabarIsland_PokemonCenter_2F_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "CinnabarIsland_PokemonCenter_2F_Frlg",
+    "landed_xy": [
+     1,
+     6
+    ],
+    "rest_xy": [
+     2,
+     6
+    ],
+    "post_warp_step": "RIGHT",
+    "notes": [
+     "arrival facing reads as the travel direction LEFT; the player is still completing the warp step off a MB_DOWN_ESCALATOR"
+    ],
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "LEFT",
+     2,
+     6
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "CinnabarIsland_PokemonCenter_1F_Frlg",
+     1,
+     6
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonCenter_2F_Frlg",
+    "warp": 0,
+    "class": "internal",
+    "src_xy": [
+     1,
+     6
+    ],
+    "src_behavior": "MB_DOWN_ESCALATOR",
+    "dest_map": "MAP_CINNABAR_ISLAND_POKEMON_CENTER_1F",
+    "dest_name": "CinnabarIsland_PokemonCenter_1F_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     1,
+     6
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "LEFT",
+     2,
+     6
+    ],
+    "arrived": [
+     46,
+     5
+    ],
+    "arrival_facing": "LEFT",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_UP_ESCALATOR",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "CinnabarIsland_PokemonCenter_1F_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "CinnabarIsland_PokemonCenter_1F_Frlg",
+    "landed_xy": [
+     1,
+     6
+    ],
+    "rest_xy": [
+     2,
+     6
+    ],
+    "post_warp_step": "RIGHT",
+    "notes": [
+     "arrival facing reads as the travel direction LEFT; the player is still completing the warp step off a MB_UP_ESCALATOR"
+    ],
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "LEFT",
+     2,
+     6
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "CinnabarIsland_PokemonCenter_2F_Frlg",
+     1,
+     6
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonCenter_2F_Frlg",
+    "warp": 1,
+    "class": "dynamic_return",
+    "src_xy": [
+     5,
+     1
+    ],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "dest_map": "MAP_UNION_ROOM_FRLG",
+    "dest_name": "UnionRoom_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     7,
+     11
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [],
+    "status": "PARTIAL",
+    "approach": [
+     "UP",
+     5,
+     2
+    ],
+    "arrived": [
+     34,
+     4
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_BRIDGE_OVER_OCEAN",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": null,
+    "shot": null,
+    "expect_name": "UnionRoom_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "UnionRoom_Frlg",
+    "landed_xy": [
+     7,
+     11
+    ],
+    "rest_xy": [
+     7,
+     11
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "notes": [
+     "INCONCLUSIVE return: no side of the return warp UnionRoom_Frlg[0] at (7,11) triggered a warp (tried ['DOWN', 'LEFT', 'RIGHT']; surf: UP@1: (7,12) is off-map; UP@2: (7,13) is off-map; UP@3: (7,14) is off-map)"
+    ],
+    "retried_after_reboot": true
+   },
+   {
+    "map": "CinnabarIsland_PokemonCenter_2F_Frlg",
+    "warp": 2,
+    "class": "dynamic_return",
+    "src_xy": [
+     9,
+     1
+    ],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "dest_map": "MAP_TRADE_CENTER_FRLG",
+    "dest_name": "TradeCenter_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     5,
+     8
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     9,
+     2
+    ],
+    "arrived": [
+     34,
+     1
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "TradeCenter_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "TradeCenter_Frlg",
+    "landed_xy": [
+     5,
+     8
+    ],
+    "rest_xy": [
+     5,
+     8
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     5,
+     7
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "CinnabarIsland_PokemonCenter_2F_Frlg",
+     9,
+     1
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "warp": 0,
+    "class": "landing_anchor",
+    "src_xy": [
+     3,
+     9
+    ],
+    "src_behavior": "MB_NORMAL",
+    "dest_map": "MAP_CINNABAR_ISLAND",
+    "dest_name": "CinnabarIsland_Frlg",
+    "dest_warp": 2,
+    "dest_xy": [
+     8,
+     9
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [
+     "stepping DOWN from (3,8) onto (3,9) did not warp (timeout): the warp tile (3,9) is MB_NORMAL, which the engine's warp trigger (IsWarpMetatileBehavior / TryArrowWarp) does not accept, so no walk or surf can fire it"
+    ],
+    "status": "ISSUE",
+    "approach": [
+     "DOWN",
+     3,
+     8
+    ],
+    "arrived": null,
+    "arrival_facing": null,
+    "canonical_facing": null,
+    "landing_behavior": null,
+    "landing_walkable": null,
+    "can_move": null,
+    "return_ok": null,
+    "shot": "/home/eddie/repos/poke-plastic-ox/plastic_ox/demo/shots/warp_v1/CinnabarIsland_PokemonLab_Entrance_Frlg_0_nowarp.png",
+    "expect_name": "CinnabarIsland_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false
+   },
+   {
+    "map": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "warp": 1,
+    "class": "internal",
+    "src_xy": [
+     4,
+     9
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_CINNABAR_ISLAND",
+    "dest_name": "CinnabarIsland_Frlg",
+    "dest_warp": 2,
+    "dest_xy": [
+     8,
+     9
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     4,
+     8
+    ],
+    "arrived": [
+     37,
+     7
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_ANIMATED_DOOR",
+    "landing_walkable": false,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "CinnabarIsland_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "CinnabarIsland_Frlg",
+    "landed_xy": [
+     8,
+     9
+    ],
+    "rest_xy": [
+     8,
+     10
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     8,
+     10
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "CinnabarIsland_PokemonLab_Entrance_Frlg",
+     4,
+     9
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "warp": 2,
+    "class": "landing_anchor",
+    "src_xy": [
+     5,
+     9
+    ],
+    "src_behavior": "MB_NORMAL",
+    "dest_map": "MAP_CINNABAR_ISLAND",
+    "dest_name": "CinnabarIsland_Frlg",
+    "dest_warp": 2,
+    "dest_xy": [
+     8,
+     9
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [
+     "stepping DOWN from (5,8) onto (5,9) did not warp (timeout): the warp tile (5,9) is MB_NORMAL, which the engine's warp trigger (IsWarpMetatileBehavior / TryArrowWarp) does not accept, so no walk or surf can fire it"
+    ],
+    "status": "ISSUE",
+    "approach": [
+     "DOWN",
+     5,
+     8
+    ],
+    "arrived": null,
+    "arrival_facing": null,
+    "canonical_facing": null,
+    "landing_behavior": null,
+    "landing_walkable": null,
+    "can_move": null,
+    "return_ok": null,
+    "shot": "/home/eddie/repos/poke-plastic-ox/plastic_ox/demo/shots/warp_v1/CinnabarIsland_PokemonLab_Entrance_Frlg_2_nowarp.png",
+    "expect_name": "CinnabarIsland_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false
+   },
+   {
+    "map": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "warp": 3,
+    "class": "internal",
+    "src_xy": [
+     13,
+     5
+    ],
+    "src_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_map": "MAP_CINNABAR_ISLAND_POKEMON_LAB_LOUNGE",
+    "dest_name": "CinnabarIsland_PokemonLab_Lounge_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     7,
+     9
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     13,
+     6
+    ],
+    "arrived": [
+     46,
+     2
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "CinnabarIsland_PokemonLab_Lounge_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "CinnabarIsland_PokemonLab_Lounge_Frlg",
+    "landed_xy": [
+     7,
+     9
+    ],
+    "rest_xy": [
+     7,
+     9
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     7,
+     8
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "CinnabarIsland_PokemonLab_Entrance_Frlg",
+     13,
+     5
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "warp": 4,
+    "class": "internal",
+    "src_xy": [
+     19,
+     5
+    ],
+    "src_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_map": "MAP_CINNABAR_ISLAND_POKEMON_LAB_RESEARCH_ROOM",
+    "dest_name": "CinnabarIsland_PokemonLab_ResearchRoom_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     7,
+     9
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     19,
+     6
+    ],
+    "arrived": [
+     46,
+     3
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "CinnabarIsland_PokemonLab_ResearchRoom_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "CinnabarIsland_PokemonLab_ResearchRoom_Frlg",
+    "landed_xy": [
+     7,
+     9
+    ],
+    "rest_xy": [
+     7,
+     9
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     7,
+     8
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "CinnabarIsland_PokemonLab_Entrance_Frlg",
+     19,
+     5
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "warp": 5,
+    "class": "internal",
+    "src_xy": [
+     25,
+     5
+    ],
+    "src_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_map": "MAP_CINNABAR_ISLAND_POKEMON_LAB_EXPERIMENT_ROOM",
+    "dest_name": "CinnabarIsland_PokemonLab_ExperimentRoom_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     7,
+     9
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     25,
+     6
+    ],
+    "arrived": [
+     46,
+     4
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "CinnabarIsland_PokemonLab_ExperimentRoom_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "CinnabarIsland_PokemonLab_ExperimentRoom_Frlg",
+    "landed_xy": [
+     7,
+     9
+    ],
+    "rest_xy": [
+     7,
+     9
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     7,
+     8
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "CinnabarIsland_PokemonLab_Entrance_Frlg",
+     25,
+     5
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonLab_ExperimentRoom_Frlg",
+    "warp": 0,
+    "class": "internal",
+    "src_xy": [
+     7,
+     9
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_CINNABAR_ISLAND_POKEMON_LAB_ENTRANCE",
+    "dest_name": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "dest_warp": 5,
+    "dest_xy": [
+     25,
+     5
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     7,
+     8
+    ],
+    "arrived": [
+     46,
+     1
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_NON_ANIMATED_DOOR",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "landed_xy": [
+     25,
+     5
+    ],
+    "rest_xy": [
+     25,
+     6
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     25,
+     6
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "CinnabarIsland_PokemonLab_ExperimentRoom_Frlg",
+     7,
+     9
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonLab_Lounge_Frlg",
+    "warp": 0,
+    "class": "internal",
+    "src_xy": [
+     7,
+     9
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_CINNABAR_ISLAND_POKEMON_LAB_ENTRANCE",
+    "dest_name": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     13,
+     5
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     7,
+     8
+    ],
+    "arrived": [
+     46,
+     1
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_NON_ANIMATED_DOOR",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "landed_xy": [
+     13,
+     5
+    ],
+    "rest_xy": [
+     13,
+     6
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     13,
+     6
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "CinnabarIsland_PokemonLab_Lounge_Frlg",
+     7,
+     9
+    ]
+   },
+   {
+    "map": "CinnabarIsland_PokemonLab_ResearchRoom_Frlg",
+    "warp": 0,
+    "class": "internal",
+    "src_xy": [
+     7,
+     9
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_CINNABAR_ISLAND_POKEMON_LAB_ENTRANCE",
+    "dest_name": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "dest_warp": 4,
+    "dest_xy": [
+     19,
+     5
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     7,
+     8
+    ],
+    "arrived": [
+     46,
+     1
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_NON_ANIMATED_DOOR",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "CinnabarIsland_PokemonLab_Entrance_Frlg",
+    "landed_xy": [
+     19,
+     5
+    ],
+    "rest_xy": [
+     19,
+     6
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     19,
+     6
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "CinnabarIsland_PokemonLab_ResearchRoom_Frlg",
+     7,
+     9
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Frlg",
+    "warp": 0,
+    "class": "internal",
+    "src_xy": [
+     33,
+     31
+    ],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "dest_map": "MAP_FUCHSIA_CITY_WARDENS_HOUSE",
+    "dest_name": "FuchsiaCity_WardensHouse_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     6,
+     9
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     33,
+     32
+    ],
+    "arrived": [
+     45,
+     5
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "FuchsiaCity_WardensHouse_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "FuchsiaCity_WardensHouse_Frlg",
+    "landed_xy": [
+     6,
+     9
+    ],
+    "rest_xy": [
+     6,
+     9
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     6,
+     8
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "FuchsiaCity_Frlg",
+     33,
+     31
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Frlg",
+    "warp": 1,
+    "class": "internal",
+    "src_xy": [
+     11,
+     15
+    ],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "dest_map": "MAP_FUCHSIA_CITY_MART",
+    "dest_name": "FuchsiaCity_Mart_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     4,
+     7
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     11,
+     16
+    ],
+    "arrived": [
+     45,
+     0
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "FuchsiaCity_Mart_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "FuchsiaCity_Mart_Frlg",
+    "landed_xy": [
+     4,
+     7
+    ],
+    "rest_xy": [
+     4,
+     7
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     4,
+     6
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "FuchsiaCity_Frlg",
+     11,
+     15
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Frlg",
+    "warp": 2,
+    "class": "internal",
+    "src_xy": [
+     9,
+     32
+    ],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "dest_map": "MAP_FUCHSIA_CITY_GYM",
+    "dest_name": "FuchsiaCity_Gym_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     7,
+     21
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     9,
+     33
+    ],
+    "arrived": [
+     45,
+     1
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "FuchsiaCity_Gym_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "FuchsiaCity_Gym_Frlg",
+    "landed_xy": [
+     7,
+     21
+    ],
+    "rest_xy": [
+     7,
+     21
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     7,
+     20
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "FuchsiaCity_Frlg",
+     9,
+     32
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Frlg",
+    "warp": 3,
+    "class": "internal",
+    "src_xy": [
+     14,
+     31
+    ],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "dest_map": "MAP_FUCHSIA_CITY_HOUSE1",
+    "dest_name": "FuchsiaCity_House1_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     4,
+     7
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     14,
+     32
+    ],
+    "arrived": [
+     45,
+     2
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "FuchsiaCity_House1_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "FuchsiaCity_House1_Frlg",
+    "landed_xy": [
+     4,
+     7
+    ],
+    "rest_xy": [
+     4,
+     7
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     4,
+     6
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "FuchsiaCity_Frlg",
+     14,
+     31
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Frlg",
+    "warp": 4,
+    "class": "internal",
+    "src_xy": [
+     25,
+     31
+    ],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "dest_map": "MAP_FUCHSIA_CITY_POKEMON_CENTER_1F",
+    "dest_name": "FuchsiaCity_PokemonCenter_1F_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     7,
+     8
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     25,
+     32
+    ],
+    "arrived": [
+     45,
+     3
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "FuchsiaCity_PokemonCenter_1F_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "FuchsiaCity_PokemonCenter_1F_Frlg",
+    "landed_xy": [
+     7,
+     8
+    ],
+    "rest_xy": [
+     7,
+     8
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     7,
+     7
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "FuchsiaCity_Frlg",
+     25,
+     31
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Frlg",
+    "warp": 5,
+    "class": "internal",
+    "src_xy": [
+     38,
+     31
+    ],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "dest_map": "MAP_FUCHSIA_CITY_HOUSE2",
+    "dest_name": "FuchsiaCity_House2_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     3,
+     8
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     38,
+     32
+    ],
+    "arrived": [
+     45,
+     6
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "FuchsiaCity_House2_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "FuchsiaCity_House2_Frlg",
+    "landed_xy": [
+     3,
+     8
+    ],
+    "rest_xy": [
+     3,
+     8
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     3,
+     7
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "FuchsiaCity_Frlg",
+     38,
+     31
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Frlg",
+    "warp": 6,
+    "class": "internal",
+    "src_xy": [
+     39,
+     28
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_FUCHSIA_CITY_HOUSE2",
+    "dest_name": "FuchsiaCity_House2_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     3,
+     1
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     39,
+     27
+    ],
+    "arrived": [
+     45,
+     6
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_NON_ANIMATED_DOOR",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "FuchsiaCity_House2_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "FuchsiaCity_House2_Frlg",
+    "landed_xy": [
+     3,
+     1
+    ],
+    "rest_xy": [
+     3,
+     2
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     3,
+     2
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "FuchsiaCity_Frlg",
+     39,
+     28
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Frlg",
+    "warp": 7,
+    "class": "landing_anchor",
+    "src_xy": [
+     39,
+     29
+    ],
+    "src_behavior": "MB_NORMAL",
+    "dest_map": "MAP_FUCHSIA_CITY_HOUSE2",
+    "dest_name": "FuchsiaCity_House2_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     3,
+     1
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     39,
+     28
+    ],
+    "arrived": [
+     45,
+     6
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_NON_ANIMATED_DOOR",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "FuchsiaCity_House2_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "FuchsiaCity_House2_Frlg",
+    "landed_xy": [
+     3,
+     1
+    ],
+    "rest_xy": [
+     3,
+     2
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     3,
+     2
+    ],
+    "return_offset": 1,
+    "return_landed": [
+     "FuchsiaCity_Frlg",
+     39,
+     28
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Frlg",
+    "warp": 8,
+    "class": "internal",
+    "src_xy": [
+     19,
+     31
+    ],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "dest_map": "MAP_FUCHSIA_CITY_HOUSE3",
+    "dest_name": "FuchsiaCity_House3_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     4,
+     7
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     19,
+     32
+    ],
+    "arrived": [
+     45,
+     7
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "FuchsiaCity_House3_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "FuchsiaCity_House3_Frlg",
+    "landed_xy": [
+     4,
+     7
+    ],
+    "rest_xy": [
+     4,
+     7
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     4,
+     6
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "FuchsiaCity_Frlg",
+     19,
+     31
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Gym_Frlg",
+    "warp": 0,
+    "class": "landing_anchor",
+    "src_xy": [
+     6,
+     21
+    ],
+    "src_behavior": "MB_NORMAL",
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 2,
+    "dest_xy": [
+     9,
+     32
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [
+     "stepping DOWN from (6,20) onto (6,21) did not warp (timeout): the warp tile (6,21) is MB_NORMAL, which the engine's warp trigger (IsWarpMetatileBehavior / TryArrowWarp) does not accept, so no walk or surf can fire it"
+    ],
+    "status": "ISSUE",
+    "approach": [
+     "DOWN",
+     6,
+     20
+    ],
+    "arrived": null,
+    "arrival_facing": null,
+    "canonical_facing": null,
+    "landing_behavior": null,
+    "landing_walkable": null,
+    "can_move": null,
+    "return_ok": null,
+    "shot": "/home/eddie/repos/poke-plastic-ox/plastic_ox/demo/shots/warp_v1/FuchsiaCity_Gym_Frlg_0_nowarp.png",
+    "expect_name": "FuchsiaCity_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false
+   },
+   {
+    "map": "FuchsiaCity_Gym_Frlg",
+    "warp": 1,
+    "class": "internal",
+    "src_xy": [
+     7,
+     21
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 2,
+    "dest_xy": [
+     9,
+     32
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     7,
+     20
+    ],
+    "arrived": [
+     37,
+     6
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_ANIMATED_DOOR",
+    "landing_walkable": false,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "FuchsiaCity_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "FuchsiaCity_Frlg",
+    "landed_xy": [
+     9,
+     32
+    ],
+    "rest_xy": [
+     9,
+     33
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     9,
+     33
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "FuchsiaCity_Gym_Frlg",
+     7,
+     21
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Gym_Frlg",
+    "warp": 2,
+    "class": "landing_anchor",
+    "src_xy": [
+     8,
+     21
+    ],
+    "src_behavior": "MB_NORMAL",
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 2,
+    "dest_xy": [
+     9,
+     32
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [
+     "stepping DOWN from (8,20) onto (8,21) did not warp (timeout): the warp tile (8,21) is MB_NORMAL, which the engine's warp trigger (IsWarpMetatileBehavior / TryArrowWarp) does not accept, so no walk or surf can fire it"
+    ],
+    "status": "ISSUE",
+    "approach": [
+     "DOWN",
+     8,
+     20
+    ],
+    "arrived": null,
+    "arrival_facing": null,
+    "canonical_facing": null,
+    "landing_behavior": null,
+    "landing_walkable": null,
+    "can_move": null,
+    "return_ok": null,
+    "shot": "/home/eddie/repos/poke-plastic-ox/plastic_ox/demo/shots/warp_v1/FuchsiaCity_Gym_Frlg_2_nowarp.png",
+    "expect_name": "FuchsiaCity_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false
+   },
+   {
+    "map": "FuchsiaCity_House1_Frlg",
+    "warp": 0,
+    "class": "landing_anchor",
+    "src_xy": [
+     3,
+     7
+    ],
+    "src_behavior": "MB_NORMAL",
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     14,
+     31
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [
+     "stepping DOWN from (3,6) onto (3,7) did not warp (timeout): the warp tile (3,7) is MB_NORMAL, which the engine's warp trigger (IsWarpMetatileBehavior / TryArrowWarp) does not accept, so no walk or surf can fire it"
+    ],
+    "status": "ISSUE",
+    "approach": [
+     "DOWN",
+     3,
+     6
+    ],
+    "arrived": null,
+    "arrival_facing": null,
+    "canonical_facing": null,
+    "landing_behavior": null,
+    "landing_walkable": null,
+    "can_move": null,
+    "return_ok": null,
+    "shot": "/home/eddie/repos/poke-plastic-ox/plastic_ox/demo/shots/warp_v1/FuchsiaCity_House1_Frlg_0_nowarp.png",
+    "expect_name": "FuchsiaCity_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false
+   },
+   {
+    "map": "FuchsiaCity_House1_Frlg",
+    "warp": 1,
+    "class": "internal",
+    "src_xy": [
+     4,
+     7
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     14,
+     31
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     4,
+     6
+    ],
+    "arrived": [
+     37,
+     6
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_ANIMATED_DOOR",
+    "landing_walkable": false,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "FuchsiaCity_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "FuchsiaCity_Frlg",
+    "landed_xy": [
+     14,
+     31
+    ],
+    "rest_xy": [
+     14,
+     32
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     14,
+     32
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "FuchsiaCity_House1_Frlg",
+     4,
+     7
+    ]
+   },
+   {
+    "map": "FuchsiaCity_House1_Frlg",
+    "warp": 2,
+    "class": "landing_anchor",
+    "src_xy": [
+     5,
+     7
+    ],
+    "src_behavior": "MB_NORMAL",
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     14,
+     31
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [
+     "stepping DOWN from (5,6) onto (5,7) did not warp (timeout): the warp tile (5,7) is MB_NORMAL, which the engine's warp trigger (IsWarpMetatileBehavior / TryArrowWarp) does not accept, so no walk or surf can fire it"
+    ],
+    "status": "ISSUE",
+    "approach": [
+     "DOWN",
+     5,
+     6
+    ],
+    "arrived": null,
+    "arrival_facing": null,
+    "canonical_facing": null,
+    "landing_behavior": null,
+    "landing_walkable": null,
+    "can_move": null,
+    "return_ok": null,
+    "shot": "/home/eddie/repos/poke-plastic-ox/plastic_ox/demo/shots/warp_v1/FuchsiaCity_House1_Frlg_2_nowarp.png",
+    "expect_name": "FuchsiaCity_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false
+   },
+   {
+    "map": "FuchsiaCity_House2_Frlg",
+    "warp": 0,
+    "class": "landing_anchor",
+    "src_xy": [
+     2,
+     9
+    ],
+    "src_behavior": "MB_NORMAL",
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 5,
+    "dest_xy": [
+     38,
+     31
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [
+     "stepping DOWN from (2,8) onto (2,9) did not warp (timeout): the warp tile (2,9) is MB_NORMAL, which the engine's warp trigger (IsWarpMetatileBehavior / TryArrowWarp) does not accept, so no walk or surf can fire it"
+    ],
+    "status": "ISSUE",
+    "approach": [
+     "DOWN",
+     2,
+     8
+    ],
+    "arrived": null,
+    "arrival_facing": null,
+    "canonical_facing": null,
+    "landing_behavior": null,
+    "landing_walkable": null,
+    "can_move": null,
+    "return_ok": null,
+    "shot": "/home/eddie/repos/poke-plastic-ox/plastic_ox/demo/shots/warp_v1/FuchsiaCity_House2_Frlg_0_nowarp.png",
+    "expect_name": "FuchsiaCity_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false
+   },
+   {
+    "map": "FuchsiaCity_House2_Frlg",
+    "warp": 1,
+    "class": "internal",
+    "src_xy": [
+     3,
+     8
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 5,
+    "dest_xy": [
+     38,
+     31
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     3,
+     7
+    ],
+    "arrived": [
+     37,
+     6
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_ANIMATED_DOOR",
+    "landing_walkable": false,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "FuchsiaCity_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "FuchsiaCity_Frlg",
+    "landed_xy": [
+     38,
+     31
+    ],
+    "rest_xy": [
+     38,
+     32
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     38,
+     32
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "FuchsiaCity_House2_Frlg",
+     3,
+     8
+    ]
+   },
+   {
+    "map": "FuchsiaCity_House2_Frlg",
+    "warp": 2,
+    "class": "landing_anchor",
+    "src_xy": [
+     4,
+     9
+    ],
+    "src_behavior": "MB_NORMAL",
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 5,
+    "dest_xy": [
+     38,
+     31
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [
+     "stepping DOWN from (4,8) onto (4,9) did not warp (timeout): the warp tile (4,9) is MB_NORMAL, which the engine's warp trigger (IsWarpMetatileBehavior / TryArrowWarp) does not accept, so no walk or surf can fire it"
+    ],
+    "status": "ISSUE",
+    "approach": [
+     "DOWN",
+     4,
+     8
+    ],
+    "arrived": null,
+    "arrival_facing": null,
+    "canonical_facing": null,
+    "landing_behavior": null,
+    "landing_walkable": null,
+    "can_move": null,
+    "return_ok": null,
+    "shot": "/home/eddie/repos/poke-plastic-ox/plastic_ox/demo/shots/warp_v1/FuchsiaCity_House2_Frlg_2_nowarp.png",
+    "expect_name": "FuchsiaCity_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false
+   },
+   {
+    "map": "FuchsiaCity_House2_Frlg",
+    "warp": 3,
+    "class": "internal",
+    "src_xy": [
+     3,
+     1
+    ],
+    "src_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 6,
+    "dest_xy": [
+     39,
+     28
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     3,
+     2
+    ],
+    "arrived": [
+     37,
+     6
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "FuchsiaCity_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "FuchsiaCity_Frlg",
+    "landed_xy": [
+     39,
+     28
+    ],
+    "rest_xy": [
+     39,
+     28
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     39,
+     27
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "FuchsiaCity_House2_Frlg",
+     3,
+     1
+    ]
+   },
+   {
+    "map": "FuchsiaCity_House3_Frlg",
+    "warp": 0,
+    "class": "internal",
+    "src_xy": [
+     4,
+     7
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 8,
+    "dest_xy": [
+     19,
+     31
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     4,
+     6
+    ],
+    "arrived": [
+     37,
+     6
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_ANIMATED_DOOR",
+    "landing_walkable": false,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "FuchsiaCity_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "FuchsiaCity_Frlg",
+    "landed_xy": [
+     19,
+     31
+    ],
+    "rest_xy": [
+     19,
+     32
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     19,
+     32
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "FuchsiaCity_House3_Frlg",
+     4,
+     7
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Mart_Frlg",
+    "warp": 0,
+    "class": "landing_anchor",
+    "src_xy": [
+     3,
+     7
+    ],
+    "src_behavior": "MB_NORMAL",
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     11,
+     15
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [
+     "stepping DOWN from (3,6) onto (3,7) did not warp (timeout): the warp tile (3,7) is MB_NORMAL, which the engine's warp trigger (IsWarpMetatileBehavior / TryArrowWarp) does not accept, so no walk or surf can fire it"
+    ],
+    "status": "ISSUE",
+    "approach": [
+     "DOWN",
+     3,
+     6
+    ],
+    "arrived": null,
+    "arrival_facing": null,
+    "canonical_facing": null,
+    "landing_behavior": null,
+    "landing_walkable": null,
+    "can_move": null,
+    "return_ok": null,
+    "shot": "/home/eddie/repos/poke-plastic-ox/plastic_ox/demo/shots/warp_v1/FuchsiaCity_Mart_Frlg_0_nowarp.png",
+    "expect_name": "FuchsiaCity_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false
+   },
+   {
+    "map": "FuchsiaCity_Mart_Frlg",
+    "warp": 1,
+    "class": "internal",
+    "src_xy": [
+     4,
+     7
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     11,
+     15
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     4,
+     6
+    ],
+    "arrived": [
+     37,
+     6
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_ANIMATED_DOOR",
+    "landing_walkable": false,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "FuchsiaCity_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "FuchsiaCity_Frlg",
+    "landed_xy": [
+     11,
+     15
+    ],
+    "rest_xy": [
+     11,
+     16
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     11,
+     16
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "FuchsiaCity_Mart_Frlg",
+     4,
+     7
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Mart_Frlg",
+    "warp": 2,
+    "class": "landing_anchor",
+    "src_xy": [
+     5,
+     7
+    ],
+    "src_behavior": "MB_NORMAL",
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     11,
+     15
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [
+     "stepping DOWN from (5,6) onto (5,7) did not warp (timeout): the warp tile (5,7) is MB_NORMAL, which the engine's warp trigger (IsWarpMetatileBehavior / TryArrowWarp) does not accept, so no walk or surf can fire it"
+    ],
+    "status": "ISSUE",
+    "approach": [
+     "DOWN",
+     5,
+     6
+    ],
+    "arrived": null,
+    "arrival_facing": null,
+    "canonical_facing": null,
+    "landing_behavior": null,
+    "landing_walkable": null,
+    "can_move": null,
+    "return_ok": null,
+    "shot": "/home/eddie/repos/poke-plastic-ox/plastic_ox/demo/shots/warp_v1/FuchsiaCity_Mart_Frlg_2_nowarp.png",
+    "expect_name": "FuchsiaCity_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false
+   },
+   {
+    "map": "FuchsiaCity_PokemonCenter_1F_Frlg",
+    "warp": 0,
+    "class": "landing_anchor",
+    "src_xy": [
+     6,
+     8
+    ],
+    "src_behavior": "MB_NORMAL",
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 4,
+    "dest_xy": [
+     25,
+     31
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [
+     "stepping DOWN from (6,7) onto (6,8) did not warp (timeout): the warp tile (6,8) is MB_NORMAL, which the engine's warp trigger (IsWarpMetatileBehavior / TryArrowWarp) does not accept, so no walk or surf can fire it"
+    ],
+    "status": "ISSUE",
+    "approach": [
+     "DOWN",
+     6,
+     7
+    ],
+    "arrived": null,
+    "arrival_facing": null,
+    "canonical_facing": null,
+    "landing_behavior": null,
+    "landing_walkable": null,
+    "can_move": null,
+    "return_ok": null,
+    "shot": "/home/eddie/repos/poke-plastic-ox/plastic_ox/demo/shots/warp_v1/FuchsiaCity_PokemonCenter_1F_Frlg_0_nowarp.png",
+    "expect_name": "FuchsiaCity_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false
+   },
+   {
+    "map": "FuchsiaCity_PokemonCenter_1F_Frlg",
+    "warp": 1,
+    "class": "internal",
+    "src_xy": [
+     7,
+     8
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 4,
+    "dest_xy": [
+     25,
+     31
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     7,
+     7
+    ],
+    "arrived": [
+     37,
+     6
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_ANIMATED_DOOR",
+    "landing_walkable": false,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "FuchsiaCity_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "FuchsiaCity_Frlg",
+    "landed_xy": [
+     25,
+     31
+    ],
+    "rest_xy": [
+     25,
+     32
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     25,
+     32
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "FuchsiaCity_PokemonCenter_1F_Frlg",
+     7,
+     8
+    ]
+   },
+   {
+    "map": "FuchsiaCity_PokemonCenter_1F_Frlg",
+    "warp": 2,
+    "class": "landing_anchor",
+    "src_xy": [
+     8,
+     8
+    ],
+    "src_behavior": "MB_NORMAL",
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 4,
+    "dest_xy": [
+     25,
+     31
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [
+     "stepping DOWN from (8,7) onto (8,8) did not warp (timeout): the warp tile (8,8) is MB_NORMAL, which the engine's warp trigger (IsWarpMetatileBehavior / TryArrowWarp) does not accept, so no walk or surf can fire it"
+    ],
+    "status": "ISSUE",
+    "approach": [
+     "DOWN",
+     8,
+     7
+    ],
+    "arrived": null,
+    "arrival_facing": null,
+    "canonical_facing": null,
+    "landing_behavior": null,
+    "landing_walkable": null,
+    "can_move": null,
+    "return_ok": null,
+    "shot": "/home/eddie/repos/poke-plastic-ox/plastic_ox/demo/shots/warp_v1/FuchsiaCity_PokemonCenter_1F_Frlg_2_nowarp.png",
+    "expect_name": "FuchsiaCity_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false
+   },
+   {
+    "map": "FuchsiaCity_PokemonCenter_1F_Frlg",
+    "warp": 3,
+    "class": "internal",
+    "src_xy": [
+     1,
+     6
+    ],
+    "src_behavior": "MB_UP_ESCALATOR",
+    "dest_map": "MAP_FUCHSIA_CITY_POKEMON_CENTER_2F",
+    "dest_name": "FuchsiaCity_PokemonCenter_2F_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     1,
+     6
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "LEFT",
+     2,
+     6
+    ],
+    "arrived": [
+     45,
+     4
+    ],
+    "arrival_facing": "LEFT",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_DOWN_ESCALATOR",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "FuchsiaCity_PokemonCenter_2F_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "FuchsiaCity_PokemonCenter_2F_Frlg",
+    "landed_xy": [
+     1,
+     6
+    ],
+    "rest_xy": [
+     2,
+     6
+    ],
+    "post_warp_step": "RIGHT",
+    "notes": [
+     "arrival facing reads as the travel direction LEFT; the player is still completing the warp step off a MB_DOWN_ESCALATOR"
+    ],
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "LEFT",
+     2,
+     6
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "FuchsiaCity_PokemonCenter_1F_Frlg",
+     1,
+     6
+    ]
+   },
+   {
+    "map": "FuchsiaCity_PokemonCenter_2F_Frlg",
+    "warp": 0,
+    "class": "internal",
+    "src_xy": [
+     1,
+     6
+    ],
+    "src_behavior": "MB_DOWN_ESCALATOR",
+    "dest_map": "MAP_FUCHSIA_CITY_POKEMON_CENTER_1F",
+    "dest_name": "FuchsiaCity_PokemonCenter_1F_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     1,
+     6
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "LEFT",
+     2,
+     6
+    ],
+    "arrived": [
+     45,
+     3
+    ],
+    "arrival_facing": "LEFT",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_UP_ESCALATOR",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "FuchsiaCity_PokemonCenter_1F_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "FuchsiaCity_PokemonCenter_1F_Frlg",
+    "landed_xy": [
+     1,
+     6
+    ],
+    "rest_xy": [
+     2,
+     6
+    ],
+    "post_warp_step": "RIGHT",
+    "notes": [
+     "arrival facing reads as the travel direction LEFT; the player is still completing the warp step off a MB_UP_ESCALATOR"
+    ],
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "LEFT",
+     2,
+     6
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "FuchsiaCity_PokemonCenter_2F_Frlg",
+     1,
+     6
+    ]
+   },
+   {
+    "map": "FuchsiaCity_PokemonCenter_2F_Frlg",
+    "warp": 1,
+    "class": "dynamic_return",
+    "src_xy": [
+     5,
+     1
+    ],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "dest_map": "MAP_UNION_ROOM_FRLG",
+    "dest_name": "UnionRoom_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     7,
+     11
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [],
+    "status": "PARTIAL",
+    "approach": [
+     "UP",
+     5,
+     2
+    ],
+    "arrived": [
+     34,
+     4
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_BRIDGE_OVER_OCEAN",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": null,
+    "shot": null,
+    "expect_name": "UnionRoom_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "UnionRoom_Frlg",
+    "landed_xy": [
+     7,
+     11
+    ],
+    "rest_xy": [
+     7,
+     11
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "notes": [
+     "INCONCLUSIVE return: no side of the return warp UnionRoom_Frlg[0] at (7,11) triggered a warp (tried ['DOWN', 'LEFT', 'RIGHT']; surf: UP@1: (7,12) is off-map; UP@2: (7,13) is off-map; UP@3: (7,14) is off-map)"
+    ],
+    "retried_after_reboot": true
+   },
+   {
+    "map": "FuchsiaCity_PokemonCenter_2F_Frlg",
+    "warp": 2,
+    "class": "dynamic_return",
+    "src_xy": [
+     9,
+     1
+    ],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "dest_map": "MAP_TRADE_CENTER_FRLG",
+    "dest_name": "TradeCenter_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     5,
+     8
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     9,
+     2
+    ],
+    "arrived": [
+     34,
+     1
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "TradeCenter_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "TradeCenter_Frlg",
+    "landed_xy": [
+     5,
+     8
+    ],
+    "rest_xy": [
+     5,
+     8
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     5,
+     7
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "FuchsiaCity_PokemonCenter_2F_Frlg",
+     9,
+     1
+    ]
+   },
+   {
+    "map": "FuchsiaCity_WardensHouse_Frlg",
+    "warp": 0,
+    "class": "landing_anchor",
+    "src_xy": [
+     5,
+     10
+    ],
+    "src_behavior": "MB_NORMAL",
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     33,
+     31
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [
+     "stepping DOWN from (5,9) onto (5,10) did not warp (timeout): the warp tile (5,10) is MB_NORMAL, which the engine's warp trigger (IsWarpMetatileBehavior / TryArrowWarp) does not accept, so no walk or surf can fire it"
+    ],
+    "status": "ISSUE",
+    "approach": [
+     "DOWN",
+     5,
+     9
+    ],
+    "arrived": null,
+    "arrival_facing": null,
+    "canonical_facing": null,
+    "landing_behavior": null,
+    "landing_walkable": null,
+    "can_move": null,
+    "return_ok": null,
+    "shot": "/home/eddie/repos/poke-plastic-ox/plastic_ox/demo/shots/warp_v1/FuchsiaCity_WardensHouse_Frlg_0_nowarp.png",
+    "expect_name": "FuchsiaCity_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false
+   },
+   {
+    "map": "FuchsiaCity_WardensHouse_Frlg",
+    "warp": 1,
+    "class": "internal",
+    "src_xy": [
+     6,
+     9
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     33,
+     31
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     6,
+     8
+    ],
+    "arrived": [
+     37,
+     6
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_ANIMATED_DOOR",
+    "landing_walkable": false,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "FuchsiaCity_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "FuchsiaCity_Frlg",
+    "landed_xy": [
+     33,
+     31
+    ],
+    "rest_xy": [
+     33,
+     32
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "LEFT",
+    "return_approach": [
+     "UP",
+     33,
+     32
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "FuchsiaCity_WardensHouse_Frlg",
+     6,
+     9
+    ]
+   },
+   {
+    "map": "FuchsiaCity_WardensHouse_Frlg",
+    "warp": 2,
+    "class": "landing_anchor",
+    "src_xy": [
+     7,
+     10
+    ],
+    "src_behavior": "MB_NORMAL",
+    "dest_map": "MAP_FUCHSIA_CITY",
+    "dest_name": "FuchsiaCity_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     33,
+     31
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [
+     "stepping DOWN from (7,9) onto (7,10) did not warp (timeout): the warp tile (7,10) is MB_NORMAL, which the engine's warp trigger (IsWarpMetatileBehavior / TryArrowWarp) does not accept, so no walk or surf can fire it"
+    ],
+    "status": "ISSUE",
+    "approach": [
+     "DOWN",
+     7,
+     9
+    ],
+    "arrived": null,
+    "arrival_facing": null,
+    "canonical_facing": null,
+    "landing_behavior": null,
+    "landing_walkable": null,
+    "can_move": null,
+    "return_ok": null,
+    "shot": "/home/eddie/repos/poke-plastic-ox/plastic_ox/demo/shots/warp_v1/FuchsiaCity_WardensHouse_Frlg_2_nowarp.png",
+    "expect_name": "FuchsiaCity_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false
+   },
+   {
+    "map": "Route15_Frlg",
+    "warp": 0,
+    "class": "internal",
+    "src_xy": [
+     9,
+     11
+    ],
+    "src_behavior": "MB_EAST_ARROW_WARP",
+    "dest_map": "MAP_ROUTE15_WEST_ENTRANCE_1F",
+    "dest_name": "Route15_WestEntrance_1F_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     1,
+     6
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "RIGHT",
+     8,
+     11
+    ],
+    "arrived": [
+     58,
+     0
+    ],
+    "arrival_facing": "RIGHT",
+    "canonical_facing": "RIGHT",
+    "landing_behavior": "MB_WEST_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "Route15_WestEntrance_1F_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "Route15_WestEntrance_1F_Frlg",
+    "landed_xy": [
+     1,
+     6
+    ],
+    "rest_xy": [
+     1,
+     6
+    ],
+    "post_warp_step": null,
+    "moved_dir": "RIGHT",
+    "return_approach": [
+     "LEFT",
+     2,
+     6
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "Route15_Frlg",
+     9,
+     11
+    ]
+   },
+   {
+    "map": "Route15_Frlg",
+    "warp": 1,
+    "class": "internal",
+    "src_xy": [
+     16,
+     11
+    ],
+    "src_behavior": "MB_WEST_ARROW_WARP",
+    "dest_map": "MAP_ROUTE15_WEST_ENTRANCE_1F",
+    "dest_name": "Route15_WestEntrance_1F_Frlg",
+    "dest_warp": 2,
+    "dest_xy": [
+     11,
+     6
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "LEFT",
+     17,
+     11
+    ],
+    "arrived": [
+     58,
+     0
+    ],
+    "arrival_facing": "LEFT",
+    "canonical_facing": "LEFT",
+    "landing_behavior": "MB_EAST_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "Route15_WestEntrance_1F_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "Route15_WestEntrance_1F_Frlg",
+    "landed_xy": [
+     11,
+     6
+    ],
+    "rest_xy": [
+     11,
+     6
+    ],
+    "post_warp_step": null,
+    "moved_dir": "LEFT",
+    "return_approach": [
+     "RIGHT",
+     10,
+     6
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "Route15_Frlg",
+     16,
+     11
+    ]
+   },
+   {
+    "map": "Route15_WestEntrance_1F_Frlg",
+    "warp": 0,
+    "class": "internal",
+    "src_xy": [
+     1,
+     6
+    ],
+    "src_behavior": "MB_WEST_ARROW_WARP",
+    "dest_map": "MAP_ROUTE15",
+    "dest_name": "Route15_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     9,
+     11
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "LEFT",
+     2,
+     6
+    ],
+    "arrived": [
+     37,
+     32
+    ],
+    "arrival_facing": "LEFT",
+    "canonical_facing": "LEFT",
+    "landing_behavior": "MB_EAST_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "Route15_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "Route15_Frlg",
+    "landed_xy": [
+     9,
+     11
+    ],
+    "rest_xy": [
+     9,
+     11
+    ],
+    "post_warp_step": null,
+    "moved_dir": "LEFT",
+    "return_approach": [
+     "RIGHT",
+     8,
+     11
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "Route15_WestEntrance_1F_Frlg",
+     1,
+     6
+    ]
+   },
+   {
+    "map": "Route15_WestEntrance_1F_Frlg",
+    "warp": 1,
+    "class": "landing_anchor",
+    "src_xy": [
+     1,
+     7
+    ],
+    "src_behavior": "MB_NORMAL",
+    "dest_map": "MAP_ROUTE15",
+    "dest_name": "Route15_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     9,
+     11
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [
+     "stepping UP from (1,8) onto (1,7) did not warp (timeout): the warp tile (1,7) is MB_NORMAL, which the engine's warp trigger (IsWarpMetatileBehavior / TryArrowWarp) does not accept, so no walk or surf can fire it"
+    ],
+    "status": "ISSUE",
+    "approach": [
+     "UP",
+     1,
+     8
+    ],
+    "arrived": null,
+    "arrival_facing": null,
+    "canonical_facing": null,
+    "landing_behavior": null,
+    "landing_walkable": null,
+    "can_move": null,
+    "return_ok": null,
+    "shot": "/home/eddie/repos/poke-plastic-ox/plastic_ox/demo/shots/warp_v1/Route15_WestEntrance_1F_Frlg_1_nowarp.png",
+    "expect_name": "Route15_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false
+   },
+   {
+    "map": "Route15_WestEntrance_1F_Frlg",
+    "warp": 2,
+    "class": "internal",
+    "src_xy": [
+     11,
+     6
+    ],
+    "src_behavior": "MB_EAST_ARROW_WARP",
+    "dest_map": "MAP_ROUTE15",
+    "dest_name": "Route15_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     16,
+     11
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "RIGHT",
+     10,
+     6
+    ],
+    "arrived": [
+     37,
+     32
+    ],
+    "arrival_facing": "RIGHT",
+    "canonical_facing": "RIGHT",
+    "landing_behavior": "MB_WEST_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "Route15_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "Route15_Frlg",
+    "landed_xy": [
+     16,
+     11
+    ],
+    "rest_xy": [
+     16,
+     11
+    ],
+    "post_warp_step": null,
+    "moved_dir": "RIGHT",
+    "return_approach": [
+     "LEFT",
+     17,
+     11
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "Route15_WestEntrance_1F_Frlg",
+     11,
+     6
+    ]
+   },
+   {
+    "map": "Route15_WestEntrance_1F_Frlg",
+    "warp": 3,
+    "class": "landing_anchor",
+    "src_xy": [
+     11,
+     7
+    ],
+    "src_behavior": "MB_NORMAL",
+    "dest_map": "MAP_ROUTE15",
+    "dest_name": "Route15_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     16,
+     11
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [
+     "stepping UP from (11,8) onto (11,7) did not warp (timeout): the warp tile (11,7) is MB_NORMAL, which the engine's warp trigger (IsWarpMetatileBehavior / TryArrowWarp) does not accept, so no walk or surf can fire it"
+    ],
+    "status": "ISSUE",
+    "approach": [
+     "UP",
+     11,
+     8
+    ],
+    "arrived": null,
+    "arrival_facing": null,
+    "canonical_facing": null,
+    "landing_behavior": null,
+    "landing_walkable": null,
+    "can_move": null,
+    "return_ok": null,
+    "shot": "/home/eddie/repos/poke-plastic-ox/plastic_ox/demo/shots/warp_v1/Route15_WestEntrance_1F_Frlg_3_nowarp.png",
+    "expect_name": "Route15_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false
+   },
+   {
+    "map": "Route15_WestEntrance_1F_Frlg",
+    "warp": 4,
+    "class": "internal",
+    "src_xy": [
+     9,
+     10
+    ],
+    "src_behavior": "MB_UP_RIGHT_STAIR_WARP",
+    "dest_map": "MAP_ROUTE15_WEST_ENTRANCE_2F",
+    "dest_name": "Route15_WestEntrance_2F_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     10,
+     9
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "RIGHT",
+     8,
+     10
+    ],
+    "arrived": [
+     58,
+     1
+    ],
+    "arrival_facing": "RIGHT",
+    "canonical_facing": "RIGHT",
+    "landing_behavior": "MB_DOWN_LEFT_STAIR_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "Route15_WestEntrance_2F_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "Route15_WestEntrance_2F_Frlg",
+    "landed_xy": [
+     10,
+     9
+    ],
+    "rest_xy": [
+     10,
+     9
+    ],
+    "post_warp_step": null,
+    "moved_dir": "RIGHT",
+    "return_approach": [
+     "LEFT",
+     11,
+     9
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "Route15_WestEntrance_1F_Frlg",
+     9,
+     10
+    ]
+   },
+   {
+    "map": "Route15_WestEntrance_2F_Frlg",
+    "warp": 0,
+    "class": "internal",
+    "src_xy": [
+     10,
+     9
+    ],
+    "src_behavior": "MB_DOWN_LEFT_STAIR_WARP",
+    "dest_map": "MAP_ROUTE15_WEST_ENTRANCE_1F",
+    "dest_name": "Route15_WestEntrance_1F_Frlg",
+    "dest_warp": 4,
+    "dest_xy": [
+     9,
+     10
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "LEFT",
+     11,
+     9
+    ],
+    "arrived": [
+     58,
+     0
+    ],
+    "arrival_facing": "LEFT",
+    "canonical_facing": "LEFT",
+    "landing_behavior": "MB_UP_RIGHT_STAIR_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "Route15_WestEntrance_1F_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "Route15_WestEntrance_1F_Frlg",
+    "landed_xy": [
+     9,
+     10
+    ],
+    "rest_xy": [
+     9,
+     10
+    ],
+    "post_warp_step": null,
+    "moved_dir": "LEFT",
+    "return_approach": [
+     "RIGHT",
+     8,
+     10
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "Route15_WestEntrance_2F_Frlg",
+     10,
+     9
+    ]
+   },
+   {
+    "map": "Route2_EastBuilding_Frlg",
+    "warp": 0,
+    "class": "landing_anchor",
+    "src_xy": [
+     6,
+     9
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_ROUTE2",
+    "dest_name": "Route2_Frlg",
+    "dest_warp": 5,
+    "dest_xy": [
+     18,
+     46
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     6,
+     8
+    ],
+    "arrived": [
+     37,
+     19
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_NON_ANIMATED_DOOR",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "Route2_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "Route2_Frlg",
+    "landed_xy": [
+     18,
+     46
+    ],
+    "rest_xy": [
+     18,
+     47
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     18,
+     47
+    ],
+    "return_offset": 1,
+    "return_landed": [
+     "Route2_EastBuilding_Frlg",
+     7,
+     9
+    ]
+   },
+   {
+    "map": "Route2_EastBuilding_Frlg",
+    "warp": 1,
+    "class": "internal",
+    "src_xy": [
+     7,
+     9
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_ROUTE2",
+    "dest_name": "Route2_Frlg",
+    "dest_warp": 5,
+    "dest_xy": [
+     18,
+     46
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     7,
+     8
+    ],
+    "arrived": [
+     37,
+     19
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_NON_ANIMATED_DOOR",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "Route2_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "Route2_Frlg",
+    "landed_xy": [
+     18,
+     46
+    ],
+    "rest_xy": [
+     18,
+     47
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     18,
+     47
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "Route2_EastBuilding_Frlg",
+     7,
+     9
+    ]
+   },
+   {
+    "map": "Route2_EastBuilding_Frlg",
+    "warp": 2,
+    "class": "landing_anchor",
+    "src_xy": [
+     8,
+     9
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_ROUTE2",
+    "dest_name": "Route2_Frlg",
+    "dest_warp": 5,
+    "dest_xy": [
+     18,
+     46
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     8,
+     8
+    ],
+    "arrived": [
+     37,
+     19
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_NON_ANIMATED_DOOR",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "Route2_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "Route2_Frlg",
+    "landed_xy": [
+     18,
+     46
+    ],
+    "rest_xy": [
+     18,
+     47
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     18,
+     47
+    ],
+    "return_offset": 1,
+    "return_landed": [
+     "Route2_EastBuilding_Frlg",
+     7,
+     9
+    ]
+   },
+   {
+    "map": "Route2_EastBuilding_Frlg",
+    "warp": 3,
+    "class": "internal",
+    "src_xy": [
+     7,
+     1
+    ],
+    "src_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_map": "MAP_ROUTE2",
+    "dest_name": "Route2_Frlg",
+    "dest_warp": 6,
+    "dest_xy": [
+     18,
+     40
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     7,
+     2
+    ],
+    "arrived": [
+     37,
+     19
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "Route2_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "Route2_Frlg",
+    "landed_xy": [
+     18,
+     40
+    ],
+    "rest_xy": [
+     18,
+     40
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     18,
+     39
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "Route2_EastBuilding_Frlg",
+     7,
+     1
+    ]
+   },
+   {
+    "map": "Route2_Frlg",
+    "warp": 0,
+    "class": "internal",
+    "src_xy": [
+     5,
+     13
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_ROUTE2_VIRIDIAN_FOREST_NORTH_ENTRANCE",
+    "dest_name": "Route2_ViridianForest_NorthEntrance_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     7,
+     1
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     5,
+     12
+    ],
+    "arrived": [
+     49,
+     3
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_NON_ANIMATED_DOOR",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "Route2_ViridianForest_NorthEntrance_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "Route2_ViridianForest_NorthEntrance_Frlg",
+    "landed_xy": [
+     7,
+     1
+    ],
+    "rest_xy": [
+     7,
+     2
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     7,
+     2
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "Route2_Frlg",
+     5,
+     13
+    ]
+   },
+   {
+    "map": "Route2_Frlg",
+    "warp": 1,
+    "class": "landing_anchor",
+    "src_xy": [
+     6,
+     13
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_ROUTE2_VIRIDIAN_FOREST_NORTH_ENTRANCE",
+    "dest_name": "Route2_ViridianForest_NorthEntrance_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     7,
+     1
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     6,
+     12
+    ],
+    "arrived": [
+     49,
+     3
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_NON_ANIMATED_DOOR",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "Route2_ViridianForest_NorthEntrance_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "Route2_ViridianForest_NorthEntrance_Frlg",
+    "landed_xy": [
+     7,
+     1
+    ],
+    "rest_xy": [
+     7,
+     2
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     7,
+     2
+    ],
+    "return_offset": 1,
+    "return_landed": [
+     "Route2_Frlg",
+     5,
+     13
+    ]
+   },
+   {
+    "map": "Route2_Frlg",
+    "warp": 2,
+    "class": "internal",
+    "src_xy": [
+     5,
+     51
+    ],
+    "src_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_map": "MAP_ROUTE2_VIRIDIAN_FOREST_SOUTH_ENTRANCE",
+    "dest_name": "Route2_ViridianForest_SouthEntrance_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     7,
+     9
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     5,
+     52
+    ],
+    "arrived": [
+     49,
+     0
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "Route2_ViridianForest_SouthEntrance_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "Route2_ViridianForest_SouthEntrance_Frlg",
+    "landed_xy": [
+     7,
+     9
+    ],
+    "rest_xy": [
+     7,
+     9
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     7,
+     8
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "Route2_Frlg",
+     5,
+     51
+    ]
+   },
+   {
+    "map": "Route2_Frlg",
+    "warp": 3,
+    "class": "internal",
+    "src_xy": [
+     17,
+     11
+    ],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "dest_map": "MAP_DARK_CAVE_SOUTH_SIDE_HNS",
+    "dest_name": "DarkCave_SouthSide_hns",
+    "dest_warp": 0,
+    "dest_xy": [
+     14,
+     20
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     17,
+     12
+    ],
+    "arrived": [
+     77,
+     4
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "KEEP",
+    "landing_behavior": "MB_LADDER",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "DarkCave_SouthSide_hns",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "DarkCave_SouthSide_hns",
+    "landed_xy": [
+     14,
+     20
+    ],
+    "rest_xy": [
+     14,
+     20
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     14,
+     19
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "Route2_Frlg",
+     17,
+     11
+    ]
+   },
+   {
+    "map": "Route2_Frlg",
+    "warp": 4,
+    "class": "internal",
+    "src_xy": [
+     17,
+     22
+    ],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "dest_map": "MAP_ROUTE2_HOUSE",
+    "dest_name": "Route2_House_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     4,
+     7
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     17,
+     23
+    ],
+    "arrived": [
+     49,
+     1
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "Route2_House_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "Route2_House_Frlg",
+    "landed_xy": [
+     4,
+     7
+    ],
+    "rest_xy": [
+     4,
+     7
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     4,
+     6
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "Route2_Frlg",
+     17,
+     22
+    ]
+   },
+   {
+    "map": "Route2_Frlg",
+    "warp": 5,
+    "class": "internal",
+    "src_xy": [
+     18,
+     46
+    ],
+    "src_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_map": "MAP_ROUTE2_EAST_BUILDING",
+    "dest_name": "Route2_EastBuilding_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     7,
+     9
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     18,
+     47
+    ],
+    "arrived": [
+     49,
+     2
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "Route2_EastBuilding_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "Route2_EastBuilding_Frlg",
+    "landed_xy": [
+     7,
+     9
+    ],
+    "rest_xy": [
+     7,
+     9
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     7,
+     8
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "Route2_Frlg",
+     18,
+     46
+    ]
+   },
+   {
+    "map": "Route2_Frlg",
+    "warp": 6,
+    "class": "internal",
+    "src_xy": [
+     18,
+     40
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_ROUTE2_EAST_BUILDING",
+    "dest_name": "Route2_EastBuilding_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     7,
+     1
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     18,
+     39
+    ],
+    "arrived": [
+     49,
+     2
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_NON_ANIMATED_DOOR",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "Route2_EastBuilding_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "Route2_EastBuilding_Frlg",
+    "landed_xy": [
+     7,
+     1
+    ],
+    "rest_xy": [
+     7,
+     2
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     7,
+     2
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "Route2_Frlg",
+     18,
+     40
+    ]
+   },
+   {
+    "map": "Route2_Frlg",
+    "warp": 7,
+    "class": "landing_anchor",
+    "src_xy": [
+     19,
+     40
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_ROUTE2_EAST_BUILDING",
+    "dest_name": "Route2_EastBuilding_Frlg",
+    "dest_warp": 3,
+    "dest_xy": [
+     7,
+     1
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     19,
+     39
+    ],
+    "arrived": [
+     49,
+     2
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_NON_ANIMATED_DOOR",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "Route2_EastBuilding_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "Route2_EastBuilding_Frlg",
+    "landed_xy": [
+     7,
+     1
+    ],
+    "rest_xy": [
+     7,
+     2
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     7,
+     2
+    ],
+    "return_offset": 1,
+    "return_landed": [
+     "Route2_Frlg",
+     18,
+     40
+    ]
+   },
+   {
+    "map": "Route2_Frlg",
+    "warp": 8,
+    "class": "landing_anchor",
+    "src_xy": [
+     19,
+     46
+    ],
+    "src_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_map": "MAP_ROUTE2_EAST_BUILDING",
+    "dest_name": "Route2_EastBuilding_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     7,
+     9
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     19,
+     47
+    ],
+    "arrived": [
+     49,
+     2
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "Route2_EastBuilding_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "Route2_EastBuilding_Frlg",
+    "landed_xy": [
+     7,
+     9
+    ],
+    "rest_xy": [
+     7,
+     9
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     7,
+     8
+    ],
+    "return_offset": 1,
+    "return_landed": [
+     "Route2_Frlg",
+     18,
+     46
+    ]
+   },
+   {
+    "map": "Route2_Frlg",
+    "warp": 9,
+    "class": "landing_anchor",
+    "src_xy": [
+     6,
+     51
+    ],
+    "src_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_map": "MAP_ROUTE2_VIRIDIAN_FOREST_SOUTH_ENTRANCE",
+    "dest_name": "Route2_ViridianForest_SouthEntrance_Frlg",
+    "dest_warp": 1,
+    "dest_xy": [
+     7,
+     9
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     6,
+     52
+    ],
+    "arrived": [
+     49,
+     0
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "Route2_ViridianForest_SouthEntrance_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "Route2_ViridianForest_SouthEntrance_Frlg",
+    "landed_xy": [
+     7,
+     9
+    ],
+    "rest_xy": [
+     7,
+     9
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     7,
+     8
+    ],
+    "return_offset": 1,
+    "return_landed": [
+     "Route2_Frlg",
+     5,
+     51
+    ]
+   },
+   {
+    "map": "Route2_House_Frlg",
+    "warp": 0,
+    "class": "internal",
+    "src_xy": [
+     4,
+     7
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_ROUTE2",
+    "dest_name": "Route2_Frlg",
+    "dest_warp": 4,
+    "dest_xy": [
+     17,
+     22
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     4,
+     6
+    ],
+    "arrived": [
+     37,
+     19
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_ANIMATED_DOOR",
+    "landing_walkable": false,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "Route2_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "Route2_Frlg",
+    "landed_xy": [
+     17,
+     22
+    ],
+    "rest_xy": [
+     17,
+     23
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     17,
+     23
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "Route2_House_Frlg",
+     4,
+     7
+    ]
+   },
+   {
+    "map": "Route2_House_Frlg",
+    "warp": 1,
+    "class": "landing_anchor",
+    "src_xy": [
+     4,
+     8
+    ],
+    "src_behavior": "MB_ANIMATED_DOOR",
+    "dest_map": "MAP_ROUTE2",
+    "dest_name": "Route2_Frlg",
+    "dest_warp": 4,
+    "dest_xy": [
+     17,
+     22
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     4,
+     7
+    ],
+    "arrived": [
+     37,
+     19
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_ANIMATED_DOOR",
+    "landing_walkable": false,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "Route2_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "Route2_Frlg",
+    "landed_xy": [
+     17,
+     22
+    ],
+    "rest_xy": [
+     17,
+     23
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     17,
+     23
+    ],
+    "return_offset": 1,
+    "return_landed": [
+     "Route2_House_Frlg",
+     4,
+     7
+    ]
+   },
+   {
+    "map": "Route2_ViridianForest_NorthEntrance_Frlg",
+    "warp": 0,
+    "class": "landing_anchor",
+    "src_xy": [
+     6,
+     9
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_ILEX_FOREST_HNS",
+    "dest_name": "IlexForest_hns",
+    "dest_warp": 1,
+    "dest_xy": [
+     20,
+     15
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     6,
+     8
+    ],
+    "arrived": [
+     78,
+     0
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_NORTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "IlexForest_hns",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "IlexForest_hns",
+    "landed_xy": [
+     20,
+     15
+    ],
+    "rest_xy": [
+     20,
+     15
+    ],
+    "post_warp_step": null,
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     20,
+     16
+    ],
+    "return_offset": 1,
+    "return_landed": [
+     "Route2_ViridianForest_NorthEntrance_Frlg",
+     7,
+     9
+    ]
+   },
+   {
+    "map": "Route2_ViridianForest_NorthEntrance_Frlg",
+    "warp": 1,
+    "class": "internal",
+    "src_xy": [
+     7,
+     9
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_ILEX_FOREST_HNS",
+    "dest_name": "IlexForest_hns",
+    "dest_warp": 1,
+    "dest_xy": [
+     20,
+     15
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     7,
+     8
+    ],
+    "arrived": [
+     78,
+     0
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_NORTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "IlexForest_hns",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "IlexForest_hns",
+    "landed_xy": [
+     20,
+     15
+    ],
+    "rest_xy": [
+     20,
+     15
+    ],
+    "post_warp_step": null,
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     20,
+     16
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "Route2_ViridianForest_NorthEntrance_Frlg",
+     7,
+     9
+    ]
+   },
+   {
+    "map": "Route2_ViridianForest_NorthEntrance_Frlg",
+    "warp": 2,
+    "class": "landing_anchor",
+    "src_xy": [
+     8,
+     9
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_ILEX_FOREST_HNS",
+    "dest_name": "IlexForest_hns",
+    "dest_warp": 1,
+    "dest_xy": [
+     20,
+     15
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     8,
+     8
+    ],
+    "arrived": [
+     78,
+     0
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_NORTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "IlexForest_hns",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "IlexForest_hns",
+    "landed_xy": [
+     20,
+     15
+    ],
+    "rest_xy": [
+     20,
+     15
+    ],
+    "post_warp_step": null,
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     20,
+     16
+    ],
+    "return_offset": 1,
+    "return_landed": [
+     "Route2_ViridianForest_NorthEntrance_Frlg",
+     7,
+     9
+    ]
+   },
+   {
+    "map": "Route2_ViridianForest_NorthEntrance_Frlg",
+    "warp": 3,
+    "class": "internal",
+    "src_xy": [
+     7,
+     1
+    ],
+    "src_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_map": "MAP_ROUTE2",
+    "dest_name": "Route2_Frlg",
+    "dest_warp": 0,
+    "dest_xy": [
+     5,
+     13
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     7,
+     2
+    ],
+    "arrived": [
+     37,
+     19
+    ],
+    "arrival_facing": "UP",
+    "canonical_facing": "UP",
+    "landing_behavior": "MB_SOUTH_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "Route2_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "Route2_Frlg",
+    "landed_xy": [
+     5,
+     13
+    ],
+    "rest_xy": [
+     5,
+     13
+    ],
+    "post_warp_step": null,
+    "moved_dir": "UP",
+    "return_approach": [
+     "DOWN",
+     5,
+     12
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "Route2_ViridianForest_NorthEntrance_Frlg",
+     7,
+     1
+    ]
+   },
+   {
+    "map": "Route2_ViridianForest_SouthEntrance_Frlg",
+    "warp": 0,
+    "class": "landing_anchor",
+    "src_xy": [
+     6,
+     9
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_ROUTE2",
+    "dest_name": "Route2_Frlg",
+    "dest_warp": 2,
+    "dest_xy": [
+     5,
+     51
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     6,
+     8
+    ],
+    "arrived": [
+     37,
+     19
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_NON_ANIMATED_DOOR",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "Route2_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "Route2_Frlg",
+    "landed_xy": [
+     5,
+     51
+    ],
+    "rest_xy": [
+     5,
+     52
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     5,
+     52
+    ],
+    "return_offset": 1,
+    "return_landed": [
+     "Route2_ViridianForest_SouthEntrance_Frlg",
+     7,
+     9
+    ]
+   },
+   {
+    "map": "Route2_ViridianForest_SouthEntrance_Frlg",
+    "warp": 1,
+    "class": "internal",
+    "src_xy": [
+     7,
+     9
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_ROUTE2",
+    "dest_name": "Route2_Frlg",
+    "dest_warp": 2,
+    "dest_xy": [
+     5,
+     51
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     7,
+     8
+    ],
+    "arrived": [
+     37,
+     19
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_NON_ANIMATED_DOOR",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "Route2_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "Route2_Frlg",
+    "landed_xy": [
+     5,
+     51
+    ],
+    "rest_xy": [
+     5,
+     52
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     5,
+     52
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "Route2_ViridianForest_SouthEntrance_Frlg",
+     7,
+     9
+    ]
+   },
+   {
+    "map": "Route2_ViridianForest_SouthEntrance_Frlg",
+    "warp": 2,
+    "class": "landing_anchor",
+    "src_xy": [
+     8,
+     9
+    ],
+    "src_behavior": "MB_SOUTH_ARROW_WARP",
+    "dest_map": "MAP_ROUTE2",
+    "dest_name": "Route2_Frlg",
+    "dest_warp": 2,
+    "dest_xy": [
+     5,
+     51
+    ],
+    "mutual": false,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "DOWN",
+     8,
+     8
+    ],
+    "arrived": [
+     37,
+     19
+    ],
+    "arrival_facing": "DOWN",
+    "canonical_facing": "DOWN",
+    "landing_behavior": "MB_NON_ANIMATED_DOOR",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "Route2_Frlg",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "Route2_Frlg",
+    "landed_xy": [
+     5,
+     51
+    ],
+    "rest_xy": [
+     5,
+     52
+    ],
+    "post_warp_step": "DOWN",
+    "moved_dir": "DOWN",
+    "return_approach": [
+     "UP",
+     5,
+     52
+    ],
+    "return_offset": 1,
+    "return_landed": [
+     "Route2_ViridianForest_SouthEntrance_Frlg",
+     7,
+     9
+    ]
+   },
+   {
+    "map": "Route2_ViridianForest_SouthEntrance_Frlg",
+    "warp": 3,
+    "class": "internal",
+    "src_xy": [
+     7,
+     1
+    ],
+    "src_behavior": "MB_NON_ANIMATED_DOOR",
+    "dest_map": "MAP_ILEX_FOREST_HNS",
+    "dest_name": "IlexForest_hns",
+    "dest_warp": 0,
+    "dest_xy": [
+     22,
+     63
+    ],
+    "mutual": true,
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "approach": [
+     "UP",
+     7,
+     2
+    ],
+    "arrived": [
+     78,
+     0
+    ],
+    "arrival_facing": "LEFT",
+    "canonical_facing": "LEFT",
+    "landing_behavior": "MB_EAST_ARROW_WARP",
+    "landing_walkable": true,
+    "can_move": true,
+    "return_ok": true,
+    "shot": null,
+    "expect_name": "IlexForest_hns",
+    "via_surf": false,
+    "approach_via_surf": false,
+    "arrived_map": "IlexForest_hns",
+    "landed_xy": [
+     22,
+     63
+    ],
+    "rest_xy": [
+     22,
+     63
+    ],
+    "post_warp_step": null,
+    "moved_dir": "LEFT",
+    "return_approach": [
+     "RIGHT",
+     21,
+     63
+    ],
+    "return_offset": 0,
+    "return_landed": [
+     "Route2_ViridianForest_SouthEntrance_Frlg",
+     7,
+     1
+    ]
+   }
+  ],
+  "connections": [
+   {
+    "map": "CinnabarIsland_Frlg",
+    "connection": 0,
+    "direction": "up",
+    "offset": 0,
+    "dest_name": "Route21_South_Frlg",
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "legs": [
+     {
+      "leg": "outward",
+      "lane": 12,
+      "direction": "UP",
+      "landed": [
+       12,
+       49
+      ],
+      "expected": [
+       12,
+       49
+      ],
+      "status": "OK",
+      "note": "handed over to Route21_South_Frlg at (12,49)"
+     },
+     {
+      "leg": "inward",
+      "lane": 12,
+      "direction": "DOWN",
+      "landed": [
+       12,
+       0
+      ],
+      "expected": [
+       12,
+       0
+      ],
+      "status": "OK",
+      "note": "returned to CinnabarIsland_Frlg at (12,0)"
+     }
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Frlg",
+    "connection": 0,
+    "direction": "down",
+    "offset": 12,
+    "dest_name": "Route19_Frlg",
+    "static_issues": [
+     "no reciprocal up connection on Route19_Frlg back to FuchsiaCity_Frlg"
+    ],
+    "issues": [
+     "FuchsiaCity_Frlg down seam: player cannot continue DOWN past the handover tile (11,0) in Route19_Frlg",
+     "no reciprocal up connection on Route19_Frlg back to FuchsiaCity_Frlg"
+    ],
+    "status": "ISSUE",
+    "legs": [
+     {
+      "leg": "outward",
+      "lane": 23,
+      "direction": "DOWN",
+      "landed": [
+       11,
+       0
+      ],
+      "expected": [
+       11,
+       0
+      ],
+      "status": "OK",
+      "note": "handed over to Route19_Frlg at (11,0)"
+     },
+     {
+      "leg": "outward_continue",
+      "status": "ISSUE",
+      "note": "blocked at [11, 0]"
+     },
+     {
+      "leg": "inward",
+      "status": "UNTESTED",
+      "note": "Route19_Frlg declares no reciprocal up connection back to FuchsiaCity_Frlg"
+     }
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Frlg",
+    "connection": 1,
+    "direction": "left",
+    "offset": 10,
+    "dest_name": "Route18_Frlg",
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "legs": [
+     {
+      "leg": "outward",
+      "lane": 19,
+      "direction": "LEFT",
+      "landed": [
+       59,
+       9
+      ],
+      "expected": [
+       59,
+       9
+      ],
+      "status": "OK",
+      "note": "handed over to Route18_Frlg at (59,9)"
+     },
+     {
+      "leg": "inward",
+      "lane": 9,
+      "direction": "RIGHT",
+      "landed": [
+       0,
+       19
+      ],
+      "expected": [
+       0,
+       19
+      ],
+      "status": "OK",
+      "note": "returned to FuchsiaCity_Frlg at (0,19)"
+     }
+    ]
+   },
+   {
+    "map": "FuchsiaCity_Frlg",
+    "connection": 2,
+    "direction": "right",
+    "offset": 10,
+    "dest_name": "Route15_Frlg",
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "legs": [
+     {
+      "leg": "outward",
+      "lane": 20,
+      "direction": "RIGHT",
+      "landed": [
+       0,
+       10
+      ],
+      "expected": [
+       0,
+       10
+      ],
+      "status": "OK",
+      "note": "handed over to Route15_Frlg at (0,10)"
+     },
+     {
+      "leg": "inward",
+      "lane": 10,
+      "direction": "LEFT",
+      "landed": [
+       47,
+       20
+      ],
+      "expected": [
+       47,
+       20
+      ],
+      "status": "OK",
+      "note": "returned to FuchsiaCity_Frlg at (47,20)"
+     }
+    ]
+   },
+   {
+    "map": "Route14_Frlg",
+    "connection": 0,
+    "direction": "left",
+    "offset": 40,
+    "dest_name": "Route15_Frlg",
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "legs": [
+     {
+      "leg": "outward",
+      "lane": 50,
+      "direction": "LEFT",
+      "landed": [
+       71,
+       10
+      ],
+      "expected": [
+       71,
+       10
+      ],
+      "status": "OK",
+      "note": "handed over to Route15_Frlg at (71,10)"
+     },
+     {
+      "leg": "inward",
+      "lane": 10,
+      "direction": "RIGHT",
+      "landed": [
+       0,
+       50
+      ],
+      "expected": [
+       0,
+       50
+      ],
+      "status": "OK",
+      "note": "returned to Route14_Frlg at (0,50)"
+     }
+    ]
+   },
+   {
+    "map": "Route14_Frlg",
+    "connection": 1,
+    "direction": "right",
+    "offset": 0,
+    "dest_name": "Route13_Frlg",
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "legs": [
+     {
+      "leg": "outward",
+      "lane": 9,
+      "direction": "RIGHT",
+      "landed": [
+       0,
+       9
+      ],
+      "expected": [
+       0,
+       9
+      ],
+      "status": "OK",
+      "note": "handed over to Route13_Frlg at (0,9)"
+     },
+     {
+      "leg": "inward",
+      "lane": 9,
+      "direction": "LEFT",
+      "landed": [
+       23,
+       9
+      ],
+      "expected": [
+       23,
+       9
+      ],
+      "status": "OK",
+      "note": "returned to Route14_Frlg at (23,9)"
+     }
+    ]
+   },
+   {
+    "map": "Route15_Frlg",
+    "connection": 0,
+    "direction": "left",
+    "offset": -10,
+    "dest_name": "FuchsiaCity_Frlg",
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "legs": [
+     {
+      "leg": "outward",
+      "lane": 10,
+      "direction": "LEFT",
+      "landed": [
+       47,
+       20
+      ],
+      "expected": [
+       47,
+       20
+      ],
+      "status": "OK",
+      "note": "handed over to FuchsiaCity_Frlg at (47,20)"
+     },
+     {
+      "leg": "inward",
+      "lane": 20,
+      "direction": "RIGHT",
+      "landed": [
+       0,
+       10
+      ],
+      "expected": [
+       0,
+       10
+      ],
+      "status": "OK",
+      "note": "returned to Route15_Frlg at (0,10)"
+     }
+    ]
+   },
+   {
+    "map": "Route15_Frlg",
+    "connection": 1,
+    "direction": "right",
+    "offset": -40,
+    "dest_name": "Route14_Frlg",
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "legs": [
+     {
+      "leg": "outward",
+      "lane": 10,
+      "direction": "RIGHT",
+      "landed": [
+       0,
+       50
+      ],
+      "expected": [
+       0,
+       50
+      ],
+      "status": "OK",
+      "note": "handed over to Route14_Frlg at (0,50)"
+     },
+     {
+      "leg": "inward",
+      "lane": 50,
+      "direction": "LEFT",
+      "landed": [
+       71,
+       10
+      ],
+      "expected": [
+       71,
+       10
+      ],
+      "status": "OK",
+      "note": "returned to Route15_Frlg at (71,10)"
+     }
+    ]
+   },
+   {
+    "map": "Route2_Frlg",
+    "connection": 0,
+    "direction": "up",
+    "offset": -6,
+    "dest_name": "RustboroCity",
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "legs": [
+     {
+      "leg": "outward",
+      "lane": 11,
+      "direction": "UP",
+      "landed": [
+       17,
+       59
+      ],
+      "expected": [
+       17,
+       59
+      ],
+      "status": "OK",
+      "note": "handed over to RustboroCity at (17,59)"
+     },
+     {
+      "leg": "inward",
+      "lane": 17,
+      "direction": "DOWN",
+      "landed": [
+       11,
+       0
+      ],
+      "expected": [
+       11,
+       0
+      ],
+      "status": "OK",
+      "note": "returned to Route2_Frlg at (11,0)"
+     }
+    ]
+   },
+   {
+    "map": "Route2_Frlg",
+    "connection": 1,
+    "direction": "down",
+    "offset": -25,
+    "dest_name": "CherrygroveCity_hns",
+    "static_issues": [],
+    "issues": [],
+    "status": "OK",
+    "legs": [
+     {
+      "leg": "outward",
+      "lane": 10,
+      "direction": "DOWN",
+      "landed": [
+       35,
+       0
+      ],
+      "expected": [
+       35,
+       0
+      ],
+      "status": "OK",
+      "note": "handed over to CherrygroveCity_hns at (35,0)"
+     },
+     {
+      "leg": "inward",
+      "lane": 35,
+      "direction": "UP",
+      "landed": [
+       10,
+       79
+      ],
+      "expected": [
+       10,
+       79
+      ],
+      "status": "OK",
+      "note": "returned to Route2_Frlg at (10,79)"
+     }
+    ]
+   }
+  ],
+  "reboots": 2,
+  "elapsed_s": 54.3,
+  "untested": [],
+  "unloadable": []
+ }
+}

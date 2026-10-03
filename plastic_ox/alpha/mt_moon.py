@@ -62,7 +62,8 @@ def install(read, put):
     defs = ''.join(f'#define {name} {number}\n' for name, number in trainers.items())
     text = text.replace('// End Plastic Ox story trainers.', defs + '// End Plastic Ox story trainers.')
     for constant in ['TRAINERS_COUNT_EMERALD', 'MAX_TRAINERS_COUNT_EMERALD']:
-        text = re.sub(r'#define ' + constant + r'\s+\d+', '#define ' + constant + ' 926', text)
+        text = re.sub(r'(#define ' + constant + r'\s+)(\d+)',
+                      lambda match: match[1] + str(max(926, int(match[2]))), text)
     put(path, text)
     path = 'src/data/trainers.party'
     text = re.sub(r'=== TRAINER_PLASTIC_OX_MOON_\w+ ===\n.*?(?=\n=== |\Z)', '', read(path), flags=re.S)

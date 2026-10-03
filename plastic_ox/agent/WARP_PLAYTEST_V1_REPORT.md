@@ -1,5 +1,9 @@
 # WARP_PLAYTEST_V1_REPORT — warp-transition playtest (run 3)
 
+**Current handoff:** see the **RUN 7 (POST-CUT)** section at the end of this file — it
+covers the ROM built after the FRLG Safari Zone removal (`c1fb0b62`). Runs 3, 5 and 6
+below are historical results from earlier ROM builds.
+
 ROM: `pokeemerald.gba` @ `04b27389ca` (read-only). Run started 2026-10-02 02:11:20, emulator time 291.5s, 19 emulator reboots.
 
 Reusable harness: `plastic_ox/demo/test_warps_v1.py`. This run is reproduced by:
@@ -6081,3 +6085,337 @@ Battle Factory entrance is donor Hoenn content outside the story closure.
   tables described above. Idempotent; re-running prints `0 block(s) repointed`.
 * `plastic_ox/demo/test_ocean_seams.py` - drives the all-ocean seams with the
   avatar on the surfboard.
+
+---
+
+# Run 6 — Kanto load blocker removed (2026-10-02)
+
+This section supersedes the map-load verdict in section 2b and the run 5
+headline. Source changes are in the working tree on `07fa6a3a36`. The final
+Emerald ROM was built with:
+
+```sh
+make -j8 TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM modern
+```
+
+Its SHA-256 is
+`21cfd4a224d40e129c7ed5a3eef14a1d93f15ec47eff4118d2d9633da05eb9b5`
+(ROM segment 28,301,300 bytes, 84.34% of 32 MiB).
+
+## R6.1 Map-load result
+
+| Check | Run 5 | Run 6 |
+|---|---:|---:|
+| Kanto maps in the closure with a usable live grid | 0 / 203 | **203 / 203** |
+| Entries in each run's load check with a usable live grid or intentional redirect | 187 / 391 | **417 / 417** |
+| Direct loads in each check | 187 | **416** |
+
+The earlier 203 Kanto failures had one shared cause: `mapjson` excluded every
+`REGION_KANTO` map header from the Emerald map-group table, leaving null slots
+even when the map was in the story closure. `tools/mapjson/mapjson.cpp` now
+honours a map-level `include_in_versions` opt-in. All 203 Kanto closure maps
+have that Emerald opt-in, and 137 FRLG layouts gained the matching opt-in. The
+new script manifest includes all 203 map scripts. Shared FRLG scripts needed
+252 text labels from off-closure maps and 54 duplicate donor script blocks
+guarded so the Plastic Ox versions win. The build also links the 34 FRLG
+tileset headers and associated assets that those maps need. Hidden-item flags
+that previously compiled to zero now use a separate 191-bit SaveBlock3 allocation;
+the one name shared with a Hoenn hidden item has a Kanto-specific alias. This
+keeps the existing SaveBlock1 offsets intact.
+
+When adding another Kanto map, keep its `map.json` opt-in, layout opt-in,
+`data/scripts/plastic_ox_kanto_maps.inc`, and
+`src/data/tilesets/plastic_ox_kanto_additions.h` aligned. The extra shared
+script text is in `data/scripts/plastic_ox_kanto_extra_text.inc`.
+
+The prior `GoldenrodCity_UndergroundSwitches_hns` failure was a probe error:
+the fixed sample tile (2,2) is intentionally metatile 1023. The load check now
+chooses a defined tile from each source blockmap; Goldenrod passes at (3,2).
+`MtMoon_Cave_hns` is a retired map retained for old saves and intentionally
+redirects to `MtMoon_1F_Frlg` on load. The harness verifies the target's live
+grid and records the redirect separately. In a fresh boot, `CeruleanCity_Frlg`
+also renders terrain, buildings and NPCs; a blank screenshot from an aborted
+run followed an unhealthy Battle Frontier field script and was not a tileset
+failure.
+
+Evidence: `plastic_ox/agent/warp_playtest_v1_unblocked_loadcheck.json` contains
+all 417 per-map verdicts and the ROM hash. The import audit passed for 89 HNS
+layouts, and `git diff --check` passed.
+
+## R6.2 Route 8 gate safety
+
+`Route8_WestEntrance_Frlg[2]` and `[3]` referenced Route 8 warp 1 when Route 8
+had only warp 0. Route 8 now has warp 1 at a walkable road tile (9,20), so both
+gate exits have a valid, safe landing. The two formerly inert gate lanes at
+(1,4) and (11,6) now have matching west/east arrow warp metatiles, preserving
+their artwork. The repair table in `plastic_ox/agent/fix_warp_metatiles.py` is
+idempotent (`0 block(s) repointed` on a second run). A focused mGBA walk found
+both gate exits toward Saffron working, and both exits toward Route 8 landing
+at (9,20) with room to move.
+
+The earlier P0 wording claimed that an invalid destination warp ID reads past
+the target warp table. `src/overworld.c::SetPlayerCoordsFromWarp` actually
+bounds-checks the ID and falls back to supplied coordinates or the map center.
+The old link could still land at an unrelated position, which the new warp
+entry fixes. Route 8 warp 1 is an arrival anchor on normal road. Walking west
+from it takes the existing authored portal to `SaffronCity_hns`, so the generic
+reciprocity test still marks the two gate-to-Route-8 rows as ISSUE. Resolving
+that requires a topology decision about the donor FRLG gate versus the
+authored Saffron portal.
+
+## R6.3 Validation and next repair pass
+
+The Emerald build succeeded. An in-emulator script set and cleared the first
+and last virtual Kanto hidden-item flags independently, confirming that they
+write separate SaveBlock3 bits. Static analysis now finds **zero out-of-range
+destination warp IDs** and 41 warp findings overall; the two Route 8 gate
+out-of-range findings are gone. The import audit passed:
+
+```sh
+python3 /home/eddie/.codex/skills/plastic-ox-map-port/scripts/audit_imports.py /home/eddie/repos/poke-plastic-ox
+```
+
+The new loadable Kanto rooms expose door lanes that the old run could not
+walk. A source-data scan found 179 Kanto warp events on `MB_NORMAL` tiles; 158
+are within two tiles of a functioning warp event with the same destination.
+Of those, 122 have walkable source tiles and 36 have solid source tiles. That
+is a strong candidate for a shared door-lane repair pass, with the solid lanes
+checked against their artwork before carving. Existing run 5 notes about
+water-driven Seafoam transitions, Trick House puzzle doors, and donor facility
+state machines still apply.
+
+## R7.1 Surf expansion (harness-side movement, no data or ROM changes)
+
+The on-foot walker could not follow the Seafoam Islands' water-driven
+transitions, so `plastic_ox/demo/test_warps_v1.py` now mounts Surf and
+climbs waterfalls for real. Nothing in `data/` or `src/` was touched: the
+expansion is entirely in the playtest harness.
+
+**What it does.** The fixture boots a fresh game, so there is no battery save
+to edit. The harness grants a Surf kit through the engine's own field-script
+commands instead (`grant_surf_kit`): a party mon via `ScrCmd_createmon` that is
+taught Surf and Waterfall with `ScrCmd_setmonmove` (both
+`IsFieldMoveUnlocked_Surf` and `PartyHasMonWithSurf()` must be true for the A
+prompt), plus `ITEM_SURF_KEY` in the bag via `ScrCmd_additem`, because with
+`FLAG_POX_TRIGGERS_ENABLED` this ROM unlocks Surf from the key item rather than
+from the Surf Badge. It then verifies the grant with the engine's own
+`ScrCmd_checkfieldmove` and records the result in the report's `surf.granted`
+field. On top of that:
+
+* `mount_surf` presses A on the engine's own YES/NO prompt, retrying with the
+  cursor nudged in case the box opened on NO, and waits for the one-tile step
+  onto the water rather than trusting `PLAYER_AVATAR_FLAG_SURFING` alone.
+* `use_waterfall` does the same for `MB_WATERFALL` facing north, which is the
+  only way the engine offers that field effect.
+* `place_in_water` / `swim_to` / `_next_step_toward` put the player on a water
+  run-up the way a player would: injected on the nearest dry tile, mounted from
+  the shore, and swum there over the live block grid.
+* A warp that sits on water is tried surf-first; `static_needs_surf` detects a
+  warp with no dry run-up at all and only those rows get the surf retry, so the
+  dry pass still covers everything else. A row whose surf path cannot be built
+  is reported `UNTESTED` with the engine's own reason
+  (`surf path needed but not reachable: ...`) rather than a bare timeout.
+* Water-to-water map connections are retried on the board when every dry lane
+  fails.
+
+**`--no-surf`** restores the pure on-foot walk, so any row in this report can be
+re-checked against the pre-expansion behaviour.
+
+**Bug found and fixed while reviewing the expansion.** `dismount_surf` derived
+its direction with an unguarded `next(d for d, v in DIRS.items() if v == (dx, dy))`,
+but `nearest_dry_tile` is a 4-way flood fill and can return a *diagonal* shore.
+The generator then raised `StopIteration`, which propagated out of
+`test_one_connection` and turned every seam tested after a surf row into a
+`harness exception: StopIteration()` ERROR. In the sanity run below this
+silently destroyed all three Route 12 seam rows. Diagonal and multi-tile
+deltas now go through the cardinal-only pathfinder, and the `next()` calls in
+`dismount_surf` and `swim_to` have defaults, so the degenerate case can never
+raise again. The fix is harness-only.
+
+**Sanity run.** Targeted, not the full 1279-warp walk — the Seafoam Islands
+family plus one exterior water route, interiors excluded:
+
+```sh
+LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 \
+  /home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_warps_v1.py \
+  --only SeafoamIslands --only Route12_Frlg --exclude BattleFrontier \
+  --json /tmp/pox_surf_sanity.json
+```
+
+6 maps (`SeafoamIslands_1F` and `B1F`–`B4F`, `Route12_Frlg`), 46 warps and
+3 seams, 121 s wall clock, 11 emulator reboots. Surf was granted
+(`surf holder=party[0] waterfall holder=0`).
+
+* **Warps: 29 OK, 13 ISSUE, 2 PARTIAL, 2 UNTESTED. Seams: 2 OK, 1 ISSUE.**
+* **Warps reaching an OK verdict with `via_surf` / `approach_via_surf` set: 0.**
+* **Warps whose run-up was genuinely reached on the board: 2** —
+  `SeafoamIslands_B4F_Frlg[2]` and `[3]`, the northbound whirlpool returns. The
+  harness swam to the run-up on the board, stepped onto the warp tile, and the
+  warp did not fire.
+* **Warps left UNTESTED with `surf path needed but not reachable`: 0.**
+  2 warps are UNTESTED, both `SeafoamIslands_B3F_Frlg[5]` and `[6]` at (23,9)
+  and (24,9), and the reason is not the surf machinery: the tile is
+  `MB_SOUTHWARD_CURRENT`, and their surf run-ups also fail with
+  `no walkable path from (29,4) to (23,10)` — the upper pool on B3F is not
+  connected to a dry shore the flood fill can start from.
+
+**Why no warp fires on surf, honestly.** This is a data finding, not a harness
+limit. `IsWarpMetatileBehavior` and `IsArrowWarpMetatileBehavior` in
+`src/field_control_avatar.c` accept only warp doors, ladders, escalators, the
+Lavaridge/Aqua Hideout/Union Room/Mossdeep/Mt. Pyre Hole warps and the four
+arrow-warp metatiles (`MetatileBehavior_IsNorthArrowWarp` accepts only
+`MB_NORTH_ARROW_WARP` and `MB_STAIRS_OUTSIDE_ABANDONED_SHIP`;
+`MetatileBehavior_IsSouthArrowWarp` only `MB_SOUTH_ARROW_WARP`,
+`MB_WATER_SOUTH_ARROW_WARP` and `MB_SHOAL_CAVE_ENTRANCE` — confirmed in
+`src/metatile_behavior.c`). `MB_NORTHWARD_CURRENT` and `MB_SOUTHWARD_CURRENT`
+are in none of those lists, so the Seafoam whirlpool warp events at
+`SeafoamIslands_B3F_Frlg` (23,9)/(24,9) and `SeafoamIslands_B4F_Frlg`
+(8,17)/(9,17) can never fire, on foot or on the surfboard. The harness
+confirms this empirically as well as statically: it stood on the board and
+stepped onto (8,17) and nothing happened. These four rows are the same class
+of defect as R5.4 (warp event on a metatile the engine never triggers) and
+need a metatile repair, not a better walk.
+
+**Coverage versus the earlier runs.** The prior full run
+(`warp_playtest_v1_unblocked.json`) had the whole Seafoam family excluded with
+`--exclude`, so 32 of these 46 rows were UNTESTED for lack of a walk rather
+than for lack of a result. Against the on-foot run 5
+(`warp_playtest_v1_run5.json`, 26 OK / 14 ISSUE / 2 PARTIAL / 4 UNTESTED here),
+the expansion changes six rows: `Route12_Frlg[0]`, `[1]` and `[3]` move from
+UNTESTED to OK — but only because Route 12 now loads under the current build,
+not because of surf — and `SeafoamIslands_B3F_Frlg[5]` and `[6]` move from ISSUE
+to UNTESTED, which is the more honest verdict once the harness knows the
+metatile can never fire. **The Seafoam Islands warps that previously stalled the
+walk are now all exercised** (44 of 46 reach a real verdict), but the surfboard
+itself is still not what carries a player through this set.
+
+**Honest limits of the expansion.**
+
+* Waterfalls in a separate upper pool are unreachable: `nearest_dry_tile`
+  floods from the player's own tile and `swim_to` only follows a cardinal
+  path over the live grid, so a pool the player cannot swim to from a shore
+  they can already reach is simply out of reach. B3F's upper pool is the live
+  example — every surf run-up reports `no walkable path`.
+* Only the metatiles in `SURFACE_BEHAVIORS` offer the Surf prompt. A tile that
+  is merely wet (`MB_SHALLOW_WATER`, bridges) never triggers it, and the
+  harness reports that as a real reason rather than timing out.
+* Surf is offered from `ELEVATION_DEFAULT` only, and the engine dismounts onto
+  `ELEVATION_DEFAULT` only, so a shore search cannot land on any other level.
+* The expansion changes no data. A water-locked warp that sits on a metatile
+  the engine rejects is still broken after this work; it is reported, not
+  fixed.
+
+---
+
+# RUN 7 (POST-CUT) — FRLG Safari Zone removal, 2026-10-02
+
+**Current handoff: this run.** Everything above it is historical. The full
+1,279-warp walk was deliberately **not** re-run (the user asked for a targeted
+subset only); what follows is the post-cut verification that was actually
+performed.
+
+**ROM under test:** `pokeemerald.gba` @ `c1fb0b62922ac24e028c3ca59cf103d38a71b0d3bd3592eb87c3ed975e7ba2e9`
+(previous build: `21cfd4a224d40e129c7ed5a3eef14a1d93f15ec47eff4118d2d9633da05eb9b5`).
+`plastic_ox/agent/warp_playtest_v1_unblocked.json` refers to the **pre-cut** hash and is
+left untouched as a historical checkpoint — do not re-run anything against it.
+
+**Why the ROM changed:** the FRLG Safari Zone family (11 maps) was removed on user
+approval. See the **Decision log D1** in `plastic_ox/agent/ROM_SPACE_TRIM_AUDIT.md`.
+
+## R7.1 Per-map load check — 406 / 406 PASS
+
+```sh
+LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 \
+  /home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_warps_v1.py \
+  --load-only --json plastic_ox/agent/warp_playtest_v2_postcut_loadcheck.json
+```
+
+| metric | run 6 (`warp_playtest_v1_unblocked.json`) | run 7 (post-cut) |
+|---|--:|--:|
+| maps in the closure | 417 | **406** |
+| warp events | 1,278 | 1,211 |
+| connections | 86 | 86 |
+| maps that load and yield a usable grid | 406 / 406 | **406 / 406** |
+
+The closure lost exactly the 11 removed maps and **nothing else** — the set difference
+is precisely `SafariZone_{Center,East,North,West}[_RestHouse]_Frlg`,
+`SafariZone_SecretHouse_Frlg`, `FuchsiaCity_SafariZone_{Entrance,Office}_Frlg`.
+No map was added, and no previously-loading map regressed to unloadable.
+
+**Artefacts:** `warp_playtest_v2_postcut_loadcheck.json` (load verdicts),
+`warp_playtest_v2_postcut_fuchsia.json` + `_fuchsia_maps.json` (targeted walk),
+`warp_playtest_v2_postcut_unionroom.json` (UnionRoom re-check).
+
+## R7.2 Targeted warp sanity — Fuchsia City and neighbours
+
+```sh
+LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 \
+  /home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_warps_v1.py \
+  --load-report plastic_ox/agent/warp_playtest_v2_postcut_loadcheck.json \
+  --exclude BattleFrontier \
+  --only Fuchsia --only Route2_ --only Route19 --only Route15 --only Route14 --only Cinnabar \
+  --json plastic_ox/agent/warp_playtest_v2_postcut_fuchsia.json \
+  --maps plastic_ox/agent/warp_playtest_v2_postcut_fuchsia_maps.json
+```
+
+28 maps, 92 static warps, 10 seams. Static findings: **0**. Dynamic:
+**77 OK / 23 ISSUE / 2 PARTIAL**, 2 emulator reboots, 54.3 s.
+
+**Every one of the 92 rows was diffed against run 6 by `(map, warp_index)`.**
+
+| change | rows | verdict |
+|---|--:|---|
+| unchanged | 88 | identical status |
+| `FuchsiaCity_Frlg[0]` and `[3]`: `UNTESTED` → `OK` | 2 | **expected improvement.** These were the two Safari Zone warps; the indices now belong to the Warden's House and the Mart, and both walk correctly |
+| `FuchsiaCity_PokemonCenter_2F_Frlg[1]`, `CinnabarIsland_PokemonCenter_2F_Frlg[1]`: `OK` → `PARTIAL` | 2 | **not a regression — see below** |
+
+### The 23 ISSUE rows are pre-existing and unrelated
+
+All 23 are the same FRLG door-exit defect already on record:
+*"the warp tile (x,y) is MB_NORMAL, which the engine's warp trigger
+(`IsWarpMetatileBehavior` / `TryArrowWarp`) does not accept"* — e.g.
+`FuchsiaCity_WardensHouse_Frlg[0]`/`[2]`, `FuchsiaCity_Mart_Frlg[0]`/`[2]`,
+`FuchsiaCity_Gym_Frlg[0]`/`[2]`, `FuchsiaCity_House{1,2}_Frlg[0]`/`[2]`,
+`FuchsiaCity_PokemonCenter_1F_Frlg[0]`/`[2]`, `Route15_WestEntrance_1F_Frlg[1]`/`[3]`,
+`CinnabarIsland_PokemonLab_Entrance_Frlg[0]`/`[2]`,
+`CinnabarIsland_PokemonCenter_1F_Frlg[1]`/`[2]`, and the
+`FuchsiaCity_Frlg` ↔ `Route19_Frlg` south seam.
+
+**Every one of these rows has the identical status in run 6.** The Safari Zone cut did
+not create, move or fix any of them; none of their maps, layouts or warp data were
+touched. This is the same class as run 6's R5.4 — a warp event sitting on a metatile the
+engine never triggers — and it needs a metatile repair, not a better walk.
+
+### The 2 PARTIAL rows are a harness-side INCONCLUSIVE on an untouched map
+
+Both rows land in `UnionRoom_Frlg[0]`, a `MAP_DYNAMIC` facility exit on the **last row**
+of the map (y = 11 of 12). The harness drops the player onto (7,11), then tries DOWN /
+LEFT / RIGHT (and UP via surf); (7,12), (7,13) and (7,14) are all off-map, so no step
+ever re-enters the warp tile and the row is scored `INCONCLUSIVE` rather than a result.
+Reproduced deterministically on a dedicated 4-map re-run
+(`warp_playtest_v2_postcut_unionroom.json`).
+
+This is **not** attributable to the cut:
+
+* `data/maps/UnionRoom_Frlg/` and `data/maps/UnionRoom/` are untouched (their `map.json`
+  shows as modified only because of the repo-wide pre-existing
+  `include_in_versions: ["emerald"]` line, which predates this work).
+* `data/layouts/UnionRoom_Frlg/` is untouched.
+* The load check reports an identical probe for `UnionRoom_Frlg` in both ROMs:
+  grid `[30, 26]`, metatile `730`, state `[34, 4, 2, 2]`.
+* Run 6's JSON has no `via_surf` / `notes` / `retried_after_reboot` fields at all — the
+  harness gained surf support after that run, and the new surf expansion is what
+  generates this note. Run 6 simply had no vocabulary for "INCONCLUSIVE".
+* `UnionRoom_Frlg` is a facility state machine, the class run 6 already excluded from
+  generic walking.
+
+## R7.3 What the cut deliberately did *not* fix
+
+* The `MB_NORMAL` door-exit metatiles in §R7.2 above. Out of scope.
+* `UnionRoom_Frlg`'s `MAP_DYNAMIC` exit on a last-row tile. Out of scope; note that
+  `UnionRoom` / `UnionRoom_Frlg` are in the closure and would need a warp repoint if the
+  link facilities are ever cut (audit §6.5, §8 step 9 — postponed).
+* §7.0's `PlasticOxContest_TakeStep()` / `SafariZoneTakeStep()` shared step counter. Still
+  live; it is just no longer reachable from the deleted Kanto maps.
+* `MAPSEC_KANTO_SAFARI_ZONE` and the 11 `FLAG_HIDE_SAFARI_ZONE_*` names are now unused
+  but retained — reclaiming either renumbers a save-file surface.
