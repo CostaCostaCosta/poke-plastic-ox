@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Rewrite every Plastic Ox trainer party to a full, progression-legal six.
+"""Generate progression-legal Plastic Ox trainer parties.
 
 Rules implemented here (see plastic_ox/agent/TRAINER_TEAMS_V2_REPORT.md):
 
-* exactly six Pokemon per trainer;
+* one six-Pokemon boss per route; other route trainers use two or three
+  species absent from the boss party;
 * every species obtainable at or before the trainer's story checkpoint
   (pox_progression.CHECKPOINTS, derived from REGION_PLAN.md, the story manifest
   and the Part 1 encounter audit);
@@ -33,7 +34,7 @@ PARTY = ROOT / "src/data/trainers.party"
 REPORT = Path(__file__).resolve().parent / "trainer_teams_v2_build.json"
 
 # ---------------------------------------------------------------------------
-# Rosters: trainer id -> (story checkpoint, [(species, level)] * 6)
+# Rosters: trainer id -> (story checkpoint, [(species, level)])
 #
 # The six-species choice per trainer is authored here. Levels follow the story
 # level-cap table (13 / 20 / 30 / 36 / 42 / 50 / 55 / 60) and sit a little under
@@ -64,7 +65,13 @@ ROSTERS: dict[str, tuple[str, list[tuple[str, int]]]] = {
     "TRAINER_PLASTIC_OX_ROUTE1": ("route2south", [
         ("SPECIES_MANKEY", 6), ("SPECIES_EKANS", 6), ("SPECIES_GROWLITHE", 6),
         ("SPECIES_VULPIX", 5), ("SPECIES_MEOWTH", 5), ("SPECIES_SLOWPOKE", 6)]),
+    "TRAINER_PLASTIC_OX_ROUTE2_BEN": ("route2south", [
+        ("SPECIES_MANKEY", 6), ("SPECIES_EKANS", 6), ("SPECIES_GROWLITHE", 6),
+        ("SPECIES_VULPIX", 5), ("SPECIES_MEOWTH", 5), ("SPECIES_SLOWPOKE", 6)]),
     "TRAINER_PLASTIC_OX_ROUTE31": ("route2north", [
+        ("SPECIES_VENONAT", 9), ("SPECIES_ARON", 9), ("SPECIES_BALTOY", 8),
+        ("SPECIES_SPOINK", 8), ("SPECIES_RALTS", 8), ("SPECIES_VOLTORB", 9)]),
+    "TRAINER_PLASTIC_OX_ROUTE2_WADE": ("route2north", [
         ("SPECIES_VENONAT", 9), ("SPECIES_ARON", 9), ("SPECIES_BALTOY", 8),
         ("SPECIES_SPOINK", 8), ("SPECIES_RALTS", 8), ("SPECIES_VOLTORB", 9)]),
     "TRAINER_PLASTIC_OX_ROUTE_ILEX": ("ilex", [
@@ -190,8 +197,8 @@ ROSTERS: dict[str, tuple[str, list[tuple[str, int]]]] = {
         ("SPECIES_SPINDA", 17), ("SPECIES_SEVIPER", 16), ("SPECIES_ZIGZAGOON", 17),
         ("SPECIES_HOPPIP", 16), ("SPECIES_AIPOM", 16), ("SPECIES_GEODUDE", 16)]),
     "TRAINER_PLASTIC_OX_WHITNEY": ("gym2", [
-        ("SPECIES_MIGHTYENA", 20), ("SPECIES_WIGGLYTUFF", 19), ("SPECIES_MEOWTH", 19),
-        ("SPECIES_FURRET", 19), ("SPECIES_ARBOK", 19), ("SPECIES_DRAGONAIR", 20)]),
+        ("SPECIES_YANMA", 19), ("SPECIES_MINUN", 19), ("SPECIES_MAWILE", 19),
+        ("SPECIES_ARIADOS", 19), ("SPECIES_LICKITUNG", 19), ("SPECIES_DRAGONAIR", 20)]),
 
     # ---- Gym 3 segment, NU cap 30 ----------------------------------------
     "TRAINER_PLASTIC_OX_PU_ROUTE35": ("route35", [
@@ -291,6 +298,8 @@ ROSTERS: dict[str, tuple[str, list[tuple[str, int]]]] = {
 
 # Left alone on purpose, with the reason recorded in the report.
 KEEP_AS_IS = {
+    "TRAINER_PLASTIC_OX_ARTICUNO_SAGE": "Authored UUBL legendary challenge; canonical team in alpha/seafoam/trainers.party.",
+    "TRAINER_PLASTIC_OX_ENTEI_SAGE": "Authored UUBL legendary challenge; canonical team in alpha/cinnabar/trainers.party.",
     # The task's designated format reference. Already six LC-legal Pokemon at
     # exactly the Gym 1 cap, all obtainable before Gym 1.
     "TRAINER_PLASTIC_OX_ROXANNE": "designated format reference; already a legal six",
@@ -307,10 +316,48 @@ KEEP_AS_IS = {
 # badges (NU). The signature is kept as designed and reported as an exception;
 # the other five slots obey the rules strictly.
 SIGNATURE_EXCEPTIONS = {
+    # Whitney's requested ADV PU roster includes three species the player
+    # cannot catch before Gym 2. All three are PU-tier species.
+    "TRAINER_PLASTIC_OX_WHITNEY": ["SPECIES_MINUN", "SPECIES_YANMA",
+                                   "SPECIES_LICKITUNG"],
     "TRAINER_PLASTIC_OX_KIMONOVAPOREON": ["SPECIES_VAPOREON"],
     "TRAINER_PLASTIC_OX_KIMONOJOLTEON": ["SPECIES_JOLTEON"],
     "TRAINER_PLASTIC_OX_KIMONOESPEON": ["SPECIES_ESPEON"],
     "TRAINER_PLASTIC_OX_KIMONOUMBREON": ["SPECIES_UMBREON"],
+}
+
+# Fixed ADV PU sets for Whitney. Her trainer-only move access permits the
+# underleveled Yanma, Ariados, and Minun to use their competitive roles at the
+# Gym 2 level cap. IVs give 70-power Hidden Power Flying, Steel, or Fighting.
+WHITNEY_COMPETITIVE_TEAM = {
+    "SPECIES_MINUN": dict(item="Petaya Berry", ability="Minus", nature="Timid",
+        evs=dict(spa=252, spd=4, spe=252), ivs=None,
+        moves=["MOVE_ENCORE", "MOVE_SUBSTITUTE", "MOVE_BATON_PASS", "MOVE_THUNDERBOLT"],
+        set_name="Encore Substitute Pass"),
+    "SPECIES_YANMA": dict(item="Liechi Berry", ability="Compound Eyes", nature="Jolly",
+        evs={"atk": 252, "def": 4, "spe": 252}, hp_type="Flying",
+        ivs={"hp": 30, "atk": 30, "def": 30, "spa": 30, "spd": 30, "spe": 31},
+        moves=["MOVE_SUBSTITUTE", "MOVE_HYPNOSIS", "MOVE_REVERSAL", "MOVE_HIDDEN_POWER"],
+        set_name="Substitute Hypnosis"),
+    "SPECIES_MAWILE": dict(item="Leftovers", ability="Intimidate", nature="Adamant",
+        evs=dict(hp=132, atk=252, spe=124), hp_type="Steel",
+        ivs={"hp": 31, "atk": 31, "def": 31, "spa": 31, "spd": 30, "spe": 31},
+        moves=["MOVE_SWORDS_DANCE", "MOVE_BRICK_BREAK", "MOVE_HIDDEN_POWER", "MOVE_SUBSTITUTE"],
+        set_name="Swords Dance Substitute"),
+    "SPECIES_ARIADOS": dict(item="Leftovers", ability="Swarm", nature="Adamant",
+        evs={"hp": 48, "atk": 252, "def": 12, "spe": 196}, hp_type="Flying",
+        ivs={"hp": 30, "atk": 30, "def": 30, "spa": 30, "spd": 30, "spe": 31},
+        moves=["MOVE_AGILITY", "MOVE_SLUDGE_BOMB", "MOVE_SIGNAL_BEAM", "MOVE_HIDDEN_POWER"],
+        set_name="Agility"),
+    "SPECIES_LICKITUNG": dict(item="Leftovers", ability="Own Tempo", nature="Careful",
+        evs=dict(hp=252, atk=4, spd=252), ivs=None,
+        moves=["MOVE_CURSE", "MOVE_REST", "MOVE_SLEEP_TALK", "MOVE_BODY_SLAM"],
+        set_name="CurseTung"),
+    "SPECIES_DRAGONAIR": dict(item="Leftovers", ability="Shed Skin", nature="Adamant",
+        evs=dict(atk=252, spd=4, spe=252), hp_type="Fighting",
+        ivs={"hp": 30, "atk": 30, "def": 30, "spa": 30, "spd": 30, "spe": 30},
+        moves=["MOVE_DRAGON_DANCE", "MOVE_DOUBLE_EDGE", "MOVE_IRON_TAIL", "MOVE_HIDDEN_POWER"],
+        set_name="Dragon Dance"),
 }
 
 OPENING_CHECKPOINTS = {"start", "route103", "route29", "route2south",
@@ -676,12 +723,92 @@ def split_block(body: str) -> tuple[list[str], list[str]]:
 # Keep the established competitive set rotation when opening-route trainers
 # are added. Their simple parties do not use the salt, but including their
 # names in the sorted index would reshuffle later trainers' set selections.
-NEW_OPENING_TRAINERS = {"TRAINER_PLASTIC_OX_ROUTE29_ELLA",
+NEW_OPENING_TRAINERS = {"TRAINER_PLASTIC_OX_ROUTE2_BEN",
+                        "TRAINER_PLASTIC_OX_ROUTE2_WADE",
+                        "TRAINER_PLASTIC_OX_ROUTE29_ELLA",
                         "TRAINER_PLASTIC_OX_ROUTE_ILEX_FINN",
                         "TRAINER_PLASTIC_OX_ROUTE_ILEX_MAYA"}
-TRAINER_SALT = {name: i * 3 for i, name in enumerate(sorted(ROSTERS.keys() - NEW_OPENING_TRAINERS))}
-TRAINER_SALT.update({name: 3 * (len(ROSTERS) - len(NEW_OPENING_TRAINERS) + i)
+# Keep existing set selections stable when extending the Johto roster.
+JOHTO_TRAINERS = json.loads((ROOT / 'plastic_ox/alpha/johto_outdoors/trainers.json').read_text())
+ROSTERS.update({name: (data['checkpoint'], [tuple(mon) for mon in data['roster']])
+                for name, data in JOHTO_TRAINERS.items()})
+TRAINER_SALT = {name: i * 3 for i, name in enumerate(sorted(ROSTERS.keys() - NEW_OPENING_TRAINERS - JOHTO_TRAINERS.keys()))}
+TRAINER_SALT.update({name: 3 * (len(ROSTERS) - len(NEW_OPENING_TRAINERS) - len(JOHTO_TRAINERS) + i)
                      for i, name in enumerate(sorted(NEW_OPENING_TRAINERS))})
+TRAINER_SALT.update({name: data['id'] * 3 for name, data in JOHTO_TRAINERS.items()})
+
+
+# Actual map groups, rather than checkpoint groups: Route 2 spans two
+# checkpoints, while Route 1, Route 31 and Route 104 are separate maps.
+# The first listed trainer is the boss. Forest/park follow the same pacing.
+ROUTE_GROUPS = {
+    "Route101": ["ROUTE101"],
+    "Route103": ["ROUTE103"],
+    "Route1_Frlg": ["ROUTE1"],
+    "Route2_Frlg": ["ROUTE2_WADE", "ROUTE2_BEN"],
+    "Route31_hns": ["ROUTE31"],
+    "Route104": ["ROUTE104"],
+    "Route29_hns": ["ROUTE29", "ROUTE29_ELLA"],
+    "IlexForest_hns": ["ROUTE_ILEX", "ROUTE_ILEX_FINN", "ROUTE_ILEX_MAYA"],
+    "Route46_hns": ["ROUTE46", "ROUTE46_ERIN"],
+    "Route24_hns": ["ROUTE24_ROCKET", "ROUTE24"],
+    "Route25_hns": ["ROUTE25", "ROUTE25_DUDLEY", "ROUTE25_ELLEN", "ROUTE25_JOE",
+                     "ROUTE25_LAURA", "ROUTE25_LLOYD", "ROUTE25_PAT"],
+    "Route44_hns": ["ROUTE44", "ROUTE44_ALLEN", "ROUTE44_CYBIL", "ROUTE44_EDGAR",
+                     "ROUTE44_VANCE", "ROUTE44_WILTON", "ROUTE44_ZACH"],
+    # Grunt1 at (12, 20) is the last Rocket on the main B2F path,
+    # immediately before Miguel/tablets. Grunt4 is in an earlier side branch.
+    "MtMoon": ["MOON_TEAM_ROCKET_GRUNT", "MOON_TEAM_ROCKET_GRUNT_2",
+               "MOON_TEAM_ROCKET_GRUNT_3", "MOON_TEAM_ROCKET_GRUNT_4",
+               "MOON_YOUNGSTER_JOSH", "MOON_LASS_IRIS", "MOON_LASS_MIRIAM",
+               "MOON_BUG_CATCHER_KENT", "MOON_BUG_CATCHER_ROBBY",
+               "MOON_HIKER_MARCOS", "MOON_SUPER_NERD_JOVAN",
+               "MOON_SUPER_NERD_MIGUEL", "MOONGRUNT1", "MOONGRUNT2"],
+    "Route33_hns": ["PU_ROUTE33"],
+    "Route35_hns": ["PU_ROUTE35"],
+    "Route36_hns": ["PU_ROUTE36", "JOHTO_ALAN"],
+    "Route37_hns": ["JOHTO_GREG", "JOHTO_ANN_ANNE"],
+    "NationalPark_Normal_hns": ["PU_PARK", "JOHTO_BEVERLY", "JOHTO_JACK", "JOHTO_KRISE"],
+}
+ROUTE_GROUPS = {area: ["TRAINER_PLASTIC_OX_" + name for name in names]
+                for area, names in ROUTE_GROUPS.items()}
+ROUTE_BOSSES = {names[0] for names in ROUTE_GROUPS.values()}
+ROUTE_TRAINERS = {name for names in ROUTE_GROUPS.values() for name in names}
+
+
+def minimum_level(checkpoint: str) -> int:
+    """Never regress below the preceding gym segment's finishing level."""
+    return {"LC": 1, "PU": 13, "NU": 20, "RU": 30, "UU": 36,
+            "UUBL": 42, "OU": 50}[P.tier_at(checkpoint)]
+
+
+# Ben's old roster duplicates the separate Route 1 trainer; Wade is Route 2's
+# later, stronger boss. Keep Ben's early checkpoint and distinct local species.
+ROSTERS["TRAINER_PLASTIC_OX_ROUTE2_BEN"] = ("route2south", [
+    ("SPECIES_MANKEY", 6), ("SPECIES_EKANS", 6), ("SPECIES_GROWLITHE", 6)])
+for area, names in ROUTE_GROUPS.items():
+    boss_checkpoint, boss_roster = ROSTERS[names[0]]
+    boss_floor = max(level for name in names for species, level in ROSTERS[name][1])
+    ROSTERS[names[0]] = boss_checkpoint, [(species, max(level, boss_floor))
+                                        for species, level in boss_roster]
+    boss_species = {species for species, level in boss_roster}
+    for index, trainer in enumerate(names[1:]):
+        checkpoint, roster = ROSTERS[trainer]
+        candidates = [(species, level) for species, level in roster
+                      if species not in boss_species]
+        # Erin has just two distinct species; Finn also naturally has two.
+        count = min(3 if index % 2 == 0 else 2, len(candidates))
+        assert count >= 2, (area, trainer, candidates)
+        ROSTERS[trainer] = checkpoint, candidates[:count]
+
+for trainer, (checkpoint, roster) in list(ROSTERS.items()):
+    floor = minimum_level(checkpoint)
+    ROSTERS[trainer] = checkpoint, [(species, max(level, floor))
+                                  for species, level in roster]
+
+
+def expected_party_size(trainer: str) -> int:
+    return len(ROSTERS[trainer][1])
 
 
 def main() -> int:
@@ -700,15 +827,20 @@ def main() -> int:
         allowed = set(SIGNATURE_EXCEPTIONS.get(trainer, []))
         mons = []
         for index, (species, level) in enumerate(roster):
-            if len(roster) != 6:
-                problems.append(f"{trainer}: {len(roster)} slots, expected 6")
+            if not minimum_level(checkpoint) <= level <= cap:
+                problems.append(f"{trainer}: level {level} outside progression range")
             if species not in legal and species not in allowed:
                 problems.append(f"{trainer}[{index}]: {species} is not obtainable at "
                                 f"'{checkpoint}' (tier {P.tier_of(species)})")
             if level > cap:
                 problems.append(f"{trainer}[{index}]: level {level} exceeds the "
                                 f"{checkpoint} cap of {cap}")
-            mon = build_mon(species, level, checkpoint, TRAINER_SALT[trainer] + index)
+            if trainer == "TRAINER_PLASTIC_OX_WHITNEY":
+                mon = dict(WHITNEY_COMPETITIVE_TEAM[species], species=species,
+                           level=level, set_source="ADV PU fixed gym roster",
+                           notes=[])
+            else:
+                mon = build_mon(species, level, checkpoint, TRAINER_SALT[trainer] + index)
             mon["why_available"] = how.get(species, "signature exception")
             mon["tier"] = P.tier_of(species)
             mon["flagged"] = species not in legal

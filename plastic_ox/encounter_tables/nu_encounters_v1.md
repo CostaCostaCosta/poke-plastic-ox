@@ -2,7 +2,7 @@
 
 **Progression**
 
-Sudowoodo → Route 37 → Ecruteak / Kimono Girls → Burned Tower 1F → Burned Tower B1F → legendary-beast scene → Morty's Gym unlocks
+Sudowoodo → Route 37 → Ecruteak / Kimono Girls → Burned Tower 1F → Burned Tower B1F → tower memory scene → Morty's Gym unlocks
 
 **NU level cap: 30**
 
@@ -456,21 +456,18 @@ Keeping it at 5% prevents the dungeon from becoming a generic Hoenn cave.
 
 # 5. Burned Tower story event
 
-After traversing B1F, the player reaches the legendary-beast scene.
+After traversing B1F, the player finds Morty beside a damaged wall. For a
+moment, a stair appears as it stood before the fire, then the ruin returns.
+The player recovers the fallen ceremonial bell. Morty interprets the event as
+the tower remembering its past, then sends the gathered sages throughout the
+region to find and care for displaced legendary Pokémon. They agree to stay
+with the Pokémon until they feel safe, establishing why sages accompany
+later legendary encounters. A caretaker stays at the tower.
 
-Raikou, Entei, and Suicune appear only as scripted overworld/story entities.
+Raikou, Entei, and Suicune are not released or made available here, following
+the v7 story direction in `plastic_ox/plastic_ox_story_v7.md`.
 
-They are:
-
-* not battled;
-* not catchable;
-* not roamers;
-* not counted as NU acquisitions;
-* not unlocked for capture.
-
-Suicune should linger briefly after Raikou and Entei depart to preserve the recognizable Gen II staging.
-
-Completion of this scene causes:
+Completion of the memory scene causes:
 
 > **Morty returns to the Gym and the Gym becomes accessible.**
 

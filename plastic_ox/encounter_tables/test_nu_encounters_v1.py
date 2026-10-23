@@ -14,7 +14,7 @@ The test asserts the real data against the document:
     time-of-day tail" structure;
   * Route 37 Headbutt, Lv. 21-23, exactly the seven authored slots;
   * Ecruteak City Good Rod, Lv. 21-23, and rod-exclusive by construction;
-  * Burned Tower 1F, Lv. 22-24;
+  * Burned Tower 1F, Lv. 22-24, and B1F, Lv. 23-26;
   * tier gating: every species is NU-tier or lower in the engine's own table
     (src/data/pokemon/evolution_tier_gates.h) and no level exceeds the NU
     block's cap of 30;
@@ -61,6 +61,10 @@ ECRUTEAK_BAND = (21, 23)
 BURNED_TOWER_1F = [("RATTATA", 30), ("KOFFING", 15), ("ZUBAT", 15), ("TORKOAL", 10),
                    ("SLUGMA", 10), ("HOUNDOUR", 10), ("GASTLY", 5), ("RATICATE", 5)]
 BURNED_TOWER_1F_BAND = (22, 24)
+BURNED_TOWER_B1F = [("KOFFING", 30), ("GASTLY", 20), ("RATTATA", 15),
+                    ("DUNSPARCE", 10), ("CHIMECHO", 10), ("ZUBAT", 10),
+                    ("SABLEYE", 5)]
+BURNED_TOWER_B1F_BAND = (23, 26)
 
 # The PU document's Route 35 table: Old Rod only, Lv. 16-18, Corsola at 15%.
 ROUTE35_OLD_ROD = [("POLIWAG", 30), ("GOLDEEN", 25), ("BARBOACH", 20),
@@ -80,9 +84,9 @@ NU_ROOT_COVERAGE = {
     "Kecleon":    ("Route 37 Headbutt 5%", "route37" in P.CHECKPOINT_NAMES),
     "Relicanth":  ("Ecruteak Corsola NPC trade", False),   # trade not implemented
     "Torkoal":    ("Burned Tower 1F wild 10%", "burnedtower" in P.CHECKPOINT_NAMES),
-    "Dunsparce":  ("Burned Tower B1F wild 10%", False),   # B1F map does not exist
-    "Chimecho":   ("Burned Tower B1F wild 10%", False),   # B1F map does not exist
-    "Sableye":    ("Burned Tower B1F wild 5%", False),    # B1F map does not exist
+    "Dunsparce":  ("Burned Tower B1F wild 10%", "burnedtower" in P.CHECKPOINT_NAMES),
+    "Chimecho":   ("Burned Tower B1F wild 10%", "burnedtower" in P.CHECKPOINT_NAMES),
+    "Sableye":    ("Burned Tower B1F wild 5%", "burnedtower" in P.CHECKPOINT_NAMES),
 }
 
 
@@ -158,6 +162,9 @@ def main() -> int:
     # --- Burned Tower 1F ---------------------------------------------------
     species_in_block |= table_matches("gPoxNUBurnedTower1F", "land_mons",
                                      BURNED_TOWER_1F, BURNED_TOWER_1F_BAND,
+                                     audit.LAND_DEFAULT)
+    species_in_block |= table_matches("gPoxNUBurnedTowerB1F", "land_mons",
+                                     BURNED_TOWER_B1F, BURNED_TOWER_B1F_BAND,
                                      audit.LAND_DEFAULT)
 
     # --- Route 37 Headbutt --------------------------------------------------

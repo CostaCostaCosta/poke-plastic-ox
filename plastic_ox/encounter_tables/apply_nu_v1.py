@@ -7,12 +7,8 @@ Source of truth: plastic_ox/encounter_tables/nu_encounters_v1.md (NU level cap
   * Route 37 grass, Lv. 21-23, a different species per time of day;
   * Route 37 Headbutt, Lv. 21-23 (Kecleon 5%);
   * Ecruteak City Good Rod, Lv. 21-23;
-  * Burned Tower 1F, Lv. 22-24.
-
-Burned Tower B1F is specified in the document but the map does not exist yet
-(data/maps/PlasticOx_BurnedTower is a single-storey stub on LAYOUT_MT_PYRE_1F
-with no warps or connections), so there is nothing to attach a second floor
-table to. That gap is reported, not guessed at.
+  * Burned Tower 1F, Lv. 22-24;
+  * Burned Tower B1F, Lv. 23-26.
 
 Route 37's Headbutt population goes in src/data/plastic_ox_pu_encounters.h, the
 same header the PU generator writes, because Headbutt tables are selected by
@@ -34,7 +30,8 @@ JSON = ROOT / "src/data/wild_encounters.json"
 HEADER = ROOT / "src/data/plastic_ox_pu_encounters.h"
 
 # Maps this generator owns. Entries for these maps are rebuilt on every run.
-NU_MAPS = ("MAP_ROUTE37_HNS", "MAP_ECRUTEAK_CITY_HNS", "MAP_PLASTIC_OX_BURNED_TOWER")
+NU_MAPS = ("MAP_ROUTE37_HNS", "MAP_ECRUTEAK_CITY_HNS", "MAP_PLASTIC_OX_BURNED_TOWER",
+           "MAP_PLASTIC_OX_BURNED_TOWER_B1F")
 
 # ---------------------------------------------------------------- Route 37 grass
 # The stable 65% population is shared by all three periods; only the last three
@@ -58,6 +55,9 @@ ECRUTEAK_ROD = (21, 23, [(30, "POLIWAG"), (20, "BARBOACH"), (15, "SURSKIT"),
 # ---------------------------------------------------------- Burned Tower 1F
 BURNED_TOWER_1F = (22, 24, [(30, "RATTATA"), (15, "KOFFING"), (15, "ZUBAT"), (10, "TORKOAL"),
                            (10, "SLUGMA"), (10, "HOUNDOUR"), (5, "GASTLY"), (5, "RATICATE")])
+BURNED_TOWER_B1F = (23, 26, [(30, "KOFFING"), (20, "GASTLY"), (15, "RATTATA"),
+                            (10, "DUNSPARCE"), (10, "CHIMECHO"), (10, "ZUBAT"),
+                            (5, "SABLEYE")])
 
 # ------------------------------------------------------------- Route 37 Headbutt
 ROUTE37_HEADBUTT = (21, 23, [(25, "TEDDIURSA"), (20, "SEEDOT"), (15, "SLAKOTH"),
@@ -97,6 +97,9 @@ def install(data):
     add.append({"map": "MAP_PLASTIC_OX_BURNED_TOWER",
                 "base_label": "gPoxNUBurnedTower1F",
                 "land_mons": table(BURNED_TOWER_1F)})
+    add.append({"map": "MAP_PLASTIC_OX_BURNED_TOWER_B1F",
+                "base_label": "gPoxNUBurnedTowerB1F",
+                "land_mons": table(BURNED_TOWER_B1F)})
 
     group["encounters"].extend(add)
     return data

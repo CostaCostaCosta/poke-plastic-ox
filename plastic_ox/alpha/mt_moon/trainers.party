@@ -7,14 +7,35 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Weedle
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Paras @ Leftovers
+Level: 13
+Ability: Effect Spore
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Giga Drain
+- Solar Beam
+- Hidden Power
+- Toxic
 
-Kakuna
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Venonat @ Leftovers
+Level: 13
+Ability: Compound Eyes
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Sludge Bomb
+- Hidden Power
+- Giga Drain
+- Toxic
 
+Nincada @ Leftovers
+Level: 13
+Ability: Compound Eyes
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Leech Life
+- Mud-Slap
+- Hidden Power
+- Toxic
 
 === TRAINER_PLASTIC_OX_MOON_BUG_CATCHER_ROBBY ===
 Name: ROBBY
@@ -25,18 +46,25 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Caterpie
-Level: 10
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Nincada @ Leftovers
+Level: 14
+Ability: Compound Eyes
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Leech Life
+- Mud-Slap
+- Hidden Power
+- Toxic
 
-Metapod
-Level: 10
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Caterpie
-Level: 10
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
+Paras @ Leftovers
+Level: 14
+Ability: Effect Spore
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Giga Drain
+- Solar Beam
+- Hidden Power
+- Toxic
 
 === TRAINER_PLASTIC_OX_MOON_HIKER_MARCOS ===
 Name: MARCOS
@@ -47,18 +75,35 @@ Music: Hiker
 Double Battle: No
 AI: Check Bad Move
 
-Geodude
-Level: 10
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Geodude @ Choice Band
+Level: 13
+Ability: Rock Head
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Earthquake
+- Rock Slide
+- Hidden Power
+- Toxic
 
-Geodude
-Level: 10
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Onix @ Sitrus Berry
+Level: 13
+Ability: Rock Head
+EVs: 76 HP / 236 Atk / 196 Spe
+Jolly Nature
+- Rock Slide
+- Earthquake
+- Double-Edge
+- Explosion
 
-Onix
-Level: 10
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
+Aron @ Choice Band
+Level: 13
+Ability: Sturdy
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Rock Slide
+- Rock Tomb
+- Hidden Power
+- Toxic
 
 === TRAINER_PLASTIC_OX_MOON_LASS_IRIS ===
 Name: IRIS
@@ -69,10 +114,35 @@ Music: Female
 Double Battle: No
 AI: Check Bad Move
 
-Clefairy
-Level: 14
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Meowth @ Sitrus Berry
+Level: 15
+Ability: Pickup
+EVs: 36 HP / 236 Atk / 36 SpD / 196 Spe
+Jolly Nature
+- Thunder
+- Double-Edge
+- Shadow Ball
+- Taunt
 
+Cleffa @ Leftovers
+Level: 15
+Ability: Cute Charm
+EVs: 252 HP / 252 Def
+Bold Nature
+- Hidden Power
+- Flamethrower
+- Toxic
+- Psychic
+
+Sentret @ Leftovers
+Level: 15
+Ability: Run Away
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Hidden Power
+- Body Slam
+- Surf
+- Toxic
 
 === TRAINER_PLASTIC_OX_MOON_LASS_MIRIAM ===
 Name: MIRIAM
@@ -83,14 +153,25 @@ Music: Female
 Double Battle: No
 AI: Check Bad Move
 
-Oddish
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Cleffa @ Leftovers
+Level: 13
+Ability: Cute Charm
+EVs: 252 HP / 252 Def
+Bold Nature
+- Hidden Power
+- Flamethrower
+- Toxic
+- Psychic
 
-Bellsprout
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
+Meowth @ Sitrus Berry
+Level: 13
+Ability: Pickup
+EVs: 36 HP / 236 Atk / 36 SpD / 196 Spe
+Jolly Nature
+- Thunder
+- Double-Edge
+- Shadow Ball
+- Taunt
 
 === TRAINER_PLASTIC_OX_MOON_SUPER_NERD_JOVAN ===
 Name: JOVAN
@@ -101,14 +182,27 @@ Music: Suspicious
 Double Battle: No
 AI: Check Bad Move
 
-Magnemite
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Magnemite @ Sitrus Berry
+Level: 13
+Ability: Sturdy
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 36 Def / 240 SpA / 76 SpD / 156 Spe
+Modest Nature
+- Thunderbolt
+- Hidden Power
+- Toxic
+- Substitute
 
-Voltorb
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
+Spoink @ Leftovers
+Level: 13
+Ability: Thick Fat
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 36 HP / 156 Def / 116 SpD / 196 Spe
+Bold Nature
+- Thief
+- Psychic
+- Icy Wind
+- Taunt
 
 === TRAINER_PLASTIC_OX_MOON_SUPER_NERD_MIGUEL ===
 Name: MIGUEL
@@ -119,18 +213,37 @@ Music: Suspicious
 Double Battle: No
 AI: Check Bad Move
 
-Grimer
-Level: 12
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Magnemite @ Sitrus Berry
+Level: 15
+Ability: Sturdy
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 36 Def / 240 SpA / 76 SpD / 156 Spe
+Modest Nature
+- Thunderbolt
+- Hidden Power
+- Toxic
+- Substitute
 
-Voltorb
-Level: 12
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Spoink @ Leftovers
+Level: 15
+Ability: Thick Fat
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 36 HP / 156 Def / 116 SpD / 196 Spe
+Bold Nature
+- Thief
+- Psychic
+- Icy Wind
+- Taunt
 
-Koffing
-Level: 12
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
+Baltoy @ Sitrus Berry
+Level: 15
+Ability: Levitate
+EVs: 36 HP / 196 Atk / 156 Def / 36 SpD / 76 Spe
+Careful Nature
+- Earthquake
+- Shadow Ball
+- Rock Tomb
+- Explosion
 
 === TRAINER_PLASTIC_OX_MOON_TEAM_ROCKET_GRUNT ===
 Name: GRUNT
@@ -141,14 +254,66 @@ Music: Aqua
 Double Battle: No
 AI: Check Bad Move
 
-Rattata
-Level: 13
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Cubone @ Thick Club
+Level: 16
+Ability: Rock Head
+EVs: 36 HP / 196 Atk / 40 SpD / 236 Spe
+Adamant Nature
+- Focus Punch
+- Double-Edge
+- Hidden Power
+- Protect
 
-Zubat
-Level: 13
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Voltorb @ Sitrus Berry
+Level: 16
+Ability: Static
+EVs: 116 HP / 36 Def / 160 SpA / 196 Spe
+Timid Nature
+- Thunderbolt
+- Hidden Power
+- Thief
+- Explosion
 
+Koffing @ Sitrus Berry
+Level: 16
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 30 Spe
+EVs: 116 HP / 76 Atk / 236 Def / 80 Spe
+Impish Nature
+- Sludge Bomb
+- Hidden Power
+- Thief
+- Explosion
+
+Machop @ Sitrus Berry
+Level: 16
+Ability: Guts
+EVs: 36 HP / 116 Atk / 40 Def / 240 SpD / 76 Spe
+Adamant Nature
+- Bulk Up
+- Focus Punch
+- Hidden Power
+- Endure
+
+Duskull @ Leftovers
+Level: 16
+Ability: Levitate
+EVs: 252 HP / 252 Def / 4 SpD
+Bold Nature
+- Rest
+- Sleep Talk
+- Blizzard
+- Night Shade
+
+Ekans @ Leftovers
+Level: 16
+Ability: Intimidate
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Sludge Bomb
+- Poison Sting
+- Hidden Power
+- Toxic
 
 === TRAINER_PLASTIC_OX_MOON_TEAM_ROCKET_GRUNT_2 ===
 Name: GRUNT
@@ -159,18 +324,36 @@ Music: Aqua
 Double Battle: No
 AI: Check Bad Move
 
-Sandshrew
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Magnemite @ Sitrus Berry
+Level: 13
+Ability: Sturdy
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 36 Def / 240 SpA / 76 SpD / 156 Spe
+Modest Nature
+- Thunderbolt
+- Hidden Power
+- Toxic
+- Substitute
 
-Rattata
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Drowzee @ Leftovers
+Level: 13
+Ability: Insomnia
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Psychic
+- Dream Eater
+- Hidden Power
+- Toxic
 
-Zubat
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
+Gastly @ Leftovers
+Level: 13
+Ability: Levitate
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Psychic
+- Thunderbolt
+- Taunt
+- Explosion
 
 === TRAINER_PLASTIC_OX_MOON_TEAM_ROCKET_GRUNT_3 ===
 Name: GRUNT
@@ -181,14 +364,25 @@ Music: Aqua
 Double Battle: No
 AI: Check Bad Move
 
-Zubat
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Rhyhorn @ Choice Band
+Level: 15
+Ability: Lightning Rod
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Earthquake
+- Rock Slide
+- Hidden Power
+- Toxic
 
-Ekans
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
+Aron @ Choice Band
+Level: 14
+Ability: Sturdy
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Rock Slide
+- Rock Tomb
+- Hidden Power
+- Toxic
 
 === TRAINER_PLASTIC_OX_MOON_TEAM_ROCKET_GRUNT_4 ===
 Name: GRUNT
@@ -199,14 +393,36 @@ Music: Aqua
 Double Battle: No
 AI: Check Bad Move
 
-Rattata
-Level: 13
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Magnemite @ Sitrus Berry
+Level: 15
+Ability: Sturdy
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 36 Def / 240 SpA / 76 SpD / 156 Spe
+Modest Nature
+- Thunderbolt
+- Hidden Power
+- Toxic
+- Substitute
 
-Sandshrew
-Level: 13
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Onix @ Sitrus Berry
+Level: 15
+Ability: Rock Head
+EVs: 76 HP / 236 Atk / 196 Spe
+Jolly Nature
+- Rock Slide
+- Earthquake
+- Double-Edge
+- Explosion
 
+Drowzee @ Leftovers
+Level: 15
+Ability: Insomnia
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Psychic
+- Dream Eater
+- Hidden Power
+- Toxic
 
 === TRAINER_PLASTIC_OX_MOON_YOUNGSTER_JOSH ===
 Name: JOSH
@@ -217,16 +433,23 @@ Music: Male
 Double Battle: No
 AI: Check Bad Move
 
-Rattata
-Level: 10
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Mankey @ Salac Berry
+Level: 13
+Ability: Vital Spirit
+EVs: 36 HP / 196 Atk / 80 Def / 196 Spe
+Jolly Nature
+- Focus Punch
+- Hidden Power
+- Substitute
+- Endure
 
-Rattata
-Level: 10
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Zubat
-Level: 10
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
+Meowth @ Sitrus Berry
+Level: 13
+Ability: Pickup
+EVs: 36 HP / 236 Atk / 36 SpD / 196 Spe
+Jolly Nature
+- Thunder
+- Double-Edge
+- Shadow Ball
+- Taunt
 

@@ -1059,6 +1059,569 @@
     }
    ]
   },
+  "TRAINER_PLASTIC_OX_JOHTO_ALAN": {
+   "checkpoint": "route36",
+   "cap": 30,
+   "tier": "NU",
+   "monsters": [
+    {
+     "species": "SPECIES_MAGNEMITE",
+     "level": 21,
+     "moves": [
+      "MOVE_THUNDERBOLT",
+      "MOVE_HIDDEN_POWER",
+      "MOVE_TOXIC",
+      "MOVE_SUBSTITUTE"
+     ],
+     "ability": "Sturdy",
+     "item": "Sitrus Berry",
+     "nature": "Modest",
+     "evs": {
+      "def": 36,
+      "spa": 240,
+      "spd": 76,
+      "spe": 156
+     },
+     "set_name": "Offensive Utility",
+     "set_source": "gen3_movesets.json",
+     "notes": [],
+     "ivs": {
+      "atk": 2,
+      "spa": 30
+     },
+     "hp_type": null,
+     "why_available": "wild / special acquisition",
+     "tier": "PU",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_PONYTA",
+     "level": 21,
+     "moves": [
+      "MOVE_SUNNY_DAY",
+      "MOVE_FIRE_BLAST",
+      "MOVE_SOLAR_BEAM",
+      "MOVE_SUBSTITUTE"
+     ],
+     "ability": "Flash Fire",
+     "item": "Sitrus Berry",
+     "nature": "Timid",
+     "evs": {
+      "def": 76,
+      "spa": 236,
+      "spe": 196
+     },
+     "set_name": "Sunny Day",
+     "set_source": "gen3_movesets.json",
+     "notes": [],
+     "ivs": null,
+     "hp_type": null,
+     "why_available": "wild / special acquisition",
+     "tier": "PU",
+     "flagged": false
+    }
+   ]
+  },
+  "TRAINER_PLASTIC_OX_JOHTO_ANN_ANNE": {
+   "checkpoint": "route37",
+   "cap": 30,
+   "tier": "NU",
+   "monsters": [
+    {
+     "species": "SPECIES_LEDIAN",
+     "level": 22,
+     "moves": [
+      "MOVE_REFLECT",
+      "MOVE_LIGHT_SCREEN",
+      "MOVE_HYPER_BEAM",
+      "MOVE_SUBSTITUTE"
+     ],
+     "ability": "Early Bird",
+     "item": "Leftovers",
+     "nature": "Timid",
+     "evs": {
+      "hp": 252,
+      "def": 4,
+      "spe": 252
+     },
+     "set_name": "Dual Screens",
+     "set_source": "gen3_movesets.json",
+     "notes": [
+      "Baton Pass -> Hyper Beam (level-up move needs Lv33)"
+     ],
+     "ivs": null,
+     "hp_type": null,
+     "why_available": "evolves from Ledyba at Lv18",
+     "tier": "PU",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_ARIADOS",
+     "level": 22,
+     "moves": [
+      "MOVE_SLUDGE_BOMB",
+      "MOVE_POISON_STING",
+      "MOVE_HIDDEN_POWER",
+      "MOVE_TOXIC"
+     ],
+     "ability": "Swarm",
+     "item": "Leftovers",
+     "nature": "Adamant",
+     "evs": {
+      "hp": 124,
+      "atk": 84,
+      "spa": 84,
+      "spe": 216
+     },
+     "set_name": "learnset-derived",
+     "set_source": "derived from the ROM learnset (no tier-dex entry)",
+     "notes": [],
+     "ivs": null,
+     "hp_type": null,
+     "why_available": "evolves from Spinarak at Lv20",
+     "tier": "PU",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_JIGGLYPUFF",
+     "level": 22,
+     "moves": [
+      "MOVE_HIDDEN_POWER",
+      "MOVE_THUNDERBOLT",
+      "MOVE_TOXIC",
+      "MOVE_FLAMETHROWER"
+     ],
+     "ability": "Cute Charm",
+     "item": "Leftovers",
+     "nature": "Bold",
+     "evs": {
+      "hp": 252,
+      "def": 252
+     },
+     "set_name": "learnset-derived",
+     "set_source": "derived from the ROM learnset (no tier-dex entry)",
+     "notes": [],
+     "ivs": null,
+     "hp_type": null,
+     "why_available": "wild / special acquisition",
+     "tier": "PU",
+     "flagged": false
+    }
+   ]
+  },
+  "TRAINER_PLASTIC_OX_JOHTO_BEVERLY": {
+   "checkpoint": "park",
+   "cap": 30,
+   "tier": "NU",
+   "monsters": [
+    {
+     "species": "SPECIES_SNUBBULL",
+     "level": 20,
+     "moves": [
+      "MOVE_DOUBLE_EDGE",
+      "MOVE_SHADOW_BALL",
+      "MOVE_EARTHQUAKE",
+      "MOVE_THIEF"
+     ],
+     "ability": "Intimidate",
+     "item": "Sitrus Berry",
+     "nature": "Adamant",
+     "evs": {
+      "hp": 116,
+      "atk": 196,
+      "def": 36,
+      "spd": 120,
+      "spe": 36
+     },
+     "set_name": "Offensive",
+     "set_source": "gen3_movesets.json",
+     "notes": [],
+     "ivs": null,
+     "hp_type": null,
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_SKITTY",
+     "level": 20,
+     "moves": [
+      "MOVE_HIDDEN_POWER",
+      "MOVE_BODY_SLAM",
+      "MOVE_THUNDERBOLT",
+      "MOVE_TOXIC"
+     ],
+     "ability": "Cute Charm",
+     "item": "Leftovers",
+     "nature": "Adamant",
+     "evs": {
+      "hp": 124,
+      "atk": 84,
+      "spa": 84,
+      "spe": 216
+     },
+     "set_name": "learnset-derived",
+     "set_source": "derived from the ROM learnset (no tier-dex entry)",
+     "notes": [],
+     "ivs": null,
+     "hp_type": null,
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_MARILL",
+     "level": 20,
+     "moves": [
+      "MOVE_SURF",
+      "MOVE_WATER_PULSE",
+      "MOVE_HIDDEN_POWER",
+      "MOVE_TOXIC"
+     ],
+     "ability": "Thick Fat",
+     "item": "Leftovers",
+     "nature": "Timid",
+     "evs": {
+      "hp": 4,
+      "spa": 252,
+      "spe": 252
+     },
+     "set_name": "learnset-derived",
+     "set_source": "derived from the ROM learnset (no tier-dex entry)",
+     "notes": [],
+     "ivs": null,
+     "hp_type": null,
+     "why_available": "evolves from Azurill at Lv1",
+     "tier": "PU",
+     "flagged": false
+    }
+   ]
+  },
+  "TRAINER_PLASTIC_OX_JOHTO_GREG": {
+   "checkpoint": "route37",
+   "cap": 30,
+   "tier": "NU",
+   "monsters": [
+    {
+     "species": "SPECIES_DROWZEE",
+     "level": 22,
+     "moves": [
+      "MOVE_PSYCHIC",
+      "MOVE_DREAM_EATER",
+      "MOVE_HIDDEN_POWER",
+      "MOVE_TOXIC"
+     ],
+     "ability": "Insomnia",
+     "item": "Leftovers",
+     "nature": "Timid",
+     "evs": {
+      "hp": 4,
+      "spa": 252,
+      "spe": 252
+     },
+     "set_name": "learnset-derived",
+     "set_source": "derived from the ROM learnset (no tier-dex entry)",
+     "notes": [],
+     "ivs": null,
+     "hp_type": null,
+     "why_available": "wild / special acquisition",
+     "tier": "PU",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_NATU",
+     "level": 22,
+     "moves": [
+      "MOVE_PSYCHIC",
+      "MOVE_AERIAL_ACE",
+      "MOVE_HIDDEN_POWER",
+      "MOVE_TOXIC"
+     ],
+     "ability": "Synchronize",
+     "item": "Leftovers",
+     "nature": "Adamant",
+     "evs": {
+      "hp": 124,
+      "atk": 84,
+      "spa": 84,
+      "spe": 216
+     },
+     "set_name": "learnset-derived",
+     "set_source": "derived from the ROM learnset (no tier-dex entry)",
+     "notes": [],
+     "ivs": null,
+     "hp_type": null,
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_BALTOY",
+     "level": 22,
+     "moves": [
+      "MOVE_EARTHQUAKE",
+      "MOVE_SHADOW_BALL",
+      "MOVE_ROCK_TOMB",
+      "MOVE_EXPLOSION"
+     ],
+     "ability": "Levitate",
+     "item": "Sitrus Berry",
+     "nature": "Careful",
+     "evs": {
+      "hp": 36,
+      "atk": 196,
+      "def": 156,
+      "spd": 36,
+      "spe": 76
+     },
+     "set_name": "All-Out Attacker",
+     "set_source": "gen3_movesets.json",
+     "notes": [],
+     "ivs": null,
+     "hp_type": null,
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_EXEGGCUTE",
+     "level": 22,
+     "moves": [
+      "MOVE_EXPLOSION",
+      "MOVE_SUNNY_DAY",
+      "MOVE_SOLAR_BEAM",
+      "MOVE_PSYCHIC"
+     ],
+     "ability": "Chlorophyll",
+     "item": "Sitrus Berry",
+     "nature": "Mild",
+     "evs": {
+      "hp": 36,
+      "atk": 36,
+      "def": 36,
+      "spa": 196,
+      "spd": 156,
+      "spe": 36
+     },
+     "set_name": "Sunny Day Sweeper",
+     "set_source": "gen3_movesets.json",
+     "notes": [],
+     "ivs": null,
+     "hp_type": null,
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_KIRLIA",
+     "level": 22,
+     "moves": [
+      "MOVE_PSYCHIC",
+      "MOVE_DREAM_EATER",
+      "MOVE_HIDDEN_POWER",
+      "MOVE_TOXIC"
+     ],
+     "ability": "Synchronize",
+     "item": "Leftovers",
+     "nature": "Timid",
+     "evs": {
+      "hp": 4,
+      "spa": 252,
+      "spe": 252
+     },
+     "set_name": "learnset-derived",
+     "set_source": "derived from the ROM learnset (no tier-dex entry)",
+     "notes": [],
+     "ivs": null,
+     "hp_type": null,
+     "why_available": "evolves from Ralts at Lv20",
+     "tier": "PU",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_HAUNTER",
+     "level": 22,
+     "moves": [
+      "MOVE_PSYCHIC",
+      "MOVE_THUNDERBOLT",
+      "MOVE_SUBSTITUTE",
+      "MOVE_EXPLOSION"
+     ],
+     "ability": "Levitate",
+     "item": "Leftovers",
+     "nature": "Timid",
+     "evs": {
+      "def": 4,
+      "spa": 252,
+      "spe": 252
+     },
+     "set_name": "Standard",
+     "set_source": "gen3_movesets.json",
+     "notes": [],
+     "ivs": null,
+     "hp_type": null,
+     "why_available": "evolves from Gastly at Lv25",
+     "tier": "NU",
+     "flagged": false
+    }
+   ]
+  },
+  "TRAINER_PLASTIC_OX_JOHTO_JACK": {
+   "checkpoint": "park",
+   "cap": 30,
+   "tier": "NU",
+   "monsters": [
+    {
+     "species": "SPECIES_ODDISH",
+     "level": 20,
+     "moves": [
+      "MOVE_SUNNY_DAY",
+      "MOVE_SOLAR_BEAM",
+      "MOVE_HIDDEN_POWER",
+      "MOVE_BULLET_SEED"
+     ],
+     "ability": "Chlorophyll",
+     "item": "Sitrus Berry",
+     "nature": "Modest",
+     "evs": {
+      "hp": 76,
+      "def": 80,
+      "spa": 236,
+      "spe": 116
+     },
+     "set_name": "Sunny Day",
+     "set_source": "gen3_movesets.json",
+     "notes": [],
+     "ivs": {
+      "atk": 2,
+      "def": 30
+     },
+     "hp_type": null,
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_VOLTORB",
+     "level": 20,
+     "moves": [
+      "MOVE_RAIN_DANCE",
+      "MOVE_THUNDER",
+      "MOVE_LIGHT_SCREEN",
+      "MOVE_EXPLOSION"
+     ],
+     "ability": "Static",
+     "item": "Silk Scarf",
+     "nature": "Naive",
+     "evs": {
+      "atk": 252,
+      "spa": 4,
+      "spe": 252
+     },
+     "set_name": "Suicide Rain Lead",
+     "set_source": "gen3_movesets.json",
+     "notes": [],
+     "ivs": null,
+     "hp_type": null,
+     "why_available": "wild / special acquisition",
+     "tier": "PU",
+     "flagged": false
+    }
+   ]
+  },
+  "TRAINER_PLASTIC_OX_JOHTO_KRISE": {
+   "checkpoint": "park",
+   "cap": 30,
+   "tier": "NU",
+   "monsters": [
+    {
+     "species": "SPECIES_ODDISH",
+     "level": 20,
+     "moves": [
+      "MOVE_SUNNY_DAY",
+      "MOVE_SOLAR_BEAM",
+      "MOVE_HIDDEN_POWER",
+      "MOVE_BULLET_SEED"
+     ],
+     "ability": "Chlorophyll",
+     "item": "Sitrus Berry",
+     "nature": "Modest",
+     "evs": {
+      "hp": 76,
+      "def": 80,
+      "spa": 236,
+      "spe": 116
+     },
+     "set_name": "Sunny Day",
+     "set_source": "gen3_movesets.json",
+     "notes": [],
+     "ivs": {
+      "atk": 2,
+      "def": 30
+     },
+     "hp_type": null,
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_CUBONE",
+     "level": 20,
+     "moves": [
+      "MOVE_FOCUS_PUNCH",
+      "MOVE_DOUBLE_EDGE",
+      "MOVE_HIDDEN_POWER",
+      "MOVE_PROTECT"
+     ],
+     "ability": "Rock Head",
+     "item": "Thick Club",
+     "nature": "Adamant",
+     "evs": {
+      "hp": 36,
+      "atk": 196,
+      "spd": 40,
+      "spe": 236
+     },
+     "set_name": "Offensive",
+     "set_source": "gen3_movesets.json",
+     "notes": [
+      "Bonemerang -> Focus Punch (level-up move needs Lv25)",
+      "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
+     ],
+     "ivs": null,
+     "hp_type": "Ghost",
+     "why_available": "wild / special acquisition",
+     "tier": "PU",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_MAREEP",
+     "level": 20,
+     "moves": [
+      "MOVE_THUNDERBOLT",
+      "MOVE_THUNDER",
+      "MOVE_HIDDEN_POWER",
+      "MOVE_TOXIC"
+     ],
+     "ability": "Static",
+     "item": "Leftovers",
+     "nature": "Timid",
+     "evs": {
+      "hp": 4,
+      "spa": 252,
+      "spe": 252
+     },
+     "set_name": "learnset-derived",
+     "set_source": "derived from the ROM learnset (no tier-dex entry)",
+     "notes": [],
+     "ivs": null,
+     "hp_type": null,
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    }
+   ]
+  },
   "TRAINER_PLASTIC_OX_KIMONOESPEON": {
    "checkpoint": "gym3",
    "cap": 30,
@@ -2088,67 +2651,6 @@
    "tier": "PU",
    "monsters": [
     {
-     "species": "SPECIES_CUBONE",
-     "level": 16,
-     "moves": [
-      "MOVE_FOCUS_PUNCH",
-      "MOVE_DOUBLE_EDGE",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_PROTECT"
-     ],
-     "ability": "Rock Head",
-     "item": "Thick Club",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 36,
-      "atk": 196,
-      "spd": 40,
-      "spe": 236
-     },
-     "set_name": "Offensive",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Bonemerang -> Focus Punch (level-up move needs Lv25)",
-      "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
-     ],
-     "ivs": null,
-     "hp_type": "Ghost",
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_MACHOP",
-     "level": 16,
-     "moves": [
-      "MOVE_BULK_UP",
-      "MOVE_FOCUS_PUNCH",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_ENDURE"
-     ],
-     "ability": "Guts",
-     "item": "Sitrus Berry",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 36,
-      "atk": 116,
-      "def": 40,
-      "spd": 240,
-      "spe": 76
-     },
-     "set_name": "Offensive",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Cross Chop -> Focus Punch (level-up move needs Lv40)",
-      "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
-     ],
-     "ivs": null,
-     "hp_type": "Ghost",
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
      "species": "SPECIES_ARBOK",
      "level": 16,
      "moves": [
@@ -2201,61 +2703,6 @@
      "why_available": "wild / special acquisition",
      "tier": "LC",
      "flagged": false
-    },
-    {
-     "species": "SPECIES_DUSKULL",
-     "level": 16,
-     "moves": [
-      "MOVE_REST",
-      "MOVE_SLEEP_TALK",
-      "MOVE_BLIZZARD",
-      "MOVE_NIGHT_SHADE"
-     ],
-     "ability": "Levitate",
-     "item": "Leftovers",
-     "nature": "Bold",
-     "evs": {
-      "hp": 252,
-      "def": 252,
-      "spd": 4
-     },
-     "set_name": "Defensive",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Will O Wisp -> Blizzard (level-up move needs Lv38)"
-     ],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_EKANS",
-     "level": 15,
-     "moves": [
-      "MOVE_SLUDGE_BOMB",
-      "MOVE_POISON_STING",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Intimidate",
-     "item": "Leftovers",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 124,
-      "atk": 84,
-      "spa": 84,
-      "spe": 216
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
     }
    ]
   },
@@ -2290,35 +2737,6 @@
       "spa": 30
      },
      "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_VOLTORB",
-     "level": 16,
-     "moves": [
-      "MOVE_THUNDERBOLT",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_THIEF",
-      "MOVE_EXPLOSION"
-     ],
-     "ability": "Static",
-     "item": "Sitrus Berry",
-     "nature": "Timid",
-     "evs": {
-      "hp": 116,
-      "def": 36,
-      "spa": 160,
-      "spe": 196
-     },
-     "set_name": "Offensive",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Hidden Power type Grass dropped: trainerproc has no HP-type field in the .party format"
-     ],
-     "ivs": null,
-     "hp_type": "Grass",
      "why_available": "wild / special acquisition",
      "tier": "PU",
      "flagged": false
@@ -2374,58 +2792,6 @@
      "why_available": "wild / special acquisition",
      "tier": "PU",
      "flagged": false
-    },
-    {
-     "species": "SPECIES_GLOOM",
-     "level": 16,
-     "moves": [
-      "MOVE_GIGA_DRAIN",
-      "MOVE_SLUDGE_BOMB",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Chlorophyll",
-     "item": "Leftovers",
-     "nature": "Timid",
-     "evs": {
-      "hp": 4,
-      "spa": 252,
-      "spe": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "evolves from Oddish at Lv20",
-     "tier": "PU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_MAREEP",
-     "level": 16,
-     "moves": [
-      "MOVE_THUNDERBOLT",
-      "MOVE_THUNDER",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Static",
-     "item": "Leftovers",
-     "nature": "Timid",
-     "evs": {
-      "hp": 4,
-      "spa": 252,
-      "spe": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
     }
    ]
   },
@@ -2436,7 +2802,7 @@
    "monsters": [
     {
      "species": "SPECIES_PARAS",
-     "level": 12,
+     "level": 13,
      "moves": [
       "MOVE_GIGA_DRAIN",
       "MOVE_SOLAR_BEAM",
@@ -2462,7 +2828,7 @@
     },
     {
      "species": "SPECIES_VENONAT",
-     "level": 12,
+     "level": 13,
      "moves": [
       "MOVE_SLUDGE_BOMB",
       "MOVE_HIDDEN_POWER",
@@ -2488,7 +2854,7 @@
     },
     {
      "species": "SPECIES_NINCADA",
-     "level": 12,
+     "level": 13,
      "moves": [
       "MOVE_LEECH_LIFE",
       "MOVE_MUD_SLAP",
@@ -2506,92 +2872,6 @@
      },
      "set_name": "learnset-derived",
      "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_ODDISH",
-     "level": 12,
-     "moves": [
-      "MOVE_SUNNY_DAY",
-      "MOVE_SOLAR_BEAM",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_BULLET_SEED"
-     ],
-     "ability": "Chlorophyll",
-     "item": "Sitrus Berry",
-     "nature": "Modest",
-     "evs": {
-      "hp": 76,
-      "def": 80,
-      "spa": 236,
-      "spe": 116
-     },
-     "set_name": "Sunny Day",
-     "set_source": "gen3_movesets.json",
-     "notes": [],
-     "ivs": {
-      "atk": 2,
-      "def": 30
-     },
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_SPINARAK",
-     "level": 12,
-     "moves": [
-      "MOVE_SLUDGE_BOMB",
-      "MOVE_POISON_STING",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Swarm",
-     "item": "Leftovers",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 124,
-      "atk": 84,
-      "spa": 84,
-      "spe": 216
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_EXEGGCUTE",
-     "level": 12,
-     "moves": [
-      "MOVE_EXPLOSION",
-      "MOVE_SUNNY_DAY",
-      "MOVE_SOLAR_BEAM",
-      "MOVE_PSYCHIC"
-     ],
-     "ability": "Chlorophyll",
-     "item": "Sitrus Berry",
-     "nature": "Mild",
-     "evs": {
-      "hp": 36,
-      "atk": 36,
-      "def": 36,
-      "spa": 196,
-      "spd": 156,
-      "spe": 36
-     },
-     "set_name": "Sunny Day Sweeper",
-     "set_source": "gen3_movesets.json",
      "notes": [],
      "ivs": null,
      "hp_type": null,
@@ -2658,116 +2938,6 @@
      "why_available": "wild / special acquisition",
      "tier": "LC",
      "flagged": false
-    },
-    {
-     "species": "SPECIES_VENONAT",
-     "level": 14,
-     "moves": [
-      "MOVE_SLUDGE_BOMB",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_GIGA_DRAIN",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Compound Eyes",
-     "item": "Leftovers",
-     "nature": "Timid",
-     "evs": {
-      "hp": 4,
-      "spa": 252,
-      "spe": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_ODDISH",
-     "level": 14,
-     "moves": [
-      "MOVE_SUNNY_DAY",
-      "MOVE_SOLAR_BEAM",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_BULLET_SEED"
-     ],
-     "ability": "Chlorophyll",
-     "item": "Sitrus Berry",
-     "nature": "Modest",
-     "evs": {
-      "hp": 76,
-      "def": 80,
-      "spa": 236,
-      "spe": 116
-     },
-     "set_name": "Sunny Day",
-     "set_source": "gen3_movesets.json",
-     "notes": [],
-     "ivs": {
-      "atk": 2,
-      "def": 30
-     },
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_PINECO",
-     "level": 13,
-     "moves": [
-      "MOVE_HIDDEN_POWER",
-      "MOVE_GIGA_DRAIN",
-      "MOVE_TOXIC",
-      "MOVE_EARTHQUAKE"
-     ],
-     "ability": "Sturdy",
-     "item": "Leftovers",
-     "nature": "Bold",
-     "evs": {
-      "hp": 252,
-      "def": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_EXEGGCUTE",
-     "level": 14,
-     "moves": [
-      "MOVE_EXPLOSION",
-      "MOVE_SUNNY_DAY",
-      "MOVE_SOLAR_BEAM",
-      "MOVE_PSYCHIC"
-     ],
-     "ability": "Chlorophyll",
-     "item": "Sitrus Berry",
-     "nature": "Mild",
-     "evs": {
-      "hp": 36,
-      "atk": 36,
-      "def": 36,
-      "spa": 196,
-      "spd": 156,
-      "spe": 36
-     },
-     "set_name": "Sunny Day Sweeper",
-     "set_source": "gen3_movesets.json",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
     }
    ]
   },
@@ -2776,37 +2946,6 @@
    "cap": 20,
    "tier": "PU",
    "monsters": [
-    {
-     "species": "SPECIES_MACHOP",
-     "level": 13,
-     "moves": [
-      "MOVE_BULK_UP",
-      "MOVE_FOCUS_PUNCH",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_ENDURE"
-     ],
-     "ability": "Guts",
-     "item": "Sitrus Berry",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 36,
-      "atk": 116,
-      "def": 40,
-      "spd": 240,
-      "spe": 76
-     },
-     "set_name": "Offensive",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Cross Chop -> Focus Punch (level-up move needs Lv40)",
-      "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
-     ],
-     "ivs": null,
-     "hp_type": "Ghost",
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
     {
      "species": "SPECIES_GEODUDE",
      "level": 13,
@@ -2878,61 +3017,6 @@
      },
      "set_name": "learnset-derived",
      "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_SANDSHREW",
-     "level": 12,
-     "moves": [
-      "MOVE_EARTHQUAKE",
-      "MOVE_MUD_SLAP",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Sand Veil",
-     "item": "Leftovers",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 124,
-      "atk": 84,
-      "spa": 84,
-      "spe": 216
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_NUMEL",
-     "level": 12,
-     "moves": [
-      "MOVE_EARTHQUAKE",
-      "MOVE_FIRE_BLAST",
-      "MOVE_TOXIC",
-      "MOVE_PROTECT"
-     ],
-     "ability": "Oblivious",
-     "item": "Leftovers",
-     "nature": "Mild",
-     "evs": {
-      "hp": 128,
-      "atk": 120,
-      "spa": 152,
-      "spd": 4,
-      "spe": 104
-     },
-     "set_name": "Lead",
-     "set_source": "gen3_movesets.json",
      "notes": [],
      "ivs": null,
      "hp_type": null,
@@ -3027,91 +3111,6 @@
      "why_available": "wild / special acquisition",
      "tier": "LC",
      "flagged": false
-    },
-    {
-     "species": "SPECIES_TAILLOW",
-     "level": 14,
-     "moves": [
-      "MOVE_HIDDEN_POWER",
-      "MOVE_AERIAL_ACE",
-      "MOVE_MUD_SLAP",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Guts",
-     "item": "Leftovers",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 124,
-      "atk": 84,
-      "spa": 84,
-      "spe": 216
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_SKITTY",
-     "level": 15,
-     "moves": [
-      "MOVE_HIDDEN_POWER",
-      "MOVE_BODY_SLAM",
-      "MOVE_THUNDERBOLT",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Cute Charm",
-     "item": "Leftovers",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 124,
-      "atk": 84,
-      "spa": 84,
-      "spe": 216
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_SNORUNT",
-     "level": 14,
-     "moves": [
-      "MOVE_BLIZZARD",
-      "MOVE_ICE_BEAM",
-      "MOVE_ENDURE",
-      "MOVE_HIDDEN_POWER"
-     ],
-     "ability": "Inner Focus",
-     "item": "Salac Berry",
-     "nature": "Timid",
-     "evs": {
-      "def": 4,
-      "spa": 252,
-      "spe": 252
-     },
-     "set_name": "Spikes",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Spikes -> Blizzard (egg or special-case only)"
-     ],
-     "ivs": {
-      "atk": 2,
-      "spa": 30
-     },
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
     }
    ]
   },
@@ -3173,112 +3172,6 @@
      "why_available": "wild / special acquisition",
      "tier": "LC",
      "flagged": false
-    },
-    {
-     "species": "SPECIES_SENTRET",
-     "level": 13,
-     "moves": [
-      "MOVE_HIDDEN_POWER",
-      "MOVE_BODY_SLAM",
-      "MOVE_SURF",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Run Away",
-     "item": "Leftovers",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 124,
-      "atk": 84,
-      "spa": 84,
-      "spe": 216
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_TAILLOW",
-     "level": 12,
-     "moves": [
-      "MOVE_HIDDEN_POWER",
-      "MOVE_AERIAL_ACE",
-      "MOVE_MUD_SLAP",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Guts",
-     "item": "Leftovers",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 124,
-      "atk": 84,
-      "spa": 84,
-      "spe": 216
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_LOTAD",
-     "level": 12,
-     "moves": [
-      "MOVE_SURF",
-      "MOVE_GIGA_DRAIN",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Swift Swim",
-     "item": "Leftovers",
-     "nature": "Timid",
-     "evs": {
-      "hp": 4,
-      "spa": 252,
-      "spe": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_SUNKERN",
-     "level": 12,
-     "moves": [
-      "MOVE_GIGA_DRAIN",
-      "MOVE_SOLAR_BEAM",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Chlorophyll",
-     "item": "Leftovers",
-     "nature": "Timid",
-     "evs": {
-      "hp": 4,
-      "spa": 252,
-      "spe": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
     }
    ]
   },
@@ -3289,7 +3182,7 @@
    "monsters": [
     {
      "species": "SPECIES_MAGNEMITE",
-     "level": 12,
+     "level": 13,
      "moves": [
       "MOVE_THUNDERBOLT",
       "MOVE_HIDDEN_POWER",
@@ -3319,7 +3212,7 @@
     },
     {
      "species": "SPECIES_SPOINK",
-     "level": 12,
+     "level": 13,
      "moves": [
       "MOVE_THIEF",
       "MOVE_PSYCHIC",
@@ -3344,119 +3237,6 @@
      "hp_type": null,
      "why_available": "wild / special acquisition",
      "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_BALTOY",
-     "level": 12,
-     "moves": [
-      "MOVE_EARTHQUAKE",
-      "MOVE_SHADOW_BALL",
-      "MOVE_ROCK_TOMB",
-      "MOVE_EXPLOSION"
-     ],
-     "ability": "Levitate",
-     "item": "Sitrus Berry",
-     "nature": "Careful",
-     "evs": {
-      "hp": 36,
-      "atk": 196,
-      "def": 156,
-      "spd": 36,
-      "spe": 76
-     },
-     "set_name": "All-Out Attacker",
-     "set_source": "gen3_movesets.json",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_NATU",
-     "level": 12,
-     "moves": [
-      "MOVE_PSYCHIC",
-      "MOVE_AERIAL_ACE",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Synchronize",
-     "item": "Leftovers",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 124,
-      "atk": 84,
-      "spa": 84,
-      "spe": 216
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "signature exception",
-     "tier": "LC",
-     "flagged": true
-    },
-    {
-     "species": "SPECIES_EXEGGCUTE",
-     "level": 12,
-     "moves": [
-      "MOVE_EXPLOSION",
-      "MOVE_SUNNY_DAY",
-      "MOVE_SOLAR_BEAM",
-      "MOVE_PSYCHIC"
-     ],
-     "ability": "Chlorophyll",
-     "item": "Sitrus Berry",
-     "nature": "Mild",
-     "evs": {
-      "hp": 36,
-      "atk": 36,
-      "def": 36,
-      "spa": 196,
-      "spd": 156,
-      "spe": 36
-     },
-     "set_name": "Sunny Day Sweeper",
-     "set_source": "gen3_movesets.json",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_ELEKID",
-     "level": 11,
-     "moves": [
-      "MOVE_THUNDERBOLT",
-      "MOVE_ICE_PUNCH",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_SUBSTITUTE"
-     ],
-     "ability": "Static",
-     "item": "Sitrus Berry",
-     "nature": "Hasty",
-     "evs": {
-      "atk": 172,
-      "spa": 76,
-      "spe": 236
-     },
-     "set_name": "Mixed Attacker",
-     "set_source": "gen3_movesets.json",
-     "notes": [],
-     "ivs": {
-      "def": 30,
-      "spd": 30
-     },
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
      "flagged": false
     }
    ]
@@ -3552,90 +3332,6 @@
      "why_available": "wild / special acquisition",
      "tier": "LC",
      "flagged": false
-    },
-    {
-     "species": "SPECIES_NATU",
-     "level": 15,
-     "moves": [
-      "MOVE_PSYCHIC",
-      "MOVE_AERIAL_ACE",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Synchronize",
-     "item": "Leftovers",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 124,
-      "atk": 84,
-      "spa": 84,
-      "spe": 216
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "signature exception",
-     "tier": "LC",
-     "flagged": true
-    },
-    {
-     "species": "SPECIES_EXEGGCUTE",
-     "level": 15,
-     "moves": [
-      "MOVE_EXPLOSION",
-      "MOVE_SUNNY_DAY",
-      "MOVE_SOLAR_BEAM",
-      "MOVE_PSYCHIC"
-     ],
-     "ability": "Chlorophyll",
-     "item": "Sitrus Berry",
-     "nature": "Mild",
-     "evs": {
-      "hp": 36,
-      "atk": 36,
-      "def": 36,
-      "spa": 196,
-      "spd": 156,
-      "spe": 36
-     },
-     "set_name": "Sunny Day Sweeper",
-     "set_source": "gen3_movesets.json",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_ELEKID",
-     "level": 15,
-     "moves": [
-      "MOVE_THUNDERBOLT",
-      "MOVE_ICE_PUNCH",
-      "MOVE_THIEF",
-      "MOVE_SUBSTITUTE"
-     ],
-     "ability": "Static",
-     "item": "Sitrus Berry",
-     "nature": "Timid",
-     "evs": {
-      "spa": 240,
-      "spe": 236
-     },
-     "set_name": "Substitute + 3 Attacks",
-     "set_source": "gen3_movesets.json",
-     "notes": [],
-     "ivs": {
-      "atk": 2,
-      "spa": 30
-     },
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
     }
    ]
   },
@@ -3646,7 +3342,7 @@
    "monsters": [
     {
      "species": "SPECIES_CUBONE",
-     "level": 14,
+     "level": 16,
      "moves": [
       "MOVE_FOCUS_PUNCH",
       "MOVE_DOUBLE_EDGE",
@@ -3676,7 +3372,7 @@
     },
     {
      "species": "SPECIES_VOLTORB",
-     "level": 14,
+     "level": 16,
      "moves": [
       "MOVE_THUNDERBOLT",
       "MOVE_HIDDEN_POWER",
@@ -3705,7 +3401,7 @@
     },
     {
      "species": "SPECIES_KOFFING",
-     "level": 13,
+     "level": 16,
      "moves": [
       "MOVE_SLUDGE_BOMB",
       "MOVE_HIDDEN_POWER",
@@ -3735,7 +3431,7 @@
     },
     {
      "species": "SPECIES_MACHOP",
-     "level": 14,
+     "level": 16,
      "moves": [
       "MOVE_BULK_UP",
       "MOVE_FOCUS_PUNCH",
@@ -3766,7 +3462,7 @@
     },
     {
      "species": "SPECIES_DUSKULL",
-     "level": 14,
+     "level": 16,
      "moves": [
       "MOVE_REST",
       "MOVE_SLEEP_TALK",
@@ -3794,7 +3490,7 @@
     },
     {
      "species": "SPECIES_EKANS",
-     "level": 13,
+     "level": 16,
      "moves": [
       "MOVE_SLUDGE_BOMB",
       "MOVE_POISON_STING",
@@ -3857,97 +3553,8 @@
      "flagged": false
     },
     {
-     "species": "SPECIES_VOLTORB",
-     "level": 13,
-     "moves": [
-      "MOVE_THUNDERBOLT",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_THIEF",
-      "MOVE_EXPLOSION"
-     ],
-     "ability": "Static",
-     "item": "Sitrus Berry",
-     "nature": "Timid",
-     "evs": {
-      "hp": 116,
-      "def": 36,
-      "spa": 160,
-      "spe": 196
-     },
-     "set_name": "Offensive",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Hidden Power type Grass dropped: trainerproc has no HP-type field in the .party format"
-     ],
-     "ivs": null,
-     "hp_type": "Grass",
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_CUBONE",
-     "level": 13,
-     "moves": [
-      "MOVE_FOCUS_PUNCH",
-      "MOVE_DOUBLE_EDGE",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_PROTECT"
-     ],
-     "ability": "Rock Head",
-     "item": "Thick Club",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 36,
-      "atk": 196,
-      "spd": 40,
-      "spe": 236
-     },
-     "set_name": "Offensive",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Bonemerang -> Focus Punch (level-up move needs Lv25)",
-      "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
-     ],
-     "ivs": null,
-     "hp_type": "Ghost",
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_KOFFING",
-     "level": 13,
-     "moves": [
-      "MOVE_SLUDGE_BOMB",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_THIEF",
-      "MOVE_EXPLOSION"
-     ],
-     "ability": "Levitate",
-     "item": "Sitrus Berry",
-     "nature": "Impish",
-     "evs": {
-      "hp": 116,
-      "atk": 76,
-      "def": 236,
-      "spe": 80
-     },
-     "set_name": "Defensive",
-     "set_source": "gen3_movesets.json",
-     "notes": [],
-     "ivs": {
-      "spa": 30,
-      "spe": 30
-     },
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
-    },
-    {
      "species": "SPECIES_DROWZEE",
-     "level": 12,
+     "level": 13,
      "moves": [
       "MOVE_PSYCHIC",
       "MOVE_DREAM_EATER",
@@ -4007,67 +3614,6 @@
    "tier": "PU",
    "monsters": [
     {
-     "species": "SPECIES_CUBONE",
-     "level": 15,
-     "moves": [
-      "MOVE_FOCUS_PUNCH",
-      "MOVE_DOUBLE_EDGE",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_PROTECT"
-     ],
-     "ability": "Rock Head",
-     "item": "Thick Club",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 36,
-      "atk": 196,
-      "spd": 40,
-      "spe": 236
-     },
-     "set_name": "Offensive",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Bonemerang -> Focus Punch (level-up move needs Lv25)",
-      "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
-     ],
-     "ivs": null,
-     "hp_type": "Ghost",
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_MACHOP",
-     "level": 15,
-     "moves": [
-      "MOVE_BULK_UP",
-      "MOVE_FOCUS_PUNCH",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_ENDURE"
-     ],
-     "ability": "Guts",
-     "item": "Sitrus Berry",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 36,
-      "atk": 116,
-      "def": 40,
-      "spd": 240,
-      "spe": 76
-     },
-     "set_name": "Offensive",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Cross Chop -> Focus Punch (level-up move needs Lv40)",
-      "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
-     ],
-     "ivs": null,
-     "hp_type": "Ghost",
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
      "species": "SPECIES_RHYHORN",
      "level": 15,
      "moves": [
@@ -4118,61 +3664,6 @@
      "why_available": "wild / special acquisition",
      "tier": "LC",
      "flagged": false
-    },
-    {
-     "species": "SPECIES_DUSKULL",
-     "level": 15,
-     "moves": [
-      "MOVE_REST",
-      "MOVE_SLEEP_TALK",
-      "MOVE_BLIZZARD",
-      "MOVE_NIGHT_SHADE"
-     ],
-     "ability": "Levitate",
-     "item": "Leftovers",
-     "nature": "Bold",
-     "evs": {
-      "hp": 252,
-      "def": 252,
-      "spd": 4
-     },
-     "set_name": "Defensive",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Will O Wisp -> Blizzard (level-up move needs Lv38)"
-     ],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_EKANS",
-     "level": 14,
-     "moves": [
-      "MOVE_SLUDGE_BOMB",
-      "MOVE_POISON_STING",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Intimidate",
-     "item": "Leftovers",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 124,
-      "atk": 84,
-      "spa": 84,
-      "spe": 216
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
     }
    ]
   },
@@ -4181,35 +3672,6 @@
    "cap": 20,
    "tier": "PU",
    "monsters": [
-    {
-     "species": "SPECIES_VOLTORB",
-     "level": 15,
-     "moves": [
-      "MOVE_THUNDERBOLT",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_THIEF",
-      "MOVE_EXPLOSION"
-     ],
-     "ability": "Static",
-     "item": "Sitrus Berry",
-     "nature": "Timid",
-     "evs": {
-      "hp": 116,
-      "def": 36,
-      "spa": 160,
-      "spe": 196
-     },
-     "set_name": "Offensive",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Hidden Power type Grass dropped: trainerproc has no HP-type field in the .party format"
-     ],
-     "ivs": null,
-     "hp_type": "Grass",
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
-    },
     {
      "species": "SPECIES_MAGNEMITE",
      "level": 15,
@@ -4234,36 +3696,6 @@
      "ivs": {
       "atk": 2,
       "spa": 30
-     },
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_KOFFING",
-     "level": 14,
-     "moves": [
-      "MOVE_SLUDGE_BOMB",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_THIEF",
-      "MOVE_EXPLOSION"
-     ],
-     "ability": "Levitate",
-     "item": "Sitrus Berry",
-     "nature": "Impish",
-     "evs": {
-      "hp": 116,
-      "atk": 76,
-      "def": 236,
-      "spe": 80
-     },
-     "set_name": "Defensive",
-     "set_source": "gen3_movesets.json",
-     "notes": [],
-     "ivs": {
-      "spa": 30,
-      "spe": 30
      },
      "hp_type": null,
      "why_available": "wild / special acquisition",
@@ -4321,34 +3753,6 @@
      "why_available": "wild / special acquisition",
      "tier": "PU",
      "flagged": false
-    },
-    {
-     "species": "SPECIES_DUSKULL",
-     "level": 15,
-     "moves": [
-      "MOVE_REST",
-      "MOVE_SLEEP_TALK",
-      "MOVE_BLIZZARD",
-      "MOVE_NIGHT_SHADE"
-     ],
-     "ability": "Levitate",
-     "item": "Leftovers",
-     "nature": "Bold",
-     "evs": {
-      "hp": 252,
-      "def": 252,
-      "spd": 4
-     },
-     "set_name": "Defensive",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Will O Wisp -> Blizzard (level-up move needs Lv38)"
-     ],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
     }
    ]
   },
@@ -4359,7 +3763,7 @@
    "monsters": [
     {
      "species": "SPECIES_MANKEY",
-     "level": 12,
+     "level": 13,
      "moves": [
       "MOVE_FOCUS_PUNCH",
       "MOVE_HIDDEN_POWER",
@@ -4389,7 +3793,7 @@
     },
     {
      "species": "SPECIES_MEOWTH",
-     "level": 12,
+     "level": 13,
      "moves": [
       "MOVE_THUNDER",
       "MOVE_DOUBLE_EDGE",
@@ -4410,121 +3814,6 @@
      "notes": [
       "Fake Out -> Thunder (level-up move needs Lv50)"
      ],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_SNORUNT",
-     "level": 12,
-     "moves": [
-      "MOVE_BLIZZARD",
-      "MOVE_ICE_BEAM",
-      "MOVE_ENDURE",
-      "MOVE_HIDDEN_POWER"
-     ],
-     "ability": "Inner Focus",
-     "item": "Salac Berry",
-     "nature": "Timid",
-     "evs": {
-      "def": 4,
-      "spa": 252,
-      "spe": 252
-     },
-     "set_name": "Spikes",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Spikes -> Blizzard (egg or special-case only)"
-     ],
-     "ivs": {
-      "atk": 2,
-      "spa": 30
-     },
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_MACHOP",
-     "level": 12,
-     "moves": [
-      "MOVE_BULK_UP",
-      "MOVE_FOCUS_PUNCH",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_ENDURE"
-     ],
-     "ability": "Guts",
-     "item": "Sitrus Berry",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 36,
-      "atk": 116,
-      "def": 40,
-      "spd": 240,
-      "spe": 76
-     },
-     "set_name": "Offensive",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Cross Chop -> Focus Punch (level-up move needs Lv40)",
-      "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
-     ],
-     "ivs": null,
-     "hp_type": "Ghost",
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_EKANS",
-     "level": 12,
-     "moves": [
-      "MOVE_SLUDGE_BOMB",
-      "MOVE_POISON_STING",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Intimidate",
-     "item": "Leftovers",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 124,
-      "atk": 84,
-      "spa": 84,
-      "spe": 216
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_CACNEA",
-     "level": 12,
-     "moves": [
-      "MOVE_GIGA_DRAIN",
-      "MOVE_SOLAR_BEAM",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Sand Veil",
-     "item": "Leftovers",
-     "nature": "Timid",
-     "evs": {
-      "hp": 4,
-      "spa": 252,
-      "spe": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
      "ivs": null,
      "hp_type": null,
      "why_available": "wild / special acquisition",
@@ -4845,7 +4134,7 @@
     },
     {
      "species": "SPECIES_LEDYBA",
-     "level": 19,
+     "level": 20,
      "moves": [
       "MOVE_AERIAL_ACE",
       "MOVE_HIDDEN_POWER",
@@ -4905,7 +4194,7 @@
     },
     {
      "species": "SPECIES_SEVIPER",
-     "level": 16,
+     "level": 17,
      "moves": [
       "MOVE_SLUDGE_BOMB",
       "MOVE_EARTHQUAKE",
@@ -4960,7 +4249,7 @@
     },
     {
      "species": "SPECIES_HOPPIP",
-     "level": 16,
+     "level": 17,
      "moves": [
       "MOVE_GIGA_DRAIN",
       "MOVE_AERIAL_ACE",
@@ -4987,7 +4276,7 @@
     },
     {
      "species": "SPECIES_AIPOM",
-     "level": 16,
+     "level": 17,
      "moves": [
       "MOVE_HIDDEN_POWER",
       "MOVE_BODY_SLAM",
@@ -5014,7 +4303,7 @@
     },
     {
      "species": "SPECIES_GEODUDE",
-     "level": 16,
+     "level": 17,
      "moves": [
       "MOVE_EARTHQUAKE",
       "MOVE_ROCK_SLIDE",
@@ -5047,7 +4336,7 @@
    "monsters": [
     {
      "species": "SPECIES_ABRA",
-     "level": 19,
+     "level": 20,
      "moves": [
       "MOVE_CALM_MIND",
       "MOVE_PSYCHIC",
@@ -5073,10 +4362,10 @@
     },
     {
      "species": "SPECIES_FARFETCHD",
-     "level": 19,
+     "level": 20,
      "moves": [
       "MOVE_SUBSTITUTE",
-      "MOVE_DOUBLE_EDGE",
+      "MOVE_IRON_TAIL",
       "MOVE_HIDDEN_POWER",
       "MOVE_SWORDS_DANCE"
      ],
@@ -5091,7 +4380,7 @@
      "set_name": "Swords Dance + Flail",
      "set_source": "gen3_movesets.json",
      "notes": [
-      "Flail -> Double Edge (egg or special-case only)",
+      "Flail -> Iron Tail (egg or special-case only)",
       "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
      ],
      "ivs": null,
@@ -5102,7 +4391,7 @@
     },
     {
      "species": "SPECIES_YANMA",
-     "level": 19,
+     "level": 20,
      "moves": [
       "MOVE_SUBSTITUTE",
       "MOVE_SOLAR_BEAM",
@@ -5131,7 +4420,7 @@
     },
     {
      "species": "SPECIES_MINUN",
-     "level": 19,
+     "level": 20,
      "moves": [
       "MOVE_THUNDERBOLT",
       "MOVE_THUNDER_PUNCH",
@@ -5158,7 +4447,7 @@
     },
     {
      "species": "SPECIES_DROWZEE",
-     "level": 19,
+     "level": 20,
      "moves": [
       "MOVE_PSYCHIC",
       "MOVE_DREAM_EATER",
@@ -5184,7 +4473,7 @@
     },
     {
      "species": "SPECIES_CORSOLA",
-     "level": 19,
+     "level": 20,
      "moves": [
       "MOVE_RECOVER",
       "MOVE_SURF",
@@ -5420,7 +4709,7 @@
     },
     {
      "species": "SPECIES_VULPIX",
-     "level": 5,
+     "level": 6,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -5431,7 +4720,7 @@
     },
     {
      "species": "SPECIES_MEOWTH",
-     "level": 5,
+     "level": 6,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -5471,7 +4760,7 @@
     },
     {
      "species": "SPECIES_POOCHYENA",
-     "level": 3,
+     "level": 4,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -5482,7 +4771,7 @@
     },
     {
      "species": "SPECIES_GOLDEEN",
-     "level": 3,
+     "level": 4,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -5493,7 +4782,7 @@
     },
     {
      "species": "SPECIES_LOTAD",
-     "level": 3,
+     "level": 4,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -5504,7 +4793,7 @@
     },
     {
      "species": "SPECIES_SURSKIT",
-     "level": 3,
+     "level": 4,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -5515,7 +4804,7 @@
     },
     {
      "species": "SPECIES_POLIWAG",
-     "level": 3,
+     "level": 4,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -5577,7 +4866,7 @@
     },
     {
      "species": "SPECIES_GULPIN",
-     "level": 4,
+     "level": 5,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -5588,7 +4877,7 @@
     },
     {
      "species": "SPECIES_CORPHISH",
-     "level": 4,
+     "level": 5,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -5617,7 +4906,7 @@
     },
     {
      "species": "SPECIES_GEODUDE",
-     "level": 9,
+     "level": 10,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -5639,7 +4928,7 @@
     },
     {
      "species": "SPECIES_ARON",
-     "level": 9,
+     "level": 10,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -5650,7 +4939,7 @@
     },
     {
      "species": "SPECIES_SNORUNT",
-     "level": 9,
+     "level": 10,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -5661,7 +4950,7 @@
     },
     {
      "species": "SPECIES_ZUBAT",
-     "level": 9,
+     "level": 10,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -5757,86 +5046,6 @@
      "hp_type": null,
      "why_available": "wild / special acquisition",
      "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_IGGLYBUFF",
-     "level": 10,
-     "moves": [
-      "MOVE_HIDDEN_POWER",
-      "MOVE_FLAMETHROWER",
-      "MOVE_TOXIC",
-      "MOVE_PSYCHIC"
-     ],
-     "ability": "Cute Charm",
-     "item": "Leftovers",
-     "nature": "Bold",
-     "evs": {
-      "hp": 252,
-      "def": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_PICHU",
-     "level": 11,
-     "moves": [
-      "MOVE_THUNDERBOLT",
-      "MOVE_THUNDER",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Static",
-     "item": "Leftovers",
-     "nature": "Timid",
-     "evs": {
-      "hp": 4,
-      "spa": 252,
-      "spe": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_ELEKID",
-     "level": 10,
-     "moves": [
-      "MOVE_THUNDERBOLT",
-      "MOVE_ICE_PUNCH",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_SUBSTITUTE"
-     ],
-     "ability": "Static",
-     "item": "Sitrus Berry",
-     "nature": "Hasty",
-     "evs": {
-      "atk": 172,
-      "spa": 76,
-      "spe": 236
-     },
-     "set_name": "Mixed Attacker",
-     "set_source": "gen3_movesets.json",
-     "notes": [],
-     "ivs": {
-      "def": 30,
-      "spd": 30
-     },
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
      "flagged": false
     }
    ]
@@ -5937,7 +5146,7 @@
     },
     {
      "species": "SPECIES_GASTLY",
-     "level": 11,
+     "level": 12,
      "moves": [
       "MOVE_THUNDERBOLT",
       "MOVE_GIGA_DRAIN",
@@ -5991,7 +5200,7 @@
     },
     {
      "species": "SPECIES_DROWZEE",
-     "level": 11,
+     "level": 12,
      "moves": [
       "MOVE_PSYCHIC",
       "MOVE_DREAM_EATER",
@@ -6077,7 +5286,7 @@
     },
     {
      "species": "SPECIES_DROWZEE",
-     "level": 11,
+     "level": 12,
      "moves": [
       "MOVE_PSYCHIC",
       "MOVE_DREAM_EATER",
@@ -6155,7 +5364,7 @@
     },
     {
      "species": "SPECIES_MEOWTH",
-     "level": 11,
+     "level": 12,
      "moves": [
       "MOVE_THUNDER",
       "MOVE_DOUBLE_EDGE",
@@ -6189,59 +5398,6 @@
    "cap": 13,
    "tier": "LC",
    "monsters": [
-    {
-     "species": "SPECIES_SWABLU",
-     "level": 11,
-     "moves": [
-      "MOVE_HIDDEN_POWER",
-      "MOVE_AERIAL_ACE",
-      "MOVE_ICE_BEAM",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Natural Cure",
-     "item": "Leftovers",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 124,
-      "atk": 84,
-      "spa": 84,
-      "spe": 216
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_MAGBY",
-     "level": 12,
-     "moves": [
-      "MOVE_FIRE_BLAST",
-      "MOVE_FOCUS_PUNCH",
-      "MOVE_TOXIC",
-      "MOVE_SUBSTITUTE"
-     ],
-     "ability": "Flame Body",
-     "item": "Sitrus Berry",
-     "nature": "Hasty",
-     "evs": {
-      "atk": 76,
-      "spa": 116,
-      "spe": 252
-     },
-     "set_name": "Offensive Utility",
-     "set_source": "gen3_movesets.json",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
     {
      "species": "SPECIES_PONYTA",
      "level": 11,
@@ -6319,35 +5475,6 @@
      "why_available": "wild / special acquisition",
      "tier": "LC",
      "flagged": false
-    },
-    {
-     "species": "SPECIES_MEOWTH",
-     "level": 11,
-     "moves": [
-      "MOVE_THUNDER",
-      "MOVE_DOUBLE_EDGE",
-      "MOVE_SHADOW_BALL",
-      "MOVE_TAUNT"
-     ],
-     "ability": "Pickup",
-     "item": "Sitrus Berry",
-     "nature": "Jolly",
-     "evs": {
-      "hp": 36,
-      "atk": 236,
-      "spd": 36,
-      "spe": 196
-     },
-     "set_name": "Lead",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Fake Out -> Thunder (level-up move needs Lv50)"
-     ],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
     }
    ]
   },
@@ -6412,110 +5539,6 @@
      "why_available": "wild / special acquisition",
      "tier": "LC",
      "flagged": false
-    },
-    {
-     "species": "SPECIES_SPHEAL",
-     "level": 11,
-     "moves": [
-      "MOVE_SURF",
-      "MOVE_ICE_BEAM",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Thick Fat",
-     "item": "Leftovers",
-     "nature": "Timid",
-     "evs": {
-      "hp": 4,
-      "spa": 252,
-      "spe": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_SEEL",
-     "level": 12,
-     "moves": [
-      "MOVE_SURF",
-      "MOVE_WATER_PULSE",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Thick Fat",
-     "item": "Leftovers",
-     "nature": "Timid",
-     "evs": {
-      "hp": 4,
-      "spa": 252,
-      "spe": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_TYROGUE",
-     "level": 11,
-     "moves": [
-      "MOVE_ROCK_SMASH",
-      "MOVE_BRICK_BREAK",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Guts",
-     "item": "Choice Band",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 4,
-      "atk": 252,
-      "spe": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_MAREEP",
-     "level": 12,
-     "moves": [
-      "MOVE_THUNDERBOLT",
-      "MOVE_THUNDER",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Static",
-     "item": "Leftovers",
-     "nature": "Timid",
-     "evs": {
-      "hp": 4,
-      "spa": 252,
-      "spe": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
     }
    ]
   },
@@ -6552,32 +5575,6 @@
      "flagged": false
     },
     {
-     "species": "SPECIES_GROWLITHE",
-     "level": 12,
-     "moves": [
-      "MOVE_FLAMETHROWER",
-      "MOVE_FIRE_BLAST",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Intimidate",
-     "item": "Leftovers",
-     "nature": "Timid",
-     "evs": {
-      "hp": 4,
-      "spa": 252,
-      "spe": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
      "species": "SPECIES_VULPIX",
      "level": 11,
      "moves": [
@@ -6604,32 +5601,6 @@
      "flagged": false
     },
     {
-     "species": "SPECIES_DROWZEE",
-     "level": 12,
-     "moves": [
-      "MOVE_PSYCHIC",
-      "MOVE_DREAM_EATER",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Insomnia",
-     "item": "Leftovers",
-     "nature": "Timid",
-     "evs": {
-      "hp": 4,
-      "spa": 252,
-      "spe": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
-    },
-    {
      "species": "SPECIES_IGGLYBUFF",
      "level": 11,
      "moves": [
@@ -6647,35 +5618,6 @@
      },
      "set_name": "learnset-derived",
      "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_EXEGGCUTE",
-     "level": 12,
-     "moves": [
-      "MOVE_EXPLOSION",
-      "MOVE_SUNNY_DAY",
-      "MOVE_SOLAR_BEAM",
-      "MOVE_PSYCHIC"
-     ],
-     "ability": "Chlorophyll",
-     "item": "Sitrus Berry",
-     "nature": "Mild",
-     "evs": {
-      "hp": 36,
-      "atk": 36,
-      "def": 36,
-      "spa": 196,
-      "spd": 156,
-      "spe": 36
-     },
-     "set_name": "Sunny Day Sweeper",
-     "set_source": "gen3_movesets.json",
      "notes": [],
      "ivs": null,
      "hp_type": null,
@@ -6738,117 +5680,6 @@
      "set_source": "gen3_movesets.json",
      "notes": [],
      "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_TOGEPI",
-     "level": 12,
-     "moves": [
-      "MOVE_HIDDEN_POWER",
-      "MOVE_FLAMETHROWER",
-      "MOVE_TOXIC",
-      "MOVE_PSYCHIC"
-     ],
-     "ability": "Hustle",
-     "item": "Leftovers",
-     "nature": "Bold",
-     "evs": {
-      "hp": 252,
-      "def": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_AZURILL",
-     "level": 11,
-     "moves": [
-      "MOVE_HIDDEN_POWER",
-      "MOVE_BODY_SLAM",
-      "MOVE_SURF",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Thick Fat",
-     "item": "Leftovers",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 124,
-      "atk": 84,
-      "spa": 84,
-      "spe": 216
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_PICHU",
-     "level": 12,
-     "moves": [
-      "MOVE_THUNDERBOLT",
-      "MOVE_THUNDER",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Static",
-     "item": "Leftovers",
-     "nature": "Timid",
-     "evs": {
-      "hp": 4,
-      "spa": 252,
-      "spe": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_SNORUNT",
-     "level": 11,
-     "moves": [
-      "MOVE_BLIZZARD",
-      "MOVE_ICE_BEAM",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Inner Focus",
-     "item": "Sitrus Berry",
-     "nature": "Timid",
-     "evs": {
-      "hp": 36,
-      "def": 36,
-      "spa": 120,
-      "spd": 116,
-      "spe": 196
-     },
-     "set_name": "Spikes",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Spikes -> Blizzard (egg or special-case only)"
-     ],
-     "ivs": {
-      "atk": 2,
-      "spa": 30
-     },
      "hp_type": null,
      "why_available": "wild / special acquisition",
      "tier": "LC",
@@ -6948,86 +5779,6 @@
      "why_available": "wild / special acquisition",
      "tier": "LC",
      "flagged": false
-    },
-    {
-     "species": "SPECIES_NUMEL",
-     "level": 11,
-     "moves": [
-      "MOVE_EARTHQUAKE",
-      "MOVE_FLAMETHROWER",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Oblivious",
-     "item": "Leftovers",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 124,
-      "atk": 84,
-      "spa": 84,
-      "spe": 216
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_SANDSHREW",
-     "level": 12,
-     "moves": [
-      "MOVE_EARTHQUAKE",
-      "MOVE_MUD_SLAP",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Sand Veil",
-     "item": "Leftovers",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 124,
-      "atk": 84,
-      "spa": 84,
-      "spe": 216
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_ONIX",
-     "level": 12,
-     "moves": [
-      "MOVE_ROCK_SLIDE",
-      "MOVE_EARTHQUAKE",
-      "MOVE_DOUBLE_EDGE",
-      "MOVE_EXPLOSION"
-     ],
-     "ability": "Rock Head",
-     "item": "Sitrus Berry",
-     "nature": "Jolly",
-     "evs": {
-      "hp": 76,
-      "atk": 236,
-      "spe": 196
-     },
-     "set_name": "All-Out Attacker",
-     "set_source": "gen3_movesets.json",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
     }
    ]
   },
@@ -7092,111 +5843,6 @@
      "why_available": "wild / special acquisition",
      "tier": "LC",
      "flagged": false
-    },
-    {
-     "species": "SPECIES_SPHEAL",
-     "level": 12,
-     "moves": [
-      "MOVE_SURF",
-      "MOVE_ICE_BEAM",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Thick Fat",
-     "item": "Leftovers",
-     "nature": "Timid",
-     "evs": {
-      "hp": 4,
-      "spa": 252,
-      "spe": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_PSYDUCK",
-     "level": 11,
-     "moves": [
-      "MOVE_SURF",
-      "MOVE_WATER_PULSE",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Damp",
-     "item": "Leftovers",
-     "nature": "Timid",
-     "evs": {
-      "hp": 4,
-      "spa": 252,
-      "spe": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_SWABLU",
-     "level": 11,
-     "moves": [
-      "MOVE_HIDDEN_POWER",
-      "MOVE_AERIAL_ACE",
-      "MOVE_ICE_BEAM",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Natural Cure",
-     "item": "Leftovers",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 124,
-      "atk": 84,
-      "spa": 84,
-      "spe": 216
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_MAGBY",
-     "level": 12,
-     "moves": [
-      "MOVE_FIRE_BLAST",
-      "MOVE_FOCUS_PUNCH",
-      "MOVE_TOXIC",
-      "MOVE_SUBSTITUTE"
-     ],
-     "ability": "Flame Body",
-     "item": "Sitrus Berry",
-     "nature": "Hasty",
-     "evs": {
-      "atk": 76,
-      "spa": 116,
-      "spe": 252
-     },
-     "set_name": "Offensive Utility",
-     "set_source": "gen3_movesets.json",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
     }
    ]
   },
@@ -7218,7 +5864,7 @@
     },
     {
      "species": "SPECIES_PIDGEY",
-     "level": 4,
+     "level": 5,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -7229,7 +5875,7 @@
     },
     {
      "species": "SPECIES_NIDORAN_F",
-     "level": 4,
+     "level": 5,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -7240,7 +5886,7 @@
     },
     {
      "species": "SPECIES_NIDORAN_M",
-     "level": 4,
+     "level": 5,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -7262,6 +5908,35 @@
     },
     {
      "species": "SPECIES_SPINARAK",
+     "level": 5,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    }
+   ]
+  },
+  "TRAINER_PLASTIC_OX_ROUTE29_ELLA": {
+   "checkpoint": "route29",
+   "cap": 13,
+   "tier": "LC",
+   "monsters": [
+    {
+     "species": "SPECIES_HOOTHOOT",
+     "level": 5,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_HOPPIP",
      "level": 4,
      "simple": true,
      "set_name": "level-up moves",
@@ -7269,6 +5944,130 @@
      "notes": [],
      "why_available": "wild / special acquisition",
      "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_RATTATA",
+     "level": 4,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    }
+   ]
+  },
+  "TRAINER_PLASTIC_OX_ROUTE2_BEN": {
+   "checkpoint": "route2south",
+   "cap": 13,
+   "tier": "LC",
+   "monsters": [
+    {
+     "species": "SPECIES_MANKEY",
+     "level": 6,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_EKANS",
+     "level": 6,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_GROWLITHE",
+     "level": 6,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    }
+   ]
+  },
+  "TRAINER_PLASTIC_OX_ROUTE2_WADE": {
+   "checkpoint": "route2north",
+   "cap": 13,
+   "tier": "LC",
+   "monsters": [
+    {
+     "species": "SPECIES_VENONAT",
+     "level": 9,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_ARON",
+     "level": 9,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_BALTOY",
+     "level": 9,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_SPOINK",
+     "level": 9,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_RALTS",
+     "level": 9,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_VOLTORB",
+     "level": 9,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "PU",
      "flagged": false
     }
    ]
@@ -7302,7 +6101,7 @@
     },
     {
      "species": "SPECIES_BALTOY",
-     "level": 8,
+     "level": 9,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -7313,7 +6112,7 @@
     },
     {
      "species": "SPECIES_SPOINK",
-     "level": 8,
+     "level": 9,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -7324,7 +6123,7 @@
     },
     {
      "species": "SPECIES_RALTS",
-     "level": 8,
+     "level": 9,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -7487,7 +6286,7 @@
     },
     {
      "species": "SPECIES_POLIWAG",
-     "level": 12,
+     "level": 13,
      "moves": [
       "MOVE_SURF",
       "MOVE_WATER_PULSE",
@@ -7600,92 +6399,6 @@
      "why_available": "wild / special acquisition",
      "tier": "PU",
      "flagged": false
-    },
-    {
-     "species": "SPECIES_STARYU",
-     "level": 13,
-     "moves": [
-      "MOVE_SURF",
-      "MOVE_THUNDERBOLT",
-      "MOVE_ICE_BEAM",
-      "MOVE_HIDDEN_POWER"
-     ],
-     "ability": "Natural Cure",
-     "item": "Sitrus Berry",
-     "nature": "Timid",
-     "evs": {
-      "hp": 36,
-      "def": 76,
-      "spa": 120,
-      "spe": 236
-     },
-     "set_name": "Offensive Utility",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Hydro Pump -> Surf (level-up move needs Lv46)"
-     ],
-     "ivs": {
-      "atk": 2,
-      "spa": 30
-     },
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_TENTACOOL",
-     "level": 12,
-     "moves": [
-      "MOVE_BLIZZARD",
-      "MOVE_SURF",
-      "MOVE_TOXIC",
-      "MOVE_HIDDEN_POWER"
-     ],
-     "ability": "Liquid Ooze",
-     "item": "Leftovers",
-     "nature": "Calm",
-     "evs": {
-      "hp": 252,
-      "def": 4,
-      "spd": 252
-     },
-     "set_name": "Specially Defensive",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Rapid Spin -> Blizzard (egg or special-case only)",
-      "Hidden Power type Grass dropped: trainerproc has no HP-type field in the .party format"
-     ],
-     "ivs": null,
-     "hp_type": "Grass",
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_CLEFFA",
-     "level": 12,
-     "moves": [
-      "MOVE_HIDDEN_POWER",
-      "MOVE_FLAMETHROWER",
-      "MOVE_TOXIC",
-      "MOVE_PSYCHIC"
-     ],
-     "ability": "Cute Charm",
-     "item": "Leftovers",
-     "nature": "Bold",
-     "evs": {
-      "hp": 252,
-      "def": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
     }
    ]
   },
@@ -7694,58 +6407,6 @@
    "cap": 20,
    "tier": "PU",
    "monsters": [
-    {
-     "species": "SPECIES_REMORAID",
-     "level": 13,
-     "moves": [
-      "MOVE_SURF",
-      "MOVE_WATER_PULSE",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Hustle",
-     "item": "Leftovers",
-     "nature": "Timid",
-     "evs": {
-      "hp": 4,
-      "spa": 252,
-      "spe": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_CORPHISH",
-     "level": 13,
-     "moves": [
-      "MOVE_SURF",
-      "MOVE_WATER_PULSE",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Hyper Cutter",
-     "item": "Leftovers",
-     "nature": "Timid",
-     "evs": {
-      "hp": 4,
-      "spa": 252,
-      "spe": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
     {
      "species": "SPECIES_MACHOP",
      "level": 13,
@@ -7805,61 +6466,6 @@
      "why_available": "wild / special acquisition",
      "tier": "PU",
      "flagged": false
-    },
-    {
-     "species": "SPECIES_ELEKID",
-     "level": 12,
-     "moves": [
-      "MOVE_THUNDERBOLT",
-      "MOVE_ICE_PUNCH",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_SUBSTITUTE"
-     ],
-     "ability": "Static",
-     "item": "Sitrus Berry",
-     "nature": "Hasty",
-     "evs": {
-      "atk": 172,
-      "spa": 76,
-      "spe": 236
-     },
-     "set_name": "Mixed Attacker",
-     "set_source": "gen3_movesets.json",
-     "notes": [],
-     "ivs": {
-      "def": 30,
-      "spd": 30
-     },
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_ARON",
-     "level": 12,
-     "moves": [
-      "MOVE_ROCK_SLIDE",
-      "MOVE_ROCK_TOMB",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Sturdy",
-     "item": "Choice Band",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 4,
-      "atk": 252,
-      "spe": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
     }
    ]
   },
@@ -7868,60 +6474,6 @@
    "cap": 20,
    "tier": "PU",
    "monsters": [
-    {
-     "species": "SPECIES_BARBOACH",
-     "level": 12,
-     "moves": [
-      "MOVE_SURF",
-      "MOVE_EARTHQUAKE",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Oblivious",
-     "item": "Leftovers",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 124,
-      "atk": 84,
-      "spa": 84,
-      "spe": 216
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_WOOPER",
-     "level": 12,
-     "moves": [
-      "MOVE_SURF",
-      "MOVE_EARTHQUAKE",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Damp",
-     "item": "Leftovers",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 124,
-      "atk": 84,
-      "spa": 84,
-      "spe": 216
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
     {
      "species": "SPECIES_CUBONE",
      "level": 13,
@@ -7980,7 +6532,7 @@
     },
     {
      "species": "SPECIES_MAGNEMITE",
-     "level": 12,
+     "level": 13,
      "moves": [
       "MOVE_THUNDERBOLT",
       "MOVE_HIDDEN_POWER",
@@ -8003,31 +6555,6 @@
       "atk": 2,
       "spa": 30
      },
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_PINECO",
-     "level": 12,
-     "moves": [
-      "MOVE_HIDDEN_POWER",
-      "MOVE_GIGA_DRAIN",
-      "MOVE_TOXIC",
-      "MOVE_EARTHQUAKE"
-     ],
-     "ability": "Sturdy",
-     "item": "Leftovers",
-     "nature": "Bold",
-     "evs": {
-      "hp": 252,
-      "def": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
      "hp_type": null,
      "why_available": "wild / special acquisition",
      "tier": "PU",
@@ -8074,7 +6601,7 @@
     },
     {
      "species": "SPECIES_HORSEA",
-     "level": 12,
+     "level": 13,
      "moves": [
       "MOVE_SURF",
       "MOVE_HIDDEN_POWER",
@@ -8099,115 +6626,6 @@
       "atk": 2,
       "spa": 30
      },
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_SEALEO",
-     "level": 12,
-     "moves": [
-      "MOVE_SURF",
-      "MOVE_ICE_BEAM",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_SUBSTITUTE"
-     ],
-     "ability": "Thick Fat",
-     "item": "Leftovers",
-     "nature": "Timid",
-     "evs": {
-      "spa": 236,
-      "spd": 48,
-      "spe": 224
-     },
-     "set_name": "Tank",
-     "set_source": "gen3_movesets.json",
-     "notes": [],
-     "ivs": {
-      "atk": 2,
-      "spa": 30
-     },
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_CLAMPERL",
-     "level": 13,
-     "moves": [
-      "MOVE_SURF",
-      "MOVE_ICE_BEAM",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_SUBSTITUTE"
-     ],
-     "ability": "Shell Armor",
-     "item": "Deep Sea Tooth",
-     "nature": "Modest",
-     "evs": {
-      "spa": 252,
-      "spd": 4,
-      "spe": 252
-     },
-     "set_name": "Offensive",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Hidden Power type Grass dropped: trainerproc has no HP-type field in the .party format"
-     ],
-     "ivs": null,
-     "hp_type": "Grass",
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_CORPHISH",
-     "level": 12,
-     "moves": [
-      "MOVE_SURF",
-      "MOVE_WATER_PULSE",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Hyper Cutter",
-     "item": "Leftovers",
-     "nature": "Timid",
-     "evs": {
-      "hp": 4,
-      "spa": 252,
-      "spe": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_PICHU",
-     "level": 12,
-     "moves": [
-      "MOVE_THUNDERBOLT",
-      "MOVE_THUNDER",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Static",
-     "item": "Leftovers",
-     "nature": "Timid",
-     "evs": {
-      "hp": 4,
-      "spa": 252,
-      "spe": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
      "hp_type": null,
      "why_available": "wild / special acquisition",
      "tier": "LC",
@@ -8248,7 +6666,7 @@
     },
     {
      "species": "SPECIES_NUMEL",
-     "level": 12,
+     "level": 13,
      "moves": [
       "MOVE_EARTHQUAKE",
       "MOVE_FIRE_BLAST",
@@ -8276,7 +6694,7 @@
     },
     {
      "species": "SPECIES_CUBONE",
-     "level": 12,
+     "level": 13,
      "moves": [
       "MOVE_FOCUS_PUNCH",
       "MOVE_DOUBLE_EDGE",
@@ -8302,86 +6720,6 @@
      "hp_type": "Ghost",
      "why_available": "wild / special acquisition",
      "tier": "PU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_TRAPINCH",
-     "level": 13,
-     "moves": [
-      "MOVE_EARTHQUAKE",
-      "MOVE_ROCK_SLIDE",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_PROTECT"
-     ],
-     "ability": "Arena Trap",
-     "item": "Leftovers",
-     "nature": "Careful",
-     "evs": {
-      "hp": 252,
-      "def": 4,
-      "spd": 252
-     },
-     "set_name": "Bulky Trapper",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
-     ],
-     "ivs": null,
-     "hp_type": "Ghost",
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_ARON",
-     "level": 12,
-     "moves": [
-      "MOVE_ROCK_SLIDE",
-      "MOVE_ROCK_TOMB",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Sturdy",
-     "item": "Choice Band",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 4,
-      "atk": 252,
-      "spe": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_MAREEP",
-     "level": 13,
-     "moves": [
-      "MOVE_THUNDERBOLT",
-      "MOVE_THUNDER",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Static",
-     "item": "Leftovers",
-     "nature": "Timid",
-     "evs": {
-      "hp": 4,
-      "spa": 252,
-      "spe": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
      "flagged": false
     }
    ]
@@ -8419,7 +6757,7 @@
     },
     {
      "species": "SPECIES_MACHOP",
-     "level": 12,
+     "level": 13,
      "moves": [
       "MOVE_BULK_UP",
       "MOVE_FOCUS_PUNCH",
@@ -8447,122 +6785,6 @@
      "why_available": "wild / special acquisition",
      "tier": "LC",
      "flagged": false
-    },
-    {
-     "species": "SPECIES_GEODUDE",
-     "level": 12,
-     "moves": [
-      "MOVE_EARTHQUAKE",
-      "MOVE_ROCK_SLIDE",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Rock Head",
-     "item": "Choice Band",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 4,
-      "atk": 252,
-      "spe": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_SNORUNT",
-     "level": 13,
-     "moves": [
-      "MOVE_BLIZZARD",
-      "MOVE_ICE_BEAM",
-      "MOVE_ENDURE",
-      "MOVE_HIDDEN_POWER"
-     ],
-     "ability": "Inner Focus",
-     "item": "Salac Berry",
-     "nature": "Timid",
-     "evs": {
-      "def": 4,
-      "spa": 252,
-      "spe": 252
-     },
-     "set_name": "Spikes",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Spikes -> Blizzard (egg or special-case only)"
-     ],
-     "ivs": {
-      "atk": 2,
-      "spa": 30
-     },
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_LARVITAR",
-     "level": 12,
-     "moves": [
-      "MOVE_HYPER_BEAM",
-      "MOVE_ROCK_SLIDE",
-      "MOVE_EARTHQUAKE",
-      "MOVE_SUBSTITUTE"
-     ],
-     "ability": "Guts",
-     "item": "Sitrus Berry",
-     "nature": "Jolly",
-     "evs": {
-      "atk": 164,
-      "def": 116,
-      "spd": 36,
-      "spe": 188
-     },
-     "set_name": "Dragon Dance",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Dragon Dance -> Hyper Beam (egg or special-case only)"
-     ],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_MAGNEMITE",
-     "level": 13,
-     "moves": [
-      "MOVE_THUNDERBOLT",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC",
-      "MOVE_SUBSTITUTE"
-     ],
-     "ability": "Sturdy",
-     "item": "Sitrus Berry",
-     "nature": "Modest",
-     "evs": {
-      "def": 36,
-      "spa": 240,
-      "spd": 76,
-      "spe": 156
-     },
-     "set_name": "Offensive Utility",
-     "set_source": "gen3_movesets.json",
-     "notes": [],
-     "ivs": {
-      "atk": 2,
-      "spa": 30
-     },
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
     }
    ]
   },
@@ -8573,7 +6795,7 @@
    "monsters": [
     {
      "species": "SPECIES_MACHOP",
-     "level": 6,
+     "level": 7,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -8584,7 +6806,7 @@
     },
     {
      "species": "SPECIES_GEODUDE",
-     "level": 6,
+     "level": 7,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -8595,7 +6817,7 @@
     },
     {
      "species": "SPECIES_SANDSHREW",
-     "level": 6,
+     "level": 7,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -8606,7 +6828,7 @@
     },
     {
      "species": "SPECIES_BAGON",
-     "level": 6,
+     "level": 7,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -8617,7 +6839,7 @@
     },
     {
      "species": "SPECIES_NUMEL",
-     "level": 5,
+     "level": 7,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -8628,7 +6850,7 @@
     },
     {
      "species": "SPECIES_PHANPY",
-     "level": 6,
+     "level": 7,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -8656,52 +6878,8 @@
      "flagged": false
     },
     {
-     "species": "SPECIES_GEODUDE",
-     "level": 6,
-     "simple": true,
-     "set_name": "level-up moves",
-     "set_source": "opening route",
-     "notes": [],
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
      "species": "SPECIES_LARVITAR",
      "level": 7,
-     "simple": true,
-     "set_name": "level-up moves",
-     "set_source": "opening route",
-     "notes": [],
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_MACHOP",
-     "level": 6,
-     "simple": true,
-     "set_name": "level-up moves",
-     "set_source": "opening route",
-     "notes": [],
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_SANDSHREW",
-     "level": 6,
-     "simple": true,
-     "set_name": "level-up moves",
-     "set_source": "opening route",
-     "notes": [],
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_BAGON",
-     "level": 6,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -8719,7 +6897,7 @@
    "monsters": [
     {
      "species": "SPECIES_PARAS",
-     "level": 8,
+     "level": 9,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -8730,7 +6908,7 @@
     },
     {
      "species": "SPECIES_VENONAT",
-     "level": 8,
+     "level": 9,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -8741,7 +6919,7 @@
     },
     {
      "species": "SPECIES_NINCADA",
-     "level": 8,
+     "level": 9,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -8752,7 +6930,7 @@
     },
     {
      "species": "SPECIES_ODDISH",
-     "level": 7,
+     "level": 9,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -8763,7 +6941,7 @@
     },
     {
      "species": "SPECIES_EXEGGCUTE",
-     "level": 8,
+     "level": 9,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -8774,13 +6952,71 @@
     },
     {
      "species": "SPECIES_PINECO",
-     "level": 7,
+     "level": 9,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
      "notes": [],
      "why_available": "wild / special acquisition",
      "tier": "PU",
+     "flagged": false
+    }
+   ]
+  },
+  "TRAINER_PLASTIC_OX_ROUTE_ILEX_FINN": {
+   "checkpoint": "ilex",
+   "cap": 13,
+   "tier": "LC",
+   "monsters": [
+    {
+     "species": "SPECIES_SPINARAK",
+     "level": 8,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_WURMPLE",
+     "level": 7,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    }
+   ]
+  },
+  "TRAINER_PLASTIC_OX_ROUTE_ILEX_MAYA": {
+   "checkpoint": "ilex",
+   "cap": 13,
+   "tier": "LC",
+   "monsters": [
+    {
+     "species": "SPECIES_HOOTHOOT",
+     "level": 9,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_SUNKERN",
+     "level": 8,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
      "flagged": false
     }
    ]
@@ -9890,8 +8126,8 @@
      "moves": [
       "MOVE_SUNNY_DAY",
       "MOVE_EXPLOSION",
-      "MOVE_DOUBLE_EDGE",
-      "MOVE_EARTHQUAKE"
+      "MOVE_EARTHQUAKE",
+      "MOVE_HIDDEN_POWER"
      ],
      "ability": "Sturdy",
      "item": "Salac Berry",
@@ -9904,7 +8140,7 @@
      "set_name": "Sunny Day Support",
      "set_source": "gen3_movesets.json",
      "notes": [
-      "Block -> Double Edge (egg or special-case only)"
+      "Block -> Earthquake (egg or special-case only)"
      ],
      "ivs": null,
      "hp_type": null,
@@ -10526,166 +8762,184 @@
    "tier": "PU",
    "monsters": [
     {
-     "species": "SPECIES_MIGHTYENA",
-     "level": 20,
-     "moves": [
-      "MOVE_HYPER_BEAM",
-      "MOVE_RETURN",
-      "MOVE_SHADOW_BALL",
-      "MOVE_HOWL"
-     ],
-     "ability": "Intimidate",
-     "item": "Leftovers",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 40,
-      "atk": 252,
-      "spe": 216
-     },
-     "set_name": "Offensive Heal Bell",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Heal Bell -> Hyper Beam (cannot learn)"
-     ],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "evolves from Poochyena at Lv18",
-     "tier": "PU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_WIGGLYTUFF",
-     "level": 19,
-     "moves": [
-      "MOVE_BODY_SLAM",
-      "MOVE_SHADOW_BALL",
-      "MOVE_SUBSTITUTE",
-      "MOVE_BRICK_BREAK"
-     ],
-     "ability": "Cute Charm",
-     "item": "Leftovers",
-     "nature": "Adamant",
-     "evs": {
-      "atk": 252,
-      "spd": 76,
-      "spe": 180
-     },
-     "set_name": "Offensive Sub",
-     "set_source": "gen3_movesets.json",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "evolves from JIGGLYPUFF (Moon_Stone)",
-     "tier": "PU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_MEOWTH",
-     "level": 19,
-     "moves": [
-      "MOVE_THUNDER",
-      "MOVE_DOUBLE_EDGE",
-      "MOVE_SHADOW_BALL",
-      "MOVE_TAUNT"
-     ],
-     "ability": "Pickup",
-     "item": "Sitrus Berry",
+     "item": "Liechi Berry",
+     "ability": "Compound Eyes",
      "nature": "Jolly",
      "evs": {
-      "hp": 36,
-      "atk": 236,
-      "spd": 36,
+      "atk": 252,
+      "def": 4,
+      "spe": 252
+     },
+     "hp_type": "Flying",
+     "ivs": {
+      "hp": 30,
+      "atk": 30,
+      "def": 30,
+      "spa": 30,
+      "spd": 30,
+      "spe": 31
+     },
+     "moves": [
+      "MOVE_SUBSTITUTE",
+      "MOVE_HYPNOSIS",
+      "MOVE_REVERSAL",
+      "MOVE_HIDDEN_POWER"
+     ],
+     "set_name": "Substitute Hypnosis",
+     "species": "SPECIES_YANMA",
+     "level": 19,
+     "set_source": "ADV PU fixed gym roster",
+     "notes": [],
+     "why_available": "signature exception",
+     "tier": "PU",
+     "flagged": true
+    },
+    {
+     "item": "Petaya Berry",
+     "ability": "Minus",
+     "nature": "Timid",
+     "evs": {
+      "spa": 252,
+      "spd": 4,
+      "spe": 252
+     },
+     "ivs": null,
+     "moves": [
+      "MOVE_ENCORE",
+      "MOVE_SUBSTITUTE",
+      "MOVE_BATON_PASS",
+      "MOVE_THUNDERBOLT"
+     ],
+     "set_name": "Encore Substitute Pass",
+     "species": "SPECIES_MINUN",
+     "level": 19,
+     "set_source": "ADV PU fixed gym roster",
+     "notes": [],
+     "why_available": "signature exception",
+     "tier": "PU",
+     "flagged": true
+    },
+    {
+     "item": "Leftovers",
+     "ability": "Intimidate",
+     "nature": "Adamant",
+     "evs": {
+      "hp": 132,
+      "atk": 252,
+      "spe": 124
+     },
+     "hp_type": "Steel",
+     "ivs": {
+      "hp": 31,
+      "atk": 31,
+      "def": 31,
+      "spa": 31,
+      "spd": 30,
+      "spe": 31
+     },
+     "moves": [
+      "MOVE_SWORDS_DANCE",
+      "MOVE_BRICK_BREAK",
+      "MOVE_HIDDEN_POWER",
+      "MOVE_SUBSTITUTE"
+     ],
+     "set_name": "Swords Dance Substitute",
+     "species": "SPECIES_MAWILE",
+     "level": 19,
+     "set_source": "ADV PU fixed gym roster",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "PU",
+     "flagged": false
+    },
+    {
+     "item": "Leftovers",
+     "ability": "Swarm",
+     "nature": "Adamant",
+     "evs": {
+      "hp": 48,
+      "atk": 252,
+      "def": 12,
       "spe": 196
      },
-     "set_name": "Lead",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Fake Out -> Thunder (level-up move needs Lv50)"
-     ],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_FURRET",
-     "level": 19,
-     "moves": [
-      "MOVE_DOUBLE_EDGE",
-      "MOVE_SHADOW_BALL",
-      "MOVE_BRICK_BREAK",
-      "MOVE_QUICK_ATTACK"
-     ],
-     "ability": "Keen Eye",
-     "item": "Choice Band",
-     "nature": "Jolly",
-     "evs": {
-      "atk": 252,
-      "spd": 4,
-      "spe": 252
+     "hp_type": "Flying",
+     "ivs": {
+      "hp": 30,
+      "atk": 30,
+      "def": 30,
+      "spa": 30,
+      "spd": 30,
+      "spe": 31
      },
-     "set_name": "Wallbreaker",
-     "set_source": "gen3_movesets.json",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "evolves from Sentret at Lv15",
-     "tier": "PU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_ARBOK",
-     "level": 19,
      "moves": [
+      "MOVE_AGILITY",
       "MOVE_SLUDGE_BOMB",
-      "MOVE_EARTHQUAKE",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_ROCK_SLIDE"
+      "MOVE_SIGNAL_BEAM",
+      "MOVE_HIDDEN_POWER"
      ],
-     "ability": "Intimidate",
-     "item": "Choice Band",
-     "nature": "Jolly",
-     "evs": {
-      "atk": 252,
-      "spd": 4,
-      "spe": 252
-     },
-     "set_name": "Choice Band",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
-     ],
-     "ivs": null,
-     "hp_type": "Ghost",
-     "why_available": "evolves from Ekans at Lv20",
+     "set_name": "Agility",
+     "species": "SPECIES_ARIADOS",
+     "level": 19,
+     "set_source": "ADV PU fixed gym roster",
+     "notes": [],
+     "why_available": "evolves from Spinarak at Lv20",
      "tier": "PU",
      "flagged": false
     },
     {
-     "species": "SPECIES_DRAGONAIR",
-     "level": 20,
-     "moves": [
-      "MOVE_THUNDER_WAVE",
-      "MOVE_REST",
-      "MOVE_THUNDERBOLT",
-      "MOVE_ICE_BEAM"
-     ],
-     "ability": "Shed Skin",
      "item": "Leftovers",
-     "nature": "Calm",
+     "ability": "Own Tempo",
+     "nature": "Careful",
      "evs": {
       "hp": 252,
-      "spd": 160,
-      "spe": 96
+      "atk": 4,
+      "spd": 252
      },
-     "set_name": "Specially Defensive",
-     "set_source": "gen3_movesets.json",
+     "ivs": null,
+     "moves": [
+      "MOVE_CURSE",
+      "MOVE_REST",
+      "MOVE_SLEEP_TALK",
+      "MOVE_BODY_SLAM"
+     ],
+     "set_name": "CurseTung",
+     "species": "SPECIES_LICKITUNG",
+     "level": 19,
+     "set_source": "ADV PU fixed gym roster",
      "notes": [],
-     "ivs": {
-      "atk": 0
+     "why_available": "signature exception",
+     "tier": "PU",
+     "flagged": true
+    },
+    {
+     "item": "Leftovers",
+     "ability": "Shed Skin",
+     "nature": "Adamant",
+     "evs": {
+      "atk": 252,
+      "spd": 4,
+      "spe": 252
      },
-     "hp_type": null,
+     "hp_type": "Fighting",
+     "ivs": {
+      "hp": 30,
+      "atk": 30,
+      "def": 30,
+      "spa": 30,
+      "spd": 30,
+      "spe": 30
+     },
+     "moves": [
+      "MOVE_DRAGON_DANCE",
+      "MOVE_DOUBLE_EDGE",
+      "MOVE_IRON_TAIL",
+      "MOVE_HIDDEN_POWER"
+     ],
+     "set_name": "Dragon Dance",
+     "species": "SPECIES_DRAGONAIR",
+     "level": 20,
+     "set_source": "ADV PU fixed gym roster",
+     "notes": [],
      "why_available": "wild / special acquisition",
      "tier": "PU",
      "flagged": false
@@ -10813,7 +9067,7 @@
      "level": 34,
      "moves": [
       "MOVE_SUBSTITUTE",
-      "MOVE_DOUBLE_EDGE",
+      "MOVE_IRON_TAIL",
       "MOVE_HIDDEN_POWER",
       "MOVE_SWORDS_DANCE"
      ],
@@ -10828,7 +9082,7 @@
      "set_name": "Swords Dance + Flail",
      "set_source": "gen3_movesets.json",
      "notes": [
-      "Flail -> Double Edge (egg or special-case only)",
+      "Flail -> Iron Tail (egg or special-case only)",
       "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
      ],
      "ivs": null,
@@ -10900,225 +9154,6 @@
     "Dugtrio @ Choice Band",
     "Gengar @ Leftovers",
     "Suicune @ Leftovers"
-   ]
-  },
-  "TRAINER_PLASTIC_OX_ROUTE29_ELLA": {
-   "checkpoint": "route29",
-   "cap": 13,
-   "tier": "LC",
-   "monsters": [
-    {
-     "species": "SPECIES_HOOTHOOT",
-     "level": 5,
-     "simple": true,
-     "set_name": "level-up moves",
-     "set_source": "opening route",
-     "notes": [],
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_HOPPIP",
-     "level": 4,
-     "simple": true,
-     "set_name": "level-up moves",
-     "set_source": "opening route",
-     "notes": [],
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_RATTATA",
-     "level": 4,
-     "simple": true,
-     "set_name": "level-up moves",
-     "set_source": "opening route",
-     "notes": [],
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_SPEAROW",
-     "level": 4,
-     "simple": true,
-     "set_name": "level-up moves",
-     "set_source": "opening route",
-     "notes": [],
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_WOOPER",
-     "level": 5,
-     "simple": true,
-     "set_name": "level-up moves",
-     "set_source": "opening route",
-     "notes": [],
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_SURSKIT",
-     "level": 4,
-     "simple": true,
-     "set_name": "level-up moves",
-     "set_source": "opening route",
-     "notes": [],
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    }
-   ]
-  },
-  "TRAINER_PLASTIC_OX_ROUTE_ILEX_FINN": {
-   "checkpoint": "ilex",
-   "cap": 13,
-   "tier": "LC",
-   "monsters": [
-    {
-     "species": "SPECIES_SPINARAK",
-     "level": 8,
-     "simple": true,
-     "set_name": "level-up moves",
-     "set_source": "opening route",
-     "notes": [],
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_PARAS",
-     "level": 8,
-     "simple": true,
-     "set_name": "level-up moves",
-     "set_source": "opening route",
-     "notes": [],
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_WURMPLE",
-     "level": 7,
-     "simple": true,
-     "set_name": "level-up moves",
-     "set_source": "opening route",
-     "notes": [],
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_VENONAT",
-     "level": 8,
-     "simple": true,
-     "set_name": "level-up moves",
-     "set_source": "opening route",
-     "notes": [],
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_NINCADA",
-     "level": 7,
-     "simple": true,
-     "set_name": "level-up moves",
-     "set_source": "opening route",
-     "notes": [],
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_PINECO",
-     "level": 8,
-     "simple": true,
-     "set_name": "level-up moves",
-     "set_source": "opening route",
-     "notes": [],
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
-    }
-   ]
-  },
-  "TRAINER_PLASTIC_OX_ROUTE_ILEX_MAYA": {
-   "checkpoint": "ilex",
-   "cap": 13,
-   "tier": "LC",
-   "monsters": [
-    {
-     "species": "SPECIES_HOOTHOOT",
-     "level": 9,
-     "simple": true,
-     "set_name": "level-up moves",
-     "set_source": "opening route",
-     "notes": [],
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_ODDISH",
-     "level": 8,
-     "simple": true,
-     "set_name": "level-up moves",
-     "set_source": "opening route",
-     "notes": [],
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_EXEGGCUTE",
-     "level": 8,
-     "simple": true,
-     "set_name": "level-up moves",
-     "set_source": "opening route",
-     "notes": [],
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_SUNKERN",
-     "level": 8,
-     "simple": true,
-     "set_name": "level-up moves",
-     "set_source": "opening route",
-     "notes": [],
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_WOOPER",
-     "level": 8,
-     "simple": true,
-     "set_name": "level-up moves",
-     "set_source": "opening route",
-     "notes": [],
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_SHUPPET",
-     "level": 9,
-     "simple": true,
-     "set_name": "level-up moves",
-     "set_source": "opening route",
-     "notes": [],
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    }
    ]
   }
  }

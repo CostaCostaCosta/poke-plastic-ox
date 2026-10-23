@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Check opening trainer encounters, level floors, held items, and prize money."""
+import json
 import struct
+from pathlib import Path
 
 from test_goldenrod import money
 from test_qol import opcode
@@ -9,6 +11,10 @@ from test_trainer_recovery import item
 from test_training_kit import run_code
 from walklib import K
 
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "agent"))
+from apply_trainer_teams_v2 import expected_party_size
+
 
 # Warp one step outside each trainer's sight line, then cross it in the ROM.
 TRAINERS = (
@@ -16,7 +22,6 @@ TRAINERS = (
     ("Route29_hns", 56, 20, K.KEY_LEFT, "TRAINER_PLASTIC_OX_ROUTE29_ELLA"),
     ("Route2_Frlg", 10, 77, K.KEY_UP, "TRAINER_PLASTIC_OX_ROUTE2_BEN"),
     ("Route2_Frlg", 10, 12, K.KEY_LEFT, "TRAINER_PLASTIC_OX_ROUTE2_WADE"),
-    ("Route2_Frlg", 12, 15, K.KEY_RIGHT, "TRAINER_PLASTIC_OX_ROUTE2_HALEY"),
     ("IlexForest_hns", 46, 8, K.KEY_LEFT, "TRAINER_PLASTIC_OX_ROUTE_ILEX"),
     ("IlexForest_hns", 20, 49, K.KEY_UP, "TRAINER_PLASTIC_OX_ROUTE_ILEX_FINN"),
     ("IlexForest_hns", 48, 20, K.KEY_RIGHT, "TRAINER_PLASTIC_OX_ROUTE_ILEX_MAYA"),
@@ -56,18 +61,16 @@ def check_trainer(case):
     start_battle(g, map_name, x, y, direction, trainer)
     stride = g.sizes["gParties"] // 24
     enemy = g.syms["gParties"] + 6 * stride
-    mons = [enemy + i * stride for i in range(6)]
+    count = expected_party_size(trainer)
+    assert g.u8(g.syms["gPartiesCount"] + 1) == count, trainer
+    mons = [enemy + i * stride for i in range(count)]
     species = [g.box_species(mon) for mon in mons]
     levels = [g.u8(mon + stride - 16) for mon in mons]
     held = [item(g, mon) for mon in mons]
     assert all(species), (trainer, species)
-    assert held == [0] * 6, (trainer, held)
+    assert held == [0] * count, (trainer, held)
     if trainer == "TRAINER_PLASTIC_OX_ROUTE29_ELLA":
-        assert levels == [20] * 6, (trainer, levels)
-    if trainer == "TRAINER_PLASTIC_OX_ROUTE2_HALEY":
-        # Authored levels remain a floor when the player is weaker.
-        assert levels == [10, 9, 10, 9, 9, 9], (trainer, levels)
-
+        assert levels == [20] * count, (trainer, levels)
     # Run the real reward command in this live trainer battle with a won outcome.
     before = money(g)
     g.write(g.syms["gBattleOutcome"], 1)
@@ -76,9 +79,14 @@ def check_trainer(case):
     g.frame(1)
     reward = money(g) - before
     assert reward >= 2000, (trainer, reward)
-    print(trainer, "six item-free Pokemon, levels", levels, "prize", reward, "PASS", flush=True)
+    print(trainer, count, "item-free Pokemon, levels", levels, "prize", reward, "PASS", flush=True)
 
 
 if __name__ == "__main__":
+    route2 = json.loads((Path(__file__).resolve().parents[2] / "data/maps/Route2_Frlg/map.json").read_text())
+    route2_trainers = [obj for obj in route2["object_events"]
+                       if obj.get("trainer_type") == "TRAINER_TYPE_NORMAL"]
+    assert len(route2_trainers) == 2, route2_trainers
+    assert sorted(obj["y"] < 40 for obj in route2_trainers) == [False, True], route2_trainers
     for case in TRAINERS:
         check_trainer(case)

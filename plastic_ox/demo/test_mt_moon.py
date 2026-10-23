@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """FireRed floor parity, every directed warp, continuous path, and fossil state."""
 import json
+import re
 import sys
 from pathlib import Path
 from test_story import StoryGame, ROOT
@@ -8,12 +9,16 @@ from walklib import K, DIRKEY
 sys.path.insert(0, str(ROOT/'plastic_ox/alpha'))
 from region_geometry import Geometry
 from mt_moon import FLOORS, BASE
+sys.path.insert(0, str(ROOT/'plastic_ox/agent'))
+from apply_trainer_teams_v2 import expected_party_size, ROSTERS
 
 GROUPS = json.loads((ROOT/'data/maps/map_groups.json').read_text())
 IDS = {n:(i,j) for i,k in enumerate(GROUPS['group_order']) for j,n in enumerate(GROUPS[k])}
 MAPS = {n:json.loads((ROOT/f'data/maps/{n}/map.json').read_text()) for n in FLOORS+['Route33_hns','Route44_hns']}
 BYID = {d['id']:n for n,d in MAPS.items()}
 TRAINERS = json.loads((BASE/'trainers.json').read_text())
+SPECIES_IDS = {name: int(value) for name, value in re.findall(
+    r'(SPECIES_\w+)\s*=\s*(\d+)', (ROOT/'include/constants/species.h').read_text())}
 
 
 def source_test():
@@ -115,6 +120,16 @@ def wait_battle(g, trainer):
     else:raise AssertionError(('battle never started',trainer,g.state()))
     assert g.u16(g.syms['gTrainerBattleParameter']+2)==TRAINERS[trainer]
     g.frame(240)
+    count = g.u8(g.syms['gPartiesCount'] + 1)
+    assert count == expected_party_size(trainer), (trainer, count)
+    stride = g.sizes['gParties'] // 24
+    enemy = g.syms['gParties'] + 6 * stride
+    actual = [g.box_species(enemy + i * stride) for i in range(count)]
+    expected = [SPECIES_IDS[species] for species, level in ROSTERS[trainer][1]]
+    assert actual == expected, (trainer, actual, expected)
+    levels = [g.u8(enemy + i * stride + stride - 16) for i in range(count)]
+    assert all(authored <= actual_level <= 20
+               for (_, authored), actual_level in zip(ROSTERS[trainer][1], levels)), (trainer, levels)
     g.shot('moon_battle_'+trainer+'.png')
 
 

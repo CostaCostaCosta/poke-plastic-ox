@@ -115,7 +115,8 @@ CHECKPOINTS = [
     ("goldenrod",   "NU",   30, [], []),          # Bill's Eevee, Beldum trade, Game Corner, mail Delibird
     ("ecruteak",    "NU",   30, [], []),          # Kimono Girls; Route 36 odd-tree Sudowoodo
     ("route37",     "NU",   30, ["gPoxNURoute37Hns#"], ["MAP_ROUTE37_HNS"]),
-    ("burnedtower", "NU",   30, ["gPoxNUEcruteakCityHns", "gPoxNUBurnedTower1F"], []),
+    ("burnedtower", "NU",   30, ["gPoxNUEcruteakCityHns", "gPoxNUBurnedTower1F",
+                                "gPoxNUBurnedTowerB1F"], []),
     ("gym3",        "NU",   30, [], []),          # Morty, Dance Theater
     ("fortree",     "RU",   36, [], []),          # Route 119, Weather Institute, Fortree
     ("cinnabar",    "UU",   42, [], []),          # Lavender tower, Cinnabar
