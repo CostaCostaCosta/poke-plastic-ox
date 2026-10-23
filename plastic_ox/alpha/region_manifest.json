@@ -123,50 +123,6 @@
       "label": "GoldenrodCity"
     },
     {
-      "id": "ecruteak_route119_a",
-      "source": "EcruteakCity_hns",
-      "destination": "Route119",
-      "tile": [
-        53,
-        32
-      ],
-      "approach": [
-        52,
-        32
-      ],
-      "direction": "E",
-      "landing": [
-        19,
-        127
-      ],
-      "requires": [
-        "FLAG_BADGE03_GET"
-      ],
-      "label": "Route119"
-    },
-    {
-      "id": "ecruteak_route119_b",
-      "source": "Route119",
-      "destination": "EcruteakCity_hns",
-      "tile": [
-        20,
-        127
-      ],
-      "approach": [
-        19,
-        127
-      ],
-      "direction": "E",
-      "landing": [
-        52,
-        32
-      ],
-      "requires": [
-        "FLAG_BADGE03_GET"
-      ],
-      "label": "EcruteakCity"
-    },
-    {
       "id": "route119_fortree_a",
       "source": "Route119",
       "destination": "FortreeCity",

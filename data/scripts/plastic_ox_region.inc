@@ -278,50 +278,6 @@ PoxRegion_goldenrod_route35_b_Sign::
 PoxRegion_goldenrod_route35_b_Text::
 	.string "GOLDENROD CITY - SOUTH\nThrough the gatehouse.$"
 
-PoxRegion_ecruteak_route119_a::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_ecruteak_route119_a_Open
-	goto_if_unset FLAG_BADGE03_GET, PoxRegion_ecruteak_route119_a_Closed
-PoxRegion_ecruteak_route119_a_Open::
-	warp MAP_ROUTE119, 19, 127
-	waitstate
-	releaseall
-	end
-PoxRegion_ecruteak_route119_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ECRUTEAK_CITY_HNS, 52, 32
-	waitstate
-	releaseall
-	end
-
-PoxRegion_ecruteak_route119_a_Sign::
-	msgbox PoxRegion_ecruteak_route119_a_Text, MSGBOX_SIGN
-	end
-PoxRegion_ecruteak_route119_a_Text::
-	.string "Route119\nMarked passage ahead.$"
-
-PoxRegion_ecruteak_route119_b::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_ecruteak_route119_b_Open
-	goto_if_unset FLAG_BADGE03_GET, PoxRegion_ecruteak_route119_b_Closed
-PoxRegion_ecruteak_route119_b_Open::
-	warp MAP_ECRUTEAK_CITY_HNS, 52, 32
-	waitstate
-	releaseall
-	end
-PoxRegion_ecruteak_route119_b_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE119, 19, 127
-	waitstate
-	releaseall
-	end
-
-PoxRegion_ecruteak_route119_b_Sign::
-	msgbox PoxRegion_ecruteak_route119_b_Text, MSGBOX_SIGN
-	end
-PoxRegion_ecruteak_route119_b_Text::
-	.string "EcruteakCity\nMarked passage ahead.$"
-
 PoxRegion_route119_fortree_a::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route119_fortree_a_Open

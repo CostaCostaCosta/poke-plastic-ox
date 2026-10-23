@@ -57,7 +57,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Pox_WeatherRoad",
+      "script": "EcruteakCity_EventScript_KimonoRoadblock",
       "flag": "0"
     },
     {
@@ -115,29 +115,29 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SIGN",
-      "x": 52,
-      "y": 33,
+      "x": 53,
+      "y": 32,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PoxRegion_ecruteak_route119_a_Sign",
+      "script": "EcruteakCity_EventScript_KimonoRoadblock",
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_KIMONO_HNS",
-      "x": 52,
-      "y": 32,
+      "graphics_id": "OBJ_EVENT_GFX_SIGN",
+      "x": 55,
+      "y": 42,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EcruteakCity_EventScript_KimonoRoadblock",
-      "flag": "FLAG_BADGE03_GET"
+      "flag": "0"
     }
   ],
   "warp_events": [
@@ -198,13 +198,6 @@
       "elevation": 0
     },
     {
-      "x": 55,
-      "y": 42,
-      "dest_map": "MAP_GATE_ECRUTEAK_CITY_ROUTE42_HNS",
-      "dest_warp_id": "0",
-      "elevation": 0
-    },
-    {
       "x": 22,
       "y": 14,
       "elevation": 0,
@@ -215,15 +208,6 @@
   "coord_events": [
     {
       "type": "trigger",
-      "x": 53,
-      "y": 32,
-      "elevation": 0,
-      "var": "VAR_POX_PORTAL_TRIGGER",
-      "var_value": 0,
-      "script": "PoxRegion_ecruteak_route119_a"
-    },
-    {
-      "type": "trigger",
       "x": 8,
       "y": 34,
       "elevation": 0,
@@ -232,15 +216,6 @@
       "script": "PoxRegion_ecruteak_league_a"
     }
   ],
-  "bg_events": [
-    {
-      "type": "sign",
-      "x": 52,
-      "y": 33,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "PoxRegion_ecruteak_route119_a_Sign"
-    }
-  ],
+  "bg_events": [],
   "region": "REGION_HOENN"
 }

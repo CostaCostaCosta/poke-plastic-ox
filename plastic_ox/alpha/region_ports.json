@@ -43,17 +43,6 @@
     ],
     "direction": "S"
   },
-  "ecruteak_route119_a": {
-    "tile": [
-      53,
-      32
-    ],
-    "approach": [
-      52,
-      32
-    ],
-    "direction": "E"
-  },
   "route119_fortree_a": {
     "tile": [
       39,
@@ -480,17 +469,6 @@
     "approach": [
       18,
       22
-    ],
-    "direction": "E"
-  },
-  "ecruteak_route119_b": {
-    "tile": [
-      20,
-      127
-    ],
-    "approach": [
-      19,
-      127
     ],
     "direction": "E"
   },

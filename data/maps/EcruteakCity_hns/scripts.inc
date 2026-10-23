@@ -17,7 +17,7 @@ EcruteakCity_EventScript_KimonoRoadblock::
 	end
 
 EcruteakCity_Text_KimonoRoadblock:
-	.string "Please help MORTY at the BURNED\nTOWER, then earn his GYM BADGE.\pAfter that, you may pass east.$"
+	.string "EAST GATE CLOSED\nFuture POKéMON LEAGUE site.$"
 
 EcruteakCity_EventScript_Npc2::
 	lock

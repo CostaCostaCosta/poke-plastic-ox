@@ -18,7 +18,6 @@ CITY_DOORS = [
     dict(x=39, y=22, dest_map='MAP_ECRUTEAK_CITY_SAGE_OFFICE1_HNS', dest_warp_id='0'),
     dict(x=36, y=16, dest_map='MAP_ECRUTEAK_CITY_SAGE_OFFICE2_HNS', dest_warp_id='0'),
     dict(x=8, y=35, dest_map='MAP_GATE_ECRUTEAK_CITY_ROUTE38_HNS', dest_warp_id='0'),
-    dict(x=55, y=42, dest_map='MAP_GATE_ECRUTEAK_CITY_ROUTE42_HNS', dest_warp_id='0'),
 ]
 # ROUTE 38 lost its ECRUTEAK "left" seam in wave 3; the gatehouse replaces it.
 ROUTE38_WARP = dict(x=43, y=16, elevation=0,
@@ -31,7 +30,7 @@ ROUTE38_WARP = dict(x=43, y=16, elevation=0,
 # warps on plain tiles; this ROM does not. The room stays reachable through the
 # donor's own interior link from SAGE OFFICE 1, so the dead door is dropped
 # rather than left as a warp nothing can set off.
-CITY_WARP_DROPS = [(36, 16)]
+CITY_WARP_DROPS = [(36, 16), (55, 42)]
 
 # An object event blocks movement, so any NPC the donor parks on a door tile
 # seals that door. SILVER stands on the theatre door (39,40) in the donor; step
@@ -39,6 +38,37 @@ CITY_WARP_DROPS = [(36, 16)]
 NPC_SHIFTS = {
     (39, 40): (39, 39, 'MOVEMENT_TYPE_FACE_DOWN'),
 }
+
+
+def reserve_east(read, put):
+    """Retire the eastern road; reserve its city entrances for the future League."""
+    for name in (CITY, 'Route119'):
+        path = f'data/maps/{name}/map.json'
+        data = json.loads(read(path))
+        for field in ('object_events', 'coord_events', 'bg_events'):
+            data[field] = [e for e in data[field]
+                           if not e.get('script', '').startswith('PoxRegion_ecruteak_route119')
+                           and not (e.get('script') == 'EcruteakCity_EventScript_KimonoRoadblock'
+                                    and (e['x'], e['y']) in ((52, 32), (53, 32), (55, 42)))]
+        if name == CITY:
+            data['warp_events'] = [w for w in data['warp_events']
+                                   if (w['x'], w['y']) != (55, 42)]
+            for x, y in ((53, 32), (55, 42)):
+                data['object_events'].append(dict(
+                    graphics_id='OBJ_EVENT_GFX_SIGN', x=x, y=y, elevation=0,
+                    movement_type='MOVEMENT_TYPE_NONE', movement_range_x=0,
+                    movement_range_y=0, trainer_type='TRAINER_TYPE_NONE',
+                    trainer_sight_or_berry_tree_id='0',
+                    script='EcruteakCity_EventScript_KimonoRoadblock', flag='0'))
+            for obj in data['object_events']:
+                if obj.get('script') == 'Pox_WeatherRoad':
+                    obj['script'] = 'EcruteakCity_EventScript_KimonoRoadblock'
+        put(path, json.dumps(data, indent=2) + '\n')
+    path = f'data/maps/{CITY}/scripts.inc'
+    text = read(path).replace(
+        'Please help MORTY at the BURNED\\nTOWER, then earn his GYM BADGE.\\pAfter that, you may pass east.$',
+        'EAST GATE CLOSED\\nFuture POKéMON LEAGUE site.$')
+    put(path, text)
 
 
 def install(read, put):
@@ -134,6 +164,7 @@ def install(read, put):
         if line not in text:
             text += '\n' + line
     put(p, text)
+    reserve_east(read, put)
     return {'retargeted_warps': retargeted}
 
 

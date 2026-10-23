@@ -65,7 +65,6 @@ TRAILS = [
     ('rustboro_route44','RustboroCity',(39,10),'Route44_hns',(0,15),[]),
     ('route33_goldenrod','Route33_hns','W','GoldenrodCity_hns','S',[]),
     ('goldenrod_route35','GoldenrodCity_hns',(33,8),'Route35_hns','S',[]),
-    ('ecruteak_route119','EcruteakCity_hns','E','Route119','S',['FLAG_BADGE03_GET']),
     ('route119_fortree','Route119',(39,8),'FortreeCity','W',['FLAG_POX_STORY_WEATHER']),
     ('fortree_route110','FortreeCity','E','Route110','N',['FLAG_BADGE04_GET']),
     ('route36_shortcut','Route36_hns','E','Route110',(1,67),['FLAG_POX_REACHED_FORTREE']),
@@ -318,7 +317,7 @@ def apply_region(read, put):
     ports=json.loads(read(path)) if read(path) else {}
     ports={k:v for k,v in ports.items() if not k.startswith(('cherry_route1','route1_route31','ilex_route104',
                                                              'lavender_route8','route8_saffron','route2_rustboro',
-                                                             'route24_route25','route35_park','park_route36'))}
+                                                             'route24_route25','route35_park','park_route36','ecruteak_route119'))}
     reserved={}
     for key,a,at,b,bt,requirements in TRAILS:
         for suffix,name in [('_a',a),('_b',b)]:
