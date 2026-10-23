@@ -280,6 +280,12 @@ def boot_test_game(g, timeout=3600):
     story behavior after it still runs through the real engine.
     """
     g.frame(120)
+    # This fixture bypasses registration, so supply its identity explicitly.
+    save2 = g.u32(g.symbol_address("gSaveBlock2Ptr"))
+    seg, off = g._seg(save2)
+    seg.u8[off] = 0xCA  # P
+    seg.u8[off + 1] = 0xFF
+    seg.u8[off + 8] = 0  # boy
     main = g.symbol_address("gMain")
     callback = g.symbol_address("CB2_NewGame")
     overworld = g.symbol_address("CB2_Overworld") & ~1
@@ -291,13 +297,16 @@ def boot_test_game(g, timeout=3600):
         g.frame(10)
         active = g.core.memory.iwram.u32[main - 0x03000000 + 4] & ~1
         if active == overworld:
-            g.frame(60)
+            # Let the new-game tremor finish and dismiss its opening dialogue.
+            g.frame(420)
+            for _ in range(80):
+                g.tap(K.KEY_A, hold=1, wait=20)
             return
     raise RuntimeError("test new-game fixture never reached the overworld")
 
 
 def assert_test_player(g):
-    """Check the deterministic identity/options established by CB2_NewGame."""
+    """Check the identity supplied by this fixture and the new-game options."""
     party_counts = g.symbol_address("gPartiesCount")
     assert g.u8(party_counts) == 0, "test fixture should wait for Oak to issue P's team"
     save2 = g.u32(g.symbol_address("gSaveBlock2Ptr"))

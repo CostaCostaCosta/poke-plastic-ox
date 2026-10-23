@@ -1,6 +1,7 @@
 #include "global.h"
 #include "battle_pyramid.h"
 #include "bg.h"
+#include "decompress.h"
 #include "field_camera.h"
 #include "fieldmap.h"
 #include "fldeff.h"
@@ -1036,7 +1037,12 @@ static void CopyTilesetToVram(struct Tileset const *tileset, u16 numTiles, u16 o
         if (!tileset->isCompressed)
             LoadBgTiles(2, tileset->tiles, numTiles * 32, offset);
         else
-            DecompressAndCopyTileDataToVram(2, tileset->tiles, numTiles * 32, offset, 0);
+        {
+            u32 size = GetDecompressedDataSize(tileset->tiles);
+            if (size > numTiles * 32)
+                size = numTiles * 32;
+            DecompressAndCopyTileDataToVram(2, tileset->tiles, size, offset, 0);
+        }
     }
 }
 
@@ -1047,7 +1053,15 @@ static void CopyTilesetToVramUsingHeap(struct Tileset const *tileset, u16 numTil
         if (!tileset->isCompressed)
             LoadBgTiles(2, tileset->tiles, numTiles * 32, offset);
         else
-            DecompressAndLoadBgGfxUsingHeap(2, tileset->tiles, numTiles * 32, offset, 0);
+        {
+            // The partition includes unused tile slots. Copying all of them
+            // reads past small compressed tilesets and can split a camera
+            // transition's graphics and tilemap DMA across visible frames.
+            u32 size = GetDecompressedDataSize(tileset->tiles);
+            if (size > numTiles * 32)
+                size = numTiles * 32;
+            DecompressAndLoadBgGfxUsingHeap(2, tileset->tiles, size, offset, 0);
+        }
     }
 }
 

@@ -10,6 +10,7 @@
 #include "credits_frlg.h"
 #include "clock.h"
 #include "dexnav.h"
+#include "dma3.h"
 #include "event_data.h"
 #include "event_object_movement.h"
 #include "plastic_ox_contest.h"
@@ -233,6 +234,7 @@ EWRAM_DATA static mapsec_u16_t sLastMapSectionId = 0;
 EWRAM_DATA static struct InitialPlayerAvatarState sInitialPlayerAvatarState = {0};
 EWRAM_DATA static enum Species sAmbientCrySpecies = SPECIES_NONE;
 EWRAM_DATA static bool8 sIsAmbientCryWaterMon = FALSE;
+EWRAM_DATA static bool8 sCameraTilesetTransferPending = FALSE;
 EWRAM_DATA static u8 sHoursOverride = 0; // used to override apparent time of day hours
 EWRAM_DATA struct LinkPlayerObjectEvent gLinkPlayerObjectEvents[4] = {0};
 EWRAM_DATA bool8 gExitStairsMovementDisabled = FALSE;
@@ -886,6 +888,7 @@ bool8 LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
 {
     const struct MapLayout *previousMapLayout = gMapHeader.mapLayout;
     bool8 primaryTilesetChanged;
+    bool8 tilesetsChanged;
 
     SetWarpDestination(mapGroup, mapNum, WARP_ID_NONE, -1, -1);
 
@@ -897,6 +900,8 @@ bool8 LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
     LoadCurrentMapData();
     primaryTilesetChanged = previousMapLayout->layoutVersion != gMapHeader.mapLayout->layoutVersion
                          || previousMapLayout->primaryTileset != gMapHeader.mapLayout->primaryTileset;
+    tilesetsChanged = primaryTilesetChanged
+                   || previousMapLayout->secondaryTileset != gMapHeader.mapLayout->secondaryTileset;
     LoadObjEventTemplatesFromHeader();
     TrySetMapSaveWarpStatus();
     ClearTempFieldEventData();
@@ -917,6 +922,15 @@ bool8 LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
     Overworld_ClearSavedMusic();
     RunOnTransitionMapScript();
     InitMap();
+    if (tilesetsChanged)
+    {
+        // Keep the old graphics and palette on screen until the destination
+        // tilemap has been rebuilt and all three transfers can share a VBlank.
+        // A camera transition may take several emulator frames to finish;
+        // starting DMA here exposes mismatched tiles along the way.
+        sCameraTilesetTransferPending = TRUE;
+        SetDma3RequestsPaused(TRUE);
+    }
     if (primaryTilesetChanged)
     {
         // Vanilla connections share a primary tileset. Cross-generation
@@ -956,8 +970,7 @@ bool8 LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
     SetMinimumOWESpawnTimer();
     // Even a secondary-only change makes saved source metatile IDs unsafe.
     // The connection margins also differ when either tileset differs.
-    return primaryTilesetChanged
-        || previousMapLayout->secondaryTileset != gMapHeader.mapLayout->secondaryTileset;
+    return tilesetsChanged;
 }
 
 static void LoadMapFromWarp(bool32 a1)
@@ -1876,6 +1889,11 @@ static void OverworldBasic(void)
     UpdatePaletteFade();
     UpdateTilesetAnimations();
     DoScheduledBgTilemapCopiesToVram();
+    if (sCameraTilesetTransferPending)
+    {
+        sCameraTilesetTransferPending = FALSE;
+        SetDma3RequestsPaused(FALSE);
+    }
     // Every minute if no palette fade is active, update TOD blending as needed
     if (!gPaletteFade.active && --gTimeUpdateCounter <= 0)
     {
@@ -2290,7 +2308,8 @@ static void VBlankCB_Field(void)
     ProcessSpriteCopyRequests();
     ScanlineEffect_InitHBlankDmaTransfer();
     FieldUpdateBgTilemapScroll();
-    TransferPlttBuffer();
+    if (!sCameraTilesetTransferPending)
+        TransferPlttBuffer();
     TransferTilesetAnimsBuffer();
 }
 
