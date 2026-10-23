@@ -319,6 +319,15 @@ static void EncodeMon(u32 slot, struct MmPublicMon *m, u32 nativeIndex, u32 batt
         o->move_cat[slot][i][1] = info->type; o->move_cat[slot][i][2] = info->category;
         o->move_num[slot][i][0] = info->power; o->move_num[slot][i][1] = info->accuracy; o->move_num[slot][i][2] = info->priority;
         o->move_flags[slot][i] = info->flags;
+        if (own && move == MOVE_HIDDEN_POWER) {
+            // Only the trainer's own IVs are legal input. Opponent Hidden Power
+            // stays unknown; seeing the move does not reveal its exact type.
+            enum Type type = CheckDynamicMoveType(own, move, battler, active ? MON_IN_BATTLE : MON_OUTSIDE_BATTLE);
+            o->move_cat[slot][i][1] = sTypeTokens[type];
+            o->move_cat[slot][i][2] = gTypesInfo[type].damageCategory == DAMAGE_CATEGORY_SPECIAL ? 3 : 2;
+            o->move_flags[slot][i] |= (1u << 3) | (1u << 4);
+            // Power remains unknown, matching the causal training contract.
+        }
         if (slot == 0) {
             u32 native = sMetamon->moveMap[i];
             u32 maxpp = CalculatePPWithBonus(move, gBattleMons[battler].ppBonuses, native);

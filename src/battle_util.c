@@ -6394,14 +6394,7 @@ static inline u32 CalcMoveBasePower(struct DamageContext *ctx)
     {
         if (B_HIDDEN_POWER_DMG < GEN_6)
         {
-            u8 powerBits = ((gBattleMons[battlerAtk].hpIV & 2) >> 1)
-                         | ((gBattleMons[battlerAtk].attackIV & 2) << 0)
-                         | ((gBattleMons[battlerAtk].defenseIV & 2) << 1)
-                         | ((gBattleMons[battlerAtk].speedIV & 2) << 2)
-                         | ((gBattleMons[battlerAtk].spAttackIV & 2) << 3)
-                         | ((gBattleMons[battlerAtk].spDefenseIV & 2) << 4);
-
-            basePower = (40 * powerBits) / 63 + 30;
+            basePower = GetHiddenPowerBasePower(NULL, battlerAtk, MON_IN_BATTLE);
         }
         break;
     }

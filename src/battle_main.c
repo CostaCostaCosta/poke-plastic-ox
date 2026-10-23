@@ -5820,6 +5820,29 @@ enum Type TrySetAteType(enum Move move, enum BattlerId battlerAtk, enum Ability 
     return ateType;
 }
 
+// Shared by damage calculation and the player's move displays.
+u32 GetHiddenPowerBasePower(struct Pokemon *mon, enum BattlerId battler, enum MonState state)
+{
+    static const u8 ivFields[] = {MON_DATA_HP_IV, MON_DATA_ATK_IV, MON_DATA_DEF_IV,
+        MON_DATA_SPEED_IV, MON_DATA_SPATK_IV, MON_DATA_SPDEF_IV};
+    u32 bits = 0;
+    if (B_HIDDEN_POWER_DMG >= GEN_6)
+        return GetMovePower(MOVE_HIDDEN_POWER);
+    if (state == MON_IN_BATTLE)
+    {
+        const struct BattlePokemon *b = &gBattleMons[battler];
+        bits = ((b->hpIV & 2) >> 1) | (b->attackIV & 2)
+             | ((b->defenseIV & 2) << 1) | ((b->speedIV & 2) << 2)
+             | ((b->spAttackIV & 2) << 3) | ((b->spDefenseIV & 2) << 4);
+    }
+    else
+    {
+        for (u32 i = 0; i < ARRAY_COUNT(ivFields); ++i)
+            bits |= ((GetMonData(mon, ivFields[i]) >> 1) & 1) << i;
+    }
+    return 30 + 40 * bits / 63;
+}
+
 // Returns TYPE_NONE if type doesn't change.
 enum Type GetDynamicMoveType(struct Pokemon *mon, enum Move move, enum BattlerId battler, enum MonState state)
 {

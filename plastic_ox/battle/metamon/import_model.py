@@ -12,7 +12,10 @@ from pathlib import Path
 import re
 import struct
 
-SCHEMA = "dfd5b2755d72052bbcd86cbd97a0c8dff63f6e3c51349e03ca947861bbf864d4"
+SCHEMA = "7c511a49e859963942c7fff3e7b3ce6f6a9cfea7e51b62a744f467b00e89d4ea"
+# Identical tensor layout; existing weights remain usable while a v2 student
+# is trained. Keep their original schema in the report instead of relabeling.
+LEGACY_SCHEMA = "dfd5b2755d72052bbcd86cbd97a0c8dff63f6e3c51349e03ca947861bbf864d4"
 EMBEDDINGS = {
     "species": (388, 24), "item": (800, 8), "ability": (78, 8),
     "status": (10, 4), "move": (356, 16), "element": (20, 4),
@@ -47,10 +50,12 @@ def read_export(binary, manifest):
     data = Path(binary).read_bytes()
     man = json.loads(Path(manifest).read_text())
     for key, value in dict(format="MG3SINT8", version=1, preset="1m",
-                           window=4, hidden=384, schema=SCHEMA,
+                           window=4, hidden=384,
                            parameters=1011355).items():
         if man.get(key) != value:
             raise ValueError(f"Unsupported {key}: {man.get(key)!r}; expected {value!r}")
+    if man.get('schema') not in (SCHEMA, LEGACY_SCHEMA):
+        raise ValueError(f"Unsupported schema: {man.get('schema')!r}")
     if len(data) < 20 or data[:8] != b"MG3SINT8":
         raise ValueError("Invalid binary header")
     version, size = struct.unpack_from("<IQ", data, 8)

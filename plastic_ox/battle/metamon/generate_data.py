@@ -29,6 +29,10 @@ for rank, (name, mid) in enumerate(canonical(MOVE_NAME_TO_ID)):
     bits = [False, not variable, bool(d), not variable, not variable, flags.get('contact',0), flags.get('protect',0), flags.get('sound',0), d.get('target') in ('allAdjacent','allAdjacentFoes'), d.get('target') == 'self']
     values = [0 if variable else d.get('basePower',0)/512, 1 if d.get('accuracy') is True else d.get('accuracy',0)/100, d.get('priority',0)/8]
     s.append(f'    [{mid}] = {{'+', '.join(float(v).hex()+'f' for v in values)+f', {sum(int(bool(v))<<i for i,v in enumerate(bits))}, {rank}, {t}, {cat}'+'},')
+s.append('};\nstatic const u8 sTypeTokens[NUMBER_OF_MON_TYPES] = {')
+for i, name in enumerate(TYPES):
+    if i >= 2 and name != 'reserved':
+        s.append(f'    [TYPE_{name.upper()}] = {i},')
 s.append('};\nstatic const struct MmSpeciesInfo { u16 rank; u8 types[2]; } sSpeciesInfo[387] = {')
 for rank, (name, sid) in enumerate(canonical(SPECIES_NAME_TO_ID)):
     if not 0 < sid <= 386: continue

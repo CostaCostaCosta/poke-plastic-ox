@@ -355,6 +355,25 @@ static const struct MmMoveInfo { float power, accuracy, priority; u16 flags, ran
     [281] = {0x0.0p+0f, 0x1.0000000000000p+0f, 0x0.0p+0f, 94, 352, 2, 4},
     [192] = {0x1.9000000000000p-3f, 0x1.0000000000000p-1f, 0x0.0p+0f, 94, 353, 14, 3},
 };
+static const u8 sTypeTokens[NUMBER_OF_MON_TYPES] = {
+    [TYPE_NORMAL] = 2,
+    [TYPE_FIGHTING] = 3,
+    [TYPE_FLYING] = 4,
+    [TYPE_POISON] = 5,
+    [TYPE_GROUND] = 6,
+    [TYPE_ROCK] = 7,
+    [TYPE_BUG] = 8,
+    [TYPE_GHOST] = 9,
+    [TYPE_STEEL] = 10,
+    [TYPE_FIRE] = 11,
+    [TYPE_WATER] = 12,
+    [TYPE_GRASS] = 13,
+    [TYPE_ELECTRIC] = 14,
+    [TYPE_PSYCHIC] = 15,
+    [TYPE_ICE] = 16,
+    [TYPE_DRAGON] = 17,
+    [TYPE_DARK] = 18,
+};
 static const struct MmSpeciesInfo { u16 rank; u8 types[2]; } sSpeciesInfo[387] = {
     [63] = {0, {15, 0}},
     [359] = {1, {18, 0}},

@@ -4118,6 +4118,8 @@ static void PrintMovePowerAndAccuracy(enum Move moveIndex)
         FillWindowPixelRect(PSS_LABEL_WINDOW_MOVES_POWER_ACC, PIXEL_FILL(0), 53, 0, 19, 32);
 
         u32 power = GetMovePower(moveIndex);
+        if (moveIndex == MOVE_HIDDEN_POWER)
+            power = GetHiddenPowerBasePower(&sMonSummaryScreen->currentMon, 0, MON_OUTSIDE_BATTLE);
         if (power < 2)
         {
             text = gText_ThreeDashes;
@@ -4220,7 +4222,12 @@ static void PrintMoveDetails(enum Move move)
         if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
         {
             if (B_SHOW_CATEGORY_ICON == TRUE)
-                ShowCategoryIcon(GetBattleMoveCategory(move));
+            {
+                enum DamageCategory category = GetBattleMoveCategory(move);
+                if (move == MOVE_HIDDEN_POWER && B_PHYSICAL_SPECIAL_SPLIT < GEN_4)
+                    category = gTypesInfo[CheckDynamicMoveType(&sMonSummaryScreen->currentMon, move, 0, MON_OUTSIDE_BATTLE)].damageCategory;
+                ShowCategoryIcon(category);
+            }
             PrintMovePowerAndAccuracy(move);
             PrintTextOnWindow(windowId, GetMoveDescription(move), 6, 1, 0, 0);
         }
@@ -4415,6 +4422,9 @@ static enum BattlerId GetCurrentBattlerFromSumIndex(u32 sumIndex)
 
 static enum Type SummaryScreen_GetDynamicMoveType(struct Pokemon *mon, enum Move move, enum Type type)
 {
+    // Hidden Power belongs to this individual, including benched party members.
+    if (move == MOVE_HIDDEN_POWER)
+        return CheckDynamicMoveType(mon, move, 0, MON_OUTSIDE_BATTLE);
     if (!P_SHOW_DYNAMIC_TYPES)
         return type;
 

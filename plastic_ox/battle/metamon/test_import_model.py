@@ -5,7 +5,7 @@ import struct
 import tempfile
 import unittest
 
-from import_model import SCHEMA, expected_tensors, generate, read_export
+from import_model import SCHEMA, LEGACY_SCHEMA, expected_tensors, generate, read_export
 
 
 class ExportValidation(unittest.TestCase):
@@ -43,6 +43,12 @@ class ExportValidation(unittest.TestCase):
         for data in (original[:-1], original + b"\0"):
             self.binary.write_bytes(data)
             with self.assertRaises(ValueError): read_export(self.binary, self.manifest)
+
+    def test_legacy_weights_keep_their_recorded_schema(self):
+        self.man['schema'] = LEGACY_SCHEMA
+        self.save_manifest()
+        report = generate(self.binary, self.manifest, self.root / 'legacy')
+        self.assertEqual(report['schema'], LEGACY_SCHEMA)
 
     def test_schema_and_shape_mismatch(self):
         self.man["schema"] = "unknown"

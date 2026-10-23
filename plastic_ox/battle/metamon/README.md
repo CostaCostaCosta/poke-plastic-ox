@@ -1,5 +1,16 @@
 # Metamon trainer AI deployment prototype
 
+Hidden Power update (2026-10-21): training and serving preserve own type and
+category; battle and summary displays show resolved type/category/power. See
+[implementation and verification](HIDDEN_POWER_V2.md). The small validation
+fine tune has not replaced the production weights.
+
+Current production model (2026-10-07): the pinned 1M T=2 round-4 actor is
+imported, rebuilt and validated in mGBA. See
+[deployment measurements](DEPLOYMENT_T2_R4_20261007.md) for the current artifact,
+timing and integration results. Older prototype measurements below retain
+their original September provenance.
+
 Branch: `codex/metamon-trainer-ai`, based on
 `7e1251b4706dd3011eba44bfbabe619329a9ae63`. Findings measured September 24, 2026.
 

@@ -38,6 +38,7 @@ def main():
         'unrevealed_item': lambda: g.write(b+item, 1, 2),
         'unrevealed_ability': lambda: g.write(b+ability, 23, 2),
         'exact_stats_and_ivs': lambda: words(b+attack,[777,666,555,444,333,222]),
+        'hidden_power_ivs': lambda: g.write(b+moves+8, 0x3fffffff, 4),
         'exact_pp': lambda: words(b+pp,[1,2,3,4],1),
         'personality': lambda: g.write(b+personality, 0x12345678,4),
         'private_player_command': lambda: words(g.syms['gChosenMoveByBattler'],[354]),
