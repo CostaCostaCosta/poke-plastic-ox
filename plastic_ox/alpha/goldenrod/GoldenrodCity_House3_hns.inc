@@ -5,10 +5,10 @@ PoxGoldenrod_GoldenrodCity_House3_hns_1::
 	msgbox PoxGoldenrod_GoldenrodCity_House3_hns_1_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_House3_hns_1_Text:
-	.string "GOLDENROD is a busy city.\nTake a look inside its buildings!$"
+	.string "Our girl asks how happy every\nPOKéMON is. She means it, too.$"
 
 PoxGoldenrod_GoldenrodCity_House3_hns_2::
 	msgbox PoxGoldenrod_GoldenrodCity_House3_hns_2_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_House3_hns_2_Text:
-	.string "GOLDENROD is a busy city.\nTake a look inside its buildings!$"
+	.string "If mine likes me, why does it\nkeep taking the best chair?$"

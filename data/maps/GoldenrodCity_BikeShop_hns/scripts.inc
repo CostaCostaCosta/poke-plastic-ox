@@ -5,4 +5,4 @@ PoxGoldenrod_GoldenrodCity_BikeShop_hns_1::
 	msgbox PoxGoldenrod_GoldenrodCity_BikeShop_hns_1_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_BikeShop_hns_1_Text:
-	.string "GOLDENROD is a busy city.\nTake a look inside its buildings!$"
+	.string "We tune every bike before it leaves.\nThe north hill tests the brakes.$"

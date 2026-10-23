@@ -23,11 +23,10 @@ Gate_GoldenrodCity_Route35_EventScript_Npc3::
 	end
 
 Gate_GoldenrodCity_Route35_EventScript_Npc1_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Gate's open and the road is clear.\nMind the ledges once you're out\nthere.$"
 
 Gate_GoldenrodCity_Route35_EventScript_Npc2_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "I cut through this gatehouse on my\nway to the park. It saves me the\nhill.$"
 
 Gate_GoldenrodCity_Route35_EventScript_Npc3_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
-
+	.string "The water is a long walk from here.\nI carry the rod anyway, just in\ncase.$"

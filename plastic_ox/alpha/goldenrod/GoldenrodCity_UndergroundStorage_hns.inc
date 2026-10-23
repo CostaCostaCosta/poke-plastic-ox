@@ -17,4 +17,10 @@ PoxGoldenrod_GoldenrodCity_UndergroundStorage_hns_6::
 	msgbox PoxGoldenrod_GoldenrodCity_UndergroundStorage_hns_6_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_UndergroundStorage_hns_6_Text:
-	.string "Both brothers work here now.\nTheir haircuts bring you closer.$"
+	.string "The store boxes come through here.\nKeep the narrow path clear.$"
+
+PoxGoldenrod_UndergroundStorage_Guard::
+	msgbox PoxGoldenrod_UndergroundStorage_Guard_Text, MSGBOX_NPC
+	end
+PoxGoldenrod_UndergroundStorage_Guard_Text:
+	.string "Storage ends here. The old switch\nchamber is closed for now.$"

@@ -51,7 +51,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "PoxGoldenrod_OlderHaircut",
-      "flag": "0"
+      "flag": "FLAG_POX_HIDE_HAIRCUT_OLDER"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MART_EMPLOYEE",
@@ -64,7 +64,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "PoxGoldenrod_YoungerHaircut",
-      "flag": "0"
+      "flag": "FLAG_POX_HIDE_HAIRCUT_YOUNGER"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_MAN_5",
@@ -159,8 +159,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_KIMONO_HNS",
-      "x": 13,
-      "y": 12,
+      "x": 12,
+      "y": 11,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
@@ -168,7 +168,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "PoxGoldenrod_GoldenrodCity_UndergroundTunnel_hns_11",
-      "flag": "0",
+      "flag": "FLAG_POX_KIMONO_GATE_OPEN",
       "local_id": "LOCALID_GOLDENROD_UNDERGROUND_KIMONO"
     }
   ],

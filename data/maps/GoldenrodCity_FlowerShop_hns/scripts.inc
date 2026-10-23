@@ -5,16 +5,16 @@ PoxGoldenrod_GoldenrodCity_FlowerShop_hns_1::
 	msgbox PoxGoldenrod_GoldenrodCity_FlowerShop_hns_1_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_FlowerShop_hns_1_Text:
-	.string "GOLDENROD is a busy city.\nTake a look inside its buildings!$"
+	.string "Fresh flowers arrive by cart.\nThe first bunch goes to the GYM.$"
 
 PoxGoldenrod_GoldenrodCity_FlowerShop_hns_2::
 	msgbox PoxGoldenrod_GoldenrodCity_FlowerShop_hns_2_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_FlowerShop_hns_2_Text:
-	.string "GOLDENROD is a busy city.\nTake a look inside its buildings!$"
+	.string "Our berry patch is behind the shop.\nThe city bees always find it.$"
 
 PoxGoldenrod_GoldenrodCity_FlowerShop_hns_3::
 	msgbox PoxGoldenrod_GoldenrodCity_FlowerShop_hns_3_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_FlowerShop_hns_3_Text:
-	.string "GOLDENROD is a busy city.\nTake a look inside its buildings!$"
+	.string "I water the seedlings before school.\nOne day I'll grow a whole garden.$"

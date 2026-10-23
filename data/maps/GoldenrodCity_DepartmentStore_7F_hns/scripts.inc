@@ -5,22 +5,22 @@ PoxGoldenrod_GoldenrodCity_DepartmentStore_7F_hns_0::
 	msgbox PoxGoldenrod_GoldenrodCity_DepartmentStore_7F_hns_0_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_DepartmentStore_7F_hns_0_Text:
-	.string "Take the stairs or elevator.\nThere is a rooftop above the shops.$"
+	.string "From here the station looks tiny.\nThe empty tracks look longer.$"
 
 PoxGoldenrod_GoldenrodCity_DepartmentStore_7F_hns_1::
 	msgbox PoxGoldenrod_GoldenrodCity_DepartmentStore_7F_hns_1_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_DepartmentStore_7F_hns_1_Text:
-	.string "Take the stairs or elevator.\nThere is a rooftop above the shops.$"
+	.string "I come up here for quiet.\nEven the city sounds gentle.$"
 
 PoxGoldenrod_GoldenrodCity_DepartmentStore_7F_hns_2::
 	msgbox PoxGoldenrod_GoldenrodCity_DepartmentStore_7F_hns_2_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_DepartmentStore_7F_hns_2_Text:
-	.string "Take the stairs or elevator.\nThere is a rooftop above the shops.$"
+	.string "The park trees turn gold first.\nYou can see it from the roof.$"
 
 PoxGoldenrod_GoldenrodCity_DepartmentStore_7F_hns_3::
 	msgbox PoxGoldenrod_GoldenrodCity_DepartmentStore_7F_hns_3_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_DepartmentStore_7F_hns_3_Text:
-	.string "Take the stairs or elevator.\nThere is a rooftop above the shops.$"
+	.string "My BUG POKéMON likes the wind.\nI keep a firm hold on it.$"

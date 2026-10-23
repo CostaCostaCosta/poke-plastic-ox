@@ -52,11 +52,15 @@ def install(read, put):
     put(p,text)
     put('data/scripts/plastic_ox_goldenrod.inc',(BASE/'services.inc').read_text())
     p='include/constants/plastic_ox_flags.h';text=read(p)
-    text=re.sub(r'// Goldenrod item flags.*?// End Goldenrod item flags\.\n\n','',text,flags=re.S)
     flags=json.loads((BASE/'flags.json').read_text())
     block='// Goldenrod item flags: unused persistent slots, below DAILY_FLAGS_START.\n'
     block+=''.join(f'#define {name} 0x{value:03X}\n' for name,value in flags.items())+'// End Goldenrod item flags.\n\n'
-    text=text.replace('#endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H',block+'#endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H')
+    if block not in text:
+        old=r'// Goldenrod item flags.*?// End Goldenrod item flags\.\n\n'
+        text,count=re.subn(old,block,text,count=1,flags=re.S)
+        if count==0:
+            text=text.replace('#endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H',
+                              block+'#endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H')
     put(p,text)
 
 

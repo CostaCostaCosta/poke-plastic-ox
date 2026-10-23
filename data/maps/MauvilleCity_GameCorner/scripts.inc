@@ -17,8 +17,6 @@ MauvilleCity_GameCorner_EventScript_CoinsClerk::
 	faceplayer
 	msgbox POX_PU_Text_CoinWelcome, MSGBOX_DEFAULT
 	checkitem ITEM_COIN_CASE
-	call_if_eq VAR_RESULT, FALSE, POX_PU_GiveCoinCase
-	checkitem ITEM_COIN_CASE
 	goto_if_eq VAR_RESULT, FALSE, MauvilleCity_GameCorner_EventScript_NeedCoinCase
 	message MauvilleCity_GameCorner_Text_WereYouLookingForCoins
 	waitmessage
@@ -611,10 +609,8 @@ MauvilleCity_GameCorner_Text_ThisIsMauvilleGameCorner:
 	.string "This is MAUVILLE GAME CORNER.$"
 
 MauvilleCity_GameCorner_Text_NeedCoinCaseForCoins:
-	.string "Okay, you wanted some COINS for\n"
-	.string "the games?\p"
-	.string "But you don't have a COIN CASE for\n"
-	.string "stowing the COINS.$"
+	.string "You'll need a COIN CASE to buy\n"
+	.string "COINS. Look in the UNDERGROUND.$"
 
 MauvilleCity_GameCorner_Text_WereYouLookingForCoins:
 	.string "Were you looking for COINS?\p"
@@ -757,10 +753,5 @@ MauvilleCity_GameCorner_Text_CantPlayWithNoCoinCase:
 	.string "You can't play if you don't have\n"
 	.string "a COIN CASE.$"
 
-POX_PU_GiveCoinCase::
-	giveitem ITEM_COIN_CASE
-	return
-
 POX_PU_Text_CoinWelcome:
-	.string "Welcome to GOLDENROD GAME CORNER!\n"
-	.string "Your first COIN CASE is free!$"
+	.string "Welcome to GOLDENROD GAME CORNER!$"

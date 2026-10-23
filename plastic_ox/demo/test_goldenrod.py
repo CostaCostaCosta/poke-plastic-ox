@@ -16,6 +16,12 @@ MAPS={n:json.loads((ROOT/f'data/maps/{n}/map.json').read_text()) for n in NAMES}
 BYID={d['id']:n for n,d in MAPS.items()}
 GROUPS=json.loads((ROOT/'data/maps/map_groups.json').read_text())
 IDS={n:(i,j) for i,k in enumerate(GROUPS['group_order']) for j,n in enumerate(GROUPS[k])}
+RESERVED_WARPS={
+    ('GoldenrodCity_UndergroundTunnel_hns',2),
+    ('GoldenrodCity_UndergroundStorage_hns',1),
+    ('GoldenrodCity_RadioTower_4F_hns',0),
+    ('GoldenrodCity_RadioTower_4F_hns',3),
+}
 
 
 def same_map(g,n):return (g.state()['group'],g.state()['num'])==IDS[n]
@@ -37,6 +43,7 @@ def sources():
             assert all('WANDER' not in o['movement_type'] for o in data['object_events'])
         for i,w in enumerate(data['warp_events']):
             if w['dest_map']=='MAP_DYNAMIC':continue
+            if w['dest_map'] not in BYID:continue  # neighboring gatehouses/routes
             dest=MAPS[BYID[w['dest_map']]]
             landing=dest['warp_events'][int(w['dest_warp_id'])]
             if '7FNight' not in name:
@@ -62,6 +69,7 @@ def warps():
         geom=Geometry(name)
         for index,w in enumerate(MAPS[name]['warp_events']):
             if w['dest_map']=='MAP_DYNAMIC':continue
+            if w['dest_map'] not in BYID or (name,index) in RESERVED_WARPS:continue
             dest=BYID[w['dest_map']];landing=MAPS[dest]['warp_events'][int(w['dest_warp_id'])]
             attempts=[]
             for direction,dx,dy in [('UP',0,-1),('DOWN',0,1),('LEFT',-1,0),('RIGHT',1,0)]:
@@ -91,6 +99,58 @@ def warps():
     print(f'{count} directed physical warps PASS',flush=True)
 
 
+def reservations():
+    # Each future area has two entrances. Both remain locked until a later
+    # event explicitly sets the corresponding persistent flag.
+    cases=[
+        ('GoldenrodCity_UndergroundTunnel_hns',(12,12),
+         'FLAG_POX_KIMONO_GATE_OPEN',(K.KEY_UP,K.KEY_UP),
+         'GoldenrodCity_UndergroundSwitches_hns'),
+        ('GoldenrodCity_UndergroundStorage_hns',(4,11),
+         'FLAG_POX_KIMONO_GATE_OPEN',(K.KEY_LEFT,K.KEY_LEFT),
+         'GoldenrodCity_UndergroundSwitches_hns'),
+        ('GoldenrodCity_RadioTower_4F_hns',(19,6),
+         'FLAG_POX_RADIO_TOP_OPEN',(K.KEY_UP,K.KEY_RIGHT),
+         'GoldenrodCity_RadioTower_5F_hns'),
+        ('GoldenrodCity_RadioTower_4F_hns',(29,6),
+         'FLAG_POX_RADIO_TOP_OPEN',(K.KEY_UP,K.KEY_RIGHT),
+         'GoldenrodCity_RadioTower_5F_hns'),
+    ]
+    for name,position,flag,steps,dest in cases:
+        for opened in (False,True):
+            g=StoryGame()
+            g.flag(flag,opened)
+            g.warp(name,*position)
+            for key in steps:
+                g.tap(key,hold=12,wait=100)
+            if opened:
+                assert same_map(g,dest),(name,'future opening failed',g.state())
+            else:
+                assert same_map(g,name) and (g.state()['x'],g.state()['y'])==position,\
+                    (name,'reserved area entered early',g.state())
+        print('reserved entrance locked/open PASS',name,position,flush=True)
+
+
+def progression():
+    from test_sudowoodo_v1 import ITEM_SQUIRT_BOTTLE, bag
+    g=StoryGame()
+    g.flag('FLAG_BADGE02_GET',False)
+    g.run('Pox_SquirtBottle')
+    assert bag(g,ITEM_SQUIRT_BOTTLE)==0
+    # Whitney's trainerbattle_single victory callback sets Badge 2.
+    g.run('Pox_Whitney_Won')
+    assert g.flag('FLAG_BADGE02_GET')
+    g.warp('GoldenrodCity_FlowerShop_hns',2,5)
+    g.tap(K.KEY_UP,hold=2,wait=12)
+    for _ in range(500):
+        g.tap(K.KEY_A,hold=2,wait=10)
+        if g.u8(g.syms['sGlobalScriptContextStatus'])==2:break
+    else:
+        raise AssertionError('flower-shop gift did not finish')
+    assert bag(g,ITEM_SQUIRT_BOTTLE)==1
+    print('Whitney victory callback -> Badge 2 -> flower-shop SQUIRTBOTTLE PASS',flush=True)
+
+
 
 
 def task(g,name):
@@ -111,6 +171,47 @@ def money(g,value=None):
     addr=g.u32(g.syms['gSaveBlock1Ptr'])+0x490
     if value is not None:g.write(addr,value^key,4)
     return g.u32(addr)^key
+
+
+def coins():
+    from test_sudowoodo_v1 import bag, const
+    item=const('ITEM_COIN_CASE','items.h')
+    corner='GoldenrodCity_GameCorner_hns'
+    tunnel='GoldenrodCity_UndergroundTunnel_hns'
+    pickup=next(o for o in MAPS[tunnel]['object_events']
+                if o['script']=='PoxGoldenrod_GoldenrodCity_UndergroundTunnel_hns_7')
+    g=StoryGame()
+    assert bag(g,item)==0
+    money(g,2000)
+    party=g.count()
+
+    def talk(name,x,y):
+        g.warp(name,x,y)
+        g.tap(K.KEY_UP,hold=2,wait=12)
+        g.tap(K.KEY_A,hold=2,wait=10)
+        assert g.u8(g.syms['sGlobalScriptContextStatus'])!=2, 'interaction did not start'
+        for _ in range(500):
+            g.tap(K.KEY_A,hold=2,wait=10)
+            if g.u8(g.syms['sGlobalScriptContextStatus'])==2:break
+        else:raise AssertionError('coin interaction did not finish')
+        g.frame(60)
+
+    for x in (3,16,18):
+        talk(corner,x,4)
+        assert bag(g,item)==0, ('attendant gave a Coin Case',x)
+        assert money(g)==2000 and g.count()==party
+    g.run('PoxGoldenrod_Slots')
+    assert bag(g,item)==0 and money(g)==2000
+    assert not g.flag(pickup['flag'])
+    print('all three attendants and slots require the Underground Coin Case PASS',flush=True)
+
+    talk(tunnel,pickup['x'],pickup['y']+1)
+    assert bag(g,item)==1 and g.flag(pickup['flag'])
+    talk(corner,3,4)
+    assert bag(g,item)==1 and money(g)==1000, '50-coin purchase failed after pickup'
+    g.warp(tunnel,pickup['x'],pickup['y']+1)
+    assert bag(g,item)==1 and g.flag(pickup['flag'])
+    print('Underground pickup persists and unlocks coin purchases PASS',flush=True)
 
 
 def haircuts():
@@ -247,6 +348,7 @@ def city_tour():
     from walk_leg1 import navigate, enter_warp
     g=StoryGame(spawn=('GoldenrodCity_hns',28,37))
     for index,w in enumerate(MAPS['GoldenrodCity_hns']['warp_events']):
+        if w['dest_map'] not in BYID:continue
         dest=BYID[w['dest_map']]
         approach=(w['x'],w['y']+1)
         avoid={(v['x'],v['y']) for v in MAPS['GoldenrodCity_hns']['warp_events']}
@@ -261,5 +363,5 @@ def city_tour():
 
 if __name__=='__main__':
     sources()
-    for name,check in [('warps',warps),('haircuts',haircuts),('elevator',elevator),('walk',continuous),('city',city_tour)]:
+    for name,check in [('warps',warps),('reservations',reservations),('progression',progression),('coins',coins),('haircuts',haircuts),('elevator',elevator),('walk',continuous),('city',city_tour)]:
         if len(sys.argv)==1 or name in sys.argv:check()

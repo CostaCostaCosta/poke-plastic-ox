@@ -4799,6 +4799,26 @@ void PoxMaximizeSelectedMonFriendship(void)
     SetMonData(&gParties[B_TRAINER_PLAYER][slot], MON_DATA_FRIENDSHIP, &friendship);
 }
 
+// The younger brother's bad cut costs the selected party member all its trust.
+void PoxMinimizeSelectedMonFriendship(void)
+{
+    u8 friendship = 0;
+    u16 slot = gSpecialVar_0x8004;
+
+    if (slot >= gPartiesCount[B_TRAINER_PLAYER]
+        || GetMonData(&gParties[B_TRAINER_PLAYER][slot], MON_DATA_SPECIES) == SPECIES_NONE
+        || GetMonData(&gParties[B_TRAINER_PLAYER][slot], MON_DATA_IS_EGG))
+        return;
+
+    SetMonData(&gParties[B_TRAINER_PLAYER][slot], MON_DATA_FRIENDSHIP, &friendship);
+}
+
+// Gen 2 haircut brothers: expose the RTC weekday to scripts.
+void PoxGetDayOfWeek(void)
+{
+    gSpecialVar_Result = GetDayOfWeek();
+}
+
 u8 GetLeadMonFriendship(void)
 {
     struct Pokemon * pokemon = &gParties[B_TRAINER_PLAYER][GetLeadMonIndex()];

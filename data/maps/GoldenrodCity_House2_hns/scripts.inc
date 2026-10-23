@@ -5,10 +5,10 @@ PoxGoldenrod_GoldenrodCity_House2_hns_0::
 	msgbox PoxGoldenrod_GoldenrodCity_House2_hns_0_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_House2_hns_0_Text:
-	.string "GOLDENROD is a busy city.\nTake a look inside its buildings!$"
+	.string "I repair watches by the window.\nThe tower clock keeps me honest.$"
 
 PoxGoldenrod_GoldenrodCity_House2_hns_1::
 	msgbox PoxGoldenrod_GoldenrodCity_House2_hns_1_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_House2_hns_1_Text:
-	.string "GOLDENROD is a busy city.\nTake a look inside its buildings!$"
+	.string "He fixes clocks for everyone.\nOurs is always ten minutes slow.$"

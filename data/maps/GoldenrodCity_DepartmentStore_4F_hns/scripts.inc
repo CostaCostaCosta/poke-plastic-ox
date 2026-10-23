@@ -9,16 +9,16 @@ PoxGoldenrod_GoldenrodCity_DepartmentStore_4F_hns_0::
 	msgbox PoxGoldenrod_GoldenrodCity_DepartmentStore_4F_hns_0_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_DepartmentStore_4F_hns_0_Text:
-	.string "Take the stairs or elevator.\nThere is a rooftop above the shops.$"
+	.string "I found a FIRE STONE for a friend.\nNow I have to keep the secret.$"
 
 PoxGoldenrod_GoldenrodCity_DepartmentStore_4F_hns_1::
 	msgbox PoxGoldenrod_GoldenrodCity_DepartmentStore_4F_hns_1_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_DepartmentStore_4F_hns_1_Text:
-	.string "Take the stairs or elevator.\nThere is a rooftop above the shops.$"
+	.string "The stones glow under this light.\nI don't know how they do it.$"
 
 PoxGoldenrod_GoldenrodCity_DepartmentStore_4F_hns_2::
 	msgbox PoxGoldenrod_GoldenrodCity_DepartmentStore_4F_hns_2_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_DepartmentStore_4F_hns_2_Text:
-	.string "Take the stairs or elevator.\nThere is a rooftop above the shops.$"
+	.string "My partner wants to evolve.\nI'm still deciding when.$"

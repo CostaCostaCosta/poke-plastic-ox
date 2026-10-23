@@ -25,16 +25,16 @@ PoxGoldenrod_GoldenrodCity_DepartmentStoreBasement_hns_7::
 	msgbox PoxGoldenrod_GoldenrodCity_DepartmentStoreBasement_hns_7_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_DepartmentStoreBasement_hns_7_Text:
-	.string "Take the stairs or elevator.\nThere is a rooftop above the shops.$"
+	.string "Crates from HOENN arrived at dawn.\nWe'll sort them before opening.$"
 
 PoxGoldenrod_GoldenrodCity_DepartmentStoreBasement_hns_8::
 	msgbox PoxGoldenrod_GoldenrodCity_DepartmentStoreBasement_hns_8_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_DepartmentStoreBasement_hns_8_Text:
-	.string "Take the stairs or elevator.\nThere is a rooftop above the shops.$"
+	.string "This lift groans with every load.\nThe mechanic says it's fine.$"
 
 PoxGoldenrod_GoldenrodCity_DepartmentStoreBasement_hns_9::
 	msgbox PoxGoldenrod_GoldenrodCity_DepartmentStoreBasement_hns_9_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_DepartmentStoreBasement_hns_9_Text:
-	.string "Take the stairs or elevator.\nThere is a rooftop above the shops.$"
+	.string "I mark damaged boxes in red.\nThere are fewer than last week.$"

@@ -9,16 +9,16 @@ PoxGoldenrod_GoldenrodCity_DepartmentStore_6F_hns_0::
 	msgbox PoxGoldenrod_GoldenrodCity_DepartmentStore_6F_hns_0_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_DepartmentStore_6F_hns_0_Text:
-	.string "Take the stairs or elevator.\nThere is a rooftop above the shops.$"
+	.string "The roof has the best view of\nthe park on clear mornings.$"
 
 PoxGoldenrod_GoldenrodCity_DepartmentStore_6F_hns_1::
 	msgbox PoxGoldenrod_GoldenrodCity_DepartmentStore_6F_hns_1_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_DepartmentStore_6F_hns_1_Text:
-	.string "Take the stairs or elevator.\nThere is a rooftop above the shops.$"
+	.string "I ate my lunch beside the vent.\nIt smells like fresh bread.$"
 
 PoxGoldenrod_GoldenrodCity_DepartmentStore_6F_hns_2::
 	msgbox PoxGoldenrod_GoldenrodCity_DepartmentStore_6F_hns_2_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_DepartmentStore_6F_hns_2_Text:
-	.string "Take the stairs or elevator.\nThere is a rooftop above the shops.$"
+	.string "Seven floors on foot!\nMy legs call that a workout.$"

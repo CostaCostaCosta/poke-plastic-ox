@@ -1,4 +1,9 @@
-@ Local Goldenrod services. Both brothers use the selected party slot.
+@ Gen 2 haircut brothers (GSC schedule). The older brother works Tuesdays,
+@ Thursdays and Saturdays: a good ¥500 cut that pushes friendship to maximum.
+@ The younger brother works Sundays, Mondays and Wednesdays: ¥300, but he
+@ ruins the cut and the chosen POKéMON loses all of its trust.
+@ Neither works on Friday. The off-duty brother is hidden by the map
+@ ON_TRANSITION script in GoldenrodCity_UndergroundTunnel_hns/scripts.inc.
 PoxGoldenrod_OlderHaircut::
 	lock
 	faceplayer
@@ -10,7 +15,12 @@ PoxGoldenrod_YoungerHaircut::
 	lock
 	faceplayer
 	setvar VAR_0x8008, 300
+	goto_if_set FLAG_POX_BAD_HAIRCUT_KNOWN, PoxGoldenrod_YoungerHaircut_Warn
 	msgbox PoxGoldenrod_Text_Younger, MSGBOX_YESNO
+	goto PoxGoldenrod_HaircutOffer
+
+PoxGoldenrod_YoungerHaircut_Warn::
+	msgbox PoxGoldenrod_Text_YoungerWarn, MSGBOX_YESNO
 PoxGoldenrod_HaircutOffer::
 	goto_if_ne VAR_RESULT, YES, PoxGoldenrod_Release
 	msgbox PoxGoldenrod_Text_Choose
@@ -29,6 +39,7 @@ PoxGoldenrod_PayYounger::
 	checkmoney 300
 	goto_if_eq VAR_RESULT, FALSE, PoxGoldenrod_NoMoney
 	removemoney 300
+	goto PoxGoldenrod_BadCut
 PoxGoldenrod_Cut::
 	closemessage
 	fadescreen FADE_TO_BLACK
@@ -37,6 +48,17 @@ PoxGoldenrod_Cut::
 	waitfanfare
 	fadescreen FADE_FROM_BLACK
 	msgbox PoxGoldenrod_Text_Done
+	goto PoxGoldenrod_Release
+PoxGoldenrod_BadCut::
+	closemessage
+	fadescreen FADE_TO_BLACK
+	special PoxMinimizeSelectedMonFriendship
+	playse SE_FAILURE
+	waitse
+	fadescreen FADE_FROM_BLACK
+	setflag FLAG_POX_BAD_HAIRCUT_KNOWN
+	msgbox PoxGoldenrod_Text_BadDone
+	goto PoxGoldenrod_Release
 PoxGoldenrod_Release::
 	release
 	end
@@ -47,17 +69,21 @@ PoxGoldenrod_NoMoney::
 	msgbox PoxGoldenrod_Text_NoMoney
 	goto PoxGoldenrod_Release
 PoxGoldenrod_Text_Older:
-	.string "I'm the older HAIRCUT BROTHER.\pA haircut costs ¥500 and brings\nyour POKéMON's friendship to maximum.\pWould you like one?$"
+	.string "I'm the older HAIRCUT BROTHER.\pTuesdays, Thursdays, Saturdays.\nThose are my days.\p¥500 buys a proper cut, and your\nPOKéMON's friendship climbs all\pthe way to the top. Ready?$"
 PoxGoldenrod_Text_Younger:
-	.string "I'm the younger HAIRCUT BROTHER.\pFor ¥300, I'll give your POKéMON\na haircut and maximum friendship!\pWould you like one?$"
+	.string "I'm the younger HAIRCUT BROTHER.\pSundays, Mondays, Wednesdays.\nI mind the chair on those days.\p¥300 and I'll tidy your POKéMON\nright up. Want one?$"
+PoxGoldenrod_Text_YoungerWarn:
+	.string "Back for another?\pI'll be straight with you. My\nhands slipped last time, and your\pPOKéMON stopped trusting me.\pIt's still ¥300. Shall I try?$"
 PoxGoldenrod_Text_Choose:
-	.string "Which POKéMON needs a haircut?$"
+	.string "Which POKéMON gets the scissors?$"
 PoxGoldenrod_Text_Done:
-	.string "All done! Your POKéMON's friendship\nis now at its maximum!$"
+	.string "There! A clean cut. Your POKéMON\nlooks sharp and trusts you fully.$"
+PoxGoldenrod_Text_BadDone:
+	.string "Hm. That went sideways.\pYour POKéMON won't even look at\nyou now. I'm sorry. Truly.$"
 PoxGoldenrod_Text_Egg:
-	.string "An EGG doesn't need a haircut.\nCome back after it hatches!$"
+	.string "An EGG? There's nothing to trim\nyet. Bring it back once it hatches.$"
 PoxGoldenrod_Text_NoMoney:
-	.string "You don't have enough money.$"
+	.string "You're short on money.\nCome back when you can pay.$"
 
 PoxGoldenrod_Directory::
 	msgbox PoxGoldenrod_Text_Directory, MSGBOX_SIGN
@@ -232,4 +258,12 @@ PoxGoldenrod_Shop5F_Items:
 	.2byte ITEM_CALCIUM
 	.2byte ITEM_ZINC
 	.2byte ITEM_CARBOS
+	.2byte ITEM_LEFTOVERS
+	.2byte ITEM_CHOICE_BAND
+	.2byte ITEM_CHOICE_SPECS
+	.2byte ITEM_CHOICE_SCARF
+	.2byte ITEM_LIFE_ORB
+	.2byte ITEM_FOCUS_SASH
+	.2byte ITEM_ASSAULT_VEST
+	.2byte ITEM_ROCKY_HELMET
 	.2byte ITEM_NONE

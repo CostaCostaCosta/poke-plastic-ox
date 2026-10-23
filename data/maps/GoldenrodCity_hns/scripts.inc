@@ -2,45 +2,10 @@ GoldenrodCity_hns_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_GoldenrodCity_hns
 	.byte 0
 
-GoldenrodCity_EventScript_Npc1::
-	lock
-	faceplayer
-	msgbox GoldenrodCity_EventScript_Npc1_Text, MSGBOX_NPC
-	release
-	end
-
-GoldenrodCity_EventScript_Npc2::
-	lock
-	faceplayer
-	msgbox GoldenrodCity_EventScript_Npc2_Text, MSGBOX_NPC
-	release
-	end
-
-GoldenrodCity_EventScript_Npc3::
-	lock
-	faceplayer
-	msgbox GoldenrodCity_EventScript_Npc3_Text, MSGBOX_NPC
-	release
-	end
-
 GoldenrodCity_EventScript_Npc4::
 	lock
 	faceplayer
 	msgbox GoldenrodCity_EventScript_Npc4_Text, MSGBOX_NPC
-	release
-	end
-
-GoldenrodCity_EventScript_Npc5::
-	lock
-	faceplayer
-	msgbox GoldenrodCity_EventScript_Npc5_Text, MSGBOX_NPC
-	release
-	end
-
-GoldenrodCity_EventScript_Npc6::
-	lock
-	faceplayer
-	msgbox GoldenrodCity_EventScript_Npc6_Text, MSGBOX_NPC
 	release
 	end
 
@@ -65,59 +30,10 @@ GoldenrodCity_EventScript_Npc9::
 	release
 	end
 
-GoldenrodCity_EventScript_Npc10::
-	lock
-	faceplayer
-	msgbox GoldenrodCity_EventScript_Npc10_Text, MSGBOX_NPC
-	release
-	end
-
-GoldenrodCity_EventScript_Npc11::
-	lock
-	faceplayer
-	msgbox GoldenrodCity_EventScript_Npc11_Text, MSGBOX_NPC
-	release
-	end
-
 GoldenrodCity_EventScript_Npc12::
 	lock
 	faceplayer
 	msgbox GoldenrodCity_EventScript_Npc12_Text, MSGBOX_NPC
-	release
-	end
-
-GoldenrodCity_EventScript_Npc13::
-	lock
-	faceplayer
-	msgbox GoldenrodCity_EventScript_Npc13_Text, MSGBOX_NPC
-	release
-	end
-
-GoldenrodCity_EventScript_Npc14::
-	lock
-	faceplayer
-	msgbox GoldenrodCity_EventScript_Npc14_Text, MSGBOX_NPC
-	release
-	end
-
-GoldenrodCity_EventScript_Npc15::
-	lock
-	faceplayer
-	msgbox GoldenrodCity_EventScript_Npc15_Text, MSGBOX_NPC
-	release
-	end
-
-GoldenrodCity_EventScript_Npc16::
-	lock
-	faceplayer
-	msgbox GoldenrodCity_EventScript_Npc16_Text, MSGBOX_NPC
-	release
-	end
-
-GoldenrodCity_EventScript_Npc17::
-	lock
-	faceplayer
-	msgbox GoldenrodCity_EventScript_Npc17_Text, MSGBOX_NPC
 	release
 	end
 
@@ -132,6 +48,27 @@ GoldenrodCity_EventScript_Npc19::
 	lock
 	faceplayer
 	msgbox GoldenrodCity_EventScript_Npc19_Text, MSGBOX_NPC
+	release
+	end
+
+GoldenrodCity_EventScript_Npc20::
+	lock
+	faceplayer
+	msgbox GoldenrodCity_EventScript_Npc20_Text, MSGBOX_NPC
+	release
+	end
+
+GoldenrodCity_EventScript_Npc21::
+	lock
+	faceplayer
+	msgbox GoldenrodCity_EventScript_Npc21_Text, MSGBOX_NPC
+	release
+	end
+
+GoldenrodCity_EventScript_Npc22::
+	lock
+	faceplayer
+	msgbox GoldenrodCity_EventScript_Npc22_Text, MSGBOX_NPC
 	release
 	end
 
@@ -167,83 +104,56 @@ GoldenrodCity_EventScript_Sign8::
 	msgbox GoldenrodCity_EventScript_Sign8_Text, MSGBOX_SIGN
 	end
 
-GoldenrodCity_EventScript_Npc1_Text:
-	.string "GOLDENROD! Everything converges here:\ntrains, radio, and apparently regions.$"
-
-GoldenrodCity_EventScript_Npc2_Text:
-	.string "I walked here from JOHTO in an hour.\nIt used to take a week.$"
-
-GoldenrodCity_EventScript_Npc3_Text:
-	.string "We're between operations. Ask later.$"
-
 GoldenrodCity_EventScript_Npc4_Text:
-	.string "The RADIO TOWER broadcasts to every\nregion now. Feedback loops included.$"
-
-GoldenrodCity_EventScript_Npc5_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
-
-GoldenrodCity_EventScript_Npc6_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "My knees quit on the third floor of\nthe DEPT. STORE. Seven floors, and\nnot one bench.$"
 
 GoldenrodCity_EventScript_Npc7_Text:
-	.string "BILL's family lives here! His little\nsister won't stop talking about EEVEE.$"
+	.string "The RADIO TOWER plays a POKéMON\nLULLABY at eight sharp. I fall asleep\nbefore the news.$"
 
 GoldenrodCity_EventScript_Npc8_Text:
-	.string "A gym, a tower, a train... this city\neats small towns like mine.$"
+	.string "The coast train used to run twice a\nday. I still watch the empty track.$"
 
 GoldenrodCity_EventScript_Npc9_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
-
-GoldenrodCity_EventScript_Npc10_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
-
-GoldenrodCity_EventScript_Npc11_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Downhill to the harbor is ten\nminutes. Getting back up is an hour.$"
 
 GoldenrodCity_EventScript_Npc12_Text:
-	.string "Came for the DEPT. STORE. Stayed\nbecause the maps stopped making sense.$"
-
-GoldenrodCity_EventScript_Npc13_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
-
-GoldenrodCity_EventScript_Npc14_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
-
-GoldenrodCity_EventScript_Npc15_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
-
-GoldenrodCity_EventScript_Npc16_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
-
-GoldenrodCity_EventScript_Npc17_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "I buy flowers here for my wife. She\nsays they smell like the town we\ngrew up in.$"
 
 GoldenrodCity_EventScript_Npc18_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The store basement sells bitter herbs.\nThe rooftop sells nothing but sky.$"
 
 GoldenrodCity_EventScript_Npc19_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "I do my shopping before noon, while\nthe GYM crowd is still indoors.$"
+
+GoldenrodCity_EventScript_Npc20_Text:
+	.string "A shipment of bikes came up from\nHOENN this morning. Good frames,\nbut the MACHS are pricey.$"
+
+GoldenrodCity_EventScript_Npc21_Text:
+	.string "They read out the GYM results on the\nevening broadcast. My son listens\nfor his own name.$"
+
+GoldenrodCity_EventScript_Npc22_Text:
+	.string "I walk this block every day. The shops\nchange hands, the pavement never\ndoes.$"
 
 GoldenrodCity_EventScript_Sign1_Text:
-	.string "GOLDENROD CITY\nThe city where maps negotiate.$"
+	.string "GOLDENROD CITY\nWalk your bicycles downtown.$"
 
 GoldenrodCity_EventScript_Sign2_Text:
-	.string "GOLDENROD CITY\nDEPT. STORE: everything but directions.$"
+	.string "DEPT. STORE AHEAD\nElevator service to all floors.$"
 
 GoldenrodCity_EventScript_Sign3_Text:
-	.string "GOLDENROD CITY\nUNDERGROUND: entrances may vary.$"
+	.string "UNDERGROUND\nGoldenrod Tunnel - west entrance.$"
 
 GoldenrodCity_EventScript_Sign4_Text:
-	.string "NORTH: GATE TO ROUTE 35\nand points beyond geography.$"
+	.string "ROUTE 35 - NORTH\nThrough the gatehouse.$"
 
 GoldenrodCity_EventScript_Sign5_Text:
-	.string "GOLDENROD CITY\nPCs free for trainers of all regions.$"
+	.string "POKéMON CENTER\nHeal your team and move on.$"
 
 GoldenrodCity_EventScript_Sign6_Text:
-	.string "GOLDENROD CITY\nBIKE SHOP: cross-region models.$"
+	.string "BIKE SHOP\nNew and used. Trade-ins welcome.$"
 
 GoldenrodCity_EventScript_Sign7_Text:
-	.string "GOLDENROD GYM\nLeader: WHITNEY. Currently 'thinking'.$"
+	.string "GOLDENROD GYM\nLEADER: WHITNEY\nShe never lets up, and never brags.$"
 
 GoldenrodCity_EventScript_Sign8_Text:
-	.string "GOLDENROD CITY\nFLOWER SHOP: Johto-Hoenn hybrids.$"
+	.string "FLOWER SHOP\nCut flowers, seeds and berries.$"

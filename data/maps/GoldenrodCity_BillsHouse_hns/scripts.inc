@@ -1,19 +1,18 @@
 GoldenrodCity_BillsHouse_hns_MapScripts::
 	.byte 0
 
-GoldenrodCity_BillsHouse_EventScript_Npc1::
+@ BILL's father. BILL himself is never at home; he is out doing field work.
+@ The mother (8,4) runs Pox_Family in data/scripts/plastic_ox_story.inc and
+@ hands over the family EEVEE; the little sister is Npc3 below.
+Pox_BillsHouse_Father::
 	lock
 	faceplayer
-	msgbox GoldenrodCity_BillsHouse_EventScript_Npc1_Text, MSGBOX_NPC
+	msgbox Pox_BillsHouse_Text_Father, MSGBOX_NPC
 	release
 	end
 
-GoldenrodCity_BillsHouse_EventScript_Npc2::
-	lock
-	faceplayer
-	msgbox GoldenrodCity_BillsHouse_EventScript_Npc2_Text, MSGBOX_NPC
-	release
-	end
+Pox_BillsHouse_Text_Father:
+	.string "Our son BILL sends gadgets home\ninstead of letters.\pThe last one hums all night.\nI unplug it before bed.$"
 
 GoldenrodCity_BillsHouse_EventScript_Npc3::
 	lock
@@ -22,12 +21,5 @@ GoldenrodCity_BillsHouse_EventScript_Npc3::
 	release
 	end
 
-GoldenrodCity_BillsHouse_EventScript_Npc1_Text:
-	.string "...If you hit dead ends on ROUTE 25,\ncome back and tell nobody.$"
-
-GoldenrodCity_BillsHouse_EventScript_Npc2_Text:
-	.string "Our Bill's away again. Somewhere north\nof everywhere, he said. Men!$"
-
 GoldenrodCity_BillsHouse_EventScript_Npc3_Text:
-	.string "Grandpa caught an EEVEE once. I want\nseven of my own someday!$"
-
+	.string "Grandpa keeps the cottage by the\nsea. He has an EEVEE there.\pI want seven of my own someday!$"
