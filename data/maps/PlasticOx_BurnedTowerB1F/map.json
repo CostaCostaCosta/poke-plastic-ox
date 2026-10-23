@@ -1,0 +1,97 @@
+{
+  "id": "MAP_PLASTIC_OX_BURNED_TOWER_B1F",
+  "name": "PlasticOx_BurnedTowerB1F",
+  "layout": "LAYOUT_BURNED_TOWER_B1F_HNS",
+  "music": "MUS_RG_POKE_TOWER",
+  "region_map_section": "MAPSEC_BURNED_TOWER",
+  "requires_flash": false,
+  "weather": "WEATHER_SHADE",
+  "map_type": "MAP_TYPE_UNDERGROUND",
+  "allow_cycling": false,
+  "allow_escaping": true,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MAN_3",
+      "x": 8,
+      "y": 9,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Pox_BurnedTower",
+      "flag": "FLAG_POX_STORY_BURNED_TOWER"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
+      "x": 6,
+      "y": 9,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxBurnedTower_UltraBall",
+      "flag": "FLAG_POX_BURNED_TOWER_ULTRA_BALL"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
+      "x": 5,
+      "y": 15,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxBurnedTower_TM12",
+      "flag": "FLAG_POX_BURNED_TOWER_TM12"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SAGE_HNS",
+      "x": 7,
+      "y": 8,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxBurnedTower_AssembledSage",
+      "flag": "FLAG_POX_STORY_BURNED_TOWER",
+      "local_id": "LOCALID_POX_TOWER_SAGE_1"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SAGE_HNS",
+      "x": 9,
+      "y": 8,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxBurnedTower_AssembledSage",
+      "flag": "FLAG_POX_STORY_BURNED_TOWER",
+      "local_id": "LOCALID_POX_TOWER_SAGE_2"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 26,
+      "y": 7,
+      "elevation": 0,
+      "dest_map": "MAP_PLASTIC_OX_BURNED_TOWER",
+      "dest_warp_id": "1"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [],
+  "region": "REGION_HOENN"
+}

@@ -10,6 +10,7 @@ FRUIT_TREES = {
     "Route46_hns": [(9, 11, "Sitrus"), (11, 11, "Liechi")],
     "Route44_hns": [(7, 10, "Salac"), (9, 10, "Petaya")],
     "Route35_hns": [(11, 25, "Persim")],
+    "Route37_hns": [(33, 24, "Route37Sitrus")],
 }
 
 

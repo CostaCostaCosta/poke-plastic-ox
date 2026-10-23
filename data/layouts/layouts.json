@@ -11082,6 +11082,48 @@
       "include_in_versions": [
         "emerald"
       ]
+    },
+    {
+      "id": "LAYOUT_BURNED_TOWER_1F_HNS",
+      "name": "BurnedTower_1F_hns_Layout",
+      "width": 27,
+      "height": 25,
+      "primary_tileset": "gTileset_Johto_Building_Hns",
+      "secondary_tileset": "gTileset_BurnedTower_Hns",
+      "border_filepath": "data/layouts/BurnedTower_1F_hns/border.bin",
+      "blockdata_filepath": "data/layouts/BurnedTower_1F_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
+      "id": "LAYOUT_BURNED_TOWER_B1F_HNS",
+      "name": "BurnedTower_B1F_hns_Layout",
+      "width": 28,
+      "height": 19,
+      "primary_tileset": "gTileset_Johto_Building_Hns",
+      "secondary_tileset": "gTileset_BurnedTower_Hns",
+      "border_filepath": "data/layouts/BurnedTower_B1F_hns/border.bin",
+      "blockdata_filepath": "data/layouts/BurnedTower_B1F_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
+      "id": "LAYOUT_GATE_NATIONAL_PARK_HNS",
+      "name": "Gate_NationalPark_hns_Layout",
+      "width": 50,
+      "height": 18,
+      "primary_tileset": "gTileset_Johto_Building_Hns",
+      "secondary_tileset": "gTileset_Gate_Standard_Hns",
+      "border_filepath": "data/layouts/Gate_NationalPark_hns/border.bin",
+      "blockdata_filepath": "data/layouts/Gate_NationalPark_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
     }
   ]
 }

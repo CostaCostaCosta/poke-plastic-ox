@@ -234,13 +234,13 @@ PoxRegion_route33_goldenrod_a::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route33_goldenrod_a_Open
 PoxRegion_route33_goldenrod_a_Open::
-	warp MAP_GOLDENROD_CITY_HNS, 32, 44
+	warp MAP_GOLDENROD_CITY_HNS, 33, 44
 	waitstate
 	releaseall
 	end
 PoxRegion_route33_goldenrod_a_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE33_HNS, 0, 23
+	warp MAP_ROUTE33_HNS, 1, 23
 	waitstate
 	releaseall
 	end
@@ -249,13 +249,13 @@ PoxRegion_route33_goldenrod_a_Sign::
 	msgbox PoxRegion_route33_goldenrod_a_Text, MSGBOX_SIGN
 	end
 PoxRegion_route33_goldenrod_a_Text::
-	.string "GoldenrodCity\nMarked passage ahead.$"
+	.string "GOLDENROD CITY\nFollow the road up into town.$"
 
 PoxRegion_route33_goldenrod_b::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route33_goldenrod_b_Open
 PoxRegion_route33_goldenrod_b_Open::
-	warp MAP_ROUTE33_HNS, 0, 23
+	warp MAP_ROUTE33_HNS, 1, 23
 	waitstate
 	releaseall
 	end
@@ -270,151 +270,13 @@ PoxRegion_route33_goldenrod_b_Sign::
 	msgbox PoxRegion_route33_goldenrod_b_Text, MSGBOX_SIGN
 	end
 PoxRegion_route33_goldenrod_b_Text::
-	.string "Route33\nMarked passage ahead.$"
-
-PoxRegion_goldenrod_route35_a::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_goldenrod_route35_a_Open
-PoxRegion_goldenrod_route35_a_Open::
-	warp MAP_ROUTE35_HNS, 15, 47
-	waitstate
-	releaseall
-	end
-PoxRegion_goldenrod_route35_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_GOLDENROD_CITY_HNS, 32, 9
-	waitstate
-	releaseall
-	end
-
-PoxRegion_goldenrod_route35_b::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_goldenrod_route35_b_Open
-PoxRegion_goldenrod_route35_b_Open::
-	warp MAP_GOLDENROD_CITY_HNS, 32, 9
-	waitstate
-	releaseall
-	end
-PoxRegion_goldenrod_route35_b_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE35_HNS, 15, 47
-	waitstate
-	releaseall
-	end
+	.string "ROUTE 33 - SOUTH\nFollow the road down.$"
 
 PoxRegion_goldenrod_route35_b_Sign::
 	msgbox PoxRegion_goldenrod_route35_b_Text, MSGBOX_SIGN
 	end
 PoxRegion_goldenrod_route35_b_Text::
-	.string "GoldenrodCity\nMarked passage ahead.$"
-
-PoxRegion_route35_park_a::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route35_park_a_Open
-PoxRegion_route35_park_a_Open::
-	warp MAP_NATIONAL_PARK_NORMAL_HNS, 39, 28
-	waitstate
-	releaseall
-	end
-PoxRegion_route35_park_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE35_HNS, 16, 7
-	waitstate
-	releaseall
-	end
-
-PoxRegion_route35_park_b::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route35_park_b_Open
-PoxRegion_route35_park_b_Open::
-	warp MAP_ROUTE35_HNS, 16, 7
-	waitstate
-	releaseall
-	end
-PoxRegion_route35_park_b_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_NATIONAL_PARK_NORMAL_HNS, 39, 28
-	waitstate
-	releaseall
-	end
-
-PoxRegion_park_route36_a::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_park_route36_a_Open
-PoxRegion_park_route36_a_Open::
-	warp MAP_ROUTE36_HNS, 17, 21
-	waitstate
-	releaseall
-	end
-PoxRegion_park_route36_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_NATIONAL_PARK_NORMAL_HNS, 39, 23
-	waitstate
-	releaseall
-	end
-
-PoxRegion_park_route36_b::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_park_route36_b_Open
-PoxRegion_park_route36_b_Open::
-	warp MAP_NATIONAL_PARK_NORMAL_HNS, 39, 23
-	waitstate
-	releaseall
-	end
-PoxRegion_park_route36_b_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE36_HNS, 17, 21
-	waitstate
-	releaseall
-	end
-
-PoxRegion_park_route36_b_Sign::
-	msgbox PoxRegion_park_route36_b_Text, MSGBOX_SIGN
-	end
-PoxRegion_park_route36_b_Text::
-	.string "NationalPark_Normal\nMarked passage ahead.$"
-
-PoxRegion_route37_ecruteak_a::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route37_ecruteak_a_Open
-PoxRegion_route37_ecruteak_a_Open::
-	warp MAP_ECRUTEAK_CITY_HNS, 33, 53
-	waitstate
-	releaseall
-	end
-PoxRegion_route37_ecruteak_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE37_HNS, 18, 11
-	waitstate
-	releaseall
-	end
-
-PoxRegion_route37_ecruteak_a_Sign::
-	msgbox PoxRegion_route37_ecruteak_a_Text, MSGBOX_SIGN
-	end
-PoxRegion_route37_ecruteak_a_Text::
-	.string "EcruteakCity\nMarked passage ahead.$"
-
-PoxRegion_route37_ecruteak_b::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route37_ecruteak_b_Open
-PoxRegion_route37_ecruteak_b_Open::
-	warp MAP_ROUTE37_HNS, 18, 11
-	waitstate
-	releaseall
-	end
-PoxRegion_route37_ecruteak_b_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ECRUTEAK_CITY_HNS, 33, 53
-	waitstate
-	releaseall
-	end
-
-PoxRegion_route37_ecruteak_b_Sign::
-	msgbox PoxRegion_route37_ecruteak_b_Text, MSGBOX_SIGN
-	end
-PoxRegion_route37_ecruteak_b_Text::
-	.string "Route37\nMarked passage ahead.$"
+	.string "GOLDENROD CITY - SOUTH\nThrough the gatehouse.$"
 
 PoxRegion_ecruteak_route119_a::
 	lockall

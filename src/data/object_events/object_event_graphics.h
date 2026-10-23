@@ -646,9 +646,12 @@ const u16 gObjectEventPic_SilverHns[] = INCGFX_U16("graphics/object_events/pics/
 const u16 gObjectEventPic_FatManHns[] = INCGFX_U16("graphics/object_events/pics/people/fat_man_hns.png", ".4bpp", "-mwidth 2 -mheight 4");
 const u16 gObjectEventPic_PicnickerHns[] = INCGFX_U16("graphics/object_events/pics/people/picnicker_hns.png", ".4bpp", "-mwidth 2 -mheight 4");
 const u16 gObjectEventPic_CooltrainerFHns[] = INCGFX_U16("graphics/object_events/pics/people/cooltrainer_f_hns.png", ".4bpp", "-mwidth 2 -mheight 4");
+const u16 gObjectEventPic_WhitneyHns[] = INCGFX_U16("graphics/object_events/pics/people/whitney_hns.png", ".4bpp", "-mwidth 2 -mheight 4");
+const u16 gObjectEventPic_SageHns[] = INCGFX_U16("graphics/object_events/pics/people/sage_hns.png", ".4bpp", "-mwidth 2 -mheight 4");
 
 const u16 gObjectEventPal_KimonoHns[] = INCGFX_U16("graphics/object_events/palettes/kimono_hns.pal", ".gbapal");
 const u16 gObjectEventPal_SilverHns[] = INCGFX_U16("graphics/object_events/palettes/silver_hns.pal", ".gbapal");
+const u16 gObjectEventPal_WhitneyHns[] = INCGFX_U16("graphics/object_events/palettes/whitney_hns.pal", ".gbapal");
+const u16 gObjectEventPal_SageHns[] = INCGFX_U16("graphics/object_events/palettes/sage_hns.pal", ".gbapal");
 
 // end Plastic Ox HnS object graphics
-

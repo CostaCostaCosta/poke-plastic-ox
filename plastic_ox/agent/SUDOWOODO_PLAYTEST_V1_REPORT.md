@@ -344,3 +344,25 @@ Observed verbatim in scenario 3.
   and no framebuffer screenshots were inspected (no image-capable model in this
   session) - every claim above rests on decoded message text, memory-state
   probes and battle-struct readings.
+
+## 2026-10-06 follow-up: P2 resolved
+
+The original 66×30 HNS Route 36 layout from `pokehns-expansion` revision
+`44f50eedefe58691b0444973e4138e9190d8fafc` uses the Johto General and
+Violet City tilesets and places Sudowoodo at `(39,19)`,
+the south/north/east junction. The prior Plastic-Ox lower lane at `(40..44,20)`
+let players walk around it. That lane is a tree line again, and the donor road
+at `(43,18..19)` is restored. Sudowoodo now occupies `(39,19)`; Snorlax guards
+only the east branch at `(43,19)`. Route 36 keeps the National Park arrival at
+`(16,21)`, Route 37's north connection at offset 20, the Route 110 east portal
+at `(65,18)`, existing event scripts, and the encounter table. The four
+previously closed tiles on the north seam remain closed.
+
+`plastic_ox/agent/open_route36_snorlax_pass.py` reproduces the seven tile
+edits. `plastic_ox/demo/test_route36_junction.py` proves that the occupied
+junction blocks the north and east roads from the park, including Surf
+reachability, and checks the reverse approach. It also checks the three gate
+states and walks Route 36 → Route 37 → Route 36 in the built ROM. Fresh
+screenshots under `plastic_ox/demo/shots/route36_*.png` show the junction and
+both sides of the route seam. The full Sudowoodo and Burned Tower emulator
+playthroughs pass after this change.

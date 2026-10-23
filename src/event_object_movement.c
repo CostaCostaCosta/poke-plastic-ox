@@ -549,6 +549,8 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Seagallop,             OBJ_EVENT_PAL_TAG_SEAGALLOP},
     {gObjectEventPal_KimonoHns,             OBJ_EVENT_PAL_TAG_POX_KIMONO},
     {gObjectEventPal_SilverHns,             OBJ_EVENT_PAL_TAG_POX_SILVER},
+    {gObjectEventPal_WhitneyHns,            OBJ_EVENT_PAL_TAG_POX_WHITNEY},
+    {gObjectEventPal_SageHns,            OBJ_EVENT_PAL_TAG_POX_SAGE},
 // end Plastic Ox FRLG graphics
 #if OW_FOLLOWERS_POKEBALLS
     {gObjectEventPal_MasterBall,            OBJ_EVENT_PAL_TAG_BALL_MASTER},

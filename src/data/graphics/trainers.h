@@ -127,6 +127,11 @@ const u16 gTrainerPalette_EliteFourDrake[] = INCGFX_U16("graphics/trainers/front
 const u32 gTrainerFrontPic_LeaderRoxanne[] = INCGFX_U32("graphics/trainers/front_pics/leader_roxanne.png", ".4bpp.smol");
 const u16 gTrainerPalette_LeaderRoxanne[] = INCGFX_U16("graphics/trainers/front_pics/leader_roxanne.png", ".gbapal");
 
+const u32 gTrainerFrontPic_LeaderWhitneyHns[] = INCGFX_U32("graphics/trainers/front_pics/leader_whitney_hns.png", ".4bpp.smol");
+const u32 gTrainerFrontPic_SageHns[] = INCGFX_U32("graphics/trainers/front_pics/sage_hns.png", ".4bpp.smol");
+const u16 gTrainerPalette_LeaderWhitneyHns[] = INCGFX_U16("graphics/trainers/palettes/leader_whitney_hns.pal", ".gbapal");
+const u16 gTrainerPalette_SageHns[] = INCGFX_U16("graphics/trainers/palettes/sage_hns.pal", ".gbapal");
+
 const u32 gTrainerFrontPic_LeaderBrawly[] = INCGFX_U32("graphics/trainers/front_pics/leader_brawly.png", ".4bpp.smol");
 const u16 gTrainerPalette_LeaderBrawly[] = INCGFX_U16("graphics/trainers/front_pics/leader_brawly.png", ".gbapal");
 
@@ -1225,5 +1230,13 @@ const struct TrainerPicInfo gTrainerPicInfo[TRAINER_PIC_COUNT] =
     [TRAINER_PIC_PAINTER_FRLG] =
     {
         .frontPic = TRAINER_FRONT_PIC(gTrainerFrontPic_PainterFrlg, gTrainerPalette_PainterFrlg),
+    },
+    [TRAINER_PIC_LEADER_WHITNEY_HNS] =
+    {
+        .frontPic = TRAINER_FRONT_PIC(gTrainerFrontPic_LeaderWhitneyHns, gTrainerPalette_LeaderWhitneyHns),
+    },
+    [TRAINER_PIC_SAGE_HNS] =
+    {
+        .frontPic = TRAINER_FRONT_PIC(gTrainerFrontPic_SageHns, gTrainerPalette_SageHns),
     },
 };

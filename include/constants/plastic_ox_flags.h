@@ -3,6 +3,19 @@
 
 #include "constants/plastic_ox_story.h"
 
+// Persistent imported events and future Sage trainer victories. Byte-aligned
+// virtual range stored in appended SaveBlock3 bytes; never cleared by the RTC.
+#define POX_EVENT_FLAGS_START 0xB00
+#define POX_EVENT_FLAGS_COUNT 128
+#define POX_SAGE_TRAINER_FLAGS_START (POX_EVENT_FLAGS_START + 64)
+#define FLAG_POX_MANSION_SWITCH (POX_EVENT_FLAGS_START + 0)
+#define FLAG_POX_CINNABAR_QUIZ_1 (POX_EVENT_FLAGS_START + 1)
+#define FLAG_POX_CINNABAR_QUIZ_2 (POX_EVENT_FLAGS_START + 2)
+#define FLAG_POX_CINNABAR_QUIZ_3 (POX_EVENT_FLAGS_START + 3)
+#define FLAG_POX_CINNABAR_QUIZ_4 (POX_EVENT_FLAGS_START + 4)
+#define FLAG_POX_CINNABAR_QUIZ_5 (POX_EVENT_FLAGS_START + 5)
+#define FLAG_POX_CINNABAR_QUIZ_6 (POX_EVENT_FLAGS_START + 6)
+
 // FRLG hidden-item flags need persistent storage in the Emerald build. Their
 // original IDs collide with Hoenn flags, so GetFlagPointer routes this virtual
 // range to SaveBlock3 without changing SaveBlock1's established offsets.
@@ -32,6 +45,11 @@
 #define FLAG_POX_DAILY_R44_SALAC  0x926
 #define FLAG_POX_DAILY_R44_PETAYA 0x927
 #define FLAG_POX_DAILY_R35_PERSIM 0x928
+#define FLAG_POX_DAILY_PARK_CONTEST 0x929
+#define FLAG_POX_DAILY_R37_SITRUS 0x933
+
+// Gate-local crowd visibility, recalculated before spawning map objects.
+#define FLAG_POX_HIDE_PARK_CONTEST_CROWD FLAG_TEMP_1
 
 // Scripts may set/clear this to keep frame-sensitive field sequences at 1x.
 #define FLAG_PREVENT_OVERWORLD_SPEEDUP 0x27F
@@ -232,4 +250,35 @@
 // One-time gift from the Devon worker in Rustboro's dormitory.
 #define FLAG_POX_RUSTBORO_CHOICE_BAND 0x90E
 
+// Run 7: Underground haircut brothers, kimono gate, and the Steel Tablet.
+#define FLAG_POX_HIDE_HAIRCUT_OLDER   0x90F // set = older brother off duty (map ON_TRANSITION)
+#define FLAG_POX_HIDE_HAIRCUT_YOUNGER 0x910 // set = younger brother off duty
+#define FLAG_POX_KIMONO_GATE_OPEN     0x911 // reserved: opens both switch-room entrances later
+#define FLAG_POX_HIDDEN_UNDERGROUND_STEEL_TABLET 0x912
+#define FLAG_POX_BAD_HAIRCUT_KNOWN    0x913 // set = player has had one bad haircut
+#define FLAG_POX_ROUTE36_SNORLAX_CLEARED 0x914 // Route 36 eastern path opens after battle
+#define FLAG_POX_CONTEST_EVERSTONE_PENDING 0x915
+#define FLAG_POX_CONTEST_SITRUS_PENDING    0x916
+#define FLAG_POX_CONTEST_ORAN_PENDING      0x917
+
+// One-time pickups in Burned Tower. These are unused persistent system slots.
+#define FLAG_POX_BURNED_TOWER_FIRE_STONE   0x918
+#define FLAG_POX_BURNED_TOWER_ETHER        0x919
+#define FLAG_POX_BURNED_TOWER_ULTRA_BALL   0x91A
+#define FLAG_POX_BURNED_TOWER_TM12         0x91B
+#define FLAG_POX_RADIO_TOP_OPEN            0x91C // reserved: opens both 4F staircases later
+
+#define FLAG_POX_HIDE_POKEMON_MANSION_1F_CARBOS (POX_EVENT_FLAGS_START + 8)
+#define FLAG_POX_HIDE_POKEMON_MANSION_1F_ESCAPE_ROPE (POX_EVENT_FLAGS_START + 9)
+#define FLAG_POX_HIDE_POKEMON_MANSION_1F_PROTEIN (POX_EVENT_FLAGS_START + 10)
+#define FLAG_POX_HIDE_POKEMON_MANSION_2F_CALCIUM (POX_EVENT_FLAGS_START + 11)
+#define FLAG_POX_HIDE_POKEMON_MANSION_2F_HP_UP (POX_EVENT_FLAGS_START + 12)
+#define FLAG_POX_HIDE_POKEMON_MANSION_2F_ZINC (POX_EVENT_FLAGS_START + 13)
+#define FLAG_POX_HIDE_POKEMON_MANSION_3F_IRON (POX_EVENT_FLAGS_START + 14)
+#define FLAG_POX_HIDE_POKEMON_MANSION_3F_MAX_POTION (POX_EVENT_FLAGS_START + 15)
+#define FLAG_POX_HIDE_POKEMON_MANSION_B1F_FULL_RESTORE (POX_EVENT_FLAGS_START + 16)
+#define FLAG_POX_HIDE_POKEMON_MANSION_B1F_SECRET_KEY (POX_EVENT_FLAGS_START + 17)
+#define FLAG_POX_HIDE_POKEMON_MANSION_B1F_TM14 (POX_EVENT_FLAGS_START + 18)
+#define FLAG_POX_HIDE_POKEMON_MANSION_B1F_TM22 (POX_EVENT_FLAGS_START + 19)
+#define FLAG_POX_INTRO_QUAKE_PENDING (POX_EVENT_FLAGS_START + 20) // Cleared after the new-game tremor.
 #endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H

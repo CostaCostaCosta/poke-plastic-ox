@@ -274,6 +274,8 @@ struct SaveBlock3
 #if !IS_FRLG
     u32 kantoHiddenItemsMagic;
     u8 kantoHiddenItems[ROUND_BITS_TO_BYTES(POX_KANTO_HIDDEN_FLAGS_COUNT)];
+    u32 poxEventFlagsMagic;
+    u8 poxEventFlags[ROUND_BITS_TO_BYTES(POX_EVENT_FLAGS_COUNT)];
 #endif
 }; /* max size 1624 bytes */
 

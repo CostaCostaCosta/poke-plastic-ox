@@ -172,12 +172,13 @@ Pox_Whitney_Won::
 	setflag FLAG_BADGE02_GET
 
 msgbox Pox_Text_Badge, MSGBOX_DEFAULT
+	msgbox Pox_Text_WhitneyAfter, MSGBOX_DEFAULT
 
 releaseall
 	end
 
 Pox_Text_Whitney::
-	.string "WHITNEY: Show me what you and\nyour POKéMON have learned!$"
+	.string "WHITNEY: My team keeps moving!\nShow me how you handle surprises!$"
 
 Pox_WhitneyGymExit::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -195,19 +196,11 @@ Pox_Text_WhitneyGymExit::
 	.string "I'll show you back outside.$"
 
 Pox_WhitneyGuide::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
-
-msgbox Pox_Text_WhitneyGuide, MSGBOX_DEFAULT
-
-warp MAP_GOLDENROD_CITY_GYM_HNS, 10, 21
-	waitstate
-
-releaseall
+	msgbox Pox_Text_WhitneyGuide, MSGBOX_NPC
 	end
 
 Pox_Text_WhitneyGuide::
-	.string "WHITNEY's challenge is this way.$"
+	.string "I like watching the GYM\nchallengers.\pWHITNEY always gives them a\ntough battle!$"
 
 Pox_Morty::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -328,16 +321,7 @@ Pox_Text_BlaineGymExit::
 	.string "I'll show you back outside.$"
 
 Pox_BlaineGuide::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
-
-msgbox Pox_Text_BlaineGuide, MSGBOX_DEFAULT
-
-warp MAP_PLASTIC_OX_BLAINE_GYM, 5, 17
-	waitstate
-
-releaseall
-	end
+	goto PoxCinnabar_GymGuide
 
 Pox_Text_BlaineGuide::
 	.string "BLAINE's challenge is this way.$"
@@ -481,6 +465,9 @@ Pox_Text_ClairGuide::
 Pox_Text_Badge::
 	.string "You received a GYM BADGE! A new\nchallenge waits on the next\proad.$"
 
+Pox_Text_WhitneyAfter::
+	.string "WHITNEY: My friend at the FLOWER\nSHOP has a SQUIRTBOTTLE. Ask her\pabout the odd tree on ROUTE 36!$"
+
 Pox_MansionKey::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
@@ -501,15 +488,13 @@ checkitem ITEM_HM06
 	goto_if_eq VAR_RESULT, FALSE, Pox_Release
 Pox_MansionKey_ITEM_HM06::
 
-checkitem ITEM_HM05
-	goto_if_eq VAR_RESULT, TRUE, Pox_MansionKey_ITEM_HM05
-	giveitem ITEM_HM05
-	goto_if_eq VAR_RESULT, FALSE, Pox_Release
-Pox_MansionKey_ITEM_HM05::
 
-goto_if_set FLAG_POX_MANSION_KEY, Pox_Done
+
+checkitem ITEM_SECRET_KEY
+	goto_if_eq VAR_RESULT, TRUE, Pox_MansionKey_Owned
 	giveitem ITEM_SECRET_KEY
 	goto_if_eq VAR_RESULT, FALSE, Pox_Release
+Pox_MansionKey_Owned::
 	setflag FLAG_POX_MANSION_KEY
 	msgbox Pox_Text_MansionKey, MSGBOX_DEFAULT
 
@@ -517,7 +502,7 @@ releaseall
 	end
 
 Pox_Text_MansionKey::
-	.string "BLAINE: This MANSION KEY opens\nthe archives. The old records\pmay help you understand what\nFUJI meant.\pThese STRENGTH, ROCK SMASH and\nFLASH machines will help you\pexplore the caves ahead.$"
+	.string "BLAINE: This MANSION KEY opens\nthe archives. The old records\pmay help you understand what\nFUJI meant.\pThese STRENGTH and ROCK SMASH\nmachines will help you explore\pthe caves ahead.$"
 
 Pox_MoonGrunt1::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -586,13 +571,16 @@ releaseall
 Pox_Text_MoonRocketMap::
 	.string "You beat both of our grunts!\nFine, take this TOWN MAP and\pleave TEAM ROCKET alone.$"
 
+@ BILL's mother, at home in Goldenrod (the family's later EEVEE). The first
+@ gift EEVEE comes from the SEA COTTAGE (Pox_Cottage); this one is a second
+@ EEVEE, per plastic_ox/plastic_ox_story_v7.md.
 Pox_Family::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
 goto_if_unset FLAG_POX_STORY_STARTER, Pox_NotReady
 
-goto_if_set FLAG_POX_GIFT_FAMILY, Pox_GiftDone
+goto_if_set FLAG_POX_GIFT_FAMILY, Pox_FamilyAfter
 
 msgbox Pox_Text_Family, MSGBOX_DEFAULT
 
@@ -606,8 +594,16 @@ msgbox Pox_Text_GiftReceived, MSGBOX_DEFAULT
 releaseall
 	end
 
+Pox_FamilyAfter::
+	msgbox Pox_Text_FamilyAfter, MSGBOX_DEFAULT
+	releaseall
+	end
+
 Pox_Text_Family::
-	.string "BILL never visits enough. His\nfirst POKéMON was ABRA, you\pknow.\pI used to dance in ECRUTEAK when\nI was young.\pThis EEVEE needs someone with\ntime for long walks. Will you\plook after it?$"
+	.string "I used to dance in ECRUTEAK,\nback when my knees agreed\pwith me.\pBILL is my son. He writes about\nPOKéMON and never about\phimself.\pMy father-in-law keeps the SEA\nCOTTAGE up north. He sent this\pEEVEE down on the ferry.\pIt hates sitting still. Will you\nwalk it for us?$"
+
+Pox_Text_FamilyAfter::
+	.string "My father-in-law writes more\nthan BILL does. The sea air\psuits him.\pIf you pass the SEA COTTAGE,\ntell him the EEVEE is walking\pevery day.$"
 
 Pox_KimonoVaporeon::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -788,49 +784,68 @@ goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
 
 goto_if_set FLAG_POX_STORY_BURNED_TOWER, Pox_Done
 
-msgbox Pox_Text_BurnedTower, MSGBOX_DEFAULT
+msgbox Pox_Text_BurnedTowerBefore, MSGBOX_DEFAULT
 
+fadescreen FADE_TO_WHITE
+	setmetatile 10, 9, 0x6A6, FALSE
+	special DrawWholeMapView
+	fadescreen FADE_FROM_WHITE
 
+msgbox Pox_Text_BurnedTowerVision, MSGBOX_DEFAULT
+
+fadescreen FADE_TO_WHITE
+	setmetatile 10, 9, 0x6F2, FALSE
+	special DrawWholeMapView
+	fadescreen FADE_FROM_WHITE
+
+msgbox Pox_Text_BurnedTowerAfter, MSGBOX_DEFAULT
+
+turnobject VAR_LAST_TALKED, DIR_NORTH
+
+msgbox Pox_Text_BurnedTowerMission, MSGBOX_DEFAULT
+
+msgbox Pox_Text_BurnedTowerSages, MSGBOX_DEFAULT
+
+removeobject LOCALID_POX_TOWER_SAGE_1
+	removeobject LOCALID_POX_TOWER_SAGE_2
+
+msgbox Pox_Text_BurnedTowerFarewell, MSGBOX_DEFAULT
 
 setflag FLAG_POX_STORY_BURNED_TOWER
+	removeobject VAR_LAST_TALKED
 
 releaseall
 	end
 
-Pox_Text_BurnedTower::
-	.string "MORTY: That doorway... It hasn't\nstood there for generations.\pFor a moment, you see an\nunburned stairway. Then only ash\premains.\pMORTY: Places remember what they\nwere. Whatever moved the roads\phas disturbed this place too.\pYou recover the fallen\nceremonial bell. MORTY returns\pto the GYM.$"
+Pox_Text_BurnedTowerBefore::
+	.string "MORTY: Look at that wall. A\nstair stood there before the\pfire.$"
 
-Pox_BurnedTowerExit::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
+Pox_Text_BurnedTowerVision::
+	.string "For a moment the stair is whole\nagain. A bell rings from the\pempty landing.$"
 
-msgbox Pox_Text_BurnedTowerExit, MSGBOX_DEFAULT
+Pox_Text_BurnedTowerAfter::
+	.string "Only ash remains. You recover\nthe fallen ceremonial bell.\pMORTY: Places remember what they\nwere. But the POKéMON displaced\pby the convergence need our help\nnow.$"
 
-warp MAP_ECRUTEAK_CITY_HNS, 19, 23
-	waitstate
+Pox_Text_BurnedTowerMission::
+	.string "MORTY: Sages, search throughout\nthe region. Find the legendary\pPOKéMON driven from their homes.\pHelp them find shelter. Stay by\ntheir sides until they feel safe\pagain.$"
 
-releaseall
-	end
+Pox_Text_BurnedTowerSages::
+	.string "SAGE: We will go, MORTY. No\ndisplaced POKéMON should have to\pface this strange land alone.$"
 
-Pox_Text_BurnedTowerExit::
-	.string "I'll show you back outside.$"
+Pox_Text_BurnedTowerFarewell::
+	.string "MORTY: If you meet a sage beside\na legendary POKéMON, they are\pthere to help.\pShow them the care you give your\nown partners.\pI will return to my GYM. Come\nsee me when you are ready.$"
 
 Pox_BurnedGuide::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
-
 msgbox Pox_Text_BurnedGuide, MSGBOX_DEFAULT
-
-warp MAP_PLASTIC_OX_BURNED_TOWER, 5, 6
-	waitstate
 
 releaseall
 	end
 
 Pox_Text_BurnedGuide::
-	.string "MORTY needs help in the old\ntower.$"
+	.string "MORTY went below the BURNED\nTOWER. The entrance is just\pnorth of here.$"
 
 Pox_Weather::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -1248,27 +1263,7 @@ Pox_Text_Archive3::
 	.string "ARCHIVE: Never connect\nenvironmental reconstruction\pcontrols to an unconstrained\ntransfer network.\pThe reports resemble the changes\nat the BURNED TOWER, on a much\plarger scale.$"
 
 Pox_Entei::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
-
-goto_if_unset FLAG_POX_STORY_MANSION, Pox_NotReady
-
-goto_if_set FLAG_POX_ENTEI, Pox_Done
-	msgbox Pox_Text_Entei, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, Pox_Release
-	setwildbattle SPECIES_ENTEI, 40, ITEM_NONE
-	dowildbattle
-	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, Pox_EnteiDone
-	goto_if_ne VAR_RESULT, B_OUTCOME_WON, Pox_Release
-Pox_EnteiDone::
-	setflag FLAG_POX_ENTEI
-
-releaseall
-	end
-
-Pox_Text_Entei::
-	.string "A low growl echoes from the\nruined hall. Approach ENTEI?$"
+	goto PoxCinnabar_MansionGuide
 
 Pox_MansionExit::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -1286,18 +1281,7 @@ Pox_Text_MansionExit::
 	.string "I'll show you back outside.$"
 
 Pox_MansionGuide::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
-
-goto_if_unset FLAG_POX_MANSION_KEY, Pox_NotReady
-
-msgbox Pox_Text_MansionGuide, MSGBOX_DEFAULT
-
-warp MAP_PLASTIC_OX_MANSION, 5, 8
-	waitstate
-
-releaseall
-	end
+	goto PoxCinnabar_MansionGuide
 
 Pox_Text_MansionGuide::
 	.string "The MANSION archives are sealed.\nBLAINE has the key.$"
@@ -2084,8 +2068,6 @@ Pox_Text_PU_ROUTE35_After::
 	.string "Different habitats make a\nbalanced team.$"
 
 Pox_PU_PARK::
-	special PlasticOxContest_Status
-	goto_if_eq VAR_RESULT, 1, Pox_End
 	trainerbattle_single TRAINER_PLASTIC_OX_PU_PARK, Pox_Text_PU_PARK, Pox_Text_Defeat
 	msgbox Pox_Text_PU_PARK_After, MSGBOX_AUTOCLOSE
 	end
@@ -2180,7 +2162,7 @@ Pox_Sudowoodo_Wait::
 Pox_Text_Sudowoodo::
 	.string "You spray the odd tree with the\nSQUIRTBOTTLE. It shivers!$"
 
-@ Run 5 (P2): the tree never actually blocked ROUTE 36, so it no longer claims
-@ to, and (P7) the hint no longer names a single giver.
+@ The tree now occupies Route 36's three-way junction, blocking both northern
+@ and eastern travel. The hint still names either nearby bottle giver.
 Pox_Text_Sudowoodo_Wait::
 	.string "This tree feels like stone! Someone\nnear WHITNEY's GYM has a SQUIRTBOTTLE\nthat might help.$"

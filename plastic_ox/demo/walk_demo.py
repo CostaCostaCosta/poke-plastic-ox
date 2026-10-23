@@ -288,7 +288,7 @@ def assert_not_forced_blank(g, stage, frame):
     )
 
 
-def cross_connection(g, direction, expected_map, stage):
+def cross_connection(g, direction, expected_map, stage, on_frame=None):
     key = DIRKEY[direction]
     transition_frame = 0
     for _ in range(20):
@@ -296,11 +296,15 @@ def cross_connection(g, direction, expected_map, stage):
         for _ in range(8):
             g.frame(1)
             assert_not_forced_blank(g, stage, transition_frame)
+            if on_frame is not None:
+                on_frame(g, stage, transition_frame)
             transition_frame += 1
         g.core.clear_keys(key)
         for _ in range(18):
             g.frame(1)
             assert_not_forced_blank(g, stage, transition_frame)
+            if on_frame is not None:
+                on_frame(g, stage, transition_frame)
             transition_frame += 1
         assert_no_battle(g)
         state = g.state()
@@ -308,6 +312,8 @@ def cross_connection(g, direction, expected_map, stage):
             for _ in range(150):  # let queued tileset DMA and palette work settle
                 g.frame(1)
                 assert_not_forced_blank(g, stage, transition_frame)
+                if on_frame is not None:
+                    on_frame(g, stage, transition_frame)
                 transition_frame += 1
             assert_no_battle(g)
             assert_map(g, expected_map, stage)

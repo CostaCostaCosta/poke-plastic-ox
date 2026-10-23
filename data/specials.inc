@@ -649,6 +649,8 @@ gSpecials::
 	def_special PlasticOx_CheckHeadbutt
 	def_special PlasticOx_PrepareSudowoodoMoves
 	def_special PlasticOxContest_Status
+	def_special PlasticOxContest_CheckEntry
+	def_special PlasticOxContest_GetEntrySide
 	def_special PlasticOxContest_Start
 	def_special PlasticOxContest_AcceptCatch
 	def_special PlasticOxContest_Judge
@@ -659,3 +661,6 @@ gSpecials::
 	def_special PlasticOxDeliverMail
 	def_special CheckRustboroGymLittleCupRules
 	def_special PoxMaximizeSelectedMonFriendship
+	def_special PoxMinimizeSelectedMonFriendship
+	def_special PoxGetDayOfWeek
+	def_special BattleSetup_StartLegendaryRewardBattle, waitstate=1

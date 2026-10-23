@@ -115,7 +115,7 @@
    },
    "after": {
     "status": 0,
-    "pc": "0x8384018",
+    "pc": "0x83c33f4",
     "locked": 1
    },
    "battle": true,
@@ -125,7 +125,7 @@
    "plain_message": true,
    "after_b": {
     "status": 0,
-    "pc": "0x8384018",
+    "pc": "0x83c33f4",
     "locked": 1
    },
    "battle_after_b": true
@@ -145,7 +145,7 @@
    },
    "after": {
     "status": 0,
-    "pc": "0x8384018",
+    "pc": "0x83c33f4",
     "locked": 1
    },
    "battle": true,
@@ -155,7 +155,7 @@
    "plain_message": true,
    "after_b": {
     "status": 0,
-    "pc": "0x8384018",
+    "pc": "0x83c33f4",
     "locked": 1
    },
    "battle_after_b": true
@@ -225,8 +225,8 @@
    },
    "post_battle_text": "",
    "tree_sprite_removed": true,
-   "screen_with_tree": "3148cb4f",
-   "screen_after": "929f009c"
+   "screen_with_tree": "37c60c16",
+   "screen_after": "e93d7c89"
   }
  },
  {
@@ -239,12 +239,12 @@
    "steps": {
     "after_fight": {
      "status": 0,
-     "pc": "0x8384018",
+     "pc": "0x83c33f4",
      "locked": 1
     },
     "after_return": {
      "status": 0,
-     "pc": "0x8384018",
+     "pc": "0x83c33f4",
      "locked": 1
     },
     "after_300_idle": {
@@ -267,7 +267,7 @@
    "moved_down": [
     [
      39,
-     21
+     20
     ],
     [
      39,
@@ -335,7 +335,7 @@
    "walk": [
     [
      39,
-     21
+     20
     ],
     [
      39,
@@ -403,12 +403,12 @@
    "stopped": true,
    "before_b": {
     "status": 1,
-    "pc": "0x8321e1e",
+    "pc": "0x8360fae",
     "locked": 1
    },
    "after_b": {
     "status": 1,
-    "pc": "0x8321e21",
+    "pc": "0x8360fb1",
     "locked": 1
    }
   }

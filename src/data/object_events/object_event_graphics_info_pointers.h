@@ -412,6 +412,8 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SilverHns;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FatManHns;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PicnickerHns;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CooltrainerFHns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_WhitneyHns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SageHns;
 
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
@@ -816,6 +818,8 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_FAT_MAN_HNS               ] = &gObjectEventGraphicsInfo_FatManHns,
     [OBJ_EVENT_GFX_PICNICKER_HNS             ] = &gObjectEventGraphicsInfo_PicnickerHns,
     [OBJ_EVENT_GFX_COOLTRAINER_F_HNS         ] = &gObjectEventGraphicsInfo_CooltrainerFHns,
+    [OBJ_EVENT_GFX_WHITNEY_HNS               ] = &gObjectEventGraphicsInfo_WhitneyHns,
+    [OBJ_EVENT_GFX_SAGE_HNS               ] = &gObjectEventGraphicsInfo_SageHns,
 };
 
 const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {

@@ -2994,6 +2994,16 @@ void CopyMon(void *dest, void *src, size_t size)
     memcpy(dest, src, size);
 }
 
+static void UpdateFollowerAfterPartyGift(void)
+{
+    // Field scripts can give a Pokémon without reloading the map. The usual
+    // map-load follower update will not run before the player takes a step.
+    if (OW_FOLLOWERS_ENABLED && gMain.callback2 == CB2_Overworld
+     && gPlayerAvatar.objectEventId < OBJECT_EVENTS_COUNT
+     && gObjectEvents[gPlayerAvatar.objectEventId].active)
+        UpdateFollowingPokemon();
+}
+
 u8 GiveCapturedMonToPlayer(struct Pokemon *mon)
 {
     s32 i;
@@ -3013,6 +3023,7 @@ u8 GiveCapturedMonToPlayer(struct Pokemon *mon)
 
     CopyMon(&gParties[B_TRAINER_PLAYER][i], mon, sizeof(*mon));
     gPartiesCount[B_TRAINER_PLAYER] = i + 1;
+    UpdateFollowerAfterPartyGift();
     return MON_GIVEN_TO_PARTY;
 }
 
@@ -6871,6 +6882,8 @@ u32 GiveScriptedMonToPlayer(struct Pokemon *mon, u8 slot)
         HandleSetPokedexFlagFromMon(mon, FLAG_SET_CAUGHT);
     }
     CalculatePlayerPartyCount();
+    if (sentToPc == MON_GIVEN_TO_PARTY)
+        UpdateFollowerAfterPartyGift();
     return sentToPc;
 }
 

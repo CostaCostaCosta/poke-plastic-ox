@@ -374,7 +374,7 @@ def new_game(badge02=True, triggers=True, party=False):
 
 
 def go_tree(g):
-    g.warp('Route36_hns', 39, 21)
+    g.warp('Route36_hns', 39, 20)
     g.frame(90)
 
 

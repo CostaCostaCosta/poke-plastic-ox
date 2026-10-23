@@ -43,28 +43,6 @@
     ],
     "direction": "S"
   },
-  "park_route36_a": {
-    "tile": [
-      39,
-      22
-    ],
-    "approach": [
-      39,
-      23
-    ],
-    "direction": "N"
-  },
-  "park_route36_b": {
-    "tile": [
-      16,
-      21
-    ],
-    "approach": [
-      17,
-      21
-    ],
-    "direction": "W"
-  },
   "ecruteak_route119_a": {
     "tile": [
       53,
@@ -472,17 +450,6 @@
     ],
     "direction": "E"
   },
-  "route35_park_a": {
-    "tile": [
-      17,
-      7
-    ],
-    "approach": [
-      16,
-      7
-    ],
-    "direction": "E"
-  },
   "pallet_coast_b": {
     "tile": [
       37,
@@ -537,17 +504,6 @@
       47
     ],
     "direction": "E"
-  },
-  "route35_park_b": {
-    "tile": [
-      39,
-      29
-    ],
-    "approach": [
-      39,
-      28
-    ],
-    "direction": "S"
   },
   "route37_ecruteak_a": {
     "tile": [

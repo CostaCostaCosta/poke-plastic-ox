@@ -161,7 +161,7 @@ POX_PU_Text_PrizeNoRoom:
 POX_PU_Text_NoCoins:
 	.string "You don't have enough COINS.\nNo COINS have been spent.$"
 POX_PU_Text_NeedCase:
-	.string "Please visit the coin cashier\nto the left for a free COIN CASE.$"
+	.string "You'll need a COIN CASE for prizes.\nLook in the UNDERGROUND.$"
 POX_PU_Text_ReviveHelix:
 	.string "That's a HELIX FOSSIL! We can now\nrevive it as a Lv. 10 OMANYTE.\p"
 	.string "Shall I revive it for you?$"

@@ -181,18 +181,6 @@
       "script": "Pox_DanceGuide"
     },
     {
-      "map": "PlasticOx_BurnedTower",
-      "x": 5,
-      "y": 5,
-      "script": "Pox_BurnedTower"
-    },
-    {
-      "map": "PlasticOx_BurnedTower",
-      "x": 4,
-      "y": 6,
-      "script": "Pox_BurnedTowerExit"
-    },
-    {
       "map": "EcruteakCity_hns",
       "x": 19,
       "y": 22,
@@ -365,12 +353,6 @@
       "x": 20,
       "y": 30,
       "script": "Pox_ParkRoad"
-    },
-    {
-      "map": "NationalPark_Normal_hns",
-      "x": 22,
-      "y": 39,
-      "script": "Pox_EcruteakRoad"
     },
     {
       "map": "EcruteakCity_hns",
@@ -573,8 +555,14 @@
     {
       "map": "Route36_hns",
       "x": 39,
-      "y": 20,
+      "y": 19,
       "script": "Pox_Sudowoodo"
+    },
+    {
+      "map": "PlasticOx_BurnedTowerB1F",
+      "x": 8,
+      "y": 9,
+      "script": "Pox_BurnedTower"
     }
   ],
   "flags": [
@@ -657,6 +645,7 @@
     "PlasticOx_BlueRoom",
     "PlasticOx_BillRoom",
     "PlasticOx_WhirlIslands",
-    "PlasticOx_VictoryRoad"
+    "PlasticOx_VictoryRoad",
+    "PlasticOx_BurnedTowerB1F"
   ]
 }

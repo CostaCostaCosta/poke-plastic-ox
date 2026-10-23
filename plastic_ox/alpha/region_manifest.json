@@ -123,126 +123,6 @@
       "label": "GoldenrodCity"
     },
     {
-      "id": "route35_park_a",
-      "source": "Route35_hns",
-      "destination": "NationalPark_Normal_hns",
-      "tile": [
-        17,
-        7
-      ],
-      "approach": [
-        16,
-        7
-      ],
-      "direction": "E",
-      "landing": [
-        39,
-        28
-      ],
-      "requires": [],
-      "label": "NationalPark_Normal"
-    },
-    {
-      "id": "route35_park_b",
-      "source": "NationalPark_Normal_hns",
-      "destination": "Route35_hns",
-      "tile": [
-        39,
-        29
-      ],
-      "approach": [
-        39,
-        28
-      ],
-      "direction": "S",
-      "landing": [
-        16,
-        7
-      ],
-      "requires": [],
-      "label": "Route35"
-    },
-    {
-      "id": "park_route36_a",
-      "source": "NationalPark_Normal_hns",
-      "destination": "Route36_hns",
-      "tile": [
-        39,
-        22
-      ],
-      "approach": [
-        39,
-        23
-      ],
-      "direction": "N",
-      "landing": [
-        17,
-        21
-      ],
-      "requires": [],
-      "label": "Route36"
-    },
-    {
-      "id": "park_route36_b",
-      "source": "Route36_hns",
-      "destination": "NationalPark_Normal_hns",
-      "tile": [
-        16,
-        21
-      ],
-      "approach": [
-        17,
-        21
-      ],
-      "direction": "W",
-      "landing": [
-        39,
-        23
-      ],
-      "requires": [],
-      "label": "NationalPark_Normal"
-    },
-    {
-      "id": "route37_ecruteak_a",
-      "source": "Route37_hns",
-      "destination": "EcruteakCity_hns",
-      "tile": [
-        19,
-        11
-      ],
-      "approach": [
-        18,
-        11
-      ],
-      "direction": "E",
-      "landing": [
-        33,
-        53
-      ],
-      "requires": [],
-      "label": "EcruteakCity"
-    },
-    {
-      "id": "route37_ecruteak_b",
-      "source": "EcruteakCity_hns",
-      "destination": "Route37_hns",
-      "tile": [
-        33,
-        54
-      ],
-      "approach": [
-        33,
-        53
-      ],
-      "direction": "S",
-      "landing": [
-        18,
-        11
-      ],
-      "requires": [],
-      "label": "Route37"
-    },
-    {
       "id": "ecruteak_route119_a",
       "source": "EcruteakCity_hns",
       "destination": "Route119",
@@ -1427,6 +1307,7 @@
       "MAP_ROUTE24_HNS"
     ],
     "Route36_hns": [
+      "MAP_ROUTE35_HNS",
       "MAP_ROUTE37_HNS"
     ],
     "Route37_hns": [
@@ -1438,6 +1319,9 @@
     ],
     "BattleFrontier_OutsideWest": [
       "MAP_BATTLE_FRONTIER_OUTSIDE_EAST"
+    ],
+    "Route35_hns": [
+      "MAP_ROUTE36_HNS"
     ]
   }
 }

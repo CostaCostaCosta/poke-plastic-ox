@@ -5785,7 +5785,6 @@ static bool32 IsPlasticOxOpeningRouteTrainer(u16 trainerId)
     case TRAINER_PLASTIC_OX_ROUTE46_ERIN:
     case TRAINER_PLASTIC_OX_ROUTE2_BEN:
     case TRAINER_PLASTIC_OX_ROUTE2_WADE:
-    case TRAINER_PLASTIC_OX_ROUTE2_HALEY:
     case TRAINER_PLASTIC_OX_ROUTE_ILEX:
     case TRAINER_PLASTIC_OX_ROUTE_ILEX_FINN:
     case TRAINER_PLASTIC_OX_ROUTE_ILEX_MAYA:
@@ -9892,7 +9891,7 @@ static u32 ComputeCaptureOdds(u32 wildMonBattler, u32 playerBattler)
     struct BallData ball;
     ComputeBallData(wildMonBattler, playerBattler, &ball);
 
-    if (ball.guaranteedCapture)
+    if (ball.guaranteedCapture || (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY_REWARD))
         return CAPTURE_GUARANTEED;
     struct BattlePokemon *battleMon = &gBattleMons[wildMonBattler];
     u32 odds = (battleMon->maxHP * 3 -  battleMon->hp * 2);

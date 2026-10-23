@@ -15,6 +15,7 @@ PlasticOx_BerryTree_\name\():
 	.endm
 
 	pox_fruit_tree Sitrus, ITEM_SITRUS_BERRY, FLAG_POX_DAILY_R46_SITRUS
+	pox_fruit_tree Route37Sitrus, ITEM_SITRUS_BERRY, FLAG_POX_DAILY_R37_SITRUS
 	pox_fruit_tree Lum, ITEM_LUM_BERRY, FLAG_POX_DAILY_R29_LUM
 	pox_fruit_tree Liechi, ITEM_LIECHI_BERRY, FLAG_POX_DAILY_R46_LIECHI
 	pox_fruit_tree Salac, ITEM_SALAC_BERRY, FLAG_POX_DAILY_R44_SALAC

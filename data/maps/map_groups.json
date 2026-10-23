@@ -1213,7 +1213,8 @@
     "EcruteakCity_SageOffice2_hns",
     "EcruteakCity_Theater_hns",
     "Gate_EcruteakCity_Route38_hns",
-    "Gate_EcruteakCity_Route42_hns"
+    "Gate_EcruteakCity_Route42_hns",
+    "Gate_NationalPark_hns"
   ],
   "gMapGroup_PlasticOxJohtoKanto": [
     "Route29_hns",
@@ -1270,7 +1271,8 @@
     "PlasticOx_BlueRoom",
     "PlasticOx_BillRoom",
     "PlasticOx_WhirlIslands",
-    "PlasticOx_VictoryRoad"
+    "PlasticOx_VictoryRoad",
+    "PlasticOx_BurnedTowerB1F"
   ],
   "gMapGroup_PlasticOxV7": [
     "Route33_hns",

@@ -283,6 +283,11 @@ Progression:
 
 **Goldenrod → Route 35 → National Park → Route 36 → Route 37 → Ecruteak**
 
+Sudowoodo stands at Route 36's three-way junction and blocks the roads north
+and east. Whitney's badge lets the player borrow the SquirtBottle from the
+Goldenrod Flower Shop; clearing Sudowoodo opens Route 37. Snorlax still blocks
+the eastern branch until the player has the Poké Flute.
+
 National Park is a breathing-space area focused on catching, team reconstruction, trainers, items, and optional contest content.
 
 ## The Route 36 East Connection
@@ -325,7 +330,7 @@ Morty's interpretation is spiritual rather than scientific:
 
 > **“Places remember what they were.”**
 
-The player learns that the convergence may affect not only geography, but historical states of places. Morty sends his sages to protect the 
+The player learns that the convergence may affect not only geography, but historical states of places. This is the special event that establishes the sages' regional mission: Morty directly instructs the gathered sages to find the legendary Pokémon displaced by the convergence, help them find shelter, and stay with them until they feel safe. The sages accept and depart; a caretaker remains at the tower. Later sages beside legendary Pokémon are carrying out this assignment, including the sage helping Entei in the Pokémon Mansion.
 
 ## Gym 3 — Morty
 

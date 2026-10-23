@@ -21,6 +21,7 @@
 #include "constants/coins.h"
 #include "constants/comparison_operators.h"
 #include "constants/contest.h"
+#include "constants/plastic_ox_contest.h"
 #include "constants/daycare.h"
 #include "constants/decorations.h"
 #include "constants/difficulty.h"
@@ -1821,6 +1822,7 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/PlasticOx_ClairGym/scripts.inc"
 	.include "data/maps/PlasticOx_DanceTheater/scripts.inc"
 	.include "data/maps/PlasticOx_BurnedTower/scripts.inc"
+	.include "data/maps/PlasticOx_BurnedTowerB1F/scripts.inc"
 	.include "data/maps/PlasticOx_PokemonTower/scripts.inc"
 	.include "data/maps/PlasticOx_FujiHouse/scripts.inc"
 	.include "data/maps/PlasticOx_Mansion/scripts.inc"
@@ -1988,3 +1990,11 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/Gate_EcruteakCity_Route38_hns/scripts.inc"
 
 	.include "data/maps/Gate_EcruteakCity_Route42_hns/scripts.inc"
+
+	.include "data/maps/Gate_NationalPark_hns/scripts.inc"
+
+	.include "data/scripts/plastic_ox_legendary_sages.inc"
+
+	.include "data/scripts/plastic_ox_cinnabar.inc"
+
+	.include "data/scripts/plastic_ox_seafoam.inc"

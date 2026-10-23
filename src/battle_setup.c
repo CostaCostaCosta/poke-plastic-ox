@@ -332,7 +332,12 @@ static bool8 CheckSilphScopeInPokemonTower(u16 mapGroup, u16 mapNum)
 
 void BattleSetup_StartWildBattle(void)
 {
-    if (GetSafariZoneFlag() || PlasticOxContest_IsActive())
+    if (PlasticOxContest_IsActive())
+    {
+        DoStandardWildBattle(FALSE);
+        gMain.savedCallback = PlasticOxContest_EndBattle;
+    }
+    else if (GetSafariZoneFlag())
         DoSafariBattle();
     else if (CheckSilphScopeInPokemonTower(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum))
         DoGhostBattle();
@@ -413,7 +418,7 @@ static void DoSafariBattle(void)
     LockPlayerFieldControls();
     FreezeObjectEvents();
     StopPlayerAvatar();
-    gMain.savedCallback = PlasticOxContest_IsActive() ? PlasticOxContest_EndBattle : CB2_EndSafariBattle;
+    gMain.savedCallback = CB2_EndSafariBattle;
     gBattleTypeFlags = BATTLE_TYPE_SAFARI;
     CreateBattleStartTask(GetWildBattleTransition(), 0);
 }
@@ -494,6 +499,14 @@ void BattleSetup_StartScriptedWildBattle(void)
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
     IncrementDailyWildBattles();
     TryUpdateGymLeaderRematchFromWild();
+}
+
+// Called only after setwildbattle by the reusable legendary Sage script.
+// Keep the guarantee on this battle, never in a persistent overworld flag.
+void BattleSetup_StartLegendaryRewardBattle(void)
+{
+    BattleSetup_StartScriptedWildBattle();
+    gBattleTypeFlags = BATTLE_TYPE_LEGENDARY | BATTLE_TYPE_LEGENDARY_REWARD;
 }
 
 void BattleSetup_StartScriptedDoubleWildBattle(void)
@@ -1117,6 +1130,12 @@ void SetMapVarsToTrainerB(void)
 // expects parameters have been loaded correctly with TrainerBattleLoadArgs
 const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data)
 {
+    // Keep a normal trainerbattle at the front of park trainer scripts so
+    // sight checks can recognize their victory flags. Talking during the
+    // catching contest uses visitor dialogue instead of starting a battle.
+    if (PlasticOxContest_IsActive())
+        return PlasticOxContest_EventScript_TrainerRest;
+
     switch (TRAINER_BATTLE_PARAM.mode)
     {
     case TRAINER_BATTLE_SINGLE_NO_INTRO_TEXT:

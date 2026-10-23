@@ -1354,8 +1354,15 @@
 #endif
 // IDs 926-930 use the next free general flags after Mt. Moon's item flags.
 // ID 931 uses 0x4F9; 0x4F0-0x4F8 already hold Gym and story victories.
+// Johto IDs 932..937 use audited unused persistent slots. Do not extend the
+// original arithmetic mapping: those addresses overlap earlier trainer wins.
 #define TRAINER_FLAG(id) \
-    ((!IS_FRLG && (id) == 931) ? 0x4F9 : \
+    ((!IS_FRLG && (id) >= 938 && (id) < 1002) ? (POX_SAGE_TRAINER_FLAGS_START + (id) - 938) : \
+     (!IS_FRLG && (id) == 932) ? 0x082 : \
+     (!IS_FRLG && (id) == 933) ? 0x4FA : \
+     (!IS_FRLG && (id) == 934) ? 0x4FF : \
+     (!IS_FRLG && (id) >= 935 && (id) <= 937) ? (0x91D + (id) - 935) : \
+     (!IS_FRLG && (id) == 931) ? 0x4F9 : \
      (!IS_FRLG && (id) >= 926 && (id) <= 930) ? (0x4EB + (id) - 926) : \
      (!IS_FRLG && (id) >= 857) ? (0x4A0 + (id) - 857) : \
      (TRAINER_FLAGS_START + (id)))
@@ -1888,16 +1895,16 @@
 #define FLAG_HIDE_POWER_PLANT_TM25                              0
 #define FLAG_HIDE_POWER_PLANT_THUNDER_STONE                     0
 #define FLAG_HIDE_POWER_PLANT_ELIXIR                            0
-#define FLAG_HIDE_POKEMON_MANSION_1F_CARBOS                     0
-#define FLAG_HIDE_POKEMON_MANSION_1F_ESCAPE_ROPE                0
-#define FLAG_HIDE_POKEMON_MANSION_2F_CALCIUM                    0
-#define FLAG_HIDE_POKEMON_MANSION_3F_MAX_POTION                 0
-#define FLAG_HIDE_POKEMON_MANSION_3F_IRON                       0
-#define FLAG_HIDE_POKEMON_MANSION_B1F_TM14                      0
-#define FLAG_HIDE_POKEMON_MANSION_B1F_FULL_RESTORE              0
+#define FLAG_HIDE_POKEMON_MANSION_1F_CARBOS                     FLAG_POX_HIDE_POKEMON_MANSION_1F_CARBOS
+#define FLAG_HIDE_POKEMON_MANSION_1F_ESCAPE_ROPE                FLAG_POX_HIDE_POKEMON_MANSION_1F_ESCAPE_ROPE
+#define FLAG_HIDE_POKEMON_MANSION_2F_CALCIUM                    FLAG_POX_HIDE_POKEMON_MANSION_2F_CALCIUM
+#define FLAG_HIDE_POKEMON_MANSION_3F_MAX_POTION                 FLAG_POX_HIDE_POKEMON_MANSION_3F_MAX_POTION
+#define FLAG_HIDE_POKEMON_MANSION_3F_IRON                       FLAG_POX_HIDE_POKEMON_MANSION_3F_IRON
+#define FLAG_HIDE_POKEMON_MANSION_B1F_TM14                      FLAG_POX_HIDE_POKEMON_MANSION_B1F_TM14
+#define FLAG_HIDE_POKEMON_MANSION_B1F_FULL_RESTORE              FLAG_POX_HIDE_POKEMON_MANSION_B1F_FULL_RESTORE
 #define FLAG_0x1A6                                              0
-#define FLAG_HIDE_POKEMON_MANSION_B1F_TM22                      0
-#define FLAG_HIDE_POKEMON_MANSION_B1F_SECRET_KEY                0
+#define FLAG_HIDE_POKEMON_MANSION_B1F_TM22                      FLAG_POX_HIDE_POKEMON_MANSION_B1F_TM22
+#define FLAG_HIDE_POKEMON_MANSION_B1F_SECRET_KEY                FLAG_POX_HIDE_POKEMON_MANSION_B1F_SECRET_KEY
 #define FLAG_HIDE_VICTORY_ROAD_1F_RARE_CANDY                    0
 #define FLAG_HIDE_VICTORY_ROAD_1F_TM02                          0
 #define FLAG_HIDE_VICTORY_ROAD_2F_GUARD_SPEC                    0
@@ -1931,9 +1938,9 @@
 #define FLAG_HIDE_ROCK_TUNNEL_B1F_MAX_ETHER                     0
 #define FLAG_HIDE_SILPH_CO_8F_IRON                              0
 #define FLAG_HIDE_SILPH_CO_11F_ZINC                             0
-#define FLAG_HIDE_POKEMON_MANSION_1F_PROTEIN                    0
-#define FLAG_HIDE_POKEMON_MANSION_2F_ZINC                       0
-#define FLAG_HIDE_POKEMON_MANSION_2F_HP_UP                      0
+#define FLAG_HIDE_POKEMON_MANSION_1F_PROTEIN                    FLAG_POX_HIDE_POKEMON_MANSION_1F_PROTEIN
+#define FLAG_HIDE_POKEMON_MANSION_2F_ZINC                       FLAG_POX_HIDE_POKEMON_MANSION_2F_ZINC
+#define FLAG_HIDE_POKEMON_MANSION_2F_HP_UP                      FLAG_POX_HIDE_POKEMON_MANSION_2F_HP_UP
 #define FLAG_HIDE_VIRIDIAN_CITY_POTION                          0
 #define FLAG_HIDE_ROUTE11_GREAT_BALL                            0
 #define FLAG_HIDE_ROUTE11_AWAKENING                             0
@@ -2039,13 +2046,13 @@
 #define FLAG_0x262                                       0
 #define FLAG_GOT_EEVEE                                   0
 #define FLAG_FOUND_BOTH_VERMILION_GYM_SWITCHES           0
-#define FLAG_CINNABAR_GYM_QUIZ_1                         0
-#define FLAG_CINNABAR_GYM_QUIZ_2                         0
-#define FLAG_CINNABAR_GYM_QUIZ_3                         0
-#define FLAG_CINNABAR_GYM_QUIZ_4                         0
-#define FLAG_CINNABAR_GYM_QUIZ_5                         0
-#define FLAG_CINNABAR_GYM_QUIZ_6                         0
-#define FLAG_POKEMON_MANSION_SWITCH_STATE                0
+#define FLAG_CINNABAR_GYM_QUIZ_1                         FLAG_POX_CINNABAR_QUIZ_1
+#define FLAG_CINNABAR_GYM_QUIZ_2                         FLAG_POX_CINNABAR_QUIZ_2
+#define FLAG_CINNABAR_GYM_QUIZ_3                         FLAG_POX_CINNABAR_QUIZ_3
+#define FLAG_CINNABAR_GYM_QUIZ_4                         FLAG_POX_CINNABAR_QUIZ_4
+#define FLAG_CINNABAR_GYM_QUIZ_5                         FLAG_POX_CINNABAR_QUIZ_5
+#define FLAG_CINNABAR_GYM_QUIZ_6                         FLAG_POX_CINNABAR_QUIZ_6
+#define FLAG_POKEMON_MANSION_SWITCH_STATE                FLAG_POX_MANSION_SWITCH
 #define FLAG_OPENED_ROCKET_HIDEOUT                       0
 #define FLAG_GOT_10_COINS_FROM_GAMBLER                   0
 #define FLAG_GOT_20_COINS_FROM_GAMBLER                   0
@@ -2369,7 +2376,7 @@
 #define FLAG_DEFEATED_ERIKA           0
 #define FLAG_DEFEATED_KOGA            0
 #define FLAG_DEFEATED_SABRINA         0
-#define FLAG_DEFEATED_BLAINE          0
+#define FLAG_DEFEATED_BLAINE          FLAG_BADGE05_GET
 #define FLAG_DEFEATED_LEADER_GIOVANNI 0
 #define FLAG_DEFEATED_LORELEI         0
 #define FLAG_DEFEATED_BRUNO           0

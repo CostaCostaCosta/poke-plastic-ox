@@ -16,15 +16,16 @@ HEADERS = ["include/constants/plastic_ox_flags.h", "include/constants/plastic_ox
 POX_FLAG_RANGES = ((0x020, 0x04F), (0x264, 0x2BB))
 POX_SUPPLEMENTAL_FLAGS = {0x054, 0x055, 0x068, 0x096, 0x0E9, 0x1AA, 0x1AB,
                           0x1DA, 0x1DE, 0x1DF, 0x1E0, 0x1E1, 0x1E2, 0x1E3,
-                          0x493, 0x494, 0x495, 0x496, 0x468, 0x470, 0x472, 0x479,
+                          0x493, 0x494, 0x495, 0x496, 0x497, 0x468, 0x470, 0x472, 0x479,
                           *range(0x498, 0x4A0), *range(0x4E5, 0x4EB),
-                          *range(0x900, 0x90F)}
+                          *range(0x900, 0x91D), *range(0x923, 0x92A), 0x933}
+POX_VIRTUAL_FLAGS = {0xA25, *range(0xB00, 0xB80)}  # SaveBlock3's separately routed Kanto hidden item.
 POX_VAR_RANGE = range(0x40F7, 0x4100)
 POX_SUPPLEMENTAL_VARS = {0x40DB, 0x40DC}
 
 
 def flag_audit():
-    definitions = {}
+    definitions = {'FLAG_TEMP_1': '1'}
     for name in HEADERS:
         for symbol, expression in re.findall(r"^#define (\w+)\s+([^\n]+)", (ROOT / name).read_text(), re.M):
             definitions[symbol] = expression.split("//")[0].strip()
@@ -52,9 +53,11 @@ def flag_audit():
     for symbol, number in allocated.items():
         by_value[number].append(symbol)
         if not (any(start <= number <= end for start, end in POX_FLAG_RANGES)
-                or number in POX_SUPPLEMENTAL_FLAGS):
+                or number == 1 or number in POX_SUPPLEMENTAL_FLAGS or number in POX_VIRTUAL_FLAGS):
             errors.append(f"Outside reserved flag runs: {symbol}=0x{number:03X}")
     for number, symbols in by_value.items():
+        if number == 1:  # map-local crowd visibility
+            continue
         if len(symbols) > 1:
             errors.append(f"Shared flag 0x{number:03X}: {', '.join(symbols)}")
     for symbol, number in json.loads((ROOT / 'plastic_ox/alpha/story_flags.json').read_text()).items():
@@ -65,7 +68,10 @@ def flag_audit():
     for directory, pattern in [('data/maps', '*/map.json'), ('data/maps', '*/scripts.inc'), ('data/scripts', '*.inc')]:
         for path in (ROOT / directory).glob(pattern):
             used.update(re.findall(r'\bFLAG_POX_\w+', path.read_text()))
-    for symbol in sorted(used - allocated.keys()):
+    # A few system flags are owned by flags.h because engine code reads them.
+    global_pox_flags = set(re.findall(r'^#define (FLAG_POX_\w+)',
+                                      (ROOT / 'include/constants/flags.h').read_text(), re.M))
+    for symbol in sorted(used - allocated.keys() - global_pox_flags):
         errors.append(f"Unallocated map/script flag: {symbol}")
     for path in (ROOT / 'data/maps').glob('*/map.json'):
         for event in json.loads(path.read_text()).get('bg_events', []):
@@ -80,6 +86,8 @@ def flag_audit():
     aliases = defaultdict(list)
     for symbol, value_text in re.findall(r'^#define (FLAG_\w+)\s+(0x[0-9A-Fa-f]+)', vanilla, re.M):
         aliases[int(value_text, 0)].append(symbol)
+    for symbol, offset in re.findall(r'^#define (FLAG_\w+)\s+\(SYSTEM_FLAGS \+ (0x[0-9A-Fa-f]+)\)', vanilla, re.M):
+        aliases[0x860 + int(offset, 0)].append(symbol)
     for number in POX_SUPPLEMENTAL_FLAGS:
         unsafe = [s for s in aliases[number]
                   if not s.startswith('FLAG_UNUSED_') and
@@ -93,6 +101,10 @@ def flag_audit():
     trainer_flags += list(range(0x4EB, 0x4EB + max(0, min(trainer_count, 931) - 926)))
     if trainer_count > 931:
         trainer_flags.append(0x4F9)
+    trainer_flags += [0x082, 0x4FA, 0x4FF, 0x91D, 0x91E, 0x91F][:max(0, trainer_count - 932)]
+    for number in range(0xB40, 0xB40 + max(0, trainer_count - 938)):
+        if number in by_value or number >= 0xB80:
+            errors.append(f"Sage trainer flag 0x{number:03X} overlaps event state")
     for number in trainer_flags:
         if number in by_value or not aliases[number] or any(not name.startswith('FLAG_UNUSED_') for name in aliases[number]):
             errors.append(f"Supplemental trainer flag 0x{number:03X} overlaps retained state")

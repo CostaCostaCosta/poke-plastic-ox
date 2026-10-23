@@ -229,6 +229,16 @@ u8 *GetFlagPointer(u16 id)
     if (id == 0)
         return NULL;
 #if !IS_FRLG
+    else if (id >= POX_EVENT_FLAGS_START && id < POX_EVENT_FLAGS_START + POX_EVENT_FLAGS_COUNT)
+    {
+        // Appended storage, initialized independently for existing saves.
+        if (gSaveBlock3Ptr->poxEventFlagsMagic != 0x504F5845)
+        {
+            memset(gSaveBlock3Ptr->poxEventFlags, 0, sizeof(gSaveBlock3Ptr->poxEventFlags));
+            gSaveBlock3Ptr->poxEventFlagsMagic = 0x504F5845;
+        }
+        return &gSaveBlock3Ptr->poxEventFlags[(id - POX_EVENT_FLAGS_START) / 8];
+    }
     else if (id >= POX_KANTO_HIDDEN_FLAGS_START && id <= POX_KANTO_HIDDEN_FLAGS_END)
     {
         // Older saves used these SaveBlock3 bytes as spare space. Initialize

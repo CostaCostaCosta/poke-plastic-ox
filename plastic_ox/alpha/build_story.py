@@ -279,6 +279,10 @@ def room(name, parent, boss, source="RustboroCity_Gym", objects=None, return_xy=
 
 def guide(mapname, index, name, destination, text, prerequisites=()):
     replace_npc(mapname, index, name)
+    if name == 'WhitneyGuide':
+        emit('Pox_WhitneyGuide::\n\tmsgbox Pox_Text_WhitneyGuide, MSGBOX_NPC\n\tend')
+        speech('Pox_Text_WhitneyGuide', "I like watching the GYM challengers.|WHITNEY always gives them a tough battle!")
+        return
     travel(name, destination, 5, 17, text, prerequisites)
 
 
@@ -361,10 +365,16 @@ gymdata = [
 for i, (name, display, town, prereq, level, team) in enumerate(gymdata):
     extra = "\tmsgbox Pox_Text_Badge, MSGBOX_DEFAULT"
     repeat = "Pox_Done"
+    if name == 'Whitney':
+        extra += "\n\tmsgbox Pox_Text_WhitneyAfter, MSGBOX_DEFAULT"
     if name == 'Blaine':
         extra += "\n\tgoto Pox_MansionKey_Award"
         repeat = "Pox_MansionKey"
-    battle(name, display, f"{display}: Show me what you and your POKéMON have learned!", team, level, badges[i], prereq, extra, double=name=='TateLiza', repeat=repeat)
+    intro = ("WHITNEY: My team keeps moving! Show me how you handle surprises!"
+             if name == 'Whitney' else
+             f"{display}: Show me what you and your POKéMON have learned!")
+    battle(name, display, intro, team, level, badges[i], prereq, extra,
+           double=name=='TateLiza', repeat=repeat)
     if name in ['Roxanne','Winona','TateLiza']:
         native = {'Roxanne':'RustboroCity_Gym','Winona':'FortreeCity_Gym','TateLiza':'MossdeepCity_Gym'}[name]
         data = load_map(native)
@@ -376,14 +386,15 @@ for i, (name, display, town, prereq, level, team) in enumerate(gymdata):
         dest = room(name + 'Gym', town, name, return_xy={'Whitney':(25,14),'Morty':(35,44),'Blaine':(11,11),'Bruno':(16,23),'Clair':(16,29)}[name])
         guide(town, {'Whitney':0,'Morty':0,'Blaine':1,'Bruno':0,'Clair':0}[name], name+'Guide', dest, f"{display}'s challenge is this way.", prereq if name=='Clair' else ())
 speech("Pox_Text_Badge", "You received a GYM BADGE! A new challenge waits on the next road.")
+speech("Pox_Text_WhitneyAfter", "WHITNEY: My friend at the FLOWER SHOP has a SQUIRTBOTTLE. Ask her about the odd tree on ROUTE 36!")
 start("MansionKey", [badges[4]])
 keyflag = flag('MANSION_KEY')
 emit("Pox_MansionKey_Award:")
-for machine in ['ITEM_HM04', 'ITEM_HM06', 'ITEM_HM05']:
+for machine in ['ITEM_HM04', 'ITEM_HM06']:
     emit(f'\tcheckitem {machine}\n\tgoto_if_eq VAR_RESULT, TRUE, Pox_MansionKey_{machine}\n\tgiveitem {machine}\n\tgoto_if_eq VAR_RESULT, FALSE, Pox_Release\nPox_MansionKey_{machine}::')
 emit(f"\tgoto_if_set {keyflag}, Pox_Done\n\tgiveitem ITEM_SECRET_KEY\n\tgoto_if_eq VAR_RESULT, FALSE, Pox_Release\n\tsetflag {keyflag}\n\tmsgbox Pox_Text_MansionKey, MSGBOX_DEFAULT")
 finish()
-speech('Pox_Text_MansionKey', "BLAINE: This MANSION KEY opens the archives. The old records may help you understand what FUJI meant.|These STRENGTH, ROCK SMASH and FLASH machines will help you explore the caves ahead.")
+speech('Pox_Text_MansionKey', "BLAINE: This MANSION KEY opens the archives. The old records may help you understand what FUJI meant.|These STRENGTH and ROCK SMASH machines will help you explore the caves ahead.")
 
 # Rocket I, deliberately mundane criminals. Each grunt has an independent flag.
 moon1 = 'FLAG_POX_HIDE_MTMOON_GRUNT_1'
@@ -412,9 +423,37 @@ gift('Kimono', 'You matched all five of our partners with grace. Please raise th
 kimono_objects.append(npc('Kimono', 5, 15, 'OBJ_EVENT_GFX_OLD_WOMAN'))
 dance = room('DanceTheater','EcruteakCity_hns',None,objects=kimono_objects,return_xy=(36,33))
 guide('EcruteakCity_hns',1,'DanceGuide',dance,'The KIMONO troupe is performing. MORTY is investigating the BURNED TOWER.')
-beat('BurnedTower', "MORTY: That doorway... It hasn't stood there for generations.|For a moment, you see an unburned stairway. Then only ash remains.|MORTY: Places remember what they were. Whatever moved the roads has disturbed this place too.|You recover the fallen ceremonial bell. MORTY returns to the GYM.", burned, [badges[1]])
-tower = room('BurnedTower','EcruteakCity_hns','BurnedTower',return_xy=(19,23))
-guide('EcruteakCity_hns',3,'BurnedGuide',tower,'MORTY needs help in the old tower.',[badges[1]])
+start('BurnedTower', [badges[1]])
+emit(f'\tgoto_if_set {burned}, Pox_Done')
+message('BurnedTowerBefore', "MORTY: Look at that wall. A stair stood there before the fire.")
+emit('\tfadescreen FADE_TO_WHITE\n\tsetmetatile 10, 9, 0x6A6, FALSE\n'
+     '\tspecial DrawWholeMapView\n\tfadescreen FADE_FROM_WHITE')
+message('BurnedTowerVision', 'For a moment the stair is whole again. A bell rings from the empty landing.')
+emit('\tfadescreen FADE_TO_WHITE\n\tsetmetatile 10, 9, 0x6F2, FALSE\n'
+     '\tspecial DrawWholeMapView\n\tfadescreen FADE_FROM_WHITE')
+message('BurnedTowerAfter', 'Only ash remains. You recover the fallen ceremonial bell.|MORTY: Places remember what they were. But the POKéMON displaced by the convergence need our help now.')
+emit('\tturnobject VAR_LAST_TALKED, DIR_NORTH')
+message('BurnedTowerMission', 'MORTY: Sages, search throughout the region. Find the legendary POKéMON driven from their homes.|Help them find shelter. Stay by their sides until they feel safe again.')
+message('BurnedTowerSages', 'SAGE: We will go, MORTY. No displaced POKéMON should have to face this strange land alone.')
+emit('\tremoveobject LOCALID_POX_TOWER_SAGE_1\n\tremoveobject LOCALID_POX_TOWER_SAGE_2')
+message('BurnedTowerFarewell', 'MORTY: If you meet a sage beside a legendary POKéMON, they are there to help.|Show them the care you give your own partners.|I will return to my GYM. Come see me when you are ready.')
+emit(f'\tsetflag {burned}\n\tremoveobject VAR_LAST_TALKED')
+finish()
+speech('Pox_Text_BurnedTowerBefore', "MORTY: Look at that wall. A stair stood there before the fire.")
+speech('Pox_Text_BurnedTowerVision', 'For a moment the stair is whole again. A bell rings from the empty landing.')
+speech('Pox_Text_BurnedTowerAfter', 'Only ash remains. You recover the fallen ceremonial bell.|MORTY: Places remember what they were. But the POKéMON displaced by the convergence need our help now.')
+speech('Pox_Text_BurnedTowerMission', 'MORTY: Sages, search throughout the region. Find the legendary POKéMON driven from their homes.|Help them find shelter. Stay by their sides until they feel safe again.')
+speech('Pox_Text_BurnedTowerSages', 'SAGE: We will go, MORTY. No displaced POKéMON should have to face this strange land alone.')
+speech('Pox_Text_BurnedTowerFarewell', 'MORTY: If you meet a sage beside a legendary POKéMON, they are there to help.|Show them the care you give your own partners.|I will return to my GYM. Come see me when you are ready.')
+# Burned Tower uses the two original HNS floors. Their authored warps and
+# basement event are kept in the map sources rather than a generated room.
+tower = 'PlasticOx_BurnedTower'
+room_names.append(tower)
+replace_npc('EcruteakCity_hns', 3, 'BurnedGuide')
+start('BurnedGuide')
+message('BurnedGuide', 'MORTY went below the BURNED TOWER. The entrance is just north of here.')
+finish()
+speech('Pox_Text_BurnedGuide', 'MORTY went below the BURNED TOWER. The entrance is just north of here.')
 
 battle('Weather','RESEARCHER','Help me test our field instruments. The weather lines have moved since yesterday.', [('Castform',['Water Pulse','Shock Wave','Weather Ball']),('Magnemite',['Thunder Wave','Spark'])], 28, weather, [badges[2]], '\tmsgbox Pox_Text_WeatherReport, MSGBOX_DEFAULT', pic='Scientist Frlg',cls='Scientist Frlg')
 speech('Pox_Text_WeatherReport', 'These are new changes. The boundaries are still moving!|It is not just damage left by the convergence. Something is still changing our habitats.')
@@ -704,7 +743,7 @@ pu_trainers = [
 ]
 for name, display, mapname, index, level, cls, pic, gfx, team, intro, after in pu_trainers:
     tid = trainer(name, display, team, level, pic, cls)
-    contest_guard = '\tspecial PlasticOxContest_Status\n\tgoto_if_eq VAR_RESULT, 1, Pox_End\n' if name == 'PU_PARK' else ''
+    contest_guard = ''  # Contest protection lives in battle_setup/trainer_see.
     emit(f'Pox_{name}::\n{contest_guard}\ttrainerbattle_single {tid}, Pox_Text_{name}, Pox_Text_Defeat\n\tmsgbox Pox_Text_{name}_After, MSGBOX_AUTOCLOSE\n\tend')
     speech('Pox_Text_'+name, intro)
     speech('Pox_Text_'+name+'_After', after)
@@ -733,7 +772,7 @@ speech('Pox_Text_SquirtBottle', 'Use my SQUIRTBOTTLE when you examine the odd tr
 speech('Pox_Text_SquirtBottle_Full', 'There is no room in your KEY ITEMS POCKET right now. Come back once you have made some space.')
 add_npc('GoldenrodCity_hns', 'SquirtBottle', 27, 15, 'OBJ_EVENT_GFX_WOMAN_2', '0')
 manifest_event('GoldenrodCity_FlowerShop_hns', 'Pox_SquirtBottle', 2, 4)
-manifest_event('Route36_hns', 'Pox_Sudowoodo', 39, 20)
+manifest_event('Route36_hns', 'Pox_Sudowoodo', 39, 19)
 start('Sudowoodo')
 # Gen 2/4 ask nothing at all before the Sudowoodo appears, and this build's
 # field YES/NO box cannot be answered with B, so there is no question.
@@ -757,6 +796,10 @@ emit('Pox_Sudowoodo_Wait::\n\tmsgbox Pox_Text_Sudowoodo_Wait, MSGBOX_DEFAULT\n\t
 speech('Pox_Text_Sudowoodo', 'You spray the odd tree with the SQUIRTBOTTLE. It shivers!')
 speech('Pox_Text_Sudowoodo_Wait', 'This tree feels like stone! Someone near WHITNEY\'s GYM has a SQUIRTBOTTLE that might help.')
 
+# Append the new floor only after the existing story rooms, preserving their
+# stable map numbers in existing saves.
+room_names.append('PlasticOx_BurnedTowerB1F')
+manifest.append(('PlasticOx_BurnedTowerB1F', 8, 9, 'BurnedTower'))
 put('data/scripts/plastic_ox_story.inc','@ Generated by plastic_ox/alpha/build_story.py. Edit the manifest there.\n\n'+'\n'.join(scripts))
 path='data/event_scripts.s'
 s=read(path)

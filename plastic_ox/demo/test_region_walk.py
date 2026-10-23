@@ -37,7 +37,7 @@ LEGS={
      ('seam','N','Route24_hns'),('seam','N','Route25_hns'),('warp',0),('warp',0),('seam','S','Route24_hns'),('seam','S','RustboroCity'),
      'rustboro_route44_a',('warp',0),('warp',0),('warp',3),('warp',3),('warp',7),'route33_goldenrod_a']),
  'central':('GoldenrodCity_hns',(28,37),['goldenrod_route35_a','route35_park_a','park_route36_a',
-     ('seam','N','Route37_hns'),'route37_ecruteak_a','ecruteak_route119_a','route119_fortree_a','fortree_route110_a','route110_lavender_a']),
+     ('seam','N','Route37_hns'),('seam','N','EcruteakCity_hns'),'ecruteak_route119_a','route119_fortree_a','fortree_route110_a','route110_lavender_a']),
  'underground':('LavenderTown_hns',(9,7),['lavender_route8_a',('warp',0),('warp',3),('warp',1),'underground_return_6','route7_route103_a','route103_cinnabar_a']),
  'coast':('PalletTown_Frlg',(12,18),[('surfwarp','S','Route21_North_Frlg',(7,18)),('seam','S','Route21_South_Frlg'),
      ('seam','S','CinnabarIsland_Frlg')]),

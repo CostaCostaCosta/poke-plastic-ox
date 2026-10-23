@@ -72,6 +72,24 @@
       "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
       "script": "PoxRegion_route33_goldenrod_a"
+    },
+    {
+      "type": "trigger",
+      "x": 0,
+      "y": 23,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "PoxRegion_route33_goldenrod_a"
+    },
+    {
+      "type": "trigger",
+      "x": 0,
+      "y": 25,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "PoxRegion_route33_goldenrod_a"
     }
   ],
   "bg_events": [

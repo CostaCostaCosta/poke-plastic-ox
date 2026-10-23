@@ -31,7 +31,14 @@ def main():
     # Route 44's donor intentionally uses the upper drawing layer on walkable
     # road and overhang blocks. Check the whole land component, not just ports.
     connected = route.component((1, 15))
-    assert len(connected) >= 550, len(connected)
+    # The central grass island is separated from the road by the east trees.
+    # Its 56 grass tiles remain accessible through the surrounding water.
+    assert len(connected) >= 500, len(connected)
+    island_grass = {(x, y) for y in range(12, 17) for x in range(31, 49)
+                    if route.tile(x, y)[2] == "MB_TALL_GRASS"}
+    assert len(island_grass) == 56
+    assert not island_grass & connected
+    assert island_grass <= route.component((1, 15), water=True)
     assert (67, 13) in connected
     assert all(route.passable(x, y) for x in range(0, 8) for y in (14, 15, 16))
 
@@ -88,7 +95,7 @@ def main():
     game.walk("RIGHT", target=(67, 13))
     game.tap(K.KEY_RIGHT, hold=24, wait=90)
     state = assert_map(game, "MtMoon_1F_Frlg", ids)
-    assert (state["x"], state["y"]) == (18, 36), state
+    assert (state["x"], state["y"]) == (18, 37), state
     game.frame(180)
     game.shot("route44_mtmoon_fixed.png")
     print("PASS: Route 44 full walk in both directions, open road, and both approaches")

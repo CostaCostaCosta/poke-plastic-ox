@@ -46,8 +46,8 @@ WATER = {'Route103','Route19_Frlg','Route21_North_Frlg','Route21_South_Frlg',
 # shortcuts, and gated/object-blocked mouths retain their canonical center
 # trigger. The geometry/occupancy checks below still veto an individual lane.
 LANE_PORTALS = {
-    'rustboro_route44','route33_goldenrod','goldenrod_route35','route35_park',
-    'park_route36','route37_ecruteak','route119_fortree','route36_shortcut',
+    'rustboro_route44','route33_goldenrod','goldenrod_route35',
+    'route119_fortree','route36_shortcut',
     'route110_lavender','lavender_route8','route8_saffron','route7_saffron',
     'route7_route103','oldale_route103','route103_cinnabar','cinnabar_sea',
     'sea_mossdeep','mossdeep_route19','route19_saffron','saffron_route5',
@@ -65,9 +65,6 @@ TRAILS = [
     ('rustboro_route44','RustboroCity',(39,10),'Route44_hns',(0,15),[]),
     ('route33_goldenrod','Route33_hns','W','GoldenrodCity_hns','S',[]),
     ('goldenrod_route35','GoldenrodCity_hns',(33,8),'Route35_hns','S',[]),
-    ('route35_park','Route35_hns',(17,5),'NationalPark_Normal_hns',(24,51),[]),
-    ('park_route36','NationalPark_Normal_hns',(39,20),'Route36_hns',(16,21),[]),
-    ('route37_ecruteak','Route37_hns','N','EcruteakCity_hns','S',[]),
     ('ecruteak_route119','EcruteakCity_hns','E','Route119','S',['FLAG_BADGE03_GET']),
     ('route119_fortree','Route119',(39,8),'FortreeCity','W',['FLAG_POX_STORY_WEATHER']),
     ('fortree_route110','FortreeCity','E','Route110','N',['FLAG_BADGE04_GET']),
@@ -129,7 +126,8 @@ def apply_region(read, put):
         'RustboroCity':{'MAP_ROUTE2','MAP_ROUTE24_HNS'},
         'Route24_hns':{'MAP_RUSTBORO_CITY','MAP_ROUTE25_HNS'},
         'Route25_hns':{'MAP_ROUTE24_HNS'},
-        'Route36_hns':{'MAP_ROUTE37_HNS'}, 'Route37_hns':{'MAP_ROUTE36_HNS','MAP_ECRUTEAK_CITY_HNS'},
+        'Route35_hns':{'MAP_ROUTE36_HNS'},
+        'Route36_hns':{'MAP_ROUTE37_HNS','MAP_ROUTE35_HNS'}, 'Route37_hns':{'MAP_ROUTE36_HNS','MAP_ECRUTEAK_CITY_HNS'},
         'EcruteakCity_hns':{'MAP_ROUTE37_HNS'},
         'BattleFrontier_OutsideWest':{'MAP_BATTLE_FRONTIER_OUTSIDE_EAST'},
     }
@@ -320,7 +318,7 @@ def apply_region(read, put):
     ports=json.loads(read(path)) if read(path) else {}
     ports={k:v for k,v in ports.items() if not k.startswith(('cherry_route1','route1_route31','ilex_route104',
                                                              'lavender_route8','route8_saffron','route2_rustboro',
-                                                             'route24_route25'))}
+                                                             'route24_route25','route35_park','park_route36'))}
     reserved={}
     for key,a,at,b,bt,requirements in TRAILS:
         for suffix,name in [('_a',a),('_b',b)]:
@@ -520,11 +518,13 @@ def apply_region(read, put):
     for name, index, script, gfx in [
         ('Route33_hns', 1, 'POX_PU_MailRecipient', 'OBJ_EVENT_GFX_HIKER'),
         ('Route35_hns', 6, 'POX_PU_MailGuard', 'OBJ_EVENT_GFX_MAN_3'),
-        ('NationalPark_Normal_hns', 1, 'PlasticOxContest_EventScript_Attendant', 'OBJ_EVENT_GFX_GAMEBOY_KID'),
+        ('NationalPark_Normal_hns', 1, 'NationalPark_Normal_EventScript_Npc3', 'OBJ_EVENT_GFX_GAMEBOY_KID'),
     ]:
         d=load(name)
         d['object_events'][index].update(script=script,graphics_id=gfx,flag='0',
             trainer_type='TRAINER_TYPE_NONE',movement_type='MOVEMENT_TYPE_FACE_DOWN')
+        if name == 'NationalPark_Normal_hns':
+            d['object_events'][index].update(x=35,y=28,elevation=3)
         save(name,d)
     # Goldenrod's donor interiors and city doors are restored by goldenrod.install
     # below; the former shared Game Corner doorway is now the south Underground.
@@ -541,14 +541,19 @@ def apply_region(read, put):
     d=load('MauvilleCity_GameCorner')
     d['object_events'][3]['script']='POX_PU_CoinPrizes'
     save('MauvilleCity_GameCorner',d)
-    # This native one-tile path is an articulation point between the park
-    # arrival and every north-seam tile. One real object closes the route.
+    # Restore the donor's three-way junction before placing these objects:
+    # Sudowoodo blocks both Route 37 and the eastern road, while Snorlax
+    # blocks only the eastern branch beyond it.
     d=load('Route36_hns')
-    d['object_events']=[o for o in d['object_events'] if o.get('script') != 'Pox_Sudowoodo']
-    d['object_events'].append(dict(graphics_id='OBJ_EVENT_GFX_SUDOWOODO',x=39,y=20,elevation=3,
+    d['object_events']=[o for o in d['object_events'] if o.get('script') not in ('Pox_Sudowoodo', 'Route36_EventScript_Snorlax')]
+    d['object_events'].append(dict(graphics_id='OBJ_EVENT_GFX_SUDOWOODO',x=39,y=19,elevation=3,
         movement_type='MOVEMENT_TYPE_NONE',movement_range_x=0,movement_range_y=0,
         trainer_type='TRAINER_TYPE_NONE',trainer_sight_or_berry_tree_id='0',
         script='Pox_Sudowoodo',flag='FLAG_POX_SUDOWOODO_CLEARED'))
+    d['object_events'].append(dict(graphics_id='OBJ_EVENT_GFX_SNORLAX',x=43,y=19,elevation=3,
+        movement_type='MOVEMENT_TYPE_NONE',movement_range_x=0,movement_range_y=0,
+        trainer_type='TRAINER_TYPE_NONE',trainer_sight_or_berry_tree_id='0',
+        script='Route36_EventScript_Snorlax',flag='FLAG_POX_ROUTE36_SNORLAX_CLEARED'))
     save('Route36_hns',d)
     # Route 44's gate handler and dialogue are authored in its local scripts.
 
@@ -683,3 +688,12 @@ def apply_region(read, put):
     install_goldenrod(read, put)
     from ecruteak import install as install_ecruteak
     install_ecruteak(read, put)
+    from national_park import install as install_national_park
+    install_national_park(read, put)
+    from johto_outdoors import install as install_johto_outdoors
+    install_johto_outdoors(read, put)
+
+    from cinnabar import install as install_cinnabar
+    install_cinnabar(read, put)
+    from seafoam import install as install_seafoam
+    install_seafoam(read, put)
