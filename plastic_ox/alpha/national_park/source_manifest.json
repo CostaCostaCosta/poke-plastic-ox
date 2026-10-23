@@ -1,0 +1,32 @@
+{
+  "source_checkout": "/home/eddie/repos/pokehns-expansion",
+  "source_revision": "44f50eedefe58691b0444973e4138e9190d8fafc",
+  "source_family": "hns",
+  "source_sha256": {
+    "data/maps/Route35_hns/map.json": "3139aab08d22764caac9fabdb9634f8019bf532ec5e84dc6475dce8aec63b3f6",
+    "data/maps/Route36_hns/map.json": "3c68d9fb07165b03349cb90efb60c4325f226a225c5193f88d1affdf95b30fca",
+    "data/maps/Gate_NationalPark_hns/map.json": "2edda8dd6918465c396c49d0c98bf82406237f6e2495e1166e01b129a62ec6e7",
+    "data/maps/NationalPark_Normal_hns/map.json": "826931c350165deb3123c3607befe09db40d316a77e10b77659e2384d95d0074",
+    "data/maps/NationalPark_BugContest_hns/map.json": "ca922a3abb4e92d56a23ea4f9b24b890e1112f4c7a4c8d512f2ac94f88923981",
+    "data/maps/Gate_NationalPark_hns/scripts.inc": "0ad6ae822d9c4315908cf47a03b7a930a8e36ded094c7f74f049e83110bc7c77",
+    "data/layouts/Gate_NationalPark_hns/map.bin": "7350db60f16e955d6015fd5e9286cbb57ef0461d9cc52bb4c484f7a1e52f9585",
+    "data/layouts/Gate_NationalPark_hns/border.bin": "af5570f5a1810b7af78caf4bc70a660f0df51e42baf91d4de5b2328de0e83dfc"
+  },
+  "destination_group": "gMapGroup_PlasticOxInteriors",
+  "layout_partition": 640,
+  "palette_partition": 7,
+  "tilesets": [
+    "gTileset_Johto_Building_Hns",
+    "gTileset_Gate_Standard_Hns"
+  ],
+  "copied_assets": [
+    "data/layouts/Gate_NationalPark_hns/map.bin",
+    "data/layouts/Gate_NationalPark_hns/border.bin"
+  ],
+  "encounter_policy": "Keep the existing Plastic-Ox normal park encounters and sPoxParkContestDay table; contest uses NationalPark_Normal_hns with the existing session hooks.",
+  "original_johto_reference": [
+    "https://github.com/pret/pokecrystal/blob/master/maps/Route35NationalParkGate.asm",
+    "https://github.com/pret/pokecrystal/blob/master/maps/Route36NationalParkGate.asm",
+    "https://github.com/pret/pokecrystal/blob/master/maps/Route35.asm"
+  ]
+}

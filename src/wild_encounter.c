@@ -1193,7 +1193,8 @@ void FishingWildEncounter(u8 rod)
 
     gIsFishingEncounter = TRUE;
     GetXYCoordsOneStepInFrontOfPlayer(&x, &y);
-    if (CheckFeebasAtCoords(x, y) == TRUE)
+    // The Old Rod uses Route 119's fishing table at every tile.
+    if (rod != OLD_ROD && CheckFeebasAtCoords(x, y) == TRUE)
     {
         u8 level = ChooseWildMonLevel(&gWildFeebas, 0, WILD_AREA_FISHING);
 

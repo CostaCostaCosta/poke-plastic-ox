@@ -33,6 +33,8 @@
 #include "party_menu.h"
 #include "player_pc.h"
 #include "pokemon.h"
+#include "plastic_ox_contest.h"
+#include "safari_zone.h"
 #include "pokemon_summary_screen.h"
 #include "scanline_effect.h"
 #include "script.h"
@@ -221,6 +223,8 @@ static const u8 sText_DepositHowManyVar1[] = _("Deposit how many\n{STR_VAR_1}?")
 static const u8 sText_DepositedVar2Var1s[] = _("Deposited {STR_VAR_2}\n{STR_VAR_1}.");
 static const u8 sText_NoRoomForItems[] = _("There's no room to\nstore items.");
 static const u8 sText_CantStoreImportantItems[] = _("Important items\ncan't be stored in\nthe PC!");
+static const u8 sText_ContestSportBallsOnly[] = _("Only the 20 Sport Balls\nmay be used in this contest.");
+static const u8 sText_ContestKeepSportBalls[] = _("Keep the Sport Balls\nfor the contest!");
 
 static void Task_LoadBagSortOptions(u8 taskId);
 static void ItemMenu_SortByName(u8 taskId);
@@ -1888,6 +1892,11 @@ static void ItemMenu_Toss(u8 taskId)
     s16 *data = gTasks[taskId].data;
 
     RemoveContextWindow();
+    if (PlasticOxContest_IsActive() && gSpecialVar_ItemId == ITEM_SPORT_BALL)
+    {
+        DisplayItemMessage(taskId, FONT_NORMAL, sText_ContestKeepSportBalls, CloseItemMessage);
+        return;
+    }
     tItemCount = 1;
     if (tQuantity == 1)
     {
@@ -2027,7 +2036,11 @@ static void ItemMenu_Register(u8 taskId)
 static void ItemMenu_Give(u8 taskId)
 {
     RemoveContextWindow();
-    if (!IsWritingMailAllowed(gSpecialVar_ItemId))
+    if (PlasticOxContest_IsActive() && gSpecialVar_ItemId == ITEM_SPORT_BALL)
+    {
+        DisplayItemMessage(taskId, FONT_NORMAL, sText_ContestKeepSportBalls, CloseItemMessage);
+    }
+    else if (!IsWritingMailAllowed(gSpecialVar_ItemId))
     {
         DisplayItemMessage(taskId, FONT_NORMAL, gText_CantWriteMail, HandleErrorMessage);
     }
@@ -2096,6 +2109,12 @@ static void ItemMenu_UseInBattle(u8 taskId)
         return;
 
     RemoveContextWindow();
+    if (PlasticOxContest_IsActive()
+     && (gSpecialVar_ItemId != ITEM_SPORT_BALL || gNumSafariBalls == 0))
+    {
+        DisplayItemMessage(taskId, FONT_NORMAL, sText_ContestSportBallsOnly, CloseItemMessage);
+        return;
+    }
     if (type == ITEM_USE_BAG_MENU || (type == ITEM_USE_BATTLER && !IsDoubleBattle()))
         ItemUseInBattle_BagMenu(taskId);
     else if (type == ITEM_USE_PARTY_MENU || (type == ITEM_USE_BATTLER && IsDoubleBattle()))

@@ -37,6 +37,8 @@
 #include "party_menu.h"
 #include "pokeblock.h"
 #include "pokemon.h"
+#include "plastic_ox_contest.h"
+#include "safari_zone.h"
 #include "script.h"
 #include "sound.h"
 #include "strings.h"
@@ -1488,6 +1490,8 @@ void ItemUseInBattle_BagMenu(u8 taskId)
         PlaySE(SE_SELECT);
         if (!GetItemImportance(gSpecialVar_ItemId) && !(B_TRY_CATCH_TRAINER_BALL >= GEN_4 && (GetItemBattleUsage(gSpecialVar_ItemId) == EFFECT_ITEM_THROW_BALL) && (gBattleTypeFlags & BATTLE_TYPE_TRAINER)))
             RemoveUsedItem();
+        if (PlasticOxContest_IsActive() && gSpecialVar_ItemId == ITEM_SPORT_BALL)
+            gNumSafariBalls--;
         ScheduleBgCopyTilemapToVram(2);
         if (CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE)
             gTasks[taskId].func = Task_FadeAndCloseBagMenu;

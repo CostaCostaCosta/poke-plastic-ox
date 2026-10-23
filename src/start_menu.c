@@ -156,6 +156,8 @@ static const struct WindowTemplate sWindowTemplate_SafariBalls = {
     .baseBlock = 0x8
 };
 
+static const u8 sText_SportBallStock[] = _("SPORT BALLS\nStock: {STR_VAR_1}");
+
 static const u8 *const sPyramidFloorNames[FRONTIER_STAGES_PER_CHALLENGE + 1] =
 {
     gText_Floor1,
@@ -452,7 +454,7 @@ static void ShowSafariBallsWindow(void)
     else
     {
         ConvertIntToDecimalStringN(gStringVar1, gNumSafariBalls, STR_CONV_MODE_RIGHT_ALIGN, 2);
-        StringExpandPlaceholders(gStringVar4, gText_SafariBallStock);
+        StringExpandPlaceholders(gStringVar4, PlasticOxContest_HasSession() ? sText_SportBallStock : gText_SafariBallStock);
         AddTextPrinterParameterized(sSafariBallsWindowId, FONT_NORMAL, gStringVar4, 0, 1, TEXT_SKIP_DRAW, NULL);
     }
     CopyWindowToVram(sSafariBallsWindowId, COPYWIN_GFX);

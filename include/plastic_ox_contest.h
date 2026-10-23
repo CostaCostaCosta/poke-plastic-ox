@@ -5,10 +5,12 @@ struct Pokemon;
 
 bool32 PlasticOxContest_IsActive(void);
 bool32 PlasticOxContest_HasSession(void);
+void PlasticOxContest_CheckEntry(void);
 bool32 PlasticOxContest_TakeStep(void);
 void PlasticOxContest_StageCatch(struct Pokemon *mon);
 void PlasticOxContest_EndBattle(void);
 void PlasticOxContest_OnMapChange(void);
+void PlasticOxContest_GetEntrySide(void);
 void PlasticOxContest_Status(void);
 void PlasticOxContest_Start(void);
 void PlasticOxContest_AcceptCatch(void);
