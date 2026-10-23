@@ -4,7 +4,9 @@
   "layout": "LAYOUT_POKEMON_MANSION_B1F",
   "music": "MUS_RG_POKE_MANSION",
   "region": "REGION_KANTO",
-  "include_in_versions": ["emerald"],
+  "include_in_versions": [
+    "emerald"
+  ],
   "region_map_section": "MAPSEC_POKEMON_MANSION",
   "requires_flash": false,
   "weather": "WEATHER_SHADE",
@@ -89,17 +91,33 @@
     },
     {
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "graphics_id": "OBJ_EVENT_GFX_SAGE_HNS",
       "x": 5,
       "y": 7,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
+      "movement_range_x": 0,
+      "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PokemonMansion_B1F_EventScript_ItemSecretKey",
-      "flag": "FLAG_HIDE_POKEMON_MANSION_B1F_SECRET_KEY"
+      "script": "PoxCinnabar_EnteiSage",
+      "flag": "FLAG_POX_ENTEI",
+      "local_id": "LOCALID_POX_ENTEI_SAGE"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_ENTEI",
+      "x": 6,
+      "y": 7,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxCinnabar_EnteiSage",
+      "flag": "FLAG_POX_ENTEI",
+      "local_id": "LOCALID_POX_ENTEI"
     }
   ],
   "warp_events": [
@@ -119,7 +137,7 @@
       "y": 27,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "PokemonMansion_B1F_EventScript_DiarySep1st"
+      "script": "Pox_Archive3"
     },
     {
       "type": "sign",

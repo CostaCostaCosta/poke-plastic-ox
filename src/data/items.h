@@ -14610,12 +14610,12 @@ const struct ItemInfo gItemsInfo[] =
 
     [ITEM_SECRET_KEY] =
     {
-        .name = ITEM_NAME("Secret Key"),
+        .name = ITEM_NAME("Mansion Key"),
         .price = 0,
         .description = COMPOUND_STRING(
             "The key to the\n"
             "Cinnabar Island\n"
-            "Gym's entrance."),
+            "Pokémon Mansion."),
         .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_BAG_MENU,

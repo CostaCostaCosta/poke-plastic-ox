@@ -4,7 +4,9 @@
   "layout": "LAYOUT_CINNABAR_ISLAND_GYM",
   "music": "MUS_RG_GYM",
   "region": "REGION_KANTO",
-  "include_in_versions": ["emerald"],
+  "include_in_versions": [
+    "emerald"
+  ],
   "region_map_section": "MAPSEC_CINNABAR_ISLAND",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -132,7 +134,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "CinnabarIsland_Gym_EventScript_Blaine",
+      "script": "Pox_Blaine",
       "flag": "0"
     },
     {

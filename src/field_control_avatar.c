@@ -22,6 +22,9 @@
 #include "fldeff_misc.h"
 #include "follower_npc.h"
 #include "item_menu.h"
+#include "item.h"
+#include "constants/items.h"
+#include "constants/maps.h"
 #include "link.h"
 #include "match_call.h"
 #include "metatile_behavior.h"
@@ -46,6 +49,7 @@
 #include "constants/trainer_hill.h"
 
 extern const u8 PlasticOx_EventScript_HeadbuttTree[];
+extern const u8 PoxCinnabar_MansionLocked[];
 
 static EWRAM_DATA u8 sWildEncounterImmunitySteps = 0;
 static EWRAM_DATA u16 sPrevMetatileBehavior = 0;
@@ -981,12 +985,31 @@ static bool8 TryArrowWarp(struct MapPosition *position, u16 metatileBehavior, en
     return FALSE;
 }
 
+static bool8 TryLockedMansionWarp(s8 warpEventId)
+{
+#if !IS_FRLG
+    const struct WarpEvent *warp = &gMapHeader.events->warps[warpEventId];
+    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_CINNABAR_ISLAND)
+        && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_CINNABAR_ISLAND)
+        && warp->mapGroup == MAP_GROUP(MAP_POKEMON_MANSION_1F)
+        && warp->mapNum == MAP_NUM(MAP_POKEMON_MANSION_1F)
+        && !CheckBagHasItem(ITEM_SECRET_KEY, 1))
+    {
+        ScriptContext_SetupScript(PoxCinnabar_MansionLocked);
+        return TRUE;
+    }
+#endif
+    return FALSE;
+}
+
 static bool8 TryStartWarpEventScript(struct MapPosition *position, u16 metatileBehavior)
 {
     s8 warpEventId = GetWarpEventAtMapPosition(&gMapHeader, position);
 
     if (warpEventId != WARP_ID_NONE && IsWarpMetatileBehavior(metatileBehavior) == TRUE)
     {
+        if (TryLockedMansionWarp(warpEventId))
+            return TRUE;
         StoreInitialPlayerAvatarState();
         SetupWarp(&gMapHeader, warpEventId, position);
         if (MetatileBehavior_IsEscalator(metatileBehavior) == TRUE)
@@ -1130,6 +1153,8 @@ static bool8 TryDoorWarp(struct MapPosition *position, u16 metatileBehavior, enu
             warpEventId = GetWarpEventAtMapPosition(&gMapHeader, position);
             if (warpEventId != WARP_ID_NONE && IsWarpMetatileBehavior(metatileBehavior) == TRUE)
             {
+                if (TryLockedMansionWarp(warpEventId))
+                    return TRUE;
                 StoreInitialPlayerAvatarState();
                 SetupWarp(&gMapHeader, warpEventId, position);
                 DoDoorWarp();
