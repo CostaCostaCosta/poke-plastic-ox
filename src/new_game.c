@@ -70,8 +70,6 @@ static void ResetItemFlags(void);
 static void ResetDexNav(void);
 void GivePlasticOxPlayerParty(void);
 
-static const u8 sPlasticOxPlayerName[] = _("P");
-
 EWRAM_DATA bool8 gDifferentSaveFile = FALSE;
 EWRAM_DATA bool8 gEnableContestDebugging = FALSE;
 
@@ -182,8 +180,7 @@ void NewGameInitData(void)
 #endif
     gDifferentSaveFile = TRUE;
     gSaveBlock2Ptr->encryptionKey = 0;
-    StringCopy(gSaveBlock2Ptr->playerName, sPlasticOxPlayerName);
-    gSaveBlock2Ptr->playerGender = MALE;
+    // Preserve the identity confirmed in professor registration.
     ZeroPlayerPartyMons();
     ZeroEnemyPartyMons();
     ResetPokedex();
@@ -197,6 +194,9 @@ void NewGameInitData(void)
     PlayTimeCounter_Reset();
     ClearPokedexFlags();
     InitEventData();
+#ifndef PLASTIC_OX_BUILD_BATTLE
+    FlagSet(FLAG_POX_INTRO_QUAKE_PENDING);
+#endif
     ClearTVShowData();
     ResetGabbyAndTy();
     ClearSecretBases();
@@ -352,8 +352,7 @@ void GivePlasticOxPlayerParty(void)
 
 void CB2_InitPlasticOxTitleScreen(void)
 {
-    // Skip the copyright and intro cinematics, but retain the normal title and
-    // main menu so an existing save can be continued.
+    // Load saves before the custom opening; the title retains the normal menu.
 #ifndef PLASTIC_OX_BUILD_BATTLE
     gPlasticOxTriggersEnabled = TRUE;
 #else
@@ -371,7 +370,7 @@ void CB2_InitPlasticOxTitleScreen(void)
     if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_CORRUPT)
         Sav2_ClearSetDefault();
     SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
-    SetMainCallback2(CB2_InitTitleScreen);
+    SetMainCallback2(CB2_PlasticOxOpening);
 }
 
 static void ResetMiniGamesRecords(void)

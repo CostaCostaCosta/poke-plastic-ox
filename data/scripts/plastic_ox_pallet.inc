@@ -236,13 +236,13 @@ Pox_BirchDepartAfterTalk::
     end
 
 Pox_Text_OakIntro::
-	.string "OAK: Ah, {PLAYER}! Welcome!\nToday you get to choose your\pfirst POKéMON.\pMy colleagues have come a long\nway to meet you.\pThe geography of KANTO, JOHTO,\nand HOENN changed suddenly.\pRoads now lead to unfamiliar\nplaces.\pWe're still trying to\nunderstand it. Here in PALLET,\pthough, life goes on!$"
+	.string "OAK: Ah, {PLAYER}! BIRCH sent\nyour registration. Welcome!\pThat earthquake was another\nshock from the regions colliding.\pToday you get to choose your\pfirst POKéMON.\pMy colleagues have come a long\nway to meet you.\pThe geography of KANTO, JOHTO,\nand HOENN changed suddenly.\pRoads now lead to unfamiliar\nplaces.\pWe're still trying to\nunderstand it. Here in PALLET,\pthough, life goes on!$"
 
 Pox_Text_ElmIntro::
-	.string "ELM: Hello! I'm PROFESSOR ELM,\nfrom JOHTO.\pI study how POKéMON grow.\nThere's so much we can learn\pby caring for them every day.\pI've brought CYNDAQUIL. A\nlittle patience will help it\pfeel at home.$"
+	.string "ELM: Hello! I'm PROFESSOR ELM,\nfrom JOHTO.\pWe felt the tremor here, too.\nThe new borders are still\psettling. Stay alert out there!\pI study how POKéMON grow.\nThere's so much we can learn\pby caring for them every day.\pI've brought CYNDAQUIL. A\nlittle patience will help it\pfeel at home.$"
 
 Pox_Text_BirchIntro::
-	.string "BIRCH: And I'm PROFESSOR\nBIRCH, from HOENN! I study\pPOKéMON out in the field.\pThe habitats along these new\nroads have given me plenty to\pexplore.\pTREECKO came with me. It's\nalways ready for a walk!$"
+	.string "BIRCH: And I'm PROFESSOR\nBIRCH, from HOENN! I study\pPOKéMON out in the field.\pThat rumble felt like riding\nin a moving truck! But it was\pthe land itself shifting.\pThe habitats along these new\nroads have given me plenty to\pexplore.\pTREECKO came with me. It's\nalways ready for a walk!$"
 
 Pox_Text_ChoosePartner::
 	.string "OAK: I've brought SQUIRTLE\nfrom KANTO. That's one partner\pfrom each of our regions!\pThe three POKé BALLS are on\nthe table to the right.\pTake a look at each one.\nChoose the POKéMON you'd like\pto travel with.$"

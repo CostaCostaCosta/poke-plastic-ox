@@ -563,6 +563,11 @@ static void VBlankCB(void)
 
 void CB2_InitTitleScreen(void)
 {
+    if (!IS_FRLG)
+    {
+        CB2_PlasticOxTitle();
+        return;
+    }
     if (IS_FRLG)
     {
         CB2_InitTitleScreenFrlg();
