@@ -1,4 +1,5 @@
 #include "global.h"
+#include "metamon_trainer.h"
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_arena.h"
@@ -412,6 +413,7 @@ static bool32 IsUnnerveAbilityOnOpposingSide(enum BattlerId battler)
 // Functions
 void HandleAction_UseMove(void)
 {
+    MetamonMoveStart();
     gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
     if (gAbsentBattlerFlags & 1u << gBattlerAttacker
      || gBattleStruct->battlerState[gBattlerAttacker].commandingDondozo
@@ -6392,14 +6394,7 @@ static inline u32 CalcMoveBasePower(struct DamageContext *ctx)
     {
         if (B_HIDDEN_POWER_DMG < GEN_6)
         {
-            u8 powerBits = ((gBattleMons[battlerAtk].hpIV & 2) >> 1)
-                         | ((gBattleMons[battlerAtk].attackIV & 2) << 0)
-                         | ((gBattleMons[battlerAtk].defenseIV & 2) << 1)
-                         | ((gBattleMons[battlerAtk].speedIV & 2) << 2)
-                         | ((gBattleMons[battlerAtk].spAttackIV & 2) << 3)
-                         | ((gBattleMons[battlerAtk].spDefenseIV & 2) << 4);
-
-            basePower = (40 * powerBits) / 63 + 30;
+            basePower = GetHiddenPowerBasePower(NULL, battlerAtk, MON_IN_BATTLE);
         }
         break;
     }
@@ -9199,6 +9194,18 @@ void SortBattlersBySpeed(enum BattlerId *battlers, bool32 slowToFast)
 
 void TryRestoreHeldItems(void)
 {
+    // Plastic Ox: trainer battles never permanently consume or exchange held items.
+    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+    {
+        for (u32 i = 0; i < PARTY_SIZE; i++)
+        {
+            u16 item = gBattleStruct->itemLost[B_TRAINER_PLAYER][i].originalItem;
+            SetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_HELD_ITEM,
+                       &item);
+        }
+        return;
+    }
+
     if (!B_TRAINERS_KNOCK_OFF_ITEMS && B_RESTORE_HELD_BATTLE_ITEMS < GEN_9)
         return;
 

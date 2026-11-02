@@ -92,7 +92,22 @@
       "flag": "0"
     }
   ],
-  "warp_events": [],
+  "warp_events": [
+    {
+      "x": 26,
+      "y": 39,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE30_HOUSE_HNS",
+      "dest_warp_id": 0
+    },
+    {
+      "x": 35,
+      "y": 4,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE30_MR_POKEMONS_HOUSE_HNS",
+      "dest_warp_id": 0
+    }
+  ],
   "coord_events": [],
   "bg_events": [
     {

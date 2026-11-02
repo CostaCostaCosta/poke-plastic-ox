@@ -13,25 +13,26 @@ CeladonCity_DepartmentStore_5F_EventScript_FloorSign::
 	msgbox CeladonCity_DepartmentStore_5F_Text_Drugstore, MSGBOX_SIGN
 	end
 
-CeladonCity_DepartmentStore_5F_EventScript_ClerkXItems::
+CeladonCity_DepartmentStore_5F_EventScript_ClerkEvolutionStones::
 	lock
 	faceplayer
 	message gText_HowMayIServeYou
 	waitmessage
-	pokemart CeladonCity_DepartmentStore_5F_XItems
+	pokemart CeladonCity_DepartmentStore_5F_EvolutionStones
 	msgbox gText_PleaseComeAgain
 	release
 	end
 
 	.align 2
-CeladonCity_DepartmentStore_5F_XItems::
-	.2byte ITEM_X_ATTACK
-	.2byte ITEM_X_DEFEND
-	.2byte ITEM_X_SPEED
-	.2byte ITEM_X_SPECIAL
-	.2byte ITEM_X_ACCURACY
-	.2byte ITEM_GUARD_SPEC
-	.2byte ITEM_DIRE_HIT
+CeladonCity_DepartmentStore_5F_EvolutionStones::
+	.2byte ITEM_FIRE_STONE
+	.2byte ITEM_WATER_STONE
+	.2byte ITEM_THUNDER_STONE
+	.2byte ITEM_LEAF_STONE
+	.2byte ITEM_MOON_STONE
+	.2byte ITEM_SUN_STONE
+	.2byte ITEM_SHINY_STONE
+	.2byte ITEM_LEFTOVERS
 	.2byte ITEM_NONE
 	release
 	end
@@ -54,6 +55,7 @@ CeladonCity_DepartmentStore_5F_Vitamins::
 	.2byte ITEM_CALCIUM
 	.2byte ITEM_ZINC
 	.2byte ITEM_CARBOS
+	.2byte ITEM_LEFTOVERS
 	.2byte ITEM_NONE
 	release
 	end

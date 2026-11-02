@@ -3,13 +3,8 @@ MtMoon_B2F_Frlg_MapScripts::
 	.byte 0
 
 MtMoon_B2F_OnTransition::
-	call_if_unset FLAG_GOT_FOSSIL_FROM_MT_MOON, MtMoon_B2F_EventScript_ShowFossils
+	goto_if_eq VAR_POX_MTMOON_STATE, 2, MtMoon_B2F_FossilsTaken
 	end
-
-MtMoon_B2F_EventScript_ShowFossils::
-	clearflag FLAG_HIDE_DOME_FOSSIL
-	clearflag FLAG_HIDE_HELIX_FOSSIL
-	return
 
 MtMoon_B2F_EventScript_MiguelTrigger::
 	lockall
@@ -22,21 +17,21 @@ MtMoon_B2F_EventScript_MiguelTrigger::
 MtMoon_B2F_EventScript_Miguel::
 	lock
 	faceplayer
-	goto_if_set FLAG_GOT_FOSSIL_FROM_MT_MOON, MtMoon_B2F_EventScript_MiguelFossilPicked
-	goto_if_defeated TRAINER_SUPER_NERD_MIGUEL, MtMoon_B2F_EventScript_MiguelGoPickFossil
+	goto_if_eq VAR_POX_MTMOON_STATE, 2, MtMoon_B2F_EventScript_MiguelFossilPicked
+	goto_if_defeated TRAINER_PLASTIC_OX_MOON_SUPER_NERD_MIGUEL, MtMoon_B2F_EventScript_MiguelGoPickFossil
 	call MtMoon_B2F_EventScript_BattleMiguel
 	release
 	end
 
 MtMoon_B2F_EventScript_BattleMiguel::
-	textcolor NPC_TEXT_COLOR_MALE
 	message MtMoon_B2F_Text_MiguelIntro
 	waitmessage
 	playbgm MUS_RG_ENCOUNTER_GYM_LEADER, 0
 	waitbuttonpress
 	setvar VAR_LAST_TALKED, LOCALID_MIGUEL
-	trainerbattle_no_intro TRAINER_SUPER_NERD_MIGUEL, MtMoon_B2F_Text_MiguelDefeat
-	setvar VAR_MAP_SCENE_MT_MOON_B2F, 1
+	trainerbattle_no_intro TRAINER_PLASTIC_OX_MOON_SUPER_NERD_MIGUEL, MtMoon_B2F_Text_MiguelDefeat
+	setvar VAR_POX_MTMOON_STATE, 1
+	setflag FLAG_POX_STORY_MTMOON
 	msgbox MtMoon_B2F_Text_WellEachTakeAFossil
 	return
 
@@ -53,23 +48,25 @@ MtMoon_B2F_EventScript_MiguelGoPickFossil::
 MtMoon_B2F_EventScript_DomeFossil::
 	lock
 	faceplayer
+	goto_if_eq VAR_POX_MTMOON_STATE, 0, MtMoon_B2F_EventScript_DontTakeFossil
+	goto_if_eq VAR_POX_MTMOON_STATE, 2, MtMoon_B2F_EventScript_DontTakeFossil
 	msgbox MtMoon_B2F_Text_YouWantDomeFossil, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, MtMoon_B2F_EventScript_DontTakeFossil
+	giveitem ITEM_ANCIENT_ICE_TABLET
+	goto_if_eq VAR_RESULT, FALSE, MtMoon_B2F_EventScript_DontTakeFossil
 	removeobject LOCALID_DOME_FOSSIL
-	giveitem_msg MtMoon_B2F_Text_ObtainedDomeFossil, ITEM_DOME_FOSSIL, 1, MUS_RG_OBTAIN_KEY_ITEM
 	closemessage
 	delay 10
 	applymovement LOCALID_MIGUEL, MtMoon_B2F_Movement_MiguelToHelixFossil
 	waitmovement 0
 	copyobjectxytoperm LOCALID_MIGUEL
-	textcolor NPC_TEXT_COLOR_MALE
 	playfanfare MUS_RG_OBTAIN_KEY_ITEM
 	message MtMoon_B2F_Text_ThenThisFossilIsMine
 	waitmessage
 	waitfanfare
 	removeobject LOCALID_HELIX_FOSSIL
-	setflag FLAG_GOT_DOME_FOSSIL
-	setflag FLAG_GOT_FOSSIL_FROM_MT_MOON
+	setvar VAR_POX_MTMOON_STATE, 2
+	setflag FLAG_POX_STORY_MTMOON
 	release
 	end
 
@@ -83,23 +80,25 @@ MtMoon_B2F_Movement_MiguelToHelixFossil::
 MtMoon_B2F_EventScript_HelixFossil::
 	lock
 	faceplayer
+	goto_if_eq VAR_POX_MTMOON_STATE, 0, MtMoon_B2F_EventScript_DontTakeFossil
+	goto_if_eq VAR_POX_MTMOON_STATE, 2, MtMoon_B2F_EventScript_DontTakeFossil
 	msgbox MtMoon_B2F_Text_YouWantHelixFossil, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, MtMoon_B2F_EventScript_DontTakeFossil
+	giveitem ITEM_ANCIENT_ROCK_TABLET
+	goto_if_eq VAR_RESULT, FALSE, MtMoon_B2F_EventScript_DontTakeFossil
 	removeobject LOCALID_HELIX_FOSSIL
-	giveitem_msg MtMoon_B2F_Text_ObtainedHelixFossil, ITEM_HELIX_FOSSIL, 1, MUS_RG_OBTAIN_KEY_ITEM
 	closemessage
 	delay 10
 	applymovement LOCALID_MIGUEL, MtMoon_B2F_Movement_MiguelToDomeFossil
 	waitmovement 0
 	copyobjectxytoperm LOCALID_MIGUEL
-	textcolor NPC_TEXT_COLOR_MALE
 	playfanfare MUS_RG_OBTAIN_KEY_ITEM
 	message MtMoon_B2F_Text_ThenThisFossilIsMine
 	waitmessage
 	waitfanfare
 	removeobject LOCALID_DOME_FOSSIL
-	setflag FLAG_GOT_HELIX_FOSSIL
-	setflag FLAG_GOT_FOSSIL_FROM_MT_MOON
+	setvar VAR_POX_MTMOON_STATE, 2
+	setflag FLAG_POX_STORY_MTMOON
 	release
 	end
 
@@ -114,28 +113,28 @@ MtMoon_B2F_Movement_MiguelToDomeFossil::
 	step_end
 
 MtMoon_B2F_EventScript_Grunt1::
-	trainerbattle_single TRAINER_TEAM_ROCKET_GRUNT, MtMoon_B2F_Text_Grunt1Intro, MtMoon_B2F_Text_Grunt1Defeat
+	trainerbattle_single TRAINER_PLASTIC_OX_MOON_TEAM_ROCKET_GRUNT, MtMoon_B2F_Text_Grunt1Intro, MtMoon_B2F_Text_Grunt1Defeat
 	msgbox MtMoon_B2F_Text_Grunt1PostBattle, MSGBOX_AUTOCLOSE
 	end
 
 MtMoon_B2F_EventScript_Grunt2::
-	trainerbattle_single TRAINER_TEAM_ROCKET_GRUNT_2, MtMoon_B2F_Text_Grunt2Intro, MtMoon_B2F_Text_Grunt2Defeat
+	trainerbattle_single TRAINER_PLASTIC_OX_MOON_TEAM_ROCKET_GRUNT_2, MtMoon_B2F_Text_Grunt2Intro, MtMoon_B2F_Text_Grunt2Defeat
 	msgbox MtMoon_B2F_Text_Grunt2PostBattle, MSGBOX_AUTOCLOSE
 	end
 
 MtMoon_B2F_EventScript_Grunt3::
-	trainerbattle_single TRAINER_TEAM_ROCKET_GRUNT_3, MtMoon_B2F_Text_Grunt3Intro, MtMoon_B2F_Text_Grunt3Defeat
+	trainerbattle_single TRAINER_PLASTIC_OX_MOON_TEAM_ROCKET_GRUNT_3, MtMoon_B2F_Text_Grunt3Intro, MtMoon_B2F_Text_Grunt3Defeat
 	msgbox MtMoon_B2F_Text_Grunt3PostBattle, MSGBOX_AUTOCLOSE
 	end
 
 MtMoon_B2F_EventScript_Grunt4::
-	trainerbattle_single TRAINER_TEAM_ROCKET_GRUNT_4, MtMoon_B2F_Text_Grunt4Intro, MtMoon_B2F_Text_Grunt4Defeat
+	trainerbattle_single TRAINER_PLASTIC_OX_MOON_TEAM_ROCKET_GRUNT_4, MtMoon_B2F_Text_Grunt4Intro, MtMoon_B2F_Text_Grunt4Defeat
 	msgbox MtMoon_B2F_Text_Grunt4PostBattle, MSGBOX_AUTOCLOSE
 	end
 
 MtMoon_B2F_Text_MiguelIntro::
 	.string "Hey, stop!\p"
-	.string "I found these fossils!\n"
+	.string "I found these tablets!\n"
 	.string "They're both mine!$"
 
 MtMoon_B2F_Text_MiguelDefeat::
@@ -143,23 +142,25 @@ MtMoon_B2F_Text_MiguelDefeat::
 	.string "I'll share!$"
 
 MtMoon_B2F_Text_WellEachTakeAFossil::
-	.string "We'll each take a fossil!\n"
+	.string "We'll each take a tablet!\n"
 	.string "No being greedy!$"
 
 MtMoon_B2F_Text_ThenThisFossilIsMine::
 	.string "All right.\n"
-	.string "Then this fossil is mine!$"
+	.string "Then this tablet is mine!$"
 
 MtMoon_B2F_Text_LabOnCinnabarRegeneratesFossils::
-	.string "Far away, on CINNABAR ISLAND,\n"
-	.string "there's a POKéMON LAB.\p"
-	.string "They do research on regenerating\n"
-	.string "fossils.$"
+	.string "The ANCIENT ICE TABLET is linked\n"
+	.string "to REGICE.\p"
+	.string "The ANCIENT ROCK TABLET is linked\n"
+	.string "to REGIROCK.\p"
+	.string "They may be keys to the seals\n"
+	.string "of those ancient POKéMON.$"
 
 MtMoon_B2F_Text_Grunt1Intro::
 	.string "We, TEAM ROCKET, shall find the\n"
-	.string "fossils!\p"
-	.string "Reviving POKéMON from them will\n"
+	.string "tablets!\p"
+	.string "Selling these ancient relics will\n"
 	.string "earn us huge riches!$"
 
 MtMoon_B2F_Text_Grunt1Defeat::
@@ -190,7 +191,7 @@ MtMoon_B2F_Text_Grunt3Defeat::
 	.string "So, you are good…$"
 
 MtMoon_B2F_Text_Grunt3PostBattle::
-	.string "If you find a fossil, give it to me\n"
+	.string "If you find a tablet, give it to me\n"
 	.string "and scram!$"
 
 MtMoon_B2F_Text_Grunt4Intro::
@@ -206,14 +207,35 @@ MtMoon_B2F_Text_Grunt4PostBattle::
 	.string "people came.$"
 
 MtMoon_B2F_Text_YouWantDomeFossil::
-	.string "Do you want the DOME FOSSIL?$"
+	.string "Take the ANCIENT ICE TABLET?$"
 
 MtMoon_B2F_Text_YouWantHelixFossil::
-	.string "Do you want the HELIX FOSSIL?$"
+	.string "Take the ANCIENT ROCK TABLET?$"
 
 MtMoon_B2F_Text_ObtainedHelixFossil::
-	.string "Obtained the HELIX FOSSIL!$"
+	.string "Obtained the ANCIENT ROCK TABLET!$"
 
 MtMoon_B2F_Text_ObtainedDomeFossil::
-	.string "Obtained the DOME FOSSIL!$"
+	.string "Obtained the ANCIENT ICE TABLET!$"
 
+
+MtMoon_B2F_FossilsTaken::
+	setflag FLAG_POX_MOON_HIDE_DOME_FOSSIL
+	setobjectxyperm LOCALID_MIGUEL, 13, 8
+	end
+
+MtMoon_B2F_EventScript_ItemStarPiece::
+	finditem ITEM_STAR_PIECE
+	end
+
+MtMoon_B2F_EventScript_ItemTM46::
+	finditem ITEM_STAR_PIECE
+	end
+
+MtMoon_B2F_EventScript_ItemRevive::
+	finditem ITEM_REVIVE
+	end
+
+MtMoon_B2F_EventScript_ItemAntidote::
+	finditem ITEM_ANTIDOTE
+	end

@@ -195,8 +195,10 @@ static const u8 *const sTransferredToPCMessages[] =
 {
     gText_PkmnTransferredSomeonesPC,
     gText_PkmnTransferredLanettesPC,
+    gText_PkmnTransferredBillsPC,
     gText_PkmnTransferredSomeonesPCBoxFull,
-    gText_PkmnTransferredLanettesPCBoxFull
+    gText_PkmnTransferredLanettesPCBoxFull,
+    gText_PkmnTransferredBillsPCBoxFull
 };
 
 
@@ -723,10 +725,12 @@ static UNUSED void DisplaySentToPCMessage(void)
         StringCopy(gStringVar1, GetBoxNamePtr(VarGet(VAR_PC_BOX_TO_SEND_MON)));
         StringCopy(gStringVar2, sNamingScreen->destBuffer);
         StringCopy(gStringVar3, GetBoxNamePtr(GetPCBoxToSendMon()));
-        stringToDisplay = 2;
+        stringToDisplay = 3;
     }
 
-    if (FlagGet(FLAG_SYS_PC_LANETTE))
+    if (FlagGet(FLAG_POX_KNOWS_BILL_PC))
+        stringToDisplay += 2;
+    else if (FlagGet(FLAG_SYS_PC_LANETTE))
         stringToDisplay++;
 
     StringExpandPlaceholders(gStringVar4, sTransferredToPCMessages[stringToDisplay]);

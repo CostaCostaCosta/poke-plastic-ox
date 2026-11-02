@@ -1,6 +1,7 @@
 #include "global.h"
 #include "overworld.h"
 #include "battle_pyramid.h"
+#include "battle_pike.h"
 #include "battle_setup.h"
 #include "battle_util.h"
 #include "berry.h"
@@ -9,8 +10,10 @@
 #include "credits_frlg.h"
 #include "clock.h"
 #include "dexnav.h"
+#include "dma3.h"
 #include "event_data.h"
 #include "event_object_movement.h"
+#include "plastic_ox_contest.h"
 #include "event_scripts.h"
 #include "fake_rtc.h"
 #include "field_camera.h"
@@ -58,6 +61,7 @@
 #include "save.h"
 #include "save_location.h"
 #include "script.h"
+#include "script_movement.h"
 #include "script_pokemon_util.h"
 #include "secret_base.h"
 #include "sound.h"
@@ -83,6 +87,9 @@
 #include "constants/songs.h"
 #include "constants/trainer_hill.h"
 #include "constants/weather.h"
+#include "constants/vars.h"
+
+#define POX_SAVE_MIGRATION_VERSION 1
 
 STATIC_ASSERT((B_FLAG_FOLLOWERS_DISABLED == 0 || OW_FOLLOWERS_ENABLED), FollowersFlagAssignedWithoutEnablingThem);
 
@@ -227,6 +234,7 @@ EWRAM_DATA static mapsec_u16_t sLastMapSectionId = 0;
 EWRAM_DATA static struct InitialPlayerAvatarState sInitialPlayerAvatarState = {0};
 EWRAM_DATA static enum Species sAmbientCrySpecies = SPECIES_NONE;
 EWRAM_DATA static bool8 sIsAmbientCryWaterMon = FALSE;
+EWRAM_DATA static bool8 sCameraTilesetTransferPending = FALSE;
 EWRAM_DATA static u8 sHoursOverride = 0; // used to override apparent time of day hours
 EWRAM_DATA struct LinkPlayerObjectEvent gLinkPlayerObjectEvents[4] = {0};
 EWRAM_DATA bool8 gExitStairsMovementDisabled = FALSE;
@@ -704,6 +712,7 @@ static void SetPlayerCoordsFromWarp(void)
 
 void WarpIntoMap(void)
 {
+    PlasticOxContest_OnMapChange();
     ApplyCurrentWarp();
     LoadCurrentMapData();
     SetPlayerCoordsFromWarp();
@@ -879,6 +888,7 @@ bool8 LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
 {
     const struct MapLayout *previousMapLayout = gMapHeader.mapLayout;
     bool8 primaryTilesetChanged;
+    bool8 tilesetsChanged;
 
     SetWarpDestination(mapGroup, mapNum, WARP_ID_NONE, -1, -1);
 
@@ -888,8 +898,10 @@ bool8 LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
 
     ApplyCurrentWarp();
     LoadCurrentMapData();
-    primaryTilesetChanged = previousMapLayout->isFrlg != gMapHeader.mapLayout->isFrlg
+    primaryTilesetChanged = previousMapLayout->layoutVersion != gMapHeader.mapLayout->layoutVersion
                          || previousMapLayout->primaryTileset != gMapHeader.mapLayout->primaryTileset;
+    tilesetsChanged = primaryTilesetChanged
+                   || previousMapLayout->secondaryTileset != gMapHeader.mapLayout->secondaryTileset;
     LoadObjEventTemplatesFromHeader();
     TrySetMapSaveWarpStatus();
     ClearTempFieldEventData();
@@ -910,6 +922,15 @@ bool8 LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
     Overworld_ClearSavedMusic();
     RunOnTransitionMapScript();
     InitMap();
+    if (tilesetsChanged)
+    {
+        // Keep the old graphics and palette on screen until the destination
+        // tilemap has been rebuilt and all three transfers can share a VBlank.
+        // A camera transition may take several emulator frames to finish;
+        // starting DMA here exposes mismatched tiles along the way.
+        sCameraTilesetTransferPending = TRUE;
+        SetDma3RequestsPaused(TRUE);
+    }
     if (primaryTilesetChanged)
     {
         // Vanilla connections share a primary tileset. Cross-generation
@@ -947,7 +968,9 @@ bool8 LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
             ShowMapNamePopup();
     }
     SetMinimumOWESpawnTimer();
-    return primaryTilesetChanged;
+    // Even a secondary-only change makes saved source metatile IDs unsafe.
+    // The connection margins also differ when either tileset differs.
+    return tilesetsChanged;
 }
 
 static void LoadMapFromWarp(bool32 a1)
@@ -1866,6 +1889,11 @@ static void OverworldBasic(void)
     UpdatePaletteFade();
     UpdateTilesetAnimations();
     DoScheduledBgTilemapCopiesToVram();
+    if (sCameraTilesetTransferPending)
+    {
+        sCameraTilesetTransferPending = FALSE;
+        SetDma3RequestsPaused(FALSE);
+    }
     // Every minute if no palette fade is active, update TOD blending as needed
     if (!gPaletteFade.active && --gTimeUpdateCounter <= 0)
     {
@@ -1892,12 +1920,69 @@ void CB2_OverworldBasic(void)
     OverworldBasic();
 }
 
+static bool32 sOverworldSpeedupIteration;
+
+u32 GetOverworldSpeedOption(void)
+{
+    u32 option = VarGet(VAR_POX_WORLD_SPEED);
+    return option <= OPTIONS_OVERWORLD_SPEED_8X ? option : OPTIONS_OVERWORLD_SPEED_1X;
+}
+
+bool32 IsOverworldSpeedupIteration(void)
+{
+    return sOverworldSpeedupIteration;
+}
+
+bool32 CanUseOverworldSpeedup(void)
+{
+    // Only the ordinary, player-controlled field callback is eligible.
+    if (gMain.callback2 != CB2_Overworld || gMain.callback1 != CB1_Overworld
+     || gMain.inBattle || gPaletteFade.active
+     || gReceivedRemoteLinkPlayers || gWirelessCommType || gLinkTransferringData
+     || IsLinkConnectionEstablished() || InUnionRoom()
+     || ArePlayerFieldControlsLocked() || ScriptContext_IsEnabled()
+     || gPlayerAvatar.preventStep || !IsFieldMessageBoxHidden()
+     || !ScriptMovement_IsAllObjectMovementFinished()
+     || GetFollowerNPCData(FNPC_DATA_IN_PROGRESS)
+     || InBattlePyramid_() || InBattlePike() || InTrainerHill()
+     || FlagGet(FLAG_SYS_CYCLING_ROAD) || FlagGet(FLAG_SYS_SAFARI_MODE)
+     || FlagGet(FLAG_SYS_CRUISE_MODE)
+     || gMapHeader.mapLayoutId == LAYOUT_FORTREE_CITY_GYM
+     || FlagGet(FLAG_PREVENT_OVERWORLD_SPEEDUP) || JOY_HELD(R_BUTTON))
+        return FALSE;
+
+    // These optional systems have their own frame-sensitive sprite behavior.
+    // R belongs to DexNav if it is enabled in a future build.
+    if (DEXNAV_ENABLED || WE_OW_ENCOUNTERS || OW_FOLLOWERS_ENABLED)
+        return FALSE;
+
+    for (u32 i = 0; i < OBJECT_EVENTS_COUNT; i++)
+    {
+        if (i != gPlayerAvatar.objectEventId && gObjectEvents[i].active
+         && gObjectEvents[i].heldMovementActive)
+            return FALSE;
+    }
+    return TRUE;
+}
+
 void CB2_Overworld(void)
 {
     bool32 fading = (gPaletteFade.active != 0);
+    bool32 canSpeedup = CanUseOverworldSpeedup();
+    u32 extraIterations = (1 << GetOverworldSpeedOption()) - 1;
     if (fading)
         SetVBlankCallback(NULL);
     OverworldBasic();
+    // HashtagMarky ab8d603: 0/1/3/7 extra animation passes, never extra
+    // script, task, input, encounter, timer, music or main-loop updates.
+    for (u32 i = 0; canSpeedup && i < extraIterations && CanUseOverworldSpeedup(); i++)
+    {
+        sOverworldSpeedupIteration = TRUE;
+        AnimateSprites();
+        CameraUpdate();
+        UpdateCameraPanning();
+        sOverworldSpeedupIteration = FALSE;
+    }
     if (fading)
     {
         SetFieldVBlankCallback();
@@ -2137,6 +2222,16 @@ void CB2_ContinueSavedGame(void)
     if (gSaveFileStatus == SAVE_STATUS_ERROR)
         ResetWinStreaks();
 
+    // Route 103 May used these bits before she became a normal trainer. Clear
+    // them once so old saves cannot accidentally complete future story flags
+    // when the now-unused IDs are reassigned.
+    if (VarGet(VAR_POX_SAVE_MIGRATION_VERSION) < POX_SAVE_MIGRATION_VERSION)
+    {
+        FlagClear(0x82);
+        FlagClear(0x2D3);
+        VarSet(VAR_POX_SAVE_MIGRATION_VERSION, POX_SAVE_MIGRATION_VERSION);
+    }
+
     LoadSaveblockMapHeader();
     ClearDiveAndHoleWarps();
     trainerHillMapId = GetCurrentTrainerHillMapId();
@@ -2213,7 +2308,8 @@ static void VBlankCB_Field(void)
     ProcessSpriteCopyRequests();
     ScanlineEffect_InitHBlankDmaTransfer();
     FieldUpdateBgTilemapScroll();
-    TransferPlttBuffer();
+    if (!sCameraTilesetTransferPending)
+        TransferPlttBuffer();
     TransferTilesetAnimsBuffer();
 }
 

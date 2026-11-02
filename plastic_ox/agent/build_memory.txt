@@ -1,0 +1,4 @@
+Memory region         Used Size  Region Size  %age Used
+           EWRAM:      226560 B       256 KB     86.43%
+           IWRAM:       28588 B        32 KB     87.24%
+             ROM:    27568996 B        32 MB     82.16%

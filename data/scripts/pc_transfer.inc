@@ -16,6 +16,7 @@ Common_EventScript_NameReceivedBoxMon::
 Common_EventScript_TransferredToPC::
 	bufferboxname STR_VAR_1, VAR_PC_BOX_TO_SEND_MON
 	bufferspeciesname STR_VAR_2, VAR_TEMP_TRANSFERRED_SPECIES
+	goto_if_set FLAG_POX_KNOWS_BILL_PC, EventScript_TransferredBillsPC
 	call_if_unset FLAG_SYS_PC_LANETTE, EventScript_TransferredSomeonesPC
 	call_if_set FLAG_SYS_PC_LANETTE, EventScript_TransferredLanettesPC
 	return
@@ -42,6 +43,18 @@ EventScript_LanettesPCBoxFull::
 	specialvar VAR_RESULT, GetPCBoxToSendMon
 	bufferboxname STR_VAR_3, VAR_RESULT
 	msgbox gText_PkmnTransferredLanettesPCBoxFull, MSGBOX_DEFAULT
+	return
+
+EventScript_TransferredBillsPC::
+	specialvar VAR_RESULT, ShouldShowBoxWasFullMessage
+	goto_if_eq VAR_RESULT, TRUE, EventScript_BillsPCBoxFull
+	msgbox gText_PkmnTransferredBillsPC, MSGBOX_DEFAULT
+	return
+
+EventScript_BillsPCBoxFull::
+	specialvar VAR_RESULT, GetPCBoxToSendMon
+	bufferboxname STR_VAR_3, VAR_RESULT
+	msgbox gText_PkmnTransferredBillsPCBoxFull, MSGBOX_DEFAULT
 	return
 
 Common_EventScript_NoMoreRoomForPokemon::

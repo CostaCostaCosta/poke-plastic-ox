@@ -67,25 +67,25 @@ Route12_EventScript_Sign4::
 	end
 
 Route12_EventScript_Npc1_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Fishing takes patience. Watch\nyour line, not the clock.$"
 
 Route12_EventScript_Npc2_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The water brings a cool breeze\nalong this path.$"
 
 Route12_EventScript_Npc3_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Fishing takes patience. Watch\nyour line, not the clock.$"
 
 Route12_EventScript_Npc4_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The water brings a cool breeze\nalong this path.$"
 
 Route12_EventScript_Npc5_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Fishing takes patience. Watch\nyour line, not the clock.$"
 
 Route12_EventScript_Npc6_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The water brings a cool breeze\nalong this path.$"
 
 Route12_EventScript_Npc8_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Fishing takes patience. Watch\nyour line, not the clock.$"
 
 Route12_EventScript_Sign3_Text:
 	.string "A sign from the old routes.$"

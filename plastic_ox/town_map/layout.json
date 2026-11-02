@@ -1,0 +1,504 @@
+{
+  "canvas": [
+    1600,
+    1100
+  ],
+  "nodes": [
+    {
+      "name": "Pallet Town",
+      "position": [
+        235,
+        880
+      ],
+      "kind": "town"
+    },
+    {
+      "name": "Oldale Town",
+      "position": [
+        235,
+        735
+      ],
+      "kind": "town"
+    },
+    {
+      "name": "Cherrygrove City",
+      "position": [
+        445,
+        735
+      ],
+      "kind": "city"
+    },
+    {
+      "name": "Dark Cave",
+      "position": [
+        440,
+        550
+      ],
+      "kind": "cave"
+    },
+    {
+      "name": "Ilex Forest",
+      "position": [
+        625,
+        610
+      ],
+      "kind": "forest"
+    },
+    {
+      "name": "Rustboro City",
+      "position": [
+        680,
+        830
+      ],
+      "kind": "city"
+    },
+    {
+      "name": "Mt. Moon",
+      "position": [
+        835,
+        735
+      ],
+      "kind": "cave"
+    },
+    {
+      "name": "Goldenrod City",
+      "position": [
+        870,
+        530
+      ],
+      "kind": "city"
+    },
+    {
+      "name": "National Park",
+      "position": [
+        680,
+        390
+      ],
+      "kind": "forest"
+    },
+    {
+      "name": "Ecruteak City",
+      "position": [
+        870,
+        270
+      ],
+      "kind": "city"
+    },
+    {
+      "name": "Fortree City",
+      "position": [
+        1100,
+        365
+      ],
+      "kind": "city"
+    },
+    {
+      "name": "Lavender Town",
+      "position": [
+        1190,
+        530
+      ],
+      "kind": "town"
+    },
+    {
+      "name": "Cinnabar Island",
+      "position": [
+        1120,
+        875
+      ],
+      "kind": "city"
+    },
+    {
+      "name": "Whirl Islands",
+      "position": [
+        890,
+        955
+      ],
+      "kind": "cave"
+    },
+    {
+      "name": "Mossdeep City",
+      "position": [
+        1415,
+        810
+      ],
+      "kind": "city"
+    },
+    {
+      "name": "Saffron City",
+      "position": [
+        1415,
+        575
+      ],
+      "kind": "city"
+    },
+    {
+      "name": "Blackthorn City",
+      "position": [
+        1390,
+        365
+      ],
+      "kind": "city"
+    },
+    {
+      "name": "Victory Road",
+      "position": [
+        1255,
+        200
+      ],
+      "kind": "cave"
+    },
+    {
+      "name": "Indigo Plateau",
+      "position": [
+        1440,
+        160
+      ],
+      "kind": "league"
+    }
+  ],
+  "route_corridors": [
+    {
+      "path": "M235 880 V735",
+      "maps": [
+        "Route101"
+      ]
+    },
+    {
+      "path": "M235 735 H445",
+      "maps": [
+        "Route29_hns"
+      ]
+    },
+    {
+      "path": "M445 735 V610 H440 V550",
+      "maps": [
+        "Route30_hns",
+        "Route31_hns"
+      ]
+    },
+    {
+      "path": "M340 735 V550 H440",
+      "maps": [
+        "Route46_hns",
+        "DarkCave_SouthSide_hns"
+      ]
+    },
+    {
+      "path": "M445 610 H625",
+      "maps": [
+        "Route31_hns",
+        "Gate_AzaleaTown_IlexForest_hns"
+      ]
+    },
+    {
+      "path": "M625 610 H735 V530 H870",
+      "maps": [
+        "Route34_hns"
+      ]
+    },
+    {
+      "path": "M680 830 V735 H835",
+      "maps": [
+        "Route2_hns",
+        "Route3_hns"
+      ]
+    },
+    {
+      "path": "M835 735 H1000 V635",
+      "maps": [
+        "Route4_hns"
+      ]
+    },
+    {
+      "path": "M870 530 H1010 V450",
+      "maps": [
+        "Route14_hns"
+      ]
+    },
+    {
+      "path": "M870 530 V455 H680 V390",
+      "maps": [
+        "Route35_hns",
+        "NationalPark_Normal_hns"
+      ]
+    },
+    {
+      "path": "M680 390 H870 V270",
+      "maps": [
+        "Route36_hns",
+        "Route37_hns"
+      ]
+    },
+    {
+      "path": "M870 270 H665",
+      "maps": [
+        "Route38_hns"
+      ]
+    },
+    {
+      "path": "M235 735 V655",
+      "maps": [
+        "Route103"
+      ]
+    },
+    {
+      "path": "M680 830 H575",
+      "maps": [
+        "Route104"
+      ]
+    },
+    {
+      "path": "M680 830 H785",
+      "maps": [
+        "Route116"
+      ]
+    },
+    {
+      "path": "M1100 365 H1025 V430",
+      "maps": [
+        "Route119"
+      ]
+    },
+    {
+      "path": "M1100 365 H1170 V425",
+      "maps": [
+        "Route120"
+      ]
+    },
+    {
+      "path": "M1415 810 H1330 V755",
+      "maps": [
+        "Route124"
+      ]
+    },
+    {
+      "path": "M1415 810 V735",
+      "maps": [
+        "Route125"
+      ]
+    },
+    {
+      "path": "M1415 810 V930",
+      "maps": [
+        "Route127"
+      ]
+    }
+  ],
+  "guided_passages": [
+    {
+      "path": "M1000 635 H870 V530",
+      "from": "Route 4",
+      "to": "Goldenrod City"
+    },
+    {
+      "path": "M625 610 V685 H585 V830 H680",
+      "from": "Ilex Forest",
+      "to": "Rustboro City"
+    },
+    {
+      "path": "M870 270 H995 Q1020 270 1020 295 V315 Q1020 340 1045 340 H1100 V365",
+      "from": "Ecruteak City",
+      "to": "Fortree City"
+    },
+    {
+      "path": "M1100 365 V465 H1190 V530",
+      "from": "Fortree City",
+      "to": "Lavender Town"
+    },
+    {
+      "path": "M1190 530 V705 Q1190 735 1160 735 H1150 Q1120 735 1120 765 V875",
+      "from": "Lavender Town",
+      "to": "Cinnabar Island"
+    },
+    {
+      "path": "M1120 875 V955 H890",
+      "from": "Cinnabar Island",
+      "to": "Whirl Islands"
+    },
+    {
+      "path": "M1120 875 H1280 Q1310 875 1310 845 V835 Q1310 810 1335 810 H1415",
+      "from": "Cinnabar Island",
+      "to": "Mossdeep City"
+    },
+    {
+      "path": "M1415 810 V575",
+      "from": "Mossdeep City",
+      "to": "Saffron City"
+    },
+    {
+      "path": "M1415 575 V430 H1390 V365",
+      "from": "Saffron City",
+      "to": "Blackthorn City"
+    },
+    {
+      "path": "M1390 365 V270 H1255 V200",
+      "from": "Blackthorn City",
+      "to": "Victory Road"
+    },
+    {
+      "path": "M1255 200 H1340 V160 H1440",
+      "from": "Victory Road",
+      "to": "Indigo Plateau"
+    }
+  ],
+  "gba_preview": {
+    "size": [
+      240,
+      160
+    ],
+    "palette": [
+      "b8e4ec",
+      "69adbd",
+      "cfeeaf",
+      "e2b98f",
+      "929d8d",
+      "fffbe9",
+      "769795",
+      "e96350",
+      "658dcc",
+      "826bb6",
+      "737f73",
+      "66b77c",
+      "425e54",
+      "7eb682",
+      "91c9d6",
+      "e7f1cc"
+    ],
+    "nodes": [
+      {
+        "name": "Pallet Town",
+        "position": [
+          37,
+          128
+        ]
+      },
+      {
+        "name": "Oldale Town",
+        "position": [
+          37,
+          107
+        ]
+      },
+      {
+        "name": "Cherrygrove City",
+        "position": [
+          68,
+          107
+        ]
+      },
+      {
+        "name": "Dark Cave",
+        "position": [
+          67,
+          80
+        ]
+      },
+      {
+        "name": "Ilex Forest",
+        "position": [
+          94,
+          89
+        ]
+      },
+      {
+        "name": "Rustboro City",
+        "position": [
+          102,
+          121
+        ]
+      },
+      {
+        "name": "Mt. Moon",
+        "position": [
+          125,
+          107
+        ]
+      },
+      {
+        "name": "Goldenrod City",
+        "position": [
+          130,
+          77
+        ]
+      },
+      {
+        "name": "National Park",
+        "position": [
+          102,
+          57
+        ]
+      },
+      {
+        "name": "Ecruteak City",
+        "position": [
+          130,
+          39
+        ]
+      },
+      {
+        "name": "Fortree City",
+        "position": [
+          163,
+          53
+        ]
+      },
+      {
+        "name": "Lavender Town",
+        "position": [
+          176,
+          77
+        ]
+      },
+      {
+        "name": "Cinnabar Island",
+        "position": [
+          166,
+          127
+        ]
+      },
+      {
+        "name": "Whirl Islands",
+        "position": [
+          133,
+          139
+        ]
+      },
+      {
+        "name": "Mossdeep City",
+        "position": [
+          209,
+          118
+        ]
+      },
+      {
+        "name": "Saffron City",
+        "position": [
+          209,
+          84
+        ]
+      },
+      {
+        "name": "Blackthorn City",
+        "position": [
+          205,
+          53
+        ]
+      },
+      {
+        "name": "Victory Road",
+        "position": [
+          186,
+          29
+        ]
+      },
+      {
+        "name": "Indigo Plateau",
+        "position": [
+          213,
+          23
+        ]
+      }
+    ]
+  }
+}

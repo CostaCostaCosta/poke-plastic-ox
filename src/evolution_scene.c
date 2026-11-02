@@ -33,6 +33,7 @@
 #include "util.h"
 #include "constants/battle_string_ids.h"
 #include "constants/items.h"
+#include "constants/hold_effects.h"
 #include "constants/party_menu.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
@@ -607,7 +608,8 @@ static void CreateShedinja(enum Species preEvoSpecies, enum Species postEvoSpeci
 // Plastic Ox: if the mon's level-based evolution is blocked ONLY by the tier
 // gate, but it has an EVO_SPLIT_FROM_EVO sibling whose tier IS unlocked,
 // generate the split species without evolving. This implements the
-// Nincada/Shedinja rule from plasticox_encounters_v1.md: at PU, a level-20+
+// Nincada/Shedinja rule (see plastic_ox/agent/plasticox_evolution_gating_plan_v1.md):
+// at PU, a level-20+
 // Nincada that levels up with a free party slot and a Poke Ball produces
 // Shedinja while staying Nincada; Ninjask evolution itself resumes at UU.
 // Returns TRUE if a split species was generated.
@@ -615,11 +617,26 @@ bool32 TryGenerateTierBlockedSplitEvolution(struct Pokemon *mon)
 {
     enum Species species;
     enum Species blockedTarget;
+    enum Item heldItem;
+    enum HoldEffect holdEffect;
     u32 level;
     u32 i, j;
     const struct Evolution *evolutions;
 
     if (!P_EVOLUTION_TIER_GATING)
+        return FALSE;
+
+    // Match the normal evolution path, including custom Enigma Berry effects.
+    heldItem = GetMonData(mon, MON_DATA_HELD_ITEM);
+    if (heldItem == ITEM_ENIGMA_BERRY_E_READER)
+    #if FREE_ENIGMA_BERRY == FALSE
+        holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
+    #else
+        holdEffect = 0;
+    #endif
+    else
+        holdEffect = GetItemHoldEffect(heldItem);
+    if (holdEffect == HOLD_EFFECT_PREVENT_EVOLVE)
         return FALSE;
 
     species = GetMonData(mon, MON_DATA_SPECIES, 0);

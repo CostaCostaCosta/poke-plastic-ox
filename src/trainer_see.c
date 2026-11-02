@@ -23,6 +23,7 @@
 #include "constants/script_commands.h"
 #include "constants/trainer_types.h"
 #include "plastic_ox.h"
+#include "plastic_ox_contest.h"
 
 // this file's functions
 static u8 CheckTrainer(u8 objectEventId);
@@ -443,6 +444,10 @@ bool8 CheckForTrainersWantingBattle(void)
     u8 trainerObjectsCount = 0;
 
     if (gPlasticOxTriggersEnabled == 0)
+        return FALSE;
+
+    // Park visitors compete in the catching event without trainer interruptions.
+    if (PlasticOxContest_IsActive())
         return FALSE;
 
     if (FlagGet(OW_FLAG_NO_TRAINER_SEE))

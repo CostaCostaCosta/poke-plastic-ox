@@ -658,6 +658,7 @@ Route10_EventScript_TrentRematch::
 	msgbox Route10_Text_TrentPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route8_EventScript_Paige::
 	trainerbattle_single TRAINER_LASS_PAIGE, Route8_Text_PaigeIntro, Route8_Text_PaigeDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -665,11 +666,13 @@ Route8_EventScript_Paige::
 	msgbox Route8_Text_PaigePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route8_EventScript_PaigeRematch::
 	trainerbattle_rematch TRAINER_LASS_PAIGE, Route8_Text_PaigeRematchIntro, Route8_Text_PaigeDefeat
 	msgbox Route8_Text_PaigePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route8_EventScript_Andrea::
 	trainerbattle_single TRAINER_LASS_ANDREA, Route8_Text_AndreaIntro, Route8_Text_AndreaDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -677,11 +680,13 @@ Route8_EventScript_Andrea::
 	msgbox Route8_Text_AndreaPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route8_EventScript_AndreaRematch::
 	trainerbattle_rematch TRAINER_LASS_ANDREA, Route8_Text_AndreaRematchIntro, Route8_Text_AndreaDefeat
 	msgbox Route8_Text_AndreaPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route8_EventScript_Megan::
 	trainerbattle_single TRAINER_LASS_MEGAN, Route8_Text_MeganIntro, Route8_Text_MeganDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -689,11 +694,13 @@ Route8_EventScript_Megan::
 	msgbox Route8_Text_MeganPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route8_EventScript_MeganRematch::
 	trainerbattle_rematch TRAINER_LASS_MEGAN, Route8_Text_MeganRematchIntro, Route8_Text_MeganDefeat
 	msgbox Route8_Text_MeganPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route8_EventScript_Julia::
 	trainerbattle_single TRAINER_LASS_JULIA, Route8_Text_JuliaIntro, Route8_Text_JuliaDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -701,11 +708,13 @@ Route8_EventScript_Julia::
 	msgbox Route8_Text_JuliaPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route8_EventScript_JuliaRematch::
 	trainerbattle_rematch TRAINER_LASS_JULIA, Route8_Text_JuliaRematchIntro, Route8_Text_JuliaDefeat
 	msgbox Route8_Text_JuliaPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route8_EventScript_Aidan::
 	trainerbattle_single TRAINER_SUPER_NERD_AIDAN, Route8_Text_AidanIntro, Route8_Text_AidanDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -713,11 +722,13 @@ Route8_EventScript_Aidan::
 	msgbox Route8_Text_AidanPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route8_EventScript_AidanRematch::
 	trainerbattle_rematch TRAINER_SUPER_NERD_AIDAN, Route8_Text_AidanRematchIntro, Route8_Text_AidanDefeat
 	msgbox Route8_Text_AidanPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route8_EventScript_Glenn::
 	trainerbattle_single TRAINER_SUPER_NERD_GLENN, Route8_Text_GlennIntro, Route8_Text_GlennDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -725,11 +736,13 @@ Route8_EventScript_Glenn::
 	msgbox Route8_Text_GlennPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route8_EventScript_GlennRematch::
 	trainerbattle_rematch TRAINER_SUPER_NERD_GLENN, Route8_Text_GlennRematchIntro, Route8_Text_GlennDefeat
 	msgbox Route8_Text_GlennPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route8_EventScript_Leslie::
 	trainerbattle_single TRAINER_SUPER_NERD_LESLIE, Route8_Text_LeslieIntro, Route8_Text_LeslieDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -737,11 +750,13 @@ Route8_EventScript_Leslie::
 	msgbox Route8_Text_LesliePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route8_EventScript_LeslieRematch::
 	trainerbattle_rematch TRAINER_SUPER_NERD_LESLIE, Route8_Text_LeslieRematchIntro, Route8_Text_LeslieDefeat
 	msgbox Route8_Text_LesliePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route8_EventScript_Stan::
 	trainerbattle_single TRAINER_GAMER_STAN, Route8_Text_StanIntro, Route8_Text_StanDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -749,11 +764,13 @@ Route8_EventScript_Stan::
 	msgbox Route8_Text_StanPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route8_EventScript_StanRematch::
 	trainerbattle_rematch TRAINER_GAMER_STAN, Route8_Text_StanRematchIntro, Route8_Text_StanDefeat
 	msgbox Route8_Text_StanPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route8_EventScript_Rich::
 	trainerbattle_single TRAINER_GAMER_RICH, Route8_Text_RichIntro, Route8_Text_RichDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -761,11 +778,13 @@ Route8_EventScript_Rich::
 	msgbox Route8_Text_RichPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route8_EventScript_RichRematch::
 	trainerbattle_rematch TRAINER_GAMER_RICH, Route8_Text_RichRematchIntro, Route8_Text_RichDefeat
 	msgbox Route8_Text_RichPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route8_EventScript_Eli::
 	trainerbattle_double TRAINER_TWINS_ELI_ANNE, Route8_Text_EliIntro, Route8_Text_EliDefeat, Route8_Text_EliNotEnoughMons
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -773,11 +792,13 @@ Route8_EventScript_Eli::
 	msgbox Route8_Text_EliPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route8_EventScript_EliRematch::
 	trainerbattle_rematch_double TRAINER_TWINS_ELI_ANNE, Route8_Text_EliRematchIntro, Route8_Text_EliDefeat, Route8_Text_EliNotEnoughMons
 	msgbox Route8_Text_EliPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route8_EventScript_Anne::
 	trainerbattle_double TRAINER_TWINS_ELI_ANNE, Route8_Text_AnneIntro, Route8_Text_AnneDefeat, Route8_Text_AnneNotEnoughMons
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -785,11 +806,13 @@ Route8_EventScript_Anne::
 	msgbox Route8_Text_AnnePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route8_EventScript_AnneRematch::
 	trainerbattle_rematch_double TRAINER_TWINS_ELI_ANNE, Route8_Text_AnneRematchIntro, Route8_Text_AnneDefeat, Route8_Text_AnneNotEnoughMons
 	msgbox Route8_Text_AnnePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route8_EventScript_Ricardo::
 	trainerbattle_single TRAINER_BIKER_RICARDO, Route8_Text_RicardoIntro, Route8_Text_RicardoDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -797,11 +820,13 @@ Route8_EventScript_Ricardo::
 	msgbox Route8_Text_RicardoPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route8_EventScript_RicardoRematch::
 	trainerbattle_rematch TRAINER_BIKER_RICARDO, Route8_Text_RicardoRematchIntro, Route8_Text_RicardoDefeat
 	msgbox Route8_Text_RicardoPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route8_EventScript_Jaren::
 	trainerbattle_single TRAINER_BIKER_JAREN, Route8_Text_JarenIntro, Route8_Text_JarenDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -809,6 +834,7 @@ Route8_EventScript_Jaren::
 	msgbox Route8_Text_JarenPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route8_EventScript_JarenRematch::
 	trainerbattle_rematch TRAINER_BIKER_JAREN, Route8_Text_JarenRematchIntro, Route8_Text_JarenDefeat
 	msgbox Route8_Text_JarenPostBattle, MSGBOX_AUTOCLOSE
@@ -1582,6 +1608,7 @@ Route18_EventScript_JacobRematch::
 	msgbox Route18_Text_JacobPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route19_EventScript_Richard::
 	trainerbattle_single TRAINER_SWIMMER_MALE_RICHARD, Route19_Text_RichardIntro, Route19_Text_RichardDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -1589,11 +1616,13 @@ Route19_EventScript_Richard::
 	msgbox Route19_Text_RichardPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route19_EventScript_RichardRematch::
 	trainerbattle_rematch TRAINER_SWIMMER_MALE_RICHARD, Route19_Text_RichardRematchIntro, Route19_Text_RichardDefeat
 	msgbox Route19_Text_RichardPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route19_EventScript_Reece::
 	trainerbattle_single TRAINER_SWIMMER_MALE_REECE, Route19_Text_ReeceIntro, Route19_Text_ReeceDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -1601,11 +1630,13 @@ Route19_EventScript_Reece::
 	msgbox Route19_Text_ReecePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route19_EventScript_ReeceRematch::
 	trainerbattle_rematch TRAINER_SWIMMER_MALE_REECE, Route19_Text_ReeceRematchIntro, Route19_Text_ReeceDefeat
 	msgbox Route19_Text_ReecePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route19_EventScript_Matthew::
 	trainerbattle_single TRAINER_SWIMMER_MALE_MATTHEW, Route19_Text_MatthewIntro, Route19_Text_MatthewDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -1613,11 +1644,13 @@ Route19_EventScript_Matthew::
 	msgbox Route19_Text_MatthewPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route19_EventScript_MatthewRematch::
 	trainerbattle_rematch TRAINER_SWIMMER_MALE_MATTHEW, Route19_Text_MatthewRematchIntro, Route19_Text_MatthewDefeat
 	msgbox Route19_Text_MatthewPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route19_EventScript_Douglas::
 	trainerbattle_single TRAINER_SWIMMER_MALE_DOUGLAS, Route19_Text_DouglasIntro, Route19_Text_DouglasDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -1625,11 +1658,13 @@ Route19_EventScript_Douglas::
 	msgbox Route19_Text_DouglasPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route19_EventScript_DouglasRematch::
 	trainerbattle_rematch TRAINER_SWIMMER_MALE_DOUGLAS, Route19_Text_DouglasRematchIntro, Route19_Text_DouglasDefeat
 	msgbox Route19_Text_DouglasPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route19_EventScript_David::
 	trainerbattle_single TRAINER_SWIMMER_MALE_DAVID, Route19_Text_DavidIntro, Route19_Text_DavidDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -1637,11 +1672,13 @@ Route19_EventScript_David::
 	msgbox Route19_Text_DavidPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route19_EventScript_DavidRematch::
 	trainerbattle_rematch TRAINER_SWIMMER_MALE_DAVID, Route19_Text_DavidRematchIntro, Route19_Text_DavidDefeat
 	msgbox Route19_Text_DavidPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route19_EventScript_Tony::
 	trainerbattle_single TRAINER_SWIMMER_MALE_TONY, Route19_Text_TonyIntro, Route19_Text_TonyDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -1649,11 +1686,13 @@ Route19_EventScript_Tony::
 	msgbox Route19_Text_TonyPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route19_EventScript_TonyRematch::
 	trainerbattle_rematch TRAINER_SWIMMER_MALE_TONY, Route19_Text_TonyRematchIntro, Route19_Text_TonyDefeat
 	msgbox Route19_Text_TonyPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route19_EventScript_Axle::
 	trainerbattle_single TRAINER_SWIMMER_MALE_AXLE, Route19_Text_AxleIntro, Route19_Text_AxleDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -1661,11 +1700,13 @@ Route19_EventScript_Axle::
 	msgbox Route19_Text_AxlePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route19_EventScript_AxleRematch::
 	trainerbattle_rematch TRAINER_SWIMMER_MALE_AXLE, Route19_Text_AxleRematchIntro, Route19_Text_AxleDefeat
 	msgbox Route19_Text_AxlePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route19_EventScript_Anya::
 	trainerbattle_single TRAINER_SWIMMER_FEMALE_ANYA, Route19_Text_AnyaIntro, Route19_Text_AnyaDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -1673,11 +1714,13 @@ Route19_EventScript_Anya::
 	msgbox Route19_Text_AnyaPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route19_EventScript_AnyaRematch::
 	trainerbattle_rematch TRAINER_SWIMMER_FEMALE_ANYA, Route19_Text_AnyaRematchIntro, Route19_Text_AnyaDefeat
 	msgbox Route19_Text_AnyaPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route19_EventScript_Alice::
 	trainerbattle_single TRAINER_SWIMMER_FEMALE_ALICE, Route19_Text_AliceIntro, Route19_Text_AliceDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -1685,11 +1728,13 @@ Route19_EventScript_Alice::
 	msgbox Route19_Text_AlicePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route19_EventScript_AliceRematch::
 	trainerbattle_rematch TRAINER_SWIMMER_FEMALE_ALICE, Route19_Text_AliceRematchIntro, Route19_Text_AliceDefeat
 	msgbox Route19_Text_AlicePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route19_EventScript_Connie::
 	trainerbattle_single TRAINER_SWIMMER_FEMALE_CONNIE, Route19_Text_ConnieIntro, Route19_Text_ConnieDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -1697,11 +1742,13 @@ Route19_EventScript_Connie::
 	msgbox Route19_Text_ConniePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route19_EventScript_ConnieRematch::
 	trainerbattle_rematch TRAINER_SWIMMER_FEMALE_CONNIE, Route19_Text_ConnieRematchIntro, Route19_Text_ConnieDefeat
 	msgbox Route19_Text_ConniePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route19_EventScript_Lia::
 	trainerbattle_double TRAINER_SIS_AND_BRO_LIA_LUC, Route19_Text_LiaIntro, Route19_Text_LiaDefeat, Route19_Text_LiaNotEnoughMons
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -1709,11 +1756,13 @@ Route19_EventScript_Lia::
 	msgbox Route19_Text_LiaPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route19_EventScript_LiaRematch::
 	trainerbattle_rematch_double TRAINER_SIS_AND_BRO_LIA_LUC, Route19_Text_LiaRematchIntro, Route19_Text_LiaDefeat, Route19_Text_LiaNotEnoughMons
 	msgbox Route19_Text_LiaPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route19_EventScript_Luc::
 	trainerbattle_double TRAINER_SIS_AND_BRO_LIA_LUC, Route19_Text_LucIntro, Route19_Text_LucDefeat, Route19_Text_LucNotEnoughMons
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -1721,6 +1770,7 @@ Route19_EventScript_Luc::
 	msgbox Route19_Text_LucPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route19_EventScript_LucRematch::
 	trainerbattle_rematch_double TRAINER_SIS_AND_BRO_LIA_LUC, Route19_Text_LucRematchIntro, Route19_Text_LucDefeat, Route19_Text_LucNotEnoughMons
 	msgbox Route19_Text_LucPostBattle, MSGBOX_AUTOCLOSE
@@ -1846,6 +1896,7 @@ Route20_EventScript_IreneRematch::
 	msgbox Route20_Text_IrenePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route21_North_EventScript_Ronald::
 	trainerbattle_single TRAINER_FISHERMAN_RONALD, Route21_North_Text_RonaldIntro, Route21_North_Text_RonaldDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -1853,11 +1904,13 @@ Route21_North_EventScript_Ronald::
 	msgbox Route21_North_Text_RonaldPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route21_North_EventScript_RonaldRematch::
 	trainerbattle_rematch TRAINER_FISHERMAN_RONALD, Route21_North_Text_RonaldRematchIntro, Route21_North_Text_RonaldDefeat
 	msgbox Route21_North_Text_RonaldPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route21_South_EventScript_Claude::
 	trainerbattle_single TRAINER_FISHERMAN_CLAUDE, Route21_South_Text_ClaudeIntro, Route21_South_Text_ClaudeDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -1865,11 +1918,13 @@ Route21_South_EventScript_Claude::
 	msgbox Route21_South_Text_ClaudePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route21_South_EventScript_ClaudeRematch::
 	trainerbattle_rematch TRAINER_FISHERMAN_CLAUDE, Route21_South_Text_ClaudeRematchIntro, Route21_South_Text_ClaudeDefeat
 	msgbox Route21_South_Text_ClaudePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route21_North_EventScript_Wade::
 	trainerbattle_single TRAINER_FISHERMAN_WADE, Route21_North_Text_WadeIntro, Route21_North_Text_WadeDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -1877,11 +1932,13 @@ Route21_North_EventScript_Wade::
 	msgbox Route21_North_Text_WadePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route21_North_EventScript_WadeRematch::
 	trainerbattle_rematch TRAINER_FISHERMAN_WADE, Route21_North_Text_WadeRematchIntro, Route21_North_Text_WadeDefeat
 	msgbox Route21_North_Text_WadePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route21_South_EventScript_Nolan::
 	trainerbattle_single TRAINER_FISHERMAN_NOLAN, Route21_South_Text_NolanIntro, Route21_South_Text_NolanDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -1889,11 +1946,13 @@ Route21_South_EventScript_Nolan::
 	msgbox Route21_South_Text_NolanPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route21_South_EventScript_NolanRematch::
 	trainerbattle_rematch TRAINER_FISHERMAN_NOLAN, Route21_South_Text_NolanRematchIntro, Route21_South_Text_NolanDefeat
 	msgbox Route21_South_Text_NolanPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route21_North_EventScript_Spencer::
 	trainerbattle_single TRAINER_SWIMMER_MALE_SPENCER, Route21_North_Text_SpencerIntro, Route21_North_Text_SpencerDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -1901,11 +1960,13 @@ Route21_North_EventScript_Spencer::
 	msgbox Route21_North_Text_SpencerPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route21_North_EventScript_SpencerRematch::
 	trainerbattle_rematch TRAINER_SWIMMER_MALE_SPENCER, Route21_North_Text_SpencerRematchIntro, Route21_North_Text_SpencerDefeat
 	msgbox Route21_North_Text_SpencerPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route21_South_EventScript_Jack::
 	trainerbattle_single TRAINER_SWIMMER_MALE_JACK, Route21_South_Text_JackIntro, Route21_South_Text_JackDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -1913,11 +1974,13 @@ Route21_South_EventScript_Jack::
 	msgbox Route21_South_Text_JackPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route21_South_EventScript_JackRematch::
 	trainerbattle_rematch TRAINER_SWIMMER_MALE_JACK, Route21_South_Text_JackRematchIntro, Route21_South_Text_JackDefeat
 	msgbox Route21_South_Text_JackPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route21_South_EventScript_Jerome::
 	trainerbattle_single TRAINER_SWIMMER_MALE_JEROME, Route21_South_Text_JeromeIntro, Route21_South_Text_JeromeDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -1925,11 +1988,13 @@ Route21_South_EventScript_Jerome::
 	msgbox Route21_South_Text_JeromePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route21_South_EventScript_JeromeRematch::
 	trainerbattle_rematch TRAINER_SWIMMER_MALE_JEROME, Route21_South_Text_JeromeRematchIntro, Route21_South_Text_JeromeDefeat
 	msgbox Route21_South_Text_JeromePostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route21_South_EventScript_Roland::
 	trainerbattle_single TRAINER_SWIMMER_MALE_ROLAND, Route21_South_Text_RolandIntro, Route21_South_Text_RolandDefeat
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -1937,11 +2002,13 @@ Route21_South_EventScript_Roland::
 	msgbox Route21_South_Text_RolandPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route21_South_EventScript_RolandRematch::
 	trainerbattle_rematch TRAINER_SWIMMER_MALE_ROLAND, Route21_South_Text_RolandRematchIntro, Route21_South_Text_RolandDefeat
 	msgbox Route21_South_Text_RolandPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route21_North_EventScript_Lil::
 	trainerbattle_double TRAINER_SIS_AND_BRO_LIL_IAN, Route21_North_Text_LilIntro, Route21_North_Text_LilDefeat, Route21_North_Text_LilNotEnoughMons
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -1949,11 +2016,13 @@ Route21_North_EventScript_Lil::
 	msgbox Route21_North_Text_LilPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route21_North_EventScript_LilRematch::
 	trainerbattle_rematch_double TRAINER_SIS_AND_BRO_LIL_IAN, Route21_North_Text_LilRematchIntro, Route21_North_Text_LilDefeat, Route21_North_Text_LilNotEnoughMons
 	msgbox Route21_North_Text_LilPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.if IS_FRLG
 Route21_North_EventScript_Ian::
 	trainerbattle_double TRAINER_SIS_AND_BRO_LIL_IAN, Route21_North_Text_IanIntro, Route21_North_Text_IanDefeat, Route21_North_Text_IanNotEnoughMons
 	specialvar VAR_RESULT, ShouldTryRematchBattle
@@ -1961,6 +2030,7 @@ Route21_North_EventScript_Ian::
 	msgbox Route21_North_Text_IanPostBattle, MSGBOX_AUTOCLOSE
 	end
 
+.endif // IS_FRLG
 Route21_North_EventScript_IanRematch::
 	trainerbattle_rematch_double TRAINER_SIS_AND_BRO_LIL_IAN, Route21_North_Text_IanRematchIntro, Route21_North_Text_IanDefeat, Route21_North_Text_IanNotEnoughMons
 	msgbox Route21_North_Text_IanPostBattle, MSGBOX_AUTOCLOSE

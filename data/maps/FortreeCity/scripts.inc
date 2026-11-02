@@ -1,19 +1,30 @@
 FortreeCity_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, FortreeCity_OnTransition
-	map_script MAP_SCRIPT_ON_RESUME, FortreeCity_OnResume
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_FortreeCity
 	.byte 0
-
-FortreeCity_OnTransition:
-	setflag FLAG_VISITED_FORTREE_CITY
-	end
-
-FortreeCity_OnResume:
-	setstepcallback STEP_CB_FORTREE_BRIDGE
-	end
 
 FortreeCity_EventScript_Man::
 	msgbox FortreeCity_Text_SawGiganticPokemonInSky, MSGBOX_NPC
 	end
+
+FortreeCity_EventScript_GabbyRoadblock::
+	lock
+	faceplayer
+	msgbox FortreeCity_Text_GabbyRoadblock, MSGBOX_NPC
+	release
+	end
+
+FortreeCity_EventScript_TyRoadblock::
+	lock
+	faceplayer
+	msgbox FortreeCity_Text_TyRoadblock, MSGBOX_NPC
+	release
+	end
+
+FortreeCity_Text_GabbyRoadblock:
+	.string "GABBY: We're waiting to interview\nFortree's newest GYM champion!\pBeat WINONA and earn her BADGE,\nthen we'll clear the road.$"
+
+FortreeCity_Text_TyRoadblock:
+	.string "TY: The route opens after you\nearn WINONA's BADGE.$"
 
 FortreeCity_EventScript_Woman::
 	lock
@@ -153,7 +164,3 @@ FortreeCity_Text_GymSign:
 	.string "LEADER: WINONA\p"
 	.string "“The bird user taking flight into\n"
 	.string "the world.”$"
-FortreeCity_EventScript_ReturnStone::
-	warp MAP_PALLET_TOWN, 10, 4
-	waitstate
-	end

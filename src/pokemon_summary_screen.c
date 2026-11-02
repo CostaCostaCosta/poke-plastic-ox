@@ -1,4 +1,5 @@
 #include "global.h"
+#include "metamon_heap_trace.h"
 #include "main.h"
 #include "battle.h"
 #include "battle_anim.h"
@@ -329,6 +330,7 @@ void ExtractMonSkillIvData(struct Pokemon *mon, struct PokeSummary *sum);
 void ExtractMonSkillEvData(struct Pokemon *mon, struct PokeSummary *sum);
 static void PrintTextOnWindow(u8 windowId, const u8 *string, u8 x, u8 y, u8 lineSpacing, u8 colorId);
 static void PrintTextOnWindowWithFont(u8 windowId, const u8 *string, u8 x, u8 y, u8 lineSpacing, u8 colorId, u32 fontId);
+static void PrintTextOnWindowToFitPx(u8 windowId, const u8 *string, u8 x, u8 y, u8 lineSpacing, u8 colorId, u32 width);
 static const u8 *GetLetterGrade(u32 stat);
 static u8 AddWindowFromTemplateList(const struct WindowTemplate *template, u8 templateId);
 static u8 IncrementSkillsStatsMode(u8 mode);
@@ -768,6 +770,7 @@ static const TaskFunc sTextPrinterTasks[] =
 };
 
 static const u8 sText_Relearn[] = _("{START_BUTTON} RELEARN"); // future note: don't decap this, because it mimics the summary screen BG graphics which will not get decapped
+static const u8 sText_HiddenPower[] = _("HIDDEN POWER");
 
 static const u8 *const sRelearnTexts[MOVE_RELEARNER_COUNT] =
 {
@@ -1198,6 +1201,7 @@ u32 GetAdjustedIvData(struct Pokemon *mon, u32 stat)
 
 void ShowPokemonSummaryScreen(u8 mode, void *mons, u8 monIndex, u8 maxMonIndex, void (*callback)(void))
 {
+    MmHeapMark(MM_HEAP_SUMMARY);
     sMonSummaryScreen = AllocZeroed(sizeof(*sMonSummaryScreen));
     sMonSummaryScreen->mode = mode;
     if (monIndex == PC_MON_CHOSEN)
@@ -1902,6 +1906,21 @@ static void ShowMonSkillsInfo(u8 taskId, s16 mode)
     PrintLeftColumnStats();
     BufferRightColumnStats();
     PrintRightColumnStats();
+
+    FillWindowPixelBuffer(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP, PIXEL_FILL(0));
+    FillWindowPixelBuffer(sMonSummaryScreen->windowIds[PSS_DATA_WINDOW_EXP], PIXEL_FILL(0));
+    if (mode == SUMMARY_SKILLS_MODE_STATS)
+    {
+        PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP, gText_ExpPoints, 6, 1, 0, 1);
+        PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP, gText_NextLv, 6, 17, 0, 1);
+        PrintExpPointsNextLevel();
+    }
+    else
+    {
+        enum Type type = CheckDynamicMoveType(mon, MOVE_HIDDEN_POWER, 0, MON_OUTSIDE_BATTLE);
+        PrintTextOnWindow(PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP, sText_HiddenPower, 6, 9, 0, 1);
+        PrintTextOnWindowToFitPx(sMonSummaryScreen->windowIds[PSS_DATA_WINDOW_EXP], gTypesInfo[type].name, 2, 9, 0, 0, 44);
+    }
     gTasks[taskId].func = Task_HandleInput;
 }
 
@@ -3615,7 +3634,7 @@ static void PrintMonTrainerMemo(void)
 static void BufferNatureString(void)
 {
     struct PokemonSummaryScreenData *sumStruct = sMonSummaryScreen;
-    DynamicPlaceholderTextUtil_SetPlaceholderPtr(2, gNaturesInfo[sumStruct->summary.nature].name);
+    DynamicPlaceholderTextUtil_SetPlaceholderPtr(2, gNaturesInfo[sumStruct->summary.mintNature].name);
     DynamicPlaceholderTextUtil_SetPlaceholderPtr(5, gText_EmptyString5);
 }
 
@@ -4099,6 +4118,8 @@ static void PrintMovePowerAndAccuracy(enum Move moveIndex)
         FillWindowPixelRect(PSS_LABEL_WINDOW_MOVES_POWER_ACC, PIXEL_FILL(0), 53, 0, 19, 32);
 
         u32 power = GetMovePower(moveIndex);
+        if (moveIndex == MOVE_HIDDEN_POWER)
+            power = GetHiddenPowerBasePower(&sMonSummaryScreen->currentMon, 0, MON_OUTSIDE_BATTLE);
         if (power < 2)
         {
             text = gText_ThreeDashes;
@@ -4201,7 +4222,12 @@ static void PrintMoveDetails(enum Move move)
         if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
         {
             if (B_SHOW_CATEGORY_ICON == TRUE)
-                ShowCategoryIcon(GetBattleMoveCategory(move));
+            {
+                enum DamageCategory category = GetBattleMoveCategory(move);
+                if (move == MOVE_HIDDEN_POWER && B_PHYSICAL_SPECIAL_SPLIT < GEN_4)
+                    category = gTypesInfo[CheckDynamicMoveType(&sMonSummaryScreen->currentMon, move, 0, MON_OUTSIDE_BATTLE)].damageCategory;
+                ShowCategoryIcon(category);
+            }
             PrintMovePowerAndAccuracy(move);
             PrintTextOnWindow(windowId, GetMoveDescription(move), 6, 1, 0, 0);
         }
@@ -4237,7 +4263,7 @@ static void PrintNewMoveDetailsOrCancelText(void)
         else
             PrintTextOnWindowToFit(windowId1, GetMoveName(move), 0, 65, 0, 5);
 
-        ConvertIntToDecimalStringN(gStringVar1, GetMovePP(move), STR_CONV_MODE_RIGHT_ALIGN, 2);
+        ConvertIntToDecimalStringN(gStringVar1, CalculatePPWithBonus(move, 0xFF, 0), STR_CONV_MODE_RIGHT_ALIGN, 2);
         DynamicPlaceholderTextUtil_Reset();
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(0, gStringVar1);
         DynamicPlaceholderTextUtil_SetPlaceholderPtr(1, gStringVar1);
@@ -4396,6 +4422,9 @@ static enum BattlerId GetCurrentBattlerFromSumIndex(u32 sumIndex)
 
 static enum Type SummaryScreen_GetDynamicMoveType(struct Pokemon *mon, enum Move move, enum Type type)
 {
+    // Hidden Power belongs to this individual, including benched party members.
+    if (move == MOVE_HIDDEN_POWER)
+        return CheckDynamicMoveType(mon, move, 0, MON_OUTSIDE_BATTLE);
     if (!P_SHOW_DYNAMIC_TYPES)
         return type;
 

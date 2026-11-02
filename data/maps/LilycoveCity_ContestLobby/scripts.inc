@@ -611,6 +611,9 @@ LilycoveCity_ContestLobby_EventScript_FaceOriginalDirection::
 	end
 
 LilycoveCity_ContestLobby_EventScript_LinkContestReceptionist::
+#if !POX_LINK_ENABLED
+	goto CableClub_EventScript_Unavailable
+#endif
 	special ClearLinkContestFlags
 	lock
 	faceplayer
@@ -1072,4 +1075,3 @@ LilycoveCity_ContestLobby_Text_MadePokeblocksWithFamily:
 	.string "Big Sister. They turned out great!\p"
 	.string "I bet you can make smoother, better\n"
 	.string "{POKEBLOCK}S if you have more people.$"
-

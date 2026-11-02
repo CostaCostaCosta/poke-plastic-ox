@@ -2832,15 +2832,12 @@ MatchCall_Text_Steven7::
 	.string "somewhere!$"
 
 MatchCall_Text_BirchRegisterCall:
-	.string "PROF. BIRCH: Oh, {PLAYER}{KUN}!\n"
-	.string "I've already heard about you!\p"
-	.string "It seems your POKéNAV's been\n"
-	.string "upgraded with MATCH CALL.\p"
-	.string "Well, I should register, too!\p"
-	.string "That way, I'd be able to examine\n"
-	.string "your POKéDEX even while you're\l"
-	.string "out in the field.\p"
-	.string "… … … … … …$"
+	.string "BIRCH: Hello, {PLAYER}!\n"
+	.string "Your POKéNAV has MATCH CALL now.\p"
+	.string "Let's register my number.\n"
+	.string "Then you can call from the field.\p"
+	.string "We can review your POKéDEX\n"
+	.string "wherever your travels take you.$"
 
 MatchCall_Text_RegisteredBirch:
 	.string "Registered PROF. BIRCH\n"

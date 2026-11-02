@@ -1,16 +1,58 @@
 #ifndef GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H
 #define GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H
 
+#include "constants/plastic_ox_story.h"
+
+// Persistent imported events and future Sage trainer victories. Byte-aligned
+// virtual range stored in appended SaveBlock3 bytes; never cleared by the RTC.
+#define POX_EVENT_FLAGS_START 0xB00
+#define POX_EVENT_FLAGS_COUNT 128
+#define POX_SAGE_TRAINER_FLAGS_START (POX_EVENT_FLAGS_START + 64)
+#define FLAG_POX_MANSION_SWITCH (POX_EVENT_FLAGS_START + 0)
+#define FLAG_POX_CINNABAR_QUIZ_1 (POX_EVENT_FLAGS_START + 1)
+#define FLAG_POX_CINNABAR_QUIZ_2 (POX_EVENT_FLAGS_START + 2)
+#define FLAG_POX_CINNABAR_QUIZ_3 (POX_EVENT_FLAGS_START + 3)
+#define FLAG_POX_CINNABAR_QUIZ_4 (POX_EVENT_FLAGS_START + 4)
+#define FLAG_POX_CINNABAR_QUIZ_5 (POX_EVENT_FLAGS_START + 5)
+#define FLAG_POX_CINNABAR_QUIZ_6 (POX_EVENT_FLAGS_START + 6)
+
+// FRLG hidden-item flags need persistent storage in the Emerald build. Their
+// original IDs collide with Hoenn flags, so GetFlagPointer routes this virtual
+// range to SaveBlock3 without changing SaveBlock1's established offsets.
+#define POX_KANTO_HIDDEN_FLAGS_START 0xA00
+#define POX_KANTO_HIDDEN_FLAGS_COUNT 191
+#define POX_KANTO_HIDDEN_FLAGS_END (POX_KANTO_HIDDEN_FLAGS_START + POX_KANTO_HIDDEN_FLAGS_COUNT - 1)
+
+// Both games name an Ultra Ball in Victory Road 1F identically. Keep the
+// imported Kanto item separate from Emerald's original item.
+#define FLAG_POX_KANTO_HIDDEN_ITEM_VICTORY_ROAD_1F_ULTRA_BALL (POX_KANTO_HIDDEN_FLAGS_START + 37)
+
 // Plastic Ox alpha flags (emerald build only).
 //
-// Allocation: the documented-unused general-flag run 0x264-0x2BB in
-// constants/flags.h (FLAG_UNUSED_0x264 .. FLAG_UNUSED_0x2BB). Every value
-// here MUST stay inside that range: FLAGS_COUNT (= DAILY_FLAGS_END + 1)
+// Primary allocation: documented-unused general flags 0x264-0x2BB. The run is
+// full. Supplemental allocations use only explicitly audited unused Emerald
+// flags listed below. FLAGS_COUNT (= DAILY_FLAGS_END + 1)
 // sizes the save-block flag array, so anything at or above it would write
 // out of bounds, and the 0x500+ / 0x920+ sub-ranges belong to trainer and
 // daily flags.
 
 #define POX_FLAGS_START 0x264
+
+// Unused daily flags, cleared by the existing RTC daily update. No save resize.
+#define FLAG_POX_DAILY_R29_LUM    0x923
+#define FLAG_POX_DAILY_R46_SITRUS 0x924
+#define FLAG_POX_DAILY_R46_LIECHI 0x925
+#define FLAG_POX_DAILY_R44_SALAC  0x926
+#define FLAG_POX_DAILY_R44_PETAYA 0x927
+#define FLAG_POX_DAILY_R35_PERSIM 0x928
+#define FLAG_POX_DAILY_PARK_CONTEST 0x929
+#define FLAG_POX_DAILY_R37_SITRUS 0x933
+
+// Gate-local crowd visibility, recalculated before spawning map objects.
+#define FLAG_POX_HIDE_PARK_CONTEST_CROWD FLAG_TEMP_1
+
+// Scripts may set/clear this to keep frame-sensitive field sequences at 1x.
+#define FLAG_PREVENT_OVERWORLD_SPEEDUP 0x27F
 
 // Story beats, one per completed beat (see plastic_ox/alpha/STORY_TRIGGERS.md).
 #define FLAG_POX_STORY_STARTER   (POX_FLAGS_START + 0x00)
@@ -20,6 +62,13 @@
 #define FLAG_POX_STORY_MANSION   (POX_FLAGS_START + 0x04)
 #define FLAG_POX_STORY_SILPH     (POX_FLAGS_START + 0x05)
 #define FLAG_POX_TRIGGERS_ENABLED (POX_FLAGS_START + 0x06)
+
+// Pallet opening: persistent introduction and retryable supply gift.
+#define FLAG_POX_LAB_INTRO (POX_FLAGS_START + 0x07)
+#define FLAG_POX_STARTER_SUPPLIES (POX_FLAGS_START + 0x08)
+#define FLAG_POX_ELM_TMS (POX_FLAGS_START + 0x09)
+#define FLAG_POX_ELM_EXP_ALL (POX_FLAGS_START + 0x0A)
+#define FLAG_POX_EXP_ALL (POX_FLAGS_START + 0x0B)
 
 // Trigger-build-only NPCs hidden in the walkable build (and re-hidden/removed
 // by their story beats in the trigger build).
@@ -33,10 +82,16 @@
 #define FLAG_POX_HIDE_SILPH_GRUNT_2     (POX_FLAGS_START + 0x13)
 #define FLAG_POX_HIDE_SILPH_GRUNT_3     (POX_FLAGS_START + 0x14)
 #define FLAG_POX_HIDE_SILPH_GIOVANNI    (POX_FLAGS_START + 0x15)
-#define FLAG_POX_HIDE_SAFFRON_GATE_NPC  (POX_FLAGS_START + 0x16) // beat 16: Blackthorn-route gate check NPC
+#define FLAG_POX_HIDE_SAFFRON_GATE_NPC  (POX_FLAGS_START + 0x16) // retired: reserve ID; northern OU access uses Space Center
 
-// Item balls / hidden items for imported maps: allocate sequentially from
-// POX_HIDDEN_ITEMS_BASE, one flag per placement (IMPORT_GUIDE section 2).
+// Battle-demo NPCs hidden in the walkable/trigger alpha builds; visible only
+// in the PLASTIC_OX_BUILD=battle build (see Makefile, src/new_game.c).
+#define FLAG_POX_HIDE_BATTLE_OAK_PALLET  (POX_FLAGS_START + 0x17) // Oak in PalletTown (ADV OU team gift)
+#define FLAG_POX_HIDE_BATTLE_OAK_LAB     (POX_FLAGS_START + 0x18) // Oak in Oak's Lab (ADV OU team gift)
+#define FLAG_POX_HIDE_BATTLE_LANCE       (POX_FLAGS_START + 0x19) // Lance in OldaleTown (battle trigger)
+
+// Item balls / hidden items for imported maps. This run is full at +59;
+// additions must use the audited supplemental range, never continue into 0x2BC.
 #define POX_HIDDEN_ITEMS_BASE           (POX_FLAGS_START + 0x1C) // 0x280; run ends at 0x2BB
 
 // Wave 1C (Leg A) item placements.
@@ -76,23 +131,171 @@
 #define FLAG_POX_HIDDEN_ROUTE4_22                (POX_HIDDEN_ITEMS_BASE + 30)
 #define FLAG_POX_HIDDEN_ROUTE4_5                 (POX_HIDDEN_ITEMS_BASE + 31)
 
-// Wave 2 (Legs B+C) items/hidden.
-#define FLAG_POX_HIDDEN_NATIONALPARK_NORMAL_14   (POX_HIDDEN_ITEMS_BASE + 14)
-#define FLAG_POX_HIDDEN_ROUTE24_18               (POX_HIDDEN_ITEMS_BASE + 15)
-#define FLAG_POX_HIDDEN_ROUTE25_19               (POX_HIDDEN_ITEMS_BASE + 16)
-#define FLAG_POX_HIDDEN_ROUTE36_15               (POX_HIDDEN_ITEMS_BASE + 17)
-#define FLAG_POX_HIDDEN_ROUTE38_16               (POX_HIDDEN_ITEMS_BASE + 18)
-#define FLAG_POX_HIDDEN_ROUTE38_17               (POX_HIDDEN_ITEMS_BASE + 19)
+// Wave 3: unique item flags (old definitions aliased wave-2 items).
+#define FLAG_POX_HIDDEN_NATIONALPARK_NORMAL_14   (POX_HIDDEN_ITEMS_BASE + 32)
+#define FLAG_POX_HIDDEN_ROUTE24_18               (POX_HIDDEN_ITEMS_BASE + 33)
+#define FLAG_POX_HIDDEN_ROUTE25_19               (POX_HIDDEN_ITEMS_BASE + 34)
+#define FLAG_POX_HIDDEN_ROUTE36_15               (POX_HIDDEN_ITEMS_BASE + 35)
+#define FLAG_POX_HIDDEN_ROUTE38_16               (POX_HIDDEN_ITEMS_BASE + 36)
+#define FLAG_POX_HIDDEN_ROUTE38_17               (POX_HIDDEN_ITEMS_BASE + 37)
 
 // Wave 2 (Legs B+C) items/hidden.
-#define FLAG_POX_HIDDEN_ROUTE6_3                 (POX_HIDDEN_ITEMS_BASE + 14)
+#define FLAG_POX_HIDDEN_ROUTE6_3                 (POX_HIDDEN_ITEMS_BASE + 38)
 
 // Wave 4 (Legs F+G) items/hidden.
-#define FLAG_POX_HIDDEN_ROUTE12_14               (POX_HIDDEN_ITEMS_BASE + 200)
-#define FLAG_POX_HIDDEN_ROUTE12_15               (POX_HIDDEN_ITEMS_BASE + 201)
-#define FLAG_POX_HIDDEN_ROUTE12_7                (POX_HIDDEN_ITEMS_BASE + 202)
-#define FLAG_POX_HIDDEN_ROUTE12_9                (POX_HIDDEN_ITEMS_BASE + 203)
-#define FLAG_POX_HIDDEN_ROUTE21_16               (POX_HIDDEN_ITEMS_BASE + 204)
-#define FLAG_POX_HIDDEN_ROUTE21_17               (POX_HIDDEN_ITEMS_BASE + 205)
-#define FLAG_POX_HIDDEN_ROUTE21_18               (POX_HIDDEN_ITEMS_BASE + 206)
+#define FLAG_POX_HIDDEN_ROUTE12_14               (POX_HIDDEN_ITEMS_BASE + 39)
+#define FLAG_POX_HIDDEN_ROUTE12_15               (POX_HIDDEN_ITEMS_BASE + 40)
+#define FLAG_POX_HIDDEN_ROUTE12_7                (POX_HIDDEN_ITEMS_BASE + 41)
+#define FLAG_POX_HIDDEN_ROUTE12_9                (POX_HIDDEN_ITEMS_BASE + 42)
+#define FLAG_POX_HIDDEN_ROUTE21_16               (POX_HIDDEN_ITEMS_BASE + 43)
+#define FLAG_POX_HIDDEN_ROUTE21_17               (POX_HIDDEN_ITEMS_BASE + 44)
+#define FLAG_POX_HIDDEN_ROUTE21_18               (POX_HIDDEN_ITEMS_BASE + 45)
+#define FLAG_POX_HIDDEN_V7_46 (POX_HIDDEN_ITEMS_BASE + 46)
+#define FLAG_POX_HIDDEN_V7_47 (POX_HIDDEN_ITEMS_BASE + 47)
+#define FLAG_POX_HIDDEN_V7_48 (POX_HIDDEN_ITEMS_BASE + 48)
+#define FLAG_POX_HIDDEN_V7_49 (POX_HIDDEN_ITEMS_BASE + 49)
+#define FLAG_POX_HIDDEN_V7_50 (POX_HIDDEN_ITEMS_BASE + 50)
+#define FLAG_POX_HIDDEN_V7_51 (POX_HIDDEN_ITEMS_BASE + 51)
+#define FLAG_POX_HIDDEN_V7_52 (POX_HIDDEN_ITEMS_BASE + 52)
+#define FLAG_POX_HIDDEN_V7_53 (POX_HIDDEN_ITEMS_BASE + 53)
+#define FLAG_POX_HIDDEN_V7_54 (POX_HIDDEN_ITEMS_BASE + 54)
+#define FLAG_POX_HIDDEN_V7_55 (POX_HIDDEN_ITEMS_BASE + 55)
+#define FLAG_POX_HIDDEN_V7_56 (POX_HIDDEN_ITEMS_BASE + 56)
+#define FLAG_POX_HIDDEN_V7_57 (POX_HIDDEN_ITEMS_BASE + 57)
+#define FLAG_POX_STOPPED_SEAFOAM_B3F_CURRENT 0x03C
+#define FLAG_POX_STOPPED_SEAFOAM_B4F_CURRENT 0x03D
+#define FLAG_POX_HIDE_SEAFOAM_1F_BOULDER_1 0x03E
+#define FLAG_POX_HIDE_SEAFOAM_1F_BOULDER_2 0x03F
+#define FLAG_POX_HIDE_SEAFOAM_B1F_BOULDER_1 0x040
+#define FLAG_POX_HIDE_SEAFOAM_B1F_BOULDER_2 0x041
+#define FLAG_POX_HIDE_SEAFOAM_B2F_BOULDER_1 0x042
+#define FLAG_POX_HIDE_SEAFOAM_B2F_BOULDER_2 0x043
+#define FLAG_POX_HIDE_SEAFOAM_B3F_BOULDER_1 0x044
+#define FLAG_POX_HIDE_SEAFOAM_B3F_BOULDER_2 0x045
+#define FLAG_POX_HIDE_SEAFOAM_B3F_BOULDER_3 0x046
+#define FLAG_POX_HIDE_SEAFOAM_B3F_BOULDER_4 0x047
+#define FLAG_POX_HIDE_SEAFOAM_B3F_BOULDER_5 0x048
+#define FLAG_POX_HIDE_SEAFOAM_B3F_BOULDER_6 0x049
+#define FLAG_POX_HIDE_SEAFOAM_B4F_BOULDER_1 0x04A
+#define FLAG_POX_HIDE_SEAFOAM_B4F_BOULDER_2 0x04B
+#define FLAG_POX_FOUGHT_ARTICUNO 0x04C
+#define FLAG_POX_HIDE_ARTICUNO 0x04D
+#define FLAG_POX_HIDE_SEAFOAM_ISLANDS_1F_ICE_HEAL 0x04E
+#define FLAG_POX_HIDE_SEAFOAM_ISLANDS_B1F_REVIVE 0x04F
+#define FLAG_POX_HIDE_SEAFOAM_ISLANDS_B1F_WATER_STONE 0x0E9
+#define FLAG_POX_HIDE_SEAFOAM_ISLANDS_B2F_BIG_PEARL 0x1AA
+#define FLAG_POX_HIDE_SEAFOAM_ISLANDS_B4F_ULTRA_BALL 0x27E
+#define FLAG_POX_ROUTE2_ETHER (POX_HIDDEN_ITEMS_BASE + 58)
+#define FLAG_POX_ROUTE2_PARALYZE_HEAL (POX_HIDDEN_ITEMS_BASE + 59)
+#define FLAG_POX_HIDDEN_V7_60             0x493
+#define FLAG_POX_MANSION_1F_CARBOS        0x1DA
+#define FLAG_POX_MANSION_1F_ESCAPE_ROPE   0x1DE
+#define FLAG_POX_MANSION_1F_PROTEIN       0x1DF
+#define FLAG_POX_MANSION_1F_MOON_STONE    0x494
+
+// PU acquisitions and the Route 36 obstruction. Audited unused Emerald flags.
+#define FLAG_POX_SUDOWOODO_CLEARED       0x1AB
+#define FLAG_POX_MTMOON_MOON_STONE_1     0x1E0
+#define FLAG_POX_MTMOON_MOON_STONE_2     0x1E1
+#define FLAG_POX_DELIBIRD_RECEIVED       0x1E2
+#define FLAG_POX_DELIBIRD_DELIVERED      0x1E3
+#define FLAG_POX_CONTEST_PRIZE_PENDING   0x495
+#define FLAG_POX_ROUTE24_NUGGET          0x496
+#define FLAG_POX_HIDE_DEVON_3F_GUARD     0x497
+
+// Supplemental Plastic Ox flags deliberately repurpose Emerald symbols marked
+// unused. Hidden-item flags must additionally satisfy FLAG_HIDDEN_ITEMS_START.
+// Keep supplemental allocations synchronized with audit_alpha.py.
+
+
+// Mt. Moon: independent item flags, shared fossil removal flag.
+#define FLAG_POX_MOON_HIDE_MT_MOON_1F_PARALYZE_HEAL 0x498
+#define FLAG_POX_MOON_HIDE_MT_MOON_1F_TM09 0x499
+#define FLAG_POX_MOON_HIDE_MT_MOON_1F_POTION 0x49A
+#define FLAG_POX_MOON_HIDE_MT_MOON_1F_RARE_CANDY 0x49B
+#define FLAG_POX_MOON_HIDE_MT_MOON_1F_ESCAPE_ROPE 0x49C
+#define FLAG_POX_MOON_HIDDEN_ITEM_MT_MOON_B1F_TINY_MUSHROOM 0x49D
+#define FLAG_POX_MOON_HIDDEN_ITEM_MT_MOON_B1F_TINY_MUSHROOM_2 0x49E
+#define FLAG_POX_MOON_HIDDEN_ITEM_MT_MOON_B1F_TINY_MUSHROOM_3 0x49F
+#define FLAG_POX_MOON_HIDDEN_ITEM_MT_MOON_B1F_BIG_MUSHROOM 0x468
+#define FLAG_POX_MOON_HIDDEN_ITEM_MT_MOON_B1F_BIG_MUSHROOM_2 0x470
+#define FLAG_POX_MOON_HIDDEN_ITEM_MT_MOON_B1F_BIG_MUSHROOM_3 0x472
+#define FLAG_POX_MOON_HIDE_DOME_FOSSIL 0x479
+#define FLAG_POX_MOON_HIDE_MT_MOON_B2F_STAR_PIECE 0x4E5
+#define FLAG_POX_MOON_HIDE_MT_MOON_B2F_TM46 0x4E6
+#define FLAG_POX_MOON_HIDE_MT_MOON_B2F_REVIVE 0x4E7
+#define FLAG_POX_MOON_HIDE_MT_MOON_B2F_ANTIDOTE 0x4E8
+#define FLAG_POX_MOON_HIDDEN_ITEM_MT_MOON_B2F_MOON_STONE 0x4E9
+#define FLAG_POX_MOON_HIDDEN_ITEM_MT_MOON_B2F_ETHER 0x4EA
+
+
+
+// Goldenrod item flags: unused persistent slots, below DAILY_FLAGS_START.
+#define FLAG_POX_GOLDENROD_ITEM_00 0x900
+#define FLAG_POX_GOLDENROD_ITEM_01 0x901
+#define FLAG_POX_GOLDENROD_ITEM_02 0x902
+#define FLAG_POX_GOLDENROD_ITEM_03 0x903
+#define FLAG_POX_GOLDENROD_ITEM_04 0x904
+#define FLAG_POX_GOLDENROD_ITEM_05 0x905
+#define FLAG_POX_GOLDENROD_ITEM_06 0x906
+#define FLAG_POX_GOLDENROD_ITEM_07 0x907
+#define FLAG_POX_GOLDENROD_ITEM_08 0x908
+#define FLAG_POX_GOLDENROD_ITEM_09 0x909
+#define FLAG_POX_GOLDENROD_ITEM_10 0x90A
+#define FLAG_POX_GOLDENROD_ITEM_11 0x90B
+#define FLAG_POX_GOLDENROD_ITEM_12 0x90C
+#define FLAG_POX_GOLDENROD_ITEM_13 0x90D
+// End Goldenrod item flags.
+
+// One-time gift from the Devon worker in Rustboro's dormitory.
+#define FLAG_POX_RUSTBORO_CHOICE_BAND 0x90E
+
+// Run 7: Underground haircut brothers, kimono gate, and the Steel Tablet.
+#define FLAG_POX_HIDE_HAIRCUT_OLDER   0x90F // set = older brother off duty (map ON_TRANSITION)
+#define FLAG_POX_HIDE_HAIRCUT_YOUNGER 0x910 // set = younger brother off duty
+#define FLAG_POX_KIMONO_GATE_OPEN     0x911 // reserved: opens both switch-room entrances later
+#define FLAG_POX_HIDDEN_UNDERGROUND_STEEL_TABLET 0x912
+#define FLAG_POX_BAD_HAIRCUT_KNOWN    0x913 // set = player has had one bad haircut
+#define FLAG_POX_ROUTE36_SNORLAX_CLEARED 0x914 // Route 36 eastern path opens after battle
+#define FLAG_POX_CONTEST_EVERSTONE_PENDING 0x915
+#define FLAG_POX_CONTEST_SITRUS_PENDING    0x916
+#define FLAG_POX_CONTEST_ORAN_PENDING      0x917
+
+// One-time pickups in Burned Tower. These are unused persistent system slots.
+#define FLAG_POX_BURNED_TOWER_FIRE_STONE   0x918
+#define FLAG_POX_BURNED_TOWER_ETHER        0x919
+#define FLAG_POX_BURNED_TOWER_ULTRA_BALL   0x91A
+#define FLAG_POX_BURNED_TOWER_TM12         0x91B
+#define FLAG_POX_RADIO_TOP_OPEN            0x91C // reserved: opens both 4F staircases later
+
+#define FLAG_POX_HIDE_POKEMON_MANSION_1F_CARBOS (POX_EVENT_FLAGS_START + 8)
+#define FLAG_POX_HIDE_POKEMON_MANSION_1F_ESCAPE_ROPE (POX_EVENT_FLAGS_START + 9)
+#define FLAG_POX_HIDE_POKEMON_MANSION_1F_PROTEIN (POX_EVENT_FLAGS_START + 10)
+#define FLAG_POX_HIDE_POKEMON_MANSION_2F_CALCIUM (POX_EVENT_FLAGS_START + 11)
+#define FLAG_POX_HIDE_POKEMON_MANSION_2F_HP_UP (POX_EVENT_FLAGS_START + 12)
+#define FLAG_POX_HIDE_POKEMON_MANSION_2F_ZINC (POX_EVENT_FLAGS_START + 13)
+#define FLAG_POX_HIDE_POKEMON_MANSION_3F_IRON (POX_EVENT_FLAGS_START + 14)
+#define FLAG_POX_HIDE_POKEMON_MANSION_3F_MAX_POTION (POX_EVENT_FLAGS_START + 15)
+#define FLAG_POX_HIDE_POKEMON_MANSION_B1F_FULL_RESTORE (POX_EVENT_FLAGS_START + 16)
+#define FLAG_POX_HIDE_POKEMON_MANSION_B1F_SECRET_KEY (POX_EVENT_FLAGS_START + 17)
+#define FLAG_POX_HIDE_POKEMON_MANSION_B1F_TM14 (POX_EVENT_FLAGS_START + 18)
+#define FLAG_POX_HIDE_POKEMON_MANSION_B1F_TM22 (POX_EVENT_FLAGS_START + 19)
+#define FLAG_POX_INTRO_QUAKE_PENDING (POX_EVENT_FLAGS_START + 20) // Cleared after the new-game tremor.
+#define FLAG_POX_LEAGUE_REWARD_0 (POX_EVENT_FLAGS_START + 21)
+#define FLAG_POX_LEAGUE_REWARD_1 (POX_EVENT_FLAGS_START + 22)
+#define FLAG_POX_LEAGUE_REWARD_2 (POX_EVENT_FLAGS_START + 23)
+// Starter balls stay hidden after choosing a partner.
+#define FLAG_POX_HIDE_TREECKO_BALL (POX_EVENT_FLAGS_START + 24)
+#define FLAG_POX_HIDE_SQUIRTLE_BALL (POX_EVENT_FLAGS_START + 25)
+#define FLAG_POX_HIDE_CYNDAQUIL_BALL (POX_EVENT_FLAGS_START + 26)
+// Underground tournament: permanent rewards, legendary catches and research.
+#define FLAG_POX_TOURNAMENT_REWARD_1 (POX_EVENT_FLAGS_START + 27)
+#define FLAG_POX_TOURNAMENT_REWARD_2 (POX_EVENT_FLAGS_START + 28)
+#define FLAG_POX_TOURNAMENT_REWARD_3 (POX_EVENT_FLAGS_START + 29)
+#define FLAG_POX_TOURNAMENT_REWARD_4 (POX_EVENT_FLAGS_START + 30)
+#define FLAG_POX_CAUGHT_RAIKOU (POX_EVENT_FLAGS_START + 31)
+#define FLAG_POX_CAUGHT_REGIROCK (POX_EVENT_FLAGS_START + 32)
+#define FLAG_POX_CAUGHT_REGICE (POX_EVENT_FLAGS_START + 33)
+#define FLAG_POX_CAUGHT_REGISTEEL (POX_EVENT_FLAGS_START + 34)
+#define FLAG_POX_GROUDON_RESEARCH (POX_EVENT_FLAGS_START + 35)
 #endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H

@@ -151,7 +151,7 @@ enum ContestCategories
 };
 
 // string lengths
-#define ITEM_NAME_LENGTH 20
+#define ITEM_NAME_LENGTH 23 // Ancient Braille Tablet
 #define ITEM_NAME_PLURAL_LENGTH ITEM_NAME_LENGTH + 2 // 2 is used for the instance where a word's suffix becomes y->ies
 #define POKEMON_NAME_LENGTH 12
 #define VANILLA_POKEMON_NAME_LENGTH 10
@@ -194,6 +194,11 @@ enum Gender
 #define OPTIONS_TEXT_SPEED_MID 1
 #define OPTIONS_TEXT_SPEED_FAST 2
 #define OPTIONS_TEXT_SPEED_INSTANT 3
+
+#define OPTIONS_OVERWORLD_SPEED_1X 0
+#define OPTIONS_OVERWORLD_SPEED_2X 1
+#define OPTIONS_OVERWORLD_SPEED_4X 2
+#define OPTIONS_OVERWORLD_SPEED_8X 3
 
 #define OPTIONS_SOUND_MONO 0
 #define OPTIONS_SOUND_STEREO 1

@@ -16,35 +16,17 @@
     {
       "map": "MAP_ROUTE37_HNS",
       "direction": "down",
-      "offset": -16
-    },
-    {
-      "map": "MAP_ROUTE38_HNS",
-      "direction": "right",
-      "offset": 19
+      "offset": 16
     }
   ],
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_LASS_HNS",
-      "x": 35,
-      "y": 43,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "EcruteakCity_EventScript_Npc1",
-      "flag": "0"
-    },
-    {
       "local_id": "LOCALID_ECRUTEAK_GRAMPS",
       "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_HNS",
       "x": 36,
-      "y": 32,
+      "y": 41,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -57,7 +39,7 @@
       "x": 22,
       "y": 42,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -70,16 +52,16 @@
       "x": 19,
       "y": 22,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_RIGHT",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "EcruteakCity_EventScript_Npc4",
+      "script": "Pox_BurnedGuide",
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
+      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_HNS",
       "x": 19,
       "y": 15,
       "elevation": 0,
@@ -107,77 +89,166 @@
     {
       "local_id": "LOCALID_ECRUTEK_SILVER",
       "graphics_id": "OBJ_EVENT_GFX_SILVER_HNS",
-      "x": 39,
-      "y": 40,
+      "x": 41,
+      "y": 41,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EcruteakCity_EventScript_Npc7",
       "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
+      "x": 53,
+      "y": 32,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EcruteakCity_EventScript_Npc3",
+      "flag": "FLAG_BADGE03_GET"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
+      "x": 55,
+      "y": 42,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "EcruteakCity_EventScript_Npc3",
+      "flag": "FLAG_BADGE03_GET"
     }
   ],
   "warp_events": [
     {
       "x": 39,
       "y": 47,
-      "elevation": 3,
-      "dest_map": "MAP_POKEMON_CENTER_JOHTO_HNS",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_ECRUTEAK_CITY_POKEMON_CENTER_HNS",
+      "dest_warp_id": "0",
+      "elevation": 0
     },
     {
       "x": 48,
       "y": 40,
-      "elevation": 3,
-      "dest_map": "MAP_MART_JOHTO_HNS",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_ECRUTEAK_CITY_MART_HNS",
+      "dest_warp_id": "0",
+      "elevation": 0
     },
     {
       "x": 19,
       "y": 40,
-      "elevation": 3,
-      "dest_map": "MAP_HOUSE_GENERIC_A_HNS",
+      "dest_map": "MAP_ECRUTEAK_CITY_HOUSE1_HNS",
+      "dest_warp_id": "0",
+      "elevation": 0
+    },
+    {
+      "x": 39,
+      "y": 40,
+      "dest_map": "MAP_ECRUTEAK_CITY_THEATER_HNS",
+      "dest_warp_id": "0",
+      "elevation": 0
+    },
+    {
+      "x": 20,
+      "y": 48,
+      "dest_map": "MAP_ECRUTEAK_CITY_GYM_HNS",
+      "dest_warp_id": "0",
+      "elevation": 0
+    },
+    {
+      "x": 28,
+      "y": 47,
+      "dest_map": "MAP_ECRUTEAK_CITY_HOUSE2_HNS",
+      "dest_warp_id": "1",
+      "elevation": 0
+    },
+    {
+      "x": 39,
+      "y": 22,
+      "dest_map": "MAP_ECRUTEAK_CITY_SAGE_OFFICE1_HNS",
+      "dest_warp_id": "0",
+      "elevation": 0
+    },
+    {
+      "x": 22,
+      "y": 14,
+      "elevation": 0,
+      "dest_map": "MAP_PLASTIC_OX_BURNED_TOWER",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 8,
+      "y": 34,
+      "elevation": 0,
+      "dest_map": "MAP_GATE_ECRUTEAK_CITY_ROUTE38_HNS",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 8,
+      "y": 35,
+      "elevation": 0,
+      "dest_map": "MAP_GATE_ECRUTEAK_CITY_ROUTE38_HNS",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 8,
+      "y": 36,
+      "elevation": 0,
+      "dest_map": "MAP_GATE_ECRUTEAK_CITY_ROUTE38_HNS",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 8,
+      "y": 37,
+      "elevation": 0,
+      "dest_map": "MAP_GATE_ECRUTEAK_CITY_ROUTE38_HNS",
       "dest_warp_id": "0"
     }
   ],
   "coord_events": [
     {
       "type": "trigger",
-      "x": 15,
-      "y": 31,
+      "x": 8,
+      "y": 34,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
-      "var_value": "0",
-      "script": "EcruteakCity_EventScript_PoxPortal12_15_31"
+      "var": "VAR_TEMP_0",
+      "var_value": 0,
+      "script": "PoxEcruteak_WestEntrance"
     },
     {
       "type": "trigger",
-      "x": 14,
-      "y": 33,
+      "x": 8,
+      "y": 35,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
-      "var_value": "0",
-      "script": "EcruteakCity_EventScript_PoxPortal12_14_33"
+      "var": "VAR_TEMP_0",
+      "var_value": 0,
+      "script": "PoxEcruteak_WestEntrance"
     },
     {
       "type": "trigger",
-      "x": 15,
-      "y": 31,
+      "x": 8,
+      "y": 36,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
-      "var_value": "0",
-      "script": "EcruteakCity_EventScript_PoxPortal14_15_31"
+      "var": "VAR_TEMP_0",
+      "var_value": 0,
+      "script": "PoxEcruteak_WestEntrance"
     },
     {
       "type": "trigger",
-      "x": 14,
-      "y": 33,
+      "x": 8,
+      "y": 37,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
-      "var_value": "0",
-      "script": "EcruteakCity_EventScript_PoxPortal14_14_33"
+      "var": "VAR_TEMP_0",
+      "var_value": 0,
+      "script": "PoxEcruteak_WestEntrance"
     }
   ],
   "bg_events": [],

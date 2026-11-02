@@ -20,6 +20,20 @@ PokemonCenter_Johto_hns_EventScript_Lass::
 	release
 	end
 
+PokemonCenter_Johto_hns_EventScript_Boy::
+	lock
+	faceplayer
+	msgbox PokemonCenter_Johto_hns_Text_Boy, MSGBOX_NPC
+	release
+	end
+
+PokemonCenter_Johto_hns_EventScript_Gentleman::
+	lock
+	faceplayer
+	msgbox PokemonCenter_Johto_hns_Text_Gentleman, MSGBOX_NPC
+	release
+	end
+
 PokemonCenter_Johto_hns_Text_NurseGreeting:
 	.string "Welcome to our POKéMON CENTER.\p"
 	.string "The whole region merged and somehow\n"
@@ -35,3 +49,11 @@ PokemonCenter_Johto_hns_Text_Lass:
 	.string "walked here from PALLET Town.\p"
 	.string "Is that some new region everyone\n"
 	.string "keeps mentioning?$"
+
+PokemonCenter_Johto_hns_Text_Boy:
+	.string "The sea breeze feels great after a\n"
+	.string "long walk along ROUTE 2.$"
+
+PokemonCenter_Johto_hns_Text_Gentleman:
+	.string "The nurse can restore your whole\n"
+	.string "team before you head north.$"

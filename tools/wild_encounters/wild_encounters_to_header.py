@@ -119,7 +119,7 @@ class WildEncounterAssembler:
                     macro_total_name = macro_base + group_name_mapping[-1] + "_TOTAL"
                     self.WriteLine()
     
-    def WriteMonInfos(self, name, mons, encounter_rate):
+    def WriteMonInfos(self, name, mons, encounter_rate, weights=None):
         info_name = name + "Info"
         self.WriteLine(f"const struct WildPokemon {name}[] =")
         self.WriteLine("{")
@@ -131,7 +131,13 @@ class WildEncounterAssembler:
 
         self.WriteLine("};")
         self.WriteLine()
-        self.WriteLine(f"const struct WildPokemonInfo {info_name} = {{ {encounter_rate}, {name} }};")
+        if weights is not None:
+            if len(weights) != len(mons) or sum(weights) != 100 or any(weight < 0 for weight in weights):
+                raise ValueError(f"{name}: exact encounter weights must match slots and total 100")
+            self.WriteLine(f"static const u8 {name}Weights[] = {{ " + ", ".join(map(str, weights)) + " };")
+            self.WriteLine(f"const struct WildPokemonInfo {info_name} = {{ {encounter_rate}, {name}, {name}Weights, {len(mons)} }};")
+        else:
+            self.WriteLine(f"const struct WildPokemonInfo {info_name} = {{ {encounter_rate}, {name}, NULL, {len(mons)} }};")
         self.WriteLine()
     
     def WriteTerminator(self):
@@ -252,7 +258,7 @@ class WildEncounterAssembler:
                     mons = mons_entry["mons"]
 
                     mon_array_name = base_label + "_" + mon_type.title().replace("_", "")
-                    self.WriteMonInfos(mon_array_name, mons, encounter_rate)
+                    self.WriteMonInfos(mon_array_name, mons, encounter_rate, mons_entry.get("weights"))
                     headers["data"][shared_label][time][mon_type] = mon_array_name + "Info"
                 self.WriteLine(f"#endif")
 

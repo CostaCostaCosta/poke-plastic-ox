@@ -15,11 +15,6 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_ROUTE103",
-      "offset": 0,
-      "direction": "up"
-    },
-    {
       "map": "MAP_ROUTE101",
       "offset": 0,
       "direction": "down"
@@ -28,6 +23,11 @@
       "map": "MAP_ROUTE29_HNS",
       "offset": -6,
       "direction": "left"
+    },
+    {
+      "map": "MAP_ROUTE103",
+      "offset": 0,
+      "direction": "up"
     }
   ],
   "object_events": [
@@ -98,7 +98,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "OldaleTown_EventScript_Lance",
-      "flag": "0"
+      "flag": "FLAG_POX_HIDE_BATTLE_LANCE"
     }
   ],
   "warp_events": [
@@ -131,44 +131,7 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [
-    {
-      "type": "trigger",
-      "x": 0,
-      "y": 10,
-      "elevation": 3,
-      "var": "VAR_OLDALE_TOWN_STATE",
-      "var_value": "0",
-      "script": "OldaleTown_EventScript_BlockedPath"
-    },
-    {
-      "type": "trigger",
-      "x": 8,
-      "y": 19,
-      "elevation": 3,
-      "var": "VAR_OLDALE_RIVAL_STATE",
-      "var_value": "1",
-      "script": "OldaleTown_EventScript_RivalTrigger1"
-    },
-    {
-      "type": "trigger",
-      "x": 9,
-      "y": 19,
-      "elevation": 3,
-      "var": "VAR_OLDALE_RIVAL_STATE",
-      "var_value": "1",
-      "script": "OldaleTown_EventScript_RivalTrigger2"
-    },
-    {
-      "type": "trigger",
-      "x": 10,
-      "y": 19,
-      "elevation": 3,
-      "var": "VAR_OLDALE_RIVAL_STATE",
-      "var_value": "1",
-      "script": "OldaleTown_EventScript_RivalTrigger3"
-    }
-  ],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "sign",

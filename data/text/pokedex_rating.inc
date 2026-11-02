@@ -1,118 +1,118 @@
 gBirchDexRatingText_AreYouCurious::
-	.string "PROF. BIRCH: Ah, {PLAYER}{KUN}!\p"
-	.string "Are you curious about how your\n"
-	.string "POKéDEX is coming along?$"
+	.string "BIRCH: Hello, {PLAYER}!\n"
+	.string "How is your fieldwork going?\p"
+	.string "Shall we take a look at your\n"
+	.string "POKéDEX together?$"
 
 gBirchDexRatingText_Cancel::
-	.string "Hm? Oh, you haven't caught enough\n"
-	.string "POKéMON to make it worthwhile.$"
+	.string "Of course. Go at your own pace.\n"
+	.string "Every observation counts.$"
 
 gBirchDexRatingText_SoYouveSeenAndCaught::
-	.string "Hmhm…\p"
-	.string "So, you've seen {STR_VAR_1} POKéMON,\n"
-	.string "and you've caught {STR_VAR_2} POKéMON…$"
+	.string "Let's check your regional data.\p"
+	.string "You've seen {STR_VAR_1} POKéMON\n"
+	.string "and caught {STR_VAR_2}.$"
 
 gBirchDexRatingText_LessThan10::
-	.string "Go into grassy areas more and look\n"
-	.string "for POKéMON more carefully.$"
+	.string "A little patience in the grass\n"
+	.string "can reveal a lot.\p"
+	.string "Watch for movement before you\n"
+	.string "rush to the next patch.$"
 
 gBirchDexRatingText_LessThan20::
-	.string "I guess you're getting the hang\n"
-	.string "of it. But, it gets harder from here.$"
+	.string "You're learning what to look for.\n"
+	.string "That is a fine start.$"
 
 gBirchDexRatingText_LessThan30::
-	.string "Some POKéMON only appear in\n"
-	.string "certain areas.\l"
-	.string "You must be persistent.$"
+	.string "Different habitats suit\n"
+	.string "different POKéMON.\p"
+	.string "Try looking somewhere unlike\n"
+	.string "the places you've explored.$"
 
 gBirchDexRatingText_LessThan40::
-	.string "Well, it could use more quantity,\n"
-	.string "but this is looking more like\l"
-	.string "a POKéDEX now.$"
+	.string "Your entries are taking shape.\n"
+	.string "I can see the work behind them.$"
 
 gBirchDexRatingText_LessThan50::
-	.string "This is coming along pretty good.\n"
-	.string "Keep up the effort.$"
+	.string "You're building a useful record.\n"
+	.string "Keep that curiosity alive.$"
 
 gBirchDexRatingText_LessThan60::
-	.string "Are you using any RODS?\n"
-	.string "There are many POKéMON in the sea.$"
+	.string "Don't overlook the water.\n"
+	.string "A fishing rod rewards patience.$"
 
 gBirchDexRatingText_LessThan70::
-	.string "Instead of just catching POKéMON,\n"
-	.string "how about making them evolve, too?$"
+	.string "Your own team can teach you more.\n"
+	.string "Evolution brings new discoveries.$"
 
 gBirchDexRatingText_LessThan80::
-	.string "This is going to be a fantastic\n"
-	.string "POKéDEX.\l"
-	.string "That's the feeling I'm getting.$"
+	.string "This is careful work, {PLAYER}.\n"
+	.string "Your persistence is showing.$"
 
 gBirchDexRatingText_LessThan90::
-	.string "You've collected this many…\n"
-	.string "Your talent is remarkable!$"
+	.string "So many different POKéMON!\n"
+	.string "Each entry tells its own story.$"
 
 gBirchDexRatingText_LessThan100::
-	.string "Have you visited the SAFARI ZONE?\p"
-	.string "I hear there are some POKéMON that\n"
-	.string "can only be caught there.$"
+	.string "Look over the places you've been.\n"
+	.string "You may have missed a habitat.\p"
+	.string "Even a familiar route deserves\n"
+	.string "a second, slower visit.$"
 
 gBirchDexRatingText_LessThan110::
-	.string "You've finally reached\n"
-	.string "the 100-kind mark.\p"
-	.string "This is an impressive POKéDEX!$"
+	.string "You've recorded a hundred kinds!\n"
+	.string "That's a fine fieldwork milestone.$"
 
 gBirchDexRatingText_LessThan120::
-	.string "There might be POKéMON that can be\n"
-	.string "found using ROCK SMASH.$"
+	.string "Small details matter now.\n"
+	.string "Look beyond the obvious paths.$"
 
 gBirchDexRatingText_LessThan130::
-	.string "You should get some more POKéMON\n"
-	.string "by trading with others.$"
+	.string "Talk with other TRAINERS, too.\n"
+	.string "Compare where you found POKéMON.$"
 
 gBirchDexRatingText_LessThan140::
-	.string "I've heard of POKéMON that evolve\n"
-	.string "when they come to fully love their\l"
-	.string "TRAINERS.$"
+	.string "Some POKéMON change as their\n"
+	.string "bond with a TRAINER deepens.\p"
+	.string "Time spent with your team is\n"
+	.string "valuable fieldwork, too.$"
 
 gBirchDexRatingText_LessThan150::
-	.string "I had no idea that there were so\n"
-	.string "many POKéMON species in the HOENN\l"
-	.string "region.$"
+	.string "Habitats that were far apart\n"
+	.string "now lie along the same journey.\p"
+	.string "Your records help us understand\n"
+	.string "what lives in this changed world.$"
 
 gBirchDexRatingText_LessThan160::
-	.string "On occasion, some POKéMON appear\n"
-	.string "in large numbers like outbreaks.\p"
-	.string "Don't miss opportunities like\n"
-	.string "those.$"
+	.string "Finding the uncommon species\n"
+	.string "takes more than a quick glance.\p"
+	.string "You clearly know how to stay\n"
+	.string "patient and keep looking.$"
 
 gBirchDexRatingText_LessThan170::
-	.string "One can get a very good idea about\n"
-	.string "the POKéMON of the HOENN region\l"
-	.string "by looking through your POKéDEX.$"
+	.string "Your POKéDEX is becoming a useful\n"
+	.string "guide to the world around us.$"
 
 gBirchDexRatingText_LessThan180::
-	.string "I would say you already qualify as\n"
-	.string "a POKéMON PROFESSOR, and a good\l"
-	.string "one, too!$"
+	.string "You've developed a researcher's\n"
+	.string "eye for detail. I'm impressed!$"
 
 gBirchDexRatingText_LessThan190::
-	.string "With a POKéDEX this complete,\n"
-	.string "you're a real professional at this!$"
+	.string "This record took real dedication.\n"
+	.string "You should be proud of your work.$"
 
 gBirchDexRatingText_LessThan200::
-	.string "You're very close to completing\n"
-	.string "this POKéDEX.\l"
-	.string "I can feel it in my bones!$"
+	.string "Very few gaps remain now.\n"
+	.string "Take your time with the last ones.$"
 
 gBirchDexRatingText_DexCompleted::
-	.string "Congratulations!\n"
+	.string "Congratulations, {PLAYER}!\n"
 	.string "Your POKéDEX is complete!$"
 
 gBirchDexRatingText_OnANationwideBasis::
-	.string "Hmhm…\n"
-	.string "On a nationwide basis…\p"
-	.string "You've seen {STR_VAR_1} POKéMON,\n"
-	.string "and you've caught {STR_VAR_2} POKéMON…$"
+	.string "Now for your NATIONAL POKéDEX.\p"
+	.string "You've seen {STR_VAR_1} POKéMON\n"
+	.string "and caught {STR_VAR_2}.$"
 
 @ FRLG
 

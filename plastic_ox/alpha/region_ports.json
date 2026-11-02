@@ -1,0 +1,651 @@
+{
+  "rustboro_route44_a": {
+    "tile": [
+      39,
+      10
+    ],
+    "approach": [
+      38,
+      10
+    ],
+    "direction": "E"
+  },
+  "rustboro_route44_b": {
+    "tile": [
+      0,
+      15
+    ],
+    "approach": [
+      1,
+      15
+    ],
+    "direction": "W"
+  },
+  "route33_goldenrod_a": {
+    "tile": [
+      0,
+      22
+    ],
+    "approach": [
+      0,
+      23
+    ],
+    "direction": "N"
+  },
+  "route33_goldenrod_b": {
+    "tile": [
+      32,
+      45
+    ],
+    "approach": [
+      32,
+      44
+    ],
+    "direction": "S"
+  },
+  "route119_fortree_a": {
+    "tile": [
+      39,
+      8
+    ],
+    "approach": [
+      38,
+      8
+    ],
+    "direction": "E"
+  },
+  "route119_fortree_b": {
+    "tile": [
+      0,
+      10
+    ],
+    "approach": [
+      0,
+      9
+    ],
+    "direction": "S"
+  },
+  "fortree_route110_a": {
+    "tile": [
+      39,
+      10
+    ],
+    "approach": [
+      38,
+      10
+    ],
+    "direction": "E"
+  },
+  "fortree_route110_b": {
+    "tile": [
+      18,
+      0
+    ],
+    "approach": [
+      17,
+      0
+    ],
+    "direction": "E"
+  },
+  "route36_shortcut_a": {
+    "tile": [
+      65,
+      18
+    ],
+    "approach": [
+      64,
+      18
+    ],
+    "direction": "E"
+  },
+  "route36_shortcut_b": {
+    "tile": [
+      1,
+      67
+    ],
+    "approach": [
+      0,
+      67
+    ],
+    "direction": "E"
+  },
+  "route110_lavender_b": {
+    "tile": [
+      16,
+      0
+    ],
+    "approach": [
+      15,
+      0
+    ],
+    "direction": "E"
+  },
+  "route7_saffron_a": {
+    "tile": [
+      6,
+      22
+    ],
+    "approach": [
+      5,
+      22
+    ],
+    "direction": "E"
+  },
+  "route7_saffron_b": {
+    "tile": [
+      2,
+      26
+    ],
+    "approach": [
+      2,
+      25
+    ],
+    "direction": "S"
+  },
+  "route7_route103_a": {
+    "tile": [
+      1,
+      22
+    ],
+    "approach": [
+      1,
+      23
+    ],
+    "direction": "N"
+  },
+  "route7_route103_b": {
+    "tile": [
+      79,
+      11
+    ],
+    "approach": [
+      78,
+      11
+    ],
+    "direction": "E"
+  },
+  "oldale_route103_a": {
+    "tile": [
+      10,
+      0
+    ],
+    "approach": [
+      9,
+      0
+    ],
+    "direction": "E"
+  },
+  "oldale_route103_b": {
+    "tile": [
+      10,
+      20
+    ],
+    "approach": [
+      9,
+      20
+    ],
+    "direction": "E"
+  },
+  "pallet_coast_a": {
+    "tile": [
+      12,
+      19
+    ],
+    "approach": [
+      11,
+      19
+    ],
+    "direction": "E"
+  },
+  "sea_mossdeep_b": {
+    "tile": [
+      0,
+      20
+    ],
+    "approach": [
+      0,
+      21
+    ],
+    "direction": "N"
+  },
+  "mossdeep_route19_a": {
+    "tile": [
+      40,
+      0
+    ],
+    "approach": [
+      39,
+      0
+    ],
+    "direction": "E"
+  },
+  "route19_saffron_a": {
+    "tile": [
+      12,
+      0
+    ],
+    "approach": [
+      11,
+      0
+    ],
+    "direction": "E"
+  },
+  "route19_saffron_b": {
+    "tile": [
+      32,
+      44
+    ],
+    "approach": [
+      31,
+      44
+    ],
+    "direction": "E"
+  },
+  "saffron_route5_b": {
+    "tile": [
+      32,
+      38
+    ],
+    "approach": [
+      31,
+      38
+    ],
+    "direction": "E"
+  },
+  "route5_route115_a": {
+    "tile": [
+      32,
+      0
+    ],
+    "approach": [
+      31,
+      0
+    ],
+    "direction": "E"
+  },
+  "route5_route115_b": {
+    "tile": [
+      20,
+      79
+    ],
+    "approach": [
+      19,
+      79
+    ],
+    "direction": "E"
+  },
+  "meteor_blackthorn_a": {
+    "tile": [
+      26,
+      18
+    ],
+    "approach": [
+      25,
+      18
+    ],
+    "direction": "E"
+  },
+  "meteor_blackthorn_b": {
+    "tile": [
+      30,
+      26
+    ],
+    "approach": [
+      29,
+      26
+    ],
+    "direction": "E"
+  },
+  "blackthorn_route45_a": {
+    "tile": [
+      25,
+      59
+    ],
+    "approach": [
+      24,
+      59
+    ],
+    "direction": "E"
+  },
+  "blackthorn_route45_b": {
+    "tile": [
+      25,
+      0
+    ],
+    "approach": [
+      25,
+      1
+    ],
+    "direction": "N"
+  },
+  "route45_route46_a": {
+    "tile": [
+      15,
+      90
+    ],
+    "approach": [
+      15,
+      89
+    ],
+    "direction": "S"
+  },
+  "route45_route46_b": {
+    "tile": [
+      13,
+      10
+    ],
+    "approach": [
+      12,
+      10
+    ],
+    "direction": "E"
+  },
+  "ecruteak_league_a": {
+    "tile": [
+      8,
+      34
+    ],
+    "approach": [
+      9,
+      34
+    ],
+    "direction": "W"
+  },
+  "ecruteak_league_b": {
+    "tile": [
+      15,
+      39
+    ],
+    "approach": [
+      14,
+      39
+    ],
+    "direction": "E"
+  },
+  "victory_indigo_a": {
+    "tile": [
+      38,
+      5
+    ],
+    "approach": [
+      37,
+      5
+    ],
+    "direction": "E"
+  },
+  "victory_indigo_b": {
+    "tile": [
+      12,
+      19
+    ],
+    "approach": [
+      11,
+      19
+    ],
+    "direction": "E"
+  },
+  "lavender_harbor_b": {
+    "tile": [
+      11,
+      13
+    ],
+    "approach": [
+      10,
+      13
+    ],
+    "direction": "E"
+  },
+  "harbor_frontier_a": {
+    "tile": [
+      16,
+      14
+    ],
+    "approach": [
+      15,
+      14
+    ],
+    "direction": "E"
+  },
+  "harbor_frontier_b": {
+    "tile": [
+      26,
+      66
+    ],
+    "approach": [
+      25,
+      66
+    ],
+    "direction": "E"
+  },
+  "underground_west": {
+    "tile": [
+      4,
+      22
+    ],
+    "approach": [
+      3,
+      22
+    ],
+    "direction": "E"
+  },
+  "goldenrod_route35_a": {
+    "tile": [
+      33,
+      9
+    ],
+    "approach": [
+      32,
+      9
+    ],
+    "direction": "E"
+  },
+  "pallet_coast_b": {
+    "tile": [
+      37,
+      12
+    ],
+    "approach": [
+      37,
+      13
+    ],
+    "direction": "N"
+  },
+  "saffron_route5_a": {
+    "tile": [
+      30,
+      6
+    ],
+    "approach": [
+      29,
+      6
+    ],
+    "direction": "E"
+  },
+  "lavender_harbor_a": {
+    "tile": [
+      19,
+      22
+    ],
+    "approach": [
+      18,
+      22
+    ],
+    "direction": "E"
+  },
+  "goldenrod_route35_b": {
+    "tile": [
+      16,
+      47
+    ],
+    "approach": [
+      15,
+      47
+    ],
+    "direction": "E"
+  },
+  "route37_ecruteak_a": {
+    "tile": [
+      19,
+      11
+    ],
+    "approach": [
+      18,
+      11
+    ],
+    "direction": "E"
+  },
+  "route37_ecruteak_b": {
+    "tile": [
+      33,
+      54
+    ],
+    "approach": [
+      33,
+      53
+    ],
+    "direction": "S"
+  },
+  "route110_lavender_a": {
+    "tile": [
+      16,
+      5
+    ],
+    "approach": [
+      15,
+      5
+    ],
+    "direction": "E"
+  },
+  "route103_cinnabar_a": {
+    "tile": [
+      75,
+      15
+    ],
+    "approach": [
+      75,
+      14
+    ],
+    "direction": "S"
+  },
+  "cherry_route2_a": {
+    "tile": [
+      33,
+      0
+    ],
+    "approach": [
+      33,
+      1
+    ],
+    "direction": "N"
+  },
+  "cherry_route2_b": {
+    "tile": [
+      11,
+      79
+    ],
+    "approach": [
+      10,
+      79
+    ],
+    "direction": "E"
+  },
+  "cinnabar_sea_b": {
+    "tile": [
+      48,
+      13
+    ],
+    "approach": [
+      48,
+      14
+    ],
+    "direction": "N"
+  },
+  "mossdeep_route19_b": {
+    "tile": [
+      12,
+      13
+    ],
+    "approach": [
+      11,
+      13
+    ],
+    "direction": "E"
+  },
+  "route103_cinnabar_b": {
+    "tile": [
+      12,
+      12
+    ],
+    "approach": [
+      12,
+      13
+    ],
+    "direction": "N"
+  },
+  "cinnabar_sea_a": {
+    "tile": [
+      22,
+      10
+    ],
+    "approach": [
+      21,
+      10
+    ],
+    "direction": "E"
+  },
+  "sea_mossdeep_a": {
+    "tile": [
+      53,
+      10
+    ],
+    "approach": [
+      52,
+      10
+    ],
+    "direction": "E"
+  },
+  "lavender_route8_a": {
+    "tile": [
+      1,
+      15
+    ],
+    "approach": [
+      1,
+      16
+    ],
+    "direction": "N"
+  },
+  "lavender_route8_b": {
+    "tile": [
+      67,
+      20
+    ],
+    "approach": [
+      66,
+      20
+    ],
+    "direction": "E"
+  },
+  "route8_saffron_a": {
+    "tile": [
+      8,
+      20
+    ],
+    "approach": [
+      7,
+      20
+    ],
+    "direction": "E"
+  },
+  "route8_saffron_b": {
+    "tile": [
+      61,
+      27
+    ],
+    "approach": [
+      60,
+      27
+    ],
+    "direction": "E"
+  }
+}

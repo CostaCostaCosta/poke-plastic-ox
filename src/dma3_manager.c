@@ -20,6 +20,7 @@ struct Dma3Request
 static struct Dma3Request sDma3Requests[MAX_DMA_REQUESTS];
 
 static vbool8 sDma3ManagerLocked;
+static vbool8 sDma3RequestsPaused;
 static u8 sDma3RequestCursor;
 
 void ClearDma3Requests(void)
@@ -27,6 +28,7 @@ void ClearDma3Requests(void)
     int i;
 
     sDma3ManagerLocked = TRUE;
+    sDma3RequestsPaused = FALSE;
     sDma3RequestCursor = 0;
 
     for (i = 0; i < MAX_DMA_REQUESTS; i++)
@@ -39,11 +41,16 @@ void ClearDma3Requests(void)
     sDma3ManagerLocked = FALSE;
 }
 
+void SetDma3RequestsPaused(bool8 paused)
+{
+    sDma3RequestsPaused = paused;
+}
+
 void ProcessDma3Requests(void)
 {
     u16 bytesTransferred;
 
-    if (sDma3ManagerLocked)
+    if (sDma3ManagerLocked || sDma3RequestsPaused)
         return;
 
     bytesTransferred = 0;

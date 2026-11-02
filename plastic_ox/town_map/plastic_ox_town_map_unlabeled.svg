@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100" role="img" aria-labelledby="title desc">
+<title id="title">Plastic Ox town map</title>
+<desc id="desc">A schematic regional map showing towns, numbered route corridors, forests, caves, and guided passages.</desc>
+<defs><pattern id="sea" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M4 22 Q9 17 14 22 T24 22" fill="none" stroke="#91c9d6" stroke-width="1.4" opacity=".32"/></pattern></defs>
+<rect width="1600" height="1100" fill="#b8e4ec"/><rect width="1600" height="1100" fill="url(#sea)"/>
+<path d="M55 135 Q140 65 325 125 Q435 152 565 110 Q710 45 890 80 Q980 100 1055 83 Q1250 30 1530 85 L1570 640 Q1515 691 1470 681 Q1375 695 1330 655 Q1260 610 1225 660 Q1170 720 1060 753 Q1015 785 965 855 Q865 936 764 912 Q714 895 685 942 Q618 1015 525 951 Q467 914 404 938 Q292 1000 186 937 Q124 907 122 814 Q103 739 145 675 Q177 619 120 570 Q44 524 88 443 Q142 347 68 287 Q28 234 55 135Z" fill="#cfeeaf" stroke="#69adbd" stroke-width="4"/>
+<path d="M55 135 Q165 73 330 125 Q399 156 477 141 Q454 223 369 244 Q272 276 287 372 Q307 445 229 481 Q147 506 88 443 Q138 349 68 287 Q28 234 55 135Z" fill="#e2b98f"/>
+<path d="M1170 76 Q1330 45 1530 85 L1570 418 Q1493 472 1450 435 Q1410 389 1358 418 Q1298 445 1280 365 Q1250 305 1158 316 Q1100 311 1113 259 Q1165 205 1137 160Z" fill="#e2b98f"/>
+<path d="M739 637 Q775 600 831 620 Q887 584 918 635 Q962 668 932 720 Q955 767 900 790 Q838 780 801 818 Q755 835 725 781 Q697 738 739 637Z" fill="#e2b98f"/>
+<path d="M291 507 Q317 459 381 478 Q455 428 498 486 Q545 533 507 579 Q441 583 414 620 Q351 643 313 595Z" fill="#e2b98f"/>
+<path d="M483 252 Q532 222 594 255 Q624 299 589 327 Q555 359 500 336 Q465 305 483 252Z" fill="#b8e4ec" stroke="#69adbd" stroke-width="3"/>
+<path d="M1051 819 Q1117 779 1173 831 Q1199 872 1171 915 Q1128 953 1077 920 Q1035 882 1051 819Z" fill="#cfeeaf" stroke="#69adbd" stroke-width="4"/>
+<path d="M1348 755 Q1393 710 1456 745 Q1505 784 1481 843 Q1450 898 1382 873 Q1334 848 1348 755Z" fill="#cfeeaf" stroke="#69adbd" stroke-width="4"/>
+<path d="M846 927 Q875 900 913 926 Q940 953 912 978 Q877 1000 850 976 Q829 953 846 927Z" fill="#cfeeaf" stroke="#69adbd" stroke-width="3"/>
+<ellipse cx="941" cy="988" rx="14" ry="9" fill="#cfeeaf" stroke="#69adbd" stroke-width="2"/><ellipse cx="847" cy="1010" rx="12" ry="8" fill="#cfeeaf" stroke="#69adbd" stroke-width="2"/>
+<path d="M515 395 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M534 395 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M553 395 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M572 395 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M523 415 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M542 415 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M561 415 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M580 415 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M515 435 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M534 435 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M553 435 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M572 435 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M560 526 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M579 526 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M598 526 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M568 546 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M587 546 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M606 546 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M955 363 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M974 363 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M993 363 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M963 383 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M982 383 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M1001 383 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M110 538 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M129 538 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M148 538 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M118 558 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M137 558 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<path d="M156 558 l-10 18 h6 l-8 9 h24 l-8 -9 h6Z" fill="#7eb682" opacity=".45"/>
+<g><title>Route101</title><path d="M235 880 V735" fill="none" stroke="#929d8d" stroke-width="18" stroke-linejoin="round" stroke-linecap="square"/><path d="M235 880 V735" fill="none" stroke="#fffbe9" stroke-width="10" stroke-linejoin="round" stroke-linecap="square"/></g>
+<g><title>Route29_hns</title><path d="M235 735 H445" fill="none" stroke="#929d8d" stroke-width="18" stroke-linejoin="round" stroke-linecap="square"/><path d="M235 735 H445" fill="none" stroke="#fffbe9" stroke-width="10" stroke-linejoin="round" stroke-linecap="square"/></g>
+<g><title>Route30_hns / Route31_hns</title><path d="M445 735 V610 H440 V550" fill="none" stroke="#929d8d" stroke-width="18" stroke-linejoin="round" stroke-linecap="square"/><path d="M445 735 V610 H440 V550" fill="none" stroke="#fffbe9" stroke-width="10" stroke-linejoin="round" stroke-linecap="square"/></g>
+<g><title>Route46_hns / DarkCave_SouthSide_hns</title><path d="M340 735 V550 H440" fill="none" stroke="#929d8d" stroke-width="18" stroke-linejoin="round" stroke-linecap="square"/><path d="M340 735 V550 H440" fill="none" stroke="#fffbe9" stroke-width="10" stroke-linejoin="round" stroke-linecap="square"/></g>
+<g><title>Route31_hns / Gate_AzaleaTown_IlexForest_hns</title><path d="M445 610 H625" fill="none" stroke="#929d8d" stroke-width="18" stroke-linejoin="round" stroke-linecap="square"/><path d="M445 610 H625" fill="none" stroke="#fffbe9" stroke-width="10" stroke-linejoin="round" stroke-linecap="square"/></g>
+<g><title>Route34_hns</title><path d="M625 610 H735 V530 H870" fill="none" stroke="#929d8d" stroke-width="18" stroke-linejoin="round" stroke-linecap="square"/><path d="M625 610 H735 V530 H870" fill="none" stroke="#fffbe9" stroke-width="10" stroke-linejoin="round" stroke-linecap="square"/></g>
+<g><title>Route2_hns / Route3_hns</title><path d="M680 830 V735 H835" fill="none" stroke="#929d8d" stroke-width="18" stroke-linejoin="round" stroke-linecap="square"/><path d="M680 830 V735 H835" fill="none" stroke="#fffbe9" stroke-width="10" stroke-linejoin="round" stroke-linecap="square"/></g>
+<g><title>Route4_hns</title><path d="M835 735 H1000 V635" fill="none" stroke="#929d8d" stroke-width="18" stroke-linejoin="round" stroke-linecap="square"/><path d="M835 735 H1000 V635" fill="none" stroke="#fffbe9" stroke-width="10" stroke-linejoin="round" stroke-linecap="square"/></g>
+<g><title>Route14_hns</title><path d="M870 530 H1010 V450" fill="none" stroke="#929d8d" stroke-width="18" stroke-linejoin="round" stroke-linecap="square"/><path d="M870 530 H1010 V450" fill="none" stroke="#fffbe9" stroke-width="10" stroke-linejoin="round" stroke-linecap="square"/></g>
+<g><title>Route35_hns / NationalPark_Normal_hns</title><path d="M870 530 V455 H680 V390" fill="none" stroke="#929d8d" stroke-width="18" stroke-linejoin="round" stroke-linecap="square"/><path d="M870 530 V455 H680 V390" fill="none" stroke="#fffbe9" stroke-width="10" stroke-linejoin="round" stroke-linecap="square"/></g>
+<g><title>Route36_hns / Route37_hns</title><path d="M680 390 H870 V270" fill="none" stroke="#929d8d" stroke-width="18" stroke-linejoin="round" stroke-linecap="square"/><path d="M680 390 H870 V270" fill="none" stroke="#fffbe9" stroke-width="10" stroke-linejoin="round" stroke-linecap="square"/></g>
+<g><title>Route38_hns</title><path d="M870 270 H665" fill="none" stroke="#929d8d" stroke-width="18" stroke-linejoin="round" stroke-linecap="square"/><path d="M870 270 H665" fill="none" stroke="#fffbe9" stroke-width="10" stroke-linejoin="round" stroke-linecap="square"/></g>
+<g><title>Route103</title><path d="M235 735 V655" fill="none" stroke="#929d8d" stroke-width="18" stroke-linejoin="round" stroke-linecap="square"/><path d="M235 735 V655" fill="none" stroke="#fffbe9" stroke-width="10" stroke-linejoin="round" stroke-linecap="square"/></g>
+<g><title>Route104</title><path d="M680 830 H575" fill="none" stroke="#929d8d" stroke-width="18" stroke-linejoin="round" stroke-linecap="square"/><path d="M680 830 H575" fill="none" stroke="#fffbe9" stroke-width="10" stroke-linejoin="round" stroke-linecap="square"/></g>
+<g><title>Route116</title><path d="M680 830 H785" fill="none" stroke="#929d8d" stroke-width="18" stroke-linejoin="round" stroke-linecap="square"/><path d="M680 830 H785" fill="none" stroke="#fffbe9" stroke-width="10" stroke-linejoin="round" stroke-linecap="square"/></g>
+<g><title>Route119</title><path d="M1100 365 H1025 V430" fill="none" stroke="#929d8d" stroke-width="18" stroke-linejoin="round" stroke-linecap="square"/><path d="M1100 365 H1025 V430" fill="none" stroke="#fffbe9" stroke-width="10" stroke-linejoin="round" stroke-linecap="square"/></g>
+<g><title>Route120</title><path d="M1100 365 H1170 V425" fill="none" stroke="#929d8d" stroke-width="18" stroke-linejoin="round" stroke-linecap="square"/><path d="M1100 365 H1170 V425" fill="none" stroke="#fffbe9" stroke-width="10" stroke-linejoin="round" stroke-linecap="square"/></g>
+<g><title>Route124</title><path d="M1415 810 H1330 V755" fill="none" stroke="#929d8d" stroke-width="18" stroke-linejoin="round" stroke-linecap="square"/><path d="M1415 810 H1330 V755" fill="none" stroke="#fffbe9" stroke-width="10" stroke-linejoin="round" stroke-linecap="square"/></g>
+<g><title>Route125</title><path d="M1415 810 V735" fill="none" stroke="#929d8d" stroke-width="18" stroke-linejoin="round" stroke-linecap="square"/><path d="M1415 810 V735" fill="none" stroke="#fffbe9" stroke-width="10" stroke-linejoin="round" stroke-linecap="square"/></g>
+<g><title>Route127</title><path d="M1415 810 V930" fill="none" stroke="#929d8d" stroke-width="18" stroke-linejoin="round" stroke-linecap="square"/><path d="M1415 810 V930" fill="none" stroke="#fffbe9" stroke-width="10" stroke-linejoin="round" stroke-linecap="square"/></g>
+<g><title>Route 4 to Goldenrod City — guided passage</title><path d="M1000 635 H870 V530" fill="none" stroke="#769795" stroke-width="8" stroke-linejoin="round" opacity=".7"/><path d="M1000 635 H870 V530" fill="none" stroke="#fffbe9" stroke-width="4" stroke-dasharray="8 9" stroke-linejoin="round" stroke-linecap="round"/></g>
+<g><title>Ilex Forest to Rustboro City — guided passage</title><path d="M625 610 V685 H585 V830 H680" fill="none" stroke="#769795" stroke-width="8" stroke-linejoin="round" opacity=".7"/><path d="M625 610 V685 H585 V830 H680" fill="none" stroke="#fffbe9" stroke-width="4" stroke-dasharray="8 9" stroke-linejoin="round" stroke-linecap="round"/></g>
+<g><title>Ecruteak City to Fortree City — guided passage</title><path d="M870 270 H995 Q1020 270 1020 295 V315 Q1020 340 1045 340 H1100 V365" fill="none" stroke="#769795" stroke-width="8" stroke-linejoin="round" opacity=".7"/><path d="M870 270 H995 Q1020 270 1020 295 V315 Q1020 340 1045 340 H1100 V365" fill="none" stroke="#fffbe9" stroke-width="4" stroke-dasharray="8 9" stroke-linejoin="round" stroke-linecap="round"/></g>
+<g><title>Fortree City to Lavender Town — guided passage</title><path d="M1100 365 V465 H1190 V530" fill="none" stroke="#769795" stroke-width="8" stroke-linejoin="round" opacity=".7"/><path d="M1100 365 V465 H1190 V530" fill="none" stroke="#fffbe9" stroke-width="4" stroke-dasharray="8 9" stroke-linejoin="round" stroke-linecap="round"/></g>
+<g><title>Lavender Town to Cinnabar Island — guided passage</title><path d="M1190 530 V705 Q1190 735 1160 735 H1150 Q1120 735 1120 765 V875" fill="none" stroke="#769795" stroke-width="8" stroke-linejoin="round" opacity=".7"/><path d="M1190 530 V705 Q1190 735 1160 735 H1150 Q1120 735 1120 765 V875" fill="none" stroke="#fffbe9" stroke-width="4" stroke-dasharray="8 9" stroke-linejoin="round" stroke-linecap="round"/></g>
+<g><title>Cinnabar Island to Whirl Islands — guided passage</title><path d="M1120 875 V955 H890" fill="none" stroke="#769795" stroke-width="8" stroke-linejoin="round" opacity=".7"/><path d="M1120 875 V955 H890" fill="none" stroke="#fffbe9" stroke-width="4" stroke-dasharray="8 9" stroke-linejoin="round" stroke-linecap="round"/></g>
+<g><title>Cinnabar Island to Mossdeep City — guided passage</title><path d="M1120 875 H1280 Q1310 875 1310 845 V835 Q1310 810 1335 810 H1415" fill="none" stroke="#769795" stroke-width="8" stroke-linejoin="round" opacity=".7"/><path d="M1120 875 H1280 Q1310 875 1310 845 V835 Q1310 810 1335 810 H1415" fill="none" stroke="#fffbe9" stroke-width="4" stroke-dasharray="8 9" stroke-linejoin="round" stroke-linecap="round"/></g>
+<g><title>Mossdeep City to Saffron City — guided passage</title><path d="M1415 810 V575" fill="none" stroke="#769795" stroke-width="8" stroke-linejoin="round" opacity=".7"/><path d="M1415 810 V575" fill="none" stroke="#fffbe9" stroke-width="4" stroke-dasharray="8 9" stroke-linejoin="round" stroke-linecap="round"/></g>
+<g><title>Saffron City to Blackthorn City — guided passage</title><path d="M1415 575 V430 H1390 V365" fill="none" stroke="#769795" stroke-width="8" stroke-linejoin="round" opacity=".7"/><path d="M1415 575 V430 H1390 V365" fill="none" stroke="#fffbe9" stroke-width="4" stroke-dasharray="8 9" stroke-linejoin="round" stroke-linecap="round"/></g>
+<g><title>Blackthorn City to Victory Road — guided passage</title><path d="M1390 365 V270 H1255 V200" fill="none" stroke="#769795" stroke-width="8" stroke-linejoin="round" opacity=".7"/><path d="M1390 365 V270 H1255 V200" fill="none" stroke="#fffbe9" stroke-width="4" stroke-dasharray="8 9" stroke-linejoin="round" stroke-linecap="round"/></g>
+<g><title>Victory Road to Indigo Plateau — guided passage</title><path d="M1255 200 H1340 V160 H1440" fill="none" stroke="#769795" stroke-width="8" stroke-linejoin="round" opacity=".7"/><path d="M1255 200 H1340 V160 H1440" fill="none" stroke="#fffbe9" stroke-width="4" stroke-dasharray="8 9" stroke-linejoin="round" stroke-linecap="round"/></g>
+<g id="pallet-town"><title>Pallet Town</title>
+<rect x="216" y="861" width="38" height="38" rx="2" fill="#658dcc" stroke="#737f73" stroke-width="6"/><path d="M223 869 H246" stroke="#fff" stroke-width="3" opacity=".35"/>
+</g>
+<g id="oldale-town"><title>Oldale Town</title>
+<rect x="216" y="716" width="38" height="38" rx="2" fill="#658dcc" stroke="#737f73" stroke-width="6"/><path d="M223 724 H246" stroke="#fff" stroke-width="3" opacity=".35"/>
+</g>
+<g id="cherrygrove-city"><title>Cherrygrove City</title>
+<rect x="426" y="716" width="38" height="38" rx="2" fill="#e96350" stroke="#737f73" stroke-width="6"/><path d="M433 724 H456" stroke="#fff" stroke-width="3" opacity=".35"/>
+</g>
+<g id="dark-cave"><title>Dark Cave</title>
+<circle cx="440" cy="550" r="20" fill="#66b77c" stroke="#737f73" stroke-width="6"/>
+<path d="M430 559 V549 Q440 531 450 549 V559Z" fill="#425e54"/><path d="M427 560 H453" stroke="#d5e6bb" stroke-width="3"/>
+</g>
+<g id="ilex-forest"><title>Ilex Forest</title>
+<circle cx="625" cy="610" r="20" fill="#66b77c" stroke="#737f73" stroke-width="6"/>
+<path d="M625 598 l-10 16 h7 v8 h6 v-8 h7Z" fill="#e7f1cc"/>
+</g>
+<g id="rustboro-city"><title>Rustboro City</title>
+<rect x="661" y="811" width="38" height="38" rx="2" fill="#e96350" stroke="#737f73" stroke-width="6"/><path d="M668 819 H691" stroke="#fff" stroke-width="3" opacity=".35"/>
+</g>
+<g id="mt-moon"><title>Mt. Moon</title>
+<circle cx="835" cy="735" r="20" fill="#66b77c" stroke="#737f73" stroke-width="6"/>
+<path d="M825 744 V734 Q835 716 845 734 V744Z" fill="#425e54"/><path d="M822 745 H848" stroke="#d5e6bb" stroke-width="3"/>
+</g>
+<g id="goldenrod-city"><title>Goldenrod City</title>
+<rect x="851" y="511" width="38" height="38" rx="2" fill="#e96350" stroke="#737f73" stroke-width="6"/><path d="M858 519 H881" stroke="#fff" stroke-width="3" opacity=".35"/>
+</g>
+<g id="national-park"><title>National Park</title>
+<circle cx="680" cy="390" r="20" fill="#66b77c" stroke="#737f73" stroke-width="6"/>
+<path d="M680 378 l-10 16 h7 v8 h6 v-8 h7Z" fill="#e7f1cc"/>
+</g>
+<g id="ecruteak-city"><title>Ecruteak City</title>
+<rect x="851" y="251" width="38" height="38" rx="2" fill="#e96350" stroke="#737f73" stroke-width="6"/><path d="M858 259 H881" stroke="#fff" stroke-width="3" opacity=".35"/>
+</g>
+<g id="fortree-city"><title>Fortree City</title>
+<rect x="1081" y="346" width="38" height="38" rx="2" fill="#e96350" stroke="#737f73" stroke-width="6"/><path d="M1088 354 H1111" stroke="#fff" stroke-width="3" opacity=".35"/>
+</g>
+<g id="lavender-town"><title>Lavender Town</title>
+<rect x="1171" y="511" width="38" height="38" rx="2" fill="#658dcc" stroke="#737f73" stroke-width="6"/><path d="M1178 519 H1201" stroke="#fff" stroke-width="3" opacity=".35"/>
+</g>
+<g id="cinnabar-island"><title>Cinnabar Island</title>
+<rect x="1101" y="856" width="38" height="38" rx="2" fill="#e96350" stroke="#737f73" stroke-width="6"/><path d="M1108 864 H1131" stroke="#fff" stroke-width="3" opacity=".35"/>
+</g>
+<g id="whirl-islands"><title>Whirl Islands</title>
+<circle cx="890" cy="955" r="20" fill="#66b77c" stroke="#737f73" stroke-width="6"/>
+<path d="M880 964 V954 Q890 936 900 954 V964Z" fill="#425e54"/><path d="M877 965 H903" stroke="#d5e6bb" stroke-width="3"/>
+</g>
+<g id="mossdeep-city"><title>Mossdeep City</title>
+<rect x="1396" y="791" width="38" height="38" rx="2" fill="#e96350" stroke="#737f73" stroke-width="6"/><path d="M1403 799 H1426" stroke="#fff" stroke-width="3" opacity=".35"/>
+</g>
+<g id="saffron-city"><title>Saffron City</title>
+<rect x="1396" y="556" width="38" height="38" rx="2" fill="#e96350" stroke="#737f73" stroke-width="6"/><path d="M1403 564 H1426" stroke="#fff" stroke-width="3" opacity=".35"/>
+</g>
+<g id="blackthorn-city"><title>Blackthorn City</title>
+<rect x="1371" y="346" width="38" height="38" rx="2" fill="#e96350" stroke="#737f73" stroke-width="6"/><path d="M1378 354 H1401" stroke="#fff" stroke-width="3" opacity=".35"/>
+</g>
+<g id="victory-road"><title>Victory Road</title>
+<circle cx="1255" cy="200" r="20" fill="#66b77c" stroke="#737f73" stroke-width="6"/>
+<path d="M1245 209 V199 Q1255 181 1265 199 V209Z" fill="#425e54"/><path d="M1242 210 H1268" stroke="#d5e6bb" stroke-width="3"/>
+</g>
+<g id="indigo-plateau"><title>Indigo Plateau</title>
+<rect x="1421" y="141" width="38" height="38" rx="2" fill="#826bb6" stroke="#737f73" stroke-width="6"/><path d="M1428 149 H1451" stroke="#fff" stroke-width="3" opacity=".35"/>
+</g>
+</svg>

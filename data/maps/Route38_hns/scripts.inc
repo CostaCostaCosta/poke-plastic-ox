@@ -64,38 +64,29 @@ Route38_EventScript_Npc9::
 	release
 	end
 
-Route38_EventScript_Portal7::
-	warp MAP_ROUTE119, 18, 138
-	waitstate
-	end
-
 Route38_EventScript_Npc1_Text:
 	.string "MooMoo Milk farm ahead! The milk is region-neutral.$"
 
 Route38_EventScript_Npc2_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Rocky ground can wear your team\ndown. Rest when you can.$"
 
 Route38_EventScript_Npc3_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The mountain draws hikers and\ncurious trainers alike.$"
 
 Route38_EventScript_Npc4_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Rocky ground can wear your team\ndown. Rest when you can.$"
 
 Route38_EventScript_Npc5_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The mountain draws hikers and\ncurious trainers alike.$"
 
 Route38_EventScript_Npc6_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Rocky ground can wear your team\ndown. Rest when you can.$"
 
 Route38_EventScript_Npc7_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The mountain draws hikers and\ncurious trainers alike.$"
 
 Route38_EventScript_Npc8_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Rocky ground can wear your team\ndown. Rest when you can.$"
 
 Route38_EventScript_Npc9_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
-Route38_EventScript_ReturnStone::
-	warp MAP_PALLET_TOWN, 10, 4
-	waitstate
-	end
+	.string "The mountain draws hikers and\ncurious trainers alike.$"

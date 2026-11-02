@@ -1,4 +1,5 @@
 IlexForest_hns_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_IlexForest_hns
 	.byte 0
 
 IlexForest_EventScript_Npc1::
@@ -12,13 +13,6 @@ IlexForest_EventScript_Npc2::
 	lock
 	faceplayer
 	msgbox IlexForest_EventScript_Npc2_Text, MSGBOX_NPC
-	release
-	end
-
-IlexForest_EventScript_Npc3::
-	lock
-	faceplayer
-	msgbox IlexForest_EventScript_Npc3_Text, MSGBOX_NPC
 	release
 	end
 
@@ -36,11 +30,33 @@ IlexForest_EventScript_Npc5::
 	release
 	end
 
-IlexForest_EventScript_Npc6::
+Pox_IlexForest_EventScript_HeadbuttKey::
 	lock
 	faceplayer
-	msgbox IlexForest_EventScript_Npc6_Text, MSGBOX_NPC
+	checkitem ITEM_HEADBUTT_KEY
+	goto_if_eq VAR_RESULT, TRUE, Pox_IlexForest_EventScript_ExplainHeadbuttKey
+	msgbox Pox_IlexForest_Text_HeadbuttKeyIntro, MSGBOX_DEFAULT
+	giveitem ITEM_HEADBUTT_KEY
+	goto_if_eq VAR_RESULT, FALSE, Pox_IlexForest_EventScript_HeadbuttKeyEnd
+Pox_IlexForest_EventScript_ExplainHeadbuttKey::
+	msgbox Pox_IlexForest_Text_HeadbuttKeyOwned, MSGBOX_DEFAULT
+Pox_IlexForest_EventScript_HeadbuttKeyEnd::
 	release
+	end
+
+IlexForest_EventScript_BugcatcherWayne::
+	trainerbattle_single TRAINER_PLASTIC_OX_ROUTE_ILEX, IlexForest_Text_BugCatcherWayneSeen, IlexForest_Text_BugCatcherWayneBeaten
+	msgbox IlexForest_Text_BugCatcherWayneAfter, MSGBOX_AUTOCLOSE
+	end
+
+IlexForest_EventScript_BugcatcherFinn::
+	trainerbattle_single TRAINER_PLASTIC_OX_ROUTE_ILEX_FINN, IlexForest_Text_FinnSeen, IlexForest_Text_FinnBeaten
+	msgbox IlexForest_Text_FinnAfter, MSGBOX_AUTOCLOSE
+	end
+
+IlexForest_EventScript_PicnickerMaya::
+	trainerbattle_single TRAINER_PLASTIC_OX_ROUTE_ILEX_MAYA, IlexForest_Text_MayaSeen, IlexForest_Text_MayaBeaten
+	msgbox IlexForest_Text_MayaAfter, MSGBOX_AUTOCLOSE
 	end
 
 IlexForest_EventScript_Item7::
@@ -89,47 +105,99 @@ IlexForest_EventScript_Sign2::
 	end
 
 IlexForest_EventScript_Npc1_Text:
-	.string "The forest paths loop past each other\nnow. Some mornings I end up in KANTO\nby accident.$"
+	.string "I train by walking this trail.\n"
+	.string "My legs quit before my POKéMON!$"
 
 IlexForest_EventScript_Npc2_Text:
-	.string "A BUG-CATCHER told me the bugs out\nwest count double. I'm going to catch\nso many.$"
+	.string "My net keeps catching twigs.\n"
+	.string "The bugs make it look so easy!$"
 
 IlexForest_EventScript_Npc3_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "I stop here to hear the leaves.\n"
+	.string "Go on. The road can wait.$"
 
 IlexForest_EventScript_Npc4_Text:
-	.string "This wood feels older than the map\nsays. The signposts disagree with\neach other.$"
+	.string "I packed a lunch for the walk.\n"
+	.string "A leaf landed in my sandwich!\p"
+	.string "I came here for the scenery,\n"
+	.string "not to eat it.$"
 
 IlexForest_EventScript_Npc5_Text:
-	.string "I fish where the trees let me. The\nriver doesn't care which region it's\nin.$"
+	.string "I found a fine fishing spot.\n"
+	.string "The branches caught my line.\p"
+	.string "Well, I said it was fine.\n"
+	.string "I didn't say it was roomy!$"
 
-IlexForest_EventScript_Npc6_Text:
-	.string "Something in these woods isn't in any\ndex I've seen. Probably nothing!$"
+Pox_IlexForest_Text_HeadbuttKeyIntro:
+	.string "Hear that rustle overhead?\n"
+	.string "POKéMON hide in the branches.\p"
+	.string "Take this HEADBUTT KEY.\n"
+	.string "Keep it safe on your travels!$"
+
+Pox_IlexForest_Text_HeadbuttKeyOwned:
+	.string "Take care of that HEADBUTT KEY.\n"
+	.string "These trees have plenty of life.\p"
+	.string "I could sit here all afternoon\n"
+	.string "just listening to the branches.$"
+
+IlexForest_Text_BugCatcherWayneSeen:
+	.string "Don't sneak up on me like that!\p"
+	.string "You frightened a POKéMON away!$"
+
+IlexForest_Text_BugCatcherWayneBeaten:
+	.string "I hadn't seen that POKéMON before…$"
+
+IlexForest_Text_BugCatcherWayneAfter:
+	.string "A POKéMON I've never seen before\n"
+	.string "fell out of the tree when I used\l"
+	.string "HEADBUTT.\p"
+	.string "I ought to use HEADBUTT in other\n"
+	.string "places too.$"
+
+IlexForest_Text_FinnSeen:
+	.string "My bug team knows the forest\n"
+	.string "paths. Show us your team!$"
+
+IlexForest_Text_FinnBeaten:
+	.string "I got tangled in that one!$"
+
+IlexForest_Text_FinnAfter:
+	.string "SPINARAK found a shortcut.\n"
+	.string "I still lost my way.$"
+
+IlexForest_Text_MayaSeen:
+	.string "We made it this far together.\n"
+	.string "Let's try a battle!$"
+
+IlexForest_Text_MayaBeaten:
+	.string "What a walk that was!$"
+
+IlexForest_Text_MayaAfter:
+	.string "We can rest under these trees\n"
+	.string "before we head north.$"
 
 IlexForest_EventScript_Npc10_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "These trees have stood here\n"
+	.string "longer than I've been alive.\p"
+	.string "Give their roots some room.\n"
+	.string "They were on this path first.$"
 
 IlexForest_EventScript_Npc11_Text:
-	.string "We dance for the forest. It has been\nvery patient with all these new\nroads.$"
+	.string "I practice my steps here.\n"
+	.string "The leaves are my audience.\p"
+	.string "They rustle at every turn.\n"
+	.string "I call that applause.$"
 
 IlexForest_EventScript_Npc12_Text:
-	.string "Two routes start at the north edge.\nNeither one is on Grandpa's map.$"
+	.string "I tried counting all the trees.\n"
+	.string "I ran out of numbers back there!\p"
+	.string "Now I'm counting mushrooms.\n"
+	.string "Don't tell me the answer!$"
 
 IlexForest_EventScript_Sign1_Text:
-	.string "ILEX FOREST\nThe trees lean away from the new road.$"
+	.string "ILEX FOREST\n"
+	.string "Please stay on the worn path.$"
 
 IlexForest_EventScript_Sign2_Text:
-	.string "ILEX FOREST\nShrine of the forest guardian.$"
-IlexForest_EventScript_ToGate::
-	warp MAP_GATE_AZALEA_TOWN_ILEX_FOREST_HNS, 1
-	waitstate
-	end
-IlexForest_EventScript_ToR34::
-	warp MAP_ROUTE34_HNS, 31, 66
-	waitstate
-	end
-
-IlexForest_EventScript_ToR34North::
-	warp MAP_ROUTE34_HNS, 31, 66
-	waitstate
-	end
+	.string "FOREST GUARDIAN'S SHRINE\n"
+	.string "Please keep the clearing quiet.$"

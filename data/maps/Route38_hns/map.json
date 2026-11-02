@@ -12,13 +12,7 @@
   "allow_running": true,
   "show_map_name": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": [
-    {
-      "map": "MAP_ECRUTEAKCITY_HNS",
-      "direction": "left",
-      "offset": -19
-    }
-  ],
+  "connections": [],
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_SAILOR",
@@ -138,27 +132,16 @@
       "flag": "0"
     }
   ],
-  "warp_events": [],
-  "coord_events": [
+  "warp_events": [
     {
-      "type": "trigger",
-      "x": 0,
-      "y": 21,
-      "elevation": 3,
-      "var": "VAR_POX_PORTAL_GATE",
-      "var_value": "0",
-      "script": "Route38_EventScript_Portal7"
-    },
-    {
-      "type": "trigger",
-      "x": 2,
-      "y": 21,
-      "elevation": 3,
-      "var": "VAR_POX_PORTAL_GATE",
-      "var_value": "0",
-      "script": "Route38_EventScript_ReturnStone"
+      "x": 43,
+      "y": 16,
+      "elevation": 0,
+      "dest_map": "MAP_GATE_ECRUTEAK_CITY_ROUTE38_HNS",
+      "dest_warp_id": "1"
     }
   ],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "hidden_item",

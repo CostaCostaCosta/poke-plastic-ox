@@ -157,13 +157,17 @@ def step_toward(g, current, nxt):
     distance = abs(nx - x) + abs(ny - y)
     assert distance in (1, 2), f"unsupported movement edge: {current} -> {nxt}"
     for _ in range(5):
-        actual = (g.state()["x"], g.state()["y"])
+        state = g.state()
+        assert state is not None, ("lost overworld state", current, nxt)
+        actual = (state["x"], state["y"])
         if actual == nxt:
             return
         assert actual == current, f"movement drifted from {current} toward {nxt}, got {actual}"
         g.tap(DIRKEY[direction], hold=8, wait=30 if distance == 2 else 18)
         assert_no_battle(g)
-    actual = (g.state()["x"], g.state()["y"])
+    state = g.state()
+    assert state is not None, ("lost overworld state", current, nxt)
+    actual = (state["x"], state["y"])
     assert actual == nxt, f"movement did not advance from {current} toward {nxt}, got {actual}"
 
 
@@ -239,6 +243,11 @@ def exercise_route101_ledge(g):
     ledge = (9, 13)
     landing = (9, 14)
     navigate_to(g, approach)
+    ledge_metatile, _ = g.metatile_at(*ledge)
+    assert ledge_metatile == 135, (
+        f"Route 101 ledge artwork moved off its behavior coordinate: "
+        f"expected metatile 135 at {ledge}, got {ledge_metatile}"
+    )
     assert g.behavior_at(*ledge)[0] == LEDGE_BEHAVIOR_BY_DIRECTION["DOWN"], (
         f"{ledge} is no longer a south-jump ledge"
     )
@@ -279,7 +288,7 @@ def assert_not_forced_blank(g, stage, frame):
     )
 
 
-def cross_connection(g, direction, expected_map, stage):
+def cross_connection(g, direction, expected_map, stage, on_frame=None):
     key = DIRKEY[direction]
     transition_frame = 0
     for _ in range(20):
@@ -287,11 +296,15 @@ def cross_connection(g, direction, expected_map, stage):
         for _ in range(8):
             g.frame(1)
             assert_not_forced_blank(g, stage, transition_frame)
+            if on_frame is not None:
+                on_frame(g, stage, transition_frame)
             transition_frame += 1
         g.core.clear_keys(key)
         for _ in range(18):
             g.frame(1)
             assert_not_forced_blank(g, stage, transition_frame)
+            if on_frame is not None:
+                on_frame(g, stage, transition_frame)
             transition_frame += 1
         assert_no_battle(g)
         state = g.state()
@@ -299,6 +312,8 @@ def cross_connection(g, direction, expected_map, stage):
             for _ in range(150):  # let queued tileset DMA and palette work settle
                 g.frame(1)
                 assert_not_forced_blank(g, stage, transition_frame)
+                if on_frame is not None:
+                    on_frame(g, stage, transition_frame)
                 transition_frame += 1
             assert_no_battle(g)
             assert_map(g, expected_map, stage)

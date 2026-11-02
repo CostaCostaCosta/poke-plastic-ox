@@ -711,6 +711,8 @@ enum StringID
     STRINGID_LIGHTSCREENWOREOFF,
     STRINGID_AURORAVEILWOREOFF,
     STRINGID_STICKYWEBDISAPPEAREDFROMYOU,
+    STRINGID_PKMNTRANSFERREDBILLSPC,
+    STRINGID_PKMNBOXBILLSPCFULL,
     STRINGID_COUNT
 };
 
@@ -935,11 +937,13 @@ enum SportsUsedStringID
 enum CaughtMonStringID
 {
     B_MSG_NO_MESSAGE_SKIP,
-    // "Lanette's" should always follow "someone's"
+    // Known creator names follow "someone's" for the transfer-message offset.
     B_MSG_SENT_SOMEONES_PC,
     B_MSG_SENT_LANETTES_PC,
+    B_MSG_SENT_BILLS_PC,
     B_MSG_SOMEONES_BOX_FULL,
     B_MSG_LANETTES_BOX_FULL,
+    B_MSG_BILLS_BOX_FULL,
     B_MSG_SWAPPED_INTO_PARTY,
 };
 

@@ -1,7 +1,5 @@
 Route110_MapScripts::
-	map_script MAP_SCRIPT_ON_RESUME, Route110_OnResume
-	map_script MAP_SCRIPT_ON_TRANSITION, Route110_OnTransition
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route110_OnFrame
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_Route110
 	.byte 0
 
 Route110_OnResume:
@@ -986,4 +984,3 @@ Route110_Text_KeepAnEyeOutForRival:
 	.string "… … … … … …\p"
 	.string "Well, I had better get going.\n"
 	.string "See you again, {PLAYER}{KUN}!$"
-

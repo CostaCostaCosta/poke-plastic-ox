@@ -130,13 +130,13 @@ Route34_EventScript_Npc7_Text:
 	.string "Keep east for GOLDENROD... or was it\nRUSTBORO? The signs gave up.$"
 
 Route34_EventScript_Npc8_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Rocky ground can wear your team\ndown. Rest when you can.$"
 
 Route34_EventScript_Npc9_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The mountain draws hikers and\ncurious trainers alike.$"
 
 Route34_EventScript_Npc10_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Rocky ground can wear your team\ndown. Rest when you can.$"
 
 Route34_EventScript_Npc11_Text:
 	.string "I nap here. The border runs right\nthrough my blanket.$"
@@ -145,7 +145,7 @@ Route34_EventScript_Npc12_Text:
 	.string "This route used to just end. Now it's\nsomebody's shortcut.$"
 
 Route34_EventScript_Npc13_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The mountain draws hikers and\ncurious trainers alike.$"
 
 Route34_EventScript_Sign1_Text:
 	.string "ROUTE 34\nNorth: ILEX FOREST. South: anywhere.$"
@@ -158,19 +158,3 @@ Route34_EventScript_Sign3_Text:
 
 Route34_EventScript_Sign4_Text:
 	.string "ROUTE 34\nWatch for trainers crossing regions.$"
-Route34_EventScript_R116Warp::
-	warp MAP_ROUTE116, 0
-	waitstate
-	end
-Route34_EventScript_ToIlex::
-	warp MAP_ILEX_FOREST_HNS, 20, 14
-	waitstate
-	end
-Route34_EventScript_ToR116::
-	warp MAP_ROUTE116, 40, 1
-	waitstate
-	end
-Route34_EventScript_ReturnStone::
-	warp MAP_PALLET_TOWN, 10, 4
-	waitstate
-	end

@@ -1,4 +1,6 @@
 #include "global.h"
+#include "metamon_trainer.h"
+#include "plastic_ox_contest.h"
 #include "battle.h"
 #include "battle_hold_effects.h"
 #include "battle_message.h"
@@ -311,8 +313,6 @@ static const s32 sExperienceScalingFactors[] =
     157872,
     159767,
 };
-
-static const u16 sWhiteOutBadgeMoney[9] = { 8, 16, 24, 36, 48, 64, 80, 100, 120 };
 
 enum GiveCaughtMonStates
 {
@@ -1103,6 +1103,7 @@ static void Cmd_printattackstring(void)
     if (gBattleControllerExecFlags)
         return;
 
+    MetamonPublicMove(gBattlerAttacker, gCurrentMove);
     PrepareStringBattle(STRINGID_USEDMOVE, gBattlerAttacker);
     gBattleCommunication[MSG_DISPLAY] = 0;
     gBattlescriptCurrInstr = cmd->nextInstr;
@@ -1706,6 +1707,7 @@ static void Cmd_datahpupdate(void)
         MoveDamageDataHpUpdate(battler, cmd->battler, cmd->nextInstr);
         break;
     }
+    MetamonPublicHP(battler);
     if (gBattleMons[battler].hp > gBattleMons[battler].maxHP / 2)
         gBattleStruct->battlerState[battler].wasAboveHalfHp = TRUE;
 
@@ -3969,7 +3971,7 @@ static void Cmd_getexp(void)
             else
             {
                 *exp = calculatedExp;
-                gBattleStruct->expShareExpValue = calculatedExp / 2;
+                gBattleStruct->expShareExpValue = calculatedExp;
                 if (gBattleStruct->expShareExpValue == 0)
                     gBattleStruct->expShareExpValue = 1;
             }
@@ -4058,12 +4060,7 @@ static void Cmd_getexp(void)
                     {
                         PrepareStringBattle(STRINGID_PKMNGAINEDEXP, 0);
                     }
-                    else if (IsGen6ExpShareEnabled() && !gBattleStruct->teamGotExpMsgPrinted) // Print 'the rest of your team got exp' message once, when all of the sent-in mons were given experience
-                    {
-                        gLastUsedItem = ITEM_EXP_SHARE;
-                        PrepareStringBattle(STRINGID_TEAMGAINEDEXP, 0);
-                        gBattleStruct->teamGotExpMsgPrinted = TRUE;
-                    }
+                    // Plastic Ox awards bench experience silently.
 
                     MonGainEVs(&gParties[B_TRAINER_PLAYER][*expMonId], faintedSpecies);
                 }
@@ -5778,6 +5775,25 @@ static void Cmd_hitanimation(void)
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
 
+static bool32 IsPlasticOxOpeningRouteTrainer(u16 trainerId)
+{
+    switch (trainerId)
+    {
+    case TRAINER_PLASTIC_OX_ROUTE29:
+    case TRAINER_PLASTIC_OX_ROUTE29_ELLA:
+    case TRAINER_PLASTIC_OX_ROUTE46:
+    case TRAINER_PLASTIC_OX_ROUTE46_ERIN:
+    case TRAINER_PLASTIC_OX_ROUTE2_BEN:
+    case TRAINER_PLASTIC_OX_ROUTE2_WADE:
+    case TRAINER_PLASTIC_OX_ROUTE_ILEX:
+    case TRAINER_PLASTIC_OX_ROUTE_ILEX_FINN:
+    case TRAINER_PLASTIC_OX_ROUTE_ILEX_MAYA:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
 static u32 GetTrainerMoneyToGive(u16 trainerId)
 {
     u32 lastMonLevel = 0;
@@ -5792,7 +5808,7 @@ static u32 GetTrainerMoneyToGive(u16 trainerId)
     {
         const struct TrainerMon *party = GetTrainerPartyFromId(trainerId);
         if (party == NULL)
-            return 20;
+            return 40;
         lastMonLevel = party[GetTrainerPartySizeFromId(trainerId) - 1].lvl;
         trainerMoney = gTrainerClasses[GetTrainerClassFromId(trainerId)].money ?: 5;
 
@@ -5804,6 +5820,13 @@ static u32 GetTrainerMoneyToGive(u16 trainerId)
             moneyReward = 4 * lastMonLevel * gBattleStruct->moneyMultiplier * trainerMoney;
     }
 
+    moneyReward *= 2;
+    // These early-route battles should pay at least $2,000, with money-boosting
+    // effects still multiplying that guaranteed amount.
+    if (IsPlasticOxOpeningRouteTrainer(trainerId)
+     && moneyReward < 2000 * gBattleStruct->moneyMultiplier)
+        moneyReward = 2000 * gBattleStruct->moneyMultiplier;
+
     return moneyReward;
 }
 
@@ -5812,7 +5835,6 @@ static void Cmd_getmoneyreward(void)
     CMD_ARGS();
 
     u32 money;
-    u8 sPartyLevel = 1;
 
     if (gBattleOutcome == B_OUTCOME_WON)
     {
@@ -5823,32 +5845,10 @@ static void Cmd_getmoneyreward(void)
     }
     else
     {
-        if (B_WHITEOUT_MONEY <= GEN_3)
-        {
-            money = GetMoney(&gSaveBlock1Ptr->money) / 2;
-        }
-        else
-        {
-            s32 i, count;
-            for (i = 0; i < PARTY_SIZE; i++)
-            {
-                if (GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_SPECIES_OR_EGG) != SPECIES_NONE
-                && GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_SPECIES_OR_EGG) != SPECIES_EGG)
-                {
-                    if (GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_LEVEL) > sPartyLevel)
-                        sPartyLevel = GetMonData(&gParties[B_TRAINER_PLAYER][i], MON_DATA_LEVEL);
-                }
-            }
-            for (count = 0, i = 0; i < ARRAY_COUNT(gBadgeFlags); i++)
-            {
-                if (FlagGet(gBadgeFlags[i]) == TRUE)
-                    ++count;
-            }
-            money = sWhiteOutBadgeMoney[count] * sPartyLevel;
-        }
-        if (!IsEnoughMoney(&gSaveBlock1Ptr->money, money))
-            money = GetMoney(&gSaveBlock1Ptr->money);
+        money = GetMoney(&gSaveBlock1Ptr->money) > 0 ? 1 : 0;
         RemoveMoney(&gSaveBlock1Ptr->money, money);
+        // Trainer forfeits also use this command and count as whiteouts.
+        IncrementGameStat(GAME_STAT_WHITEOUTS);
     }
 
     PREPARE_WORD_NUMBER_BUFFER(gBattleTextBuff1, 5, money);
@@ -5965,6 +5965,7 @@ static void ResetValuesForCalledMove(void)
 static void Cmd_jumptocalledmove(void)
 {
     CMD_ARGS(bool8 notChosenMove);
+    MetamonCalledMove();
 
     if (cmd->notChosenMove)
         gCurrentMove = gCalledMove;
@@ -6179,6 +6180,7 @@ static void Cmd_removeitem(void)
      && GetMoveEffect(gCurrentMove) != EFFECT_CORROSIVE_GAS)
         GetBattlerPartyState(battler)->usedHeldItem = itemId; // Remember if switched out
 
+    MetamonPublicItem(battler, ITEM_NONE);
     gBattleMons[battler].item = ITEM_NONE;
     gBattleStruct->battlerState[battler].canPickupItem = TRUE;
     gBattleStruct->adrenalineOrbActivated = FALSE;
@@ -7853,6 +7855,7 @@ static void Cmd_mimicattackcopy(void)
 static void Cmd_setcalledmove(void)
 {
     CMD_ARGS();
+    MetamonCalledMove();
     gCurrentMove = gBattleStruct->baseMove = gCalledMove;
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
@@ -8094,7 +8097,7 @@ static void Cmd_copymovepermanently(void)
             struct MovePPInfo movePPData;
 
             gBattleMons[gBattlerAttacker].moves[gCurrMovePos] = gLastPrintedMoves[gBattlerTarget];
-            gBattleMons[gBattlerAttacker].pp[gCurrMovePos] = GetMovePP(gLastPrintedMoves[gBattlerTarget]);
+            gBattleMons[gBattlerAttacker].pp[gCurrMovePos] = CalculatePPWithBonus(gLastPrintedMoves[gBattlerTarget], 0xFF, gCurrMovePos);
 
             for (i = 0; i < MAX_MON_MOVES; i++)
             {
@@ -9888,7 +9891,7 @@ static u32 ComputeCaptureOdds(u32 wildMonBattler, u32 playerBattler)
     struct BallData ball;
     ComputeBallData(wildMonBattler, playerBattler, &ball);
 
-    if (ball.guaranteedCapture)
+    if (ball.guaranteedCapture || (gBattleTypeFlags & BATTLE_TYPE_LEGENDARY_REWARD))
         return CAPTURE_GUARANTEED;
     struct BattlePokemon *battleMon = &gBattleMons[wildMonBattler];
     u32 odds = (battleMon->maxHP * 3 -  battleMon->hp * 2);
@@ -10083,6 +10086,13 @@ static void Cmd_givecaughtmon(void)
 {
     CMD_ARGS(const u8 *passInstr);
     enum GiveCaughtMonStates state = gBattleCommunication[MULTIUSE_STATE];
+    if (PlasticOxContest_IsActive())
+    {
+        PlasticOxContest_StageCatch(GetBattlerMon(GetCatchingBattler()));
+        gBattleCommunication[MULTIUSE_STATE] = 0;
+        gBattlescriptCurrInstr = cmd->passInstr;
+        return;
+    }
     // Restore players party in order to handle properly the case when a wild mon is caught.
     if (IsNPCFollowerWildBattle())
         LoadPlayerParty();
@@ -10216,8 +10226,9 @@ static void Cmd_givecaughtmon(void)
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_SOMEONES_BOX_FULL;
             }
 
-            // Change to B_MSG_SENT_LANETTES_PC or B_MSG_LANETTES_BOX_FULL
-            if (FlagGet(FLAG_SYS_PC_LANETTE))
+            if (FlagGet(FLAG_POX_KNOWS_BILL_PC))
+                gBattleCommunication[MULTISTRING_CHOOSER] += 2;
+            else if (FlagGet(FLAG_SYS_PC_LANETTE))
                 gBattleCommunication[MULTISTRING_CHOOSER]++;
         }
 
@@ -13891,4 +13902,3 @@ void BS_RestoreStatChangeQueue(void)
     ClearOtherStatChangeValues(gBattlerAttacker);
     gBattlescriptCurrInstr = cmd->nextInstr;
 }
-

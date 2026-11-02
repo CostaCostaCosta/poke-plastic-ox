@@ -11,7 +11,9 @@ import json, os, re, struct, sys
 DRY = "--dry" in sys.argv
 WARPISH = set()
 for name in ("MB_ANIMATED_DOOR", "MB_NON_ANIMATED_DOOR", "MB_CAVE_EXIT",
-             "MB_LADDER", "MB_ESCALATOR", "MB_WATER_DOOR"):
+             "MB_LADDER", "MB_ESCALATOR", "MB_WATER_DOOR",
+             "MB_NORTH_ARROW_WARP", "MB_SOUTH_ARROW_WARP",
+             "MB_EAST_ARROW_WARP", "MB_WEST_ARROW_WARP"):
     pass  # resolved after reading enum below
 
 # parse behavior enum values from the header (handles explicit values too)
@@ -28,7 +30,11 @@ NONANIM = beh_vals.get("MB_NON_ANIMATED_DOOR")
 WARPISH = {DOOR, NONANIM,
            beh_vals.get("MB_CAVE_EXIT"), beh_vals.get("MB_LADDER"),
            beh_vals.get("MB_ESCALATOR"), beh_vals.get("MB_STAIRS_UP_LEFT"),
-           beh_vals.get("MB_STAIRS_UP_RIGHT")} - {None}
+           beh_vals.get("MB_STAIRS_UP_RIGHT"),
+           beh_vals.get("MB_NORTH_ARROW_WARP"),
+           beh_vals.get("MB_SOUTH_ARROW_WARP"),
+           beh_vals.get("MB_EAST_ARROW_WARP"),
+           beh_vals.get("MB_WEST_ARROW_WARP")} - {None}
 print("door behaviors:", sorted(hex(v) for v in WARPISH))
 
 layouts = {l["id"]: l for l in json.load(open("data/layouts/layouts.json"))["layouts"]}
@@ -77,8 +83,10 @@ def main():
                 continue
             v = struct.unpack_from("<H", blocks, 2 * (y * W + x))[0]
             mt = v & 0x03FF
-            cname = prim if mt < 512 else sec
-            idx = mt if mt < 512 else mt - 512
+            assert lay.get("layout_version") != "frlg", "FRLG attributes require u32 conversion"
+            primary_count = 640 if lay.get("layout_version") == "hns" else 512
+            cname = prim if mt < primary_count else sec
+            idx = mt if mt < primary_count else mt - primary_count
             ap = attrs_path(cname)
             if not ap:
                 print("no attrs file for", cname); continue
@@ -87,16 +95,16 @@ def main():
             if idx >= n:
                 continue
             old = struct.unpack_from("<H", data, 2 * idx)[0]
-            beh = old & 0x1FF
+            beh = old & 0xFF
             if beh in WARPISH:
                 continue
-            new = (old & ~0x1FF) | DOOR  # animated door: required by IsWarpDoor
+            new = (old & ~0xFF) | DOOR  # animated door: required by IsWarpDoor
             data[2 * idx:2 * idx + 2] = struct.pack("<H", new)
             key = ap
             if key not in fixed:
                 fixed[key] = bytearray(open(ap, "rb").read())
             fixed[key][2 * idx:2 * idx + 2] = struct.pack("<H", new)
-            print(f"{mp}: ({x},{y}) mt{mt} [{cname} #{idx}] beh {hex(beh)} -> {hex(NONANIM)}")
+            print(f"{mp}: ({x},{y}) mt{mt} [{cname} #{idx}] beh {hex(beh)} -> {hex(DOOR)}")
     for ap, data in fixed.items():
         if DRY:
             print("WOULD WRITE", ap); continue

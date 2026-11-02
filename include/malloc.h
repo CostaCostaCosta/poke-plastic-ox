@@ -44,7 +44,7 @@ struct MemBlock
 #define HEAP_SIZE 0x1C500
 extern u8 gHeap[HEAP_SIZE];
 
-#if TESTING || !defined(NDEBUG)
+#if TESTING || !defined(NDEBUG) || METAMON_HEAP_TRACE
 
 #define Alloc(size) Alloc_(size, __FILE__ ":" STR(__LINE__))
 #define AllocUnchecked(size) AllocUnchecked_(size, __FILE__ ":" STR(__LINE__))

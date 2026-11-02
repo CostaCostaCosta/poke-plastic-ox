@@ -53,6 +53,9 @@ def make_html(catalog: dict) -> str:
       --po-good: #72d69a;
       --po-warn: #f3c969;
       --po-bad: #f08080;
+      --po-port-gate: #f6c453;
+      --po-port-cave: #67d4e8;
+      --po-port-water: #6ea8fe;
       --po-grid: rgba(255,255,255,.055);
       color: var(--po-text);
       width: 100%;
@@ -107,6 +110,9 @@ def make_html(catalog: dict) -> str:
     }}
     #po-topology .po-port:hover, #po-topology .po-port.pending {{ background:var(--po-accent); color:#08111f; border-color:var(--po-accent); }}
     #po-topology .po-port.used {{ border-color:var(--po-good); }}
+    #po-topology .po-port.gate {{ background:#4a3710; color:#ffe29a; border-color:var(--po-port-gate); }}
+    #po-topology .po-port.cave {{ background:#123842; color:#b9f3ff; border-color:var(--po-port-cave); }}
+    #po-topology .po-port.water {{ background:#142d55; color:#c8dcff; border-color:var(--po-port-water); }}
     #po-topology .po-port.N {{ left:50%; top:-11px; transform:translateX(-50%); }}
     #po-topology .po-port.S {{ left:50%; bottom:-11px; transform:translateX(-50%); }}
     #po-topology .po-port.E {{ right:-15px; top:50%; transform:translateY(-50%); }}
@@ -118,6 +124,7 @@ def make_html(catalog: dict) -> str:
     }}
     #po-topology .po-special.pending {{ background:var(--po-accent); color:#08111f; }}
     #po-topology .po-special.used {{ border-color:var(--po-good); }}
+    #po-topology .po-special.gate {{ background:#4a3710; color:#ffe29a; border-color:var(--po-port-gate); }}
     #po-topology .po-metrics {{ display:grid; grid-template-columns:repeat(6,minmax(110px,1fr)); gap:6px; margin:8px 0; }}
     #po-topology .po-metric {{ background:var(--po-panel); border:1px solid var(--po-line); border-radius:8px; padding:7px 9px; }}
     #po-topology .po-metric b {{ display:block; font-size:16px; }}
@@ -131,6 +138,10 @@ def make_html(catalog: dict) -> str:
     #po-topology .po-section-head {{ display:flex; gap:8px; align-items:baseline; justify-content:space-between; flex-wrap:wrap; margin-bottom:7px; }}
     #po-topology .po-section-head h3 {{ margin:0; font-size:15px; }}
     #po-topology .po-section-head p {{ margin:0; color:var(--po-muted); font-size:11px; }}
+    #po-topology .po-legendary-list {{ display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:7px; }}
+    #po-topology .po-legendary {{ display:flex; flex-direction:column; gap:5px; padding:8px; border:1px solid var(--po-line); border-radius:8px; background:var(--po-panel); font-size:12px; }}
+    #po-topology .po-legendary select {{ width:100%; }}
+    #po-topology .po-node-legendaries {{ position:absolute; left:5px; right:5px; top:29px; z-index:2; color:#ffe29a; background:rgba(10,15,25,.8); border-radius:4px; padding:2px 4px; font-size:9px; text-align:center; pointer-events:none; }}
     #po-topology .po-parts {{ display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:7px; }}
     #po-topology .po-part {{
       min-height:92px; display:grid; grid-template-columns:66px 1fr 40px; gap:7px; align-items:center; padding:6px;
@@ -159,10 +170,11 @@ def make_html(catalog: dict) -> str:
     #po-topology .po-part-meta {{ color:var(--po-muted); font-size:10px; line-height:1.3; }}
     #po-topology .po-badges {{ display:flex; gap:3px; flex-wrap:wrap; margin-top:4px; }}
     #po-topology .po-badge {{ display:inline-block; border:1px solid var(--po-line); border-radius:999px; padding:1px 5px; font-size:9px; color:var(--po-muted); }}
+    #po-topology .po-badge.gate {{ color:#ffe29a; border-color:var(--po-port-gate); background:#4a3710; }}
     #po-topology .po-badge.req {{ color:var(--po-warn); border-color:color-mix(in srgb, var(--po-warn), transparent 45%); }}
     #po-topology .po-badge.asset {{ color:var(--po-good); }}
     #po-topology .po-badge.missing {{ color:var(--po-bad); }}
-    #po-topology .po-library-controls {{ display:grid; grid-template-columns:2fr repeat(4,minmax(120px,1fr)); gap:6px; margin-bottom:8px; }}
+    #po-topology .po-library-controls {{ display:grid; grid-template-columns:2fr repeat(5,minmax(110px,1fr)); gap:6px; margin-bottom:8px; }}
     #po-topology .po-route-groups {{ display:flex; flex-direction:column; gap:10px; }}
     #po-topology .po-route-group h4 {{ margin:0 0 5px; font-size:12px; color:var(--po-muted); }}
     #po-topology .po-hidden {{ display:none !important; }}
@@ -189,7 +201,7 @@ def make_html(catalog: dict) -> str:
         </select>
       </label>
       <label class="form-check"><span>Snap</span><input data-role="snap" type="checkbox" checked /></label>
-      <label>Next connection gate
+      <label>Next progression requirement
         <select data-role="gate">
           <option value="open">Open immediately</option>
           <option value="cut">Cut</option><option value="surf">Surf</option><option value="strength">Strength</option>
@@ -212,7 +224,7 @@ def make_html(catalog: dict) -> str:
       <div data-role="nodes"></div>
     </div>
   </div>
-  <p class="po-help">Drag a part from a tray onto the map (or double-click a card to add it at the visible map center). Drag placed parts to snap them to the grid. Click one port, then a compatible second port, to make a connection. Cardinal seams require opposite-facing ports; cave/warp/transit links can ignore cardinal orientation. Gated connections are drawn dashed.</p>
+  <p class="po-help">Drag a part from a tray onto the map (or double-click a card to add it at the visible map center). Drag placed parts to snap them to the grid. Click one port, then a compatible second port, to make a connection. Cardinal direction is advisory, so any two otherwise compatible endpoints can connect. Gate endpoints are visually marked but do not block otherwise compatible land connections. Cave, local warp, and transit endpoints only match their own physical type. Progression-gated connections are drawn dashed.</p>
 
   <div class="po-metrics">
     <div class="po-metric"><b data-metric="coverage">0/0</b><span>required parts placed</span></div>
@@ -241,12 +253,18 @@ def make_html(catalog: dict) -> str:
     </section>
 
     <section class="po-section">
-      <div class="po-section-head"><div><h3>Unused Gen I–III route library</h3><p>Grouped by orientation and connection count. Actual image previews appear where the current asset pack contains them; otherwise the topology shape is shown.</p></div></div>
+      <div class="po-section-head"><div><h3>Legendary Pokémon</h3><p>Assign each encounter to a map. Locations are saved with the topology JSON and shown on placed maps.</p></div></div>
+      <div class="po-legendary-list" data-tray="legendaries"></div>
+    </section>
+
+    <section class="po-section">
+      <div class="po-section-head"><div><h3>Unused Gen I–III route library</h3><p>Grouped by total regional endpoints, including cave mouths and gatehouses. Local building warps do not change a route’s classification.</p></div></div>
       <div class="po-library-controls">
         <input type="text" placeholder="Search route/theme…" data-filter="route-search" />
         <select data-filter="route-region"><option value="all">All regions</option><option>Kanto</option><option>Johto</option><option>Hoenn</option></select>
         <select data-filter="route-traversal"><option value="all">All traversal</option><option value="land">Land</option><option value="mixed">Mixed</option><option value="water">Water</option></select>
         <select data-filter="route-shape"><option value="all">All shapes</option><option value="vertical">Vertical</option><option value="horizontal">Horizontal</option><option value="elbow">Elbow</option><option value="3-way">T-junction</option><option value="4-way">4-way</option></select>
+        <select data-filter="route-port-type"><option value="all">All endpoint types</option><option value="land">Land</option><option value="water">Water</option><option value="mixed">Mixed</option><option value="cave">Cave</option><option value="gate">Gate</option></select>
         <select data-filter="route-assets"><option value="all">All assets</option><option value="yes">Image available</option><option value="no">Missing image</option></select>
       </div>
       <div class="po-route-groups" data-tray="route-library"></div>
@@ -281,16 +299,16 @@ if (!element.__plasticOxInitialized) {
   const statusEl = root.querySelector('[data-role="status"]');
   const allParts = [...catalog.towns, ...catalog.routes, ...catalog.required_dungeons, ...catalog.dungeon_library];
   const partById = new Map(allParts.map(p => [p.id, p]));
+  const legendaries = ['Articuno', 'Zapdos', 'Moltres', 'Raikou', 'Entei', 'Suicune', 'Celebi', 'Regice', 'Regirock', 'Registeel', 'Jirachi'];
   const requiredIds = new Set([
     ...catalog.towns.filter(p => p.required).map(p => p.id),
     ...catalog.routes.filter(p => p.required).map(p => p.id),
     ...catalog.required_dungeons.filter(p => p.required).map(p => p.id)
   ]);
   const storyRouteIds = new Set([...catalog.story_required_route_ids, ...catalog.story_linked_optional_route_ids]);
-  const opposite = {N:'S', S:'N', E:'W', W:'E'};
 
   const state = {
-    nodes: [], edges: [], selectedNode: null, selectedEdge: null, pendingPort: null,
+    nodes: [], edges: [], legendaryLocations: {}, selectedNode: null, selectedEdge: null, pendingPort: null,
     snap: true, grid: 24, gate: 'open', zCounter: 10
   };
   window.__plasticOxTopologyState = state;
@@ -300,6 +318,17 @@ if (!element.__plasticOxInitialized) {
   }
   function snap(v) { return state.snap ? Math.round(v / state.grid) * state.grid : Math.round(v); }
   function placedIds() { return new Set(state.nodes.map(n => n.partId)); }
+  function renderLegendaries() {
+    const locations = [...allParts].sort((a,b) => a.name.localeCompare(b.name));
+    const tray = root.querySelector('[data-tray="legendaries"]');
+    tray.innerHTML = legendaries.map(name => `<label class="po-legendary"><strong>${esc(name)}</strong><select data-legendary="${esc(name)}" aria-label="${esc(name)} location"><option value="">Location unassigned</option>${locations.map(part => `<option value="${esc(part.id)}" ${state.legendaryLocations[name]===part.id?'selected':''}>${esc(part.name)} (${esc(part.region)})</option>`).join('')}</select></label>`).join('');
+    tray.querySelectorAll('[data-legendary]').forEach(select => select.addEventListener('change', () => {
+      if (select.value) state.legendaryLocations[select.dataset.legendary] = select.value;
+      else delete state.legendaryLocations[select.dataset.legendary];
+      renderNodes();
+      setStatus(`${select.dataset.legendary} location ${select.value ? `set to ${partById.get(select.value).name}` : 'cleared'}.`, 'good');
+    }));
+  }
   function partDimensions(part) {
     const d = part.dimensions || [126,112];
     return {w:Number(d[0]), h:Number(d[1])};
@@ -312,22 +341,36 @@ if (!element.__plasticOxInitialized) {
   function topologySvg(part) {
     const dirs = Object.keys(part.ports || {});
     if (!dirs.length) {
-      const count = (part.special_ports || []).length;
-      return `<svg viewBox="0 0 52 52" width="52" height="52" aria-label="${count} warp entrance${count===1?'':'s'}"><rect x="13" y="13" width="26" height="26" rx="5" fill="none" stroke="currentColor" stroke-width="4"/><text x="26" y="30" text-anchor="middle" font-size="11" fill="currentColor">${count}W</text></svg>`;
+      const specials = part.special_ports || [];
+      const count = specials.length;
+      const gateOnly = count > 0 && specials.every(p => p.type === 'gate');
+      const color = gateOnly ? 'var(--po-port-gate)' : 'currentColor';
+      const kind = gateOnly ? 'gate' : 'warp';
+      return `<svg viewBox="0 0 52 52" width="52" height="52" aria-label="${count} ${kind} entrance${count===1?'':'s'}"><rect x="13" y="13" width="26" height="26" rx="5" fill="none" stroke="${color}" stroke-width="4"/><text x="26" y="30" text-anchor="middle" font-size="11" fill="${color}">${count}${gateOnly?'G':'W'}</text></svg>`;
     }
-    const line = d => d==='N' ? '<path d="M26 26V3"/>' : d==='S' ? '<path d="M26 26V49"/>' : d==='E' ? '<path d="M26 26H49"/>' : '<path d="M26 26H3"/>';
+    const color = type => type === 'gate' ? 'var(--po-port-gate)' : type === 'cave' ? 'var(--po-port-cave)' : type === 'water' ? 'var(--po-port-water)' : 'var(--po-muted)';
+    const path = d => d==='N' ? 'M26 26V3' : d==='S' ? 'M26 26V49' : d==='E' ? 'M26 26H49' : 'M26 26H3';
+    const line = d => `<path d="${path(d)}" stroke="${color(part.ports[d])}"/>`;
     const labels = d => d==='N' ? '<text x="26" y="8">N</text>' : d==='S' ? '<text x="26" y="50">S</text>' : d==='E' ? '<text x="47" y="29">E</text>' : '<text x="5" y="29">W</text>';
-    return `<svg viewBox="0 0 52 52" width="52" height="52" aria-label="ports ${dirs.join('/')}" style="color:var(--po-muted)"><g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round">${dirs.map(line).join('')}<circle cx="26" cy="26" r="5" fill="currentColor" stroke="none"/></g><g fill="var(--po-text)" font-size="7" text-anchor="middle">${dirs.map(labels).join('')}</g></svg>`;
+    return `<svg viewBox="0 0 52 52" width="52" height="52" aria-label="ports ${dirs.join('/')}"><g fill="none" stroke-width="7" stroke-linecap="round">${dirs.map(line).join('')}<circle cx="26" cy="26" r="5" fill="var(--po-muted)" stroke="none"/></g><g fill="var(--po-text)" font-size="7" text-anchor="middle">${dirs.map(labels).join('')}</g></svg>`;
   }
   function portSummary(part) {
-    const cardinal = Object.entries(part.ports || {}).map(([d,t]) => `${d}:${t}`).join(' · ');
-    const specials = (part.special_ports || []).map(p => p.label || p.id).join(', ');
+    const cardinal = Object.entries(part.ports || {}).map(([d,t]) => `${(part.port_labels || {})[d] || d}:${t}`).join(' · ');
+    const specials = (part.special_ports || []).map(p => `${p.label || p.id}:${p.type || 'warp'}`).join(', ');
     return [cardinal, specials ? `special: ${specials}` : ''].filter(Boolean).join(' | ') || 'local warp only';
+  }
+  function endpointBadges(part) {
+    const types = [...Object.values(part.ports || {}), ...(part.special_ports || []).filter(p => p.regional).map(p => p.type || 'warp')];
+    const counts = new Map();
+    for (const type of types) counts.set(type, (counts.get(type) || 0) + 1);
+    return [...counts].map(([type,count]) => `<span class="po-badge ${type === 'gate' ? 'gate' : ''}">${count} ${esc(type)}</span>`).join('');
   }
   function partCard(part, requiredLabel='') {
     const isPlaced = placedIds().has(part.id);
     const img = part.image_data ? `<img src="${part.image_data}" alt="${esc(part.name)} preview">` : `<div class="po-part-thumb-placeholder">${esc(part.shape || part.subtype || part.kind)}</div>`;
-    const ports = Object.keys(part.ports || {}).join('/') || `${(part.special_ports || []).length} warp`;
+    const cardinalPorts = Object.entries(part.ports || {}).map(([d,t]) => `${(part.port_labels || {})[d] || d}:${t}`);
+    const specialPorts = (part.special_ports || []).map(p => `${p.label || p.id}:${p.type || 'warp'}`);
+    const ports = [...cardinalPorts, ...specialPorts].join(' · ') || 'local warp only';
     const status = part.required ? '<span class="po-badge req">required</span>' : (part.required_status === 'optional-story' ? '<span class="po-badge">story-linked optional</span>' : '');
     const asset = part.asset_available ? '<span class="po-badge asset">image</span>' : '<span class="po-badge missing">abstract preview</span>';
     const story = part.story_order ? `<span class="po-badge">story ${part.story_order}</span>` : '';
@@ -335,7 +378,7 @@ if (!element.__plasticOxInitialized) {
     return `<div class="po-part ${isPlaced?'placed':''}" draggable="${isPlaced?'false':'true'}" data-part-id="${esc(part.id)}" title="${esc(part.notes || part.theme || '')}">
       <div class="po-part-thumb">${img}</div>
       <div><h4>${esc(part.name)}</h4><div class="po-part-meta">${esc(part.region || '')}${part.traversal ? ` · ${esc(part.traversal)}` : ''}<br>${esc(part.shape || part.subtype || part.kind)} · ${esc(ports)}</div>
-      <div class="po-badges">${status}${story}${asset}${requiredLabel ? `<span class="po-badge">${esc(requiredLabel)}</span>`:''}</div></div>
+      <div class="po-badges">${status}${story}${endpointBadges(part)}${asset}${requiredLabel ? `<span class="po-badge">${esc(requiredLabel)}</span>`:''}</div></div>
       ${dirIcon}
     </div>`;
   }
@@ -381,6 +424,7 @@ if (!element.__plasticOxInitialized) {
       region: root.querySelector('[data-filter="route-region"]').value,
       traversal: root.querySelector('[data-filter="route-traversal"]').value,
       shape: root.querySelector('[data-filter="route-shape"]').value,
+      portType: root.querySelector('[data-filter="route-port-type"]').value,
       assets: root.querySelector('[data-filter="route-assets"]').value,
     };
   }
@@ -389,19 +433,19 @@ if (!element.__plasticOxInitialized) {
     const f = routeFilters();
     const pids = placedIds();
     const groups = [
-      ['vertical','Vertical · 2 connections (N/S)'],
-      ['horizontal','Horizontal · 2 connections (E/W)'],
-      ['elbow','Elbow · 2 connections'],
-      ['3-way','T-junction · 3 connections'],
-      ['4-way','Four-way · 4 connections'],
+      ['terminal','Terminal · 1 regional endpoint'],
+      ['corridor','Corridor · 2 regional endpoints'],
+      ['junction','Junction · 3 regional endpoints'],
+      ['hub','Hub · 4+ regional endpoints'],
     ];
     let html = '';
-    for (const [shape,label] of groups) {
+    for (const [topologyClass,label] of groups) {
       const items = catalog.routes.filter(p => !storyRouteIds.has(p.id) && !pids.has(p.id))
-        .filter(p => p.shape === shape)
+        .filter(p => (p.topology_class || (Number(p.regional_port_count || Object.keys(p.ports || {}).length) <= 2 ? 'corridor' : 'junction')) === topologyClass)
         .filter(p => f.region === 'all' || p.region === f.region)
         .filter(p => f.traversal === 'all' || p.traversal === f.traversal)
         .filter(p => f.shape === 'all' || p.shape === f.shape)
+        .filter(p => f.portType === 'all' || Object.values(p.ports || {}).includes(f.portType) || (p.special_ports || []).some(port => port.regional && port.type === f.portType))
         .filter(p => f.assets === 'all' || (f.assets === 'yes') === !!p.asset_available)
         .filter(p => !f.q || `${p.name} ${p.theme||''} ${p.notes||''}`.toLowerCase().includes(f.q));
       if (!items.length) continue;
@@ -459,21 +503,20 @@ if (!element.__plasticOxInitialized) {
     return state.edges.some(e => (e.aNode===nodeId && e.aPort===portId) || (e.bNode===nodeId && e.bPort===portId));
   }
   function getPort(part, portId) {
-    if ((part.ports || {})[portId]) return {id:portId, direction:portId, type:part.ports[portId], special:false, label:portId};
+    if ((part.ports || {})[portId]) return {id:portId, direction:portId, type:part.ports[portId], special:false, label:(part.port_labels || {})[portId] || portId};
     const s = (part.special_ports || []).find(p => p.id === portId);
     return s ? {id:s.id, direction:null, type:s.type || 'warp', special:true, label:s.label || s.id} : null;
   }
   function portCompatible(a,b) {
     if (!a || !b) return {ok:false, why:'Unknown port.'};
-    const flexible = new Set(['warp','cave','transit']);
-    if (!a.special && !b.special && !flexible.has(a.type) && !flexible.has(b.type)) {
-      if (opposite[a.direction] !== b.direction) return {ok:false, why:`${a.direction} must connect to ${opposite[a.direction]}, not ${b.direction}.`};
+    const exactTransitions = new Map([
+      ['transit', 'Transit ports only connect to transit ports.'],
+      ['cave', 'Cave entrances/exits only connect to cave entrances/exits.'],
+      ['warp', 'Local warp ports only connect to local warp ports.'],
+    ]);
+    for (const [type, why] of exactTransitions) {
+      if (a.type === type || b.type === type) return a.type === type && b.type === type ? {ok:true} : {ok:false, why};
     }
-    if (a.type === 'transit' || b.type === 'transit') {
-      if (a.type !== 'transit' || b.type !== 'transit') return {ok:false, why:'Transit ports only connect to transit ports.'};
-      return {ok:true};
-    }
-    if (a.type === 'warp' || b.type === 'warp' || a.type === 'cave' || b.type === 'cave') return {ok:true};
     const waterish = t => t === 'water';
     const mixed = t => t === 'mixed';
     if (waterish(a.type) !== waterish(b.type) && !mixed(a.type) && !mixed(b.type)) return {ok:false, why:`Traversal mismatch: ${a.type} ↔ ${b.type}.`};
@@ -506,18 +549,20 @@ if (!element.__plasticOxInitialized) {
 
   function nodeMarkup(node) {
     const part = partById.get(node.partId); if (!part) return '';
+    const encounters = legendaries.filter(name => state.legendaryLocations[name] === node.partId);
     const image = part.image_data ? `<img class="po-node-img" src="${part.image_data}" alt="">` : `<div class="po-node-schematic"><div>${topologySvg(part)}<div>abstract ${esc(part.shape || part.subtype || part.kind)}</div></div></div>`;
     const ports = Object.entries(part.ports || {}).map(([dir,type]) => {
       const used = isPortUsed(node.id,dir); const pending = state.pendingPort && state.pendingPort.nodeId===node.id && state.pendingPort.portId===dir;
-      return `<button type="button" class="po-port ${dir} ${used?'used':''} ${pending?'pending':''}" data-node="${node.id}" data-port="${dir}" title="${dir} · ${esc(type)}">${dir}</button>`;
+      const label = (part.port_labels || {})[dir] || dir;
+      return `<button type="button" class="po-port ${dir} ${esc(type)} ${used?'used':''} ${pending?'pending':''}" data-node="${node.id}" data-port="${dir}" title="${esc(label)} · ${esc(type)}">${dir}</button>`;
     }).join('');
     const specials = (part.special_ports || []).map(p => {
       const used = isPortUsed(node.id,p.id); const pending = state.pendingPort && state.pendingPort.nodeId===node.id && state.pendingPort.portId===p.id;
-      return `<button type="button" class="po-special ${used?'used':''} ${pending?'pending':''}" data-node="${node.id}" data-port="${esc(p.id)}" title="${esc(p.type||'warp')}">${esc(p.label||p.id)}</button>`;
+      return `<button type="button" class="po-special ${esc(p.type||'warp')} ${used?'used':''} ${pending?'pending':''}" data-node="${node.id}" data-port="${esc(p.id)}" title="${esc(p.type||'warp')}">${esc(p.label||p.id)}</button>`;
     }).join('');
     const reqClass = part.required ? 'required' : 'optional';
     return `<div class="po-node ${reqClass} ${state.selectedNode===node.id?'selected':''}" data-node-id="${node.id}" style="left:${node.x}px;top:${node.y}px;width:${node.w}px;height:${node.h}px;z-index:${node.z||2}" title="${esc(portSummary(part))}">
-      <div class="po-node-title">${esc(part.name)}</div>${image}${ports}${specials?`<div class="po-specials">${specials}</div>`:''}
+      <div class="po-node-title">${esc(part.name)}</div>${image}${encounters.length?`<div class="po-node-legendaries">${esc(encounters.join(', '))}</div>`:''}${ports}${specials?`<div class="po-specials">${specials}</div>`:''}
     </div>`;
   }
 
@@ -557,7 +602,12 @@ if (!element.__plasticOxInitialized) {
   function portPosition(nodeId, portId) {
     const node = state.nodes.find(n => n.id===nodeId); if (!node) return {x:0,y:0,dir:null};
     const part = partById.get(node.partId); const p = getPort(part,portId);
-    if (!p || p.special) return {x:node.x+node.w/2, y:node.y+node.h-4, dir:null};
+    if (!p) return {x:node.x+node.w/2, y:node.y+node.h-4, dir:null};
+    if (p.special) {
+      const specials = part.special_ports || [];
+      const index = Math.max(0, specials.findIndex(port => port.id === portId));
+      return {x:node.x + node.w * (index + 1) / (specials.length + 1), y:node.y+node.h-4, dir:null};
+    }
     if (p.direction==='N') return {x:node.x+node.w/2,y:node.y,dir:'N'};
     if (p.direction==='S') return {x:node.x+node.w/2,y:node.y+node.h,dir:'S'};
     if (p.direction==='E') return {x:node.x+node.w,y:node.y+node.h/2,dir:'E'};
@@ -642,7 +692,7 @@ if (!element.__plasticOxInitialized) {
   }
 
   function serialize() {
-    return {version:'plastic-ox-topology-layout-v0.1', catalog_version:catalog.version, nodes:state.nodes, edges:state.edges, world:{width:2600,height:1800,grid:state.grid,snap:state.snap}};
+    return {version:'plastic-ox-topology-layout-v0.1', catalog_version:catalog.version, nodes:state.nodes, edges:state.edges, legendary_locations:state.legendaryLocations, world:{width:2600,height:1800,grid:state.grid,snap:state.snap}};
   }
   function downloadText(filename,text,type='application/json') {
     const blob=new Blob([text],{type}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
@@ -657,13 +707,19 @@ if (!element.__plasticOxInitialized) {
   function importLayout(obj) {
     if(!obj || !Array.isArray(obj.nodes) || !Array.isArray(obj.edges)) throw new Error('Layout JSON must contain nodes and edges arrays.');
     const validNodes=obj.nodes.filter(n=>partById.has(n.partId)); const ids=new Set(validNodes.map(n=>n.id));
+    const blackthornNodes=new Set(validNodes.filter(n=>n.partId==='BLACK').map(n=>n.id));
     state.nodes=validNodes.map(n=>({...n,w:Number(n.w)||partDimensions(partById.get(n.partId)).w,h:Number(n.h)||partDimensions(partById.get(n.partId)).h}));
-    state.edges=obj.edges.filter(e=>ids.has(e.aNode)&&ids.has(e.bNode)); state.grid=Number(obj.world?.grid)||24; state.snap=obj.world?.snap!==false;
+    state.edges=obj.edges.filter(e=>ids.has(e.aNode)&&ids.has(e.bNode)).map(e=>({
+      ...e,
+      aPort:blackthornNodes.has(e.aNode)&&e.aPort==='N'?'DRAGONS_DEN':e.aPort,
+      bPort:blackthornNodes.has(e.bNode)&&e.bPort==='N'?'DRAGONS_DEN':e.bPort,
+    })); state.legendaryLocations=Object.fromEntries(Object.entries(obj.legendary_locations||{}).filter(([name, partId])=>legendaries.includes(name)&&partById.has(partId)));
+    state.grid=Number(obj.world?.grid)||24; state.snap=obj.world?.snap!==false;
     root.querySelector('[data-role="grid-size"]').value=String(state.grid); root.querySelector('[data-role="snap"]').checked=state.snap;
     state.selectedNode=null;state.selectedEdge=null;state.pendingPort=null;renderAll();setStatus(`Imported ${state.nodes.length} parts and ${state.edges.length} connections.`, 'good');
   }
 
-  function renderAll() { renderNodes(); renderEdges(); renderTrays(); updateMetrics(); }
+  function renderAll() { renderNodes(); renderEdges(); renderTrays(); renderLegendaries(); updateMetrics(); }
 
   world.addEventListener('dragover', ev=>{ev.preventDefault();ev.dataTransfer.dropEffect='copy';});
   world.addEventListener('drop', ev=>{ev.preventDefault();const id=ev.dataTransfer.getData('application/x-plastic-ox-part')||ev.dataTransfer.getData('text/plain'); if(!partById.has(id))return;const r=world.getBoundingClientRect();addNode(id,ev.clientX-r.left,ev.clientY-r.top);});

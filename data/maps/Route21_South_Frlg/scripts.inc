@@ -1,4 +1,5 @@
 Route21_South_Frlg_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_Route21_South_Frlg
 	.byte 0
 
 Route21_South_Text_JackIntro::

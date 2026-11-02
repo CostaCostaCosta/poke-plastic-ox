@@ -190,6 +190,9 @@ Movement_PlayerApproachCounter:
 	step_end
 
 CableClub_EventScript_WelcomeToCableClub_Frlg::
+#if !POX_LINK_ENABLED
+	goto CableClub_EventScript_Unavailable
+#endif
 	message CableClub_Text_WelcomeWhichCableClubService_Frlg
 	waitmessage
 	delay 15
@@ -212,6 +215,9 @@ CableClub_EventScript_SelectCableClubRoom_Frlg::
 	end
 
 CableClub_EventScript_Colosseum_Frlg::
+#if !POX_LINK_ENABLED
+	goto CableClub_EventScript_Unavailable
+#endif
 	copyvar VAR_0x8007, VAR_LAST_TALKED
 	goto CableClub_EventScript_SelectBattleMode_Frlg
 	end
@@ -347,6 +353,9 @@ CableClub_EventScript_ConfirmNumberAndRestart_Frlg::
 	end
 
 CableClub_EventScript_TradeCenter_Frlg::
+#if !POX_LINK_ENABLED
+	goto CableClub_EventScript_Unavailable
+#endif
 	copyvar VAR_0x8007, VAR_LAST_TALKED
 	call CableClub_EventScript_CheckPartyTradeRequirements_Frlg
 	goto_if_eq VAR_RESULT, 0, CableClub_EventScript_AbortLink_Frlg
@@ -414,6 +423,9 @@ CableClub_EventScript_CantTradeEnigmaBerry_Frlg::
 
 @ Record Corner is nopped in FRLG
 CableClub_EventScript_RecordCorner_Frlg::
+#if !POX_LINK_ENABLED
+	goto CableClub_EventScript_Unavailable
+#endif
 	end
 
 CableClub_EventScript_AbortLinkPlayerNotReady_Frlg::
@@ -690,6 +702,9 @@ CableClub_EventScript_DoLinkRoomExit_Frlg::
 	end
 
 CableClub_EventScript_UnionRoomAttendant_Frlg::
+#if !POX_LINK_ENABLED
+	goto CableClub_EventScript_Unavailable
+#endif
 	lock
 	faceplayer
 	goto_if_unset FLAG_SYS_POKEDEX_GET, CableClub_EventScript_WirelessClubAdjustements_Frlg
@@ -775,6 +790,9 @@ CableClub_EventScript_UnionRoomAdapterNotConnected_Frlg::
 	return
 
 CableClub_EventScript_WirelessClubAttendant_Frlg::
+#if !POX_LINK_ENABLED
+	goto CableClub_EventScript_Unavailable
+#endif
 	lock
 	faceplayer
 	goto_if_unset FLAG_SYS_POKEDEX_GET, CableClub_EventScript_WirelessClubAdjustements_Frlg
@@ -790,6 +808,9 @@ CableClub_EventScript_DontAskAboutLinking_Frlg::
 	return
 
 CableClub_EventScript_DirectCornerAttendant_Frlg::
+#if !POX_LINK_ENABLED
+	goto CableClub_EventScript_Unavailable
+#endif
 	lock
 	faceplayer
 	goto_if_unset FLAG_SYS_POKEDEX_GET, CableClub_EventScript_WirelessClubAdjustements_Frlg
@@ -1091,6 +1112,9 @@ CableClub_EventScript_MinigameInfoExit_Frlg::
 	end
 
 JoyfulGameCorner_EventScript_MinigameAttendant_Frlg::
+#if !POX_LINK_ENABLED
+	goto CableClub_EventScript_Unavailable
+#endif
 	lock
 	faceplayer
 	message Text_WelcomeCanYouWait_Frlg

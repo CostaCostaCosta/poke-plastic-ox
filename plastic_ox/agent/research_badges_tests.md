@@ -295,7 +295,7 @@ No plastic-ox-specific content in root FEATURES.md.
 
 ### 5.2 Plastic-ox design docs — `plastic_ox/`
 
-**`plastic_ox/plasticox_encounters_v1.md` (581 lines) is the design doc for this exact feature.** Key contents:
+**`plastic_ox/plasticox_encounters_v1.md` (581 lines) was the design doc for this exact feature; it has since been retired and superseded by `src/data/pokemon/evolution_tier_gates.h` (the shipped tier table) and `plastic_ox/encounter_tables/plastic_ox_pre_mt_moon_encounters_v5_5_agent_ready.md` (the area tables).** Its key contents were:
 
 - **Tier ↔ gym ↔ level cap table** (`:13-27`):
   | Gym | Tier | Level cap |

@@ -1,4 +1,5 @@
 Route19_Frlg_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_Route19_Frlg
 	.byte 0
 
 Route19_EventScript_RouteSign::

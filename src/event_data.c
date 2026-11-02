@@ -110,7 +110,7 @@ void EnableMysteryEvent(void)
 
 bool32 IsMysteryEventEnabled(void)
 {
-    return FlagGet(FLAG_SYS_MYSTERY_EVENT_ENABLE);
+    return POX_LINK_ENABLED && FlagGet(FLAG_SYS_MYSTERY_EVENT_ENABLE);
 }
 
 void DisableMysteryGift(void)
@@ -125,7 +125,7 @@ void EnableMysteryGift(void)
 
 bool32 IsMysteryGiftEnabled(void)
 {
-    return FlagGet(FLAG_SYS_MYSTERY_GIFT_ENABLE);
+    return POX_LINK_ENABLED && FlagGet(FLAG_SYS_MYSTERY_GIFT_ENABLE);
 }
 
 void ClearMysteryGiftFlags(void)
@@ -228,6 +228,29 @@ u8 *GetFlagPointer(u16 id)
 {
     if (id == 0)
         return NULL;
+#if !IS_FRLG
+    else if (id >= POX_EVENT_FLAGS_START && id < POX_EVENT_FLAGS_START + POX_EVENT_FLAGS_COUNT)
+    {
+        // Appended storage, initialized independently for existing saves.
+        if (gSaveBlock3Ptr->poxEventFlagsMagic != 0x504F5845)
+        {
+            memset(gSaveBlock3Ptr->poxEventFlags, 0, sizeof(gSaveBlock3Ptr->poxEventFlags));
+            gSaveBlock3Ptr->poxEventFlagsMagic = 0x504F5845;
+        }
+        return &gSaveBlock3Ptr->poxEventFlags[(id - POX_EVENT_FLAGS_START) / 8];
+    }
+    else if (id >= POX_KANTO_HIDDEN_FLAGS_START && id <= POX_KANTO_HIDDEN_FLAGS_END)
+    {
+        // Older saves used these SaveBlock3 bytes as spare space. Initialize
+        // them on first access so an upgrade does not hide every Kanto item.
+        if (gSaveBlock3Ptr->kantoHiddenItemsMagic != 0x504F5848)
+        {
+            memset(gSaveBlock3Ptr->kantoHiddenItems, 0, sizeof(gSaveBlock3Ptr->kantoHiddenItems));
+            gSaveBlock3Ptr->kantoHiddenItemsMagic = 0x504F5848;
+        }
+        return &gSaveBlock3Ptr->kantoHiddenItems[(id - POX_KANTO_HIDDEN_FLAGS_START) / 8];
+    }
+#endif
     else if (id < SPECIAL_FLAGS_START)
         return &gSaveBlock1Ptr->flags[id / 8];
 #if TESTING

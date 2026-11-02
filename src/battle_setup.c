@@ -7,6 +7,7 @@
 #include "main.h"
 #include "task.h"
 #include "safari_zone.h"
+#include "plastic_ox_contest.h"
 #include "script.h"
 #include "event_data.h"
 #include "metatile_behavior.h"
@@ -331,7 +332,12 @@ static bool8 CheckSilphScopeInPokemonTower(u16 mapGroup, u16 mapNum)
 
 void BattleSetup_StartWildBattle(void)
 {
-    if (GetSafariZoneFlag())
+    if (PlasticOxContest_IsActive())
+    {
+        DoStandardWildBattle(FALSE);
+        gMain.savedCallback = PlasticOxContest_EndBattle;
+    }
+    else if (GetSafariZoneFlag())
         DoSafariBattle();
     else if (CheckSilphScopeInPokemonTower(gSaveBlock1Ptr->location.mapGroup, gSaveBlock1Ptr->location.mapNum))
         DoGhostBattle();
@@ -493,6 +499,14 @@ void BattleSetup_StartScriptedWildBattle(void)
     IncrementGameStat(GAME_STAT_WILD_BATTLES);
     IncrementDailyWildBattles();
     TryUpdateGymLeaderRematchFromWild();
+}
+
+// Called only after setwildbattle by the reusable legendary Sage script.
+// Keep the guarantee on this battle, never in a persistent overworld flag.
+void BattleSetup_StartLegendaryRewardBattle(void)
+{
+    BattleSetup_StartScriptedWildBattle();
+    gBattleTypeFlags = BATTLE_TYPE_LEGENDARY | BATTLE_TYPE_LEGENDARY_REWARD;
 }
 
 void BattleSetup_StartScriptedDoubleWildBattle(void)
@@ -1012,12 +1026,12 @@ static void TryUpdateGymLeaderRematchFromTrainer(void)
 
 static u16 GetTrainerAFlag(void)
 {
-    return TRAINER_FLAGS_START + TRAINER_BATTLE_PARAM.opponentA;
+    return TRAINER_FLAG(TRAINER_BATTLE_PARAM.opponentA);
 }
 
 static u16 GetTrainerBFlag(void)
 {
-    return TRAINER_FLAGS_START + TRAINER_BATTLE_PARAM.opponentB;
+    return TRAINER_FLAG(TRAINER_BATTLE_PARAM.opponentB);
 }
 
 static bool32 IsPlayerDefeated(u32 battleOutcome)
@@ -1116,6 +1130,12 @@ void SetMapVarsToTrainerB(void)
 // expects parameters have been loaded correctly with TrainerBattleLoadArgs
 const u8 *BattleSetup_ConfigureTrainerBattle(const u8 *data)
 {
+    // Keep a normal trainerbattle at the front of park trainer scripts so
+    // sight checks can recognize their victory flags. Talking during the
+    // catching contest uses visitor dialogue instead of starting a battle.
+    if (PlasticOxContest_IsActive())
+        return PlasticOxContest_EventScript_TrainerRest;
+
     switch (TRAINER_BATTLE_PARAM.mode)
     {
     case TRAINER_BATTLE_SINGLE_NO_INTRO_TEXT:
@@ -1228,7 +1248,7 @@ void SetUpTwoTrainersBattle(void)
 bool32 GetTrainerFlagFromScriptPointer(const u8 *data)
 {
     TrainerBattleParameter *temp = (TrainerBattleParameter*)(data + OPCODE_OFFSET);
-    return FlagGet(TRAINER_FLAGS_START + temp->params.opponentA);
+    return FlagGet(TRAINER_FLAG(temp->params.opponentA));
 }
 
 bool32 GetRematchFromScriptPointer(const u8 *data)
@@ -1290,17 +1310,17 @@ static void UNUSED SetBattledTrainerFlag(void)
 
 bool8 HasTrainerBeenFought(u16 trainerId)
 {
-    return FlagGet(TRAINER_FLAGS_START + trainerId);
+    return FlagGet(TRAINER_FLAG(trainerId));
 }
 
 void SetTrainerFlag(u16 trainerId)
 {
-    FlagSet(TRAINER_FLAGS_START + trainerId);
+    FlagSet(TRAINER_FLAG(trainerId));
 }
 
 void ClearTrainerFlag(u16 trainerId)
 {
-    FlagClear(TRAINER_FLAGS_START + trainerId);
+    FlagClear(TRAINER_FLAG(trainerId));
 }
 
 void BattleSetup_StartTrainerBattle(void)

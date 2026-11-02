@@ -1,6 +1,8 @@
 #ifndef GUARD_EVENT_SCRIPTS_H
 #define GUARD_EVENT_SCRIPTS_H
 
+extern const u8 PlasticOxContest_EventScript_TrainerRest[];
+
 extern const u8 EventScript_Follower[];
 extern const u8 EventScript_FollowerEnd[];
 extern const u8 EventScript_FollowerGeneric[];
@@ -549,6 +551,9 @@ extern const u8 LittlerootTown_MaysHouse_2F_EventScript_PC[];
 extern const u8 EventScript_PalletTown_PlayersHouse_2F_TurnOnPC[];
 extern const u8 EventScript_PC[];
 extern const u8 EventScript_AccessPokemonBoxLink[];
+extern const u8 EventScript_MoveCompendium[];
+extern const u8 EventScript_TrainingKit[];
+extern const u8 EventScript_PocketWatch[];
 extern const u8 EventScript_TestSignpostMsg[];
 extern const u8 EventScript_HiddenItemScript[];
 extern const u8 EventScript_TV[];

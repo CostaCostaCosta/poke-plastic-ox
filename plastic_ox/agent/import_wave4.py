@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Alpha wave 4 importer: Legs F+G per REGION_PLAN.
+"""Historical pre-v7 importer; topology refers to alpha/LEGACY_REGION_PLAN.md.
+
+Do not use this importer for v7 regeneration: it restores obsolete routes and
+uses legacy item-flag allocation. See alpha/PLAN.md and alpha/audit_alpha.py.
 
 Imports Route7_hns, LavenderTown_hns, Route12_hns, Route21_hns,
 CinnabarIsland_hns; wires the Kanto east chain seams; retargets town
@@ -290,7 +293,9 @@ def copy_layout(name):
     lay = load(lp)
     if not any(l["id"] == lid for l in lay["layouts"]):
         e = dict(he)
-        e.pop("game_version", None); e.pop("layout_version", None)
+        e.pop("game_version", None)
+        e["layout_version"] = "hns"
+        e["include_in_versions"] = ["emerald"]
         e["border_filepath"] = f"data/layouts/{dirbase}/border.bin"
         e["blockdata_filepath"] = f"data/layouts/{dirbase}/map.bin"
         lay["layouts"].append(e)
@@ -335,7 +340,7 @@ def apply_portals():
         if any(e.get("script") == lbl for e in d["coord_events"]):
             continue
         d["coord_events"].append({"type": "trigger", "x": x, "y": y, "elevation": 0,
-                                  "var": "VAR_POX_PORTAL_GATE", "var_value": "0",
+                                  "var": "VAR_POX_PORTAL_TRIGGER", "var_value": "0",
                                   "script": lbl})
         save(p, d)
         sp = f"data/maps/{m}/scripts.inc"

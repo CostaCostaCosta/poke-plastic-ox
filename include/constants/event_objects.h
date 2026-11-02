@@ -425,6 +425,8 @@ enum
     OBJ_EVENT_GFX_FAT_MAN_HNS,
     OBJ_EVENT_GFX_PICNICKER_HNS,
     OBJ_EVENT_GFX_COOLTRAINER_F_HNS,
+    OBJ_EVENT_GFX_WHITNEY_HNS,
+    OBJ_EVENT_GFX_SAGE_HNS,
 // end Plastic Ox HnS object graphics
     NUM_OBJ_EVENT_GFX,
 };
@@ -584,6 +586,8 @@ enum
 // Plastic Ox: HnS object palettes
 #define OBJ_EVENT_PAL_TAG_POX_KIMONO              0x1134
 #define OBJ_EVENT_PAL_TAG_POX_SILVER              0x1135
+#define OBJ_EVENT_PAL_TAG_POX_WHITNEY             0x1136
+#define OBJ_EVENT_PAL_TAG_POX_SAGE                0x1137
 
 #if OW_FOLLOWERS_POKEBALLS
 // Vanilla

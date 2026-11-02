@@ -2421,6 +2421,12 @@ void RunUnionRoom(void)
 {
     struct WirelessLink_URoom *uroom;
 
+    if (!POX_LINK_ENABLED)
+    {
+        ScriptContext_Enable();
+        return;
+    }
+
     ResetHostRfuGameData();
     CreateTask(Task_RunUnionRoom, 10);
 

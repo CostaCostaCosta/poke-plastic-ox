@@ -11,17 +11,12 @@
 #define P_UPDATED_EXP_YIELDS        GEN_LATEST  // Since Gen 5, some Pokémon have received base Experience changes.
 
 // Learnsets
-#define P_LVL_UP_LEARNSETS          GEN_LATEST  // Choose which set of Level Up Learnsets to use.
-                                                // For generations that hadn't introduced a species yet, we use their first appearence (eg. Chikorita's Gen2 data if the config is set to GEN_1).
-                                                // For generations that don't include a previously introduced species, we use their last apperance (eg. Snivy's Gen7 data if the config is set to GEN_8).
-                                                // GEN_1/2/3/4/5/6/7: Yellow, Crystal, RSE, HGSS, B2W2, ORAS, USUM learnsets respectively.
-                                                // GEN_8: Use the following priority: BDSP for Gen1-4 Pokémon, then LA for species introduced in that game, then SwSh for species present in those games. Otherwise, use GEN_7.
-                                                // GEN_9: SV For species present in those games. Otherwise use GEN_8.
+#define P_LVL_UP_LEARNSETS          GEN_3       // Plastic Ox uses RSE learnsets for Gen 1-3 species; later species use their first available learnsets.
 #define P_EVOLUTION_LEVEL_1_LEARN   GEN_LATEST  // Since Gen 8, Pokémon evolving while at level 1 do not get the chance to learn their level 1 moves, while before they did.
 
 // Evolution settings
 #define P_FRIENDSHIP_EVO_THRESHOLD   GEN_LATEST  // Since Gen 8, Pokémon that evolve by friendship evolve at or above 160 friendship instead of 220.
-#define P_EVOLUTION_TIER_GATING      TRUE        // Plastic Ox: if TRUE, evolutions are blocked until the player's badge count unlocks the target species' competitive tier (see plastic_ox/plasticox_encounters_v1.md).
+#define P_EVOLUTION_TIER_GATING      TRUE        // Plastic Ox: if TRUE, evolutions are blocked until the player's badge count unlocks the target species' competitive tier (see src/data/pokemon/evolution_tier_gates.h).
 
 // Breeding settings
 #define P_NIDORAN_M_DITTO_BREED        GEN_LATEST                // Since Gen 5, when Nidoran♂ breeds with Ditto it can produce Nidoran♀ offspring. Before, it would only yield male offspring. This change also applies to Volbeat.

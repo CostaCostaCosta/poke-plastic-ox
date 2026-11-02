@@ -1432,3 +1432,92 @@ void InitTilesetAnim_CeladonGym(void)
     sSecondaryTilesetAnimCallback = TilesetAnim_CeladonGym;
 }
 
+// Heart & Soul Johto animations. These source frame assets are shared by the
+// HnS outdoor primary families; their tile positions are part of that format.
+static const u16 sJohtoGeneral_Flower_0[] = INCGFX_U16("data/tilesets/primary/johto_general_hns/anim/flower/0.png", ".4bpp");
+static const u16 sJohtoGeneral_Flower_1[] = INCGFX_U16("data/tilesets/primary/johto_general_hns/anim/flower/1.png", ".4bpp");
+static const u16 sJohtoGeneral_Flower_2[] = INCGFX_U16("data/tilesets/primary/johto_general_hns/anim/flower/2.png", ".4bpp");
+static const u16 sJohtoGeneral_Flower_3[] = INCGFX_U16("data/tilesets/primary/johto_general_hns/anim/flower/3.png", ".4bpp");
+static const u16 sJohtoGeneral_Flower_4[] = INCGFX_U16("data/tilesets/primary/johto_general_hns/anim/flower/4.png", ".4bpp");
+static const u16 *const sJohtoGeneral_Flower[] = { sJohtoGeneral_Flower_0, sJohtoGeneral_Flower_1, sJohtoGeneral_Flower_2, sJohtoGeneral_Flower_3, sJohtoGeneral_Flower_4 };
+
+static const u16 sJohtoGeneral_Edge_0[] = INCGFX_U16("data/tilesets/primary/johto_general_hns/anim/sandwatersedge/0.png", ".4bpp");
+static const u16 sJohtoGeneral_Edge_1[] = INCGFX_U16("data/tilesets/primary/johto_general_hns/anim/sandwatersedge/1.png", ".4bpp");
+static const u16 sJohtoGeneral_Edge_2[] = INCGFX_U16("data/tilesets/primary/johto_general_hns/anim/sandwatersedge/2.png", ".4bpp");
+static const u16 sJohtoGeneral_Edge_3[] = INCGFX_U16("data/tilesets/primary/johto_general_hns/anim/sandwatersedge/3.png", ".4bpp");
+static const u16 sJohtoGeneral_Edge_4[] = INCGFX_U16("data/tilesets/primary/johto_general_hns/anim/sandwatersedge/4.png", ".4bpp");
+static const u16 sJohtoGeneral_Edge_5[] = INCGFX_U16("data/tilesets/primary/johto_general_hns/anim/sandwatersedge/5.png", ".4bpp");
+static const u16 sJohtoGeneral_Edge_6[] = INCGFX_U16("data/tilesets/primary/johto_general_hns/anim/sandwatersedge/6.png", ".4bpp");
+static const u16 sJohtoGeneral_Edge_7[] = INCGFX_U16("data/tilesets/primary/johto_general_hns/anim/sandwatersedge/7.png", ".4bpp");
+static const u16 *const sJohtoGeneral_Edge[] = { sJohtoGeneral_Edge_0, sJohtoGeneral_Edge_1, sJohtoGeneral_Edge_2, sJohtoGeneral_Edge_3, sJohtoGeneral_Edge_4, sJohtoGeneral_Edge_5, sJohtoGeneral_Edge_6, sJohtoGeneral_Edge_7 };
+
+static const u16 sJohtoGeneral_Water_0[] = INCGFX_U16("data/tilesets/primary/johto_general_hns/anim/water_current_landwatersedge/0.png", ".4bpp");
+static const u16 sJohtoGeneral_Water_1[] = INCGFX_U16("data/tilesets/primary/johto_general_hns/anim/water_current_landwatersedge/1.png", ".4bpp");
+static const u16 sJohtoGeneral_Water_2[] = INCGFX_U16("data/tilesets/primary/johto_general_hns/anim/water_current_landwatersedge/2.png", ".4bpp");
+static const u16 sJohtoGeneral_Water_3[] = INCGFX_U16("data/tilesets/primary/johto_general_hns/anim/water_current_landwatersedge/3.png", ".4bpp");
+static const u16 sJohtoGeneral_Water_4[] = INCGFX_U16("data/tilesets/primary/johto_general_hns/anim/water_current_landwatersedge/4.png", ".4bpp");
+static const u16 sJohtoGeneral_Water_5[] = INCGFX_U16("data/tilesets/primary/johto_general_hns/anim/water_current_landwatersedge/5.png", ".4bpp");
+static const u16 sJohtoGeneral_Water_6[] = INCGFX_U16("data/tilesets/primary/johto_general_hns/anim/water_current_landwatersedge/6.png", ".4bpp");
+static const u16 sJohtoGeneral_Water_7[] = INCGFX_U16("data/tilesets/primary/johto_general_hns/anim/water_current_landwatersedge/7.png", ".4bpp");
+static const u16 *const sJohtoGeneral_Water[] = { sJohtoGeneral_Water_0, sJohtoGeneral_Water_1, sJohtoGeneral_Water_2, sJohtoGeneral_Water_3, sJohtoGeneral_Water_4, sJohtoGeneral_Water_5, sJohtoGeneral_Water_6, sJohtoGeneral_Water_7 };
+
+static void TilesetAnim_JohtoGeneral(u16 timer)
+{
+    if (timer % 8 == 0)
+        AppendTilesetAnimToBuffer(sJohtoGeneral_Edge[(timer >> 3) % ARRAY_COUNT(sJohtoGeneral_Edge)], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(416)), 18 * TILE_SIZE_4BPP);
+    if (timer % 16 == 2)
+        AppendTilesetAnimToBuffer(sJohtoGeneral_Flower[(timer >> 4) % ARRAY_COUNT(sJohtoGeneral_Flower)], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(508)), 4 * TILE_SIZE_4BPP);
+    if (timer % 16 == 3)
+    {
+        const u16 *frame = sJohtoGeneral_Water[(timer >> 4) % ARRAY_COUNT(sJohtoGeneral_Water)];
+        AppendTilesetAnimToBuffer(frame + 34 * (TILE_SIZE_4BPP / 2), (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(450)), 12 * TILE_SIZE_4BPP);
+    }
+}
+
+void InitTilesetAnim_JohtoGeneral(void)
+{
+    sPrimaryTilesetAnimCounter = 0;
+    sPrimaryTilesetAnimCounterMax = 256;
+    sPrimaryTilesetAnimCallback = TilesetAnim_JohtoGeneral;
+}
+
+static const u16 sNationalPark_LargeFountain_0[] = INCGFX_U16("data/tilesets/secondary/national_park_hns/anim/large_fountain/0.png", ".4bpp");
+static const u16 sNationalPark_LargeFountain_1[] = INCGFX_U16("data/tilesets/secondary/national_park_hns/anim/large_fountain/1.png", ".4bpp");
+static const u16 sNationalPark_LargeFountain_2[] = INCGFX_U16("data/tilesets/secondary/national_park_hns/anim/large_fountain/2.png", ".4bpp");
+static const u16 sNationalPark_LargeFountain_3[] = INCGFX_U16("data/tilesets/secondary/national_park_hns/anim/large_fountain/3.png", ".4bpp");
+static const u16 *const sNationalPark_LargeFountain[] = { sNationalPark_LargeFountain_0, sNationalPark_LargeFountain_1, sNationalPark_LargeFountain_2, sNationalPark_LargeFountain_3 };
+static const u16 sNationalPark_SmallFountain_0[] = INCGFX_U16("data/tilesets/secondary/national_park_hns/anim/small_fountain/0.png", ".4bpp");
+static const u16 sNationalPark_SmallFountain_1[] = INCGFX_U16("data/tilesets/secondary/national_park_hns/anim/small_fountain/1.png", ".4bpp");
+static const u16 sNationalPark_SmallFountain_2[] = INCGFX_U16("data/tilesets/secondary/national_park_hns/anim/small_fountain/2.png", ".4bpp");
+static const u16 sNationalPark_SmallFountain_3[] = INCGFX_U16("data/tilesets/secondary/national_park_hns/anim/small_fountain/3.png", ".4bpp");
+static const u16 sNationalPark_SmallFountain_4[] = INCGFX_U16("data/tilesets/secondary/national_park_hns/anim/small_fountain/4.png", ".4bpp");
+static const u16 *const sNationalPark_SmallFountain[] = { sNationalPark_SmallFountain_0, sNationalPark_SmallFountain_1, sNationalPark_SmallFountain_2, sNationalPark_SmallFountain_3, sNationalPark_SmallFountain_4 };
+static const u16 sNationalPark_RedFlower_0[] = INCGFX_U16("data/tilesets/secondary/national_park_hns/anim/red_flower/0.png", ".4bpp");
+static const u16 sNationalPark_RedFlower_1[] = INCGFX_U16("data/tilesets/secondary/national_park_hns/anim/red_flower/1.png", ".4bpp");
+static const u16 sNationalPark_RedFlower_2[] = INCGFX_U16("data/tilesets/secondary/national_park_hns/anim/red_flower/2.png", ".4bpp");
+static const u16 *const sNationalPark_RedFlower[] = { sNationalPark_RedFlower_0, sNationalPark_RedFlower_1, sNationalPark_RedFlower_2, sNationalPark_RedFlower_1 };
+static const u16 sNationalPark_YellowFlower_0[] = INCGFX_U16("data/tilesets/secondary/national_park_hns/anim/yellow_flower/0.png", ".4bpp");
+static const u16 sNationalPark_YellowFlower_1[] = INCGFX_U16("data/tilesets/secondary/national_park_hns/anim/yellow_flower/1.png", ".4bpp");
+static const u16 sNationalPark_YellowFlower_2[] = INCGFX_U16("data/tilesets/secondary/national_park_hns/anim/yellow_flower/2.png", ".4bpp");
+static const u16 *const sNationalPark_YellowFlower[] = { sNationalPark_YellowFlower_2, sNationalPark_YellowFlower_1, sNationalPark_YellowFlower_0, sNationalPark_YellowFlower_1 };
+
+static void TilesetAnim_NationalPark(u16 timer)
+{
+    if (timer % 10 == 0)
+        AppendTilesetAnimToBuffer(sNationalPark_LargeFountain[(timer / 10) % ARRAY_COUNT(sNationalPark_LargeFountain)], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(GetNumTilesInPrimary(gMapHeader.mapLayout) + 88)), 0x100);
+    if (timer % 12 == 1)
+        AppendTilesetAnimToBuffer(sNationalPark_SmallFountain[(timer / 12) % ARRAY_COUNT(sNationalPark_SmallFountain)], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(GetNumTilesInPrimary(gMapHeader.mapLayout) + 104)), 0x100);
+    if (timer % 16 == 2)
+        AppendTilesetAnimToBuffer(sNationalPark_RedFlower[(timer / 16) % ARRAY_COUNT(sNationalPark_RedFlower)], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(GetNumTilesInPrimary(gMapHeader.mapLayout) + 96)), 0x80);
+    if (timer % 16 == 12)
+        AppendTilesetAnimToBuffer(sNationalPark_YellowFlower[(timer / 16) % ARRAY_COUNT(sNationalPark_YellowFlower)], (u16 *)(BG_VRAM + TILE_OFFSET_4BPP(GetNumTilesInPrimary(gMapHeader.mapLayout) + 100)), 0x80);
+}
+
+void InitTilesetAnim_NationalPark(void)
+{
+    sSecondaryTilesetAnimCounter = 0;
+    sSecondaryTilesetAnimCounterMax = 960;
+    sSecondaryTilesetAnimCallback = TilesetAnim_NationalPark;
+}
+
+#include "data/tilesets/hoenn_oras_anims.h"

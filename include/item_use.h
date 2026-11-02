@@ -1,6 +1,10 @@
 #ifndef GUARD_ITEM_USE_H
 #define GUARD_ITEM_USE_H
 
+void ItemUseOutOfBattle_Cut(u8 taskId);
+void ItemUseOutOfBattle_Headbutt(u8 taskId);
+void ItemUseOutOfBattle_WarpBlock(u8 taskId);
+
 void ItemUseOutOfBattle_Mail(u8 taskId);
 void ItemUseOutOfBattle_Bike(u8 taskId);
 void ItemUseOutOfBattle_Rod(u8 taskId);
@@ -49,6 +53,9 @@ void Task_ItemUse_CloseMessageBoxAndReturnToField_VsSeeker(u8 taskId);
 void DisplayDadsAdviceCannotUseItemMessage(u8 taskId, bool8 isUsingRegisteredKeyItemOnField);
 void ItemUseOutOfBattle_PokeFlute(u8 taskId);
 void ItemUseOutOfBattle_TownMap(u8 taskId);
+void ItemUseOutOfBattle_MoveCompendium(u8 taskId);
+void ItemUseOutOfBattle_TrainingKit(u8 taskId);
+void ItemUseOutOfBattle_PocketWatch(u8 taskId);
 bool8 ItemfinderCheckForHiddenItems(const struct MapEvents *, u8);
 enum Direction GetDirectionToHiddenItem(s16, s16);
 

@@ -1,4 +1,5 @@
 SaffronCity_hns_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_SaffronCity_hns
 	.byte 0
 
 SaffronCity_EventScript_Npc1::
@@ -65,32 +66,28 @@ SaffronCity_EventScript_Npc9::
 	end
 
 SaffronCity_EventScript_Npc1_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The busy streets make the DOJO\nfeel wonderfully quiet.$"
 
 SaffronCity_EventScript_Npc2_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Trainers come from far away to\ntest themselves at the DOJO.$"
 
 SaffronCity_EventScript_Npc3_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The busy streets make the DOJO\nfeel wonderfully quiet.$"
 
 SaffronCity_EventScript_Npc4_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Trainers come from far away to\ntest themselves at the DOJO.$"
 
 SaffronCity_EventScript_Npc5_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The busy streets make the DOJO\nfeel wonderfully quiet.$"
 
 SaffronCity_EventScript_Npc6_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Trainers come from far away to\ntest themselves at the DOJO.$"
 
 SaffronCity_EventScript_Npc7_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The busy streets make the DOJO\nfeel wonderfully quiet.$"
 
 SaffronCity_EventScript_Npc8_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Trainers come from far away to\ntest themselves at the DOJO.$"
 
 SaffronCity_EventScript_Npc9_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
-SaffronCity_EventScript_P28_4::
-	warp MAP_ROUTE5_HNS, 24, 36
-	waitstate
-	end
+	.string "The busy streets make the DOJO\nfeel wonderfully quiet.$"

@@ -950,16 +950,21 @@ bool8 SetUpCopyrightScreenFrlg(void)
         EnableInterrupts(INTR_FLAG_VBLANK);
         SetVBlankCallback(VBlankCB_Copyright);
         SetGpuReg(REG_OFFSET_DISPCNT, DISPCNT_OBJ_1D_MAP | DISPCNT_BG0_ON);
-        SetSerialCallback(SerialCB_CopyrightScreen);
-        GameCubeMultiBoot_Init(&sGcmb);
+        if (POX_LINK_ENABLED)
+        {
+            SetSerialCallback(SerialCB_CopyrightScreen);
+            GameCubeMultiBoot_Init(&sGcmb);
+        }
         // fallthrough
     default:
         UpdatePaletteFade();
         gMain.state++;
-        GameCubeMultiBoot_Main(&sGcmb);
+        if (POX_LINK_ENABLED)
+            GameCubeMultiBoot_Main(&sGcmb);
         break;
     case 140:
-        GameCubeMultiBoot_Main(&sGcmb);
+        if (POX_LINK_ENABLED)
+            GameCubeMultiBoot_Main(&sGcmb);
         if (sGcmb.gcmb_field_2 != 1)
         {
             BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
@@ -970,7 +975,7 @@ bool8 SetUpCopyrightScreenFrlg(void)
         if (!UpdatePaletteFade())
         {
             gMain.state++;
-            if (sGcmb.gcmb_field_2 != 0)
+            if (POX_LINK_ENABLED && sGcmb.gcmb_field_2 != 0)
             {
                 if (sGcmb.gcmb_field_2 == 2)
                 {
@@ -984,7 +989,8 @@ bool8 SetUpCopyrightScreenFrlg(void)
             }
             else
             {
-                GameCubeMultiBoot_Quit();
+                if (POX_LINK_ENABLED)
+                    GameCubeMultiBoot_Quit();
                 SetSerialCallback(SerialCB);
             }
             return FALSE;

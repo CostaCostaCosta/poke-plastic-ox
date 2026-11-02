@@ -412,6 +412,8 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SilverHns;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_FatManHns;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_PicnickerHns;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_CooltrainerFHns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_WhitneyHns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_SageHns;
 
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
@@ -804,16 +806,6 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_DEOXYS_N]                 = &gObjectEventGraphicsInfo_DeoxysN,
     [OBJ_EVENT_GFX_SS_ANNE]                  = &gObjectEventGraphicsInfo_SSAnne,
 // end Plastic Ox FRLG graphics
-};
-
-const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {
-    [MAUVILLE_MAN_BARD]        = &gObjectEventGraphicsInfo_Bard,
-    [MAUVILLE_MAN_HIPSTER]     = &gObjectEventGraphicsInfo_Hipster,
-    [MAUVILLE_MAN_TRADER]      = &gObjectEventGraphicsInfo_Trader,
-    [MAUVILLE_MAN_STORYTELLER] = &gObjectEventGraphicsInfo_Storyteller,
-    [MAUVILLE_MAN_GIDDY]       = &gObjectEventGraphicsInfo_Giddy,
-    [MAUVILLE_MAN_UNUSED1]     = &gObjectEventGraphicsInfo_UnusedMauvilleOldMan1,
-    [MAUVILLE_MAN_UNUSED2]     = &gObjectEventGraphicsInfo_UnusedMauvilleOldMan2,
 // Plastic Ox: HnS object graphics
     [OBJ_EVENT_GFX_OLD_MAN_HNS               ] = &gObjectEventGraphicsInfo_OldManHns,
     [OBJ_EVENT_GFX_LASS_HNS                  ] = &gObjectEventGraphicsInfo_LassHns,
@@ -826,4 +818,16 @@ const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[
     [OBJ_EVENT_GFX_FAT_MAN_HNS               ] = &gObjectEventGraphicsInfo_FatManHns,
     [OBJ_EVENT_GFX_PICNICKER_HNS             ] = &gObjectEventGraphicsInfo_PicnickerHns,
     [OBJ_EVENT_GFX_COOLTRAINER_F_HNS         ] = &gObjectEventGraphicsInfo_CooltrainerFHns,
+    [OBJ_EVENT_GFX_WHITNEY_HNS               ] = &gObjectEventGraphicsInfo_WhitneyHns,
+    [OBJ_EVENT_GFX_SAGE_HNS               ] = &gObjectEventGraphicsInfo_SageHns,
+};
+
+const struct ObjectEventGraphicsInfo *const gMauvilleOldManGraphicsInfoPointers[] = {
+    [MAUVILLE_MAN_BARD]        = &gObjectEventGraphicsInfo_Bard,
+    [MAUVILLE_MAN_HIPSTER]     = &gObjectEventGraphicsInfo_Hipster,
+    [MAUVILLE_MAN_TRADER]      = &gObjectEventGraphicsInfo_Trader,
+    [MAUVILLE_MAN_STORYTELLER] = &gObjectEventGraphicsInfo_Storyteller,
+    [MAUVILLE_MAN_GIDDY]       = &gObjectEventGraphicsInfo_Giddy,
+    [MAUVILLE_MAN_UNUSED1]     = &gObjectEventGraphicsInfo_UnusedMauvilleOldMan1,
+    [MAUVILLE_MAN_UNUSED2]     = &gObjectEventGraphicsInfo_UnusedMauvilleOldMan2,
 };

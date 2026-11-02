@@ -1,4 +1,5 @@
 Route46_hns_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_Route46_hns
 	.byte 0
 
 Route46_EventScript_Ted::
@@ -9,10 +10,8 @@ Route46_EventScript_Ted::
 	end
 
 Route46_EventScript_Erin::
-	lock
-	faceplayer
-	msgbox Route46_Text_Erin, MSGBOX_NPC
-	release
+	trainerbattle_single TRAINER_PLASTIC_OX_ROUTE46_ERIN, Route46_Text_Erin, Route46_Text_Erin_Defeat
+	msgbox Route46_Text_Erin_After, MSGBOX_AUTOCLOSE
 	end
 
 Route46_EventScript_Bailey::
@@ -31,26 +30,30 @@ Route46_EventScript_Sign::
 	end
 
 Route46_Text_Ted:
-	.string "The path south spits you out on a\n"
-	.string "route with palm trees.\p"
-	.string "PALM TREES! On a mountain road!\n"
-	.string "I climbed down for a look and my\n"
-	.string "boots got sand in them.$"
+	.string "This trail ends at the ledges\n"
+	.string "if you're coming from below.\p"
+	.string "That's fine by me. A short walk\n"
+	.string "still counts as a hike!$"
 
 Route46_Text_Erin:
-	.string "Downhill all the way to ROUTE 29,\n"
-	.string "but which downhill?\p"
-	.string "There's a cave shortcut to the\n"
-	.string "north side of the mountains, if\n"
-	.string "you trust the dark.$"
+	.string "I packed lunch for the hike.\n"
+	.string "My POKéMON packed a battle!$"
+
+Route46_Text_Erin_Defeat:
+	.string "Time for a lunch break!$"
+
+Route46_Text_Erin_After:
+	.string "I spread my lunch on a rock.\n"
+	.string "The wind took the napkin!$"
 
 Route46_Text_Bailey:
-	.string "I heard the mountains grew a new\n"
-	.string "pass overnight.\p"
-	.string "Mountains don't DO that. But the\n"
-	.string "cave mouth is right there, so\n"
-	.string "argue with the cave.$"
+	.string "I came down from the mountains.\n"
+	.string "My boots hardly slowed me down.\p"
+	.string "Going back up those ledges?\n"
+	.string "Not on these legs!$"
 
 Route46_Text_Sign:
-	.string "ROUTE 46 - Mountain descent\n"
-	.string "DARK CAVE ~ entrance ahead$"
+	.string "ROUTE 46\n"
+	.string "Mountain foothills\p"
+	.string "Ledges allow descent only.\n"
+	.string "No uphill passage.$"

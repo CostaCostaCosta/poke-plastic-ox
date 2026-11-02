@@ -1,4 +1,7 @@
 #include "global.h"
+#include "constants/opponents.h"
+#include "metamon_heap_trace.h"
+#include "metamon_trainer.h"
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_ai_main.h"
@@ -50,6 +53,7 @@
 #include "safari_zone.h"
 #include "scanline_effect.h"
 #include "script.h"
+#include "script_pokemon_util.h"
 #include "sound.h"
 #include "sprite.h"
 #include "string_util.h"
@@ -71,6 +75,7 @@
 #include "constants/battle_partner.h"
 #include "constants/battle_setup.h"
 #include "constants/items.h"
+#include "constants/plastic_ox_flags.h"
 #include "constants/moves.h"
 #include "constants/party_menu.h"
 #include "constants/rgb.h"
@@ -475,8 +480,17 @@ const u8 *const gStatusConditionStringsTable[][2] =
 
 void CB2_InitBattle(void)
 {
+    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER
+     && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED)))
+    {
+        for (u32 i = 0; i < gPartiesCount[B_TRAINER_PLAYER]; i++)
+            HealPokemon(&gParties[B_TRAINER_PLAYER][i]);
+    }
+
     if (!gTestRunnerEnabled)
         MoveSaveBlocks_ResetHeap();
+    MmHeapMark(MM_HEAP_BATTLE_START);
+    MetamonBattleInit();
     AllocateBattleResources();
     AllocateBattleSpritesData();
     AllocateMonSpritesGfx();
@@ -1855,7 +1869,7 @@ void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon 
 
     for (j = 0; j < MAX_MON_MOVES; ++j)
     {
-        u32 pp = GetMovePP(partyEntry->moves[j]);
+        u32 pp = CalculatePPWithBonus(partyEntry->moves[j], 0xFF, 0);
         SetMonData(mon, MON_DATA_MOVE1 + j, &partyEntry->moves[j]);
         SetMonData(mon, MON_DATA_PP1 + j, &pp);
     }
@@ -1865,6 +1879,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
 {
     u32 personalityValue;
     u8 monsCount;
+    u8 highestPlayerLevel = 0;
     if (battleTypeFlags & BATTLE_TYPE_TRAINER && !(battleTypeFlags & (BATTLE_TYPE_FRONTIER
                                                                         | BATTLE_TYPE_EREADER_TRAINER
                                                                         | BATTLE_TYPE_TRAINER_HILL)))
@@ -1885,6 +1900,24 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
 
         u32 monIndices[monsCount];
         DoTrainerPartyPool(trainer, monIndices, monsCount, battleTypeFlags);
+
+        // Every ordinary NPC trainer keeps its authored level or meets the
+        // strongest non-Egg in the player's party, whichever is higher.
+        if (party != gParties[B_TRAINER_PLAYER]
+         && !(battleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED)))
+        {
+            for (s32 i = 0; i < PARTY_SIZE; i++)
+            {
+                struct Pokemon *playerMon = &gParties[B_TRAINER_PLAYER][i];
+                enum Species species = GetMonData(playerMon, MON_DATA_SPECIES_OR_EGG);
+                if (species != SPECIES_NONE && species != SPECIES_EGG)
+                {
+                    u8 level = GetMonData(playerMon, MON_DATA_LEVEL);
+                    if (level > highestPlayerLevel)
+                        highestPlayerLevel = level;
+                }
+            }
+        }
 
         for (s32 i = 0; i < monsCount; i++)
         {
@@ -1915,7 +1948,10 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 otId.method = OT_ID_PRESET;
                 otId.value = HIHALF(personalityValue) ^ LOHALF(personalityValue);
             }
-            CreateMon(&party[i], partyData[monIndex].species, partyData[monIndex].lvl, personalityValue, otId);
+            CreateMon(&party[i], partyData[monIndex].species,
+                      highestPlayerLevel > partyData[monIndex].lvl
+                          ? highestPlayerLevel : partyData[monIndex].lvl,
+                      personalityValue, otId);
             SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[monIndex].heldItem);
 
             CustomTrainerPartyAssignMoves(&party[i], &partyData[monIndex]);
@@ -2964,6 +3000,7 @@ void BeginBattleIntroDummy(void)
 
 void BeginBattleIntro(void)
 {
+    MmHeapMark(MM_HEAP_READY);
     BattleStartClearSetData();
     gBattleCommunication[1] = 0;
     gBattleStruct->eventState.battleIntro = 0;
@@ -4069,7 +4106,7 @@ static void HandleTurnActionSelectionState(void)
 {
     s32 i;
 
-    bool32 reverseBattlerLogicOrder = RandomPercentage(RNG_AI_REVERSE_BATTLER_LOGIC_ORDER, GetConfig(AI_REVERSE_BATTLER_LOGIC_ORDER_CHANCE)) && IsDoubleBattle();
+    bool32 reverseBattlerLogicOrder = !MetamonBusy() && RandomPercentage(RNG_AI_REVERSE_BATTLER_LOGIC_ORDER, GetConfig(AI_REVERSE_BATTLER_LOGIC_ORDER_CHANCE)) && IsDoubleBattle();
 
     gBattleCommunication[ACTIONS_CONFIRMED_COUNT] = 0;
     for (enum BattlerId battlerIndex = 0; battlerIndex < gBattlersCount; battlerIndex++)
@@ -4079,13 +4116,17 @@ static void HandleTurnActionSelectionState(void)
         switch (gBattleCommunication[battler])
         {
         case STATE_TURN_START_RECORD: // Recorded battle related action on start of every turn.
+            if (GetBattlerPosition(battler) == B_POSITION_OPPONENT_LEFT)
+                MmHeapMark(MM_HEAP_DECISION);
             RecordedBattle_CopyBattlerMoves(battler);
             gBattleCommunication[battler] = STATE_BEFORE_ACTION_CHOSEN;
             bool32 isAiBattler = (gBattleTypeFlags & BATTLE_TYPE_HAS_AI || IsWildMonSmart()) && (BattlerHasAi(battler) && !(gBattleTypeFlags & BATTLE_TYPE_PALACE));
-            if (isAiBattler)
+            if (isAiBattler && !MetamonControls(battler))
             {
                 ComputeAiBattlerDecisions(battler); // Do AI score computations here so we can use them in AI_TrySwitchOrUseItem
             }
+            if (GetBattlerPosition(battler) == B_POSITION_OPPONENT_LEFT)
+                MmHeapMark(MM_HEAP_DECISION_END);
             // fallthrough
         case STATE_BEFORE_ACTION_CHOSEN: // Choose an action.
             gBattleStruct->monToSwitchIntoId[battler] = PARTY_SIZE;
@@ -4596,6 +4637,7 @@ static void HandleTurnActionSelectionState(void)
                 gChosenActionByBattler[GetBattlerAtPosition(B_POSITION_PLAYER_LEFT)] = B_ACTION_NOTHING_FAINTED;
         }
 
+        MmHeapMark(MM_HEAP_ACTION_COMMITTED);
         gBattleMainFunc = SetActionsAndBattlersTurnOrder;
 
         if (gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER)
@@ -5669,8 +5711,38 @@ static void WaitForEvoSceneToFinish(void)
         gBattleMainFunc = TryEvolvePokemon;
 }
 
+static bool32 IsPlasticOxLeagueBattle(void)
+{
+    // Facility/link trainer IDs use other namespaces. The authored League is
+    // singles only; a second opponent must not inherit this recovery exception.
+    if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+     || (gBattleTypeFlags & (BATTLE_TYPE_MORE_THAN_TWO_BATTLERS | BATTLE_TYPE_LINK
+                          | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_TRAINER_HILL
+                          | BATTLE_TYPE_SECRET_BASE | BATTLE_TYPE_EREADER_TRAINER
+                          | BATTLE_TYPE_RECORDED_LINK)))
+        return FALSE;
+
+    switch (TRAINER_BATTLE_PARAM.opponentA)
+    {
+    case TRAINER_PLASTIC_OX_WALLACE:
+    case TRAINER_PLASTIC_OX_STEVEN:
+    case TRAINER_PLASTIC_OX_LEAGUELANCE:
+    case TRAINER_PLASTIC_OX_BLUE:
+    case TRAINER_PLASTIC_OX_BILL:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
 static void ReturnFromBattleToOverworld(void)
 {
+    // League challengers carry HP, status and PP between rooms. Other trainer
+    // battles retain Plastic Ox's normal post-battle recovery.
+    if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+     && !IsPlasticOxLeagueBattle())
+        HealPlayerParty();
+
     if (!(gBattleTypeFlags & BATTLE_TYPE_LINK))
     {
         CalculatePlayerPartyCount();
@@ -5773,6 +5845,29 @@ enum Type TrySetAteType(enum Move move, enum BattlerId battlerAtk, enum Ability 
     }
 
     return ateType;
+}
+
+// Shared by damage calculation and the player's move displays.
+u32 GetHiddenPowerBasePower(struct Pokemon *mon, enum BattlerId battler, enum MonState state)
+{
+    static const u8 ivFields[] = {MON_DATA_HP_IV, MON_DATA_ATK_IV, MON_DATA_DEF_IV,
+        MON_DATA_SPEED_IV, MON_DATA_SPATK_IV, MON_DATA_SPDEF_IV};
+    u32 bits = 0;
+    if (B_HIDDEN_POWER_DMG >= GEN_6)
+        return GetMovePower(MOVE_HIDDEN_POWER);
+    if (state == MON_IN_BATTLE)
+    {
+        const struct BattlePokemon *b = &gBattleMons[battler];
+        bits = ((b->hpIV & 2) >> 1) | (b->attackIV & 2)
+             | ((b->defenseIV & 2) << 1) | ((b->speedIV & 2) << 2)
+             | ((b->spAttackIV & 2) << 3) | ((b->spDefenseIV & 2) << 4);
+    }
+    else
+    {
+        for (u32 i = 0; i < ARRAY_COUNT(ivFields); ++i)
+            bits |= ((GetMonData(mon, ivFields[i]) >> 1) & 1) << i;
+    }
+    return 30 + 40 * bits / 63;
 }
 
 // Returns TYPE_NONE if type doesn't change.

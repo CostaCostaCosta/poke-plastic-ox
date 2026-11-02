@@ -93,9 +93,9 @@
       "region": "Johto",
       "kind": "town",
       "ports": {
-        "E": "land",
+        "E": "gate",
         "S": "land",
-        "W": "land"
+        "W": "gate"
       },
       "special_ports": [
         {
@@ -107,7 +107,7 @@
       "asset": "ECRU.png",
       "required": true,
       "story_order": 8,
-      "notes": "Three useful land ports; north is reserved for Bell Tower context.",
+      "notes": "East and west use gatehouses; south is a land seam; north is reserved for Bell Tower context.",
       "asset_available": true,
       "dimensions": [
         132,
@@ -250,13 +250,29 @@
       "region": "Johto",
       "kind": "town",
       "ports": {
-        "N": "cave",
         "S": "land"
       },
+      "port_labels": {
+        "S": "Route 45"
+      },
+      "special_ports": [
+        {
+          "id": "ICE_PATH",
+          "label": "Ice Path",
+          "type": "cave",
+          "regional": true
+        },
+        {
+          "id": "DRAGONS_DEN",
+          "label": "Dragon's Den",
+          "type": "cave",
+          "regional": true
+        }
+      ],
       "asset": "BLACK.png",
       "required": true,
       "story_order": 17,
-      "notes": "North represents Ice Path arrival; south represents Route 45 descent.",
+      "notes": "North opens to Dragon's Den; Ice Path has a separate cave link; south descends to Route 45.",
       "asset_available": true,
       "dimensions": [
         132,
@@ -313,6 +329,8 @@
         "S": "land"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "vertical",
       "traversal": "land",
       "theme": "starter meadow; grass and ledges",
@@ -335,21 +353,41 @@
       "kind": "route",
       "ports": {
         "N": "land",
-        "E": "land",
         "S": "land"
       },
-      "special_ports": [],
-      "shape": "3-way",
+      "special_ports": [
+        {
+          "id": "DARK",
+          "label": "Dark Cave",
+          "type": "cave",
+          "regional": true
+        },
+        {
+          "id": "ILEX_SOUTH",
+          "label": "Ilex South Gate",
+          "type": "gate",
+          "regional": true
+        },
+        {
+          "id": "ILEX_NORTH",
+          "label": "Ilex North Gate",
+          "type": "gate",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 5,
+      "topology_class": "hub",
+      "shape": "vertical",
       "traversal": "land",
-      "theme": "forest-edge corridor; Diglett's Cave access",
-      "status": "filler",
-      "notes": "",
+      "theme": "forest-edge corridor; Ilex Forest and Dark Cave",
+      "status": "story-route",
+      "notes": "Replaces Route 1 / Route 31 / Route 104 Top. South reaches Cherrygrove; north reaches Rustboro. Two forest gatehouses lead to Ilex; the former Diglett mouth leads to Dark Cave. Cut trees retain the native eastern shortcut.",
       "asset": "R2.png",
-      "required_status": "library",
-      "required": false,
+      "required_status": "required",
+      "required": true,
       "dimensions": [
-        138,
-        138
+        88,
+        168
       ],
       "asset_available": true
     },
@@ -360,10 +398,18 @@
       "generation": 1,
       "kind": "route",
       "ports": {
-        "E": "land",
         "W": "land"
       },
-      "special_ports": [],
+      "special_ports": [
+        {
+          "id": "MT_MOON",
+          "label": "Mt. Moon",
+          "type": "cave",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "horizontal",
       "traversal": "land",
       "theme": "rocky foothills; trainer-heavy open road",
@@ -385,10 +431,18 @@
       "generation": 1,
       "kind": "route",
       "ports": {
-        "E": "land",
-        "W": "land"
+        "E": "land"
       },
-      "special_ports": [],
+      "special_ports": [
+        {
+          "id": "MT_MOON",
+          "label": "Mt. Moon",
+          "type": "cave",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "horizontal",
       "traversal": "land",
       "theme": "mountain plateau; Mt. Moon exit",
@@ -410,10 +464,18 @@
       "generation": 1,
       "kind": "route",
       "ports": {
-        "N": "land",
-        "S": "land"
+        "N": "land"
       },
-      "special_ports": [],
+      "special_ports": [
+        {
+          "id": "SAFFRON",
+          "label": "Saffron Gate",
+          "type": "gate",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "vertical",
       "traversal": "land",
       "theme": "suburban slope; daycare",
@@ -435,10 +497,18 @@
       "generation": 1,
       "kind": "route",
       "ports": {
-        "N": "land",
         "S": "land"
       },
-      "special_ports": [],
+      "special_ports": [
+        {
+          "id": "SAFFRON",
+          "label": "Saffron Gate",
+          "type": "gate",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "vertical",
       "traversal": "land",
       "theme": "urban meadow; water and gate approach",
@@ -460,10 +530,24 @@
       "generation": 1,
       "kind": "route",
       "ports": {
-        "E": "land",
         "W": "land"
       },
-      "special_ports": [],
+      "special_ports": [
+        {
+          "id": "SAFFRON",
+          "label": "Saffron Gate",
+          "type": "gate",
+          "regional": true
+        },
+        {
+          "id": "UNDERGROUND",
+          "label": "Underground",
+          "type": "cave",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 3,
+      "topology_class": "junction",
       "shape": "horizontal",
       "traversal": "land",
       "theme": "short urban connector; Saffron/Celadon gate",
@@ -485,10 +569,24 @@
       "generation": 1,
       "kind": "route",
       "ports": {
-        "E": "land",
-        "W": "land"
+        "E": "land"
       },
-      "special_ports": [],
+      "special_ports": [
+        {
+          "id": "SAFFRON",
+          "label": "Saffron Gate",
+          "type": "gate",
+          "regional": true
+        },
+        {
+          "id": "UNDERGROUND",
+          "label": "Underground",
+          "type": "cave",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 3,
+      "topology_class": "junction",
       "shape": "horizontal",
       "traversal": "land",
       "theme": "fenced grass; urban gate; Underground Path",
@@ -514,6 +612,8 @@
         "W": "land"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "horizontal",
       "traversal": "land",
       "theme": "rocky ledges and eastern highland",
@@ -529,21 +629,62 @@
       "asset_available": true
     },
     {
-      "id": "R10",
-      "name": "Route 10",
+      "id": "R10_TOP",
+      "name": "Route 10 Top",
       "region": "Kanto",
       "generation": 1,
       "kind": "route",
       "ports": {
-        "N": "mixed",
-        "S": "mixed"
+        "N": "mixed"
       },
-      "special_ports": [],
+      "special_ports": [
+        {
+          "id": "ROCK",
+          "label": "Rock Tunnel",
+          "type": "cave",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "vertical",
       "traversal": "mixed",
-      "theme": "river canyon; Rock Tunnel/Power Plant",
+      "theme": "river canyon; Rock Tunnel",
       "status": "dark-port",
-      "notes": "candidate Kanto Dark Cave mouth",
+      "notes": "North segment; north exit and Rock Tunnel cave link.",
+      "asset": "R10.png",
+      "required_status": "library",
+      "required": false,
+      "dimensions": [
+        88,
+        168
+      ],
+      "asset_available": true
+    },
+    {
+      "id": "R10_SOUTH",
+      "name": "Route 10 South",
+      "region": "Kanto",
+      "generation": 1,
+      "kind": "route",
+      "ports": {
+        "S": "mixed"
+      },
+      "special_ports": [
+        {
+          "id": "ROCK",
+          "label": "Rock Tunnel",
+          "type": "cave",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
+      "shape": "vertical",
+      "traversal": "mixed",
+      "theme": "river canyon; Rock Tunnel",
+      "status": "dark-port",
+      "notes": "South segment; Rock Tunnel cave link and south exit.",
       "asset": "R10.png",
       "required_status": "library",
       "required": false,
@@ -564,7 +705,16 @@
         "E": "land",
         "W": "land"
       },
-      "special_ports": [],
+      "special_ports": [
+        {
+          "id": "DIGLETT",
+          "label": "Diglett's Cave",
+          "type": "cave",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 4,
+      "topology_class": "hub",
       "shape": "3-way",
       "traversal": "land",
       "theme": "grassland gate route; Diglett's Cave",
@@ -591,6 +741,8 @@
         "S": "mixed"
       },
       "special_ports": [],
+      "regional_port_count": 3,
+      "topology_class": "junction",
       "shape": "3-way",
       "traversal": "mixed",
       "theme": "bridge/coast/fishing corridor",
@@ -616,6 +768,8 @@
         "W": "land"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "horizontal",
       "traversal": "land",
       "theme": "fence maze and coastal grass",
@@ -641,6 +795,8 @@
         "S": "land"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "vertical",
       "traversal": "land",
       "theme": "narrow fenced north-south route",
@@ -662,10 +818,18 @@
       "generation": 1,
       "kind": "route",
       "ports": {
-        "E": "land",
-        "W": "land"
+        "E": "land"
       },
-      "special_ports": [],
+      "special_ports": [
+        {
+          "id": "R15_WEST_GATE",
+          "label": "Route 15 West Gate",
+          "type": "gate",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "horizontal",
       "traversal": "land",
       "theme": "broad fenced grassland",
@@ -691,6 +855,8 @@
         "W": "land"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "horizontal",
       "traversal": "land",
       "theme": "Cycling Road gateway; overlook",
@@ -716,6 +882,8 @@
         "S": "land"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "vertical",
       "traversal": "land",
       "theme": "long Cycling Road descent",
@@ -741,6 +909,8 @@
         "W": "land"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "horizontal",
       "traversal": "land",
       "theme": "short Cycling Road exit",
@@ -762,10 +932,18 @@
       "generation": 1,
       "kind": "route",
       "ports": {
-        "N": "mixed",
         "S": "mixed"
       },
-      "special_ports": [],
+      "special_ports": [
+        {
+          "id": "R19_NORTH_GATE",
+          "label": "Route 19 North Gate",
+          "type": "gate",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "vertical",
       "traversal": "mixed",
       "theme": "beach-to-ocean transition",
@@ -790,7 +968,22 @@
         "E": "water",
         "W": "water"
       },
-      "special_ports": [],
+      "special_ports": [
+        {
+          "id": "SEAFOAM_1",
+          "label": "Seafoam Islands Entrance 1",
+          "type": "cave",
+          "regional": true
+        },
+        {
+          "id": "SEAFOAM_2",
+          "label": "Seafoam Islands Entrance 2",
+          "type": "cave",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 4,
+      "topology_class": "hub",
       "shape": "horizontal",
       "traversal": "water",
       "theme": "open sea; Seafoam corridor",
@@ -816,6 +1009,8 @@
         "S": "water"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "vertical",
       "traversal": "water",
       "theme": "Pallet-Cinnabar coastal water",
@@ -841,6 +1036,8 @@
         "W": "land"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "horizontal",
       "traversal": "land",
       "theme": "western meadow; rival/League gate",
@@ -866,6 +1063,8 @@
         "S": "land"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "vertical",
       "traversal": "land",
       "theme": "badge-gate League approach",
@@ -890,7 +1089,16 @@
         "N": "mixed",
         "S": "mixed"
       },
-      "special_ports": [],
+      "special_ports": [
+        {
+          "id": "CERULEAN_CAVE",
+          "label": "Cerulean Cave",
+          "type": "cave",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 3,
+      "topology_class": "junction",
       "shape": "vertical",
       "traversal": "mixed",
       "theme": "Nugget Bridge; river and trainers",
@@ -922,6 +1130,8 @@
           "type": "warp"
         }
       ],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "horizontal",
       "traversal": "land",
       "theme": "cape road; trainer gauntlet",
@@ -947,6 +1157,8 @@
         "S": "land"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "vertical",
       "traversal": "land",
       "theme": "wooded late-game mountain road",
@@ -972,6 +1184,8 @@
         "W": "mixed"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "horizontal",
       "traversal": "mixed",
       "theme": "Tohjo Falls river/coast transition",
@@ -997,6 +1211,8 @@
         "W": "land"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "horizontal",
       "traversal": "land",
       "theme": "mountain meadow; Mt. Silver approach",
@@ -1023,6 +1239,8 @@
         "W": "land"
       },
       "special_ports": [],
+      "regional_port_count": 3,
+      "topology_class": "junction",
       "shape": "3-way",
       "traversal": "land",
       "theme": "starter grassland; ledges and branching",
@@ -1048,6 +1266,8 @@
         "S": "land"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "vertical",
       "traversal": "land",
       "theme": "wooded stream; berry houses",
@@ -1074,11 +1294,14 @@
       },
       "special_ports": [
         {
-          "id": "C",
-          "label": "C",
-          "type": "cave"
+          "id": "DARK",
+          "label": "Dark Cave",
+          "type": "cave",
+          "regional": true
         }
       ],
+      "regional_port_count": 3,
+      "topology_class": "junction",
       "shape": "elbow",
       "traversal": "land",
       "theme": "grassland junction; cave mouth",
@@ -1104,7 +1327,16 @@
         "E": "mixed",
         "S": "mixed"
       },
-      "special_ports": [],
+      "special_ports": [
+        {
+          "id": "UNION",
+          "label": "Union Cave",
+          "type": "cave",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 4,
+      "topology_class": "hub",
       "shape": "3-way",
       "traversal": "mixed",
       "theme": "long coastal road; fishing; ruins/cave approaches",
@@ -1126,13 +1358,21 @@
       "generation": 2,
       "kind": "route",
       "ports": {
-        "E": "land",
         "W": "land"
       },
-      "special_ports": [],
+      "special_ports": [
+        {
+          "id": "UNION",
+          "label": "Union Cave",
+          "type": "cave",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "horizontal",
       "traversal": "land",
-      "theme": "short rainy valley; cave exit",
+      "theme": "short rainy valley; Union Cave exit",
       "status": "filler",
       "notes": "",
       "asset": "R33.png",
@@ -1155,6 +1395,8 @@
         "S": "land"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "vertical",
       "traversal": "land",
       "theme": "open grassland; daycare",
@@ -1175,11 +1417,23 @@
       "region": "Johto",
       "generation": 2,
       "kind": "route",
-      "ports": {
-        "N": "land",
-        "S": "land"
-      },
-      "special_ports": [],
+      "ports": {},
+      "special_ports": [
+        {
+          "id": "GOLDENROD",
+          "label": "Goldenrod Gate",
+          "type": "gate",
+          "regional": true
+        },
+        {
+          "id": "PARK",
+          "label": "National Park Gate",
+          "type": "gate",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "vertical",
       "traversal": "land",
       "theme": "city fringe; National Park gate",
@@ -1203,10 +1457,18 @@
       "ports": {
         "N": "land",
         "E": "land",
-        "S": "land",
-        "W": "land"
+        "S": "land"
       },
-      "special_ports": [],
+      "special_ports": [
+        {
+          "id": "PARK",
+          "label": "National Park Gate",
+          "type": "gate",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 4,
+      "topology_class": "hub",
       "shape": "4-way",
       "traversal": "land",
       "theme": "four-way wooded junction; ruins/Sudowoodo",
@@ -1232,6 +1494,8 @@
         "S": "land"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "vertical",
       "traversal": "land",
       "theme": "short wooded apricorn route",
@@ -1257,6 +1521,8 @@
         "W": "land"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "horizontal",
       "traversal": "land",
       "theme": "farm meadow and gentle rolling road",
@@ -1282,6 +1548,8 @@
         "S": "land"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "vertical",
       "traversal": "land",
       "theme": "ranch/coastal approach",
@@ -1307,6 +1575,8 @@
         "S": "water"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "vertical",
       "traversal": "water",
       "theme": "open sea south of Olivine",
@@ -1338,6 +1608,8 @@
           "type": "warp"
         }
       ],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "horizontal",
       "traversal": "water",
       "theme": "whirlpool ocean; island maze",
@@ -1365,11 +1637,26 @@
       },
       "special_ports": [
         {
-          "id": "C",
-          "label": "C",
-          "type": "cave"
+          "id": "MORTAR_W",
+          "label": "Mt. Mortar West",
+          "type": "cave",
+          "regional": true
+        },
+        {
+          "id": "MORTAR_E",
+          "label": "Mt. Mortar East",
+          "type": "cave",
+          "regional": true
+        },
+        {
+          "id": "MORTAR_C",
+          "label": "Mt. Mortar Center",
+          "type": "cave",
+          "regional": true
         }
       ],
+      "regional_port_count": 6,
+      "topology_class": "hub",
       "shape": "3-way",
       "traversal": "mixed",
       "theme": "mountain lakes; Mt. Mortar mouths",
@@ -1395,6 +1682,8 @@
         "S": "land"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "vertical",
       "traversal": "land",
       "theme": "lake road; checkpoint/toll identity",
@@ -1416,10 +1705,18 @@
       "generation": 2,
       "kind": "route",
       "ports": {
-        "E": "mixed",
         "W": "mixed"
       },
-      "special_ports": [],
+      "special_ports": [
+        {
+          "id": "ICE_PATH",
+          "label": "Ice Path",
+          "type": "cave",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "horizontal",
       "traversal": "mixed",
       "theme": "ponds and Ice Path approach",
@@ -1444,7 +1741,16 @@
         "N": "land",
         "S": "land"
       },
-      "special_ports": [],
+      "special_ports": [
+        {
+          "id": "DARK",
+          "label": "Dark Cave",
+          "type": "cave",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 3,
+      "topology_class": "junction",
       "shape": "vertical",
       "traversal": "land",
       "theme": "steep mountain ledges; downhill route",
@@ -1469,7 +1775,16 @@
         "N": "land",
         "S": "land"
       },
-      "special_ports": [],
+      "special_ports": [
+        {
+          "id": "DARK",
+          "label": "Dark Cave",
+          "type": "cave",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 3,
+      "topology_class": "junction",
       "shape": "vertical",
       "traversal": "land",
       "theme": "foothills and one-way ledges",
@@ -1495,6 +1810,8 @@
         "S": "land"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "vertical",
       "traversal": "land",
       "theme": "starter woodland and simple grass",
@@ -1520,6 +1837,8 @@
         "W": "land"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "horizontal",
       "traversal": "land",
       "theme": "farm route; pond and early grass",
@@ -1545,6 +1864,8 @@
         "S": "mixed"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "elbow",
       "traversal": "mixed",
       "theme": "coastal/river elbow; early rival route",
@@ -1560,22 +1881,51 @@
       "asset_available": true
     },
     {
-      "id": "R104",
-      "name": "Route 104",
+      "id": "R104_TOP",
+      "name": "Route 104 Top",
       "region": "Hoenn",
       "generation": 3,
       "kind": "route",
       "ports": {
-        "N": "mixed",
-        "E": "mixed",
-        "S": "mixed"
+        "N": "land",
+        "S": "land"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
+      "shape": "vertical",
+      "traversal": "mixed",
+      "theme": "forest-edge route",
+      "status": "story-adapter",
+      "notes": "Top segment; north and south land exits.",
+      "asset": "R104.png",
+      "required_status": "library",
+      "required": false,
+      "dimensions": [
+        88,
+        168
+      ],
+      "asset_available": true
+    },
+    {
+      "id": "R104_BOTTOM",
+      "name": "Route 104 Bottom",
+      "region": "Hoenn",
+      "generation": 3,
+      "kind": "route",
+      "ports": {
+        "N": "land",
+        "E": "land",
+        "S": "water"
+      },
+      "special_ports": [],
+      "regional_port_count": 3,
+      "topology_class": "junction",
       "shape": "3-way",
       "traversal": "mixed",
-      "theme": "beach + forest-edge transition",
+      "theme": "beach and forest-edge adapter",
       "status": "story-adapter",
-      "notes": "excellent land-to-water adapter",
+      "notes": "Bottom segment; north and east land exits with a south water exit.",
       "asset": "R104.png",
       "required_status": "library",
       "required": false,
@@ -1596,6 +1946,8 @@
         "S": "water"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "vertical",
       "traversal": "water",
       "theme": "coastal channels and small islands",
@@ -1620,7 +1972,16 @@
         "N": "water",
         "S": "water"
       },
-      "special_ports": [],
+      "special_ports": [
+        {
+          "id": "GRANITE",
+          "label": "Granite Cave",
+          "type": "cave",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 3,
+      "topology_class": "junction",
       "shape": "vertical",
       "traversal": "water",
       "theme": "island coast; Granite Cave access",
@@ -1646,6 +2007,8 @@
         "W": "water"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "horizontal",
       "traversal": "water",
       "theme": "open sea",
@@ -1671,6 +2034,8 @@
         "W": "water"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "horizontal",
       "traversal": "water",
       "theme": "open sea; Abandoned Ship",
@@ -1696,6 +2061,8 @@
         "W": "mixed"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "elbow",
       "traversal": "mixed",
       "theme": "beach resort coast",
@@ -1718,7 +2085,7 @@
       "kind": "route",
       "ports": {
         "N": "mixed",
-        "E": "mixed",
+        "W": "mixed",
         "S": "mixed"
       },
       "special_ports": [
@@ -1728,6 +2095,8 @@
           "type": "warp"
         }
       ],
+      "regional_port_count": 3,
+      "topology_class": "junction",
       "shape": "3-way",
       "traversal": "mixed",
       "theme": "cycling road; river; urban corridor",
@@ -1754,6 +2123,8 @@
         "S": "land"
       },
       "special_ports": [],
+      "regional_port_count": 3,
+      "topology_class": "junction",
       "shape": "3-way",
       "traversal": "land",
       "theme": "desert-edge highway; rocky junction",
@@ -1778,7 +2149,22 @@
         "E": "land",
         "W": "land"
       },
-      "special_ports": [],
+      "special_ports": [
+        {
+          "id": "FIERY_W",
+          "label": "Fiery Path West",
+          "type": "cave",
+          "regional": true
+        },
+        {
+          "id": "FIERY_E",
+          "label": "Fiery Path East",
+          "type": "cave",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 4,
+      "topology_class": "hub",
       "shape": "horizontal",
       "traversal": "land",
       "theme": "volcanic foothills; Fiery Path/Jagged Pass",
@@ -1804,6 +2190,8 @@
         "W": "land"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "horizontal",
       "traversal": "land",
       "theme": "ash-covered fields; distinctive visual biome",
@@ -1829,6 +2217,8 @@
         "S": "mixed"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "elbow",
       "traversal": "mixed",
       "theme": "river/falls/mountain meadow",
@@ -1853,7 +2243,16 @@
         "N": "mixed",
         "S": "mixed"
       },
-      "special_ports": [],
+      "special_ports": [
+        {
+          "id": "METEOR",
+          "label": "Meteor Falls",
+          "type": "cave",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 3,
+      "topology_class": "junction",
       "shape": "vertical",
       "traversal": "mixed",
       "theme": "beach cliffs; Meteor Falls mouth",
@@ -1880,11 +2279,14 @@
       },
       "special_ports": [
         {
-          "id": "C",
-          "label": "C",
-          "type": "cave"
+          "id": "RUSTURF",
+          "label": "Rusturf Tunnel",
+          "type": "cave",
+          "regional": true
         }
       ],
+      "regional_port_count": 3,
+      "topology_class": "junction",
       "shape": "horizontal",
       "traversal": "land",
       "theme": "rocky grass; Rusturf Tunnel mouth",
@@ -1910,6 +2312,8 @@
         "W": "land"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "horizontal",
       "traversal": "land",
       "theme": "flower meadow; daycare",
@@ -1936,6 +2340,8 @@
         "W": "mixed"
       },
       "special_ports": [],
+      "regional_port_count": 3,
+      "topology_class": "junction",
       "shape": "3-way",
       "traversal": "mixed",
       "theme": "river crossing; strong 3-way junction",
@@ -1957,7 +2363,7 @@
       "generation": 3,
       "kind": "route",
       "ports": {
-        "N": "mixed",
+        "E": "mixed",
         "S": "mixed"
       },
       "special_ports": [
@@ -1967,7 +2373,9 @@
           "type": "warp"
         }
       ],
-      "shape": "vertical",
+      "regional_port_count": 2,
+      "topology_class": "corridor",
+      "shape": "elbow",
       "traversal": "mixed",
       "theme": "rain; tall grass; river; Weather Institute",
       "status": "story",
@@ -1976,8 +2384,8 @@
       "required_status": "required",
       "required": true,
       "dimensions": [
-        88,
-        168
+        126,
+        126
       ],
       "asset_available": true
     },
@@ -1991,7 +2399,16 @@
         "N": "mixed",
         "S": "mixed"
       },
-      "special_ports": [],
+      "special_ports": [
+        {
+          "id": "SCORCHED",
+          "label": "Scorched Slab",
+          "type": "cave",
+          "regional": true
+        }
+      ],
+      "regional_port_count": 3,
+      "topology_class": "junction",
       "shape": "vertical",
       "traversal": "mixed",
       "theme": "rainforest bridges; Scorched Slab",
@@ -2018,6 +2435,8 @@
         "S": "mixed"
       },
       "special_ports": [],
+      "regional_port_count": 3,
+      "topology_class": "junction",
       "shape": "3-way",
       "traversal": "mixed",
       "theme": "Safari grassland; coast junction",
@@ -2043,6 +2462,8 @@
         "S": "water"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "vertical",
       "traversal": "water",
       "theme": "river around Mt. Pyre",
@@ -2068,6 +2489,8 @@
         "W": "land"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "elbow",
       "traversal": "land",
       "theme": "berry route; ledges and farmland",
@@ -2094,6 +2517,8 @@
         "S": "water"
       },
       "special_ports": [],
+      "regional_port_count": 3,
+      "topology_class": "junction",
       "shape": "3-way",
       "traversal": "water",
       "theme": "open ocean; reefs and Dive",
@@ -2120,11 +2545,14 @@
       },
       "special_ports": [
         {
-          "id": "C",
-          "label": "C",
-          "type": "cave"
+          "id": "SHOAL",
+          "label": "Shoal Cave",
+          "type": "cave",
+          "regional": true
         }
       ],
+      "regional_port_count": 3,
+      "topology_class": "junction",
       "shape": "vertical",
       "traversal": "water",
       "theme": "cold ocean; Shoal Cave",
@@ -2150,6 +2578,8 @@
         "E": "water"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "elbow",
       "traversal": "water",
       "theme": "circular ocean; Dive; Sootopolis basin",
@@ -2176,6 +2606,8 @@
         "S": "water"
       },
       "special_ports": [],
+      "regional_port_count": 3,
+      "topology_class": "junction",
       "shape": "3-way",
       "traversal": "water",
       "theme": "open ocean; Dive; 3-way sea junction",
@@ -2202,6 +2634,8 @@
         "S": "water"
       },
       "special_ports": [],
+      "regional_port_count": 3,
+      "topology_class": "junction",
       "shape": "3-way",
       "traversal": "water",
       "theme": "open ocean; Seafloor Cavern/League side",
@@ -2227,6 +2661,8 @@
         "W": "water"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "elbow",
       "traversal": "water",
       "theme": "wide open ocean",
@@ -2252,6 +2688,8 @@
         "W": "water"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "horizontal",
       "traversal": "water",
       "theme": "open ocean; Mirage Island",
@@ -2277,6 +2715,8 @@
         "W": "water"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "horizontal",
       "traversal": "water",
       "theme": "open ocean; Sky Pillar",
@@ -2302,6 +2742,8 @@
         "W": "water"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "horizontal",
       "traversal": "water",
       "theme": "westbound current route",
@@ -2327,6 +2769,8 @@
         "W": "water"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "horizontal",
       "traversal": "water",
       "theme": "westbound current route",
@@ -2352,6 +2796,8 @@
         "W": "water"
       },
       "special_ports": [],
+      "regional_port_count": 2,
+      "topology_class": "corridor",
       "shape": "horizontal",
       "traversal": "water",
       "theme": "westbound current route; Sealed Chamber",
@@ -2375,13 +2821,13 @@
       "kind": "dungeon",
       "subtype": "forest",
       "ports": {
-        "N": "forest",
-        "E": "forest"
+        "N": "gate",
+        "E": "gate"
       },
       "asset": "ILEX.png",
       "required": true,
       "story_order": 3,
-      "notes": "Mandatory pre-Roxanne exploration.",
+      "notes": "Mandatory pre-Roxanne exploration. North gate returns to Route 2 north after the Ilex objective; the native east-facing lower exit joins Route 2 south through its south gatehouse. Replaces Viridian Forest; no Route 31 or Route 104 Top link.",
       "asset_available": true,
       "dimensions": [
         126,
@@ -2625,12 +3071,14 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "warp",
+          "regional": false
         },
         {
           "id": "P2",
           "label": "Entrance 2",
-          "type": "warp"
+          "type": "warp",
+          "regional": false
         }
       ],
       "asset": "VIRIDIAN_FOREST.png",
@@ -2654,12 +3102,14 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         },
         {
           "id": "P2",
           "label": "Entrance 2",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         }
       ],
       "asset": "DIGLETTS_CAVE.png",
@@ -2683,12 +3133,14 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         },
         {
           "id": "P2",
           "label": "Entrance 2",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         }
       ],
       "asset": "ROCK_TUNNEL.png",
@@ -2696,6 +3148,37 @@
       "entrance_count": 2,
       "notes": "Reusable Gen I-III location. Entrance count is a topology aid; verify exact source-map warp geometry before implementation.",
       "asset_available": true,
+      "dimensions": [
+        126,
+        112
+      ]
+    },
+    {
+      "id": "UNDERGROUND",
+      "name": "Underground Path",
+      "region": "Kanto",
+      "kind": "dungeon",
+      "subtype": "cave",
+      "ports": {},
+      "special_ports": [
+        {
+          "id": "P1",
+          "label": "Entrance 1",
+          "type": "cave",
+          "regional": true
+        },
+        {
+          "id": "P2",
+          "label": "Entrance 2",
+          "type": "cave",
+          "regional": true
+        }
+      ],
+      "asset": "UNDERGROUND.png",
+      "required": false,
+      "entrance_count": 2,
+      "notes": "Reusable Gen I-III location. Entrance count is a topology aid; verify exact source-map warp geometry before implementation.",
+      "asset_available": false,
       "dimensions": [
         126,
         112
@@ -2712,7 +3195,8 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "warp",
+          "regional": false
         }
       ],
       "asset": "POWER_PLANT.png",
@@ -2736,12 +3220,14 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         },
         {
           "id": "P2",
           "label": "Entrance 2",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         }
       ],
       "asset": "SEAFOAM.png",
@@ -2765,7 +3251,8 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "warp",
+          "regional": false
         }
       ],
       "asset": "SAFARI_ZONE.png",
@@ -2789,7 +3276,8 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         }
       ],
       "asset": "CERULEAN_CAVE.png",
@@ -2813,12 +3301,14 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         },
         {
           "id": "P2",
           "label": "Entrance 2",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         }
       ],
       "asset": "VR.png",
@@ -2842,17 +3332,20 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         },
         {
           "id": "P2",
           "label": "Entrance 2",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         },
         {
           "id": "P3",
           "label": "Entrance 3",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         }
       ],
       "asset": "DARK.png",
@@ -2876,17 +3369,20 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         },
         {
           "id": "P2",
           "label": "Entrance 2",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         },
         {
           "id": "P3",
           "label": "Entrance 3",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         }
       ],
       "asset": "UNION.png",
@@ -2910,7 +3406,8 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         }
       ],
       "asset": "WELL.png",
@@ -2934,7 +3431,8 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "warp",
+          "regional": false
         }
       ],
       "asset": "SPROUT_TOWER.png",
@@ -2958,22 +3456,26 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "warp",
+          "regional": false
         },
         {
           "id": "P2",
           "label": "Entrance 2",
-          "type": "warp"
+          "type": "warp",
+          "regional": false
         },
         {
           "id": "P3",
           "label": "Entrance 3",
-          "type": "warp"
+          "type": "warp",
+          "regional": false
         },
         {
           "id": "P4",
           "label": "Entrance 4",
-          "type": "warp"
+          "type": "warp",
+          "regional": false
         }
       ],
       "asset": "RUINS_ALPH.png",
@@ -2997,7 +3499,8 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "warp",
+          "regional": false
         }
       ],
       "asset": "LIGHTHOUSE.png",
@@ -3021,17 +3524,20 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         },
         {
           "id": "P2",
           "label": "Entrance 2",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         },
         {
           "id": "P3",
           "label": "Entrance 3",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         }
       ],
       "asset": "MT_MORTAR.png",
@@ -3055,12 +3561,14 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "warp",
+          "regional": false
         },
         {
           "id": "P2",
           "label": "Entrance 2",
-          "type": "warp"
+          "type": "warp",
+          "regional": false
         }
       ],
       "asset": "LAKE_RAGE.png",
@@ -3084,7 +3592,8 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "warp",
+          "regional": false
         }
       ],
       "asset": "BELL_TOWER.png",
@@ -3108,7 +3617,8 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         }
       ],
       "asset": "DRAGONS_DEN.png",
@@ -3132,12 +3642,14 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         },
         {
           "id": "P2",
           "label": "Entrance 2",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         }
       ],
       "asset": "TOHJO_FALLS.png",
@@ -3161,7 +3673,8 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         }
       ],
       "asset": "MT_SILVER.png",
@@ -3185,12 +3698,14 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "warp",
+          "regional": false
         },
         {
           "id": "P2",
           "label": "Entrance 2",
-          "type": "warp"
+          "type": "warp",
+          "regional": false
         }
       ],
       "asset": "PETALBURG_WOODS.png",
@@ -3214,12 +3729,14 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         },
         {
           "id": "P2",
           "label": "Entrance 2",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         }
       ],
       "asset": "RUSTURF.png",
@@ -3243,7 +3760,8 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         }
       ],
       "asset": "GRANITE.png",
@@ -3267,12 +3785,14 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         },
         {
           "id": "P2",
           "label": "Entrance 2",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         }
       ],
       "asset": "FIERY_PATH.png",
@@ -3296,17 +3816,20 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         },
         {
           "id": "P2",
           "label": "Entrance 2",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         },
         {
           "id": "P3",
           "label": "Entrance 3",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         }
       ],
       "asset": "METEOR_FALLS.png",
@@ -3330,12 +3853,14 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "warp",
+          "regional": false
         },
         {
           "id": "P2",
           "label": "Entrance 2",
-          "type": "warp"
+          "type": "warp",
+          "regional": false
         }
       ],
       "asset": "JAGGED_PASS.png",
@@ -3359,7 +3884,8 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "warp",
+          "regional": false
         }
       ],
       "asset": "NM.png",
@@ -3383,7 +3909,8 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "warp",
+          "regional": false
         }
       ],
       "asset": "ABANDONED_SHIP.png",
@@ -3407,7 +3934,8 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "warp",
+          "regional": false
         }
       ],
       "asset": "MT_PYRE.png",
@@ -3431,7 +3959,8 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         }
       ],
       "asset": "SHOAL.png",
@@ -3455,7 +3984,8 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         }
       ],
       "asset": "SEAFLOOR.png",
@@ -3479,7 +4009,8 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         }
       ],
       "asset": "CAVE_ORIGIN.png",
@@ -3503,7 +4034,8 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "warp",
+          "regional": false
         }
       ],
       "asset": "SKY_PILLAR.png",
@@ -3527,12 +4059,14 @@
         {
           "id": "P1",
           "label": "Entrance 1",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         },
         {
           "id": "P2",
           "label": "Entrance 2",
-          "type": "warp"
+          "type": "cave",
+          "regional": true
         }
       ],
       "asset": "VR.png",
@@ -3548,6 +4082,7 @@
   ],
   "story_required_route_ids": [
     "R119",
+    "R2",
     "R35",
     "R36",
     "R37",

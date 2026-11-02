@@ -62,7 +62,9 @@ the conservative full-regeneration route (`rm -f .map_version` followed by
 the normal build).
 
 Run the authoritative headless mGBA verifier with the local mGBA Python
-environment:
+environment. The compatibility fixture initializes a deterministic new game;
+it does not wait at or drive the playable title screen. See `TESTING.md` before
+authoring new tests, especially tests that can start directly on another map:
 
 ```sh
 LD_LIBRARY_PATH="$HOME/.venvs/mgba311/lib:$HOME/.venvs/mgba311/lib64" \
@@ -121,7 +123,9 @@ generated encounter header.
 - The normal connection margin cannot render a neighbor's metatile IDs when
   the maps use different tilesets. `fieldmap.c` detects incompatible
   `isFrlg`/primary/secondary tileset combinations and fills the camera margin
-  from the current map edge instead of copying foreign metatiles.
+  from walkable current-map edge blocks and the current layout's phased border
+  pattern for blocked terrain instead of copying foreign metatiles. Repeating
+  one blocked edge row would stretch partial trees through the margin.
 
 ### Cross-primary camera transition fix
 
@@ -134,6 +138,14 @@ data or stale graphics from being reused after the cross-generation transition
 without the entirely white frame produced by synchronous forced blank. The
 headless verifier checks every frame of both Pallet/Route 101 crossing
 directions for that regression.
+
+The destination full redraw is requested in `CameraMove` and consumed after
+`AddCameraTileOffset` in the camera update. Drawing before that offset advances
+shifts the circular BG view one metatile and makes buildings appear duplicated
+as subsequent scrolling replaces rows. `plastic_ox/demo/test_camera_seam.py`
+checks both crossing directions, the Pallet forest border and open entrance,
+and the maintained scrolling BG buffers against a stationary full redraw.
+Run it in the mGBA Python environment against the primary story ROM.
 
 ### Route 101 ledge mechanics
 

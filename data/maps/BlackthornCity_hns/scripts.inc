@@ -1,4 +1,5 @@
 BlackthornCity_hns_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_BlackthornCity_hns
 	.byte 0
 
 BlackthornCity_EventScript_Npc1::
@@ -44,23 +45,19 @@ BlackthornCity_EventScript_Npc6::
 	end
 
 BlackthornCity_EventScript_Npc1_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Dragon training takes patience.\nPower alone is not enough.$"
 
 BlackthornCity_EventScript_Npc2_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The mountain air makes every\nmorning feel sharp and clear.$"
 
 BlackthornCity_EventScript_Npc3_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Dragon training takes patience.\nPower alone is not enough.$"
 
 BlackthornCity_EventScript_Npc4_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The mountain air makes every\nmorning feel sharp and clear.$"
 
 BlackthornCity_EventScript_Npc5_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Dragon training takes patience.\nPower alone is not enough.$"
 
 BlackthornCity_EventScript_Npc6_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
-BlackthornCity_EventScript_P42_22::
-	warp MAP_INDIGO_PLATEAU_HNS, 11, 13
-	waitstate
-	end
+	.string "The mountain air makes every\nmorning feel sharp and clear.$"

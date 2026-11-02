@@ -15,6 +15,7 @@
 #include "ow_abilities.h"
 #include "pokeblock.h"
 #include "pokemon.h"
+#include "party_menu.h"
 #include "random.h"
 #include "roamer.h"
 #include "safari_zone.h"
@@ -31,6 +32,8 @@
 #include "constants/layouts.h"
 #include "constants/weather.h"
 #include "plastic_ox.h"
+#include "plastic_ox_contest.h"
+#include "constants/moves.h"
 
 extern const u8 EventScript_SprayWoreOff[];
 
@@ -50,6 +53,17 @@ static void FeebasSeedRng(u16 seed);
 static void ApplyFluteEncounterRateMod(u32 *encRate);
 static void ApplyCleanseTagEncounterRateMod(u32 *encRate);
 static u8 GetMaxLevelOfSpeciesInWildTable(const struct WildPokemon *wildMon, enum Species species, enum WildPokemonArea area);
+static u32 ChooseWeightedWildMonIndex(const struct WildPokemonInfo *info);
+
+static const struct WildPokemonInfo *GetCurrentWeightedLandTable(void)
+{
+    u32 header = GetCurrentMapWildMonHeaderId();
+    const struct WildPokemonInfo *info;
+    if (header == HEADER_NONE)
+        return NULL;
+    info = gWildMonHeaders[header].encounterTypes[GetTimeOfDayForEncounters(header, WILD_AREA_LAND)].landMonsInfo;
+    return info != NULL && info->weights != NULL ? info : NULL;
+}
 #ifdef BUGFIX
 static bool8 TryGetAbilityInfluencedWildMonIndex(const struct WildPokemon *wildMon, enum Type type, enum Ability ability, u8 *monIndex, u32 size);
 #else
@@ -63,6 +77,7 @@ EWRAM_DATA bool8 gIsSurfingEncounter = 0;
 EWRAM_DATA u8 gChainFishingDexNavStreak = 0;
 
 #include "data/wild_encounters.h"
+#include "data/plastic_ox_pu_encounters.h"
 
 const struct WildPokemon gWildFeebas = {20, 25, SPECIES_FEEBAS};
 
@@ -182,6 +197,10 @@ u32 ChooseWildMonIndex_Land(void)
     u8 wildMonIndex = 0;
     bool8 swap = FALSE;
     u8 rand = Random() % ENCOUNTER_CHANCE_LAND_MONS_TOTAL;
+    const struct WildPokemonInfo *weighted = GetCurrentWeightedLandTable();
+
+    if (weighted != NULL)
+        return ChooseWeightedWildMonIndex(weighted);
 
     if (rand < ENCOUNTER_CHANCE_LAND_MONS_SLOT_0)
         wildMonIndex = 0;
@@ -222,6 +241,10 @@ u32 ChooseWildMonIndex_Land(void)
 u8 GetLandEncounterSlotForMatchCall(void)
 {
     int rand = Random() % ENCOUNTER_CHANCE_LAND_MONS_TOTAL;
+    const struct WildPokemonInfo *weighted = GetCurrentWeightedLandTable();
+
+    if (weighted != NULL)
+        return ChooseWeightedWildMonIndex(weighted);
 
     if (rand < ENCOUNTER_CHANCE_LAND_MONS_SLOT_0)
         return 0;
@@ -426,6 +449,13 @@ u8 ChooseWildMonLevel(const struct WildPokemon *wildPokemon, u8 wildMonIndex, en
 u16 GetCurrentMapWildMonHeaderId(void)
 {
     u16 i;
+    // Route 2 is one physical map split by Ilex Forest. Its south section
+    // begins at the southern gate, while the north section occupies the
+    // remainder of the map. The encounter data contains two consecutive
+    // MAP_ROUTE2 headers, south first and north second.
+    u8 route2HeadersToSkip = (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_ROUTE2)
+                           && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ROUTE2)
+                           && gSaveBlock1Ptr->pos.y < 51);
 
     for (i = 0; ; i++)
     {
@@ -436,6 +466,11 @@ u16 GetCurrentMapWildMonHeaderId(void)
         if (gWildMonHeaders[i].mapGroup == gSaveBlock1Ptr->location.mapGroup &&
             gWildMonHeaders[i].mapNum == gSaveBlock1Ptr->location.mapNum)
         {
+            if (route2HeadersToSkip != 0)
+            {
+                route2HeadersToSkip--;
+                continue;
+            }
             if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_ALTERING_CAVE) &&
                 gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_ALTERING_CAVE))
             {
@@ -519,8 +554,125 @@ void CreateWildMon(enum Species species, u8 level)
 {
     ZeroEnemyPartyMons();
     u32 personality = GetMonPersonality(species, GetSynchronizedGender(WILDMON_ORIGIN, species), PickWildMonNature(species), RANDOM_UNOWN_LETTER);
-    CreateMonWithIVs(&gParties[B_TRAINER_OPPONENT_A][0], species, level, personality, OTID_STRUCT_PLAYER_ID, USE_RANDOM_IVS);
+    // Perfect IVs are a creation default, so later Training Kit edits persist.
+    CreateMonWithIVs(&gParties[B_TRAINER_OPPONENT_A][0], species, level, personality, OTID_STRUCT_PLAYER_ID, MAX_PER_STAT_IVS);
     GiveMonInitialMoveset(&gParties[B_TRAINER_OPPONENT_A][0]);
+}
+
+// Rejection sampling keeps authored percentages exact, without modulo bias.
+static u32 ChooseWeightedWildMonIndex(const struct WildPokemonInfo *info)
+{
+    u32 roll, i;
+    do
+    {
+        roll = Random();
+    } while (roll >= 65500);
+    roll %= 100;
+    for (i = 0; i < info->monCount; i++)
+    {
+        if (roll < info->weights[i])
+            return i;
+        roll -= info->weights[i];
+    }
+    return 0; // Generated tables are required to total 100.
+}
+
+static bool8 GenerateWeightedWildMon(const struct WildPokemonInfo *info, u8 flags)
+{
+    u32 index = ChooseWeightedWildMonIndex(info);
+    const struct WildPokemon *mon = &info->wildPokemon[index];
+    u32 level = mon->minLevel + Random() % (mon->maxLevel - mon->minLevel + 1);
+    if ((flags & WILD_CHECK_REPEL) && !IsWildLevelAllowedByRepel(level))
+        return FALSE;
+    if ((flags & WILD_CHECK_KEEN_EYE) && !IsAbilityAllowingEncounter(level))
+        return FALSE;
+    CreateWildMon(mon->species, level);
+    return TRUE;
+}
+
+// Only layouts that actually carry a PlasticOx_EventScript_HeadbuttTree object
+// have a live table here. Route 29, Route 46, Route 44, Route 24 and Route 25
+// had tables but no tree, so they were unreachable and have been removed; their
+// species are still obtainable elsewhere (see the follow-up report).
+static const struct WildPokemonInfo *GetHeadbuttTable(void)
+{
+    bool32 night = GetTimeOfDay() == TIME_NIGHT;
+    switch (gMapHeader.mapLayoutId)
+    {
+    case LAYOUT_ILEX_FOREST_HNS:
+        return night ? &sPoxIlexHeadbuttNight : &sPoxIlexHeadbuttDay;
+    case LAYOUT_ROUTE33_HNS:
+        return night ? &sPoxRoute33HeadbuttNight : &sPoxRoute33HeadbuttDay;
+    case LAYOUT_ROUTE35_HNS:
+        return night ? &sPoxRoute35HeadbuttNight : &sPoxRoute35HeadbuttDay;
+    case LAYOUT_NATIONAL_PARK_NORMAL_HNS:
+        return night ? &sPoxParkHeadbuttNight : &sPoxParkHeadbuttDay;
+    case LAYOUT_ROUTE36_HNS:
+        return night ? &sPoxRoute36HeadbuttNight : &sPoxRoute36HeadbuttDay;
+    case LAYOUT_ROUTE37_HNS:
+        return night ? &sPoxRoute37HeadbuttNight : &sPoxRoute37HeadbuttDay;
+    default:
+        return NULL;
+    }
+}
+
+void PlasticOx_CheckHeadbutt(void)
+{
+    u32 i;
+
+    gSpecialVar_Result = CheckBagHasItem(ITEM_HEADBUTT_KEY, 1);
+    if (gSpecialVar_Result)
+        return;
+    for (i = 0; i < gPartiesCount[B_TRAINER_PLAYER]; i++)
+    {
+        struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][i];
+        if (!GetMonData(mon, MON_DATA_IS_EGG) && MonKnowsMove(mon, MOVE_HEADBUTT))
+        {
+            gSpecialVar_Result = TRUE;
+            return;
+        }
+    }
+}
+
+void PlasticOx_HeadbuttEncounter(void)
+{
+    const struct WildPokemonInfo *info = GetHeadbuttTable();
+    bool32 canHeadbutt;
+    bool32 canBattle = FALSE;
+    u32 i;
+
+    PlasticOx_CheckHeadbutt();
+    canHeadbutt = gSpecialVar_Result;
+    gSpecialVar_Result = FALSE;
+    if (!gPlasticOxTriggersEnabled || sWildEncountersDisabled || PlasticOxContest_IsActive()
+        || !canHeadbutt || info == NULL)
+        return;
+    for (i = 0; i < gPartiesCount[B_TRAINER_PLAYER]; i++)
+    {
+        struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][i];
+        if (!GetMonData(mon, MON_DATA_IS_EGG) && GetMonData(mon, MON_DATA_HP) != 0)
+            canBattle = TRUE;
+    }
+    if (!canBattle)
+        return;
+    GenerateWeightedWildMon(info, 0);
+    gSpecialVar_Result = TRUE;
+    BattleSetup_StartScriptedWildBattle();
+}
+
+void PlasticOx_PrepareSudowoodoMoves(void)
+{
+    // Run 5 Sudowoodo playtest (P6): CreateScriptedWildMon() draws a random
+    // personality, so the ability slot was re-rolled on every attempt and the
+    // scripted encounter could come out as RUN AWAY.  A story encounter should
+    // always be the same Pokémon, so pin STURDY, Sudowoodo's second ability.
+    u8 abilityNum = ABILITY_STURDY;
+
+    SetMonData(&gParties[B_TRAINER_OPPONENT_A][0], MON_DATA_ABILITY_NUM, &abilityNum);
+    SetMonMoveSlot(&gParties[B_TRAINER_OPPONENT_A][0], MOVE_ROCK_THROW, 0);
+    SetMonMoveSlot(&gParties[B_TRAINER_OPPONENT_A][0], MOVE_MIMIC, 1);
+    SetMonMoveSlot(&gParties[B_TRAINER_OPPONENT_A][0], MOVE_FLAIL, 2);
+    SetMonMoveSlot(&gParties[B_TRAINER_OPPONENT_A][0], MOVE_LOW_KICK, 3);
 }
 
 #ifdef BUGFIX
@@ -533,6 +685,11 @@ bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, enum WildPok
 {
     u8 wildMonIndex = 0;
     u8 level;
+
+    if (area == WILD_AREA_LAND && PlasticOxContest_IsActive())
+        return GenerateWeightedWildMon(PlasticOxContest_IsPassRound() ? &sPoxParkContestPassDay : &sPoxParkContestDay, 0);
+    if (wildMonInfo->weights != NULL)
+        return GenerateWeightedWildMon(wildMonInfo, flags);
 
     switch (area)
     {
@@ -589,9 +746,16 @@ bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, enum WildPok
 
 static u16 GenerateFishingWildMon(const struct WildPokemonInfo *wildMonInfo, u8 rod)
 {
-    u8 wildMonIndex = ChooseWildMonIndex_Fishing(rod);
+    u8 wildMonIndex = wildMonInfo->weights != NULL ? ChooseWeightedWildMonIndex(wildMonInfo) : ChooseWildMonIndex_Fishing(rod);
     enum Species wildMonSpecies = wildMonInfo->wildPokemon[wildMonIndex].species;
-    u8 level = ChooseWildMonLevel(wildMonInfo->wildPokemon, wildMonIndex, WILD_AREA_FISHING);
+    u8 level;
+    if (wildMonInfo->weights != NULL)
+    {
+        const struct WildPokemon *mon = &wildMonInfo->wildPokemon[wildMonIndex];
+        level = mon->minLevel + Random() % (mon->maxLevel - mon->minLevel + 1);
+    }
+    else
+        level = ChooseWildMonLevel(wildMonInfo->wildPokemon, wildMonIndex, WILD_AREA_FISHING);
 
     UpdateChainFishingStreak();
     CreateWildMon(wildMonSpecies, level);
@@ -754,6 +918,20 @@ bool8 StandardWildEncounter(u16 curMetatileBehavior, u16 prevMetatileBehavior)
                 return FALSE;
             else if (WildEncounterCheck(gWildMonHeaders[headerId].encounterTypes[timeOfDay].landMonsInfo->encounterRate, FALSE) != TRUE)
                 return FALSE;
+
+            if (PlasticOxContest_IsActive())
+            {
+                GenerateWeightedWildMon(PlasticOxContest_IsPassRound() ? &sPoxParkContestPassDay : &sPoxParkContestDay, 0);
+                BattleSetup_StartWildBattle();
+                return TRUE;
+            }
+            if (gWildMonHeaders[headerId].encounterTypes[timeOfDay].landMonsInfo->weights != NULL)
+            {
+                if (!TryGenerateWildMon(gWildMonHeaders[headerId].encounterTypes[timeOfDay].landMonsInfo, WILD_AREA_LAND, WILD_CHECK_REPEL | WILD_CHECK_KEEN_EYE))
+                    return FALSE;
+                BattleSetup_StartWildBattle();
+                return TRUE;
+            }
 
             if (TryStartRoamerEncounter())
             {
@@ -937,6 +1115,19 @@ bool8 SweetScentWildEncounter(void)
             if (gWildMonHeaders[headerId].encounterTypes[timeOfDay].landMonsInfo == NULL)
                 return FALSE;
 
+            if (PlasticOxContest_IsActive())
+            {
+                GenerateWeightedWildMon(PlasticOxContest_IsPassRound() ? &sPoxParkContestPassDay : &sPoxParkContestDay, 0);
+                BattleSetup_StartWildBattle();
+                return TRUE;
+            }
+            if (gWildMonHeaders[headerId].encounterTypes[timeOfDay].landMonsInfo->weights != NULL)
+            {
+                TryGenerateWildMon(gWildMonHeaders[headerId].encounterTypes[timeOfDay].landMonsInfo, WILD_AREA_LAND, 0);
+                BattleSetup_StartWildBattle();
+                return TRUE;
+            }
+
             if (TryStartRoamerEncounter())
             {
                 BattleSetup_StartRoamerBattle();
@@ -978,7 +1169,11 @@ bool8 SweetScentWildEncounter(void)
 bool8 DoesCurrentMapHaveFishingMons(void)
 {
     u32 headerId = GetCurrentMapWildMonHeaderId();
-    enum TimeOfDay timeOfDay = GetTimeOfDayForEncounters(headerId, WILD_AREA_FISHING);
+    enum TimeOfDay timeOfDay;
+
+    if (headerId == HEADER_NONE || PlasticOxContest_IsActive())
+        return FALSE;
+    timeOfDay = GetTimeOfDayForEncounters(headerId, WILD_AREA_FISHING);
 
     if (headerId != HEADER_NONE && gWildMonHeaders[headerId].encounterTypes[timeOfDay].fishingMonsInfo != NULL)
         return TRUE;
@@ -998,7 +1193,8 @@ void FishingWildEncounter(u8 rod)
 
     gIsFishingEncounter = TRUE;
     GetXYCoordsOneStepInFrontOfPlayer(&x, &y);
-    if (CheckFeebasAtCoords(x, y) == TRUE)
+    // The Old Rod uses Route 119's fishing table at every tile.
+    if (rod != OLD_ROD && CheckFeebasAtCoords(x, y) == TRUE)
     {
         u8 level = ChooseWildMonLevel(&gWildFeebas, 0, WILD_AREA_FISHING);
 

@@ -17008,3 +17008,4987 @@ Relaxed Nature
 - Surf
 - Ice Beam
 - Protect
+
+=== TRAINER_PLASTIC_OX_ROXANNE ===
+Name: ROXANNE
+Class: Leader
+Pic: Leader Roxanne
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Voltorb @ Sitrus Berry
+Level: 13
+Ability: Static
+IVs: 30 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 36 HP / 36 Def / 240 SpA / 196 Spe
+Modest Nature
+- Thunderbolt
+- Hidden Power
+- Substitute
+- Explosion
+
+Trapinch @ Sitrus Berry
+Level: 13
+Ability: Arena Trap
+IVs: 31 HP / 30 Atk / 31 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 156 HP / 36 Atk / 160 SpD / 116 Spe
+Adamant Nature
+- Earthquake
+- Quick Attack
+- Hidden Power
+- Endure
+
+Cacnea @ Sitrus Berry
+Level: 13
+Ability: Sand Veil
+IVs: 31 HP / 2 Atk / 30 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 116 HP / 40 Def / 196 SpD / 156 Spe
+Calm Nature
+- Spikes
+- Giga Drain
+- Hidden Power
+- Encore
+
+Chinchou @ Sitrus Berry
+Level: 13
+Ability: Volt Absorb
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 52 Def / 152 SpA / 68 SpD / 220 Spe
+Timid Nature
+- Thunderbolt
+- Hidden Power
+- Surf
+- Ice Beam
+
+Anorith @ Sitrus Berry
+Level: 13
+Ability: Battle Armor
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 30 SpD / 30 Spe
+EVs: 76 HP / 76 Atk / 116 Def / 240 Spe
+Jolly Nature
+- Swords Dance
+- Hidden Power
+- Rock Blast
+- Brick Break
+
+Lileep @ Sitrus Berry
+Level: 13
+Ability: Suction Cups
+EVs: 148 HP / 108 Atk / 60 Def / 28 SpA / 140 SpD / 12 Spe
+Brave Nature
+- Rock Slide
+- Giga Drain
+- Barrier
+- Recover
+
+=== TRAINER_PLASTIC_OX_WHITNEY ===
+Name: WHITNEY
+Class: Leader
+Pic: Leader Whitney Hns
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Yanma @ Liechi Berry
+Level: 19
+Ability: Compound Eyes
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 31 Spe
+EVs: 252 Atk / 4 Def / 252 Spe
+Jolly Nature
+- Substitute
+- Hypnosis
+- Reversal
+- Hidden Power
+
+Minun @ Petaya Berry
+Level: 19
+Ability: Minus
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Encore
+- Substitute
+- Baton Pass
+- Thunderbolt
+
+Mawile @ Leftovers
+Level: 19
+Ability: Intimidate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 132 HP / 252 Atk / 124 Spe
+Adamant Nature
+- Swords Dance
+- Brick Break
+- Hidden Power
+- Substitute
+
+Ariados @ Leftovers
+Level: 19
+Ability: Swarm
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 31 Spe
+EVs: 48 HP / 252 Atk / 12 Def / 196 Spe
+Adamant Nature
+- Agility
+- Sludge Bomb
+- Signal Beam
+- Hidden Power
+
+Lickitung @ Leftovers
+Level: 19
+Ability: Own Tempo
+EVs: 252 HP / 4 Atk / 252 SpD
+Careful Nature
+- Curse
+- Rest
+- Sleep Talk
+- Body Slam
+
+Dragonair @ Leftovers
+Level: 20
+Ability: Shed Skin
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Adamant Nature
+- Dragon Dance
+- Double-Edge
+- Iron Tail
+- Hidden Power
+
+=== TRAINER_PLASTIC_OX_MORTY ===
+Name: MORTY
+Class: Leader
+Pic: Leader Roxanne
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Sudowoodo @ Choice Band
+Level: 30
+Ability: Rock Head
+EVs: 252 HP / 252 Atk / 4 Spe
+Adamant Nature
+- Rock Slide
+- Earthquake
+- Focus Punch
+- Explosion
+
+Haunter @ Leftovers
+Level: 29
+Ability: Levitate
+EVs: 4 Def / 252 SpA / 252 Spe
+Timid Nature
+- Psychic
+- Thunderbolt
+- Substitute
+- Explosion
+
+Gastly @ Leftovers
+Level: 28
+Ability: Levitate
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Psychic
+- Thunderbolt
+- Taunt
+- Explosion
+
+Duskull @ Leftovers
+Level: 28
+Ability: Levitate
+EVs: 252 HP / 252 Def / 4 SpD
+Bold Nature
+- Rest
+- Sleep Talk
+- Blizzard
+- Night Shade
+
+Golbat @ Leftovers
+Level: 28
+Ability: Inner Focus
+EVs: 252 HP / 112 Atk / 144 Spe
+Jolly Nature
+- Sludge Bomb
+- Aerial Ace
+- Hidden Power
+- Toxic
+
+Wigglytuff @ Leftovers
+Level: 27
+Ability: Cute Charm
+EVs: 4 HP / 252 SpA / 252 Spe
+Modest Nature
+- Ice Beam
+- Thunderbolt
+- Fire Blast
+- Hyper Beam
+
+=== TRAINER_PLASTIC_OX_WINONA ===
+Name: WINONA
+Class: Leader
+Pic: Leader Roxanne
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Pidgeot @ Choice Band
+Level: 36
+Ability: Keen Eye
+EVs: 252 Atk / 4 Def / 252 Spe
+Jolly Nature
+- Double-Edge
+- Quick Attack
+- Aerial Ace
+- Hidden Power
+
+Pelipper @ Leftovers
+Level: 35
+Ability: Keen Eye
+EVs: 252 HP / 252 Def / 4 Spe
+Bold Nature
+- Surf
+- Ice Beam
+- Rest
+- Sleep Talk
+
+Golbat @ Choice Band
+Level: 35
+Ability: Inner Focus
+EVs: 252 Atk / 4 Def / 252 Spe
+Jolly Nature
+- Sludge Bomb
+- Aerial Ace
+- Hidden Power
+- Hyper Beam
+
+Vigoroth @ Leftovers
+Level: 34
+Ability: Vital Spirit
+EVs: 252 HP / 4 Def / 252 SpD
+Careful Nature
+- Return
+- Earthquake
+- Focus Punch
+- Bulk Up
+
+Farfetch'd @ Salac Berry
+Level: 34
+Ability: Inner Focus
+EVs: 252 Atk / 4 Def / 252 Spe
+Adamant Nature
+- Substitute
+- Iron Tail
+- Hidden Power
+- Swords Dance
+
+Doduo @ Leftovers
+Level: 33
+Ability: Run Away
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Hidden Power
+- Aerial Ace
+- Mud-Slap
+- Toxic
+
+=== TRAINER_PLASTIC_OX_BLAINE ===
+Name: BLAINE
+Class: Leader
+Pic: Leader Roxanne
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Ninetales @ Leftovers
+Level: 42
+Ability: Flash Fire
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Flamethrower
+- Fire Blast
+- Hidden Power
+- Toxic
+
+Arcanine @ Charcoal
+Level: 42
+Ability: Intimidate
+EVs: 4 Atk / 252 SpA / 252 Spe
+Timid Nature
+- Fire Blast
+- Hidden Power
+- Sunny Day
+- Hyper Beam
+
+Rapidash @ Leftovers
+Level: 41
+Ability: Flash Fire
+EVs: 4 HP / 252 SpA / 252 Spe
+Modest Nature
+- Sunny Day
+- Solar Beam
+- Flamethrower
+- Hyper Beam
+
+Electrode @ Petaya Berry
+Level: 40
+Ability: Static
+EVs: 12 HP / 32 Atk / 116 Def / 252 SpA / 96 Spe
+Rash Nature
+- Thunderbolt
+- Substitute
+- Explosion
+- Hidden Power
+
+Muk @ Leftovers
+Level: 41
+Ability: Sticky Hold
+EVs: 252 HP / 196 Atk / 60 SpD
+Adamant Nature
+- Sludge Bomb
+- Substitute
+- Focus Punch
+- Hidden Power
+
+Tentacruel @ Leftovers
+Level: 40
+Ability: Liquid Ooze
+EVs: 252 HP / 120 SpD / 136 Spe
+Calm Nature
+- Hyper Beam
+- Surf
+- Toxic
+- Ice Beam
+
+=== TRAINER_PLASTIC_OX_TATELIZA ===
+Name: TATE&LIZA
+Class: Leader
+Pic: Leader Roxanne
+Gender: Male
+Music: Male
+Double Battle: Yes
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Alakazam @ Leftovers
+Level: 46
+Ability: Synchronize
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Calm Mind
+- Psychic
+- Fire Punch
+- Thunder Punch
+
+Slowbro @ Leftovers
+Level: 46
+Ability: Own Tempo
+EVs: 252 HP / 176 Def / 28 SpA / 52 SpD
+Bold Nature
+- Surf
+- Psychic
+- Rest
+- Calm Mind
+
+Machamp @ Leftovers
+Level: 45
+Ability: Guts
+EVs: 252 Atk / 4 SpD / 252 Spe
+Adamant Nature
+- Bulk Up
+- Hyper Beam
+- Rock Slide
+- Hidden Power
+
+Ursaring @ Leftovers
+Level: 45
+Ability: Guts
+EVs: 252 HP / 4 Def / 252 SpD
+Careful Nature
+- Bulk Up
+- Return
+- Hidden Power
+- Earthquake
+
+Steelix @ Choice Band
+Level: 44
+Ability: Rock Head
+EVs: 144 HP / 228 Atk / 136 SpD
+Adamant Nature
+- Earthquake
+- Iron Tail
+- Double-Edge
+- Explosion
+
+Houndoom @ Leftovers
+Level: 44
+Ability: Early Bird
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Flamethrower
+- Fire Blast
+- Hidden Power
+- Toxic
+
+=== TRAINER_PLASTIC_OX_BRUNO ===
+Name: BRUNO
+Class: Leader
+Pic: Leader Roxanne
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Rhydon @ Leftovers
+Level: 50
+Ability: Lightning Rod
+EVs: 212 HP / 122 Atk / 176 Spe
+Adamant Nature
+- Earthquake
+- Swords Dance
+- Rock Slide
+- Substitute
+
+Golem @ Choice Band
+Level: 50
+Ability: Rock Head
+IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 200 HP / 220 Atk / 88 Spe
+Adamant Nature
+- Earthquake
+- Rock Slide
+- Hidden Power
+- Explosion
+
+Machamp @ Choice Band
+Level: 49
+Ability: Guts
+EVs: 252 Atk / 4 Def / 252 Spe
+Adamant Nature
+- Cross Chop
+- Rock Slide
+- Focus Punch
+- Hidden Power
+
+Hariyama @ Leftovers
+Level: 49
+Ability: Thick Fat
+EVs: 4 Atk / 252 Def / 252 SpD
+Impish Nature
+- Knock Off
+- Brick Break
+- Rest
+- Hidden Power
+
+Donphan @ Leftovers
+Level: 48
+Ability: Sturdy
+EVs: 252 HP / 44 Atk / 188 Def / 24 Spe
+Impish Nature
+- Earthquake
+- Hidden Power
+- Rest
+- Rapid Spin
+
+Steelix @ Choice Band
+Level: 48
+Ability: Rock Head
+EVs: 144 HP / 228 Atk / 136 SpD
+Adamant Nature
+- Earthquake
+- Iron Tail
+- Double-Edge
+- Explosion
+
+=== TRAINER_PLASTIC_OX_CLAIR ===
+Name: CLAIR
+Class: Leader
+Pic: Leader Roxanne
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Gyarados @ Leftovers
+Level: 59
+Ability: Intimidate
+EVs: 216 HP / 16 Atk / 88 SpD / 188 Spe
+Adamant Nature
+- Dragon Dance
+- Hidden Power
+- Earthquake
+- Rest
+
+Jolteon @ Leftovers
+Level: 58
+Ability: Volt Absorb
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Hidden Power
+- Hyper Beam
+- Roar
+
+Swampert @ Leftovers
+Level: 58
+Ability: Torrent
+EVs: 248 HP / 204 Def / 44 SpD / 12 Spe
+Bold Nature
+- Surf
+- Toxic
+- Protect
+- Hyper Beam
+
+Tyranitar @ Lum Berry
+Level: 59
+Ability: Sand Stream
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Hyper Beam
+- Rock Slide
+- Earthquake
+- Hidden Power
+
+Medicham @ Leftovers
+Level: 58
+Ability: Pure Power
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Brick Break
+- Focus Punch
+- Substitute
+- Shadow Ball
+
+Flygon @ Leftovers
+Level: 58
+Ability: Levitate
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Earthquake
+- Rock Slide
+- Hidden Power
+- Substitute
+
+=== TRAINER_PLASTIC_OX_MOONGRUNT1 ===
+Name: GRUNT
+Class: Team Aqua
+Pic: Aqua Grunt M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Arbok @ Choice Band
+Level: 16
+Ability: Intimidate
+EVs: 252 Atk / 4 SpD / 252 Spe
+Jolly Nature
+- Sludge Bomb
+- Earthquake
+- Hidden Power
+- Rock Slide
+
+Aron @ Choice Band
+Level: 15
+Ability: Sturdy
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Rock Slide
+- Rock Tomb
+- Hidden Power
+- Toxic
+
+=== TRAINER_PLASTIC_OX_MOONGRUNT2 ===
+Name: GRUNT
+Class: Team Aqua
+Pic: Aqua Grunt M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Magnemite @ Sitrus Berry
+Level: 16
+Ability: Sturdy
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 36 Def / 240 SpA / 76 SpD / 156 Spe
+Modest Nature
+- Thunderbolt
+- Hidden Power
+- Toxic
+- Substitute
+
+Onix @ Sitrus Berry
+Level: 16
+Ability: Rock Head
+EVs: 76 HP / 236 Atk / 196 Spe
+Jolly Nature
+- Rock Slide
+- Earthquake
+- Double-Edge
+- Explosion
+
+Rhyhorn @ Choice Band
+Level: 16
+Ability: Lightning Rod
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Earthquake
+- Rock Slide
+- Hidden Power
+- Toxic
+
+=== TRAINER_PLASTIC_OX_KIMONOVAPOREON ===
+Name: NAOKO
+Class: Beauty
+Pic: Beauty
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Vaporeon @ Leftovers
+Level: 26
+Ability: Water Absorb
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Surf
+- Water Pulse
+- Hidden Power
+- Toxic
+
+Psyduck @ Leftovers
+Level: 23
+Ability: Damp
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Surf
+- Water Pulse
+- Hidden Power
+- Toxic
+
+Seel @ Leftovers
+Level: 23
+Ability: Thick Fat
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Surf
+- Water Pulse
+- Hidden Power
+- Toxic
+
+Staryu @ Sitrus Berry
+Level: 24
+Ability: Natural Cure
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 36 HP / 76 Def / 120 SpA / 236 Spe
+Timid Nature
+- Surf
+- Thunderbolt
+- Ice Beam
+- Hidden Power
+
+Slowpoke @ Leftovers
+Level: 24
+Ability: Oblivious
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Surf
+- Psychic
+- Hidden Power
+- Toxic
+
+Tentacool @ Leftovers
+Level: 24
+Ability: Liquid Ooze
+EVs: 252 HP / 4 Def / 252 SpD
+Calm Nature
+- Blizzard
+- Surf
+- Toxic
+- Hidden Power
+
+=== TRAINER_PLASTIC_OX_KIMONOJOLTEON ===
+Name: SAYO
+Class: Beauty
+Pic: Beauty
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Jolteon @ Leftovers
+Level: 26
+Ability: Volt Absorb
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Thunder
+- Hidden Power
+- Toxic
+
+Elekid @ Sitrus Berry
+Level: 23
+Ability: Static
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 240 SpA / 236 Spe
+Timid Nature
+- Thunderbolt
+- Ice Punch
+- Thief
+- Substitute
+
+Electrike @ Leftovers
+Level: 23
+Ability: Static
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Thunder
+- Hidden Power
+- Toxic
+
+Voltorb @ Silk Scarf
+Level: 24
+Ability: Static
+EVs: 252 Atk / 4 SpA / 252 Spe
+Naive Nature
+- Rain Dance
+- Thunder
+- Light Screen
+- Explosion
+
+Magnemite @ Sitrus Berry
+Level: 23
+Ability: Sturdy
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 36 Def / 240 SpA / 76 SpD / 156 Spe
+Modest Nature
+- Thunderbolt
+- Hidden Power
+- Toxic
+- Substitute
+
+Skitty @ Leftovers
+Level: 24
+Ability: Cute Charm
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Hidden Power
+- Body Slam
+- Thunderbolt
+- Toxic
+
+=== TRAINER_PLASTIC_OX_KIMONOFLAREON ===
+Name: ZUKI
+Class: Beauty
+Pic: Beauty
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Flareon @ Leftovers
+Level: 26
+Ability: Flash Fire
+EVs: 8 HP / 84 Def / 192 SpA / 224 Spe
+Modest Nature
+- Fire Blast
+- Hidden Power
+- Substitute
+- Hyper Beam
+
+Vulpix @ Leftovers
+Level: 22
+Ability: Flash Fire
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Flamethrower
+- Fire Blast
+- Hidden Power
+- Toxic
+
+Growlithe @ Leftovers
+Level: 23
+Ability: Intimidate
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Flamethrower
+- Fire Blast
+- Hidden Power
+- Toxic
+
+Arbok @ Choice Band
+Level: 24
+Ability: Intimidate
+EVs: 252 Atk / 4 Def / 252 Spe
+Jolly Nature
+- Sludge Bomb
+- Earthquake
+- Rock Slide
+- Sleep Talk
+
+Meowth @ Sitrus Berry
+Level: 23
+Ability: Pickup
+EVs: 36 HP / 236 Atk / 36 SpD / 196 Spe
+Jolly Nature
+- Thunder
+- Double-Edge
+- Shadow Ball
+- Taunt
+
+Delibird @ Choice Band
+Level: 24
+Ability: Hustle
+EVs: 136 Atk / 136 SpA / 236 Spe
+Naughty Nature
+- Ice Beam
+- Focus Punch
+- Aerial Ace
+- Hidden Power
+
+=== TRAINER_PLASTIC_OX_KIMONOESPEON ===
+Name: KUNI
+Class: Beauty
+Pic: Beauty
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Espeon @ Leftovers
+Level: 26
+Ability: Synchronize
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Psychic
+- Dream Eater
+- Hidden Power
+- Toxic
+
+Meditite @ Leftovers
+Level: 23
+Ability: Pure Power
+EVs: 252 Atk / 4 SpD / 252 Spe
+Adamant Nature
+- Substitute
+- Brick Break
+- Shadow Ball
+- Toxic
+
+Meowth @ Sitrus Berry
+Level: 23
+Ability: Pickup
+EVs: 36 HP / 236 Atk / 36 SpD / 196 Spe
+Jolly Nature
+- Thunder
+- Double-Edge
+- Shadow Ball
+- Taunt
+
+Kirlia @ Leftovers
+Level: 24
+Ability: Synchronize
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Psychic
+- Dream Eater
+- Hidden Power
+- Toxic
+
+Slowpoke @ Leftovers
+Level: 24
+Ability: Oblivious
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Surf
+- Psychic
+- Hidden Power
+- Toxic
+
+Natu @ Leftovers
+Level: 23
+Ability: Synchronize
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Psychic
+- Aerial Ace
+- Hidden Power
+- Toxic
+
+=== TRAINER_PLASTIC_OX_KIMONOUMBREON ===
+Name: MIKI
+Class: Beauty
+Pic: Beauty
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Umbreon @ Choice Band
+Level: 26
+Ability: Synchronize
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Pursuit
+- Hidden Power
+- Psychic
+- Toxic
+
+Spoink @ Leftovers
+Level: 23
+Ability: Thick Fat
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 36 HP / 156 Def / 116 SpD / 196 Spe
+Bold Nature
+- Thief
+- Psychic
+- Icy Wind
+- Taunt
+
+Houndour @ Leftovers
+Level: 24
+Ability: Early Bird
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Flamethrower
+- Fire Blast
+- Hidden Power
+- Toxic
+
+Duskull @ Leftovers
+Level: 24
+Ability: Levitate
+EVs: 252 HP / 252 Def / 4 SpD
+Bold Nature
+- Rest
+- Sleep Talk
+- Blizzard
+- Night Shade
+
+Meowth @ Sitrus Berry
+Level: 23
+Ability: Pickup
+EVs: 36 HP / 236 Atk / 36 SpD / 196 Spe
+Jolly Nature
+- Thunder
+- Double-Edge
+- Shadow Ball
+- Taunt
+
+Nidoran♂ @ Leftovers
+Level: 24
+Ability: Poison Point
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Sludge Bomb
+- Poison Sting
+- Hidden Power
+- Toxic
+
+=== TRAINER_PLASTIC_OX_WEATHER ===
+Name: RESEARCHER
+Class: Scientist Frlg
+Pic: Scientist Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Castform @ Leftovers
+Level: 34
+Ability: Forecast
+EVs: 128 HP / 252 SpA / 128 SpD
+Modest Nature
+- Thunderbolt
+- Flamethrower
+- Solar Beam
+- Sunny Day
+
+Xatu @ Leftovers
+Level: 34
+Ability: Synchronize
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Calm Mind
+- Psychic
+- Hidden Power
+- Substitute
+
+Mawile @ Leftovers
+Level: 33
+Ability: Intimidate
+EVs: 132 HP / 252 Atk / 124 Spe
+Adamant Nature
+- Substitute
+- Baton Pass
+- Swords Dance
+- Hidden Power
+
+Meditite @ Leftovers
+Level: 33
+Ability: Pure Power
+EVs: 252 Atk / 4 SpD / 252 Spe
+Adamant Nature
+- Substitute
+- Brick Break
+- Shadow Ball
+- Toxic
+
+Magnemite @ Sitrus Berry
+Level: 32
+Ability: Sturdy
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 36 Def / 240 SpA / 76 SpD / 156 Spe
+Modest Nature
+- Thunderbolt
+- Hidden Power
+- Toxic
+- Substitute
+
+Elekid @ Sitrus Berry
+Level: 32
+Ability: Static
+IVs: 31 HP / 31 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 172 Atk / 76 SpA / 236 Spe
+Hasty Nature
+- Thunderbolt
+- Ice Punch
+- Hidden Power
+- Substitute
+
+=== TRAINER_PLASTIC_OX_TOWERGRUNT1 ===
+Name: GRUNT
+Class: Team Aqua
+Pic: Aqua Grunt M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Gastly @ Leftovers
+Level: 38
+Ability: Levitate
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Psychic
+- Thunderbolt
+- Taunt
+- Explosion
+
+Drowzee @ Leftovers
+Level: 37
+Ability: Insomnia
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Psychic
+- Dream Eater
+- Hidden Power
+- Toxic
+
+Cubone @ Thick Club
+Level: 37
+Ability: Rock Head
+EVs: 36 HP / 196 Atk / 40 SpD / 236 Spe
+Adamant Nature
+- Bonemerang
+- Double-Edge
+- Hidden Power
+- Protect
+
+Muk @ Leftovers
+Level: 37
+Ability: Sticky Hold
+EVs: 252 HP / 252 Atk / 4 SpD
+Brave Nature
+- Sludge Bomb
+- Ice Punch
+- Explosion
+- Hidden Power
+
+Koffing @ Sitrus Berry
+Level: 36
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 30 Spe
+EVs: 116 HP / 76 Atk / 236 Def / 80 Spe
+Impish Nature
+- Sludge Bomb
+- Hidden Power
+- Thief
+- Explosion
+
+Haunter @ Leftovers
+Level: 38
+Ability: Levitate
+EVs: 160 HP / 92 Def / 32 SpA / 224 Spe
+Timid Nature
+- Thunderbolt
+- Psychic
+- Explosion
+- Taunt
+
+=== TRAINER_PLASTIC_OX_TOWERGRUNT2 ===
+Name: GRUNT
+Class: Team Aqua
+Pic: Aqua Grunt M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Machop @ Sitrus Berry
+Level: 38
+Ability: Guts
+EVs: 36 HP / 116 Atk / 40 Def / 240 SpD / 76 Spe
+Adamant Nature
+- Bulk Up
+- Focus Punch
+- Hidden Power
+- Endure
+
+Cubone @ Thick Club
+Level: 38
+Ability: Rock Head
+EVs: 36 HP / 196 Atk / 40 SpD / 236 Spe
+Adamant Nature
+- Bonemerang
+- Double-Edge
+- Hidden Power
+- Protect
+
+Onix @ Salac Berry
+Level: 38
+Ability: Sturdy
+EVs: 112 HP / 144 Atk / 252 Spe
+Jolly Nature
+- Sunny Day
+- Explosion
+- Earthquake
+- Hidden Power
+
+Muk @ Leftovers
+Level: 37
+Ability: Sticky Hold
+EVs: 252 HP / 156 Atk / 100 SpD
+Sassy Nature
+- Explosion
+- Sludge Bomb
+- Fire Blast
+- Hidden Power
+
+Rhyhorn @ Choice Band
+Level: 37
+Ability: Lightning Rod
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Earthquake
+- Rock Slide
+- Hidden Power
+- Toxic
+
+Haunter @ Salac Berry
+Level: 38
+Ability: Levitate
+EVs: 4 HP / 252 SpA / 252 Spe
+Hasty Nature
+- Thunderbolt
+- Psychic
+- Explosion
+- Endure
+
+=== TRAINER_PLASTIC_OX_SILPHGRUNT1 ===
+Name: GRUNT
+Class: Team Aqua
+Pic: Aqua Grunt M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Machamp @ Leftovers
+Level: 52
+Ability: Guts
+EVs: 252 Atk / 4 SpD / 252 Spe
+Adamant Nature
+- Bulk Up
+- Cross Chop
+- Rock Slide
+- Hidden Power
+
+Jynx @ Lum Berry
+Level: 52
+Ability: Oblivious
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Lovely Kiss
+- Fake Tears
+- Psychic
+- Ice Beam
+
+Weezing @ Leftovers
+Level: 51
+Ability: Levitate
+EVs: 252 HP / 178 Atk / 68 SpA / 12 Spe
+Brave Nature
+- Sludge Bomb
+- Flamethrower
+- Haze
+- Explosion
+
+Hariyama @ Leftovers
+Level: 51
+Ability: Guts
+EVs: 252 Atk / 228 Def / 28 Spe
+Adamant Nature
+- Hyper Beam
+- Brick Break
+- Knock Off
+- Hidden Power
+
+Dusclops @ Leftovers
+Level: 50
+Ability: Pressure
+EVs: 252 HP / 36 Atk / 20 Def / 200 SpD
+Careful Nature
+- Shadow Ball
+- Rest
+- Sleep Talk
+- Will-O-Wisp
+
+Kadabra @ Leftovers
+Level: 52
+Ability: Synchronize
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Psychic
+- Future Sight
+- Hidden Power
+- Toxic
+
+=== TRAINER_PLASTIC_OX_SILPHGRUNT2 ===
+Name: GRUNT
+Class: Team Aqua
+Pic: Aqua Grunt M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Steelix @ Leftovers
+Level: 52
+Ability: Sturdy
+EVs: 252 HP / 36 Atk / 220 SpD
+Impish Nature
+- Earthquake
+- Toxic
+- Roar
+- Rest
+
+Exeggutor @ Leftovers
+Level: 52
+Ability: Chlorophyll
+EVs: 52 HP / 252 SpA / 204 Spe
+Modest Nature
+- Explosion
+- Sunny Day
+- Solar Beam
+- Hidden Power
+
+Slowbro @ Leftovers
+Level: 51
+Ability: Own Tempo
+EVs: 252 HP / 96 Atk / 160 SpA
+Relaxed Nature
+- Substitute
+- Focus Punch
+- Surf
+- Psychic
+
+Magneton @ Magnet
+Level: 52
+Ability: Magnet Pull
+EVs: 4 HP / 252 SpA / 252 Spe
+Modest Nature
+- Thunderbolt
+- Hidden Power
+- Toxic
+- Protect
+
+Dodrio @ Choice Band
+Level: 50
+Ability: Early Bird
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Drill Peck
+- Return
+- Hyper Beam
+- Hidden Power
+
+Cloyster @ Leftovers
+Level: 52
+Ability: Shell Armor
+EVs: 72 HP / 8 SpA / 244 SpD / 184 Spe
+Timid Nature
+- Spikes
+- Surf
+- Explosion
+- Hidden Power
+
+=== TRAINER_PLASTIC_OX_SILPHGRUNT3 ===
+Name: GRUNT
+Class: Team Aqua
+Pic: Aqua Grunt M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Dragonite @ Leftovers
+Level: 53
+Ability: Inner Focus
+EVs: 120 HP / 64 Atk / 252 SpA / 68 SpD / 4 Spe
+Brave Nature
+- Substitute
+- Focus Punch
+- Thunderbolt
+- Ice Beam
+
+Kingdra @ Lum Berry
+Level: 52
+Ability: Swift Swim
+EVs: 104 HP / 252 SpA / 152 Spe
+Modest Nature
+- Rain Dance
+- Surf
+- Ice Beam
+- Hidden Power
+
+Armaldo @ Choice Band
+Level: 51
+Ability: Battle Armor
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Rock Slide
+- Rock Tomb
+- Hidden Power
+- Toxic
+
+Ursaring @ Leftovers
+Level: 51
+Ability: Guts
+EVs: 252 HP / 4 Def / 252 SpD
+Careful Nature
+- Bulk Up
+- Return
+- Hidden Power
+- Earthquake
+
+Linoone @ Choice Band
+Level: 50
+Ability: Pickup
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Return
+- Shadow Ball
+- Hidden Power
+- Hyper Beam
+
+Marowak @ Thick Club
+Level: 51
+Ability: Rock Head
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Swords Dance
+- Bonemerang
+- Rock Slide
+- Focus Punch
+
+=== TRAINER_PLASTIC_OX_GIOVANNI ===
+Name: GIOVANNI
+Class: Leader
+Pic: Leader Giovanni Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Tyranitar @ Lum Berry
+Level: 55
+Ability: Sand Stream
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Hyper Beam
+- Rock Slide
+- Earthquake
+- Hidden Power
+
+Salamence @ Leftovers
+Level: 55
+Ability: Intimidate
+IVs: 31 HP / 31 Atk / 31 Def / 30 SpA / 30 SpD / 30 Spe
+EVs: 116 HP / 252 Atk / 140 Spe
+Adamant Nature
+- Hyper Beam
+- Hidden Power
+- Rock Slide
+- Earthquake
+
+Metagross @ Leftovers
+Level: 55
+Ability: Clear Body
+EVs: 252 HP / 176 Atk / 80 Def
+Adamant Nature
+- Meteor Mash
+- Earthquake
+- Protect
+- Explosion
+
+Forretress @ Leftovers
+Level: 54
+Ability: Sturdy
+EVs: 252 HP / 4 Def / 252 SpD
+Careful Nature
+- Spikes
+- Rapid Spin
+- Hidden Power
+- Earthquake
+
+Gengar @ Leftovers
+Level: 53
+Ability: Levitate
+EVs: 168 HP / 164 SpD / 176 Spe
+Hasty Nature
+- Hypnosis
+- Explosion
+- Ice Punch
+- Thunderbolt
+
+Starmie @ Leftovers
+Level: 54
+Ability: Natural Cure
+EVs: 252 HP / 40 SpA / 216 Spe
+Timid Nature
+- Rapid Spin
+- Recover
+- Surf
+- Thunder Wave
+
+=== TRAINER_PLASTIC_OX_WALLACE ===
+Name: WALLACE
+Class: Elite Four
+Pic: Champion Wallace
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Salamence @ Choice Band
+Level: 62
+Ability: Intimidate
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Hidden Power
+- Earthquake
+- Rock Slide
+- Brick Break
+
+Swampert @ Leftovers
+Level: 62
+Ability: Torrent
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 240 HP / 216 Def / 52 SpA
+Relaxed Nature
+- Earthquake
+- Ice Beam
+- Surf
+- Protect
+
+Tyranitar @ Choice Band
+Level: 62
+Ability: Sand Stream
+IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Rock Slide
+- Earthquake
+- Brick Break
+- Hidden Power
+
+Metagross @ Leftovers
+Level: 61
+Ability: Clear Body
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 176 Atk / 80 Def
+Adamant Nature
+- Meteor Mash
+- Earthquake
+- Protect
+- Explosion
+
+Forretress @ Leftovers
+Level: 61
+Ability: Sturdy
+IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
+Careful Nature
+- Spikes
+- Rapid Spin
+- Hidden Power
+- Explosion
+
+Gengar @ Leftovers
+Level: 61
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Ice Punch
+- Will-O-Wisp
+- Taunt
+
+=== TRAINER_PLASTIC_OX_STEVEN ===
+Name: STEVEN
+Class: Elite Four
+Pic: Steven
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Metagross @ Leftovers
+Level: 62
+Ability: Clear Body
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 176 Atk / 80 Def
+Adamant Nature
+- Meteor Mash
+- Earthquake
+- Protect
+- Explosion
+
+Salamence @ Leftovers
+Level: 62
+Ability: Intimidate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 220 Def / 36 Spe
+Bold Nature
+- Wish
+- Protect
+- Flamethrower
+- Toxic
+
+Flygon @ Leftovers
+Level: 62
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 Spe
+Jolly Nature
+- Earthquake
+- Rock Slide
+- Toxic
+- Protect
+
+Aggron @ Choice Band
+Level: 62
+Ability: Rock Head
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 140 HP / 252 Atk / 116 Spe
+Adamant Nature
+- Rock Slide
+- Double-Edge
+- Earthquake
+- Brick Break
+
+Armaldo @ Leftovers
+Level: 61
+Ability: Battle Armor
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 Def
+Impish Nature
+- Rock Slide
+- Knock Off
+- Toxic
+- Rapid Spin
+
+Claydol @ Leftovers
+Level: 61
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 216 Def / 40 SpA
+Relaxed Nature
+- Earthquake
+- Ice Beam
+- Rapid Spin
+- Explosion
+
+=== TRAINER_PLASTIC_OX_LEAGUELANCE ===
+Name: LANCE
+Class: Elite Four
+Pic: Elite Four Lance Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Gyarados @ Leftovers
+Level: 62
+Ability: Intimidate
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 31 Spe
+EVs: 68 HP / 252 Atk / 188 Spe
+Adamant Nature
+- Dragon Dance
+- Hidden Power
+- Earthquake
+- Taunt
+
+Starmie @ Leftovers
+Level: 62
+Ability: Natural Cure
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Surf
+- Ice Beam
+- Thunderbolt
+- Recover
+
+Charizard @ Leftovers
+Level: 62
+Ability: Blaze
+IVs: 31 HP / 31 Atk / 30 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 4 Atk / 252 SpA / 252 Spe
+Hasty Nature
+- Fire Blast
+- Hidden Power
+- Dragon Claw
+- Brick Break
+
+Claydol @ Leftovers
+Level: 61
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 216 Def / 40 SpA
+Relaxed Nature
+- Earthquake
+- Ice Beam
+- Rapid Spin
+- Explosion
+
+Medicham @ Choice Band
+Level: 61
+Ability: Pure Power
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Brick Break
+- Rock Slide
+- Shadow Ball
+- High Jump Kick
+
+Swampert @ Leftovers
+Level: 62
+Ability: Torrent
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 240 HP / 16 Atk / 252 SpA
+Quiet Nature
+- Hydro Pump
+- Earthquake
+- Ice Beam
+- Roar
+
+=== TRAINER_PLASTIC_OX_BLUE ===
+Name: BLUE
+Class: Elite Four
+Pic: Champion Rival Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Tyranitar @ Leftovers
+Level: 64
+Ability: Sand Stream
+IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Dragon Dance
+- Rock Slide
+- Earthquake
+- Hidden Power
+
+Salamence @ Leftovers
+Level: 64
+Ability: Intimidate
+IVs: 31 HP / 31 Atk / 30 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 4 Atk / 252 SpA / 252 Spe
+Rash Nature
+- Dragon Claw
+- Fire Blast
+- Brick Break
+- Hidden Power
+
+Metagross @ Lum Berry
+Level: 64
+Ability: Clear Body
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 168 HP / 252 Atk / 88 Spe
+Adamant Nature
+- Agility
+- Meteor Mash
+- Earthquake
+- Explosion
+
+Gengar @ Leftovers
+Level: 63
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Ice Punch
+- Will-O-Wisp
+- Taunt
+
+Gyarados @ Leftovers
+Level: 64
+Ability: Intimidate
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 31 Spe
+EVs: 68 HP / 252 Atk / 188 Spe
+Adamant Nature
+- Dragon Dance
+- Hidden Power
+- Earthquake
+- Taunt
+
+Forretress @ Leftovers
+Level: 63
+Ability: Sturdy
+IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
+Careful Nature
+- Spikes
+- Rapid Spin
+- Hidden Power
+- Explosion
+
+=== TRAINER_PLASTIC_OX_BILL ===
+Name: BILL
+Class: Champion
+Pic: Scientist Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Metagross @ Lum Berry
+Level: 64
+Ability: Clear Body
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 168 HP / 252 Atk / 88 Spe
+Adamant Nature
+- Agility
+- Meteor Mash
+- Earthquake
+- Explosion
+
+Starmie @ Leftovers
+Level: 64
+Ability: Natural Cure
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Surf
+- Ice Beam
+- Thunderbolt
+- Rapid Spin
+
+Cloyster @ Leftovers
+Level: 63
+Ability: Shell Armor
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
+Bold Nature
+- Spikes
+- Surf
+- Ice Beam
+- Explosion
+
+Flygon @ Choice Band
+Level: 63
+Ability: Levitate
+IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Earthquake
+- Rock Slide
+- Hidden Power
+- Double-Edge
+
+Swampert @ Leftovers
+Level: 63
+Ability: Torrent
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 240 HP / 216 Def / 52 SpA
+Relaxed Nature
+- Earthquake
+- Ice Beam
+- Surf
+- Protect
+
+Charizard @ Leftovers
+Level: 64
+Ability: Blaze
+IVs: 31 HP / 31 Atk / 30 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 4 Atk / 252 SpA / 252 Spe
+Hasty Nature
+- Fire Blast
+- Hidden Power
+- Dragon Claw
+- Brick Break
+
+=== TRAINER_PLASTIC_OX_VICTORYROAD ===
+Name: ACE
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Flygon @ Choice Band
+Level: 58
+Ability: Levitate
+IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Earthquake
+- Rock Slide
+- Hidden Power
+- Double-Edge
+
+Cloyster @ Leftovers
+Level: 58
+Ability: Shell Armor
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
+Bold Nature
+- Spikes
+- Surf
+- Ice Beam
+- Explosion
+
+Starmie @ Leftovers
+Level: 58
+Ability: Natural Cure
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Surf
+- Ice Beam
+- Thunderbolt
+- Recover
+
+Swampert @ Leftovers
+Level: 58
+Ability: Torrent
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 240 HP / 216 Def / 52 SpA
+Relaxed Nature
+- Earthquake
+- Ice Beam
+- Surf
+- Protect
+
+Forretress @ Leftovers
+Level: 58
+Ability: Sturdy
+IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
+Careful Nature
+- Spikes
+- Rapid Spin
+- Hidden Power
+- Explosion
+
+Gengar @ Leftovers
+Level: 58
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Ice Punch
+- Will-O-Wisp
+- Taunt
+
+=== TRAINER_PLASTIC_OX_ROUTE101 ===
+Name: CAL
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Taillow
+Level: 4
+
+Poochyena
+Level: 4
+
+Goldeen
+Level: 4
+
+Lotad
+Level: 4
+
+Surskit
+Level: 4
+
+Poliwag
+Level: 4
+
+=== TRAINER_PLASTIC_OX_ROUTE103 ===
+Name: DAISY
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Wingull
+Level: 5
+
+Whismur
+Level: 5
+
+Electrike
+Level: 5
+
+Cacnea
+Level: 5
+
+Gulpin
+Level: 5
+
+Corphish
+Level: 5
+
+=== TRAINER_PLASTIC_OX_ROUTE29 ===
+Name: JOEY
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Sentret
+Level: 5
+
+Pidgey
+Level: 5
+
+Nidoran♀
+Level: 5
+
+Nidoran♂
+Level: 5
+
+Mareep
+Level: 5
+
+Spinarak
+Level: 5
+
+=== TRAINER_PLASTIC_OX_ROUTE46 ===
+Name: TED
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Machop
+Level: 7
+
+Geodude
+Level: 7
+
+Sandshrew
+Level: 7
+
+Bagon
+Level: 7
+
+Numel
+Level: 7
+
+Phanpy
+Level: 7
+
+=== TRAINER_PLASTIC_OX_ROUTE46_ERIN ===
+Name: ERIN
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Onix
+Level: 7
+
+Larvitar
+Level: 7
+
+=== TRAINER_PLASTIC_OX_ROUTE1 ===
+Name: BEN
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Mankey
+Level: 6
+
+Ekans
+Level: 6
+
+Growlithe
+Level: 6
+
+Vulpix
+Level: 6
+
+Meowth
+Level: 6
+
+Slowpoke
+Level: 6
+
+=== TRAINER_PLASTIC_OX_ROUTE31 ===
+Name: WADE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Venonat
+Level: 9
+
+Aron
+Level: 9
+
+Baltoy
+Level: 9
+
+Spoink
+Level: 9
+
+Ralts
+Level: 9
+
+Voltorb
+Level: 9
+
+=== TRAINER_PLASTIC_OX_ROUTE104 ===
+Name: HALEY
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Onix
+Level: 10
+
+Geodude
+Level: 10
+
+Rhyhorn
+Level: 10
+
+Aron
+Level: 10
+
+Snorunt
+Level: 10
+
+Zubat
+Level: 10
+
+=== TRAINER_PLASTIC_OX_ROUTE24 ===
+Name: ETHAN
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Cleffa @ Leftovers
+Level: 10
+Ability: Cute Charm
+EVs: 252 HP / 252 Def
+Bold Nature
+- Hidden Power
+- Flamethrower
+- Toxic
+- Psychic
+
+Snubbull @ Sitrus Berry
+Level: 10
+Ability: Intimidate
+EVs: 196 HP / 116 Atk / 36 Def / 120 SpD / 36 Spe
+Careful Nature
+- Double-Edge
+- Earthquake
+- Shadow Ball
+- Bulk Up
+
+Spoink @ Leftovers
+Level: 11
+Ability: Thick Fat
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 36 HP / 156 Def / 116 SpD / 196 Spe
+Bold Nature
+- Thief
+- Psychic
+- Icy Wind
+- Taunt
+
+=== TRAINER_PLASTIC_OX_ROUTE25 ===
+Name: LARA
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Magby @ Sitrus Berry
+Level: 12
+Ability: Flame Body
+EVs: 76 Atk / 116 SpA / 252 Spe
+Hasty Nature
+- Fire Blast
+- Focus Punch
+- Toxic
+- Substitute
+
+Swablu @ Leftovers
+Level: 12
+Ability: Natural Cure
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Hidden Power
+- Aerial Ace
+- Ice Beam
+- Toxic
+
+Drowzee @ Leftovers
+Level: 12
+Ability: Insomnia
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Psychic
+- Dream Eater
+- Hidden Power
+- Toxic
+
+Growlithe @ Leftovers
+Level: 12
+Ability: Intimidate
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Flamethrower
+- Fire Blast
+- Hidden Power
+- Toxic
+
+Tyrogue @ Choice Band
+Level: 12
+Ability: Guts
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Rock Smash
+- Brick Break
+- Hidden Power
+- Toxic
+
+Meowth @ Sitrus Berry
+Level: 12
+Ability: Pickup
+EVs: 36 HP / 236 Atk / 36 SpD / 196 Spe
+Jolly Nature
+- Thunder
+- Double-Edge
+- Shadow Ball
+- Taunt
+
+=== TRAINER_PLASTIC_OX_ROUTE44 ===
+Name: MARCUS
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Corphish @ Leftovers
+Level: 13
+Ability: Hyper Cutter
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Surf
+- Water Pulse
+- Hidden Power
+- Toxic
+
+Wooper @ Leftovers
+Level: 13
+Ability: Damp
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Surf
+- Earthquake
+- Hidden Power
+- Toxic
+
+Barboach @ Leftovers
+Level: 13
+Ability: Oblivious
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Surf
+- Earthquake
+- Hidden Power
+- Toxic
+
+Remoraid @ Leftovers
+Level: 13
+Ability: Hustle
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Surf
+- Water Pulse
+- Hidden Power
+- Toxic
+
+Clamperl @ Deep Sea Tooth
+Level: 13
+Ability: Shell Armor
+EVs: 252 SpA / 4 SpD / 252 Spe
+Modest Nature
+- Surf
+- Ice Beam
+- Hidden Power
+- Substitute
+
+Poliwag @ Leftovers
+Level: 13
+Ability: Water Absorb
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Surf
+- Water Pulse
+- Hidden Power
+- Toxic
+
+=== TRAINER_PLASTIC_OX_ROUTE44_EDGAR ===
+Name: EDGAR
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Cubone @ Thick Club
+Level: 13
+Ability: Rock Head
+EVs: 36 HP / 196 Atk / 40 SpD / 236 Spe
+Adamant Nature
+- Focus Punch
+- Double-Edge
+- Hidden Power
+- Protect
+
+Rhyhorn @ Choice Band
+Level: 13
+Ability: Lightning Rod
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Earthquake
+- Rock Slide
+- Hidden Power
+- Toxic
+
+Magnemite @ Sitrus Berry
+Level: 13
+Ability: Sturdy
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 36 Def / 240 SpA / 76 SpD / 156 Spe
+Modest Nature
+- Thunderbolt
+- Hidden Power
+- Toxic
+- Substitute
+
+=== TRAINER_PLASTIC_OX_ROUTE44_WILTON ===
+Name: WILTON
+Class: Fisherman
+Pic: Fisherman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Magby @ Sitrus Berry
+Level: 13
+Ability: Flame Body
+EVs: 76 Atk / 116 SpA / 252 Spe
+Hasty Nature
+- Fire Blast
+- Focus Punch
+- Toxic
+- Substitute
+
+Numel @ Leftovers
+Level: 13
+Ability: Oblivious
+EVs: 128 HP / 120 Atk / 152 SpA / 4 SpD / 104 Spe
+Mild Nature
+- Earthquake
+- Fire Blast
+- Toxic
+- Protect
+
+Cubone @ Thick Club
+Level: 13
+Ability: Rock Head
+EVs: 36 HP / 196 Atk / 40 SpD / 236 Spe
+Adamant Nature
+- Focus Punch
+- Double-Edge
+- Hidden Power
+- Protect
+
+=== TRAINER_PLASTIC_OX_ROUTE44_ZACH ===
+Name: ZACH
+Class: Super Nerd Frlg
+Pic: Super Nerd Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Onix @ Sitrus Berry
+Level: 13
+Ability: Rock Head
+EVs: 76 HP / 236 Atk / 196 Spe
+Jolly Nature
+- Rock Slide
+- Earthquake
+- Double-Edge
+- Explosion
+
+Machop @ Sitrus Berry
+Level: 13
+Ability: Guts
+EVs: 36 HP / 116 Atk / 40 Def / 240 SpD / 76 Spe
+Adamant Nature
+- Bulk Up
+- Focus Punch
+- Hidden Power
+- Endure
+
+=== TRAINER_PLASTIC_OX_ROUTE44_ALLEN ===
+Name: ALLEN
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Kingler @ Leftovers
+Level: 13
+Ability: Hyper Cutter
+EVs: 252 Atk / 4 Def / 252 Spe
+Adamant Nature
+- Swords Dance
+- Double-Edge
+- Hidden Power
+- Hyper Beam
+
+Seaking @ Leftovers
+Level: 13
+Ability: Swift Swim
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Surf
+- Water Pulse
+- Hidden Power
+- Toxic
+
+Dragonair @ Leftovers
+Level: 13
+Ability: Shed Skin
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 160 SpD / 96 Spe
+Calm Nature
+- Thunder Wave
+- Rest
+- Thunderbolt
+- Ice Beam
+
+=== TRAINER_PLASTIC_OX_ROUTE44_CYBIL ===
+Name: CYBIL
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Machop @ Sitrus Berry
+Level: 13
+Ability: Guts
+EVs: 36 HP / 116 Atk / 40 Def / 240 SpD / 76 Spe
+Adamant Nature
+- Bulk Up
+- Focus Punch
+- Hidden Power
+- Endure
+
+Voltorb @ Sitrus Berry
+Level: 13
+Ability: Static
+EVs: 116 HP / 36 Def / 160 SpA / 196 Spe
+Timid Nature
+- Thunderbolt
+- Hidden Power
+- Thief
+- Explosion
+
+=== TRAINER_PLASTIC_OX_ROUTE44_VANCE ===
+Name: VANCE
+Class: Guitarist
+Pic: Guitarist
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Staryu @ Sitrus Berry
+Level: 13
+Ability: Natural Cure
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 36 HP / 76 Def / 120 SpA / 236 Spe
+Timid Nature
+- Surf
+- Thunderbolt
+- Ice Beam
+- Hidden Power
+
+Horsea @ Sitrus Berry
+Level: 13
+Ability: Swift Swim
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 36 HP / 36 Def / 200 SpA / 196 Spe
+Modest Nature
+- Surf
+- Hidden Power
+- Rain Dance
+- Toxic
+
+=== TRAINER_PLASTIC_OX_ROUTE_ILEX ===
+Name: WAYNE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Paras
+Level: 9
+
+Venonat
+Level: 9
+
+Nincada
+Level: 9
+
+Oddish
+Level: 9
+
+Exeggcute
+Level: 9
+
+Pineco
+Level: 9
+
+=== TRAINER_PLASTIC_OX_ROUTE25_DUDLEY ===
+Name: DUDLEY
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Ponyta @ Sitrus Berry
+Level: 11
+Ability: Flash Fire
+EVs: 236 SpA / 76 SpD / 196 Spe
+Hasty Nature
+- Substitute
+- Overheat
+- Body Slam
+- Toxic
+
+Houndour @ Leftovers
+Level: 12
+Ability: Early Bird
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Flamethrower
+- Fire Blast
+- Hidden Power
+- Toxic
+
+Smoochum @ Leftovers
+Level: 11
+Ability: Oblivious
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Ice Beam
+- Psychic
+- Hidden Power
+- Toxic
+
+=== TRAINER_PLASTIC_OX_ROUTE25_JOE ===
+Name: JOE
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Doduo @ Leftovers
+Level: 11
+Ability: Run Away
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Hidden Power
+- Aerial Ace
+- Mud-Slap
+- Toxic
+
+Vulpix @ Leftovers
+Level: 11
+Ability: Flash Fire
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Flamethrower
+- Fire Blast
+- Hidden Power
+- Toxic
+
+Igglybuff @ Leftovers
+Level: 11
+Ability: Cute Charm
+EVs: 252 HP / 252 Def
+Bold Nature
+- Hidden Power
+- Flamethrower
+- Toxic
+- Psychic
+
+=== TRAINER_PLASTIC_OX_ROUTE25_LAURA ===
+Name: LAURA
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Cleffa @ Leftovers
+Level: 11
+Ability: Cute Charm
+EVs: 252 HP / 252 Def
+Bold Nature
+- Hidden Power
+- Flamethrower
+- Toxic
+- Psychic
+
+Snubbull @ Sitrus Berry
+Level: 12
+Ability: Intimidate
+EVs: 196 HP / 116 Atk / 36 Def / 120 SpD / 36 Spe
+Careful Nature
+- Double-Edge
+- Earthquake
+- Shadow Ball
+- Bulk Up
+
+=== TRAINER_PLASTIC_OX_ROUTE25_LLOYD ===
+Name: LLOYD
+Class: Camper
+Pic: Camper
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Machop @ Sitrus Berry
+Level: 11
+Ability: Guts
+EVs: 36 HP / 116 Atk / 40 Def / 240 SpD / 76 Spe
+Adamant Nature
+- Bulk Up
+- Focus Punch
+- Hidden Power
+- Endure
+
+Geodude @ Choice Band
+Level: 11
+Ability: Rock Head
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Earthquake
+- Rock Slide
+- Hidden Power
+- Toxic
+
+Bagon @ Sitrus Berry
+Level: 12
+Ability: Rock Head
+EVs: 76 HP / 76 Atk / 40 Def / 200 SpD / 116 Spe
+Careful Nature
+- Double-Edge
+- Brick Break
+- Hidden Power
+- Fire Blast
+
+=== TRAINER_PLASTIC_OX_ROUTE25_ELLEN ===
+Name: ELLEN
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Dratini @ Leftovers
+Level: 12
+Ability: Shed Skin
+EVs: 252 HP / 252 Def
+Bold Nature
+- Hidden Power
+- Surf
+- Toxic
+- Thunderbolt
+
+Horsea @ Sitrus Berry
+Level: 12
+Ability: Swift Swim
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 36 HP / 36 Def / 200 SpA / 196 Spe
+Modest Nature
+- Surf
+- Hidden Power
+- Rain Dance
+- Toxic
+
+=== TRAINER_PLASTIC_OX_ROUTE25_PAT ===
+Name: PAT
+Class: Super Nerd Frlg
+Pic: Super Nerd Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Dratini @ Leftovers
+Level: 12
+Ability: Shed Skin
+EVs: 252 HP / 252 Def
+Bold Nature
+- Hidden Power
+- Surf
+- Toxic
+- Thunderbolt
+
+Horsea @ Sitrus Berry
+Level: 12
+Ability: Swift Swim
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 36 HP / 36 Def / 200 SpA / 196 Spe
+Modest Nature
+- Surf
+- Hidden Power
+- Rain Dance
+- Toxic
+
+=== TRAINER_PLASTIC_OX_ROUTE2_BEN ===
+Name: BEN
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Mankey
+Level: 6
+
+Ekans
+Level: 6
+
+Growlithe
+Level: 6
+
+=== TRAINER_PLASTIC_OX_ROUTE2_WADE ===
+Name: WADE
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Venonat
+Level: 9
+
+Aron
+Level: 9
+
+Baltoy
+Level: 9
+
+Spoink
+Level: 9
+
+Ralts
+Level: 9
+
+Voltorb
+Level: 9
+
+=== TRAINER_PLASTIC_OX_ROUTE29_ELLA ===
+Name: ELLA
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Hoothoot
+Level: 5
+
+Hoppip
+Level: 4
+
+Rattata
+Level: 4
+
+=== TRAINER_PLASTIC_OX_ROUTE_ILEX_FINN ===
+Name: FINN
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer
+
+Spinarak
+Level: 8
+
+Wurmple
+Level: 7
+
+=== TRAINER_PLASTIC_OX_ROUTE_ILEX_MAYA ===
+Name: MAYA
+Class: Picnicker
+Pic: Picnicker
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer
+
+Hoothoot
+Level: 9
+
+Sunkern
+Level: 8
+
+=== TRAINER_PLASTIC_OX_PU_ROUTE33 ===
+Name: ANTHONY
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Spinda @ Leftovers
+Level: 17
+Ability: Own Tempo
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Hidden Power
+- Body Slam
+- Rock Slide
+- Toxic
+
+Seviper @ Leftovers
+Level: 17
+Ability: Shed Skin
+EVs: 252 Atk / 4 SpA / 252 Spe
+Lonely Nature
+- Sludge Bomb
+- Earthquake
+- Giga Drain
+- Bite
+
+Zigzagoon @ Leftovers
+Level: 17
+Ability: Pickup
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Hidden Power
+- Body Slam
+- Surf
+- Toxic
+
+Hoppip @ Leftovers
+Level: 17
+Ability: Chlorophyll
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Giga Drain
+- Aerial Ace
+- Hidden Power
+- Toxic
+
+Aipom @ Leftovers
+Level: 17
+Ability: Run Away
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Hidden Power
+- Body Slam
+- Thunderbolt
+- Toxic
+
+Geodude @ Choice Band
+Level: 17
+Ability: Rock Head
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Earthquake
+- Rock Slide
+- Hidden Power
+- Toxic
+
+=== TRAINER_PLASTIC_OX_PU_ROUTE35 ===
+Name: BROOKE
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Abra @ Salac Berry
+Level: 20
+Ability: Synchronize
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Calm Mind
+- Psychic
+- Fire Punch
+- Substitute
+
+Farfetch'd @ Salac Berry
+Level: 20
+Ability: Inner Focus
+EVs: 252 Atk / 4 Def / 252 Spe
+Adamant Nature
+- Substitute
+- Iron Tail
+- Hidden Power
+- Swords Dance
+
+Yanma @ Liechi Berry
+Level: 20
+Ability: Speed Boost
+EVs: 252 Atk / 4 Def / 252 Spe
+Adamant Nature
+- Substitute
+- Solar Beam
+- Hidden Power
+- Protect
+
+Minun @ Leftovers
+Level: 20
+Ability: Minus
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Thunderbolt
+- Thunder Punch
+- Hidden Power
+- Toxic
+
+Drowzee @ Leftovers
+Level: 20
+Ability: Insomnia
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Psychic
+- Dream Eater
+- Hidden Power
+- Toxic
+
+Corsola @ Leftovers
+Level: 20
+Ability: Natural Cure
+EVs: 136 Def / 252 SpA / 120 SpD
+Modest Nature
+- Recover
+- Surf
+- Ice Beam
+- Toxic
+
+=== TRAINER_PLASTIC_OX_PU_PARK ===
+Name: WILLIAM
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Lickitung @ Leftovers
+Level: 20
+Ability: Own Tempo
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Hidden Power
+- Body Slam
+- Surf
+- Toxic
+
+Jigglypuff @ Leftovers
+Level: 20
+Ability: Cute Charm
+EVs: 252 HP / 252 Def
+Bold Nature
+- Hidden Power
+- Thunderbolt
+- Toxic
+- Flamethrower
+
+Tropius @ Leftovers
+Level: 20
+Ability: Chlorophyll
+EVs: 196 HP / 188 Atk / 124 SpD
+Adamant Nature
+- Swords Dance
+- Hidden Power
+- Earthquake
+- Substitute
+
+Hoppip @ Leftovers
+Level: 20
+Ability: Chlorophyll
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Giga Drain
+- Aerial Ace
+- Hidden Power
+- Toxic
+
+Nidoran♀ @ Leftovers
+Level: 20
+Ability: Poison Point
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Sludge Bomb
+- Poison Sting
+- Hidden Power
+- Toxic
+
+Ledyba @ Choice Band
+Level: 20
+Ability: Swarm
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Aerial Ace
+- Hidden Power
+- Giga Drain
+- Toxic
+
+=== TRAINER_PLASTIC_OX_PU_ROUTE36 ===
+Name: MARK
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Tangela @ Leftovers
+Level: 21
+Ability: Chlorophyll
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Sunny Day
+- Sleep Powder
+- Solar Beam
+- Hidden Power
+
+Vulpix @ Leftovers
+Level: 21
+Ability: Flash Fire
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Flamethrower
+- Fire Blast
+- Hidden Power
+- Toxic
+
+Drowzee @ Leftovers
+Level: 21
+Ability: Insomnia
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Psychic
+- Dream Eater
+- Hidden Power
+- Toxic
+
+Bellsprout @ Sitrus Berry
+Level: 21
+Ability: Chlorophyll
+EVs: 80 Atk / 200 SpA / 200 Spe
+Rash Nature
+- Sunny Day
+- Solar Beam
+- Hidden Power
+- Sludge Bomb
+
+Natu @ Leftovers
+Level: 21
+Ability: Synchronize
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Psychic
+- Aerial Ace
+- Hidden Power
+- Toxic
+
+Baltoy @ Sitrus Berry
+Level: 21
+Ability: Levitate
+EVs: 36 HP / 196 Atk / 156 Def / 36 SpD / 76 Spe
+Careful Nature
+- Earthquake
+- Shadow Ball
+- Rock Tomb
+- Explosion
+
+=== TRAINER_PLASTIC_OX_ROUTE24_ROCKET ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Aqua
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Cubone @ Thick Club
+Level: 12
+Ability: Rock Head
+EVs: 36 HP / 196 Atk / 40 SpD / 236 Spe
+Adamant Nature
+- Focus Punch
+- Double-Edge
+- Hidden Power
+- Protect
+
+Koffing @ Sitrus Berry
+Level: 12
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 30 Spe
+EVs: 116 HP / 76 Atk / 236 Def / 80 Spe
+Impish Nature
+- Sludge Bomb
+- Hidden Power
+- Thief
+- Explosion
+
+Voltorb @ Sitrus Berry
+Level: 12
+Ability: Static
+EVs: 116 HP / 36 Def / 160 SpA / 196 Spe
+Timid Nature
+- Thunderbolt
+- Hidden Power
+- Thief
+- Explosion
+
+Gastly @ Sitrus Berry
+Level: 12
+Ability: Levitate
+EVs: 36 HP / 36 SpA / 236 SpD / 196 Spe
+Timid Nature
+- Thunderbolt
+- Giga Drain
+- Thief
+- Explosion
+
+Ekans @ Leftovers
+Level: 12
+Ability: Intimidate
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Sludge Bomb
+- Poison Sting
+- Hidden Power
+- Toxic
+
+Drowzee @ Leftovers
+Level: 12
+Ability: Insomnia
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Psychic
+- Dream Eater
+- Hidden Power
+- Toxic
+
+=== TRAINER_PLASTIC_OX_MOON_BUG_CATCHER_KENT ===
+Name: KENT
+Class: Bug Catcher Frlg
+Pic: Bug Catcher Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Paras @ Leftovers
+Level: 13
+Ability: Effect Spore
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Giga Drain
+- Solar Beam
+- Hidden Power
+- Toxic
+
+Venonat @ Leftovers
+Level: 13
+Ability: Compound Eyes
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Sludge Bomb
+- Hidden Power
+- Giga Drain
+- Toxic
+
+Nincada @ Leftovers
+Level: 13
+Ability: Compound Eyes
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Leech Life
+- Mud-Slap
+- Hidden Power
+- Toxic
+
+=== TRAINER_PLASTIC_OX_MOON_BUG_CATCHER_ROBBY ===
+Name: ROBBY
+Class: Bug Catcher Frlg
+Pic: Bug Catcher Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Nincada @ Leftovers
+Level: 14
+Ability: Compound Eyes
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Leech Life
+- Mud-Slap
+- Hidden Power
+- Toxic
+
+Paras @ Leftovers
+Level: 14
+Ability: Effect Spore
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Giga Drain
+- Solar Beam
+- Hidden Power
+- Toxic
+
+=== TRAINER_PLASTIC_OX_MOON_HIKER_MARCOS ===
+Name: MARCOS
+Class: Hiker Frlg
+Pic: Hiker Frlg
+Gender: Male
+Music: Hiker
+Double Battle: No
+AI: Check Bad Move
+
+Geodude @ Choice Band
+Level: 13
+Ability: Rock Head
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Earthquake
+- Rock Slide
+- Hidden Power
+- Toxic
+
+Onix @ Sitrus Berry
+Level: 13
+Ability: Rock Head
+EVs: 76 HP / 236 Atk / 196 Spe
+Jolly Nature
+- Rock Slide
+- Earthquake
+- Double-Edge
+- Explosion
+
+Aron @ Choice Band
+Level: 13
+Ability: Sturdy
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Rock Slide
+- Rock Tomb
+- Hidden Power
+- Toxic
+
+=== TRAINER_PLASTIC_OX_MOON_LASS_IRIS ===
+Name: IRIS
+Class: Lass Frlg
+Pic: Lass Frlg
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Check Bad Move
+
+Meowth @ Sitrus Berry
+Level: 15
+Ability: Pickup
+EVs: 36 HP / 236 Atk / 36 SpD / 196 Spe
+Jolly Nature
+- Thunder
+- Double-Edge
+- Shadow Ball
+- Taunt
+
+Cleffa @ Leftovers
+Level: 15
+Ability: Cute Charm
+EVs: 252 HP / 252 Def
+Bold Nature
+- Hidden Power
+- Flamethrower
+- Toxic
+- Psychic
+
+Sentret @ Leftovers
+Level: 15
+Ability: Run Away
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Hidden Power
+- Body Slam
+- Surf
+- Toxic
+
+=== TRAINER_PLASTIC_OX_MOON_LASS_MIRIAM ===
+Name: MIRIAM
+Class: Lass Frlg
+Pic: Lass Frlg
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Check Bad Move
+
+Cleffa @ Leftovers
+Level: 13
+Ability: Cute Charm
+EVs: 252 HP / 252 Def
+Bold Nature
+- Hidden Power
+- Flamethrower
+- Toxic
+- Psychic
+
+Meowth @ Sitrus Berry
+Level: 13
+Ability: Pickup
+EVs: 36 HP / 236 Atk / 36 SpD / 196 Spe
+Jolly Nature
+- Thunder
+- Double-Edge
+- Shadow Ball
+- Taunt
+
+=== TRAINER_PLASTIC_OX_MOON_SUPER_NERD_JOVAN ===
+Name: JOVAN
+Class: Super Nerd Frlg
+Pic: Super Nerd Frlg
+Gender: Male
+Music: Suspicious
+Double Battle: No
+AI: Check Bad Move
+
+Magnemite @ Sitrus Berry
+Level: 13
+Ability: Sturdy
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 36 Def / 240 SpA / 76 SpD / 156 Spe
+Modest Nature
+- Thunderbolt
+- Hidden Power
+- Toxic
+- Substitute
+
+Spoink @ Leftovers
+Level: 13
+Ability: Thick Fat
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 36 HP / 156 Def / 116 SpD / 196 Spe
+Bold Nature
+- Thief
+- Psychic
+- Icy Wind
+- Taunt
+
+=== TRAINER_PLASTIC_OX_MOON_SUPER_NERD_MIGUEL ===
+Name: MIGUEL
+Class: Super Nerd Frlg
+Pic: Super Nerd Frlg
+Gender: Male
+Music: Suspicious
+Double Battle: No
+AI: Check Bad Move
+
+Magnemite @ Sitrus Berry
+Level: 15
+Ability: Sturdy
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 36 Def / 240 SpA / 76 SpD / 156 Spe
+Modest Nature
+- Thunderbolt
+- Hidden Power
+- Toxic
+- Substitute
+
+Spoink @ Leftovers
+Level: 15
+Ability: Thick Fat
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 36 HP / 156 Def / 116 SpD / 196 Spe
+Bold Nature
+- Thief
+- Psychic
+- Icy Wind
+- Taunt
+
+Baltoy @ Sitrus Berry
+Level: 15
+Ability: Levitate
+EVs: 36 HP / 196 Atk / 156 Def / 36 SpD / 76 Spe
+Careful Nature
+- Earthquake
+- Shadow Ball
+- Rock Tomb
+- Explosion
+
+=== TRAINER_PLASTIC_OX_MOON_TEAM_ROCKET_GRUNT ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Aqua
+Double Battle: No
+AI: Check Bad Move
+
+Cubone @ Thick Club
+Level: 16
+Ability: Rock Head
+EVs: 36 HP / 196 Atk / 40 SpD / 236 Spe
+Adamant Nature
+- Focus Punch
+- Double-Edge
+- Hidden Power
+- Protect
+
+Voltorb @ Sitrus Berry
+Level: 16
+Ability: Static
+EVs: 116 HP / 36 Def / 160 SpA / 196 Spe
+Timid Nature
+- Thunderbolt
+- Hidden Power
+- Thief
+- Explosion
+
+Koffing @ Sitrus Berry
+Level: 16
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 30 Spe
+EVs: 116 HP / 76 Atk / 236 Def / 80 Spe
+Impish Nature
+- Sludge Bomb
+- Hidden Power
+- Thief
+- Explosion
+
+Machop @ Sitrus Berry
+Level: 16
+Ability: Guts
+EVs: 36 HP / 116 Atk / 40 Def / 240 SpD / 76 Spe
+Adamant Nature
+- Bulk Up
+- Focus Punch
+- Hidden Power
+- Endure
+
+Duskull @ Leftovers
+Level: 16
+Ability: Levitate
+EVs: 252 HP / 252 Def / 4 SpD
+Bold Nature
+- Rest
+- Sleep Talk
+- Blizzard
+- Night Shade
+
+Ekans @ Leftovers
+Level: 16
+Ability: Intimidate
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Sludge Bomb
+- Poison Sting
+- Hidden Power
+- Toxic
+
+=== TRAINER_PLASTIC_OX_MOON_TEAM_ROCKET_GRUNT_2 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Aqua
+Double Battle: No
+AI: Check Bad Move
+
+Magnemite @ Sitrus Berry
+Level: 13
+Ability: Sturdy
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 36 Def / 240 SpA / 76 SpD / 156 Spe
+Modest Nature
+- Thunderbolt
+- Hidden Power
+- Toxic
+- Substitute
+
+Drowzee @ Leftovers
+Level: 13
+Ability: Insomnia
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Psychic
+- Dream Eater
+- Hidden Power
+- Toxic
+
+Gastly @ Leftovers
+Level: 13
+Ability: Levitate
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Psychic
+- Thunderbolt
+- Taunt
+- Explosion
+
+=== TRAINER_PLASTIC_OX_MOON_TEAM_ROCKET_GRUNT_3 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Aqua
+Double Battle: No
+AI: Check Bad Move
+
+Rhyhorn @ Choice Band
+Level: 15
+Ability: Lightning Rod
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Earthquake
+- Rock Slide
+- Hidden Power
+- Toxic
+
+Aron @ Choice Band
+Level: 14
+Ability: Sturdy
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Rock Slide
+- Rock Tomb
+- Hidden Power
+- Toxic
+
+=== TRAINER_PLASTIC_OX_MOON_TEAM_ROCKET_GRUNT_4 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Aqua
+Double Battle: No
+AI: Check Bad Move
+
+Magnemite @ Sitrus Berry
+Level: 15
+Ability: Sturdy
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 36 Def / 240 SpA / 76 SpD / 156 Spe
+Modest Nature
+- Thunderbolt
+- Hidden Power
+- Toxic
+- Substitute
+
+Onix @ Sitrus Berry
+Level: 15
+Ability: Rock Head
+EVs: 76 HP / 236 Atk / 196 Spe
+Jolly Nature
+- Rock Slide
+- Earthquake
+- Double-Edge
+- Explosion
+
+Drowzee @ Leftovers
+Level: 15
+Ability: Insomnia
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Psychic
+- Dream Eater
+- Hidden Power
+- Toxic
+
+=== TRAINER_PLASTIC_OX_MOON_YOUNGSTER_JOSH ===
+Name: JOSH
+Class: Youngster Frlg
+Pic: Youngster Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Mankey @ Salac Berry
+Level: 13
+Ability: Vital Spirit
+EVs: 36 HP / 196 Atk / 80 Def / 196 Spe
+Jolly Nature
+- Focus Punch
+- Hidden Power
+- Substitute
+- Endure
+
+Meowth @ Sitrus Berry
+Level: 13
+Ability: Pickup
+EVs: 36 HP / 236 Atk / 36 SpD / 196 Spe
+Jolly Nature
+- Thunder
+- Double-Edge
+- Shadow Ball
+- Taunt
+
+=== TRAINER_PLASTIC_OX_JOHTO_ALAN ===
+Name: ALAN
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Magnemite @ Sitrus Berry
+Level: 21
+Ability: Sturdy
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 36 Def / 240 SpA / 76 SpD / 156 Spe
+Modest Nature
+- Thunderbolt
+- Hidden Power
+- Toxic
+- Substitute
+
+Ponyta @ Sitrus Berry
+Level: 21
+Ability: Flash Fire
+EVs: 76 Def / 236 SpA / 196 Spe
+Timid Nature
+- Sunny Day
+- Fire Blast
+- Solar Beam
+- Substitute
+
+=== TRAINER_PLASTIC_OX_JOHTO_ANN_ANNE ===
+Name: ANN & ANNE
+Class: Twins
+Pic: Twins
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Ledian @ Leftovers
+Level: 22
+Ability: Early Bird
+EVs: 252 HP / 4 Def / 252 Spe
+Timid Nature
+- Reflect
+- Light Screen
+- Hyper Beam
+- Substitute
+
+Ariados @ Leftovers
+Level: 22
+Ability: Swarm
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Sludge Bomb
+- Poison Sting
+- Hidden Power
+- Toxic
+
+Jigglypuff @ Leftovers
+Level: 22
+Ability: Cute Charm
+EVs: 252 HP / 252 Def
+Bold Nature
+- Hidden Power
+- Thunderbolt
+- Toxic
+- Flamethrower
+
+=== TRAINER_PLASTIC_OX_JOHTO_GREG ===
+Name: GREG
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Drowzee @ Leftovers
+Level: 22
+Ability: Insomnia
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Psychic
+- Dream Eater
+- Hidden Power
+- Toxic
+
+Natu @ Leftovers
+Level: 22
+Ability: Synchronize
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Psychic
+- Aerial Ace
+- Hidden Power
+- Toxic
+
+Baltoy @ Sitrus Berry
+Level: 22
+Ability: Levitate
+EVs: 36 HP / 196 Atk / 156 Def / 36 SpD / 76 Spe
+Careful Nature
+- Earthquake
+- Shadow Ball
+- Rock Tomb
+- Explosion
+
+Exeggcute @ Sitrus Berry
+Level: 22
+Ability: Chlorophyll
+EVs: 36 HP / 36 Atk / 36 Def / 196 SpA / 156 SpD / 36 Spe
+Mild Nature
+- Explosion
+- Sunny Day
+- Solar Beam
+- Psychic
+
+Kirlia @ Leftovers
+Level: 22
+Ability: Synchronize
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Psychic
+- Dream Eater
+- Hidden Power
+- Toxic
+
+Haunter @ Leftovers
+Level: 22
+Ability: Levitate
+EVs: 4 Def / 252 SpA / 252 Spe
+Timid Nature
+- Psychic
+- Thunderbolt
+- Substitute
+- Explosion
+
+=== TRAINER_PLASTIC_OX_JOHTO_BEVERLY ===
+Name: BEVERLY
+Class: Pokefan
+Pic: Pokefan F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Snubbull @ Sitrus Berry
+Level: 20
+Ability: Intimidate
+EVs: 116 HP / 196 Atk / 36 Def / 120 SpD / 36 Spe
+Adamant Nature
+- Double-Edge
+- Shadow Ball
+- Earthquake
+- Thief
+
+Skitty @ Leftovers
+Level: 20
+Ability: Cute Charm
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Hidden Power
+- Body Slam
+- Thunderbolt
+- Toxic
+
+Marill @ Leftovers
+Level: 20
+Ability: Thick Fat
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Surf
+- Water Pulse
+- Hidden Power
+- Toxic
+
+=== TRAINER_PLASTIC_OX_JOHTO_JACK ===
+Name: JACK
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Oddish @ Sitrus Berry
+Level: 20
+Ability: Chlorophyll
+IVs: 31 HP / 2 Atk / 30 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 76 HP / 80 Def / 236 SpA / 116 Spe
+Modest Nature
+- Sunny Day
+- Solar Beam
+- Hidden Power
+- Bullet Seed
+
+Voltorb @ Silk Scarf
+Level: 20
+Ability: Static
+EVs: 252 Atk / 4 SpA / 252 Spe
+Naive Nature
+- Rain Dance
+- Thunder
+- Light Screen
+- Explosion
+
+=== TRAINER_PLASTIC_OX_JOHTO_KRISE ===
+Name: KRISE
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Oddish @ Sitrus Berry
+Level: 20
+Ability: Chlorophyll
+IVs: 31 HP / 2 Atk / 30 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 76 HP / 80 Def / 236 SpA / 116 Spe
+Modest Nature
+- Sunny Day
+- Solar Beam
+- Hidden Power
+- Bullet Seed
+
+Cubone @ Thick Club
+Level: 20
+Ability: Rock Head
+EVs: 36 HP / 196 Atk / 40 SpD / 236 Spe
+Adamant Nature
+- Focus Punch
+- Double-Edge
+- Hidden Power
+- Protect
+
+Mareep @ Leftovers
+Level: 20
+Ability: Static
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Thunder
+- Hidden Power
+- Toxic
+
+=== TRAINER_PLASTIC_OX_ENTEI_SAGE ===
+Name: SAGE
+Class: Expert
+Pic: Sage Hns
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Crobat @ Leftovers
+Level: 44
+Ability: Inner Focus
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Sludge Bomb
+- Aerial Ace
+- Shadow Ball
+- Taunt
+
+Donphan @ Leftovers
+Level: 44
+Ability: Sturdy
+EVs: 252 HP / 252 Atk / 4 Def
+Adamant Nature
+- Earthquake
+- Rock Slide
+- Rapid Spin
+- Roar
+
+Vaporeon @ Leftovers
+Level: 44
+Ability: Water Absorb
+EVs: 252 HP / 252 Def / 4 SpD
+Bold Nature
+- Surf
+- Ice Beam
+- Wish
+- Protect
+
+Hariyama @ Leftovers
+Level: 44
+Ability: Thick Fat
+EVs: 252 Atk / 128 Def / 128 SpD
+Adamant Nature
+- Cross Chop
+- Rock Slide
+- Knock Off
+- Fake Out
+
+Espeon @ Leftovers
+Level: 44
+Ability: Synchronize
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Psychic
+- Calm Mind
+- Hidden Power
+- Morning Sun
+
+Entei @ Leftovers
+Level: 45
+Ability: Pressure
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Fire Blast
+- Calm Mind
+- Hidden Power
+- Sunny Day
+
+=== TRAINER_PLASTIC_OX_ARTICUNO_SAGE ===
+Name: SAGE
+Class: Expert
+Pic: Sage Hns
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Jynx @ Leftovers
+Level: 49
+Ability: Oblivious
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Lovely Kiss
+- Ice Beam
+- Psychic
+- Calm Mind
+
+Donphan @ Leftovers
+Level: 49
+Ability: Sturdy
+EVs: 252 HP / 252 Atk / 4 Def
+Adamant Nature
+- Earthquake
+- Rock Slide
+- Rapid Spin
+- Roar
+
+Vaporeon @ Leftovers
+Level: 49
+Ability: Water Absorb
+EVs: 252 HP / 252 Def / 4 SpD
+Bold Nature
+- Surf
+- Ice Beam
+- Toxic
+- Protect
+
+Machamp @ Leftovers
+Level: 49
+Ability: Guts
+EVs: 252 HP / 252 Atk / 4 SpD
+Adamant Nature
+- Cross Chop
+- Rock Slide
+- Earthquake
+- Bulk Up
+
+Houndoom @ Leftovers
+Level: 49
+Ability: Flash Fire
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Flamethrower
+- Bite
+- Solar Beam
+- Sunny Day
+
+Articuno @ Leftovers
+Level: 50
+Ability: Pressure
+EVs: 252 HP / 96 Def / 160 Spe
+Bold Nature
+- Ice Beam
+- Toxic
+- Substitute
+- Protect
+
+=== TRAINER_PLASTIC_OX_RIDGE_RAIN ===
+Name: MARINA
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Ludicolo @ Leftovers
+Level: 58
+Ability: Swift Swim
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Modest Nature
+- Rain Dance
+- Surf
+- Ice Beam
+- Giga Drain
+
+Kingdra @ Leftovers
+Level: 58
+Ability: Swift Swim
+IVs: 31 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Modest Nature
+- Rain Dance
+- Surf
+- Ice Beam
+- Hidden Power
+
+Jolteon @ Leftovers
+Level: 58
+Ability: Volt Absorb
+IVs: 30 HP / 31 Atk / 30 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Hidden Power
+- Substitute
+- Baton Pass
+
+Metagross @ Leftovers
+Level: 58
+Ability: Clear Body
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 176 Atk / 80 Def
+Adamant Nature
+- Meteor Mash
+- Earthquake
+- Protect
+- Explosion
+
+Swampert @ Leftovers
+Level: 58
+Ability: Torrent
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 240 HP / 216 Def / 52 SpA
+Relaxed Nature
+- Earthquake
+- Ice Beam
+- Surf
+- Protect
+
+Gengar @ Leftovers
+Level: 58
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Ice Punch
+- Will-O-Wisp
+- Taunt
+
+=== TRAINER_PLASTIC_OX_RIDGE_SAND ===
+Name: DARIUS
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Tyranitar @ Choice Band
+Level: 58
+Ability: Sand Stream
+IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Rock Slide
+- Earthquake
+- Brick Break
+- Hidden Power
+
+Skarmory @ Leftovers
+Level: 58
+Ability: Keen Eye
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 Spe
+Impish Nature
+- Spikes
+- Whirlwind
+- Drill Peck
+- Rest
+
+Flygon @ Choice Band
+Level: 58
+Ability: Levitate
+IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Earthquake
+- Rock Slide
+- Hidden Power
+- Double-Edge
+
+Swampert @ Leftovers
+Level: 58
+Ability: Torrent
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 240 HP / 216 Def / 52 SpA
+Relaxed Nature
+- Earthquake
+- Ice Beam
+- Surf
+- Protect
+
+Gengar @ Leftovers
+Level: 58
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Ice Punch
+- Will-O-Wisp
+- Taunt
+
+Blissey @ Leftovers
+Level: 58
+Ability: Natural Cure
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Bold Nature
+- Seismic Toss
+- Soft-Boiled
+- Toxic
+- Ice Beam
+
+=== TRAINER_PLASTIC_OX_RIDGE_STALL ===
+Name: HELEN
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Skarmory @ Leftovers
+Level: 58
+Ability: Keen Eye
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 Spe
+Impish Nature
+- Spikes
+- Whirlwind
+- Drill Peck
+- Rest
+
+Blissey @ Leftovers
+Level: 58
+Ability: Natural Cure
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Bold Nature
+- Seismic Toss
+- Soft-Boiled
+- Toxic
+- Ice Beam
+
+Milotic @ Leftovers
+Level: 58
+Ability: Marvel Scale
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpA
+Bold Nature
+- Surf
+- Ice Beam
+- Recover
+- Toxic
+
+Claydol @ Leftovers
+Level: 58
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 216 Def / 40 SpA
+Relaxed Nature
+- Earthquake
+- Ice Beam
+- Rapid Spin
+- Explosion
+
+Gengar @ Leftovers
+Level: 58
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Ice Punch
+- Will-O-Wisp
+- Taunt
+
+Snorlax @ Leftovers
+Level: 58
+Ability: Thick Fat
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 144 HP / 188 Def / 176 SpD
+Careful Nature
+- Curse
+- Body Slam
+- Shadow Ball
+- Rest
+
+=== TRAINER_PLASTIC_OX_RIDGE_OFFENSE ===
+Name: REX
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Aerodactyl @ Choice Band
+Level: 58
+Ability: Rock Head
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Rock Slide
+- Earthquake
+- Double-Edge
+- Hidden Power
+
+Salamence @ Choice Band
+Level: 58
+Ability: Intimidate
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Hidden Power
+- Earthquake
+- Rock Slide
+- Brick Break
+
+Metagross @ Leftovers
+Level: 58
+Ability: Clear Body
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 176 Atk / 80 Def
+Adamant Nature
+- Meteor Mash
+- Earthquake
+- Protect
+- Explosion
+
+Gyarados @ Leftovers
+Level: 58
+Ability: Intimidate
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 31 Spe
+EVs: 68 HP / 252 Atk / 188 Spe
+Adamant Nature
+- Dragon Dance
+- Hidden Power
+- Earthquake
+- Taunt
+
+Breloom @ Leftovers
+Level: 58
+Ability: Effect Spore
+IVs: 31 HP / 31 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Spore
+- Mach Punch
+- Sky Uppercut
+- Hidden Power
+
+Starmie @ Leftovers
+Level: 58
+Ability: Natural Cure
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Surf
+- Ice Beam
+- Thunderbolt
+- Recover
+
+=== TRAINER_PLASTIC_OX_RIDGE_BALANCE ===
+Name: SAGE
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Jolteon @ Leftovers
+Level: 58
+Ability: Volt Absorb
+IVs: 30 HP / 31 Atk / 30 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Hidden Power
+- Substitute
+- Baton Pass
+
+Swampert @ Leftovers
+Level: 58
+Ability: Torrent
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 240 HP / 216 Def / 52 SpA
+Relaxed Nature
+- Earthquake
+- Ice Beam
+- Surf
+- Protect
+
+Metagross @ Leftovers
+Level: 58
+Ability: Clear Body
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 176 Atk / 80 Def
+Adamant Nature
+- Meteor Mash
+- Earthquake
+- Protect
+- Explosion
+
+Gengar @ Leftovers
+Level: 58
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Ice Punch
+- Will-O-Wisp
+- Taunt
+
+Snorlax @ Leftovers
+Level: 58
+Ability: Thick Fat
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 144 HP / 188 Def / 176 SpD
+Careful Nature
+- Curse
+- Body Slam
+- Shadow Ball
+- Rest
+
+Salamence @ Choice Band
+Level: 58
+Ability: Intimidate
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Hidden Power
+- Earthquake
+- Rock Slide
+- Brick Break
+
+=== TRAINER_PLASTIC_OX_TOURNAMENT_1 ===
+Name: IRIS
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Omastar @ Leftovers
+Level: 42
+Ability: Shell Armor
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 Spe
+Bold Nature
+- Spikes
+- Surf
+- Toxic
+- Protect
+
+Kangaskhan @ Leftovers
+Level: 42
+Ability: Early Bird
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 212 HP / 252 Atk / 44 Spe
+Adamant Nature
+- Return
+- Shadow Ball
+- Rest
+- Earthquake
+
+Vileplume @ Leftovers
+Level: 42
+Ability: Chlorophyll
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 224 SpD / 32 Spe
+Careful Nature
+- Aromatherapy
+- Sleep Powder
+- Sludge Bomb
+- Leech Seed
+
+Hitmontop @ Leftovers
+Level: 42
+Ability: Intimidate
+IVs: 31 HP / 30 Atk / 31 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 252 HP / 116 Atk / 136 Def / 4 Spe
+Adamant Nature
+- Brick Break
+- Hidden Power
+- Earthquake
+- Rapid Spin
+
+Manectric @ Petaya Berry
+Level: 42
+Ability: Static
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 30 Spe
+EVs: 44 HP / 248 SpA / 216 Spe
+Timid Nature
+- Thunderbolt
+- Substitute
+- Crunch
+- Hidden Power
+
+Haunter @ Leftovers
+Level: 42
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Psychic
+- Will-O-Wisp
+- Explosion
+
+=== TRAINER_PLASTIC_OX_TOURNAMENT_2 ===
+Name: CEDRIC
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Jynx @ Leftovers
+Level: 50
+Ability: Oblivious
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Lovely Kiss
+- Ice Beam
+- Psychic
+- Calm Mind
+
+Donphan @ Leftovers
+Level: 50
+Ability: Sturdy
+EVs: 252 HP / 252 Atk / 4 Def
+Adamant Nature
+- Earthquake
+- Rock Slide
+- Rapid Spin
+- Roar
+
+Vaporeon @ Leftovers
+Level: 50
+Ability: Water Absorb
+EVs: 252 HP / 252 Def / 4 SpD
+Bold Nature
+- Surf
+- Ice Beam
+- Toxic
+- Protect
+
+Machamp @ Leftovers
+Level: 50
+Ability: Guts
+EVs: 252 HP / 252 Atk / 4 SpD
+Adamant Nature
+- Cross Chop
+- Rock Slide
+- Earthquake
+- Bulk Up
+
+Houndoom @ Leftovers
+Level: 50
+Ability: Flash Fire
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Flamethrower
+- Bite
+- Solar Beam
+- Sunny Day
+
+Espeon @ Leftovers
+Level: 50
+Ability: Synchronize
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 200 HP / 236 SpD / 72 Spe
+Timid Nature
+- Psychic
+- Calm Mind
+- Substitute
+- Baton Pass
+
+=== TRAINER_PLASTIC_OX_TOURNAMENT_3 ===
+Name: REX
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Jolteon @ Leftovers
+Level: 55
+Ability: Volt Absorb
+IVs: 30 HP / 31 Atk / 30 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Hidden Power
+- Substitute
+- Baton Pass
+
+Swampert @ Leftovers
+Level: 55
+Ability: Torrent
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 240 HP / 216 Def / 52 SpA
+Relaxed Nature
+- Earthquake
+- Ice Beam
+- Surf
+- Protect
+
+Metagross @ Leftovers
+Level: 55
+Ability: Clear Body
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 176 Atk / 80 Def
+Adamant Nature
+- Meteor Mash
+- Earthquake
+- Protect
+- Explosion
+
+Gengar @ Leftovers
+Level: 55
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Ice Punch
+- Will-O-Wisp
+- Taunt
+
+Snorlax @ Leftovers
+Level: 55
+Ability: Thick Fat
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 144 HP / 188 Def / 176 SpD
+Careful Nature
+- Curse
+- Body Slam
+- Shadow Ball
+- Rest
+
+Salamence @ Choice Band
+Level: 55
+Ability: Intimidate
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Hidden Power
+- Earthquake
+- Rock Slide
+- Brick Break
+
+=== TRAINER_PLASTIC_OX_TOURNAMENT_4 ===
+Name: MR.POKéMON
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Zapdos @ Leftovers
+Level: 75
+Ability: Pressure
+IVs: 30 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Hidden Power
+- Thunder Wave
+- Roar
+
+Metagross @ Choice Band
+Level: 75
+Ability: Clear Body
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 128 HP / 252 Atk / 128 Spe
+Adamant Nature
+- Meteor Mash
+- Explosion
+- Earthquake
+- Rock Slide
+
+Celebi @ Leftovers
+Level: 75
+Ability: Natural Cure
+IVs: 30 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 124 Def / 40 SpA / 60 SpD / 32 Spe
+Bold Nature
+- Leech Seed
+- Recover
+- Psychic
+- Hidden Power
+
+Flygon @ Leftovers
+Level: 75
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 30 SpD / 30 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Earthquake
+- Rock Slide
+- Hidden Power
+- Substitute
+
+Suicune @ Leftovers
+Level: 75
+Ability: Pressure
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 240 HP / 252 Def / 16 Spe
+Bold Nature
+- Calm Mind
+- Surf
+- Rest
+- Roar
+
+Jirachi @ Leftovers
+Level: 75
+Ability: Serene Grace
+IVs: 30 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 4 Def / 252 SpA / 252 Spe
+Timid Nature
+- Calm Mind
+- Psychic
+- Fire Punch
+- Hidden Power
+
+=== TRAINER_PLASTIC_OX_RAIKOU_SAGE ===
+Name: SAGE
+Class: Expert
+Pic: Sage Hns
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Skarmory @ Leftovers
+Level: 55
+Ability: Keen Eye
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpD / 4 Spe
+Careful Nature
+- Spikes
+- Roar
+- Drill Peck
+- Protect
+
+Swampert @ Leftovers
+Level: 55
+Ability: Torrent
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 248 HP / 216 Def / 44 SpD
+Relaxed Nature
+- Earthquake
+- Ice Beam
+- Protect
+- Hydro Pump
+
+Gengar @ Leftovers
+Level: 55
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 248 HP / 44 Def / 8 SpA / 112 SpD / 96 Spe
+Timid Nature
+- Will-O-Wisp
+- Taunt
+- Thunderbolt
+- Ice Punch
+
+Snorlax @ Leftovers
+Level: 55
+Ability: Immunity
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 204 HP / 224 Atk / 60 Def / 8 SpD / 12 Spe
+Adamant Nature
+- Curse
+- Body Slam
+- Shadow Ball
+- Earthquake
+
+Flygon @ Leftovers
+Level: 55
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 30 SpD / 30 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Earthquake
+- Rock Slide
+- Hidden Power
+- Substitute
+
+Raikou @ Leftovers
+Level: 55
+Ability: Pressure
+IVs: 30 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Calm Mind
+- Thunderbolt
+- Hidden Power
+- Substitute
+
+=== TRAINER_PLASTIC_OX_REGIROCK_SAGE ===
+Name: SAGE
+Class: Expert
+Pic: Sage Hns
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Jynx @ Leftovers
+Level: 50
+Ability: Oblivious
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Lovely Kiss
+- Ice Beam
+- Psychic
+- Calm Mind
+
+Donphan @ Leftovers
+Level: 50
+Ability: Sturdy
+EVs: 252 HP / 252 Atk / 4 Def
+Adamant Nature
+- Earthquake
+- Rock Slide
+- Rapid Spin
+- Roar
+
+Vaporeon @ Leftovers
+Level: 50
+Ability: Water Absorb
+EVs: 252 HP / 252 Def / 4 SpD
+Bold Nature
+- Surf
+- Ice Beam
+- Toxic
+- Protect
+
+Machamp @ Leftovers
+Level: 50
+Ability: Guts
+EVs: 252 HP / 252 Atk / 4 SpD
+Adamant Nature
+- Cross Chop
+- Rock Slide
+- Earthquake
+- Bulk Up
+
+Houndoom @ Leftovers
+Level: 50
+Ability: Flash Fire
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Flamethrower
+- Bite
+- Solar Beam
+- Sunny Day
+
+Regirock @ Leftovers
+Level: 50
+Ability: Clear Body
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Adamant Nature
+- Rock Slide
+- Focus Punch
+- Thunder Wave
+- Explosion
+
+=== TRAINER_PLASTIC_OX_REGICE_SAGE ===
+Name: SAGE
+Class: Expert
+Pic: Sage Hns
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Jolteon @ Leftovers
+Level: 55
+Ability: Volt Absorb
+IVs: 30 HP / 31 Atk / 30 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Hidden Power
+- Substitute
+- Baton Pass
+
+Swampert @ Leftovers
+Level: 55
+Ability: Torrent
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 240 HP / 216 Def / 52 SpA
+Relaxed Nature
+- Earthquake
+- Ice Beam
+- Surf
+- Protect
+
+Metagross @ Leftovers
+Level: 55
+Ability: Clear Body
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 176 Atk / 80 Def
+Adamant Nature
+- Meteor Mash
+- Earthquake
+- Protect
+- Explosion
+
+Gengar @ Leftovers
+Level: 55
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Ice Punch
+- Will-O-Wisp
+- Taunt
+
+Snorlax @ Leftovers
+Level: 55
+Ability: Thick Fat
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 144 HP / 188 Def / 176 SpD
+Careful Nature
+- Curse
+- Body Slam
+- Shadow Ball
+- Rest
+
+Regice @ Leftovers
+Level: 55
+Ability: Clear Body
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 104 Atk / 152 SpA
+Quiet Nature
+- Ice Beam
+- Thunderbolt
+- Explosion
+- Thunder Wave
+
+=== TRAINER_PLASTIC_OX_REGISTEEL_SAGE ===
+Name: SAGE
+Class: Expert
+Pic: Sage Hns
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Jolteon @ Leftovers
+Level: 55
+Ability: Volt Absorb
+IVs: 30 HP / 31 Atk / 30 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Hidden Power
+- Substitute
+- Baton Pass
+
+Swampert @ Leftovers
+Level: 55
+Ability: Torrent
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 240 HP / 216 Def / 52 SpA
+Relaxed Nature
+- Earthquake
+- Ice Beam
+- Surf
+- Protect
+
+Metagross @ Leftovers
+Level: 55
+Ability: Clear Body
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 176 Atk / 80 Def
+Adamant Nature
+- Meteor Mash
+- Earthquake
+- Protect
+- Explosion
+
+Gengar @ Leftovers
+Level: 55
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Ice Punch
+- Will-O-Wisp
+- Taunt
+
+Snorlax @ Leftovers
+Level: 55
+Ability: Thick Fat
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 144 HP / 188 Def / 176 SpD
+Careful Nature
+- Curse
+- Body Slam
+- Shadow Ball
+- Rest
+
+Registeel @ Leftovers
+Level: 55
+Ability: Clear Body
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 212 SpD / 44 Spe
+Careful Nature
+- Thunder Wave
+- Seismic Toss
+- Counter
+- Explosion

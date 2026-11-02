@@ -1,6 +1,7 @@
 #include "global.h"
 #include "battle_pyramid.h"
 #include "bg.h"
+#include "decompress.h"
 #include "field_camera.h"
 #include "fieldmap.h"
 #include "fldeff.h"
@@ -45,7 +46,7 @@ static void FillNorthConnection(struct MapHeader const *mapHeader, struct MapHea
 static void FillWestConnection(struct MapHeader const *mapHeader, struct MapHeader const *connectedMapHeader, s32 offset);
 static void FillEastConnection(struct MapHeader const *mapHeader, struct MapHeader const *connectedMapHeader, s32 offset);
 static bool8 AreConnectionTilesetsCompatible(const struct MapHeader *mapHeader, const struct MapHeader *connectedMapHeader);
-static void FillConnectionWithCurrentMapEdge(const struct MapHeader *mapHeader, enum Connection direction, s32 x, s32 y, s32 width, s32 height);
+static void FillConnectionWithCurrentMapEdge(const struct MapHeader *mapHeader, const struct MapHeader *connectedMapHeader, s32 offset, enum Connection direction, s32 x, s32 y, s32 width, s32 height);
 static void InitBackupMapLayoutConnections(const struct MapHeader *mapHeader);
 static void LoadSavedMapView(void);
 static bool8 SkipCopyingMetatileFromSavedMap(u16 *mapBlock, u16 mapWidth, u8 yMode);
@@ -57,7 +58,7 @@ static inline u16 GetBorderBlockAt(int x, int y)
 {
     const struct MapLayout *mapLayout = gMapHeader.mapLayout;
 
-    if (mapLayout->isFrlg)
+    if (mapLayout->layoutVersion == LAYOUT_VERSION_FRLG)
     {
         s32 xprime;
         s32 yprime;
@@ -256,7 +257,7 @@ static bool8 AreConnectionTilesetsCompatible(const struct MapHeader *mapHeader, 
     const struct MapLayout *mapLayout = mapHeader->mapLayout;
     const struct MapLayout *connectedMapLayout = connectedMapHeader->mapLayout;
 
-    return mapLayout->isFrlg == connectedMapLayout->isFrlg
+    return mapLayout->layoutVersion == connectedMapLayout->layoutVersion
         && mapLayout->primaryTileset == connectedMapLayout->primaryTileset
         && mapLayout->secondaryTileset == connectedMapLayout->secondaryTileset;
 }
@@ -264,10 +265,10 @@ static bool8 AreConnectionTilesetsCompatible(const struct MapHeader *mapHeader, 
 // A connection normally copies the neighboring map's blocks into the current
 // map's seven-block camera margin. That only renders correctly when both maps
 // use the same tilesets: metatile ids have no meaning outside their tileset.
-// For cross-generation stitches, extend the current map's touching edge into
-// the margin instead. The connection geometry and collision remain intact,
-// while foreign metatile ids are never drawn with the wrong graphics.
-static void FillConnectionWithCurrentMapEdge(const struct MapHeader *mapHeader, enum Connection direction, s32 x, s32 y, s32 width, s32 height)
+// For cross-generation stitches, extend walkable edge blocks into the margin
+// and use the current map's repeating border for blocked terrain. Stretching
+// a single blocked edge row/column repeats partial trees instead of whole ones.
+static void FillConnectionWithCurrentMapEdge(const struct MapHeader *mapHeader, const struct MapHeader *connectedMapHeader, s32 offset, enum Connection direction, s32 x, s32 y, s32 width, s32 height)
 {
     const struct MapLayout *mapLayout = mapHeader->mapLayout;
     s32 destX;
@@ -276,6 +277,9 @@ static void FillConnectionWithCurrentMapEdge(const struct MapHeader *mapHeader, 
     s32 localY;
     s32 srcX;
     s32 srcY;
+    s32 neighborX;
+    s32 neighborY;
+    const struct MapLayout *neighbor = connectedMapHeader->mapLayout;
     u16 block;
 
     for (destY = y; destY < y + height; destY++)
@@ -297,7 +301,26 @@ static void FillConnectionWithCurrentMapEdge(const struct MapHeader *mapHeader, 
                 srcX = mapLayout->width - 1;
 
             if (srcX >= 0 && srcX < mapLayout->width && srcY >= 0 && srcY < mapLayout->height)
+            {
                 block = mapLayout->map[srcX + srcY * mapLayout->width];
+                // Keep the local artwork, but do not extend an open edge into
+                // a blocked destination shore when the tilesets differ.
+                if (direction == CONNECTION_NORTH || direction == CONNECTION_SOUTH)
+                {
+                    neighborX = localX - offset;
+                    neighborY = direction == CONNECTION_NORTH ? neighbor->height - 1 : 0;
+                }
+                else
+                {
+                    neighborX = direction == CONNECTION_WEST ? neighbor->width - 1 : 0;
+                    neighborY = localY - offset;
+                }
+                if (neighborX < 0 || neighborX >= neighbor->width
+                    || neighborY < 0 || neighborY >= neighbor->height
+                    || (neighbor->map[neighborX + neighborY * neighbor->width] & MAPGRID_COLLISION_MASK)
+                    || (block & MAPGRID_COLLISION_MASK))
+                    block = GetBorderBlockAt(destX, destY);
+            }
             else
                 block = GetBorderBlockAt(destX, destY);
 
@@ -341,7 +364,7 @@ static void FillSouthConnection(const struct MapHeader *mapHeader, const struct 
     if (AreConnectionTilesetsCompatible(mapHeader, connectedMapHeader))
         FillConnection(x, y, connectedMapHeader, x2, /*y2*/ 0, width, /*height*/ MAP_OFFSET);
     else
-        FillConnectionWithCurrentMapEdge(mapHeader, CONNECTION_SOUTH, x, y, width, MAP_OFFSET);
+        FillConnectionWithCurrentMapEdge(mapHeader, connectedMapHeader, offset, CONNECTION_SOUTH, x, y, width, MAP_OFFSET);
 }
 
 static void FillNorthConnection(const struct MapHeader *mapHeader, const struct MapHeader *connectedMapHeader, s32 offset)
@@ -380,7 +403,7 @@ static void FillNorthConnection(const struct MapHeader *mapHeader, const struct 
     if (AreConnectionTilesetsCompatible(mapHeader, connectedMapHeader))
         FillConnection(x, /*y*/ 0, connectedMapHeader, x2, y2, width, /*height*/ MAP_OFFSET);
     else
-        FillConnectionWithCurrentMapEdge(mapHeader, CONNECTION_NORTH, x, 0, width, MAP_OFFSET);
+        FillConnectionWithCurrentMapEdge(mapHeader, connectedMapHeader, offset, CONNECTION_NORTH, x, 0, width, MAP_OFFSET);
 }
 
 static void FillWestConnection(const struct MapHeader *mapHeader, const struct MapHeader *connectedMapHeader, s32 offset)
@@ -418,7 +441,7 @@ static void FillWestConnection(const struct MapHeader *mapHeader, const struct M
     if (AreConnectionTilesetsCompatible(mapHeader, connectedMapHeader))
         FillConnection(/*x*/ 0, y, connectedMapHeader, x2, y2, /*width*/ MAP_OFFSET, height);
     else
-        FillConnectionWithCurrentMapEdge(mapHeader, CONNECTION_WEST, 0, y, MAP_OFFSET, height);
+        FillConnectionWithCurrentMapEdge(mapHeader, connectedMapHeader, offset, CONNECTION_WEST, 0, y, MAP_OFFSET, height);
 }
 
 static void FillEastConnection(const struct MapHeader *mapHeader, const struct MapHeader *connectedMapHeader, s32 offset)
@@ -454,7 +477,7 @@ static void FillEastConnection(const struct MapHeader *mapHeader, const struct M
     if (AreConnectionTilesetsCompatible(mapHeader, connectedMapHeader))
         FillConnection(x, y, connectedMapHeader, /*x2*/ 0, y2, /*width*/ MAP_OFFSET + 1, height);
     else
-        FillConnectionWithCurrentMapEdge(mapHeader, CONNECTION_EAST, x, y, MAP_OFFSET + 1, height);
+        FillConnectionWithCurrentMapEdge(mapHeader, connectedMapHeader, offset, CONNECTION_EAST, x, y, MAP_OFFSET + 1, height);
 }
 
 u8 MapGridGetElevationAt(s32 x, s32 y)
@@ -479,17 +502,17 @@ u8 MapGridGetCollisionAt(s32 x, s32 y)
 
 u32 GetNumTilesInPrimary(struct MapLayout const *mapLayout)
 {
-    return mapLayout->isFrlg ? NUM_TILES_IN_PRIMARY_FRLG : NUM_TILES_IN_PRIMARY;
+    return LAYOUT_USES_640_PRIMARY(mapLayout->layoutVersion) ? NUM_TILES_IN_PRIMARY_FRLG : NUM_TILES_IN_PRIMARY;
 }
 
 u32 GetNumMetatilesInPrimary(struct MapLayout const *mapLayout)
 {
-    return mapLayout->isFrlg ? NUM_METATILES_IN_PRIMARY_FRLG : NUM_METATILES_IN_PRIMARY;
+    return LAYOUT_USES_640_PRIMARY(mapLayout->layoutVersion) ? NUM_METATILES_IN_PRIMARY_FRLG : NUM_METATILES_IN_PRIMARY;
 }
 
 u32 GetNumPalsInPrimary(struct MapLayout const *mapLayout)
 {
-    return mapLayout->isFrlg ? NUM_PALS_IN_PRIMARY_FRLG : NUM_PALS_IN_PRIMARY;
+    return LAYOUT_USES_640_PRIMARY(mapLayout->layoutVersion) ? NUM_PALS_IN_PRIMARY_FRLG : NUM_PALS_IN_PRIMARY;
 }
 
 u32 MapGridGetMetatileIdAt(s32 x, s32 y)
@@ -505,7 +528,7 @@ u32 MapGridGetMetatileIdAt(s32 x, s32 y)
 u32 MapGridGetMetatileAttributeAt(s16 x, s16 y, u8 attributeType)
 {
     u16 metatileId = MapGridGetMetatileIdAt(x, y);
-    return GetAttributeByMetatileIdAndMapLayout(metatileId, attributeType, gMapHeader.mapLayout->isFrlg);
+    return GetAttributeByMetatileIdAndMapLayout(metatileId, attributeType, gMapHeader.mapLayout->layoutVersion);
 }
 
 u32 MapGridGetMetatileBehaviorAt(s32 x, s32 y)
@@ -536,12 +559,12 @@ void MapGridSetMetatileEntryAt(s32 x, s32 y, u16 metatile)
     }
 }
 
-u32 ExtractMetatileAttribute(u32 attributes, u8 attributeType, bool32 isFrlg)
+u32 ExtractMetatileAttribute(u32 attributes, u8 attributeType, u8 layoutVersion)
 {
     if (attributeType >= METATILE_ATTRIBUTE_COUNT) // Check for METATILE_ATTRIBUTES_ALL
         return attributes;
 
-    if (isFrlg)
+    if (layoutVersion == LAYOUT_VERSION_FRLG)
         return (attributes & sMetatileAttrMasks[attributeType]) >> sMetatileAttrShifts[attributeType];
 
     return (attributes & sMetatileAttrMasksEmerald[attributeType]) >> sMetatileAttrShiftsEmerald[attributeType];
@@ -569,11 +592,11 @@ static u32 GetAttributeByMetatileIdAndMapLayoutFrlg(u16 metatile, u8 attributeTy
     return ExtractMetatileAttribute(attribute, attributeType, TRUE);
 }
 
-u32 GetAttributeByMetatileIdAndMapLayout(u16 metatile, u8 attributeType, bool32 isFrlg)
+u32 GetAttributeByMetatileIdAndMapLayout(u16 metatile, u8 attributeType, u8 layoutVersion)
 {
     u32 attribute;
 
-    if (isFrlg)
+    if (layoutVersion == LAYOUT_VERSION_FRLG)
         return GetAttributeByMetatileIdAndMapLayoutFrlg(metatile, attributeType);
 
     if (metatile < GetNumMetatilesInPrimary(gMapHeader.mapLayout))
@@ -592,7 +615,7 @@ u32 GetAttributeByMetatileIdAndMapLayout(u16 metatile, u8 attributeType, bool32 
         return MB_INVALID;
     }
 
-    return ExtractMetatileAttribute(attribute, attributeType, FALSE);
+    return ExtractMetatileAttribute(attribute, attributeType, layoutVersion);
 }
 
 void SaveMapView(void)
@@ -847,9 +870,9 @@ bool8 CameraMove(s32 x, s32 y)
         if (redrawMapView)
         {
             // Saved map views contain metatile ids from the source map. They
-            // cannot be reused after switching primary tilesets.
+            // cannot be reused after switching either tileset.
             ClearSavedMapView();
-            DrawWholeMapView();
+            RequestWholeMapViewRedraw();
         }
         else
         {
@@ -1032,7 +1055,12 @@ static void CopyTilesetToVram(struct Tileset const *tileset, u16 numTiles, u16 o
         if (!tileset->isCompressed)
             LoadBgTiles(2, tileset->tiles, numTiles * 32, offset);
         else
-            DecompressAndCopyTileDataToVram(2, tileset->tiles, numTiles * 32, offset, 0);
+        {
+            u32 size = GetDecompressedDataSize(tileset->tiles);
+            if (size > numTiles * 32)
+                size = numTiles * 32;
+            DecompressAndCopyTileDataToVram(2, tileset->tiles, size, offset, 0);
+        }
     }
 }
 
@@ -1043,7 +1071,15 @@ static void CopyTilesetToVramUsingHeap(struct Tileset const *tileset, u16 numTil
         if (!tileset->isCompressed)
             LoadBgTiles(2, tileset->tiles, numTiles * 32, offset);
         else
-            DecompressAndLoadBgGfxUsingHeap(2, tileset->tiles, numTiles * 32, offset, 0);
+        {
+            // The partition includes unused tile slots. Copying all of them
+            // reads past small compressed tilesets and can split a camera
+            // transition's graphics and tilemap DMA across visible frames.
+            u32 size = GetDecompressedDataSize(tileset->tiles);
+            if (size > numTiles * 32)
+                size = numTiles * 32;
+            DecompressAndLoadBgGfxUsingHeap(2, tileset->tiles, size, offset, 0);
+        }
     }
 }
 

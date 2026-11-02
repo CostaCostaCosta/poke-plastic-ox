@@ -130,6 +130,7 @@ static u8 GetSetCardType(void);
 static void PrintNameOnCardFront(void);
 static void PrintIdOnCard(void);
 static void PrintMoneyOnCard(void);
+static void PrintWhiteoutsOnCard(void);
 static void PrintPokedexOnCard(void);
 static void PrintProfilePhraseOnCard(void);
 static bool8 PrintAllOnCardBack(void);
@@ -951,6 +952,9 @@ static bool8 PrintAllOnCardFront(void)
         PrintTimeOnCard();
         break;
     case 5:
+        PrintWhiteoutsOnCard();
+        break;
+    case 6:
         PrintProfilePhraseOnCard();
         break;
     default:
@@ -1071,6 +1075,27 @@ static void PrintMoneyOnCard(void)
         top = 57;
     }
     AddTextPrinterParameterized3(WIN_CARD_TEXT, FONT_NORMAL, xOffset, top, sTrainerCardTextColors, TEXT_SKIP_DRAW, gStringVar4);
+}
+
+static void PrintWhiteoutsOnCard(void)
+{
+    static const u8 sText_Whiteouts[] = _("WHITEOUTS");
+    u8 top;
+    s32 xRight;
+
+    // The local card leaves this row open; link cards use it for the profile.
+    if (sData->isLink)
+        return;
+
+    top = sData->isHoenn ? 105 : 104;
+    xRight = sData->isHoenn ? 128 : 144;
+    AddTextPrinterParameterized3(WIN_CARD_TEXT, FONT_NORMAL, sData->isHoenn ? 16 : 20, top,
+                                 sTrainerCardTextColors, TEXT_SKIP_DRAW, sText_Whiteouts);
+    ConvertIntToDecimalStringN(gStringVar4, GetCappedGameStat(GAME_STAT_WHITEOUTS, 9999),
+                               STR_CONV_MODE_LEFT_ALIGN, 4);
+    AddTextPrinterParameterized3(WIN_CARD_TEXT, FONT_NORMAL,
+                                 GetStringRightAlignXOffset(FONT_NORMAL, gStringVar4, xRight), top,
+                                 sTrainerCardTextColors, TEXT_SKIP_DRAW, gStringVar4);
 }
 
 static u16 GetCaughtMonsCount(void)

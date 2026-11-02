@@ -549,6 +549,8 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Seagallop,             OBJ_EVENT_PAL_TAG_SEAGALLOP},
     {gObjectEventPal_KimonoHns,             OBJ_EVENT_PAL_TAG_POX_KIMONO},
     {gObjectEventPal_SilverHns,             OBJ_EVENT_PAL_TAG_POX_SILVER},
+    {gObjectEventPal_WhitneyHns,            OBJ_EVENT_PAL_TAG_POX_WHITNEY},
+    {gObjectEventPal_SageHns,            OBJ_EVENT_PAL_TAG_POX_SAGE},
 // end Plastic Ox FRLG graphics
 #if OW_FOLLOWERS_POKEBALLS
     {gObjectEventPal_MasterBall,            OBJ_EVENT_PAL_TAG_BALL_MASTER},
@@ -6899,6 +6901,19 @@ u8 ObjectEventGetHeldMovementActionId(struct ObjectEvent *objectEvent)
 
 void UpdateObjectEventCurrentMovement(struct ObjectEvent *objectEvent, struct Sprite *sprite, bool8 (*callback)(struct ObjectEvent *, struct Sprite *))
 {
+    if (IsOverworldSpeedupIteration())
+    {
+        // Only advance a move already approved by the normal field update.
+        // Do not re-enter wandering/trainer decisions or collision checks.
+        if (objectEvent->heldMovementActive && !objectEvent->heldMovementFinished)
+            ObjectEventExecHeldMovementAction(objectEvent, sprite);
+        else if (!objectEvent->frozen && objectEvent->singleMovementActive)
+            callback(objectEvent, sprite);
+        UpdateObjectEventSpriteAnimPause(objectEvent, sprite);
+        UpdateObjectEventVisibility(objectEvent, sprite);
+        ObjectEventUpdateSubpriority(objectEvent, sprite);
+        return;
+    }
     DoGroundEffects_OnSpawn(objectEvent, sprite);
     TryEnableObjectEventAnim(objectEvent, sprite);
 

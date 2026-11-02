@@ -1,0 +1,68 @@
+=== TRAINER_PLASTIC_OX_ENTEI_SAGE ===
+Name: SAGE
+Class: Expert
+Pic: Sage Hns
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Crobat @ Leftovers
+Level: 44
+Ability: Inner Focus
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Sludge Bomb
+- Aerial Ace
+- Shadow Ball
+- Taunt
+
+Donphan @ Leftovers
+Level: 44
+Ability: Sturdy
+EVs: 252 HP / 252 Atk / 4 Def
+Adamant Nature
+- Earthquake
+- Rock Slide
+- Rapid Spin
+- Roar
+
+Vaporeon @ Leftovers
+Level: 44
+Ability: Water Absorb
+EVs: 252 HP / 252 Def / 4 SpD
+Bold Nature
+- Surf
+- Ice Beam
+- Wish
+- Protect
+
+Hariyama @ Leftovers
+Level: 44
+Ability: Thick Fat
+EVs: 252 Atk / 128 Def / 128 SpD
+Adamant Nature
+- Cross Chop
+- Rock Slide
+- Knock Off
+- Fake Out
+
+Espeon @ Leftovers
+Level: 44
+Ability: Synchronize
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Psychic
+- Calm Mind
+- Hidden Power
+- Morning Sun
+
+Entei @ Leftovers
+Level: 45
+Ability: Pressure
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Fire Blast
+- Calm Mind
+- Hidden Power
+- Sunny Day

@@ -9,5 +9,5 @@ Route16_EventScript_Npc1::
 	end
 
 Route16_EventScript_Npc1_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Check your bicycle before a long\nride. Brakes matter!$"
 

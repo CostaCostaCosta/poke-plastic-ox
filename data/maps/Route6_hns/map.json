@@ -55,17 +55,7 @@
     }
   ],
   "warp_events": [],
-  "coord_events": [
-    {
-      "type": "trigger",
-      "x": 41,
-      "y": 6,
-      "elevation": 3,
-      "var": "VAR_POX_PORTAL_GATE",
-      "var_value": "0",
-      "script": "Route6_EventScript_P41_6"
-    }
-  ],
+  "coord_events": [],
   "bg_events": [],
   "region": "REGION_HOENN"
 }

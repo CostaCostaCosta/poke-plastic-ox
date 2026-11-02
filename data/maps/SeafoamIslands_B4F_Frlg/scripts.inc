@@ -2,51 +2,35 @@
 
 SeafoamIslands_B4F_Frlg_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, SeafoamIslands_B4F_OnTransition
-	map_script MAP_SCRIPT_ON_RESUME, SeafoamIslands_B4F_OnResume
 	map_script MAP_SCRIPT_ON_LOAD, SeafoamIslands_B4F_OnLoad
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, SeafoamIslands_B4F_OnWarp
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, SeafoamIslands_B4F_OnFrame
 	.byte 0
 
-SeafoamIslands_B4F_OnResume::
-	call_if_set FLAG_SYS_CTRL_OBJ_DELETE, SeafoamIslands_B4F_EventScript_TryRemoveArticuno
-	end
-
-SeafoamIslands_B4F_EventScript_TryRemoveArticuno::
-	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_ne VAR_RESULT, B_OUTCOME_CAUGHT, Common_EventScript_NopReturn
-	removeobject VAR_LAST_TALKED
-	return
-
 SeafoamIslands_B4F_OnTransition::
-	call_if_unset FLAG_FOUGHT_ARTICUNO, SeafoamIslands_B4F_EventScript_ShowArticuno
-	call_if_unset FLAG_STOPPED_SEAFOAM_B4F_CURRENT, SeafoamIslands_B4F_EventScript_CheckStoppedCurrent
-	call_if_set FLAG_STOPPED_SEAFOAM_B4F_CURRENT, SeafoamIslands_B4F_EventScript_SetNoCurrentLayout
+	call_if_unset FLAG_POX_STOPPED_SEAFOAM_B4F_CURRENT, SeafoamIslands_B4F_EventScript_CheckStoppedCurrent
+	call_if_set FLAG_POX_STOPPED_SEAFOAM_B4F_CURRENT, SeafoamIslands_B4F_EventScript_SetNoCurrentLayout
 	end
 
 SeafoamIslands_B4F_EventScript_CheckStoppedCurrent::
 	setvar NUM_BOULDERS_PRESENT, 0
-	call_if_unset FLAG_HIDE_SEAFOAM_B4F_BOULDER_1, SeafoamIslands_B4F_EventScript_AddBoulderPresent
-	call_if_unset FLAG_HIDE_SEAFOAM_B4F_BOULDER_2, SeafoamIslands_B4F_EventScript_AddBoulderPresent
+	call_if_unset FLAG_POX_HIDE_SEAFOAM_B4F_BOULDER_1, SeafoamIslands_B4F_EventScript_AddBoulderPresent
+	call_if_unset FLAG_POX_HIDE_SEAFOAM_B4F_BOULDER_2, SeafoamIslands_B4F_EventScript_AddBoulderPresent
 	call_if_eq NUM_BOULDERS_PRESENT, 2, SeafoamIslands_B4F_EventScript_StoppedCurrent
 	return
 
 SeafoamIslands_B4F_EventScript_StoppedCurrent::
-	setflag FLAG_STOPPED_SEAFOAM_B4F_CURRENT
+	setflag FLAG_POX_STOPPED_SEAFOAM_B4F_CURRENT
 	return
 
 SeafoamIslands_B4F_EventScript_SetNoCurrentLayout::
 	setmaplayoutindex LAYOUT_SEAFOAM_ISLANDS_B4F_CURRENT_STOPPED
 	return
 
-SeafoamIslands_B4F_EventScript_ShowArticuno::
-	clearflag FLAG_HIDE_ARTICUNO
-	return
-
 SeafoamIslands_B4F_OnLoad::
 	setvar NUM_BOULDERS_PRESENT, 0
-	call_if_unset FLAG_HIDE_SEAFOAM_B4F_BOULDER_1, SeafoamIslands_B4F_EventScript_AddBoulderPresent
-	call_if_unset FLAG_HIDE_SEAFOAM_B4F_BOULDER_2, SeafoamIslands_B4F_EventScript_AddBoulderPresent
+	call_if_unset FLAG_POX_HIDE_SEAFOAM_B4F_BOULDER_1, SeafoamIslands_B4F_EventScript_AddBoulderPresent
+	call_if_unset FLAG_POX_HIDE_SEAFOAM_B4F_BOULDER_2, SeafoamIslands_B4F_EventScript_AddBoulderPresent
 	goto_if_eq NUM_BOULDERS_PRESENT, 2, SeafoamIslands_B4F_EventScript_SetCalmWaterNearStairs
 	end
 
@@ -56,7 +40,7 @@ SeafoamIslands_B4F_EventScript_SetCalmWaterNearStairs::
 	end
 
 SeafoamIslands_B4F_OnWarp::
-	map_script_2 VAR_MAP_SCENE_SEAFOAM_ISLANDS_B4F, 1, SeafoamIslands_B4F_EventScript_WarpInOnCurrent
+	map_script_2 VAR_POX_SEAFOAM_STATE, 1, SeafoamIslands_B4F_EventScript_WarpInOnCurrent
 	.2byte 0
 
 SeafoamIslands_B4F_EventScript_WarpInOnCurrent::
@@ -65,7 +49,7 @@ SeafoamIslands_B4F_EventScript_WarpInOnCurrent::
 	end
 
 SeafoamIslands_B4F_OnFrame::
-	map_script_2 VAR_MAP_SCENE_SEAFOAM_ISLANDS_B4F, 1, SeafoamIslands_B4F_EventScript_EnterOnCurrent
+	map_script_2 VAR_POX_SEAFOAM_STATE, 1, SeafoamIslands_B4F_EventScript_EnterOnCurrent
 	map_script_2 VAR_TEMP_1, 1, SeafoamIslands_B4F_EventScript_EnterByFalling
 	.2byte 0
 
@@ -74,7 +58,7 @@ SeafoamIslands_B4F_EventScript_EnterOnCurrent::
 	lockall
 	applymovement LOCALID_PLAYER, SeafoamIslands_B4F_Movement_EnterOnCurrent
 	waitmovement 0
-	setvar VAR_MAP_SCENE_SEAFOAM_ISLANDS_B4F, 0
+	setvar VAR_POX_SEAFOAM_STATE, 0
 	releaseall
 	end
 
@@ -88,8 +72,8 @@ SeafoamIslands_B4F_Movement_EnterOnCurrent::
 SeafoamIslands_B4F_EventScript_EnterByFalling::
 	lockall
 	setvar NUM_BOULDERS_PRESENT, 0
-	call_if_unset FLAG_HIDE_SEAFOAM_B4F_BOULDER_1, SeafoamIslands_B4F_EventScript_AddBoulderPresent
-	call_if_unset FLAG_HIDE_SEAFOAM_B4F_BOULDER_2, SeafoamIslands_B4F_EventScript_AddBoulderPresent
+	call_if_unset FLAG_POX_HIDE_SEAFOAM_B4F_BOULDER_1, SeafoamIslands_B4F_EventScript_AddBoulderPresent
+	call_if_unset FLAG_POX_HIDE_SEAFOAM_B4F_BOULDER_2, SeafoamIslands_B4F_EventScript_AddBoulderPresent
 	goto_if_eq NUM_BOULDERS_PRESENT, 2, SeafoamIslands_B4F_EventScript_CurrentBlocked
 	getplayerxy VAR_0x8008, VAR_0x8009
 	call_if_lt VAR_0x8008, 9, SeafoamIslands_B4F_EventScript_RideCurrentFar
@@ -152,37 +136,7 @@ SeafoamIslands_B4F_Movement_WalkUp::
 	step_end
 
 SeafoamIslands_B4F_EventScript_Articuno::
-	lock
-	faceplayer
-	setwildbattle SPECIES_ARTICUNO, 50
-	waitse
-	playmoncry SPECIES_ARTICUNO, CRY_MODE_ENCOUNTER
-	message Text_Gyaoo
-	waitmessage
-	waitmoncry
-	delay 10
-	playbgm MUS_RG_ENCOUNTER_GYM_LEADER, 0
-	waitbuttonpress
-	setflag FLAG_SYS_CTRL_OBJ_DELETE
-	special BattleSetup_StartLegendaryBattle
-	clearflag FLAG_SYS_CTRL_OBJ_DELETE
-	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_eq VAR_RESULT, B_OUTCOME_WON, SeafoamIslands_B4F_EventScript_DefeatedArticuno
-	goto_if_eq VAR_RESULT, B_OUTCOME_RAN, SeafoamIslands_B4F_EventScript_RanFromArticuno
-	goto_if_eq VAR_RESULT, B_OUTCOME_PLAYER_TELEPORTED, SeafoamIslands_B4F_EventScript_RanFromArticuno
-	setflag FLAG_FOUGHT_ARTICUNO
-	release
-	end
-
-SeafoamIslands_B4F_EventScript_DefeatedArticuno::
-	setflag FLAG_FOUGHT_ARTICUNO
-	goto EventScript_RemoveStaticMon
-	end
-
-SeafoamIslands_B4F_EventScript_RanFromArticuno::
-	setvar VAR_0x8004, SPECIES_ARTICUNO
-	goto EventScript_MonFlewAway
-	end
+	goto PoxSeafoam_ArticunoSage
 
 SeafoamIslands_B4F_EventScript_BoulderHintSign::
 	msgbox SeafoamIslands_B4F_Text_BouldersMightChangeWaterFlow, MSGBOX_SIGN
@@ -220,4 +174,3 @@ SeafoamIslands_B4F_Text_BouldersMightChangeWaterFlow::
 SeafoamIslands_B4F_Text_DangerFastCurrent::
 	.string "DANGER\n"
 	.string "Fast current!$"
-

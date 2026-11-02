@@ -33,9 +33,9 @@
     F(PSYCHIC) \
     F(SHADOW_BALL) \
     F(BRICK_BREAK) \
-    F(DOUBLE_TEAM) \
+    F(SUBSTITUTE) \
     F(REFLECT) \
-    F(SHOCK_WAVE) \
+    F(BODY_SLAM) \
     F(FLAMETHROWER) \
     F(SLUDGE_BOMB) \
     F(SANDSTORM) \
@@ -48,8 +48,8 @@
     F(REST) \
     F(ATTRACT) \
     F(THIEF) \
-    F(STEEL_WING) \
-    F(SKILL_SWAP) \
+    F(EXPLOSION) \
+    F(ROCK_SLIDE) \
     F(SNATCH) \
     F(OVERHEAT)
 

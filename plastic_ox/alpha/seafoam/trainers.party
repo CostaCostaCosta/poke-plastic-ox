@@ -1,0 +1,68 @@
+=== TRAINER_PLASTIC_OX_ARTICUNO_SAGE ===
+Name: SAGE
+Class: Expert
+Pic: Sage Hns
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Jynx @ Leftovers
+Level: 49
+Ability: Oblivious
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Lovely Kiss
+- Ice Beam
+- Psychic
+- Calm Mind
+
+Donphan @ Leftovers
+Level: 49
+Ability: Sturdy
+EVs: 252 HP / 252 Atk / 4 Def
+Adamant Nature
+- Earthquake
+- Rock Slide
+- Rapid Spin
+- Roar
+
+Vaporeon @ Leftovers
+Level: 49
+Ability: Water Absorb
+EVs: 252 HP / 252 Def / 4 SpD
+Bold Nature
+- Surf
+- Ice Beam
+- Toxic
+- Protect
+
+Machamp @ Leftovers
+Level: 49
+Ability: Guts
+EVs: 252 HP / 252 Atk / 4 SpD
+Adamant Nature
+- Cross Chop
+- Rock Slide
+- Earthquake
+- Bulk Up
+
+Houndoom @ Leftovers
+Level: 49
+Ability: Flash Fire
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Flamethrower
+- Bite
+- Solar Beam
+- Sunny Day
+
+Articuno @ Leftovers
+Level: 50
+Ability: Pressure
+EVs: 252 HP / 96 Def / 160 Spe
+Bold Nature
+- Ice Beam
+- Toxic
+- Substitute
+- Protect

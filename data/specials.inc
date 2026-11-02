@@ -177,6 +177,7 @@ gSpecials::
 	def_special Overworld_PlaySpecialMapMusic
 	def_special StartWallClock, waitstate=1
 	def_special Special_ViewWallClock, waitstate=1
+	def_special Special_SetPocketWatchWeekday
 	def_special ChooseStarter, waitstate=1
 	def_special StartWallyTutorialBattle, waitstate=1
 	def_special ChangePokemonNickname, waitstate=1
@@ -566,6 +567,10 @@ gSpecials::
 	def_special EnterCode
 	def_special GetCodeFeedback
 	def_special SetHiddenNature
+	def_special SetTrainingKitEVs
+	def_special SetTrainingKitHiddenPower
+	def_special PrepareTrainingKitAbilityMenu
+	def_special SetTrainingKitAbility
 	def_special SetAbility
 	def_special CanTeachMoveBoxMon
 	def_special ObjectEventInteractionGetApricornTreeData
@@ -640,3 +645,22 @@ gSpecials::
 	def_special UpdateTrainerCardPhotoIcons
 	def_special StickerManGetBragFlags
 	def_special CheckAddCoins
+	def_special PlasticOx_HeadbuttEncounter
+	def_special PlasticOx_CheckHeadbutt
+	def_special PlasticOx_PrepareSudowoodoMoves
+	def_special PlasticOxContest_Status
+	def_special PlasticOxContest_CheckEntry
+	def_special PlasticOxContest_GetEntrySide
+	def_special PlasticOxContest_Start
+	def_special PlasticOxContest_AcceptCatch
+	def_special PlasticOxContest_Judge
+	def_special PlasticOxContest_ClaimPrize
+	def_special PlasticOxBuyCoinPrize
+	def_special PlasticOxReviveHelix
+	def_special PlasticOxGiveMailDelibird
+	def_special PlasticOxDeliverMail
+	def_special CheckRustboroGymLittleCupRules
+	def_special PoxMaximizeSelectedMonFriendship
+	def_special PoxMinimizeSelectedMonFriendship
+	def_special PoxGetDayOfWeek
+	def_special BattleSetup_StartLegendaryRewardBattle, waitstate=1

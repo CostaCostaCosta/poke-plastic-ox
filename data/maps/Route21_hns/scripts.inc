@@ -23,11 +23,11 @@ Route21_EventScript_Npc3::
 	end
 
 Route21_EventScript_Npc1_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The trees shelter small POKéMON.\nWatch the grass as you pass.$"
 
 Route21_EventScript_Npc2_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "I always check my supplies\nbefore heading into the trees.$"
 
 Route21_EventScript_Npc3_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The trees shelter small POKéMON.\nWatch the grass as you pass.$"
 

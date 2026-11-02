@@ -295,7 +295,7 @@ static const u8 sTextSpeedFrameDelays[] =
     [OPTIONS_TEXT_SPEED_SLOW]    = 8,
     [OPTIONS_TEXT_SPEED_MID]     = 4,
     [OPTIONS_TEXT_SPEED_FAST]    = 1,
-    [OPTIONS_TEXT_SPEED_INSTANT] = 1,
+    [OPTIONS_TEXT_SPEED_INSTANT] = 0,
 };
 
 static const u8 sTextSpeedModifiers[] =
@@ -503,13 +503,31 @@ bool32 AddTextPrinter(struct TextPrinterTemplate *printerTemplate, u8 speed, voi
     }
     else
     {
+        bool32 finished = FALSE;
         sTempTextPrinter.textSpeed = 0;
 
         // Render all text (up to limit) at once
         for (u32 j = 0; j < 0x400; ++j)
         {
-            if (RenderFont(&sTempTextPrinter) == RENDER_FINISH)
+            u32 result = RenderFont(&sTempTextPrinter);
+            if (result == RENDER_FINISH)
+            {
+                finished = TRUE;
                 break;
+            }
+            // Immediate dialogue still yields at pages, input, SE and pauses.
+            // TEXT_SKIP_DRAW retains its existing static-label behavior.
+            if (speed == 0 && result == RENDER_UPDATE)
+                break;
+        }
+
+        if (speed == 0 && !finished)
+        {
+            struct TextPrinter *printer = AllocateTextPrinter();
+            if (printer == NULL)
+                return FALSE;
+            sTempTextPrinter.isInUse = TRUE;
+            *printer = sTempTextPrinter;
         }
 
         // All the text is rendered but don't draw it yet.
@@ -577,7 +595,9 @@ void RunTextPrinters(void)
                         break;
                     }
 
-                    if (!currentPrinter->active)
+                    // Instant repeats glyphs, never wait-state ticks or input.
+                    if (!currentPrinter->active
+                     || (renderState == RENDER_UPDATE && IsPlayerTextSpeedInstant()))
                         break;
                 }
             }

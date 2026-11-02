@@ -48,6 +48,7 @@
 
 void ClearDma3Requests(void);
 void ProcessDma3Requests(void);
+void SetDma3RequestsPaused(bool8 paused);
 s16 RequestDma3Copy(const void *src, void *dest, u16 size, u32 mode);
 s16 RequestDma3Fill(s32 value, void *dest, u16 size, u32 mode);
 s16 CheckForSpaceForDma3Request(s16 index);

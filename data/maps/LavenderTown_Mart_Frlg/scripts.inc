@@ -34,6 +34,7 @@ LavenderTown_Mart_Items::
 	.2byte ITEM_ICE_HEAL
 	.2byte ITEM_ESCAPE_ROPE
 	.2byte ITEM_SUPER_REPEL
+	.2byte ITEM_LEFTOVERS
 	.2byte ITEM_NONE
 	release
 	end

@@ -1,4 +1,5 @@
 #include "global.h"
+#include "metamon_trainer.h"
 #include "malloc.h"
 #include "battle.h"
 #include "pokemon.h"
@@ -1973,6 +1974,8 @@ void UpdateHealthboxAttribute(u8 healthboxSpriteId, struct Pokemon *mon, u8 elem
     s32 maxHp = GetMonData(mon, MON_DATA_MAX_HP);
     s32 currHp = GetMonData(mon, MON_DATA_HP);
 
+    if (elementId == HEALTHBOX_ALL) MetamonPublicSwitch(battler);
+    if (elementId == HEALTHBOX_HEALTH_BAR || elementId == HEALTHBOX_ALL) MetamonPublicHP(battler);
     if (IsOnPlayerSide(battler))
     {
         u8 isDoubles = GetBattlerCoordsIndex(battler) == BATTLE_COORDS_DOUBLES;

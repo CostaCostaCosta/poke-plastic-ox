@@ -15,8 +15,7 @@ MAP_NAMES = {(38,1): "PALLET_2F", (38,0): "PALLET_1F", (75,0): "PALLET_TOWN",
 
 class GBA:
     def __init__(self, rom=ROM, linker_map=None):
-        # linker_map: pass e.g. "pokeemerald-triggers.map" when testing a
-        # non-default ROM build (defaults to <rom>.map).
+        # linker_map defaults to the map file beside the selected ROM.
         self._symbol_addresses = None
         self.linker_map = Path(linker_map) if linker_map else Path(rom).with_suffix(".map")
         self.core = mgba.core.load_path(rom)
@@ -142,8 +141,8 @@ class GBA:
         mt, block = self.metatile_at(mx, my)
         mh = self.symbol_address("gMapHeader")
         layout = self.core.memory.wram.u32[mh-0x02000000]
-        is_frlg = self.u8(layout+0x18) != 0
-        primary_count = 640 if is_frlg else 512
+        layout_version = self.u8(layout+0x18)
+        primary_count = 640 if layout_version in (1, 2) else 512
         if mt < primary_count:
             tileset = self.u32(layout+0x10)
             attr_index = mt
@@ -151,7 +150,10 @@ class GBA:
             tileset = self.u32(layout+0x14)
             attr_index = mt - primary_count
         attrs = self.u32(tileset+0x10)
-        if is_frlg:
+        # HNS shares FRLG's 640-entry primary partition, but its attributes
+        # remain Emerald-format u16 values. Treating layout version 2 as a
+        # boolean FRLG flag invents behaviors and breaks the headless BFS.
+        if layout_version == 1:
             behavior = self.u32(attrs + attr_index*4) & 0x1FF
         else:
             behavior = self.u16(attrs + attr_index*2) & 0xFF
@@ -268,21 +270,55 @@ class GBA:
                 return i*step
         return None
 
-def boot_to_bedroom(g):
-    """Wait for the direct-demo boot to place P in the 2F bedroom."""
-    for i in range(300):
-        g.frame(10)
-        st = g.state()
-        if st is not None and st['group'] == 38 and st['num'] == 1:
-            g.frame(60)
-            party_counts = g.symbol_address("gPartiesCount")
-            assert g.u8(party_counts) == 0, "direct boot should wait for Oak to issue P's team"
+def boot_test_game(g, timeout=3600):
+    """Initialize the deterministic fresh-game fixture and enter the overworld.
 
-            save2_ptr_addr = g.symbol_address("gSaveBlock2Ptr")
-            save2 = g.u32(save2_ptr_addr)
-            assert g.u8(save2) == 0xCA and g.u8(save2 + 1) == 0xFF, "direct boot player name is not P"
-            options = g.u16(save2 + 0x14)
-            assert ((options >> 9) & 1) == 1, "direct boot battle style is not Set"
+    Plastic Ox now boots through its title screen so players can continue a
+    save.  Headless tests should not drive that UI or depend on a save file, so
+    they select the game's normal new-game callback once the boot callback has
+    installed the save-block pointers.  This is emulator-only setup; map and
+    story behavior after it still runs through the real engine.
+    """
+    g.frame(120)
+    # This fixture bypasses registration, so supply its identity explicitly.
+    save2 = g.u32(g.symbol_address("gSaveBlock2Ptr"))
+    seg, off = g._seg(save2)
+    seg.u8[off] = 0xCA  # P
+    seg.u8[off + 1] = 0xFF
+    seg.u8[off + 8] = 0  # boy
+    main = g.symbol_address("gMain")
+    callback = g.symbol_address("CB2_NewGame")
+    overworld = g.symbol_address("CB2_Overworld") & ~1
+    # gMain.callback2 and gMain.state.  Clear state because title initialization
+    # may have advanced it before the fixture replaces callback2.
+    g.core.memory.iwram.u32[main - 0x03000000 + 4] = callback | 1
+    g.core.memory.iwram.u8[main - 0x03000000 + 0x438] = 0
+    for _ in range(timeout // 10):
+        g.frame(10)
+        active = g.core.memory.iwram.u32[main - 0x03000000 + 4] & ~1
+        if active == overworld:
+            # Let the new-game tremor finish and dismiss its opening dialogue.
+            g.frame(420)
+            for _ in range(80):
+                g.tap(K.KEY_A, hold=1, wait=20)
             return
-    else:
-        raise RuntimeError("direct demo boot never reached bedroom")
+    raise RuntimeError("test new-game fixture never reached the overworld")
+
+
+def assert_test_player(g):
+    """Check the identity supplied by this fixture and the new-game options."""
+    party_counts = g.symbol_address("gPartiesCount")
+    assert g.u8(party_counts) == 0, "test fixture should wait for Oak to issue P's team"
+    save2 = g.u32(g.symbol_address("gSaveBlock2Ptr"))
+    assert g.u8(save2) == 0xCA and g.u8(save2 + 1) == 0xFF, "test player name is not P"
+    options = g.u16(save2 + 0x14)
+    assert ((options >> 9) & 1) == 1, "test battle style is not Set"
+
+
+def boot_to_bedroom(g):
+    """Compatibility fixture: start a fresh game in the Pallet 2F bedroom."""
+    boot_test_game(g)
+    st = g.state()
+    if st is None or (st['group'], st['num']) != (38, 1):
+        raise RuntimeError(f"test new game did not start in bedroom: {g.describe()}")
+    assert_test_player(g)

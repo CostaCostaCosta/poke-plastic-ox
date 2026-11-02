@@ -956,8 +956,8 @@ static void Cmd_createvisualtask(void)
     }
 
     taskId = CreateTask(taskFunc, taskPriority);
-    taskFunc(taskId);
     gAnimVisualTaskCount++;
+    taskFunc(taskId);
 }
 
 static void Cmd_createvisualtaskontargets(void)
@@ -999,8 +999,8 @@ static void Cmd_createvisualtaskontargets(void)
     {
         gBattleAnimArgs[battlerArgIndex] = targets[i];
         taskId = CreateTask(taskFunc, taskPriority);
-        taskFunc(taskId);
         gAnimVisualTaskCount++;
+        taskFunc(taskId);
     }
 }
 

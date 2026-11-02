@@ -1,0 +1,246 @@
+=== TRAINER_PLASTIC_OX_JOHTO_ALAN ===
+Name: ALAN
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Magnemite @ Sitrus Berry
+Level: 21
+Ability: Sturdy
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 36 Def / 240 SpA / 76 SpD / 156 Spe
+Modest Nature
+- Thunderbolt
+- Hidden Power
+- Toxic
+- Substitute
+
+Ponyta @ Sitrus Berry
+Level: 21
+Ability: Flash Fire
+EVs: 76 Def / 236 SpA / 196 Spe
+Timid Nature
+- Sunny Day
+- Fire Blast
+- Solar Beam
+- Substitute
+
+=== TRAINER_PLASTIC_OX_JOHTO_ANN_ANNE ===
+Name: ANN & ANNE
+Class: Twins
+Pic: Twins
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Ledian @ Leftovers
+Level: 22
+Ability: Early Bird
+EVs: 252 HP / 4 Def / 252 Spe
+Timid Nature
+- Reflect
+- Light Screen
+- Focus Punch
+- Substitute
+
+Ariados @ Leftovers
+Level: 22
+Ability: Swarm
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Sludge Bomb
+- Poison Sting
+- Hidden Power
+- Toxic
+
+Jigglypuff @ Leftovers
+Level: 22
+Ability: Cute Charm
+EVs: 252 HP / 252 Def
+Bold Nature
+- Hidden Power
+- Thunderbolt
+- Toxic
+- Flamethrower
+
+=== TRAINER_PLASTIC_OX_JOHTO_GREG ===
+Name: GREG
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Drowzee @ Leftovers
+Level: 22
+Ability: Insomnia
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Psychic
+- Dream Eater
+- Hidden Power
+- Toxic
+
+Natu @ Leftovers
+Level: 22
+Ability: Synchronize
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Psychic
+- Aerial Ace
+- Hidden Power
+- Toxic
+
+Baltoy @ Sitrus Berry
+Level: 22
+Ability: Levitate
+EVs: 36 HP / 196 Atk / 156 Def / 36 SpD / 76 Spe
+Careful Nature
+- Earthquake
+- Shadow Ball
+- Rock Tomb
+- Explosion
+
+Exeggcute @ Sitrus Berry
+Level: 22
+Ability: Chlorophyll
+EVs: 36 HP / 36 Atk / 36 Def / 196 SpA / 156 SpD / 36 Spe
+Mild Nature
+- Explosion
+- Sunny Day
+- Solar Beam
+- Psychic
+
+Kirlia @ Leftovers
+Level: 22
+Ability: Synchronize
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Psychic
+- Dream Eater
+- Hidden Power
+- Toxic
+
+Haunter @ Leftovers
+Level: 22
+Ability: Levitate
+EVs: 4 Def / 252 SpA / 252 Spe
+Timid Nature
+- Psychic
+- Thunderbolt
+- Substitute
+- Explosion
+
+=== TRAINER_PLASTIC_OX_JOHTO_BEVERLY ===
+Name: BEVERLY
+Class: Pokefan
+Pic: Pokefan F
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Snubbull @ Sitrus Berry
+Level: 20
+Ability: Intimidate
+EVs: 116 HP / 196 Atk / 36 Def / 120 SpD / 36 Spe
+Adamant Nature
+- Double-Edge
+- Shadow Ball
+- Earthquake
+- Thief
+
+Skitty @ Leftovers
+Level: 20
+Ability: Cute Charm
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Hidden Power
+- Body Slam
+- Thunderbolt
+- Toxic
+
+Marill @ Leftovers
+Level: 20
+Ability: Thick Fat
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Surf
+- Water Pulse
+- Hidden Power
+- Toxic
+
+=== TRAINER_PLASTIC_OX_JOHTO_JACK ===
+Name: JACK
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Oddish @ Sitrus Berry
+Level: 20
+Ability: Chlorophyll
+IVs: 31 HP / 2 Atk / 30 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 76 HP / 80 Def / 236 SpA / 116 Spe
+Modest Nature
+- Sunny Day
+- Solar Beam
+- Hidden Power
+- Bullet Seed
+
+Voltorb @ Silk Scarf
+Level: 20
+Ability: Static
+EVs: 252 Atk / 4 SpA / 252 Spe
+Naive Nature
+- Rain Dance
+- Thunder
+- Light Screen
+- Explosion
+
+=== TRAINER_PLASTIC_OX_JOHTO_KRISE ===
+Name: KRISE
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Oddish @ Sitrus Berry
+Level: 20
+Ability: Chlorophyll
+IVs: 31 HP / 2 Atk / 30 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 76 HP / 80 Def / 236 SpA / 116 Spe
+Modest Nature
+- Sunny Day
+- Solar Beam
+- Hidden Power
+- Bullet Seed
+
+Cubone @ Thick Club
+Level: 20
+Ability: Rock Head
+EVs: 36 HP / 196 Atk / 40 SpD / 236 Spe
+Adamant Nature
+- Focus Punch
+- Double-Edge
+- Hidden Power
+- Protect
+
+Mareep @ Leftovers
+Level: 20
+Ability: Static
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Thunder
+- Hidden Power
+- Toxic

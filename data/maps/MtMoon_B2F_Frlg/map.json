@@ -3,7 +3,7 @@
   "name": "MtMoon_B2F_Frlg",
   "layout": "LAYOUT_MT_MOON_B2F",
   "music": "MUS_RG_MT_MOON",
-  "region": "REGION_KANTO",
+  "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_MT_MOON",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -19,7 +19,7 @@
     {
       "local_id": "LOCALID_DOME_FOSSIL",
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_FOSSIL_FRLG",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "x": 13,
       "y": 7,
       "elevation": 3,
@@ -29,12 +29,12 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MtMoon_B2F_EventScript_DomeFossil",
-      "flag": "FLAG_HIDE_DOME_FOSSIL"
+      "flag": "FLAG_POX_MOON_HIDE_DOME_FOSSIL"
     },
     {
       "local_id": "LOCALID_HELIX_FOSSIL",
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_FOSSIL_FRLG",
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
       "x": 14,
       "y": 7,
       "elevation": 3,
@@ -44,7 +44,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MtMoon_B2F_EventScript_HelixFossil",
-      "flag": "FLAG_HIDE_HELIX_FOSSIL"
+      "flag": "FLAG_POX_MOON_HIDE_DOME_FOSSIL"
     },
     {
       "local_id": "LOCALID_MIGUEL",
@@ -73,7 +73,7 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "3",
       "script": "MtMoon_B2F_EventScript_Grunt4",
-      "flag": "FLAG_HIDE_MISC_KANTO_ROCKETS"
+      "flag": "0"
     },
     {
       "type": "object",
@@ -87,7 +87,7 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "2",
       "script": "MtMoon_B2F_EventScript_Grunt1",
-      "flag": "FLAG_HIDE_MISC_KANTO_ROCKETS"
+      "flag": "0"
     },
     {
       "type": "object",
@@ -101,7 +101,7 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "4",
       "script": "MtMoon_B2F_EventScript_Grunt3",
-      "flag": "FLAG_HIDE_MISC_KANTO_ROCKETS"
+      "flag": "0"
     },
     {
       "type": "object",
@@ -115,7 +115,7 @@
       "trainer_type": "TRAINER_TYPE_NORMAL",
       "trainer_sight_or_berry_tree_id": "4",
       "script": "MtMoon_B2F_EventScript_Grunt2",
-      "flag": "FLAG_HIDE_MISC_KANTO_ROCKETS"
+      "flag": "0"
     },
     {
       "type": "object",
@@ -129,7 +129,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MtMoon_B2F_EventScript_ItemStarPiece",
-      "flag": "FLAG_HIDE_MT_MOON_B2F_STAR_PIECE"
+      "flag": "FLAG_POX_MOON_HIDE_MT_MOON_B2F_STAR_PIECE"
     },
     {
       "type": "object",
@@ -143,7 +143,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MtMoon_B2F_EventScript_ItemTM46",
-      "flag": "FLAG_HIDE_MT_MOON_B2F_TM46"
+      "flag": "FLAG_POX_MOON_HIDE_MT_MOON_B2F_TM46"
     },
     {
       "type": "object",
@@ -157,7 +157,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MtMoon_B2F_EventScript_ItemRevive",
-      "flag": "FLAG_HIDE_MT_MOON_B2F_REVIVE"
+      "flag": "FLAG_POX_MOON_HIDE_MT_MOON_B2F_REVIVE"
     },
     {
       "type": "object",
@@ -171,7 +171,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "MtMoon_B2F_EventScript_ItemAntidote",
-      "flag": "FLAG_HIDE_MT_MOON_B2F_ANTIDOTE"
+      "flag": "FLAG_POX_MOON_HIDE_MT_MOON_B2F_ANTIDOTE"
     }
   ],
   "warp_events": [
@@ -210,7 +210,7 @@
       "x": 14,
       "y": 11,
       "elevation": 3,
-      "var": "VAR_MAP_SCENE_MT_MOON_B2F",
+      "var": "VAR_POX_MTMOON_STATE",
       "var_value": "0",
       "script": "MtMoon_B2F_EventScript_MiguelTrigger"
     }
@@ -222,7 +222,7 @@
       "y": 16,
       "elevation": 3,
       "item": "ITEM_MOON_STONE",
-      "flag": "FLAG_HIDDEN_ITEM_MT_MOON_B2F_MOON_STONE",
+      "flag": "FLAG_POX_MOON_HIDDEN_ITEM_MT_MOON_B2F_MOON_STONE",
       "quantity": 1,
       "underfoot": false
     },
@@ -232,7 +232,7 @@
       "y": 11,
       "elevation": 3,
       "item": "ITEM_ETHER",
-      "flag": "FLAG_HIDDEN_ITEM_MT_MOON_B2F_ETHER",
+      "flag": "FLAG_POX_MOON_HIDDEN_ITEM_MT_MOON_B2F_ETHER",
       "quantity": 1,
       "underfoot": false
     }

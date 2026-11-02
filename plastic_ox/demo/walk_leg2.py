@@ -87,8 +87,7 @@ def main():
     W.cross_connection(g, "UP", MAP_ROUTE101, "r101")
     W.walk_to_edge(g, "north"); W.cross_connection(g, "UP", MAP_OLDALE, "oldale")
     navigate(g, (1, 10)); W.cross_connection(g, "LEFT", MAP_R29, "r29e")
-    navigate(g, (38, 4)); navigate(g, (38, 0))
-    W.cross_connection(g, "UP", MAP_R46, "r46s")
+    L1.route29_to_route46(g)
     navigate(g, (20, 12)); L1.enter_warp(g, (20, 12), "UP", MAP_DARKCAVE, "dc_in")
     navigate(g, (14, 19), avoid={(14, 20), (56, 46)})
     for _ in range(30):
@@ -96,11 +95,25 @@ def main():
         st = g.state()
         if st and (st["group"], st["num"]) == MAP_R31:
             break
+    g.wait_warp_complete(MAP_R31)
+    g.frame(120)
     stage("r31_mouth")
     g.shot("leg2_01_r31.png")
 
-    # ---------- R31 west door (coord) -> gate ----------
-    L1.enter_warp(g, (10, 9), "LEFT", MAP_GATE, "gate_in")
+    # Route 31's cave and gate halves meet at a diagonal Gen 2 stair.  Reach
+    # its east lip, then exercise the real westward stair movement.
+    navigate(g, (27, 10))
+    g.shot("leg2_01b_r31_stair.png")
+    assert g.behavior_at(26, 10)[0] == 0x4C, "Route 31 stair entry behavior drifted"
+    for expected in ((26, 10), (25, 11), (24, 12)):
+        g.tap(K.KEY_LEFT, hold=10, wait=18)
+        after = g.state()
+        assert (after["x"], after["y"]) == expected, (
+            f"Route 31 diagonal stair missed {expected}: {g.describe()}"
+        )
+
+    # ---------- R31 west door -> gate ----------
+    L1.enter_warp(g, (5, 10), "LEFT", MAP_GATE, "gate_in")
     stage("gate")
     g.shot("leg2_02_gate.png")
 

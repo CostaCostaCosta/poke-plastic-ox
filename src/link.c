@@ -224,6 +224,9 @@ static const u8 sUnusedData[] = {0x00, 0xFF, 0xFE, 0xFF, 0x00};
 
 bool8 IsWirelessAdapterConnected(void)
 {
+    if (!POX_LINK_ENABLED)
+        return FALSE;
+
     SetWirelessCommType1();
     InitRFUAPI();
     if (rfu_LMAN_REQBN_softReset_and_checkID() == RFU_ID)
@@ -354,6 +357,9 @@ static void Task_TriggerHandshake(u8 taskId)
 void OpenLink(void)
 {
     int i;
+
+    if (!POX_LINK_ENABLED)
+        return;
 
     if (!gWirelessCommType)
     {
@@ -1736,6 +1742,9 @@ bool8 HandleLinkConnection(void)
 {
     bool32 main1Failed, main2Failed;
 
+    if (!POX_LINK_ENABLED)
+        return FALSE;
+
     if (gWirelessCommType == 0)
     {
         gLinkStatus = LinkMain1(&gShouldAdvanceLinkState, gSendCmd, gRecvCmds);
@@ -1760,6 +1769,9 @@ bool8 HandleLinkConnection(void)
 
 void SetWirelessCommType1(void)
 {
+    if (!POX_LINK_ENABLED)
+        return;
+
     if (!gReceivedRemoteLinkPlayers)
         gWirelessCommType = 1;
 }
@@ -1817,6 +1829,9 @@ static void DisableSerial(void)
 
 static void EnableSerial(void)
 {
+    if (!POX_LINK_ENABLED)
+        return;
+
     DisableInterrupts(INTR_FLAG_TIMER3 | INTR_FLAG_SERIAL);
     REG_RCNT = 0;
     REG_SIOCNT = SIO_MULTI_MODE;
@@ -2320,7 +2335,7 @@ void ResetRecvBuffer(void)
 
 bool32 ShouldCheckForUnionRoom(void)
 {
-    if (OW_UNION_DISABLE_CHECK)
+    if (!POX_LINK_ENABLED || OW_UNION_DISABLE_CHECK)
         return FALSE;
 
     if (OW_FLAG_MOVE_UNION_ROOM_CHECK == 0)

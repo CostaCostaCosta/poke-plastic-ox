@@ -12,18 +12,7 @@
   "allow_running": true,
   "show_map_name": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": [
-    {
-      "map": "MAP_ROUTE2_HNS",
-      "direction": "left",
-      "offset": -67
-    },
-    {
-      "map": "MAP_ROUTE4_HNS",
-      "direction": "up",
-      "offset": 60
-    }
-  ],
+  "connections": [],
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER_HNS",
@@ -78,26 +67,8 @@
       "flag": "0"
     }
   ],
-  "warp_events": [
-    {
-      "x": 83,
-      "y": 12,
-      "elevation": 0,
-      "dest_map": "MAP_MT_MOON_CAVE_HNS",
-      "dest_warp_id": "0"
-    }
-  ],
-  "coord_events": [
-    {
-      "type": "trigger",
-      "x": 83,
-      "y": 12,
-      "elevation": 4,
-      "var": "VAR_POX_PORTAL_GATE",
-      "var_value": "0",
-      "script": "Route3_EventScript_MtMoonWarp"
-    }
-  ],
+  "warp_events": [],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "hidden_item",

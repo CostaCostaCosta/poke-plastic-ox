@@ -24,6 +24,7 @@
 #include "tv.h"
 #include "coins.h"
 #include "text.h"
+#include "title_screen.h"
 #include "overworld.h"
 #include "mail.h"
 #include "battle_records.h"
@@ -48,12 +49,15 @@
 #include "mystery_gift.h"
 #include "union_room_chat.h"
 #include "constants/map_groups.h"
+#include "constants/heal_locations.h"
 #include "constants/items.h"
+#include "constants/vars.h"
 #include "difficulty.h"
 #include "follower_npc.h"
 #include "data.h"
 #include "plastic_ox.h"
 #include "constants/opponents.h"
+#include "constants/flags.h"
 #include "gba/m4a_internal.h"
 
 extern const u8 EventScript_ResetAllMapFlags[];
@@ -65,8 +69,6 @@ static void ResetMiniGamesRecords(void);
 static void ResetItemFlags(void);
 static void ResetDexNav(void);
 void GivePlasticOxPlayerParty(void);
-
-static const u8 sPlasticOxPlayerName[] = _("P");
 
 EWRAM_DATA bool8 gDifferentSaveFile = FALSE;
 EWRAM_DATA bool8 gEnableContestDebugging = FALSE;
@@ -178,8 +180,7 @@ void NewGameInitData(void)
 #endif
     gDifferentSaveFile = TRUE;
     gSaveBlock2Ptr->encryptionKey = 0;
-    StringCopy(gSaveBlock2Ptr->playerName, sPlasticOxPlayerName);
-    gSaveBlock2Ptr->playerGender = MALE;
+    // Preserve the identity confirmed in professor registration.
     ZeroPlayerPartyMons();
     ZeroEnemyPartyMons();
     ResetPokedex();
@@ -193,6 +194,9 @@ void NewGameInitData(void)
     PlayTimeCounter_Reset();
     ClearPokedexFlags();
     InitEventData();
+#ifndef PLASTIC_OX_BUILD_BATTLE
+    FlagSet(FLAG_POX_INTRO_QUAKE_PENDING);
+#endif
     ClearTVShowData();
     ResetGabbyAndTy();
     ClearSecretBases();
@@ -211,6 +215,8 @@ void NewGameInitData(void)
     DeactivateAllRoamers();
     gSaveBlock1Ptr->registeredItem = ITEM_NONE;
     ClearBag();
+    AddBagItem(ITEM_WARP_BLOCK, 1);
+    SetLastHealLocationWarp(HEAL_LOCATION_PALLET_TOWN);
     NewGameInitPCItems();
     ClearPokeblocks();
     ClearDecorationInventories();
@@ -243,6 +249,42 @@ void NewGameInitData(void)
     ResetItemFlags();
     ResetDexNav();
     ClearFollowerNPCData();
+
+    // Hide battle-demo NPCs in the normal story build.
+    // The PLASTIC_OX_BUILD=battle build leaves these cleared so the NPCs appear.
+#ifndef PLASTIC_OX_BUILD_BATTLE
+    FlagSet(FLAG_POX_HIDE_BATTLE_OAK_PALLET);
+    FlagSet(FLAG_POX_HIDE_BATTLE_OAK_LAB);
+    FlagSet(FLAG_POX_HIDE_BATTLE_LANCE);
+#endif
+
+    // Plastic Ox skips the vanilla starter flow, so unblock vanilla gates that
+    // expect the adventure-started flag (notably Oldale's west exit).
+    FlagSet(FLAG_ADVENTURE_STARTED);
+    FlagSet(FLAG_POX_HIDE_UNUSED_ACTOR);
+    VarSet(VAR_POX_SAVE_MIGRATION_VERSION, 1);
+
+    // The authored Plastic Ox story is the normal game flow. Keep only the
+    // dedicated battle-demo build in its open-world fixture state. Set this
+    // after the save block has been initialized, never before its pointers are
+    // installed or before ResetAllMapFlags clears the flags.
+    // The normal ROM runs authored encounters, trainers, and gates.
+    // The battle demo deliberately suppresses them.
+#ifndef PLASTIC_OX_BUILD_BATTLE
+    FlagSet(FLAG_POX_TRIGGERS_ENABLED);
+#else
+    FlagSet(FLAG_POX_HIDE_STORY_NPCS);
+    FlagSet(FLAG_POX_HIDE_R29_GUARD);
+    FlagSet(FLAG_POX_HIDE_MTMOON_GRUNT_1);
+    FlagSet(FLAG_POX_HIDE_MTMOON_GRUNT_2);
+    FlagSet(FLAG_POX_HIDE_LAVENDER_GRUNT_1);
+    FlagSet(FLAG_POX_HIDE_LAVENDER_GRUNT_2);
+    FlagSet(FLAG_POX_HIDE_SILPH_GRUNT_1);
+    FlagSet(FLAG_POX_HIDE_SILPH_GRUNT_2);
+    FlagSet(FLAG_POX_HIDE_SILPH_GRUNT_3);
+    FlagSet(FLAG_POX_HIDE_SILPH_GIOVANNI);
+    FlagSet(FLAG_POX_ENTEI);
+#endif
 }
 
 void GivePlasticOxPlayerParty(void)
@@ -308,22 +350,27 @@ void GivePlasticOxPlayerParty(void)
     SavePlayerParty();
 }
 
-void CB2_InitPlasticOxDemo(void)
+void CB2_InitPlasticOxTitleScreen(void)
 {
-    // Deterministic demo boot: initialize a fresh save in memory and enter the
-    // Pallet bedroom directly, bypassing copyright/title/new-game naming UI.
-#ifdef PLASTIC_OX_BUILD_TRIGGERS
+    // Load saves before the custom opening; the title retains the normal menu.
+#ifndef PLASTIC_OX_BUILD_BATTLE
     gPlasticOxTriggersEnabled = TRUE;
-    FlagSet(FLAG_POX_TRIGGERS_ENABLED);
 #else
     gPlasticOxTriggersEnabled = FALSE;
+#endif
+#ifdef PLASTIC_OX_BUILD_BATTLE
+    gPlasticOxBattleDemoEnabled = TRUE;
+#else
+    gPlasticOxBattleDemoEnabled = FALSE;
 #endif
     SetSaveBlocksPointers(GetSaveBlocksPointersBaseOffset());
     ResetMenuAndMonGlobals();
     Save_ResetSaveCounters();
-    Sav2_ClearSetDefault();
+    LoadGameSave(SAVE_NORMAL);
+    if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_CORRUPT)
+        Sav2_ClearSetDefault();
     SetPokemonCryStereo(gSaveBlock2Ptr->optionsSound);
-    SetMainCallback2(CB2_NewGame);
+    SetMainCallback2(CB2_PlasticOxOpening);
 }
 
 static void ResetMiniGamesRecords(void)

@@ -2,3 +2,4 @@
 #include "plastic_ox.h"
 
 u8 gPlasticOxTriggersEnabled;
+u8 gPlasticOxBattleDemoEnabled;

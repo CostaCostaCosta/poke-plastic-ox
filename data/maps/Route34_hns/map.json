@@ -12,18 +12,7 @@
   "allow_running": true,
   "show_map_name": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": [
-    {
-      "map": "MAP_ILEXFOREST_HNS",
-      "direction": "down",
-      "offset": 39
-    },
-    {
-      "map": "MAP_GOLDENROD_CITY_HNS",
-      "direction": "up",
-      "offset": -7
-    }
-  ],
+  "connections": [],
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER_HNS",
@@ -196,60 +185,8 @@
       "flag": "0"
     }
   ],
-  "warp_events": [
-    {
-      "x": 20,
-      "y": 14,
-      "elevation": 3,
-      "dest_map": "MAP_ILEX_FOREST_HNS",
-      "dest_warp_id": "-1"
-    },
-    {
-      "x": 31,
-      "y": 89,
-      "elevation": 3,
-      "dest_map": "MAP_ROUTE116",
-      "dest_warp_id": "1"
-    }
-  ],
-  "coord_events": [
-    {
-      "type": "trigger",
-      "x": 23,
-      "y": 89,
-      "elevation": 3,
-      "var": "VAR_TEMP_0",
-      "var_value": "0",
-      "script": "Route34_EventScript_R116Warp"
-    },
-    {
-      "type": "trigger",
-      "x": 31,
-      "y": 67,
-      "elevation": 3,
-      "var": "VAR_POX_PORTAL_GATE",
-      "var_value": "0",
-      "script": "Route34_EventScript_ToIlex"
-    },
-    {
-      "type": "trigger",
-      "x": 31,
-      "y": 89,
-      "elevation": 3,
-      "var": "VAR_POX_PORTAL_GATE",
-      "var_value": "0",
-      "script": "Route34_EventScript_ToR116"
-    },
-    {
-      "type": "trigger",
-      "x": 31,
-      "y": 66,
-      "elevation": 3,
-      "var": "VAR_POX_PORTAL_GATE",
-      "var_value": "0",
-      "script": "Route34_EventScript_ReturnStone"
-    }
-  ],
+  "warp_events": [],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "sign",

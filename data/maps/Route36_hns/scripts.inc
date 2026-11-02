@@ -1,4 +1,5 @@
 Route36_hns_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_Route36_hns
 	.byte 0
 
 Route36_EventScript_Npc1::
@@ -36,62 +37,68 @@ Route36_EventScript_Npc5::
 	release
 	end
 
-Route36_EventScript_Portal4::
-	warp MAP_ROUTE35_HNS, 17, 5
-	waitstate
-	end
-
-Route36_EventScript_Portal5::
-	warp MAP_NATIONAL_PARK_NORMAL_HNS, 39, 24
-	waitstate
-	end
-
-Route36_EventScript_Portal6::
-	warp MAP_NATIONAL_PARK_NORMAL_HNS, 39, 24
-	waitstate
-	end
-
 Route36_EventScript_Npc1_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Goldenrod florists trade seeds\nwith the park gardeners.\pSome flowers now bloom a whole\nseason earlier. Nobody knows\pwhy.$"
 
 Route36_EventScript_Npc2_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "My family meets here every\nThursday.\pEven when the roads change, we\nkeep coming back to the same\pold trees.$"
 
 Route36_EventScript_Npc3_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The stone walls were laid\nwithout mortar.\pI repair them by fitting each\nrock against its neighbors,\plike a puzzle.$"
 
 Route36_EventScript_Npc4_Text:
-	.string "There used to be a weird tree blocking the road. One day it just moved.$"
+	.string "Birds nest in these old trees.\nA quiet traveler hears more\pthan a noisy one.$"
 
 Route36_EventScript_Npc5_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "I sketch the crossroads for\nschool. The landmarks matter\pmore than the names on the\nsigns.$"
 
-
-Route36_EventScript_TEMPDIVE::
-	warp MAP_ROUTE37_HNS, 13, 40
-	waitstate
-	end
-Route36_EventScript_ReturnStone::
-	warp MAP_PALLET_TOWN, 10, 4
-	waitstate
-	end
-Route36_EventScript_ToJohto::
-	warp MAP_SAFFRON_CITY_HNS, 29, 6
-	waitstate
-	end
-
-
-
-
-
-
-
-Route36_EventScript_PoxPortal12_19_19::
-	warp MAP_ROUTE37_HNS, 12, 39
-	waitstate
+Route36_EventScript_Snorlax::
+	lockall
+	checkitem ITEM_POKE_FLUTE
+	goto_if_eq VAR_RESULT, FALSE, Route36_EventScript_SnorlaxSleeping
+	call EventScript_AwakenSnorlax
+	setwildbattle SPECIES_SNORLAX, 30, ITEM_NONE
+	dowildbattle
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_eq VAR_RESULT, B_OUTCOME_CAUGHT, Route36_EventScript_SnorlaxCleared
+	goto_if_eq VAR_RESULT, B_OUTCOME_WON, Route36_EventScript_SnorlaxCleared
+	msgbox Route36_Text_SnorlaxSleepingAgain, MSGBOX_DEFAULT
+	releaseall
 	end
 
-Route36_EventScript_PoxPortal14_19_19::
-	warp MAP_ROUTE37_HNS, 12, 39
-	waitstate
+Route36_EventScript_SnorlaxCleared::
+	setflag FLAG_POX_ROUTE36_SNORLAX_CLEARED
+	removeobject VAR_LAST_TALKED
+	releaseall
 	end
+
+Route36_EventScript_SnorlaxSleeping::
+	msgbox Route36_Text_SnorlaxSleeping, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Route36_Text_SnorlaxSleeping:
+	.string "SNORLAX blocks the eastern road.\n"
+	.string "A POKé FLUTE might wake it.$"
+
+Route36_Text_SnorlaxSleepingAgain:
+	.string "SNORLAX went back to sleep,\n"
+	.string "blocking the road again.$"
+
+Route36_EventScript_Alan::
+	trainerbattle_single TRAINER_PLASTIC_OX_JOHTO_ALAN, Route36_EventScript_Alan_Intro, Route36_EventScript_Alan_Defeat
+	msgbox Route36_EventScript_Alan_After, MSGBOX_AUTOCLOSE
+	end
+Route36_EventScript_Alan_Intro:
+	.string "I study the plants on this\nroad. Let's compare field\pnotes in a battle!$"
+Route36_EventScript_Alan_Defeat:
+	.string "I missed a detail!$"
+Route36_EventScript_Alan_After:
+	.string "The odd tree has no leaves to\npress in my notebook.\pMaybe I should study Pokemon\nas well as plants.$"
+
+Route36_EventScript_RuinsGateClosed::
+	msgbox Route36_EventScript_RuinsGateClosed_Text, MSGBOX_NPC
+	end
+
+Route36_EventScript_RuinsGateClosed_Text:
+	.string "The RUINS OF ALPH gate is closed.\nPlease keep the entrance clear.$"

@@ -216,6 +216,7 @@ string generate_map_connections_text(Json map_data) {
     text << get_generated_warning("data/maps/" + mapName + "/map.json", true);
     text << mapName << "_MapConnectionsList:\n";
 
+    size_t connectionCount = 0;
     for (auto &connection : map_data["connections"].array_items()) {
         auto it = find(existing_maps.begin(), existing_maps.end(), json_to_string(connection, "map"));
         if (it == existing_maps.end())
@@ -224,10 +225,11 @@ string generate_map_connections_text(Json map_data) {
              << json_to_string(connection, "direction") << ", "
              << json_to_string(connection, "offset") << ", "
              << json_to_string(connection, "map") << "\n";
+        connectionCount++;
     }
 
     text << "\n" << mapName << "_MapConnections:\n"
-         << "\t.4byte " << map_data["connections"].array_items().size() << "\n"
+         << "\t.4byte " << connectionCount << "\n"
          << "\t.4byte " << mapName << "_MapConnectionsList\n\n";
 
     return text.str();
@@ -470,16 +472,22 @@ string generate_groups_text(Json groups_data, vector<string> &invalid_maps) {
     for (auto &key : groups_data["group_order"].array_items()) {
         string group = json_to_string(key);
         vector<string> valid_maps;
+        bool has_valid_map = false;
         auto maps = groups_data[group].array_items();
         for (Json &map_name : maps) {
             string map_name_str = json_to_string(map_name);
             auto it = find(invalid_maps.begin(), invalid_maps.end(), map_name_str);
             if (it == invalid_maps.end()) {
                 valid_maps.push_back(map_name_str);
+                has_valid_map = true;
+            } else {
+                // Map constants keep original indices, even when only part
+                // of a cross-version group is included in this ROM.
+                valid_maps.push_back("NULL");
             }
         }
 
-        if (valid_maps.size() > 0) {
+        if (has_valid_map) {
             text << group << "::\n";
             for (string map : valid_maps)
                 text << "\t.4byte " << map << "\n";
@@ -740,8 +748,19 @@ void process_groups(string groups_filepath, vector<string> &map_filepaths, strin
         }
         string map_name = json_to_string(map_data, "name");
 
-        if ((version == "emerald" && region != "REGION_HOENN")
-         || (version == "firered" && region != "REGION_KANTO")) {
+        bool include_in_version = false;
+        if (map_data.object_items().find("include_in_versions") != map_data.object_items().end()) {
+            for (auto &included_version : map_data["include_in_versions"].array_items()) {
+                if (json_to_string(included_version) == version) {
+                    include_in_version = true;
+                    break;
+                }
+            }
+        }
+
+        if (((version == "emerald" && region != "REGION_HOENN")
+          || (version == "firered" && region != "REGION_KANTO"))
+         && !include_in_version) {
             invalid_maps.push_back(map_name);
         }
     }
@@ -809,9 +828,11 @@ string generate_layout_headers_text(Json layouts_data) {
              << "\t.4byte " << json_to_string(layout, "primary_tileset") << "\n"
              << "\t.4byte " << json_to_string(layout, "secondary_tileset") << "\n";
         if (layout_version == "frlg")
-            text << "\t.byte TRUE\n";
+            text << "\t.byte 1\n"; // LAYOUT_VERSION_FRLG
+        else if (layout_version == "hns")
+            text << "\t.byte 2\n"; // LAYOUT_VERSION_HNS
         else
-            text << "\t.byte FALSE\n";
+            text << "\t.byte 0\n"; // LAYOUT_VERSION_EMERALD
 
         if (layout_version == "frlg")
         {

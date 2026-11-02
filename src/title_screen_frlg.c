@@ -680,7 +680,7 @@ static void SetTitleScreenScene_Run(s16 *data)
             DestroyTask(FindTaskIdByFunc(Task_TitleScreenMain));
             SetMainCallback2(CB2_FadeOutTransitionToResetRtcScreen);
         }
-        else if (JOY_HELD(KEYSTROKE_BERRY_FIX) == KEYSTROKE_BERRY_FIX)
+        else if (POX_LINK_ENABLED && JOY_HELD(KEYSTROKE_BERRY_FIX) == KEYSTROKE_BERRY_FIX)
         {
             DeactivateSlashSprite(tSlashSpriteId);
             DestroyTask(FindTaskIdByFunc(Task_TitleScreenMain));

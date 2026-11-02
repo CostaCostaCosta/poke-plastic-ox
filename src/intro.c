@@ -1083,8 +1083,11 @@ static u8 SetUpCopyrightScreen(void)
         EnableInterrupts(INTR_FLAG_VBLANK);
         SetVBlankCallback(VBlankCB_Intro);
         REG_DISPCNT = DISPCNT_MODE_0 | DISPCNT_OBJ_1D_MAP | DISPCNT_BG0_ON;
-        SetSerialCallback(SerialCB_CopyrightScreen);
-        GameCubeMultiBoot_Init(&gMultibootProgramStruct);
+        if (POX_LINK_ENABLED)
+        {
+            SetSerialCallback(SerialCB_CopyrightScreen);
+            GameCubeMultiBoot_Init(&gMultibootProgramStruct);
+        }
     // REG_DISPCNT needs to be overwritten the second time, because otherwise the intro won't show up on VBA 1.7.2 and John GBA Lite emulators.
     // The REG_DISPCNT overwrite is NOT needed in m-GBA, No$GBA, VBA 1.8.0, My Boy and Pizza Boy GBA emulators.
     case COPYRIGHT_EMULATOR_BLEND:
@@ -1092,10 +1095,12 @@ static u8 SetUpCopyrightScreen(void)
     default:
         UpdatePaletteFade();
         gMain.state++;
-        GameCubeMultiBoot_Main(&gMultibootProgramStruct);
+        if (POX_LINK_ENABLED)
+            GameCubeMultiBoot_Main(&gMultibootProgramStruct);
         break;
     case COPYRIGHT_START_FADE:
-        GameCubeMultiBoot_Main(&gMultibootProgramStruct);
+        if (POX_LINK_ENABLED)
+            GameCubeMultiBoot_Main(&gMultibootProgramStruct);
         if (gMultibootProgramStruct.gcmb_field_2 != 1)
         {
             BeginNormalPaletteFade(PALETTES_ALL, 0, 0, 16, RGB_BLACK);
@@ -1112,7 +1117,7 @@ static u8 SetUpCopyrightScreen(void)
         CreateTask(Task_Scene1_Load, 0);
         SetMainCallback2(MainCB2_Intro);
 #endif
-        if (gMultibootProgramStruct.gcmb_field_2 != 0)
+        if (POX_LINK_ENABLED && gMultibootProgramStruct.gcmb_field_2 != 0)
         {
             if (gMultibootProgramStruct.gcmb_field_2 == 2)
             {
@@ -1127,7 +1132,8 @@ static u8 SetUpCopyrightScreen(void)
         }
         else
         {
-            GameCubeMultiBoot_Quit();
+            if (POX_LINK_ENABLED)
+                GameCubeMultiBoot_Quit();
             SetSerialCallback(SerialCB);
         }
         return 0;

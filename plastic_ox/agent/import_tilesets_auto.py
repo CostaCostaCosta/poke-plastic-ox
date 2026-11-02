@@ -56,6 +56,8 @@ def main():
 
         if f"{cname} =" not in h:
             h += (f"\nconst struct Tileset {cname} =\n{{\n"
+                  f"    .isCompressed = TRUE,\n"
+                  f"    .isSecondary = {'TRUE' if kind == 'secondary' else 'FALSE'},\n"
                   f"    .tiles = gTilesetTiles_{name},\n"
                   f"    .palettes = gTilesetPalettes_{name},\n"
                   f"    .metatiles = gMetatiles_{name},\n"

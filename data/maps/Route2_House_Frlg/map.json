@@ -1,9 +1,9 @@
 {
   "id": "MAP_ROUTE2_HOUSE",
   "name": "Route2_House_Frlg",
-  "layout": "LAYOUT_HOUSE2_FRLG",
+  "layout": "LAYOUT_ROUTE2_HOUSE_HNS",
   "music": "MUS_RG_PEWTER",
-  "region": "REGION_KANTO",
+  "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_ROUTE_2",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -19,21 +19,21 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_SCIENTIST",
-      "x": 4,
-      "y": 5,
+      "x": 5,
+      "y": 6,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route2_House_EventScript_Scientist",
+      "script": "Route2_House_EventScript_MrMimeTrade",
       "flag": "0"
     },
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_GBA_KID",
-      "x": 7,
+      "x": 8,
       "y": 2,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -41,18 +41,11 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Route2_House_EventScript_Reyley",
+      "script": "PoxRoute2_Local",
       "flag": "0"
     }
   ],
   "warp_events": [
-    {
-      "x": 3,
-      "y": 7,
-      "elevation": 0,
-      "dest_map": "MAP_ROUTE2",
-      "dest_warp_id": "4"
-    },
     {
       "x": 4,
       "y": 7,
@@ -61,17 +54,13 @@
       "dest_warp_id": "4"
     },
     {
-      "x": 5,
-      "y": 7,
+      "x": 4,
+      "y": 8,
       "elevation": 0,
       "dest_map": "MAP_ROUTE2",
       "dest_warp_id": "4"
     }
   ],
-  "coord_events": [
-
-  ],
-  "bg_events": [
-
-  ]
+  "coord_events": [],
+  "bg_events": []
 }

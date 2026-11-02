@@ -36,11 +36,7 @@ Route3_EventScript_Npc2_Text:
 	.string "MT.MOON's east. There's a cave in it,\nand a region somewhere in that cave.$"
 
 Route3_EventScript_Npc3_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Rocky ground can wear your team\ndown. Rest when you can.$"
 
 Route3_EventScript_Npc4_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
-Route3_EventScript_MtMoonWarp::
-	warp MAP_MT_MOON_CAVE_HNS, 0
-	waitstate
-	end
+	.string "The mountain draws hikers and\ncurious trainers alike.$"

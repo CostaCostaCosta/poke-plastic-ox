@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plastic-Ox Map Baseline"
+  short_description: "Reduce imported maps to safe foundational events"
+  default_prompt: "Reduce the requested Plastic-Ox maps to baseline events, removing automatic triggers while preserving legitimate warps, NPCs, trainers, items, signs, and connections."

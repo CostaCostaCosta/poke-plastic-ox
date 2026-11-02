@@ -2050,6 +2050,24 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_RareCandy,
     },
 
+    [ITEM_CANDY_BAG] =
+    {
+        .name = ITEM_NAME("Candy Bag"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "A bottomless bag\n"
+            "of Rare Candies.\n"
+            "It never runs out."),
+        .pocket = POCKET_KEY_ITEMS,
+        .sortType = ITEM_TYPE_LEVEL_UP_ITEM,
+        .type = ITEM_USE_PARTY_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_RareCandy,
+        .effect = gItemEffect_RareCandy,
+        .iconPic = gItemIcon_RareCandy,
+        .iconPalette = gItemIconPalette_RareCandy,
+    },
+
     [ITEM_EXP_CANDY_XS] =
     {
         .name = ITEM_NAME("Exp. Candy XS"),
@@ -5589,13 +5607,12 @@ const struct ItemInfo gItemsInfo[] =
     {
         .name = ITEM_NAME("Red Orb"),
         .price = 0,
-        .holdEffect = HOLD_EFFECT_PRIMAL_ORB,
+        .importance = 1,
         .description = COMPOUND_STRING(
             "A red, glowing orb\n"
             "said to contain an\n"
             "ancient power."),
-        .pocket = POCKET_ITEMS,
-        .sortType = ITEM_TYPE_SPECIAL_HELD_ITEM,
+        .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_RedOrb,
@@ -9936,13 +9953,7 @@ const struct ItemInfo gItemsInfo[] =
     {
         .name = ITEM_NAME("Leftovers"),
         .pluralName = ITEM_PLURAL_NAME("Leftovers"),
-    #if I_PRICE >= GEN_9
-        .price = 20000,
-    #elif I_PRICE >= GEN_7
-        .price = 4000,
-    #else
-        .price = 200,
-    #endif
+        .price = 1000,
         .holdEffect = HOLD_EFFECT_LEFTOVERS,
         .holdEffectParam = 10,
         .description = COMPOUND_STRING(
@@ -12618,14 +12629,14 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM_DOUBLE_TEAM] =
+    [ITEM_TM_SUBSTITUTE] =
     {
         .name = ITEM_NAME("TM32"),
         .price = 2000,
         .description = COMPOUND_STRING(
-            "Creates illusory\n"
-            "copies to enhance\n"
-            "elusiveness."),
+            "Uses 1/4 of the\n"
+            "user's HP to make\n"
+            "a decoy."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
@@ -12646,14 +12657,14 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM_SHOCK_WAVE] =
+    [ITEM_TM_BODY_SLAM] =
     {
         .name = ITEM_NAME("TM34"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Zaps the foe with a\n"
-            "jolt of electricity\n"
-            "that never misses."),
+            "A full-body slam\n"
+            "that may cause\n"
+            "paralysis."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
@@ -12828,28 +12839,28 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM_STEEL_WING] =
+    [ITEM_TM_EXPLOSION] =
     {
         .name = ITEM_NAME("TM47"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Spreads hard-\n"
-            "edged wings and\n"
-            "slams into the foe."),
+            "An immense blast\n"
+            "that makes the\n"
+            "user faint."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
-    [ITEM_TM_SKILL_SWAP] =
+    [ITEM_TM_ROCK_SLIDE] =
     {
         .name = ITEM_NAME("TM48"),
         .price = 3000,
         .description = COMPOUND_STRING(
-            "Switches abilities\n"
-            "with the foe on the\n"
-            "turn this is used."),
+            "Hurls large rocks\n"
+            "that may make the\n"
+            "foe flinch."),
         .importance = I_REUSABLE_TMS,
         .pocket = POCKET_TM_HM,
         .type = ITEM_USE_PARTY_MENU,
@@ -13490,6 +13501,86 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_TMHM,
     },
 
+    [ITEM_STRENGTH_KEY] =
+    {
+        .name = ITEM_NAME("Strength Key"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A heavy key that\n"
+            "permits STRENGTH\n"
+            "outside battle."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_SecretKey,
+        .iconPalette = gItemIconPalette_SecretKey,
+    },
+
+    [ITEM_SURF_KEY] =
+    {
+        .name = ITEM_NAME("Surf Key"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A sea-blue key that\n"
+            "permits SURF outside\n"
+            "battle."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_SecretKey,
+        .iconPalette = gItemIconPalette_SecretKey,
+    },
+
+    [ITEM_HEADBUTT_KEY] =
+    {
+        .name = ITEM_NAME("Headbutt Key"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Shakes sturdy trees\n"
+            "to find wild\n"
+            "POKéMON."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_Headbutt,
+        .iconPic = gItemIcon_SecretKey,
+        .iconPalette = gItemIconPalette_SecretKey,
+    },
+
+    [ITEM_WARP_BLOCK] =
+    {
+        .name = ITEM_NAME("Warp Block"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A debug tool that\n"
+            "returns you to your\n"
+            "last healing spot."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_WarpBlock,
+        .iconPic = gItemIcon_EscapeRope,
+        .iconPalette = gItemIconPalette_EscapeRope,
+    },
+
+    [ITEM_ROCK_SMASH_KEY] =
+    {
+        .name = ITEM_NAME("Rock Smash Key"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A rugged key that\n"
+            "smashes cracked\n"
+            "rocks in the field."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_SecretKey,
+        .iconPalette = gItemIconPalette_SecretKey,
+    },
+
     [ITEM_HM_FLASH] =
     {
         .name = ITEM_NAME("HM05"),
@@ -13882,6 +13973,22 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_OldRod,
     },
 
+    [ITEM_CUT_KEY] =
+    {
+        .name = ITEM_NAME("Cut Key"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A reusable key that\n"
+            "permits cutting\n"
+            "thin trees."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_Cut,
+        .iconPic = gItemIcon_RazorClaw,
+        .iconPalette = gItemIconPalette_RazorClaw,
+    },
+
     [ITEM_GOOD_ROD] =
     {
         .name = ITEM_NAME("Good Rod"),
@@ -14060,6 +14167,22 @@ const struct ItemInfo gItemsInfo[] =
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_FIELD,
         .fieldUseFunc = ItemUseOutOfBattle_WailmerPail,
+        .iconPic = gItemIcon_WailmerPail,
+        .iconPalette = gItemIconPalette_WailmerPail,
+    },
+
+    [ITEM_SQUIRT_BOTTLE] =
+    {
+        .name = ITEM_NAME("SquirtBottle"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A bottle for watering\n"
+            "plants. Check the odd\n"
+            "tree on ROUTE 36."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_WailmerPail,
         .iconPalette = gItemIconPalette_WailmerPail,
     },
@@ -14451,9 +14574,9 @@ const struct ItemInfo gItemsInfo[] =
         .pluralName = ITEM_PLURAL_NAME("Contest Passes"),
         .price = 0,
         .description = COMPOUND_STRING(
-            "The pass required\n"
-            "for entering\n"
-            "Pokémon Contests."),
+            "A pass for Thursday\n"
+            "Bug-Catching Contests\n"
+            "at National Park."),
         .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -14480,12 +14603,12 @@ const struct ItemInfo gItemsInfo[] =
 
     [ITEM_SECRET_KEY] =
     {
-        .name = ITEM_NAME("Secret Key"),
+        .name = ITEM_NAME("Mansion Key"),
         .price = 0,
         .description = COMPOUND_STRING(
             "The key to the\n"
             "Cinnabar Island\n"
-            "Gym's entrance."),
+            "Pokémon Mansion."),
         .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -15565,6 +15688,119 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_GlimmeringCharm,
         .iconPalette = gItemIconPalette_GlimmeringCharm,
+    },
+
+    [ITEM_MOVE_COMPENDIUM] =
+    {
+        .name = ITEM_NAME("Move Compendium"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Teaches all level,\n"
+            "Egg, and tutor\n"
+            "moves."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_MoveCompendium,
+        .iconPic = gItemIcon_TMCase,
+        .iconPalette = gItemIconPalette_TMCase,
+    },
+
+    [ITEM_ANCIENT_BRAILLE_TABLET] =
+    {
+        .name = ITEM_NAME("Ancient Braille Tablet"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "A Braille tablet for\n"
+            "the Sealed Chamber.\n"
+            "Keep it to read seals."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_Plate,
+        .iconPalette = gItemIconPalette_StonePlate,
+    },
+
+    [ITEM_NEW_MAUVILLE_KEY] =
+    {
+        .name = ITEM_NAME("New Mauville Key"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "Opens New Mauville\n"
+            "off Route 110.\n"
+            "It can be reused."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_BasementKey,
+        .iconPalette = gItemIconPalette_OldKey,
+    },
+
+    [ITEM_ANCIENT_ICE_TABLET] =
+    {
+        .name = ITEM_NAME("Ancient Ice Tablet"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "An ancient tablet\n"
+            "said to unlock\n"
+            "Regice's seal."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_Plate,
+        .iconPalette = gItemIconPalette_IciclePlate,
+    },
+
+    [ITEM_ANCIENT_ROCK_TABLET] =
+    {
+        .name = ITEM_NAME("Ancient Rock Tablet"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "An ancient tablet\n"
+            "said to unlock\n"
+            "Regirock's seal."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_Plate,
+        .iconPalette = gItemIconPalette_StonePlate,
+    },
+
+    [ITEM_TRAINING_KIT] =
+    {
+        .name = ITEM_NAME("Training Kit"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Sets a Pokémon's\n"
+            "nature, base points,\n"
+            "and Hidden Power\n"
+            "type."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_TrainingKit,
+        .iconPic = gItemIcon_TMCase,
+        .iconPalette = gItemIconPalette_TMCase,
+    },
+
+    [ITEM_POCKET_WATCH] =
+    {
+        .name = ITEM_NAME("Pocket Watch"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Adjusts the time\n"
+            "and weekday while\n"
+            "inside a building."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_PocketWatch,
+        .iconPic = gItemIcon_CoinCase,
+        .iconPalette = gItemIconPalette_CoinCase,
     },
 
     [ITEM_METAL_ALLOY] =

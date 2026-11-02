@@ -21,6 +21,7 @@
 #include "constants/coins.h"
 #include "constants/comparison_operators.h"
 #include "constants/contest.h"
+#include "constants/plastic_ox_contest.h"
 #include "constants/daycare.h"
 #include "constants/decorations.h"
 #include "constants/difficulty.h"
@@ -614,7 +615,12 @@ gStdScripts_End::
 	.include "data/maps/Mart_Johto_hns/scripts.inc"
 	.include "data/maps/Mart_Kanto_hns/scripts.inc"
 	.include "data/maps/House_GenericA_hns/scripts.inc"
+	.include "data/maps/CherrygroveCity_SoutheastHouse_hns/scripts.inc"
 	.include "data/maps/House_GenericB_hns/scripts.inc"
+
+	@ Plastic Ox: Headbutt tree field method (shared by all PU routes).
+	.include "data/scripts/plastic_ox_headbutt.inc"
+	.include "data/scripts/plastic_ox_berry_trees.inc"
 
 	@ Plastic Ox: Leg A outdoors (Pallet-Oldale-R29/R46/DarkCave/R31/R30-Cherrygrove),
 	@ compiled in all builds.
@@ -696,15 +702,6 @@ gStdScripts_End::
 	.include "data/maps/PokemonMansion_2F_Frlg/scripts.inc"
 	.include "data/maps/PokemonMansion_3F_Frlg/scripts.inc"
 	.include "data/maps/PokemonMansion_B1F_Frlg/scripts.inc"
-	.include "data/maps/SafariZone_Center_Frlg/scripts.inc"
-	.include "data/maps/SafariZone_East_Frlg/scripts.inc"
-	.include "data/maps/SafariZone_North_Frlg/scripts.inc"
-	.include "data/maps/SafariZone_West_Frlg/scripts.inc"
-	.include "data/maps/SafariZone_Center_RestHouse_Frlg/scripts.inc"
-	.include "data/maps/SafariZone_East_RestHouse_Frlg/scripts.inc"
-	.include "data/maps/SafariZone_North_RestHouse_Frlg/scripts.inc"
-	.include "data/maps/SafariZone_West_RestHouse_Frlg/scripts.inc"
-	.include "data/maps/SafariZone_SecretHouse_Frlg/scripts.inc"
 	.include "data/maps/CeruleanCave_1F_Frlg/scripts.inc"
 	.include "data/maps/CeruleanCave_2F_Frlg/scripts.inc"
 	.include "data/maps/CeruleanCave_B1F_Frlg/scripts.inc"
@@ -935,9 +932,7 @@ gStdScripts_End::
 	.include "data/maps/CeladonCity_Restaurant_Frlg/scripts.inc"
 	.include "data/maps/CeladonCity_House1_Frlg/scripts.inc"
 	.include "data/maps/CeladonCity_Hotel_Frlg/scripts.inc"
-	.include "data/maps/FuchsiaCity_SafariZone_Entrance_Frlg/scripts.inc"
 	.include "data/maps/FuchsiaCity_Mart_Frlg/scripts.inc"
-	.include "data/maps/FuchsiaCity_SafariZone_Office_Frlg/scripts.inc"
 	.include "data/maps/FuchsiaCity_Gym_Frlg/scripts.inc"
 	.include "data/maps/FuchsiaCity_House1_Frlg/scripts.inc"
 	.include "data/maps/FuchsiaCity_PokemonCenter_1F_Frlg/scripts.inc"
@@ -1067,6 +1062,30 @@ gStdScripts_End::
 	.include "data/scripts/flavor_text.inc"
 	.include "data/scripts/pkmn_center_nurse_frlg.inc"
 
+.endif
+
+.if !IS_FRLG
+	@ Kanto maps explicitly opted into the Emerald Plastic Ox region.
+	.include "data/scripts/plastic_ox_kanto_maps.inc"
+	.include "data/scripts/fame_checker_frlg.inc"
+	.include "data/text/fame_checker_frlg.inc"
+	.include "data/scripts/item_ball_scripts_frlg.inc"
+	.include "data/scripts/silphco_doors.inc"
+	.include "data/scripts/move_tutors_frlg.inc"
+	.include "data/scripts/cable_club_frlg.inc"
+	.include "data/scripts/trainer_card_frlg.inc"
+	.include "data/text/trainer_card_frlg.inc"
+	.include "data/scripts/mystery_event_club.inc"
+	.include "data/scripts/day_care_frlg.inc"
+	.include "data/text/day_care_frlg.inc"
+	.include "data/scripts/seagallop.inc"
+	.include "data/scripts/static_pokemon.inc"
+	.include "data/scripts/aide.inc"
+	.include "data/scripts/trainers_frlg.inc"
+	.include "data/text/trainers_frlg.inc"
+	.include "data/text/ingame_trade_frlg.inc"
+	.include "data/scripts/pkmn_center_nurse_frlg.inc"
+	.include "data/scripts/plastic_ox_kanto_extra_text.inc"
 .endif
 
 	.include "data/scripts/std_msgbox.inc"
@@ -1759,6 +1778,9 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/scripts/apricorn_tree.inc"
 	.include "data/scripts/wild_encounter.inc"
 	.include "data/maps/Gate_AzaleaTown_IlexForest_hns/scripts.inc"
+	.include "data/maps/Gate_Route29_Route46_hns/scripts.inc"
+	.include "data/maps/Route30_House_hns/scripts.inc"
+	.include "data/maps/Route30_MrPokemonsHouse_hns/scripts.inc"
 	.include "data/maps/GoldenrodCity_BillsHouse_hns/scripts.inc"
 	.include "data/maps/GoldenrodCity_hns/scripts.inc"
 	.include "data/maps/Route14_hns/scripts.inc"
@@ -1792,3 +1814,195 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/Route21_hns/scripts.inc"
 	.include "data/maps/Route12_hns/scripts.inc"
 	.include "data/maps/LavenderTown_hns/scripts.inc"
+	.include "data/scripts/plastic_ox_story.inc"
+	.include "data/maps/PlasticOx_WhitneyGym/scripts.inc"
+	.include "data/maps/PlasticOx_MortyGym/scripts.inc"
+	.include "data/maps/PlasticOx_BlaineGym/scripts.inc"
+	.include "data/maps/PlasticOx_BrunoGym/scripts.inc"
+	.include "data/maps/PlasticOx_ClairGym/scripts.inc"
+	.include "data/maps/PlasticOx_DanceTheater/scripts.inc"
+	.include "data/maps/PlasticOx_BurnedTower/scripts.inc"
+	.include "data/maps/PlasticOx_BurnedTowerB1F/scripts.inc"
+	.include "data/maps/PlasticOx_PokemonTower/scripts.inc"
+	.include "data/maps/PlasticOx_FujiHouse/scripts.inc"
+	.include "data/maps/PlasticOx_Mansion/scripts.inc"
+	.include "data/maps/PlasticOx_Silph/scripts.inc"
+	.include "data/maps/PlasticOx_WallaceRoom/scripts.inc"
+	.include "data/maps/PlasticOx_StevenRoom/scripts.inc"
+	.include "data/maps/PlasticOx_LeagueLanceRoom/scripts.inc"
+	.include "data/maps/PlasticOx_BlueRoom/scripts.inc"
+	.include "data/maps/PlasticOx_BillRoom/scripts.inc"
+	.include "data/maps/PlasticOx_WhirlIslands/scripts.inc"
+	.include "data/maps/PlasticOx_VictoryRoad/scripts.inc"
+	.include "data/maps/Route33_hns/scripts.inc"
+	.include "data/maps/Route44_hns/scripts.inc"
+	.include "data/maps/Route45_hns/scripts.inc"
+	.include "data/scripts/plastic_ox_region.inc"
+	.include "data/scripts/plastic_ox_route_trainers.inc"
+	.include "data/maps/PlasticOx_Harbor/scripts.inc"
+	.include "data/maps/PlasticOx_Route20West/scripts.inc"
+	.include "data/maps/PlasticOx_Route20East/scripts.inc"
+	.include "data/scripts/plastic_ox_pu_acquisitions.inc"
+	.include "data/scripts/plastic_ox_contest.inc"
+
+@ Plastic Ox v7 FRLG modules (Emerald inclusion).
+.if !IS_FRLG
+	.include "data/maps/Route1_Frlg/scripts.inc"
+	.include "data/maps/Route8_Frlg/scripts.inc"
+	.include "data/maps/Route19_Frlg/scripts.inc"
+	.include "data/maps/Route20_Frlg/scripts.inc"
+	.include "data/maps/UndergroundPath_EastEntrance_Frlg/scripts.inc"
+	.include "data/maps/UndergroundPath_WestEntrance_Frlg/scripts.inc"
+	.include "data/maps/UndergroundPath_EastWestTunnel_Frlg/scripts.inc"
+	.include "data/maps/SeafoamIslands_1F_Frlg/scripts.inc"
+	.include "data/maps/SeafoamIslands_B1F_Frlg/scripts.inc"
+	.include "data/maps/SeafoamIslands_B2F_Frlg/scripts.inc"
+	.include "data/maps/SeafoamIslands_B3F_Frlg/scripts.inc"
+	.include "data/maps/SeafoamIslands_B4F_Frlg/scripts.inc"
+.endif
+
+.if !IS_FRLG
+	.include "data/maps/Route2_Frlg/scripts.inc"
+.endif
+
+.if !IS_FRLG
+	.include "data/maps/Route2_ViridianForest_NorthEntrance_Frlg/scripts.inc"
+.endif
+
+.if !IS_FRLG
+	.include "data/maps/Route2_ViridianForest_SouthEntrance_Frlg/scripts.inc"
+.endif
+
+.if !IS_FRLG
+	.include "data/maps/Route2_House_Frlg/scripts.inc"
+.endif
+
+.if !IS_FRLG
+	.include "data/maps/Route2_EastBuilding_Frlg/scripts.inc"
+.endif
+
+.if !IS_FRLG
+	.include "data/maps/Route21_North_Frlg/scripts.inc"
+.endif
+
+.if !IS_FRLG
+	.include "data/maps/Route21_South_Frlg/scripts.inc"
+.endif
+
+.if !IS_FRLG
+	.include "data/maps/CinnabarIsland_Frlg/scripts.inc"
+.endif
+
+.if !IS_FRLG
+	.include "data/maps/PokemonMansion_1F_Frlg/scripts.inc"
+.endif
+
+.if !IS_FRLG
+	.include "data/scripts/pokemon_mansion.inc"
+.endif
+
+.if !IS_FRLG
+	.include "data/maps/MtMoon_1F_Frlg/scripts.inc"
+.endif
+
+.if !IS_FRLG
+	.include "data/maps/MtMoon_B1F_Frlg/scripts.inc"
+.endif
+
+.if !IS_FRLG
+	.include "data/maps/MtMoon_B2F_Frlg/scripts.inc"
+.endif
+
+	.include "data/maps/GoldenrodCity_BikeShop_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DepartmentStoreBasement_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DepartmentStoreElevator_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DepartmentStore_1F_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DepartmentStore_2F_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DepartmentStore_3F_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DepartmentStore_4F_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DepartmentStore_5F_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DepartmentStore_6F_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DepartmentStore_7FNight_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_DepartmentStore_7F_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_FlowerShop_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_GameCorner_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_Gym_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_House1_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_House2_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_House3_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_PokemonCenter_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_RadioTower_1F_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_RadioTower_2F_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_RadioTower_3F_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_RadioTower_4F_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_RadioTower_5F_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_TrainStation_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_UndergroundEntrance_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_UndergroundStorage_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_UndergroundSwitches_hns/scripts.inc"
+
+	.include "data/maps/GoldenrodCity_UndergroundTunnel_hns/scripts.inc"
+
+	.include "data/scripts/plastic_ox_goldenrod.inc"
+
+	.include "data/maps/EcruteakCity_Gym_hns/scripts.inc"
+
+	.include "data/maps/EcruteakCity_House1_hns/scripts.inc"
+
+	.include "data/maps/EcruteakCity_House2_hns/scripts.inc"
+
+	.include "data/maps/EcruteakCity_Mart_hns/scripts.inc"
+
+	.include "data/maps/EcruteakCity_PokemonCenter_hns/scripts.inc"
+
+	.include "data/maps/EcruteakCity_SageOffice1_hns/scripts.inc"
+
+	.include "data/maps/EcruteakCity_SageOffice2_hns/scripts.inc"
+
+	.include "data/maps/EcruteakCity_Theater_hns/scripts.inc"
+
+	.include "data/maps/Gate_EcruteakCity_Route38_hns/scripts.inc"
+
+	.include "data/maps/Gate_EcruteakCity_Route42_hns/scripts.inc"
+
+	.include "data/maps/Gate_NationalPark_hns/scripts.inc"
+
+	.include "data/scripts/plastic_ox_legendary_sages.inc"
+
+	.include "data/scripts/plastic_ox_cinnabar.inc"
+
+	.include "data/scripts/plastic_ox_seafoam.inc"
+	.include "data/scripts/plastic_ox_league.inc"
+	.include "data/maps/PlasticOx_HallOfFame/scripts.inc"
+	.include "data/maps/PlasticOx_LeagueRestHouse1/scripts.inc"
+	.include "data/maps/PlasticOx_LeagueRestHouse2/scripts.inc"
+
+	.include "data/scripts/plastic_ox_tournament.inc"
+
+	.include "data/scripts/plastic_ox_regional_mart.inc"

@@ -1,0 +1,142 @@
+{
+  "date": "2026-09-24",
+  "target": "Native GBA, Gen 3 singles; deployment prototype, live trainer adapter not implemented",
+  "compiler": "devkitARM r65 / GCC 14.2.0",
+  "compiler_flags": "-O2 -mcpu=arm7tdmi -mthumb -mthumb-interwork -mabi=apcs-gnu -Wa,-meabi=5 -ffp-contract=off; dot.c uses -marm for arm-iwram",
+  "emulator": "mGBA 0.10.2",
+  "waitcnt": "0x40b4",
+  "clock_hz": 16777216,
+  "cartridge_code": "MMBE",
+  "fixture_source": "/home/eddie/metamon/models/kakuna-gen3-causal-s0-20260924/data/test/shard-00000.pt; first eight decisions of first episode",
+  "fixture_sha256": "7cba880c6190b4e1f54ff08f22accea9ee3d94fc96a336dad84a01eb47dd1cc6",
+  "game_base_commit": "7e1251b4706dd3011eba44bfbabe619329a9ae63",
+  "model_import": {
+    "source_sha256": "182b7438cb88513a68a4ea4311c690bc73f211e270626ffc618d1ccf8b80763d",
+    "schema": "dfd5b2755d72052bbcd86cbd97a0c8dff63f6e3c51349e03ca947861bbf864d4",
+    "export_bytes": 1040166,
+    "aligned_tensor_bytes": 1038928,
+    "parameters": 1011355,
+    "macs_by_layer": {
+      "move_encoder.0": 55296,
+      "pokemon_encoder.0": 150528,
+      "pokemon_encoder.2": 49152,
+      "event_encoder.0": 16384,
+      "global_encoder.0": 6144,
+      "fusion.0": 174080,
+      "fusion.2": 40960,
+      "gru.weight_ih_l0": 294912,
+      "gru.weight_hh_l0": 442368,
+      "actor": 5760
+    },
+    "macs_per_decision": 1235584,
+    "note": "MAC counts exclude embeddings, quantization, nonlinearities and observation encoding.",
+    "rom": {
+      "current_used_bytes": 26331028,
+      "limit_bytes": 33554432,
+      "headroom_after_weights": 6184476
+    }
+  },
+  "verification": {
+    "battles": 4,
+    "decisions": 117,
+    "max_logit_error": 9.5367431640625e-07,
+    "max_hidden_error": 3.5762786865234375e-07,
+    "legal_argmax_agreement": 1.0,
+    "observation_bytes": 8900,
+    "workspace_bytes": 30144,
+    "hidden_bytes": 1536,
+    "fixtures": 8,
+    "reference": "CPU QuantizedStudent, fp32 hidden, sequential B=1 T=1",
+    "invalid_input_and_action_mask_checks": "passed"
+  },
+  "benchmark": {
+    "thumb-rom": {
+      "cycles": [
+        60805318,
+        61526280,
+        61511925,
+        61476162,
+        61503689,
+        61459472,
+        61456287,
+        61408632
+      ],
+      "seconds": [
+        3.6242793798446655,
+        3.6672520637512207,
+        3.66639643907547,
+        3.6642647981643677,
+        3.6659055352211,
+        3.6632699966430664,
+        3.663080155849457,
+        3.6602396965026855
+      ],
+      "median_seconds": 3.663767397403717,
+      "min_seconds": 3.6242793798446655,
+      "max_seconds": 3.6672520637512207,
+      "host_max_logit_error": 0.0,
+      "host_max_hidden_error": 1.7881393432617188e-07,
+      "legal_actions": [
+        8,
+        2,
+        0,
+        8,
+        1,
+        2,
+        3,
+        2
+      ],
+      "caveat": "Emulated GBA timer cycles; no audio/IRQ/DMA or observation extraction. Not physical-hardware or full-battle latency."
+    },
+    "arm-iwram": {
+      "cycles": [
+        49840880,
+        50561842,
+        50547487,
+        50511724,
+        50539251,
+        50495034,
+        50491849,
+        50444194
+      ],
+      "seconds": [
+        2.970747947692871,
+        3.0137206315994263,
+        3.0128650069236755,
+        3.0107333660125732,
+        3.0123741030693054,
+        3.009738564491272,
+        3.0095487236976624,
+        3.006708264350891
+      ],
+      "median_seconds": 3.0102359652519226,
+      "min_seconds": 2.970747947692871,
+      "max_seconds": 3.0137206315994263,
+      "host_max_logit_error": 0.0,
+      "host_max_hidden_error": 1.7881393432617188e-07,
+      "legal_actions": [
+        8,
+        2,
+        0,
+        8,
+        1,
+        2,
+        3,
+        2
+      ],
+      "caveat": "Emulated GBA timer cycles; no audio/IRQ/DMA or observation extraction. Not physical-hardware or full-battle latency."
+    }
+  },
+  "build": {
+    "status": "passed",
+    "command": "env PATH=/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin:$PATH make -j8 TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM modern",
+    "rom_used_bytes": 26331028,
+    "ewram_used_bytes": 226524,
+    "iwram_used_bytes": 28372,
+    "includes_model_runtime": false
+  },
+  "tests": {
+    "importer": 6,
+    "upstream_causal_and_export": 21
+  }
+}

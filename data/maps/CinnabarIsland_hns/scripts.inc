@@ -24,19 +24,13 @@ CinnabarIsland_EventScript_Sign2::
 	end
 
 CinnabarIsland_EventScript_Npc1_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The sea is calm today, but this\nisland was shaped by fire.$"
 
 CinnabarIsland_EventScript_Npc2_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Our researchers study the traces\nleft by ancient POKéMON.$"
 
 CinnabarIsland_EventScript_Sign1_Text:
 	.string "A sign from the old routes.$"
 
 CinnabarIsland_EventScript_Sign2_Text:
 	.string "A sign from the old routes.$"
-
-
-CinnabarIsland_EventScript_PoxPortal12_8_8::
-	warp MAP_LAVENDER_TOWN_HNS, 15, 22
-	waitstate
-	end

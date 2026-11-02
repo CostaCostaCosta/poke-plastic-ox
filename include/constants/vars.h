@@ -162,7 +162,7 @@
 #define VAR_LITTLEROOT_HOUSES_STATE_BRENDAN              0x408C
 #define VAR_LITTLEROOT_RIVAL_STATE                       0x408D
 #define VAR_BOARD_BRINEY_BOAT_STATE                      0x408E
-#define VAR_DEVON_CORP_3F_STATE                          0x408F
+#define VAR_DEVON_CORP_1F_GREETING                        0x408F
 #define VAR_BRINEY_HOUSE_STATE                           0x4090
 #define VAR_UNUSED_0x4091                                0x4091 // Unused Var
 #define VAR_LITTLEROOT_INTRO_STATE                       0x4092
@@ -238,7 +238,7 @@
 #define VAR_SOOTOPOLIS_WALLACE_STATE                     0x40D8
 #define VAR_HAS_TALKED_TO_SEAFLOOR_CAVERN_ENTRANCE_GRUNT 0x40D9
 #define VAR_REGISTER_BIRCH_STATE                         0x40DA
-#define VAR_UNUSED_0x40DB                                0x40DB // Unused Var
+#define VAR_POX_PORTAL_TRIGGER                           0x40DB // Reserved zero for resumable map portal scripts
 #define VAR_UNUSED_0x40DC                                0x40DC // Unused Var
 #define VAR_GIFT_PICHU_SLOT                              0x40DD
 #define VAR_GIFT_UNUSED_1                                0x40DE // Var is written to, but never read
@@ -266,15 +266,15 @@
 #define VAR_ROXANNE_CALL_STEP_COUNTER                    0x40F4
 #define VAR_SCOTT_BF_CALL_STEP_COUNTER                   0x40F5
 #define VAR_RIVAL_RAYQUAZA_CALL_STEP_COUNTER             0x40F6
-#define VAR_UNUSED_0x40F7                                0x40F7 // Unused Var
-#define VAR_UNUSED_0x40F8                                0x40F8 // Unused Var
-#define VAR_UNUSED_0x40F9                                0x40F9 // Unused Var
-#define VAR_UNUSED_0x40FA                                0x40FA // Unused Var
-#define VAR_UNUSED_0x40FB                                0x40FB // Unused Var
-#define VAR_UNUSED_0x40FC                                0x40FC // Unused Var
-#define VAR_UNUSED_0x40FD                                0x40FD // Unused Var
-#define VAR_UNUSED_0x40FE                                0x40FE // Unused Var
-#define VAR_UNUSED_0x40FF                                0x40FF // Unused Var
+#define VAR_POX_STARTER_SPECIES                          0x40F7 // species chosen at Oak's Lab
+#define VAR_POX_ILEX_STATE                               0x40F8
+#define VAR_POX_MTMOON_STATE                             0x40F9
+#define VAR_POX_SILPH_STATE                              0x40FA
+#define VAR_POX_GRANDPA_PROGRESS                         0x40FB
+#define VAR_POX_SAVE_MIGRATION_VERSION                   0x40FC
+#define VAR_POX_SEAFOAM_STATE                            0x40FD
+#define VAR_POX_WORLD_SPEED                             0x40FE // Options: 0/1/2/3 = 1x/2x/4x/8x; zero on old/new saves
+#define VAR_POX_MOM_STATE                                0x40FF
 
 #define VARS_END                                         0x40FF
 #define VARS_COUNT                                       (VARS_END - VARS_START + 1)
@@ -338,18 +338,16 @@
 #define TESTING_VAR_UNUSED_7                (TESTING_VARS_START + 0x7)
 #endif // TESTING
 
-// Plastic Ox alpha vars.
+// Plastic Ox persistent vars occupy the 0x40F7-0x40FF run above.
 // Ids above VARS_END (e.g. 0x5100) are NOT usable: GetVarPointer()
 // (src/event_data.c) maps every id below SPECIAL_VARS_START onto
 // gSaveBlock1Ptr->vars[id - VARS_START], so anything past 0x40FF indexes past
-// the end of the 256-entry vars array and corrupts the save block. Allocated
-// from slots marked "Unused Var" at the top of that range instead.
-#define VAR_POX_STARTER_SPECIES    0x40F7 // species id chosen at Oak's Lab (beat 1)
-#define VAR_POX_ILEX_STATE         0x40F8 // beat 3: escort quest state
-#define VAR_POX_MTMOON_STATE       0x40F9 // beat 5: Rocket I progress
-#define VAR_POX_SILPH_STATE        0x40FA // beat 16: Rocket III progress
-#define VAR_POX_PORTAL_GATE        0x40FC // always 0; gates coord-warp portals
-#define VAR_POX_EEVEE_GIFTS        0x40FB // count of Eevee gifts received (beats 6/8/11/12/15)
-#define POX_VARS_END               0x40FB // 0x40FC-0x40FF remain free for future POX vars
+// the end of the 256-entry vars array and corrupts the save block.
+// Supplemental unused Emerald var; retained within the existing save array.
+#define VAR_POX_DELIBIRD_IDENTITY   0x40DC
+#define POX_VARS_END               0x40FF
+// No slot remains in the primary reserved run. Supplemental variables must
+// repurpose audited unused Emerald slots and extend audit_alpha.py.
+// Never allocate above VARS_END; doing so indexes beyond SaveBlock1::vars.
 
 #endif // GUARD_CONSTANTS_VARS_H

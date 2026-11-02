@@ -310,6 +310,9 @@ void ResetLinkRfuGFLayer(void)
 
 void InitRFU(void)
 {
+    if (!POX_LINK_ENABLED)
+        return;
+
     IntrFunc serialIntr = gIntrTable[1];
     IntrFunc timerIntr = gIntrTable[2];
     InitRFUAPI();
@@ -323,6 +326,9 @@ void InitRFU(void)
 
 void InitRFUAPI(void)
 {
+    if (!POX_LINK_ENABLED)
+        return;
+
     if (!rfu_initializeAPI((void *)gRfuAPIBuffer, sizeof(gRfuAPIBuffer), &gIntrTable[1], TRUE))
     {
         gLinkType = 0;

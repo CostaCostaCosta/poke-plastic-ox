@@ -1,29 +1,18 @@
+@ The FRLG (Kanto) branch of these two scripts targeted
+@ MAP_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, which was deleted with the Kanto
+@ Safari Zone family on 2026-10-02. IS_FRLG is 0 in this build, so only the
+@ Hoenn branch below is assembled; the Kanto Safari Zone engine, its globals
+@ and the National Park contest that borrows them are untouched.
 SafariZone_EventScript_OutOfBallsMidBattle::
-#if IS_FRLG
-	setvar VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 3
-#else
 	setvar VAR_SAFARI_ZONE_STATE, 1
-#endif
 	special ExitSafariMode
-#if IS_FRLG
-	setwarp MAP_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 4, 1
-#else
 	setwarp MAP_ROUTE121_SAFARI_ZONE_ENTRANCE, 2, 5
-#endif
 	end
 
 SafariZone_EventScript_Exit::
-#if IS_FRLG
-	setvar VAR_MAP_SCENE_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 1
-#else
 	setvar VAR_SAFARI_ZONE_STATE, 1
-#endif
 	special ExitSafariMode
-#if IS_FRLG
-	warp MAP_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, 4, 1
-#else
 	warp MAP_ROUTE121_SAFARI_ZONE_ENTRANCE, 2, 5
-#endif
 	waitstate
 	end
 

@@ -1,0 +1,120 @@
+{
+  "TRAINER_PLASTIC_OX_JOHTO_ALAN": {
+    "id": 932,
+    "checkpoint": "route36",
+    "roster": [
+      [
+        "SPECIES_MAGNEMITE",
+        21
+      ],
+      [
+        "SPECIES_PONYTA",
+        21
+      ]
+    ],
+    "flag": 130
+  },
+  "TRAINER_PLASTIC_OX_JOHTO_ANN_ANNE": {
+    "id": 933,
+    "checkpoint": "route37",
+    "roster": [
+      [
+        "SPECIES_LEDIAN",
+        22
+      ],
+      [
+        "SPECIES_ARIADOS",
+        22
+      ],
+      [
+        "SPECIES_JIGGLYPUFF",
+        22
+      ]
+    ],
+    "flag": 1274
+  },
+  "TRAINER_PLASTIC_OX_JOHTO_GREG": {
+    "id": 934,
+    "checkpoint": "route37",
+    "roster": [
+      [
+        "SPECIES_DROWZEE",
+        22
+      ],
+      [
+        "SPECIES_NATU",
+        22
+      ],
+      [
+        "SPECIES_BALTOY",
+        22
+      ],
+      [
+        "SPECIES_EXEGGCUTE",
+        22
+      ],
+      [
+        "SPECIES_KIRLIA",
+        22
+      ],
+      [
+        "SPECIES_HAUNTER",
+        22
+      ]
+    ],
+    "flag": 1279
+  },
+  "TRAINER_PLASTIC_OX_JOHTO_BEVERLY": {
+    "id": 935,
+    "checkpoint": "park",
+    "roster": [
+      [
+        "SPECIES_SNUBBULL",
+        20
+      ],
+      [
+        "SPECIES_SKITTY",
+        20
+      ],
+      [
+        "SPECIES_MARILL",
+        20
+      ]
+    ],
+    "flag": 2333
+  },
+  "TRAINER_PLASTIC_OX_JOHTO_JACK": {
+    "id": 936,
+    "checkpoint": "park",
+    "roster": [
+      [
+        "SPECIES_ODDISH",
+        20
+      ],
+      [
+        "SPECIES_VOLTORB",
+        20
+      ]
+    ],
+    "flag": 2334
+  },
+  "TRAINER_PLASTIC_OX_JOHTO_KRISE": {
+    "id": 937,
+    "checkpoint": "park",
+    "roster": [
+      [
+        "SPECIES_ODDISH",
+        20
+      ],
+      [
+        "SPECIES_CUBONE",
+        20
+      ],
+      [
+        "SPECIES_MAREEP",
+        20
+      ]
+    ],
+    "flag": 2335
+  }
+}

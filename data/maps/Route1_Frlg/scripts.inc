@@ -61,4 +61,3 @@ Route1_Text_CanJumpFromLedges::
 Route1_Text_RouteSign::
 	.string "ROUTE 1\n"
 	.string "PALLET TOWN - VIRIDIAN CITY$"
-

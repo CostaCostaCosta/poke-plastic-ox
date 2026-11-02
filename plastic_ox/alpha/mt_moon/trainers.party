@@ -1,0 +1,455 @@
+=== TRAINER_PLASTIC_OX_MOON_BUG_CATCHER_KENT ===
+Name: KENT
+Class: Bug Catcher Frlg
+Pic: Bug Catcher Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Paras @ Leftovers
+Level: 13
+Ability: Effect Spore
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Giga Drain
+- Solar Beam
+- Hidden Power
+- Toxic
+
+Venonat @ Leftovers
+Level: 13
+Ability: Compound Eyes
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Sludge Bomb
+- Hidden Power
+- Giga Drain
+- Toxic
+
+Nincada @ Leftovers
+Level: 13
+Ability: Compound Eyes
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Leech Life
+- Mud-Slap
+- Hidden Power
+- Toxic
+
+=== TRAINER_PLASTIC_OX_MOON_BUG_CATCHER_ROBBY ===
+Name: ROBBY
+Class: Bug Catcher Frlg
+Pic: Bug Catcher Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Nincada @ Leftovers
+Level: 14
+Ability: Compound Eyes
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Leech Life
+- Mud-Slap
+- Hidden Power
+- Toxic
+
+Paras @ Leftovers
+Level: 14
+Ability: Effect Spore
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Giga Drain
+- Solar Beam
+- Hidden Power
+- Toxic
+
+=== TRAINER_PLASTIC_OX_MOON_HIKER_MARCOS ===
+Name: MARCOS
+Class: Hiker Frlg
+Pic: Hiker Frlg
+Gender: Male
+Music: Hiker
+Double Battle: No
+AI: Check Bad Move
+
+Geodude @ Choice Band
+Level: 13
+Ability: Rock Head
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Earthquake
+- Rock Slide
+- Hidden Power
+- Toxic
+
+Onix @ Sitrus Berry
+Level: 13
+Ability: Rock Head
+EVs: 76 HP / 236 Atk / 196 Spe
+Jolly Nature
+- Rock Slide
+- Earthquake
+- Double-Edge
+- Explosion
+
+Aron @ Choice Band
+Level: 13
+Ability: Sturdy
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Rock Slide
+- Rock Tomb
+- Hidden Power
+- Toxic
+
+=== TRAINER_PLASTIC_OX_MOON_LASS_IRIS ===
+Name: IRIS
+Class: Lass Frlg
+Pic: Lass Frlg
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Check Bad Move
+
+Meowth @ Sitrus Berry
+Level: 15
+Ability: Pickup
+EVs: 36 HP / 236 Atk / 36 SpD / 196 Spe
+Jolly Nature
+- Thunder
+- Double-Edge
+- Shadow Ball
+- Taunt
+
+Cleffa @ Leftovers
+Level: 15
+Ability: Cute Charm
+EVs: 252 HP / 252 Def
+Bold Nature
+- Hidden Power
+- Flamethrower
+- Toxic
+- Psychic
+
+Sentret @ Leftovers
+Level: 15
+Ability: Run Away
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Hidden Power
+- Body Slam
+- Surf
+- Toxic
+
+=== TRAINER_PLASTIC_OX_MOON_LASS_MIRIAM ===
+Name: MIRIAM
+Class: Lass Frlg
+Pic: Lass Frlg
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Check Bad Move
+
+Cleffa @ Leftovers
+Level: 13
+Ability: Cute Charm
+EVs: 252 HP / 252 Def
+Bold Nature
+- Hidden Power
+- Flamethrower
+- Toxic
+- Psychic
+
+Meowth @ Sitrus Berry
+Level: 13
+Ability: Pickup
+EVs: 36 HP / 236 Atk / 36 SpD / 196 Spe
+Jolly Nature
+- Thunder
+- Double-Edge
+- Shadow Ball
+- Taunt
+
+=== TRAINER_PLASTIC_OX_MOON_SUPER_NERD_JOVAN ===
+Name: JOVAN
+Class: Super Nerd Frlg
+Pic: Super Nerd Frlg
+Gender: Male
+Music: Suspicious
+Double Battle: No
+AI: Check Bad Move
+
+Magnemite @ Sitrus Berry
+Level: 13
+Ability: Sturdy
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 36 Def / 240 SpA / 76 SpD / 156 Spe
+Modest Nature
+- Thunderbolt
+- Hidden Power
+- Toxic
+- Substitute
+
+Spoink @ Leftovers
+Level: 13
+Ability: Thick Fat
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 36 HP / 156 Def / 116 SpD / 196 Spe
+Bold Nature
+- Thief
+- Psychic
+- Icy Wind
+- Taunt
+
+=== TRAINER_PLASTIC_OX_MOON_SUPER_NERD_MIGUEL ===
+Name: MIGUEL
+Class: Super Nerd Frlg
+Pic: Super Nerd Frlg
+Gender: Male
+Music: Suspicious
+Double Battle: No
+AI: Check Bad Move
+
+Magnemite @ Sitrus Berry
+Level: 15
+Ability: Sturdy
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 36 Def / 240 SpA / 76 SpD / 156 Spe
+Modest Nature
+- Thunderbolt
+- Hidden Power
+- Toxic
+- Substitute
+
+Spoink @ Leftovers
+Level: 15
+Ability: Thick Fat
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 36 HP / 156 Def / 116 SpD / 196 Spe
+Bold Nature
+- Thief
+- Psychic
+- Icy Wind
+- Taunt
+
+Baltoy @ Sitrus Berry
+Level: 15
+Ability: Levitate
+EVs: 36 HP / 196 Atk / 156 Def / 36 SpD / 76 Spe
+Careful Nature
+- Earthquake
+- Shadow Ball
+- Rock Tomb
+- Explosion
+
+=== TRAINER_PLASTIC_OX_MOON_TEAM_ROCKET_GRUNT ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Aqua
+Double Battle: No
+AI: Check Bad Move
+
+Cubone @ Thick Club
+Level: 16
+Ability: Rock Head
+EVs: 36 HP / 196 Atk / 40 SpD / 236 Spe
+Adamant Nature
+- Focus Punch
+- Double-Edge
+- Hidden Power
+- Protect
+
+Voltorb @ Sitrus Berry
+Level: 16
+Ability: Static
+EVs: 116 HP / 36 Def / 160 SpA / 196 Spe
+Timid Nature
+- Thunderbolt
+- Hidden Power
+- Thief
+- Explosion
+
+Koffing @ Sitrus Berry
+Level: 16
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 30 Spe
+EVs: 116 HP / 76 Atk / 236 Def / 80 Spe
+Impish Nature
+- Sludge Bomb
+- Hidden Power
+- Thief
+- Explosion
+
+Machop @ Sitrus Berry
+Level: 16
+Ability: Guts
+EVs: 36 HP / 116 Atk / 40 Def / 240 SpD / 76 Spe
+Adamant Nature
+- Bulk Up
+- Focus Punch
+- Hidden Power
+- Endure
+
+Duskull @ Leftovers
+Level: 16
+Ability: Levitate
+EVs: 252 HP / 252 Def / 4 SpD
+Bold Nature
+- Rest
+- Sleep Talk
+- Blizzard
+- Night Shade
+
+Ekans @ Leftovers
+Level: 16
+Ability: Intimidate
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Sludge Bomb
+- Poison Sting
+- Hidden Power
+- Toxic
+
+=== TRAINER_PLASTIC_OX_MOON_TEAM_ROCKET_GRUNT_2 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Aqua
+Double Battle: No
+AI: Check Bad Move
+
+Magnemite @ Sitrus Berry
+Level: 13
+Ability: Sturdy
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 36 Def / 240 SpA / 76 SpD / 156 Spe
+Modest Nature
+- Thunderbolt
+- Hidden Power
+- Toxic
+- Substitute
+
+Drowzee @ Leftovers
+Level: 13
+Ability: Insomnia
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Psychic
+- Dream Eater
+- Hidden Power
+- Toxic
+
+Gastly @ Leftovers
+Level: 13
+Ability: Levitate
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Psychic
+- Thunderbolt
+- Taunt
+- Explosion
+
+=== TRAINER_PLASTIC_OX_MOON_TEAM_ROCKET_GRUNT_3 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Aqua
+Double Battle: No
+AI: Check Bad Move
+
+Rhyhorn @ Choice Band
+Level: 15
+Ability: Lightning Rod
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Earthquake
+- Rock Slide
+- Hidden Power
+- Toxic
+
+Aron @ Choice Band
+Level: 14
+Ability: Sturdy
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Rock Slide
+- Rock Tomb
+- Hidden Power
+- Toxic
+
+=== TRAINER_PLASTIC_OX_MOON_TEAM_ROCKET_GRUNT_4 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Aqua
+Double Battle: No
+AI: Check Bad Move
+
+Magnemite @ Sitrus Berry
+Level: 15
+Ability: Sturdy
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 36 Def / 240 SpA / 76 SpD / 156 Spe
+Modest Nature
+- Thunderbolt
+- Hidden Power
+- Toxic
+- Substitute
+
+Onix @ Sitrus Berry
+Level: 15
+Ability: Rock Head
+EVs: 76 HP / 236 Atk / 196 Spe
+Jolly Nature
+- Rock Slide
+- Earthquake
+- Double-Edge
+- Explosion
+
+Drowzee @ Leftovers
+Level: 15
+Ability: Insomnia
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Psychic
+- Dream Eater
+- Hidden Power
+- Toxic
+
+=== TRAINER_PLASTIC_OX_MOON_YOUNGSTER_JOSH ===
+Name: JOSH
+Class: Youngster Frlg
+Pic: Youngster Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Check Bad Move
+
+Mankey @ Salac Berry
+Level: 13
+Ability: Vital Spirit
+EVs: 36 HP / 196 Atk / 80 Def / 196 Spe
+Jolly Nature
+- Focus Punch
+- Hidden Power
+- Substitute
+- Endure
+
+Meowth @ Sitrus Berry
+Level: 13
+Ability: Pickup
+EVs: 36 HP / 236 Atk / 36 SpD / 196 Spe
+Jolly Nature
+- Thunder
+- Double-Edge
+- Shadow Ball
+- Taunt
+

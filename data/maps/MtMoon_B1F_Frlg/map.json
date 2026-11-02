@@ -3,7 +3,7 @@
   "name": "MtMoon_B1F_Frlg",
   "layout": "LAYOUT_MT_MOON_B1F",
   "music": "MUS_RG_MT_MOON",
-  "region": "REGION_KANTO",
+  "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_MT_MOON",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -70,8 +70,8 @@
       "x": 45,
       "y": 4,
       "elevation": 3,
-      "dest_map": "MAP_ROUTE4",
-      "dest_warp_id": "1"
+      "dest_map": "MAP_ROUTE33_HNS",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [],
@@ -82,7 +82,7 @@
       "y": 2,
       "elevation": 0,
       "item": "ITEM_TINY_MUSHROOM",
-      "flag": "FLAG_HIDDEN_ITEM_MT_MOON_B1F_TINY_MUSHROOM",
+      "flag": "FLAG_POX_MOON_HIDDEN_ITEM_MT_MOON_B1F_TINY_MUSHROOM",
       "quantity": 1,
       "underfoot": false
     },
@@ -92,7 +92,7 @@
       "y": 2,
       "elevation": 0,
       "item": "ITEM_TINY_MUSHROOM",
-      "flag": "FLAG_HIDDEN_ITEM_MT_MOON_B1F_TINY_MUSHROOM_2",
+      "flag": "FLAG_POX_MOON_HIDDEN_ITEM_MT_MOON_B1F_TINY_MUSHROOM_2",
       "quantity": 1,
       "underfoot": false
     },
@@ -102,7 +102,7 @@
       "y": 34,
       "elevation": 0,
       "item": "ITEM_TINY_MUSHROOM",
-      "flag": "FLAG_HIDDEN_ITEM_MT_MOON_B1F_TINY_MUSHROOM_3",
+      "flag": "FLAG_POX_MOON_HIDDEN_ITEM_MT_MOON_B1F_TINY_MUSHROOM_3",
       "quantity": 1,
       "underfoot": false
     },
@@ -112,7 +112,7 @@
       "y": 35,
       "elevation": 0,
       "item": "ITEM_BIG_MUSHROOM",
-      "flag": "FLAG_HIDDEN_ITEM_MT_MOON_B1F_BIG_MUSHROOM",
+      "flag": "FLAG_POX_MOON_HIDDEN_ITEM_MT_MOON_B1F_BIG_MUSHROOM",
       "quantity": 1,
       "underfoot": false
     },
@@ -122,7 +122,7 @@
       "y": 12,
       "elevation": 0,
       "item": "ITEM_BIG_MUSHROOM",
-      "flag": "FLAG_HIDDEN_ITEM_MT_MOON_B1F_BIG_MUSHROOM_2",
+      "flag": "FLAG_POX_MOON_HIDDEN_ITEM_MT_MOON_B1F_BIG_MUSHROOM_2",
       "quantity": 1,
       "underfoot": false
     },
@@ -132,7 +132,7 @@
       "y": 34,
       "elevation": 0,
       "item": "ITEM_BIG_MUSHROOM",
-      "flag": "FLAG_HIDDEN_ITEM_MT_MOON_B1F_BIG_MUSHROOM_3",
+      "flag": "FLAG_POX_MOON_HIDDEN_ITEM_MT_MOON_B1F_BIG_MUSHROOM_3",
       "quantity": 1,
       "underfoot": false
     }

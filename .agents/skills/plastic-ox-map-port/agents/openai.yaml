@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plastic Ox Map Port"
+  short_description: "Port and verify cross-game Plastic-Ox maps"
+  default_prompt: "Port or repair this map in Plastic-Ox and verify tiles, mechanics, transitions, and round trips."

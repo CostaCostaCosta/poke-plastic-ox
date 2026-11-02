@@ -1,4 +1,5 @@
 #include "global.h"
+#include "metamon_trainer.h"
 #include "crt0.h"
 #include "malloc.h"
 #include "link.h"
@@ -91,7 +92,7 @@ void EnableVCountIntrAtLine150(void);
 
 void AgbMain(void)
 {
-    *(vu16 *)BG_PLTT = RGB_BLACK; // Direct-demo boot fades into the bedroom from black.
+    *(vu16 *)BG_PLTT = RGB_BLACK; // The minimal boot flow fades into the title screen from black.
     InitGpuRegManager();
     REG_WAITCNT = WAITCNT_PREFETCH_ENABLE
             | WAITCNT_WS0_S_1 | WAITCNT_WS0_N_3
@@ -100,7 +101,8 @@ void AgbMain(void)
     InitIntrHandlers();
     m4aSoundInit();
     EnableVCountIntrAtLine150();
-    InitRFU();
+    if (POX_LINK_ENABLED)
+        InitRFU();
     RtcInit();
     CheckForFlashMemory();
     InitMainCallbacks();
@@ -141,12 +143,15 @@ void AgbMainLoop(void)
          && JOY_HELD_RAW(A_BUTTON)
          && JOY_HELD_RAW(B_START_SELECT) == B_START_SELECT)
         {
-            rfu_REQ_stopMode();
-            rfu_waitREQComplete();
+            if (POX_LINK_ENABLED)
+            {
+                rfu_REQ_stopMode();
+                rfu_waitREQComplete();
+            }
             DoSoftReset();
         }
 
-        if (Overworld_SendKeysToLinkIsRunning() == TRUE)
+        if (POX_LINK_ENABLED && Overworld_SendKeysToLinkIsRunning() == TRUE)
         {
             gLinkTransferringData = TRUE;
             UpdateLinkAndCallCallbacks();
@@ -157,7 +162,7 @@ void AgbMainLoop(void)
             gLinkTransferringData = FALSE;
             UpdateLinkAndCallCallbacks();
 
-            if (Overworld_RecvKeysFromLinkIsRunning() == TRUE)
+            if (POX_LINK_ENABLED && Overworld_RecvKeysFromLinkIsRunning() == TRUE)
             {
                 gMain.newKeys = 0;
                 ClearSpriteCopyRequests();
@@ -175,7 +180,7 @@ void AgbMainLoop(void)
 
 static void UpdateLinkAndCallCallbacks(void)
 {
-    if (!HandleLinkConnection())
+    if (!POX_LINK_ENABLED || !HandleLinkConnection())
         CallCallbacks();
 }
 
@@ -356,9 +361,9 @@ void SetSerialCallback(IntrCallback callback)
 
 static void VBlankIntr(void)
 {
-    if (gWirelessCommType != 0)
+    if (POX_LINK_ENABLED && gWirelessCommType != 0)
         RfuVSync();
-    else if (gLinkVSyncDisabled == FALSE)
+    else if (POX_LINK_ENABLED && gLinkVSyncDisabled == FALSE)
         LinkVSync();
 
     gMain.vblankCounter1++;
@@ -377,12 +382,14 @@ static void VBlankIntr(void)
     gPcmDmaCounter = gSoundInfo.pcmDmaCounter;
 
     m4aSoundMain();
-    TryReceiveLinkBattleData();
+    if (POX_LINK_ENABLED)
+        TryReceiveLinkBattleData();
 
-    if (!gTestRunnerEnabled && (!gMain.inBattle || !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_RECORDED))))
+    if (!MetamonBusy() && !gTestRunnerEnabled && (!gMain.inBattle || !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_RECORDED))))
         AdvanceRandom();
 
-    UpdateWirelessStatusIndicatorSprite();
+    if (POX_LINK_ENABLED)
+        UpdateWirelessStatusIndicatorSprite();
 
     INTR_CHECK |= INTR_FLAG_VBLANK;
     gMain.intrCheck |= INTR_FLAG_VBLANK;

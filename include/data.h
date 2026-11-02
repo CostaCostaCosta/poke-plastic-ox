@@ -347,7 +347,12 @@ static inline const u16 *GetTrainerItemsFromId(u16 trainerId)
 
 static inline const struct TrainerMon *GetTrainerPartyFromId(u16 trainerId)
 {
-    return GetTrainerStructFromId(trainerId)->party;
+    const struct Trainer *trainer = GetTrainerStructFromId(trainerId);
+
+    if (trainer->party == NULL && trainer->overrideTrainer)
+        return GetTrainerStructFromId(trainer->overrideTrainer)->party;
+
+    return trainer->party;
 }
 
 static inline const u64 GetTrainerAIFlagsFromId(u16 trainerId)

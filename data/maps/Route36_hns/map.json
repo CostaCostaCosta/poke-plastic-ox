@@ -16,7 +16,12 @@
     {
       "map": "MAP_ROUTE37_HNS",
       "direction": "up",
-      "offset": 22
+      "offset": 20
+    },
+    {
+      "map": "MAP_ROUTE35_HNS",
+      "direction": "down",
+      "offset": -16
     }
   ],
   "object_events": [
@@ -65,12 +70,12 @@
       "x": 24,
       "y": 24,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN_AND_RIGHT",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 4,
       "movement_range_y": 4,
       "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "4",
-      "script": "Route36_EventScript_Npc4",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "Pox_PU_ROUTE36",
       "flag": "0"
     },
     {
@@ -80,86 +85,96 @@
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
-      "movement_range_y": 5,
+      "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "5",
-      "script": "Route36_EventScript_Npc5",
+      "trainer_sight_or_berry_tree_id": "3",
+      "script": "Route36_EventScript_Alan",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SUDOWOODO",
+      "x": 39,
+      "y": 19,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Pox_Sudowoodo",
+      "flag": "FLAG_POX_SUDOWOODO_CLEARED"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SNORLAX",
+      "x": 43,
+      "y": 19,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route36_EventScript_Snorlax",
+      "flag": "FLAG_POX_ROUTE36_SNORLAX_CLEARED"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MAN_3",
+      "x": 55,
+      "y": 25,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route36_EventScript_RuinsGateClosed",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MAN_3",
+      "x": 56,
+      "y": 25,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route36_EventScript_RuinsGateClosed",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_MAN_3",
+      "x": 57,
+      "y": 25,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route36_EventScript_RuinsGateClosed",
       "flag": "0"
     }
   ],
-  "warp_events": [],
+  "warp_events": [
+    {
+      "x": 16,
+      "y": 20,
+      "elevation": 0,
+      "dest_map": "MAP_GATE_NATIONAL_PARK_HNS",
+      "dest_warp_id": "3"
+    }
+  ],
   "coord_events": [
     {
       "type": "trigger",
-      "x": 16,
-      "y": 21,
-      "elevation": 3,
-      "var": "VAR_POX_PORTAL_GATE",
-      "var_value": "0",
-      "script": "Route36_EventScript_Portal4"
-    },
-    {
-      "type": "trigger",
-      "x": 16,
-      "y": 19,
-      "elevation": 3,
-      "var": "VAR_POX_PORTAL_GATE",
-      "var_value": "0",
-      "script": "Route36_EventScript_Portal5"
-    },
-    {
-      "type": "trigger",
-      "x": 16,
-      "y": 19,
-      "elevation": 3,
-      "var": "VAR_POX_PORTAL_GATE",
-      "var_value": "0",
-      "script": "Route36_EventScript_Portal6"
-    },
-    {
-      "type": "trigger",
-      "x": 16,
-      "y": 21,
-      "elevation": 3,
-      "var": "VAR_POX_PORTAL_GATE",
-      "var_value": "0",
-      "script": "Route36_EventScript_TEMPDIVE"
-    },
-    {
-      "type": "trigger",
-      "x": 20,
-      "y": 19,
-      "elevation": 3,
-      "var": "VAR_POX_PORTAL_GATE",
-      "var_value": "0",
-      "script": "Route36_EventScript_ReturnStone"
-    },
-    {
-      "type": "trigger",
-      "x": 21,
-      "y": 21,
-      "elevation": 3,
-      "var": "VAR_POX_PORTAL_GATE",
-      "var_value": "0",
-      "script": "Route36_EventScript_ToJohto"
-    },
-    {
-      "type": "trigger",
-      "x": 19,
-      "y": 19,
+      "x": 65,
+      "y": 18,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
-      "var_value": "0",
-      "script": "Route36_EventScript_PoxPortal12_19_19"
-    },
-    {
-      "type": "trigger",
-      "x": 19,
-      "y": 19,
-      "elevation": 0,
-      "var": "VAR_POX_PORTAL_GATE",
-      "var_value": "0",
-      "script": "Route36_EventScript_PoxPortal14_19_19"
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "PoxRegion_route36_shortcut_a"
     }
   ],
   "bg_events": [
@@ -170,6 +185,14 @@
       "elevation": 0,
       "item": "ITEM_AWAKENING",
       "flag": "FLAG_POX_HIDDEN_ROUTE36_15"
+    },
+    {
+      "type": "sign",
+      "x": 39,
+      "y": 2,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "PlasticOx_EventScript_HeadbuttTree"
     }
   ],
   "region": "REGION_HOENN"

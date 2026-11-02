@@ -6,8 +6,11 @@ the trainer's badge count has unlocked the competitive tier of the target specie
 
 All line numbers verified against branch `master` (HEAD 7edb3b9952).
 
-Plastic Ox design source (already written): `plastic_ox/plasticox_encounters_v1.md`
-contains the "Evolution Gating" rule set and tier→level-cap table (Gym1 LC-13,
+Plastic Ox design source at the time of this research:
+`plastic_ox/plasticox_encounters_v1.md`, now retired and superseded by
+`src/data/pokemon/evolution_tier_gates.h` and
+`plastic_ox/agent/plasticox_evolution_gating_plan_v1.md`. It contained the
+"Evolution Gating" rule set and tier→level-cap table (Gym1 LC-13,
 Gym2 PU-20, Gym3 NU-30, Gym4 RU-36, Gym5 UU-42, Gym6 UUBL-50, Gym7 OU-55, Gym8 OU-60).
 
 ---
@@ -481,7 +484,8 @@ The parent brief asked about "evolution tracker UI". Evolution tracking here is
   - Because `gSpeciesInfo` is indexed by `SanitizeSpeciesId(species)` (used by
     all accessors like `GetSpeciesEvolutions`), a per-species `.tier` read via
     `gSpeciesInfo[SanitizeSpeciesId(targetSpecies)].tier` is trivial.
-  - Design docs (`plastic_ox/plasticox_encounters_v1.md`) already define the
+  - The design doc (since retired; its tier list now ships in
+    `src/data/pokemon/evolution_tier_gates.h`) already defined the
     tier list: LC, PU, NU, RU, UU, UUBL, OU with badge counts 1-8.
 
 ## 7. Nincada → Ninjask + Shedinja special flow

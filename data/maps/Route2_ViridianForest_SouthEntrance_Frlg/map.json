@@ -1,9 +1,9 @@
 {
   "id": "MAP_ROUTE2_VIRIDIAN_FOREST_SOUTH_ENTRANCE",
   "name": "Route2_ViridianForest_SouthEntrance_Frlg",
-  "layout": "LAYOUT_ROUTE2_ENTRANCE",
+  "layout": "LAYOUT_GATE_ROUTE2_VIRIDIAN_FOREST_HNS",
   "music": "MUS_RG_PEWTER",
-  "region": "REGION_KANTO",
+  "region": "REGION_HOENN",
   "region_map_section": "MAPSEC_ROUTE_2",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -19,12 +19,12 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_2_FRLG",
-      "x": 10,
+      "x": 9,
       "y": 6,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
+      "movement_range_x": 0,
+      "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route2_ViridianForest_SouthEntrance_EventScript_Woman1",
@@ -33,36 +33,50 @@
     {
       "type": "object",
       "graphics_id": "OBJ_EVENT_GFX_WOMAN_1_FRLG",
-      "x": 4,
+      "x": 5,
       "y": 7,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
-      "movement_range_x": 1,
-      "movement_range_y": 1,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Route2_ViridianForest_SouthEntrance_EventScript_Woman2",
+      "flag": "0"
+    },
+    {
+      "type": "object",
+      "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
+      "x": 3,
+      "y": 4,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route2_ViridianForest_SouthEntrance_EventScript_Guard",
       "flag": "0"
     }
   ],
   "warp_events": [
     {
       "x": 6,
-      "y": 10,
+      "y": 9,
       "elevation": 3,
       "dest_map": "MAP_ROUTE2",
       "dest_warp_id": "2"
     },
     {
       "x": 7,
-      "y": 10,
+      "y": 9,
       "elevation": 3,
       "dest_map": "MAP_ROUTE2",
       "dest_warp_id": "2"
     },
     {
       "x": 8,
-      "y": 10,
+      "y": 9,
       "elevation": 3,
       "dest_map": "MAP_ROUTE2",
       "dest_warp_id": "2"
@@ -70,8 +84,8 @@
     {
       "x": 7,
       "y": 1,
-      "elevation": 3,
-      "dest_map": "MAP_VIRIDIAN_FOREST",
+      "elevation": 0,
+      "dest_map": "MAP_ILEX_FOREST_HNS",
       "dest_warp_id": "0"
     }
   ],

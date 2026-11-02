@@ -20,16 +20,13 @@ ifeq (leafgreen, $(or $(BUILD), $(MAKECMDGOALS)))
 endif
 endif
 
-# Plastic Ox trigger-demo build: `make PLASTIC_OX_BUILD=triggers`, `make triggers`,
-# or any pokeemerald-triggers.* goal -> pokeemerald-triggers.gba/.elf/.map with
-# -DPLASTIC_OX_BUILD_TRIGGERS=1 (see src/plastic_ox.c, plastic_ox/alpha/PLAN.md).
 PLASTIC_OX_BUILD ?=
-ifneq (,$(filter-out triggers,$(PLASTIC_OX_BUILD)))
-$(error unknown PLASTIC_OX_BUILD "$(PLASTIC_OX_BUILD)" - supported value: triggers)
+ifneq (,$(filter-out battle,$(PLASTIC_OX_BUILD)))
+$(error unknown PLASTIC_OX_BUILD "$(PLASTIC_OX_BUILD)" - supported value: battle)
 endif
-POX_TRIGGERS := $(strip $(filter triggers,$(PLASTIC_OX_BUILD))$(filter triggers pokeemerald-triggers.%,$(MAKECMDGOALS)))
-ifneq (,$(POX_TRIGGERS))
-	BUILD_NAME   := emerald-triggers
+POX_BATTLE := $(strip $(filter battle,$(PLASTIC_OX_BUILD))$(filter battle pokeemerald-battle.%,$(MAKECMDGOALS)))
+ifneq (,$(POX_BATTLE))
+	BUILD_NAME   := emerald-battle
 endif
 
 # GBA rom header
@@ -169,14 +166,17 @@ else
 O_LEVEL ?= 2
 endif
 CPPFLAGS := $(INCLUDE_CPP_ARGS) -Wno-trigraphs -DMODERN=1 -DTESTING=$(TEST) -D$(GAME_VERSION) -std=gnu17
+ifeq ($(METAMON_HEAP_TRACE),1)
+  override CPPFLAGS += -DMETAMON_HEAP_TRACE=1
+endif
 ifeq ($(RELEASE),1)
 	override CPPFLAGS += -DRELEASE
 	ifeq ($(USE_LTO_ON_RELEASE),1)
 		LTO := 1
 	endif
 endif
-ifneq (,$(POX_TRIGGERS))
-	override CPPFLAGS += -DPLASTIC_OX_BUILD_TRIGGERS=1
+ifneq (,$(POX_BATTLE))
+	override CPPFLAGS += -DPLASTIC_OX_BUILD_BATTLE=1
 endif
 ARMCC := $(PREFIX)gcc
 PATH_ARMCC := PATH="$(PATH)" $(ARMCC)
@@ -255,6 +255,7 @@ LEARNSET_HELPERS_DIR := $(TOOLS_DIR)/learnset_helpers
 LEARNSET_HELPERS_DATA_DIR := $(LEARNSET_HELPERS_DIR)/porymoves_files
 LEARNSET_HELPERS_BUILD_DIR := $(LEARNSET_HELPERS_DIR)/build
 ALL_LEARNABLES_JSON := $(DATA_SRC_SUBDIR)/pokemon/all_learnables.json
+EGG_MOVES_HEADER := $(DATA_SRC_SUBDIR)/pokemon/egg_moves.h
 ALL_TUTORS_JSON := $(LEARNSET_HELPERS_BUILD_DIR)/all_tutors.json
 ALL_TEACHING_TYPES_JSON := $(LEARNSET_HELPERS_BUILD_DIR)/all_teaching_types.json
 
@@ -284,7 +285,7 @@ MAKEFLAGS += --no-print-directory
 .DELETE_ON_ERROR:
 
 RULES_NO_SCAN += libagbsyscall clean clean-assets tidy tidymodern tidycheck tidyrelease generated clean-generated clean-teachables clean-teachables_intermediates
-.PHONY: all rom agbcc modern compare check debug release triggers
+.PHONY: all rom agbcc modern compare check debug release triggers battle
 .PHONY: $(RULES_NO_SCAN)
 
 infoshell = $(foreach line, $(shell $1 | sed "s/ /__SPACE__/g"), $(info $(subst __SPACE__, ,$(line))))
@@ -562,6 +563,13 @@ $(LEARNSET_HELPERS_BUILD_DIR):
 $(ALL_LEARNABLES_JSON):
 	python3 $(LEARNSET_HELPERS_DIR)/make_learnables.py $(LEARNSET_HELPERS_DATA_DIR) $@
 
+.PHONY: gen3-learnsets
+gen3-learnsets:
+	python3 $(LEARNSET_HELPERS_DIR)/make_learnables.py $(LEARNSET_HELPERS_DATA_DIR) $(ALL_LEARNABLES_JSON)
+	python3 $(LEARNSET_HELPERS_DIR)/make_egg_moves.py $(LEARNSET_HELPERS_DATA_DIR) $(EGG_MOVES_HEADER)
+	@touch $(LEARNSET_HELPERS_DIR)/make_teachables.py
+	$(MAKE) $(DATA_SRC_SUBDIR)/pokemon/teachable_learnsets.h
+
 $(ALL_TUTORS_JSON): $(shell find data/ -type f -name '*.inc')  $(LEARNSET_HELPERS_DIR)/make_tutors.py | $(LEARNSET_HELPERS_BUILD_DIR)
 	python3 $(LEARNSET_HELPERS_DIR)/make_tutors.py $@
 
@@ -607,7 +615,11 @@ $(ROM): $(ELF)
 emerald: all
 firered: all
 leafgreen: all
-triggers: all
+
+# Plastic Ox battle-demo build: `make PLASTIC_OX_BUILD=battle`, `make battle`,
+# or any pokeemerald-battle.* goal -> pokeemerald-battle.gba/.elf/.map with
+# -DPLASTIC_OX_BUILD_BATTLE=1 (Oak team gift + Lance battle visible).
+battle: all
 # Symbol file (`make syms`)
 $(SYM): $(ELF)
 	$(OBJDUMP) -t $< | sort -u | grep -E "^0[2389]" | $(PERL) -p -e 's/^(\w{8}) (\w).{6} \S+\t(\w{8}) (\S+)$$/\1 \2 \3 \4/g' > $@

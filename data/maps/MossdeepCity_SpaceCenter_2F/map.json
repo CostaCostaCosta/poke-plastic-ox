@@ -26,7 +26,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MossdeepCity_SpaceCenter_2F_EventScript_RichBoy",
+      "script": "Pox_FacilityWorker",
       "flag": "0"
     },
     {
@@ -40,7 +40,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MossdeepCity_SpaceCenter_2F_EventScript_Gentleman",
+      "script": "Pox_FacilityWorker",
       "flag": "0"
     },
     {
@@ -54,7 +54,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MossdeepCity_SpaceCenter_2F_EventScript_Scientist",
+      "script": "Pox_FacilityWorker",
       "flag": "0"
     },
     {
@@ -68,7 +68,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MossdeepCity_SpaceCenter_2F_EventScript_Steven",
+      "script": "Pox_FacilityWorker",
       "flag": "FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_STEVEN"
     },
     {
@@ -82,8 +82,8 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MossdeepCity_SpaceCenter_2F_EventScript_Grunt6",
-      "flag": "FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA"
+      "script": "Pox_FacilityWorker",
+      "flag": "FLAG_POX_HIDE_UNUSED_ACTOR"
     },
     {
       "local_id": "LOCALID_SPACE_CENTER_GRUNT_5",
@@ -96,8 +96,8 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MossdeepCity_SpaceCenter_2F_EventScript_Grunt5",
-      "flag": "FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA"
+      "script": "Pox_FacilityWorker",
+      "flag": "FLAG_POX_HIDE_UNUSED_ACTOR"
     },
     {
       "local_id": "LOCALID_SPACE_CENTER_GRUNT_7",
@@ -110,8 +110,8 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MossdeepCity_SpaceCenter_2F_EventScript_Grunt7",
-      "flag": "FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA"
+      "script": "Pox_FacilityWorker",
+      "flag": "FLAG_POX_HIDE_UNUSED_ACTOR"
     },
     {
       "local_id": "LOCALID_SPACE_CENTER_TABITHA",
@@ -124,8 +124,8 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MossdeepCity_SpaceCenter_2F_EventScript_Tabitha",
-      "flag": "FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA"
+      "script": "Pox_FacilityWorker",
+      "flag": "FLAG_POX_HIDE_UNUSED_ACTOR"
     },
     {
       "local_id": "LOCALID_SPACE_CENTER_MAXIE",
@@ -138,8 +138,8 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MossdeepCity_SpaceCenter_2F_EventScript_Maxie",
-      "flag": "FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_2F_TEAM_MAGMA"
+      "script": "Pox_FacilityWorker",
+      "flag": "FLAG_POX_HIDE_UNUSED_ACTOR"
     }
   ],
   "warp_events": [

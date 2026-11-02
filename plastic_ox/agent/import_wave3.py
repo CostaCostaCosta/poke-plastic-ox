@@ -1,6 +1,9 @@
 import re
 #!/usr/bin/env python3
-"""Alpha wave 2 importer: Legs B+C per REGION_PLAN.
+"""Historical pre-v7 importer; topology refers to alpha/LEGACY_REGION_PLAN.md.
+
+Do not use this importer for v7 regeneration: it restores obsolete routes and
+uses legacy item-flag allocation. See alpha/PLAN.md and alpha/audit_alpha.py.
 
 Run from repo root: python3 plastic_ox/agent/import_wave2.py [--dry]
 """
@@ -88,14 +91,14 @@ EXPLICIT_CONNS = {
     ],
     "Route37_hns": [
         {"map": "MAP_ROUTE36_HNS", "direction": "down", "offset": -22},
-        {"map": "MAP_ECRUTEAKCITY_HNS", "direction": "up", "offset": 16},
+        {"map": "MAP_ECRUTEAK_CITY_HNS", "direction": "up", "offset": 16},
     ],
     "EcruteakCity_hns": [
         {"map": "MAP_ROUTE37_HNS", "direction": "down", "offset": -16},
         {"map": "MAP_ROUTE38_HNS", "direction": "right", "offset": 19},
     ],
     "Route38_hns": [
-        {"map": "MAP_ECRUTEAKCITY_HNS", "direction": "left", "offset": -19},
+        {"map": "MAP_ECRUTEAK_CITY_HNS", "direction": "left", "offset": -19},
     ],
 }
 VERBATIM_CONNS = {
@@ -135,7 +138,6 @@ WARP_RULES = {
 # (mapA, xA, yA, mapB, xB, yB)
 PORTALS = [
     ("GoldenrodCity_hns", 34, 7, "Route35_hns", 14, 48),
-    ("IlexForest_hns", 20, 13, "Route34_hns", 31, 67),
     ("Gate_GoldenrodCity_Route35_hns", 7, 9, "GoldenrodCity_hns", 33, 8),
     ("Gate_GoldenrodCity_Route35_hns", 7, 1, "Route35_hns", 14, 48),
     ("Route35_hns", 17, 5, "Route36_hns", 16, 21),
@@ -143,7 +145,6 @@ PORTALS = [
     ("Route36_hns", 16, 20, "NationalPark_Normal_hns", 40, 19),
     ("Route38_hns", 0, 21, "Route119", 18, 138),
     ("GoldenrodCity_hns", 34, 7, "Route35_hns", 14, 48),
-    ("IlexForest_hns", 20, 13, "Route34_hns", 31, 66),
 ]
 
 NPC_LINES = {  # per map: list of (gfx_key_or_None, text) consumed in order by gfx prefix match
@@ -357,7 +358,7 @@ def import_map(name):
         runs = edge_runs("LAYOUT_ROUTE3_HNS", "right")
         r = max(runs, key=lambda t: t[1]-t[0])
         ydoor = (r[0]+r[1])//2
-        rules = rules + [{"x": 83, "y": ydoor, "dest_map": "MAP_MT_MOON_CAVE_HNS", "dest_warp_id": "0"}]
+        rules = rules + [{"x": 83, "y": ydoor, "dest_map": "MAP_MT_MOON_CAVE_HNS", "dest_warp_id": "1"}]
         print("R3 east door at (83,%d)" % ydoor)
     d["warp_events"] = [{"x": r["x"], "y": r["y"], "elevation": 3,
                          "dest_map": r["dest_map"], "dest_warp_id": r["dest_warp_id"]} for r in rules]
@@ -367,7 +368,7 @@ def import_map(name):
         lbl=f"{name.split('_hns')[0]}_EventScript_Portal{i}"
         d["coord_events"]=[c for c in d["coord_events"] if c.get("script")!=lbl]
         d["coord_events"].append({"type":"trigger","x":xA if mA==name else xB,"y":yA if mA==name else yB,
-                                  "elevation":3,"var":"VAR_POX_PORTAL_GATE","var_value":"0","script":lbl})
+                                  "elevation":3,"var":"VAR_POX_PORTAL_TRIGGER","var_value":"0","script":lbl})
 
     bg_new, sgn = [], []
     hi = flag_n[0]
@@ -432,7 +433,9 @@ def copy_layout(name):
     lay = load(lp)
     if not any(l["id"] == lid for l in lay["layouts"]):
         e = dict(he)
-        e.pop("game_version", None); e.pop("layout_version", None)
+        e.pop("game_version", None)
+        e["layout_version"] = "hns"
+        e["include_in_versions"] = ["emerald"]
         e["border_filepath"] = f"data/layouts/{dirbase}/border.bin"
         e["blockdata_filepath"] = f"data/layouts/{dirbase}/map.bin"
         lay["layouts"].append(e)

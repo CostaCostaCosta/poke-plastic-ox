@@ -273,7 +273,6 @@ static const struct MenuAction MultichoiceList_GameCornerDolls[] =
 
 static const struct MenuAction MultichoiceList_GameCornerTMs[] =
 {
-    {COMPOUND_STRING("TM32{CLEAR_TO 72}1,500 COINS")},
     {COMPOUND_STRING("TM29{CLEAR_TO 72}3,500 COINS")},
     {COMPOUND_STRING("TM35{CLEAR_TO 72}4,000 COINS")},
     {COMPOUND_STRING("TM24{CLEAR_TO 72}4,000 COINS")},
@@ -1127,6 +1126,30 @@ static const struct MenuAction MultichoiceList_Exit[] =
     {gText_Exit},
 };
 
+static const struct MenuAction MultichoiceList_PocketWatchWeekdays[] =
+{
+    {COMPOUND_STRING("Sunday")},
+    {COMPOUND_STRING("Monday")},
+    {COMPOUND_STRING("Tuesday")},
+    {COMPOUND_STRING("Wednesday")},
+    {COMPOUND_STRING("Thursday")},
+    {COMPOUND_STRING("Friday")},
+    {COMPOUND_STRING("Saturday")},
+};
+
+static const struct MenuAction MultichoiceList_GoldenrodFloors[] =
+{
+    {COMPOUND_STRING("B1F")},
+    {gText_1F},
+    {gText_2F},
+    {gText_3F},
+    {gText_4F},
+    {gText_5F},
+    {COMPOUND_STRING("6F")},
+    {COMPOUND_STRING("ROOFTOP")},
+    {gText_Exit},
+};
+
 struct MultichoiceListStruct
 {
     const struct MenuAction *list;
@@ -1294,6 +1317,8 @@ static const struct MultichoiceListStruct sMultichoiceLists[] =
     [MULTI_HOF_VICTORIES_QUIT]                         = MULTICHOICE(sMultichoiceList_HOF_Victories_Quit),
     [MULTI_EGGS_VICTORIES_QUIT]                        = MULTICHOICE(sMultichoiceList_Eggs_Victories_Quit),
     [MULTI_HOF_EGGS_VICTORIES_QUIT]                    = MULTICHOICE(sMultichoiceList_HOF_Eggs_Victories_Quit),
+    [MULTI_POCKET_WATCH_WEEKDAYS]                      = MULTICHOICE(MultichoiceList_PocketWatchWeekdays),
+    [MULTI_POX_GOLDENROD_FLOORS] = MULTICHOICE(MultichoiceList_GoldenrodFloors),
 };
 
 const u8 *const gStdStrings[] =

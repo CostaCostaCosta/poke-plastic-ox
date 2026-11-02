@@ -1,0 +1,100 @@
+[
+  {
+    "x": 20,
+    "y": 12,
+    "elevation": 0,
+    "dest_map": "MAP_GOLDENROD_CITY_UNDERGROUND_ENTRANCE_HNS",
+    "dest_warp_id": "2"
+  },
+  {
+    "x": 29,
+    "y": 13,
+    "elevation": 0,
+    "dest_map": "MAP_GOLDENROD_CITY_HOUSE1_HNS",
+    "dest_warp_id": "0"
+  },
+  {
+    "x": 39,
+    "y": 13,
+    "elevation": 0,
+    "dest_map": "MAP_GOLDENROD_CITY_GYM_HNS",
+    "dest_warp_id": "0"
+  },
+  {
+    "x": 44,
+    "y": 11,
+    "elevation": 0,
+    "dest_map": "MAP_GOLDENROD_CITY_FLOWER_SHOP_HNS",
+    "dest_warp_id": "0"
+  },
+  {
+    "x": 48,
+    "y": 15,
+    "elevation": 0,
+    "dest_map": "MAP_GOLDENROD_CITY_HOUSE2_HNS",
+    "dest_warp_id": "0"
+  },
+  {
+    "x": 16,
+    "y": 22,
+    "elevation": 0,
+    "dest_map": "MAP_GOLDENROD_CITY_RADIO_TOWER_1F_HNS",
+    "dest_warp_id": "0"
+  },
+  {
+    "x": 24,
+    "y": 21,
+    "elevation": 0,
+    "dest_map": "MAP_GOLDENROD_CITY_TRAIN_STATION_HNS",
+    "dest_warp_id": "0"
+  },
+  {
+    "x": 46,
+    "y": 28,
+    "elevation": 0,
+    "dest_map": "MAP_GOLDENROD_CITY_HOUSE3_HNS",
+    "dest_warp_id": "0"
+  },
+  {
+    "x": 28,
+    "y": 29,
+    "elevation": 0,
+    "dest_map": "MAP_GOLDENROD_CITY_GAME_CORNER_HNS",
+    "dest_warp_id": "0"
+  },
+  {
+    "x": 14,
+    "y": 33,
+    "elevation": 0,
+    "dest_map": "MAP_GOLDENROD_CITY_BILLS_HOUSE_HNS",
+    "dest_warp_id": "0"
+  },
+  {
+    "x": 28,
+    "y": 36,
+    "elevation": 0,
+    "dest_map": "MAP_GOLDENROD_CITY_POKEMON_CENTER_HNS",
+    "dest_warp_id": "0"
+  },
+  {
+    "x": 39,
+    "y": 36,
+    "elevation": 0,
+    "dest_map": "MAP_GOLDENROD_CITY_DEPARTMENT_STORE_1F_HNS",
+    "dest_warp_id": "0"
+  },
+  {
+    "x": 44,
+    "y": 38,
+    "elevation": 0,
+    "dest_map": "MAP_GOLDENROD_CITY_BIKE_SHOP_HNS",
+    "dest_warp_id": "0"
+  },
+  {
+    "x": 21,
+    "y": 38,
+    "elevation": 0,
+    "dest_map": "MAP_GOLDENROD_CITY_UNDERGROUND_ENTRANCE_HNS",
+    "dest_warp_id": "3"
+  }
+]

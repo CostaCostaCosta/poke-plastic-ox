@@ -26,6 +26,9 @@ struct WildPokemonInfo
 {
     u8 encounterRate;
     const struct WildPokemon *wildPokemon;
+    // Optional exact percentages; NULL retains the engine's legacy slot odds.
+    const u8 *weights;
+    u8 monCount;
 };
 
 struct WildEncounterTypes
@@ -80,6 +83,9 @@ u32 ChooseWildMonIndex_Rocks(void);
 u32 ChooseHiddenMonIndex(void);
 bool32 MapHasNoEncounterData(void);
 enum TimeOfDay GetTimeOfDayForEncounters(u32 headerId, enum WildPokemonArea area);
+void PlasticOx_HeadbuttEncounter(void);
+void PlasticOx_CheckHeadbutt(void);
+void PlasticOx_PrepareSudowoodoMoves(void);
 
 u8 GetLandEncounterSlotForMatchCall(void);
 u8 GetWaterEncounterSlotForMatchCall(void);

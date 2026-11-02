@@ -2,7 +2,7 @@
 """Wave 1C headless verification: Leg A round trip.
 
 Pallet bedroom -> Pallet -> Route101 -> Oldale -> (W) Route29_hns ->
-(N) Route46_hns -> (warp) DarkCave_SouthSide_hns -> (warp) Route31_hns ->
+(gate) Route46_hns -> (warp) DarkCave_SouthSide_hns -> (warp) Route31_hns ->
 (S) Route30_hns -> (S) CherrygroveCity_hns, then the whole thing in reverse
 back to the bedroom's front lawn. Fails on any battle or wrong map.
 """
@@ -27,6 +27,9 @@ MAP_R31 = (77, 2)
 MAP_R46 = (77, 3)
 MAP_DARKCAVE = (77, 4)
 MAP_CHERRYGROVE = (77, 5)
+MAP_R29_GATE = (76, 13)
+MAP_R30_HOUSE = (76, 14)
+MAP_R30_MR_POKEMONS_HOUSE = (76, 15)
 
 FLAG_ADVENTURE_STARTED = 0x74
 EXTRA_AVOID = set()  # tiles discovered hazardous at runtime (e.g. secret-base doors)
@@ -168,6 +171,19 @@ def enter_warp(g, approach, direction, expected_map, stage):
     raise AssertionError(f"warp {stage} never fired from {g.describe()}")
 
 
+def route29_to_route46(g):
+    """Cross the restored Route 29 gate northbound."""
+    enter_warp(g, (34, 11), "UP", MAP_R29_GATE, "r29_gate_in")
+    g.shot("leg1_05_r29_gate.png")
+    enter_warp(g, (7, 2), "UP", MAP_R46, "r46_gate_out")
+
+
+def route46_to_route29(g):
+    """Cross the restored Route 29 gate southbound."""
+    enter_warp(g, (10, 39), "DOWN", MAP_R29_GATE, "r46_gate_in")
+    enter_warp(g, (7, 8), "DOWN", MAP_R29, "r29_gate_out")
+
+
 def main():
     g = GBA()
     print(f"ROM {g.core.game_code}", flush=True)
@@ -214,11 +230,8 @@ def main():
     assert state["x"] >= 66, f"R29 entry landed oddly: {g.describe()}"
     g.shot("leg1_04_route29.png")
 
-    # ---- R29 north carve to R46 ----
-    navigate(g, (38, 4))
-    g.shot("leg1_05_r29_carved_path.png")
-    navigate(g, (38, 0))
-    W.cross_connection(g, "UP", MAP_R46, "r46_south_entry")
+    # ---- R29 gate to the lower end of R46 ----
+    route29_to_route46(g)
 
     # ---- R46 climb to the Dark Cave mouth ----
     g.shot("leg1_06_route46.png")
@@ -229,25 +242,11 @@ def main():
 
     # ---- traverse the cave NW to the Route 31 mouth ----
     g.shot("leg1_07_darkcave.png")
-    # The cave-mouth warp destination can race (rare misfire out the
-    # entrance); re-enter and retry until R31.
-    for _attempt in range(4):
-        try:
-            navigate(g, (14, 19), avoid={(14, 20), (56, 46)})
-        except AssertionError:
-            pass
-        try:
-            enter_warp(g, (14, 19), "DOWN", MAP_R31, "r31_cave_mouth")
-        except AssertionError:
-            pass
-        state = g.state()
-        if state and (state["group"], state["num"]) == MAP_R31:
-            break
-        try:
-            navigate(g, (20, 12))
-            enter_warp(g, (20, 12), "UP", MAP_DARKCAVE, "darkcave_reentry")
-        except AssertionError:
-            pass
+    # Correct HNS layout semantics make the source cave collision authoritative;
+    # do not mask a bad path/warp with retry loops or stale-grid bounce-backs.
+    navigate(g, (14, 19), avoid={(14, 20), (56, 46)})
+    enter_warp(g, (14, 19), "DOWN", MAP_R31, "r31_cave_mouth")
+    W.assert_map(g, MAP_R31, "r31_after_cave")
 
     # ---- R31 south to Route30 ----
     g.shot("leg1_08_route31.png")
@@ -256,6 +255,12 @@ def main():
 
     # ---- R30 south to Cherrygrove ----
     g.shot("leg1_09_route30.png")
+    enter_warp(g, (35, 5), "UP", MAP_R30_MR_POKEMONS_HOUSE, "r30_mr_pokemon_in")
+    g.shot("leg1_09a_r30_mr_pokemon_house.png")
+    enter_warp(g, (5, 7), "DOWN", MAP_R30, "r30_mr_pokemon_out")
+    enter_warp(g, (26, 40), "UP", MAP_R30_HOUSE, "r30_house_in")
+    g.shot("leg1_09b_r30_house.png")
+    enter_warp(g, (4, 7), "DOWN", MAP_R30, "r30_house_out")
     navigate(g, (25, 57))
     W.cross_connection(g, "DOWN", MAP_CHERRYGROVE, "cherrygrove_north_entry")
     print("cherrygrove landing:", g.describe(), flush=True)
@@ -264,22 +269,23 @@ def main():
     print("at gent:", g.describe(), flush=True)
 
     # ================= REVERSE =================
-    # Return along the eastern shore: Cherrygrove -> R29 -> R46 -> Oldale ->
-    # Pallet. The DarkCave's R31-side mouth deposits the player inside solid
-    # rock (hns data does this too), so the round trip crosses the cave exactly
-    # once, in the working direction.
-    navigate(g, (64, 9))  # Cherrygrove east border, inside the walkable band
-    W.cross_connection(g, "RIGHT", MAP_R29, "r29_west_return")
-    print("r29 return landing:", g.describe(), flush=True)
-    g.shot("leg1_12_route29_return.png")
+    # Exercise the reciprocal route too: Cherrygrove -> R30 -> R31 ->
+    # Dark Cave -> R46 -> R29. This catches bad return landings and transition
+    # races that a one-way reachability check cannot see.
+    navigate(g, (34, 0))
+    W.cross_connection(g, "UP", MAP_R30, "r30_south_return")
+    navigate(g, (23, 0))
+    W.cross_connection(g, "UP", MAP_R31, "r31_south_return")
+    g.shot("leg1_12_route31_return.png")
 
-    navigate(g, (38, 4))
-    navigate(g, (38, 0))
-    W.cross_connection(g, "UP", MAP_R46, "r46_south_return2")
-    g.shot("leg1_13_route46_return.png")
+    navigate(g, (48, 10))
+    enter_warp(g, (48, 10), "UP", MAP_DARKCAVE, "darkcave_r31_return")
+    g.shot("leg1_13_darkcave_return.png")
+    navigate(g, (56, 45), avoid={(14, 20), (56, 46)})
+    enter_warp(g, (56, 45), "DOWN", MAP_R46, "r46_cave_return")
+    g.shot("leg1_14_route46_return.png")
 
-    W.walk_to_edge(g, "south")
-    W.cross_connection(g, "DOWN", MAP_R29, "r29_north_return")
+    route46_to_route29(g)
     print("r29 north landing:", g.describe(), flush=True)
 
     navigate(g, (69, 16))

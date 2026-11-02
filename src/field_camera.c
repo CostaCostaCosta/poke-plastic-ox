@@ -34,6 +34,7 @@ static void DrawMetatile(s32, const u16 *, u16);
 static void CameraPanningCB_PanAhead(void);
 
 static struct FieldCameraOffset sFieldCameraOffset;
+static bool8 sWholeMapViewRedrawRequested;
 static s16 sHorizontalCameraPan;
 static s16 sVerticalCameraPan;
 static bool8 sBikeCameraPanFlag;
@@ -69,6 +70,7 @@ static void AddCameraPixelOffset(struct FieldCameraOffset *cameraOffset, u32 xOf
 void ResetFieldCamera(void)
 {
     ResetCameraOffset(&sFieldCameraOffset);
+    sWholeMapViewRedrawRequested = FALSE;
 }
 
 void FieldUpdateBgTilemapScroll(void)
@@ -95,6 +97,12 @@ void DrawWholeMapView(void)
 {
     DrawWholeMapViewInternal(gSaveBlock1Ptr->pos.x, gSaveBlock1Ptr->pos.y, gMapHeader.mapLayout);
     sFieldCameraOffset.copyBGToVRAM = TRUE;
+    sWholeMapViewRedrawRequested = FALSE;
+}
+
+void RequestWholeMapViewRedraw(void)
+{
+    sWholeMapViewRedrawRequested = TRUE;
 }
 
 static void DrawWholeMapViewInternal(int x, int y, const struct MapLayout *mapLayout)
@@ -123,6 +131,14 @@ static void DrawWholeMapViewInternal(int x, int y, const struct MapLayout *mapLa
 static void RedrawMapSlicesForCameraUpdate(struct FieldCameraOffset *cameraOffset, int x, int y)
 {
     const struct MapLayout *mapLayout = gMapHeader.mapLayout;
+
+    // CameraMove has already changed the map position. Wait until the caller
+    // also advances the circular tile offset before drawing the destination.
+    if (sWholeMapViewRedrawRequested)
+    {
+        DrawWholeMapView();
+        return;
+    }
 
     if (x > 0)
         RedrawMapSliceWest(cameraOffset, mapLayout);

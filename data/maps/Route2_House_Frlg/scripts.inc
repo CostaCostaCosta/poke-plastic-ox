@@ -1,47 +1,54 @@
 Route2_House_Frlg_MapScripts::
 	.byte 0
 
-Route2_House_EventScript_Scientist::
-	msgbox Route2_House_Text_FaintedMonsCanUseFieldMoves, MSGBOX_NPC
-	end
-
-Route2_House_EventScript_Reyley::
+Route2_House_EventScript_MrMimeTrade::
 	lock
 	faceplayer
 	setvar VAR_0x8008, INGAME_TRADE_MR_MIME
 	call EventScript_GetInGameTradeSpeciesInfo
 	goto_if_set FLAG_DID_MIMIEN_TRADE, Route2_House_EventScript_AlreadyTraded
-	msgbox Trade_Text_LookingForMonWannaTradeForMon, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, Route2_House_EventScript_DeclineTrade
+	msgbox Route2_House_Text_OfferTrade, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, Route2_House_EventScript_Declined
 	call EventScript_ChooseMonForInGameTrade
-	goto_if_ge VAR_0x8004, PARTY_SIZE, Route2_House_EventScript_DeclineTrade
+	goto_if_ge VAR_0x8004, PARTY_SIZE, Route2_House_EventScript_Declined
 	call EventScript_GetInGameTradeSpecies
-	goto_if_ne VAR_RESULT, VAR_0x8009, Route2_House_EventScript_NotRequestedMon
+	goto_if_ne VAR_RESULT, VAR_0x8009, Route2_House_EventScript_WrongPokemon
 	call EventScript_DoInGameTrade
-	msgbox Trade_Text_HeyThanks
+	msgbox Route2_House_Text_Thanks
 	setflag FLAG_DID_MIMIEN_TRADE
 	release
 	end
 
-Route2_House_EventScript_DeclineTrade::
-	msgbox Trade_Text_AwwOhWell
+Route2_House_EventScript_Declined::
+	msgbox Route2_House_Text_Declined
 	release
 	end
 
-Route2_House_EventScript_NotRequestedMon::
+Route2_House_EventScript_WrongPokemon::
 	bufferspeciesname STR_VAR_1, VAR_0x8009
-	msgbox Trade_Text_WhatThatsNoMon
+	msgbox Route2_House_Text_WrongPokemon
 	release
 	end
 
 Route2_House_EventScript_AlreadyTraded::
-	msgbox Trade_Text_IsntMyOldMonGreat
+	msgbox Route2_House_Text_AlreadyTraded
 	release
 	end
 
-Route2_House_Text_FaintedMonsCanUseFieldMoves::
-	.string "A fainted POKéMON just has no\n"
-	.string "energy left to battle.\p"
-	.string "It can still use moves like CUT\n"
-	.string "outside of battle.$"
+Route2_House_Text_OfferTrade::
+	.string "I'm looking for a {STR_VAR_1}!\p"
+	.string "Would you trade one for my\n"
+	.string "{STR_VAR_2}?$"
 
+Route2_House_Text_Thanks::
+	.string "Thanks! Take good care of MIMIEN.$"
+
+Route2_House_Text_Declined::
+	.string "Come back if you find a STANTLER.$"
+
+Route2_House_Text_WrongPokemon::
+	.string "That's not a {STR_VAR_1}. Think of me\n"
+	.string "if you catch one.$"
+
+Route2_House_Text_AlreadyTraded::
+	.string "How is my {STR_VAR_2} doing?$"

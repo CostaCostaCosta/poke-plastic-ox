@@ -15,6 +15,7 @@
 #include "event_object_movement.h"
 #include "event_scripts.h"
 #include "fieldmap.h"
+#include "field_control_avatar.h"
 #include "field_effect.h"
 #include "field_player_avatar.h"
 #include "field_screen_effect.h"
@@ -36,6 +37,8 @@
 #include "party_menu.h"
 #include "pokeblock.h"
 #include "pokemon.h"
+#include "plastic_ox_contest.h"
+#include "safari_zone.h"
 #include "script.h"
 #include "sound.h"
 #include "strings.h"
@@ -61,6 +64,9 @@ static void PlayerFaceHiddenItem(enum Direction);
 static void CheckForHiddenItemsInMapConnection(u8);
 static void Task_OpenRegisteredPokeblockCase(u8);
 static void Task_AccessPokemonBoxLink(u8);
+static void Task_OpenMoveCompendium(u8);
+static void Task_OpenTrainingKit(u8);
+static void Task_OpenPocketWatch(u8);
 static void ItemUseOnFieldCB_Bike(u8);
 static void ItemUseOnFieldCB_Rod(u8);
 static void ItemUseOnFieldCB_Itemfinder(u8);
@@ -96,6 +102,7 @@ static const u8 sText_UsedVar2WildRepelled[] = _("{PLAYER} used the\n{STR_VAR_2}
 static const u8 sText_PlayedPokeFluteCatchy[] = _("Played the POKé FLUTE.\pNow, that's a catchy tune!{PAUSE_UNTIL_PRESS}");
 static const u8 sText_PlayedPokeFlute[] = _("Played the POKé FLUTE.");
 static const u8 sText_PokeFluteAwakenedMon[] = _("The POKé FLUTE awakened sleeping\nPOKéMON.{PAUSE_UNTIL_PRESS}");
+static const u8 sText_PocketWatchIndoorsOnly[] = _("The POCKET WATCH can only be\nadjusted inside a building.{PAUSE_UNTIL_PRESS}");
 
 // EWRAM variables
 EWRAM_DATA static TaskFunc sItemUseOnFieldCB = NULL;
@@ -250,23 +257,12 @@ STATIC_ASSERT(I_EXP_SHARE_ITEM < GEN_6 || I_EXP_SHARE_FLAG > TEMP_FLAGS_END, You
 void ItemUseOutOfBattle_ExpShare(u8 taskId)
 {
 #if I_EXP_SHARE_ITEM >= GEN_6
-    if (IsGen6ExpShareEnabled())
-    {
-        PlaySE(SE_PC_OFF);
-        if (!gTasks[taskId].data[2]) // to account for pressing select in the overworld
-            DisplayItemMessageOnField(taskId, gText_ExpShareOff, Task_CloseCantUseKeyItemMessage);
-        else
-            DisplayItemMessage(taskId, FONT_NORMAL, gText_ExpShareOff, CloseItemMessage);
-    }
+    FlagSet(I_EXP_SHARE_FLAG);
+    PlaySE(SE_EXP_MAX);
+    if (!gTasks[taskId].data[2]) // to account for pressing select in the overworld
+        DisplayItemMessageOnField(taskId, gText_ExpShareOn, Task_CloseCantUseKeyItemMessage);
     else
-    {
-        PlaySE(SE_EXP_MAX);
-        if (!gTasks[taskId].data[2]) // to account for pressing select in the overworld
-            DisplayItemMessageOnField(taskId, gText_ExpShareOn, Task_CloseCantUseKeyItemMessage);
-        else
-            DisplayItemMessage(taskId, FONT_NORMAL, gText_ExpShareOn, CloseItemMessage);
-    }
-    FlagToggle(I_EXP_SHARE_FLAG);
+        DisplayItemMessage(taskId, FONT_NORMAL, gText_ExpShareOn, CloseItemMessage);
 #else
     DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
 #endif
@@ -351,6 +347,70 @@ void ItemUseOutOfBattle_Rod(u8 taskId)
     {
         DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
     }
+}
+
+static void ItemUseOnFieldCB_Cut(u8 taskId)
+{
+    extern const u8 EventScript_CutTreeWithTool[];
+    LockPlayerFieldControls();
+    ScriptContext_SetupScript(EventScript_CutTreeWithTool);
+    DestroyTask(taskId);
+}
+
+void ItemUseOutOfBattle_Cut(u8 taskId)
+{
+    s16 x, y;
+    u8 objectId;
+
+    GetXYCoordsOneStepInFrontOfPlayer(&x, &y);
+    objectId = GetObjectEventIdByPosition(x, y, PlayerGetElevation());
+    if (objectId < OBJECT_EVENTS_COUNT
+     && (gObjectEvents[objectId].graphicsId == OBJ_EVENT_GFX_CUTTABLE_TREE
+      || gObjectEvents[objectId].graphicsId == OBJ_EVENT_GFX_CUTTABLE_TREE_FRLG))
+    {
+        gSpecialVar_LastTalked = gObjectEvents[objectId].localId;
+        sItemUseOnFieldCB = ItemUseOnFieldCB_Cut;
+        SetUpItemUseOnFieldCallback(taskId);
+    }
+    else
+    {
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    }
+}
+
+static void ItemUseOnFieldCB_Headbutt(u8 taskId)
+{
+    extern const u8 PlasticOx_EventScript_HeadbuttTree[];
+    LockPlayerFieldControls();
+    ScriptContext_SetupScript(PlasticOx_EventScript_HeadbuttTree);
+    DestroyTask(taskId);
+}
+
+void ItemUseOutOfBattle_Headbutt(u8 taskId)
+{
+    if (IsPlayerFacingHeadbuttTree())
+    {
+        sItemUseOnFieldCB = ItemUseOnFieldCB_Headbutt;
+        SetUpItemUseOnFieldCallback(taskId);
+    }
+    else
+    {
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+    }
+}
+
+static void ItemUseOnFieldCB_WarpBlock(u8 taskId)
+{
+    RemoveFollowingPokemon();
+    Overworld_ResetStateAfterTeleport();
+    FldEff_TeleportWarpOut();
+    DestroyTask(taskId);
+}
+
+void ItemUseOutOfBattle_WarpBlock(u8 taskId)
+{
+    sItemUseOnFieldCB = ItemUseOnFieldCB_WarpBlock;
+    SetUpItemUseOnFieldCallback(taskId);
 }
 
 static void ItemUseOnFieldCB_Rod(u8 taskId)
@@ -743,6 +803,48 @@ void ItemUseOutOfBattle_PokemonBoxLink(u8 taskId)
 static void Task_AccessPokemonBoxLink(u8 taskId)
 {
     ScriptContext_SetupScript(EventScript_AccessPokemonBoxLink);
+    DestroyTask(taskId);
+}
+
+void ItemUseOutOfBattle_MoveCompendium(u8 taskId)
+{
+    sItemUseOnFieldCB = Task_OpenMoveCompendium;
+    SetUpItemUseOnFieldCallback(taskId);
+}
+
+static void Task_OpenMoveCompendium(u8 taskId)
+{
+    ScriptContext_SetupScript(EventScript_MoveCompendium);
+    DestroyTask(taskId);
+}
+
+void ItemUseOutOfBattle_TrainingKit(u8 taskId)
+{
+    sItemUseOnFieldCB = Task_OpenTrainingKit;
+    SetUpItemUseOnFieldCallback(taskId);
+}
+
+static void Task_OpenTrainingKit(u8 taskId)
+{
+    ScriptContext_SetupScript(EventScript_TrainingKit);
+    DestroyTask(taskId);
+}
+
+void ItemUseOutOfBattle_PocketWatch(u8 taskId)
+{
+    if (!IsMapTypeIndoors(gMapHeader.mapType))
+    {
+        DisplayCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem, sText_PocketWatchIndoorsOnly);
+        return;
+    }
+
+    sItemUseOnFieldCB = Task_OpenPocketWatch;
+    SetUpItemUseOnFieldCallback(taskId);
+}
+
+static void Task_OpenPocketWatch(u8 taskId)
+{
+    ScriptContext_SetupScript(EventScript_PocketWatch);
     DestroyTask(taskId);
 }
 
@@ -1388,6 +1490,8 @@ void ItemUseInBattle_BagMenu(u8 taskId)
         PlaySE(SE_SELECT);
         if (!GetItemImportance(gSpecialVar_ItemId) && !(B_TRY_CATCH_TRAINER_BALL >= GEN_4 && (GetItemBattleUsage(gSpecialVar_ItemId) == EFFECT_ITEM_THROW_BALL) && (gBattleTypeFlags & BATTLE_TYPE_TRAINER)))
             RemoveUsedItem();
+        if (PlasticOxContest_IsActive() && gSpecialVar_ItemId == ITEM_SPORT_BALL)
+            gNumSafariBalls--;
         ScheduleBgCopyTilemapToVram(2);
         if (CurrentBattlePyramidLocation() == PYRAMID_LOCATION_NONE)
             gTasks[taskId].func = Task_FadeAndCloseBagMenu;
