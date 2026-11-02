@@ -44,7 +44,7 @@ Route4_EventScript_Npc3_Text:
 	.string "Everything east of here is new since\nlast spring. Even the mountains.$"
 
 Route4_EventScript_Npc4_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "After a long cave walk, this\nopen sky feels wonderful.$"
 
 Route4_EventScript_Npc6_Text:
 	.string "Mountains keep showing up where fields\nused to be. Good training though.$"

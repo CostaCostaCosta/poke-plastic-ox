@@ -28,6 +28,7 @@ extern const u8 PlasticOxContest_EventScript_Finish[];
 
 // Saving is unavailable while the party is reduced or a catch awaits delivery.
 static EWRAM_DATA bool8 sRunning = FALSE;
+static EWRAM_DATA bool8 sPassRound = FALSE;
 static EWRAM_DATA bool8 sPartyReduced = FALSE;
 static EWRAM_DATA bool8 sHasCatch = FALSE;
 static EWRAM_DATA bool8 sNewCatch = FALSE;
@@ -44,6 +45,11 @@ bool32 PlasticOxContest_IsActive(void)
     return sRunning
         && gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_NATIONAL_PARK_NORMAL_HNS)
         && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_NATIONAL_PARK_NORMAL_HNS);
+}
+
+bool32 PlasticOxContest_IsPassRound(void)
+{
+    return sRunning && sPassRound;
 }
 
 bool32 PlasticOxContest_HasSession(void)
@@ -70,6 +76,8 @@ void PlasticOxContest_CheckEntry(void)
         gSpecialVar_Result = POX_CONTEST_ENTRY_USED;
     else if (GetDayOfWeek() != WEEKDAY_TUE && GetDayOfWeek() != WEEKDAY_THU && GetDayOfWeek() != WEEKDAY_SAT)
         gSpecialVar_Result = POX_CONTEST_ENTRY_CLOSED;
+    else if (GetDayOfWeek() == WEEKDAY_THU && !CheckBagHasItem(ITEM_CONTEST_PASS, 1))
+        gSpecialVar_Result = POX_CONTEST_ENTRY_PASS_REQUIRED;
     else if (IsPlayerPartyAndPokemonStorageFull() || !CheckBagHasSpace(ITEM_SPORT_BALL, CONTEST_BALLS))
         gSpecialVar_Result = POX_CONTEST_ENTRY_NO_ROOM;
     else
@@ -143,6 +151,7 @@ void PlasticOxContest_Start(void)
     sChosenPartyIndex = chosen;
     sEntrySide = gSpecialVar_0x8007;
     sPartyReduced = TRUE;
+    sPassRound = GetDayOfWeek() == WEEKDAY_THU;
     sRunning = TRUE;
     sHasCatch = FALSE;
     sNewCatch = FALSE;

@@ -1998,3 +1998,11 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/scripts/plastic_ox_cinnabar.inc"
 
 	.include "data/scripts/plastic_ox_seafoam.inc"
+	.include "data/scripts/plastic_ox_league.inc"
+	.include "data/maps/PlasticOx_HallOfFame/scripts.inc"
+	.include "data/maps/PlasticOx_LeagueRestHouse1/scripts.inc"
+	.include "data/maps/PlasticOx_LeagueRestHouse2/scripts.inc"
+
+	.include "data/scripts/plastic_ox_tournament.inc"
+
+	.include "data/scripts/plastic_ox_regional_mart.inc"

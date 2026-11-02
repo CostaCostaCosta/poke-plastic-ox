@@ -8,14 +8,14 @@
     },
     {
       "map": "PalletTown_ProfessorOaksLab_Frlg",
-      "x": 3,
-      "y": 6,
+      "x": 5,
+      "y": 4,
       "script": "Pox_Elm"
     },
     {
       "map": "PalletTown_ProfessorOaksLab_Frlg",
-      "x": 11,
-      "y": 6,
+      "x": 7,
+      "y": 4,
       "script": "Pox_Birch"
     },
     {

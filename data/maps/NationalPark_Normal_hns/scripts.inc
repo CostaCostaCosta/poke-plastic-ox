@@ -80,13 +80,13 @@ NationalPark_Normal_EventScript_Npc12::
 	end
 
 NationalPark_Normal_EventScript_Npc1_Text:
-	.string "Travelers from Goldenrod and\nEcruteak meet here.\pThe gardeners planted both\ncities' favorite flowers\paround the fountain.$"
+	.string "Thursday's Bug-Catching Contest\nrequires a Contest Pass!\pTuesday and Saturday contests\nare open without one.\pScyther and Pinsir appear in\nthe special Thursday contest.$"
 
 NationalPark_Normal_EventScript_Npc2_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "I come here to watch POKéMON\nmove through the tall grass.$"
 
 NationalPark_Normal_EventScript_Npc3_Text:
-	.string "I record bird calls on my\nlittle radio.\pAfter sundown, HOOTHOOT\nanswers from beyond the fence.$"
+	.string "Want a Contest Pass?\pWin one in the tournament in\nthe Saffron Underground!\pBring it here on Thursday to\nenter the special contest.$"
 
 NationalPark_Normal_EventScript_Npc4_Text:
 	.string "I teach my class beneath these\ntrees.\pThe children remember a real\ncaterpillar better than a\ppicture in a book.$"

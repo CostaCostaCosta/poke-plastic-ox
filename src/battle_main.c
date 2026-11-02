@@ -1,4 +1,5 @@
 #include "global.h"
+#include "constants/opponents.h"
 #include "metamon_heap_trace.h"
 #include "metamon_trainer.h"
 #include "battle.h"
@@ -5710,10 +5711,36 @@ static void WaitForEvoSceneToFinish(void)
         gBattleMainFunc = TryEvolvePokemon;
 }
 
+static bool32 IsPlasticOxLeagueBattle(void)
+{
+    // Facility/link trainer IDs use other namespaces. The authored League is
+    // singles only; a second opponent must not inherit this recovery exception.
+    if (!(gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+     || (gBattleTypeFlags & (BATTLE_TYPE_MORE_THAN_TWO_BATTLERS | BATTLE_TYPE_LINK
+                          | BATTLE_TYPE_FRONTIER | BATTLE_TYPE_TRAINER_HILL
+                          | BATTLE_TYPE_SECRET_BASE | BATTLE_TYPE_EREADER_TRAINER
+                          | BATTLE_TYPE_RECORDED_LINK)))
+        return FALSE;
+
+    switch (TRAINER_BATTLE_PARAM.opponentA)
+    {
+    case TRAINER_PLASTIC_OX_WALLACE:
+    case TRAINER_PLASTIC_OX_STEVEN:
+    case TRAINER_PLASTIC_OX_LEAGUELANCE:
+    case TRAINER_PLASTIC_OX_BLUE:
+    case TRAINER_PLASTIC_OX_BILL:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
 static void ReturnFromBattleToOverworld(void)
 {
-    // Heal after stat recalculation and any post-battle evolutions have finished.
-    if (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+    // League challengers carry HP, status and PP between rooms. Other trainer
+    // battles retain Plastic Ox's normal post-battle recovery.
+    if ((gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+     && !IsPlasticOxLeagueBattle())
         HealPlayerParty();
 
     if (!(gBattleTypeFlags & BATTLE_TYPE_LINK))

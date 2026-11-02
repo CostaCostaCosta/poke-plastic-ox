@@ -162,8 +162,21 @@ def contest():
     # Check the real RTC schedule without bypassing the day check.
     for day in range(7):
         set_weekday(g, day)
+        expected = 0 if day in (2, 6) else 7 if day == 4 else 1
+        assert call(g, 'PlasticOxContest_CheckEntry') == expected, day
+        if day == 4:
+            assert call(g, 'PlasticOxContest_Start') == 7
+            assert not g.u8(g.syms['sRunning'])
+            assert not g.flag('FLAG_POX_DAILY_PARK_CONTEST')
+    from test_qol import opcode
+    from test_training_kit import run_code
+    pass_item = int(re.search(r'ITEM_CONTEST_PASS\s*=\s*(\d+)',
+                              (ROOT / 'include/constants/items.h').read_text())[1])
+    run_code(g, opcode(g, 'additem') + struct.pack('<HH', pass_item, 1))
+    for day in range(7):
+        set_weekday(g, day)
         assert call(g, 'PlasticOxContest_CheckEntry') == (0 if day in (2, 4, 6) else 1), day
-    print('RTC: contest open Tue/Thu/Sat and closed Sun/Mon/Wed/Fri PASS', flush=True)
+    print('RTC: Tue/Sat open without pass, Thu requires pass, other days closed PASS', flush=True)
     for side, attendant, spawn in [(0, 'South', (3, 3)), (1, 'East', (38, 3))]:
         set_weekday(g, 2 if side == 0 else 4)
         g.warp(GATE, *spawn)
@@ -176,6 +189,7 @@ def contest():
         finish_dialogue(g)
         load_ok(g, PARK, f'contest_{attendant.lower()}_entry')
         assert g.u8(g.syms['sRunning']) and g.count() == 1
+        assert bool(g.u8(g.syms['sPassRound'])) == (side == 1)
         assert g.u8(g.syms['gNumSafariBalls']) == 20
         assert g.flag('FLAG_POX_DAILY_PARK_CONTEST')
         # Retain a specimen through the actual catch/staging code, then exit.

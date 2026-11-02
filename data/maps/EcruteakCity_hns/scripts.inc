@@ -17,7 +17,7 @@ EcruteakCity_EventScript_KimonoRoadblock::
 	end
 
 EcruteakCity_Text_KimonoRoadblock:
-	.string "EAST GATE CLOSED\nFuture POKéMON LEAGUE site.$"
+	.string "MORTY must approve your passage.\nEarn ECRUTEAK GYM's BADGE first.$"
 
 EcruteakCity_EventScript_Npc2::
 	lock
@@ -62,22 +62,29 @@ EcruteakCity_EventScript_Npc7::
 	end
 
 EcruteakCity_EventScript_Npc1_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The KIMONO dancers rehearse\nwhile the bells ring across\ptown.$"
 
 EcruteakCity_EventScript_Npc2_Text:
 	.string "The BURNED TOWER remembers the fire. The fire remembers nothing.$"
 
 EcruteakCity_EventScript_Npc3_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The BURNED TOWER still stands.\nWe keep its history alive.$"
 
 EcruteakCity_EventScript_Npc4_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "MORTY studies GHOST POKéMON.\nBring a team that can face them.$"
 
 EcruteakCity_EventScript_Npc5_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The west gate leads toward the\nLEAGUE. The guard checks BADGES\pthere.$"
 
 EcruteakCity_EventScript_Npc6_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Our old wooden houses have heard\ngenerations of POKéMON stories.$"
 
 EcruteakCity_EventScript_Npc7_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "At dusk, the tower casts a long\nshadow across the rooftops.$"
+
+PoxEcruteak_WestEntrance::
+	lockall
+	warp MAP_GATE_ECRUTEAK_CITY_ROUTE38_HNS, 10, 5
+	waitstate
+	releaseall
+	end

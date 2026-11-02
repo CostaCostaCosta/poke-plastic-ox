@@ -1272,7 +1272,10 @@
     "PlasticOx_BillRoom",
     "PlasticOx_WhirlIslands",
     "PlasticOx_VictoryRoad",
-    "PlasticOx_BurnedTowerB1F"
+    "PlasticOx_BurnedTowerB1F",
+    "PlasticOx_HallOfFame",
+    "PlasticOx_LeagueRestHouse1",
+    "PlasticOx_LeagueRestHouse2"
   ],
   "gMapGroup_PlasticOxV7": [
     "Route33_hns",

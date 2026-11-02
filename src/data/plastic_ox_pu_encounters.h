@@ -67,6 +67,34 @@ static const struct WildPokemon sPoxParkContestNightMons[] = {
 };
 static const u8 sPoxParkContestNightWeights[] = { 20, 20, 10, 10, 10, 10, 5, 5, 5, 5 };
 static const struct WildPokemonInfo sPoxParkContestNight = { 20, sPoxParkContestNightMons, sPoxParkContestNightWeights, ARRAY_COUNT(sPoxParkContestNightMons) };
+static const struct WildPokemon sPoxParkContestPassDayMons[] = {
+    { 17, 20, SPECIES_CATERPIE },
+    { 17, 20, SPECIES_WEEDLE },
+    { 17, 20, SPECIES_METAPOD },
+    { 17, 20, SPECIES_KAKUNA },
+    { 17, 20, SPECIES_PARAS },
+    { 17, 20, SPECIES_VENONAT },
+    { 17, 20, SPECIES_BUTTERFREE },
+    { 17, 20, SPECIES_BEEDRILL },
+    { 17, 20, SPECIES_SCYTHER },
+    { 17, 20, SPECIES_PINSIR },
+};
+static const u8 sPoxParkContestPassDayWeights[] = { 20, 20, 10, 10, 10, 10, 5, 5, 5, 5 };
+static const struct WildPokemonInfo sPoxParkContestPassDay = { 20, sPoxParkContestPassDayMons, sPoxParkContestPassDayWeights, ARRAY_COUNT(sPoxParkContestPassDayMons) };
+static const struct WildPokemon sPoxParkContestPassNightMons[] = {
+    { 17, 20, SPECIES_CATERPIE },
+    { 17, 20, SPECIES_WEEDLE },
+    { 17, 20, SPECIES_METAPOD },
+    { 17, 20, SPECIES_KAKUNA },
+    { 17, 20, SPECIES_PARAS },
+    { 17, 20, SPECIES_VENONAT },
+    { 17, 20, SPECIES_BUTTERFREE },
+    { 17, 20, SPECIES_BEEDRILL },
+    { 17, 20, SPECIES_SCYTHER },
+    { 17, 20, SPECIES_PINSIR },
+};
+static const u8 sPoxParkContestPassNightWeights[] = { 20, 20, 10, 10, 10, 10, 5, 5, 5, 5 };
+static const struct WildPokemonInfo sPoxParkContestPassNight = { 20, sPoxParkContestPassNightMons, sPoxParkContestPassNightWeights, ARRAY_COUNT(sPoxParkContestPassNightMons) };
 static const struct WildPokemon sPoxParkHeadbuttDayMons[] = {
     { 17, 19, SPECIES_LEDYBA },
     { 17, 19, SPECIES_EXEGGCUTE },

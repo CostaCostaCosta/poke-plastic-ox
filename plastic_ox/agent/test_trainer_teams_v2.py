@@ -31,6 +31,7 @@ sys.path.insert(0, str(HERE))
 import pox_progression as P  # noqa: E402
 from apply_trainer_teams_v2 import (  # noqa: E402
     KEEP_AS_IS, ROSTERS, SIGNATURE_EXCEPTIONS, WHITNEY_COMPETITIVE_TEAM,
+    AUTHORED_LEAGUE, LEAGUE_PARTIES,
     split_block, ROUTE_GROUPS, minimum_level, expected_party_size,
 )
 
@@ -128,6 +129,10 @@ def main() -> int:
             if len(team) not in (2, 3) or boss_species & {m['species'] for m in team}:
                 problems.append(f"{area}: {trainer} has wrong size or boss species")
 
+    authored = parse(LEAGUE_PARTIES.read_text())
+    for tid in AUTHORED_LEAGUE:
+        if parsed[tid].strip() != authored[tid].strip():
+            problems.append(f"{tid}: differs from canonical authored endgame party")
     for trainer in sorted(ROSTERS):
         checkpoint, _roster = ROSTERS[trainer]
         legal = P.legal_for(checkpoint)
@@ -183,6 +188,10 @@ def main() -> int:
                 problems.append(f"{trainer}[{index}] unknown nature {mon['nature']}")
             for move in mon["moves"]:
                 checked += 1
+                if trainer in AUTHORED_LEAGUE:
+                    # Endgame allows inherited, egg and the NYPC Wish move.
+                    # Gen III/roster/IV/EV checks live in test_league.py.
+                    continue
                 if trainer == WHITNEY:
                     # Her fixed trainer-only set includes egg and later-level
                     # moves to retain the requested competitive roles at Lv20.
@@ -199,6 +208,8 @@ def main() -> int:
             if trainer not in parsed:
                 problems.append(f"{trainer}: present in the baseline but gone now")
                 continue
+            if trainer in AUTHORED_LEAGUE:
+                expected = "\n\n".join(split_block(authored[trainer])[0])
             header, _ = split_block(parsed[trainer])
             actual = "\n\n".join(header)
             checked += 1

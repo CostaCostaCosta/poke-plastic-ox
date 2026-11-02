@@ -981,16 +981,8 @@ PoxRegion_route45_route46_a_Text::
 	.string "Route46\nMarked passage ahead.$"
 
 PoxRegion_ecruteak_league_a::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_ecruteak_league_a_Open
-	goto_if_unset FLAG_BADGE01_GET, PoxRegion_ecruteak_league_a_Closed
-	goto_if_unset FLAG_BADGE02_GET, PoxRegion_ecruteak_league_a_Closed
-	goto_if_unset FLAG_BADGE03_GET, PoxRegion_ecruteak_league_a_Closed
-	goto_if_unset FLAG_BADGE04_GET, PoxRegion_ecruteak_league_a_Closed
-	goto_if_unset FLAG_BADGE05_GET, PoxRegion_ecruteak_league_a_Closed
-	goto_if_unset FLAG_BADGE06_GET, PoxRegion_ecruteak_league_a_Closed
-	goto_if_unset FLAG_BADGE07_GET, PoxRegion_ecruteak_league_a_Closed
-	goto_if_unset FLAG_BADGE08_GET, PoxRegion_ecruteak_league_a_Closed
+	goto PoxLeague_Checkpoint
+
 PoxRegion_ecruteak_league_a_Open::
 	warp MAP_VICTORY_ROAD_1F, 14, 39
 	waitstate
@@ -1004,16 +996,8 @@ PoxRegion_ecruteak_league_a_Closed::
 	end
 
 PoxRegion_ecruteak_league_b::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_ecruteak_league_b_Open
-	goto_if_unset FLAG_BADGE01_GET, PoxRegion_ecruteak_league_b_Closed
-	goto_if_unset FLAG_BADGE02_GET, PoxRegion_ecruteak_league_b_Closed
-	goto_if_unset FLAG_BADGE03_GET, PoxRegion_ecruteak_league_b_Closed
-	goto_if_unset FLAG_BADGE04_GET, PoxRegion_ecruteak_league_b_Closed
-	goto_if_unset FLAG_BADGE05_GET, PoxRegion_ecruteak_league_b_Closed
-	goto_if_unset FLAG_BADGE06_GET, PoxRegion_ecruteak_league_b_Closed
-	goto_if_unset FLAG_BADGE07_GET, PoxRegion_ecruteak_league_b_Closed
-	goto_if_unset FLAG_BADGE08_GET, PoxRegion_ecruteak_league_b_Closed
+	goto PoxLeague_Return
+
 PoxRegion_ecruteak_league_b_Open::
 	warp MAP_ECRUTEAK_CITY_HNS, 9, 34
 	waitstate
@@ -1033,16 +1017,8 @@ PoxRegion_ecruteak_league_b_Text::
 	.string "EcruteakCity\nMarked passage ahead.$"
 
 PoxRegion_victory_indigo_a::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_victory_indigo_a_Open
-	goto_if_unset FLAG_BADGE01_GET, PoxRegion_victory_indigo_a_Closed
-	goto_if_unset FLAG_BADGE02_GET, PoxRegion_victory_indigo_a_Closed
-	goto_if_unset FLAG_BADGE03_GET, PoxRegion_victory_indigo_a_Closed
-	goto_if_unset FLAG_BADGE04_GET, PoxRegion_victory_indigo_a_Closed
-	goto_if_unset FLAG_BADGE05_GET, PoxRegion_victory_indigo_a_Closed
-	goto_if_unset FLAG_BADGE06_GET, PoxRegion_victory_indigo_a_Closed
-	goto_if_unset FLAG_BADGE07_GET, PoxRegion_victory_indigo_a_Closed
-	goto_if_unset FLAG_BADGE08_GET, PoxRegion_victory_indigo_a_Closed
+	goto PoxLeague_Summit
+
 PoxRegion_victory_indigo_a_Open::
 	warp MAP_INDIGO_PLATEAU_HNS, 11, 19
 	waitstate
@@ -1062,16 +1038,8 @@ PoxRegion_victory_indigo_a_Text::
 	.string "IndigoPlateau\nMarked passage ahead.$"
 
 PoxRegion_victory_indigo_b::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_victory_indigo_b_Open
-	goto_if_unset FLAG_BADGE01_GET, PoxRegion_victory_indigo_b_Closed
-	goto_if_unset FLAG_BADGE02_GET, PoxRegion_victory_indigo_b_Closed
-	goto_if_unset FLAG_BADGE03_GET, PoxRegion_victory_indigo_b_Closed
-	goto_if_unset FLAG_BADGE04_GET, PoxRegion_victory_indigo_b_Closed
-	goto_if_unset FLAG_BADGE05_GET, PoxRegion_victory_indigo_b_Closed
-	goto_if_unset FLAG_BADGE06_GET, PoxRegion_victory_indigo_b_Closed
-	goto_if_unset FLAG_BADGE07_GET, PoxRegion_victory_indigo_b_Closed
-	goto_if_unset FLAG_BADGE08_GET, PoxRegion_victory_indigo_b_Closed
+	goto PoxLeague_Downhill
+
 PoxRegion_victory_indigo_b_Open::
 	warp MAP_VICTORY_ROAD_1F, 37, 5
 	waitstate

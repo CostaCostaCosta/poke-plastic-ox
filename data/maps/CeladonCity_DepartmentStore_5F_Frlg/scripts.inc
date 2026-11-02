@@ -32,6 +32,7 @@ CeladonCity_DepartmentStore_5F_EvolutionStones::
 	.2byte ITEM_MOON_STONE
 	.2byte ITEM_SUN_STONE
 	.2byte ITEM_SHINY_STONE
+	.2byte ITEM_LEFTOVERS
 	.2byte ITEM_NONE
 	release
 	end
@@ -54,6 +55,7 @@ CeladonCity_DepartmentStore_5F_Vitamins::
 	.2byte ITEM_CALCIUM
 	.2byte ITEM_ZINC
 	.2byte ITEM_CARBOS
+	.2byte ITEM_LEFTOVERS
 	.2byte ITEM_NONE
 	release
 	end

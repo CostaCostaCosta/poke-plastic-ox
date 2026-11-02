@@ -29,7 +29,7 @@ PoxEcruteak_EcruteakCity_Gym_hns_4::
 	msgbox PoxEcruteak_EcruteakCity_Gym_hns_4_Text, MSGBOX_NPC
 	end
 PoxEcruteak_EcruteakCity_Gym_hns_4_Text:
-	.string "GYM LEADER MORTY is away today.\nHis GHOSTs are still roaming.$"
+	.string "MORTY waits beyond the shadows.\nWatch your step as you approach.$"
 
 PoxEcruteak_EcruteakCity_Gym_hns_5::
 	msgbox PoxEcruteak_EcruteakCity_Gym_hns_5_Text, MSGBOX_NPC

@@ -24,7 +24,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PoxEcruteak_Gate_EcruteakCity_Route38_hns_0",
+      "script": "PoxLeague_GateGuide",
       "flag": "0"
     }
   ],
@@ -33,18 +33,39 @@
       "x": 11,
       "y": 5,
       "elevation": 0,
-      "dest_map": "MAP_DYNAMIC",
-      "dest_warp_id": "WARP_ID_DYNAMIC"
-    },
-    {
-      "x": 1,
-      "y": 5,
-      "elevation": 0,
-      "dest_map": "MAP_ROUTE38_HNS",
-      "dest_warp_id": "0"
+      "dest_map": "MAP_ECRUTEAK_CITY_HNS",
+      "dest_warp_id": "9"
     }
   ],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 4,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": 0,
+      "script": "PoxLeague_Checkpoint"
+    },
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 5,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": 0,
+      "script": "PoxLeague_Checkpoint"
+    },
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 6,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": 0,
+      "script": "PoxLeague_Checkpoint"
+    }
+  ],
   "bg_events": [],
   "region": "REGION_HOENN"
 }

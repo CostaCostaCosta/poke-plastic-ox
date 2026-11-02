@@ -4,6 +4,7 @@
 struct Pokemon;
 
 bool32 PlasticOxContest_IsActive(void);
+bool32 PlasticOxContest_IsPassRound(void);
 bool32 PlasticOxContest_HasSession(void);
 void PlasticOxContest_CheckEntry(void);
 bool32 PlasticOxContest_TakeStep(void);

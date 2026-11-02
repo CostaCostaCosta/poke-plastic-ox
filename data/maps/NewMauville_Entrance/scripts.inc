@@ -4,6 +4,9 @@ NewMauville_Entrance_MapScripts::
 	.byte 0
 
 NewMauville_Entrance_OnLoad:
+	checkitem ITEM_NEW_MAUVILLE_KEY
+	goto_if_eq VAR_RESULT, FALSE, PoxTournament_ResetMauvilleDoor
+	goto_if_unset FLAG_BADGE06_GET, PoxTournament_ResetMauvilleDoor
 	call_if_eq VAR_NEW_MAUVILLE_STATE, 0, NewMauville_Entrance_EventScript_CloseDoor
 	end
 
@@ -25,7 +28,8 @@ NewMauville_Entrance_EventScript_Door::
 	applymovement LOCALID_PLAYER, Common_Movement_WalkInPlaceFasterUp
 	waitmovement 0
 	msgbox NewMauville_Entrance_Text_DoorIsLocked, MSGBOX_DEFAULT
-	checkitem ITEM_BASEMENT_KEY
+	goto_if_unset FLAG_BADGE06_GET, NewMauville_Entrance_EventScript_DontOpenDoor
+	checkitem ITEM_NEW_MAUVILLE_KEY
 	goto_if_eq VAR_RESULT, FALSE, NewMauville_Entrance_EventScript_DontOpenDoor
 	msgbox NewMauville_Entrance_Text_UseBasementKey, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, NewMauville_Entrance_EventScript_DontOpenDoor
@@ -50,9 +54,14 @@ NewMauville_Entrance_Text_DoorIsLocked:
 	.string "The door is locked.$"
 
 NewMauville_Entrance_Text_UseBasementKey:
-	.string "Use the BASEMENT KEY?$"
+	.string "Use the NEW MAUVILLE KEY?$"
 
 NewMauville_Entrance_Text_UsedBasementKey:
-	.string "{PLAYER} used the BASEMENT KEY.\p"
+	.string "{PLAYER} used the NEW MAUVILLE KEY.\p"
 	.string "The door opened!$"
 
+
+PoxTournament_ResetMauvilleDoor::
+	setvar VAR_NEW_MAUVILLE_STATE, 0
+	call NewMauville_Entrance_EventScript_CloseDoor
+	end

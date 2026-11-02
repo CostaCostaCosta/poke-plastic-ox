@@ -229,7 +229,7 @@ MtMoon_B2F_EventScript_ItemStarPiece::
 	end
 
 MtMoon_B2F_EventScript_ItemTM46::
-	finditem ITEM_TM_THIEF
+	finditem ITEM_STAR_PIECE
 	end
 
 MtMoon_B2F_EventScript_ItemRevive::

@@ -9,5 +9,5 @@ Gate_SaffronCity_Route5_EventScript_Npc1::
 	end
 
 Gate_SaffronCity_Route5_EventScript_Npc1_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Keep the doorway clear so\ntravelers can pass safely.$"
 

@@ -25,6 +25,7 @@ MauvilleCity_Mart_Pokemart:
 	.2byte ITEM_WATER_STONE
 	.2byte ITEM_LEAF_STONE
 	.2byte ITEM_SUN_STONE
+	.2byte ITEM_LEFTOVERS
 	pokemartlistend
 
 MauvilleCity_Mart_EventScript_ExpertM::

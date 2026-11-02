@@ -43,24 +43,50 @@ Gate_NationalPark_EventScript_EastAttendant::
 	goto PlasticOxContest_EventScript_Attendant
 
 Gate_NationalPark_EventScript_Officer::
+	special PoxGetDayOfWeek
+	compare VAR_RESULT, WEEKDAY_THU
+	goto_if_eq Gate_NationalPark_EventScript_Thursday
 	msgbox Gate_NationalPark_Text_Schedule, MSGBOX_NPC
 	end
 
 Gate_NationalPark_EventScript_BirdWatcher::
+	special PoxGetDayOfWeek
+	compare VAR_RESULT, WEEKDAY_THU
+	goto_if_eq Gate_NationalPark_EventScript_Thursday
 	msgbox Gate_NationalPark_Text_BirdWatcher, MSGBOX_NPC
 	end
 
 Gate_NationalPark_EventScript_Contestant::
+	special PoxGetDayOfWeek
+	compare VAR_RESULT, WEEKDAY_THU
+	goto_if_eq Gate_NationalPark_EventScript_Thursday
 	msgbox Gate_NationalPark_Text_Contestant, MSGBOX_NPC
 	end
 
 Gate_NationalPark_EventScript_Visitor::
+	special PoxGetDayOfWeek
+	compare VAR_RESULT, WEEKDAY_THU
+	goto_if_eq Gate_NationalPark_EventScript_Thursday
 	msgbox Gate_NationalPark_Text_Visitor, MSGBOX_NPC
 	end
+
+Gate_NationalPark_EventScript_Thursday::
+	msgbox Gate_NationalPark_Text_Thursday, MSGBOX_NPC
+	end
+
+Gate_NationalPark_Text_Thursday:
+	.string "Today's special Bug-Catching\n"
+	.string "Contest requires a Contest Pass.\p"
+	.string "Bring your pass to the attendant.\n"
+	.string "You keep it after entering!\p"
+	.string "Scyther and Pinsir appear today.\p"
+	.string "Tuesday and Saturday contests\n"
+	.string "are open without a pass.$"
 
 Gate_NationalPark_Text_Schedule:
 	.string "The Bug-Catching Contest is held\n"
 	.string "Tuesday, Thursday, and Saturday.\p"
+	.string "Thursday requires a Contest Pass.\p"
 	.string "Ask the attendant to enter.\n"
 	.string "The park is open every day!$"
 Gate_NationalPark_Text_BirdWatcher:

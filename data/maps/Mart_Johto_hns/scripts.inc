@@ -18,6 +18,7 @@ Mart_Johto_hns_Pokemart:
 	.2byte ITEM_ANTIDOTE
 	.2byte ITEM_PARALYZE_HEAL
 	.2byte ITEM_REPEL
+	.2byte ITEM_LEFTOVERS
 	pokemartlistend
 
 Mart_Johto_hns_EventScript_Youngster::

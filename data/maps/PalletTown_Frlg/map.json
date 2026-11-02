@@ -19,6 +19,11 @@
       "map": "MAP_ROUTE101",
       "offset": 2,
       "direction": "up"
+    },
+    {
+      "map": "MAP_ROUTE21_NORTH",
+      "offset": 0,
+      "direction": "down"
     }
   ],
   "object_events": [
@@ -307,42 +312,6 @@
       "var": "VAR_TEMP_0",
       "var_value": 0,
       "script": "Pox_StarterGate"
-    },
-    {
-      "type": "trigger",
-      "x": 7,
-      "y": 19,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": 0,
-      "script": "PalletTown_SurfToRoute21"
-    },
-    {
-      "type": "trigger",
-      "x": 8,
-      "y": 19,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": 0,
-      "script": "PalletTown_SurfToRoute21"
-    },
-    {
-      "type": "trigger",
-      "x": 9,
-      "y": 19,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": 0,
-      "script": "PalletTown_SurfToRoute21"
-    },
-    {
-      "type": "trigger",
-      "x": 10,
-      "y": 19,
-      "elevation": 0,
-      "var": "VAR_TEMP_0",
-      "var_value": 0,
-      "script": "PalletTown_SurfToRoute21"
     }
   ],
   "bg_events": [

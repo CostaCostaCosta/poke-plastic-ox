@@ -22,6 +22,7 @@ MossdeepCity_Mart_Pokemart:
 	.2byte ITEM_MAX_REPEL
 	.2byte ITEM_MOON_STONE
 	.2byte ITEM_WATER_STONE
+	.2byte ITEM_LEFTOVERS
 	pokemartlistend
 
 MossdeepCity_Mart_EventScript_Woman::

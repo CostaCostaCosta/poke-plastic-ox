@@ -1103,11 +1103,6 @@ checkitem ITEM_SURF_KEY
 	giveitem ITEM_SURF_KEY
 	goto_if_eq VAR_RESULT, FALSE, Pox_Release
 Pox_FujiRescue_HasSurfKey::
-	checkitem ITEM_HM03
-	goto_if_eq VAR_RESULT, TRUE, Pox_FujiRescue_HasRewards
-	giveitem ITEM_HM03
-	goto_if_eq VAR_RESULT, FALSE, Pox_Release
-Pox_FujiRescue_HasRewards::
 
 setflag FLAG_POX_STORY_FUJI
 
@@ -1115,7 +1110,7 @@ releaseall
 	end
 
 Pox_Text_FujiRescue::
-	.string "FUJI: Thank you. They asked\nabout preserving living\pstates... old work I hoped never\nto hear of again.\pThe archives on CINNABAR may\nexplain more. Ask BLAINE for\paccess.\pTake the UNDERGROUND PATH from\nROUTE 8 to ROUTE 7, then cross\pROUTE 103. This SURF KEY and HM\nwill help you cross the water.$"
+	.string "FUJI: Thank you. They asked\nabout preserving living\pstates... old work I hoped never\nto hear of again.\pThe archives on CINNABAR may\nexplain more. Ask BLAINE for\paccess.\pTake the UNDERGROUND PATH from\nROUTE 8 to ROUTE 7, then cross\pROUTE 103. This SURF KEY\nwill help you cross the water.$"
 
 Pox_PokemonTowerExit::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -1677,195 +1672,70 @@ Pox_Text_BillRoomExit::
 	.string "I'll show you back outside.$"
 
 Pox_WallaceAdvance::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
-
-goto_if_unset FLAG_POX_LEAGUE_WALLACE, Pox_NotReady
-
-msgbox Pox_Text_WallaceAdvance, MSGBOX_DEFAULT
-
-warp MAP_PLASTIC_OX_STEVEN_ROOM, 5, 12
-	waitstate
-
-releaseall
-	end
+	goto PoxLeague_WallaceNext
 
 Pox_Text_WallaceAdvance::
 	.string "The next room is yours.$"
 
 Pox_Wallace::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
+	goto PoxLeague_Wallace
 
-goto_if_unset FLAG_BADGE01_GET, Pox_NotReady
-
-goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
-
-goto_if_unset FLAG_BADGE03_GET, Pox_NotReady
-
-goto_if_unset FLAG_BADGE04_GET, Pox_NotReady
-
-goto_if_unset FLAG_BADGE05_GET, Pox_NotReady
-
-goto_if_unset FLAG_BADGE06_GET, Pox_NotReady
-
-goto_if_unset FLAG_BADGE07_GET, Pox_NotReady
-
-goto_if_unset FLAG_BADGE08_GET, Pox_NotReady
-
-goto_if_set FLAG_POX_LEAGUE_WALLACE, Pox_WallaceAdvance
-
-trainerbattle_single TRAINER_PLASTIC_OX_WALLACE, Pox_Text_Wallace, Pox_Text_Defeat, Pox_Wallace_Won
-
-goto Pox_Wallace_Won
 Pox_Wallace_Won::
-	setflag FLAG_POX_LEAGUE_WALLACE
-
-goto Pox_WallaceAdvance
-
-releaseall
-	end
+	goto PoxLeague_Wallace
 
 Pox_Text_Wallace::
 	.string "WALLACE: The next room must be\nearned. Show me your best\pbattle!$"
 
 Pox_StevenAdvance::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
-
-goto_if_unset FLAG_POX_LEAGUE_STEVEN, Pox_NotReady
-
-msgbox Pox_Text_StevenAdvance, MSGBOX_DEFAULT
-
-warp MAP_PLASTIC_OX_LEAGUE_LANCE_ROOM, 5, 12
-	waitstate
-
-releaseall
-	end
+	goto PoxLeague_StevenNext
 
 Pox_Text_StevenAdvance::
 	.string "The next room is yours.$"
 
 Pox_Steven::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
+	goto PoxLeague_Steven
 
-goto_if_unset FLAG_POX_LEAGUE_WALLACE, Pox_NotReady
-
-goto_if_set FLAG_POX_LEAGUE_STEVEN, Pox_StevenAdvance
-
-trainerbattle_single TRAINER_PLASTIC_OX_STEVEN, Pox_Text_Steven, Pox_Text_Defeat, Pox_Steven_Won
-
-goto Pox_Steven_Won
 Pox_Steven_Won::
-	setflag FLAG_POX_LEAGUE_STEVEN
-
-goto Pox_StevenAdvance
-
-releaseall
-	end
+	goto PoxLeague_Steven
 
 Pox_Text_Steven::
 	.string "STEVEN: The next room must be\nearned. Show me your best\pbattle!$"
 
 Pox_LeagueLanceAdvance::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
-
-goto_if_unset FLAG_POX_LEAGUE_LEAGUELANCE, Pox_NotReady
-
-msgbox Pox_Text_LeagueLanceAdvance, MSGBOX_DEFAULT
-
-warp MAP_PLASTIC_OX_BLUE_ROOM, 5, 12
-	waitstate
-
-releaseall
-	end
+	goto PoxLeague_LeagueLanceNext
 
 Pox_Text_LeagueLanceAdvance::
 	.string "The next room is yours.$"
 
 Pox_LeagueLance::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
+	goto PoxLeague_LeagueLance
 
-goto_if_unset FLAG_POX_LEAGUE_STEVEN, Pox_NotReady
-
-goto_if_set FLAG_POX_LEAGUE_LEAGUELANCE, Pox_LeagueLanceAdvance
-
-trainerbattle_single TRAINER_PLASTIC_OX_LEAGUELANCE, Pox_Text_LeagueLance, Pox_Text_Defeat, Pox_LeagueLance_Won
-
-goto Pox_LeagueLance_Won
 Pox_LeagueLance_Won::
-	setflag FLAG_POX_LEAGUE_LEAGUELANCE
-
-goto Pox_LeagueLanceAdvance
-
-releaseall
-	end
+	goto PoxLeague_LeagueLance
 
 Pox_Text_LeagueLance::
 	.string "LANCE: The next room must be\nearned. Show me your best\pbattle!$"
 
 Pox_BlueAdvance::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
-
-goto_if_unset FLAG_POX_LEAGUE_BLUE, Pox_NotReady
-
-msgbox Pox_Text_BlueAdvance, MSGBOX_DEFAULT
-
-warp MAP_PLASTIC_OX_BILL_ROOM, 5, 11
-	waitstate
-
-releaseall
-	end
+	goto PoxLeague_BlueNext
 
 Pox_Text_BlueAdvance::
 	.string "The next room is yours.$"
 
 Pox_Blue::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
+	goto PoxLeague_Blue
 
-goto_if_unset FLAG_POX_LEAGUE_LEAGUELANCE, Pox_NotReady
-
-goto_if_set FLAG_POX_LEAGUE_BLUE, Pox_BlueAdvance
-
-trainerbattle_single TRAINER_PLASTIC_OX_BLUE, Pox_Text_Blue, Pox_Text_Defeat, Pox_Blue_Won
-
-goto Pox_Blue_Won
 Pox_Blue_Won::
-	setflag FLAG_POX_LEAGUE_BLUE
-
-goto Pox_BlueAdvance
-
-releaseall
-	end
+	goto PoxLeague_Blue
 
 Pox_Text_Blue::
 	.string "BLUE: The next room must be\nearned. Show me your best\pbattle!$"
 
 Pox_Bill::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
+	goto PoxLeague_Bill
 
-goto_if_unset FLAG_POX_LEAGUE_BLUE, Pox_NotReady
-
-goto_if_set FLAG_POX_LEAGUE_BILL, Pox_Done
-
-trainerbattle_single TRAINER_PLASTIC_OX_BILL, Pox_Text_Bill, Pox_Text_Defeat, Pox_Bill_Won
-
-goto Pox_Bill_Won
 Pox_Bill_Won::
-	setflag FLAG_POX_LEAGUE_BILL
-
-msgbox Pox_Text_Champion, MSGBOX_DEFAULT
-	special GameClear
-	waitstate
-
-releaseall
-	end
+	goto PoxLeague_Bill
 
 Pox_Text_Bill::
 	.string "BILL: Funny, isn't it? I built\ntools to help other TRAINERS.\pThen I built one to help myself.\pBLUE, LANCE, STEVEN and WALLACE\nmade it stronger. It made me\pstronger.\pI never told it to move the\nworld. But I built something\pthat could. That responsibility\nis mine.\pYou've beaten all four of them.\nI've been looking forward to\pthis!$"
@@ -1874,32 +1744,7 @@ Pox_Text_Champion::
 	.string "BILL: You did it. These POKéMON\nand their TRAINER belong in the\pHALL OF FAME. Congratulations,\nCHAMPION!$"
 
 Pox_LeagueEntry::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
-
-goto_if_unset FLAG_BADGE01_GET, Pox_NotReady
-
-goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
-
-goto_if_unset FLAG_BADGE03_GET, Pox_NotReady
-
-goto_if_unset FLAG_BADGE04_GET, Pox_NotReady
-
-goto_if_unset FLAG_BADGE05_GET, Pox_NotReady
-
-goto_if_unset FLAG_BADGE06_GET, Pox_NotReady
-
-goto_if_unset FLAG_BADGE07_GET, Pox_NotReady
-
-goto_if_unset FLAG_BADGE08_GET, Pox_NotReady
-
-msgbox Pox_Text_LeagueEntry, MSGBOX_DEFAULT
-
-warp MAP_PLASTIC_OX_WALLACE_ROOM, 5, 12
-	waitstate
-
-releaseall
-	end
+	goto PoxLeague_Entry
 
 Pox_Text_LeagueEntry::
 	.string "The POKéMON LEAGUE challenge\nbegins here.$"

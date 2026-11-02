@@ -23,7 +23,7 @@ Pox_LabApproachRight::
     waitmovement 0
     goto Pox_LabApproach
 Pox_LabApproachNorth::
-    goto_if_le VAR_0x8005, 6, Pox_LabApproachDone
+    goto_if_le VAR_0x8005, 5, Pox_LabApproachDone
     applymovement LOCALID_PLAYER, Pox_StepUp
     waitmovement 0
     goto Pox_LabApproach
@@ -44,6 +44,55 @@ Pox_StepRight:
     step_end
 Pox_StepUp:
     walk_up
+    step_end
+
+@ Gifts are explained face-to-face along the clear aisle below the professors.
+Pox_ApproachOak::
+    setvar VAR_0x8006, 6
+    setvar VAR_0x8007, 11
+    goto Pox_ApproachProfessor
+Pox_ApproachElm::
+    setvar VAR_0x8006, 5
+    setvar VAR_0x8007, 12
+    goto Pox_ApproachProfessor
+Pox_ApproachBirch::
+    setvar VAR_0x8006, 7
+    setvar VAR_0x8007, 13
+Pox_ApproachProfessor::
+    closemessage
+    getplayerxy VAR_0x8004, VAR_0x8005
+    @ A player inspecting a ball from above must go around the table.
+    goto_if_lt VAR_0x8005, 4, Pox_ApproachProfessorUpper
+    goto_if_lt VAR_0x8005, 5, Pox_ApproachProfessorDown
+    goto_if_gt VAR_0x8005, 5, Pox_ApproachProfessorUp
+    goto_if_lt VAR_0x8004, VAR_0x8006, Pox_ApproachProfessorRight
+    goto_if_gt VAR_0x8004, VAR_0x8006, Pox_ApproachProfessorLeft
+    applymovement LOCALID_PLAYER, Common_Movement_FaceUp
+    waitmovement 0
+    applymovement VAR_0x8007, Common_Movement_FaceDown
+    waitmovement 0
+    return
+Pox_ApproachProfessorUpper::
+    goto_if_lt VAR_0x8004, 11, Pox_ApproachProfessorRight
+    goto Pox_ApproachProfessorDown
+Pox_ApproachProfessorDown::
+    applymovement LOCALID_PLAYER, Pox_StepDown
+    waitmovement 0
+    goto Pox_ApproachProfessor
+Pox_ApproachProfessorUp::
+    applymovement LOCALID_PLAYER, Pox_StepUp
+    waitmovement 0
+    goto Pox_ApproachProfessor
+Pox_ApproachProfessorRight::
+    applymovement LOCALID_PLAYER, Pox_StepRight
+    waitmovement 0
+    goto Pox_ApproachProfessor
+Pox_ApproachProfessorLeft::
+    applymovement LOCALID_PLAYER, Pox_StepLeft
+    waitmovement 0
+    goto Pox_ApproachProfessor
+Pox_StepDown:
+    walk_down
     step_end
 
 Pox_LabIntroduction::
@@ -69,11 +118,13 @@ Pox_Treecko::
     hidemonpic
     givemon SPECIES_TREECKO, 5
     goto_if_eq VAR_RESULT, MON_CANT_GIVE, Pox_NoRoom
+    setflag FLAG_POX_HIDE_TREECKO_BALL
+    removeobject 5
     bufferspeciesname STR_VAR_1, SPECIES_TREECKO
     goto Pox_StarterReceived
 
 Pox_Text_Treecko::
-	.string "BIRCH: TREECKO is a nimble\nGRASS-type from HOENN. It can\pclimb even the tallest trees!\pWill you choose TREECKO as\nyour first partner?$"
+	.string "BIRCH: TREECKO is a nimble\nGRASS-type. Choose TREECKO?$"
 
 Pox_Squirtle::
     goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -88,11 +139,13 @@ Pox_Squirtle::
     hidemonpic
     givemon SPECIES_SQUIRTLE, 5
     goto_if_eq VAR_RESULT, MON_CANT_GIVE, Pox_NoRoom
+    setflag FLAG_POX_HIDE_SQUIRTLE_BALL
+    removeobject 6
     bufferspeciesname STR_VAR_1, SPECIES_SQUIRTLE
     goto Pox_StarterReceived
 
 Pox_Text_Squirtle::
-	.string "OAK: SQUIRTLE is a WATER-type\nfrom KANTO. Its sturdy shell\pkeeps it safe as it learns.\pWill you choose SQUIRTLE as\nyour first partner?$"
+	.string "OAK: SQUIRTLE is a sturdy\nWATER-type. Choose SQUIRTLE?$"
 
 Pox_Cyndaquil::
     goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -107,11 +160,13 @@ Pox_Cyndaquil::
     hidemonpic
     givemon SPECIES_CYNDAQUIL, 5
     goto_if_eq VAR_RESULT, MON_CANT_GIVE, Pox_NoRoom
+    setflag FLAG_POX_HIDE_CYNDAQUIL_BALL
+    removeobject 7
     bufferspeciesname STR_VAR_1, SPECIES_CYNDAQUIL
     goto Pox_StarterReceived
 
 Pox_Text_Cyndaquil::
-	.string "ELM: CYNDAQUIL is a gentle\nFIRE-type from JOHTO. When\pstartled, its back bursts into\nflame!\pWill you choose CYNDAQUIL as\nyour first partner?$"
+	.string "ELM: CYNDAQUIL is a shy\nFIRE-type. Choose CYNDAQUIL?$"
 
 Pox_StarterDeclined::
     hidemonpic
@@ -133,16 +188,19 @@ Pox_StarterReceived::
     playfanfare MUS_OBTAIN_ITEM
     msgbox Pox_Text_ReceivedStarter, MSGBOX_DEFAULT
     waitfanfare
+    call Pox_ApproachOak
     playfanfare MUS_RG_OBTAIN_KEY_ITEM
     msgbox Pox_Text_Assignment, MSGBOX_DEFAULT
     waitfanfare
     call Pox_StarterSupplies
-    msgbox Pox_Text_ElmAdvice, MSGBOX_DEFAULT
+    call Pox_ApproachElm
     call Pox_ElmExpAll
     call Pox_ElmLeave
+    call Pox_ApproachBirch
     msgbox Pox_Text_BirchAdvice, MSGBOX_DEFAULT
     call Pox_ElmTMs
     call Pox_BirchLeave
+    call Pox_ApproachOak
     msgbox Pox_Text_OakAfter, MSGBOX_DEFAULT
     releaseall
     end
@@ -186,6 +244,7 @@ Pox_Elm::
     release
     end
 Pox_ElmAfter::
+    call Pox_ApproachElm
     call Pox_ElmExpAll
     goto_if_set FLAG_POX_ELM_EXP_ALL, Pox_ElmDepartAfterTalk
     release
@@ -211,7 +270,7 @@ Pox_ElmExpAllFull::
     return
 
 Pox_Text_ElmExpAll::
-    .string "ELM: Take this EXP. SHARE. Every\nPOKéMON in your party will receive\pthe full Exp. from battle!$"
+	.string "ELM: This EXP. SHARE gives your\nwhole party full Exp. from battles!$"
 
 Pox_Text_ElmExpAllFull::
     .string "ELM: Make room in your KEY ITEMS\npocket, then speak to me again. I\pstill have your EXP. SHARE.$"
@@ -226,6 +285,7 @@ Pox_Birch::
     release
     end
 Pox_BirchAfter::
+    call Pox_ApproachBirch
     call Pox_ElmTMs
     goto_if_set FLAG_POX_ELM_TMS, Pox_BirchDepartAfterTalk
     release
@@ -236,58 +296,58 @@ Pox_BirchDepartAfterTalk::
     end
 
 Pox_Text_OakIntro::
-	.string "OAK: Ah, {PLAYER}! BIRCH sent\nyour registration. Welcome!\pThat earthquake was another\nshock from the regions colliding.\pToday you get to choose your\pfirst POKéMON.\pMy colleagues have come a long\nway to meet you.\pThe geography of KANTO, JOHTO,\nand HOENN changed suddenly.\pRoads now lead to unfamiliar\nplaces.\pWe're still trying to\nunderstand it. Here in PALLET,\pthough, life goes on!$"
+	.string "OAK: Welcome, {PLAYER}!\nYour first partner is waiting.$"
 
 Pox_Text_ElmIntro::
-	.string "ELM: Hello! I'm PROFESSOR ELM,\nfrom JOHTO.\pWe felt the tremor here, too.\nThe new borders are still\psettling. Stay alert out there!\pI study how POKéMON grow.\nThere's so much we can learn\pby caring for them every day.\pI've brought CYNDAQUIL. A\nlittle patience will help it\pfeel at home.$"
+	.string "ELM: I'm PROFESSOR ELM.\nI brought CYNDAQUIL from JOHTO!$"
 
 Pox_Text_BirchIntro::
-	.string "BIRCH: And I'm PROFESSOR\nBIRCH, from HOENN! I study\pPOKéMON out in the field.\pThat rumble felt like riding\nin a moving truck! But it was\pthe land itself shifting.\pThe habitats along these new\nroads have given me plenty to\pexplore.\pTREECKO came with me. It's\nalways ready for a walk!$"
+	.string "BIRCH: Good to see you again!\nTREECKO came with me from HOENN.$"
 
 Pox_Text_ChoosePartner::
-	.string "OAK: I've brought SQUIRTLE\nfrom KANTO. That's one partner\pfrom each of our regions!\pThe three POKé BALLS are on\nthe table to the right.\pTake a look at each one.\nChoose the POKéMON you'd like\pto travel with.$"
+	.string "OAK: And SQUIRTLE is from KANTO.\nCheck the three balls on the right.\pTake your time choosing a partner!$"
 
 Pox_Text_TakeYourTime::
 	.string "OAK: No hurry! Get to know all\nthree before you decide.$"
 
 Pox_Text_AlreadyChosen::
-	.string "OAK: You've chosen your\npartner. The other two are safe\pin their POKé BALLS here.$"
+	.string "OAK: I'll look after the other two.\nTake good care of your partner!$"
 
 Pox_Text_ReceivedStarter::
 	.string "{PLAYER} received {STR_VAR_1}!$"
 
 Pox_Text_Assignment::
-	.string "OAK: And this is your POKéDEX!\nIt records the POKéMON you see\pand catch.\p{PLAYER} received the POKéDEX!\pIt can record species from all\nthree regions.\pWould you help us learn which\nPOKéMON live along the new\proads?\pMeet POKéMON, visit towns, and\nchallenge GYMS if you like.\pCome tell us what you find!$"
+	.string "OAK: Take this POKéDEX. It records\nthe POKéMON you see and catch.\pCome tell us what you discover!$"
 
 Pox_Text_ElmAdvice::
 	.string "ELM: Watch how your partner\ngrows. Even a short journey\pcan teach you both a great\ndeal.\pI brought something that will\nhelp your whole team grow.$"
 
 Pox_Text_BirchAdvice::
-	.string "BIRCH: Wild POKéMON live in\ntall grass. Weaken one in\pbattle, then try a POKé BALL!\pTake these TMs and my MOVE\nCOMPENDIUM. They'll help you\pexperiment with new moves!$"
+	.string "BIRCH: Weaken wild POKéMON, then\nthrow a POKé BALL to catch them!$"
 
 Pox_Text_Supplies::
-	.string "OAK: Here are five POKé BALLS\nto get you started!\p{PLAYER} put the POKé BALLS in\nthe BAG.$"
+	.string "{PLAYER} received five POKé BALLS!$"
 
 Pox_Text_SuppliesFull::
 	.string "OAK: Your POKé BALL pocket is\nfull. Make some space and\pspeak to me again. I'll keep\nfive balls for you.$"
 
 Pox_Text_OakBefore::
-	.string "OAK: TREECKO, SQUIRTLE, or\nCYNDAQUIL... Which will it be?\pExamine the POKé BALLS on the\ntable to the right.$"
+	.string "OAK: Check the balls on the right.\nWhich partner catches your eye?$"
 
 Pox_Text_ElmBefore::
-	.string "ELM: CYNDAQUIL is in the\nrightmost ball. It's shy, but\pvery affectionate once it\ntrusts you.$"
+	.string "ELM: CYNDAQUIL is on the right.\nGive it time to warm up to you!$"
 
 Pox_Text_BirchBefore::
-	.string "BIRCH: TREECKO is in the\nleftmost ball. The middle one\pholds OAK's SQUIRTLE.\pChoose whichever makes you\ncurious!$"
+	.string "BIRCH: TREECKO is on the left.\nKeeping up with it keeps me fit!$"
 
 Pox_Text_OakAfter::
-	.string "OAK: Head north through ROUTE\n101 to OLDALE TOWN.\pThe road west of OLDALE leads\ntoward CHERRYGROVE.\pOur lab is always open. Enjoy\nyour journey, {PLAYER}!$"
+	.string "OAK: Follow ROUTE 101 north to\nOLDALE. Safe travels, {PLAYER}!$"
 
 Pox_Text_ElmAfter::
-	.string "ELM: I should return to my own\nlab in JOHTO. Take good care of\pyour new partner!$"
+	.string "ELM: I'm off to GOLDENROD CITY.\nLook after each other!$"
 
 Pox_Text_BirchAfter::
-	.string "BIRCH: Time for me to get back\nto fieldwork in HOENN! Record\pevery unexpected habitat you\nfind.$"
+	.string "BIRCH: I'm heading to FORTREE.\nSee you out in the field!$"
 
 Pox_ElmTMs::
     goto_if_set FLAG_POX_ELM_TMS, Pox_ElmTMsDone
@@ -595,7 +655,7 @@ Pox_ElmCompendiumFull::
     msgbox Pox_Text_ElmCompendiumFull, MSGBOX_DEFAULT
     return
 Pox_Text_ElmTMs::
-    .string "BIRCH: Here is a full set of TMs\nand HMs! I've included a MOVE\pCOMPENDIUM for level, Egg, and\ntutor moves.\p{PLAYER} received every TM, every\nHM, and the MOVE COMPENDIUM!$"
+	.string "BIRCH: Take these TMs and HMs!\nThe MOVE COMPENDIUM also teaches\plevel-up, Egg, and tutor moves.$"
 Pox_Text_ElmTMsFull::
     .string "BIRCH: Make room in your TM\npocket, then speak to me.\pI'll give you the rest!$"
 Pox_Text_ElmCompendiumFull::
@@ -604,6 +664,9 @@ Pox_Text_ElmCompendiumFull::
 Pox_ElmLeave::
     goto_if_unset FLAG_POX_ELM_EXP_ALL, Pox_ElmLeaveDone
     msgbox Pox_Text_ElmAfter, MSGBOX_DEFAULT
+    closemessage
+    applymovement LOCALID_PLAYER, Pox_GiveProfessorRoom
+    waitmovement 0
     applymovement 12, Pox_ElmLeaveMovement
     waitmovement 0
     removeobject 12
@@ -613,6 +676,9 @@ Pox_ElmLeaveDone::
 Pox_BirchLeave::
     goto_if_unset FLAG_POX_ELM_TMS, Pox_BirchLeaveDone
     msgbox Pox_Text_BirchAfter, MSGBOX_DEFAULT
+    closemessage
+    applymovement LOCALID_PLAYER, Pox_GiveProfessorRoom
+    waitmovement 0
     applymovement 13, Pox_BirchLeaveMovement
     waitmovement 0
     removeobject 13
@@ -620,7 +686,7 @@ Pox_BirchLeaveDone::
     return
 
 Pox_ElmLeaveMovement:
-    walk_right
+    walk_down
     walk_right
     walk_down
     walk_down
@@ -632,9 +698,7 @@ Pox_ElmLeaveMovement:
     step_end
 
 Pox_BirchLeaveMovement:
-    walk_left
-    walk_left
-    walk_left
+    walk_down
     walk_left
     walk_down
     walk_down
@@ -643,4 +707,9 @@ Pox_BirchLeaveMovement:
     walk_down
     walk_down
     walk_down
+    step_end
+
+Pox_GiveProfessorRoom:
+    walk_down
+    face_up
     step_end

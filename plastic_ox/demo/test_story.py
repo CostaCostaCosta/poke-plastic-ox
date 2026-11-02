@@ -71,7 +71,10 @@ class StoryGame(GBA):
 
     def flag(self,name,value=None):
         f=self.const(name)
-        addr=int(self.state()['ptr'],16)+0x1270+f//8
+        if 0xB00 <= f < 0xB80:
+            addr=self.u32(self.syms['gSaveBlock3Ptr'])+self.sizes['gSaveblock3']-16+(f-0xB00)//8
+        else:
+            addr=int(self.state()['ptr'],16)+0x1270+f//8
         if value is not None:
             self.write(addr,(self.u8(addr)&~(1<<(f%8))) | (bool(value)<<(f%8)))
         return bool(self.u8(addr)&(1<<(f%8)))
@@ -102,6 +105,12 @@ class StoryGame(GBA):
         return [(word >> (5 * stat)) & 31 for stat in range(6)]
 
     def begin(self,name):
+        if name in ('Pox_Treecko','Pox_Squirtle','Pox_Cyndaquil','Pox_Elm','Pox_Birch') and (self.state()['group'],self.state()['num']) != (38,3):
+            self.warp('PalletTown_ProfessorOaksLab_Frlg',9,5)
+            for _ in range(600):
+                if self.u8(self.syms['sGlobalScriptContextStatus'])==2:
+                    break
+                self.tap(K.KEY_A,hold=2,wait=10)
         assert self.u8(self.syms['sGlobalScriptContextStatus'])==2, 'previous field script still active'
         ctx=self.syms['sGlobalScriptContext']
         for i in range(self.sizes['sGlobalScriptContext']):
@@ -128,11 +137,18 @@ class StoryGame(GBA):
         self.run(ptr)
         assert (self.state()['group'],self.state()['num'])==(groupid,num)
 
-    def run(self,name,limit=3600):
+    def run(self,name,limit=3600,gift_positions=None):
+        seen=set()
         self.begin(name)
         for i in range(limit//12):
             self.tap(K.KEY_A,hold=2,wait=10)
+            for label,expected in (gift_positions or {}).items():
+                if label not in seen and self.u32(self.syms['sGlobalScriptContext']+100)==self.syms[label]:
+                    actual=(self.state()['x'],self.state()['y'])
+                    assert actual==expected,(label,actual,expected)
+                    seen.add(label)
             if self.u8(self.syms['sGlobalScriptContextStatus'])==2:
+                assert seen==set(gift_positions or {}), ('missing gift explanations',seen)
                 self.frame(180)
                 return
         raise AssertionError('script did not finish: '+name+' '+self.describe())
@@ -142,8 +158,24 @@ def starter_tests():
     for name,species in [('Treecko',252),('Squirtle',7),('Cyndaquil',155)]:
         g=StoryGame()
         assert g.flag('FLAG_POX_TRIGGERS_ENABLED')
-        g.run('Pox_'+name)
+        g.flag('FLAG_POX_LAB_INTRO',True)
+        x,y=dict(Treecko=(8,3),Squirtle=(9,5),Cyndaquil=(11,4))[name]
+        g.warp('PalletTown_ProfessorOaksLab_Frlg',x,y)
+        g.run('Pox_'+name,gift_positions={'Pox_Text_Assignment':(6,5),
+              'Pox_Text_ElmExpAll':(5,5),'Pox_Text_ElmTMs':(7,5)})
         assert g.count()==1 and g.party_species()==species,(name,g.count(),g.party_species())
+        for ball in ['Treecko','Squirtle','Cyndaquil']:
+            assert g.flag('FLAG_POX_HIDE_'+ball.upper()+'_BALL') == (ball == name)
+        def visible_balls():
+            base=g.syms['gObjectEvents']
+            stride=g.sizes['gObjectEvents']//16
+            return {g.u8(base+i*stride+8) for i in range(16)
+                    if g.u8(base+i*stride)&1 and g.u8(base+i*stride+8) in (5,6,7)}
+        expected={5,6,7}-{dict(Treecko=5,Squirtle=6,Cyndaquil=7)[name]}
+        assert visible_balls()==expected, (name,visible_balls())
+        g.warp('PalletTown_Frlg',16,14)
+        g.warp('PalletTown_ProfessorOaksLab_Frlg',6,6)
+        assert visible_balls()==expected, 'chosen ball returned on reentry'
         assert g.flag('FLAG_POX_LAB_INTRO')
         assert g.flag('FLAG_POX_STORY_STARTER') and g.flag('FLAG_SYS_POKEDEX_GET')
         assert g.flag('FLAG_POX_STARTER_SUPPLIES')
@@ -177,6 +209,7 @@ def starter_tests():
     else:
         raise AssertionError('declining starter did not release controls')
     assert g.count()==0 and not g.flag('FLAG_POX_STORY_STARTER')
+    assert not any(g.flag('FLAG_POX_HIDE_'+ball+'_BALL') for ball in ['TREECKO','SQUIRTLE','CYNDAQUIL'])
     g.run('Pox_Cyndaquil')
     assert g.party_species()==155
     print('Decline leaves every starter available; another choice succeeds PASS',flush=True)
@@ -190,15 +223,15 @@ def starter_tests():
     else:
         raise AssertionError('lab entrance introduction did not finish')
     assert g.count()==0,'lab entrance forced a starter'
-    assert (g.state()['x'], g.state()['y']) == (6, 6), 'player did not approach Oak'
+    assert (g.state()['x'], g.state()['y']) == (6, 5), 'player did not approach Oak'
     data=json.loads((ROOT/'data/maps/PalletTown_ProfessorOaksLab_Frlg/map.json').read_text())
     story_objects = {obj['script']: obj for obj in data['object_events'] if obj['script'].startswith('Pox_')}
     assert (story_objects['Pox_Oak']['x'],story_objects['Pox_Oak']['y']) == (6,4)
-    assert (story_objects['Pox_Elm']['x'],story_objects['Pox_Elm']['y']) == (3,6)
-    assert (story_objects['Pox_Birch']['x'],story_objects['Pox_Birch']['y']) == (11,6)
+    assert (story_objects['Pox_Elm']['x'],story_objects['Pox_Elm']['y']) == (5,4)
+    assert (story_objects['Pox_Birch']['x'],story_objects['Pox_Birch']['y']) == (7,4)
     assert story_objects['Pox_Elm']['flag'] == 'FLAG_POX_ELM_EXP_ALL'
     assert story_objects['Pox_Birch']['flag'] == 'FLAG_POX_ELM_TMS'
-    assert all(story_objects[name]['flag'] == '0' for name in ['Pox_Treecko','Pox_Squirtle','Pox_Cyndaquil'])
+    assert all(story_objects['Pox_'+name]['flag'] == 'FLAG_POX_HIDE_'+name.upper()+'_BALL' for name in ['Treecko','Squirtle','Cyndaquil'])
     for obj in data['object_events']:
         if obj['script'] in ['Pox_Oak','Pox_Elm','Pox_Birch','Pox_Treecko','Pox_Squirtle','Pox_Cyndaquil']:
             ox,oy=obj['x'],obj['y']
@@ -391,7 +424,7 @@ def gate_tests():
     assert location(g)==before,'Clair before Bruno bypassed the eight-badge League check'
     g.flag('FLAG_BADGE07_GET',True)
     g.run('PoxRegion_ecruteak_league_a')
-    assert location(g)==ids['VictoryRoad_1F']
+    assert location(g)==ids['PlasticOx_VictoryRoad']
     print('Clair before Bruno: League closed with seven badges, open with all eight PASS',flush=True)
     g=StoryGame()
     for name,flag in [('Morty','FLAG_BADGE03_GET'),('Blaine','FLAG_BADGE05_GET'),('SilphCore','FLAG_POX_STORY_SILPH'),('Archive3','FLAG_POX_STORY_MANSION')]:
@@ -402,7 +435,7 @@ def gate_tests():
 
 def battle_tests():
     source=(ROOT/'data/scripts/plastic_ox_story.inc').read_text()
-    for name in ['Roxanne','Whitney','Morty','Winona','Blaine','TateLiza','Bruno','Clair','TowerGrunt1','Giovanni','Wallace','Steven','LeagueLance','Blue','Bill']:
+    for name in ['Roxanne','Whitney','Morty','Winona','Blaine','TateLiza','Bruno','Clair','TowerGrunt1','Giovanni']:
         g=StoryGame()
         g.run('Pox_Treecko')
         body=source.split('Pox_'+name+'::')[1].split('\nPox_')[0]

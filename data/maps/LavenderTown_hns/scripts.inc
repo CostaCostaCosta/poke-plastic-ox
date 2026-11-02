@@ -47,16 +47,16 @@ LavenderTown_EventScript_Sign4::
 	end
 
 LavenderTown_EventScript_Npc1_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "People come here to remember the\nPOKéMON they loved.$"
 
 LavenderTown_EventScript_Npc2_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Speak softly near the tower.\nSome visitors are grieving.$"
 
 LavenderTown_EventScript_Npc3_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "People come here to remember the\nPOKéMON they loved.$"
 
 LavenderTown_EventScript_Npc4_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Speak softly near the tower.\nSome visitors are grieving.$"
 
 LavenderTown_EventScript_Sign1_Text:
 	.string "A sign from the old routes.$"
@@ -69,3 +69,10 @@ LavenderTown_EventScript_Sign3_Text:
 
 LavenderTown_EventScript_Sign4_Text:
 	.string "A sign from the old routes.$"
+
+LavenderTown_EventScript_SouthRoadClosed::
+	msgbox LavenderTown_EventScript_SouthRoadClosed_Text, MSGBOX_NPC
+	end
+
+LavenderTown_EventScript_SouthRoadClosed_Text:
+	.string "The southern road is closed.\nPlease use another route.$"

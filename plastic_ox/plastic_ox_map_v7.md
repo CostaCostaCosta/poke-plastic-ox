@@ -494,7 +494,9 @@ The player returns to Ecruteak and finally uses the west exit that has been visi
 
 Progression:
 
-**Ecruteak west → Victory Road → Pokémon League → Elite Four → Champion Bill**
+**Ecruteak west → outdoor Victory Road → Indigo Plateau → Elite Four → Champion Bill**
+
+The traditional Victory Road cave is removed from this path. The implemented approach uses the dry northern portion of Heart & Soul Route 26, keeping the ridge, grass, optional terraces and two houses. Eight badges are checked across Ecruteak's western gate. No mandatory HM is required. The Indigo lobby supplies healing, PC access, shopping and the League entrance; a downhill service returns to Ecruteak. See [endgame map ports and teams](alpha/league/README.md).
 
 This gives Ecruteak a satisfying second major role and closes a long-standing map promise.
 

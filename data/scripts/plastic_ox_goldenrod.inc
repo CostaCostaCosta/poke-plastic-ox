@@ -215,6 +215,7 @@ PoxGoldenrod_Shop2F_Items:
 	.2byte ITEM_PARALYZE_HEAL
 	.2byte ITEM_AWAKENING
 	.2byte ITEM_REPEL
+	.2byte ITEM_LEFTOVERS
 	.2byte ITEM_NONE
 
 PoxGoldenrod_Shop3F::
@@ -228,6 +229,7 @@ PoxGoldenrod_Shop3F_Items:
 	.2byte ITEM_TM_PROTECT
 	.2byte ITEM_TM_RETURN
 	.2byte ITEM_TM_FRUSTRATION
+	.2byte ITEM_LEFTOVERS
 	.2byte ITEM_NONE
 
 PoxGoldenrod_Shop4F::
@@ -242,6 +244,7 @@ PoxGoldenrod_Shop4F_Items:
 	.2byte ITEM_WATER_STONE
 	.2byte ITEM_THUNDER_STONE
 	.2byte ITEM_LEAF_STONE
+	.2byte ITEM_LEFTOVERS
 	.2byte ITEM_NONE
 
 PoxGoldenrod_Shop5F::

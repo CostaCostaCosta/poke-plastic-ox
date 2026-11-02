@@ -11124,6 +11124,20 @@
       "include_in_versions": [
         "emerald"
       ]
+    },
+    {
+      "id": "LAYOUT_PLASTIC_OX_VICTORY_ROAD",
+      "name": "PlasticOx_VictoryRoad_Layout",
+      "width": 39,
+      "height": 51,
+      "primary_tileset": "gTileset_Johto_General_Hns",
+      "secondary_tileset": "gTileset_Blackthorn_Hns",
+      "border_filepath": "data/layouts/PlasticOx_VictoryRoad/border.bin",
+      "blockdata_filepath": "data/layouts/PlasticOx_VictoryRoad/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
     }
   ]
 }

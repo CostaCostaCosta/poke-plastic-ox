@@ -15,16 +15,16 @@
   "connections": [],
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_SIGN",
-      "x": 11,
-      "y": 18,
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_3",
+      "x": 15,
+      "y": 9,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PoxRegion_victory_indigo_b_Sign",
+      "script": "PoxLeague_Shortcut",
       "flag": "0"
     }
   ],
@@ -40,23 +40,50 @@
   "coord_events": [
     {
       "type": "trigger",
+      "x": 10,
+      "y": 19,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": 0,
+      "script": "PoxLeague_Downhill"
+    },
+    {
+      "type": "trigger",
+      "x": 11,
+      "y": 19,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": 0,
+      "script": "PoxLeague_Downhill"
+    },
+    {
+      "type": "trigger",
       "x": 12,
       "y": 19,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var": "VAR_TEMP_0",
       "var_value": 0,
-      "script": "PoxRegion_victory_indigo_b"
-    }
-  ],
-  "bg_events": [
+      "script": "PoxLeague_Downhill"
+    },
     {
-      "type": "sign",
-      "x": 11,
-      "y": 18,
+      "type": "trigger",
+      "x": 13,
+      "y": 19,
       "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "PoxRegion_victory_indigo_b_Sign"
+      "var": "VAR_TEMP_0",
+      "var_value": 0,
+      "script": "PoxLeague_Downhill"
+    },
+    {
+      "type": "trigger",
+      "x": 14,
+      "y": 19,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": 0,
+      "script": "PoxLeague_Downhill"
     }
   ],
+  "bg_events": [],
   "region": "REGION_HOENN"
 }

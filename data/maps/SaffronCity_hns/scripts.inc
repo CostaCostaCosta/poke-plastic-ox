@@ -66,28 +66,28 @@ SaffronCity_EventScript_Npc9::
 	end
 
 SaffronCity_EventScript_Npc1_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The busy streets make the DOJO\nfeel wonderfully quiet.$"
 
 SaffronCity_EventScript_Npc2_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Trainers come from far away to\ntest themselves at the DOJO.$"
 
 SaffronCity_EventScript_Npc3_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The busy streets make the DOJO\nfeel wonderfully quiet.$"
 
 SaffronCity_EventScript_Npc4_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Trainers come from far away to\ntest themselves at the DOJO.$"
 
 SaffronCity_EventScript_Npc5_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The busy streets make the DOJO\nfeel wonderfully quiet.$"
 
 SaffronCity_EventScript_Npc6_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Trainers come from far away to\ntest themselves at the DOJO.$"
 
 SaffronCity_EventScript_Npc7_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The busy streets make the DOJO\nfeel wonderfully quiet.$"
 
 SaffronCity_EventScript_Npc8_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Trainers come from far away to\ntest themselves at the DOJO.$"
 
 SaffronCity_EventScript_Npc9_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The busy streets make the DOJO\nfeel wonderfully quiet.$"

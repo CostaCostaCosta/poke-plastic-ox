@@ -143,7 +143,7 @@ MtMoon_1F_EventScript_ItemParalyzeHeal::
 	end
 
 MtMoon_1F_EventScript_ItemTM09::
-	finditem ITEM_TM_BULLET_SEED
+	finditem ITEM_BIG_PEARL
 	end
 
 MtMoon_1F_EventScript_ItemPotion::

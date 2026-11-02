@@ -45,19 +45,19 @@ BlackthornCity_EventScript_Npc6::
 	end
 
 BlackthornCity_EventScript_Npc1_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Dragon training takes patience.\nPower alone is not enough.$"
 
 BlackthornCity_EventScript_Npc2_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The mountain air makes every\nmorning feel sharp and clear.$"
 
 BlackthornCity_EventScript_Npc3_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Dragon training takes patience.\nPower alone is not enough.$"
 
 BlackthornCity_EventScript_Npc4_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The mountain air makes every\nmorning feel sharp and clear.$"
 
 BlackthornCity_EventScript_Npc5_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Dragon training takes patience.\nPower alone is not enough.$"
 
 BlackthornCity_EventScript_Npc6_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The mountain air makes every\nmorning feel sharp and clear.$"

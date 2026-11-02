@@ -39,12 +39,17 @@ PlasticOxContest_EventScript_EnterSouth::
 	end
 
 PlasticOxContest_EventScript_EntryUnavailable::
+	compare VAR_RESULT, POX_CONTEST_ENTRY_PASS_REQUIRED
+	goto_if_eq PlasticOxContest_EventScript_PassRequired
 	compare VAR_RESULT, POX_CONTEST_ENTRY_CLOSED
 	goto_if_eq PlasticOxContest_EventScript_Closed
 	compare VAR_RESULT, POX_CONTEST_ENTRY_USED
 	goto_if_eq PlasticOxContest_EventScript_Used
 	compare VAR_RESULT, POX_CONTEST_ENTRY_NO_ROOM
 	goto_if_eq PlasticOxContest_EventScript_NoRoom
+	return
+PlasticOxContest_EventScript_PassRequired::
+	msgbox PlasticOxContest_Text_PassRequired, MSGBOX_DEFAULT
 	return
 PlasticOxContest_EventScript_Closed::
 	msgbox PlasticOxContest_Text_Closed, MSGBOX_DEFAULT
@@ -160,6 +165,7 @@ PlasticOxContest_EventScript_Release::
 PlasticOxContest_Text_Enter:
 	.string "The Bug-Catching Contest is held\n"
 	.string "Tuesday, Thursday, and Saturday!\p"
+	.string "Thursday requires a Contest Pass.\p"
 	.string "Choose one healthy Pokémon to take\n"
 	.string "inside. Your others will wait safely.\p"
 	.string "You get 20 Sport Balls and 500\n"
@@ -191,9 +197,15 @@ PlasticOxContest_Text_InvalidMon:
 PlasticOxContest_Text_RegisterFailed:
 	.string "We cannot start a contest right\n"
 	.string "now. Please ask me again.$"
+PlasticOxContest_Text_PassRequired:
+	.string "Thursday entry requires a\n"
+	.string "Contest Pass. Bring one to join!\p"
+	.string "Tuesday and Saturday contests\n"
+	.string "are open without a pass.$"
 PlasticOxContest_Text_Closed:
 	.string "The Bug-Catching Contest runs on\n"
 	.string "Tuesday, Thursday, and Saturday.\p"
+	.string "Thursday requires a Contest Pass.\p"
 	.string "The park is open for a normal visit\n"
 	.string "today.$"
 PlasticOxContest_Text_Used:

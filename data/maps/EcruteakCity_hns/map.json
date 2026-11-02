@@ -21,30 +21,17 @@
   ],
   "object_events": [
     {
-      "graphics_id": "OBJ_EVENT_GFX_LASS_HNS",
-      "x": 35,
-      "y": 43,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "Pox_MortyGuide",
-      "flag": "0"
-    },
-    {
       "local_id": "LOCALID_ECRUTEAK_GRAMPS",
       "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_HNS",
       "x": 36,
-      "y": 32,
+      "y": 41,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 1,
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Pox_DanceGuide",
+      "script": "EcruteakCity_EventScript_Npc2",
       "flag": "0"
     },
     {
@@ -57,7 +44,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "EcruteakCity_EventScript_KimonoRoadblock",
+      "script": "EcruteakCity_EventScript_Npc3",
       "flag": "0"
     },
     {
@@ -74,7 +61,7 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_POKE_BALL",
+      "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_HNS",
       "x": 19,
       "y": 15,
       "elevation": 0,
@@ -102,8 +89,8 @@
     {
       "local_id": "LOCALID_ECRUTEK_SILVER",
       "graphics_id": "OBJ_EVENT_GFX_SILVER_HNS",
-      "x": 39,
-      "y": 39,
+      "x": 41,
+      "y": 41,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
@@ -114,30 +101,30 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SIGN",
+      "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
       "x": 53,
       "y": 32,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "EcruteakCity_EventScript_KimonoRoadblock",
-      "flag": "0"
+      "script": "EcruteakCity_EventScript_Npc3",
+      "flag": "FLAG_BADGE03_GET"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_SIGN",
+      "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
       "x": 55,
       "y": 42,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "EcruteakCity_EventScript_KimonoRoadblock",
-      "flag": "0"
+      "script": "EcruteakCity_EventScript_Npc3",
+      "flag": "FLAG_BADGE03_GET"
     }
   ],
   "warp_events": [
@@ -180,7 +167,7 @@
       "x": 28,
       "y": 47,
       "dest_map": "MAP_ECRUTEAK_CITY_HOUSE2_HNS",
-      "dest_warp_id": "0",
+      "dest_warp_id": "1",
       "elevation": 0
     },
     {
@@ -191,17 +178,38 @@
       "elevation": 0
     },
     {
-      "x": 8,
-      "y": 35,
-      "dest_map": "MAP_GATE_ECRUTEAK_CITY_ROUTE38_HNS",
-      "dest_warp_id": "0",
-      "elevation": 0
-    },
-    {
       "x": 22,
       "y": 14,
       "elevation": 0,
       "dest_map": "MAP_PLASTIC_OX_BURNED_TOWER",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 8,
+      "y": 34,
+      "elevation": 0,
+      "dest_map": "MAP_GATE_ECRUTEAK_CITY_ROUTE38_HNS",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 8,
+      "y": 35,
+      "elevation": 0,
+      "dest_map": "MAP_GATE_ECRUTEAK_CITY_ROUTE38_HNS",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 8,
+      "y": 36,
+      "elevation": 0,
+      "dest_map": "MAP_GATE_ECRUTEAK_CITY_ROUTE38_HNS",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 8,
+      "y": 37,
+      "elevation": 0,
+      "dest_map": "MAP_GATE_ECRUTEAK_CITY_ROUTE38_HNS",
       "dest_warp_id": "0"
     }
   ],
@@ -211,9 +219,36 @@
       "x": 8,
       "y": 34,
       "elevation": 0,
-      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var": "VAR_TEMP_0",
       "var_value": 0,
-      "script": "PoxRegion_ecruteak_league_a"
+      "script": "PoxEcruteak_WestEntrance"
+    },
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 35,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": 0,
+      "script": "PoxEcruteak_WestEntrance"
+    },
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 36,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": 0,
+      "script": "PoxEcruteak_WestEntrance"
+    },
+    {
+      "type": "trigger",
+      "x": 8,
+      "y": 37,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": 0,
+      "script": "PoxEcruteak_WestEntrance"
     }
   ],
   "bg_events": [],

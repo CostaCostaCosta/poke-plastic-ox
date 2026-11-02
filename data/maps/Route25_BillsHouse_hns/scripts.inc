@@ -30,14 +30,14 @@ Route25_BillsHouse_EventScript_Npc4::
 	end
 
 Route25_BillsHouse_EventScript_Npc1_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The trees shelter small POKéMON.\nWatch the grass as you pass.$"
 
 Route25_BillsHouse_EventScript_Npc2_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "I always check my supplies\nbefore heading into the trees.$"
 
 Route25_BillsHouse_EventScript_Npc3_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The trees shelter small POKéMON.\nWatch the grass as you pass.$"
 
 Route25_BillsHouse_EventScript_Npc4_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "I always check my supplies\nbefore heading into the trees.$"
 

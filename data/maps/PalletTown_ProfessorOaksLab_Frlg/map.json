@@ -86,7 +86,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Pox_Treecko",
-      "flag": "0"
+      "flag": "FLAG_POX_HIDE_TREECKO_BALL"
     },
     {
       "local_id": "LOCALID_SQUIRTLE_BALL",
@@ -101,7 +101,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Pox_Squirtle",
-      "flag": "0"
+      "flag": "FLAG_POX_HIDE_SQUIRTLE_BALL"
     },
     {
       "local_id": "LOCALID_CHARMANDER_BALL",
@@ -116,7 +116,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "Pox_Cyndaquil",
-      "flag": "0"
+      "flag": "FLAG_POX_HIDE_CYNDAQUIL_BALL"
     },
     {
       "local_id": "LOCALID_OAKS_LAB_RIVAL",
@@ -178,8 +178,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SCIENTIST",
-      "x": 3,
-      "y": 6,
+      "x": 5,
+      "y": 4,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
@@ -191,8 +191,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_PROF_BIRCH",
-      "x": 11,
-      "y": 6,
+      "x": 7,
+      "y": 4,
       "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,

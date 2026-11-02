@@ -665,7 +665,9 @@ Progression:
 
 **Ecruteak west → League approach → Victory Road → Pokémon League**
 
-Victory Road should focus on exploration, strong Trainers, final team refinement, resources, optional secrets, and anticipation.
+Victory Road is an outdoor route, never a cave. It uses the dry northern ridge of Generation II Route 26, adapted from Heart & Soul, with six competitive trainers, optional terraces and rest houses, high-level grass encounters, and no mandatory HMs or puzzles. It leads directly to Indigo Plateau.
+
+The playable implementation, fixed League rosters, challenge rules and verification commands are documented in [the endgame specification](alpha/league/README.md).
 
 ---
 

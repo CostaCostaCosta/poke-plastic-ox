@@ -1,0 +1,824 @@
+=== TRAINER_PLASTIC_OX_WALLACE ===
+Name: WALLACE
+Class: Elite Four
+Pic: Champion Wallace
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Salamence @ Choice Band
+Level: 62
+Ability: Intimidate
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Hidden Power
+- Earthquake
+- Rock Slide
+- Brick Break
+
+Swampert @ Leftovers
+Level: 62
+Ability: Torrent
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 240 HP / 216 Def / 52 SpA
+Relaxed Nature
+- Earthquake
+- Ice Beam
+- Surf
+- Protect
+
+Tyranitar @ Choice Band
+Level: 62
+Ability: Sand Stream
+IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Rock Slide
+- Earthquake
+- Brick Break
+- Hidden Power
+
+Metagross @ Leftovers
+Level: 61
+Ability: Clear Body
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 176 Atk / 80 Def
+Adamant Nature
+- Meteor Mash
+- Earthquake
+- Protect
+- Explosion
+
+Forretress @ Leftovers
+Level: 61
+Ability: Sturdy
+IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
+Careful Nature
+- Spikes
+- Rapid Spin
+- Hidden Power
+- Explosion
+
+Gengar @ Leftovers
+Level: 61
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Ice Punch
+- Will-O-Wisp
+- Taunt
+
+=== TRAINER_PLASTIC_OX_STEVEN ===
+Name: STEVEN
+Class: Elite Four
+Pic: Steven
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Metagross @ Leftovers
+Level: 62
+Ability: Clear Body
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 176 Atk / 80 Def
+Adamant Nature
+- Meteor Mash
+- Earthquake
+- Protect
+- Explosion
+
+Salamence @ Leftovers
+Level: 62
+Ability: Intimidate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 220 Def / 36 Spe
+Bold Nature
+- Wish
+- Protect
+- Flamethrower
+- Toxic
+
+Flygon @ Leftovers
+Level: 62
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 Spe
+Jolly Nature
+- Earthquake
+- Rock Slide
+- Toxic
+- Protect
+
+Aggron @ Choice Band
+Level: 62
+Ability: Rock Head
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 140 HP / 252 Atk / 116 Spe
+Adamant Nature
+- Rock Slide
+- Double-Edge
+- Earthquake
+- Brick Break
+
+Armaldo @ Leftovers
+Level: 61
+Ability: Battle Armor
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 Def
+Impish Nature
+- Rock Slide
+- Knock Off
+- Toxic
+- Rapid Spin
+
+Claydol @ Leftovers
+Level: 61
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 216 Def / 40 SpA
+Relaxed Nature
+- Earthquake
+- Ice Beam
+- Rapid Spin
+- Explosion
+
+=== TRAINER_PLASTIC_OX_LEAGUELANCE ===
+Name: LANCE
+Class: Elite Four
+Pic: Elite Four Lance Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Gyarados @ Leftovers
+Level: 62
+Ability: Intimidate
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 31 Spe
+EVs: 68 HP / 252 Atk / 188 Spe
+Adamant Nature
+- Dragon Dance
+- Hidden Power
+- Earthquake
+- Taunt
+
+Starmie @ Leftovers
+Level: 62
+Ability: Natural Cure
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Surf
+- Ice Beam
+- Thunderbolt
+- Recover
+
+Charizard @ Leftovers
+Level: 62
+Ability: Blaze
+IVs: 31 HP / 31 Atk / 30 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 4 Atk / 252 SpA / 252 Spe
+Hasty Nature
+- Fire Blast
+- Hidden Power
+- Dragon Claw
+- Brick Break
+
+Claydol @ Leftovers
+Level: 61
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 216 Def / 40 SpA
+Relaxed Nature
+- Earthquake
+- Ice Beam
+- Rapid Spin
+- Explosion
+
+Medicham @ Choice Band
+Level: 61
+Ability: Pure Power
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Brick Break
+- Rock Slide
+- Shadow Ball
+- High Jump Kick
+
+Swampert @ Leftovers
+Level: 62
+Ability: Torrent
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 240 HP / 16 Atk / 252 SpA
+Quiet Nature
+- Hydro Pump
+- Earthquake
+- Ice Beam
+- Roar
+
+=== TRAINER_PLASTIC_OX_BLUE ===
+Name: BLUE
+Class: Elite Four
+Pic: Champion Rival Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Tyranitar @ Leftovers
+Level: 64
+Ability: Sand Stream
+IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Dragon Dance
+- Rock Slide
+- Earthquake
+- Hidden Power
+
+Salamence @ Leftovers
+Level: 64
+Ability: Intimidate
+IVs: 31 HP / 31 Atk / 30 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 4 Atk / 252 SpA / 252 Spe
+Rash Nature
+- Dragon Claw
+- Fire Blast
+- Brick Break
+- Hidden Power
+
+Metagross @ Lum Berry
+Level: 64
+Ability: Clear Body
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 168 HP / 252 Atk / 88 Spe
+Adamant Nature
+- Agility
+- Meteor Mash
+- Earthquake
+- Explosion
+
+Gengar @ Leftovers
+Level: 63
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Ice Punch
+- Will-O-Wisp
+- Taunt
+
+Gyarados @ Leftovers
+Level: 64
+Ability: Intimidate
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 31 Spe
+EVs: 68 HP / 252 Atk / 188 Spe
+Adamant Nature
+- Dragon Dance
+- Hidden Power
+- Earthquake
+- Taunt
+
+Forretress @ Leftovers
+Level: 63
+Ability: Sturdy
+IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
+Careful Nature
+- Spikes
+- Rapid Spin
+- Hidden Power
+- Explosion
+
+=== TRAINER_PLASTIC_OX_BILL ===
+Name: BILL
+Class: Champion
+Pic: Scientist Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Metagross @ Lum Berry
+Level: 64
+Ability: Clear Body
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 168 HP / 252 Atk / 88 Spe
+Adamant Nature
+- Agility
+- Meteor Mash
+- Earthquake
+- Explosion
+
+Starmie @ Leftovers
+Level: 64
+Ability: Natural Cure
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Surf
+- Ice Beam
+- Thunderbolt
+- Rapid Spin
+
+Cloyster @ Leftovers
+Level: 63
+Ability: Shell Armor
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
+Bold Nature
+- Spikes
+- Surf
+- Ice Beam
+- Explosion
+
+Flygon @ Choice Band
+Level: 63
+Ability: Levitate
+IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Earthquake
+- Rock Slide
+- Hidden Power
+- Double-Edge
+
+Swampert @ Leftovers
+Level: 63
+Ability: Torrent
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 240 HP / 216 Def / 52 SpA
+Relaxed Nature
+- Earthquake
+- Ice Beam
+- Surf
+- Protect
+
+Charizard @ Leftovers
+Level: 64
+Ability: Blaze
+IVs: 31 HP / 31 Atk / 30 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 4 Atk / 252 SpA / 252 Spe
+Hasty Nature
+- Fire Blast
+- Hidden Power
+- Dragon Claw
+- Brick Break
+
+=== TRAINER_PLASTIC_OX_VICTORYROAD ===
+Name: ACE
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Flygon @ Choice Band
+Level: 58
+Ability: Levitate
+IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Earthquake
+- Rock Slide
+- Hidden Power
+- Double-Edge
+
+Cloyster @ Leftovers
+Level: 58
+Ability: Shell Armor
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
+Bold Nature
+- Spikes
+- Surf
+- Ice Beam
+- Explosion
+
+Starmie @ Leftovers
+Level: 58
+Ability: Natural Cure
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Surf
+- Ice Beam
+- Thunderbolt
+- Recover
+
+Swampert @ Leftovers
+Level: 58
+Ability: Torrent
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 240 HP / 216 Def / 52 SpA
+Relaxed Nature
+- Earthquake
+- Ice Beam
+- Surf
+- Protect
+
+Forretress @ Leftovers
+Level: 58
+Ability: Sturdy
+IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
+Careful Nature
+- Spikes
+- Rapid Spin
+- Hidden Power
+- Explosion
+
+Gengar @ Leftovers
+Level: 58
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Ice Punch
+- Will-O-Wisp
+- Taunt
+
+=== TRAINER_PLASTIC_OX_RIDGE_RAIN ===
+Name: MARINA
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Ludicolo @ Leftovers
+Level: 58
+Ability: Swift Swim
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Modest Nature
+- Rain Dance
+- Surf
+- Ice Beam
+- Giga Drain
+
+Kingdra @ Leftovers
+Level: 58
+Ability: Swift Swim
+IVs: 31 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Modest Nature
+- Rain Dance
+- Surf
+- Ice Beam
+- Hidden Power
+
+Jolteon @ Leftovers
+Level: 58
+Ability: Volt Absorb
+IVs: 30 HP / 31 Atk / 30 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Hidden Power
+- Substitute
+- Baton Pass
+
+Metagross @ Leftovers
+Level: 58
+Ability: Clear Body
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 176 Atk / 80 Def
+Adamant Nature
+- Meteor Mash
+- Earthquake
+- Protect
+- Explosion
+
+Swampert @ Leftovers
+Level: 58
+Ability: Torrent
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 240 HP / 216 Def / 52 SpA
+Relaxed Nature
+- Earthquake
+- Ice Beam
+- Surf
+- Protect
+
+Gengar @ Leftovers
+Level: 58
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Ice Punch
+- Will-O-Wisp
+- Taunt
+
+=== TRAINER_PLASTIC_OX_RIDGE_SAND ===
+Name: DARIUS
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Tyranitar @ Choice Band
+Level: 58
+Ability: Sand Stream
+IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Rock Slide
+- Earthquake
+- Brick Break
+- Hidden Power
+
+Skarmory @ Leftovers
+Level: 58
+Ability: Keen Eye
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 Spe
+Impish Nature
+- Spikes
+- Whirlwind
+- Drill Peck
+- Rest
+
+Flygon @ Choice Band
+Level: 58
+Ability: Levitate
+IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Earthquake
+- Rock Slide
+- Hidden Power
+- Double-Edge
+
+Swampert @ Leftovers
+Level: 58
+Ability: Torrent
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 240 HP / 216 Def / 52 SpA
+Relaxed Nature
+- Earthquake
+- Ice Beam
+- Surf
+- Protect
+
+Gengar @ Leftovers
+Level: 58
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Ice Punch
+- Will-O-Wisp
+- Taunt
+
+Blissey @ Leftovers
+Level: 58
+Ability: Natural Cure
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Bold Nature
+- Seismic Toss
+- Soft-Boiled
+- Toxic
+- Ice Beam
+
+=== TRAINER_PLASTIC_OX_RIDGE_STALL ===
+Name: HELEN
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Skarmory @ Leftovers
+Level: 58
+Ability: Keen Eye
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 Spe
+Impish Nature
+- Spikes
+- Whirlwind
+- Drill Peck
+- Rest
+
+Blissey @ Leftovers
+Level: 58
+Ability: Natural Cure
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Bold Nature
+- Seismic Toss
+- Soft-Boiled
+- Toxic
+- Ice Beam
+
+Milotic @ Leftovers
+Level: 58
+Ability: Marvel Scale
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpA
+Bold Nature
+- Surf
+- Ice Beam
+- Recover
+- Toxic
+
+Claydol @ Leftovers
+Level: 58
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 216 Def / 40 SpA
+Relaxed Nature
+- Earthquake
+- Ice Beam
+- Rapid Spin
+- Explosion
+
+Gengar @ Leftovers
+Level: 58
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Ice Punch
+- Will-O-Wisp
+- Taunt
+
+Snorlax @ Leftovers
+Level: 58
+Ability: Thick Fat
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 144 HP / 188 Def / 176 SpD
+Careful Nature
+- Curse
+- Body Slam
+- Shadow Ball
+- Rest
+
+=== TRAINER_PLASTIC_OX_RIDGE_OFFENSE ===
+Name: REX
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Aerodactyl @ Choice Band
+Level: 58
+Ability: Rock Head
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Rock Slide
+- Earthquake
+- Double-Edge
+- Hidden Power
+
+Salamence @ Choice Band
+Level: 58
+Ability: Intimidate
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Hidden Power
+- Earthquake
+- Rock Slide
+- Brick Break
+
+Metagross @ Leftovers
+Level: 58
+Ability: Clear Body
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 176 Atk / 80 Def
+Adamant Nature
+- Meteor Mash
+- Earthquake
+- Protect
+- Explosion
+
+Gyarados @ Leftovers
+Level: 58
+Ability: Intimidate
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 31 Spe
+EVs: 68 HP / 252 Atk / 188 Spe
+Adamant Nature
+- Dragon Dance
+- Hidden Power
+- Earthquake
+- Taunt
+
+Breloom @ Leftovers
+Level: 58
+Ability: Effect Spore
+IVs: 31 HP / 31 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Spore
+- Mach Punch
+- Sky Uppercut
+- Hidden Power
+
+Starmie @ Leftovers
+Level: 58
+Ability: Natural Cure
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Surf
+- Ice Beam
+- Thunderbolt
+- Recover
+
+=== TRAINER_PLASTIC_OX_RIDGE_BALANCE ===
+Name: SAGE
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Jolteon @ Leftovers
+Level: 58
+Ability: Volt Absorb
+IVs: 30 HP / 31 Atk / 30 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Hidden Power
+- Substitute
+- Baton Pass
+
+Swampert @ Leftovers
+Level: 58
+Ability: Torrent
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 240 HP / 216 Def / 52 SpA
+Relaxed Nature
+- Earthquake
+- Ice Beam
+- Surf
+- Protect
+
+Metagross @ Leftovers
+Level: 58
+Ability: Clear Body
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 176 Atk / 80 Def
+Adamant Nature
+- Meteor Mash
+- Earthquake
+- Protect
+- Explosion
+
+Gengar @ Leftovers
+Level: 58
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Ice Punch
+- Will-O-Wisp
+- Taunt
+
+Snorlax @ Leftovers
+Level: 58
+Ability: Thick Fat
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 144 HP / 188 Def / 176 SpD
+Careful Nature
+- Curse
+- Body Slam
+- Shadow Ball
+- Rest
+
+Salamence @ Choice Band
+Level: 58
+Ability: Intimidate
+IVs: 30 HP / 30 Atk / 30 Def / 30 SpA / 30 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Hidden Power
+- Earthquake
+- Rock Slide
+- Brick Break

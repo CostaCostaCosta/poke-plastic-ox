@@ -95,3 +95,10 @@ Route36_EventScript_Alan_Defeat:
 	.string "I missed a detail!$"
 Route36_EventScript_Alan_After:
 	.string "The odd tree has no leaves to\npress in my notebook.\pMaybe I should study Pokemon\nas well as plants.$"
+
+Route36_EventScript_RuinsGateClosed::
+	msgbox Route36_EventScript_RuinsGateClosed_Text, MSGBOX_NPC
+	end
+
+Route36_EventScript_RuinsGateClosed_Text:
+	.string "The RUINS OF ALPH gate is closed.\nPlease keep the entrance clear.$"

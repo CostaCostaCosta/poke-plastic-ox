@@ -311,6 +311,17 @@ KEEP_AS_IS = {
     "TRAINER_PLASTIC_OX_PLAYER": "player party template, not a battled trainer",
 }
 
+# Endgame sets retain the ROSTERS species/levels but have authored roles,
+# inherited/egg moves and explicit Hidden Power IVs. The league overlay owns
+# these parties; generic move fallback must not strip their setup moves.
+LEAGUE_PARTIES = P.ROOT / "plastic_ox/alpha/league/trainers.party"
+AUTHORED_LEAGUE = set(re.findall(r"^=== (\w+) ===", LEAGUE_PARTIES.read_text(), re.M))
+KEEP_AS_IS.update({tid: "Authored endgame set; alpha/league/trainers.party" for tid in AUTHORED_LEAGUE})
+
+TOURNAMENT_PARTIES = P.ROOT / "plastic_ox/alpha/tournament/trainers.party"
+KEEP_AS_IS.update({tid: "Authored tournament/sage set; alpha/tournament/trainers.party"
+                   for tid in re.findall(r"^=== (\w+) ===", TOURNAMENT_PARTIES.read_text(), re.M)})
+
 # The Dance Theater girls are named for, and gated on, their Eeveelution, but
 # Vaporeon/Jolteon/Espeon/Umbreon are UUBL/OU and the fights unlock at two
 # badges (NU). The signature is kept as designed and reported as an exception;
@@ -818,6 +829,8 @@ def main() -> int:
     built: dict[str, dict] = {}
 
     for trainer, (checkpoint, roster) in sorted(ROSTERS.items()):
+        if trainer in AUTHORED_LEAGUE:
+            continue
         if trainer not in parsed:
             problems.append(f"{trainer}: not present in trainers.party")
             continue

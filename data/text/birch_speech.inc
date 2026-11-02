@@ -1,11 +1,11 @@
 gText_Birch_Welcome::
-	.string "Welcome to POKéMON PLASTIC OX!\pI'm PROFESSOR BIRCH, from HOENN.\pOAK, ELM, and I need your help.\p$"
+	.string "Welcome to the world of POKéMON!\pI'm PROFESSOR BIRCH.\p$"
 
 gText_Birch_Pokemon::
 	.string "Our partners are called POKéMON.\p\n$"
 
 gText_Birch_MainSpeech::
-	.string "KANTO, JOHTO, and HOENN have\ncollided into one strange region.\pFamiliar roads lead to new places,\nand the ground is still restless.\pTogether with our POKéMON, we're\nlearning how to live here.\p$"
+	.string "There's a whole world to explore,\nand POKéMON to meet along the way.\pWhat will you discover together?\p$"
 
 gText_Birch_AndYouAre::
 	.string "Let's register you as a TRAINER.$"
@@ -23,4 +23,4 @@ gText_Birch_YourePlayer::
 	.string "You're registered, {PLAYER}!\pYour journey begins in PALLET TOWN.\p$"
 
 gText_Birch_AreYouReady::
-	.string "Come to OAK's LAB when you're ready.\pThe three of us will help you\nchoose your first POKéMON partner.\pLet's explore this new world\ntogether!\p$"
+	.string "Visit OAK's LAB in PALLET TOWN.\nYour first partner is waiting!\p$"

@@ -934,20 +934,20 @@
     },
     {
       "id": "ecruteak_league_a",
-      "source": "EcruteakCity_hns",
-      "destination": "VictoryRoad_1F",
+      "source": "Gate_EcruteakCity_Route38_hns",
+      "destination": "PlasticOx_VictoryRoad",
       "tile": [
-        8,
-        34
+        4,
+        5
       ],
       "approach": [
-        9,
-        34
+        5,
+        5
       ],
       "direction": "W",
       "landing": [
-        14,
-        39
+        27,
+        48
       ],
       "requires": [
         "FLAG_BADGE01_GET",
@@ -959,53 +959,44 @@
         "FLAG_BADGE07_GET",
         "FLAG_BADGE08_GET"
       ],
-      "label": "VictoryRoad_1F"
+      "label": "Victory Road"
     },
     {
       "id": "ecruteak_league_b",
-      "source": "VictoryRoad_1F",
-      "destination": "EcruteakCity_hns",
+      "source": "PlasticOx_VictoryRoad",
+      "destination": "Gate_EcruteakCity_Route38_hns",
       "tile": [
-        15,
-        39
+        27,
+        49
       ],
       "approach": [
-        14,
-        39
+        27,
+        48
       ],
-      "direction": "E",
+      "direction": "S",
       "landing": [
-        9,
-        34
+        5,
+        5
       ],
-      "requires": [
-        "FLAG_BADGE01_GET",
-        "FLAG_BADGE02_GET",
-        "FLAG_BADGE03_GET",
-        "FLAG_BADGE04_GET",
-        "FLAG_BADGE05_GET",
-        "FLAG_BADGE06_GET",
-        "FLAG_BADGE07_GET",
-        "FLAG_BADGE08_GET"
-      ],
-      "label": "EcruteakCity"
+      "requires": [],
+      "label": "EcruteakCity_hns"
     },
     {
       "id": "victory_indigo_a",
-      "source": "VictoryRoad_1F",
+      "source": "PlasticOx_VictoryRoad",
       "destination": "IndigoPlateau_hns",
       "tile": [
-        38,
-        5
+        14,
+        1
       ],
       "approach": [
-        37,
-        5
+        14,
+        2
       ],
-      "direction": "E",
+      "direction": "N",
       "landing": [
-        11,
-        19
+        12,
+        18
       ],
       "requires": [
         "FLAG_BADGE01_GET",
@@ -1017,36 +1008,27 @@
         "FLAG_BADGE07_GET",
         "FLAG_BADGE08_GET"
       ],
-      "label": "IndigoPlateau"
+      "label": "IndigoPlateau_hns"
     },
     {
       "id": "victory_indigo_b",
       "source": "IndigoPlateau_hns",
-      "destination": "VictoryRoad_1F",
+      "destination": "PlasticOx_VictoryRoad",
       "tile": [
         12,
         19
       ],
       "approach": [
-        11,
-        19
+        12,
+        18
       ],
-      "direction": "E",
+      "direction": "S",
       "landing": [
-        37,
-        5
+        14,
+        2
       ],
-      "requires": [
-        "FLAG_BADGE01_GET",
-        "FLAG_BADGE02_GET",
-        "FLAG_BADGE03_GET",
-        "FLAG_BADGE04_GET",
-        "FLAG_BADGE05_GET",
-        "FLAG_BADGE06_GET",
-        "FLAG_BADGE07_GET",
-        "FLAG_BADGE08_GET"
-      ],
-      "label": "VictoryRoad_1F"
+      "requires": [],
+      "label": "Victory Road"
     },
     {
       "id": "lavender_harbor_a",

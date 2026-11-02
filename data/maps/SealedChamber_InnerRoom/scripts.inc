@@ -3,6 +3,9 @@ SealedChamber_InnerRoom_MapScripts::
 
 SealedChamber_InnerRoom_EventScript_BrailleBackWall::
 	lockall
+	checkitem ITEM_ANCIENT_BRAILLE_TABLET
+	goto_if_eq VAR_RESULT, FALSE, PoxTournament_LegendLocked
+	goto_if_unset FLAG_BADGE05_GET, PoxTournament_LegendLocked
 	braillemsgbox SealedChamber_InnerRoom_Braille_FirstWailordLastRelicanth
 	goto_if_set FLAG_REGI_DOORS_OPENED, SealedChamber_InnerRoom_EventScript_NoEffect
 	specialvar VAR_RESULT, CheckRelicanthWailord

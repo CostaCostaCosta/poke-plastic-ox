@@ -34,6 +34,7 @@ TABLES = {
     "Route35OldRod": (16, 18, [(30, "POLIWAG"), (25, "GOLDEEN"), (20, "BARBOACH"), (15, "CORSOLA"), (10, "PSYDUCK")]),
     "ParkGrass": (17, 19, [(25, "HOPPIP"), (15, "NIDORAN_F"), (15, "NIDORAN_M"), (10, "LICKITUNG"), (10, "JIGGLYPUFF"), (10, "PIDGEY", "HOOTHOOT"), (10, "LEDYBA", "SPINARAK"), (5, "TROPIUS")]),
     "ParkContest": (17, 20, [(20, "CATERPIE"), (20, "WEEDLE"), (10, "METAPOD"), (10, "KAKUNA"), (10, "PARAS"), (10, "VENONAT"), (5, "BUTTERFREE"), (5, "BEEDRILL"), (5, "VOLBEAT"), (5, "ILLUMISE")]),
+    "ParkContestPass": (17, 20, [(20, "CATERPIE"), (20, "WEEDLE"), (10, "METAPOD"), (10, "KAKUNA"), (10, "PARAS"), (10, "VENONAT"), (5, "BUTTERFREE"), (5, "BEEDRILL"), (5, "SCYTHER"), (5, "PINSIR")]),
     "ParkHeadbutt": (17, 19, [(30, "LEDYBA", "SPINARAK"), (15, "EXEGGCUTE"), (15, "AIPOM"), (15, "TAILLOW"), (15, "WURMPLE"), (10, "SUNKERN")]),
     "Route36Grass": (18, 20, [(25, "BELLSPROUT"), (20, "NATU"), (10, "TANGELA"), (10, "VULPIX", "GASTLY"), (10, "PIDGEY", "HOOTHOOT"), (10, "HOPPIP"), (10, "DROWZEE"), (5, "BALTOY")]),
     "Route36Headbutt": (18, 20, [(30, "NATU"), (20, "SLAKOTH"), (15, "EXEGGCUTE"), (15, "AIPOM"), (10, "SHUPPET"), (10, "DUSKULL")]),

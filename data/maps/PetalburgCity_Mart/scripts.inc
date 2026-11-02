@@ -25,6 +25,7 @@ PetalburgCity_Mart_Pokemart_Basic:
 	.2byte ITEM_MOON_STONE
 	.2byte ITEM_FIRE_STONE
 	.2byte ITEM_ORANGE_MAIL
+	.2byte ITEM_LEFTOVERS
 	pokemartlistend
 
 PetalburgCity_Mart_EventScript_ExpandedItems::
@@ -48,6 +49,7 @@ PetalburgCity_Mart_Pokemart_Expanded:
 	.2byte ITEM_MOON_STONE
 	.2byte ITEM_FIRE_STONE
 	.2byte ITEM_ORANGE_MAIL
+	.2byte ITEM_LEFTOVERS
 	pokemartlistend
 
 PetalburgCity_Mart_EventScript_Woman::

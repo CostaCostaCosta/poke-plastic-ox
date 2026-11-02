@@ -317,7 +317,7 @@ balls = [o for o in lab['object_events'] if o['graphics_id'] == 'OBJ_EVENT_GFX_I
 assert len(balls) == 3
 for obj, name in zip(balls, ["Treecko", "Squirtle", "Cyndaquil"]):
     obj['script'] = 'Pox_' + name
-    obj['flag'] = '0'
+    obj['flag'] = 'FLAG_POX_HIDE_' + name.upper() + '_BALL'
 # Remove the old automatic Treecko choice and unused imported rival.
 lab['coord_events'] = []
 for obj in lab['object_events']:
@@ -325,8 +325,8 @@ for obj in lab['object_events']:
         obj['flag'] = 'FLAG_POX_HIDE_UNUSED_ACTOR'
 save_map("PalletTown_ProfessorOaksLab_Frlg", lab)
 add_npc("PalletTown_ProfessorOaksLab_Frlg", "Oak", 6, 4, "OBJ_EVENT_GFX_PROF_OAK")
-add_npc("PalletTown_ProfessorOaksLab_Frlg", "Elm", 3, 6, "OBJ_EVENT_GFX_SCIENTIST", hidden="FLAG_POX_ELM_EXP_ALL")
-add_npc("PalletTown_ProfessorOaksLab_Frlg", "Birch", 11, 6, "OBJ_EVENT_GFX_PROF_BIRCH", hidden="FLAG_POX_ELM_TMS")
+add_npc("PalletTown_ProfessorOaksLab_Frlg", "Elm", 5, 4, "OBJ_EVENT_GFX_SCIENTIST", hidden="FLAG_POX_ELM_EXP_ALL")
+add_npc("PalletTown_ProfessorOaksLab_Frlg", "Birch", 7, 4, "OBJ_EVENT_GFX_PROF_BIRCH", hidden="FLAG_POX_ELM_TMS")
 start("StarterGate")
 emit(f"\tgoto_if_set {starter}, Pox_Release\n\tmsgbox Pox_Text_StarterGate, MSGBOX_DEFAULT\n\twarp MAP_PALLET_TOWN, 10, 4\n\twaitstate")
 finish()
@@ -590,16 +590,11 @@ lav1='FLAG_POX_HIDE_LAVENDER_GRUNT_1'
 lav2='FLAG_POX_HIDE_LAVENDER_GRUNT_2'
 for n,f,req in [(1,lav1,[badges[3]]),(2,lav2,[lav1])]:
     battle('TowerGrunt'+str(n),'GRUNT',"FUJI knows something about reconstructing POKéMON. He'll answer our questions!", [('Golbat',['Bite','Wing Attack','Confuse Ray']),('Weezing',['Sludge','Smokescreen','Self Destruct'])],35,f,req,pic='Team Aqua M',cls='Team Aqua')
-beat('FujiRescue', "FUJI: Thank you. They asked about preserving living states... old work I hoped never to hear of again.|The archives on CINNABAR may explain more. Ask BLAINE for access.|Take the UNDERGROUND PATH from ROUTE 8 to ROUTE 7, then cross ROUTE 103. This SURF KEY and HM will help you cross the water.",fuji,[lav1,lav2], '''\tcheckitem ITEM_SURF_KEY
+beat('FujiRescue', "FUJI: Thank you. They asked about preserving living states... old work I hoped never to hear of again.|The archives on CINNABAR may explain more. Ask BLAINE for access.|Take the UNDERGROUND PATH from ROUTE 8 to ROUTE 7, then cross ROUTE 103. This SURF KEY will help you cross the water.",fuji,[lav1,lav2], '''\tcheckitem ITEM_SURF_KEY
 \tgoto_if_eq VAR_RESULT, TRUE, Pox_FujiRescue_HasSurfKey
 \tgiveitem ITEM_SURF_KEY
 \tgoto_if_eq VAR_RESULT, FALSE, Pox_Release
-Pox_FujiRescue_HasSurfKey::
-\tcheckitem ITEM_HM03
-\tgoto_if_eq VAR_RESULT, TRUE, Pox_FujiRescue_HasRewards
-\tgiveitem ITEM_HM03
-\tgoto_if_eq VAR_RESULT, FALSE, Pox_Release
-Pox_FujiRescue_HasRewards::''')
+Pox_FujiRescue_HasSurfKey::''')
 ptower=room('PokemonTower','LavenderTown_hns',None,objects=[npc('TowerGrunt1',5,12,'OBJ_EVENT_GFX_ROCKET_GRUNT_M',lav1),npc('TowerGrunt2',7,9,'OBJ_EVENT_GFX_ROCKET_GRUNT_M',lav2),npc('FujiRescue',5,2,'OBJ_EVENT_GFX_OLD_MAN')],return_xy=(17,8))
 guide('LavenderTown_hns',0,'TowerGuide',ptower,'TEAM ROCKET is holding MR. FUJI in the POKéMON TOWER.',[badges[3]])
 gift('Fuji','FUJI: This EEVEE was abandoned. You have shown it what kindness looks like.|BLAINE keeps the key to the CINNABAR archives.',[fuji])

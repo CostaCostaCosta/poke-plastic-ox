@@ -22,6 +22,7 @@ SootopolisCity_Mart_Pokemart:
 	.2byte ITEM_DIVE_BALL
 	.2byte ITEM_WATER_STONE
 	.2byte ITEM_SHADOW_MAIL
+	.2byte ITEM_LEFTOVERS
 	pokemartlistend
 
 SootopolisCity_Mart_EventScript_FatMan::

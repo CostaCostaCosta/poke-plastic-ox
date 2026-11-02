@@ -23,6 +23,7 @@ LavaridgeTown_Mart_Pokemart:
 	.2byte ITEM_SUPER_REPEL
 	.2byte ITEM_TIMER_BALL
 	.2byte ITEM_FIRE_STONE
+	.2byte ITEM_LEFTOVERS
 	pokemartlistend
 
 LavaridgeTown_Mart_EventScript_ExpertM::

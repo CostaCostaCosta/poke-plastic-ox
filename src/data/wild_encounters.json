@@ -39225,6 +39225,75 @@
               0
             ]
           }
+        },
+        {
+          "map": "MAP_PLASTIC_OX_VICTORY_ROAD",
+          "base_label": "gPoxVictoryRoadOutdoor",
+          "land_mons": {
+            "encounter_rate": 12,
+            "mons": [
+              {
+                "min_level": 52,
+                "max_level": 56,
+                "species": "SPECIES_DODRIO"
+              },
+              {
+                "min_level": 52,
+                "max_level": 56,
+                "species": "SPECIES_SANDSLASH"
+              },
+              {
+                "min_level": 52,
+                "max_level": 56,
+                "species": "SPECIES_TAUROS"
+              },
+              {
+                "min_level": 52,
+                "max_level": 56,
+                "species": "SPECIES_DONPHAN"
+              },
+              {
+                "min_level": 52,
+                "max_level": 56,
+                "species": "SPECIES_SKARMORY"
+              },
+              {
+                "min_level": 52,
+                "max_level": 56,
+                "species": "SPECIES_HERACROSS"
+              },
+              {
+                "min_level": 52,
+                "max_level": 56,
+                "species": "SPECIES_MEDICHAM"
+              },
+              {
+                "min_level": 52,
+                "max_level": 56,
+                "species": "SPECIES_BRELOOM"
+              },
+              {
+                "min_level": 52,
+                "max_level": 56,
+                "species": "SPECIES_GIRAFARIG"
+              },
+              {
+                "min_level": 52,
+                "max_level": 56,
+                "species": "SPECIES_DITTO"
+              },
+              {
+                "min_level": 52,
+                "max_level": 56,
+                "species": "SPECIES_BAGON"
+              },
+              {
+                "min_level": 52,
+                "max_level": 56,
+                "species": "SPECIES_BELDUM"
+              }
+            ]
+          }
         }
       ]
     },

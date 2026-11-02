@@ -5607,13 +5607,12 @@ const struct ItemInfo gItemsInfo[] =
     {
         .name = ITEM_NAME("Red Orb"),
         .price = 0,
-        .holdEffect = HOLD_EFFECT_PRIMAL_ORB,
+        .importance = 1,
         .description = COMPOUND_STRING(
             "A red, glowing orb\n"
             "said to contain an\n"
             "ancient power."),
-        .pocket = POCKET_ITEMS,
-        .sortType = ITEM_TYPE_SPECIAL_HELD_ITEM,
+        .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_RedOrb,
@@ -9954,13 +9953,7 @@ const struct ItemInfo gItemsInfo[] =
     {
         .name = ITEM_NAME("Leftovers"),
         .pluralName = ITEM_PLURAL_NAME("Leftovers"),
-    #if I_PRICE >= GEN_9
-        .price = 20000,
-    #elif I_PRICE >= GEN_7
-        .price = 4000,
-    #else
-        .price = 200,
-    #endif
+        .price = 1000,
         .holdEffect = HOLD_EFFECT_LEFTOVERS,
         .holdEffectParam = 10,
         .description = COMPOUND_STRING(
@@ -14581,9 +14574,9 @@ const struct ItemInfo gItemsInfo[] =
         .pluralName = ITEM_PLURAL_NAME("Contest Passes"),
         .price = 0,
         .description = COMPOUND_STRING(
-            "The pass required\n"
-            "for entering\n"
-            "Pokémon Contests."),
+            "A pass for Thursday\n"
+            "Bug-Catching Contests\n"
+            "at National Park."),
         .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_BAG_MENU,
@@ -15711,6 +15704,38 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_MoveCompendium,
         .iconPic = gItemIcon_TMCase,
         .iconPalette = gItemIconPalette_TMCase,
+    },
+
+    [ITEM_ANCIENT_BRAILLE_TABLET] =
+    {
+        .name = ITEM_NAME("Ancient Braille Tablet"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "A Braille tablet for\n"
+            "the Sealed Chamber.\n"
+            "Keep it to read seals."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_Plate,
+        .iconPalette = gItemIconPalette_StonePlate,
+    },
+
+    [ITEM_NEW_MAUVILLE_KEY] =
+    {
+        .name = ITEM_NAME("New Mauville Key"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "Opens New Mauville\n"
+            "off Route 110.\n"
+            "It can be reused."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_BasementKey,
+        .iconPalette = gItemIconPalette_OldKey,
     },
 
     [ITEM_ANCIENT_ICE_TABLET] =

@@ -113,8 +113,8 @@ def apply_region(read, put):
     # Remove only obsolete outdoor connections; keep the proven opening seams
     # and native north/south joins that agree with v7.
     keep = {
-        'PalletTown_Frlg':{'MAP_ROUTE101'},
-        'Route21_North_Frlg':{'MAP_ROUTE21_SOUTH'},
+        'PalletTown_Frlg':{'MAP_ROUTE101','MAP_ROUTE21_NORTH'},
+        'Route21_North_Frlg':{'MAP_ROUTE21_SOUTH','MAP_PALLET_TOWN'},
         'Route21_South_Frlg':{'MAP_ROUTE21_NORTH','MAP_CINNABAR_ISLAND'},
         'CinnabarIsland_Frlg':{'MAP_ROUTE21_SOUTH'},
         'Route101':{'MAP_PALLET_TOWN','MAP_OLDALE_TOWN'},
@@ -254,12 +254,16 @@ def apply_region(read, put):
     d['bg_events']=[b for b in d.get('bg_events',[])
                     if (b.get('x'),b.get('y')) not in {(5,17),(66,13)}]
     save('Route44_hns',d)
-    d=load('PalletTown_Frlg')
-    d['coord_events'] += [dict(type='trigger',x=x,y=19,elevation=0,var='VAR_TEMP_0',var_value=0,script='PalletTown_SurfToRoute21') for x in range(7,11)]
-    save('PalletTown_Frlg',d)
-    d=load('Route21_North_Frlg')
-    d['coord_events'] = [dict(type='trigger',x=x,y=0,elevation=0,var='VAR_TEMP_0',var_value=0,script='Route21_North_SurfToPallet') for x in range(7,11)]
-    save('Route21_North_Frlg',d)
+    # Continuous Surf passage: both maps share the water opening at x=7..10.
+    for name, dest, direction, obsolete_script in [
+        ('PalletTown_Frlg', 'MAP_ROUTE21_NORTH', 'down', 'PalletTown_SurfToRoute21'),
+        ('Route21_North_Frlg', 'MAP_PALLET_TOWN', 'up', 'Route21_North_SurfToPallet'),
+    ]:
+        d=load(name)
+        d['connections']=[c for c in d['connections'] if c['map'] != dest]
+        d['connections'].append(dict(map=dest, offset=0, direction=direction))
+        d['coord_events']=[e for e in d['coord_events'] if e['script'] != obsolete_script]
+        save(name,d)
 
     # Explicit warp closures prevent original-world doors/caves from becoming
     # alternate routes. Preserve local homes, shops, and intentional dungeons.
@@ -554,6 +558,20 @@ def apply_region(read, put):
         trainer_type='TRAINER_TYPE_NONE',trainer_sight_or_berry_tree_id='0',
         script='Route36_EventScript_Snorlax',flag='FLAG_POX_ROUTE36_SNORLAX_CLEARED'))
     save('Route36_hns',d)
+    # Permanently close the unused southern road and Ruins of Alph gate.
+    # Cover all three walkable tiles; local scripts own the closure dialogue.
+    for name, y, xs, script in [
+        ('LavenderTown_hns', 24, (13, 14, 15), 'LavenderTown_EventScript_SouthRoadClosed'),
+        ('Route36_hns', 25, (55, 56, 57), 'Route36_EventScript_RuinsGateClosed'),
+    ]:
+        d=load(name)
+        d['object_events']=[o for o in d['object_events'] if o.get('script') != script]
+        for x in xs:
+            d['object_events'].append(dict(graphics_id='OBJ_EVENT_GFX_MAN_3',x=x,y=y,elevation=3,
+                movement_type='MOVEMENT_TYPE_FACE_UP',movement_range_x=0,movement_range_y=0,
+                trainer_type='TRAINER_TYPE_NONE',trainer_sight_or_berry_tree_id='0',
+                script=script,flag='0'))
+        save(name,d)
     # Route 44's gate handler and dialogue are authored in its local scripts.
 
     # HNS Route7 lacks the FRLG tunnel mouth; a marked stair passage uses the
@@ -696,3 +714,14 @@ def apply_region(read, put):
     install_cinnabar(read, put)
     from seafoam import install as install_seafoam
     install_seafoam(read, put)
+
+    from league import install as install_league
+    install_league(read, put)
+
+    from tournament import install as install_tournament
+    install_tournament(read, put)
+
+    from ecruteak_repairs import install as repair_ecruteak
+    repair_ecruteak(read, put)
+    from mart_repairs import install as repair_marts
+    repair_marts(read, put)

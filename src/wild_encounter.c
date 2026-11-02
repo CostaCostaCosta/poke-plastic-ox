@@ -687,7 +687,7 @@ bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, enum WildPok
     u8 level;
 
     if (area == WILD_AREA_LAND && PlasticOxContest_IsActive())
-        return GenerateWeightedWildMon(&sPoxParkContestDay, 0);
+        return GenerateWeightedWildMon(PlasticOxContest_IsPassRound() ? &sPoxParkContestPassDay : &sPoxParkContestDay, 0);
     if (wildMonInfo->weights != NULL)
         return GenerateWeightedWildMon(wildMonInfo, flags);
 
@@ -921,7 +921,7 @@ bool8 StandardWildEncounter(u16 curMetatileBehavior, u16 prevMetatileBehavior)
 
             if (PlasticOxContest_IsActive())
             {
-                GenerateWeightedWildMon(&sPoxParkContestDay, 0);
+                GenerateWeightedWildMon(PlasticOxContest_IsPassRound() ? &sPoxParkContestPassDay : &sPoxParkContestDay, 0);
                 BattleSetup_StartWildBattle();
                 return TRUE;
             }
@@ -1117,7 +1117,7 @@ bool8 SweetScentWildEncounter(void)
 
             if (PlasticOxContest_IsActive())
             {
-                GenerateWeightedWildMon(&sPoxParkContestDay, 0);
+                GenerateWeightedWildMon(PlasticOxContest_IsPassRound() ? &sPoxParkContestPassDay : &sPoxParkContestDay, 0);
                 BattleSetup_StartWildBattle();
                 return TRUE;
             }

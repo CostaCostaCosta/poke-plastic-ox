@@ -10,7 +10,7 @@ PoxGoldenrod_GoldenrodCity_UndergroundStorage_hns_1::
 	end
 
 PoxGoldenrod_GoldenrodCity_UndergroundStorage_hns_2::
-	finditem ITEM_TM_CALM_MIND
+	finditem ITEM_STAR_PIECE
 	end
 
 PoxGoldenrod_GoldenrodCity_UndergroundStorage_hns_6::

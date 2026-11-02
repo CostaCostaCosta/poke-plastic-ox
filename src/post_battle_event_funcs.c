@@ -9,6 +9,7 @@
 #include "script_pokemon_util.h"
 #include "tv.h"
 #include "constants/heal_locations.h"
+#include "constants/maps.h"
 
 int GameClear(void)
 {
@@ -36,7 +37,10 @@ int GameClear(void)
 
     SetContinueGameWarpStatus();
 
-    if (gSaveBlock2Ptr->playerGender == MALE)
+    if (gSaveBlock1Ptr->location.mapGroup == MAP_GROUP(MAP_PLASTIC_OX_HALL_OF_FAME)
+     && gSaveBlock1Ptr->location.mapNum == MAP_NUM(MAP_PLASTIC_OX_HALL_OF_FAME))
+        SetContinueGameWarpToHealLocation(HEAL_LOCATION_POX_INDIGO);
+    else if (gSaveBlock2Ptr->playerGender == MALE)
         SetContinueGameWarpToHealLocation(HEAL_LOCATION_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F);
     else
         SetContinueGameWarpToHealLocation(HEAL_LOCATION_LITTLEROOT_TOWN_MAYS_HOUSE_2F);

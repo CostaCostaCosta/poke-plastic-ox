@@ -20,7 +20,7 @@ Route6_EventScript_Item3::
 	end
 
 Route6_EventScript_Npc1_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Travelers heading toward SAFFRON\noften stop here for a breather.$"
 
 Route6_EventScript_Npc2_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "City noise fades quickly when\nyou walk into the grass.$"

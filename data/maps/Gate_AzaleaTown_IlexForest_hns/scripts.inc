@@ -16,7 +16,7 @@ Gate_AzaleaTown_IlexForest_EventScript_Npc2::
 	end
 
 Gate_AzaleaTown_IlexForest_EventScript_Npc1_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "ILEX FOREST is quiet. Please\nrespect the trees and their\pPOKéMON.$"
 
 Gate_AzaleaTown_IlexForest_EventScript_Npc2_Text:
 	.string "In my day this gate went two places,\nnot wherever you felt like walking.$"

@@ -25,6 +25,7 @@ FallarborTown_Mart_Pokemart:
 	.2byte ITEM_SUN_STONE
 	.2byte ITEM_FIRE_STONE
 	.2byte ITEM_WATER_STONE
+	.2byte ITEM_LEFTOVERS
 	pokemartlistend
 
 FallarborTown_Mart_EventScript_Woman::

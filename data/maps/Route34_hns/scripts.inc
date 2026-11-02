@@ -130,13 +130,13 @@ Route34_EventScript_Npc7_Text:
 	.string "Keep east for GOLDENROD... or was it\nRUSTBORO? The signs gave up.$"
 
 Route34_EventScript_Npc8_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Rocky ground can wear your team\ndown. Rest when you can.$"
 
 Route34_EventScript_Npc9_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The mountain draws hikers and\ncurious trainers alike.$"
 
 Route34_EventScript_Npc10_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "Rocky ground can wear your team\ndown. Rest when you can.$"
 
 Route34_EventScript_Npc11_Text:
 	.string "I nap here. The border runs right\nthrough my blanket.$"
@@ -145,7 +145,7 @@ Route34_EventScript_Npc12_Text:
 	.string "This route used to just end. Now it's\nsomebody's shortcut.$"
 
 Route34_EventScript_Npc13_Text:
-	.string "Roads keep ending somewhere they\ndidn't used to.$"
+	.string "The mountain draws hikers and\ncurious trainers alike.$"
 
 Route34_EventScript_Sign1_Text:
 	.string "ROUTE 34\nNorth: ILEX FOREST. South: anywhere.$"

@@ -39,7 +39,7 @@ LEGS={
  'central':('GoldenrodCity_hns',(28,37),['goldenrod_route35_a','route35_park_a','park_route36_a',
      ('seam','N','Route37_hns'),('seam','N','EcruteakCity_hns'),'ecruteak_route119_a','route119_fortree_a','fortree_route110_a','route110_lavender_a']),
  'underground':('LavenderTown_hns',(9,7),['lavender_route8_a',('warp',0),('warp',3),('warp',1),'underground_return_6','route7_route103_a','route103_cinnabar_a']),
- 'coast':('PalletTown_Frlg',(12,18),[('surfwarp','S','Route21_North_Frlg',(7,18)),('seam','S','Route21_South_Frlg'),
+ 'coast':('PalletTown_Frlg',(12,18),[('seam','S','Route21_North_Frlg'),('seam','S','Route21_South_Frlg'),
      ('seam','S','CinnabarIsland_Frlg')]),
  'north':('MossdeepCity',(28,17),['mossdeep_route19_a','route19_saffron_a','saffron_route5_a','route5_route115_a',('warp',0),'meteor_blackthorn_a','blackthorn_route45_a','route45_route46_a',('warp',2),('warp',0)]),
  'postgame':('LavenderTown_hns',(9,7),['lavender_harbor_a','harbor_frontier_a','harbor_frontier_b','lavender_harbor_b']),
