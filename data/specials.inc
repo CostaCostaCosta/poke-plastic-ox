@@ -660,6 +660,13 @@ gSpecials::
 	def_special PlasticOxGiveMailDelibird
 	def_special PlasticOxDeliverMail
 	def_special CheckRustboroGymLittleCupRules
+	def_special CheckGoldenrodGymPURules
+	def_special CheckEcruteakGymNURules
+	def_special CheckFortreeGymRURules
+	def_special CheckCinnabarGymUURules
+	def_special CheckMossdeepGymUUBLRules
+	def_special CheckSaffronGymOURules
+	def_special CheckBlackthornGymOURules
 	def_special PoxMaximizeSelectedMonFriendship
 	def_special PoxMinimizeSelectedMonFriendship
 	def_special PoxGetDayOfWeek
