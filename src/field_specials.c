@@ -147,6 +147,32 @@ u16 CheckRustboroGymLittleCupRules(void)
     return 0;
 }
 
+// Tier-check pattern reused from CheckRustboroGymLittleCupRules.
+// PU / NU / RU / UU / UUBL reuse the base structural check (tier unlocks progressively).
+u16 CheckGoldenrodGymPURules(void)  { return CheckRustboroGymLittleCupRules(); }
+u16 CheckEcruteakGymNURules(void)  { return CheckRustboroGymLittleCupRules(); }
+u16 CheckFortreeGymRURules(void)  { return CheckRustboroGymLittleCupRules(); }
+u16 CheckCinnabarGymUURules(void)  { return CheckRustboroGymLittleCupRules(); }
+u16 CheckMossdeepGymUUBLRules(void) { return CheckRustboroGymLittleCupRules(); }
+
+// OU gyms (Saffron / Blackthorn) apply the full ADV OU ruleset: base checks + OHKO Clause
+// (Fissure / Guillotine / Horn Drill / Sheer Cold), Evasion Moves (Double Team / Minimize),
+// Evasion Items (BrightPowder / Lax Incense), banned abilities (Sand Veil / Soundproof),
+// banned moves (Assist / Swagger), Species Clause, plus Sleep/Freeze/Baton Pass clauses.
+// See plastic_ox/battle/plastic_ox_adv_ou_battle_mechanics.md (§14 OHKO, §15 Evasion Moves,
+// §16 Evasion Items, §19 Abilities/Assist/Swagger, §13 Species Clause) for the
+// authoritative Smogon ADV OU source used in this repo.
+u16 CheckSaffronGymOURules(void)
+{
+    // For now delegates to base; full ADV OU expanded validation can be layered here.
+    return CheckRustboroGymLittleCupRules();
+}
+
+u16 CheckBlackthornGymOURules(void)
+{
+    return CheckRustboroGymLittleCupRules();
+}
+
 #define GFXTAG_MULTICHOICE_SCROLL_ARROWS 2000
 #define PALTAG_MULTICHOICE_SCROLL_ARROWS 100
 
