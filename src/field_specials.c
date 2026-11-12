@@ -4784,7 +4784,7 @@ void SetTrainingKitEVs(void)
     u32 otherTotal = 0;
     u8 value;
 
-    if (gSpecialVar_0x8004 >= gPlayerPartyCount || stat >= NUM_STATS)
+    if (gSpecialVar_0x8004 >= gPartiesCount[B_TRAINER_PLAYER] || stat >= NUM_STATS)
         return;
 
     for (u32 i = 0; i < NUM_STATS; i++)
