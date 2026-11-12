@@ -1,4 +1,5 @@
 PlasticOx_BurnedTowerB1F_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxTower_InitGraphics
 	.byte 0
 
 PoxBurnedTower_AssembledSage::
@@ -17,4 +18,10 @@ PoxBurnedTower_UltraBall::
 
 PoxBurnedTower_TM12::
 	finditem ITEM_TM12
+	end
+
+PoxTower_InitGraphics::
+	setvar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_ENTEI
+	setvar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_RAIKOU
+	setvar VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_SUICUNE
 	end

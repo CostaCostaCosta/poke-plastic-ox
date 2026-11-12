@@ -829,30 +829,98 @@ goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
 
 goto_if_set FLAG_POX_STORY_BURNED_TOWER, Pox_Done
 
+faceplayer
+
 msgbox Pox_Text_BurnedTowerBefore, MSGBOX_DEFAULT
 
-fadescreen FADE_TO_WHITE
-	setmetatile 10, 9, 0x6A6, FALSE
-	special DrawWholeMapView
-	fadescreen FADE_FROM_WHITE
+closemessage
+	playse SE_M_EARTHQUAKE
+	setvar VAR_0x8004, 2
+	setvar VAR_0x8005, 1
+	setvar VAR_0x8006, 20
+	setvar VAR_0x8007, 3
+	special ShakeCamera
+	waitstate
+	delay 90
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
+	playmoncry SPECIES_ENTEI, CRY_MODE_NORMAL
+	applymovement LOCALID_BURNEDTOWER_ENTEI, PoxTower_AwakenBeasts
+	waitmovement 0
+	waitmoncry
+	playmoncry SPECIES_RAIKOU, CRY_MODE_NORMAL
+	applymovement LOCALID_BURNEDTOWER_RAIKOU, PoxTower_AwakenBeasts
+	waitmovement 0
+	waitmoncry
+	playmoncry SPECIES_SUICUNE, CRY_MODE_NORMAL
+	applymovement LOCALID_BURNEDTOWER_SUICUNE, PoxTower_AwakenBeasts
+	waitmovement 0
+	waitmoncry
+	playse SE_LEDGE
+	applymovement LOCALID_BURNEDTOWER_ENTEI, PoxTower_EnteiLeave
+	waitmovement 0
+	removeobject LOCALID_BURNEDTOWER_ENTEI
+	playse SE_LEDGE
+	applymovement LOCALID_BURNEDTOWER_RAIKOU, PoxTower_RaikouLeave
+	waitmovement 0
+	removeobject LOCALID_BURNEDTOWER_RAIKOU
+	playse SE_LEDGE
+	applymovement LOCALID_BURNEDTOWER_SUICUNE, PoxTower_SuicuneLeave
+	waitmovement 0
+	removeobject LOCALID_BURNEDTOWER_SUICUNE
 
-msgbox Pox_Text_BurnedTowerVision, MSGBOX_DEFAULT
-
-fadescreen FADE_TO_WHITE
-	setmetatile 10, 9, 0x6F2, FALSE
-	special DrawWholeMapView
-	fadescreen FADE_FROM_WHITE
+	playmoncry SPECIES_ARTICUNO, CRY_MODE_NORMAL
+	waitmoncry
+	playmoncry SPECIES_ZAPDOS, CRY_MODE_NORMAL
+	waitmoncry
+	playmoncry SPECIES_MOLTRES, CRY_MODE_NORMAL
+	waitmoncry
+	applymovement LOCALID_POX_TOWER_ARTICUNO, PoxTower_BirdFly
+	applymovement LOCALID_POX_TOWER_ZAPDOS, PoxTower_BirdFly
+	applymovement LOCALID_POX_TOWER_MOLTRES, PoxTower_BirdFly
+	waitmovement 0
+	removeobject LOCALID_POX_TOWER_ARTICUNO
+	removeobject LOCALID_POX_TOWER_ZAPDOS
+	removeobject LOCALID_POX_TOWER_MOLTRES
+	playmoncry SPECIES_REGIROCK, CRY_MODE_NORMAL
+	waitmoncry
+	playmoncry SPECIES_REGICE, CRY_MODE_NORMAL
+	waitmoncry
+	playmoncry SPECIES_REGISTEEL, CRY_MODE_NORMAL
+	waitmoncry
+	applymovement LOCALID_POX_TOWER_REGIROCK, PoxTower_RegiTeleport
+	applymovement LOCALID_POX_TOWER_REGICE, PoxTower_RegiTeleport
+	applymovement LOCALID_POX_TOWER_REGISTEEL, PoxTower_RegiTeleport
+	waitmovement 0
+	removeobject LOCALID_POX_TOWER_REGIROCK
+	removeobject LOCALID_POX_TOWER_REGICE
+	removeobject LOCALID_POX_TOWER_REGISTEEL
+	playmoncry SPECIES_CELEBI, CRY_MODE_NORMAL
+	waitmoncry
+	applymovement LOCALID_POX_TOWER_CELEBI, PoxTower_CelebiVanish
+	waitmovement 0
+	removeobject LOCALID_POX_TOWER_CELEBI
+	playmoncry SPECIES_JIRACHI, CRY_MODE_NORMAL
+	waitmoncry
+	applymovement LOCALID_POX_TOWER_JIRACHI, PoxTower_JirachiAscend
+	waitmovement 0
+	removeobject LOCALID_POX_TOWER_JIRACHI
+	delay 30
 
 msgbox Pox_Text_BurnedTowerAfter, MSGBOX_DEFAULT
 
-turnobject VAR_LAST_TALKED, DIR_NORTH
+faceplayer
 
 msgbox Pox_Text_BurnedTowerMission, MSGBOX_DEFAULT
 
 msgbox Pox_Text_BurnedTowerSages, MSGBOX_DEFAULT
 
-removeobject LOCALID_POX_TOWER_SAGE_1
+closemessage
+	applymovement LOCALID_POX_TOWER_SAGE_1, PoxTower_Sage1Leave
+	applymovement LOCALID_POX_TOWER_SAGE_2, PoxTower_Sage2Leave
+	waitmovement 0
+	removeobject LOCALID_POX_TOWER_SAGE_1
 	removeobject LOCALID_POX_TOWER_SAGE_2
+	faceplayer
 
 msgbox Pox_Text_BurnedTowerFarewell, MSGBOX_DEFAULT
 
@@ -863,22 +931,19 @@ releaseall
 	end
 
 Pox_Text_BurnedTowerBefore::
-	.string "MORTY: Look at that wall. A\nstair stood there before the\pfire.$"
-
-Pox_Text_BurnedTowerVision::
-	.string "For a moment the stair is whole\nagain. A bell rings from the\pempty landing.$"
+	.string "MORTY: Eleven gathered here...\nListening. Waiting for something.\pWait... Do you feel that?$"
 
 Pox_Text_BurnedTowerAfter::
-	.string "Only ash remains. You recover\nthe fallen ceremonial bell.\pMORTY: Places remember what they\nwere. But the POKéMON driven\pout by the shifting boundaries\nneed our help now.$"
+	.string "MORTY: Eleven... All drawn to\nthe same place.\pThe tower was a refuge. Now\nthey must find their way home.$"
 
 Pox_Text_BurnedTowerMission::
-	.string "MORTY: Sages, search throughout\nthe region. Find the legendary\pPOKéMON driven from their homes.\pHelp them find shelter. Stay by\ntheir sides until they feel safe\pagain.$"
+	.string "MORTY: Sages, follow them.\nThe world has changed.\pFind them shelter. Give them\nspace. Let them choose to stay.$"
 
 Pox_Text_BurnedTowerSages::
-	.string "SAGE: We will go, MORTY. No\ndisplaced POKéMON should have to\pface this strange land alone.$"
+	.string "SAGE: We will watch over them.\nYou have our word.$"
 
 Pox_Text_BurnedTowerFarewell::
-	.string "MORTY: If you meet a sage beside\na legendary POKéMON, they are\pthere to help.\pShow them the care you give your\nown partners.\pI will return to my GYM. Come\nsee me when you are ready.$"
+	.string "MORTY: SUICUNE looked back at\nyou before it left.\pRemember that. Trust begins\nwith a moment like this.\pI will be at the GYM. Come\nwhen you are ready.$"
 
 Pox_BurnedGuide::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -2056,3 +2121,150 @@ Pox_Text_Sudowoodo::
 @ and eastern travel. The hint still names either nearby bottle giver.
 Pox_Text_Sudowoodo_Wait::
 	.string "This tree feels like stone! Someone\nnear WHITNEY's GYM has a SQUIRTBOTTLE\nthat might help.$"
+
+PoxTower_AwakenBeasts:
+	jump_in_place_down
+	jump_in_place_down
+	jump_in_place_down
+	step_end
+
+PoxTower_EnteiLeave:
+	jump_down
+	jump_2_right
+	jump_2_right
+	jump_2_right
+	jump_2_right
+	step_end
+
+PoxTower_RaikouLeave:
+	jump_down
+	jump_2_left
+	jump_2_left
+	jump_2_left
+	jump_2_left
+	step_end
+
+PoxTower_SuicuneLeave:
+	jump_2_down
+	delay_8
+	jump_in_place_right_left
+	jump_in_place_right_left
+	jump_left
+	jump_2_down
+	jump_2_down
+	jump_2_down
+	step_end
+
+PoxTower_Sage1Leave:
+	walk_up
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_down
+	walk_up
+	walk_up
+	walk_up
+	walk_right
+	walk_right
+	walk_up
+	walk_up
+	walk_right
+	walk_right
+	step_end
+
+PoxTower_Sage2Leave:
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_up
+	walk_up
+	walk_up
+	walk_right
+	walk_right
+	walk_up
+	walk_up
+	walk_right
+	walk_right
+	step_end
+
+
+PoxTower_Text_Rift::
+	.string "MORTY: The air is still shaking.\nThere are more coming through!$"
+
+PoxTower_BirdFly:
+	levitate
+	delay_16
+	face_up
+ stop_levitate
+	fly_up
+	set_invisible
+	step_end
+
+PoxTower_RegiTeleport:
+	face_left
+	delay_4
+	face_up
+	delay_4
+	face_right
+	delay_4
+	face_down
+	delay_4
+	face_left
+	delay_4
+	face_up
+	delay_4
+	face_right
+	delay_4
+	face_down
+	delay_4
+	face_left
+	delay_4
+	face_up
+	delay_4
+	face_right
+	delay_4
+	face_down
+	delay_4
+	face_left
+	delay_4
+	face_up
+	delay_4
+	face_right
+	delay_4
+	face_down
+	delay_4
+	set_invisible
+	delay_4
+	set_visible
+	delay_4
+	set_invisible
+	step_end
+
+PoxTower_CelebiVanish:
+	levitate
+	jump_in_place_left_right
+	jump_in_place_right_left
+	jump_in_place_left_right
+	jump_in_place_right_left
+	set_invisible
+	delay_8
+	set_visible
+	delay_4
+	set_invisible
+	step_end
+
+PoxTower_JirachiAscend:
+	levitate
+	jump_in_place_up
+	delay_16
+	face_up
+ stop_levitate
+	fly_up
+	set_invisible
+	step_end
