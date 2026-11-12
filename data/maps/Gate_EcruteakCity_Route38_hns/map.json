@@ -35,6 +35,13 @@
       "elevation": 0,
       "dest_map": "MAP_ECRUTEAK_CITY_HNS",
       "dest_warp_id": "9"
+    },
+    {
+      "x": 1,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE38_HNS",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

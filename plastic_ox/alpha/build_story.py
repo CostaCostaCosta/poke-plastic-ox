@@ -412,6 +412,9 @@ gift('Family', "BILL never visits enough. His first POKéMON was ABRA, you know.
 replace_npc('GoldenrodCity_BillsHouse_hns', 0, 'Family')
 
 # Ecruteak: the optional full troupe and the mandatory tower investigation.
+# NOTE: the checked-in plastic_ox_story.inc carries hand-tuned Kimono teams and
+# per-dancer dialogue (2026-11-11 fix pass). Update this block before running the
+# generator, or a regeneration will revert those edits.
 kimono_flags = []
 kimono_objects = []
 for i, species in enumerate(['Vaporeon','Jolteon','Flareon','Espeon','Umbreon']):

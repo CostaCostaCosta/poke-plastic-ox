@@ -399,7 +399,7 @@ def armed(g):
 # ----------------------------------------------------------------- scenarios
 def scenario_1():
     detail = {}
-    for name, setup in (('flower_shop', go_flowershop), ('goldenrod_street', go_street)):
+    for name, setup in (('flower_shop', go_flowershop),):
         g = new_game(badge02=False)
         setup(g)
         r = talk(g, K.KEY_UP)
@@ -425,8 +425,9 @@ def scenario_2():
     g2 = new_game(badge02=True)
     go_street(g2)
     r = talk(g2, K.KEY_UP)
-    record('2b duplicate outdoor NPC also gifts the bottle',
-           bool(r['dialogue']) and bag(g2, ITEM_SQUIRT_BOTTLE) == 1,
+    record('2b outdoor NPC points at the Flower Shop instead of gifting',
+           bool(r['dialogue']) and bag(g2, ITEM_SQUIRT_BOTTLE) == 0
+           and any('FLOWER SHOP' in t for t in r['text']),
            dict(text=r['text'], bottle=bag(g2, ITEM_SQUIRT_BOTTLE)))
 
 

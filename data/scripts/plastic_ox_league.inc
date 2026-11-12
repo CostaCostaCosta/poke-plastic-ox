@@ -321,7 +321,7 @@ PoxLeague_Text_Wallace::
 	.string "WALLACE: From your first small\nteam to this stage, you have\plearned to change.\pA battle has a rhythm. I intend\nto lead it. Show me how you\panswer!$"
 
 PoxLeague_Text_WallaceDefeat::
-	.string "That was a battle to remember!$"
+	.string "WALLACE: You found the rhythm\nbefore I did. It's yours now.$"
 
 PoxLeague_Text_WallaceAfter::
 	.string "The next room is yours. Take a\nmoment to prepare.$"
@@ -381,7 +381,7 @@ PoxLeague_Text_Steven::
 	.string "STEVEN: A strong team is more\nthan six powerful partners. Each\pmust cover the others.\pLook closely. Even the finest\ndefense has a moment when it\pmust attack.$"
 
 PoxLeague_Text_StevenDefeat::
-	.string "That was a battle to remember!$"
+	.string "STEVEN: You covered every seam.\nI could not find the gap.$"
 
 PoxLeague_Text_StevenAfter::
 	.string "The next room is yours. Take a\nmoment to prepare.$"
@@ -443,7 +443,7 @@ PoxLeague_Text_LeagueLance::
 	.string "LANCE: Preparation matters. But\nwhen the opening comes, you must\pcommit.\pI will keep the pressure on.\nShow me your courage!$"
 
 PoxLeague_Text_LeagueLanceDefeat::
-	.string "That was a battle to remember!$"
+	.string "LANCE: You committed first.\nThat was the whole difference.$"
 
 PoxLeague_Text_LeagueLanceAfter::
 	.string "The next room is yours. Take a\nmoment to prepare.$"
@@ -507,7 +507,7 @@ PoxLeague_Text_Blue::
 	.string "BLUE: You made it through three\ndifferent styles. Good. I have\pbeen watching.\pI will adapt to whatever you\nbring. Earn your place beyond\pthis room!$"
 
 PoxLeague_Text_BlueDefeat::
-	.string "That was a battle to remember!$"
+	.string "BLUE: I adapted. You still won.\nI'll remember that.$"
 
 PoxLeague_Text_BlueAfter::
 	.string "The next room is yours. Take a\nmoment to prepare.$"
@@ -572,10 +572,10 @@ PoxLeague_BillAfter::
 	end
 
 PoxLeague_Text_Bill::
-	.string "BILL: Oh! We finally meet in\nperson. How has the journey\ptreated you?\pI have been looking forward to\nthis. Let our POKéMON do the\ptalking.$"
+	.string "CHAMPION BILL would like to battle.$"
 
 PoxLeague_Text_BillDefeat::
-	.string "That was a battle to remember!$"
+	.string "BILL: The calculation was wrong.\nYou were the variable I missed.$"
 
 PoxLeague_Text_BillAfter::
 	.string "BILL: I built the foundations of\nthe transfer network, and tools\pthat learned from battles.\pThe system learned to improve\ntraining conditions. Then it\pbegan moving the world. I never\nasked for that. But I made it\ppossible.\pI thought better predictions\nwould make me a better TRAINER.\pYou learned from places, people,\nand your POKéMON.\pYou surpassed my calculations.\nThat journey belongs to you.\pCome, CHAMPION. Let us record\nit.$"

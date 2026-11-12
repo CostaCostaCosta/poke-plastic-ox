@@ -188,16 +188,20 @@ PoxRegion_MonFlewAway::
 PoxRegion_MonFlewAwayText::
 	.string "The POKéMON flew away!$"
 
+@ ROUTE 44 <-> RUSTBORO threshold.  Story runs require the STONE BADGE in both
+@ directions; the battle demo (FLAG_POX_TRIGGERS_ENABLED unset) keeps the seam
+@ open.  The _Closed arms are reachable now, so neither branch is dead code.
 PoxRegion_rustboro_route44_a::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_rustboro_route44_a_Open
+	goto_if_unset FLAG_BADGE01_GET, PoxRegion_rustboro_route44_a_Closed
 PoxRegion_rustboro_route44_a_Open::
 	warp MAP_ROUTE44_HNS, 1, 15
 	waitstate
 	releaseall
 	end
 PoxRegion_rustboro_route44_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
+	msgbox PoxRegion_Route44BadgeText, MSGBOX_DEFAULT
 	warp MAP_RUSTBORO_CITY, 38, 10
 	waitstate
 	releaseall
@@ -212,13 +216,14 @@ PoxRegion_rustboro_route44_a_Text::
 PoxRegion_rustboro_route44_b::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_rustboro_route44_b_Open
+	goto_if_unset FLAG_BADGE01_GET, PoxRegion_rustboro_route44_b_Closed
 PoxRegion_rustboro_route44_b_Open::
 	warp MAP_RUSTBORO_CITY, 38, 10
 	waitstate
 	releaseall
 	end
 PoxRegion_rustboro_route44_b_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
+	msgbox PoxRegion_Route44BadgeText, MSGBOX_DEFAULT
 	warp MAP_ROUTE44_HNS, 1, 15
 	waitstate
 	releaseall
@@ -229,6 +234,9 @@ PoxRegion_rustboro_route44_b_Sign::
 	end
 PoxRegion_rustboro_route44_b_Text::
 	.string "RustboroCity\nMarked passage ahead.$"
+
+PoxRegion_Route44BadgeText::
+	.string "The hiker on the east road checks\nfor the STONE BADGE.\pROXANNE awards it at the\nRUSTBORO GYM.$"
 
 PoxRegion_route33_goldenrod_a::
 	lockall
@@ -1252,9 +1260,10 @@ PoxRegion_Arrival_EcruteakCity_hns::
 PoxRegion_Arrival_EcruteakCity_hns_End::
 	end
 
+@ Arrival only folds the map graph together.  The east-walkway KECLEON is a
+@ separate beat: its own object is visible until FLAG_KECLEON_FLED_FORTREE is
+@ set by the walkway interaction after badge 4.  Never pre-clear it here.
 PoxRegion_Arrival_FortreeCity::
-	setflag FLAG_HIDE_FORTREE_CITY_KECLEON
-	setflag FLAG_KECLEON_FLED_FORTREE
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_Arrival_FortreeCity_Reached
 	goto_if_unset FLAG_POX_STORY_WEATHER, PoxRegion_Arrival_FortreeCity_End
 PoxRegion_Arrival_FortreeCity_Reached::

@@ -16,5 +16,5 @@ PoxBurnedTower_UltraBall::
 	end
 
 PoxBurnedTower_TM12::
-	finditem ITEM_BIG_PEARL
+	finditem ITEM_TM12
 	end

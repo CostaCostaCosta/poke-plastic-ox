@@ -6,7 +6,8 @@ os.environ.setdefault('LD_LIBRARY_PATH', '/home/eddie/.venvs/mgba311/lib:/home/e
 import mgba.core, mgba.image, mgba.gba, mgba.log
 mgba.log.silence()
 
-ROM = "/home/eddie/repos/poke-plastic-ox/pokeemerald.gba"
+REPO = Path(__file__).resolve().parents[2]
+ROM = str(REPO / "pokeemerald.gba")
 LINKER_MAP = Path(ROM).with_suffix(".map")
 K = mgba.gba.GBA
 DIRKEY = {'UP': K.KEY_UP, 'DOWN': K.KEY_DOWN, 'LEFT': K.KEY_LEFT, 'RIGHT': K.KEY_RIGHT}
@@ -210,7 +211,9 @@ class GBA:
     def shot(self, name):
         if not os.path.splitext(name)[1]:
             name += ".png"
-        path = os.path.join("/home/eddie/repos/poke-plastic-ox/plastic_ox/demo/shots", name)
+        shots = REPO / "plastic_ox/demo/shots"
+        shots.mkdir(parents=True, exist_ok=True)
+        path = str(shots / name)
         self.fb.to_pil().convert("RGB").save(path)
         return path
     def wait_grid_ready(self, x, y, timeout=900):
@@ -234,7 +237,7 @@ class GBA:
         transition. Acting between those points reads the previous map."""
         import json, glob, re
         if not hasattr(GBA, "_layout_widths"):
-            repo = "/home/eddie/repos/poke-plastic-ox"
+            repo = str(REPO)
             lay = {l["id"]: l for l in json.load(
                 open(repo + "/data/layouts/layouts.json"))["layouts"]}
             consts = open(repo + "/include/constants/map_groups.h").read()

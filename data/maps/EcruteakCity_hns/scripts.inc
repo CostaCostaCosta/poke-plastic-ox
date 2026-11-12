@@ -88,3 +88,39 @@ PoxEcruteak_WestEntrance::
 	waitstate
 	releaseall
 	end
+
+PoxEcruteak_EastExit::
+	lockall
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxEcruteak_EastExit_Open
+	goto_if_unset FLAG_POX_STORY_BURNED_TOWER, PoxEcruteak_EastExit_Closed
+PoxEcruteak_EastExit_Open::
+	warp MAP_ROUTE119, 5, 124
+	waitstate
+	releaseall
+	end
+PoxEcruteak_EastExit_Closed::
+	msgbox PoxEcruteak_Text_EastExitClosed, MSGBOX_DEFAULT
+	releaseall
+	end
+
+PoxEcruteak_Text_EastExitClosed::
+	.string "The east road is shut.\pNo one goes past the last lamp\nwhile MORTY is under the tower.$"
+
+PoxEcruteak_EastWatch::
+	lock
+	faceplayer
+	goto_if_set FLAG_POX_STORY_BURNED_TOWER, PoxEcruteak_EastWatch_Open
+	msgbox PoxEcruteak_Text_EastWatch, MSGBOX_NPC
+	release
+	end
+
+PoxEcruteak_EastWatch_Open::
+	msgbox PoxEcruteak_Text_EastWatchOpen, MSGBOX_NPC
+	release
+	end
+
+PoxEcruteak_Text_EastWatch::
+	.string "ROUTE 119 runs east of here.\pThe watch keeps the road shut\nuntil MORTY comes back up.$"
+
+PoxEcruteak_Text_EastWatchOpen::
+	.string "ROUTE 119 is open.\pThe decks are wet, so mind the\nriver on the way down.$"

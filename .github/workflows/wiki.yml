@@ -1,0 +1,33 @@
+name: Plastic Ox wiki and story notes
+
+on:
+  push:
+    paths:
+      - "plastic_ox/story/**"
+      - "plastic_ox/wiki/**"
+      - "data/maps/**"
+      - "data/scripts/**"
+      - "src/data/**"
+      - ".github/workflows/wiki.yml"
+  pull_request:
+    paths:
+      - "plastic_ox/story/**"
+      - "plastic_ox/wiki/**"
+      - "data/maps/**"
+      - "data/scripts/**"
+      - "src/data/**"
+
+jobs:
+  wiki:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Story-note parser tests
+        run: python3 plastic_ox/story/test_story_notes.py
+      - name: Validate story notes
+        run: python3 plastic_ox/story/check_story_notes.py
+      - name: Check generated wiki is current
+        run: python3 plastic_ox/wiki/build_wiki.py --check

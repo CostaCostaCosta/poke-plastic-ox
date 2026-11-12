@@ -109,6 +109,14 @@ PoxGoldenrod_Text_Bike:
 PoxGoldenrod_Text_BikeHave:
 	.string "Your bicycle is ready for the road!$"
 
+@ The street woman points at the FLOWER SHOP counter: the shop is the only
+@ place that hands over the SQUIRTBOTTLE (Pox_SquirtBottle at (2,4)).
+PoxGoldenrod_SquirtBottleNote::
+	msgbox PoxGoldenrod_Text_SquirtBottleNote, MSGBOX_NPC
+	end
+PoxGoldenrod_Text_SquirtBottleNote:
+	.string "The FLOWER SHOP lends a\nSQUIRTBOTTLE for the odd tree on\pROUTE 36. Ask the girl inside.$"
+
 PoxGoldenrod_Slots::
 	lockall
 	checkitem ITEM_COIN_CASE

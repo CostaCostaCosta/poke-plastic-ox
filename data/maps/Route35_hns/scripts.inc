@@ -87,37 +87,37 @@ Route35_EventScript_Npc12::
 	end
 
 Route35_EventScript_Npc1_Text:
-	.string "The park charges no entry fee. The squirrels work for tips.$"
+	.string "The gate stays open till dusk.\nAfter that it's a dark climb.$"
 
 Route35_EventScript_Npc2_Text:
-	.string "Rocky ground can wear your team\ndown. Rest when you can.$"
+	.string "We got this blanket at nine.\nBy noon half the city had the\nsame idea.$"
 
 Route35_EventScript_Npc3_Text:
-	.string "The mountain draws hikers and\ncurious trainers alike.$"
+	.string "There's a wasp on the jam.\nI've decided it can have it.$"
 
 Route35_EventScript_Npc4_Text:
-	.string "Rocky ground can wear your team\ndown. Rest when you can.$"
+	.string "The park queue starts at the\ngatehouse on contest mornings.\pBring a hat.$"
 
 Route35_EventScript_Npc5_Text:
-	.string "The mountain draws hikers and\ncurious trainers alike.$"
+	.string "My boots gave out at the rock\nface. The cobbler knows my\nname now.$"
 
 Route35_EventScript_Npc6_Text:
-	.string "Rocky ground can wear your team\ndown. Rest when you can.$"
+	.string "The rock face eats boots.\nThese have been resoled twice\nsince spring.$"
 
 Route35_EventScript_Npc7_Text:
-	.string "The mountain draws hikers and\ncurious trainers alike.$"
+	.string "There's a pond two fields over.\nA long way with a rod and a\nbad knee.$"
 
 Route35_EventScript_Npc8_Text:
-	.string "Rocky ground can wear your team\ndown. Rest when you can.$"
+	.string "The Yanma come out once the\ngrass warms. I've been standing\nhere since ten.$"
 
 Route35_EventScript_Npc9_Text:
-	.string "The mountain draws hikers and\ncurious trainers alike.$"
+	.string "I timed the hill from the bottom.\nForty minutes, and my legs\nhaven't forgiven me.$"
 
 Route35_EventScript_Npc10_Text:
-	.string "Rocky ground can wear your team\ndown. Rest when you can.$"
+	.string "I take the gatehouse shortcut\nevery morning. The hill is for\nweekends.$"
 
 Route35_EventScript_Npc11_Text:
-	.string "The mountain draws hikers and\ncurious trainers alike.$"
+	.string "That persim tree is mine.\nI planted it the year they\nresurfaced this road.$"
 
 Route35_EventScript_Npc12_Text:
-	.string "Rocky ground can wear your team\ndown. Rest when you can.$"
+	.string "Half my team is Yanma now.\nThe meadow does that to people.$"

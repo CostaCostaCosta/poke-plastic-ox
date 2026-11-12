@@ -21,21 +21,15 @@ FortreeCity_EventScript_TyRoadblock::
 	end
 
 FortreeCity_Text_GabbyRoadblock:
-	.string "GABBY: We're waiting to interview\nFortree's newest GYM champion!\pBeat WINONA and earn her BADGE,\nthen we'll clear the road.$"
+	.string "GABBY: Champion interview, right\nhere! Beat WINONA and we're live\lbefore you can leave town.$"
 
 FortreeCity_Text_TyRoadblock:
-	.string "TY: The route opens after you\nearn WINONA's BADGE.$"
+	.string "TY: Camera's been up since dawn.\nTake your time.\pI'm paid by the day, not by the\ninterview.$"
 
 FortreeCity_EventScript_Woman::
 	lock
 	faceplayer
-	goto_if_set FLAG_KECLEON_FLED_FORTREE, FortreeCity_EventScript_WomanGymAccessible
-	msgbox FortreeCity_Text_SomethingBlockingGym, MSGBOX_DEFAULT
-	release
-	end
-
-FortreeCity_EventScript_WomanGymAccessible::
-	msgbox FortreeCity_Text_ThisTimeIllBeatWinona, MSGBOX_DEFAULT
+	msgbox FortreeCity_Text_GymQueue, MSGBOX_DEFAULT
 	release
 	end
 
@@ -63,40 +57,33 @@ FortreeCity_EventScript_GymSign::
 	msgbox FortreeCity_Text_GymSign, MSGBOX_SIGN
 	end
 
+FortreeCity_EventScript_WestGantrySign::
+	msgbox FortreeCity_Text_WestGantrySign, MSGBOX_SIGN
+	end
+
+FortreeCity_EventScript_EastJunctionSign::
+	msgbox FortreeCity_Text_EastJunctionSign, MSGBOX_SIGN
+	end
+
 FortreeCity_EventScript_Kecleon::
 	lock
 	faceplayer
-	checkitem ITEM_DEVON_SCOPE
-	goto_if_eq VAR_RESULT, TRUE, FortreeCity_EventScript_AskUseDevonScope
-	msgbox FortreeCity_Text_SomethingUnseeable, MSGBOX_DEFAULT
+	goto_if_set FLAG_BADGE04_GET, FortreeCity_EventScript_KecleonReveal
+	msgbox FortreeCity_Text_SomethingInvisibleInTheWay, MSGBOX_DEFAULT
 	release
 	end
 
-FortreeCity_EventScript_AskUseDevonScope::
-	msgbox FortreeCity_Text_UnseeableUseDevonScope, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, YES, FortreeCity_EventScript_UseDevonScope
-	release
-	end
-
-FortreeCity_EventScript_UseDevonScope::
-	msgbox FortreeCity_Text_UsedDevonScopePokemonFled, MSGBOX_DEFAULT
+FortreeCity_EventScript_KecleonReveal::
+	msgbox FortreeCity_Text_KecleonRevealed, MSGBOX_DEFAULT
 	closemessage
-	applymovement VAR_LAST_TALKED, Movement_KecleonAppears
-	waitmovement 0
 	waitse
 	playmoncry SPECIES_KECLEON, CRY_MODE_ENCOUNTER
-	delay 40
+	delay 30
 	waitmoncry
-	applymovement VAR_LAST_TALKED, FortreeCity_Movement_KecleonFlee
-	waitmovement 0
-	removeobject VAR_LAST_TALKED
 	setflag FLAG_KECLEON_FLED_FORTREE
+	removeobject VAR_LAST_TALKED
 	release
 	end
-
-FortreeCity_Movement_KecleonFlee:
-	walk_right
-	step_end
 
 FortreeCity_Text_SawGiganticPokemonInSky:
 	.string "No one believes me, but I saw this\n"
@@ -107,15 +94,12 @@ FortreeCity_Text_SawGiganticPokemonInSky:
 	.string "Um… You, uh…smell singed.\p"
 	.string "Were you at a volcano or something?$"
 
-FortreeCity_Text_SomethingBlockingGym:
-	.string "I want to go to the POKéMON GYM,\n"
-	.string "but something's blocking the way.\p"
-	.string "After all the bother I went through\n"
-	.string "training on ROUTE 120…$"
-
-FortreeCity_Text_ThisTimeIllBeatWinona:
-	.string "I've got my pride-and-joy POKéMON\n"
-	.string "with me. This time, I'll beat WINONA.$"
+FortreeCity_Text_GymQueue:
+	.string "Challenge days, the GYM queue runs\n"
+	.string "down the ladder and out onto the\l"
+	.string "walkway.\p"
+	.string "Nobody minds. WINONA is worth\n"
+	.string "the wait.$"
 
 FortreeCity_Text_TreesGrowByDrinkingRainwater:
 	.string "The ground absorbs rainwater, and\n"
@@ -141,18 +125,17 @@ FortreeCity_Text_PokemonThatEvolveWhenTraded:
 	.string "There are POKéMON that evolve when\n"
 	.string "you trade them! That's what I heard.$"
 
-FortreeCity_Text_SomethingUnseeable:
-	.string "Something unseeable is in the way.$"
+FortreeCity_Text_SomethingInvisibleInTheWay:
+	.string "Something invisible is in the way.\p"
+	.string "You push. It pushes back.\n"
+	.string "It isn't going to move.$"
 
-FortreeCity_Text_UnseeableUseDevonScope:
-	.string "Something unseeable is in the way.\p"
-	.string "Want to use the DEVON SCOPE?$"
-
-FortreeCity_Text_UsedDevonScopePokemonFled:
-	.string "{PLAYER} used the DEVON SCOPE.\p"
-	.string "An invisible POKéMON became completely\n"
-	.string "visible!\p"
-	.string "The startled POKéMON fled!$"
+FortreeCity_Text_KecleonRevealed:
+	.string "The shape in the walkway shivers\n"
+	.string "and comes into view.\p"
+	.string "It's a KECLEON!\p"
+	.string "Startled, it scrambles off along\n"
+	.string "the ropes.$"
 
 FortreeCity_Text_CitySign:
 	.string "FORTREE CITY\n"
@@ -164,3 +147,14 @@ FortreeCity_Text_GymSign:
 	.string "LEADER: WINONA\p"
 	.string "“The bird user taking flight into\n"
 	.string "the world.”$"
+
+FortreeCity_Text_WestGantrySign:
+	.string "WEST GANTRY\n"
+	.string "One person at a time.\p"
+	.string "No loads over forty kilos.$"
+
+FortreeCity_Text_EastJunctionSign:
+	.string "EAST JUNCTION\n"
+	.string "Coast road below.\p"
+	.string "Cycling deck above.\n"
+	.string "Mind the rope on the turn.$"

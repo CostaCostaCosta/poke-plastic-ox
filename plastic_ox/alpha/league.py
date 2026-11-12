@@ -132,8 +132,15 @@ def install(read, put):
         'STEVEN: A strong team is more than six powerful partners. Each must cover the others.|Look closely. Even the finest defense has a moment when it must attack.',
         'LANCE: Preparation matters. But when the opening comes, you must commit.|I will keep the pressure on. Show me your courage!',
         'BLUE: You made it through three different styles. Good. I have been watching.|I will adapt to whatever you bring. Earn your place beyond this room!',
-        'BILL: Oh! We finally meet in person. How has the journey treated you?|I have been looking forward to this. Let our POKéMON do the talking.'
+        'CHAMPION BILL would like to battle.'
     ]
+    DEFEAT_LINES = {
+        'Wallace': 'WALLACE: You found the rhythm before I did. It is yours now.',
+        'Steven': 'STEVEN: You covered every seam. I could not find the gap.',
+        'LeagueLance': 'LANCE: You committed first. That was the whole difference.',
+        'Blue': "BLUE: I adapted. You still won. I'll remember that.",
+        'Bill': 'BILL: The calculation was wrong. You were the variable I missed.',
+    }
     for i,n in enumerate(MEMBERS):
         room=load('PlasticOx_'+n+'Room')
         room['object_events']=[obj(n,6,5,'LANCE' if n=='LeagueLance' else n.upper())]
@@ -151,12 +158,12 @@ def install(read, put):
         emit(f'PoxLeague_{n}Open::\n\tsetmetatile 6, 1, METATILE_EliteFour_OpenDoor{champion}_Frame, FALSE\n\tsetmetatile 6, 2, METATILE_EliteFour_OpenDoor{champion}_Opening, FALSE\n\treturn')
         prereq=BADGES+FLAGS[:i]
         emit(f'PoxLeague_{n}::\n\tlock\n\tfaceplayer\n'+checks(prereq)+f'\tgoto_if_set {FLAGS[i]}, PoxLeague_{n}After\n\tplaybgm '+('MUS_ENCOUNTER_CHAMPION' if i==4 else 'MUS_ENCOUNTER_ELITE_FOUR')+f', FALSE\n\tmsgbox PoxLeague_Text_{n}, MSGBOX_DEFAULT\n\ttrainerbattle_no_intro TRAINER_PLASTIC_OX_{n.upper()}, PoxLeague_Text_{n}Defeat\nPoxLeague_{n}Won::\n\tsetflag {FLAGS[i]}\n\tcall PoxLeague_{n}Open\n\tspecial DrawWholeMapView\nPoxLeague_{n}After::\n\tmsgbox PoxLeague_Text_{n}After, MSGBOX_DEFAULT\n'+ ('\twarp MAP_PLASTIC_OX_HALL_OF_FAME, 7, 12\n\twaitstate\n' if i==4 else '')+'\treleaseall\n\tend')
-        text(n,speeches[i]);text(n+'Defeat','That was a battle to remember!')
+        text(n,speeches[i]);text(n+'Defeat',DEFEAT_LINES.get(n,'That was a battle to remember!'))
         text(n+'After','The next room is yours. Take a moment to prepare.' if i<4 else 'BILL: I built the foundations of the transfer network, and tools that learned from battles.|The system learned to improve training conditions. Then it began moving the world. I never asked for that. But I made it possible.|I thought better predictions would make me a better TRAINER. You learned from places, people, and your POKéMON.|You surpassed my calculations. That journey belongs to you. Come, CHAMPION. Let us record it.')
         if i<4: portal(n+'Next',load('PlasticOx_'+MEMBERS[i+1]+'Room')['id'],6,11,prereq+[FLAGS[i]])
 
     hof=load('EverGrandeCity_HallOfFame')
-    hof.update(id='MAP_PLASTIC_OX_HALL_OF_FAME',name='PlasticOx_HallOfFame',region_map_section='MAPSEC_INDIGO_PLATEAU',object_events=[obj('HallGuide',6,7,'BILL')],warp_events=[],coord_events=[],bg_events=[])
+    hof.update(id='MAP_PLASTIC_OX_HALL_OF_FAME',name='PlasticOx_HallOfFame',region_map_section='MAPSEC_INDIGO_PLATEAU',object_events=[obj('HallGuide',6,7,'MAN_3')],warp_events=[],coord_events=[],bg_events=[])
     save('PlasticOx_HallOfFame',hof)
     put('data/maps/PlasticOx_HallOfFame/scripts.inc','PlasticOx_HallOfFame_MapScripts::\n\tmap_script MAP_SCRIPT_ON_FRAME_TABLE, PoxLeague_HallTable\n\t.byte 0\nPoxLeague_HallTable::\n\tmap_script_2 VAR_TEMP_1, 0, PoxLeague_Hall\n\t.2byte 0\n')
     emit('PoxLeague_Hall::\n\tlockall\n'+checks(BADGES+FLAGS)+'\tsetvar VAR_TEMP_1, 1\n\tapplymovement LOCALID_PLAYER, Common_Movement_WalkUp4\n\twaitmovement 0\n\tmsgbox PoxLeague_Text_Hall, MSGBOX_DEFAULT\n\tclosemessage\n\tdofieldeffect FLDEFF_HALL_OF_FAME_RECORD\n\twaitfieldeffect FLDEFF_HALL_OF_FAME_RECORD\n\tsetrespawn HEAL_LOCATION_POX_INDIGO\n\tfadescreenspeed FADE_TO_BLACK, 24\n\tspecial GameClear\n\tend')

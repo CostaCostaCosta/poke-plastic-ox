@@ -140,8 +140,14 @@ def main() -> int:
         allowed = set(SIGNATURE_EXCEPTIONS.get(trainer, []))
         header, blocks = split_block(parsed[trainer])
         checked += 1
-        if len(blocks) != expected_party_size(trainer):
-            problems.append(f"{trainer}: {len(blocks)} Pokemon, expected {expected_party_size(trainer)}")
+        expected_size = expected_party_size(trainer)
+        if trainer.startswith("TRAINER_PLASTIC_OX_KIMONO"):
+            # Optional signature troupe: thematically 3-6 partners, not a full boss squad.
+            if not 3 <= len(blocks) <= expected_size:
+                problems.append(f"{trainer}: {len(blocks)} Pokemon, expected 3-{expected_size}")
+                continue
+        elif len(blocks) != expected_size:
+            problems.append(f"{trainer}: {len(blocks)} Pokemon, expected {expected_size}")
             continue
         for index, block in enumerate(blocks):
             mon = parse_mon(block)

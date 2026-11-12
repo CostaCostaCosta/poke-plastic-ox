@@ -17644,8 +17644,8 @@ Adamant Nature
 Name: NAOKO
 Class: Beauty
 Pic: Beauty
-Gender: Male
-Music: Male
+Gender: Female
+Music: Female
 Double Battle: No
 AI: Basic Trainer / Smart Switching / PP Stall Prevention
 
@@ -17655,339 +17655,215 @@ Ability: Water Absorb
 EVs: 4 HP / 252 SpA / 252 Spe
 Timid Nature
 - Surf
-- Water Pulse
-- Hidden Power
+- Ice Beam
 - Toxic
+- Protect
 
-Psyduck @ Leftovers
-Level: 23
-Ability: Damp
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Surf
-- Water Pulse
-- Hidden Power
-- Toxic
-
-Seel @ Leftovers
-Level: 23
-Ability: Thick Fat
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Surf
-- Water Pulse
-- Hidden Power
-- Toxic
-
-Staryu @ Sitrus Berry
+Chinchou @ Magnet
 Level: 24
-Ability: Natural Cure
-IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
-EVs: 36 HP / 76 Def / 120 SpA / 236 Spe
-Timid Nature
+Ability: Volt Absorb
+EVs: 252 HP / 252 SpA
+Modest Nature
 - Surf
 - Thunderbolt
-- Ice Beam
-- Hidden Power
+- Supersonic
+- Water Pulse
 
-Slowpoke @ Leftovers
-Level: 24
-Ability: Oblivious
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
+Marill @ Mystic Water
+Level: 23
+Ability: Huge Power
+EVs: 252 HP / 252 Atk
+Adamant Nature
 - Surf
-- Psychic
-- Hidden Power
-- Toxic
+- Return
+- Rollout
+- Defense Curl
 
-Tentacool @ Leftovers
-Level: 24
-Ability: Liquid Ooze
-EVs: 252 HP / 4 Def / 252 SpD
-Calm Nature
-- Blizzard
+Corphish
+Level: 22
+Ability: Hyper Cutter
+EVs: 252 HP / 252 Atk
+Adamant Nature
 - Surf
-- Toxic
-- Hidden Power
+- Bubble
+- Harden
+- Protect
 
 === TRAINER_PLASTIC_OX_KIMONOJOLTEON ===
 Name: SAYO
-Class: Beauty
-Pic: Beauty
-Gender: Male
-Music: Male
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Cool
 Double Battle: No
-AI: Basic Trainer / Smart Switching / PP Stall Prevention
+AI: Basic Trainer / Try To Faint / HP Aware
 
-Jolteon @ Leftovers
+Jolteon @ Magnet
 Level: 26
 Ability: Volt Absorb
 EVs: 4 HP / 252 SpA / 252 Spe
 Timid Nature
 - Thunderbolt
-- Thunder
-- Hidden Power
-- Toxic
+- Thundershock
+- Quick Attack
+- Thunder Wave
 
-Elekid @ Sitrus Berry
-Level: 23
-Ability: Static
-IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
-EVs: 240 SpA / 236 Spe
-Timid Nature
-- Thunderbolt
-- Ice Punch
-- Thief
-- Substitute
-
-Electrike @ Leftovers
-Level: 23
-Ability: Static
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Thunderbolt
-- Thunder
-- Hidden Power
-- Toxic
-
-Voltorb @ Silk Scarf
+Electrike @ Cheri Berry
 Level: 24
 Ability: Static
-EVs: 252 Atk / 4 SpA / 252 Spe
-Naive Nature
-- Rain Dance
-- Thunder
-- Light Screen
-- Explosion
-
-Magnemite @ Sitrus Berry
-Level: 23
-Ability: Sturdy
-IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
-EVs: 36 Def / 240 SpA / 76 SpD / 156 Spe
+EVs: 252 HP / 252 SpA
 Modest Nature
-- Thunderbolt
-- Hidden Power
-- Toxic
-- Substitute
+- Spark
+- Quick Attack
+- Howl
+- Return
 
-Skitty @ Leftovers
-Level: 24
-Ability: Cute Charm
-EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
-Adamant Nature
-- Hidden Power
-- Body Slam
-- Thunderbolt
-- Toxic
+Minun @ Lum Berry
+Level: 22
+Ability: Minus
+EVs: 252 HP / 252 SpA
+Modest Nature
+- Thunder Wave
+- Quick Attack
+- Helping Hand
+- Spark
 
 === TRAINER_PLASTIC_OX_KIMONOFLAREON ===
 Name: ZUKI
-Class: Beauty
-Pic: Beauty
-Gender: Male
-Music: Male
+Class: Lady
+Pic: Lady
+Gender: Female
+Music: Female
 Double Battle: No
-AI: Basic Trainer / Smart Switching / PP Stall Prevention
+AI: Basic Trainer / Check Viability / Powerful Status
 
-Flareon @ Leftovers
-Level: 26
+Flareon @ Charcoal
+Level: 25
 Ability: Flash Fire
-EVs: 8 HP / 84 Def / 192 SpA / 224 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Flamethrower
+- Quick Attack
+- Dig
+- Return
+
+Vulpix @ Rawst Berry
+Level: 25
+Ability: Flash Fire
+EVs: 4 HP / 252 SpA / 252 Spe
 Modest Nature
-- Fire Blast
-- Hidden Power
-- Substitute
-- Hyper Beam
-
-Vulpix @ Leftovers
-Level: 22
-Ability: Flash Fire
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
 - Flamethrower
-- Fire Blast
-- Hidden Power
-- Toxic
+- Ember
+- Quick Attack
+- Return
 
-Growlithe @ Leftovers
-Level: 23
-Ability: Intimidate
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Flamethrower
-- Fire Blast
-- Hidden Power
-- Toxic
-
-Arbok @ Choice Band
+Numel
 Level: 24
-Ability: Intimidate
-EVs: 252 Atk / 4 Def / 252 Spe
-Jolly Nature
-- Sludge Bomb
-- Earthquake
-- Rock Slide
-- Sleep Talk
+Ability: Oblivious
+EVs: 252 HP / 252 SpA
+Quiet Nature
+- Ember
+- Magnitude
+- Tackle
+- Protect
 
-Meowth @ Sitrus Berry
-Level: 23
-Ability: Pickup
-EVs: 36 HP / 236 Atk / 36 SpD / 196 Spe
-Jolly Nature
-- Thunder
-- Double-Edge
-- Shadow Ball
-- Taunt
-
-Delibird @ Choice Band
+Slugma @ Sitrus Berry
 Level: 24
-Ability: Hustle
-EVs: 136 Atk / 136 SpA / 236 Spe
-Naughty Nature
-- Ice Beam
-- Focus Punch
-- Aerial Ace
-- Hidden Power
+Ability: Flame Body
+EVs: 252 HP / 252 SpD
+Sassy Nature
+- Ember
+- Rock Throw
+- Harden
+- Return
 
 === TRAINER_PLASTIC_OX_KIMONOESPEON ===
 Name: KUNI
-Class: Beauty
-Pic: Beauty
-Gender: Male
-Music: Male
+Class: Psychic
+Pic: Psychic F
+Gender: Female
+Music: Intense
 Double Battle: No
-AI: Basic Trainer / Smart Switching / PP Stall Prevention
+AI: Basic Trainer / Check Viability / Conservative
 
-Espeon @ Leftovers
-Level: 26
+Espeon @ Twisted Spoon
+Level: 25
 Ability: Synchronize
 EVs: 4 HP / 252 SpA / 252 Spe
 Timid Nature
 - Psychic
-- Dream Eater
-- Hidden Power
-- Toxic
+- Calm Mind
+- Reflect
+- Quick Attack
 
-Meditite @ Leftovers
-Level: 23
-Ability: Pure Power
-EVs: 252 Atk / 4 SpD / 252 Spe
-Adamant Nature
-- Substitute
-- Brick Break
-- Shadow Ball
-- Toxic
-
-Meowth @ Sitrus Berry
-Level: 23
-Ability: Pickup
-EVs: 36 HP / 236 Atk / 36 SpD / 196 Spe
-Jolly Nature
-- Thunder
-- Double-Edge
-- Shadow Ball
-- Taunt
-
-Kirlia @ Leftovers
-Level: 24
-Ability: Synchronize
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Psychic
-- Dream Eater
-- Hidden Power
-- Toxic
-
-Slowpoke @ Leftovers
-Level: 24
-Ability: Oblivious
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Surf
-- Psychic
-- Hidden Power
-- Toxic
-
-Natu @ Leftovers
+Kirlia @ Lum Berry
 Level: 23
 Ability: Synchronize
-EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
-Adamant Nature
-- Psychic
-- Aerial Ace
-- Hidden Power
-- Toxic
+EVs: 252 HP / 252 SpA
+Modest Nature
+- Confusion
+- Calm Mind
+- Double Team
+- Return
+
+Spoink @ Sitrus Berry
+Level: 22
+Ability: Thick Fat
+EVs: 252 HP / 252 SpA
+Modest Nature
+- Psywave
+- Psybeam
+- Psych Up
+- Return
 
 === TRAINER_PLASTIC_OX_KIMONOUMBREON ===
 Name: MIKI
-Class: Beauty
-Pic: Beauty
-Gender: Male
-Music: Male
+Class: Hex Maniac
+Pic: Hex Maniac
+Gender: Female
+Music: Suspicious
 Double Battle: No
-AI: Basic Trainer / Smart Switching / PP Stall Prevention
+AI: Basic Trainer / HP Aware / Smart Mon Choices
 
-Umbreon @ Choice Band
+Umbreon @ Black Glasses
 Level: 26
 Ability: Synchronize
-EVs: 4 HP / 252 Atk / 252 Spe
-Adamant Nature
+EVs: 252 HP / 4 Atk / 252 SpD
+Careful Nature
+- Shadow Ball
 - Pursuit
-- Hidden Power
-- Psychic
 - Toxic
+- Sand-Attack
 
-Spoink @ Leftovers
-Level: 23
-Ability: Thick Fat
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 36 HP / 156 Def / 116 SpD / 196 Spe
-Bold Nature
-- Thief
-- Psychic
-- Icy Wind
-- Taunt
+Sableye @ Spell Tag
+Level: 25
+Ability: Keen Eye
+EVs: 252 HP / 252 Atk
+Adamant Nature
+- Night Shade
+- Astonish
+- Fake Out
+- Return
 
-Houndour @ Leftovers
-Level: 24
-Ability: Early Bird
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Flamethrower
-- Fire Blast
-- Hidden Power
-- Toxic
-
-Duskull @ Leftovers
+Duskull
 Level: 24
 Ability: Levitate
-EVs: 252 HP / 252 Def / 4 SpD
-Bold Nature
-- Rest
-- Sleep Talk
-- Blizzard
+EVs: 252 HP / 252 SpD
+Careful Nature
 - Night Shade
+- Astonish
+- Confuse Ray
+- Disable
 
-Meowth @ Sitrus Berry
-Level: 23
-Ability: Pickup
-EVs: 36 HP / 236 Atk / 36 SpD / 196 Spe
-Jolly Nature
-- Thunder
-- Double-Edge
-- Shadow Ball
-- Taunt
-
-Nidoran♂ @ Leftovers
-Level: 24
-Ability: Poison Point
-EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Poochyena @ Sitrus Berry
+Level: 22
+Ability: Run Away
+EVs: 252 HP / 252 Atk
 Adamant Nature
-- Sludge Bomb
-- Poison Sting
-- Hidden Power
-- Toxic
+- Bite
+- Tackle
+- Howl
+- Sand-Attack
 
 === TRAINER_PLASTIC_OX_WEATHER ===
 Name: RESEARCHER

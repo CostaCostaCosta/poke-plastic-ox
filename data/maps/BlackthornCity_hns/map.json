@@ -16,7 +16,7 @@
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER_HNS",
-      "x": 16,
+      "x": 15,
       "y": 28,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
@@ -121,9 +121,25 @@
       "elevation": 3,
       "dest_map": "MAP_MART_JOHTO_HNS",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 16,
+      "y": 28,
+      "elevation": 3,
+      "dest_map": "MAP_PLASTIC_OX_CLAIR_GYM",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [
+    {
+      "type": "trigger",
+      "x": 16,
+      "y": 28,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "BlackthornCity_EventScript_GymDoor"
+    },
     {
       "type": "trigger",
       "x": 30,

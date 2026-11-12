@@ -147,30 +147,103 @@ u16 CheckRustboroGymLittleCupRules(void)
     return 0;
 }
 
-// Tier-check pattern reused from CheckRustboroGymLittleCupRules.
-// PU / NU / RU / UU / UUBL reuse the base structural check (tier unlocks progressively).
+// ADV OU clause checks the gym greeter can report. Source of truth:
+// plastic_ox/battle/plastic_ox_adv_ou_battle_mechanics.md (§14-§16, §19).
+// The greeter script only distinguishes a banned move (result 1) from a banned
+// held item (result 2), so anything else below is deliberately not reported here.
+static bool32 IsADVOUBannedMove(enum Move move)
+{
+    switch (move)
+    {
+    case MOVE_FISSURE:      // §14 OHKO Clause
+    case MOVE_GUILLOTINE:
+    case MOVE_HORN_DRILL:
+    case MOVE_SHEER_COLD:
+    case MOVE_DOUBLE_TEAM:  // §15 Evasion Moves Clause
+    case MOVE_MINIMIZE:
+    case MOVE_ASSIST:       // §19 banned moves
+    case MOVE_SWAGGER:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
+// §16 Evasion Items Clause. BrightPowder and Lax Incense only; both stay in the ROM.
+static bool32 IsADVOUBannedItem(enum Item item)
+{
+    return item == ITEM_BRIGHT_POWDER || item == ITEM_LAX_INCENSE;
+}
+
+// Base structural check first, then the ADV OU clauses that the greeter UI can report.
+// Both Saffron (Bruno) and Blackthorn (Clair) OU gyms use this.
+static u16 CheckADVOUGymRules(void)
+{
+    u32 i, j;
+    u16 result = CheckRustboroGymLittleCupRules();
+
+    if (result != 0)
+        return result;
+
+    for (i = 0; i < gPartiesCount[B_TRAINER_PLAYER]; i++)
+    {
+        struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][i];
+        enum Item item;
+
+        if (!GetMonData(mon, MON_DATA_SANITY_HAS_SPECIES) || GetMonData(mon, MON_DATA_IS_EGG))
+            continue;
+
+        GetMonData(mon, MON_DATA_NICKNAME, gStringVar1);
+        for (j = 0; j < MAX_MON_MOVES; j++)
+        {
+            enum Move move = GetMonData(mon, MON_DATA_MOVE1 + j);
+
+            if (move == MOVE_NONE)
+                continue;
+
+            if (IsADVOUBannedMove(move))
+            {
+                StringCopy(gStringVar2, GetMoveName(move));
+                return 1;
+            }
+        }
+
+        item = GetMonData(mon, MON_DATA_HELD_ITEM);
+        if (IsADVOUBannedItem(item))
+        {
+            CopyItemName(item, gStringVar2);
+            return 2;
+        }
+    }
+
+    return 0;
+}
+
+// Lower-tier gyms (PU / NU / RU / UU / UUBL) still reuse only the base structural check.
+// Roster-tier enforcement is NOT implemented: the repo has no species-tier table, so no
+// per-tier roster is enforced or advertised. Add one before claiming tier legality.
 u16 CheckGoldenrodGymPURules(void)  { return CheckRustboroGymLittleCupRules(); }
 u16 CheckEcruteakGymNURules(void)  { return CheckRustboroGymLittleCupRules(); }
 u16 CheckFortreeGymRURules(void)  { return CheckRustboroGymLittleCupRules(); }
 u16 CheckCinnabarGymUURules(void)  { return CheckRustboroGymLittleCupRules(); }
 u16 CheckMossdeepGymUUBLRules(void) { return CheckRustboroGymLittleCupRules(); }
 
-// OU gyms (Saffron / Blackthorn) apply the full ADV OU ruleset: base checks + OHKO Clause
-// (Fissure / Guillotine / Horn Drill / Sheer Cold), Evasion Moves (Double Team / Minimize),
-// Evasion Items (BrightPowder / Lax Incense), banned abilities (Sand Veil / Soundproof),
-// banned moves (Assist / Swagger), Species Clause, plus Sleep/Freeze/Baton Pass clauses.
-// See plastic_ox/battle/plastic_ox_adv_ou_battle_mechanics.md (§14 OHKO, §15 Evasion Moves,
-// §16 Evasion Items, §19 Abilities/Assist/Swagger, §13 Species Clause) for the
-// authoritative Smogon ADV OU source used in this repo.
+// OU gyms (Saffron / Blackthorn): base checks plus the ADV OU clauses the greeter can
+// report -- OHKO moves (§14), Evasion Moves (§15), Evasion Items (§16), Assist/Swagger
+// (§19). Returns 1 with the move name in gStringVar2, 2 with the item name in
+// gStringVar2, else 0.
+// Not enforced here (no greeter UI and/or no data): Species Clause (§13, would need a
+// duplicate-species scan), Sand Veil / Soundproof ability bans (§19, no ability check
+// path in this special), Baton Pass combination clauses (§18), Uber legality (§20),
+// Sleep/Freeze/Wrap clauses (§11/§12, battle-side state), and per-tier rosters.
 u16 CheckSaffronGymOURules(void)
 {
-    // For now delegates to base; full ADV OU expanded validation can be layered here.
-    return CheckRustboroGymLittleCupRules();
+    return CheckADVOUGymRules();
 }
 
 u16 CheckBlackthornGymOURules(void)
 {
-    return CheckRustboroGymLittleCupRules();
+    return CheckADVOUGymRules();
 }
 
 #define GFXTAG_MULTICHOICE_SCROLL_ARROWS 2000

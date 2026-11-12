@@ -69,9 +69,25 @@ PoxRoute44_Defeat_Text::
 @ (18,37) is Mt. Moon's own entrance tile: the player arrives on it facing
 @ down, (18,38) is the rock wall behind them, and stepping back down takes
 @ warp 3 straight out to ROUTE 44.
+@
+@ (68,13) is the walkable tile in front of the cave mouth (68,12) and doubles
+@ as the landing anchor for MtMoon_1F warp 3.  The gate hiker now stands at
+@ (69,13), so this tile cannot be blocked: the badge check runs before the
+@ warp and a refusal puts the player back at (68,14), not in a dead end.
 PoxMoon_EnterFromRoute44::
 	lockall
+	goto_if_unset FLAG_BADGE01_GET, PoxMoon_EnterFromRoute44_NoBadge
 	warp MAP_MT_MOON_1F, 18, 37
 	waitstate
 	releaseall
 	end
+
+PoxMoon_EnterFromRoute44_NoBadge::
+	msgbox PoxMoon_EnterFromRoute44_NoBadge_Text, MSGBOX_DEFAULT
+	warp MAP_ROUTE44_HNS, 68, 14
+	waitstate
+	releaseall
+	end
+
+PoxMoon_EnterFromRoute44_NoBadge_Text::
+	.string "STONE BADGE first. Nothing\npersonal.\pI've carried people back down\nfrom up there before.$"
