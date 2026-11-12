@@ -72,4 +72,29 @@ PoxGoldenrod_GoldenrodCity_UndergroundTunnel_hns_11::
 	msgbox PoxGoldenrod_GoldenrodCity_UndergroundTunnel_hns_11_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_UndergroundTunnel_hns_11_Text:
-	.string "The old switch chamber is closed.\nI'll keep watch until the city\pneeds it again.$"
+	.string "The stair is open. The switch\nchamber is just past it.\pThe inner chamber stays sealed.\nI keep watch on the door anyway.$"
+
+@ Bitter-herb counter. The donor Lavaridge clerk label and its stock were not
+@ usable here, so the HERB SHOP inventory is rebuilt in this map.
+PoxGoldenrod_HerbClerk::
+	lock
+	faceplayer
+	message PoxGoldenrod_Text_HerbWelcome
+	waitmessage
+	pokemart PoxGoldenrod_HerbStock
+	msgbox PoxGoldenrod_Text_HerbComeAgain, MSGBOX_DEFAULT
+	release
+	end
+	.align 2
+PoxGoldenrod_HerbStock:
+	.2byte ITEM_ENERGY_POWDER
+	.2byte ITEM_ENERGY_ROOT
+	.2byte ITEM_HEAL_POWDER
+	.2byte ITEM_REVIVAL_HERB
+	.2byte ITEM_NONE
+
+PoxGoldenrod_Text_HerbWelcome:
+	.string "Bitter herbs, dear. They work.\nYour POKéMON won't thank you for\pthe taste, but the price is kind.$"
+
+PoxGoldenrod_Text_HerbComeAgain:
+	.string "Come back when the cough does.$"

@@ -16,6 +16,9 @@ from pathlib import Path
 
 WIKI = Path(__file__).resolve().parent
 ROOT = WIKI.parents[1]
+sys.path.insert(0, str(ROOT / "plastic_ox/story"))
+import story_notes  # noqa: E402
+import story_render  # noqa: E402
 SITE = WIKI / "site"
 MAP_TYPES = {"MAP_TYPE_ROUTE": "Route", "MAP_TYPE_TOWN": "Town", "MAP_TYPE_CITY": "City", "MAP_TYPE_UNDERGROUND": "Cave"}
 ENCOUNTER_FIELDS = ("land_mons", "water_mons", "rock_smash_mons", "fishing_mons", "hidden_mons")
@@ -55,6 +58,7 @@ def source_files() -> list[Path]:
     paths += sorted((ROOT / "data/maps").glob("*/map.json"))
     paths += sorted((ROOT / "data/maps").glob("*/scripts.inc"))
     paths += sorted((ROOT / "data/scripts").glob("*.inc"))
+    paths += sorted((ROOT / "plastic_ox/story/locations").glob("*.md"))
     return [p for p in paths if p.exists()]
 
 
@@ -248,6 +252,7 @@ def sidebar(maps: list[dict], current: str = "") -> str:
                 links.append(f'<li><a href="{page_slug(data)}.html"{" aria-current=\"page\"" if data["name"] == current else ""}>{html.escape(title)}</a></li>')
         if links:
             sections.append(f"<h2>{kind}s</h2><ul>{''.join(links)}</ul>")
+    sections.append('<h2>Design</h2><ul><li><a href="story.html">Story notes</a></li></ul>')
     return "".join(sections)
 
 
@@ -255,13 +260,13 @@ def shell(title: str, body: str, maps: list[dict], current: str = "") -> str:
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(title)} — Plastic Ox Wiki</title><link rel="stylesheet" href="assets/style.css"></head>
-<body><header class="topbar"><a class="brand" href="index.html">Plastic Ox Wiki</a></header>
+<body><header class="topbar"><a class="brand" href="index.html">Plastic Ox Wiki</a><nav class="topnav"><a href="index.html">Locations</a><a href="story.html">Story notes</a></nav></header>
 <div class="layout"><nav class="sidebar"><a href="index.html">Main page</a>{sidebar(maps, current)}</nav>
 <main class="content">{body}<footer>Automatically generated from the Plastic Ox ROM source. Edit the game data, then rebuild the wiki.</footer></main></div>
 <script src="assets/wiki.js"></script></body></html>'''
 
 
-def page_for_map(data: dict, maps: list[dict], blocks: dict[str, str], trainers: dict[str, dict], encounters: dict[str, list[dict]], definitions: dict[str, dict]) -> str:
+def page_for_map(data: dict, maps: list[dict], blocks: dict[str, str], trainers: dict[str, dict], encounters: dict[str, list[dict]], definitions: dict[str, dict], notes: dict[str, story_notes.Note]) -> str:
     title = map_title(data["name"])
     kind = MAP_TYPES[data["map_type"]]
     by_id = {m["id"]: m for m in maps}
@@ -318,8 +323,11 @@ def page_for_map(data: dict, maps: list[dict], blocks: dict[str, str], trainers:
 
     items = items_for_map(data, blocks)
     npcs = npcs_for_map(data, trainer_script_names)
+    note = story_render.note_for_map(notes, data["name"])
+    story_html = story_render.render_story_section(note) if note else story_render.render_missing_section(title, page_slug(data))
     body = f'''<h1>{html.escape(title)}</h1>{info}<p class="lede">{html.escape(title)} is a {kind.lower()} in the Plastic Ox region.</p>
 <div class="source-note">This article is generated from <code>{html.escape(str(data["_path"].relative_to(ROOT)))}</code> and linked encounter, script, and trainer data.</div>
+{story_html}
 <h2>Connections</h2>{conn_html}
 <h2>Pokémon</h2>{''.join(encounter_html)}
 <h2>Trainers</h2>{''.join(trainer_html)}
@@ -328,24 +336,48 @@ def page_for_map(data: dict, maps: list[dict], blocks: dict[str, str], trainers:
     return shell(title, body, maps, data["name"])
 
 
-def build(out: Path, digest: str) -> tuple[int, int]:
+def build(out: Path, digest: str) -> tuple[int, int, int]:
     maps = read_maps()
     blocks = read_script_blocks()
     trainers = read_trainers()
     encounters, definitions = read_encounters()
+    notes = story_notes.load_notes()
+    note_index = story_notes.notes_by_map(notes)
+    pages = {page_slug(data): data for data in maps}
     (out / "assets").mkdir(parents=True, exist_ok=True)
     shutil.copy2(WIKI / "assets/style.css", out / "assets/style.css")
     shutil.copy2(WIKI / "assets/wiki.js", out / "assets/wiki.js")
     for data in maps:
-        (out / f'{page_slug(data)}.html').write_text(page_for_map(data, maps, blocks, trainers, encounters, definitions), encoding="utf-8")
-    cards = "".join(f'<article class="card" data-search-item><h2><a href="{page_slug(m)}.html">{html.escape(map_title(m["name"]))}</a></h2><span class="tag">{MAP_TYPES[m["map_type"]]}</span><span class="tag">{len(encounters.get(m["id"], []))} encounter table(s)</span></article>' for m in maps)
+        (out / f'{page_slug(data)}.html').write_text(page_for_map(data, maps, blocks, trainers, encounters, definitions, note_index), encoding="utf-8")
+    def card(data: dict) -> str:
+        note = story_render.note_for_map(note_index, data["name"])
+        story_meta = (
+            f'<span class="meta">Act {note.act} · {html.escape(str(note.meta.get("stage", "")))}</span>'
+            if note else '<span class="meta">No story note yet</span>'
+        )
+        search = f' act {note.act} {note.meta.get("stage", "")} {note.title}' if note else ""
+        return (f'<article class="card" data-search-item data-search="{html.escape(search)}">'
+                f'<h2><a href="{page_slug(data)}.html">{html.escape(map_title(data["name"]))}</a></h2>'
+                f'<span class="tag">{MAP_TYPES[data["map_type"]]}</span>'
+                f'<span class="tag">{len(encounters.get(data["id"], []))} encounter table(s)</span>'
+                f'{story_meta}</article>')
+
+    cards = "".join(card(data) for data in maps)
     index_body = f'''<h1>Plastic Ox locations</h1><p class="lede">A code-synchronized guide to every route, city, and town in the connected Plastic Ox region.</p>
 <div class="source-note">Generated from {len(maps)} maps. Encounter tables, trainer teams, items, and NPCs reflect the checked-out ROM source.</div>
-<input class="search" type="search" data-search placeholder="Search locations…" aria-label="Search locations"><div class="cards">{cards}</div>'''
+<input class="search" type="search" data-search placeholder="Search locations, acts, or story stages…" aria-label="Search locations">
+<p class="empty" data-search-empty hidden>No location matches that search.</p>
+<div class="cards">{cards}</div>'''
+    index_body = index_body.replace('<div class="source-note">Generated from', f'<div class="source-note">Story notes: <a href="story.html">{len(notes)} design notes</a> across the region. Generated from')
     (out / "index.html").write_text(shell("Main page", index_body, maps), encoding="utf-8")
-    metadata = {"source_sha256": digest, "pages": len(maps), "generator": "plastic_ox/wiki/build_wiki.py"}
+    story_body = story_render.render_story_index(notes, pages, lambda slug: f"{slug}.html")
+    (out / "story.html").write_text(shell("Story notes", story_body, maps), encoding="utf-8")
+    covered = sum(1 for data in maps if data["name"] in note_index)
+    metadata = {"source_sha256": digest, "pages": len(maps), "story_notes": len(notes),
+                "story_coverage": f"{covered}/{len(maps)}",
+                "generator": "plastic_ox/wiki/build_wiki.py"}
     (out / "build.json").write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
-    return len(maps), sum(len(v) for key, v in encounters.items() if any(m["id"] == key for m in maps))
+    return len(maps), sum(len(v) for key, v in encounters.items() if any(m["id"] == key for m in maps)), len(notes)
 
 
 def directory_digest(path: Path) -> str:
@@ -365,15 +397,16 @@ def main() -> int:
     if args.check:
         with tempfile.TemporaryDirectory(prefix="plastic-ox-wiki-") as tmp:
             temp = Path(tmp)
-            pages, tables = build(temp, digest)
+            pages, tables, note_count = build(temp, digest)
             if not SITE.exists() or directory_digest(temp) != directory_digest(SITE):
                 print("Plastic Ox wiki is stale; run python3 plastic_ox/wiki/build_wiki.py", file=sys.stderr)
                 return 1
     else:
         if SITE.exists():
             shutil.rmtree(SITE)
-        pages, tables = build(SITE, digest)
-    print(f"Plastic Ox wiki: {pages} location pages, {tables} encounter tables ({'current' if args.check else 'generated'}).")
+        pages, tables, note_count = build(SITE, digest)
+    print(f"Plastic Ox wiki: {pages} location pages, {tables} encounter tables, "
+          f"{note_count} story notes ({'current' if args.check else 'generated'}).")
     return 0
 
 

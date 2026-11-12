@@ -1846,6 +1846,14 @@
       "y": 12,
       "width": 1,
       "height": 1
+    },
+    {
+      "id": "MAPSEC_ROUTE_33",
+      "name": "ROUTE 33",
+      "x": 22,
+      "y": 15,
+      "width": 1,
+      "height": 1
     }
   ]
 }

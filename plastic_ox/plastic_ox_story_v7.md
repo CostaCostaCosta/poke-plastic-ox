@@ -758,7 +758,10 @@ mystery reveal and must not assume Silph is complete.
 # Narrative Pacing Rules
 
 1. **Respect the audience.** Do not repeatedly remind the player that Bill exists.
-2. **Three Rocket encounters are enough:** Mt. Moon, Pokémon Tower, Silph Co.
+2. **Three Rocket story beats are enough:** Mt. Moon, Pokémon Tower, Silph Co.
+   Minor Rocket NPCs may appear elsewhere as ordinary criminals — the lost grunt
+   on Route 24 is approved — but they must not take a beat, a reveal, or a
+   battle slot from those three.
 3. **Burned Tower is atmospheric, not expository.**
 4. **Sea Cottage is optional characterization and the first Eevee reward, not a plot laboratory.**
 5. **Lavender must causally justify Cinnabar.** Fuji points toward the surviving records there.
@@ -767,3 +770,14 @@ mystery reveal and must not assume Silph is complete.
 8. **After Silph, stop escalating the mystery.** Blackthorn, Victory Road, and the League are about becoming Champion.
 9. **Visible locked routes should later become meaningful shortcuts or destinations.**
 10. **Lavender south belongs to the postgame.** Do not spend that exit on the main-story Cinnabar transition.
+
+---
+
+# Location notes
+
+Every town, route, cave, and landmark has a design note under
+[`story/locations/`](story/locations/) covering its plot points, key
+interactions, dialogue guidance, and inspiration. The notes are validated
+against the ROM data and rendered into the wiki; see
+[`story/README.md`](story/README.md) for the contract and the autonomous
+story-pass loop.

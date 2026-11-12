@@ -89,3 +89,26 @@ Route21_North_Text_IanPostBattle::
 Route21_North_Text_IanNotEnoughMons::
 	.string "IAN: We want a two-on-two battle.\n"
 	.string "So can you bring two POKéMON?$"
+
+@ Cinnabar seam: the sea road opens once the Mansion archives are read.
+@ Only a southbound step (entering Cinnabar) is refused; a player already in
+@ Cinnabar may always walk north onto the route. Refusal walks the player one
+@ tile back up, onto row 48 of this map.
+Route21_South_EventScript_CinnabarSeam::
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Route21_South_EventScript_CinnabarSeam_Open
+	goto_if_set FLAG_POX_STORY_MANSION, Route21_South_EventScript_CinnabarSeam_Open
+	specialvar VAR_RESULT, GetPlayerFacingDirection
+	goto_if_ne VAR_RESULT, DIR_SOUTH, Route21_South_EventScript_CinnabarSeam_Open
+	lockall
+	msgbox Route21_South_Text_CinnabarSeam, MSGBOX_DEFAULT
+	applymovement LOCALID_PLAYER, Common_Movement_WalkUp
+	waitmovement 0
+	releaseall
+	end
+
+Route21_South_EventScript_CinnabarSeam_Open::
+	end
+
+Route21_South_Text_CinnabarSeam::
+	.string "A hard current runs off the island.\n"
+	.string "You cannot cross here.$"

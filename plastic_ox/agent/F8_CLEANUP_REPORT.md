@@ -1,0 +1,95 @@
+# F8 — item and dialogue cleanup report
+
+## Files changed
+
+- `data/maps/PlasticOx_BurnedTowerB1F/scripts.inc`
+  - `PoxBurnedTower_TM12`: `finditem ITEM_BIG_PEARL` → `finditem ITEM_TM12`.
+    `ITEM_TM12` is item 593 in `include/constants/items.h`; `src/data/items.h`
+    has its TM entry and `ITEM_NAME("TM12")`. The generic `finditem` message is
+    unchanged and now names the real item.
+- `data/maps/Route115/map.json`
+  - Object `(18,7)`: `trainer_sight_or_berry_tree_id` `ITEM_NUGGET` →
+    `ITEM_TM_FOCUS_PUNCH` (alias `ITEM_TM01`, value 582). Flag
+    `FLAG_ITEM_ROUTE_115_TM_FOCUS_PUNCH` untouched.
+- `data/maps/MeteorFalls_1F_1R/map.json`
+  - Object `(2,4)`: `trainer_sight_or_berry_tree_id` `ITEM_NUGGET` →
+    `ITEM_TM_IRON_TAIL` (alias `ITEM_TM23`, value 604). Flag
+    `FLAG_ITEM_METEOR_FALLS_1F_1R_TM_IRON_TAIL` untouched.
+- `data/maps/Route35_hns/map.json`
+  - The three `OBJ_EVENT_GFX_POKE_BALL` props at `(35,45)`, `(11,12)`,
+    `(27,17)` are recast as ordinary talkers: `WOMAN_2`, `PICNICKER_HNS`,
+    `YOUNGSTER`; `MOVEMENT_TYPE_NONE` → `MOVEMENT_TYPE_FACE_DOWN`. Positions,
+    labels and flags unchanged. No item balls were added.
+- `data/maps/Route35_hns/scripts.inc`
+  - NPC1–NPC12 now have twelve distinct ordinary lines (picnic, wasps, park
+    queue, boots, Yanma, persim, sore legs). All 12 strings unique; nine are
+    attached to objects, three labels remain orphaned but unique.
+- `data/maps/Route45_hns/map.json`
+  - Only the eight hikers' `script` fields changed:
+    `PoxRegion_TrailHint` → `Route45_EventScript_Hiker1`…`Hiker8`. No object
+    moved, added or deleted.
+- `data/maps/Route45_hns/scripts.inc`
+  - Added eight `lock/faceplayer/msgbox … MSGBOX_NPC/release/end` scripts and
+    eight unique downhill/climb lines (trail crew, cairn painter, washed-out
+    culvert, shepherd's barrel, knees, ROUTE 46 nest, grandfather).
+- `data/scripts/plastic_ox_league.inc`
+  - Post-win lines, all distinct:
+    - Wallace: "WALLACE: You found the rhythm before I did. It's yours now."
+    - Steven: "STEVEN: You covered every seam. I could not find the gap."
+    - Lance: "LANCE: You committed first. That was the whole difference."
+    - Blue: "BLUE: I adapted. You still won. I'll remember that."
+    - Bill: "BILL: The calculation was wrong. You were the variable I missed."
+  - Bill battle intro is now exactly `CHAMPION BILL would like to battle.`
+    (the old friendly intro was removed before the battle; `PoxLeague_Text_BillAfter`
+    still carries the full confession/reveal after the win).
+- `data/maps/PlasticOx_HallOfFame/map.json`
+  - Hall guide `graphics_id` `OBJ_EVENT_GFX_BILL` → `OBJ_EVENT_GFX_MAN_3`.
+    Nothing else in the map changed.
+
+## String uniqueness proof
+
+Route 35: 9 talker objects, 9 distinct lines (Npc2–Npc6, Npc8, Npc10–Npc12);
+the full 12-label list was diffed and has no duplicate. Route 45: 8 objects,
+8 distinct lines (`Route45_EventScript_Hiker1_Text`…`Hiker8_Text`). League:
+the five defeat strings are distinct. Static regex diff over both scripts found
+zero duplicate `.string` bodies.
+
+## Static checks
+
+- `python3 -m json.tool` on Route115, MeteorFalls_1F_1R, Route35_hns,
+  Route45_hns, PlasticOx_HallOfFame: all OK.
+- `check_map_refs.py --map` for the five F8 maps plus Hall: 0 reference errors.
+- `check_map_refs.py --pox`: 118 maps, only the known pre-existing
+  `Route38_hns` gatehouse warp error.
+- `check_story_notes.py --quiet`: 61 notes, 0 errors, 0 warnings.
+- `audit_map_baseline.py` on all six touched maps: no triggers stripped;
+  Route 45's two portals and both signs remain.
+- Compiled a throwaway C check against `include/constants/items.h`:
+  `ITEM_TM_FOCUS_PUNCH == ITEM_TM01 == 582`,
+  `ITEM_TM_IRON_TAIL == ITEM_TM23 == 604`; `ITEM_TM12 == 593`.
+
+## Emulator tests for integration
+
+1. Burned Tower B1F `(5,15)`: pick up ball, expect TM12 (Taunt); ball stays
+   gone on re-entry (`FLAG_POX_BURNED_TOWER_TM12`).
+2. Route 115 `(18,7)`: expect TM01 Focus Punch, not Nugget; flag persists.
+3. Meteor Falls 1F `(2,4)`: expect TM23 Iron Tail, not Nugget; flag persists.
+4. Route 35: talk to all nine talkers, expect nine different lines, no
+   POKéBALL props left; check `(35,45)`, `(11,12)`, `(27,17)` are people.
+5. Route 45: talk to all eight hikers, expect distinct lines and facing/lock;
+   descend both portals to confirm warps still fire.
+6. League: beat each of Wallace/Steven/Lance/Blue and read five different
+   post-win lines. Enter Bill: first box exactly "CHAMPION BILL would like to
+   battle."; after winning, confession text; Hall shows one ordinary guide,
+   not a second Bill.
+
+## Could not do / follow-up
+
+- Route 35 item-ball conversion is blocked: there are no `FLAG_*ROUTE35*` item
+  flags, and F8 forbids adding flags/items. The three decoys were restyled
+  instead. Follow-up: allocate two persistent item flags if real item balls
+  are wanted.
+- `data/scripts/plastic_ox_league.inc` is generated by
+  `plastic_ox/alpha/league.py`; the generator was not in scope, so a future
+  regeneration would revert the five defeat lines and Bill intro. The generator
+  should be updated to match, or the file treated as hand-maintained.

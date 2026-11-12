@@ -66,6 +66,8 @@ def main():
                  "ROUTE44_VANCE"):
         trainer = game.const("TRAINER_PLASTIC_OX_" + name)
         game.flag(0x4A0 + trainer - 857, True)
+    # Story gate: Route 44 requires the Stone Badge on both approaches.
+    game.flag("FLAG_BADGE01_GET", True)
     for y in (9, 10, 11):
         game.warp("RustboroCity", 35, y)
         game.tap(K.KEY_RIGHT, hold=100, wait=90)

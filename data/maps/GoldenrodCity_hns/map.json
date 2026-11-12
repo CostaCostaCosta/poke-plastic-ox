@@ -141,7 +141,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Pox_SquirtBottle",
+      "script": "PoxGoldenrod_SquirtBottleNote",
       "flag": "0"
     },
     {
@@ -237,7 +237,7 @@
       "x": 39,
       "y": 13,
       "elevation": 0,
-      "dest_map": "MAP_GOLDENROD_CITY_GYM_HNS",
+      "dest_map": "MAP_PLASTIC_OX_WHITNEY_GYM",
       "dest_warp_id": "0"
     },
     {

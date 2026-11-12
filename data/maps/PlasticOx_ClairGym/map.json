@@ -42,7 +42,22 @@
       "flag": "FLAG_POX_HIDE_STORY_NPCS"
     }
   ],
-  "warp_events": [],
+  "warp_events": [
+    {
+      "x": 5,
+      "y": 19,
+      "elevation": 3,
+      "dest_map": "MAP_BLACKTHORN_CITY_HNS",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 6,
+      "y": 19,
+      "elevation": 3,
+      "dest_map": "MAP_BLACKTHORN_CITY_HNS",
+      "dest_warp_id": "2"
+    }
+  ],
   "coord_events": [],
   "bg_events": []
 }

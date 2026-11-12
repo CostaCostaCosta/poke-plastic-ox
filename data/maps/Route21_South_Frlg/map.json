@@ -99,6 +99,124 @@
     }
   ],
   "warp_events": [],
-  "coord_events": [],
+  "coord_events": [
+    {
+      "type": "trigger",
+      "x": 2,
+      "y": 49,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "Route21_South_EventScript_CinnabarSeam"
+    },
+    {
+      "type": "trigger",
+      "x": 3,
+      "y": 49,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "Route21_South_EventScript_CinnabarSeam"
+    },
+    {
+      "type": "trigger",
+      "x": 4,
+      "y": 49,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "Route21_South_EventScript_CinnabarSeam"
+    },
+    {
+      "type": "trigger",
+      "x": 12,
+      "y": 49,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "Route21_South_EventScript_CinnabarSeam"
+    },
+    {
+      "type": "trigger",
+      "x": 13,
+      "y": 49,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "Route21_South_EventScript_CinnabarSeam"
+    },
+    {
+      "type": "trigger",
+      "x": 14,
+      "y": 49,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "Route21_South_EventScript_CinnabarSeam"
+    },
+    {
+      "type": "trigger",
+      "x": 15,
+      "y": 49,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "Route21_South_EventScript_CinnabarSeam"
+    },
+    {
+      "type": "trigger",
+      "x": 16,
+      "y": 49,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "Route21_South_EventScript_CinnabarSeam"
+    },
+    {
+      "type": "trigger",
+      "x": 19,
+      "y": 49,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "Route21_South_EventScript_CinnabarSeam"
+    },
+    {
+      "type": "trigger",
+      "x": 20,
+      "y": 49,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "Route21_South_EventScript_CinnabarSeam"
+    },
+    {
+      "type": "trigger",
+      "x": 21,
+      "y": 49,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "Route21_South_EventScript_CinnabarSeam"
+    },
+    {
+      "type": "trigger",
+      "x": 22,
+      "y": 49,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "Route21_South_EventScript_CinnabarSeam"
+    },
+    {
+      "type": "trigger",
+      "x": 23,
+      "y": 49,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "Route21_South_EventScript_CinnabarSeam"
+    }
+  ],
   "bg_events": []
 }

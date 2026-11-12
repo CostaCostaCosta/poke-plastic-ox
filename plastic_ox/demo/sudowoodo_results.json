@@ -18,24 +18,6 @@
   }
  },
  {
-  "scenario": "1 gift refused before badge (goldenrod_street)",
-  "ok": true,
-  "detail": {
-   "dialogue": true,
-   "battle": false,
-   "text": [
-    "The odd tree on ROUTE 36 hates{page}water\u3002 Beat WHITNEY, then I can<FB>lend you my SQUIRTBOTTLE\u3002"
-   ],
-   "stopped": false,
-   "ctx": {
-    "status": 0,
-    "pc": "0x0",
-    "locked": 0
-   },
-   "bottle": 0
-  }
- },
- {
   "scenario": "2 bottle gifted by the real Flower Shop NPC, idempotent",
   "ok": true,
   "detail": {
@@ -72,15 +54,13 @@
   }
  },
  {
-  "scenario": "2b duplicate outdoor NPC also gifts the bottle",
+  "scenario": "2b outdoor NPC points at the Flower Shop instead of gifting",
   "ok": true,
   "detail": {
    "text": [
-    "Obtained the SquirtBottle\uff01",
-    "P put away the SquirtBottle{page}in the KEY ITEMS POCKET\u3002",
-    "Use my SQUIRTBOTTLE when you{page}examine the odd tree on ROUTE<FB>36\u3002 Be ready for a battle\uff01"
+    "The FLOWER SHOP lends a{page}SQUIRTBOTTLE for the odd tree on<FB>ROUTE 36\u3002 Ask the girl inside\u3002"
    ],
-   "bottle": 1
+   "bottle": 0
   }
  },
  {
@@ -115,7 +95,7 @@
    },
    "after": {
     "status": 0,
-    "pc": "0x83c33f4",
+    "pc": "0x83bfcb9",
     "locked": 1
    },
    "battle": true,
@@ -125,7 +105,7 @@
    "plain_message": true,
    "after_b": {
     "status": 0,
-    "pc": "0x83c33f4",
+    "pc": "0x83bfcb9",
     "locked": 1
    },
    "battle_after_b": true
@@ -145,7 +125,7 @@
    },
    "after": {
     "status": 0,
-    "pc": "0x83c33f4",
+    "pc": "0x83bfcb9",
     "locked": 1
    },
    "battle": true,
@@ -155,7 +135,7 @@
    "plain_message": true,
    "after_b": {
     "status": 0,
-    "pc": "0x83c33f4",
+    "pc": "0x83bfcb9",
     "locked": 1
    },
    "battle_after_b": true
@@ -225,8 +205,8 @@
    },
    "post_battle_text": "",
    "tree_sprite_removed": true,
-   "screen_with_tree": "37c60c16",
-   "screen_after": "e93d7c89"
+   "screen_with_tree": "712aae23",
+   "screen_after": "13cd3f21"
   }
  },
  {
@@ -239,12 +219,12 @@
    "steps": {
     "after_fight": {
      "status": 0,
-     "pc": "0x83c33f4",
+     "pc": "0x83bfcb9",
      "locked": 1
     },
     "after_return": {
      "status": 0,
-     "pc": "0x83c33f4",
+     "pc": "0x83bfcb9",
      "locked": 1
     },
     "after_300_idle": {
@@ -403,12 +383,12 @@
    "stopped": true,
    "before_b": {
     "status": 1,
-    "pc": "0x8360fae",
+    "pc": "0x835d1a0",
     "locked": 1
    },
    "after_b": {
     "status": 1,
-    "pc": "0x8360fb1",
+    "pc": "0x835d1a3",
     "locked": 1
    }
   }

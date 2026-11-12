@@ -286,7 +286,11 @@ Progression:
 
 **Ecruteak → Route 119 → Weather Institute → Fortree**
 
-Fortree is Gym 4.
+Fortree is Gym 4. Its **east exit is blocked by a Kecleon**, which refuses the
+road to Route 110 until Winona's badge is earned; the Gym itself is never
+blocked. Clearing the badge makes the Kecleon reveal itself and leave, and the
+east road opens with the Route 36 shortcut. The west gate from Route 119 stays
+the arrival route.
 
 After entering Fortree or defeating Winona, unlock the Route 110 ↔ Route 36 shortcut.
 

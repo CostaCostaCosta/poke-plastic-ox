@@ -14,7 +14,7 @@ PoxBurnedTower_SageBeforeText::
 	.string "MORTY went down the ladder. He\nasked us to mind the old beams.$"
 
 PoxBurnedTower_SageAfterText::
-	.string "MORTY sent our sages across the\nregion to find and help the\plegendary POKéMON displaced by\nthe convergence.\pI will tend the tower while\nthey care for those POKéMON.$"
+	.string "MORTY sent our sages across the\nregion to find and help the\plegendary POKéMON displaced by\nthe shifting boundaries.\pI will tend the tower while\nthey care for those POKéMON.$"
 
 PoxBurnedTower_Memorial::
 	msgbox PoxBurnedTower_MemorialText, MSGBOX_SIGN

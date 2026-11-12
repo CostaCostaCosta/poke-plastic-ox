@@ -1,5 +1,7 @@
 {
-  "source_sha256": "835f7c8ad392030ad4c5fe70b0a976707a281b60fcb9a150fe13df4f6f146260",
-  "pages": 58,
+  "source_sha256": "0deb01738de60796ae2a4bfe335597f4c79f4f89c28c738b5050c2d7cce13e8a",
+  "pages": 61,
+  "story_notes": 61,
+  "story_coverage": "61/61",
   "generator": "plastic_ox/wiki/build_wiki.py"
 }

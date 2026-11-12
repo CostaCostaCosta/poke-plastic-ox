@@ -18,9 +18,16 @@ Then open `plastic_ox/wiki/site/index.html`, or serve it locally:
 python3 -m http.server 8000 --directory plastic_ox/wiki/site
 ```
 
+Each location page also renders its design note from
+`plastic_ox/story/locations/<page-slug>.md`: plot points, key interactions,
+dialogue guidance, and inspiration. Notes are validated against the ROM data by
+`python3 plastic_ox/story/check_story_notes.py`. The standalone
+`site/story.html` page indexes every note by act.
+
 The generator reads:
 
 - `plastic_ox/alpha/region_manifest.json` for Plastic Ox map membership
+- `plastic_ox/story/locations/*.md` for the per-location story notes
 - `data/maps/*/map.json` for map metadata, NPC events, connections, and hidden items
 - `data/maps/*/scripts.inc` and `data/scripts/*.inc` for trainers and item scripts
 - `src/data/wild_encounters.json` for Plastic Ox-owned (`gPox*`) encounter slots
@@ -28,5 +35,8 @@ The generator reads:
 - `src/data/trainers.party` for trainer metadata and teams
 
 Run `python3 plastic_ox/wiki/build_wiki.py --check` in CI to fail when generated
-pages are stale. The build is deterministic and writes a source fingerprint to
-`site/build.json`.
+pages are stale. `make validate` in this directory runs both the note validator
+and the freshness check; `make story` validates notes only.
+
+The build is deterministic and writes a source fingerprint (ROM data plus story
+notes) to `site/build.json`.

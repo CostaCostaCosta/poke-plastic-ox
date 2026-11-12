@@ -42,7 +42,22 @@
       "flag": "FLAG_POX_HIDE_STORY_NPCS"
     }
   ],
-  "warp_events": [],
+  "warp_events": [
+    {
+      "x": 5,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_ECRUTEAK_CITY_HNS",
+      "dest_warp_id": "4"
+    },
+    {
+      "x": 6,
+      "y": 19,
+      "elevation": 0,
+      "dest_map": "MAP_ECRUTEAK_CITY_HNS",
+      "dest_warp_id": "4"
+    }
+  ],
   "coord_events": [],
   "bg_events": []
 }

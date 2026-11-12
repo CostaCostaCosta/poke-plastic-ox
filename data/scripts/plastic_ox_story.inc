@@ -609,142 +609,187 @@ Pox_KimonoVaporeon::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
+	goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
 
-goto_if_set FLAG_POX_KIMONO_VAPOREON, Pox_Done
+	goto_if_set FLAG_POX_KIMONO_VAPOREON, Pox_KimonoVaporeon_After
 
-trainerbattle_single TRAINER_PLASTIC_OX_KIMONOVAPOREON, Pox_Text_KimonoVaporeon, Pox_Text_Defeat, Pox_KimonoVaporeon_Won
+	trainerbattle_single TRAINER_PLASTIC_OX_KIMONOVAPOREON, Pox_Text_KimonoVaporeon, Pox_Text_KimonoVaporeonDefeat, Pox_KimonoVaporeon_Won
 
-goto Pox_KimonoVaporeon_Won
+	goto Pox_KimonoVaporeon_Won
 Pox_KimonoVaporeon_Won::
 	setflag FLAG_POX_KIMONO_VAPOREON
+	msgbox Pox_Text_KimonoVaporeonAfter, MSGBOX_DEFAULT
+	releaseall
+	end
 
-
-
-releaseall
+Pox_KimonoVaporeon_After::
+	msgbox Pox_Text_KimonoVaporeonAfter, MSGBOX_DEFAULT
+	releaseall
 	end
 
 Pox_Text_KimonoVaporeon::
-	.string "Our dance honors the BURNED\nTOWER. MORTY went there after\pthe last rite.\pWould you join our POKéMON in a\nbattle?$"
+	.string "Our tide step is slow on\npurpose. VAPOREON sets the\ptempo and I follow it.\pWill you try the turn with us?$"
+
+Pox_Text_KimonoVaporeonDefeat::
+	.string "The tide turned before I\ndid. You read the water\pbetter than I dance it.$"
+
+Pox_Text_KimonoVaporeonAfter::
+	.string "Come at dusk sometime. The\nriver sounds different once\pthe lamps are lit.$"
 
 Pox_KimonoJolteon::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
+	goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
 
-goto_if_set FLAG_POX_KIMONO_JOLTEON, Pox_Done
+	goto_if_set FLAG_POX_KIMONO_JOLTEON, Pox_KimonoJolteon_After
 
-trainerbattle_single TRAINER_PLASTIC_OX_KIMONOJOLTEON, Pox_Text_KimonoJolteon, Pox_Text_Defeat, Pox_KimonoJolteon_Won
+	trainerbattle_single TRAINER_PLASTIC_OX_KIMONOJOLTEON, Pox_Text_KimonoJolteon, Pox_Text_KimonoJolteonDefeat, Pox_KimonoJolteon_Won
 
-goto Pox_KimonoJolteon_Won
+	goto Pox_KimonoJolteon_Won
 Pox_KimonoJolteon_Won::
 	setflag FLAG_POX_KIMONO_JOLTEON
+	msgbox Pox_Text_KimonoJolteonAfter, MSGBOX_DEFAULT
+	releaseall
+	end
 
-
-
-releaseall
+Pox_KimonoJolteon_After::
+	msgbox Pox_Text_KimonoJolteonAfter, MSGBOX_DEFAULT
+	releaseall
 	end
 
 Pox_Text_KimonoJolteon::
-	.string "Our dance honors the BURNED\nTOWER. MORTY went there after\pthe last rite.\pWould you join our POKéMON in a\nbattle?$"
+	.string "Rain step, spark step. Same\ncount, faster than you can\pblink.\pKeep up!$"
+
+Pox_Text_KimonoJolteonDefeat::
+	.string "Too quick for me. I will\ndrill that turn until my feet\pcomplain.$"
+
+Pox_Text_KimonoJolteonAfter::
+	.string "A quick step is a short one.\nMORTY says the same about\pbattles, only slower.$"
 
 Pox_KimonoFlareon::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
+	goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
 
-goto_if_set FLAG_POX_KIMONO_FLAREON, Pox_Done
+	goto_if_set FLAG_POX_KIMONO_FLAREON, Pox_KimonoFlareon_After
 
-trainerbattle_single TRAINER_PLASTIC_OX_KIMONOFLAREON, Pox_Text_KimonoFlareon, Pox_Text_Defeat, Pox_KimonoFlareon_Won
+	trainerbattle_single TRAINER_PLASTIC_OX_KIMONOFLAREON, Pox_Text_KimonoFlareon, Pox_Text_KimonoFlareonDefeat, Pox_KimonoFlareon_Won
 
-goto Pox_KimonoFlareon_Won
+	goto Pox_KimonoFlareon_Won
 Pox_KimonoFlareon_Won::
 	setflag FLAG_POX_KIMONO_FLAREON
+	msgbox Pox_Text_KimonoFlareonAfter, MSGBOX_DEFAULT
+	releaseall
+	end
 
-
-
-releaseall
+Pox_KimonoFlareon_After::
+	msgbox Pox_Text_KimonoFlareonAfter, MSGBOX_DEFAULT
+	releaseall
 	end
 
 Pox_Text_KimonoFlareon::
-	.string "Our dance honors the BURNED\nTOWER. MORTY went there after\pthe last rite.\pWould you join our POKéMON in a\nbattle?$"
+	.string "We close the rite with the\nember step. It is not meant\pto be gentle.\pReady?$"
+
+Pox_Text_KimonoFlareonDefeat::
+	.string "The ember went out. You kept\na cooler head than mine.$"
+
+Pox_Text_KimonoFlareonAfter::
+	.string "The brazier holds its heat\ntill morning. Warm up before\pyou cross the river.$"
 
 Pox_KimonoEspeon::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
+	goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
 
-goto_if_set FLAG_POX_KIMONO_ESPEON, Pox_Done
+	goto_if_set FLAG_POX_KIMONO_ESPEON, Pox_KimonoEspeon_After
 
-trainerbattle_single TRAINER_PLASTIC_OX_KIMONOESPEON, Pox_Text_KimonoEspeon, Pox_Text_Defeat, Pox_KimonoEspeon_Won
+	trainerbattle_single TRAINER_PLASTIC_OX_KIMONOESPEON, Pox_Text_KimonoEspeon, Pox_Text_KimonoEspeonDefeat, Pox_KimonoEspeon_Won
 
-goto Pox_KimonoEspeon_Won
+	goto Pox_KimonoEspeon_Won
 Pox_KimonoEspeon_Won::
 	setflag FLAG_POX_KIMONO_ESPEON
+	msgbox Pox_Text_KimonoEspeonAfter, MSGBOX_DEFAULT
+	releaseall
+	end
 
-
-
-releaseall
+Pox_KimonoEspeon_After::
+	msgbox Pox_Text_KimonoEspeonAfter, MSGBOX_DEFAULT
+	releaseall
 	end
 
 Pox_Text_KimonoEspeon::
-	.string "Our dance honors the BURNED\nTOWER. MORTY went there after\pthe last rite.\pWould you join our POKéMON in a\nbattle?$"
+	.string "The mirror step is danced\nwith the eyes closed. You\phear the next move before it\phappens.\pFollow me if you can.$"
+
+Pox_Text_KimonoEspeonDefeat::
+	.string "You heard the turn before I\ndid. That is the whole dance,\pand you already have it.$"
+
+Pox_Text_KimonoEspeonAfter::
+	.string "Sit a moment. A dance\nsettles like water after a\pstone.$"
 
 Pox_KimonoUmbreon::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
+	goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
 
-goto_if_set FLAG_POX_KIMONO_UMBREON, Pox_Done
+	goto_if_set FLAG_POX_KIMONO_UMBREON, Pox_KimonoUmbreon_After
 
-trainerbattle_single TRAINER_PLASTIC_OX_KIMONOUMBREON, Pox_Text_KimonoUmbreon, Pox_Text_Defeat, Pox_KimonoUmbreon_Won
+	trainerbattle_single TRAINER_PLASTIC_OX_KIMONOUMBREON, Pox_Text_KimonoUmbreon, Pox_Text_KimonoUmbreonDefeat, Pox_KimonoUmbreon_Won
 
-goto Pox_KimonoUmbreon_Won
+	goto Pox_KimonoUmbreon_Won
 Pox_KimonoUmbreon_Won::
 	setflag FLAG_POX_KIMONO_UMBREON
+	msgbox Pox_Text_KimonoUmbreonAfter, MSGBOX_DEFAULT
+	releaseall
+	end
 
-
-
-releaseall
+Pox_KimonoUmbreon_After::
+	msgbox Pox_Text_KimonoUmbreonAfter, MSGBOX_DEFAULT
+	releaseall
 	end
 
 Pox_Text_KimonoUmbreon::
-	.string "Our dance honors the BURNED\nTOWER. MORTY went there after\pthe last rite.\pWould you join our POKéMON in a\nbattle?$"
+	.string "The moon step comes last.\nAfter the second bell there\pare no lamps, only us.\pShall we?$"
+
+Pox_Text_KimonoUmbreonDefeat::
+	.string "The moon went behind a cloud.\nYou were the shadow I missed.$"
+
+Pox_Text_KimonoUmbreonAfter::
+	.string "We dance every night this\nweek. Watch from the door if\pyou like.$"
 
 Pox_Kimono::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_POX_KIMONO_VAPOREON, Pox_NotReady
+	goto_if_unset FLAG_POX_KIMONO_VAPOREON, Pox_NotReady
 
-goto_if_unset FLAG_POX_KIMONO_JOLTEON, Pox_NotReady
+	goto_if_unset FLAG_POX_KIMONO_JOLTEON, Pox_NotReady
 
-goto_if_unset FLAG_POX_KIMONO_FLAREON, Pox_NotReady
+	goto_if_unset FLAG_POX_KIMONO_FLAREON, Pox_NotReady
 
-goto_if_unset FLAG_POX_KIMONO_ESPEON, Pox_NotReady
+	goto_if_unset FLAG_POX_KIMONO_ESPEON, Pox_NotReady
 
-goto_if_unset FLAG_POX_KIMONO_UMBREON, Pox_NotReady
+	goto_if_unset FLAG_POX_KIMONO_UMBREON, Pox_NotReady
 
-goto_if_set FLAG_POX_GIFT_KIMONO, Pox_GiftDone
+	goto_if_set FLAG_POX_GIFT_KIMONO, Pox_GiftDone
 
-msgbox Pox_Text_Kimono, MSGBOX_DEFAULT
+	msgbox Pox_Text_Kimono, MSGBOX_DEFAULT
 
-givemon SPECIES_EEVEE, 5
+	givemon SPECIES_EEVEE, 5
 	goto_if_eq VAR_RESULT, MON_CANT_GIVE, Pox_NoRoom
 
-setflag FLAG_POX_GIFT_KIMONO
+	setflag FLAG_POX_GIFT_KIMONO
 
-msgbox Pox_Text_GiftReceived, MSGBOX_DEFAULT
+	msgbox Pox_Text_GiftReceived, MSGBOX_DEFAULT
 
-releaseall
+	releaseall
 	end
 
 Pox_Text_Kimono::
-	.string "You matched all five of our\npartners with grace. Please\praise this EEVEE with the same\ncare.$"
+	.string "You danced with all five of my\ngirls, and none of them took\pit easy on you.\pThis EEVEE has watched us from\nthe mat since the first night.\pIt copies every turn, and it\nhas no partner of its own.\pTake it with you - not as a\nprize, but as a dance partner.$"
 
 Pox_DanceTheaterExit::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -784,30 +829,98 @@ goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
 
 goto_if_set FLAG_POX_STORY_BURNED_TOWER, Pox_Done
 
+faceplayer
+
 msgbox Pox_Text_BurnedTowerBefore, MSGBOX_DEFAULT
 
-fadescreen FADE_TO_WHITE
-	setmetatile 10, 9, 0x6A6, FALSE
-	special DrawWholeMapView
-	fadescreen FADE_FROM_WHITE
+closemessage
+	playse SE_M_EARTHQUAKE
+	setvar VAR_0x8004, 2
+	setvar VAR_0x8005, 1
+	setvar VAR_0x8006, 20
+	setvar VAR_0x8007, 3
+	special ShakeCamera
+	waitstate
+	delay 90
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
+	playmoncry SPECIES_ENTEI, CRY_MODE_NORMAL
+	applymovement LOCALID_BURNEDTOWER_ENTEI, PoxTower_AwakenBeasts
+	waitmovement 0
+	waitmoncry
+	playmoncry SPECIES_RAIKOU, CRY_MODE_NORMAL
+	applymovement LOCALID_BURNEDTOWER_RAIKOU, PoxTower_AwakenBeasts
+	waitmovement 0
+	waitmoncry
+	playmoncry SPECIES_SUICUNE, CRY_MODE_NORMAL
+	applymovement LOCALID_BURNEDTOWER_SUICUNE, PoxTower_AwakenBeasts
+	waitmovement 0
+	waitmoncry
+	playse SE_LEDGE
+	applymovement LOCALID_BURNEDTOWER_ENTEI, PoxTower_EnteiLeave
+	waitmovement 0
+	removeobject LOCALID_BURNEDTOWER_ENTEI
+	playse SE_LEDGE
+	applymovement LOCALID_BURNEDTOWER_RAIKOU, PoxTower_RaikouLeave
+	waitmovement 0
+	removeobject LOCALID_BURNEDTOWER_RAIKOU
+	playse SE_LEDGE
+	applymovement LOCALID_BURNEDTOWER_SUICUNE, PoxTower_SuicuneLeave
+	waitmovement 0
+	removeobject LOCALID_BURNEDTOWER_SUICUNE
 
-msgbox Pox_Text_BurnedTowerVision, MSGBOX_DEFAULT
-
-fadescreen FADE_TO_WHITE
-	setmetatile 10, 9, 0x6F2, FALSE
-	special DrawWholeMapView
-	fadescreen FADE_FROM_WHITE
+	playmoncry SPECIES_ARTICUNO, CRY_MODE_NORMAL
+	waitmoncry
+	playmoncry SPECIES_ZAPDOS, CRY_MODE_NORMAL
+	waitmoncry
+	playmoncry SPECIES_MOLTRES, CRY_MODE_NORMAL
+	waitmoncry
+	applymovement LOCALID_POX_TOWER_ARTICUNO, PoxTower_BirdFly
+	applymovement LOCALID_POX_TOWER_ZAPDOS, PoxTower_BirdFly
+	applymovement LOCALID_POX_TOWER_MOLTRES, PoxTower_BirdFly
+	waitmovement 0
+	removeobject LOCALID_POX_TOWER_ARTICUNO
+	removeobject LOCALID_POX_TOWER_ZAPDOS
+	removeobject LOCALID_POX_TOWER_MOLTRES
+	playmoncry SPECIES_REGIROCK, CRY_MODE_NORMAL
+	waitmoncry
+	playmoncry SPECIES_REGICE, CRY_MODE_NORMAL
+	waitmoncry
+	playmoncry SPECIES_REGISTEEL, CRY_MODE_NORMAL
+	waitmoncry
+	applymovement LOCALID_POX_TOWER_REGIROCK, PoxTower_RegiTeleport
+	applymovement LOCALID_POX_TOWER_REGICE, PoxTower_RegiTeleport
+	applymovement LOCALID_POX_TOWER_REGISTEEL, PoxTower_RegiTeleport
+	waitmovement 0
+	removeobject LOCALID_POX_TOWER_REGIROCK
+	removeobject LOCALID_POX_TOWER_REGICE
+	removeobject LOCALID_POX_TOWER_REGISTEEL
+	playmoncry SPECIES_CELEBI, CRY_MODE_NORMAL
+	waitmoncry
+	applymovement LOCALID_POX_TOWER_CELEBI, PoxTower_CelebiVanish
+	waitmovement 0
+	removeobject LOCALID_POX_TOWER_CELEBI
+	playmoncry SPECIES_JIRACHI, CRY_MODE_NORMAL
+	waitmoncry
+	applymovement LOCALID_POX_TOWER_JIRACHI, PoxTower_JirachiAscend
+	waitmovement 0
+	removeobject LOCALID_POX_TOWER_JIRACHI
+	delay 30
 
 msgbox Pox_Text_BurnedTowerAfter, MSGBOX_DEFAULT
 
-turnobject VAR_LAST_TALKED, DIR_NORTH
+faceplayer
 
 msgbox Pox_Text_BurnedTowerMission, MSGBOX_DEFAULT
 
 msgbox Pox_Text_BurnedTowerSages, MSGBOX_DEFAULT
 
-removeobject LOCALID_POX_TOWER_SAGE_1
+closemessage
+	applymovement LOCALID_POX_TOWER_SAGE_1, PoxTower_Sage1Leave
+	applymovement LOCALID_POX_TOWER_SAGE_2, PoxTower_Sage2Leave
+	waitmovement 0
+	removeobject LOCALID_POX_TOWER_SAGE_1
 	removeobject LOCALID_POX_TOWER_SAGE_2
+	faceplayer
 
 msgbox Pox_Text_BurnedTowerFarewell, MSGBOX_DEFAULT
 
@@ -818,22 +931,19 @@ releaseall
 	end
 
 Pox_Text_BurnedTowerBefore::
-	.string "MORTY: Look at that wall. A\nstair stood there before the\pfire.$"
-
-Pox_Text_BurnedTowerVision::
-	.string "For a moment the stair is whole\nagain. A bell rings from the\pempty landing.$"
+	.string "MORTY: Eleven gathered here...\nListening. Waiting for something.\pWait... Do you feel that?$"
 
 Pox_Text_BurnedTowerAfter::
-	.string "Only ash remains. You recover\nthe fallen ceremonial bell.\pMORTY: Places remember what they\nwere. But the POKéMON displaced\pby the convergence need our help\nnow.$"
+	.string "MORTY: Eleven... All drawn to\nthe same place.\pThe tower was a refuge. Now\nthey must find their way home.$"
 
 Pox_Text_BurnedTowerMission::
-	.string "MORTY: Sages, search throughout\nthe region. Find the legendary\pPOKéMON driven from their homes.\pHelp them find shelter. Stay by\ntheir sides until they feel safe\pagain.$"
+	.string "MORTY: Sages, follow them.\nThe world has changed.\pFind them shelter. Give them\nspace. Let them choose to stay.$"
 
 Pox_Text_BurnedTowerSages::
-	.string "SAGE: We will go, MORTY. No\ndisplaced POKéMON should have to\pface this strange land alone.$"
+	.string "SAGE: We will watch over them.\nYou have our word.$"
 
 Pox_Text_BurnedTowerFarewell::
-	.string "MORTY: If you meet a sage beside\na legendary POKéMON, they are\pthere to help.\pShow them the care you give your\nown partners.\pI will return to my GYM. Come\nsee me when you are ready.$"
+	.string "MORTY: SUICUNE looked back at\nyou before it left.\pRemember that. Trust begins\nwith a moment like this.\pI will be at the GYM. Come\nwhen you are ready.$"
 
 Pox_BurnedGuide::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -870,7 +980,7 @@ Pox_Text_Weather::
 	.string "Help me test our field\ninstruments. The weather lines\phave moved since yesterday.$"
 
 Pox_Text_WeatherReport::
-	.string "These are new changes. The\nboundaries are still moving!\pIt is not just damage left by\nthe convergence. Something is\pstill changing our habitats.$"
+	.string "The readings are new. The\nboundaries are still moving!\pIt is not old damage left by\nthe shift. Something is still\pchanging our habitats.$"
 
 Pox_Cottage::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -2011,3 +2121,150 @@ Pox_Text_Sudowoodo::
 @ and eastern travel. The hint still names either nearby bottle giver.
 Pox_Text_Sudowoodo_Wait::
 	.string "This tree feels like stone! Someone\nnear WHITNEY's GYM has a SQUIRTBOTTLE\nthat might help.$"
+
+PoxTower_AwakenBeasts:
+	jump_in_place_down
+	jump_in_place_down
+	jump_in_place_down
+	step_end
+
+PoxTower_EnteiLeave:
+	jump_down
+	jump_2_right
+	jump_2_right
+	jump_2_right
+	jump_2_right
+	step_end
+
+PoxTower_RaikouLeave:
+	jump_down
+	jump_2_left
+	jump_2_left
+	jump_2_left
+	jump_2_left
+	step_end
+
+PoxTower_SuicuneLeave:
+	jump_2_down
+	delay_8
+	jump_in_place_right_left
+	jump_in_place_right_left
+	jump_left
+	jump_2_down
+	jump_2_down
+	jump_2_down
+	step_end
+
+PoxTower_Sage1Leave:
+	walk_up
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_down
+	walk_up
+	walk_up
+	walk_up
+	walk_right
+	walk_right
+	walk_up
+	walk_up
+	walk_right
+	walk_right
+	step_end
+
+PoxTower_Sage2Leave:
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_up
+	walk_up
+	walk_up
+	walk_right
+	walk_right
+	walk_up
+	walk_up
+	walk_right
+	walk_right
+	step_end
+
+
+PoxTower_Text_Rift::
+	.string "MORTY: The air is still shaking.\nThere are more coming through!$"
+
+PoxTower_BirdFly:
+	levitate
+	delay_16
+	face_up
+ stop_levitate
+	fly_up
+	set_invisible
+	step_end
+
+PoxTower_RegiTeleport:
+	face_left
+	delay_4
+	face_up
+	delay_4
+	face_right
+	delay_4
+	face_down
+	delay_4
+	face_left
+	delay_4
+	face_up
+	delay_4
+	face_right
+	delay_4
+	face_down
+	delay_4
+	face_left
+	delay_4
+	face_up
+	delay_4
+	face_right
+	delay_4
+	face_down
+	delay_4
+	face_left
+	delay_4
+	face_up
+	delay_4
+	face_right
+	delay_4
+	face_down
+	delay_4
+	set_invisible
+	delay_4
+	set_visible
+	delay_4
+	set_invisible
+	step_end
+
+PoxTower_CelebiVanish:
+	levitate
+	jump_in_place_left_right
+	jump_in_place_right_left
+	jump_in_place_left_right
+	jump_in_place_right_left
+	set_invisible
+	delay_8
+	set_visible
+	delay_4
+	set_invisible
+	step_end
+
+PoxTower_JirachiAscend:
+	levitate
+	jump_in_place_up
+	delay_16
+	face_up
+ stop_levitate
+	fly_up
+	set_invisible
+	step_end
