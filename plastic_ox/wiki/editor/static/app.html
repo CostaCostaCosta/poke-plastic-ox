@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en" data-text-size="normal">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="editor-token" content="__EDITOR_TOKEN__">
+<meta name="color-scheme" content="light">
+<title>Story note editor — Plastic Ox Wiki</title>
+<link rel="stylesheet" href="/assets/app.css">
+<script defer src="/assets/app.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to the editor</a>
+
+<header class="appbar">
+  <div class="appbar-inner">
+    <a class="brand" href="/wiki/index.html">Plastic&nbsp;Ox <span>Wiki</span></a>
+    <nav class="appnav" aria-label="Editor">
+      <a href="/wiki/index.html">Wiki</a>
+      <a href="/wiki/region.html">Region map</a>
+      <a href="/wiki/story.html">Story index</a>
+      <a href="/edit/">All notes</a>
+      <button type="button" id="display-button" aria-expanded="false" aria-controls="display-panel">Display</button>
+      <button type="button" id="help-button" aria-haspopup="dialog">Shortcuts</button>
+    </nav>
+  </div>
+  <section id="display-panel" class="display-panel" aria-label="Display and accessibility settings" hidden>
+    <fieldset>
+      <legend>Text size</legend>
+      <label><input type="radio" name="text-size" value="normal" checked> Normal</label>
+      <label><input type="radio" name="text-size" value="large"> Large</label>
+      <label><input type="radio" name="text-size" value="larger"> Larger</label>
+    </fieldset>
+    <fieldset>
+      <legend>Reading</legend>
+      <label><input type="checkbox" id="contrast-toggle"> High contrast</label>
+      <label><input type="checkbox" id="underline-toggle"> Underline links</label>
+      <label><input type="checkbox" id="motion-toggle"> Reduce motion</label>
+    </fieldset>
+    <p class="hint">These settings are stored in this browser only.</p>
+  </section>
+</header>
+
+<div class="shell">
+  <nav class="note-nav" id="note-nav" aria-label="Story notes">
+    <div class="nav-head">
+      <h2>Story notes</h2>
+      <button type="button" id="nav-toggle" aria-expanded="true" aria-controls="note-list">Hide</button>
+    </div>
+    <div class="nav-filter">
+      <label for="note-search">Filter notes</label>
+      <input id="note-search" type="search" autocomplete="off" placeholder="Title, act, map, keyword…">
+      <p id="note-count" class="hint" role="status">Loading notes…</p>
+    </div>
+    <div id="note-list" class="note-list" aria-busy="true"></div>
+  </nav>
+
+  <main id="main" class="main" tabindex="-1">
+    <div id="loading" class="empty-state">
+      <h1>Plastic Ox story editor</h1>
+      <p>Loading the note index…</p>
+    </div>
+
+    <section id="dashboard" hidden aria-labelledby="dashboard-title">
+      <header class="page-head">
+        <p class="eyebrow">Design workflow</p>
+        <h1 id="dashboard-title">Story notes</h1>
+        <p class="lede">Browse a location, edit the markdown note that drives its story,
+          key interactions, and dialogue, then export the diff as direction for an
+          implementing agent.</p>
+      </header>
+      <p id="dashboard-stats" class="stats" role="status"></p>
+      <div class="callout">
+        <h2>How the hand-off works</h2>
+        <ol>
+          <li>Open a note from the sidebar, or follow <strong>Edit this note</strong>
+            from any wiki page.</li>
+          <li>Edit the markdown. The <strong>Write</strong> tab has section jumps;
+            <strong>Preview</strong> renders the page; <strong>Diff</strong> shows the
+            uncommitted change; <strong>Check</strong> validates identifiers against
+            the ROM source.</li>
+          <li>Save the note. The wiki page is rebuilt so you can keep reading it.</li>
+          <li>Open <strong>Direction</strong>, say what should improve, and export a
+            bundle under <code>plastic_ox/story/directions/</code>. Point the
+            implementing agent at that file.</li>
+        </ol>
+        <p class="hint">Notes are plain markdown in
+          <code>plastic_ox/story/locations/</code>. Nothing is committed for you.</p>
+      </div>
+      <section class="dashboard-section" aria-labelledby="recent-directions-title">
+        <h2 id="recent-directions-title">Recent direction bundles</h2>
+        <ul id="dashboard-directions" class="bundle-list"><li>Loading…</li></ul>
+      </section>
+    </section>
+
+    <section id="editor" hidden aria-labelledby="note-title">
+      <header class="page-head note-head">
+        <p class="eyebrow">Story note</p>
+        <h1 id="note-title">…</h1>
+        <p id="note-meta" class="meta"></p>
+        <p class="note-links">
+          <a id="wiki-link" href="#" hidden>View wiki page</a>
+          <a href="/wiki/story.html">Story index</a>
+          <span id="dirty-badge" class="badge" hidden>Uncommitted changes</span>
+        </p>
+      </header>
+
+      <div id="draft-banner" class="banner" role="status" hidden>
+        <p><strong>Unsaved draft found.</strong> <span id="draft-when"></span>
+          It has not replaced the saved note.</p>
+        <div class="button-row">
+          <button type="button" id="restore-draft" class="primary">Restore draft</button>
+          <button type="button" id="discard-draft">Discard draft</button>
+        </div>
+      </div>
+
+      <div class="savebar" role="group" aria-label="Save and validate">
+        <button type="button" id="save-button" class="primary" aria-keyshortcuts="Control+S Meta+S">
+          Save note <kbd>Ctrl S</kbd>
+        </button>
+        <button type="button" id="check-button" aria-keyshortcuts="Control+Enter Meta+Enter">
+          Check note
+        </button>
+        <label class="inline-check"><input type="checkbox" id="rebuild-checkbox" checked>
+          Rebuild the wiki after saving</label>
+        <span id="save-status" class="status" role="status" aria-live="polite"></span>
+      </div>
+
+      <div id="validation" class="validation" role="region" aria-label="Validation results" aria-live="polite" hidden></div>
+
+      <div class="tabs" role="tablist" aria-label="Note views">
+        <button type="button" role="tab" id="tab-write" aria-controls="panel-write" aria-selected="true" tabindex="0">Write</button>
+        <button type="button" role="tab" id="tab-preview" aria-controls="panel-preview" aria-selected="false" tabindex="-1">Preview</button>
+        <button type="button" role="tab" id="tab-diff" aria-controls="panel-diff" aria-selected="false" tabindex="-1">Diff</button>
+        <button type="button" role="tab" id="tab-direction" aria-controls="panel-direction" aria-selected="false" tabindex="-1">Direction</button>
+      </div>
+
+      <section id="panel-write" role="tabpanel" aria-labelledby="tab-write" tabindex="0">
+        <div class="section-jumps" role="group" aria-label="Jump to a note section">
+          <span>Jump to:</span>
+          <button type="button" data-jump="## Snapshot">Snapshot</button>
+          <button type="button" data-jump="## Plot points">Plot points</button>
+          <button type="button" data-jump="## Key interactions">Key interactions</button>
+          <button type="button" data-jump="## Dialogue guidance">Dialogue</button>
+          <button type="button" data-jump="## Inspiration">Inspiration</button>
+          <button type="button" data-jump="## Implementation hooks">Hooks</button>
+          <button type="button" data-jump="## Open questions">Open questions</button>
+          <button type="button" id="add-interaction-row">Add interaction row</button>
+        </div>
+        <label for="note-editor" class="field-label">Note markdown</label>
+        <p id="editor-help" class="hint">Full file including front matter. Required sections:
+          Snapshot, Plot points, Key interactions, Dialogue guidance, Inspiration,
+          Implementation hooks. <kbd>Ctrl S</kbd> saves.</p>
+        <textarea id="note-editor" class="editor" spellcheck="true" autocomplete="off"
+          aria-describedby="editor-help" aria-keyshortcuts="Control+S Meta+S"></textarea>
+        <div class="editor-foot">
+          <span id="word-count" class="hint"></span>
+          <span id="cursor-pos" class="hint"></span>
+        </div>
+      </section>
+
+      <section id="panel-preview" role="tabpanel" aria-labelledby="tab-preview" tabindex="0" hidden>
+        <p class="hint">Rendered from the current text, including unsaved changes. Links are
+          inert unless they point inside this wiki.</p>
+        <div id="preview" class="preview"></div>
+      </section>
+
+      <section id="panel-diff" role="tabpanel" aria-labelledby="tab-diff" tabindex="0" hidden>
+        <div class="panel-toolbar">
+          <button type="button" id="refresh-diff">Refresh diff</button>
+          <span>Compared with git <code>HEAD</code>. Green lines start with <code>+</code>,
+            red lines with <code>-</code>.</span>
+        </div>
+        <pre id="diff" class="diff" tabindex="0" aria-label="Diff against git HEAD">Loading…</pre>
+      </section>
+
+      <section id="panel-direction" role="tabpanel" aria-labelledby="tab-direction" tabindex="0" hidden>
+        <form id="direction-form">
+          <h2>Export this note as direction</h2>
+          <p>The bundle contains the note diff, the Key interactions table, grounded map
+            facts, validation, and your brief. It is written as markdown plus JSON.</p>
+          <label for="intent" class="field-label">What should improve?</label>
+          <p id="intent-help" class="hint">Be concrete: the beat, the interaction, the voice,
+            and what must not change. Markdown is fine. The diff is still attached even if
+            this is empty.</p>
+          <div class="section-jumps" role="group" aria-label="Insert a direction prompt">
+            <span>Insert:</span>
+            <button type="button" data-intent-template="story">Story mode</button>
+            <button type="button" data-intent-template="interactions">Key interactions</button>
+            <button type="button" data-intent-template="dialogue">Dialogue</button>
+            <button type="button" data-intent-template="constraints">Constraints</button>
+          </div>
+          <textarea id="intent" class="intent" rows="10" aria-describedby="intent-help"
+            placeholder="Example:&#10;&#10;The gym staff still share two lines. Give each attendant a distinct pre-battle line and a post-badge line that mentions their job, keeping the NU tier and the shadow-maze layout."></textarea>
+          <fieldset class="scope">
+            <legend>Which note changes go in the bundle?</legend>
+            <label><input type="radio" name="scope" value="note" checked>
+              This note only</label>
+            <label><input type="radio" name="scope" value="session">
+              Notes saved in this editor session (<span id="scope-session-count">0</span>)</label>
+            <label><input type="radio" name="scope" value="dirty">
+              All uncommitted note changes (<span id="scope-dirty-count">0</span>)</label>
+          </fieldset>
+          <div class="button-row">
+            <button type="submit" class="primary">Export direction bundle</button>
+            <span id="direction-status" class="status" role="status" aria-live="polite"></span>
+          </div>
+          <div id="direction-result" class="banner" hidden>
+            <p><strong>Bundle written.</strong> Give the agent this path:</p>
+            <p><code id="direction-path"></code></p>
+            <div class="button-row">
+              <a id="direction-link" class="button" href="#" target="_blank" rel="noopener">Open bundle</a>
+              <button type="button" id="copy-handoff" class="primary">Copy hand-off message</button>
+            </div>
+          </div>
+        </form>
+        <section class="dashboard-section" aria-labelledby="direction-list-title">
+          <h2 id="direction-list-title">Recent bundles</h2>
+          <ul id="direction-list" class="bundle-list"><li>Loading…</li></ul>
+        </section>
+      </section>
+    </section>
+
+    <section id="not-found" hidden>
+      <h1>Note not found</h1>
+      <p>That slug is not a story note. <a href="/edit/">Choose a note from the index</a>.</p>
+    </section>
+  </main>
+</div>
+
+<dialog id="help-dialog" aria-labelledby="help-title">
+  <form method="dialog" class="dialog-close-form">
+    <button type="submit" class="dialog-close" aria-label="Close keyboard shortcuts">Close</button>
+  </form>
+  <h2 id="help-title">Keyboard shortcuts</h2>
+  <dl class="shortcuts">
+    <dt><kbd>Ctrl</kbd> + <kbd>S</kbd></dt><dd>Save the note (⌘S on macOS)</dd>
+    <dt><kbd>Ctrl</kbd> + <kbd>Enter</kbd></dt><dd>Check the note without saving</dd>
+    <dt><kbd>Alt</kbd> + <kbd>1</kbd>…<kbd>4</kbd></dt><dd>Switch Write, Preview, Diff, Direction</dd>
+    <dt><kbd>/</kbd></dt><dd>Jump to the note filter (when not typing)</dd>
+    <dt><kbd>?</kbd></dt><dd>Open this dialog (when not typing)</dd>
+    <dt><kbd>Esc</kbd></dt><dd>Close a dialog or the display panel</dd>
+  </dl>
+  <p>Every control is a native button, link, input, or textarea, so Tab, Shift+Tab,
+    Enter, Space, and screen-reader navigation work as expected.</p>
+</dialog>
+
+<noscript>
+  <p class="noscript">This editor needs JavaScript. The generated wiki and the note
+    markdown files under <code>plastic_ox/story/locations/</code> still work without it.</p>
+</noscript>
+
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

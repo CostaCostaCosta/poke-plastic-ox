@@ -1,7 +1,10 @@
 {
-  "source_sha256": "0deb01738de60796ae2a4bfe335597f4c79f4f89c28c738b5050c2d7cce13e8a",
+  "source_sha256": "62140f04f7dc30ce413db0d094f4623097682b03dc13a83c8c9f13a84c41b8df",
   "pages": 61,
   "story_notes": 61,
   "story_coverage": "61/61",
+  "region_stops": 61,
+  "region_key_npcs": 330,
+  "region_standard_npcs": 300,
   "generator": "plastic_ox/wiki/build_wiki.py"
 }

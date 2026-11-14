@@ -18,6 +18,43 @@ Then open `plastic_ox/wiki/site/index.html`, or serve it locally:
 python3 -m http.server 8000 --directory plastic_ox/wiki/site
 ```
 
+## Edit the story notes
+
+For editing rather than reading, start the note editor instead:
+
+```sh
+python3 plastic_ox/wiki/editor/serve.py
+# http://127.0.0.1:8765/edit/
+```
+
+It serves the same generated wiki with **Edit this note** links, validates each
+note against the ROM data as you write, saves the markdown atomically, rebuilds
+the wiki, and exports the uncommitted diff as a direction bundle under
+`plastic_ox/story/directions/`. The editor and its keyboard/accessibility
+features are documented in `plastic_ox/wiki/editor/README.md`.
+
+## Region map
+
+The build also writes `site/region.html`, a clickable story-ordered map of the
+region. Every location is a stop; **Previous** and **Next** follow the
+`STORY_ORDER` in `plastic_ox/story/region.py`. Main-line notes are numbered and
+supporting/audit notes are marked and skipped by default.
+
+Selecting a stop shows its summary, wiki link, and two separate NPC lists:
+
+- **Key NPCs** act on the player: trainer battles, gifts, in-game trades, shops,
+  healing, path/gate changes, scene triggers, dialogue choices, and state-gated
+  objects.
+- **Standard NPCs** are talk-only people and flavour.
+
+Classification is grounded in the resolved scripts plus each note's Key
+interactions table, and is shared by the location pages, so a page's Key NPCs
+section contains only functional NPCs. The classifier lives in
+`plastic_ox/story/npc_roles.py`.
+
+The page also links the older physical design SVG as a secondary view. The SVG
+is a design sketch, not a verified progression graph.
+
 Each location page also renders its design note from
 `plastic_ox/story/locations/<page-slug>.md`: plot points, key interactions,
 dialogue guidance, and inspiration. Notes are validated against the ROM data by

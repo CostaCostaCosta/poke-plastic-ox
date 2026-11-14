@@ -42,6 +42,10 @@ prefabs.json
 *.diff
 *.sym
 *.js
+# Wiki JavaScript assets are tracked despite the top-level *.js rule.
+!plastic_ox/wiki/assets/*.js
+!plastic_ox/wiki/site/assets/*.js
+!plastic_ox/wiki/editor/static/*.js
 /pokeemerald-*.png
 /pokefirered-*.png
 /pokeleafgreen-*.png

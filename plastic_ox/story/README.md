@@ -20,6 +20,11 @@ plastic_ox/story/
   story_notes.py         parser/renderer shared with the wiki build
   story_context.py       repo-grounded dossier for a note or map
   check_story_notes.py   validator (front matter, coverage, identifiers)
+  direction.py           package note diffs as a direction bundle for an agent
+  region.py              story order, region-map stops, and the map page body
+  npc_roles.py           key vs standard NPC classification from scripts/notes
+  directions/            exported direction bundles and their README
+  runs/                  one short log per story/dialogue pass
 ```
 
 `locations/<slug>.md` uses the wiki page slug as its file name (e.g.
@@ -88,18 +93,60 @@ python3 plastic_ox/story/check_story_notes.py --note lavendertown-hns
 python3 plastic_ox/story/story_context.py lavendertown-hns
 python3 plastic_ox/story/story_context.py PlasticOx_PokemonTower --json
 
-# Parser/renderer self-tests (run in CI)
+# Parser/renderer and region-map self-tests (run in CI)
 python3 plastic_ox/story/test_story_notes.py
+python3 plastic_ox/story/test_region.py
 
 # Render the wiki (the notes appear in a "Story notes" section per page)
 python3 plastic_ox/wiki/build_wiki.py
 python3 plastic_ox/wiki/build_wiki.py --check
+
+# Package uncommitted note edits as direction for an implementing agent
+python3 plastic_ox/story/direction.py --slug <slug> --intent "..."
+python3 plastic_ox/story/direction.py --all-dirty
 ```
 
 The validator fails when a wiki page has no note, when a note claims a map that
 does not exist, when an identifier is unknown, or when a required section is
 missing. It also fails when a `PlasticOx_*` story room or v7 map is not claimed
 by any note.
+
+## Key NPCs and the region map
+
+The build separates two kinds of people on every location page and on the
+clickable `site/region.html`:
+
+- **Key NPCs** act on the player: trainer battles, gifts, in-game trades, shops,
+  healing, path/gate flag changes, scene triggers, dialogue choices, and
+  state-gated objects.
+- **Standard NPCs** only talk.
+
+Classification is in `npc_roles.py`. It resolves the object's script commands
+(including `goto`/`call` and common scripts in `data/event_scripts.s`) and
+cross-references the note's Key interactions table, so a named blocker or guide
+is not lost just because its script is one `msgbox`.
+
+`region.py` holds the `STORY_ORDER` used by the region map and its
+Previous/Next controls. Full-depth notes form the main-line sequence; supporting
+and audit notes remain clickable but are skipped by default.
+
+## Editing workflow
+
+The human-facing path is the local wiki editor:
+
+```sh
+python3 plastic_ox/wiki/editor/serve.py
+# http://127.0.0.1:8765/edit/
+```
+
+Browse the wiki, follow **Edit this note**, change the markdown under
+`locations/`, and save. The editor validates against the checkout and rebuilds
+the wiki. When the note says what you want, open **Direction**, write the brief,
+and export a bundle under `plastic_ox/story/directions/`. The bundle contains
+the diff, the Key interactions table, grounded map facts, validation, and your
+intent; point the superagent at that one file. See
+`plastic_ox/story/directions/README.md` and
+`plastic_ox/wiki/editor/README.md`.
 
 ## Autonomous loop
 

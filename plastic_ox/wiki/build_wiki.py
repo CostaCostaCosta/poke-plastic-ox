@@ -17,6 +17,8 @@ from pathlib import Path
 WIKI = Path(__file__).resolve().parent
 ROOT = WIKI.parents[1]
 sys.path.insert(0, str(ROOT / "plastic_ox/story"))
+import npc_roles  # noqa: E402
+import region  # noqa: E402
 import story_notes  # noqa: E402
 import story_render  # noqa: E402
 SITE = WIKI / "site"
@@ -58,7 +60,15 @@ def source_files() -> list[Path]:
     paths += sorted((ROOT / "data/maps").glob("*/map.json"))
     paths += sorted((ROOT / "data/maps").glob("*/scripts.inc"))
     paths += sorted((ROOT / "data/scripts").glob("*.inc"))
+    paths += sorted((ROOT / "data").glob("**/*.s"))
     paths += sorted((ROOT / "plastic_ox/story/locations").glob("*.md"))
+    paths += [
+        ROOT / "plastic_ox/plastic_ox_topology.svg",
+        WIKI / "assets/style.css",
+        WIKI / "assets/wiki.js",
+        WIKI / "assets/region.css",
+        WIKI / "assets/region.js",
+    ]
     return [p for p in paths if p.exists()]
 
 
@@ -96,7 +106,7 @@ def read_maps() -> list[dict]:
 def read_script_blocks() -> dict[str, str]:
     blocks: dict[str, str] = {}
     label_re = re.compile(r"^([A-Za-z_][A-Za-z0-9_]*)(?:::|:)$", re.M)
-    for path in sorted((ROOT / "data").glob("**/*.inc")):
+    for path in sorted((ROOT / "data").glob("**/*.inc")) + sorted((ROOT / "data").glob("**/*.s")):
         text = path.read_text(encoding="utf-8", errors="replace")
         matches = list(label_re.finditer(text))
         for i, match in enumerate(matches):
@@ -219,21 +229,6 @@ def items_for_map(data: dict, blocks: dict[str, str]) -> list[dict]:
     return list(unique.values())
 
 
-def npcs_for_map(data: dict, trainer_scripts: set[str]) -> list[dict]:
-    rows = []
-    for event in data.get("object_events", []):
-        gfx = event.get("graphics_id", "")
-        script = event.get("script", "")
-        if "ITEM_BALL" in gfx or "BERRY_TREE" in gfx or "APRICORN_TREE" in gfx or script in trainer_scripts:
-            continue
-        label = re.sub(r"^(?:.*_)?EventScript_", "", script)
-        if label == script or not label:
-            label = words(gfx)
-        label = re.sub(r"([a-z])([A-Z])", r"\1 \2", label).replace("_", " ")
-        rows.append({"name": label, "role": words(gfx), "location": f'({event["x"]}, {event["y"]})'})
-    return rows
-
-
 def table(headers: list[str], rows: list[tuple | list]) -> str:
     if not rows:
         return '<p class="empty">None found in the current game data.</p>'
@@ -252,15 +247,15 @@ def sidebar(maps: list[dict], current: str = "") -> str:
                 links.append(f'<li><a href="{page_slug(data)}.html"{" aria-current=\"page\"" if data["name"] == current else ""}>{html.escape(title)}</a></li>')
         if links:
             sections.append(f"<h2>{kind}s</h2><ul>{''.join(links)}</ul>")
-    sections.append('<h2>Design</h2><ul><li><a href="story.html">Story notes</a></li></ul>')
+    sections.append('<h2>Design</h2><ul><li><a href="region.html">Region map</a></li><li><a href="story.html">Story notes</a></li></ul>')
     return "".join(sections)
 
 
-def shell(title: str, body: str, maps: list[dict], current: str = "") -> str:
+def shell(title: str, body: str, maps: list[dict], current: str = "", head: str = "") -> str:
     return f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{html.escape(title)} — Plastic Ox Wiki</title><link rel="stylesheet" href="assets/style.css"></head>
-<body><header class="topbar"><a class="brand" href="index.html">Plastic Ox Wiki</a><nav class="topnav"><a href="index.html">Locations</a><a href="story.html">Story notes</a></nav></header>
+<title>{html.escape(title)} — Plastic Ox Wiki</title><link rel="stylesheet" href="assets/style.css">{head}</head>
+<body><header class="topbar"><a class="brand" href="index.html">Plastic Ox Wiki</a><nav class="topnav"><a href="index.html">Locations</a><a href="region.html">Region map</a><a href="story.html">Story notes</a></nav></header>
 <div class="layout"><nav class="sidebar"><a href="index.html">Main page</a>{sidebar(maps, current)}</nav>
 <main class="content">{body}<footer>Automatically generated from the Plastic Ox ROM source. Edit the game data, then rebuild the wiki.</footer></main></div>
 <script src="assets/wiki.js"></script></body></html>'''
@@ -278,7 +273,6 @@ def page_for_map(data: dict, maps: list[dict], blocks: dict[str, str], trainers:
         cell = f'<a href="{page_slug(dest)}.html">{html.escape(name)}</a>' if dest else html.escape(name)
         connections.append((conn["direction"].title(), cell))
     trainer_ids = trainer_ids_for_map(data, blocks)
-    trainer_script_names = {e.get("script", "") for e in data.get("object_events", []) if re.search(r"TRAINER_[A-Z0-9_]+", resolve_block(e.get("script", ""), blocks))}
     info = f'''<aside class="infobox"><h2>{html.escape(title)}</h2><dl>
 <dt>Type</dt><dd>{kind}</dd><dt>Map ID</dt><dd><code>{html.escape(data["id"])}</code></dd>
 <dt>Weather</dt><dd>{html.escape(words(data.get("weather", "None")))}</dd>
@@ -322,9 +316,27 @@ def page_for_map(data: dict, maps: list[dict], blocks: dict[str, str], trainers:
         trainer_html.append('<p class="empty">No trainer battles are attached to this map.</p>')
 
     items = items_for_map(data, blocks)
-    npcs = npcs_for_map(data, trainer_script_names)
     note = story_render.note_for_map(notes, data["name"])
+    npc_rows = npc_roles.map_rows(data, blocks, note=note, trainers=trainers)
+    key_npcs = [row for row in npc_rows if row["key"]]
+    standard_npcs = [row for row in npc_rows if not row["key"]]
     story_html = story_render.render_story_section(note) if note else story_render.render_missing_section(title, page_slug(data))
+    key_npc_html = table(
+        ["NPC", "Interaction", "Coordinates", "Current line"],
+        [(row["name"], row["role"], f'({row["x"]}, {row["y"]})', row["text"][:110]) for row in key_npcs],
+    ) if key_npcs else '<p class="empty">No functional key NPC on this map.</p>'
+    standard_npc_html = table(
+        ["NPC", "Story note", "Coordinates", "Current line"],
+        [
+            (
+                row["name"],
+                row["story"] or "Talk only",
+                f'({row["x"]}, {row["y"]})',
+                row["text"][:110],
+            )
+            for row in standard_npcs
+        ],
+    ) if standard_npcs else '<p class="empty">No standard NPC on this map.</p>'
     body = f'''<h1>{html.escape(title)}</h1>{info}<p class="lede">{html.escape(title)} is a {kind.lower()} in the Plastic Ox region.</p>
 <div class="source-note">This article is generated from <code>{html.escape(str(data["_path"].relative_to(ROOT)))}</code> and linked encounter, script, and trainer data.</div>
 {story_html}
@@ -332,7 +344,13 @@ def page_for_map(data: dict, maps: list[dict], blocks: dict[str, str], trainers:
 <h2>Pokémon</h2>{''.join(encounter_html)}
 <h2>Trainers</h2>{''.join(trainer_html)}
 <h2>Items</h2>{table(["Item", "Method", "Coordinates"], [(x["item"], x["kind"], x["location"]) for x in items])}
-<h2>Key NPCs</h2>{table(["NPC", "Sprite / role", "Coordinates"], [(x["name"], x["role"], x["location"]) for x in npcs])}'''
+<h2>Key NPCs</h2>
+<p class="hint">NPCs who act on the player: battles, gifts, trades, shops, gates, scene triggers, or state changes.
+<a href="region.html">See the full region map</a>.</p>
+{key_npc_html}
+<h2>Standard NPCs</h2>
+<p class="hint">Talk-only people. They carry the place's voice, but they do not change play.</p>
+{standard_npc_html}'''
     return shell(title, body, maps, data["name"])
 
 
@@ -347,6 +365,11 @@ def build(out: Path, digest: str) -> tuple[int, int, int]:
     (out / "assets").mkdir(parents=True, exist_ok=True)
     shutil.copy2(WIKI / "assets/style.css", out / "assets/style.css")
     shutil.copy2(WIKI / "assets/wiki.js", out / "assets/wiki.js")
+    shutil.copy2(WIKI / "assets/region.css", out / "assets/region.css")
+    shutil.copy2(WIKI / "assets/region.js", out / "assets/region.js")
+    topology = ROOT / "plastic_ox/plastic_ox_topology.svg"
+    if topology.exists():
+        shutil.copy2(topology, out / "assets/topology.svg")
     for data in maps:
         (out / f'{page_slug(data)}.html').write_text(page_for_map(data, maps, blocks, trainers, encounters, definitions, note_index), encoding="utf-8")
     def card(data: dict) -> str:
@@ -368,13 +391,33 @@ def build(out: Path, digest: str) -> tuple[int, int, int]:
 <input class="search" type="search" data-search placeholder="Search locations, acts, or story stages…" aria-label="Search locations">
 <p class="empty" data-search-empty hidden>No location matches that search.</p>
 <div class="cards">{cards}</div>'''
-    index_body = index_body.replace('<div class="source-note">Generated from', f'<div class="source-note">Story notes: <a href="story.html">{len(notes)} design notes</a> across the region. Generated from')
+    index_body = index_body.replace('<div class="source-note">Generated from', f'<div class="source-note">Explore the <a href="region.html">clickable region map</a> or the <a href="story.html">{len(notes)} design notes</a>. Generated from')
     (out / "index.html").write_text(shell("Main page", index_body, maps), encoding="utf-8")
     story_body = story_render.render_story_index(notes, pages, lambda slug: f"{slug}.html")
+    story_body = story_body.replace(
+        '<div class="story-filters">',
+        '<div class="source-note">Prefer a map? '
+        '<a href="region.html">Open the clickable region map</a>, which follows the same notes in story order.</div>'
+        '<div class="story-filters">',
+        1,
+    )
     (out / "story.html").write_text(shell("Story notes", story_body, maps), encoding="utf-8")
+    region_data = region.build_region_data(notes, blocks, trainers)
+    (out / "region.html").write_text(
+        shell(
+            "Region map",
+            region.render_body(region_data),
+            maps,
+            head='<link rel="stylesheet" href="assets/region.css">',
+        ),
+        encoding="utf-8",
+    )
     covered = sum(1 for data in maps if data["name"] in note_index)
     metadata = {"source_sha256": digest, "pages": len(maps), "story_notes": len(notes),
                 "story_coverage": f"{covered}/{len(maps)}",
+                "region_stops": region_data["counts"]["stops"],
+                "region_key_npcs": region_data["counts"]["key_npcs"],
+                "region_standard_npcs": region_data["counts"]["standard_npcs"],
                 "generator": "plastic_ox/wiki/build_wiki.py"}
     (out / "build.json").write_text(json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
     return len(maps), sum(len(v) for key, v in encounters.items() if any(m["id"] == key for m in maps)), len(notes)
