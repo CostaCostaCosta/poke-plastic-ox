@@ -812,6 +812,18 @@ for area, names in ROUTE_GROUPS.items():
         assert count >= 2, (area, trainer, candidates)
         ROSTERS[trainer] = checkpoint, candidates[:count]
 
+# Ecruteak Gym staff: NU-ceiling teams of two or three, below Morty's 27-30.
+# They are talked to, not sight-battled, in the shadow maze; the Kimono troupe
+# keeps its declared signature exception.
+ROSTERS["TRAINER_PLASTIC_OX_ECRUTEAK_KADO"] = ("gym3", [
+    ("SPECIES_CHIMECHO", 25), ("SPECIES_DUSKULL", 24), ("SPECIES_MURKROW", 24)])
+ROSTERS["TRAINER_PLASTIC_OX_ECRUTEAK_YUI"] = ("gym3", [
+    ("SPECIES_VENOMOTH", 26), ("SPECIES_GOLBAT", 25)])
+ROSTERS["TRAINER_PLASTIC_OX_ECRUTEAK_GENZO"] = ("gym3", [
+    ("SPECIES_PUPITAR", 27), ("SPECIES_SABLEYE", 26), ("SPECIES_TORKOAL", 25)])
+ROSTERS["TRAINER_PLASTIC_OX_ECRUTEAK_RIN"] = ("gym3", [
+    ("SPECIES_GASTLY", 27), ("SPECIES_DUSKULL", 26), ("SPECIES_PIDGEOT", 27)])
+
 for trainer, (checkpoint, roster) in list(ROSTERS.items()):
     floor = minimum_level(checkpoint)
     ROSTERS[trainer] = checkpoint, [(species, max(level, floor))

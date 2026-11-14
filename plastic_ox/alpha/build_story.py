@@ -372,6 +372,8 @@ for i, (name, display, town, prereq, level, team) in enumerate(gymdata):
         repeat = "Pox_MansionKey"
     intro = ("WHITNEY: My team keeps moving! Show me how you handle surprises!"
              if name == 'Whitney' else
+             "MORTY: You went under the tower. You saw a wall stand up, and then lie back down.|I have no explanation that would survive daylight. What I have is a GYM and a badge.|Show me the team you carried down there."
+             if name == 'Morty' else
              f"{display}: Show me what you and your POKéMON have learned!")
     battle(name, display, intro, team, level, badges[i], prereq, extra,
            double=name=='TateLiza', repeat=repeat)
@@ -421,7 +423,7 @@ for i, species in enumerate(['Vaporeon','Jolteon','Flareon','Espeon','Umbreon'])
     f = flag('KIMONO_' + species.upper())
     kimono_flags.append(f)
     battle('Kimono'+species, ['NAOKO','SAYO','ZUKI','KUNI','MIKI'][i], 'Our dance honors the BURNED TOWER. MORTY went there after the last rite.|Would you join our POKéMON in a battle?', [(species,['Quick Attack', {'Vaporeon':'Water Pulse','Jolteon':'Shock Wave','Flareon':'Flamethrower','Espeon':'Psybeam','Umbreon':'Faint Attack'}[species]])], 24, f, [badges[1]], pic='Beauty', cls='Beauty')
-    kimono_objects.append(npc('Kimono'+species, [3,5,7,3,7][i], [9,2,9,13,13][i], 'OBJ_EVENT_GFX_WOMAN_2'))
+    kimono_objects.append(npc('Kimono'+species, [5,7,10,13,15][i], [3,2,3,2,3][i], 'OBJ_EVENT_GFX_KIMONO_HNS'))
 gift('Kimono', 'You matched all five of our partners with grace. Please raise this EEVEE with the same care.', kimono_flags)
 kimono_objects.append(npc('Kimono', 5, 15, 'OBJ_EVENT_GFX_OLD_WOMAN'))
 dance = room('DanceTheater','EcruteakCity_hns',None,objects=kimono_objects,return_xy=(36,33))
@@ -454,9 +456,13 @@ tower = 'PlasticOx_BurnedTower'
 room_names.append(tower)
 replace_npc('EcruteakCity_hns', 3, 'BurnedGuide')
 start('BurnedGuide')
-message('BurnedGuide', 'MORTY went below the BURNED TOWER. The entrance is just north of here.')
+emit('\tgoto_if_set FLAG_POX_STORY_BURNED_TOWER, Pox_BurnedGuide_After')
+before = message('BurnedGuide_Before', 'Someone lights the tower lamps before the ninth hour. I have done it since the fire, and I still count the stairs twice.|MORTY went below this morning. The way down is north of here, past the last lamp.')
+emit('\treleaseall\n\tend\nPox_BurnedGuide_After::')
+after = message('BurnedGuide_After', 'The lamps are lit. He came up before dawn and did not say what he found.|That is answer enough for this street.|The GYM is open. He will be waiting at the top of the shadows.')
 finish()
-speech('Pox_Text_BurnedGuide', 'MORTY went below the BURNED TOWER. The entrance is just north of here.')
+speech(*before)
+speech(*after)
 
 battle('Weather','RESEARCHER','Help me test our field instruments. The weather lines have moved since yesterday.', [('Castform',['Water Pulse','Shock Wave','Weather Ball']),('Magnemite',['Thunder Wave','Spark'])], 28, weather, [badges[2]], '\tmsgbox Pox_Text_WeatherReport, MSGBOX_DEFAULT', pic='Scientist Frlg',cls='Scientist Frlg')
 speech('Pox_Text_WeatherReport', 'These are new changes. The boundaries are still moving!|It is not just damage left by the convergence. Something is still changing our habitats.')

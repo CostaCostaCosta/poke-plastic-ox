@@ -35,6 +35,13 @@
       "elevation": 0,
       "dest_map": "MAP_DYNAMIC",
       "dest_warp_id": "WARP_ID_DYNAMIC"
+    },
+    {
+      "x": 11,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_ROUTE119",
+      "dest_warp_id": "2"
     }
   ],
   "coord_events": [],

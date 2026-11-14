@@ -3017,10 +3017,18 @@
           "elevation": 0,
           "dest_map": "MAP_DYNAMIC",
           "dest_warp_id": "WARP_ID_DYNAMIC"
+        },
+        {
+          "x": 11,
+          "y": 5,
+          "elevation": 0,
+          "dest_map": "MAP_ROUTE119",
+          "dest_warp_id": "2"
         }
       ],
       "donor_index_to_converted": {
-        "0": 0
+        "0": 0,
+        "1": 1
       },
       "source_objects": [
         {

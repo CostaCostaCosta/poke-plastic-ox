@@ -23,7 +23,7 @@ PoxLeague_GateGuide::
 	end
 
 PoxLeague_Text_GateGuide::
-	.string "Eight BADGES, earned across the\nwhole region. Beyond this gate\plies VICTORY ROAD.\pThe open ridge leads straight to\nINDIGO PLATEAU. No field moves\pare needed.$"
+	.string "Eight BADGES. That is the whole\nlist, and the gate counts them,\pnot me.\pBeyond this gate is VICTORY ROAD.\nThen INDIGO PLATEAU.\pNo field moves, no shortcuts. The\nroad is the test.$"
 
 PoxLeague_Denied::
 	msgbox PoxLeague_Text_Denied, MSGBOX_DEFAULT
@@ -38,7 +38,7 @@ PoxLeague_GateDenied::
 	end
 
 PoxLeague_Text_Denied::
-	.string "The LEAGUE requires all eight\nBADGES. Return when your\pchallenge is complete.$"
+	.string "The gate is not open to you yet.\nEight BADGES. The list is on the\pwall if you want to count them.$"
 
 PoxLeague_Return::
 	lockall

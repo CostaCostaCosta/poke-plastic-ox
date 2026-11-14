@@ -21868,3 +21868,149 @@ Careful Nature
 - Seismic Toss
 - Counter
 - Explosion
+
+=== TRAINER_PLASTIC_OX_ECRUTEAK_KADO ===
+Name: KADO
+Class: Expert
+Pic: Sage Hns
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Chimecho @ Leftovers
+Level: 25
+Ability: Levitate
+EVs: 252 HP / 252 Def / 4 SpD
+Bold Nature
+- Confusion
+- Uproar
+- Yawn
+- Astonish
+
+Duskull @ Sitrus Berry
+Level: 24
+Ability: Levitate
+EVs: 252 HP / 4 Def / 252 SpD
+Careful Nature
+- Night Shade
+- Confuse Ray
+- Astonish
+- Disable
+
+Murkrow @ Sitrus Berry
+Level: 24
+Ability: Insomnia
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Peck
+- Pursuit
+- Astonish
+- Haze
+
+=== TRAINER_PLASTIC_OX_ECRUTEAK_YUI ===
+Name: YUI
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Venomoth @ Leftovers
+Level: 26
+Ability: Shield Dust
+EVs: 4 Def / 252 SpA / 252 Spe
+Timid Nature
+- Confusion
+- Poison Powder
+- Leech Life
+- Supersonic
+
+Golbat @ Sitrus Berry
+Level: 25
+Ability: Inner Focus
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Wing Attack
+- Bite
+- Astonish
+- Supersonic
+
+=== TRAINER_PLASTIC_OX_ECRUTEAK_GENZO ===
+Name: GENZO
+Class: Expert
+Pic: Sage Hns
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Pupitar @ Leftovers
+Level: 27
+Ability: Shed Skin
+EVs: 252 HP / 252 Atk / 4 Def
+Adamant Nature
+- Rock Slide
+- Bite
+- Screech
+- Sandstorm
+
+Sableye @ Leftovers
+Level: 26
+Ability: Keen Eye
+EVs: 252 HP / 4 Atk / 252 SpD
+Careful Nature
+- Night Shade
+- Fake Out
+- Detect
+- Fury Swipes
+
+Torkoal @ Sitrus Berry
+Level: 25
+Ability: White Smoke
+EVs: 252 HP / 252 Def / 4 SpD
+Relaxed Nature
+- Ember
+- Curse
+- Body Slam
+- Smokescreen
+
+=== TRAINER_PLASTIC_OX_ECRUTEAK_RIN ===
+Name: RIN
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Gastly @ Sitrus Berry
+Level: 27
+Ability: Levitate
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Night Shade
+- Lick
+- Hypnosis
+- Curse
+
+Duskull @ Sitrus Berry
+Level: 26
+Ability: Levitate
+EVs: 252 HP / 4 Def / 252 SpD
+Careful Nature
+- Night Shade
+- Confuse Ray
+- Foresight
+- Disable
+
+Pidgeot @ Leftovers
+Level: 27
+Ability: Keen Eye
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Wing Attack
+- Quick Attack
+- Whirlwind
+- Sand Attack

@@ -22,6 +22,23 @@ def main():
  shot(g,'house_inside');g.hold(K.KEY_DOWN,80);g.frame(180)
  assert at(g,'EcruteakCity_hns'),g.state()
  print('house walk and return PASS',flush=True)
+ # The theater door must open the kimono hall (21x19 theater layout), not the
+ # Rustboro Gym layout the PlasticOx room was imported on.
+ g.warp('EcruteakCity_hns',39,41);g.hold(K.KEY_UP,26);g.frame(180)
+ assert at(g,'PlasticOx_DanceTheater'),g.state()
+ assert (g.state()['x'],g.state()['y'])==(10,17),g.state()
+ header=g.mapheader_info();assert (header['w'],header['h'])==(21,19),header
+ g.hold(K.KEY_UP,32);g.frame(60)
+ assert at(g,'PlasticOx_DanceTheater') and g.state()['y']<17,g.state()
+ shot(g,'dance_hall')
+ g.hold(K.KEY_DOWN,44);g.frame(180)
+ assert at(g,'EcruteakCity_hns') and g.state()['x']==39,g.state()
+ print('dance theater door, theater layout, and return PASS',flush=True)
+ # All five dancers stand on the stage together.
+ g.warp('PlasticOx_DanceTheater',10,4);g.frame(120)
+ assert {1,2,3,4,5} <= visible_actor_ids(g),visible_actor_ids(g)
+ shot(g,'dance_stage')
+ print('kimono troupe staged together PASS',flush=True)
  for y in range(34,38):
   g.warp('EcruteakCity_hns',9,y);g.hold(K.KEY_LEFT,24);g.frame(180)
   assert at(g,'Gate_EcruteakCity_Route38_hns'),(y,g.state())
@@ -34,7 +51,7 @@ def main():
  for i in range(1,9):g.flag(f'FLAG_BADGE{i:02}_GET',True)
  g.hold(K.KEY_LEFT,16);g.frame(180)
  assert at(g,'PlasticOx_VictoryRoad'),g.state()
- g.hold(K.KEY_DOWN,16);g.frame(180)
+ g.hold(K.KEY_DOWN,40);g.frame(180)
  assert at(g,'Gate_EcruteakCity_Route38_hns'),g.state()
  shot(g,'gate_return');g.hold(K.KEY_RIGHT,120);g.frame(180)
  assert at(g,'EcruteakCity_hns'),g.state()

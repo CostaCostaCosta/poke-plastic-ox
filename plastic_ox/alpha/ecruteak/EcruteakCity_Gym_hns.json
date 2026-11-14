@@ -37,7 +37,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PoxEcruteak_EcruteakCity_Gym_hns_1",
+      "script": "Pox_GymKado",
       "flag": "0"
     },
     {
@@ -50,7 +50,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PoxEcruteak_EcruteakCity_Gym_hns_2",
+      "script": "Pox_GymYui",
       "flag": "0"
     },
     {
@@ -63,7 +63,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PoxEcruteak_EcruteakCity_Gym_hns_3",
+      "script": "Pox_GymGenzo",
       "flag": "0"
     },
     {
@@ -76,7 +76,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PoxEcruteak_EcruteakCity_Gym_hns_4",
+      "script": "Pox_GymRin",
       "flag": "0"
     },
     {

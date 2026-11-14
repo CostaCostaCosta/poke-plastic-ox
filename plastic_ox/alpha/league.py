@@ -52,10 +52,10 @@ def install(read, put):
     city['warp_events']=[w for w in city['warp_events'] if not (w['x']==8 and 34<=w['y']<=37)]
     save('EcruteakCity_hns',city)
     portal('Checkpoint','MAP_PLASTIC_OX_VICTORY_ROAD',27,48,BADGES)
-    talk('GateGuide','Eight BADGES, earned across the whole region. Beyond this gate lies VICTORY ROAD.|The open ridge leads straight to INDIGO PLATEAU. No field moves are needed.')
+    talk('GateGuide','Eight BADGES. That is the whole list, and the gate counts them, not me.|Beyond this gate is VICTORY ROAD. Then INDIGO PLATEAU.|No field moves, no shortcuts. The road is the test.')
     emit('PoxLeague_Denied::\n\tmsgbox PoxLeague_Text_Denied, MSGBOX_DEFAULT\n\treleaseall\n\tend')
     emit('PoxLeague_GateDenied::\n\tmsgbox PoxLeague_Text_Denied, MSGBOX_DEFAULT\n\tapplymovement LOCALID_PLAYER, Common_Movement_WalkRight\n\twaitmovement 0\n\treleaseall\n\tend')
-    text('Denied','The LEAGUE requires all eight BADGES. Return when your challenge is complete.')
+    text('Denied','The gate is not open to you yet. Eight BADGES. The list is on the wall if you want to count them.')
 
     route=load('PlasticOx_VictoryRoad')
     route.update(layout='LAYOUT_PLASTIC_OX_VICTORY_ROAD',map_type='MAP_TYPE_ROUTE',music='MUS_RG_VICTORY_ROAD',allow_running=True,allow_cycling=True,allow_escaping=False,show_map_name=True,region_map_section='MAPSEC_VICTORY_ROAD',connections=[],warp_events=[],object_events=[],coord_events=[],bg_events=[])

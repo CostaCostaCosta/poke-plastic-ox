@@ -298,4 +298,12 @@
 #define FLAG_POX_CAUGHT_REGICE (POX_EVENT_FLAGS_START + 33)
 #define FLAG_POX_CAUGHT_REGISTEEL (POX_EVENT_FLAGS_START + 34)
 #define FLAG_POX_GROUDON_RESEARCH (POX_EVENT_FLAGS_START + 35)
+
+// Ecruteak Gym staff victories (trainer IDs 953-956). The 0x4A0 trainer-flag
+// run is exactly full at ID 952 and the Sage block stays reserved for Sage
+// trainers, so these four wins live in the appended POX event-flag bytes.
+#define FLAG_POX_TRAINER_ECRUTEAK_KADO  (POX_EVENT_FLAGS_START + 36)
+#define FLAG_POX_TRAINER_ECRUTEAK_YUI   (POX_EVENT_FLAGS_START + 37)
+#define FLAG_POX_TRAINER_ECRUTEAK_GENZO (POX_EVENT_FLAGS_START + 38)
+#define FLAG_POX_TRAINER_ECRUTEAK_RIN   (POX_EVENT_FLAGS_START + 39)
 #endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H

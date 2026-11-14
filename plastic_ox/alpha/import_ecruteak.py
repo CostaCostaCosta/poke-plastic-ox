@@ -78,7 +78,8 @@ DROP_GFX = ('MON_BASE', 'BILL_HNS', 'POKE_BALL', 'ITEM_BALL', 'ROCKET')
 
 # Warp conversion per map. `dynamic` maps a donor warp index onto the converted
 # city-facing exit (MAP_DYNAMIC returns the player to the door they came in
-# through). `drop` removes donor warps whose destination map is absent here.
+# through). `drop` removes donor warps whose destination map is absent here;
+# `override` retargets a donor warp onto a destination this port authored.
 WARP_PLAN = {
     'EcruteakCity_Gym_hns': {},                       # self-referential shadow teleports
     'EcruteakCity_House1_hns': {'dynamic': {0}},
@@ -89,7 +90,8 @@ WARP_PLAN = {
     'EcruteakCity_SageOffice2_hns': {'drop': {0}},    # 0 led to BELLCHIME_TRAIL
     'EcruteakCity_Theater_hns': {'dynamic': {0}},
     'Gate_EcruteakCity_Route38_hns': {'dynamic': {0}},
-    'Gate_EcruteakCity_Route42_hns': {'dynamic': {0}, 'drop': {1}},  # 1 led to ROUTE 42
+    # 1 is repurposed: the donor's ROUTE 42 door becomes the Route 119 gate.
+    'Gate_EcruteakCity_Route42_hns': {'dynamic': {0}, 'override': {1: ('MAP_ROUTE119', '2')}},
 }
 
 # City doors, in donor warp order. The three already-indexed doors keep their
@@ -247,6 +249,9 @@ def convert_warps(name, donor_warps):
     for index in plan.get('dynamic', set()):
         target = index_of[index]
         kept[target].update(dest_map='MAP_DYNAMIC', dest_warp_id='WARP_ID_DYNAMIC')
+    for index, (dest_map, dest_warp_id) in plan.get('override', {}).items():
+        target = index_of[index]
+        kept[target].update(dest_map=dest_map, dest_warp_id=dest_warp_id)
     return kept, {str(k): v for k, v in index_of.items()}
 
 

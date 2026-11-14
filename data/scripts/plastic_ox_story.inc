@@ -224,7 +224,7 @@ releaseall
 	end
 
 Pox_Text_Morty::
-	.string "MORTY: Show me what you and your\nPOKéMON have learned!$"
+	.string "MORTY: You went under the tower.\nYou saw a wall stand up, and then\nplie back down.\pI have no explanation that would\nsurvive daylight. What I have is a\npGYM and a badge.\pShow me the team you carried down\nthere.$"
 
 Pox_MortyGymExit::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -239,7 +239,7 @@ releaseall
 	end
 
 Pox_Text_MortyGymExit::
-	.string "I'll show you back outside.$"
+	.string "The way out is the way you came\nin. I will walk you to the last\plamp.$"
 
 Pox_MortyGuide::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -758,7 +758,7 @@ Pox_Text_KimonoUmbreonDefeat::
 	.string "The moon went behind a cloud.\nYou were the shadow I missed.$"
 
 Pox_Text_KimonoUmbreonAfter::
-	.string "We dance every night this\nweek. Watch from the door if\pyou like.$"
+	.string "The moon step ends facing the\ntower. We still face it, even\npnow.\pCome back at dusk and watch from\nthe door.$"
 
 Pox_Kimono::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -804,7 +804,7 @@ releaseall
 	end
 
 Pox_Text_DanceTheaterExit::
-	.string "I'll show you back outside.$"
+	.string "The door is behind the third\ncurtain. Mind the rope; the\pdancers leave it out.$"
 
 Pox_DanceGuide::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -948,14 +948,23 @@ Pox_Text_BurnedTowerFarewell::
 Pox_BurnedGuide::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
+	goto_if_set FLAG_POX_STORY_BURNED_TOWER, Pox_BurnedGuide_After
 
-msgbox Pox_Text_BurnedGuide, MSGBOX_DEFAULT
+msgbox Pox_Text_BurnedGuide_Before, MSGBOX_DEFAULT
 
 releaseall
 	end
 
-Pox_Text_BurnedGuide::
-	.string "MORTY went below the BURNED\nTOWER. The entrance is just\pnorth of here.$"
+Pox_BurnedGuide_After::
+	msgbox Pox_Text_BurnedGuide_After, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Pox_Text_BurnedGuide_Before::
+	.string "Someone lights the tower lamps\nbefore the ninth hour. I have\pdone it since the fire, and I\nstill count the stairs twice.\pMORTY went below this morning.\nThe way down is north of here,\ppast the last lamp.$"
+
+Pox_Text_BurnedGuide_After::
+	.string "The lamps are lit. He came up\nbefore dawn and did not say what\phe found.\pThat is answer enough for this\nstreet.\pThe GYM is open. He will be\nwaiting at the top of the shadows.$"
 
 Pox_Weather::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
