@@ -58,7 +58,7 @@ PoxTournament_Check1::
 	trainerbattle_single TRAINER_PLASTIC_OX_TOURNAMENT_1, PoxTournament_Text_Intro1, PoxTournament_Text_Defeat1, PoxTournament_Reward1
 	goto PoxTournament_Reward1
 PoxTournament_Reward1::
-	giveitem ITEM_CONTEST_PASS
+	giveitem ITEM_GOLD_TEETH
 	goto_if_eq VAR_RESULT, FALSE, PoxTournament_End
 	setflag FLAG_POX_TOURNAMENT_REWARD_1
 	msgbox PoxTournament_Text_Reward1, MSGBOX_DEFAULT
@@ -153,8 +153,11 @@ PoxTournament_Text_Next1::
 	.string "and promising battle records!\p"
 	.string "Our first challenger is IRIS.\n"
 	.string "She is standing just to my right.\p"
-	.string "Beat her UU team for a pass to\n"
-	.string "Thursday's Bug-Catching Contest!$"
+	.string "Her prize is my oddest curio: a set\n"
+	.string "of solid-gold dentures!\p"
+	.string "A sailor sold them to me in the\n"
+	.string "SAFFRON market. Beat her UU team\l"
+	.string "and they are yours!$"
 
 PoxTournament_Text_Next2::
 	.string "MR. POKéMON: One fine victory!\p"
@@ -229,10 +232,14 @@ PoxTournament_Text_Wait4::
 	.string "BILL, then you and I shall battle.$"
 
 PoxTournament_Text_Reward1::
-	.string "Keep that CONTEST PASS! It admits\n"
-	.string "you every Thursday at NATIONAL PARK.\p"
-	.string "SCYTHER and PINSIR appear in the\n"
-	.string "special Bug-Catching Contest.\p"
+	.string "MR. POKéMON: The GOLD TEETH are\n"
+	.string "yours! Look inside the plate.\p"
+	.string "“Property of the SAFARI ZONE\n"
+	.string "WARDEN.” Fancy that!\p"
+	.string "He runs a Bug-Catching Contest at\n"
+	.string "NATIONAL PARK every Thursday.\p"
+	.string "Bring his teeth back. I hear he\n"
+	.string "rewards honesty with SCYTHER.\p"
 	.string "Return after BLAINE for round two.$"
 
 PoxTournament_Text_Reward2::

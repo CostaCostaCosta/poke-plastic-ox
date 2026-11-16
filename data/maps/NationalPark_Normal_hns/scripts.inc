@@ -80,13 +80,13 @@ NationalPark_Normal_EventScript_Npc12::
 	end
 
 NationalPark_Normal_EventScript_Npc1_Text:
-	.string "Thursday's Bug-Catching Contest\nrequires a Contest Pass!\pTuesday and Saturday contests\nare open without one.\pScyther and Pinsir appear in\nthe special Thursday contest.$"
+	.string "Thursday is the Warden's day.\nHe trucks Scyther and Pinsir up\lfrom the Safari Zone himself.\pOnly his invited guests may\nenter. Tuesday and Saturday are\lopen to everyone.$"
 
 NationalPark_Normal_EventScript_Npc2_Text:
 	.string "I come here to watch POKéMON\nmove through the tall grass.$"
 
 NationalPark_Normal_EventScript_Npc3_Text:
-	.string "Want a Contest Pass?\pWin one in the tournament in\nthe Saffron Underground!\pBring it here on Thursday to\nenter the special contest.$"
+	.string "The Warden lost his gold teeth\non the Magnet Train!\pI bet a Saffron collector has\nthem. Collectors have everything.\pFind those teeth and he'll let\nyou into the Thursday contest!$"
 
 NationalPark_Normal_EventScript_Npc4_Text:
 	.string "I teach my class beneath these\ntrees.\pThe children remember a real\ncaterpillar better than a\ppicture in a book.$"

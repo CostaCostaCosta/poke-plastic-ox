@@ -9,7 +9,7 @@ wiki: nationalpark-normal-hns
 maps: [NationalPark_Normal_hns]
 also_maps: [Gate_NationalPark_hns]
 trainers: [TRAINER_PLASTIC_OX_JOHTO_BEVERLY, TRAINER_PLASTIC_OX_JOHTO_JACK, TRAINER_PLASTIC_OX_JOHTO_KRISE, TRAINER_PLASTIC_OX_PU_PARK]
-items: [ITEM_FULL_HEAL, ITEM_CONTEST_PASS]
+items: [ITEM_FULL_HEAL, ITEM_GOLD_TEETH]
 status: drafted
 ---
 
@@ -22,8 +22,8 @@ A walled meadow between two gatehouses: mown paths, flowerbeds, a fountain, bug 
 ## Plot points
 
 1. **The breathing space (beat 5).** `STORY_TRIGGERS.md` files the park as "mandatory geographic passage, catching/trainer respite; no plot escalation". Nothing here advances the mystery, and nothing here may gate it. Four winnable trainers, one hidden item, one berry line — that is the whole content contract.
-2. **The Bug-Catching Contest is a calendar, not a quest.** Tuesday and Saturday are open; Thursday needs `ITEM_CONTEST_PASS` and pays out Scyther and Pinsir. The gate crowds appear on contest days via `Gate_NationalPark_OnTransition` (hiding them with the temp flag aliased `FLAG_POX_HIDE_PARK_CONTEST_CROWD`).
-3. **The pass is further away than the NPC says.** The Gameboy Kid at `(35,28)` sends players to "the tournament in the Saffron Underground", but Saffron is sealed until the Space Center; the real pass comes from the tournament host (`PoxTournament_Host`, round one gated on `FLAG_BADGE04_GET`). Fix the pointer, or the park's best side activity reads as a dead end.
+2. **The Bug-Catching Contest is a calendar, not a quest.** Tuesday and Saturday are open to all. Thursday is the **Safari Zone Warden's round**: he sponsors it, trucks Scyther and Pinsir up from his Fuchsia preserve, and stands in the south gatehouse at `(11,2)` (Thursday only, `FLAG_POX_HIDE_PARK_WARDEN`). Entry is by his guest list, `FLAG_POX_WARDEN_GUEST`, checked in `PlasticOxContest_CheckEntry`. The gate crowds appear on contest days via `Gate_NationalPark_OnTransition` (temp flag `FLAG_POX_HIDE_PARK_CONTEST_CROWD`).
+3. **The Warden's Gold Teeth.** He lost his gold dentures on the Magnet Train; a sailor sold them in the Saffron market to Mr. Pokémon, who offers them as the curio prize for tournament round one (`PoxTournament_Reward1`, gated on `FLAG_BADGE04_GET`). Without them the Warden speaks in toothless mumbles. Handing them over (`Gate_NationalPark_EventScript_Warden`) consumes `ITEM_GOLD_TEETH`, sets the guest flag for life, and from then on he signs the player in himself. The Gameboy Kid at `(35,28)` passes on the rumour that a Saffron collector has them.
 4. **A Johto park with Hoenn grass.** The encounter table is Tropius-heavy alongside Hoppip, Lickitung and Jigglypuff (Hoothoot and Spinarak on the night table). That is a convergence tell, and it must stay a logistics detail — a keeper's note about a southern species overwintering, never an explanation.
 5. **Dead furniture.** Two `OBJ_EVENT_GFX_POKE_BALL` objects at `(3,43)` and `(39,15)` carry flavour text and no item, and five text labels (`Npc2`, `Npc5`–`Npc8`, `Npc10`) exist with no object attached. Either is fine as writing; neither is fine as a player experience.
 

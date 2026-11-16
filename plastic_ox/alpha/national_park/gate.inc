@@ -12,10 +12,17 @@ Gate_NationalPark_OnTransition::
 	case WEEKDAY_THU, Gate_NationalPark_ContestDay
 	case WEEKDAY_SAT, Gate_NationalPark_ContestDay
 	setflag FLAG_POX_HIDE_PARK_CONTEST_CROWD
+	setflag FLAG_POX_HIDE_PARK_WARDEN
 	return
 
+@ The Safari Zone Warden comes up from Fuchsia to host Thursday's round.
 Gate_NationalPark_ContestDay::
 	clearflag FLAG_POX_HIDE_PARK_CONTEST_CROWD
+	setflag FLAG_POX_HIDE_PARK_WARDEN
+	compare VAR_RESULT, WEEKDAY_THU
+	goto_if_ne Gate_NationalPark_ContestDayEnd
+	clearflag FLAG_POX_HIDE_PARK_WARDEN
+Gate_NationalPark_ContestDayEnd::
 	return
 
 Gate_NationalPark_OnFrame:
@@ -74,19 +81,84 @@ Gate_NationalPark_EventScript_Thursday::
 	msgbox Gate_NationalPark_Text_Thursday, MSGBOX_NPC
 	end
 
+@ Returning the Gold Teeth (tournament round one) puts the player on the
+@ Warden's guest list for good; after that he signs entrants in himself.
+Gate_NationalPark_EventScript_Warden::
+	lock
+	faceplayer
+	goto_if_set FLAG_POX_WARDEN_GUEST, Gate_NationalPark_EventScript_WardenHost
+	checkitem ITEM_GOLD_TEETH
+	goto_if_eq VAR_RESULT, TRUE, Gate_NationalPark_EventScript_WardenTeeth
+	msgbox Gate_NationalPark_Text_WardenToothless, MSGBOX_DEFAULT
+	release
+	end
+Gate_NationalPark_EventScript_WardenTeeth::
+	msgbox Gate_NationalPark_Text_WardenSees, MSGBOX_DEFAULT
+	textcolor NPC_TEXT_COLOR_NEUTRAL
+	playfanfare MUS_OBTAIN_TMHM
+	message Gate_NationalPark_Text_GaveTeeth
+	waitmessage
+	waitfanfare
+	msgbox Gate_NationalPark_Text_PoppedIn, MSGBOX_DEFAULT
+	call EventScript_RestorePrevTextColor
+	removeitem ITEM_GOLD_TEETH
+	setflag FLAG_POX_WARDEN_GUEST
+	msgbox Gate_NationalPark_Text_WardenThanks, MSGBOX_DEFAULT
+	release
+	end
+Gate_NationalPark_EventScript_WardenHost::
+	msgbox Gate_NationalPark_Text_WardenHost, MSGBOX_DEFAULT
+	setvar VAR_0x8007, 0
+	goto PlasticOxContest_EventScript_Attendant
+
+Gate_NationalPark_Text_WardenToothless:
+	.string "WARDEN: Hwelcome hoo he Hursday\n"
+	.string "Hafari Hontest! Hi'm hee Hwarden!\p"
+	.string "Hut hoo hust he hon hy huest hist.\n"
+	.string "Hy holden heeth... hone! Hwaaah!$"
+Gate_NationalPark_Text_WardenSees:
+	.string "WARDEN: Hwah?! Hoze are... HY\n"
+	.string "HEETH! Hive! Hive hem here!$"
+Gate_NationalPark_Text_GaveTeeth:
+	.string "{PLAYER} returned the GOLD TEETH\n"
+	.string "to the WARDEN.$"
+Gate_NationalPark_Text_PoppedIn:
+	.string "The WARDEN popped in his teeth!$"
+Gate_NationalPark_Text_WardenThanks:
+	.string "WARDEN: Ahh, I can talk again!\n"
+	.string "I lost these on the MAGNET TRAIN.\p"
+	.string "A collector in SAFFRON had them?\n"
+	.string "As a trophy? Well, I never!\p"
+	.string "I'm the SAFARI ZONE WARDEN from\n"
+	.string "FUCHSIA. Every Thursday I bring\l"
+	.string "SCYTHER and PINSIR up from my\n"
+	.string "preserve and let them loose here.\p"
+	.string "Only my guests may enter, and from\n"
+	.string "today, you're on my list for life!\p"
+	.string "Talk to me any Thursday and I'll\n"
+	.string "sign you in myself.$"
+Gate_NationalPark_Text_WardenHost:
+	.string "WARDEN: Fwahaha! My honored guest!\n"
+	.string "My SCYTHER and PINSIR are restless\l"
+	.string "in the grass today.\p"
+	.string "Let's get you signed in!$"
+
 Gate_NationalPark_Text_Thursday:
-	.string "Today's special Bug-Catching\n"
-	.string "Contest requires a Contest Pass.\p"
-	.string "Bring your pass to the attendant.\n"
-	.string "You keep it after entering!\p"
-	.string "Scyther and Pinsir appear today.\p"
+	.string "The old man in the hat is the\n"
+	.string "SAFARI ZONE WARDEN from FUCHSIA.\p"
+	.string "He sponsors today's contest and\n"
+	.string "brings SCYTHER and PINSIR himself.\p"
+	.string "Entry is by his invitation only.\n"
+	.string "Mind, since he lost his gold teeth,\l"
+	.string "nobody can understand him.\p"
 	.string "Tuesday and Saturday contests\n"
-	.string "are open without a pass.$"
+	.string "are open to everyone.$"
 
 Gate_NationalPark_Text_Schedule:
 	.string "The Bug-Catching Contest is held\n"
 	.string "Tuesday, Thursday, and Saturday.\p"
-	.string "Thursday requires a Contest Pass.\p"
+	.string "Thursday is the SAFARI ZONE\n"
+	.string "WARDEN's round, for his guests.\p"
 	.string "Ask the attendant to enter.\n"
 	.string "The park is open every day!$"
 Gate_NationalPark_Text_BirdWatcher:

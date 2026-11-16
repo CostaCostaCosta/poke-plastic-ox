@@ -144,15 +144,17 @@ def gate_crowds():
             assert g.flag('FLAG_POX_HIDE_PARK_CONTEST_CROWD') == (not contest_day), day
             expected = {i + 1: (obj['x'], obj['y']) for i, obj in enumerate(objects)
                         if (obj['x'] < 25) == (side == 'south')
-                        and (obj['flag'] == '0' or contest_day)}
+                        and (obj['flag'] == '0' or contest_day)
+                        and (obj['flag'] != 'FLAG_POX_HIDE_PARK_WARDEN' or day == 4)}
             visible = visible_objects()
             assert visible == expected, (day, side, expected, visible)
-            assert len(visible) == (6 if contest_day else 2), (day, side, visible)
+            warden = day == 4 and side == 'south'
+            assert len(visible) == (6 + warden if contest_day else 2), (day, side, visible)
             for pos in visible.values():
                 assert g.collision_at(*pos)[0] == 0, ('NPC on solid tile', day, side, pos)
             if day in (1, 2):
                 g.shot(f'national_park_{side}_crowd_' + ('contest.png' if contest_day else 'quiet.png'))
-    print('Both gates: actual NPC crowds on all seven weekdays, clear floor positions, crowd retained after daily entry PASS', flush=True)
+    print('Both gates: actual NPC crowds on all seven weekdays, clear floor positions, crowd retained after daily entry, Warden on Thursday only PASS', flush=True)
 
 
 def contest():
@@ -170,13 +172,26 @@ def contest():
             assert not g.flag('FLAG_POX_DAILY_PARK_CONTEST')
     from test_qol import opcode
     from test_training_kit import run_code
-    pass_item = int(re.search(r'ITEM_CONTEST_PASS\s*=\s*(\d+)',
-                              (ROOT / 'include/constants/items.h').read_text())[1])
-    run_code(g, opcode(g, 'additem') + struct.pack('<HH', pass_item, 1))
+    teeth = int(re.search(r'ITEM_GOLD_TEETH\s*=\s*(\d+)',
+                          (ROOT / 'include/constants/items.h').read_text())[1])
+    run_code(g, opcode(g, 'additem') + struct.pack('<HH', teeth, 1))
+    set_weekday(g, 4)
+    assert call(g, 'PlasticOxContest_CheckEntry') == 7, 'teeth alone must not admit'
+    # Hand the Gold Teeth to the actual Thursday Warden object.
+    g.warp(GATE, 11, 3)
+    g.frame(120)
+    g.tap(K.KEY_UP, hold=2, wait=12)
+    g.tap(K.KEY_A, hold=2, wait=30)
+    assert g.u8(g.syms['sGlobalScriptContextStatus']) != 2, 'Warden did not respond'
+    finish_dialogue(g)
+    assert g.flag('FLAG_POX_WARDEN_GUEST'), 'Warden did not add guest'
+    from test_sudowoodo_v1 import bag
+    assert bag(g, teeth) == 0, 'Warden kept the teeth'
+    g.shot('national_park_warden_teeth.png')
     for day in range(7):
         set_weekday(g, day)
         assert call(g, 'PlasticOxContest_CheckEntry') == (0 if day in (2, 4, 6) else 1), day
-    print('RTC: Tue/Sat open without pass, Thu requires pass, other days closed PASS', flush=True)
+    print('RTC: Tue/Sat open, Thu needs Warden guest list (Gold Teeth returned), other days closed PASS', flush=True)
     for side, attendant, spawn in [(0, 'South', (3, 3)), (1, 'East', (38, 3))]:
         set_weekday(g, 2 if side == 0 else 4)
         g.warp(GATE, *spawn)

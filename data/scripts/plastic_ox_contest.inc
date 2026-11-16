@@ -165,7 +165,8 @@ PlasticOxContest_EventScript_Release::
 PlasticOxContest_Text_Enter:
 	.string "The Bug-Catching Contest is held\n"
 	.string "Tuesday, Thursday, and Saturday!\p"
-	.string "Thursday requires a Contest Pass.\p"
+	.string "Thursday's round is hosted by the\n"
+	.string "SAFARI ZONE WARDEN, for his guests.\p"
 	.string "Choose one healthy Pokémon to take\n"
 	.string "inside. Your others will wait safely.\p"
 	.string "You get 20 Sport Balls and 500\n"
@@ -198,14 +199,16 @@ PlasticOxContest_Text_RegisterFailed:
 	.string "We cannot start a contest right\n"
 	.string "now. Please ask me again.$"
 PlasticOxContest_Text_PassRequired:
-	.string "Thursday entry requires a\n"
-	.string "Contest Pass. Bring one to join!\p"
+	.string "Today's round belongs to the\n"
+	.string "SAFARI ZONE WARDEN. Only guests on\l"
+	.string "his list may enter. Sorry!\p"
 	.string "Tuesday and Saturday contests\n"
-	.string "are open without a pass.$"
+	.string "are open to everyone.$"
 PlasticOxContest_Text_Closed:
 	.string "The Bug-Catching Contest runs on\n"
 	.string "Tuesday, Thursday, and Saturday.\p"
-	.string "Thursday requires a Contest Pass.\p"
+	.string "On Thursday, the SAFARI ZONE WARDEN\n"
+	.string "hosts a round for his guests.\p"
 	.string "The park is open for a normal visit\n"
 	.string "today.$"
 PlasticOxContest_Text_Used:

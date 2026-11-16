@@ -50,6 +50,7 @@
 
 // Gate-local crowd visibility, recalculated before spawning map objects.
 #define FLAG_POX_HIDE_PARK_CONTEST_CROWD FLAG_TEMP_1
+#define FLAG_POX_HIDE_PARK_WARDEN FLAG_TEMP_2
 
 // Scripts may set/clear this to keep frame-sensitive field sequences at 1x.
 #define FLAG_PREVENT_OVERWORLD_SPEEDUP 0x27F
@@ -306,4 +307,7 @@
 #define FLAG_POX_TRAINER_ECRUTEAK_YUI   (POX_EVENT_FLAGS_START + 37)
 #define FLAG_POX_TRAINER_ECRUTEAK_GENZO (POX_EVENT_FLAGS_START + 38)
 #define FLAG_POX_TRAINER_ECRUTEAK_RIN   (POX_EVENT_FLAGS_START + 39)
+// National Park: the Safari Zone Warden got his Gold Teeth back (tournament
+// round-one prize) and keeps the player on his Thursday contest guest list.
+#define FLAG_POX_WARDEN_GUEST (POX_EVENT_FLAGS_START + 41)
 #endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H

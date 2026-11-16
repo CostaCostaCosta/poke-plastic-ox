@@ -76,7 +76,7 @@ void PlasticOxContest_CheckEntry(void)
         gSpecialVar_Result = POX_CONTEST_ENTRY_USED;
     else if (GetDayOfWeek() != WEEKDAY_TUE && GetDayOfWeek() != WEEKDAY_THU && GetDayOfWeek() != WEEKDAY_SAT)
         gSpecialVar_Result = POX_CONTEST_ENTRY_CLOSED;
-    else if (GetDayOfWeek() == WEEKDAY_THU && !CheckBagHasItem(ITEM_CONTEST_PASS, 1))
+    else if (GetDayOfWeek() == WEEKDAY_THU && !FlagGet(FLAG_POX_WARDEN_GUEST))
         gSpecialVar_Result = POX_CONTEST_ENTRY_PASS_REQUIRED;
     else if (IsPlayerPartyAndPokemonStorageFull() || !CheckBagHasSpace(ITEM_SPORT_BALL, CONTEST_BALLS))
         gSpecialVar_Result = POX_CONTEST_ENTRY_NO_ROOM;

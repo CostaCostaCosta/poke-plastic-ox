@@ -19,7 +19,7 @@ import pox_progression as P
 from region_geometry import Geometry
 
 TUNNEL = 'UndergroundPath_EastWestTunnel_Frlg'
-ITEMS = ['CONTEST_PASS', 'ANCIENT_BRAILLE_TABLET', 'NEW_MAUVILLE_KEY', 'RED_ORB']
+ITEMS = ['GOLD_TEETH', 'ANCIENT_BRAILLE_TABLET', 'NEW_MAUVILLE_KEY', 'RED_ORB']
 GATES = ['FLAG_BADGE04_GET', 'FLAG_BADGE05_GET', 'FLAG_BADGE06_GET', 'FLAG_POX_LEAGUE_BILL']
 POSITIONS = [36, 39, 42, 33]
 PARTIES = ROOT / 'plastic_ox/alpha/tournament/trainers.party'
@@ -117,9 +117,12 @@ def runtime():
     g.flag('FLAG_SYS_CLOCK_SET',True)
     g.flag('FLAG_POX_DAILY_PARK_CONTEST',False)
     set_weekday(g,4)
+    assert call(g,'PlasticOxContest_CheckEntry')==7
+    g.run('Gate_NationalPark_EventScript_WardenTeeth');settle(g)
+    assert g.flag('FLAG_POX_WARDEN_GUEST')
+    assert bag(g,const('ITEM_GOLD_TEETH','items.h'))==0
     assert call(g,'PlasticOxContest_CheckEntry')==0
-    assert bag(g,const('ITEM_CONTEST_PASS','items.h'))==1
-    print('PASS: tournament-issued permanent pass opens Thursday contest',flush=True)
+    print('PASS: tournament Gold Teeth returned to the Warden open Thursday contest',flush=True)
     # Mr. Stone consumes nothing and exposes a persistent research hook.
     g.warp('RustboroCity_DevonCorp_3F',8,4);g.frame(150)
     g.tap(K.KEY_UP,hold=2,wait=12);g.tap(K.KEY_A,wait=20);settle(g)
