@@ -401,32 +401,22 @@ Route119_Text_TrainerTipsDecoration:
 	.string "your very own SECRET BASE exactly the\l"
 	.string "way you want.$"
 
-@ ECRUTEAK east road, west end of Route 119. The path stub at (2,131)-(4,131)
-@ is the only walkable ground on this edge; MORTY's rite opens both ends.
+@ ECRUTEAK east gate, bottom of Route 119. Stepping south off the path at
+@ (16..20,139) enters the gatehouse; the gate drops the player at (18,138).
 Route119_EventScript_PoxEcruteakGate::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Route119_PoxEcruteakGate_Open
-	goto_if_unset FLAG_POX_STORY_BURNED_TOWER, Route119_PoxEcruteakGate_Closed
-Route119_PoxEcruteakGate_Open::
-	warp MAP_ECRUTEAK_CITY_HNS, 64, 42
+	warp MAP_GATE_ECRUTEAK_CITY_ROUTE42_HNS, 1
 	waitstate
 	releaseall
 	end
-Route119_PoxEcruteakGate_Closed::
-	msgbox Route119_Text_PoxEcruteakGateClosed, MSGBOX_DEFAULT
-	releaseall
-	end
-
-Route119_Text_PoxEcruteakGateClosed::
-	.string "The ECRUTEAK watch has the far\nend of this road shut.\pNothing goes through until the\ntower rite is done.$"
 
 Route119_EventScript_PoxEcruteakGateSign::
 	msgbox Route119_Text_PoxEcruteakGateSign, MSGBOX_SIGN
 	end
 
 Route119_Text_PoxEcruteakGateSign::
-	.string "ROUTE 119 - WEST\n"
-	.string "{LEFT_ARROW} ECRUTEAK CITY$"
+	.string "ROUTE 119 - SOUTH\n"
+	.string "{DOWN_ARROW} ECRUTEAK CITY$"
 
 Route119_EventScript_PoxEcruteakWatch::
 	lock
@@ -436,4 +426,4 @@ Route119_EventScript_PoxEcruteakWatch::
 	end
 
 Route119_Text_PoxEcruteakWatch::
-	.string "West end of the route. Past the\ntrees the road belongs to\pECRUTEAK.\pKeep to the path and the decks\nstay under your feet.$"
+	.string "South end of the route. Past the\ngate the road belongs to\pECRUTEAK.\pKeep to the path and the decks\nstay under your feet.$"

@@ -125,19 +125,6 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "EcruteakCity_EventScript_GateWatch",
       "flag": "FLAG_BADGE03_GET"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
-      "x": 64,
-      "y": 41,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "PoxEcruteak_EastWatch",
-      "flag": "0"
     }
   ],
   "warp_events": [
@@ -231,13 +218,6 @@
       "elevation": 0,
       "dest_map": "MAP_GATE_ECRUTEAK_CITY_ROUTE42_HNS",
       "dest_warp_id": "0"
-    },
-    {
-      "x": 62,
-      "y": 42,
-      "elevation": 0,
-      "dest_map": "MAP_GATE_ECRUTEAK_CITY_ROUTE42_HNS",
-      "dest_warp_id": "1"
     }
   ],
   "coord_events": [
@@ -276,33 +256,6 @@
       "var": "VAR_TEMP_0",
       "var_value": 0,
       "script": "PoxEcruteak_WestEntrance"
-    },
-    {
-      "type": "trigger",
-      "x": 65,
-      "y": 41,
-      "elevation": 0,
-      "var": "VAR_POX_PORTAL_TRIGGER",
-      "var_value": 0,
-      "script": "PoxEcruteak_EastExit"
-    },
-    {
-      "type": "trigger",
-      "x": 65,
-      "y": 42,
-      "elevation": 0,
-      "var": "VAR_POX_PORTAL_TRIGGER",
-      "var_value": 0,
-      "script": "PoxEcruteak_EastExit"
-    },
-    {
-      "type": "trigger",
-      "x": 65,
-      "y": 43,
-      "elevation": 0,
-      "var": "VAR_POX_PORTAL_TRIGGER",
-      "var_value": 0,
-      "script": "PoxEcruteak_EastExit"
     }
   ],
   "bg_events": [],

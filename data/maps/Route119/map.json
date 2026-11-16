@@ -579,10 +579,10 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
-      "x": 6,
-      "y": 124,
+      "x": 21,
+      "y": 134,
       "elevation": 3,
-      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -607,8 +607,8 @@
       "dest_warp_id": "0"
     },
     {
-      "x": 5,
-      "y": 124,
+      "x": 18,
+      "y": 138,
       "elevation": 0,
       "dest_map": "MAP_GATE_ECRUTEAK_CITY_ROUTE42_HNS",
       "dest_warp_id": "1"
@@ -626,8 +626,44 @@
     },
     {
       "type": "trigger",
-      "x": 4,
-      "y": 124,
+      "x": 16,
+      "y": 139,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "Route119_EventScript_PoxEcruteakGate"
+    },
+    {
+      "type": "trigger",
+      "x": 17,
+      "y": 139,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "Route119_EventScript_PoxEcruteakGate"
+    },
+    {
+      "type": "trigger",
+      "x": 18,
+      "y": 139,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "Route119_EventScript_PoxEcruteakGate"
+    },
+    {
+      "type": "trigger",
+      "x": 19,
+      "y": 139,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "Route119_EventScript_PoxEcruteakGate"
+    },
+    {
+      "type": "trigger",
+      "x": 20,
+      "y": 139,
       "elevation": 0,
       "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
@@ -637,8 +673,8 @@
   "bg_events": [
     {
       "type": "sign",
-      "x": 4,
-      "y": 123,
+      "x": 15,
+      "y": 135,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "Route119_EventScript_PoxEcruteakGateSign"

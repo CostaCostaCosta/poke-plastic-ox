@@ -87,39 +87,3 @@ PoxEcruteak_WestEntrance::
 	waitstate
 	releaseall
 	end
-
-PoxEcruteak_EastExit::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxEcruteak_EastExit_Open
-	goto_if_unset FLAG_BADGE03_GET, PoxEcruteak_EastExit_Closed
-PoxEcruteak_EastExit_Open::
-	warp MAP_ROUTE119, 5, 124
-	waitstate
-	releaseall
-	end
-PoxEcruteak_EastExit_Closed::
-	msgbox PoxEcruteak_Text_EastExitClosed, MSGBOX_DEFAULT
-	releaseall
-	end
-
-PoxEcruteak_Text_EastExitClosed::
-	.string "The east road is shut.\nNo one goes past the last lamp\npwhile MORTY is under the tower.$"
-
-PoxEcruteak_EastWatch::
-	lock
-	faceplayer
-	goto_if_set FLAG_BADGE03_GET, PoxEcruteak_EastWatch_Open
-	msgbox PoxEcruteak_Text_EastWatch, MSGBOX_NPC
-	release
-	end
-
-PoxEcruteak_EastWatch_Open::
-	msgbox PoxEcruteak_Text_EastWatchOpen, MSGBOX_NPC
-	release
-	end
-
-PoxEcruteak_Text_EastWatch::
-	.string "ROUTE 119 is east, past the last\nlamp. The watch keeps it shut\npwhile MORTY is under the tower.\pNot a lockdown. Ask anyone on\nthis street. The road is shut\npbecause the man who reads the\ntower is under it.$"
-
-PoxEcruteak_Text_EastWatchOpen::
-	.string "ROUTE 119 is open. The decks are\nwet and the river is loud, so\pmind your footing on the way down.\pTell the gate on the other side\nthat ECRUTEAK sent you.$"
