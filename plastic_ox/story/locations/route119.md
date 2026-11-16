@@ -8,44 +8,60 @@ depth: full
 wiki: route119
 maps: [Route119]
 also_maps: [Route119_WeatherInstitute_1F, Route119_WeatherInstitute_2F]
-flags: [FLAG_POX_STORY_WEATHER]
+flags: [FLAG_POX_STORY_WEATHER, FLAG_POX_TRAINER_WEATHER_DEVON]
 items: [ITEM_CALCIUM, ITEM_ULTRA_BALL, ITEM_FULL_HEAL, ITEM_MAX_ETHER]
-trainers: [TRAINER_PLASTIC_OX_WEATHER]
-status: drafted
+trainers: [TRAINER_PLASTIC_OX_WEATHER_DEVON, TRAINER_PLASTIC_OX_WEATHER]
+status: implemented
 ---
 
 # Route 119
 
 ## Snapshot
 
-A river gorge climbing through wet forest, crossed by three wooden decks, with a weather station bolted to the cliff halfway up. The player fights up it, is asked to help the Institute finish its survey, and only then may pass east to `FortreeCity`. This is reveal-ladder step 6: the region is not a finished wreck, it is still being edited, and the evidence is a line on a map that moved overnight.
+A river gorge climbing through wet forest, crossed by three wooden decks, with a weather station bolted to the cliff halfway up. A Silph engineer has closed the Fortree crossing while **Project Equilibrium** — a joint Weather Institute / Devon / Silph study — runs its final battle trials. The player wins two research battles, the Director closes the day's experiments, and the crossing reopens. This is reveal-ladder step 6: the region is still being edited, and every edit lands somewhere tidy.
 
 ## Plot points
 
-1. **Arrival is wet work.** The route should read as terrain before it reads as a plot stop: tall grass on the switchbacks, decks that flex, a river running lower than the flood marks on the piers. The player's only job here is to get up the gorge.
-2. **The Institute is a workplace, not a base.** `Route119_WeatherInstitute_1F` staff meet the player with instrument problems, not a rescue. Their line to the player should be a task: the survey is short-handed.
-3. **The test battle.** On 2F, the duty scientist at `(18,6)` `Pox_Weather` requires badge 3, fights `TRAINER_PLASTIC_OX_WEATHER` (Lv.32–34), and only after the battle explains what the instruments say.
-4. **Reveal-ladder step 6.** The findings are concrete and small: the habitat line moved, the rainfall total is wrong for the season, species are appearing on the wrong side of a surveyed stake line. "It is not just damage left by the initial convergence. Something is still changing our habitats."
-5. **The gate east.** `(39,8)` `PoxRegion_route119_fortree_a` refuses passage until `FLAG_POX_STORY_WEATHER`, currently with the generic `PoxRegion_ClosedText`. After the flag, `FortreeCity` `(0,10)` opens in both directions permanently.
-6. **After completion.** The route keeps its weather and its station; the staff stop asking for help and start filing. No second reveal.
+1. **The crossing has a face.** At `(39,8)` the generated gate `PoxRegion_route119_fortree_a` still refuses passage until `FLAG_POX_STORY_WEATHER`, but now speaks as the Silph ENGINEER at `(38,7)` (`Pox_WI_Engineer`): Devon's sensors cover the gorge, Silph's model checks itself against them live, and the team inside needs a TRAINER. The engineer is hidden by `FLAG_POX_STORY_WEATHER` and reappears on 1F `(1,11)` (`Pox_WI_EngineerInside`) afterwards.
+2. **The Director frames the project.** 1F `(10,5)` `Pox_WI_Director`: "Devon brought the instruments. Silph brought the computers. We brought decades of weather observations… Mostly, we have better questions." Sends the player upstairs; Devon goes first.
+3. **Trial 1 — Devon, rain.** 2F `(11,6)` `Pox_WI_Devon`, LINDEN (`TRAINER_PLASTIC_OX_WEATHER_DEVON`, id 957, Lv33–36 rain/Swift Swim). Requires badge 3. Victory flag `FLAG_POX_TRAINER_WEATHER_DEVON`.
+4. **Trial 2 — Silph, sun and prediction.** 2F `(18,6)` `Pox_WI_Vale`, VALE (`TRAINER_PLASTIC_OX_WEATHER`, id 872, Lv33–36 sun). Refuses to battle until trial 1 is won. Afterwards forwards the results to Silph's head office in SAFFRON — "the roads there are closed, but the data lines still run."
+5. **Conclusion.** With both trainer flags set, the Director sets `FLAG_POX_STORY_WEATHER`. Nothing downstream changed: the crossing, `PoxRegion_Arrival_FortreeCity` (`FLAG_POX_REACHED_FORTREE`) and `Pox_Winona` already key on that flag. Gabby/Ty, the Kecleon and badge 4 still hold Fortree's east exit.
+6. **Reveal-ladder step 6, reconciled with the brief.** The researchers' disagreement is scientific: Devon reads the fast resettling of habitats as adaptability; Silph notes the patterns were present too soon for adaptation; the Institute collects evidence. The Director's post-event line keeps the canonical step — the habitat lines keep moving — and adds that each move lands somewhere suitable.
+7. **Optional research files.** Six `Pox_WI_File00x` signs (two to five boxes each) on the 1F/2F racks and desks; none changes state.
 
-**Must not:** name Bill, Silph, or an adaptive system; let anyone *say* "convergence" in dialogue; turn the Institute into a battle base; explain the mechanism; let the player reach Fortree before the survey flag.
+**Must not:** say "convergence" aloud; explain the cause; name Bill; make Devon or Silph villains; introduce Steven, Aqua, Magma or Rocket; mention tiers or encounter tables; let the player reach Fortree before `FLAG_POX_STORY_WEATHER`.
 
 ## Key interactions
 
-| Interaction | Where | Trigger / state | Current behavior | Target behavior |
-| --- | --- | --- | --- | --- |
-| Fortree gate | `(39,8)` `PoxRegion_route119_fortree_a` | `FLAG_POX_STORY_WEATHER` | closed → generic "still closed… next objective" text and a warp back | make the closure physical (a deck out, a washout) and give it one local who explains the delay |
-| Institute door | `(6,32)` → `Route119_WeatherInstitute_1F` | always | plain warp | keep; the sign outside should read like a public office, with hours |
-| Five 1F staff | `(15,3)`, `(10,5)`, `(5,4)`, `(2,11)`, `(14,11)`, all `Pox_FacilityWorker` | always | one identical line: "our field researchers can explain…" | five jobs: instrument tech, cook, archivist, driver, intern — each with a different complaint |
-| Duty scientist | 2F `(18,6)` `Pox_Weather` | badge 3, `FLAG_POX_STORY_WEATHER` unset | trainer battle then a report that **uses the word "convergence"** | keep the battle; rewrite the report as readings and uncertainty, not the banned noun |
-| Seven 2F workers | 2F `(15,6)`, `(10,8)`, `(4,6)`, `(0,6)`, `(1,7)`, `(16,6)`, `(19,6)` | always | all `Pox_FacilityWorker`, one line, **all on Aqua grunt sprites** | recast as institute staff on civilian sprites; this is a workplace, not a team |
-| MIMIC CIRCLE | `(12,123)`, `(26,123)`, `(5,125)`, `(28,116)`, `(34,122)`, `(17,128)` | always | six Hoenn trainers whose gimmick is copying the player | cut or recast two, and give the rest river work: ferry, bridge, berries |
-| Invisible Kecleon | `(31,6)`, `(25,15)` | always | "Something unseeable is in the way." | keep one as an oddity the Institute has tagged; remove the other or make it findable |
-| Dead actors | `(25,32)` rival, `(17,33)` rival on bike, `(28,25) Scott` | — | three objects with script `0x0` | delete or repurpose; they are invisible to play but still cost map space |
-| Berry trees | `(24,5)`–`(26,5)`, `(8,23)`, `(9,23)`, `(29,90)`, `(30,90)` | daily | `BerryTreeScript` | keep; give one picker a line about what ripens early this year |
-| Hidden items | `(17,82)` `ITEM_CALCIUM`, `(38,63)` `ITEM_ULTRA_BALL`, `(26,120)` `ITEM_FULL_HEAL`, `(20,29)` `ITEM_MAX_ETHER` | once | hidden pickups | keep; `ITEM_MAX_ETHER` near the Institute reads as a dropped supply |
-| Bike remark | `(19,133)` cycling triathlete | always | "tall grass snares BIKE tires" | keep; it is honest terrain information |
+| Interaction | Where | Trigger / state | Behavior |
+| --- | --- | --- | --- |
+| Fortree crossing | Route119 `(39,8)` `PoxRegion_route119_fortree_a` | `FLAG_POX_STORY_WEATHER` unset | engineer's refusal (`Pox_Text_WI_CrossingClosed`), bounce to `(38,8)` |
+| Silph engineer | Route119 `(38,7)` `Pox_WI_Engineer` | visible until `FLAG_POX_STORY_WEATHER` | explains the closure, points to the Institute |
+| Engineer, indoors | 1F `(1,11)` `Pox_WI_EngineerInside` | hidden via `FLAG_TEMP_1` (1F `ON_TRANSITION`) until `FLAG_POX_STORY_WEATHER` | "sensor line pulled off the crossing" |
+| Director | 1F `(10,5)` `Pox_WI_Director` | intro → halfway (trial 1 won) → conclude (both won; sets flag) → after | concise; only the conclusion writes state |
+| LINDEN (Devon) | 2F `(11,6)` `Pox_WI_Devon` | badge 3; talk-triggered | battle → post line; after event: adaptability speech |
+| VALE (Silph) | 2F `(18,6)` `Pox_WI_Vale` | trial 1 won; talk-triggered | battle → post line (Saffron); after event: "adaptation takes time" |
+| Research files 001/003/004 | 2F racks `(5-7,2)`, `(10-14,2)`; desk `(8-9,3-5)` | always | `MSGBOX_SIGN` |
+| Research files 002/005/006 | 1F rack `(9-12,2)`; cabinet `(13-14,1)`; desk `(16-17,4-6)` | always | `MSGBOX_SIGN` |
+| Institute door | `(6,32)` → `Route119_WeatherInstitute_1F` | always | plain warp |
+| Other 1F/2F staff | `Pox_FacilityWorker` | always | unchanged generic line; Aqua-sprite actors stay hidden |
+| MIMIC CIRCLE, Kecleon, berry trees, hidden items | route | — | unchanged by this pass |
+
+## Project Equilibrium teams (ADV RU, `fortree` checkpoint, cap 36)
+
+Authored in `src/data/trainers.party` and listed in `KEEP_AS_IS` in `plastic_ox/agent/apply_trainer_teams_v2.py`; `plastic_ox/demo/test_weather_institute.py --static` re-checks species availability, level range, species clause, no hidden abilities, and every move against the ROM learnsets.
+
+- **LINDEN (Devon, rain):** Politoed 34 (Rain Dance lead), Lombre 33, Huntail 33, Raichu 34 (rain Thunder), Sharpedo 33, Kabutops 36 (Swords Dance Swift Swim ace).
+- **VALE (Silph, sun):** Castform 34 (Sunny Day / Weather Ball lead), Victreebel 34 (Chlorophyll), Ninetales 36, Metang 34, Magnemite 33, Xatu 35 (Calm Mind / Future Sight — the "prediction" mon).
+
+## Future threads (not implemented)
+
+- **VALE** is the recurring Silph researcher: quiet, curious, never alarmed. Reuse the Silph FRLG scientist sprite (`OBJ_EVENT_GFX_SCIENTIST`) and the name VALE. Mossdeep Space Center is **implemented** (`Pox_SC_Vale`, the two-beat `Pox_SpaceReport`, file 007, and the Director's post-Mossdeep line `Pox_Text_WI_DirectorMossdeep`). Still to do: Silph Co. (VALE is among the staff trapped by Rocket and is the first to admit the model was never theirs — lead-in to step 14). VALE must never name Bill.
+- **LINDEN** can return in Rustboro's Devon office as the field researcher back from Route 119.
+- **New Mauville:** research file 003 (data-like signals during storms) is the hook; an engineer there could cite the Institute's log.
+- **Mossdeep Space Center:** done; the report opens with the Institute's survey.
+- **Legendary research:** file 005 (energy under the seafloor and an old volcano) can seed Groudon/Kyogre/Rayquaza research later. Encounter requirements and the Underground Battle Ring rewards are untouched.
 
 ## Dialogue guidance
 
@@ -77,14 +93,17 @@ A river gorge climbing through wet forest, crossed by three wooden decks, with a
 
 - Wiki page: `route119.html`
 - Maps: `Route119` (`MAP_ROUTE119`), `Route119_WeatherInstitute_1F` (`MAP_ROUTE119_WEATHER_INSTITUTE_1F`), `Route119_WeatherInstitute_2F` (`MAP_ROUTE119_WEATHER_INSTITUTE_2F`)
-- Scripts: `data/maps/Route119/scripts.inc`, `data/maps/Route119_WeatherInstitute_1F/scripts.inc`, `data/maps/Route119_WeatherInstitute_2F/scripts.inc`, `data/scripts/plastic_ox_story.inc` (`Pox_Weather`), `data/scripts/plastic_ox_region.inc` (`PoxRegion_route119_fortree_a/b`)
-- Flags: `FLAG_POX_STORY_WEATHER` (set by `Pox_Weather_Won`); gate also respects `FLAG_POX_TRIGGERS_ENABLED`
-- Trainer: `TRAINER_PLASTIC_OX_WEATHER` (Lv.32–34, Castform lead)
-- Known gaps: **no implemented western access** — the canonical "Ecruteak east → Route 119" link does not exist; `Route119` has no connections and its only other entry is the Fortree gate, so the Institute is currently reachable only through the Hoenn `Route118` chain. All twelve Institute NPCs run `Pox_FacilityWorker` with one shared line on Aqua grunt sprites. Three objects have script `0x0`. The scientist's report contains the word "convergence".
+- Source of truth: `plastic_ox/alpha/weather_institute.py` (writes `data/scripts/plastic_ox_weather_institute.inc`, the three maps' Project Equilibrium objects/signs and the 1F `ON_TRANSITION`; `--check` reports drift)
+- Scripts: `data/scripts/plastic_ox_weather_institute.inc` (`Pox_WI_*`), `data/scripts/plastic_ox_region.inc` (`PoxRegion_route119_fortree_a/b`; the `_a` refusal text is overridden in `region_v7.py`)
+- Flags: `FLAG_POX_STORY_WEATHER` (event complete; set only by `Pox_WI_Director`), `FLAG_POX_TRAINER_WEATHER_DEVON` (`POX_EVENT_FLAGS_START + 40`, trial 1), trainer flag of id 872 (`0x4AF`, trial 2), `FLAG_TEMP_1` (1F engineer visibility, recomputed on entry)
+- Trainers: `TRAINER_PLASTIC_OX_WEATHER_DEVON` (957, LINDEN), `TRAINER_PLASTIC_OX_WEATHER` (872, VALE)
+- Test: `plastic_ox/demo/test_weather_institute.py`
+- Known gaps: the remaining `Pox_FacilityWorker` staff share one generic line; three route objects still have script `0x0`.
 
 ## Open questions
 
-- Where does Route 119 actually connect on the west? Nothing in `data/` links it to Ecruteak, so stage 5 cannot be walked as written.
+- (Resolved) Route 119's west side now connects to Ecruteak's east gatehouse (bottom path).
 - Recast the Institute staff as civilians, or keep the Aqua sprites as surplus uniforms bought cheap? The story has no Team Aqua, and `Route110`'s grunts make the confusion worse.
 - Does the route keep the MIMIC CIRCLE at all? Six trainers doing one joke is a lot of map for a gag that predates the story.
-- Should the Fortree gate stay a warp-and-refuse, or become a physical obstruction the player can see from a distance?
+- (Resolved for now) The Fortree gate stays a warp-and-refuse, now voiced by the Silph engineer standing beside it.
+- The brief proposed a world that is "unexpectedly stable"; the bible's step 6 is "boundaries still moving". This pass keeps both: the lines move, the Pokémon land well. Confirm that framing before Mossdeep is written.

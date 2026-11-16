@@ -464,9 +464,12 @@ finish()
 speech(*before)
 speech(*after)
 
-battle('Weather','RESEARCHER','Help me test our field instruments. The weather lines have moved since yesterday.', [('Castform',['Water Pulse','Shock Wave','Weather Ball']),('Magnemite',['Thunder Wave','Spark'])], 28, weather, [badges[2]], '\tmsgbox Pox_Text_WeatherReport, MSGBOX_DEFAULT', pic='Scientist Frlg',cls='Scientist Frlg')
-speech('Pox_Text_WeatherReport', 'These are new changes. The boundaries are still moving!|It is not just damage left by the convergence. Something is still changing our habitats.')
-replace_npc('Route119_WeatherInstitute_2F',4,'Weather',hidden='FLAG_POX_HIDE_STORY_NPCS')
+# Project Equilibrium (two trials + Director) is authored in weather_institute.py
+# and data/scripts/plastic_ox_weather_institute.inc. Keep the trainer here so
+# TRAINER_PLASTIC_OX_WEATHER (872, Silph's VALE) keeps its stable ID; its party
+# is authored in trainers.party and kept by apply_trainer_teams_v2.py.
+trainer('Weather','VALE',[('Castform',['Sunny Day','Weather Ball','Solar Beam','Thunderbolt'])],34,pic='Scientist Frlg',cls='Scientist Frlg')
+replace_npc('Route119_WeatherInstitute_2F',4,'WI_Vale',gfx='OBJ_EVENT_GFX_SCIENTIST',hidden='FLAG_POX_HIDE_STORY_NPCS')
 # Bill's grandfather gives Eevee once, then tracks five strictly ordered fossil
 # rewards in one small progression variable. Safe legacy flags are imported on
 # first interaction; old 0x071 is intentionally not read because Cave of Origin
@@ -623,7 +626,7 @@ speech('Pox_Text_Entei','A low growl echoes from the ruined hall. Approach ENTEI
 man=room('Mansion','CinnabarIsland_Frlg',None,objects=[npc('Archive1',3,13,'OBJ_EVENT_GFX_SCIENTIST'),npc('Archive2',7,9,'OBJ_EVENT_GFX_SCIENTIST'),npc('Archive3',5,2,'OBJ_EVENT_GFX_SCIENTIST'),npc('Entei',3,9,'OBJ_EVENT_GFX_MAN_3',entei)],return_xy=(14,6))
 guide('CinnabarIsland_Frlg',0,'MansionGuide',man,'The MANSION archives are sealed. BLAINE has the key.',[keyflag])
 
-beat('SpaceReport','The region is not arranged randomly. Habitats and strong TRAINERS have become easier to reach.|It looks like an environment arranged for training.|Transfer traffic is converging on SAFFRON, at SILPH CO. We cannot identify its source.',space,[badges[5]])
+# Pox_SpaceReport (sets FLAG_POX_STORY_SPACE_CENTER) is authored in weather_institute.py.
 gift('Space','This EEVEE helped us study adaptation. Our observations are complete. Please take it on your journey.',[space])
 replace_npc('MossdeepCity_SpaceCenter_1F',0,'SpaceReport',hidden='FLAG_POX_HIDE_STORY_NPCS')
 add_npc('MossdeepCity_SpaceCenter_1F','Space',5,7,'OBJ_EVENT_GFX_SCIENTIST')

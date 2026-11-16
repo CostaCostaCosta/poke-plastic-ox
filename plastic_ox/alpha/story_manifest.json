@@ -190,7 +190,7 @@
       "map": "Route119_WeatherInstitute_2F",
       "x": 18,
       "y": 6,
-      "script": "Pox_Weather"
+      "script": "Pox_WI_Vale"
     },
     {
       "map": "Route25_BillsHouse_hns",

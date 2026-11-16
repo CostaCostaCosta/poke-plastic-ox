@@ -296,7 +296,7 @@ PoxRegion_route119_fortree_a_Open::
 	releaseall
 	end
 PoxRegion_route119_fortree_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
+	msgbox Pox_Text_WI_CrossingClosed, MSGBOX_DEFAULT
 	warp MAP_ROUTE119, 38, 8
 	waitstate
 	releaseall

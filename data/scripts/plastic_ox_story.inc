@@ -966,31 +966,6 @@ Pox_Text_BurnedGuide_Before::
 Pox_Text_BurnedGuide_After::
 	.string "The lamps are lit. He came up\nbefore dawn and did not say what\phe found.\pThat is answer enough for this\nstreet.\pThe GYM is open. He will be\nwaiting at the top of the shadows.$"
 
-Pox_Weather::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
-
-goto_if_unset FLAG_BADGE03_GET, Pox_NotReady
-
-goto_if_set FLAG_POX_STORY_WEATHER, Pox_Done
-
-trainerbattle_single TRAINER_PLASTIC_OX_WEATHER, Pox_Text_Weather, Pox_Text_Defeat, Pox_Weather_Won
-
-goto Pox_Weather_Won
-Pox_Weather_Won::
-	setflag FLAG_POX_STORY_WEATHER
-
-msgbox Pox_Text_WeatherReport, MSGBOX_DEFAULT
-
-releaseall
-	end
-
-Pox_Text_Weather::
-	.string "Help me test our field\ninstruments. The weather lines\phave moved since yesterday.$"
-
-Pox_Text_WeatherReport::
-	.string "The readings are new. The\nboundaries are still moving!\pIt is not old damage left by\nthe shift. Something is still\pchanging our habitats.$"
-
 Pox_Cottage::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
@@ -1399,26 +1374,6 @@ Pox_MansionGuide::
 
 Pox_Text_MansionGuide::
 	.string "The MANSION archives are sealed.\nBLAINE has the key.$"
-
-Pox_SpaceReport::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
-
-goto_if_unset FLAG_BADGE06_GET, Pox_NotReady
-
-goto_if_set FLAG_POX_STORY_SPACE_CENTER, Pox_Done
-
-msgbox Pox_Text_SpaceReport, MSGBOX_DEFAULT
-
-
-
-setflag FLAG_POX_STORY_SPACE_CENTER
-
-releaseall
-	end
-
-Pox_Text_SpaceReport::
-	.string "The region is not arranged\nrandomly. Habitats and strong\pTRAINERS have become easier to\nreach.\pIt looks like an environment\narranged for training.\pTransfer traffic is converging\non SAFFRON, at SILPH CO. We\pcannot identify its source.$"
 
 Pox_Space::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End

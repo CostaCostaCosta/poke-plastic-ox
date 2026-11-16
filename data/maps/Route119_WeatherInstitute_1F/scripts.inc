@@ -1,8 +1,11 @@
 Route119_WeatherInstitute_1F_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, Route119_WeatherInstitute_1F_OnTransition
 	.byte 0
 
+@ Project Equilibrium: the crossing engineer works indoors once the trials end.
 Route119_WeatherInstitute_1F_OnTransition:
-	call_if_eq VAR_WEATHER_INSTITUTE_STATE, 0, Route119_WeatherInstitute_1F_EventScript_SetLittleBoyPos
+	goto_if_set FLAG_POX_STORY_WEATHER, Pox_End
+	setflag FLAG_TEMP_1
 	end
 
 Route119_WeatherInstitute_1F_EventScript_SetLittleBoyPos::

@@ -235,9 +235,6 @@ ROSTERS: dict[str, tuple[str, list[tuple[str, int]]]] = {
     "TRAINER_PLASTIC_OX_WINONA": ("fortree", [
         ("SPECIES_PIDGEOT", 36), ("SPECIES_PELIPPER", 35), ("SPECIES_GOLBAT", 35),
         ("SPECIES_VIGOROTH", 34), ("SPECIES_FARFETCHD", 34), ("SPECIES_DODUO", 33)]),
-    "TRAINER_PLASTIC_OX_WEATHER": ("fortree", [
-        ("SPECIES_CASTFORM", 34), ("SPECIES_XATU", 34), ("SPECIES_MAWILE", 33),
-        ("SPECIES_MEDITITE", 33), ("SPECIES_MAGNEMITE", 32), ("SPECIES_ELEKID", 32)]),
     "TRAINER_PLASTIC_OX_TOWERGRUNT1": ("cinnabar", [
         ("SPECIES_GASTLY", 38), ("SPECIES_DROWZEE", 37), ("SPECIES_CUBONE", 37),
         ("SPECIES_MUK", 37), ("SPECIES_KOFFING", 36), ("SPECIES_HAUNTER", 38)]),
@@ -309,6 +306,11 @@ KEEP_AS_IS = {
     # Not an opponent: GivePlasticOxPlayerParty() builds the player's own
     # starting party from this template (src/new_game.c).
     "TRAINER_PLASTIC_OX_PLAYER": "player party template, not a battled trainer",
+    # Project Equilibrium trials (Weather Institute, RU, cap 36). Hand-authored
+    # rain (Devon) and sun (Silph) teams; plastic_ox/demo/test_weather_institute.py
+    # re-checks every species and move against the 'fortree' checkpoint.
+    "TRAINER_PLASTIC_OX_WEATHER_DEVON": "authored ADV RU rain team; Devon trial 1",
+    "TRAINER_PLASTIC_OX_WEATHER": "authored ADV RU sun team; Silph trial 2 (VALE)",
 }
 
 # Endgame sets retain the ROSTERS species/levels but have authored roles,

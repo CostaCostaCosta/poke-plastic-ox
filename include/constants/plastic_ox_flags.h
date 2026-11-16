@@ -307,6 +307,10 @@
 #define FLAG_POX_TRAINER_ECRUTEAK_YUI   (POX_EVENT_FLAGS_START + 37)
 #define FLAG_POX_TRAINER_ECRUTEAK_GENZO (POX_EVENT_FLAGS_START + 38)
 #define FLAG_POX_TRAINER_ECRUTEAK_RIN   (POX_EVENT_FLAGS_START + 39)
+// Weather Institute, Project Equilibrium trial 1 (TRAINER_PLASTIC_OX_WEATHER_DEVON).
+// Trial 2 is TRAINER_PLASTIC_OX_WEATHER's ordinary trainer flag; completion is
+// FLAG_POX_STORY_WEATHER, set by the Director.
+#define FLAG_POX_TRAINER_WEATHER_DEVON  (POX_EVENT_FLAGS_START + 40)
 // National Park: the Safari Zone Warden got his Gold Teeth back (tournament
 // round-one prize) and keeps the player on his Thursday contest guest list.
 #define FLAG_POX_WARDEN_GUEST (POX_EVENT_FLAGS_START + 41)

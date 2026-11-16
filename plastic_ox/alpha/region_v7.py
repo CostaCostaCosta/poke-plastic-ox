@@ -474,7 +474,9 @@ def apply_region(read, put):
             body+=f'\tgoto_if_unset {flag}, {script}_Closed\n'
         body+=f'{script}_Open::\n\twarp {mid(destination)}, {landing[0]}, {landing[1]}\n\twaitstate\n\treleaseall\n\tend\n'
         # Rejection returns to the adjacent approach, never across the gate.
-        body+=f'{script}_Closed::\n\tmsgbox PoxRegion_ClosedText, MSGBOX_DEFAULT\n\twarp {mid(name)}, {p["approach"][0]}, {p["approach"][1]}\n\twaitstate\n\treleaseall\n\tend'
+        # Gates with an authored refusal (a person at the barrier) name it here.
+        closed_text={'PoxRegion_route119_fortree_a':'Pox_Text_WI_CrossingClosed'}.get(script,'PoxRegion_ClosedText')
+        body+=f'{script}_Closed::\n\tmsgbox {closed_text}, MSGBOX_DEFAULT\n\twarp {mid(name)}, {p["approach"][0]}, {p["approach"][1]}\n\twaitstate\n\treleaseall\n\tend'
         scripts.append(body)
         records.append(dict(id=key,source=name,destination=destination,**p,landing=landing,requires=requirements,label=label))
         # A visible sign next to the approach identifies every authored trail.

@@ -17866,7 +17866,7 @@ Adamant Nature
 - Sand-Attack
 
 === TRAINER_PLASTIC_OX_WEATHER ===
-Name: RESEARCHER
+Name: VALE
 Class: Scientist Frlg
 Pic: Scientist Frlg
 Gender: Male
@@ -17877,64 +17877,62 @@ AI: Basic Trainer / Smart Switching / PP Stall Prevention
 Castform @ Leftovers
 Level: 34
 Ability: Forecast
-EVs: 128 HP / 252 SpA / 128 SpD
+EVs: 252 HP / 252 SpA / 4 SpD
+Modest Nature
+- Sunny Day
+- Weather Ball
+- Solar Beam
+- Thunderbolt
+
+Victreebel @ Leftovers
+Level: 34
+Ability: Chlorophyll
+EVs: 4 HP / 252 SpA / 252 Spe
+Modest Nature
+- Sunny Day
+- Solar Beam
+- Sludge Bomb
+- Sleep Powder
+
+Ninetales @ Leftovers
+Level: 36
+Ability: Flash Fire
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Sunny Day
+- Fire Blast
+- Solar Beam
+- Confuse Ray
+
+Metang @ Leftovers
+Level: 34
+Ability: Clear Body
+EVs: 252 HP / 252 Atk / 4 SpD
+Adamant Nature
+- Metal Claw
+- Earthquake
+- Rock Slide
+- Explosion
+
+Magnemite @ Leftovers
+Level: 33
+Ability: Magnet Pull
+EVs: 4 HP / 252 SpA / 252 Spe
 Modest Nature
 - Thunderbolt
-- Flamethrower
-- Solar Beam
-- Sunny Day
+- Thunder Wave
+- Substitute
+- Toxic
 
 Xatu @ Leftovers
-Level: 34
+Level: 35
 Ability: Synchronize
-EVs: 252 SpA / 4 SpD / 252 Spe
-Timid Nature
+EVs: 252 HP / 4 SpA / 252 SpD
+Calm Nature
 - Calm Mind
 - Psychic
-- Hidden Power
-- Substitute
-
-Mawile @ Leftovers
-Level: 33
-Ability: Intimidate
-EVs: 132 HP / 252 Atk / 124 Spe
-Adamant Nature
-- Substitute
-- Baton Pass
-- Swords Dance
-- Hidden Power
-
-Meditite @ Leftovers
-Level: 33
-Ability: Pure Power
-EVs: 252 Atk / 4 SpD / 252 Spe
-Adamant Nature
-- Substitute
-- Brick Break
-- Shadow Ball
-- Toxic
-
-Magnemite @ Sitrus Berry
-Level: 32
-Ability: Sturdy
-IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
-EVs: 36 Def / 240 SpA / 76 SpD / 156 Spe
-Modest Nature
-- Thunderbolt
-- Hidden Power
-- Toxic
-- Substitute
-
-Elekid @ Sitrus Berry
-Level: 32
-Ability: Static
-IVs: 31 HP / 31 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
-EVs: 172 Atk / 76 SpA / 236 Spe
-Hasty Nature
-- Thunderbolt
-- Ice Punch
-- Hidden Power
-- Substitute
+- Future Sight
+- Wish
 
 === TRAINER_PLASTIC_OX_TOWERGRUNT1 ===
 Name: GRUNT
@@ -21279,6 +21277,229 @@ Adamant Nature
 - Rock Slide
 - Brick Break
 
+
+
+
+
+
+
+
+
+=== TRAINER_PLASTIC_OX_ECRUTEAK_KADO ===
+Name: KADO
+Class: Expert
+Pic: Sage Hns
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Chimecho @ Leftovers
+Level: 25
+Ability: Levitate
+EVs: 252 HP / 252 Def / 4 SpD
+Bold Nature
+- Confusion
+- Uproar
+- Yawn
+- Astonish
+
+Duskull @ Sitrus Berry
+Level: 24
+Ability: Levitate
+EVs: 252 HP / 4 Def / 252 SpD
+Careful Nature
+- Night Shade
+- Confuse Ray
+- Astonish
+- Disable
+
+Murkrow @ Sitrus Berry
+Level: 24
+Ability: Insomnia
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Peck
+- Pursuit
+- Astonish
+- Haze
+
+=== TRAINER_PLASTIC_OX_ECRUTEAK_YUI ===
+Name: YUI
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Venomoth @ Leftovers
+Level: 26
+Ability: Shield Dust
+EVs: 4 Def / 252 SpA / 252 Spe
+Timid Nature
+- Confusion
+- Poison Powder
+- Leech Life
+- Supersonic
+
+Golbat @ Sitrus Berry
+Level: 25
+Ability: Inner Focus
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Wing Attack
+- Bite
+- Astonish
+- Supersonic
+
+=== TRAINER_PLASTIC_OX_ECRUTEAK_GENZO ===
+Name: GENZO
+Class: Expert
+Pic: Sage Hns
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Pupitar @ Leftovers
+Level: 27
+Ability: Shed Skin
+EVs: 252 HP / 252 Atk / 4 Def
+Adamant Nature
+- Rock Slide
+- Bite
+- Screech
+- Sandstorm
+
+Sableye @ Leftovers
+Level: 26
+Ability: Keen Eye
+EVs: 252 HP / 4 Atk / 252 SpD
+Careful Nature
+- Night Shade
+- Fake Out
+- Detect
+- Fury Swipes
+
+Torkoal @ Sitrus Berry
+Level: 25
+Ability: White Smoke
+EVs: 252 HP / 252 Def / 4 SpD
+Relaxed Nature
+- Ember
+- Curse
+- Body Slam
+- Smokescreen
+
+=== TRAINER_PLASTIC_OX_ECRUTEAK_RIN ===
+Name: RIN
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Gastly @ Sitrus Berry
+Level: 27
+Ability: Levitate
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Night Shade
+- Lick
+- Hypnosis
+- Curse
+
+Duskull @ Sitrus Berry
+Level: 26
+Ability: Levitate
+EVs: 252 HP / 4 Def / 252 SpD
+Careful Nature
+- Night Shade
+- Confuse Ray
+- Foresight
+- Disable
+
+Pidgeot @ Leftovers
+Level: 27
+Ability: Keen Eye
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Wing Attack
+- Quick Attack
+- Whirlwind
+- Sand Attack
+
+=== TRAINER_PLASTIC_OX_WEATHER_DEVON ===
+Name: LINDEN
+Class: Scientist Frlg
+Pic: Pokemon Ranger M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Politoed @ Leftovers
+Level: 34
+Ability: Water Absorb
+EVs: 252 HP / 252 SpA / 4 SpD
+Modest Nature
+- Rain Dance
+- Surf
+- Ice Beam
+- Hypnosis
+
+Lombre @ Leftovers
+Level: 33
+Ability: Swift Swim
+EVs: 4 HP / 252 SpA / 252 Spe
+Modest Nature
+- Rain Dance
+- Surf
+- Giga Drain
+- Ice Beam
+
+Huntail @ Mystic Water
+Level: 33
+Ability: Swift Swim
+EVs: 4 HP / 252 SpA / 252 Spe
+Modest Nature
+- Surf
+- Ice Beam
+- Double-Edge
+- Rain Dance
+
+Raichu @ Leftovers
+Level: 34
+Ability: Static
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunder
+- Surf
+- Thunder Wave
+- Rain Dance
+
+Sharpedo @ Leftovers
+Level: 33
+Ability: Rough Skin
+EVs: 4 HP / 252 SpA / 252 Spe
+Rash Nature
+- Surf
+- Crunch
+- Ice Beam
+- Earthquake
+
+Kabutops @ Leftovers
+Level: 36
+Ability: Swift Swim
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Swords Dance
+- Rock Slide
+- Brick Break
+- Surf
+
 === TRAINER_PLASTIC_OX_TOURNAMENT_1 ===
 Name: IRIS
 Class: Cooltrainer
@@ -21868,149 +22089,3 @@ Careful Nature
 - Seismic Toss
 - Counter
 - Explosion
-
-=== TRAINER_PLASTIC_OX_ECRUTEAK_KADO ===
-Name: KADO
-Class: Expert
-Pic: Sage Hns
-Gender: Male
-Music: Male
-Double Battle: No
-AI: Basic Trainer / Smart Switching / PP Stall Prevention
-
-Chimecho @ Leftovers
-Level: 25
-Ability: Levitate
-EVs: 252 HP / 252 Def / 4 SpD
-Bold Nature
-- Confusion
-- Uproar
-- Yawn
-- Astonish
-
-Duskull @ Sitrus Berry
-Level: 24
-Ability: Levitate
-EVs: 252 HP / 4 Def / 252 SpD
-Careful Nature
-- Night Shade
-- Confuse Ray
-- Astonish
-- Disable
-
-Murkrow @ Sitrus Berry
-Level: 24
-Ability: Insomnia
-EVs: 4 HP / 252 Atk / 252 Spe
-Jolly Nature
-- Peck
-- Pursuit
-- Astonish
-- Haze
-
-=== TRAINER_PLASTIC_OX_ECRUTEAK_YUI ===
-Name: YUI
-Class: Lass
-Pic: Lass
-Gender: Female
-Music: Female
-Double Battle: No
-AI: Basic Trainer / Smart Switching / PP Stall Prevention
-
-Venomoth @ Leftovers
-Level: 26
-Ability: Shield Dust
-EVs: 4 Def / 252 SpA / 252 Spe
-Timid Nature
-- Confusion
-- Poison Powder
-- Leech Life
-- Supersonic
-
-Golbat @ Sitrus Berry
-Level: 25
-Ability: Inner Focus
-EVs: 4 HP / 252 Atk / 252 Spe
-Jolly Nature
-- Wing Attack
-- Bite
-- Astonish
-- Supersonic
-
-=== TRAINER_PLASTIC_OX_ECRUTEAK_GENZO ===
-Name: GENZO
-Class: Expert
-Pic: Sage Hns
-Gender: Male
-Music: Male
-Double Battle: No
-AI: Basic Trainer / Smart Switching / PP Stall Prevention
-
-Pupitar @ Leftovers
-Level: 27
-Ability: Shed Skin
-EVs: 252 HP / 252 Atk / 4 Def
-Adamant Nature
-- Rock Slide
-- Bite
-- Screech
-- Sandstorm
-
-Sableye @ Leftovers
-Level: 26
-Ability: Keen Eye
-EVs: 252 HP / 4 Atk / 252 SpD
-Careful Nature
-- Night Shade
-- Fake Out
-- Detect
-- Fury Swipes
-
-Torkoal @ Sitrus Berry
-Level: 25
-Ability: White Smoke
-EVs: 252 HP / 252 Def / 4 SpD
-Relaxed Nature
-- Ember
-- Curse
-- Body Slam
-- Smokescreen
-
-=== TRAINER_PLASTIC_OX_ECRUTEAK_RIN ===
-Name: RIN
-Class: Lass
-Pic: Lass
-Gender: Female
-Music: Female
-Double Battle: No
-AI: Basic Trainer / Smart Switching / PP Stall Prevention
-
-Gastly @ Sitrus Berry
-Level: 27
-Ability: Levitate
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Night Shade
-- Lick
-- Hypnosis
-- Curse
-
-Duskull @ Sitrus Berry
-Level: 26
-Ability: Levitate
-EVs: 252 HP / 4 Def / 252 SpD
-Careful Nature
-- Night Shade
-- Confuse Ray
-- Foresight
-- Disable
-
-Pidgeot @ Leftovers
-Level: 27
-Ability: Keen Eye
-EVs: 4 HP / 252 Atk / 252 Spe
-Jolly Nature
-- Wing Attack
-- Quick Attack
-- Whirlwind
-- Sand Attack

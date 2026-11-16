@@ -63,7 +63,7 @@ League still requires all eight badges if Clair is defeated before Bruno.
 | 4 | Goldenrod | Whitney PU → badge 2; domestic Bill family dialogue and proposed Eevee gift #2. |
 | 5 | National Park | Mandatory geographic passage, catching/trainer respite; no plot escalation. |
 | 6 | Ecruteak | Dance Theater lead → Burned Tower brief visible restoration → Morty returns → NU Gym/badge 3. No beast release. Optional troupe reward is proposed Eevee #3. |
-| 7 | Weather Institute | Boundaries are still changing; complete investigation on Route119 before forward progression. |
+| 7 | Weather Institute | Project Equilibrium (Institute/Devon/Silph): Silph engineer closes the Fortree crossing; win LINDEN's (Devon, 957) then VALE's (Silph, 872) trials; the Director sets `FLAG_POX_STORY_WEATHER`. Boundaries keep moving and keep landing somewhere suitable. Source: `alpha/weather_institute.py`. |
 | 8 | Fortree/Route110 | Arrival opens Route36 shortcut permanently; Winona RU → badge 4; then Lavender. |
 | 9 | Lavender/Tower | Rocket II, Fuji rescue; research directions explicitly name the Underground bypass and Cinnabar archives. Proposed Fuji Eevee #4. South harbor stays closed. |
 | 10 | Underground/Route103 | Traverse around locked Saffron. All city entrances blocked, Underground usable; Oldale/Pallet cannot provide early south access. |

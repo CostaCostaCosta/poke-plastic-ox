@@ -1815,6 +1815,7 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/Route12_hns/scripts.inc"
 	.include "data/maps/LavenderTown_hns/scripts.inc"
 	.include "data/scripts/plastic_ox_story.inc"
+	.include "data/scripts/plastic_ox_weather_institute.inc"
 	.include "data/maps/PlasticOx_WhitneyGym/scripts.inc"
 	.include "data/maps/PlasticOx_MortyGym/scripts.inc"
 	.include "data/maps/PlasticOx_BlaineGym/scripts.inc"
