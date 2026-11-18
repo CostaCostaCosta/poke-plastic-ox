@@ -261,15 +261,7 @@ PoxRegion_route33_goldenrod_a_Text::
 
 PoxRegion_route33_goldenrod_b::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route33_goldenrod_b_Open
-PoxRegion_route33_goldenrod_b_Open::
 	warp MAP_ROUTE33_HNS, 1, 23
-	waitstate
-	releaseall
-	end
-PoxRegion_route33_goldenrod_b_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_GOLDENROD_CITY_HNS, 32, 44
 	waitstate
 	releaseall
 	end
