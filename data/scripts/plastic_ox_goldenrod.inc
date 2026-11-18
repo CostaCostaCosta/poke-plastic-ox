@@ -112,8 +112,14 @@ PoxGoldenrod_Text_BikeHave:
 @ The street woman points at the FLOWER SHOP counter: the shop is the only
 @ place that hands over the SQUIRTBOTTLE (Pox_SquirtBottle at (2,4)).
 PoxGoldenrod_SquirtBottleNote::
+	goto_if_set FLAG_POX_SUDOWOODO_CLEARED, PoxGoldenrod_SquirtBottleNote_Cleared
 	msgbox PoxGoldenrod_Text_SquirtBottleNote, MSGBOX_NPC
 	end
+PoxGoldenrod_SquirtBottleNote_Cleared::
+	msgbox PoxGoldenrod_Text_SquirtBottleNoteCleared, MSGBOX_NPC
+	end
+PoxGoldenrod_Text_SquirtBottleNoteCleared:
+	.string "Somebody cleared that odd tree off\nROUTE 36. The FLOWER SHOP girl has\pher bottle back for the flowers.$"
 PoxGoldenrod_Text_SquirtBottleNote:
 	.string "The FLOWER SHOP lends a\nSQUIRTBOTTLE for the odd tree on\pROUTE 36. Ask the girl inside.$"
 
