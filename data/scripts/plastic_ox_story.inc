@@ -159,13 +159,13 @@ Pox_Whitney::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_BADGE01_GET, Pox_NotReady
+goto_if_unset FLAG_BADGE01_GET, Pox_WhitneyNeedsBadge
 
-goto_if_unset FLAG_POX_STORY_MTMOON, Pox_NotReady
+goto_if_unset FLAG_POX_STORY_MTMOON, Pox_WhitneyNeedsMoon
 
-goto_if_set FLAG_BADGE02_GET, Pox_Done
+goto_if_set FLAG_BADGE02_GET, Pox_WhitneyDone
 
-trainerbattle_single TRAINER_PLASTIC_OX_WHITNEY, Pox_Text_Whitney, Pox_Text_Defeat, Pox_Whitney_Won
+trainerbattle_single TRAINER_PLASTIC_OX_WHITNEY, Pox_Text_Whitney, Pox_Text_WhitneyDefeat, Pox_Whitney_Won
 
 goto Pox_Whitney_Won
 Pox_Whitney_Won::
@@ -464,6 +464,33 @@ Pox_Text_ClairGuide::
 
 Pox_Text_Badge::
 	.string "You received a GYM BADGE! A new\nchallenge waits on the next\proad.$"
+
+Pox_WhitneyNeedsBadge::
+	msgbox Pox_Text_WhitneyNeedsBadge, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Pox_Text_WhitneyNeedsBadge::
+	.string "WHITNEY: Badge one first.\nROXANNE is in RUSTBORO. The\pqueue starts there.$"
+
+Pox_WhitneyNeedsMoon::
+	msgbox Pox_Text_WhitneyNeedsMoon, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Pox_Text_WhitneyNeedsMoon::
+	.string "WHITNEY: You have a badge, but\nMT. MOON is still closed behind\pyou. Go through it, then come\nback.$"
+
+Pox_WhitneyDone::
+	msgbox Pox_Text_WhitneyDone, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Pox_Text_WhitneyDone::
+	.string "WHITNEY: You have the badge.\nNext challenger, please.$"
+
+Pox_Text_WhitneyDefeat::
+	.string "WHITNEY: Huh. You kept up with\nevery swap. Take the badge.$"
 
 Pox_Text_WhitneyAfter::
 	.string "WHITNEY: My friend at the FLOWER\nSHOP has a SQUIRTBOTTLE. Ask her\pabout the odd tree on ROUTE 36!$"
