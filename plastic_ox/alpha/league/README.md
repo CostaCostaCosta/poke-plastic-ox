@@ -6,7 +6,7 @@ regional topology v7 remain authoritative elsewhere.
 
 ## Map and asset provenance
 
-- Donor: `/home/eddie/repos/pokehns-expansion`, revision
+- Donor: `$POX_HNS_DONOR` (pokehns-expansion), revision
   `44f50eedefe58691b0444973e4138e9190d8fafc`.
 - Source map/layout: `Route26_hns`, 39 × 81. The new
   `LAYOUT_PLASTIC_OX_VICTORY_ROAD` keeps rows 0–49 plus a final copy of row 49
@@ -69,7 +69,7 @@ fishing, Rock Smash or Uber encounters on the new route.
 ## League teams
 
 Species, order and per-Pokémon levels are preserved from the existing
-`ROSTERS` in `plastic_ox/agent/apply_trainer_teams_v2.py`, which takes precedence
+`ROSTERS` in `plastic_ox/tools/apply_trainer_teams_v2.py`, which takes precedence
 over the earlier alpha stub and narrative suggestions. Consequently Bill's
 already specified roster is retained rather than replaced with Alakazam,
 Porygon2 or an Eeveelution. `trainers.party` beside this document is the
@@ -147,19 +147,17 @@ still produced by the normal build.
 ```sh
 python3 plastic_ox/alpha/league/import_layout.py
 python3 plastic_ox/alpha/league.py
-python3 /home/eddie/.codex/skills/plastic-ox-map-port/scripts/audit_imports.py "$PWD"
-PATH=/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin:$PATH \
-  make -j12 TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM modern
-python3 plastic_ox/agent/test_trainer_teams_v2.py
-export LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64
-/home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_league.py \
+python3 .agents/skills/plastic-ox-map-port/scripts/audit_imports.py "$PWD"
+make -j12 modern
+python3 plastic_ox/tools/test_trainer_teams_v2.py
+plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_league.py \
   --static --travel --route --ai --battles --persistence
-/home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_league_rules.py
+plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_league_rules.py
 python3 plastic_ox/demo/test_league_regeneration.py
-/home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_region_v7.py --only meteor_blackthorn
-/home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_region_walk.py postgame
-/home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_trainer_recovery.py
-/home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/quick_check.py
+plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_region_v7.py --only meteor_blackthorn
+plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_region_walk.py postgame
+plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_trainer_recovery.py
+plastic_ox/bin/pox-mgba-python plastic_ox/demo/quick_check.py
 git diff --check
 ```
 

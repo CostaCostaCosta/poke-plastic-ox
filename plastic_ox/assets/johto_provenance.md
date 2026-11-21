@@ -126,7 +126,7 @@ remap behavior enums by name, keep any target-specific warp landing repair,
 and run:
 
 ```sh
-python3 /home/eddie/.codex/skills/plastic-ox-map-port/scripts/audit_imports.py "$PWD"
+python3 .agents/skills/plastic-ox-map-port/scripts/audit_imports.py "$PWD"
 ```
 
 Do not reuse an HnS blockmap with a Hoenn, FRLG, or unrelated Kanto tileset.

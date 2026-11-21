@@ -42,10 +42,9 @@ transition coverage.
 Use the repository's mGBA Python environment:
 
 ```sh
-export LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64
-/home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_story.py starters
-/home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_region_walk.py postgame
-/home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/walk_leg1.py
+plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_story.py starters
+plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_region_walk.py postgame
+plastic_ox/bin/pox-mgba-python plastic_ox/demo/walk_leg1.py
 ```
 
 Interpret failures after setup carefully. “Test new-game fixture never reached

@@ -286,11 +286,10 @@ python3 plastic_ox/battle/metamon/import_model.py \
   /home/eddie/metamon/models/kakuna-gen3-causal-s0-20260924/round-3/export/export-manifest.json \
   --rom-map pokeemerald.map
 
-LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 \
-  /home/eddie/.venvs/mgba311/bin/python plastic_ox/battle/metamon/benchmark.py
+plastic_ox/bin/pox-mgba-python plastic_ox/battle/metamon/benchmark.py
 
-env PATH=/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin:$PATH \
-  make -j8 TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM modern
+env \
+  make -j8 modern
 ```
 
 The benchmark writes separate `build/thumb-rom.gba` and `build/arm-iwram.gba`;

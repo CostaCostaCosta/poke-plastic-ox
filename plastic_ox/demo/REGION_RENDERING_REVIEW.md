@@ -16,7 +16,7 @@ a walkable opening. Ordinary building interiors are omitted from the diagram.
 
 The previous Lavender/Cinnabar compression and secondary-palette header fixes
 are present in base revision `2ee8ee8f3e`. Fresh screenshots show coherent assets.
-The HNS reference checkout is `/home/eddie/repos/pokehns-expansion` at
+The HNS reference checkout is `$POX_HNS_DONOR` (pokehns-expansion) at
 `44f50eedef`; HNS layouts retain 640 primary metatiles and u16 attributes.
 
 - Corrected the renderer audit to recognize the full `MAPGRID_UNDEFINED`
@@ -28,7 +28,7 @@ The HNS reference checkout is `/home/eddie/repos/pokehns-expansion` at
   Door arrival movement would step into the rock below the Route 31 mouth.
   The map still uses `gTileset_Johto_General_Hns` and
   `gTileset_Cave_Default_Hns`. The shared floor definitions are unchanged.
-  `plastic_ox/agent/fix_cave_exit_behaviors.py` reproduces this repair and is
+  `plastic_ox/archive/agent/fix_cave_exit_behaviors.py` reproduces this repair and is
   idempotent; run it after reimporting this cave.
 - Corrected Mt. Moon's reciprocal links: Route 3 warp 0 ↔ Mt. Moon warp 1;
   Route 4 warp 0 ↔ Mt. Moon warp 0. Updated the wave import rules too.
@@ -46,12 +46,11 @@ No NPC, trainer, item, story event, encounter table, or cave artwork was removed
 
 ```sh
 python3 plastic_ox/demo/render_region_layout.py
-python3 /home/eddie/.codex/skills/plastic-ox-map-port/scripts/audit_imports.py "$PWD"
-make -j8 TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM modern
-export LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64
-/home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/audit_region_rendering.py
-/home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_cave_connections.py
-/home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_camera_seam.py
+python3 .agents/skills/plastic-ox-map-port/scripts/audit_imports.py "$PWD"
+make -j8 modern
+plastic_ox/bin/pox-mgba-python plastic_ox/demo/audit_region_rendering.py
+plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_cave_connections.py
+plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_camera_seam.py
 git diff --check
 ```
 

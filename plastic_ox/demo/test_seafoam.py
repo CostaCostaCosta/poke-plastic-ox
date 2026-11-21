@@ -23,7 +23,7 @@ def shot(g, name):
 
 
 def test_team():
-    sys.path.insert(0, str(ROOT / 'plastic_ox/agent'))
+    sys.path.insert(0, str(ROOT / 'plastic_ox/tools'))
     from test_trainer_teams_v2 import parse_mon
     import pox_progression as p
     team = (ROOT / 'plastic_ox/alpha/seafoam/trainers.party').read_text()

@@ -12,7 +12,7 @@ from test_training_kit import run_code
 from walklib import K
 
 import sys
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "agent"))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 from apply_trainer_teams_v2 import expected_party_size
 
 

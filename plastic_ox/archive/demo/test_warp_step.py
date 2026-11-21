@@ -2,7 +2,7 @@
 import os
 os.environ.setdefault('LD_LIBRARY_PATH', '/tmp/mgba-0.10.3/build:/usr/lib/x86_64-linux-gnu')
 import sys
-sys.path.insert(0, '/home/eddie/repos/poke-plastic-ox/plastic_ox/demo')
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from walklib import GBA, K
 g=GBA()
 g.frame(600)

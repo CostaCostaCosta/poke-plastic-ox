@@ -17,7 +17,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 BASE = ROOT / 'plastic_ox/alpha/goldenrod'
-sys.path.insert(0, str(ROOT / 'plastic_ox/agent'))
+sys.path.insert(0, str(ROOT / 'plastic_ox/tools'))
 from remap_metatile_behaviors import build_mapping
 
 

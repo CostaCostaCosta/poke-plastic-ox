@@ -33,7 +33,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
-sys.path.insert(0, str(HERE.parent / "agent"))
+sys.path.insert(0, str(HERE.parent / "tools"))
 import audit_encounters_v55 as audit  # noqa: E402
 import pox_progression as P  # noqa: E402
 

@@ -17,7 +17,7 @@ entry:
   * trainer ids, names, classes, pics, music, battle type and AI lines are
     unchanged from the pre-overhaul baseline, so no wiring moved.
 
-Run:  python3 plastic_ox/agent/test_trainer_teams_v2.py
+Run:  python3 plastic_ox/tools/test_trainer_teams_v2.py
 """
 from __future__ import annotations
 

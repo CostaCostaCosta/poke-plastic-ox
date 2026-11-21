@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate progression-legal Plastic Ox trainer parties.
 
-Rules implemented here (see plastic_ox/agent/TRAINER_TEAMS_V2_REPORT.md):
+Rules implemented here (see plastic_ox/tools/TRAINER_TEAMS_V2_REPORT.md):
 
 * one six-Pokemon boss per route; other route trainers use two or three
   species absent from the boss party;

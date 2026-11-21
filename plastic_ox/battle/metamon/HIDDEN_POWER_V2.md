@@ -21,12 +21,10 @@ Rebuilt ordinary ROM: `pokeemerald.gba`.
 ## Verification
 
 ```sh
-make -j8 TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM modern
+make -j8 modern
 python3 -m unittest discover -s plastic_ox/battle/metamon -p test_import_model.py
-LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 \
-  /home/eddie/.venvs/mgba311/bin/python plastic_ox/battle/metamon/hidden_power.py
-LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 \
-  /home/eddie/.venvs/mgba311/bin/python plastic_ox/battle/metamon/privacy.py
+plastic_ox/bin/pox-mgba-python plastic_ox/battle/metamon/hidden_power.py
+plastic_ox/bin/pox-mgba-python plastic_ox/battle/metamon/privacy.py
 ```
 
 Completed: 7 importer tests; all 16 own Hidden Power types/categories in native

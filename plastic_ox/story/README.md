@@ -198,9 +198,9 @@ is how the superagent picks its own work. `gaps_report.py` is the mechanical
 triage view; [`REVIEW_FINDINGS.md`](REVIEW_FINDINGS.md) is the curated list of
 P0/P1/P2 issues from the first full review pass.
 
-`.github/workflows/wiki.yml` runs the note validator and
-`build_wiki.py --check` on changes to the notes, wiki, maps, scripts, or data;
-a stale wiki or an unknown identifier fails the PR.
+`.github/workflows/wiki.yml` runs `make pox-check-static` (note validator,
+regression suites, audits) and builds the wiki on changes under `plastic_ox/`,
+maps, scripts, or data; an unknown identifier or a broken wiki build fails the PR.
 
 The companion skill for step 4–5 is
 `.agents/skills/plastic-ox-story-dialogue/SKILL.md`.

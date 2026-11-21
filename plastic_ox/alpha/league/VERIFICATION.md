@@ -45,20 +45,19 @@ untracked until the feature is committed with the existing work.
 
 ## Commands and results
 
-Run from `/home/eddie/repos/poke-plastic-ox`. In the table, `E` expands to:
+Run from the repository root. In the table, `E` expands to:
 
 ```sh
-LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 \
-  /home/eddie/.venvs/mgba311/bin/python
+plastic_ox/bin/pox-mgba-python
 ```
 
 | Command | Final result |
 | --- | --- |
 | `python3 plastic_ox/alpha/league/import_layout.py` | PASS: pinned HNS donor, 39×51 dry ridge and border |
 | `python3 plastic_ox/alpha/league.py` | PASS: overlay reapplied |
-| `python3 /home/eddie/.codex/skills/plastic-ox-map-port/scripts/audit_imports.py "$PWD"` | PASS: 103 HNS layouts, metadata/asset bounds; run before and after changes |
-| `PATH=/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin:$PATH make -j12 TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM modern` | PASS: bootable 32 MiB ROM; ROM payload 28,295,256 bytes, EWRAM 226,608 bytes, IWRAM 28,540 bytes |
-| `python3 plastic_ox/agent/test_trainer_teams_v2.py` | PASS: 2,684 checks over 89 trainers |
+| `python3 .agents/skills/plastic-ox-map-port/scripts/audit_imports.py "$PWD"` | PASS: 103 HNS layouts, metadata/asset bounds; run before and after changes |
+| `make -j12 modern` | PASS: bootable 32 MiB ROM; ROM payload 28,295,256 bytes, EWRAM 226,608 bytes, IWRAM 28,540 bytes |
+| `python3 plastic_ox/tools/test_trainer_teams_v2.py` | PASS: 2,684 checks over 89 trainers |
 | `E plastic_ox/demo/test_league.py --static --travel --route --ai --battles --persistence` | PASS: detailed coverage below |
 | `E plastic_ox/demo/test_league_rules.py` | PASS: both Gym orders, one actual Potion use, 3 ledges, 6 sight-line cases, 8 lobby denials, 5 rear exits, 4 forward doors, 4 skipped-member denials, pre-Bill save, 2 normal Emerald Continue destinations |
 | `python3 plastic_ox/demo/test_league_regeneration.py` | PASS: overlay idempotent across 34 files; 22 owned files survive region/story generation; encounters, reward flags, respawn and 11 authored parties preserved; generic team writer retains all authored sets |

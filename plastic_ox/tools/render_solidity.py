@@ -2,11 +2,11 @@
 """Print an ASCII solidity grid for a converted map.
 
 Reads the layout blockmap plus each tileset's metatile_attributes.bin and uses
-plastic_ox/agent/remap_metatile_behaviors.py to resolve the behavior byte to a
+plastic_ox/tools/remap_metatile_behaviors.py to resolve the behavior byte to a
 name. Used when reviewing imported interiors for chokepoints and for the Ecruteak
 Gym's shadow-Pokémon teleport warp maze.
 
-    python3 plastic_ox/agent/render_solidity.py EcruteakCity_Gym_hns
+    python3 plastic_ox/tools/render_solidity.py EcruteakCity_Gym_hns
 """
 import json
 import re
@@ -15,7 +15,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / 'plastic_ox/agent'))
+sys.path.insert(0, str(ROOT / 'plastic_ox/tools'))
 from remap_metatile_behaviors import build_mapping  # noqa: E402
 
 BEHAVIORS = build_mapping()[0]

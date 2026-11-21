@@ -24,7 +24,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "agent"))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "tools"))
 import audit_encounters_v55 as audit  # noqa: E402
 import pox_progression as P  # noqa: E402
 

@@ -12,7 +12,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / 'plastic_ox/agent'))
+sys.path.insert(0, str(ROOT / 'plastic_ox/tools'))
 sys.path.insert(0, str(ROOT / 'plastic_ox/alpha'))
 from test_trainer_teams_v2 import parse, parse_mon
 import pox_progression as P

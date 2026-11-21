@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Re-derive every ROM-space number in plastic_ox/agent/ROM_SPACE_TRIM_AUDIT.md.
+"""Re-derive every ROM-space number in plastic_ox/tools/ROM_SPACE_TRIM_AUDIT.md.
 
 READ-ONLY with respect to the build. Reads pokeemerald.gba / .elf and the
 generated data/ sources; writes nothing except stdout.
 
 Usage:
-    python3 plastic_ox/agent/ROM_SPACE_MEASURE.py [repo_root]
+    python3 plastic_ox/tools/ROM_SPACE_MEASURE.py [repo_root]
 """
 
 import glob
@@ -17,7 +17,7 @@ import sys
 
 SIZE = "arm-none-eabi-size"
 NM = "arm-none-eabi-nm"
-TOOLCHAIN = "/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin"
+TOOLCHAIN = os.path.join(os.environ.get("DEVKITARM", os.path.expanduser("~/devkitpro/opt/devkitpro/devkitARM")), "bin")
 
 # Event macro sizes, from asm/macros/map.inc.
 EVENT_SIZES = {
@@ -420,7 +420,7 @@ def report_data(syms):
 
 def main():
     root = os.path.abspath(sys.argv[1] if len(sys.argv) > 1
-                           else "/home/eddie/repos/poke-plastic-ox")
+                           else os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".."))
     os.chdir(root)
     free = baseline(root)
     syms = load_symbols(root)

@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """Drive real registration, then verify identity and the one-time earthquake."""
+import os
 import subprocess
 from pathlib import Path
 from walklib import GBA, K
 
 ROOT = Path(__file__).resolve().parents[2]
-NM = '/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin/arm-none-eabi-nm'
+NM = os.path.join(os.environ.get('DEVKITARM', os.path.expanduser('~/devkitpro/opt/devkitpro/devkitARM')), 'bin/arm-none-eabi-nm')
 
 
 def check(gender):

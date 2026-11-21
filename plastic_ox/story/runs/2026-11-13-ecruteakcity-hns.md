@@ -13,7 +13,7 @@
 - Tier: the request said RU, but the designer corrected it in-session — **Morty and all Gym staff are NU; only the Kimono troupe may break the tier ladder.** Every staff species is NU or lower in `src/data/pokemon/evolution_tier_gates.h` (Duskull/Gastly are PU, the rest NU). Genzo and Rin deliberately field nothing from Morty's own six (Sudowoodo, Haunter, Gastly, Duskull, Golbat, Wigglytuff); Kado and Yui still share Duskull and Golbat with him, unchanged by request. The Kimono parties are untouched.
 - IDs 953–956 with victory flags in appended POX event-flag bytes (`POX_EVENT_FLAGS_START + 36..39`); the 0x4A0 trainer-flag run is exactly full at 952 and the Sage block was left alone. `TRAINERS_COUNT_EMERALD` 953 → 957.
 - Staff battles are talk-triggered (`TRAINER_TYPE_NONE`), like the existing PU route trainers; the shadow maze has no sight cones to trip.
-- `plastic_ox/agent/test_trainer_teams_v2.py` learned the four checkpoints (`gym3`) and now covers 101 trainers / 2680 checks.
+- `plastic_ox/tools/test_trainer_teams_v2.py` learned the four checkpoints (`gym3`) and now covers 101 trainers / 2680 checks.
 
 ## Dialogue
 

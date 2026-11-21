@@ -20,7 +20,7 @@ A donor HNS coastline, 24 tiles wide and 100 long, that starts at `Route12_hns`'
 
 ## Plot points
 
-1. **A road with one end.** `Route21_hns` has exactly one neighbour, `Route12_hns` (up, offset -9), and `Route12_hns` reaches nothing either. `plastic_ox/alpha/LEGACY_REGION_PLAN.md` keeps that seam "for post-surf" and calls the Route 12/Route 21 water legs surf-gated, but nothing in the live build loads either map. No reveal-ladder step applies; step 9 belongs to Cinnabar and its Mansion.
+1. **A road with one end.** `Route21_hns` has exactly one neighbour, `Route12_hns` (up, offset -9), and `Route12_hns` reaches nothing either. `plastic_ox/archive/alpha/LEGACY_REGION_PLAN.md` keeps that seam "for post-surf" and calls the Route 12/Route 21 water legs surf-gated, but nothing in the live build loads either map. No reveal-ladder step applies; step 9 belongs to Cinnabar and its Mansion.
 2. **The text belongs to another map.** `Route21_EventScript_Npc1` and `Route21_EventScript_Npc3` share one string about trees sheltering small Pokémon, and `Route21_EventScript_Npc2` checks supplies "before heading into the trees". On a sea route that is donor copy-paste, not a voice, and it is the clearest sign the map was imported for its shape rather than its script.
 3. **Three identical finds.** Hidden Stardust at `(8,73)`, `(17,43)` and `(7,29)` under `FLAG_POX_HIDDEN_ROUTE21_16`, `FLAG_POX_HIDDEN_ROUTE21_17` and `FLAG_POX_HIDDEN_ROUTE21_18` — numbering that continues Route 12's pair. No other reward, no fishing table, no wild table at all.
 4. **Must not:** name Cinnabar, Pallet, the Mansion, Bill or the convergence; explain Surf here; stage a battle; or assume a player can arrive. This is a coast, not a beat, and the note must not invent one.

@@ -1,6 +1,6 @@
 # Gen 2 fruit and Headbutt trees
 
-The HNS source checkout is `/home/eddie/repos/pokehns-expansion`, revision
+The HNS source checkout is `$POX_HNS_DONOR` (pokehns-expansion), revision
 `44f50eedefe58691b0444973e4138e9190d8fafc`. Destination maps retain their HNS
 layouts and tilesets (640 primary metatiles, 16-bit attributes).
 
@@ -43,9 +43,9 @@ to regenerate the special encounter header without changing grass encounters.
 Verification commands:
 
 ```sh
-make -j$(nproc) TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM modern
-python3 /home/eddie/.codex/skills/plastic-ox-map-port/scripts/audit_imports.py /home/eddie/repos/poke-plastic-ox
-LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 /home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_gen2_trees.py
+make -j$(nproc) modern
+python3 .agents/skills/plastic-ox-map-port/scripts/audit_imports.py .
+plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_gen2_trees.py
 git diff --check
 ```
 

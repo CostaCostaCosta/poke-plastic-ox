@@ -20,7 +20,7 @@ import sys
 
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 OURS = os.path.join(REPO, 'include', 'constants', 'metatile_behaviors.h')
-HNS = '/home/eddie/repos/pokehns-expansion/include/constants/metatile_behaviors.h'
+HNS = os.path.join(os.environ.get('POX_HNS_DONOR', os.path.join(os.path.dirname(REPO), 'pokehns-expansion')), 'include', 'constants', 'metatile_behaviors.h')
 
 # hns-only names -> safe fallback in OUR enum (exact-name matches need no entry)
 FALLBACKS = {

@@ -26,7 +26,7 @@ existing unrelated working changes and regeneration drift were preserved.
   `037335f4c725d7c9aecdac87066f2002b4bd7e14`, maps/layouts `MtMoon_1F`,
   `MtMoon_B1F`, `MtMoon_B2F`. `source_manifest.json` pins binary hashes and
   every warp, actor, and background-event coordinate independently of templates.
-- Engine donor: `/home/eddie/repos/pokehns-expansion`, revision
+- Engine donor: `$POX_HNS_DONOR` (pokehns-expansion), revision
   `44f50eedefe58691b0444973e4138e9190d8fafc`, corresponding `_Frlg` maps.
 - Destination: existing `gMapGroup_Dungeons_Frlg` FireRed floors (runtime group 35).
   Exact FireRed map/border binaries already matched; copied/reverified them.
@@ -68,13 +68,10 @@ The old HNS map redirects to 1F on its first frame, supporting saves left there.
 ## Verification
 
 ```sh
-PATH=/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin:$PATH \
-  make -j8 TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM modern
-LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 \
-  /home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_mt_moon.py
-LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 \
-  /home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_route44_transitions.py
-python3 /home/eddie/.codex/skills/plastic-ox-map-port/scripts/audit_imports.py .
+make -j8 modern
+plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_mt_moon.py
+plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_route44_transitions.py
+python3 .agents/skills/plastic-ox-map-port/scripts/audit_imports.py .
 git diff --check
 ```
 

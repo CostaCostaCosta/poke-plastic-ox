@@ -2,7 +2,7 @@
 
 Status: target topology, pending implementation. See [PLAN.md](PLAN.md) for
 milestones, assumptions, and acceptance. Earlier wave sketches and shipped
-substitutions are retained only in [LEGACY_REGION_PLAN.md](LEGACY_REGION_PLAN.md).
+substitutions are retained only in [LEGACY_REGION_PLAN.md](../archive/alpha/LEGACY_REGION_PLAN.md).
 
 The [v7 map](../plastic_ox_map_v7.md) supplies traversal rules and the
 [SVG](../plastic_ox_topology.svg) supplies the physical arrangement. Diagram

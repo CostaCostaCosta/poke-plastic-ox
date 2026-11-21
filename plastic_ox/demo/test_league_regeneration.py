@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[2]
 sys.path.insert(0,str(ROOT/'plastic_ox/alpha'))
-sys.path.insert(0,str(ROOT/'plastic_ox/agent'))
+sys.path.insert(0,str(ROOT/'plastic_ox/tools'))
 from league import install
 from region_v7 import apply_region
 import apply_trainer_teams_v2 as teams

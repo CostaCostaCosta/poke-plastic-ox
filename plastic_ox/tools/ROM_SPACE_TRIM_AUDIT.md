@@ -9,8 +9,8 @@ map_groups.json changes were made for it.
 **Measured against:** `pokeemerald.gba` / `.elf` / `.map`, all dated 2026-10-02 08:54
 (`rom_sha256` of the deployed build is recorded in `warp_playtest_v1_unblocked.json`).
 **Companion notes:** `plastic_ox/battle/metamon/ROM_SPACE_AUDIT.md` (metamon model sizing),
-`plastic_ox/agent/WARP_PLAYTEST_V1_REPORT.md` (warp closure + the "facility state machine"
-UNTESTED reason this audit has to resolve), `plastic_ox/agent/ROM_SPACE_MEASURE.py` (the
+`plastic_ox/archive/agent/WARP_PLAYTEST_V1_REPORT.md` (warp closure + the "facility state machine"
+UNTESTED reason this audit has to resolve), `plastic_ox/tools/ROM_SPACE_MEASURE.py` (the
 re-runnable measurement harness described in §9).
 
 ---
@@ -736,7 +736,7 @@ Ordered, with the file each step touches:
 | 4 | **Repoint `data/scripts/safari_zone.inc` — this is the actual bug fix.** Because `IS_FRLG == 0`, the **live** branch at `:11` and `:25` is `warp MAP_ROUTE121_SAFARI_ZONE_ENTRANCE, 2, 5`, an unreachable Hoenn building. Rewrite the whole `#if IS_FRLG / #else` pair to a single target (the park gate), or delete the Hoenn branch and flip the guard. | `data/scripts/safari_zone.inc:1-28` | **High — this is the exit path** |
 | 5 | **Decide: park = safari, or park = safari *and* contest?** `PlasticOxContest_IsActive()` keys off the park's map id (`src/plastic_ox_contest.c:38-39`) and `SafariZoneTakeStep()` consults the contest **first** (`src/safari_zone.c:82-83`). Running both on one map makes the step counter ambiguous. Cleanest: the park becomes the safari facility and the contest relocates, or the contest's step decrement is gated on `GetSafariZoneFlag() == FALSE`. | `src/plastic_ox_contest.c`, `src/safari_zone.c:80-83` | **High — design decision** |
 | 6 | **Author a park safari encounter table.** The park already has `gPoxPUNationalParkNormalHns_{Morning,Day,Night}` (36 slots, lv 17-19) and a contest override `sPoxParkContestDay` (`src/data/plastic_ox_pu_encounters.h:47`) swapped in at `src/wild_encounter.c:922-927`. A safari-specific table reusing that same override hook is the template. The 88 dead-ish Hoenn `gSafariZone_*` tables are a balance reference. | `src/data/wild_encounters.{json,h}`, `src/wild_encounter.c:922-927` | Medium (balance) |
-| 7 | **Connect the park to Route 35 / Route 36.** The map has 0 warps and 0 connections; entry is via `VAR_POX_PORTAL_TRIGGER` coord events. `plastic_ox/alpha/LEGACY_REGION_PLAN.md:108-109` specifies the intended portal pair (`NationalPark_Normal (39,20)/(39,26) ⇄ Route36_hns (16,19)/(16,20)`). | `connections.inc`, `map.json` | Medium (seam work — see the map-port skill's `references/port-verification.md`) |
+| 7 | **Connect the park to Route 35 / Route 36.** The map has 0 warps and 0 connections; entry is via `VAR_POX_PORTAL_TRIGGER` coord events. `plastic_ox/archive/alpha/LEGACY_REGION_PLAN.md:108-109` specifies the intended portal pair (`NationalPark_Normal (39,20)/(39,26) ⇄ Route36_hns (16,19)/(16,20)`). | `connections.inc`, `map.json` | Medium (seam work — see the map-port skill's `references/port-verification.md`) |
 | 8 | **Rewire the 11 Kanto safari maps, then delete them.** Remove `warp_def 24,5 → MAP_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE` and `warp_def 28,16 → MAP_FUCHSIA_CITY_SAFARI_ZONE_OFFICE` from `FuchsiaCity_Frlg/events.inc` (lines 26 and 29). **This is a hard build break if skipped** — the `dest_map` constants would be undefined. | `data/maps/FuchsiaCity_Frlg/events.inc` | Low |
 | 9 | **Delete the 11 FRLG Safari Zone maps.** From `map_groups.json`: the 9 `SafariZone_*_Frlg` in `gMapGroup_Dungeons_Frlg`, the 2 `FuchsiaCity_SafariZone_*_Frlg` in `gMapGroup_IndoorFuchsia_Frlg`. Then remove `plastic_ox_kanto_maps.inc:57-65, 156, 158` (the **live** include path — `event_scripts.s:704-712, 943, 945` are already dead inside `.if IS_FRLG`), plus the orphan labels they leave behind: `item_ball_scripts_frlg.inc:197-240, 523` (13 `SafariZone_*_EventScript_Item*`) and `fame_checker_frlg.inc:115-119`. Drop their `MAP_*` defines from `required_map_defines.json`. | see §8 step 2 | Low |
 | 10 | **Preserve the Warden trade.** `FuchsiaCity_WardensHouse_Frlg/scripts.inc:8,28` gates a `ITEM_GOLD_TEETH` exchange on `FLAG_HIDE_SAFARI_ZONE_WEST_GOLD_TEETH`, set only by `SafariZone_West_Frlg`. Deleting the map silently kills the trade — either move the item ball to a surviving map or retire the NPC. | `data/maps/FuchsiaCity_WardensHouse_Frlg/` | Low |
@@ -824,7 +824,7 @@ it is a content decision, not a trim.
 
 ## 9. Measurement method (reproducible)
 
-`plastic_ox/agent/ROM_SPACE_MEASURE.py` re-derives every number in this document. Method:
+`plastic_ox/tools/ROM_SPACE_MEASURE.py` re-derives every number in this document. Method:
 
 1. **Free tail** — scan `pokeemerald.gba` backwards for the last non-`0xFF` byte. No linker map
    parsing needed.
@@ -859,6 +859,5 @@ it is a content decision, not a trim.
 
 **Per the map-port skill, re-run the deterministic import audit after any edit:**
 ```sh
-python3 /home/eddie/.codex/skills/plastic-ox-map-port/scripts/audit_imports.py \
-  /home/eddie/repos/poke-plastic-ox
+python3 .agents/skills/plastic-ox-map-port/scripts/audit_imports.py .
 ```

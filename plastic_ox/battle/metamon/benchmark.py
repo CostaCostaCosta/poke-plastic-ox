@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Build standalone GBA benchmarks; run with the local mGBA Python environment."""
 import argparse
+import os
 import ctypes as C
 import json
 from pathlib import Path
@@ -81,7 +82,7 @@ def run(rom, addr, expected):
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--toolchain", type=Path, default=Path("/home/eddie/devkitpro/opt/devkitpro/devkitARM"))
+    p.add_argument("--toolchain", type=Path, default=Path(os.environ.get("DEVKITARM", Path.home()/"devkitpro/opt/devkitpro/devkitARM")))
     p.add_argument("--header-rom", type=Path, default=Path(__file__).resolve().parents[3]/"pokeemerald.gba")
     p.add_argument("--output", type=Path, default=Path(__file__).parent/"build")
     a = p.parse_args()

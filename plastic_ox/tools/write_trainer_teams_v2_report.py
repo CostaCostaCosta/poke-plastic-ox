@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate plastic_ox/agent/TRAINER_TEAMS_V2_REPORT.md.
+"""Generate plastic_ox/tools/TRAINER_TEAMS_V2_REPORT.md.
 
 The per-area and per-trainer tables are produced from the same model the data
 was generated from (pox_progression + trainer_teams_v2_build.json), so the
@@ -175,11 +175,11 @@ uncommitted as instructed).
 | `plastic_ox/encounter_tables/audit_encounters_v55.py` | Recomputes the effective rate of every Plastic Ox table and diffs it against the v5.5 document |
 | `plastic_ox/encounter_tables/test_pre_mt_moon_v5_5.py` | Regression test for the pre-Mt. Moon block (174 checks) |
 | `plastic_ox/encounter_tables/apply_v55_exact_land_rates.py` | Applies the exact v5.5 authored grass rates |
-| `plastic_ox/agent/pox_progression.py` | Story checkpoints, species availability, evolution legality, tier gating, move legality |
-| `plastic_ox/agent/apply_trainer_teams_v2.py` | The roster table and the `.party` writer |
-| `plastic_ox/agent/test_trainer_teams_v2.py` | Regression test for the rewritten parties (3,403 checks) |
-| `plastic_ox/agent/trainer_teams_v2_build.json` | Machine-readable record of every generated mon |
-| `plastic_ox/agent/trainer_headers_baseline.json` | Pre-overhaul trainer headers, so the test can prove no wiring moved |
+| `plastic_ox/tools/pox_progression.py` | Story checkpoints, species availability, evolution legality, tier gating, move legality |
+| `plastic_ox/tools/apply_trainer_teams_v2.py` | The roster table and the `.party` writer |
+| `plastic_ox/tools/test_trainer_teams_v2.py` | Regression test for the rewritten parties (3,403 checks) |
+| `plastic_ox/tools/trainer_teams_v2_build.json` | Machine-readable record of every generated mon |
+| `plastic_ox/tools/trainer_headers_baseline.json` | Pre-overhaul trainer headers, so the test can prove no wiring moved |
 
 ---
 
@@ -473,10 +473,10 @@ wall.
 | Check | Command | Result |
 |---|---|---|
 | v5.5 encounter regression | `python3 plastic_ox/encounter_tables/test_pre_mt_moon_v5_5.py` | **PASS: 174 checks** |
-| Trainer party regression | `python3 plastic_ox/agent/test_trainer_teams_v2.py` | **PASS: 3,403 checks over 71 trainers** |
-| Generator self-check | `python3 plastic_ox/agent/apply_trainer_teams_v2.py --check` | 0 problems, 71 trainers described |
+| Trainer party regression | `python3 plastic_ox/tools/test_trainer_teams_v2.py` | **PASS: 3,403 checks over 71 trainers** |
+| Generator self-check | `python3 plastic_ox/tools/apply_trainer_teams_v2.py --check` | 0 problems, 71 trainers described |
 | Pre-existing v4.4 test | `python3 plastic_ox/encounter_tables/test_pre_mt_moon_v4_4.py` | still failing — pre-existing, superseded; see 1.6 |
-| ROM build | `DEVKITARM=~/devkitpro/opt/devkitpro/devkitARM make -j8` | **exit 0, no errors.** `trainerproc` regenerated `src/data/trainers.h` cleanly. |
+| ROM build | `make -j8` | **exit 0, no errors.** `trainerproc` regenerated `src/data/trainers.h` cleanly. |
 | ROM size | linker `--print-memory-usage` | {rom_usage()} |
 | EWRAM / IWRAM | — | 226,560 B / 256 KB (86.43%), 28,588 B / 32 KB (87.24%) |
 

@@ -12,7 +12,7 @@
 
 ---
 **Design source:** `plastic_ox/plasticox_encounters_v1.md` ("Evolution Gating", "Special Evolution Handling", "Item Safety Rule") — **now retired**; the shipped tier table in `src/data/pokemon/evolution_tier_gates.h` and this plan are the surviving sources of truth.
-**Research inputs:** `plastic_ox/agent/research_evo_system.md`, `plastic_ox/agent/research_badges_tests.md`
+**Research inputs:** `plastic_ox/archive/agent/research_evo_system.md`, `plastic_ox/archive/agent/research_badges_tests.md`
 **Codebase:** pokeemerald-expansion fork, HEAD `7edb3b9952`. All line numbers verified at that commit.
 
 ---

@@ -11,7 +11,7 @@ rather than of a single warp event:
 * "unexpected auto-teleports": coordinate events and registered map scripts, which
   the Plastic-Ox baseline forbids (see .agents/skills/plastic-ox-map-baseline).
 
-    python3 plastic_ox/agent/warp_extras_static.py --json /tmp/ledges.json
+    python3 plastic_ox/tools/warp_extras_static.py --json /tmp/ledges.json
 """
 import argparse
 import json

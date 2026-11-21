@@ -6,9 +6,9 @@ missing script labels, warps to unknown maps or out-of-range warp ids, unknown
 trainer ids, unknown flags/items in map JSON, and object visibility flags that
 do not exist.
 
-    python3 plastic_ox/agent/check_map_refs.py                 # every Plastic Ox map
-    python3 plastic_ox/agent/check_map_refs.py --map FortreeCity
-    python3 plastic_ox/agent/check_map_refs.py --changed       # git diff maps
+    python3 plastic_ox/tools/check_map_refs.py                 # every Plastic Ox map
+    python3 plastic_ox/tools/check_map_refs.py --map FortreeCity
+    python3 plastic_ox/tools/check_map_refs.py --changed       # git diff maps
 """
 
 from __future__ import annotations

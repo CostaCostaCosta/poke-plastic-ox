@@ -10,8 +10,7 @@ This driver puts the avatar on the surfboard (`PLAYER_AVATAR_FLAG_SURFING`, the
 first byte of `struct PlayerAvatar`) and walks the seam for real, then walks it
 back, so the seam is asserted in-emulator rather than skipped.
 
-    LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 \
-      ~/.venvs/mgba311/bin/python plastic_ox/demo/test_ocean_seams.py
+    plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_ocean_seams.py
 """
 from __future__ import annotations
 
