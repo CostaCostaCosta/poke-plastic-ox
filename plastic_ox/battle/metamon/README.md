@@ -5,11 +5,11 @@ category; battle and summary displays show resolved type/category/power. See
 [implementation and verification](HIDDEN_POWER_V2.md). The small validation
 fine tune has not replaced the production weights.
 
-Current production model (2026-10-07): the pinned 1M T=2 round-4 actor is
-imported, rebuilt and validated in mGBA. See
-[deployment measurements](DEPLOYMENT_T2_R4_20261007.md) for the current artifact,
-timing and integration results. Older prototype measurements below retain
-their original September provenance.
+Current production model (2026-11-17): the Gabby & Ty silph-002 distilled 1M
+student (`r2b-1m-42m` update 30000) is imported, rebuilt and validated in mGBA.
+See [deployment record](DEPLOYMENT_R2B_1M_20261117.md). It replaced the
+2026-10-07 T=2 round-4 actor ([previous record](DEPLOYMENT_T2_R4_20261007.md)).
+Older prototype measurements below retain their original September provenance.
 
 Branch: `codex/metamon-trainer-ai`, based on
 `7e1251b4706dd3011eba44bfbabe619329a9ae63`. Findings measured September 24, 2026.

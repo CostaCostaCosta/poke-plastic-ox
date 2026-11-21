@@ -25,6 +25,7 @@ sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(ROOT / "plastic_ox/wiki"))
 
 import story_notes  # noqa: E402
+import triggers  # noqa: E402
 import build_wiki as wiki  # noqa: E402
 
 FRONT_KEYS = ("title", "slug", "kind", "act", "stage", "depth", "wiki", "maps", "status")
@@ -280,6 +281,12 @@ def main() -> int:
             report.extend(f"  warning {item}" for item in warnings)
         total_errors += len(errors)
         total_warnings += len(warnings)
+
+    unexplained = triggers.audit(notes)
+    if unexplained:
+        total_errors += len(unexplained)
+        report.append(f"\nUnexplained (vestigial?) coord triggers ({len(unexplained)}) — register in triggers.py or remove:")
+        report.extend(f"  ERROR   {item}" for item in unexplained)
 
     if not args.note:
         uncovered_pages = sorted(slug for slug in pages if not any(

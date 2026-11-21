@@ -16,7 +16,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[3]
 sys.path.insert(0, str(ROOT / "plastic_ox/demo"))
 import test_story
-from test_single_player import boot_new_game
+from walklib import boot_test_game as boot_new_game  # names the player P, as StoryGame asserts
 from test_qol import begin_code, opcode
 from walklib import K
 

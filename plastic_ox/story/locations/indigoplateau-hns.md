@@ -7,7 +7,7 @@ stage: "16 — Pokémon League"
 depth: full
 wiki: indigoplateau-hns
 maps: [IndigoPlateau_hns]
-also_maps: [PlasticOx_WallaceRoom, PlasticOx_StevenRoom, PlasticOx_LeagueLanceRoom, PlasticOx_BlueRoom, PlasticOx_BillRoom, PlasticOx_HallOfFame]
+also_maps: [PlasticOx_WallaceRoom, PlasticOx_StevenRoom, PlasticOx_LeagueLanceRoom, PlasticOx_BlueRoom, PlasticOx_BillRoom, PlasticOx_HallOfFame, IndigoPlateau_PokemonCenter_hns]
 flags: [FLAG_POX_LEAGUE_WALLACE, FLAG_POX_LEAGUE_STEVEN, FLAG_POX_LEAGUE_LEAGUELANCE, FLAG_POX_LEAGUE_BLUE, FLAG_POX_LEAGUE_BILL, FLAG_SYS_GAME_CLEAR]
 trainers: [TRAINER_PLASTIC_OX_WALLACE, TRAINER_PLASTIC_OX_STEVEN, TRAINER_PLASTIC_OX_LEAGUELANCE, TRAINER_PLASTIC_OX_BLUE, TRAINER_PLASTIC_OX_BILL]
 items: [ITEM_LEFTOVERS, ITEM_FULL_RESTORE]
@@ -83,7 +83,7 @@ The last dry mile: the player crests the north end of `PlasticOx_VictoryRoad` at
 ## Implementation hooks
 
 - Wiki page: `indigoplateau-hns.html`.
-- Maps: `IndigoPlateau_hns` (`MAP_INDIGO_PLATEAU_HNS`), plus the five rooms and Hall in `also_maps`; the lobby is `IndigoPlateau_PokemonCenter_hns`, which is not listed in the batch's `also_maps`.
+- Maps: `IndigoPlateau_hns` (`MAP_INDIGO_PLATEAU_HNS`), plus the five rooms and Hall in `also_maps`; the lobby `IndigoPlateau_PokemonCenter_hns` (with the `PoxLeague_Entry` trigger) is in `also_maps`.
 - Scripts: `data/scripts/plastic_ox_league.inc` (`PoxLeague_Shortcut`, `PoxLeague_Downhill`, `PoxLeague_Welcome`, `PoxLeague_Entry`, `PoxLeague_Reset`, the four `PoxLeague_*Next` triggers, `PoxLeague_*After`, `PoxLeague_Hall`, `PoxLeague_HallGuide`); `data/maps/IndigoPlateau_hns/scripts.inc`; `data/scripts/plastic_ox_region.inc` (`PoxRegion_Arrival_IndigoPlateau_hns`, `PoxRegion_victory_indigo_a`).
 - Gates: eight `FLAG_BADGE0x_GET` at `PoxLeague_Checkpoint` and again at `PoxLeague_Entry`; forward-only room chain via the five `FLAG_POX_LEAGUE_WALLACE`-style victory flags; `FLAG_SYS_GAME_CLEAR` set by `GameClear` in `PoxLeague_Hall`.
 - Trainers: `TRAINER_PLASTIC_OX_WALLACE` .. `TRAINER_PLASTIC_OX_BILL`, levels 61–64, HP/status/PP carry between matches by design.
@@ -91,7 +91,6 @@ The last dry mile: the player crests the north end of `PlasticOx_VictoryRoad` at
 
 ## Open questions
 
-- Should `IndigoPlateau_PokemonCenter_hns` (the heal/shop/briefing lobby) be added to `also_maps`, or does the lobby belong to a separate note?
 - Does the second Bill in the Hall represent the Champion signing the record, or should the Hall guide be a different body? Two identical sprites in one node is a visible seam.
 - `PoxLeague_Reset` re-arms the whole challenge whenever the lobby loads, so the League is replayable after becoming Champion. Is that the intended rematch loop, or should a cleared save get a shorter challenge?
 - Retire the three unreferenced FRLG Indigo maps (`IndigoPlateau_Exterior_Frlg`, `IndigoPlateau_PokemonCenter_1F_Frlg`, `IndigoPlateau_PokemonCenter_2F_Frlg`), or keep them as donor references? Nothing in `data/` targets them.

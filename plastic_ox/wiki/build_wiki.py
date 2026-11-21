@@ -21,6 +21,7 @@ import npc_roles  # noqa: E402
 import region  # noqa: E402
 import story_notes  # noqa: E402
 import story_render  # noqa: E402
+import triggers  # noqa: E402
 SITE = WIKI / "site"
 MAP_TYPES = {"MAP_TYPE_ROUTE": "Route", "MAP_TYPE_TOWN": "Town", "MAP_TYPE_CITY": "City", "MAP_TYPE_UNDERGROUND": "Cave"}
 ENCOUNTER_FIELDS = ("land_mons", "water_mons", "rock_smash_mons", "fishing_mons", "hidden_mons")
@@ -62,6 +63,7 @@ def source_files() -> list[Path]:
     paths += sorted((ROOT / "data/scripts").glob("*.inc"))
     paths += sorted((ROOT / "data").glob("**/*.s"))
     paths += sorted((ROOT / "plastic_ox/story/locations").glob("*.md"))
+    paths.append(ROOT / "plastic_ox/story/triggers.py")
     paths += [
         ROOT / "plastic_ox/plastic_ox_topology.svg",
         WIKI / "assets/style.css",
@@ -247,7 +249,7 @@ def sidebar(maps: list[dict], current: str = "") -> str:
                 links.append(f'<li><a href="{page_slug(data)}.html"{" aria-current=\"page\"" if data["name"] == current else ""}>{html.escape(title)}</a></li>')
         if links:
             sections.append(f"<h2>{kind}s</h2><ul>{''.join(links)}</ul>")
-    sections.append('<h2>Design</h2><ul><li><a href="region.html">Region map</a></li><li><a href="story.html">Story notes</a></li></ul>')
+    sections.append('<h2>Design</h2><ul><li><a href="region.html">Region map</a></li><li><a href="story.html">Story notes</a></li><li><a href="triggers.html">Triggers</a></li></ul>')
     return "".join(sections)
 
 
@@ -259,6 +261,17 @@ def shell(title: str, body: str, maps: list[dict], current: str = "", head: str 
 <div class="layout"><nav class="sidebar"><a href="index.html">Main page</a>{sidebar(maps, current)}</nav>
 <main class="content">{body}<footer>Automatically generated from the Plastic Ox ROM source. Edit the game data, then rebuild the wiki.</footer></main></div>
 <script src="assets/wiki.js"></script></body></html>'''
+
+
+TRIGGER_HEADERS = ["Map", "Tiles", "Kind", "What it does", "Script", "Fires while"]
+
+
+def trigger_rows(rows: list[dict]) -> list[tuple]:
+    return [
+        (map_title(r["map"]), r["tiles"], r["category"], r["purpose"], r["script"],
+         f'{r["var"]} = {r["value"]}' if r["var"] else "always")
+        for r in rows
+    ]
 
 
 def page_for_map(data: dict, maps: list[dict], blocks: dict[str, str], trainers: dict[str, dict], encounters: dict[str, list[dict]], definitions: dict[str, dict], notes: dict[str, story_notes.Note]) -> str:
@@ -320,6 +333,8 @@ def page_for_map(data: dict, maps: list[dict], blocks: dict[str, str], trainers:
     npc_rows = npc_roles.map_rows(data, blocks, note=note, trainers=trainers)
     key_npcs = [row for row in npc_rows if row["key"]]
     standard_npcs = [row for row in npc_rows if not row["key"]]
+    trig = triggers.note_triggers(note, blocks) if note else triggers.map_triggers(data["name"], blocks)
+    trigger_html = table(TRIGGER_HEADERS, trigger_rows(trig)) if trig else '<p class="empty">No step triggers on this location\'s maps.</p>'
     story_html = story_render.render_story_section(note) if note else story_render.render_missing_section(title, page_slug(data))
     key_npc_html = table(
         ["NPC", "Interaction", "Coordinates", "Current line"],
@@ -344,6 +359,10 @@ def page_for_map(data: dict, maps: list[dict], blocks: dict[str, str], trainers:
 <h2>Pokémon</h2>{''.join(encounter_html)}
 <h2>Trainers</h2>{''.join(trainer_html)}
 <h2>Items</h2>{table(["Item", "Method", "Coordinates"], [(x["item"], x["kind"], x["location"]) for x in items])}
+<h2>Triggers</h2>
+<p class="hint">Step-on coord events across this location's maps, interiors, and story rooms. Every one is listed in
+<code>plastic_ox/story/triggers.py</code>; see <a href="triggers.html">all triggers</a>.</p>
+{trigger_html}
 <h2>Key NPCs</h2>
 <p class="hint">NPCs who act on the player: battles, gifts, trades, shops, gates, scene triggers, or state changes.
 <a href="region.html">See the full region map</a>.</p>
@@ -402,6 +421,21 @@ def build(out: Path, digest: str) -> tuple[int, int, int]:
         1,
     )
     (out / "story.html").write_text(shell("Story notes", story_body, maps), encoding="utf-8")
+    trig_sections = []
+    trig_total = 0
+    for note in sorted(notes, key=lambda n: (n.act, n.title)):
+        rows = triggers.note_triggers(note, blocks)
+        if not rows:
+            continue
+        trig_total += sum(r["count"] for r in rows)
+        page = str(note.meta.get("wiki", ""))
+        head = f'<a href="{html.escape(page)}.html">{html.escape(note.title)}</a>' if page in pages else html.escape(note.title)
+        trig_sections.append(f'<h2>{head} <span class="tag">Act {note.act}</span></h2>' + table(TRIGGER_HEADERS, trigger_rows(rows)))
+    trig_body = (f'<h1>Triggers</h1><p class="lede">Every step-on coord event on a Plastic Ox map: {trig_total} tiles. '
+                 'Region crossings are described from their scripts; every other trigger must be registered in '
+                 '<code>plastic_ox/story/triggers.py</code>, and <code>check_story_notes.py</code> fails on any it cannot explain.</p>'
+                 + "".join(trig_sections))
+    (out / "triggers.html").write_text(shell("Triggers", trig_body, maps), encoding="utf-8")
     region_data = region.build_region_data(notes, blocks, trainers)
     (out / "region.html").write_text(
         shell(

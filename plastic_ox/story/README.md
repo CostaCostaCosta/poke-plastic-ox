@@ -170,6 +170,29 @@ The superagent treats a note as the ticket for a location:
    changed, what was tested in-emulator, what stayed open). The next pass reads
    the previous log instead of rediscovering the map.
 
+### Directing the superagent with beads
+
+Work orders for the superagent are [beads](https://github.com/gastownhall/beads)
+in this checkout's `.beads/`. `beads_direct.py` turns a place into one epic
+(`loc:<slug>`) whose description is this note's grounded brief. The epic's
+children are passes, each labeled `agent`:
+
+```sh
+python3 plastic_ox/story/beads_direct.py direct "Route 36"                  # story, trainers, then verify
+python3 plastic_ox/story/beads_direct.py direct ecruteak --kinds story,map --intent "..."
+python3 plastic_ox/story/beads_direct.py direct --next 3                    # next three unimplemented notes
+python3 plastic_ox/story/beads_direct.py ask lavender "Unique ghost lines per Tower floor"
+python3 plastic_ox/story/beads_direct.py status
+python3 plastic_ox/story/beads_direct.py hold route36    # / release route36
+```
+
+The dsh-superagent beads Source polls `bd ready --label agent`. It opens one
+ticket per ready bead and claims the bead. Progress is posted as bead comments.
+The bead closes when the ticket's PR merges, and that unblocks dependent beads.
+A stopped ticket hands its bead back, labeled `agent-returned`. Comment on a
+bead (`bd comment <id> "..."`) to steer a running ticket. Workers follow
+`.agents/skills/plastic-ox-beads/SKILL.md`.
+
 `next_pass.py` prints step 1 for the next unimplemented note in act order, which
 is how the superagent picks its own work. `gaps_report.py` is the mechanical
 triage view; [`REVIEW_FINDINGS.md`](REVIEW_FINDINGS.md) is the curated list of

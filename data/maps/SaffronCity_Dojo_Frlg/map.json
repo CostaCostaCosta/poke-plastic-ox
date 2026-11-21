@@ -140,26 +140,7 @@
       "dest_warp_id": "2"
     }
   ],
-  "coord_events": [
-    {
-      "type": "trigger",
-      "x": 5,
-      "y": 5,
-      "elevation": 3,
-      "var": "VAR_MAP_SCENE_SAFFRON_CITY_DOJO",
-      "var_value": "0",
-      "script": "SaffronCity_Dojo_EventScript_TriggerMasterBattleLeft"
-    },
-    {
-      "type": "trigger",
-      "x": 7,
-      "y": 5,
-      "elevation": 3,
-      "var": "VAR_MAP_SCENE_SAFFRON_CITY_DOJO",
-      "var_value": "0",
-      "script": "SaffronCity_Dojo_EventScript_TriggerMasterBattleRight"
-    }
-  ],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "sign",

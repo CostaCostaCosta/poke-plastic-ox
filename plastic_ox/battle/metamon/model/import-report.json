@@ -1,6 +1,6 @@
 {
-  "source_sha256": "847189ef2659c07b6efc98920a9b7084319997760ffdbfd16e19e667b7f86cd7",
-  "schema": "dfd5b2755d72052bbcd86cbd97a0c8dff63f6e3c51349e03ca947861bbf864d4",
+  "source_sha256": "77b2f8e712c7fbca7fef6fa4a3f8abe90fc2901191a0077af08a3b5ad2494d61",
+  "schema": "7c511a49e859963942c7fff3e7b3ce6f6a9cfea7e51b62a744f467b00e89d4ea",
   "export_bytes": 1040166,
   "aligned_tensor_bytes": 1038928,
   "parameters": 1011355,

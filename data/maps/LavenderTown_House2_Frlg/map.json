@@ -37,22 +37,22 @@
       "x": 3,
       "y": 7,
       "elevation": 3,
-      "dest_map": "MAP_LAVENDER_TOWN",
-      "dest_warp_id": "4"
+      "dest_map": "MAP_LAVENDER_TOWN_HNS",
+      "dest_warp_id": "3"
     },
     {
       "x": 4,
       "y": 7,
       "elevation": 3,
-      "dest_map": "MAP_LAVENDER_TOWN",
-      "dest_warp_id": "4"
+      "dest_map": "MAP_LAVENDER_TOWN_HNS",
+      "dest_warp_id": "3"
     },
     {
       "x": 5,
       "y": 7,
       "elevation": 3,
-      "dest_map": "MAP_LAVENDER_TOWN",
-      "dest_warp_id": "4"
+      "dest_map": "MAP_LAVENDER_TOWN_HNS",
+      "dest_warp_id": "3"
     }
   ],
   "coord_events": [],

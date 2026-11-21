@@ -73,3 +73,10 @@ __pycache__
 
 # Demo screenshots
 plastic_ox/demo/shots/
+
+# Beads / Dolt files (added by bd init)
+.dolt/
+*.db
+.beads-credential-key
+.beads/proxieddb/
+*.gate.lock*

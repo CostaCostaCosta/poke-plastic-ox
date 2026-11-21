@@ -38,7 +38,7 @@ A fenced east–west road on the outside of Saffron, wide enough for two carts a
 | Lavender crossing | `Route8_Frlg` `(67,20)` | `FLAG_POX_STORY_FUJI` unset | closed text, warp back to `(66,20)` | keep; give the barrier a person, not just text |
 | Saffron crossing | `(8,20)` | `FLAG_POX_STORY_SPACE_CENTER` unset | `PoxRegion_route8_saffron_a` closed text, warp to `(7,20)` | keep the lock; the sign describes a city, not a map name |
 | Underground stair | `(12,17)` | always | warp to `UndergroundPath_EastEntrance_Frlg` | keep |
-| Dead gateway warp | `(9,20)` | always | warp to `Route8_WestEntrance_Frlg`, a legacy FRLG gate the repo's playtest records as unloadable | remove or repoint at the east entrance |
+| Retired gateway warp | `(9,20)` | — | was a warp to the legacy `Route8_WestEntrance_Frlg` gate (vanilla thirsty-guard triggers, exit into `SaffronCity_Frlg`) | removed 2026-11-21 (trigger audit); the `(8,20)` crossing is the only west exit |
 | Underground sign | `(7,19)` object | always | `PoxRegion_route8_saffron_a_Sign`: "SaffronCity / Marked passage ahead." | rewrite in-world: distance, direction, what the queue is for |
 | Lavender sign | `(66,19)` object | always | `PoxRegion_lavender_route8_b_Sign`: "LavenderTown / Marked passage ahead." | same treatment, different wording |
 | Gate-waiters | `(27,8)` Leslie, `(27,12)` Megan | always | both blame "the gates at SAFFRON" | keep the grievance, split the reasons: a delivery, a sister inside |
@@ -84,11 +84,11 @@ A fenced east–west road on the outside of Saffron, wide enough for two carts a
 - Scripts: `data/maps/Route8_Frlg/scripts.inc`, the three `data/maps/UndergroundPath_*/scripts.inc`, generated `data/scripts/plastic_ox_region.inc`, `data/scripts/plastic_ox_tournament.inc`
 - Gates: `FLAG_POX_STORY_FUJI` (east), `FLAG_POX_STORY_SPACE_CENTER` (west), `FLAG_POX_TRIGGERS_ENABLED` (walkable-build bypass inside every portal script)
 - Trainers / items: `TRAINER_PLASTIC_OX_TOURNAMENT_1` is the only battle in the whole bypass; `ITEM_RAWST_BERRY`, `ITEM_LUM_BERRY`, `ITEM_LEPPA_BERRY` hidden on the road; `ITEM_CONTEST_PASS` from round one.
-- Known gaps: the dossier lists 12 `TRAINER_*` parties but every object is a plain NPC and the generated `Route8_EventScript_*` wrappers only print post-battle text — the battle bodies sit inside `.if IS_FRLG` blocks in `data/scripts/trainers_frlg.inc` and are compiled out, so the route has **zero trainer battles**; warp `(9,20)` still targets the unloadable `Route8_WestEntrance_Frlg`; both signs are generated map-name placeholders and the tunnel sign still reads "CELADON CITY - LAVENDER TOWN"; two entrance NPCs speak vanilla Celadon text; the tunnel's seven hidden items are all low-tier heals, which leaves the long walk unrewarded; `LavenderTown_Frlg`, `SaffronCity_Frlg` and `SaffronCity_Connection_Frlg` all still hold one-way connections into this map while the live route holds none.
+- Known gaps: the dossier lists 12 `TRAINER_*` parties but every object is a plain NPC and the generated `Route8_EventScript_*` wrappers only print post-battle text — the battle bodies sit inside `.if IS_FRLG` blocks in `data/scripts/trainers_frlg.inc` and are compiled out, so the route has **zero trainer battles**; both signs are generated map-name placeholders and the tunnel sign still reads "CELADON CITY - LAVENDER TOWN"; two entrance NPCs speak vanilla Celadon text; the tunnel's seven hidden items are all low-tier heals, which leaves the long walk unrewarded; `LavenderTown_Frlg`, `SaffronCity_Frlg` and `SaffronCity_Connection_Frlg` all still hold one-way connections into this map while the live route holds none.
 
 ## Open questions
 
 - Restore the twelve FRLG battles at act-3 levels, or keep Route 8 quiet and let the tunnel be the only combat? Right now it is neither: parties exist, nobody fights.
-- Retire `Route8_WestEntrance_Frlg` and the dangling legacy connections, or repoint them? Recommend retire — they are reachable only through the broken `(9,20)` warp.
+- The `(9,20)` warp into `Route8_WestEntrance_Frlg` was removed in the 2026-11-21 trigger audit. Retire the dangling legacy connections too?
 - Should the tournament stay in a public tunnel, or move to a dedicated facility once the underground stops being the main road?
 - Route 8 still rolls FireRed/LeafGreen wild encounters (Pidgey, Meowth, Growlithe or Vulpix, Ekans or Sandshrew, Lv 15–20). Keep as road texture, or retune for an act-3 party?

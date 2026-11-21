@@ -7,7 +7,7 @@ stage: "10 — Saffron hub"
 depth: full
 wiki: saffroncity-hns
 maps: [SaffronCity_hns]
-also_maps: [PlasticOx_BrunoGym, PlasticOx_Silph, SaffronCity_Dojo_Frlg]
+also_maps: [PlasticOx_BrunoGym, PlasticOx_Silph]
 flags: [FLAG_POX_STORY_SPACE_CENTER, FLAG_POX_STORY_SILPH, FLAG_POX_HIDE_SILPH_GRUNT_1, FLAG_POX_HIDE_SILPH_GRUNT_2, FLAG_POX_HIDE_SILPH_GRUNT_3, FLAG_POX_HIDE_SILPH_GIOVANNI]
 badges: [7]
 trainers: [TRAINER_PLASTIC_OX_BRUNO, TRAINER_PLASTIC_OX_SILPHGRUNT1, TRAINER_PLASTIC_OX_SILPHGRUNT2, TRAINER_PLASTIC_OX_SILPHGRUNT3, TRAINER_PLASTIC_OX_GIOVANNI]
@@ -49,7 +49,7 @@ A grey, dense city centre that has been shut for most of the game and now stands
 | Giovanni | `PlasticOx_Silph` `(7,9)` | after grunt 3 | "We did not make this world… the old man's research… Stand aside!" | keep the denial; resolve who "the old man" is (Fuji's archives) or cut the phrase |
 | Silph core | `PlasticOx_Silph` `(5,2)` | after Giovanni; `FLAG_POX_STORY_SILPH` | terminal text naming the ADAPTIVE TRAINER SYSTEM, its battle profiles and objective; player isolates the environmental controls | keep the reveal; it is step 14 and the only place the system is named |
 | Silph exit | `PlasticOx_Silph` `(4,9)` | always | warps to Saffron `(26,16)` | keep |
-| Legacy Dojo | `SaffronCity_Dojo_Frlg` | — | vanilla FRLG Dojo: Koichi, five Black Belts, Hitmonlee/Hitmonchan gift balls, door warps to `MAP_SAFFRON_CITY` | unreachable — no warp or script enters it; recommend retire (see Open questions) |
+| Legacy Dojo | `SaffronCity_Dojo_Frlg` | — | vanilla FRLG Dojo: Koichi, five Black Belts, Hitmonlee/Hitmonchan gift balls, door warps to `MAP_SAFFRON_CITY` | **retired 2026-11-21** (trigger audit): no warp or script enters it, its two master-battle coord triggers were removed, and it is no longer claimed by this note |
 
 ## Dialogue guidance
 
@@ -83,15 +83,15 @@ A grey, dense city centre that has been shut for most of the game and now stands
 ## Implementation hooks
 
 - Wiki page: `saffroncity-hns.html`
-- Maps: `SaffronCity_hns` (`MAP_SAFFRON_CITY_HNS`, layout `LAYOUT_SAFFRON_CITY_HNS`, 66×55), `PlasticOx_BrunoGym` (`MAP_PLASTIC_OX_BRUNO_GYM`, borrowing `LAYOUT_RUSTBORO_CITY_GYM`), `PlasticOx_Silph` (`MAP_PLASTIC_OX_SILPH`, borrowing `LAYOUT_MOSSDEEP_CITY_SPACE_CENTER_1F`), `SaffronCity_Dojo_Frlg` (`MAP_SAFFRON_CITY_DOJO`)
+- Maps: `SaffronCity_hns` (`MAP_SAFFRON_CITY_HNS`, layout `LAYOUT_SAFFRON_CITY_HNS`, 66×55), `PlasticOx_BrunoGym` (`MAP_PLASTIC_OX_BRUNO_GYM`, borrowing `LAYOUT_RUSTBORO_CITY_GYM`), `PlasticOx_Silph` (`MAP_PLASTIC_OX_SILPH`, borrowing `LAYOUT_MOSSDEEP_CITY_SPACE_CENTER_1F`)
 - Scripts: `data/scripts/plastic_ox_story.inc` (`Pox_Bruno`, `Pox_BrunoGuide`, `Pox_BrunoGymExit`, `Pox_SilphGrunt1`–`3`, `Pox_Giovanni`, `Pox_SilphCore`, `Pox_SilphGuide`, `Pox_SilphExit`, `Pox_BlackthornRoad`), `data/scripts/plastic_ox_region.inc` (the four edge crossings and three sign texts), `data/maps/SaffronCity_hns/scripts.inc`, `data/maps/PlasticOx_BrunoGym/scripts.inc`
 - Gates: `FLAG_POX_STORY_SPACE_CENTER` (city and all four edges), `FLAG_POX_STORY_SILPH`, the four Silph hide flags, `FLAG_BADGE06_GET` (Bruno's prerequisite in `Pox_Bruno`), `FLAG_BADGE07_GET` (awarded)
 - Trainers / items: `TRAINER_PLASTIC_OX_BRUNO` (OU, Lv. 48–50), the three `TRAINER_PLASTIC_OX_SILPHGRUNT1`, `TRAINER_PLASTIC_OX_SILPHGRUNT2` and `TRAINER_PLASTIC_OX_SILPHGRUNT3`, `TRAINER_PLASTIC_OX_GIOVANNI` (Lv. 53–55). No items are given in the city; the legacy Dojo's Hitmonlee/Hitmonchan gift belongs to a map that cannot be reached.
-- Known gaps: **no Pokémon Center** anywhere in Saffron (one mart warp only), so a hub city cannot heal; both objective buildings have **zero warps** and are entered by scripted transport from a guide NPC, so the doors are decorative; `PlasticOx_BrunoGym` reuses Rustboro's Gym interior and `PlasticOx_Silph` reuses Mossdeep Space Center 1F, so the "tower climb" is a single room with four NPCs in a 2×2 cluster; all three grunt battles share one line; `SaffronCity_EventScript_Npc1`–`Npc3` are dead; six street NPCs share two lines; every sign is doubled as object plus background event; `SaffronCity_Dojo_Frlg` is a fully-populated vanilla Dojo (Koichi, five Black Belts, two gift balls) with no inbound warp — unreachable duplicate content; `CheckSaffronGymOURules` is a stub and its greeter script has no object.
+- Known gaps: **no Pokémon Center** anywhere in Saffron (one mart warp only), so a hub city cannot heal; both objective buildings have **zero warps** and are entered by scripted transport from a guide NPC, so the doors are decorative; `PlasticOx_BrunoGym` reuses Rustboro's Gym interior and `PlasticOx_Silph` reuses Mossdeep Space Center 1F, so the "tower climb" is a single room with four NPCs in a 2×2 cluster; all three grunt battles share one line; `SaffronCity_EventScript_Npc1`–`Npc3` are dead; six street NPCs share two lines; every sign is doubled as object plus background event; `CheckSaffronGymOURules` is a stub and its greeter script has no object.
 
 ## Open questions
 
-- Retire `SaffronCity_Dojo_Frlg`? It duplicates Gym 7 with vanilla Black Belts and an unreachable Hitmon gift. Recommend retire or convert it into the Dojo's back room with no battles.
+- `SaffronCity_Dojo_Frlg` was retired in the 2026-11-21 trigger audit. Bring it back as the Dojo's back room (no battles), or leave it retired?
 - Should the Dojo and Silph get real door warps instead of guide-initiated teleports, and what happens to the three guide NPCs then?
 - Keep the single-room Silph, or build a short multi-floor climb? The bible wants a climax, not a maze, but one room with four NPCs undersells Rocket's last stand.
 - Where does Saffron's healing go — a Pokémon Center interior, a nurse placed in the mart, or a rest house attached to the Dojo?

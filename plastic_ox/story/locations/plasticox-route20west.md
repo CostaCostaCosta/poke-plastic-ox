@@ -7,6 +7,7 @@ stage: "9 — Cinnabar and the Mansion"
 depth: full
 wiki: plasticox-route20west
 maps: [PlasticOx_Route20West]
+also_maps: [SeafoamIslands_1F_Frlg, SeafoamIslands_B1F_Frlg, SeafoamIslands_B2F_Frlg, SeafoamIslands_B3F_Frlg, SeafoamIslands_B4F_Frlg]
 flags: [FLAG_POX_STORY_MANSION, FLAG_POX_TRIGGERS_ENABLED, FLAG_POX_STOPPED_SEAFOAM_B3F_CURRENT, FLAG_POX_STOPPED_SEAFOAM_B4F_CURRENT]
 status: drafted
 ---
