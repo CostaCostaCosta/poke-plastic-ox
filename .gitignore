@@ -44,7 +44,6 @@ prefabs.json
 *.js
 # Wiki JavaScript assets are tracked despite the top-level *.js rule.
 !plastic_ox/wiki/assets/*.js
-!plastic_ox/wiki/site/assets/*.js
 !plastic_ox/wiki/editor/static/*.js
 /pokeemerald-*.png
 /pokefirered-*.png
@@ -80,4 +79,12 @@ plastic_ox/demo/shots/
 .beads-credential-key
 .beads/proxieddb/
 *.gate.lock*
-.claude/
+.claude/*
+!.claude/skills
+
+# Plastic Ox generated / local-only output
+plastic_ox/wiki/site/
+plastic_ox/demo/logs/
+plastic_ox/**/*.log
+plastic_ox/**/warp_playtest_*.json
+plastic_ox/bin/pox-env.local.sh

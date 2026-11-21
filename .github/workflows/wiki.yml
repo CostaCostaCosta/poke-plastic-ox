@@ -3,19 +3,21 @@ name: Plastic Ox wiki and story notes
 on:
   push:
     paths:
-      - "plastic_ox/story/**"
-      - "plastic_ox/wiki/**"
+      - "plastic_ox/**"
+      - ".agents/**"
       - "data/maps/**"
       - "data/scripts/**"
       - "src/data/**"
+      - "include/constants/**"
       - ".github/workflows/wiki.yml"
   pull_request:
     paths:
-      - "plastic_ox/story/**"
-      - "plastic_ox/wiki/**"
+      - "plastic_ox/**"
+      - ".agents/**"
       - "data/maps/**"
       - "data/scripts/**"
       - "src/data/**"
+      - "include/constants/**"
 
 jobs:
   wiki:
@@ -25,9 +27,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Story-note parser tests
-        run: python3 plastic_ox/story/test_story_notes.py
-      - name: Validate story notes
-        run: python3 plastic_ox/story/check_story_notes.py
-      - name: Check generated wiki is current
-        run: python3 plastic_ox/wiki/build_wiki.py --check
+      - name: Static Plastic Ox checks (no ROM build needed)
+        run: make -f plastic_ox/pox.mk pox-check-static POX_CI=1
+      - name: Build wiki
+        run: python3 plastic_ox/wiki/build_wiki.py
+      - name: Upload wiki
+        uses: actions/upload-artifact@v4
+        with:
+          name: plastic-ox-wiki
+          path: plastic_ox/wiki/site
+          retention-days: 30
