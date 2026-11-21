@@ -38,10 +38,11 @@ the PR description and in your final report. The director turns it into beads.
    - *Story & dialogue pass*: `plastic-ox-story-dialogue`
    - *Connections, warps & gates*: `plastic-ox-map-port` and `plastic-ox-map-baseline`
    - anything that deletes maps or assets: `plastic-ox-artifact-cleanup`
-   - *Trainer & encounter pacing*: `plastic_ox/agent/ROUTE_TRAINER_PACING.md`
+   - *Trainer & encounter pacing*: `plastic_ox/tools/ROUTE_TRAINER_PACING.md`
      and the tier notes in `plastic_ox/encounter_tables/`
-5. Read `plastic_ox/agent/STORY_PASS_PRIME_PROMPT.md` for the house rules. Find
-   the toolchain path for this machine there; it is not on `PATH`.
+5. Read `AGENTS.md` at the repo root for the house rules and commands. Build with
+   `make pox-build` (it sources `plastic_ox/bin/pox-env.sh`; the toolchain is not
+   on `PATH`).
 
 ## Scope
 
@@ -55,8 +56,9 @@ unless a decision would change another location's story.
 Meet every acceptance criterion in the bead. Then:
 
 - `python3 plastic_ox/story/check_story_notes.py --note <slug>` and
-  `python3 plastic_ox/wiki/build_wiki.py --check` pass;
-- the ROM builds with zero errors;
+  `make pox-check-static` pass;
+- `make pox-build` succeeds with zero errors, and the emulator harnesses for
+  your maps pass (`make pox-check-emu TESTS="..."`);
 - write or append the run log at `plastic_ox/story/runs/<date>-<slug>.md`;
 - open the PR from your ticket branch. Its title starts with the bead id, for
   example `pox-nkm.1: Route 36 story & dialogue pass`. Its body has a

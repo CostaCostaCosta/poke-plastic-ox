@@ -25,8 +25,8 @@ grounded work order (maps, NPC counts, flags, voice seed, open questions).
    acceptance table.
 4. `python3 plastic_ox/story/story_context.py <slug>` — live objects, current
    text, trainers, items, flags, and connections for every map the note owns.
-5. `plastic_ox/agent/STORY_PASS_PRIME_PROMPT.md` — environment facts and the
-   house rules for a story pass (build command, mGBA harnesses, HNS rules).
+5. `AGENTS.md` at the repo root — environment, build/check commands, and the
+   house rules for every pass (generated files, HNS rules, dialogue rules).
 
 ## Implement
 
@@ -40,7 +40,7 @@ grounded work order (maps, NPC counts, flags, voice seed, open questions).
   and the POX flag header. Never reuse or renumber retired ids.
 - HNS maps keep `"layout_version": "hns"` and `["emerald"]` inclusion.
 - Generated content is regenerated: `rm -f .map_version && make generated`
-  after map JSON or script edits, then rebuild with the devkitARM on PATH.
+  after map JSON or script edits, then rebuild with `make pox-build`.
 
 ## Dialogue rules
 
@@ -59,17 +59,17 @@ grounded work order (maps, NPC counts, flags, voice seed, open questions).
 
 ## Verify
 
-1. Rebuild with zero errors.
-2. Walk the map in mGBA (`~/.venvs/mgba311/bin/python`, harnesses under
-   `plastic_ox/demo/`), talk to every NPC, read every sign, and exercise both
+1. `make pox-build` with zero errors.
+2. Walk the map in mGBA (`make pox-check-emu TESTS="test_<area>"`; see the
+   `plastic-ox-emulator-test` skill to add a harness), talk to every NPC, read every sign, and exercise both
    states of any gate.
 3. Diff all dialogue strings for duplicates; the same line twice is a bug even
    if the validator passes.
-4. Run the regression suites named in `STORY_PASS_PRIME_PROMPT.md`, and
+4. Run `make pox-check-static` and
    `python3 plastic_ox/story/check_story_notes.py --note <slug>`.
 5. Update the note: set `status: implemented`, make **Key interactions** match
    what shipped, and resolve **Open questions** that the pass answered. Then
-   run `python3 plastic_ox/wiki/build_wiki.py --check`.
+   rerun `make pox-check-static`.
 
 Leave unrelated dirty work untouched. Write the pass log at
 `plastic_ox/story/runs/<date>-<slug>.md`, then report the note slug, maps

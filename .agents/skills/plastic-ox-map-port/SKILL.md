@@ -11,8 +11,7 @@ connections, encounters, and runtime transitions explicit in Plastic-Ox.
 
 ## Establish the port
 
-Work in `/home/eddie/repos/poke-plastic-ox` unless the user supplies another
-checkout. Record the source checkout/revision, source map/layout, destination
+Work from the repository root. Record the source checkout/revision, source map/layout, destination
 map group, intended ports, tilesets, event policy, encounter source, and exact
 verification commands. Inspect dirty files before editing and preserve
 unrelated changes.
@@ -31,8 +30,7 @@ shifts secondary IDs by 128 and corrupts visuals, collision, and VRAM copies.
 Run the deterministic audit before and after edits:
 
 ```sh
-python3 /home/eddie/.codex/skills/plastic-ox-map-port/scripts/audit_imports.py \
-  /home/eddie/repos/poke-plastic-ox
+python3 .agents/skills/plastic-ox-map-port/scripts/audit_imports.py .
 ```
 
 ## Convert and connect
@@ -40,7 +38,7 @@ python3 /home/eddie/.codex/skills/plastic-ox-map-port/scripts/audit_imports.py \
 Use the destination layout's own primary and secondary tilesets together.
 Copy blockmaps only with their matching tileset graphics, metatiles,
 attributes, palettes, and animations. Remap behavior enums by name with
-`plastic_ox/agent/remap_metatile_behaviors.py`; numeric behavior IDs are not
+`plastic_ox/tools/remap_metatile_behaviors.py`; numeric behavior IDs are not
 portable across forks.
 
 Keep generated files generated. Update `data/layouts/layouts.json`, map JSON,

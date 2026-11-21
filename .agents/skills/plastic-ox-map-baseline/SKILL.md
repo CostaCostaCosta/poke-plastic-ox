@@ -13,13 +13,12 @@ coordinate event whose script happens to call `warp`.
 
 ## Audit the target
 
-Work in `/home/eddie/repos/poke-plastic-ox`. Inspect `git status` first and
+Work from the repository root (see `AGENTS.md`). Inspect `git status` first and
 preserve unrelated work. Run the repository import audit, then inventory each
 target map:
 
 ```sh
-python3 /home/eddie/.codex/skills/plastic-ox-map-port/scripts/audit_imports.py \
-  /home/eddie/repos/poke-plastic-ox
+python3 .agents/skills/plastic-ox-map-port/scripts/audit_imports.py .
 python3 .agents/skills/plastic-ox-map-baseline/scripts/audit_map_baseline.py \
   data/maps/MapName
 ```
@@ -51,8 +50,8 @@ registered map scripts remain.
 
 ## Verify
 
-Validate JSON, run the deterministic import audit again, build the ROM with the
-configured devkitARM command, and walk/smoke-test every retained entry and exit
+Validate JSON, run the deterministic import audit again, build the ROM with
+`make pox-build`, run `make pox-check-static`, and walk/smoke-test every retained entry and exit
 in both directions. Walk across each former trigger square and confirm it is
 ordinary terrain. Confirm preserved NPCs, trainers, items, and signs still
 interact, and review the diff to ensure no unrelated event category changed.
