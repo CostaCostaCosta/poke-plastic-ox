@@ -700,6 +700,10 @@ def main() -> int:
     parser.add_argument("--open", action="store_true", help="open the editor in the default browser")
     args = parser.parse_args()
 
+    if not SITE.exists():  # the generated site is not tracked in git
+        print("building the wiki first (plastic_ox/wiki/site/ is generated, not tracked)")
+        subprocess.run([sys.executable, str(WIKI_DIR / "build_wiki.py")], check=True)
+
     app = EditorApp()
     try:
         server = create_server(app, args.host, args.port)

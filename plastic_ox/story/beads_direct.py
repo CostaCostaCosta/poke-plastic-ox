@@ -69,7 +69,7 @@ KINDS: dict[str, dict[str, str]] = {
         "title": "Trainer & encounter pacing",
         "brief": (
             "Check the trainers and wild encounters on {title} against the progression stage ({stage}): "
-            "`plastic_ox/agent/ROUTE_TRAINER_PACING.md`, the tier rules in `plastic_ox/story/locations/{slug}.md`, "
+            "`plastic_ox/tools/ROUTE_TRAINER_PACING.md`, the tier rules in `plastic_ox/story/locations/{slug}.md`, "
             "and the encounter tables under `plastic_ox/encounter_tables/`. Fix levels, tiers and parties in "
             "`src/data/trainers.party` and the map's encounters; trainers named in the note must exist and fight."
         ),
@@ -85,7 +85,7 @@ KINDS: dict[str, dict[str, str]] = {
         "brief": (
             "Audit {title}'s maps ({maps}) for connections, warps and story gates against "
             "`plastic_ox/plastic_ox_map_v7.md` and the note's Implementation hooks. Use "
-            "`plastic_ox/agent/audit_warp_connections.py` and `check_map_refs.py`. A visible lock must say when it opens."
+            "`plastic_ox/tools/audit_warp_connections.py` and `check_map_refs.py`. A visible lock must say when it opens."
         ),
         "accept": (
             "- every warp/connection on the maps lands on a walkable tile in the intended map\n"

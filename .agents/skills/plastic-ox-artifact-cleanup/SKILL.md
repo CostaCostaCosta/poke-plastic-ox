@@ -5,8 +5,8 @@ description: Audit or remove retained donor maps, unused story scripts, and obso
 
 # Plastic Ox artifact cleanup
 
-Work in `/home/eddie/repos/poke-plastic-ox`. Read the paired [cleanup inventory](../../../plastic_ox/artifact_cleanup.md).
-Run `python3 plastic_ox/agent/audit_cleanup_artifacts.py` for fresh JSON triage.
+Work from the repository root (see `AGENTS.md`). Read the paired [cleanup inventory](../../../plastic_ox/artifact_cleanup.md).
+Run `python3 plastic_ox/tools/audit_cleanup_artifacts.py` for fresh JSON triage.
 The inventory is a dated snapshot, not an automatic deletion allowlist.
 
 ## Establish actual use
@@ -46,9 +46,9 @@ can renumber subsequent maps. Stub/tombstone maps may be preferable to deletion.
 ## Verify and maintain the inventory
 
 Rerun the audit and inspect the affected graph and references. Use
-`git diff --check` and `python3 plastic_ox/alpha/build_story.py --check` for
-source changes, distinguishing existing drift from new regressions. For ROM
-changes, follow the `pokeemerald-build` skill and run relevant story/league or
-map-travel checks. For documentation-only work, validate links and the skill;
+`git diff --check` and `python3 plastic_ox/tools/check_generated.py` for
+source changes (it separates baselined drift from new regressions). For ROM
+changes, run `make pox-build`, `make pox-check-static`, and the relevant
+story/league or map-travel harnesses via `make pox-check-emu TESTS="..."`. For documentation-only work, validate links and the skill;
 a ROM rebuild is unnecessary. Update the paired inventory with what was
 removed, what remains, dependency evidence, and the checks actually performed.

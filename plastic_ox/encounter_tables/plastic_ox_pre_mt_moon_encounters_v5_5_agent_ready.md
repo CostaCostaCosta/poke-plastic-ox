@@ -1,6 +1,6 @@
 # Pokémon Plastic Ox — Pre–Mt. Moon Encounters v5.5
 
-> **Amended by the follow-up run** (`plastic_ox/agent/ENCOUNTER_FOLLOWUPS_V2_REPORT.md`).
+> **Amended by the follow-up run** (`plastic_ox/archive/agent/ENCOUNTER_FOLLOWUPS_V2_REPORT.md`).
 > The changes are: Ilex Forest is a full eighth fishing area; the Good Rod has a
 > uniform level-10 floor; the rod award timings are recorded below; and the five
 > Headbutt areas that had no tree object (Route 29, Route 46, Route 44, Route 24,

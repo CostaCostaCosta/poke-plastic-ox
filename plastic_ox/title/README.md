@@ -13,7 +13,7 @@ external image library is needed to regenerate the landscape source:
 
 ```
 python3 plastic_ox/title/generate_art.py
-make -j8 TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM modern
+make -j8 modern
 ```
 
 Implementation: `src/plastic_ox_title.c`; generated art:

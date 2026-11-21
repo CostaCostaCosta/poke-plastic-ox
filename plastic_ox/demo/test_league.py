@@ -77,7 +77,7 @@ def static():
         assert (o['x'],o['y']) in c,o
     assert len([o for o in g.data['object_events'] if o['trainer_type']=='TRAINER_TYPE_NORMAL'])==6
     assert sum(g.tile(x,y)[2]=='MB_TALL_GRASS' for x,y in c)>50
-    sys.path.insert(0,str(ROOT/'plastic_ox/agent'))
+    sys.path.insert(0,str(ROOT/'plastic_ox/tools'))
     from test_trainer_teams_v2 import parse,parse_mon
     from apply_trainer_teams_v2 import ROSTERS
     import pox_progression as P
@@ -159,7 +159,7 @@ def start_battle(g,n,xy=(6,5)):
     assert g.u8(g.syms['gPartiesCount']+1)==6,(n,'enemy count')
     tid='TRAINER_PLASTIC_OX_'+n.upper()
     assert g.u16(g.syms['gTrainerBattleParameter']+2)==g.const(tid),(n,'wrong trainer')
-    sys.path.insert(0,str(ROOT/'plastic_ox/agent'))
+    sys.path.insert(0,str(ROOT/'plastic_ox/tools'))
     from test_trainer_teams_v2 import parse,parse_mon
     from test_sudowoodo_v1 import const
     blocks=parse((ROOT/'plastic_ox/alpha/league/trainers.party').read_text())

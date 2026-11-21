@@ -50,7 +50,7 @@ A river gorge climbing through wet forest, crossed by three wooden decks, with a
 
 ## Project Equilibrium teams (ADV RU, `fortree` checkpoint, cap 36)
 
-Authored in `src/data/trainers.party` and listed in `KEEP_AS_IS` in `plastic_ox/agent/apply_trainer_teams_v2.py`; `plastic_ox/demo/test_weather_institute.py --static` re-checks species availability, level range, species clause, no hidden abilities, and every move against the ROM learnsets.
+Authored in `src/data/trainers.party` and listed in `KEEP_AS_IS` in `plastic_ox/tools/apply_trainer_teams_v2.py`; `plastic_ox/demo/test_weather_institute.py --static` re-checks species availability, level range, species clause, no hidden abilities, and every move against the ROM learnsets.
 
 - **LINDEN (Devon, rain):** Politoed 34 (Rain Dance lead), Lombre 33, Huntail 33, Raichu 34 (rain Thunder), Sharpedo 33, Kabutops 36 (Swords Dance Swift Swim ace).
 - **VALE (Silph, sun):** Castform 34 (Sunny Day / Weather Ball lead), Victreebel 34 (Chlorophyll), Ninetales 36, Metang 34, Magnemite 33, Xatu 35 (Calm Mind / Future Sight — the "prediction" mon).

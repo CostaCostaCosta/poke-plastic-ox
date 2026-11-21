@@ -60,7 +60,7 @@ preserves the Sage's authored team.
 ## Import provenance
 
 The Sage overworld sprite, palette, battle portrait and portrait palette come
-from `/home/eddie/repos/pokehns-expansion`, revision
+from `$POX_HNS_DONOR` (pokehns-expansion), revision
 `44f50eedefe58691b0444973e4138e9190d8fafc`:
 
 - `graphics/object_events/pics/people/sage_hns.png` (144x32; nine 16x32 frames)
@@ -77,13 +77,11 @@ Mansion map group/layout registrations and paired tilesets remain in use.
 ## Verification
 
 ```sh
-PATH=/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin:$PATH \
-  make -j8 TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM modern
+make -j8 modern
 python3 plastic_ox/alpha/audit_alpha.py
-python3 /home/eddie/.codex/skills/plastic-ox-map-port/scripts/audit_imports.py .
-python3 plastic_ox/agent/test_trainer_teams_v2.py
-LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 \
-  /home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_cinnabar.py
+python3 .agents/skills/plastic-ox-map-port/scripts/audit_imports.py .
+python3 plastic_ox/tools/test_trainer_teams_v2.py
+plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_cinnabar.py
 git diff --check
 ```
 

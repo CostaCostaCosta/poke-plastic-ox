@@ -10,6 +10,7 @@ import argparse
 import json
 from pathlib import Path
 import re
+import os
 import subprocess
 import struct
 import sys
@@ -19,7 +20,7 @@ from walklib import GBA, K, assert_test_player, boot_test_game
 from walk_leg1 import find_path_elev, navigate
 
 ROOT = Path(__file__).resolve().parents[2]
-NM = '/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin/arm-none-eabi-nm'
+NM = os.path.join(os.environ.get('DEVKITARM', os.path.expanduser('~/devkitpro/opt/devkitpro/devkitARM')), 'bin/arm-none-eabi-nm')
 
 
 class StoryGame(GBA):

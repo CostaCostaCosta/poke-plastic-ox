@@ -7,8 +7,7 @@ Goldenrod Gym doors, Ecruteak's east road, Victory Road's return band, and the
 Fortree Kecleon roadblock.
 
 Run with the mGBA venv:
-  LD_LIBRARY_PATH=~/.venvs/mgba311/lib:~/.venvs/mgba311/lib64 \
-    ~/.venvs/mgba311/bin/python plastic_ox/demo/test_review_fixes.py
+  plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_review_fixes.py
 """
 
 from __future__ import annotations

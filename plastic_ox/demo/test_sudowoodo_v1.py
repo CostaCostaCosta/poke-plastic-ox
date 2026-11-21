@@ -17,7 +17,7 @@ Scenarios (numbered to match SUDOWOODO_PLAYTEST_V1_REPORT.md):
   9  6-mon party + all eight badges -> still a plain wild battle
  10  control: the same B-button measurement on a vanilla YES/NO dialog
 
-Run:  ~/.venvs/mgba311/bin/python plastic_ox/demo/test_sudowoodo_v1.py [1..10]
+Run:  plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_sudowoodo_v1.py [1..10]
 Results are written to plastic_ox/demo/sudowoodo_results.json.
 """
 import json

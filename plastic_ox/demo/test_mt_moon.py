@@ -9,7 +9,7 @@ from walklib import K, DIRKEY
 sys.path.insert(0, str(ROOT/'plastic_ox/alpha'))
 from region_geometry import Geometry
 from mt_moon import FLOORS, BASE
-sys.path.insert(0, str(ROOT/'plastic_ox/agent'))
+sys.path.insert(0, str(ROOT/'plastic_ox/tools'))
 from apply_trainer_teams_v2 import expected_party_size, ROSTERS
 
 GROUPS = json.loads((ROOT/'data/maps/map_groups.json').read_text())

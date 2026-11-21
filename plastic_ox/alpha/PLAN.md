@@ -2,7 +2,7 @@
 
 Updated: 2026-09-12. Status: M0/M1 foundation work in progress; see the
 implementation record below. The full physical v7 migration is still pending.
-This replaces the old wave plan, preserved in [LEGACY_PLAN.md](LEGACY_PLAN.md).
+This replaces the old wave plan, preserved in [LEGACY_PLAN.md](../archive/alpha/LEGACY_PLAN.md).
 
 ## Sources and scope
 
@@ -11,7 +11,7 @@ This replaces the old wave plan, preserved in [LEGACY_PLAN.md](LEGACY_PLAN.md).
 - [Topology SVG](../plastic_ox_topology.svg): physical arrangement and route modules.
 - [REGION_PLAN.md](REGION_PLAN.md): target legs, candidate assets, and old links to retire.
 - [STORY_TRIGGERS.md](STORY_TRIGGERS.md): target event order and persistent gate conditions.
-- [Encounter specification](../encounter_tables/plastic_ox_pre_mt_moon_encounters_v5_5_agent_ready.md): the authoritative area tables. Tier availability, level caps and evolution gating now live in `src/data/pokemon/evolution_tier_gates.h` (engine source of truth) and [plasticox_evolution_gating_plan_v1.md](../agent/plasticox_evolution_gating_plan_v1.md) (design); the old `plasticox_encounters_v1.md` master document has been retired.
+- [Encounter specification](../encounter_tables/plastic_ox_pre_mt_moon_encounters_v5_5_agent_ready.md): the authoritative area tables. Tier availability, level caps and evolution gating now live in `src/data/pokemon/evolution_tier_gates.h` (engine source of truth) and [plasticox_evolution_gating_plan_v1.md](../docs/plasticox_evolution_gating_plan_v1.md) (design); the old `plasticox_encounters_v1.md` master document has been retired.
 
 Implement the full main journey through Champion Bill, the four major traversal
 unlocks, and a working Champion-only Lavender harbor/Frontier connection. Full
@@ -26,7 +26,7 @@ pass does not prove story gating.
 
 ## Baseline established on 2026-09-12
 
-- The previous [region notes](LEGACY_REGION_PLAN.md) mix sketches and historical
+- The previous [region notes](../archive/alpha/LEGACY_REGION_PLAN.md) mix sketches and historical
   shipped substitutions. Current map JSON and scripts determine actual behavior.
 - `build_story.py --check` passes: 94 events, 28 trainers, 18 rooms. This proves
   generator consistency, not v7 compliance.
@@ -139,18 +139,15 @@ Baseline checks performed for this documentation change:
 
 ```sh
 python3 plastic_ox/alpha/build_story.py --check
-python3 /home/eddie/.codex/skills/plastic-ox-map-port/scripts/audit_imports.py /home/eddie/repos/poke-plastic-ox
+python3 .agents/skills/plastic-ox-map-port/scripts/audit_imports.py .
 ```
 
 For implementation, build the normal ROM and optional battle demo sequentially with the configured toolchain:
 
 ```sh
-export PATH=/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin:$PATH
-export CPATH=/home/eddie/toolchains/hostlibs/usr/include
-export LIBRARY_PATH=/home/eddie/toolchains/hostlibs/usr/lib/x86_64-linux-gnu
-export PKG_CONFIG_PATH=/home/eddie/toolchains/hostlibs/usr/lib/x86_64-linux-gnu/pkgconfig
-make -j8 TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM modern
-make -j8 TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM PLASTIC_OX_BUILD=battle modern
+. plastic_ox/bin/pox-env.sh
+make -j8 modern
+make -j8 PLASTIC_OX_BUILD=battle modern
 ```
 
 Extend existing `plastic_ox/demo/test_story.py` suites (starters, ivs, gifts,
@@ -161,10 +158,9 @@ journey checks are planned, not existing test commands.
 Use the existing mGBA environment:
 
 ```sh
-export LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64
-/home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_story.py all
-/home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_cave_connections.py
-/home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_camera_seam.py
+plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_story.py all
+plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_cave_connections.py
+plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_camera_seam.py
 ```
 
 Headless tests must use the deterministic bootstrap documented in
@@ -225,8 +221,8 @@ Reproduce the static inventory and changed runtime checks:
 python3 plastic_ox/alpha/audit_alpha.py
 python3 plastic_ox/alpha/audit_alpha.py --json
 python3 plastic_ox/alpha/build_story.py --check
-LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 /home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_story.py gates
-LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 /home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_story.py gifts
+plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_story.py gates
+plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_story.py gifts
 ```
 
 Next: finish M0's measured endpoint/alternate-entry inventory, implement the

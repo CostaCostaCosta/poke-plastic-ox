@@ -2,7 +2,7 @@
 
 A generated, Bulbapedia-inspired static wiki for the routes, cities, towns, and caves in
 the Plastic Ox region. Every gameplay table is read from the ROM source; do not
-edit files under `site/` by hand.
+edit files under `site/` by hand. `site/` is not tracked in git: build it locally, or download the `plastic-ox-wiki` artifact from the *Plastic Ox wiki and story notes* CI run.
 
 ## Build
 
@@ -71,9 +71,11 @@ The generator reads:
   and rates; legacy FRLG/Hoenn tables that share reused map IDs are excluded
 - `src/data/trainers.party` for trainer metadata and teams
 
-Run `python3 plastic_ox/wiki/build_wiki.py --check` in CI to fail when generated
-pages are stale. `make validate` in this directory runs both the note validator
-and the freshness check; `make story` validates notes only.
+Run `python3 plastic_ox/wiki/build_wiki.py --check` to fail when the wiki no
+longer builds. `site/` is not tracked in git, so there is no freshness check;
+CI uploads the built site as the `plastic-ox-wiki` artifact. `make validate` in
+this directory runs the note validator and the build check; `make story`
+validates notes only.
 
 The build is deterministic and writes a source fingerprint (ROM data plus story
 notes) to `site/build.json`.

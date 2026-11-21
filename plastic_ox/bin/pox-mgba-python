@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Run a Python script with the mGBA bindings, e.g.
+#   plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_story.py gates
+# Exit 77 (skip) when the mGBA environment is not installed.
+set -e
+. "$(dirname "$0")/pox-env.sh"
+if [ ! -x "$POX_MGBA_VENV/bin/python" ]; then
+  echo "pox-mgba-python: no mGBA venv at $POX_MGBA_VENV (set POX_MGBA_VENV); skipping" >&2
+  exit 77
+fi
+export LD_LIBRARY_PATH="$POX_MGBA_VENV/lib:$POX_MGBA_VENV/lib64${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+exec "$POX_MGBA_VENV/bin/python" "$@"

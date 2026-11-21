@@ -2,7 +2,8 @@
 """Reusable headless mGBA Pokémon Emerald playthrough helpers (Plastic Ox demo)."""
 import os, hashlib, re
 from pathlib import Path
-os.environ.setdefault('LD_LIBRARY_PATH', '/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64')
+_venv = os.environ.get('POX_MGBA_VENV', os.path.expanduser('~/.venvs/mgba311'))
+os.environ.setdefault('LD_LIBRARY_PATH', f'{_venv}/lib:{_venv}/lib64')  # prefer plastic_ox/bin/pox-mgba-python
 import mgba.core, mgba.image, mgba.gba, mgba.log
 mgba.log.silence()
 

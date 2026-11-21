@@ -17,7 +17,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-sys.path.insert(0, str(ROOT / "plastic_ox/agent"))
+sys.path.insert(0, str(ROOT / "plastic_ox/tools"))
 
 DEVON = "TRAINER_PLASTIC_OX_WEATHER_DEVON"
 SILPH = "TRAINER_PLASTIC_OX_WEATHER"

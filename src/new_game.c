@@ -146,7 +146,7 @@ static void WarpToDemoStart(void)
 {
     // Plastic Ox demo: start in the player's bedroom in Pallet Town.
     // Pallet Town (Gen 1) is stitched north into Route 101 (Gen 3), which
-    // connects to Oldale Town. See plastic_ox/demo/DEMO_MAP_STITCH_v0.1.md.
+    // connects to Oldale Town. See plastic_ox/archive/demo/DEMO_MAP_STITCH_v0.1.md.
     SetWarpDestination(MAP_GROUP(MAP_PALLET_TOWN_PLAYERS_HOUSE_2F), MAP_NUM(MAP_PALLET_TOWN_PLAYERS_HOUSE_2F), WARP_ID_NONE, 6, 6);
     WarpIntoMap();
 }

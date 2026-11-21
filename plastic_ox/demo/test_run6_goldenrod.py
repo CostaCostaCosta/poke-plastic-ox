@@ -9,6 +9,7 @@
 """
 import json
 import re
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -18,7 +19,7 @@ from test_story import StoryGame, ROOT
 from walklib import K
 from walk_leg1 import navigate, find_path_elev, enter_warp
 
-NM = '/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin/arm-none-eabi-nm'
+NM = os.path.join(os.environ.get('DEVKITARM', os.path.expanduser('~/devkitpro/opt/devkitpro/devkitARM')), 'bin/arm-none-eabi-nm')
 CITY, GATE, R33, R35 = 'GoldenrodCity_hns', 'Gate_GoldenrodCity_Route35_hns', 'Route33_hns', 'Route35_hns'
 MAPS = {n: json.loads((ROOT / f'data/maps/{n}/map.json').read_text()) for n in (CITY, GATE, R33, R35)}
 GROUPS = json.loads((ROOT / 'data/maps/map_groups.json').read_text())

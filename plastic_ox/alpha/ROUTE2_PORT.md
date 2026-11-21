@@ -62,12 +62,10 @@ parts, not active opening connections.
 Build the primary ROM:
 
 ```sh
-PATH=/home/eddie/devkitpro/opt/devkitpro/devkitARM/bin:$PATH make -j8 TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM modern
+make -j8 modern
 ```
 
-Run the following Python checks with
-`LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64`
-and `/home/eddie/.venvs/mgba311/bin/python`:
+Run the following Python checks with `plastic_ox/bin/pox-mgba-python`:
 
 - `plastic_ox/demo/test_region_v7.py --only route2`: town trails and northern Ilex return pass.
 - `plastic_ox/demo/test_region_v7.py --warps --only Route2`: native gatehouse, house, east building, and cave entries/returns pass.

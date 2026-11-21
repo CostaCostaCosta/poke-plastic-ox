@@ -1,6 +1,6 @@
 # Goldenrod import
 
-Donor: `/home/eddie/repos/pokehns-expansion`, revision
+Donor: `$POX_HNS_DONOR` (pokehns-expansion), revision
 `44f50eedefe58691b0444973e4138e9190d8fafc`, the same HNS fork used by the
 existing Johto route/town importers. `source_manifest.json` records all 28
 source maps, layouts, source and converted geometry hashes, original events,
@@ -54,12 +54,11 @@ Store lift events move from the unusable top door tile to the real door at
 From the repository root:
 
 ```sh
-python3 plastic_ox/alpha/import_goldenrod.py --donor /home/eddie/repos/pokehns-expansion
-python3 /home/eddie/.codex/skills/plastic-ox-map-port/scripts/audit_imports.py .
-make -j$(nproc) TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM modern
+python3 plastic_ox/alpha/import_goldenrod.py --donor "$POX_HNS_DONOR"
+python3 .agents/skills/plastic-ox-map-port/scripts/audit_imports.py .
+make -j$(nproc) modern
 git diff --check
-LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 \
-  /home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_goldenrod.py
+plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_goldenrod.py
 ```
 
 `goldenrod.py` reapplies the converted event sources at the end of

@@ -467,7 +467,9 @@ def directory_digest(path: Path) -> str:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--check", action="store_true", help="fail if the generated site is stale")
+    parser.add_argument("--check", action="store_true",
+                        help="build into a temp dir and fail if the build breaks; site/ is untracked, "
+                             "so a stale local copy only produces a warning")
     args = parser.parse_args()
     paths = source_files()
     digest = fingerprint(paths)
@@ -475,15 +477,15 @@ def main() -> int:
         with tempfile.TemporaryDirectory(prefix="plastic-ox-wiki-") as tmp:
             temp = Path(tmp)
             pages, tables, note_count = build(temp, digest)
-            if not SITE.exists() or directory_digest(temp) != directory_digest(SITE):
-                print("Plastic Ox wiki is stale; run python3 plastic_ox/wiki/build_wiki.py", file=sys.stderr)
-                return 1
+            if SITE.exists() and directory_digest(temp) != directory_digest(SITE):
+                print("note: local plastic_ox/wiki/site/ is stale; run python3 plastic_ox/wiki/build_wiki.py "
+                      "to refresh it (it is not tracked in git)", file=sys.stderr)
     else:
         if SITE.exists():
             shutil.rmtree(SITE)
         pages, tables, note_count = build(SITE, digest)
     print(f"Plastic Ox wiki: {pages} location pages, {tables} encounter tables, "
-          f"{note_count} story notes ({'current' if args.check else 'generated'}).")
+          f"{note_count} story notes ({'build ok' if args.check else 'generated'}).")
     return 0
 
 

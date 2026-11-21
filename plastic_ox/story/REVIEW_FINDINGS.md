@@ -13,7 +13,7 @@ wiring that no longer resolves.
 **Status (2026-11-11):** a scoped fix pass addressed most P0/P1 items and
 several P2 wiring/text issues. What shipped, what was verified in-emulator, and
 what remains are in
-[`plastic_ox/agent/REVIEW_FIX_PASS_2026-11-11.md`](../agent/REVIEW_FIX_PASS_2026-11-11.md).
+[`plastic_ox/archive/agent/REVIEW_FIX_PASS_2026-11-11.md`](../archive/agent/REVIEW_FIX_PASS_2026-11-11.md).
 The sections below stay as the original review record.
 
 ## P0 — progression blockers and sequence breaks

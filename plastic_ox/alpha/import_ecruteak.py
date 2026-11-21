@@ -2,12 +2,13 @@
 """Import the remaining Ecruteak City HNS interiors and gatehouses.
 
 The city map itself (`EcruteakCity_hns`) was already imported by
-`plastic_ox/agent/import_wave3.py`; this importer adds the ten remaining donor
+`plastic_ox/archive/agent/import_wave3.py`; this importer adds the ten remaining donor
 rooms and rewires the city's door warps onto them. Run once with `--donor`;
 `ecruteak.install` reapplies the converted rooms after story generation
 without needing the donor checkout.
 """
 import argparse
+import os
 import collections
 import copy
 import hashlib
@@ -21,7 +22,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 BASE = ROOT / 'plastic_ox/alpha/ecruteak'
-DONOR_DEFAULT = Path('/home/eddie/repos/pokehns-expansion')
+DONOR_DEFAULT = Path(os.environ.get('POX_HNS_DONOR', ROOT.parent / 'pokehns-expansion'))
 CITY = 'EcruteakCity_hns'
 
 MAPS = [
@@ -195,7 +196,7 @@ def dump(path, data):
 
 
 def load_behaviors():
-    sys.path.insert(0, str(ROOT / 'plastic_ox/agent'))
+    sys.path.insert(0, str(ROOT / 'plastic_ox/tools'))
     from remap_metatile_behaviors import build_mapping
     return build_mapping()[0]
 

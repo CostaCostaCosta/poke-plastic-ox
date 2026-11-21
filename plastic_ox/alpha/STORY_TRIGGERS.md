@@ -117,7 +117,7 @@ means its old warp or map callback is gone.
 The story runs in the primary `pokeemerald.gba`. Build with:
 
 ```sh
-make -j8 TOOLCHAIN=/home/eddie/devkitpro/opt/devkitpro/devkitARM modern
+make -j8 modern
 ```
 
 `data/scripts/plastic_ox_pallet.inc` contains the authored lab dialogue and
@@ -142,9 +142,9 @@ Validation:
 
 ```sh
 python3 plastic_ox/alpha/build_story.py --check
-LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 /home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_story.py starters
-LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 /home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_story.py gifts
-LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 /home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_story.py ivs
+plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_story.py starters
+plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_story.py gifts
+plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_story.py ivs
 ```
 
 ### Pallet and Oldale opening fixes

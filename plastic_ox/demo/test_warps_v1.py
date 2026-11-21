@@ -32,8 +32,7 @@ path cannot be built are reported ``UNTESTED`` with the engine's own reason
 
 Usage
 -----
-    LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 \
-      /home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_warps_v1.py \
+    plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_warps_v1.py \
       --json /tmp/warps.json --report /tmp/warps.md
 
     ... --static-only          # no emulator, JSON/map-data pre-pass only
@@ -197,7 +196,7 @@ def seed_maps():
     for t in region["transitions"]:
         seeds |= {t["source"], t["destination"]}
     # Retained donor rooms kept outside the authored graph (see
-    # plastic_ox/agent/audit_warp_connections.py).
+    # plastic_ox/tools/audit_warp_connections.py).
     seeds |= {f"SeafoamIslands_{x}_Frlg" for x in ("1F", "B1F", "B2F", "B3F", "B4F")}
     seeds |= {
         "UndergroundPath_EastEntrance_Frlg", "UndergroundPath_WestEntrance_Frlg",

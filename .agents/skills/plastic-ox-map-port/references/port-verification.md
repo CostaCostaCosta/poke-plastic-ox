@@ -8,7 +8,7 @@ warp. The replacement connects city columns 19..22 to Route 24 bridge columns
 riverside path must terminate visibly before crossing into the city's trees.
 Keep signs beside the approach and use each layout's own road/forest assets.
 
-Reproduce geometry with `python3 plastic_ox/agent/improve_rustboro_north.py`.
+Reproduce geometry with `python3 plastic_ox/archive/agent/improve_rustboro_north.py`.
 Topology and sign generation live in `plastic_ox/alpha/region_v7.py`; inspect
 the patch from `build_story.py` before applying unrelated regeneration drift.
 Run `plastic_ox/demo/test_rustboro_north.py` in the mGBA environment below for
@@ -110,8 +110,7 @@ rendering bugs without incorrect source blockmaps or connection offsets:
 Run the focused regression on a freshly built ROM:
 
 ```sh
-LD_LIBRARY_PATH=/home/eddie/.venvs/mgba311/lib:/home/eddie/.venvs/mgba311/lib64 \
-  /home/eddie/.venvs/mgba311/bin/python plastic_ox/demo/test_camera_seam.py
+plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_camera_seam.py
 ```
 
 The primary ROM includes the authored story. The test warps to

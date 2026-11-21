@@ -80,7 +80,7 @@ def main():
     asset = 'data/tilesets/secondary/azalea_town_hns'
     if args.assets and not (ROOT/asset).exists():
         shutil.copytree(donor/asset, ROOT/asset)
-        sys.path.insert(0, str(ROOT/'plastic_ox/agent'))
+        sys.path.insert(0, str(ROOT/'plastic_ox/tools'))
         from remap_metatile_behaviors import build_mapping
         mapping = build_mapping()[2]
         path = ROOT/asset/'metatile_attributes.bin'

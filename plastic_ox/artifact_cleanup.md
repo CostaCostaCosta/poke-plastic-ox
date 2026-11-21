@@ -9,7 +9,7 @@ content was removed. Companion: [artifact cleanup skill](../.agents/skills/plast
 Run from the repository root:
 
 ```sh
-python3 plastic_ox/agent/audit_cleanup_artifacts.py > /tmp/plastic-ox-cleanup-audit.json
+python3 plastic_ox/tools/audit_cleanup_artifacts.py > /tmp/plastic-ox-cleanup-audit.json
 ```
 
 The read-only audit seeds the current region transitions, story events, Pallet

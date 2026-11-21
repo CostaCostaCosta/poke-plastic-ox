@@ -84,6 +84,6 @@ A 78×50 limestone throat with two mouths: one on the north end of Route 2 at `(
 ## Open questions
 
 - Should the cave actually require the key (move the Elixir or the Revive behind a rock), or stay a free walk with a convenience item? Recommend gating one pocket.
-- Repair both door metatiles (pad `metatile_attributes.bin` per `plastic_ox/notes/HANDOFF_WAVE4.md`), or make the cave a one-way downhill shortcut as `plastic_ox_map_v7.md` prefers for Route 46 / Route 45?
+- Repair both door metatiles (pad `metatile_attributes.bin` per `plastic_ox/archive/notes/HANDOFF_WAVE4.md`), or make the cave a one-way downhill shortcut as `plastic_ox_map_v7.md` prefers for Route 46 / Route 45?
 - Is a Lv 5–8 Larvitar appropriate this early, or should the rare slot be a cave commoner once the Dark Cave is genuinely reachable?
 - Keep the Max Revive alcove as a Rock Smash secret reached from the south, or delete the item?
