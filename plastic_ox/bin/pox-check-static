@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# Fast Plastic Ox checks: no ROM build or emulator needed. Run before every commit.
+# Every check runs even if an earlier one fails; exit status is non-zero if any failed.
+cd "$(dirname "$0")/../.."
+PY="${POX_PY:-python3}"
+failed=()
+run() {
+  echo "== $*"
+  if ! "$@"; then failed+=("$*"); fi
+}
+# Some suites read build-generated headers/includes (src/data/tutor_moves.h,
+# data/maps/*/events.inc). Without a local build they are skipped, never passed.
+skipped=()
+needs_build() {
+  if [ -f src/data/tutor_moves.h ]; then run "$@"; else echo "== SKIPPED (needs a ROM build or make generated): $*"; skipped+=("$*"); fi
+}
+run "$PY" plastic_ox/story/test_story_notes.py
+run "$PY" plastic_ox/story/check_story_notes.py
+run "$PY" plastic_ox/story/test_region.py
+needs_build "$PY" plastic_ox/encounter_tables/test_pre_mt_moon_v5_5.py
+run "$PY" plastic_ox/encounter_tables/test_nu_encounters_v1.py
+needs_build "$PY" plastic_ox/tools/test_trainer_teams_v2.py
+run "$PY" plastic_ox/tools/audit_warp_connections.py
+run "$PY" .agents/skills/plastic-ox-map-port/scripts/audit_imports.py .
+run "$PY" plastic_ox/tools/check_map_refs.py --changed
+run "$PY" plastic_ox/tools/check_generated.py
+run "$PY" plastic_ox/battle/metamon/test_import_model.py
+run "$PY" plastic_ox/battle/metamon/test_heap_simulation.py
+run "$PY" plastic_ox/wiki/editor/test_editor.py
+if [ ${#failed[@]} -gt 0 ]; then
+  echo
+  echo "pox-check-static: ${#failed[@]} check(s) FAILED:"
+  printf '  %s\n' "${failed[@]}"
+  exit 1
+fi
+if [ ${#skipped[@]} -gt 0 ]; then
+  echo "pox-check-static: passed, but ${#skipped[@]} suite(s) SKIPPED for lack of a build; run make pox-build first to cover them"
+else
+  echo "pox-check-static: all passed"
+fi

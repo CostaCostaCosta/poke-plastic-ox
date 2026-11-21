@@ -74,6 +74,9 @@ include config.mk
 # Default make rule
 all: rom
 
+# Plastic Ox helper targets (pox-build, pox-check, ...); see plastic_ox/pox.mk
+include plastic_ox/pox.mk
+
 # Toolchain selection
 TOOLCHAIN := $(DEVKITARM)
 # don't use dkP's base_tools anymore

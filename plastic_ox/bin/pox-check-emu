@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Run mGBA harnesses from plastic_ox/demo against ./pokeemerald.gba.
+#   plastic_ox/bin/pox-check-emu test_story test_goldenrod
+# Pass harness arguments by quoting: pox-check-emu "test_story gates"
+# Skips (exit 0) when the mGBA environment is not installed.
+cd "$(dirname "$0")/../.."
+[ $# -gt 0 ] || set -- test_story
+if [ ! -f pokeemerald.gba ]; then echo "pox-check-emu: no pokeemerald.gba; run make pox-build first" >&2; exit 1; fi
+failed=()
+for spec in "$@"; do
+  read -r name args <<<"$spec"
+  f="plastic_ox/demo/${name%.py}.py"
+  echo "== $f $args"
+  # shellcheck disable=SC2086
+  plastic_ox/bin/pox-mgba-python "$f" $args
+  rc=$?
+  if [ $rc -eq 77 ]; then echo "pox-check-emu: mGBA not installed; skipped"; exit 0; fi
+  [ $rc -eq 0 ] || failed+=("$spec")
+done
+if [ ${#failed[@]} -gt 0 ]; then printf 'pox-check-emu FAILED: %s\n' "${failed[@]}"; exit 1; fi
+echo "pox-check-emu: all passed"
