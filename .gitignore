@@ -80,3 +80,4 @@ plastic_ox/demo/shots/
 .beads-credential-key
 .beads/proxieddb/
 *.gate.lock*
+.claude/
