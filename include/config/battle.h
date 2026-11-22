@@ -226,6 +226,7 @@
 #define B_RETURN_STOLEN_NPC_ITEMS   GEN_3 // In Gen5+, Thief and Covet no longer steal items from NPCs.
 #define B_STEAL_WILD_ITEMS          GEN_3 // In Gen9+, Thief and Covet steal a wild Pokémon's item and send it to the bag. In Gens2-8, the stolen item would be held by the Thief/Covet user.
 #define B_RESTORE_HELD_BATTLE_ITEMS GEN_3 // In Gen9+, all non-berry items are restored after battle.
+#define B_POX_RESTORE_ALL_HELD_ITEMS TRUE // Plastic Ox: after every battle type, each player mon gets back the item it entered battle holding (even consumed berries/gems, knocked-off or stolen items). Items gained in battle (Thief, Covet, Pickup...) are kept only by mons that entered holding nothing. Overrides the two settings above for the player party.
 #define B_SOUL_DEW_BOOST            GEN_3 // In Gens3-6, Soul Dew boosts Latis' Sp. Atk and Sp. Def. In Gen7+ it boosts the power of their Psychic and Dragon type moves instead.
 #define B_NET_BALL_MODIFIER         GEN_3 // In Gen7+, Net Ball's catch multiplier is x5 instead of x3.
 #define B_DIVE_BALL_MODIFIER        GEN_3 // In Gen4+, Dive Ball's effectiveness increases by x3.5 when Surfing or Fishing.
