@@ -166,7 +166,7 @@ ROSTERS: dict[str, tuple[str, list[tuple[str, int]]]] = {
         ("SPECIES_MANKEY", 12), ("SPECIES_MEOWTH", 12), ("SPECIES_SNORUNT", 12),
         ("SPECIES_MACHOP", 12), ("SPECIES_EKANS", 12), ("SPECIES_CACNEA", 12)]),
     "TRAINER_PLASTIC_OX_MOON_LASS_IRIS": ("mtmoondeep", [
-        ("SPECIES_MEOWTH", 15), ("SPECIES_CLEFFA", 15), ("SPECIES_SENTRET", 15),
+        ("SPECIES_MEOWTH", 15), ("SPECIES_CLEFFA", 15), ("SPECIES_FURRET", 15),
         ("SPECIES_TAILLOW", 14), ("SPECIES_SKITTY", 15), ("SPECIES_SNORUNT", 14)]),
     "TRAINER_PLASTIC_OX_MOON_LASS_MIRIAM": ("mtmoon", [
         ("SPECIES_CLEFFA", 13), ("SPECIES_MEOWTH", 13), ("SPECIES_SENTRET", 13),
@@ -208,10 +208,10 @@ ROSTERS: dict[str, tuple[str, list[tuple[str, int]]]] = {
         ("SPECIES_MINUN", 19), ("SPECIES_DROWZEE", 19), ("SPECIES_CORSOLA", 19)]),
     "TRAINER_PLASTIC_OX_PU_PARK": ("park", [
         ("SPECIES_LICKITUNG", 20), ("SPECIES_JIGGLYPUFF", 20), ("SPECIES_TROPIUS", 20),
-        ("SPECIES_HOPPIP", 20), ("SPECIES_NIDORAN_F", 20), ("SPECIES_LEDYBA", 19)]),
+        ("SPECIES_SKIPLOOM", 20), ("SPECIES_NIDORINA", 20), ("SPECIES_LEDIAN", 19)]),
     "TRAINER_PLASTIC_OX_PU_ROUTE36": ("route36", [
         ("SPECIES_TANGELA", 21), ("SPECIES_VULPIX", 21), ("SPECIES_DROWZEE", 21),
-        ("SPECIES_BELLSPROUT", 21), ("SPECIES_NATU", 21), ("SPECIES_BALTOY", 21)]),
+        ("SPECIES_WEEPINBELL", 21), ("SPECIES_NATU", 21), ("SPECIES_BALTOY", 21)]),
     "TRAINER_PLASTIC_OX_KIMONOFLAREON": ("gym3", [
         ("SPECIES_FLAREON", 26), ("SPECIES_VULPIX", 22), ("SPECIES_GROWLITHE", 23),
         ("SPECIES_ARBOK", 24), ("SPECIES_MEOWTH", 23), ("SPECIES_DELIBIRD", 24)]),
@@ -228,18 +228,18 @@ ROSTERS: dict[str, tuple[str, list[tuple[str, int]]]] = {
         ("SPECIES_UMBREON", 26), ("SPECIES_SPOINK", 23), ("SPECIES_HOUNDOUR", 24),
         ("SPECIES_DUSKULL", 24), ("SPECIES_MEOWTH", 23), ("SPECIES_NIDORAN_M", 24)]),
     "TRAINER_PLASTIC_OX_MORTY": ("gym3", [
-        ("SPECIES_SUDOWOODO", 30), ("SPECIES_HAUNTER", 29), ("SPECIES_GASTLY", 28),
+        ("SPECIES_SUDOWOODO", 30), ("SPECIES_HAUNTER", 29), ("SPECIES_SABLEYE", 28),
         ("SPECIES_DUSKULL", 28), ("SPECIES_GOLBAT", 28), ("SPECIES_WIGGLYTUFF", 27)]),
 
     # ---- Gym 4 and Gym 5 segments, RU cap 36 / UU cap 42 -----------------
     "TRAINER_PLASTIC_OX_WINONA": ("fortree", [
-        ("SPECIES_PIDGEOT", 36), ("SPECIES_PELIPPER", 35), ("SPECIES_GOLBAT", 35),
-        ("SPECIES_VIGOROTH", 34), ("SPECIES_FARFETCHD", 34), ("SPECIES_DODUO", 33)]),
+        ("SPECIES_OCTILLERY", 35), ("SPECIES_AGGRON", 35), ("SPECIES_CAMERUPT", 35),
+        ("SPECIES_CLEFABLE", 35), ("SPECIES_POLIWRATH", 35), ("SPECIES_XATU", 36)]),
     "TRAINER_PLASTIC_OX_TOWERGRUNT1": ("cinnabar", [
-        ("SPECIES_GASTLY", 38), ("SPECIES_DROWZEE", 37), ("SPECIES_CUBONE", 37),
-        ("SPECIES_MUK", 37), ("SPECIES_KOFFING", 36), ("SPECIES_HAUNTER", 38)]),
+        ("SPECIES_HAUNTER", 38), ("SPECIES_HYPNO", 37), ("SPECIES_CUBONE", 37),
+        ("SPECIES_MUK", 37), ("SPECIES_KOFFING", 36), ("SPECIES_SABLEYE", 38)]),
     "TRAINER_PLASTIC_OX_TOWERGRUNT2": ("cinnabar", [
-        ("SPECIES_MACHOP", 38), ("SPECIES_CUBONE", 38), ("SPECIES_ONIX", 38),
+        ("SPECIES_MACHOKE", 38), ("SPECIES_CUBONE", 38), ("SPECIES_ONIX", 38),
         ("SPECIES_MUK", 37), ("SPECIES_RHYHORN", 37), ("SPECIES_HAUNTER", 38)]),
     "TRAINER_PLASTIC_OX_BLAINE": ("cinnabar", [
         ("SPECIES_NINETALES", 42), ("SPECIES_ARCANINE", 42), ("SPECIES_RAPIDASH", 41),
@@ -372,6 +372,39 @@ WHITNEY_COMPETITIVE_TEAM = {
         moves=["MOVE_DRAGON_DANCE", "MOVE_DOUBLE_EDGE", "MOVE_IRON_TAIL", "MOVE_HIDDEN_POWER"],
         set_name="Dragon Dance"),
 }
+
+# Fixed ADV sets for Winona (Fortree, RU cap 36), requested verbatim. Every
+# species is legal at 'fortree'; her moves (Belly Drum, Thunder Wave on
+# Octillery, ...) are a trainer-only exception like Whitney's. IVs give
+# Hidden Power Electric (Octillery) and Hidden Power Flying (Poliwrath).
+WINONA = "TRAINER_PLASTIC_OX_WINONA"
+WINONA_COMPETITIVE_TEAM = {
+    "SPECIES_OCTILLERY": dict(item="Lum Berry", ability="Suction Cups", nature="Modest",
+        gender="F", shiny=True, evs=dict(hp=244, def_=12, spa=252), hp_type="Electric",
+        ivs={"atk": 3, "spa": 30},
+        moves=["MOVE_FIRE_BLAST", "MOVE_HIDDEN_POWER", "MOVE_SURF", "MOVE_THUNDER_WAVE"]),
+    "SPECIES_AGGRON": dict(item="Leftovers", ability="Sturdy", nature="Adamant",
+        gender="M", shiny=True, evs=dict(hp=160, atk=252, spd=12, spe=84), ivs=None,
+        moves=["MOVE_FOCUS_PUNCH", "MOVE_ROCK_SLIDE", "MOVE_SUBSTITUTE", "MOVE_THUNDER_WAVE"]),
+    "SPECIES_CAMERUPT": dict(item="Choice Band", ability="Magma Armor", nature="Adamant",
+        gender="M", shiny=True, evs=dict(atk=252, spd=4, spe=252), ivs=None,
+        moves=["MOVE_EARTHQUAKE", "MOVE_EXPLOSION", "MOVE_OVERHEAT", "MOVE_ROCK_SLIDE"]),
+    "SPECIES_CLEFABLE": dict(item="Leftovers", ability="Cute Charm", nature="Calm",
+        gender="F", shiny=True, evs=dict(hp=248, def_=8, spd=252), ivs={"atk": 0},
+        moves=["MOVE_ENCORE", "MOVE_SEISMIC_TOSS", "MOVE_SOFT_BOILED", "MOVE_THUNDER_WAVE"]),
+    "SPECIES_POLIWRATH": dict(item="Salac Berry", ability="Damp", nature="Adamant",
+        gender="M", shiny=True, evs=dict(hp=28, atk=252, def_=20, spe=208), hp_type="Flying",
+        ivs={"spa": 30, "spd": 30, "spe": 30},
+        moves=["MOVE_BELLY_DRUM", "MOVE_BRICK_BREAK", "MOVE_HIDDEN_POWER", "MOVE_SUBSTITUTE"]),
+    "SPECIES_XATU": dict(item="Leftovers", ability="Early Bird", nature="Timid",
+        gender="M", shiny=True, evs=dict(hp=252, def_=80, spe=176), ivs={"atk": 0},
+        moves=["MOVE_PSYCHIC", "MOVE_REFLECT", "MOVE_REST", "MOVE_THUNDER_WAVE"]),
+}
+for _set in WINONA_COMPETITIVE_TEAM.values():
+    # "def" is a keyword, so dict() literals above spell it def_.
+    _set["evs"] = {k.rstrip("_"): v for k, v in _set["evs"].items()}
+    _set["ivs"] = {s: (_set["ivs"] or {}).get(s, 31)
+                   for s in ("hp", "atk", "def", "spa", "spd", "spe")} if _set["ivs"] else None
 
 OPENING_CHECKPOINTS = {"start", "route103", "route29", "route2south",
                        "ilex", "route2north", "route46"}
@@ -689,10 +722,14 @@ def render_mon(mon: dict) -> str:
             "Ho-Oh": "Ho-Oh", "Farfetchd": "Farfetch'd"}.get(name, name)
     if mon.get("simple"):
         return f"{name}\nLevel: {mon['level']}"
+    if mon.get("gender"):
+        name = f"{name} ({mon['gender']})"
     head = f"{name} @ {mon['item']}" if mon["item"] else name
     lines = [head, f"Level: {mon['level']}"]
     if mon["ability"]:
         lines.append(f"Ability: {mon['ability']}")
+    if mon.get("shiny"):
+        lines.append("Shiny: Yes")
     if mon["ivs"]:
         stats = ["HP", "Atk", "Def", "SpA", "SpD", "Spe"]
         lines.append("IVs: " + " / ".join(
@@ -824,7 +861,7 @@ ROSTERS["TRAINER_PLASTIC_OX_ECRUTEAK_YUI"] = ("gym3", [
 ROSTERS["TRAINER_PLASTIC_OX_ECRUTEAK_GENZO"] = ("gym3", [
     ("SPECIES_PUPITAR", 27), ("SPECIES_SABLEYE", 26), ("SPECIES_TORKOAL", 25)])
 ROSTERS["TRAINER_PLASTIC_OX_ECRUTEAK_RIN"] = ("gym3", [
-    ("SPECIES_GASTLY", 27), ("SPECIES_DUSKULL", 26), ("SPECIES_PIDGEOT", 27)])
+    ("SPECIES_HAUNTER", 27), ("SPECIES_DUSKULL", 26), ("SPECIES_PIDGEOT", 27)])
 
 for trainer, (checkpoint, roster) in list(ROSTERS.items()):
     floor = minimum_level(checkpoint)
@@ -862,7 +899,10 @@ def main() -> int:
             if level > cap:
                 problems.append(f"{trainer}[{index}]: level {level} exceeds the "
                                 f"{checkpoint} cap of {cap}")
-            if trainer == "TRAINER_PLASTIC_OX_WHITNEY":
+            if trainer == WINONA:
+                mon = dict(WINONA_COMPETITIVE_TEAM[species], species=species,
+                           level=level, set_source="fixed Winona gym roster", notes=[])
+            elif trainer == "TRAINER_PLASTIC_OX_WHITNEY":
                 mon = dict(WHITNEY_COMPETITIVE_TEAM[species], species=species,
                            level=level, set_source="ADV PU fixed gym roster",
                            notes=[])
