@@ -242,8 +242,8 @@ ROSTERS: dict[str, tuple[str, list[tuple[str, int]]]] = {
         ("SPECIES_MACHOKE", 38), ("SPECIES_CUBONE", 38), ("SPECIES_ONIX", 38),
         ("SPECIES_MUK", 37), ("SPECIES_RHYHORN", 37), ("SPECIES_HAUNTER", 38)]),
     "TRAINER_PLASTIC_OX_BLAINE": ("cinnabar", [
-        ("SPECIES_NINETALES", 42), ("SPECIES_ARCANINE", 42), ("SPECIES_RAPIDASH", 41),
-        ("SPECIES_ELECTRODE", 40), ("SPECIES_MUK", 41), ("SPECIES_TENTACRUEL", 40)]),
+        ("SPECIES_OMASTAR", 42), ("SPECIES_VILEPLUME", 42), ("SPECIES_ARCANINE", 42),
+        ("SPECIES_KANGASKHAN", 42), ("SPECIES_MISDREAVUS", 42), ("SPECIES_SOLROCK", 42)]),
 
     # ---- Gym 6, Mossdeep, UUBL cap 50 ------------------------------------
     "TRAINER_PLASTIC_OX_TATELIZA": ("mossdeep", [
@@ -337,6 +337,9 @@ SIGNATURE_EXCEPTIONS = {
     "TRAINER_PLASTIC_OX_KIMONOJOLTEON": ["SPECIES_JOLTEON"],
     "TRAINER_PLASTIC_OX_KIMONOESPEON": ["SPECIES_ESPEON"],
     "TRAINER_PLASTIC_OX_KIMONOUMBREON": ["SPECIES_UMBREON"],
+    # Blaine's requested fixed six: these four are not catchable by Cinnabar.
+    "TRAINER_PLASTIC_OX_BLAINE": ["SPECIES_OMASTAR", "SPECIES_KANGASKHAN",
+                                  "SPECIES_MISDREAVUS", "SPECIES_SOLROCK"],
 }
 
 # Fixed ADV PU sets for Whitney. Her trainer-only move access permits the
@@ -425,7 +428,33 @@ WINONA_COMPETITIVE_TEAM = {
         gender="M", evs=dict(hp=252, def_=80, spe=176), ivs={"atk": 0},
         moves=["MOVE_PSYCHIC", "MOVE_REFLECT", "MOVE_REST", "MOVE_THUNDER_WAVE"]),
 }
-for _set in [*WINONA_COMPETITIVE_TEAM.values(), *MORTY_COMPETITIVE_TEAM.values()]:
+# Fixed ADV sets for Blaine (Cinnabar, UU cap 42), requested verbatim; all Lv42.
+# Moves are a trainer-only exception like Whitney's/Winona's/Morty's. IVs give
+# Hidden Power Electric (Omastar), Ground (Arcanine: standard 30 SpA/30 SpD
+# spread, none was requested) and Ice (Misdreavus).
+BLAINE = "TRAINER_PLASTIC_OX_BLAINE"
+BLAINE_COMPETITIVE_TEAM = {
+    "SPECIES_OMASTAR": dict(item="Leftovers", ability="Shell Armor", nature="Modest",
+        evs=dict(hp=252, def_=108, spa=64, spe=84), hp_type="Electric", ivs={"atk": 3, "spa": 30},
+        moves=["MOVE_SURF", "MOVE_SPIKES", "MOVE_HIDDEN_POWER", "MOVE_ICE_BEAM"]),
+    "SPECIES_VILEPLUME": dict(item="Leftovers", ability="Chlorophyll", nature="Impish",
+        evs=dict(hp=252, def_=176, spd=80), ivs=None,
+        moves=["MOVE_SWORDS_DANCE", "MOVE_SLUDGE_BOMB", "MOVE_STUN_SPORE", "MOVE_MOONLIGHT"]),
+    "SPECIES_ARCANINE": dict(item="Leftovers", ability="Intimidate", nature="Naive",
+        evs=dict(atk=80, spa=252, spe=176), hp_type="Ground", ivs={"spa": 30, "spd": 30},
+        moves=["MOVE_FIRE_BLAST", "MOVE_CRUNCH", "MOVE_HIDDEN_POWER", "MOVE_EXTREME_SPEED"]),
+    "SPECIES_KANGASKHAN": dict(item="Leftovers", ability="Early Bird", nature="Adamant",
+        evs=dict(hp=252, atk=24, spd=192, spe=40), ivs=None,
+        moves=["MOVE_BODY_SLAM", "MOVE_EARTHQUAKE", "MOVE_COUNTER", "MOVE_REST"]),
+    "SPECIES_MISDREAVUS": dict(item="Leftovers", ability="Levitate", nature="Calm",
+        evs=dict(hp=248, def_=80, spd=176, spe=4), hp_type="Ice", ivs={"atk": 3, "spe": 30},
+        moves=["MOVE_THUNDERBOLT", "MOVE_HIDDEN_POWER", "MOVE_THUNDER_WAVE", "MOVE_PAIN_SPLIT"]),
+    "SPECIES_SOLROCK": dict(item="Choice Band", ability="Levitate", nature="Adamant",
+        evs=dict(hp=64, atk=252, spe=192), ivs=None,
+        moves=["MOVE_ROCK_SLIDE", "MOVE_EARTHQUAKE", "MOVE_EXPLOSION", "MOVE_SHADOW_BALL"]),
+}
+for _set in [*WINONA_COMPETITIVE_TEAM.values(), *MORTY_COMPETITIVE_TEAM.values(),
+             *BLAINE_COMPETITIVE_TEAM.values()]:
     # "def" is a keyword, so dict() literals above spell it def_.
     _set["evs"] = {k.rstrip("_"): v for k, v in _set["evs"].items()}
     _set["ivs"] = {s: (_set["ivs"] or {}).get(s, 31)
@@ -932,6 +961,9 @@ def main() -> int:
             elif trainer == MORTY:
                 mon = dict(MORTY_COMPETITIVE_TEAM[species], species=species,
                            level=level, set_source="fixed Morty gym roster", notes=[])
+            elif trainer == BLAINE:
+                mon = dict(BLAINE_COMPETITIVE_TEAM[species], species=species,
+                           level=level, set_source="fixed Blaine gym roster", notes=[])
             elif trainer == "TRAINER_PLASTIC_OX_WHITNEY":
                 mon = dict(WHITNEY_COMPETITIVE_TEAM[species], species=species,
                            level=level, set_source="ADV PU fixed gym roster",

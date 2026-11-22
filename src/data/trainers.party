@@ -17311,65 +17311,68 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer / Smart Switching / PP Stall Prevention
 
-Ninetales @ Leftovers
+Omastar @ Leftovers
 Level: 42
-Ability: Flash Fire
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Flamethrower
-- Fire Blast
+Ability: Shell Armor
+IVs: 31 HP / 3 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 108 Def / 64 SpA / 84 Spe
+Modest Nature
+- Surf
+- Spikes
 - Hidden Power
-- Toxic
+- Ice Beam
 
-Arcanine @ Charcoal
+Vileplume @ Leftovers
+Level: 42
+Ability: Chlorophyll
+EVs: 252 HP / 176 Def / 80 SpD
+Impish Nature
+- Swords Dance
+- Sludge Bomb
+- Stun Spore
+- Moonlight
+
+Arcanine @ Leftovers
 Level: 42
 Ability: Intimidate
-EVs: 4 Atk / 252 SpA / 252 Spe
-Timid Nature
+IVs: 31 HP / 31 Atk / 31 Def / 30 SpA / 30 SpD / 31 Spe
+EVs: 80 Atk / 252 SpA / 176 Spe
+Naive Nature
 - Fire Blast
+- Crunch
 - Hidden Power
-- Sunny Day
-- Hyper Beam
+- Extreme Speed
 
-Rapidash @ Leftovers
-Level: 41
-Ability: Flash Fire
-EVs: 4 HP / 252 SpA / 252 Spe
-Modest Nature
-- Sunny Day
-- Solar Beam
-- Flamethrower
-- Hyper Beam
-
-Electrode @ Petaya Berry
-Level: 40
-Ability: Static
-EVs: 12 HP / 32 Atk / 116 Def / 252 SpA / 96 Spe
-Rash Nature
-- Thunderbolt
-- Substitute
-- Explosion
-- Hidden Power
-
-Muk @ Leftovers
-Level: 41
-Ability: Sticky Hold
-EVs: 252 HP / 196 Atk / 60 SpD
+Kangaskhan @ Leftovers
+Level: 42
+Ability: Early Bird
+EVs: 252 HP / 24 Atk / 192 SpD / 40 Spe
 Adamant Nature
-- Sludge Bomb
-- Substitute
-- Focus Punch
-- Hidden Power
+- Body Slam
+- Earthquake
+- Counter
+- Rest
 
-Tentacruel @ Leftovers
-Level: 40
-Ability: Liquid Ooze
-EVs: 252 HP / 120 SpD / 136 Spe
+Misdreavus @ Leftovers
+Level: 42
+Ability: Levitate
+IVs: 31 HP / 3 Atk / 31 Def / 31 SpA / 31 SpD / 30 Spe
+EVs: 248 HP / 80 Def / 176 SpD / 4 Spe
 Calm Nature
-- Hyper Beam
-- Surf
-- Toxic
-- Ice Beam
+- Thunderbolt
+- Hidden Power
+- Thunder Wave
+- Pain Split
+
+Solrock @ Choice Band
+Level: 42
+Ability: Levitate
+EVs: 64 HP / 252 Atk / 192 Spe
+Adamant Nature
+- Rock Slide
+- Earthquake
+- Explosion
+- Shadow Ball
 
 === TRAINER_PLASTIC_OX_TATELIZA ===
 Name: TATE&LIZA

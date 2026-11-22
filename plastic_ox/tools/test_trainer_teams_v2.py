@@ -16,9 +16,9 @@ entry:
   * EV totals stay inside the 510 cap and no stat exceeds 252;
   * every trainer in the file (vanilla included) obeys species clause and
     has no under-evolved Pokemon (audit_trainer_species.py);
-  * Winona's and Morty's fixed sixes (levels, shininess, genders, happiness,
+  * Winona's, Morty's and Blaine's fixed sixes (levels, shininess, genders, happiness,
     items, EVs/IVs, Hidden Power types) match WINONA_COMPETITIVE_TEAM /
-    MORTY_COMPETITIVE_TEAM; their moves are a declared trainer-only exception
+    MORTY_COMPETITIVE_TEAM / BLAINE_COMPETITIVE_TEAM; their moves are a declared trainer-only exception
     like Whitney's;
   * trainer ids, names, classes, pics, music, battle type and AI lines are
     unchanged from the pre-overhaul baseline, so no wiring moved.
@@ -39,6 +39,7 @@ import audit_trainer_species  # noqa: E402
 from apply_trainer_teams_v2 import (  # noqa: E402
     KEEP_AS_IS, ROSTERS, SIGNATURE_EXCEPTIONS, WHITNEY_COMPETITIVE_TEAM,
     WINONA, WINONA_COMPETITIVE_TEAM, MORTY, MORTY_COMPETITIVE_TEAM,
+    BLAINE, BLAINE_COMPETITIVE_TEAM,
     AUTHORED_LEAGUE, LEAGUE_PARTIES,
     split_block, ROUTE_GROUPS, minimum_level, expected_party_size,
 )
@@ -178,9 +179,10 @@ def main() -> int:
                     problems.append(f"{trainer}[{index}] IVs differ from the fixed ADV PU set")
                 if expected.get("hp_type") and hidden_power_type(mon["ivs"]) != expected["hp_type"]:
                     problems.append(f"{trainer}[{index}] has the wrong Hidden Power type")
-            if trainer in (WINONA, MORTY):
-                team, label = ((WINONA_COMPETITIVE_TEAM, "Winona") if trainer == WINONA
-                               else (MORTY_COMPETITIVE_TEAM, "Morty"))
+            if trainer in (WINONA, MORTY, BLAINE):
+                team, label = {WINONA: (WINONA_COMPETITIVE_TEAM, "Winona"),
+                               MORTY: (MORTY_COMPETITIVE_TEAM, "Morty"),
+                               BLAINE: (BLAINE_COMPETITIVE_TEAM, "Blaine")}[trainer]
                 expected_species = _roster[index][0]
                 expected = team.get(species)
                 if species != expected_species or expected is None:
@@ -236,9 +238,9 @@ def main() -> int:
                     # Endgame allows inherited, egg and the NYPC Wish move.
                     # Gen III/roster/IV/EV checks live in test_league.py.
                     continue
-                if trainer in (WINONA, MORTY):
+                if trainer in (WINONA, MORTY, BLAINE):
                     # Requested fixed sets keep moves (Belly Drum, Octillery's
-                    # Thunder Wave, ...) the species may not have by Lv35; Morty likewise.
+                    # Thunder Wave, ...) the species may not have by Lv35; Morty and Blaine likewise.
                     continue
                 if trainer == WHITNEY:
                     # Her fixed trainer-only set includes egg and later-level
