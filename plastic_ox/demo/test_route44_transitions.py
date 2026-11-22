@@ -68,7 +68,17 @@ def main():
         game.flag(0x4A0 + trainer - 857, True)
     # Story gate: Route 44 requires the Stone Badge on both approaches.
     game.flag("FLAG_BADGE01_GET", True)
-    for y in (9, 10, 11):
+    # Derive the whole road opening so a wider road cannot outgrow a fixed
+    # list of lanes again; the stone road is five rows wide (8..12).
+    city = Geometry("RustboroCity")
+    lanes = [10]
+    for direction in (-1, 1):
+        y = 10 + direction
+        while all(city.passable(x, y) for x in range(35, 40)):
+            lanes.append(y)
+            y += direction
+    assert sorted(lanes) == list(range(8, 13)), lanes
+    for y in sorted(lanes):
         game.warp("RustboroCity", 35, y)
         game.tap(K.KEY_RIGHT, hold=100, wait=90)
         state = assert_map(game, "Route44_hns", ids)

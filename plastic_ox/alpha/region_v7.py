@@ -466,6 +466,10 @@ def apply_region(read, put):
         component=g.component(ANCHORS.get(name,p['approach']),water)
         trigger_tiles=[]
         lanes=(0,-1,1) if key[:-2] in LANE_PORTALS else (0,)
+        # Rustboro's stone road has five passable approach rows (8..12);
+        # the three-lane cap left both outer rows at a dead end.
+        if key == 'rustboro_route44_a':
+            lanes=(0,-1,1,-2,2)
         if key[:-2] in SEAM_TRAILS:
             # Every edge tile that crosses the connection must be gated.
             span=g.h if dx else g.w
