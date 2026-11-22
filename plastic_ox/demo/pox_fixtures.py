@@ -13,7 +13,7 @@ from pathlib import Path
 from test_sudowoodo_v1 import (SudoGame, const, give_item, opcode, run_code,
     settle, K, in_overworld)
 import test_story
-from test_single_player import boot_new_game
+import walklib
 
 ROOT = Path(__file__).resolve().parents[2]
 SHOTS = Path('/tmp/pox_fixture_shots')
@@ -32,7 +32,9 @@ class Game(SudoGame):
 
 
 def game():
-    test_story.boot_test_game = boot_new_game
+    # Use the standard test boot (it settles the opening field script), but do
+    # not require the player to be named P.
+    test_story.assert_test_player = lambda g: walklib.assert_test_player(g, check_name=False)
     g = Game()
     g.flag('FLAG_POX_TRIGGERS_ENABLED', True)
     run_code(g, opcode(g, 'callnative') + struct.pack('<I', g.syms['GivePlasticOxPlayerParty'] | 1)
