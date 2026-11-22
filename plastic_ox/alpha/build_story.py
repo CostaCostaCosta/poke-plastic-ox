@@ -127,8 +127,28 @@ def gift(name, text, prerequisites=()):
         speech(f"Pox_Text_{name}_GiftDone", GIFT_DONE_LINES[name])
 
 
+# Authored trainer headers that differ from the generic Leader/Male default.
+# The Kimono troupe (2026-11-11 fix pass) gives each dancer her own class, pic,
+# music and AI; WHITNEY uses her HNS front pic.
+TRAINER_HEADERS = {
+    'Whitney': dict(pic='Leader Whitney Hns', gender='Female', music='Female'),
+    'KimonoVaporeon': dict(gender='Female', music='Female'),
+    'KimonoJolteon': dict(cls='Cooltrainer', pic='Cooltrainer F', gender='Female', music='Cool',
+                          ai='Basic Trainer / Try To Faint / HP Aware'),
+    'KimonoFlareon': dict(cls='Lady', pic='Lady', gender='Female', music='Female',
+                          ai='Basic Trainer / Check Viability / Powerful Status'),
+    'KimonoEspeon': dict(cls='Psychic', pic='Psychic F', gender='Female', music='Intense',
+                         ai='Basic Trainer / Check Viability / Conservative'),
+    'KimonoUmbreon': dict(cls='Hex Maniac', pic='Hex Maniac', gender='Female', music='Suspicious',
+                          ai='Basic Trainer / HP Aware / Smart Mon Choices'),
+}
+
+
 def trainer(name, display, team, level, pic="Leader Roxanne", cls="Leader", double=False):
     tid = "TRAINER_PLASTIC_OX_" + name.upper()
+    header = TRAINER_HEADERS.get(name, {})
+    cls = header.get('cls', cls)
+    pic = header.get('pic', pic)
     display = display.replace('TATE & LIZA', 'TATE&LIZA')
     pic = pic.replace('Team Aqua M', 'Aqua Grunt M')
     pic = pic.replace('Cool Trainer M', 'Cooltrainer M')
@@ -149,8 +169,10 @@ def trainer(name, display, team, level, pic="Leader Roxanne", cls="Leader", doub
             lines.append(attributes['nature'] + ' Nature')
         lines.extend('- ' + move.split(' [', 1)[0] for move in moves)
         party.append('\n'.join(lines))
-    trainers.append((tid, f"=== {tid} ===\nName: {display}\nClass: {cls}\nPic: {pic}\nGender: Male\nMusic: {'Leader' if cls == 'Leader' else 'Male'}\nDouble Battle: {'Yes' if double else 'No'}\nAI: Basic Trainer / Smart Switching / PP Stall Prevention\n\n" + "\n\n".join(party) + "\n"))
-    trainers[-1] = (tid, trainers[-1][1].replace('Music: Leader', 'Music: Male'))
+    gender = header.get('gender', 'Male')
+    music = header.get('music', 'Male')
+    ai = header.get('ai', 'Basic Trainer / Smart Switching / PP Stall Prevention')
+    trainers.append((tid, f"=== {tid} ===\nName: {display}\nClass: {cls}\nPic: {pic}\nGender: {gender}\nMusic: {music}\nDouble Battle: {'Yes' if double else 'No'}\nAI: {ai}\n\n" + "\n\n".join(party) + "\n"))
     return tid
 
 
@@ -945,29 +967,100 @@ if '#include "constants/plastic_ox_story.h"' not in s:
 put(path,s)
 path='include/constants/opponents.h'
 s=read(path)
-route_defs=re.findall(r'^#define TRAINER_PLASTIC_OX_ROUTE\w+\s+\d+\n',s,flags=re.M)
-s=re.sub(r'// Plastic Ox story trainers\.\n.*?// End Plastic Ox story trainers\.\n\n','',s,flags=re.S)
+# Every other TRAINER_PLASTIC_OX_* id in the block (route, Mt. Moon, Johto,
+# sage, ridge, tournament, Ecruteak staff, ...) is owned by its own module or
+# by apply_trainer_teams_v2.py. Keep those lines verbatim, comments included.
+story_ids={tid for tid,_ in trainers}
+old_block=re.search(r'// Plastic Ox story trainers\.\n(.*?)// End Plastic Ox story trainers\.\n',s,flags=re.S)
+route_defs=[line+'\n' for line in (old_block[1].splitlines() if old_block else [])
+            if line.startswith('#define TRAINER_PLASTIC_OX_') and line.split()[1] not in story_ids]
 defs='// Plastic Ox story trainers.\n'+''.join(f'#define {tid} {857+i if i < pu_trainer_start else 895+i-pu_trainer_start}\n' for i,(tid,_) in enumerate(trainers))+''.join(route_defs)+'// End Plastic Ox story trainers.\n'
-s=s.replace('// NOTE: Because each Trainer',defs+'\n// NOTE: Because each Trainer')
-route_ids=[int(value) for value in re.findall(r'#define TRAINER_PLASTIC_OX_ROUTE\w+\s+(\d+)',s)]
+if old_block:
+    s=s[:old_block.start()]+defs+s[old_block.end():]
+else:
+    s=s.replace('// Plastic Ox trainer victories above ID 856',defs+'\n// Plastic Ox trainer victories above ID 856')
+route_ids=[int(line.split()[2]) for line in route_defs]
 trainer_count=max([895+len(trainers)-pu_trainer_start, *(value + 1 for value in route_ids)])
 s=re.sub(r'#define TRAINERS_COUNT_EMERALD\s+\d+',f'#define TRAINERS_COUNT_EMERALD {trainer_count}',s)
 s=re.sub(r'#define MAX_TRAINERS_COUNT_EMERALD\s+\d+',f'#define MAX_TRAINERS_COUNT_EMERALD {trainer_count}',s)
 assert pu_trainer_start == 28 and len(trainers) == 32
 put(path,s)
+# This generator owns each story trainer's header (name, class, pic, music,
+# AI). Party bodies are authored by plastic_ox/tools/apply_trainer_teams_v2.py
+# and stay as checked in; the placeholder party above is only used for a
+# trainer that has no block yet. Every other block is left untouched.
 path='src/data/trainers.party'
 s=read(path)
-prefix=s.split('=== TRAINER_PLASTIC_OX_ROXANNE ===')[0].rstrip()+'\n\n'
-route_suffix=''
-if '=== TRAINER_PLASTIC_OX_ROUTE101 ===' in s:
-    route_suffix='\n\n=== TRAINER_PLASTIC_OX_ROUTE101 ==='+s.split('=== TRAINER_PLASTIC_OX_ROUTE101 ===',1)[1].split('=== TRAINER_PLASTIC_OX_PU_ROUTE33 ===',1)[0].rstrip()+'\n'
-put(path,prefix+'\n'.join(t for _,t in trainers[:pu_trainer_start])+route_suffix+'\n'+'\n'.join(t for _,t in trainers[pu_trainer_start:]))
+for tid,text in trainers:
+    head,_,body=text.partition('\n\n')
+    m=re.search(r'^=== '+re.escape(tid)+r' ===\n.*?\n\n',s,flags=re.M|re.S)
+    if m:
+        s=s[:m.start()]+head+'\n\n'+s[m.end():]
+    else:
+        s=s.rstrip('\n')+'\n\n'+text
+put(path,s)
 put('plastic_ox/alpha/story_manifest.json',json.dumps(dict(events=[dict(map=m,x=x,y=y,script='Pox_'+s) for m,x,y,s in manifest],flags=flags,trainers=[t for t,_ in trainers],rooms=room_names),indent=2)+'\n')
 
 # Apply physical topology last so room/story regeneration cannot restore old
 # entrances, callbacks, or travel bypasses.
 from region_v7 import apply_region
 apply_region(read, put)
+
+
+def keep_stable_trainer_layout():
+    """Area modules (mt_moon, johto_outdoors, cinnabar, ...) re-append their own
+    trainer defines and blocks. IDs are save data and party bodies belong to
+    plastic_ox/tools/apply_trainer_teams_v2.py, so keep the checked-in define
+    order and every checked-in party body; generators own only the headers and
+    any trainer that does not exist yet (appended at the end)."""
+    path='include/constants/opponents.h'
+    disk=Path(path).read_text()
+    pat=r'// Plastic Ox story trainers\.\n(.*?)// End Plastic Ox story trainers\.\n'
+    new=re.search(pat,read(path),flags=re.S)
+    old=re.search(pat,disk,flags=re.S)
+    if new and old:
+        ident=lambda line: line.split()[1] if line.startswith('#define ') else None
+        new_lines={ident(l):l for l in new[1].splitlines() if ident(l)}
+        old_lines=[l for l in old[1].splitlines() if ident(l)]
+        lines=[l if l.split()[:3]==new_lines[ident(l)].split()[:3] else new_lines[ident(l)] for l in old_lines if ident(l) in new_lines]
+        lines+= [l for k,l in new_lines.items() if k not in {ident(o) for o in old_lines}]
+        s=read(path)
+        s=s[:new.start()]+'// Plastic Ox story trainers.\n'+''.join(l+'\n' for l in lines)+'// End Plastic Ox story trainers.\n'+s[new.end():]
+        count=max(int(l.split()[2]) for l in lines)+1
+        for c in ['TRAINERS_COUNT_EMERALD','MAX_TRAINERS_COUNT_EMERALD']:
+            s=re.sub(r'(#define '+c+r'\s+)\d+',lambda m:m[1]+str(count),s)
+        put(path,s)
+    path='src/data/trainers.party'
+    split=lambda text: re.split(r'(?=^=== TRAINER_)',text,flags=re.M)
+    disk_blocks=split(Path(path).read_text())
+    gen_blocks=split(read(path))
+    key=lambda b: b.split(' ===',1)[0] if b.startswith('=== TRAINER_') else None
+    gen={key(b):b for b in gen_blocks if key(b)}
+    out=[]
+    seen=set()
+    for b in disk_blocks:
+        k=key(b)
+        if k is None:
+            out.append(b)
+            continue
+        if k not in gen:
+            continue
+        seen.add(k)
+        g=gen[k]
+        if k.startswith('=== TRAINER_PLASTIC_OX_'):
+            head=g.split('\n\n',1)[0]
+            body=b.split('\n\n',1)[1] if '\n\n' in b else ''
+            out.append(head+'\n\n'+body)
+        else:
+            out.append(g if g.rstrip()!=b.rstrip() else b)
+    extra=[gen[k] for k in gen if k not in seen]
+    text=''.join(out)
+    if extra:
+        text=text.rstrip('\n')+'\n\n'+''.join(extra)
+    put(path,text)
+
+
+keep_stable_trainer_layout()
 manifest=[(m,x,y,s) for m,x,y,s in manifest if any(o.get('script') == 'Pox_'+s and (o['x'],o['y']) == (x,y) for o in load_map(m)['object_events'])]
 put('plastic_ox/alpha/story_manifest.json',json.dumps(dict(events=[dict(map=m,x=x,y=y,script='Pox_'+s) for m,x,y,s in manifest],flags=flags,trainers=[t for t,_ in trainers],rooms=room_names),indent=2)+'\n')
 
