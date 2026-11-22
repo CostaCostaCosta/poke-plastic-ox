@@ -322,15 +322,13 @@ Progression:
 
 The convergence has disturbed the tower itself.
 
-Do not release Raikou, Entei, or Suicune here.
+Beneath the tower, eleven legendary Pokémon displaced by the convergence have gathered as if listening for something: Entei, Raikou and Suicune, Articuno, Zapdos and Moltres, Regirock, Regice and Registeel, Celebi and Jirachi. The ground shakes, they wake, and one by one they leave. Suicune looks back at the player before it goes.
 
-For a moment, part of the Burned Tower appears restored to an older state: a doorway, staircase, wall, or room exists as it did before the fire, then disappears.
+Morty's interpretation is spiritual rather than scientific: the tower was a refuge, and now they must find their way home.
 
-Morty's interpretation is spiritual rather than scientific:
+> **“Trust begins with a moment like this.”**
 
-> **“Places remember what they were.”**
-
-The player learns that the convergence may affect not only geography, but historical states of places. This is the special event that establishes the sages' regional mission: Morty directly instructs the gathered sages to find the legendary Pokémon displaced by the convergence, help them find shelter, and stay with them until they feel safe. The sages accept and depart; a caretaker remains at the tower. Later sages beside legendary Pokémon are carrying out this assignment, including the sage helping Entei in the Pokémon Mansion.
+The player learns that the convergence has scattered Pokémon that do not belong to this land. This is the special event that establishes the sages' regional mission: Morty directly instructs the gathered sages to follow the legendary Pokémon, find them shelter, give them space and let them choose to stay. The sages accept and depart; a caretaker remains at the tower. Later sages beside legendary Pokémon are carrying out this assignment, including the sage helping Entei in the Pokémon Mansion.
 
 ## Gym 3 — Morty
 
@@ -738,7 +736,7 @@ mystery reveal and must not assume Silph is complete.
 2. **Sea Cottage** — Bill exists as ordinary character texture; player receives first Eevee.
 3. **Mt. Moon** — Rocket finds a signal it does not control.
 4. **Goldenrod** — Bill's family and Eevee motif continue naturally.
-5. **Ecruteak / Burned Tower** — places can briefly behave as if they remember older states.
+5. **Ecruteak / Burned Tower** — the convergence has scattered legendary Pokémon; the sages set out to shelter them.
 6. **Weather Institute** — environmental boundaries are still actively changing.
 7. **Lavender / Pokémon Tower** — Rocket is investigating the phenomenon; Fuji points toward Cinnabar research.
 8. **Underground Path** — player physically routes beneath locked Saffron, reinforcing its centrality before it opens.

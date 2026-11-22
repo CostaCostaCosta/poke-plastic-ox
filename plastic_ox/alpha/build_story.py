@@ -106,6 +106,7 @@ def beat(name, text, completion, prerequisites=(), extra=""):
 GIFT_DONE_LINES = {
     'Fuji': "FUJI: EEVEE seems lighter on its feet already. Thank you for giving it a home.",
     'Space': "How is EEVEE adapting? Our logs end where your journey begins.",
+    'Family': "My father-in-law writes more than BILL does. The sea air suits him.|If you pass the SEA COTTAGE, tell him the EEVEE is walking every day.",
 }
 
 
@@ -127,8 +128,28 @@ def gift(name, text, prerequisites=()):
         speech(f"Pox_Text_{name}_GiftDone", GIFT_DONE_LINES[name])
 
 
+# Authored trainer headers that differ from the generic Leader/Male default.
+# The Kimono troupe (2026-11-11 fix pass) gives each dancer her own class, pic,
+# music and AI; WHITNEY uses her HNS front pic.
+TRAINER_HEADERS = {
+    'Whitney': dict(pic='Leader Whitney Hns', gender='Female', music='Female'),
+    'KimonoVaporeon': dict(gender='Female', music='Female'),
+    'KimonoJolteon': dict(cls='Cooltrainer', pic='Cooltrainer F', gender='Female', music='Cool',
+                          ai='Basic Trainer / Try To Faint / HP Aware'),
+    'KimonoFlareon': dict(cls='Lady', pic='Lady', gender='Female', music='Female',
+                          ai='Basic Trainer / Check Viability / Powerful Status'),
+    'KimonoEspeon': dict(cls='Psychic', pic='Psychic F', gender='Female', music='Intense',
+                         ai='Basic Trainer / Check Viability / Conservative'),
+    'KimonoUmbreon': dict(cls='Hex Maniac', pic='Hex Maniac', gender='Female', music='Suspicious',
+                          ai='Basic Trainer / HP Aware / Smart Mon Choices'),
+}
+
+
 def trainer(name, display, team, level, pic="Leader Roxanne", cls="Leader", double=False):
     tid = "TRAINER_PLASTIC_OX_" + name.upper()
+    header = TRAINER_HEADERS.get(name, {})
+    cls = header.get('cls', cls)
+    pic = header.get('pic', pic)
     display = display.replace('TATE & LIZA', 'TATE&LIZA')
     pic = pic.replace('Team Aqua M', 'Aqua Grunt M')
     pic = pic.replace('Cool Trainer M', 'Cooltrainer M')
@@ -149,8 +170,10 @@ def trainer(name, display, team, level, pic="Leader Roxanne", cls="Leader", doub
             lines.append(attributes['nature'] + ' Nature')
         lines.extend('- ' + move.split(' [', 1)[0] for move in moves)
         party.append('\n'.join(lines))
-    trainers.append((tid, f"=== {tid} ===\nName: {display}\nClass: {cls}\nPic: {pic}\nGender: Male\nMusic: {'Leader' if cls == 'Leader' else 'Male'}\nDouble Battle: {'Yes' if double else 'No'}\nAI: Basic Trainer / Smart Switching / PP Stall Prevention\n\n" + "\n\n".join(party) + "\n"))
-    trainers[-1] = (tid, trainers[-1][1].replace('Music: Leader', 'Music: Male'))
+    gender = header.get('gender', 'Male')
+    music = header.get('music', 'Male')
+    ai = header.get('ai', 'Basic Trainer / Smart Switching / PP Stall Prevention')
+    trainers.append((tid, f"=== {tid} ===\nName: {display}\nClass: {cls}\nPic: {pic}\nGender: {gender}\nMusic: {music}\nDouble Battle: {'Yes' if double else 'No'}\nAI: {ai}\n\n" + "\n\n".join(party) + "\n"))
     return tid
 
 
@@ -313,6 +336,46 @@ ROOM_EXIT_LINES = {
 }
 
 
+# Hand-authored room details (2026-11-11/13 fix passes). WHITNEY's hall,
+# MORTY's, CLAIR's and the Dance Theater have real doors back to their towns,
+# so WHITNEY's hall no longer needs an exit attendant; the theater uses the
+# HNS theater interior.
+ROOM_OVERRIDES = {
+    'WhitneyGym': dict(boss_gfx='OBJ_EVENT_GFX_WHITNEY_HNS', boss_flag='0', exit_guide=False,
+                       doors=[(5, 19, 0, 'GoldenrodCity_hns', '5'), (6, 19, 0, 'GoldenrodCity_hns', '5')]),
+    'MortyGym': dict(doors=[(5, 19, 0, 'EcruteakCity_hns', '4'), (6, 19, 0, 'EcruteakCity_hns', '4')]),
+    'ClairGym': dict(doors=[(5, 19, 3, 'BlackthornCity_hns', '2'), (6, 19, 3, 'BlackthornCity_hns', '2')]),
+    'DanceTheater': dict(layout='LAYOUT_ECRUTEAK_CITY_THEATER_HNS', music='MUS_RG_CELADON',
+                         battle_scene='MAP_BATTLE_SCENE_NORMAL',
+                         doors=[(10, 17, 0, 'EcruteakCity_hns', '3')]),
+}
+# Tier-rule greeter scripts for the gym halls (2026-11-02). No map object
+# uses them yet; see the cinnabarisland-frlg and saffroncity-hns notes.
+GYM_GREETERS = {
+    'WhitneyGym': ('GOLDENROD GYM', 'PU', 'CheckGoldenrodGymPURules'),
+    'MortyGym': ('ECRUTEAK GYM', 'NU', 'CheckEcruteakGymNURules'),
+    'BlaineGym': ('CINNABAR GYM', 'UU', 'CheckCinnabarGymUURules'),
+    'BrunoGym': ('SAFFRON DOJO GYM', 'OU', 'CheckSaffronGymOURules'),
+    'ClairGym': ('BLACKTHORN GYM', 'OU', 'CheckBlackthornGymOURules'),
+}
+
+
+def greeter_scripts(dest, gym, tier, special):
+    p = dest + '_'
+    return (f'\n{p}EventScript_Greeter::\n\tlock\n\tfaceplayer\n\tmsgbox {p}Text_Greeter, MSGBOX_DEFAULT\n'
+            f'\tspecialvar VAR_RESULT, {special}\n'
+            f'\tgoto_if_eq VAR_RESULT, 1, {p}EventScript_GreeterBannedMove\n'
+            f'\tgoto_if_eq VAR_RESULT, 2, {p}EventScript_GreeterBannedItem\n\trelease\n\tend\n\n'
+            f'{p}EventScript_GreeterBannedMove::\n\tmsgbox {p}Text_GreeterBannedMove, MSGBOX_DEFAULT\n\trelease\n\tend\n\n'
+            f'{p}EventScript_GreeterBannedItem::\n\tmsgbox {p}Text_GreeterBannedItem, MSGBOX_DEFAULT\n\trelease\n\tend\n\n'
+            f'{p}Text_Greeter:\n\t.string "Yo! Champ in the making!\\n"\n\t.string "Welcome to {gym}.\\p"\n'
+            f'\t.string "This GYM follows {tier} tier rules.\\p"\n\t.string "Bring your best {tier}-tier POKéMON!$"\n\n'
+            f'{p}Text_GreeterBannedMove:\n\t.string "This GYM follows {tier} rules.\\p"\n\t.string "That move is banned here.\\n"\n'
+            f'\t.string "Please change it before entering.$"\n\n'
+            f'{p}Text_GreeterBannedItem:\n\t.string "This GYM follows {tier} rules.\\p"\n\t.string "That item is banned here.\\n"\n'
+            f'\t.string "Please remove it before entering.$"\n')
+
+
 def room(name, parent, boss, source="RustboroCity_Gym", objects=None, return_xy=(10, 10)):
     dest = "PlasticOx_" + name
     source = {'BurnedTower':'MtPyre_1F', 'PokemonTower':'MtPyre_2F',
@@ -333,14 +396,26 @@ def room(name, parent, boss, source="RustboroCity_Gym", objects=None, return_xy=
     data["coord_events"] = []
     data["bg_events"] = []
     # Exit through a guide on the known walkable entry corridor. All native
-    # source warps are removed so no room can leak back into Emerald's story.
-    data["warp_events"] = []
-    data["object_events"].append(npc(name + "Exit", 4, 17))
+    # source warps are removed so no room can leak back into Emerald's story;
+    # only the authored doors in ROOM_OVERRIDES lead back to the parent town.
+    over = ROOM_OVERRIDES.get(name, {})
+    for field in ('layout', 'music', 'battle_scene'):
+        if field in over:
+            data[field] = over[field]
+    if 'boss_gfx' in over:
+        data["object_events"][0]["graphics_id"] = over['boss_gfx']
+    if 'boss_flag' in over:
+        data["object_events"][0]["flag"] = over['boss_flag']
+    data["warp_events"] = [dict(x=x, y=y, elevation=e, dest_map=mapid(town), dest_warp_id=w)
+                           for x, y, e, town, w in over.get('doors', [])]
+    if over.get('exit_guide', True):
+        data["object_events"].append(npc(name + "Exit", 4, 17))
     save_map(dest, data)
     for obj in data['object_events']:
         obj['x'],obj['y']=floor_cell(dest,obj['x'],obj['y'],obj['script'])
         save_map(dest,data)
-    put(f"data/maps/{dest}/scripts.inc", f"{dest}_MapScripts::\n\t.byte 0\n")
+    put(f"data/maps/{dest}/scripts.inc", f"{dest}_MapScripts::\n\t.byte 0\n"
+        + (greeter_scripts(dest, *GYM_GREETERS[name]) if name in GYM_GREETERS else ''))
     room_names.append(dest)
     travel(name + "Exit", parent, *return_xy, ROOM_EXIT_LINES.get(name, "I'll show you back outside."))
     manifest.extend((dest, o['x'], o['y'], o['script'][4:]) for o in data['object_events'])
@@ -442,7 +517,7 @@ for i, (name, display, town, prereq, level, team) in enumerate(gymdata):
         repeat = "Pox_MansionKey"
     intro = ("WHITNEY: My team keeps moving! Show me how you handle surprises!"
              if name == 'Whitney' else
-             "MORTY: You went under the tower. You saw a wall stand up, and then lie back down.|I have no explanation that would survive daylight. What I have is a GYM and a badge.|Show me the team you carried down there."
+             "MORTY: You went under the tower. You saw them leave, all eleven, and not one of them looked lost.|I have no explanation that would survive daylight. What I have is a GYM and a badge.|Show me the team you carried down there."
              if name == 'Morty' else
              f"{display}: Show me what you and your POKéMON have learned!")
     battle(name, display, intro, team, level, badges[i], prereq, extra,
@@ -480,46 +555,79 @@ for n, completion, prereq in [(1,moon1,[badges[0]]),(2,moon2,[moon1])]:
     # Retired trainer IDs stay reserved for existing saves.
 beat('MoonRocketMap', "You beat both of our grunts! Fine, take this TOWN MAP and leave TEAM ROCKET alone.", moon, [moon1,moon2], '\tgiveitem ITEM_TOWN_MAP\n\tgoto_if_eq VAR_RESULT, FALSE, Pox_Release')
 # Mt. Moon now uses the FireRed floor actors and fossil quest.
-gift('Family', "BILL never visits enough. His first POKéMON was ABRA, you know.|I used to dance in ECRUTEAK when I was young.|This EEVEE needs someone with time for long walks. Will you look after it?", [starter])
+# BILL's mother, at home in Goldenrod (the family's later EEVEE). The first
+# gift EEVEE comes from the SEA COTTAGE (Pox_Cottage); this one is a second
+# EEVEE, per plastic_ox/plastic_ox_story_v7.md.
+emit("@ BILL's mother, at home in Goldenrod (the family's later EEVEE). The first\n@ gift EEVEE comes from the SEA COTTAGE (Pox_Cottage); this one is a second\n@ EEVEE, per plastic_ox/plastic_ox_story_v7.md.")
+gift('Family', "I used to dance in ECRUTEAK, back when my knees agreed with me.|BILL is my son. He writes about POKéMON and never about himself.|My father-in-law keeps the SEA COTTAGE up north. He sent this EEVEE down on the ferry.|It hates sitting still. Will you walk it for us?", [starter])
 replace_npc('GoldenrodCity_BillsHouse_hns', 0, 'Family')
 
 # Ecruteak: the optional full troupe and the mandatory tower investigation.
-# NOTE: the checked-in plastic_ox_story.inc carries hand-tuned Kimono teams and
-# per-dancer dialogue (2026-11-11 fix pass). Update this block before running the
-# generator, or a regeneration will revert those edits.
+# Each dancer has her own intro, defeat and after-battle lines (2026-11-11 fix
+# pass); her team is authored by apply_trainer_teams_v2.py and her header by
+# TRAINER_HEADERS above.
+KIMONO_LINES = {
+    'Vaporeon': ("Our tide step is slow on purpose. VAPOREON sets the tempo and I follow it.|Will you try the turn with us?",
+                 "The tide turned before I did. You read the water better than I dance it.",
+                 "Come at dusk sometime. The river sounds different once the lamps are lit."),
+    'Jolteon': ("Rain step, spark step. Same count, faster than you can blink.|Keep up!",
+                "Too quick for me. I will drill that turn until my feet complain.",
+                "A quick step is a short one. MORTY says the same about battles, only slower."),
+    'Flareon': ("We close the rite with the ember step. It is not meant to be gentle.|Ready?",
+                "The ember went out. You kept a cooler head than mine.",
+                "The brazier holds its heat till morning. Warm up before you cross the river."),
+    'Espeon': ("The mirror step is danced with the eyes closed. You hear the next move before it happens.|Follow me if you can.",
+               "You heard the turn before I did. That is the whole dance, and you already have it.",
+               "Sit a moment. A dance settles like water after a stone."),
+    'Umbreon': ("The moon step comes last. After the second bell there are no lamps, only us.|Shall we?",
+                "The moon went behind a cloud. You were the shadow I missed.",
+                "The moon step ends facing the tower. We still face it, even now.|Come back at dusk and watch from the door."),
+}
 kimono_flags = []
 kimono_objects = []
 for i, species in enumerate(['Vaporeon','Jolteon','Flareon','Espeon','Umbreon']):
     f = flag('KIMONO_' + species.upper())
     kimono_flags.append(f)
-    battle('Kimono'+species, ['NAOKO','SAYO','ZUKI','KUNI','MIKI'][i], 'Our dance honors the BURNED TOWER. MORTY went there after the last rite.|Would you join our POKéMON in a battle?', [(species,['Quick Attack', {'Vaporeon':'Water Pulse','Jolteon':'Shock Wave','Flareon':'Flamethrower','Espeon':'Psybeam','Umbreon':'Faint Attack'}[species]])], 24, f, [badges[1]], pic='Beauty', cls='Beauty')
-    kimono_objects.append(npc('Kimono'+species, [5,7,10,13,15][i], [3,2,3,2,3][i], 'OBJ_EVENT_GFX_KIMONO_HNS'))
-gift('Kimono', 'You matched all five of our partners with grace. Please raise this EEVEE with the same care.', kimono_flags)
+    name = 'Kimono' + species
+    intro, defeat, after = KIMONO_LINES[species]
+    DEFEAT_LINES[name] = defeat
+    battle(name, ['NAOKO','SAYO','ZUKI','KUNI','MIKI'][i], intro, [(species,['Quick Attack', {'Vaporeon':'Water Pulse','Jolteon':'Shock Wave','Flareon':'Flamethrower','Espeon':'Psybeam','Umbreon':'Faint Attack'}[species]])], 24, f, [badges[1]],
+           extra=f"\tmsgbox Pox_Text_{name}_After, MSGBOX_DEFAULT", pic='Beauty', cls='Beauty', repeat=f"Pox_{name}_After")
+    emit(f"Pox_{name}_After::\n\tmsgbox Pox_Text_{name}_After, MSGBOX_DEFAULT\n\treleaseall\n\tend")
+    speech(f"Pox_Text_{name}_After", after)
+    kimono_objects.append(npc(name, [5,7,10,13,15][i], [3,2,3,2,3][i], 'OBJ_EVENT_GFX_KIMONO_HNS'))
+gift('Kimono', 'You danced with all five of my girls, and none of them took it easy on you.|This EEVEE has watched us from the mat since the first night. It copies every turn, and it has no partner of its own.|Take it with you - not as a prize, but as a dance partner.', kimono_flags)
 kimono_objects.append(npc('Kimono', 5, 15, 'OBJ_EVENT_GFX_OLD_WOMAN'))
 dance = room('DanceTheater','EcruteakCity_hns',None,objects=kimono_objects,return_xy=(36,33))
 guide('EcruteakCity_hns',1,'DanceGuide',dance,'The KIMONO troupe is performing. MORTY is investigating the BURNED TOWER.')
+# Burned Tower B1F (2026-11-12): eleven displaced legendaries gather around
+# MORTY, then scatter; he sends the sages after them. Their B1F objects are
+# authored in the map; the movement scripts are emitted at the end of the file.
+TOWER_CUTSCENE = "closemessage\n\tplayse SE_M_EARTHQUAKE\n\tsetvar VAR_0x8004, 2\n\tsetvar VAR_0x8005, 1\n\tsetvar VAR_0x8006, 20\n\tsetvar VAR_0x8007, 3\n\tspecial ShakeCamera\n\twaitstate\n\tdelay 90\n\tturnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH\n\tplaymoncry SPECIES_ENTEI, CRY_MODE_NORMAL\n\tapplymovement LOCALID_BURNEDTOWER_ENTEI, PoxTower_AwakenBeasts\n\twaitmovement 0\n\twaitmoncry\n\tplaymoncry SPECIES_RAIKOU, CRY_MODE_NORMAL\n\tapplymovement LOCALID_BURNEDTOWER_RAIKOU, PoxTower_AwakenBeasts\n\twaitmovement 0\n\twaitmoncry\n\tplaymoncry SPECIES_SUICUNE, CRY_MODE_NORMAL\n\tapplymovement LOCALID_BURNEDTOWER_SUICUNE, PoxTower_AwakenBeasts\n\twaitmovement 0\n\twaitmoncry\n\tplayse SE_LEDGE\n\tapplymovement LOCALID_BURNEDTOWER_ENTEI, PoxTower_EnteiLeave\n\twaitmovement 0\n\tremoveobject LOCALID_BURNEDTOWER_ENTEI\n\tplayse SE_LEDGE\n\tapplymovement LOCALID_BURNEDTOWER_RAIKOU, PoxTower_RaikouLeave\n\twaitmovement 0\n\tremoveobject LOCALID_BURNEDTOWER_RAIKOU\n\tplayse SE_LEDGE\n\tapplymovement LOCALID_BURNEDTOWER_SUICUNE, PoxTower_SuicuneLeave\n\twaitmovement 0\n\tremoveobject LOCALID_BURNEDTOWER_SUICUNE\n\n\tplaymoncry SPECIES_ARTICUNO, CRY_MODE_NORMAL\n\twaitmoncry\n\tplaymoncry SPECIES_ZAPDOS, CRY_MODE_NORMAL\n\twaitmoncry\n\tplaymoncry SPECIES_MOLTRES, CRY_MODE_NORMAL\n\twaitmoncry\n\tapplymovement LOCALID_POX_TOWER_ARTICUNO, PoxTower_BirdFly\n\tapplymovement LOCALID_POX_TOWER_ZAPDOS, PoxTower_BirdFly\n\tapplymovement LOCALID_POX_TOWER_MOLTRES, PoxTower_BirdFly\n\twaitmovement 0\n\tremoveobject LOCALID_POX_TOWER_ARTICUNO\n\tremoveobject LOCALID_POX_TOWER_ZAPDOS\n\tremoveobject LOCALID_POX_TOWER_MOLTRES\n\tplaymoncry SPECIES_REGIROCK, CRY_MODE_NORMAL\n\twaitmoncry\n\tplaymoncry SPECIES_REGICE, CRY_MODE_NORMAL\n\twaitmoncry\n\tplaymoncry SPECIES_REGISTEEL, CRY_MODE_NORMAL\n\twaitmoncry\n\tapplymovement LOCALID_POX_TOWER_REGIROCK, PoxTower_RegiTeleport\n\tapplymovement LOCALID_POX_TOWER_REGICE, PoxTower_RegiTeleport\n\tapplymovement LOCALID_POX_TOWER_REGISTEEL, PoxTower_RegiTeleport\n\twaitmovement 0\n\tremoveobject LOCALID_POX_TOWER_REGIROCK\n\tremoveobject LOCALID_POX_TOWER_REGICE\n\tremoveobject LOCALID_POX_TOWER_REGISTEEL\n\tplaymoncry SPECIES_CELEBI, CRY_MODE_NORMAL\n\twaitmoncry\n\tapplymovement LOCALID_POX_TOWER_CELEBI, PoxTower_CelebiVanish\n\twaitmovement 0\n\tremoveobject LOCALID_POX_TOWER_CELEBI\n\tplaymoncry SPECIES_JIRACHI, CRY_MODE_NORMAL\n\twaitmoncry\n\tapplymovement LOCALID_POX_TOWER_JIRACHI, PoxTower_JirachiAscend\n\twaitmovement 0\n\tremoveobject LOCALID_POX_TOWER_JIRACHI\n\tdelay 30"
+TOWER_SAGES_LEAVE = "closemessage\n\tapplymovement LOCALID_POX_TOWER_SAGE_1, PoxTower_Sage1Leave\n\tapplymovement LOCALID_POX_TOWER_SAGE_2, PoxTower_Sage2Leave\n\twaitmovement 0\n\tremoveobject LOCALID_POX_TOWER_SAGE_1\n\tremoveobject LOCALID_POX_TOWER_SAGE_2\n\tfaceplayer"
+TOWER_MOVEMENTS = "PoxTower_AwakenBeasts:\n\tjump_in_place_down\n\tjump_in_place_down\n\tjump_in_place_down\n\tstep_end\n\nPoxTower_EnteiLeave:\n\tjump_down\n\tjump_2_right\n\tjump_2_right\n\tjump_2_right\n\tjump_2_right\n\tstep_end\n\nPoxTower_RaikouLeave:\n\tjump_down\n\tjump_2_left\n\tjump_2_left\n\tjump_2_left\n\tjump_2_left\n\tstep_end\n\nPoxTower_SuicuneLeave:\n\tjump_2_down\n\tdelay_8\n\tjump_in_place_right_left\n\tjump_in_place_right_left\n\tjump_left\n\tjump_2_down\n\tjump_2_down\n\tjump_2_down\n\tstep_end\n\nPoxTower_Sage1Leave:\n\twalk_up\n\twalk_right\n\twalk_right\n\twalk_right\n\twalk_right\n\twalk_right\n\twalk_right\n\twalk_right\n\twalk_right\n\twalk_down\n\twalk_up\n\twalk_up\n\twalk_up\n\twalk_right\n\twalk_right\n\twalk_up\n\twalk_up\n\twalk_right\n\twalk_right\n\tstep_end\n\nPoxTower_Sage2Leave:\n\twalk_right\n\twalk_right\n\twalk_right\n\twalk_right\n\twalk_up\n\twalk_up\n\twalk_up\n\twalk_right\n\twalk_right\n\twalk_up\n\twalk_up\n\twalk_right\n\twalk_right\n\tstep_end\n\n\nPoxTower_Text_Rift::\n\t.string \"MORTY: The air is still shaking.\\nThere are more coming through!$\"\n\nPoxTower_BirdFly:\n\tlevitate\n\tdelay_16\n\tface_up\n stop_levitate\n\tfly_up\n\tset_invisible\n\tstep_end\n\nPoxTower_RegiTeleport:\n\tface_left\n\tdelay_4\n\tface_up\n\tdelay_4\n\tface_right\n\tdelay_4\n\tface_down\n\tdelay_4\n\tface_left\n\tdelay_4\n\tface_up\n\tdelay_4\n\tface_right\n\tdelay_4\n\tface_down\n\tdelay_4\n\tface_left\n\tdelay_4\n\tface_up\n\tdelay_4\n\tface_right\n\tdelay_4\n\tface_down\n\tdelay_4\n\tface_left\n\tdelay_4\n\tface_up\n\tdelay_4\n\tface_right\n\tdelay_4\n\tface_down\n\tdelay_4\n\tset_invisible\n\tdelay_4\n\tset_visible\n\tdelay_4\n\tset_invisible\n\tstep_end\n\nPoxTower_CelebiVanish:\n\tlevitate\n\tjump_in_place_left_right\n\tjump_in_place_right_left\n\tjump_in_place_left_right\n\tjump_in_place_right_left\n\tset_invisible\n\tdelay_8\n\tset_visible\n\tdelay_4\n\tset_invisible\n\tstep_end\n\nPoxTower_JirachiAscend:\n\tlevitate\n\tjump_in_place_up\n\tdelay_16\n\tface_up\n stop_levitate\n\tfly_up\n\tset_invisible\n\tstep_end"
+TOWER_LINES = [
+    ('BurnedTowerBefore', "MORTY: Eleven gathered here... Listening. Waiting for something.|Wait... Do you feel that?"),
+    ('BurnedTowerAfter', "MORTY: Eleven... All drawn to the same place.|The tower was a refuge. Now they must find their way home."),
+    ('BurnedTowerMission', "MORTY: Sages, follow them. The world has changed.|Find them shelter. Give them space. Let them choose to stay."),
+    ('BurnedTowerSages', "SAGE: We will watch over them. You have our word."),
+    ('BurnedTowerFarewell', "MORTY: SUICUNE looked back at you before it left.|Remember that. Trust begins with a moment like this.|I will be at the GYM. Come when you are ready."),
+]
 start('BurnedTower', [badges[1]])
 emit(f'\tgoto_if_set {burned}, Pox_Done')
-message('BurnedTowerBefore', "MORTY: Look at that wall. A stair stood there before the fire.")
-emit('\tfadescreen FADE_TO_WHITE\n\tsetmetatile 10, 9, 0x6A6, FALSE\n'
-     '\tspecial DrawWholeMapView\n\tfadescreen FADE_FROM_WHITE')
-message('BurnedTowerVision', 'For a moment the stair is whole again. A bell rings from the empty landing.')
-emit('\tfadescreen FADE_TO_WHITE\n\tsetmetatile 10, 9, 0x6F2, FALSE\n'
-     '\tspecial DrawWholeMapView\n\tfadescreen FADE_FROM_WHITE')
-message('BurnedTowerAfter', 'Only ash remains. You recover the fallen ceremonial bell.|MORTY: Places remember what they were. But the POKéMON displaced by the convergence need our help now.')
-emit('\tturnobject VAR_LAST_TALKED, DIR_NORTH')
-message('BurnedTowerMission', 'MORTY: Sages, search throughout the region. Find the legendary POKéMON driven from their homes.|Help them find shelter. Stay by their sides until they feel safe again.')
-message('BurnedTowerSages', 'SAGE: We will go, MORTY. No displaced POKéMON should have to face this strange land alone.')
-emit('\tremoveobject LOCALID_POX_TOWER_SAGE_1\n\tremoveobject LOCALID_POX_TOWER_SAGE_2')
-message('BurnedTowerFarewell', 'MORTY: If you meet a sage beside a legendary POKéMON, they are there to help.|Show them the care you give your own partners.|I will return to my GYM. Come see me when you are ready.')
+emit('faceplayer')
+emit('\tmsgbox Pox_Text_BurnedTowerBefore, MSGBOX_DEFAULT')
+emit(TOWER_CUTSCENE)
+emit('\tmsgbox Pox_Text_BurnedTowerAfter, MSGBOX_DEFAULT')
+emit('faceplayer')
+emit('\tmsgbox Pox_Text_BurnedTowerMission, MSGBOX_DEFAULT')
+emit('\tmsgbox Pox_Text_BurnedTowerSages, MSGBOX_DEFAULT')
+emit(TOWER_SAGES_LEAVE)
+emit('\tmsgbox Pox_Text_BurnedTowerFarewell, MSGBOX_DEFAULT')
 emit(f'\tsetflag {burned}\n\tremoveobject VAR_LAST_TALKED')
 finish()
-speech('Pox_Text_BurnedTowerBefore', "MORTY: Look at that wall. A stair stood there before the fire.")
-speech('Pox_Text_BurnedTowerVision', 'For a moment the stair is whole again. A bell rings from the empty landing.')
-speech('Pox_Text_BurnedTowerAfter', 'Only ash remains. You recover the fallen ceremonial bell.|MORTY: Places remember what they were. But the POKéMON displaced by the convergence need our help now.')
-speech('Pox_Text_BurnedTowerMission', 'MORTY: Sages, search throughout the region. Find the legendary POKéMON driven from their homes.|Help them find shelter. Stay by their sides until they feel safe again.')
-speech('Pox_Text_BurnedTowerSages', 'SAGE: We will go, MORTY. No displaced POKéMON should have to face this strange land alone.')
-speech('Pox_Text_BurnedTowerFarewell', 'MORTY: If you meet a sage beside a legendary POKéMON, they are there to help.|Show them the care you give your own partners.|I will return to my GYM. Come see me when you are ready.')
+for label, text in TOWER_LINES:
+    speech('Pox_Text_' + label, text)
 # Burned Tower uses the two original HNS floors. Their authored warps and
 # basement event are kept in the map sources rather than a generated room.
 tower = 'PlasticOx_BurnedTower'
@@ -911,6 +1019,7 @@ speech('Pox_Text_Sudowoodo_Wait', 'This tree feels like stone! Someone near WHIT
 # stable map numbers in existing saves.
 room_names.append('PlasticOx_BurnedTowerB1F')
 manifest.append(('PlasticOx_BurnedTowerB1F', 8, 9, 'BurnedTower'))
+emit(TOWER_MOVEMENTS)
 put('data/scripts/plastic_ox_story.inc','@ Generated by plastic_ox/alpha/build_story.py. Edit the manifest there.\n\n'+'\n'.join(scripts))
 path='data/event_scripts.s'
 s=read(path)
@@ -945,29 +1054,100 @@ if '#include "constants/plastic_ox_story.h"' not in s:
 put(path,s)
 path='include/constants/opponents.h'
 s=read(path)
-route_defs=re.findall(r'^#define TRAINER_PLASTIC_OX_ROUTE\w+\s+\d+\n',s,flags=re.M)
-s=re.sub(r'// Plastic Ox story trainers\.\n.*?// End Plastic Ox story trainers\.\n\n','',s,flags=re.S)
+# Every other TRAINER_PLASTIC_OX_* id in the block (route, Mt. Moon, Johto,
+# sage, ridge, tournament, Ecruteak staff, ...) is owned by its own module or
+# by apply_trainer_teams_v2.py. Keep those lines verbatim, comments included.
+story_ids={tid for tid,_ in trainers}
+old_block=re.search(r'// Plastic Ox story trainers\.\n(.*?)// End Plastic Ox story trainers\.\n',s,flags=re.S)
+route_defs=[line+'\n' for line in (old_block[1].splitlines() if old_block else [])
+            if line.startswith('#define TRAINER_PLASTIC_OX_') and line.split()[1] not in story_ids]
 defs='// Plastic Ox story trainers.\n'+''.join(f'#define {tid} {857+i if i < pu_trainer_start else 895+i-pu_trainer_start}\n' for i,(tid,_) in enumerate(trainers))+''.join(route_defs)+'// End Plastic Ox story trainers.\n'
-s=s.replace('// NOTE: Because each Trainer',defs+'\n// NOTE: Because each Trainer')
-route_ids=[int(value) for value in re.findall(r'#define TRAINER_PLASTIC_OX_ROUTE\w+\s+(\d+)',s)]
+if old_block:
+    s=s[:old_block.start()]+defs+s[old_block.end():]
+else:
+    s=s.replace('// Plastic Ox trainer victories above ID 856',defs+'\n// Plastic Ox trainer victories above ID 856')
+route_ids=[int(line.split()[2]) for line in route_defs]
 trainer_count=max([895+len(trainers)-pu_trainer_start, *(value + 1 for value in route_ids)])
 s=re.sub(r'#define TRAINERS_COUNT_EMERALD\s+\d+',f'#define TRAINERS_COUNT_EMERALD {trainer_count}',s)
 s=re.sub(r'#define MAX_TRAINERS_COUNT_EMERALD\s+\d+',f'#define MAX_TRAINERS_COUNT_EMERALD {trainer_count}',s)
 assert pu_trainer_start == 28 and len(trainers) == 32
 put(path,s)
+# This generator owns each story trainer's header (name, class, pic, music,
+# AI). Party bodies are authored by plastic_ox/tools/apply_trainer_teams_v2.py
+# and stay as checked in; the placeholder party above is only used for a
+# trainer that has no block yet. Every other block is left untouched.
 path='src/data/trainers.party'
 s=read(path)
-prefix=s.split('=== TRAINER_PLASTIC_OX_ROXANNE ===')[0].rstrip()+'\n\n'
-route_suffix=''
-if '=== TRAINER_PLASTIC_OX_ROUTE101 ===' in s:
-    route_suffix='\n\n=== TRAINER_PLASTIC_OX_ROUTE101 ==='+s.split('=== TRAINER_PLASTIC_OX_ROUTE101 ===',1)[1].split('=== TRAINER_PLASTIC_OX_PU_ROUTE33 ===',1)[0].rstrip()+'\n'
-put(path,prefix+'\n'.join(t for _,t in trainers[:pu_trainer_start])+route_suffix+'\n'+'\n'.join(t for _,t in trainers[pu_trainer_start:]))
+for tid,text in trainers:
+    head,_,body=text.partition('\n\n')
+    m=re.search(r'^=== '+re.escape(tid)+r' ===\n.*?\n\n',s,flags=re.M|re.S)
+    if m:
+        s=s[:m.start()]+head+'\n\n'+s[m.end():]
+    else:
+        s=s.rstrip('\n')+'\n\n'+text
+put(path,s)
 put('plastic_ox/alpha/story_manifest.json',json.dumps(dict(events=[dict(map=m,x=x,y=y,script='Pox_'+s) for m,x,y,s in manifest],flags=flags,trainers=[t for t,_ in trainers],rooms=room_names),indent=2)+'\n')
 
 # Apply physical topology last so room/story regeneration cannot restore old
 # entrances, callbacks, or travel bypasses.
 from region_v7 import apply_region
 apply_region(read, put)
+
+
+def keep_stable_trainer_layout():
+    """Area modules (mt_moon, johto_outdoors, cinnabar, ...) re-append their own
+    trainer defines and blocks. IDs are save data and party bodies belong to
+    plastic_ox/tools/apply_trainer_teams_v2.py, so keep the checked-in define
+    order and every checked-in party body; generators own only the headers and
+    any trainer that does not exist yet (appended at the end)."""
+    path='include/constants/opponents.h'
+    disk=Path(path).read_text()
+    pat=r'// Plastic Ox story trainers\.\n(.*?)// End Plastic Ox story trainers\.\n'
+    new=re.search(pat,read(path),flags=re.S)
+    old=re.search(pat,disk,flags=re.S)
+    if new and old:
+        ident=lambda line: line.split()[1] if line.startswith('#define ') else None
+        new_lines={ident(l):l for l in new[1].splitlines() if ident(l)}
+        old_lines=[l for l in old[1].splitlines() if ident(l)]
+        lines=[l if l.split()[:3]==new_lines[ident(l)].split()[:3] else new_lines[ident(l)] for l in old_lines if ident(l) in new_lines]
+        lines+= [l for k,l in new_lines.items() if k not in {ident(o) for o in old_lines}]
+        s=read(path)
+        s=s[:new.start()]+'// Plastic Ox story trainers.\n'+''.join(l+'\n' for l in lines)+'// End Plastic Ox story trainers.\n'+s[new.end():]
+        count=max(int(l.split()[2]) for l in lines)+1
+        for c in ['TRAINERS_COUNT_EMERALD','MAX_TRAINERS_COUNT_EMERALD']:
+            s=re.sub(r'(#define '+c+r'\s+)\d+',lambda m:m[1]+str(count),s)
+        put(path,s)
+    path='src/data/trainers.party'
+    split=lambda text: re.split(r'(?=^=== TRAINER_)',text,flags=re.M)
+    disk_blocks=split(Path(path).read_text())
+    gen_blocks=split(read(path))
+    key=lambda b: b.split(' ===',1)[0] if b.startswith('=== TRAINER_') else None
+    gen={key(b):b for b in gen_blocks if key(b)}
+    out=[]
+    seen=set()
+    for b in disk_blocks:
+        k=key(b)
+        if k is None:
+            out.append(b)
+            continue
+        if k not in gen:
+            continue
+        seen.add(k)
+        g=gen[k]
+        if k.startswith('=== TRAINER_PLASTIC_OX_'):
+            head=g.split('\n\n',1)[0]
+            body=b.split('\n\n',1)[1] if '\n\n' in b else ''
+            out.append(head+'\n\n'+body)
+        else:
+            out.append(g if g.rstrip()!=b.rstrip() else b)
+    extra=[gen[k] for k in gen if k not in seen]
+    text=''.join(out)
+    if extra:
+        text=text.rstrip('\n')+'\n\n'+''.join(extra)
+    put(path,text)
+
+
+keep_stable_trainer_layout()
 manifest=[(m,x,y,s) for m,x,y,s in manifest if any(o.get('script') == 'Pox_'+s and (o['x'],o['y']) == (x,y) for o in load_map(m)['object_events'])]
 put('plastic_ox/alpha/story_manifest.json',json.dumps(dict(events=[dict(map=m,x=x,y=y,script='Pox_'+s) for m,x,y,s in manifest],flags=flags,trainers=[t for t,_ in trainers],rooms=room_names),indent=2)+'\n')
 
