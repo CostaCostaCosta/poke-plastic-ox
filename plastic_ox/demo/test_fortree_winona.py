@@ -3,8 +3,8 @@
 
 Talks to Winona in FortreeCity_Gym with badges 1-3 and the Weather Institute
 done, waits for TRAINER_PLASTIC_OX_WINONA's battle, then decodes the enemy
-party from EWRAM: six Pokemon, the requested species/levels in order, every
-one shiny, and IVs whose parity gives Hidden Power Electric (Octillery) and
+party from EWRAM: six Pokemon, the requested species in order, all Lv36,
+none shiny, and IVs whose parity gives Hidden Power Electric (Octillery) and
 Hidden Power Flying (Poliwrath). Run after building pokeemerald.gba.
 """
 from __future__ import annotations
@@ -20,8 +20,8 @@ from walklib import K  # noqa: E402
 
 TRAINER = "TRAINER_PLASTIC_OX_WINONA"
 # national dex ids (pokeemerald-expansion keeps Gen 1-3 in dex order)
-EXPECTED = [("Octillery", 224, 35), ("Aggron", 306, 35), ("Camerupt", 323, 35),
-            ("Clefable", 36, 35), ("Poliwrath", 62, 35), ("Xatu", 178, 36)]
+EXPECTED = [("Octillery", 224, 36), ("Aggron", 306, 36), ("Camerupt", 323, 36),
+            ("Clefable", 36, 36), ("Poliwrath", 62, 36), ("Xatu", 178, 36)]
 HP_TYPES = ("Fighting", "Flying", "Poison", "Ground", "Rock", "Bug", "Ghost", "Steel",
             "Fire", "Water", "Grass", "Electric", "Psychic", "Ice", "Dragon", "Dark")
 WANT_HP = {"Octillery": "Electric", "Poliwrath": "Flying"}
@@ -68,13 +68,13 @@ def main() -> None:
         pid, otid = g.u32(mon), g.u32(mon + 4)
         value = (pid >> 16) ^ (pid & 0xFFFF) ^ (otid >> 16) ^ (otid & 0xFFFF)
         shiny = (value < SHINY_ODDS) ^ ((g.u16(mon + 30) >> 14) & 1)
-        assert shiny, (name, "not shiny")
+        assert not shiny, (name, "unexpectedly shiny")
         ivs = g.box_ivs(mon)
         if name in WANT_HP:
             assert hidden_power(ivs) == WANT_HP[name], (name, ivs, hidden_power(ivs))
-        print(f"  ok  {name} Lv{level} shiny IVs={ivs}"
+        print(f"  ok  {name} Lv{level} not shiny IVs={ivs}"
               + (f" HP {hidden_power(ivs)}" if name in WANT_HP else ""), flush=True)
-    print("\nPASS: Winona battles with her fixed shiny six and correct Hidden Power types")
+    print("\nPASS: Winona battles with her fixed Lv36 non-shiny six and correct Hidden Power types")
 
 
 if __name__ == "__main__":

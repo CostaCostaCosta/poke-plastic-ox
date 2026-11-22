@@ -17164,65 +17164,70 @@ Music: Male
 Double Battle: No
 AI: Basic Trainer / Smart Switching / PP Stall Prevention
 
-Sudowoodo @ Choice Band
+Hitmonchan @ Leftovers
 Level: 30
-Ability: Rock Head
-EVs: 252 HP / 252 Atk / 4 Spe
-Adamant Nature
-- Rock Slide
-- Earthquake
-- Focus Punch
-- Explosion
-
-Haunter @ Leftovers
-Level: 29
-Ability: Levitate
-EVs: 4 Def / 252 SpA / 252 Spe
-Timid Nature
-- Psychic
-- Thunderbolt
-- Substitute
-- Explosion
-
-Sableye @ Leftovers
-Level: 28
 Ability: Keen Eye
-EVs: 252 SpA / 4 SpD / 252 Spe
-Timid Nature
-- Psychic
-- Thunderbolt
-- Taunt
-- Explosion
-
-Duskull @ Leftovers
-Level: 28
-Ability: Levitate
-EVs: 252 HP / 252 Def / 4 SpD
-Bold Nature
-- Rest
-- Sleep Talk
-- Blizzard
-- Night Shade
-
-Golbat @ Leftovers
-Level: 28
-Ability: Inner Focus
-EVs: 252 HP / 112 Atk / 144 Spe
-Jolly Nature
-- Sludge Bomb
-- Aerial Ace
+IVs: 31 HP / 31 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 88 HP / 252 Atk / 168 Spe
+Adamant Nature
+- Earthquake
 - Hidden Power
+- Mach Punch
+- Sky Uppercut
+
+Pelipper (M) @ Leftovers
+Level: 30
+Ability: Keen Eye
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 236 HP / 252 Def / 20 Spe
+Bold Nature
+- Ice Beam
+- Protect
+- Surf
 - Toxic
 
-Wigglytuff @ Leftovers
-Level: 27
-Ability: Cute Charm
-EVs: 4 HP / 252 SpA / 252 Spe
-Modest Nature
-- Ice Beam
+Haunter (F) @ Petaya Berry
+Level: 30
+Ability: Levitate
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 30 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Hidden Power
+- Psychic
+- Substitute
 - Thunderbolt
-- Fire Blast
-- Hyper Beam
+
+Roselia (F) @ Leftovers
+Level: 30
+Ability: Natural Cure
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 30 Spe
+EVs: 252 HP / 4 Def / 252 SpD
+Calm Nature
+- Giga Drain
+- Hidden Power
+- Spikes
+- Synthesis
+
+Relicanth (M) @ Leftovers
+Level: 30
+Ability: Swift Swim
+EVs: 160 HP / 252 Atk / 96 Spe
+Adamant Nature
+- Earthquake
+- Rock Slide
+- Substitute
+- Toxic
+
+Kecleon (M) @ Leftovers
+Level: 30
+Ability: Color Change
+Happiness: 255
+EVs: 252 HP / 4 Def / 252 SpD
+Careful Nature
+- Rest
+- Return
+- Shadow Ball
+- Thunder Wave
 
 === TRAINER_PLASTIC_OX_WINONA ===
 Name: WINONA
@@ -17234,9 +17239,8 @@ Double Battle: No
 AI: Basic Trainer / Smart Switching / PP Stall Prevention
 
 Octillery (F) @ Lum Berry
-Level: 35
+Level: 36
 Ability: Suction Cups
-Shiny: Yes
 IVs: 31 HP / 3 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
 EVs: 244 HP / 12 Def / 252 SpA
 Modest Nature
@@ -17246,9 +17250,8 @@ Modest Nature
 - Thunder Wave
 
 Aggron (M) @ Leftovers
-Level: 35
+Level: 36
 Ability: Sturdy
-Shiny: Yes
 EVs: 160 HP / 252 Atk / 12 SpD / 84 Spe
 Adamant Nature
 - Focus Punch
@@ -17257,9 +17260,8 @@ Adamant Nature
 - Thunder Wave
 
 Camerupt (M) @ Choice Band
-Level: 35
+Level: 36
 Ability: Magma Armor
-Shiny: Yes
 EVs: 252 Atk / 4 SpD / 252 Spe
 Adamant Nature
 - Earthquake
@@ -17268,9 +17270,8 @@ Adamant Nature
 - Rock Slide
 
 Clefable (F) @ Leftovers
-Level: 35
+Level: 36
 Ability: Cute Charm
-Shiny: Yes
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 248 HP / 8 Def / 252 SpD
 Calm Nature
@@ -17280,9 +17281,8 @@ Calm Nature
 - Thunder Wave
 
 Poliwrath (M) @ Salac Berry
-Level: 35
+Level: 36
 Ability: Damp
-Shiny: Yes
 IVs: 31 HP / 31 Atk / 31 Def / 30 SpA / 30 SpD / 30 Spe
 EVs: 28 HP / 252 Atk / 20 Def / 208 Spe
 Adamant Nature
@@ -17294,7 +17294,6 @@ Adamant Nature
 Xatu (M) @ Leftovers
 Level: 36
 Ability: Early Bird
-Shiny: Yes
 IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 80 Def / 176 Spe
 Timid Nature

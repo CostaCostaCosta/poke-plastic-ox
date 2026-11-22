@@ -228,13 +228,13 @@ ROSTERS: dict[str, tuple[str, list[tuple[str, int]]]] = {
         ("SPECIES_UMBREON", 26), ("SPECIES_SPOINK", 23), ("SPECIES_HOUNDOUR", 24),
         ("SPECIES_DUSKULL", 24), ("SPECIES_MEOWTH", 23), ("SPECIES_NIDORAN_M", 24)]),
     "TRAINER_PLASTIC_OX_MORTY": ("gym3", [
-        ("SPECIES_SUDOWOODO", 30), ("SPECIES_HAUNTER", 29), ("SPECIES_SABLEYE", 28),
-        ("SPECIES_DUSKULL", 28), ("SPECIES_GOLBAT", 28), ("SPECIES_WIGGLYTUFF", 27)]),
+        ("SPECIES_HITMONCHAN", 30), ("SPECIES_PELIPPER", 30), ("SPECIES_HAUNTER", 30),
+        ("SPECIES_ROSELIA", 30), ("SPECIES_RELICANTH", 30), ("SPECIES_KECLEON", 30)]),
 
     # ---- Gym 4 and Gym 5 segments, RU cap 36 / UU cap 42 -----------------
     "TRAINER_PLASTIC_OX_WINONA": ("fortree", [
-        ("SPECIES_OCTILLERY", 35), ("SPECIES_AGGRON", 35), ("SPECIES_CAMERUPT", 35),
-        ("SPECIES_CLEFABLE", 35), ("SPECIES_POLIWRATH", 35), ("SPECIES_XATU", 36)]),
+        ("SPECIES_OCTILLERY", 36), ("SPECIES_AGGRON", 36), ("SPECIES_CAMERUPT", 36),
+        ("SPECIES_CLEFABLE", 36), ("SPECIES_POLIWRATH", 36), ("SPECIES_XATU", 36)]),
     "TRAINER_PLASTIC_OX_TOWERGRUNT1": ("cinnabar", [
         ("SPECIES_HAUNTER", 38), ("SPECIES_HYPNO", 37), ("SPECIES_CUBONE", 37),
         ("SPECIES_MUK", 37), ("SPECIES_KOFFING", 36), ("SPECIES_SABLEYE", 38)]),
@@ -373,6 +373,31 @@ WHITNEY_COMPETITIVE_TEAM = {
         set_name="Dragon Dance"),
 }
 
+# Fixed ADV sets for Morty (gym3, NU cap 30), requested verbatim; all Lv30.
+# His moves are a trainer-only exception like Whitney's/Winona's. IVs give
+# Hidden Power Ghost (Hitmonchan) and Hidden Power Fire (Haunter, Roselia).
+MORTY = "TRAINER_PLASTIC_OX_MORTY"
+MORTY_COMPETITIVE_TEAM = {
+    "SPECIES_HITMONCHAN": dict(item="Leftovers", ability="Keen Eye", nature="Adamant",
+        evs=dict(hp=88, atk=252, spe=168), hp_type="Ghost", ivs={"def": 30, "spd": 30},
+        moves=["MOVE_EARTHQUAKE", "MOVE_HIDDEN_POWER", "MOVE_MACH_PUNCH", "MOVE_SKY_UPPERCUT"]),
+    "SPECIES_PELIPPER": dict(item="Leftovers", ability="Keen Eye", nature="Bold", gender="M",
+        evs=dict(hp=236, def_=252, spe=20), ivs={"atk": 0},
+        moves=["MOVE_ICE_BEAM", "MOVE_PROTECT", "MOVE_SURF", "MOVE_TOXIC"]),
+    "SPECIES_HAUNTER": dict(item="Petaya Berry", ability="Levitate", nature="Timid", gender="F",
+        evs=dict(spa=252, spd=4, spe=252), hp_type="Fire", ivs={"atk": 2, "spa": 30, "spe": 30},
+        moves=["MOVE_HIDDEN_POWER", "MOVE_PSYCHIC", "MOVE_SUBSTITUTE", "MOVE_THUNDERBOLT"]),
+    "SPECIES_ROSELIA": dict(item="Leftovers", ability="Natural Cure", nature="Calm", gender="F",
+        evs=dict(hp=252, def_=4, spd=252), hp_type="Fire", ivs={"atk": 2, "spa": 30, "spe": 30},
+        moves=["MOVE_GIGA_DRAIN", "MOVE_HIDDEN_POWER", "MOVE_SPIKES", "MOVE_SYNTHESIS"]),
+    "SPECIES_RELICANTH": dict(item="Leftovers", ability="Swift Swim", nature="Adamant", gender="M",
+        evs=dict(hp=160, atk=252, spe=96), ivs=None,
+        moves=["MOVE_EARTHQUAKE", "MOVE_ROCK_SLIDE", "MOVE_SUBSTITUTE", "MOVE_TOXIC"]),
+    "SPECIES_KECLEON": dict(item="Leftovers", ability="Color Change", nature="Careful", gender="M",
+        happiness=255, evs=dict(hp=252, def_=4, spd=252), ivs=None,
+        moves=["MOVE_REST", "MOVE_RETURN", "MOVE_SHADOW_BALL", "MOVE_THUNDER_WAVE"]),
+}
+
 # Fixed ADV sets for Winona (Fortree, RU cap 36), requested verbatim. Every
 # species is legal at 'fortree'; her moves (Belly Drum, Thunder Wave on
 # Octillery, ...) are a trainer-only exception like Whitney's. IVs give
@@ -380,27 +405,27 @@ WHITNEY_COMPETITIVE_TEAM = {
 WINONA = "TRAINER_PLASTIC_OX_WINONA"
 WINONA_COMPETITIVE_TEAM = {
     "SPECIES_OCTILLERY": dict(item="Lum Berry", ability="Suction Cups", nature="Modest",
-        gender="F", shiny=True, evs=dict(hp=244, def_=12, spa=252), hp_type="Electric",
+        gender="F", evs=dict(hp=244, def_=12, spa=252), hp_type="Electric",
         ivs={"atk": 3, "spa": 30},
         moves=["MOVE_FIRE_BLAST", "MOVE_HIDDEN_POWER", "MOVE_SURF", "MOVE_THUNDER_WAVE"]),
     "SPECIES_AGGRON": dict(item="Leftovers", ability="Sturdy", nature="Adamant",
-        gender="M", shiny=True, evs=dict(hp=160, atk=252, spd=12, spe=84), ivs=None,
+        gender="M", evs=dict(hp=160, atk=252, spd=12, spe=84), ivs=None,
         moves=["MOVE_FOCUS_PUNCH", "MOVE_ROCK_SLIDE", "MOVE_SUBSTITUTE", "MOVE_THUNDER_WAVE"]),
     "SPECIES_CAMERUPT": dict(item="Choice Band", ability="Magma Armor", nature="Adamant",
-        gender="M", shiny=True, evs=dict(atk=252, spd=4, spe=252), ivs=None,
+        gender="M", evs=dict(atk=252, spd=4, spe=252), ivs=None,
         moves=["MOVE_EARTHQUAKE", "MOVE_EXPLOSION", "MOVE_OVERHEAT", "MOVE_ROCK_SLIDE"]),
     "SPECIES_CLEFABLE": dict(item="Leftovers", ability="Cute Charm", nature="Calm",
-        gender="F", shiny=True, evs=dict(hp=248, def_=8, spd=252), ivs={"atk": 0},
+        gender="F", evs=dict(hp=248, def_=8, spd=252), ivs={"atk": 0},
         moves=["MOVE_ENCORE", "MOVE_SEISMIC_TOSS", "MOVE_SOFT_BOILED", "MOVE_THUNDER_WAVE"]),
     "SPECIES_POLIWRATH": dict(item="Salac Berry", ability="Damp", nature="Adamant",
-        gender="M", shiny=True, evs=dict(hp=28, atk=252, def_=20, spe=208), hp_type="Flying",
+        gender="M", evs=dict(hp=28, atk=252, def_=20, spe=208), hp_type="Flying",
         ivs={"spa": 30, "spd": 30, "spe": 30},
         moves=["MOVE_BELLY_DRUM", "MOVE_BRICK_BREAK", "MOVE_HIDDEN_POWER", "MOVE_SUBSTITUTE"]),
     "SPECIES_XATU": dict(item="Leftovers", ability="Early Bird", nature="Timid",
-        gender="M", shiny=True, evs=dict(hp=252, def_=80, spe=176), ivs={"atk": 0},
+        gender="M", evs=dict(hp=252, def_=80, spe=176), ivs={"atk": 0},
         moves=["MOVE_PSYCHIC", "MOVE_REFLECT", "MOVE_REST", "MOVE_THUNDER_WAVE"]),
 }
-for _set in WINONA_COMPETITIVE_TEAM.values():
+for _set in [*WINONA_COMPETITIVE_TEAM.values(), *MORTY_COMPETITIVE_TEAM.values()]:
     # "def" is a keyword, so dict() literals above spell it def_.
     _set["evs"] = {k.rstrip("_"): v for k, v in _set["evs"].items()}
     _set["ivs"] = {s: (_set["ivs"] or {}).get(s, 31)
@@ -730,6 +755,8 @@ def render_mon(mon: dict) -> str:
         lines.append(f"Ability: {mon['ability']}")
     if mon.get("shiny"):
         lines.append("Shiny: Yes")
+    if mon.get("happiness") is not None:
+        lines.append(f"Happiness: {mon['happiness']}")
     if mon["ivs"]:
         stats = ["HP", "Atk", "Def", "SpA", "SpD", "Spe"]
         lines.append("IVs: " + " / ".join(
@@ -902,6 +929,9 @@ def main() -> int:
             if trainer == WINONA:
                 mon = dict(WINONA_COMPETITIVE_TEAM[species], species=species,
                            level=level, set_source="fixed Winona gym roster", notes=[])
+            elif trainer == MORTY:
+                mon = dict(MORTY_COMPETITIVE_TEAM[species], species=species,
+                           level=level, set_source="fixed Morty gym roster", notes=[])
             elif trainer == "TRAINER_PLASTIC_OX_WHITNEY":
                 mon = dict(WHITNEY_COMPETITIVE_TEAM[species], species=species,
                            level=level, set_source="ADV PU fixed gym roster",

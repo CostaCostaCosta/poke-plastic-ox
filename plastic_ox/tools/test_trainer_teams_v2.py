@@ -16,9 +16,10 @@ entry:
   * EV totals stay inside the 510 cap and no stat exceeds 252;
   * every trainer in the file (vanilla included) obeys species clause and
     has no under-evolved Pokemon (audit_trainer_species.py);
-  * Winona's fixed six (shiny, genders, items, EVs/IVs, Hidden Power types)
-    match WINONA_COMPETITIVE_TEAM; her moves are a declared trainer-only
-    exception like Whitney's;
+  * Winona's and Morty's fixed sixes (levels, shininess, genders, happiness,
+    items, EVs/IVs, Hidden Power types) match WINONA_COMPETITIVE_TEAM /
+    MORTY_COMPETITIVE_TEAM; their moves are a declared trainer-only exception
+    like Whitney's;
   * trainer ids, names, classes, pics, music, battle type and AI lines are
     unchanged from the pre-overhaul baseline, so no wiring moved.
 
@@ -37,7 +38,7 @@ import pox_progression as P  # noqa: E402
 import audit_trainer_species  # noqa: E402
 from apply_trainer_teams_v2 import (  # noqa: E402
     KEEP_AS_IS, ROSTERS, SIGNATURE_EXCEPTIONS, WHITNEY_COMPETITIVE_TEAM,
-    WINONA, WINONA_COMPETITIVE_TEAM,
+    WINONA, WINONA_COMPETITIVE_TEAM, MORTY, MORTY_COMPETITIVE_TEAM,
     AUTHORED_LEAGUE, LEAGUE_PARTIES,
     split_block, ROUTE_GROUPS, minimum_level, expected_party_size,
 )
@@ -93,7 +94,7 @@ def parse_mon(block: str) -> dict:
     mon = {"name": name.strip(), "species": species_const(name.split(" (")[0]),
            "item": head.split(" @ ")[1].strip() if " @ " in head else "",
            "gender": (re.search(r"\((M|F)\)", head.split(" @ ")[0]) or [None, ""])[1],
-           "shiny": False, "level": 0, "moves": [], "ability": "", "evs": {}, "ivs": {}, "nature": ""}
+           "shiny": False, "happiness": None, "level": 0, "moves": [], "ability": "", "evs": {}, "ivs": {}, "nature": ""}
     for line in lines[1:]:
         if line.startswith("- "):
             mon["moves"].append(P.move_id(line[2:].strip()) or line[2:].strip())
@@ -101,6 +102,8 @@ def parse_mon(block: str) -> dict:
             mon["level"] = int(line.split(":", 1)[1])
         elif line.startswith("Shiny:"):
             mon["shiny"] = line.split(":", 1)[1].strip().lower() == "yes"
+        elif line.startswith("Happiness:"):
+            mon["happiness"] = int(line.split(":", 1)[1])
         elif line.startswith("Ability:"):
             mon["ability"] = line.split(":", 1)[1].strip()
         elif line.endswith(" Nature"):
@@ -175,19 +178,29 @@ def main() -> int:
                     problems.append(f"{trainer}[{index}] IVs differ from the fixed ADV PU set")
                 if expected.get("hp_type") and hidden_power_type(mon["ivs"]) != expected["hp_type"]:
                     problems.append(f"{trainer}[{index}] has the wrong Hidden Power type")
-            if trainer == WINONA:
+            if trainer in (WINONA, MORTY):
+                team, label = ((WINONA_COMPETITIVE_TEAM, "Winona") if trainer == WINONA
+                               else (MORTY_COMPETITIVE_TEAM, "Morty"))
                 expected_species = _roster[index][0]
-                expected = WINONA_COMPETITIVE_TEAM.get(species)
+                expected = team.get(species)
                 if species != expected_species or expected is None:
                     problems.append(f"{trainer}[{index}] unexpected species {species}")
                     continue
-                for field in ("item", "ability", "nature", "evs", "moves", "gender", "shiny"):
+                if mon["level"] != _roster[index][1]:
+                    problems.append(f"{trainer}[{index}] level {mon['level']} != pinned {_roster[index][1]}")
+                for field in ("item", "ability", "nature", "evs", "moves"):
                     if mon[field] != expected[field]:
-                        problems.append(f"{trainer}[{index}] {field} differs from the fixed Winona set")
+                        problems.append(f"{trainer}[{index}] {field} differs from the fixed {label} set")
+                if mon["gender"] != expected.get("gender", ""):
+                    problems.append(f"{trainer}[{index}] gender differs from the fixed {label} set")
+                if mon["shiny"] != expected.get("shiny", False):
+                    problems.append(f"{trainer}[{index}] shininess differs from the fixed {label} set")
+                if mon["happiness"] != expected.get("happiness"):
+                    problems.append(f"{trainer}[{index}] happiness differs from the fixed {label} set")
                 full_ivs = {s: mon["ivs"].get(s, 31) for s in STAT_ORDER}
                 want_ivs = expected["ivs"] or {s: 31 for s in STAT_ORDER}
                 if full_ivs != want_ivs:
-                    problems.append(f"{trainer}[{index}] IVs differ from the fixed Winona set")
+                    problems.append(f"{trainer}[{index}] IVs differ from the fixed {label} set")
                 if expected.get("hp_type") and hidden_power_type(mon["ivs"]) != expected["hp_type"]:
                     problems.append(f"{trainer}[{index}] has the wrong Hidden Power type")
             checked += 1
@@ -223,9 +236,9 @@ def main() -> int:
                     # Endgame allows inherited, egg and the NYPC Wish move.
                     # Gen III/roster/IV/EV checks live in test_league.py.
                     continue
-                if trainer == WINONA:
+                if trainer in (WINONA, MORTY):
                     # Requested fixed sets keep moves (Belly Drum, Octillery's
-                    # Thunder Wave, ...) the species may not have by Lv35.
+                    # Thunder Wave, ...) the species may not have by Lv35; Morty likewise.
                     continue
                 if trainer == WHITNEY:
                     # Her fixed trainer-only set includes egg and later-level
