@@ -181,7 +181,7 @@ releaseall
 	end
 
 Pox_Text_Whitney::
-	.string "WHITNEY: My team keeps moving!\nShow me how you handle surprises!$"
+	.string "WHITNEY: My team keeps moving!\nShow me how you handle\psurprises!$"
 
 Pox_Text_Whitney_Defeat::
 	.string "WHITNEY: Waaah! Okay, okay, you\nwin! That was actually kind of\pfun.$"
@@ -230,7 +230,7 @@ releaseall
 	end
 
 Pox_Text_Morty::
-	.string "MORTY: You went under the tower.\nYou saw a wall stand up, and then\nplie back down.\pI have no explanation that would\nsurvive daylight. What I have is a\npGYM and a badge.\pShow me the team you carried down\nthere.$"
+	.string "MORTY: You went under the tower.\nYou saw them leave, all eleven,\pand not one of them looked lost.\pI have no explanation that would\nsurvive daylight. What I have is\pa GYM and a badge.\pShow me the team you carried\ndown there.$"
 
 Pox_Text_Morty_Defeat::
 	.string "MORTY: I saw this ending in the\nash. Seeing it in person is\pdifferent.$"
@@ -512,8 +512,6 @@ checkitem ITEM_HM06
 	goto_if_eq VAR_RESULT, FALSE, Pox_Release
 Pox_MansionKey_ITEM_HM06::
 
-
-
 checkitem ITEM_SECRET_KEY
 	goto_if_eq VAR_RESULT, TRUE, Pox_MansionKey_Owned
 	giveitem ITEM_SECRET_KEY
@@ -604,13 +602,14 @@ Pox_Text_MoonRocketMap::
 @ BILL's mother, at home in Goldenrod (the family's later EEVEE). The first
 @ gift EEVEE comes from the SEA COTTAGE (Pox_Cottage); this one is a second
 @ EEVEE, per plastic_ox/plastic_ox_story_v7.md.
+
 Pox_Family::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
 goto_if_unset FLAG_POX_STORY_STARTER, Pox_NotReady
 
-goto_if_set FLAG_POX_GIFT_FAMILY, Pox_FamilyAfter
+goto_if_set FLAG_POX_GIFT_FAMILY, Pox_Family_GiftDone
 
 msgbox Pox_Text_Family, MSGBOX_DEFAULT
 
@@ -624,202 +623,212 @@ msgbox Pox_Text_GiftReceived, MSGBOX_DEFAULT
 releaseall
 	end
 
-Pox_FamilyAfter::
-	msgbox Pox_Text_FamilyAfter, MSGBOX_DEFAULT
+Pox_Text_Family::
+	.string "I used to dance in ECRUTEAK,\nback when my knees agreed with\pme.\pBILL is my son. He writes about\nPOKéMON and never about himself.\pMy father-in-law keeps the SEA\nCOTTAGE up north. He sent this\pEEVEE down on the ferry.\pIt hates sitting still. Will you\nwalk it for us?$"
+
+Pox_Family_GiftDone::
+	msgbox Pox_Text_Family_GiftDone, MSGBOX_DEFAULT
 	releaseall
 	end
 
-Pox_Text_Family::
-	.string "I used to dance in ECRUTEAK,\nback when my knees agreed\pwith me.\pBILL is my son. He writes about\nPOKéMON and never about\phimself.\pMy father-in-law keeps the SEA\nCOTTAGE up north. He sent this\pEEVEE down on the ferry.\pIt hates sitting still. Will you\nwalk it for us?$"
-
-Pox_Text_FamilyAfter::
+Pox_Text_Family_GiftDone::
 	.string "My father-in-law writes more\nthan BILL does. The sea air\psuits him.\pIf you pass the SEA COTTAGE,\ntell him the EEVEE is walking\pevery day.$"
 
 Pox_KimonoVaporeon::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-	goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
+goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
 
-	goto_if_set FLAG_POX_KIMONO_VAPOREON, Pox_KimonoVaporeon_After
+goto_if_set FLAG_POX_KIMONO_VAPOREON, Pox_KimonoVaporeon_After
 
-	trainerbattle_single TRAINER_PLASTIC_OX_KIMONOVAPOREON, Pox_Text_KimonoVaporeon, Pox_Text_KimonoVaporeonDefeat, Pox_KimonoVaporeon_Won
+trainerbattle_single TRAINER_PLASTIC_OX_KIMONOVAPOREON, Pox_Text_KimonoVaporeon, Pox_Text_KimonoVaporeon_Defeat, Pox_KimonoVaporeon_Won
 
-	goto Pox_KimonoVaporeon_Won
+goto Pox_KimonoVaporeon_Won
 Pox_KimonoVaporeon_Won::
 	setflag FLAG_POX_KIMONO_VAPOREON
-	msgbox Pox_Text_KimonoVaporeonAfter, MSGBOX_DEFAULT
-	releaseall
-	end
 
-Pox_KimonoVaporeon_After::
-	msgbox Pox_Text_KimonoVaporeonAfter, MSGBOX_DEFAULT
-	releaseall
+msgbox Pox_Text_KimonoVaporeon_After, MSGBOX_DEFAULT
+
+releaseall
 	end
 
 Pox_Text_KimonoVaporeon::
-	.string "Our tide step is slow on\npurpose. VAPOREON sets the\ptempo and I follow it.\pWill you try the turn with us?$"
+	.string "Our tide step is slow on\npurpose. VAPOREON sets the tempo\pand I follow it.\pWill you try the turn with us?$"
 
-Pox_Text_KimonoVaporeonDefeat::
-	.string "The tide turned before I\ndid. You read the water\pbetter than I dance it.$"
+Pox_Text_KimonoVaporeon_Defeat::
+	.string "The tide turned before I did.\nYou read the water better than I\pdance it.$"
 
-Pox_Text_KimonoVaporeonAfter::
-	.string "Come at dusk sometime. The\nriver sounds different once\pthe lamps are lit.$"
+Pox_KimonoVaporeon_After::
+	msgbox Pox_Text_KimonoVaporeon_After, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Pox_Text_KimonoVaporeon_After::
+	.string "Come at dusk sometime. The river\nsounds different once the lamps\pare lit.$"
 
 Pox_KimonoJolteon::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-	goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
+goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
 
-	goto_if_set FLAG_POX_KIMONO_JOLTEON, Pox_KimonoJolteon_After
+goto_if_set FLAG_POX_KIMONO_JOLTEON, Pox_KimonoJolteon_After
 
-	trainerbattle_single TRAINER_PLASTIC_OX_KIMONOJOLTEON, Pox_Text_KimonoJolteon, Pox_Text_KimonoJolteonDefeat, Pox_KimonoJolteon_Won
+trainerbattle_single TRAINER_PLASTIC_OX_KIMONOJOLTEON, Pox_Text_KimonoJolteon, Pox_Text_KimonoJolteon_Defeat, Pox_KimonoJolteon_Won
 
-	goto Pox_KimonoJolteon_Won
+goto Pox_KimonoJolteon_Won
 Pox_KimonoJolteon_Won::
 	setflag FLAG_POX_KIMONO_JOLTEON
-	msgbox Pox_Text_KimonoJolteonAfter, MSGBOX_DEFAULT
-	releaseall
-	end
 
-Pox_KimonoJolteon_After::
-	msgbox Pox_Text_KimonoJolteonAfter, MSGBOX_DEFAULT
-	releaseall
+msgbox Pox_Text_KimonoJolteon_After, MSGBOX_DEFAULT
+
+releaseall
 	end
 
 Pox_Text_KimonoJolteon::
 	.string "Rain step, spark step. Same\ncount, faster than you can\pblink.\pKeep up!$"
 
-Pox_Text_KimonoJolteonDefeat::
-	.string "Too quick for me. I will\ndrill that turn until my feet\pcomplain.$"
+Pox_Text_KimonoJolteon_Defeat::
+	.string "Too quick for me. I will drill\nthat turn until my feet\pcomplain.$"
 
-Pox_Text_KimonoJolteonAfter::
+Pox_KimonoJolteon_After::
+	msgbox Pox_Text_KimonoJolteon_After, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Pox_Text_KimonoJolteon_After::
 	.string "A quick step is a short one.\nMORTY says the same about\pbattles, only slower.$"
 
 Pox_KimonoFlareon::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-	goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
+goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
 
-	goto_if_set FLAG_POX_KIMONO_FLAREON, Pox_KimonoFlareon_After
+goto_if_set FLAG_POX_KIMONO_FLAREON, Pox_KimonoFlareon_After
 
-	trainerbattle_single TRAINER_PLASTIC_OX_KIMONOFLAREON, Pox_Text_KimonoFlareon, Pox_Text_KimonoFlareonDefeat, Pox_KimonoFlareon_Won
+trainerbattle_single TRAINER_PLASTIC_OX_KIMONOFLAREON, Pox_Text_KimonoFlareon, Pox_Text_KimonoFlareon_Defeat, Pox_KimonoFlareon_Won
 
-	goto Pox_KimonoFlareon_Won
+goto Pox_KimonoFlareon_Won
 Pox_KimonoFlareon_Won::
 	setflag FLAG_POX_KIMONO_FLAREON
-	msgbox Pox_Text_KimonoFlareonAfter, MSGBOX_DEFAULT
-	releaseall
-	end
 
-Pox_KimonoFlareon_After::
-	msgbox Pox_Text_KimonoFlareonAfter, MSGBOX_DEFAULT
-	releaseall
+msgbox Pox_Text_KimonoFlareon_After, MSGBOX_DEFAULT
+
+releaseall
 	end
 
 Pox_Text_KimonoFlareon::
-	.string "We close the rite with the\nember step. It is not meant\pto be gentle.\pReady?$"
+	.string "We close the rite with the ember\nstep. It is not meant to be\pgentle.\pReady?$"
 
-Pox_Text_KimonoFlareonDefeat::
-	.string "The ember went out. You kept\na cooler head than mine.$"
+Pox_Text_KimonoFlareon_Defeat::
+	.string "The ember went out. You kept a\ncooler head than mine.$"
 
-Pox_Text_KimonoFlareonAfter::
-	.string "The brazier holds its heat\ntill morning. Warm up before\pyou cross the river.$"
+Pox_KimonoFlareon_After::
+	msgbox Pox_Text_KimonoFlareon_After, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Pox_Text_KimonoFlareon_After::
+	.string "The brazier holds its heat till\nmorning. Warm up before you\pcross the river.$"
 
 Pox_KimonoEspeon::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-	goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
+goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
 
-	goto_if_set FLAG_POX_KIMONO_ESPEON, Pox_KimonoEspeon_After
+goto_if_set FLAG_POX_KIMONO_ESPEON, Pox_KimonoEspeon_After
 
-	trainerbattle_single TRAINER_PLASTIC_OX_KIMONOESPEON, Pox_Text_KimonoEspeon, Pox_Text_KimonoEspeonDefeat, Pox_KimonoEspeon_Won
+trainerbattle_single TRAINER_PLASTIC_OX_KIMONOESPEON, Pox_Text_KimonoEspeon, Pox_Text_KimonoEspeon_Defeat, Pox_KimonoEspeon_Won
 
-	goto Pox_KimonoEspeon_Won
+goto Pox_KimonoEspeon_Won
 Pox_KimonoEspeon_Won::
 	setflag FLAG_POX_KIMONO_ESPEON
-	msgbox Pox_Text_KimonoEspeonAfter, MSGBOX_DEFAULT
-	releaseall
-	end
 
-Pox_KimonoEspeon_After::
-	msgbox Pox_Text_KimonoEspeonAfter, MSGBOX_DEFAULT
-	releaseall
+msgbox Pox_Text_KimonoEspeon_After, MSGBOX_DEFAULT
+
+releaseall
 	end
 
 Pox_Text_KimonoEspeon::
-	.string "The mirror step is danced\nwith the eyes closed. You\phear the next move before it\phappens.\pFollow me if you can.$"
+	.string "The mirror step is danced with\nthe eyes closed. You hear the\pnext move before it happens.\pFollow me if you can.$"
 
-Pox_Text_KimonoEspeonDefeat::
-	.string "You heard the turn before I\ndid. That is the whole dance,\pand you already have it.$"
+Pox_Text_KimonoEspeon_Defeat::
+	.string "You heard the turn before I did.\nThat is the whole dance, and you\palready have it.$"
 
-Pox_Text_KimonoEspeonAfter::
-	.string "Sit a moment. A dance\nsettles like water after a\pstone.$"
+Pox_KimonoEspeon_After::
+	msgbox Pox_Text_KimonoEspeon_After, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Pox_Text_KimonoEspeon_After::
+	.string "Sit a moment. A dance settles\nlike water after a stone.$"
 
 Pox_KimonoUmbreon::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-	goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
+goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
 
-	goto_if_set FLAG_POX_KIMONO_UMBREON, Pox_KimonoUmbreon_After
+goto_if_set FLAG_POX_KIMONO_UMBREON, Pox_KimonoUmbreon_After
 
-	trainerbattle_single TRAINER_PLASTIC_OX_KIMONOUMBREON, Pox_Text_KimonoUmbreon, Pox_Text_KimonoUmbreonDefeat, Pox_KimonoUmbreon_Won
+trainerbattle_single TRAINER_PLASTIC_OX_KIMONOUMBREON, Pox_Text_KimonoUmbreon, Pox_Text_KimonoUmbreon_Defeat, Pox_KimonoUmbreon_Won
 
-	goto Pox_KimonoUmbreon_Won
+goto Pox_KimonoUmbreon_Won
 Pox_KimonoUmbreon_Won::
 	setflag FLAG_POX_KIMONO_UMBREON
-	msgbox Pox_Text_KimonoUmbreonAfter, MSGBOX_DEFAULT
-	releaseall
-	end
 
-Pox_KimonoUmbreon_After::
-	msgbox Pox_Text_KimonoUmbreonAfter, MSGBOX_DEFAULT
-	releaseall
+msgbox Pox_Text_KimonoUmbreon_After, MSGBOX_DEFAULT
+
+releaseall
 	end
 
 Pox_Text_KimonoUmbreon::
-	.string "The moon step comes last.\nAfter the second bell there\pare no lamps, only us.\pShall we?$"
+	.string "The moon step comes last. After\nthe second bell there are no\plamps, only us.\pShall we?$"
 
-Pox_Text_KimonoUmbreonDefeat::
+Pox_Text_KimonoUmbreon_Defeat::
 	.string "The moon went behind a cloud.\nYou were the shadow I missed.$"
 
-Pox_Text_KimonoUmbreonAfter::
-	.string "The moon step ends facing the\ntower. We still face it, even\npnow.\pCome back at dusk and watch from\nthe door.$"
+Pox_KimonoUmbreon_After::
+	msgbox Pox_Text_KimonoUmbreon_After, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Pox_Text_KimonoUmbreon_After::
+	.string "The moon step ends facing the\ntower. We still face it, even\pnow.\pCome back at dusk and watch from\nthe door.$"
 
 Pox_Kimono::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-	goto_if_unset FLAG_POX_KIMONO_VAPOREON, Pox_NotReady
+goto_if_unset FLAG_POX_KIMONO_VAPOREON, Pox_NotReady
 
-	goto_if_unset FLAG_POX_KIMONO_JOLTEON, Pox_NotReady
+goto_if_unset FLAG_POX_KIMONO_JOLTEON, Pox_NotReady
 
-	goto_if_unset FLAG_POX_KIMONO_FLAREON, Pox_NotReady
+goto_if_unset FLAG_POX_KIMONO_FLAREON, Pox_NotReady
 
-	goto_if_unset FLAG_POX_KIMONO_ESPEON, Pox_NotReady
+goto_if_unset FLAG_POX_KIMONO_ESPEON, Pox_NotReady
 
-	goto_if_unset FLAG_POX_KIMONO_UMBREON, Pox_NotReady
+goto_if_unset FLAG_POX_KIMONO_UMBREON, Pox_NotReady
 
-	goto_if_set FLAG_POX_GIFT_KIMONO, Pox_GiftDone
+goto_if_set FLAG_POX_GIFT_KIMONO, Pox_GiftDone
 
-	msgbox Pox_Text_Kimono, MSGBOX_DEFAULT
+msgbox Pox_Text_Kimono, MSGBOX_DEFAULT
 
-	givemon SPECIES_EEVEE, 5
+givemon SPECIES_EEVEE, 5
 	goto_if_eq VAR_RESULT, MON_CANT_GIVE, Pox_NoRoom
 
-	setflag FLAG_POX_GIFT_KIMONO
+setflag FLAG_POX_GIFT_KIMONO
 
-	msgbox Pox_Text_GiftReceived, MSGBOX_DEFAULT
+msgbox Pox_Text_GiftReceived, MSGBOX_DEFAULT
 
-	releaseall
+releaseall
 	end
 
 Pox_Text_Kimono::
-	.string "You danced with all five of my\ngirls, and none of them took\pit easy on you.\pThis EEVEE has watched us from\nthe mat since the first night.\pIt copies every turn, and it\nhas no partner of its own.\pTake it with you - not as a\nprize, but as a dance partner.$"
+	.string "You danced with all five of my\ngirls, and none of them took it\peasy on you.\pThis EEVEE has watched us from\nthe mat since the first night.\pIt copies every turn, and it has\nno partner of its own.\pTake it with you - not as a\nprize, but as a dance partner.$"
 
 Pox_DanceTheaterExit::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -961,46 +970,50 @@ releaseall
 	end
 
 Pox_Text_BurnedTowerBefore::
-	.string "MORTY: Eleven gathered here...\nListening. Waiting for something.\pWait... Do you feel that?$"
+	.string "MORTY: Eleven gathered here...\nListening. Waiting for\psomething.\pWait... Do you feel that?$"
 
 Pox_Text_BurnedTowerAfter::
-	.string "MORTY: Eleven... All drawn to\nthe same place.\pThe tower was a refuge. Now\nthey must find their way home.$"
+	.string "MORTY: Eleven... All drawn to\nthe same place.\pThe tower was a refuge. Now they\nmust find their way home.$"
 
 Pox_Text_BurnedTowerMission::
-	.string "MORTY: Sages, follow them.\nThe world has changed.\pFind them shelter. Give them\nspace. Let them choose to stay.$"
+	.string "MORTY: Sages, follow them. The\nworld has changed.\pFind them shelter. Give them\nspace. Let them choose to stay.$"
 
 Pox_Text_BurnedTowerSages::
 	.string "SAGE: We will watch over them.\nYou have our word.$"
 
 Pox_Text_BurnedTowerFarewell::
-	.string "MORTY: SUICUNE looked back at\nyou before it left.\pRemember that. Trust begins\nwith a moment like this.\pI will be at the GYM. Come\nwhen you are ready.$"
+	.string "MORTY: SUICUNE looked back at\nyou before it left.\pRemember that. Trust begins with\na moment like this.\pI will be at the GYM. Come when\nyou are ready.$"
 
 Pox_BurnedGuide::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
-	goto_if_set FLAG_POX_STORY_BURNED_TOWER, Pox_BurnedGuide_After
+
+goto_if_set FLAG_POX_STORY_BURNED_TOWER, Pox_BurnedGuide_After
 
 msgbox Pox_Text_BurnedGuide_Before, MSGBOX_DEFAULT
 
 releaseall
 	end
-
 Pox_BurnedGuide_After::
-	goto_if_set FLAG_BADGE03_GET, Pox_BurnedGuide_Badge
-	msgbox Pox_Text_BurnedGuide_After, MSGBOX_DEFAULT
-	releaseall
-	end
 
+goto_if_set FLAG_BADGE03_GET, Pox_BurnedGuide_Badge
+
+msgbox Pox_Text_BurnedGuide_After, MSGBOX_DEFAULT
+
+releaseall
+	end
 Pox_BurnedGuide_Badge::
-	msgbox Pox_Text_BurnedGuide_Badge, MSGBOX_DEFAULT
-	releaseall
+
+msgbox Pox_Text_BurnedGuide_Badge, MSGBOX_DEFAULT
+
+releaseall
 	end
 
 Pox_Text_BurnedGuide_Before::
 	.string "Someone lights the tower lamps\nbefore the ninth hour. I have\pdone it since the fire, and I\nstill count the stairs twice.\pMORTY went below this morning.\nThe way down is north of here,\ppast the last lamp.$"
 
 Pox_Text_BurnedGuide_After::
-	.string "The lamps are lit. He came up\nbefore dawn and did not say what\phe found.\pThat is answer enough for this\nstreet.\pThe GYM is open. He will be\nwaiting at the top of the shadows.$"
+	.string "The lamps are lit. He came up\nbefore dawn and did not say what\phe found.\pThat is answer enough for this\nstreet.\pThe GYM is open. He will be\nwaiting at the top of the\pshadows.$"
 
 Pox_Text_BurnedGuide_Badge::
 	.string "MORTY came down the street at\ndusk and trimmed a wick himself.\pFirst time in years. The GYM is\nquiet again, so I hear it went\pwell for you.\pThe tower lamps still want oil.\nThat part never changes.$"
@@ -1011,7 +1024,7 @@ Pox_Cottage::
 
 goto_if_unset FLAG_POX_STORY_STARTER, Pox_NotReady
 
-	goto_if_set FLAG_POX_KNOWS_BILL_PC, Pox_CottageGift
+goto_if_set FLAG_POX_KNOWS_BILL_PC, Pox_CottageGift
 	msgbox Pox_Text_Cottage, MSGBOX_DEFAULT
 	setflag FLAG_POX_KNOWS_BILL_PC
 Pox_CottageGift::
@@ -1249,7 +1262,7 @@ releaseall
 	end
 
 Pox_Text_FujiRescue::
-	.string "FUJI: Thank you. They asked\nabout preserving living\pstates... old work I hoped never\nto hear of again.\pThe archives on CINNABAR may\nexplain more. Ask BLAINE for\paccess.\pTake the UNDERGROUND PATH from\nROUTE 8 to ROUTE 7, then cross\pROUTE 103. This SURF KEY\nwill help you cross the water.$"
+	.string "FUJI: Thank you. They asked\nabout preserving living\pstates... old work I hoped never\nto hear of again.\pThe archives on CINNABAR may\nexplain more. Ask BLAINE for\paccess.\pTake the UNDERGROUND PATH from\nROUTE 8 to ROUTE 7, then cross\pROUTE 103. This SURF KEY will\nhelp you cross the water.$"
 
 Pox_PokemonTowerExit::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -2311,8 +2324,6 @@ Pox_SquirtBottle_Wait::
 	releaseall
 	end
 
-@ Run 5 (P4): giveitem fails silently when the KEY ITEMS pocket is full, so
-@ the player never learned why ROUTE 36's tree kept refusing them.
 Pox_SquirtBottle_Full::
 	msgbox Pox_Text_SquirtBottle_Full, MSGBOX_DEFAULT
 	releaseall
@@ -2325,7 +2336,7 @@ Pox_Text_SquirtBottle::
 	.string "Use my SQUIRTBOTTLE when you\nexamine the odd tree on ROUTE\p36. Be ready for a battle!$"
 
 Pox_Text_SquirtBottle_Full::
-	.string "There is no room in your KEY ITEMS\nPOCKET right now. Come back once\nyou have made some space.$"
+	.string "There is no room in your KEY\nITEMS POCKET right now. Come\pback once you have made some\nspace.$"
 
 Pox_Sudowoodo::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -2335,10 +2346,6 @@ goto_if_set FLAG_POX_SUDOWOODO_CLEARED, Pox_Release
 	goto_if_unset FLAG_BADGE02_GET, Pox_Sudowoodo_Wait
 	checkitem ITEM_SQUIRT_BOTTLE
 	goto_if_eq VAR_RESULT, FALSE, Pox_Sudowoodo_Wait
-@ Run 5 (P1): this used to be a MSGBOX_YESNO prompt, but B cannot choose NO on
-@ a field YES/NO box in this build, so the player could never decline it.
-@ Gen 2 and Gen 4 ask nothing here at all - using the bottle waters the tree
-@ and the battle starts.  Running away still leaves the tree in place.
 	msgbox Pox_Text_Sudowoodo, MSGBOX_DEFAULT
 	setwildbattle SPECIES_SUDOWOODO, 20, ITEM_NONE
 	special PlasticOx_PrepareSudowoodoMoves
@@ -2348,8 +2355,6 @@ goto_if_set FLAG_POX_SUDOWOODO_CLEARED, Pox_Release
 	goto_if_ne VAR_RESULT, B_OUTCOME_WON, Pox_Release
 Pox_Sudowoodo_Cleared::
 	setflag FLAG_POX_SUDOWOODO_CLEARED
-	@ Run 5 (P3): nothing else consumes the bottle and it cannot be selected
-	@ from the bag, so it would occupy a KEY ITEMS slot forever.  Take it back.
 	removeitem ITEM_SQUIRT_BOTTLE
 	removeobject VAR_LAST_TALKED
 
@@ -2364,10 +2369,8 @@ Pox_Sudowoodo_Wait::
 Pox_Text_Sudowoodo::
 	.string "You spray the odd tree with the\nSQUIRTBOTTLE. It shivers!$"
 
-@ The tree now occupies Route 36's three-way junction, blocking both northern
-@ and eastern travel. The hint still names either nearby bottle giver.
 Pox_Text_Sudowoodo_Wait::
-	.string "This tree feels like stone! Someone\nnear WHITNEY's GYM has a SQUIRTBOTTLE\nthat might help.$"
+	.string "This tree feels like stone!\nSomeone near WHITNEY's GYM has a\pSQUIRTBOTTLE that might help.$"
 
 PoxTower_AwakenBeasts:
 	jump_in_place_down

@@ -106,6 +106,7 @@ def beat(name, text, completion, prerequisites=(), extra=""):
 GIFT_DONE_LINES = {
     'Fuji': "FUJI: EEVEE seems lighter on its feet already. Thank you for giving it a home.",
     'Space': "How is EEVEE adapting? Our logs end where your journey begins.",
+    'Family': "My father-in-law writes more than BILL does. The sea air suits him.|If you pass the SEA COTTAGE, tell him the EEVEE is walking every day.",
 }
 
 
@@ -516,7 +517,7 @@ for i, (name, display, town, prereq, level, team) in enumerate(gymdata):
         repeat = "Pox_MansionKey"
     intro = ("WHITNEY: My team keeps moving! Show me how you handle surprises!"
              if name == 'Whitney' else
-             "MORTY: You went under the tower. You saw a wall stand up, and then lie back down.|I have no explanation that would survive daylight. What I have is a GYM and a badge.|Show me the team you carried down there."
+             "MORTY: You went under the tower. You saw them leave, all eleven, and not one of them looked lost.|I have no explanation that would survive daylight. What I have is a GYM and a badge.|Show me the team you carried down there."
              if name == 'Morty' else
              f"{display}: Show me what you and your POKéMON have learned!")
     battle(name, display, intro, team, level, badges[i], prereq, extra,
@@ -554,46 +555,79 @@ for n, completion, prereq in [(1,moon1,[badges[0]]),(2,moon2,[moon1])]:
     # Retired trainer IDs stay reserved for existing saves.
 beat('MoonRocketMap', "You beat both of our grunts! Fine, take this TOWN MAP and leave TEAM ROCKET alone.", moon, [moon1,moon2], '\tgiveitem ITEM_TOWN_MAP\n\tgoto_if_eq VAR_RESULT, FALSE, Pox_Release')
 # Mt. Moon now uses the FireRed floor actors and fossil quest.
-gift('Family', "BILL never visits enough. His first POKéMON was ABRA, you know.|I used to dance in ECRUTEAK when I was young.|This EEVEE needs someone with time for long walks. Will you look after it?", [starter])
+# BILL's mother, at home in Goldenrod (the family's later EEVEE). The first
+# gift EEVEE comes from the SEA COTTAGE (Pox_Cottage); this one is a second
+# EEVEE, per plastic_ox/plastic_ox_story_v7.md.
+emit("@ BILL's mother, at home in Goldenrod (the family's later EEVEE). The first\n@ gift EEVEE comes from the SEA COTTAGE (Pox_Cottage); this one is a second\n@ EEVEE, per plastic_ox/plastic_ox_story_v7.md.")
+gift('Family', "I used to dance in ECRUTEAK, back when my knees agreed with me.|BILL is my son. He writes about POKéMON and never about himself.|My father-in-law keeps the SEA COTTAGE up north. He sent this EEVEE down on the ferry.|It hates sitting still. Will you walk it for us?", [starter])
 replace_npc('GoldenrodCity_BillsHouse_hns', 0, 'Family')
 
 # Ecruteak: the optional full troupe and the mandatory tower investigation.
-# NOTE: the checked-in plastic_ox_story.inc carries hand-tuned Kimono teams and
-# per-dancer dialogue (2026-11-11 fix pass). Update this block before running the
-# generator, or a regeneration will revert those edits.
+# Each dancer has her own intro, defeat and after-battle lines (2026-11-11 fix
+# pass); her team is authored by apply_trainer_teams_v2.py and her header by
+# TRAINER_HEADERS above.
+KIMONO_LINES = {
+    'Vaporeon': ("Our tide step is slow on purpose. VAPOREON sets the tempo and I follow it.|Will you try the turn with us?",
+                 "The tide turned before I did. You read the water better than I dance it.",
+                 "Come at dusk sometime. The river sounds different once the lamps are lit."),
+    'Jolteon': ("Rain step, spark step. Same count, faster than you can blink.|Keep up!",
+                "Too quick for me. I will drill that turn until my feet complain.",
+                "A quick step is a short one. MORTY says the same about battles, only slower."),
+    'Flareon': ("We close the rite with the ember step. It is not meant to be gentle.|Ready?",
+                "The ember went out. You kept a cooler head than mine.",
+                "The brazier holds its heat till morning. Warm up before you cross the river."),
+    'Espeon': ("The mirror step is danced with the eyes closed. You hear the next move before it happens.|Follow me if you can.",
+               "You heard the turn before I did. That is the whole dance, and you already have it.",
+               "Sit a moment. A dance settles like water after a stone."),
+    'Umbreon': ("The moon step comes last. After the second bell there are no lamps, only us.|Shall we?",
+                "The moon went behind a cloud. You were the shadow I missed.",
+                "The moon step ends facing the tower. We still face it, even now.|Come back at dusk and watch from the door."),
+}
 kimono_flags = []
 kimono_objects = []
 for i, species in enumerate(['Vaporeon','Jolteon','Flareon','Espeon','Umbreon']):
     f = flag('KIMONO_' + species.upper())
     kimono_flags.append(f)
-    battle('Kimono'+species, ['NAOKO','SAYO','ZUKI','KUNI','MIKI'][i], 'Our dance honors the BURNED TOWER. MORTY went there after the last rite.|Would you join our POKéMON in a battle?', [(species,['Quick Attack', {'Vaporeon':'Water Pulse','Jolteon':'Shock Wave','Flareon':'Flamethrower','Espeon':'Psybeam','Umbreon':'Faint Attack'}[species]])], 24, f, [badges[1]], pic='Beauty', cls='Beauty')
-    kimono_objects.append(npc('Kimono'+species, [5,7,10,13,15][i], [3,2,3,2,3][i], 'OBJ_EVENT_GFX_KIMONO_HNS'))
-gift('Kimono', 'You matched all five of our partners with grace. Please raise this EEVEE with the same care.', kimono_flags)
+    name = 'Kimono' + species
+    intro, defeat, after = KIMONO_LINES[species]
+    DEFEAT_LINES[name] = defeat
+    battle(name, ['NAOKO','SAYO','ZUKI','KUNI','MIKI'][i], intro, [(species,['Quick Attack', {'Vaporeon':'Water Pulse','Jolteon':'Shock Wave','Flareon':'Flamethrower','Espeon':'Psybeam','Umbreon':'Faint Attack'}[species]])], 24, f, [badges[1]],
+           extra=f"\tmsgbox Pox_Text_{name}_After, MSGBOX_DEFAULT", pic='Beauty', cls='Beauty', repeat=f"Pox_{name}_After")
+    emit(f"Pox_{name}_After::\n\tmsgbox Pox_Text_{name}_After, MSGBOX_DEFAULT\n\treleaseall\n\tend")
+    speech(f"Pox_Text_{name}_After", after)
+    kimono_objects.append(npc(name, [5,7,10,13,15][i], [3,2,3,2,3][i], 'OBJ_EVENT_GFX_KIMONO_HNS'))
+gift('Kimono', 'You danced with all five of my girls, and none of them took it easy on you.|This EEVEE has watched us from the mat since the first night. It copies every turn, and it has no partner of its own.|Take it with you - not as a prize, but as a dance partner.', kimono_flags)
 kimono_objects.append(npc('Kimono', 5, 15, 'OBJ_EVENT_GFX_OLD_WOMAN'))
 dance = room('DanceTheater','EcruteakCity_hns',None,objects=kimono_objects,return_xy=(36,33))
 guide('EcruteakCity_hns',1,'DanceGuide',dance,'The KIMONO troupe is performing. MORTY is investigating the BURNED TOWER.')
+# Burned Tower B1F (2026-11-12): eleven displaced legendaries gather around
+# MORTY, then scatter; he sends the sages after them. Their B1F objects are
+# authored in the map; the movement scripts are emitted at the end of the file.
+TOWER_CUTSCENE = "closemessage\n\tplayse SE_M_EARTHQUAKE\n\tsetvar VAR_0x8004, 2\n\tsetvar VAR_0x8005, 1\n\tsetvar VAR_0x8006, 20\n\tsetvar VAR_0x8007, 3\n\tspecial ShakeCamera\n\twaitstate\n\tdelay 90\n\tturnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH\n\tplaymoncry SPECIES_ENTEI, CRY_MODE_NORMAL\n\tapplymovement LOCALID_BURNEDTOWER_ENTEI, PoxTower_AwakenBeasts\n\twaitmovement 0\n\twaitmoncry\n\tplaymoncry SPECIES_RAIKOU, CRY_MODE_NORMAL\n\tapplymovement LOCALID_BURNEDTOWER_RAIKOU, PoxTower_AwakenBeasts\n\twaitmovement 0\n\twaitmoncry\n\tplaymoncry SPECIES_SUICUNE, CRY_MODE_NORMAL\n\tapplymovement LOCALID_BURNEDTOWER_SUICUNE, PoxTower_AwakenBeasts\n\twaitmovement 0\n\twaitmoncry\n\tplayse SE_LEDGE\n\tapplymovement LOCALID_BURNEDTOWER_ENTEI, PoxTower_EnteiLeave\n\twaitmovement 0\n\tremoveobject LOCALID_BURNEDTOWER_ENTEI\n\tplayse SE_LEDGE\n\tapplymovement LOCALID_BURNEDTOWER_RAIKOU, PoxTower_RaikouLeave\n\twaitmovement 0\n\tremoveobject LOCALID_BURNEDTOWER_RAIKOU\n\tplayse SE_LEDGE\n\tapplymovement LOCALID_BURNEDTOWER_SUICUNE, PoxTower_SuicuneLeave\n\twaitmovement 0\n\tremoveobject LOCALID_BURNEDTOWER_SUICUNE\n\n\tplaymoncry SPECIES_ARTICUNO, CRY_MODE_NORMAL\n\twaitmoncry\n\tplaymoncry SPECIES_ZAPDOS, CRY_MODE_NORMAL\n\twaitmoncry\n\tplaymoncry SPECIES_MOLTRES, CRY_MODE_NORMAL\n\twaitmoncry\n\tapplymovement LOCALID_POX_TOWER_ARTICUNO, PoxTower_BirdFly\n\tapplymovement LOCALID_POX_TOWER_ZAPDOS, PoxTower_BirdFly\n\tapplymovement LOCALID_POX_TOWER_MOLTRES, PoxTower_BirdFly\n\twaitmovement 0\n\tremoveobject LOCALID_POX_TOWER_ARTICUNO\n\tremoveobject LOCALID_POX_TOWER_ZAPDOS\n\tremoveobject LOCALID_POX_TOWER_MOLTRES\n\tplaymoncry SPECIES_REGIROCK, CRY_MODE_NORMAL\n\twaitmoncry\n\tplaymoncry SPECIES_REGICE, CRY_MODE_NORMAL\n\twaitmoncry\n\tplaymoncry SPECIES_REGISTEEL, CRY_MODE_NORMAL\n\twaitmoncry\n\tapplymovement LOCALID_POX_TOWER_REGIROCK, PoxTower_RegiTeleport\n\tapplymovement LOCALID_POX_TOWER_REGICE, PoxTower_RegiTeleport\n\tapplymovement LOCALID_POX_TOWER_REGISTEEL, PoxTower_RegiTeleport\n\twaitmovement 0\n\tremoveobject LOCALID_POX_TOWER_REGIROCK\n\tremoveobject LOCALID_POX_TOWER_REGICE\n\tremoveobject LOCALID_POX_TOWER_REGISTEEL\n\tplaymoncry SPECIES_CELEBI, CRY_MODE_NORMAL\n\twaitmoncry\n\tapplymovement LOCALID_POX_TOWER_CELEBI, PoxTower_CelebiVanish\n\twaitmovement 0\n\tremoveobject LOCALID_POX_TOWER_CELEBI\n\tplaymoncry SPECIES_JIRACHI, CRY_MODE_NORMAL\n\twaitmoncry\n\tapplymovement LOCALID_POX_TOWER_JIRACHI, PoxTower_JirachiAscend\n\twaitmovement 0\n\tremoveobject LOCALID_POX_TOWER_JIRACHI\n\tdelay 30"
+TOWER_SAGES_LEAVE = "closemessage\n\tapplymovement LOCALID_POX_TOWER_SAGE_1, PoxTower_Sage1Leave\n\tapplymovement LOCALID_POX_TOWER_SAGE_2, PoxTower_Sage2Leave\n\twaitmovement 0\n\tremoveobject LOCALID_POX_TOWER_SAGE_1\n\tremoveobject LOCALID_POX_TOWER_SAGE_2\n\tfaceplayer"
+TOWER_MOVEMENTS = "PoxTower_AwakenBeasts:\n\tjump_in_place_down\n\tjump_in_place_down\n\tjump_in_place_down\n\tstep_end\n\nPoxTower_EnteiLeave:\n\tjump_down\n\tjump_2_right\n\tjump_2_right\n\tjump_2_right\n\tjump_2_right\n\tstep_end\n\nPoxTower_RaikouLeave:\n\tjump_down\n\tjump_2_left\n\tjump_2_left\n\tjump_2_left\n\tjump_2_left\n\tstep_end\n\nPoxTower_SuicuneLeave:\n\tjump_2_down\n\tdelay_8\n\tjump_in_place_right_left\n\tjump_in_place_right_left\n\tjump_left\n\tjump_2_down\n\tjump_2_down\n\tjump_2_down\n\tstep_end\n\nPoxTower_Sage1Leave:\n\twalk_up\n\twalk_right\n\twalk_right\n\twalk_right\n\twalk_right\n\twalk_right\n\twalk_right\n\twalk_right\n\twalk_right\n\twalk_down\n\twalk_up\n\twalk_up\n\twalk_up\n\twalk_right\n\twalk_right\n\twalk_up\n\twalk_up\n\twalk_right\n\twalk_right\n\tstep_end\n\nPoxTower_Sage2Leave:\n\twalk_right\n\twalk_right\n\twalk_right\n\twalk_right\n\twalk_up\n\twalk_up\n\twalk_up\n\twalk_right\n\twalk_right\n\twalk_up\n\twalk_up\n\twalk_right\n\twalk_right\n\tstep_end\n\n\nPoxTower_Text_Rift::\n\t.string \"MORTY: The air is still shaking.\\nThere are more coming through!$\"\n\nPoxTower_BirdFly:\n\tlevitate\n\tdelay_16\n\tface_up\n stop_levitate\n\tfly_up\n\tset_invisible\n\tstep_end\n\nPoxTower_RegiTeleport:\n\tface_left\n\tdelay_4\n\tface_up\n\tdelay_4\n\tface_right\n\tdelay_4\n\tface_down\n\tdelay_4\n\tface_left\n\tdelay_4\n\tface_up\n\tdelay_4\n\tface_right\n\tdelay_4\n\tface_down\n\tdelay_4\n\tface_left\n\tdelay_4\n\tface_up\n\tdelay_4\n\tface_right\n\tdelay_4\n\tface_down\n\tdelay_4\n\tface_left\n\tdelay_4\n\tface_up\n\tdelay_4\n\tface_right\n\tdelay_4\n\tface_down\n\tdelay_4\n\tset_invisible\n\tdelay_4\n\tset_visible\n\tdelay_4\n\tset_invisible\n\tstep_end\n\nPoxTower_CelebiVanish:\n\tlevitate\n\tjump_in_place_left_right\n\tjump_in_place_right_left\n\tjump_in_place_left_right\n\tjump_in_place_right_left\n\tset_invisible\n\tdelay_8\n\tset_visible\n\tdelay_4\n\tset_invisible\n\tstep_end\n\nPoxTower_JirachiAscend:\n\tlevitate\n\tjump_in_place_up\n\tdelay_16\n\tface_up\n stop_levitate\n\tfly_up\n\tset_invisible\n\tstep_end"
+TOWER_LINES = [
+    ('BurnedTowerBefore', "MORTY: Eleven gathered here... Listening. Waiting for something.|Wait... Do you feel that?"),
+    ('BurnedTowerAfter', "MORTY: Eleven... All drawn to the same place.|The tower was a refuge. Now they must find their way home."),
+    ('BurnedTowerMission', "MORTY: Sages, follow them. The world has changed.|Find them shelter. Give them space. Let them choose to stay."),
+    ('BurnedTowerSages', "SAGE: We will watch over them. You have our word."),
+    ('BurnedTowerFarewell', "MORTY: SUICUNE looked back at you before it left.|Remember that. Trust begins with a moment like this.|I will be at the GYM. Come when you are ready."),
+]
 start('BurnedTower', [badges[1]])
 emit(f'\tgoto_if_set {burned}, Pox_Done')
-message('BurnedTowerBefore', "MORTY: Look at that wall. A stair stood there before the fire.")
-emit('\tfadescreen FADE_TO_WHITE\n\tsetmetatile 10, 9, 0x6A6, FALSE\n'
-     '\tspecial DrawWholeMapView\n\tfadescreen FADE_FROM_WHITE')
-message('BurnedTowerVision', 'For a moment the stair is whole again. A bell rings from the empty landing.')
-emit('\tfadescreen FADE_TO_WHITE\n\tsetmetatile 10, 9, 0x6F2, FALSE\n'
-     '\tspecial DrawWholeMapView\n\tfadescreen FADE_FROM_WHITE')
-message('BurnedTowerAfter', 'Only ash remains. You recover the fallen ceremonial bell.|MORTY: Places remember what they were. But the POKéMON displaced by the convergence need our help now.')
-emit('\tturnobject VAR_LAST_TALKED, DIR_NORTH')
-message('BurnedTowerMission', 'MORTY: Sages, search throughout the region. Find the legendary POKéMON driven from their homes.|Help them find shelter. Stay by their sides until they feel safe again.')
-message('BurnedTowerSages', 'SAGE: We will go, MORTY. No displaced POKéMON should have to face this strange land alone.')
-emit('\tremoveobject LOCALID_POX_TOWER_SAGE_1\n\tremoveobject LOCALID_POX_TOWER_SAGE_2')
-message('BurnedTowerFarewell', 'MORTY: If you meet a sage beside a legendary POKéMON, they are there to help.|Show them the care you give your own partners.|I will return to my GYM. Come see me when you are ready.')
+emit('faceplayer')
+emit('\tmsgbox Pox_Text_BurnedTowerBefore, MSGBOX_DEFAULT')
+emit(TOWER_CUTSCENE)
+emit('\tmsgbox Pox_Text_BurnedTowerAfter, MSGBOX_DEFAULT')
+emit('faceplayer')
+emit('\tmsgbox Pox_Text_BurnedTowerMission, MSGBOX_DEFAULT')
+emit('\tmsgbox Pox_Text_BurnedTowerSages, MSGBOX_DEFAULT')
+emit(TOWER_SAGES_LEAVE)
+emit('\tmsgbox Pox_Text_BurnedTowerFarewell, MSGBOX_DEFAULT')
 emit(f'\tsetflag {burned}\n\tremoveobject VAR_LAST_TALKED')
 finish()
-speech('Pox_Text_BurnedTowerBefore', "MORTY: Look at that wall. A stair stood there before the fire.")
-speech('Pox_Text_BurnedTowerVision', 'For a moment the stair is whole again. A bell rings from the empty landing.')
-speech('Pox_Text_BurnedTowerAfter', 'Only ash remains. You recover the fallen ceremonial bell.|MORTY: Places remember what they were. But the POKéMON displaced by the convergence need our help now.')
-speech('Pox_Text_BurnedTowerMission', 'MORTY: Sages, search throughout the region. Find the legendary POKéMON driven from their homes.|Help them find shelter. Stay by their sides until they feel safe again.')
-speech('Pox_Text_BurnedTowerSages', 'SAGE: We will go, MORTY. No displaced POKéMON should have to face this strange land alone.')
-speech('Pox_Text_BurnedTowerFarewell', 'MORTY: If you meet a sage beside a legendary POKéMON, they are there to help.|Show them the care you give your own partners.|I will return to my GYM. Come see me when you are ready.')
+for label, text in TOWER_LINES:
+    speech('Pox_Text_' + label, text)
 # Burned Tower uses the two original HNS floors. Their authored warps and
 # basement event are kept in the map sources rather than a generated room.
 tower = 'PlasticOx_BurnedTower'
@@ -985,6 +1019,7 @@ speech('Pox_Text_Sudowoodo_Wait', 'This tree feels like stone! Someone near WHIT
 # stable map numbers in existing saves.
 room_names.append('PlasticOx_BurnedTowerB1F')
 manifest.append(('PlasticOx_BurnedTowerB1F', 8, 9, 'BurnedTower'))
+emit(TOWER_MOVEMENTS)
 put('data/scripts/plastic_ox_story.inc','@ Generated by plastic_ox/alpha/build_story.py. Edit the manifest there.\n\n'+'\n'.join(scripts))
 path='data/event_scripts.s'
 s=read(path)
