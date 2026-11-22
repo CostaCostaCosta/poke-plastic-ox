@@ -85,7 +85,7 @@
       "y": 5,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "PoxGoldenrod_Directory"
+      "script": "PoxGoldenrod_DeptStore7F_Sign"
     },
     {
       "type": "sign",
@@ -93,7 +93,7 @@
       "y": 5,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "PoxGoldenrod_Directory"
+      "script": "PoxGoldenrod_DeptStore7F_Sign"
     },
     {
       "type": "sign",
@@ -101,7 +101,7 @@
       "y": 5,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "PoxGoldenrod_Directory"
+      "script": "PoxGoldenrod_DeptStore7F_Sign"
     }
   ],
   "region": "REGION_HOENN"

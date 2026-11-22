@@ -91,6 +91,18 @@ PoxGoldenrod_Directory::
 PoxGoldenrod_Text_Directory:
 	.string "GOLDENROD CITY\nShops, broadcasts, and friendly faces.$"
 
+PoxGoldenrod_DeptStore7F_Sign::
+	msgbox PoxGoldenrod_Text_DeptStore7F, MSGBOX_SIGN
+	end
+PoxGoldenrod_Text_DeptStore7F:
+	.string "ROOFTOP FLOOR\nFresh air, a vending corner, and\la view of the whole city.$"
+
+PoxGoldenrod_GameCorner_Sign::
+	msgbox PoxGoldenrod_Text_GameCornerSign, MSGBOX_SIGN
+	end
+PoxGoldenrod_Text_GameCornerSign:
+	.string "GAME CORNER\nCoins in, luck out. Prizes at the\lcounter. Play for fun!$"
+
 PoxGoldenrod_Bike::
 	lock
 	faceplayer
