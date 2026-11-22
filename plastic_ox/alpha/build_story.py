@@ -335,6 +335,46 @@ ROOM_EXIT_LINES = {
 }
 
 
+# Hand-authored room details (2026-11-11/13 fix passes). WHITNEY's hall,
+# MORTY's, CLAIR's and the Dance Theater have real doors back to their towns,
+# so WHITNEY's hall no longer needs an exit attendant; the theater uses the
+# HNS theater interior.
+ROOM_OVERRIDES = {
+    'WhitneyGym': dict(boss_gfx='OBJ_EVENT_GFX_WHITNEY_HNS', boss_flag='0', exit_guide=False,
+                       doors=[(5, 19, 0, 'GoldenrodCity_hns', '5'), (6, 19, 0, 'GoldenrodCity_hns', '5')]),
+    'MortyGym': dict(doors=[(5, 19, 0, 'EcruteakCity_hns', '4'), (6, 19, 0, 'EcruteakCity_hns', '4')]),
+    'ClairGym': dict(doors=[(5, 19, 3, 'BlackthornCity_hns', '2'), (6, 19, 3, 'BlackthornCity_hns', '2')]),
+    'DanceTheater': dict(layout='LAYOUT_ECRUTEAK_CITY_THEATER_HNS', music='MUS_RG_CELADON',
+                         battle_scene='MAP_BATTLE_SCENE_NORMAL',
+                         doors=[(10, 17, 0, 'EcruteakCity_hns', '3')]),
+}
+# Tier-rule greeter scripts for the gym halls (2026-11-02). No map object
+# uses them yet; see the cinnabarisland-frlg and saffroncity-hns notes.
+GYM_GREETERS = {
+    'WhitneyGym': ('GOLDENROD GYM', 'PU', 'CheckGoldenrodGymPURules'),
+    'MortyGym': ('ECRUTEAK GYM', 'NU', 'CheckEcruteakGymNURules'),
+    'BlaineGym': ('CINNABAR GYM', 'UU', 'CheckCinnabarGymUURules'),
+    'BrunoGym': ('SAFFRON DOJO GYM', 'OU', 'CheckSaffronGymOURules'),
+    'ClairGym': ('BLACKTHORN GYM', 'OU', 'CheckBlackthornGymOURules'),
+}
+
+
+def greeter_scripts(dest, gym, tier, special):
+    p = dest + '_'
+    return (f'\n{p}EventScript_Greeter::\n\tlock\n\tfaceplayer\n\tmsgbox {p}Text_Greeter, MSGBOX_DEFAULT\n'
+            f'\tspecialvar VAR_RESULT, {special}\n'
+            f'\tgoto_if_eq VAR_RESULT, 1, {p}EventScript_GreeterBannedMove\n'
+            f'\tgoto_if_eq VAR_RESULT, 2, {p}EventScript_GreeterBannedItem\n\trelease\n\tend\n\n'
+            f'{p}EventScript_GreeterBannedMove::\n\tmsgbox {p}Text_GreeterBannedMove, MSGBOX_DEFAULT\n\trelease\n\tend\n\n'
+            f'{p}EventScript_GreeterBannedItem::\n\tmsgbox {p}Text_GreeterBannedItem, MSGBOX_DEFAULT\n\trelease\n\tend\n\n'
+            f'{p}Text_Greeter:\n\t.string "Yo! Champ in the making!\\n"\n\t.string "Welcome to {gym}.\\p"\n'
+            f'\t.string "This GYM follows {tier} tier rules.\\p"\n\t.string "Bring your best {tier}-tier POKéMON!$"\n\n'
+            f'{p}Text_GreeterBannedMove:\n\t.string "This GYM follows {tier} rules.\\p"\n\t.string "That move is banned here.\\n"\n'
+            f'\t.string "Please change it before entering.$"\n\n'
+            f'{p}Text_GreeterBannedItem:\n\t.string "This GYM follows {tier} rules.\\p"\n\t.string "That item is banned here.\\n"\n'
+            f'\t.string "Please remove it before entering.$"\n')
+
+
 def room(name, parent, boss, source="RustboroCity_Gym", objects=None, return_xy=(10, 10)):
     dest = "PlasticOx_" + name
     source = {'BurnedTower':'MtPyre_1F', 'PokemonTower':'MtPyre_2F',
@@ -355,14 +395,26 @@ def room(name, parent, boss, source="RustboroCity_Gym", objects=None, return_xy=
     data["coord_events"] = []
     data["bg_events"] = []
     # Exit through a guide on the known walkable entry corridor. All native
-    # source warps are removed so no room can leak back into Emerald's story.
-    data["warp_events"] = []
-    data["object_events"].append(npc(name + "Exit", 4, 17))
+    # source warps are removed so no room can leak back into Emerald's story;
+    # only the authored doors in ROOM_OVERRIDES lead back to the parent town.
+    over = ROOM_OVERRIDES.get(name, {})
+    for field in ('layout', 'music', 'battle_scene'):
+        if field in over:
+            data[field] = over[field]
+    if 'boss_gfx' in over:
+        data["object_events"][0]["graphics_id"] = over['boss_gfx']
+    if 'boss_flag' in over:
+        data["object_events"][0]["flag"] = over['boss_flag']
+    data["warp_events"] = [dict(x=x, y=y, elevation=e, dest_map=mapid(town), dest_warp_id=w)
+                           for x, y, e, town, w in over.get('doors', [])]
+    if over.get('exit_guide', True):
+        data["object_events"].append(npc(name + "Exit", 4, 17))
     save_map(dest, data)
     for obj in data['object_events']:
         obj['x'],obj['y']=floor_cell(dest,obj['x'],obj['y'],obj['script'])
         save_map(dest,data)
-    put(f"data/maps/{dest}/scripts.inc", f"{dest}_MapScripts::\n\t.byte 0\n")
+    put(f"data/maps/{dest}/scripts.inc", f"{dest}_MapScripts::\n\t.byte 0\n"
+        + (greeter_scripts(dest, *GYM_GREETERS[name]) if name in GYM_GREETERS else ''))
     room_names.append(dest)
     travel(name + "Exit", parent, *return_xy, ROOM_EXIT_LINES.get(name, "I'll show you back outside."))
     manifest.extend((dest, o['x'], o['y'], o['script'][4:]) for o in data['object_events'])
