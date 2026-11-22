@@ -314,4 +314,6 @@
 // National Park: the Safari Zone Warden got his Gold Teeth back (tournament
 // round-one prize) and keeps the player on his Thursday contest guest list.
 #define FLAG_POX_WARDEN_GUEST (POX_EVENT_FLAGS_START + 41)
+// Ecruteak City House 2: the river dredger traded his RELICANTH (INGAME_TRADE_RELICANTH).
+#define FLAG_POX_ECRUTEAK_RELICANTH_TRADE (POX_EVENT_FLAGS_START + 42)
 #endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H

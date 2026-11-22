@@ -459,10 +459,15 @@ start('BurnedGuide')
 emit('\tgoto_if_set FLAG_POX_STORY_BURNED_TOWER, Pox_BurnedGuide_After')
 before = message('BurnedGuide_Before', 'Someone lights the tower lamps before the ninth hour. I have done it since the fire, and I still count the stairs twice.|MORTY went below this morning. The way down is north of here, past the last lamp.')
 emit('\treleaseall\n\tend\nPox_BurnedGuide_After::')
+emit('\tgoto_if_set FLAG_BADGE03_GET, Pox_BurnedGuide_Badge')
 after = message('BurnedGuide_After', 'The lamps are lit. He came up before dawn and did not say what he found.|That is answer enough for this street.|The GYM is open. He will be waiting at the top of the shadows.')
+emit('\treleaseall\n\tend\nPox_BurnedGuide_Badge::')
+# After badge 3 the lamp-trimmer stops sending the player to MORTY.
+badge = message('BurnedGuide_Badge', 'MORTY came down the street at dusk and trimmed a wick himself.|First time in years. The GYM is quiet again, so I hear it went well for you.|The tower lamps still want oil. That part never changes.')
 finish()
 speech(*before)
 speech(*after)
+speech(*badge)
 
 # Project Equilibrium (two trials + Director) is authored in weather_institute.py
 # and data/scripts/plastic_ox_weather_institute.inc. Keep the trainer here so

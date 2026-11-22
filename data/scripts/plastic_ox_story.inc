@@ -956,7 +956,13 @@ releaseall
 	end
 
 Pox_BurnedGuide_After::
+	goto_if_set FLAG_BADGE03_GET, Pox_BurnedGuide_Badge
 	msgbox Pox_Text_BurnedGuide_After, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Pox_BurnedGuide_Badge::
+	msgbox Pox_Text_BurnedGuide_Badge, MSGBOX_DEFAULT
 	releaseall
 	end
 
@@ -965,6 +971,9 @@ Pox_Text_BurnedGuide_Before::
 
 Pox_Text_BurnedGuide_After::
 	.string "The lamps are lit. He came up\nbefore dawn and did not say what\phe found.\pThat is answer enough for this\nstreet.\pThe GYM is open. He will be\nwaiting at the top of the shadows.$"
+
+Pox_Text_BurnedGuide_Badge::
+	.string "MORTY came down the street at\ndusk and trimmed a wick himself.\pFirst time in years. The GYM is\nquiet again, so I hear it went\pwell for you.\pThe tower lamps still want oil.\nThat part never changes.$"
 
 Pox_Cottage::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End

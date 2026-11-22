@@ -21,6 +21,8 @@ enum InGameTradeID
     INGAME_TRADE_ELECTRODE,
     INGAME_TRADE_TANGELA,
     INGAME_TRADE_SEEL,
+    // Plastic Ox
+    INGAME_TRADE_RELICANTH, // Ecruteak City House 2: CLAMPERL for RELICANTH
 };
 
 // Return values for CanTradeSelectedMon and CanSpinTradeMon
