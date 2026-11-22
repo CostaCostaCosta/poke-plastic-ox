@@ -1136,17 +1136,23 @@ SlateportCity_Text_CaptainsACelebrity:
 	.string "The CAPTAIN's a celebrity!$"
 
 SlateportCity_Text_BigSmileForCamera:
-	.string "TY: Big smile, CAPT. STERN! This\ntides us over until our KECLEON\pturns up.$"
+	.string "TY: Okay, CAPT. STERN, a big smile\n"
+	.string "for the camera!$"
 
 SlateportCity_Text_MostInvaluableExperience:
-	.string "GABBY: Fascinating! And down\nthere… any sign of a KECLEON?\pThey change color, you know!$"
+	.string "GABBY: I see, I see. You've had a most\n"
+	.string "invaluable experience…$"
 
 SlateportCity_Text_SternMoveAheadWithExploration:
 	.string "CAPT. STERN: Yes, indeed. We intend to\n"
 	.string "move ahead with our exploration.$"
 
 SlateportCity_Text_GabbyWonderfulThanksForInterview:
-	.string "GABBY: That's wonderful, CAPT.\nSTERN! Thank you for making time\pfor us.\pAnd if your submarine ever spots\na KECLEON, please call us first!$"
+	.string "GABBY: That's wonderful, CAPT. STERN!\n"
+	.string "Thank you for taking the time from\l"
+	.string "your busy schedule to talk to us.\p"
+	.string "We hope we can interview you again\n"
+	.string "with news of more discoveries!$"
 
 SlateportCity_Text_SternWhewFirstInterview:
 	.string "CAPT. STERN: Whew…\p"

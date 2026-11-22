@@ -6,9 +6,10 @@ North: Route 119 <-> Fortree City is a native camera connection. Every lane
 (0,9) after a fade), and before FLAG_POX_STORY_WEATHER the edge triggers refuse
 and step the player back west without leaving the map.
 
-South: the gatehouse door at (17,137) enters the Ecruteak east gate on its east
-mat facing west; walking east from that mat exits through the door onto
-(17,138) facing south; walking west through the gate reaches Ecruteak's east
+South: Route 119's bottom path has no building. Stepping south off it on
+(16..20,139) triggers Route119_EventScript_PoxEcruteakGate, which enters the
+Ecruteak east gate on its east mat (11,5); walking east from that mat lands on
+(18,138) on Route 119. Walking west through the gate reaches Ecruteak's east
 door, and walking back east through the gate returns to Route 119.
 """
 import sys
@@ -20,6 +21,7 @@ from test_sudowoodo_v1 import drain
 from walklib import K
 
 SOUTH, NORTH, WEST, EAST = 1, 2, 3, 4
+ARRIVE_FACING = NORTH
 
 
 def facing(g):
@@ -70,30 +72,29 @@ def main():
         assert pos(g)[1] == y and pos(g)[0] >= 37, (y, g.describe())
     print('ok  Route 119 <-> Fortree seam, all five lanes, both ways', flush=True)
 
-    # South gatehouse door -> Ecruteak east gate.
+    # South edge -> Ecruteak east gate, and back.
     # Setup warps carry s8 coordinates, so start inside the gate (y>127 on
     # Route 119 is unreachable by a debug warp) and walk out first.
     g.warp('Gate_EcruteakCity_Route42_hns', 10, 5); g.frame(60)
     walk_until(g, K.KEY_RIGHT, 'Route119')
-    g.frame(240)
-    shot(g, 'route119_door_arrival.png')
-    print('arrival', g.describe(), 'facing', facing(g), 'behavior', g.behavior_at(17, 137), flush=True)
-    assert pos(g) == (17, 138), g.describe()
-    g.hold(K.KEY_RIGHT, 48); g.hold(K.KEY_UP, 64); g.frame(20)   # into the side lane
-    assert pos(g) == (20, 134), g.describe()
-    g.hold(K.KEY_DOWN, 64); g.hold(K.KEY_LEFT, 48); g.frame(20)
-    assert pos(g) == (17, 138), g.describe()
-    shot(g, 'route119_gatehouse.png')
-    walk_until(g, K.KEY_UP, 'Gate_EcruteakCity_Route42_hns')
-    assert pos(g) == (11, 5) and facing(g) == WEST, (g.describe(), facing(g))
-    print('ok  gatehouse door enters the east gate on its mat facing west', flush=True)
-
-    walk_until(g, K.KEY_RIGHT, 'Route119')
     g.frame(120)
-    assert pos(g) == (17, 138) and facing(g) == SOUTH, (g.describe(), facing(g))
-    print('ok  east gate exits through the Route 119 door, facing south', flush=True)
+    print('arrival', g.describe(), 'facing', facing(g), flush=True)
+    assert pos(g) == (18, 138) and facing(g) == ARRIVE_FACING, (g.describe(), facing(g))
+    shot(g, 'route119_south_arrival.png')
+    print('ok  east gate lands on Route 119 (18,138) facing', ARRIVE_FACING, flush=True)
 
-    walk_until(g, K.KEY_UP, 'Gate_EcruteakCity_Route42_hns')
+    for x in (16, 18, 20):
+        # Walk along the bottom path to lane x, then step south off it.
+        g.hold(K.KEY_LEFT if x < pos(g)[0] else K.KEY_RIGHT, 16 * abs(x - pos(g)[0])); g.frame(20)
+        assert pos(g) == (x, 138), (x, g.describe())
+        walk_until(g, K.KEY_DOWN, 'Gate_EcruteakCity_Route42_hns')
+        assert pos(g) == (11, 5) and facing(g) == WEST, (x, g.describe(), facing(g))
+        walk_until(g, K.KEY_RIGHT, 'Route119')
+        g.frame(120)
+        assert pos(g) == (18, 138), (x, g.describe())
+    print('ok  south edge (16..20,139) enters the east gate on its mat facing west', flush=True)
+
+    walk_until(g, K.KEY_DOWN, 'Gate_EcruteakCity_Route42_hns')
     walk_until(g, K.KEY_LEFT, 'EcruteakCity_hns', limit=20)
     city = pos(g)
     assert city[1] == 42 and 53 <= city[0] <= 56, g.describe()
@@ -102,9 +103,8 @@ def main():
     assert pos(g) == (1, 5) and facing(g) == EAST, (g.describe(), facing(g))
     walk_until(g, K.KEY_RIGHT, 'Route119', limit=20)
     g.frame(120)
-    assert pos(g) == (17, 138), g.describe()
+    assert pos(g) == (18, 138) and facing(g) == ARRIVE_FACING, (g.describe(), facing(g))
     print('ok  Ecruteak -> gate -> Route 119 round trip', flush=True)
-
 
 if __name__ == '__main__':
     main()

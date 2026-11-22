@@ -2697,19 +2697,37 @@ gTVPokemonBattleUpdateText07::
 	.string "“POKéMON BATTLE UPDATE!”$"
 
 GabbyAndTy_Text_GabbyPreFirstBattle:
-	.string "GABBY: We're tracking an\ninvisible KECLEON for our show!\pSeen anything shimmer?\pNo? Then you'll do for a warm-up\nbattle. Roll camera!$"
+	.string "GABBY: Oh! We've just spotted a tough-\n"
+	.string "looking TRAINER here of all places!\p"
+	.string "Okay, roll camera!\n"
+	.string "Let's get this interview.$"
 
 GabbyAndTy_Text_GabbyIntro:
-	.string "GABBY: {PLAYER}! Still no\nKECLEON on tape, but you always\pmake a good segment.\pShow us how much stronger you've\nbecome!$"
+	.string "GABBY: Oh! You're {PLAYER}! Hi!\n"
+	.string "Do you remember us from last time?\p"
+	.string "Can you show us how much stronger\n"
+	.string "you've become? Okay, cue interview!$"
 
 GabbyAndTy_Text_GabbyDefeatFirstTime:
-	.string "GABBY: Whoa! Not a KECLEON, but\ndefinitely a scoop!$"
+	.string "GABBY: My eyes didn't lie!\n"
+	.string "I did discover an astonishing TRAINER!$"
 
 GabbyAndTy_Text_WhoAreYouInterview:
-	.string "GABBY: Okay, okay! Who are you?!\pWe're filming a special about\nthe KECLEON nobody can see. We\pfollow every rumor of it.\pYou get around, right? Would you\ngive us a few words for the\pepisode?$"
+	.string "GABBY: Awesome! Awesome!\n"
+	.string "Who are you?!\p"
+	.string "I knew we were onto something wild\n"
+	.string "when we spotted you!\p"
+	.string "Oh, please let me explain. We travel\n"
+	.string "around everywhere interviewing all\l"
+	.string "sorts of TRAINERS.\p"
+	.string "So, would you give us a bit of your time\n"
+	.string "for an interview?$"
 
 GabbyAndTy_Text_QuoteFromLastInterview:
-	.string "GABBY: “{STR_VAR_1}!”\pThat's what you told us last\ntime. It aired right between two\plong shots of an empty branch!$"
+	.string "GABBY: “{STR_VAR_1}!”\p"
+	.string "Remember? That's the quote you gave\n"
+	.string "us as the battle clincher last time.\p"
+	.string "I never, ever forget stuff like that!$"
 
 GabbyAndTy_Text_YouStompedUsInterviewAgain:
 	.string "The last time we battled, you stomped\n"
@@ -2749,13 +2767,23 @@ GabbyAndTy_Text_DescribeYourFeelings:
 	.string "has to be short and sweet. Go!$"
 
 GabbyAndTy_Text_PerfectWellBeSeeingYou:
-	.string "GABBY: Mmm, yeah! That's the\nperfect clincher!\pIt might air on TV, so keep\nwatching for us!\pOkay, TY, back to KECLEON watch!$"
+	.string "GABBY: Mmm, yeah!\n"
+	.string "That's the perfect clincher!\p"
+	.string "I get the feeling that this will make\n"
+	.string "a great TV show.\p"
+	.string "There's a chance that they'll air this\n"
+	.string "on TV, so make sure to look for us!\p"
+	.string "Okay!\n"
+	.string "We'll be seeing you!$"
 
 GabbyAndTy_Text_DontGiveUpKeepingEyeOut:
-	.string "GABBY: Oh… Okay!\pIf you ever spot a KECLEON, you\nknow who to call!$"
+	.string "GABBY: Oh…\p"
+	.string "Okay, but don't give up!\n"
+	.string "We'll be keeping an eye out for you!$"
 
 GabbyAndTy_Text_KeepingAnEyeOutForYou:
-	.string "GABBY: We'll keep one eye out\nfor you and the other out for\pKECLEON!$"
+	.string "GABBY: We'll be keeping an eye out\n"
+	.string "for you!$"
 
 GabbyAndTy_Text_GabbyNotEnoughMons:
 	.string "GABBY: Is there a strong TRAINER\n"
@@ -2772,16 +2800,23 @@ GabbyAndTy_Text_GiveUsAnInterviewThisTime:
 	.string "this time?$"
 
 GabbyAndTy_Text_GabbyDefeat:
-	.string "GABBY: What a battle! TY, tell\nme you got that. KECLEON can\pwait!$"
+	.string "GABBY: That was an intense battle!\n"
+	.string "Did you get all that on camera?$"
 
 GabbyAndTy_Text_TyPreFirstBattle:
-	.string "TY: Hold still! For a second I\nthought you were the KECLEON.\pCamera's rolling anyway!$"
+	.string "TY: Hey, lookie here! A tough-looking\n"
+	.string "TRAINER here, of all places!\l"
+	.string "Camera's rolling!$"
 
 GabbyAndTy_Text_TyIntro:
-	.string "TY: Oh, it's you again! Still\nhaven't caught one frame of that\pKECLEON.\pLet's get this battle instead!$"
+	.string "TY: Hey, lookie here!\n"
+	.string "I remember you!\p"
+	.string "I'll get this battle all on this\n"
+	.string "here camera!$"
 
 GabbyAndTy_Text_TyPostBattle:
-	.string "TY: Prime footage! Shame KECLEON\nnever holds still this nicely.$"
+	.string "TY: You're a natural!\n"
+	.string "Got me some prime footage right here!$"
 
 GabbyAndTy_Text_TyNotEnoughMons:
 	.string "TY: Do you only have the one POKéMON\n"
@@ -2790,10 +2825,12 @@ GabbyAndTy_Text_TyNotEnoughMons:
 	.string "better footage, but…$"
 
 GabbyAndTy_Text_TyDefeatFirstTime:
-	.string "TY: Got it all! Better than six\nhours of tape of an empty fence.$"
+	.string "TY: Yep, we sure spotted a hot TRAINER.\n"
+	.string "This is a huge scoop for us!$"
 
 GabbyAndTy_Text_TyDefeat:
-	.string "TY: Yep, that whole battle's on\ncamera. Still zero KECLEON,\pthough.$"
+	.string "TY: Yep, I got it all.\n"
+	.string "That whole battle's on camera.$"
 
 gTVInSearchOfTrainersText00::
 	.string "IN SEARCH OF TRAINERS…\p"
