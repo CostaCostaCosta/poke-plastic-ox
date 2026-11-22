@@ -158,6 +158,7 @@ def trainer(name, display, team, level, pic="Leader Roxanne", cls="Leader", doub
 # Names missing here fall back to the shared Pox_Text_Defeat.
 DEFEAT_LINES = {
     'Roxanne': "ROXANNE: A textbook battle. I'll be revising my notes tonight.",
+    'Morty': "MORTY: I saw this ending in the ash. Seeing it in person is different.",
     'Whitney': "WHITNEY: Waaah! Okay, okay, you win! That was actually kind of fun.",
     'Winona': "WINONA: You rode the wind better than my birds did today.",
     'Blaine': "BLAINE: Hah! You doused my flames without breaking a sweat!",
@@ -293,6 +294,8 @@ room_names = []
 # Each room's exit attendant says something of its own.
 ROOM_EXIT_LINES = {
     'WhitneyGym': "Heading out? Mind the flower beds on your way!",
+    'MortyGym': "The way out is the way you came in. I will walk you to the last lamp.",
+    'DanceTheater': "The door is behind the third curtain. Mind the rope; the dancers leave it out.",
     'BlaineGym': "Need some air? I'll walk you out of the heat.",
     'BrunoGym': "Leaving the DOJO? Bow on your way out, please.",
     'ClairGym': "The lava's hot today. I'll lead you back to town.",

@@ -218,7 +218,7 @@ goto_if_unset FLAG_POX_STORY_BURNED_TOWER, Pox_NotReady
 
 goto_if_set FLAG_BADGE03_GET, Pox_Done
 
-trainerbattle_single TRAINER_PLASTIC_OX_MORTY, Pox_Text_Morty, Pox_Text_Defeat, Pox_Morty_Won
+trainerbattle_single TRAINER_PLASTIC_OX_MORTY, Pox_Text_Morty, Pox_Text_Morty_Defeat, Pox_Morty_Won
 
 goto Pox_Morty_Won
 Pox_Morty_Won::
@@ -231,6 +231,9 @@ releaseall
 
 Pox_Text_Morty::
 	.string "MORTY: You went under the tower.\nYou saw a wall stand up, and then\nplie back down.\pI have no explanation that would\nsurvive daylight. What I have is a\npGYM and a badge.\pShow me the team you carried down\nthere.$"
+
+Pox_Text_Morty_Defeat::
+	.string "MORTY: I saw this ending in the\nash. Seeing it in person is\pdifferent.$"
 
 Pox_MortyGymExit::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
