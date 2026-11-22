@@ -2308,7 +2308,8 @@ Pox_SquirtBottle::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_BADGE02_GET, Pox_SquirtBottle_Wait
+goto_if_set FLAG_POX_SUDOWOODO_CLEARED, Pox_SquirtBottle_Cleared
+	goto_if_unset FLAG_BADGE02_GET, Pox_SquirtBottle_Wait
 	checkitem ITEM_SQUIRT_BOTTLE
 	goto_if_eq VAR_RESULT, TRUE, Pox_SquirtBottle_Have
 	giveitem ITEM_SQUIRT_BOTTLE
@@ -2328,6 +2329,15 @@ Pox_SquirtBottle_Full::
 	msgbox Pox_Text_SquirtBottle_Full, MSGBOX_DEFAULT
 	releaseall
 	end
+
+@ pox-2ma.3: the tree is gone and the bottle was taken back, so do not re-issue it.
+Pox_SquirtBottle_Cleared::
+	msgbox Pox_Text_SquirtBottle_Cleared, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Pox_Text_SquirtBottle_Cleared::
+	.string "That odd tree on ROUTE 36 is gone.\nMy SQUIRTBOTTLE can go back to\pwatering the flowers. Thank you!$"
 
 Pox_Text_SquirtBottle_Wait::
 	.string "The odd tree on ROUTE 36 hates\nwater. Beat WHITNEY, then I can\plend you my SQUIRTBOTTLE.$"
