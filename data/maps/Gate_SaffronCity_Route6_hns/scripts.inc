@@ -9,5 +9,5 @@ Gate_SaffronCity_Route6_EventScript_Npc1::
 	end
 
 Gate_SaffronCity_Route6_EventScript_Npc1_Text:
-	.string "Keep the doorway clear so\ntravelers can pass safely.$"
+	.string "I've worked this south gate for\nyears. Most folks just ask me\pwhere the nearest bench is.$"
 

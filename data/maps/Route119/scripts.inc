@@ -1,5 +1,6 @@
 Route119_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_Route119
+	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, Route119_OnWarp
 	.byte 0
 
 
@@ -408,6 +409,19 @@ Route119_EventScript_PoxEcruteakGate::
 	warp MAP_GATE_ECRUTEAK_CITY_ROUTE42_HNS, 1
 	waitstate
 	releaseall
+	end
+
+@ Back out of the gate onto (18,138): face north, up the route.
+Route119_OnWarp:
+	map_script_2 VAR_TEMP_0, 0, Route119_EventScript_FaceUpFromEcruteakGate
+	.2byte 0
+
+Route119_EventScript_FaceUpFromEcruteakGate::
+	getplayerxy VAR_TEMP_1, VAR_TEMP_2
+	goto_if_ne VAR_TEMP_1, 18, Route119_EventScript_FaceUpFromEcruteakGate_End
+	goto_if_ne VAR_TEMP_2, 138, Route119_EventScript_FaceUpFromEcruteakGate_End
+	turnobject OBJ_EVENT_ID_PLAYER, DIR_NORTH
+Route119_EventScript_FaceUpFromEcruteakGate_End::
 	end
 
 Route119_EventScript_PoxEcruteakGateSign::

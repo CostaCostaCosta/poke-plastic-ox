@@ -3,6 +3,10 @@
 
 The fixture starts a real trainer battle so the engine captures held items, then
 simulates consumption/exchange and dispatches the normal battle finish handler.
+
+Held-item rule (B_POX_RESTORE_ALL_HELD_ITEMS, every battle type): a mon gets
+back the item it entered with even if it was eaten, knocked off or stolen; a
+mon that entered empty-handed keeps what it gained (Thief/Covet/Pickup).
 """
 import json
 import struct
@@ -76,16 +80,16 @@ def check(outcome, trainer=True):
     g.write(g.syms['gCurrentActionFuncId'], 11)
     g.write(g.syms['gBattleMainFunc'], g.syms['HandleEndTurn_FinishBattle'] | 1, 4)
     g.frame(240)
+    expected_items = [520, 472, 523]  # Berry and Leftovers back, Thief loot kept.
     for i, mon in enumerate(mons):
         assert g.box_species(mon) == 19
         data, offsets = secure(g, mon)
+        assert item(g, mon) == expected_items[i], (trainer, i, item(g, mon))
         if trainer:
-            assert item(g, mon) == original[i], (i, item(g, mon))
             assert g.u16(mon + stride - 14) == g.u16(mon + stride - 12)
             assert g.u32(mon + stride - 20) == 0
             assert bytes(data[offsets[1] + 8:offsets[1] + 12]) == pp_before[i]
         else:
-            assert item(g, mon) == [0, 0, 523][i]
             assert g.u16(mon + stride - 14) == (1 if i == 0 else 0)
             assert g.u32(mon + stride - 20) == 8
     print(f'Trainer={trainer}, outcome={outcome}: held items, HP, status, PP PASS', flush=True)

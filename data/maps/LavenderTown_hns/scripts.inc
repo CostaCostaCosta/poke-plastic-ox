@@ -76,3 +76,17 @@ LavenderTown_EventScript_SouthRoadClosed::
 
 LavenderTown_EventScript_SouthRoadClosed_Text:
 	.string "The southern road is closed.\nPlease use another route.$"
+
+LavenderTown_EventScript_SouthRoadClosed_2::
+	msgbox LavenderTown_EventScript_SouthRoadClosed_2_Text, MSGBOX_NPC
+	end
+
+LavenderTown_EventScript_SouthRoadClosed_2_Text:
+	.string "Road crew only past here. They're\nshoring up the old embankment.$"
+
+LavenderTown_EventScript_SouthRoadClosed_3::
+	msgbox LavenderTown_EventScript_SouthRoadClosed_3_Text, MSGBOX_NPC
+	end
+
+LavenderTown_EventScript_SouthRoadClosed_3_Text:
+	.string "Sorry, nobody gets through. I'd\nlet you if it were up to me.$"

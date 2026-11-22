@@ -1193,20 +1193,13 @@ void FishingWildEncounter(u8 rod)
 
     gIsFishingEncounter = TRUE;
     GetXYCoordsOneStepInFrontOfPlayer(&x, &y);
-    // The Old Rod uses Route 119's fishing table at every tile.
-    if (rod != OLD_ROD && CheckFeebasAtCoords(x, y) == TRUE)
-    {
-        u8 level = ChooseWildMonLevel(&gWildFeebas, 0, WILD_AREA_FISHING);
-
-        species = gWildFeebas.species;
-        CreateWildMon(species, level);
-    }
-    else
-    {
-        headerId = GetCurrentMapWildMonHeaderId();
-        timeOfDay = GetTimeOfDayForEncounters(headerId, WILD_AREA_FISHING);
-        species = GenerateFishingWildMon(gWildMonHeaders[headerId].encounterTypes[timeOfDay].fishingMonsInfo, rod);
-    }
+    // Plastic Ox: no special Feebas tiles. Route 119's Feebas lives only in
+    // the Old Rod slots of its fishing table, so Good/Super Rods never find it.
+    (void)x;
+    (void)y;
+    headerId = GetCurrentMapWildMonHeaderId();
+    timeOfDay = GetTimeOfDayForEncounters(headerId, WILD_AREA_FISHING);
+    species = GenerateFishingWildMon(gWildMonHeaders[headerId].encounterTypes[timeOfDay].fishingMonsInfo, rod);
 
     IncrementGameStat(GAME_STAT_FISHING_ENCOUNTERS);
     SetPokemonAnglerSpecies(species);

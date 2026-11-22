@@ -81,7 +81,6 @@ make -j8 modern
 python3 plastic_ox/alpha/audit_alpha.py
 python3 .agents/skills/plastic-ox-map-port/scripts/audit_imports.py .
 python3 plastic_ox/tools/test_trainer_teams_v2.py
-plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_cinnabar.py
 git diff --check
 ```
 

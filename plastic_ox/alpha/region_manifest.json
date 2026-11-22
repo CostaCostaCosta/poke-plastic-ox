@@ -142,29 +142,8 @@
       "requires": [
         "FLAG_POX_STORY_WEATHER"
       ],
-      "label": "FortreeCity"
-    },
-    {
-      "id": "route119_fortree_b",
-      "source": "FortreeCity",
-      "destination": "Route119",
-      "tile": [
-        0,
-        10
-      ],
-      "approach": [
-        0,
-        9
-      ],
-      "direction": "S",
-      "landing": [
-        38,
-        8
-      ],
-      "requires": [
-        "FLAG_POX_STORY_WEATHER"
-      ],
-      "label": "Route119"
+      "label": "FortreeCity",
+      "seam": true
     },
     {
       "id": "fortree_route110_a",

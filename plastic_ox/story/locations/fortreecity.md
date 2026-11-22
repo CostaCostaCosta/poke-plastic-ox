@@ -25,7 +25,7 @@ A town built at canopy height: plank walkways between trunk platforms, rope and 
 2. **The town is a piece of infrastructure.** Everything the player can say about Fortree is about load, weather, and maintenance. Use the walkway as the local inconvenience: a span closed for repair, a rope replaced every spring, a queue at the ladder.
 3. **Gym 4 — Winona (RU).** `FortreeCity_Gym` `(15,2)` runs `Pox_Winona`, which requires badge 3 and `FLAG_POX_STORY_WEATHER` and awards `FLAG_BADGE04_GET`. Do not confuse it with the vanilla `FortreeCity_Gym_EventScript_Winona` still sitting in the same file, which awards badge 6.
 4. **A Kecleon blocks the east walkway — not the Gym.** An invisible Pokémon sits on the east walkway before the gate. Interacting with it gets a refusal ("Something invisible is in the way…") while badge 4 is unearned. On the first interaction after Winona's badge it reveals itself, flees (`FLAG_KECLEON_FLED_FORTREE`), and the walkway is clear; the east gate `(39,10)` `PoxRegion_fortree_route110_a` still checks badge 4 as the story gate. The Gym is never blocked by it — this is a road obstacle, not a Gym lock.
-5. **The reporters are flavour, not a lock.** `(38,10)` GABBY and `(37,9)` TY wait for an interview and are hidden by `FLAG_BADGE04_GET`. Keep them as the last live remnant of the roaming-reporter system, with two distinct voices; the actual roadblock is the Kecleon.
+5. **The reporters are flavour, not a lock.** `(38,10)` GABBY and `(37,9)` TY are staking out the invisible Kecleon on the east walkway, trying to get it on film, and are hidden by `FLAG_BADGE04_GET`. They are not waiting to interview the Gym winner. The Kecleon hunt is local to this roadblock; their roaming-reporter battles, TV interviews and the Slateport scene keep the standard interview text. Keep two distinct voices; the actual roadblock is the Kecleon.
 6. **Bill is a signpost, not a subject.** `(7,7)` `Pox_CottageGuide` points toward the Sea Cottage near Rustboro, beyond Routes 24 and 25. That is texture; it must not sit next to reconstruction, networks, or the Weather Institute, and its geography does not currently parse.
 7. **After badge 4.** The reporters go, the east road opens, and the town returns to being a place where people mend rope.
 
@@ -41,7 +41,7 @@ A town built at canopy height: plank walkways between trunk platforms, rope and 
 | Kecleon interaction | same tile | badge 4 unset | — | "Something invisible is in the way." No battle, no item, no reveal of what it is |
 | Kecleon cleared | same tile | badge 4 set, fled flag unset | — | short reveal, set `FLAG_KECLEON_FLED_FORTREE`, remove the object, let the gate work |
 | East gate | `(39,10)` `PoxRegion_fortree_route110_a` | badge 4 | warps to `Route110` `(17,0)` | keep; the junction should look like a road, not a checkpoint |
-| Reporters | `(38,10)` GABBY, `(37,9)` TY | hidden by `FLAG_BADGE04_GET` | two roadblock lines about the interview | keep; they are the only live part of the roaming-reporter system, so give them two distinct voices |
+| Reporters | `(38,10)` GABBY, `(37,9)` TY | hidden by `FLAG_BADGE04_GET` | two lines about filming the invisible Kecleon on the walkway | keep; GABBY is sure it's there, TY has filmed an empty rope since dawn |
 | Woman near the Gym | `(32,10)` | always | her "something's blocking the gym" branch is dead and now wrong: the Gym was never blocked | replace with a line about the Gym queue or the thing on the east walkway; no blocked-Gym branch |
 | Sky watcher | `(31,3)` | always | claims a huge Pokémon flew toward Route 131, then says the player smells singed | recast: a local bearing instead of a Hoenn route, and "smoke" instead of "volcano" — the player has just come from the Burned Tower |
 | Cottage guide | `(7,7)` `Pox_CottageGuide` | `FLAG_POX_HIDE_STORY_NPCS` unset | "BILL's SEA COTTAGE is near RUSTBORO, beyond ROUTES 24 and 25" | fix the geography or make it a shrug; Bill must stay ordinary texture |
@@ -62,7 +62,7 @@ A town built at canopy height: plank walkways between trunk platforms, rope and 
 
 > RESIDENT: You can hear the whole town through the floorboards. That's the rent you pay for living up here.
 
-> GABBY: We are not moving until she's beaten. A champion interview is worth more than a road, and I have the tape to prove it.
+> GABBY: That walkway is NOT empty. We stay until the KECLEON shows itself on camera, and I have the tape budget to prove it.
 
 > SKY WATCHER: Third hour, west of the smoke, higher than the ridge. Nobody else was looking up. That's not my fault.
 

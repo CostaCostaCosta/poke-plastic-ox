@@ -22,7 +22,7 @@ skipped emulator verification. Don't claim the change is verified. Run one
 emulator at a time per checkout.
 
 Pick existing harnesses by area: `ls plastic_ox/demo/test_*.py` (e.g.
-`test_goldenrod`, `test_league`, `test_cinnabar`, `test_region_v7 --only <leg>`,
+`test_goldenrod`, `test_league`, `test_region_v7 --only <leg>`,
 `test_region_walk <leg>`, `test_camera_seam`, `test_cave_connections`).
 `test_story.py` takes a suite name: `starters`, `ivs`, `gifts`, `gates`, `travel`,
 `battles`, `callbacks` or `all`.
@@ -55,7 +55,7 @@ Reusable helpers, by where they already live:
 - `walk_leg1.py`: `navigate`, `find_path_elev`, `enter_warp`, `set_flag`.
 - `walk_demo.py`: `cross_connection`. `test_region_walk.py`: `navigate`, `cross`.
 - `test_sudowoodo_v1.py`: `talk`, `settle`, `settle_overworld`, `in_battle`, `fight`, `give_item`, `bag`, `throw_ball`.
-- `test_cinnabar.py`: `finish_trainer`, `save_reload`. `test_camera_seam.py`: `check_view`.
+- `pox_fixtures.py`: `Game`, `game`, `finish_trainer`, `save_reload`. `test_camera_seam.py`: `check_view`.
 - `test_qol.py`: `opcode`, `begin_code`. `test_training_kit.py`: `run_code`.
 
 Conventions:

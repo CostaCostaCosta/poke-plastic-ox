@@ -309,12 +309,17 @@ def boot_test_game(g, timeout=3600):
     raise RuntimeError("test new-game fixture never reached the overworld")
 
 
-def assert_test_player(g):
-    """Check the identity supplied by this fixture and the new-game options."""
+def assert_test_player(g, check_name=True):
+    """Check the identity supplied by this fixture and the new-game options.
+
+    check_name=False is for fixtures that boot through the plain new-game
+    path (pox_fixtures.game()), where the player name is not set to P.
+    """
     party_counts = g.symbol_address("gPartiesCount")
     assert g.u8(party_counts) == 0, "test fixture should wait for Oak to issue P's team"
     save2 = g.u32(g.symbol_address("gSaveBlock2Ptr"))
-    assert g.u8(save2) == 0xCA and g.u8(save2 + 1) == 0xFF, "test player name is not P"
+    if check_name:
+        assert g.u8(save2) == 0xCA and g.u8(save2 + 1) == 0xFF, "test player name is not P"
     options = g.u16(save2 + 0x14)
     assert ((options >> 9) & 1) == 1, "test battle style is not Set"
 

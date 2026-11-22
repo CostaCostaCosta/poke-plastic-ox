@@ -1211,6 +1211,23 @@ static const struct InGameTrade sIngameTrades[] =
         .otGender = MALE,
         .sheen = 10,
         .requestedSpecies = SPECIES_PONYTA
+    },
+    // Plastic Ox: the Ecruteak river dredger's net-caught RELICANTH.
+    [INGAME_TRADE_RELICANTH] =
+    {
+        .nickname = _("BELLSTONE"),
+        .species = SPECIES_RELICANTH,
+        .ivs = {20, 18, 26, 12, 15, 24},
+        .abilityNum = 0,
+        .otId = 51907,
+        .conditions = {5, 5, 5, 5, 30},
+        .personality = 0x3A51C08E,
+        .heldItem = ITEM_NONE,
+        .mailNum = 255,
+        .otName = _("HIDEO"),
+        .otGender = MALE,
+        .sheen = 10,
+        .requestedSpecies = SPECIES_CLAMPERL
     }
 };
 

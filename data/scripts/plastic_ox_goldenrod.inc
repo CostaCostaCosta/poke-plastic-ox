@@ -91,6 +91,18 @@ PoxGoldenrod_Directory::
 PoxGoldenrod_Text_Directory:
 	.string "GOLDENROD CITY\nShops, broadcasts, and friendly faces.$"
 
+PoxGoldenrod_DeptStore7F_Sign::
+	msgbox PoxGoldenrod_Text_DeptStore7F, MSGBOX_SIGN
+	end
+PoxGoldenrod_Text_DeptStore7F:
+	.string "ROOFTOP FLOOR\nFresh air, a vending corner, and\la view of the whole city.$"
+
+PoxGoldenrod_GameCorner_Sign::
+	msgbox PoxGoldenrod_Text_GameCornerSign, MSGBOX_SIGN
+	end
+PoxGoldenrod_Text_GameCornerSign:
+	.string "GAME CORNER\nCoins in, luck out. Prizes at the\lcounter. Play for fun!$"
+
 PoxGoldenrod_Bike::
 	lock
 	faceplayer
@@ -112,8 +124,14 @@ PoxGoldenrod_Text_BikeHave:
 @ The street woman points at the FLOWER SHOP counter: the shop is the only
 @ place that hands over the SQUIRTBOTTLE (Pox_SquirtBottle at (2,4)).
 PoxGoldenrod_SquirtBottleNote::
+	goto_if_set FLAG_POX_SUDOWOODO_CLEARED, PoxGoldenrod_SquirtBottleNote_Cleared
 	msgbox PoxGoldenrod_Text_SquirtBottleNote, MSGBOX_NPC
 	end
+PoxGoldenrod_SquirtBottleNote_Cleared::
+	msgbox PoxGoldenrod_Text_SquirtBottleNoteCleared, MSGBOX_NPC
+	end
+PoxGoldenrod_Text_SquirtBottleNoteCleared:
+	.string "Somebody cleared that odd tree off\nROUTE 36. The FLOWER SHOP girl has\pher bottle back for the flowers.$"
 PoxGoldenrod_Text_SquirtBottleNote:
 	.string "The FLOWER SHOP lends a\nSQUIRTBOTTLE for the odd tree on\pROUTE 36. Ask the girl inside.$"
 
