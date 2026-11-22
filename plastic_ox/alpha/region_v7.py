@@ -55,6 +55,12 @@ LANE_PORTALS = {
     'lavender_harbor','harbor_frontier',
 }
 
+# Native Hoenn camera seams. The trail keeps its story gate as a set of
+# coordinate triggers along the shared edge, but an open gate never warps:
+# the player simply walks across the map connection in either direction.
+# key: (connection from a, connection from b, offset)
+SEAM_TRAILS = {'route119_fortree': ('right', 'left', 0)}
+
 # These transitions are visually self-explanatory roads.  Extra object signs
 # narrowed their approaches and duplicated nearby native wayfinding.
 SIGNLESS_TRAILS = {'rustboro_route44'}
@@ -241,6 +247,13 @@ def apply_region(read, put):
     }
     for name, connections in coastal_connections.items():
         d=load(name);d['connections']=connections;save(name,d)
+    for key,(a_dir,b_dir,offset) in SEAM_TRAILS.items():
+        _,a,_,b,_,_=next(t for t in TRAILS if t[0]==key)
+        for name,other,direction,off in [(a,b,a_dir,offset),(b,a,b_dir,-offset)]:
+            d=load(name)
+            d['connections']=[c for c in d['connections'] if c['map']!=mid(other)]
+            d['connections'].append(dict(map=mid(other),offset=off,direction=direction))
+            save(name,d)
     # Wayfinding belongs beside the four-lane entrance, not on the bridge.
     d=load('RustboroCity')
     d['bg_events']=[b for b in d.get('bg_events',[]) if b.get('script') != 'RustboroCity_EventScript_TunnelSign']
@@ -445,6 +458,10 @@ def apply_region(read, put):
         component=g.component(ANCHORS.get(name,p['approach']),water)
         trigger_tiles=[]
         lanes=(0,-1,1) if key[:-2] in LANE_PORTALS else (0,)
+        if key[:-2] in SEAM_TRAILS:
+            # Every edge tile that crosses the connection must be gated.
+            span=g.h if dx else g.w
+            lanes=tuple(range(-span,span))
         # An object/warp on the canonical mouth is an intentional physical
         # gate (Route 44/Mt. Moon and similar blockers). Never route around it
         # through a newly expanded invisible lane.
@@ -453,6 +470,10 @@ def apply_region(read, put):
         for lane in lanes:
             tx,ty=p['tile'][0]+px*lane,p['tile'][1]+py*lane
             ax,ay=tx-dx,ty-dy
+            if key[:-2] in SEAM_TRAILS:
+                if (tx,ty) in component and g.passable(tx,ty,water):
+                    trigger_tiles.append((tx,ty))
+                continue
             if lane != 0 and canonical_blocked:
                 continue
             if lane != 0 and ((tx,ty) in occupied or (ax,ay) in occupied):
@@ -469,6 +490,20 @@ def apply_region(read, put):
         d['coord_events'] += [dict(type='trigger',x=x,y=y,elevation=0,var='VAR_POX_PORTAL_TRIGGER',var_value=0,script=script)
                               for x,y in trigger_tiles]
         save(name,d)
+        if key[:-2] in SEAM_TRAILS:
+            # Open: fall through without locking so the walk is not interrupted.
+            # Closed: refuse and step the player back off the seam.
+            back={'E':'walk_left','W':'walk_right','N':'walk_down','S':'walk_up'}[p['direction']]
+            body=f'{script}::\n\tgoto_if_unset FLAG_POX_TRIGGERS_ENABLED, {script}_Open\n'
+            for flag in requirements:
+                body+=f'\tgoto_if_unset {flag}, {script}_Closed\n'
+            closed_text={'PoxRegion_route119_fortree_a':'Pox_Text_WI_CrossingClosed'}.get(script,'PoxRegion_ClosedText')
+            body+=(f'{script}_Open::\n\tend\n{script}_Closed::\n\tlockall\n\tmsgbox {closed_text}, MSGBOX_DEFAULT\n'
+                   f'\tapplymovement OBJ_EVENT_ID_PLAYER, {script}_StepBack\n\twaitmovement 0\n\treleaseall\n\tend\n'
+                   f'{script}_StepBack:\n\t{back}\n\tstep_end')
+            scripts.append(body)
+            records.append(dict(id=key,source=name,destination=destination,**p,landing=landing,requires=requirements,label=label,seam=True))
+            return
         body=f'{script}::\n\tlockall\n\tgoto_if_unset FLAG_POX_TRIGGERS_ENABLED, {script}_Open\n'
         for flag in requirements:
             body+=f'\tgoto_if_unset {flag}, {script}_Closed\n'
@@ -502,6 +537,14 @@ def apply_region(read, put):
         pa=port(key+'_a',a,pa_target,pa_anchor)
         pb=port(key+'_b',b,bt)
         endpoint(key+'_a',a,pa,b,pb['approach'],requirements,b.replace('_hns','').replace('_Frlg','').replace('PlasticOx_',''))
+        if key in SEAM_TRAILS:
+            # The connection is the return path; drop any old reverse portal.
+            d=load(b); script='PoxRegion_'+key+'_b'
+            d['coord_events']=[c for c in d['coord_events'] if c.get('script')!=script]
+            for field in ('object_events','bg_events'):
+                d[field]=[o for o in d[field] if o.get('script')!=script+'_Sign']
+            save(b,d)
+            continue
         # Native ledges plus no reverse transition preserve the downhill return.
         if key!='route45_route46':
             endpoint(key+'_b',b,pb,a,pa['approach'],requirements,a.replace('_hns','').replace('_Frlg','').replace('PlasticOx_',''))

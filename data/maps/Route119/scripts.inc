@@ -403,13 +403,6 @@ Route119_Text_TrainerTipsDecoration:
 
 @ ECRUTEAK east gate, bottom of Route 119. Stepping south off the path at
 @ (16..20,139) enters the gatehouse; the gate drops the player at (18,138).
-Route119_EventScript_PoxEcruteakGate::
-	lockall
-	warp MAP_GATE_ECRUTEAK_CITY_ROUTE42_HNS, 1
-	waitstate
-	releaseall
-	end
-
 Route119_EventScript_PoxEcruteakGateSign::
 	msgbox Route119_Text_PoxEcruteakGateSign, MSGBOX_SIGN
 	end

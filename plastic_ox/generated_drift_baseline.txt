@@ -6,7 +6,6 @@ data/maps/CinnabarIsland_Frlg/map.json
 data/maps/EcruteakCity_hns/map.json
 data/maps/FortreeCity/map.json
 data/maps/Gate_EcruteakCity_Route38_hns/map.json
-data/maps/Gate_EcruteakCity_Route42_hns/map.json
 data/maps/GoldenrodCity_BillsHouse_hns/map.json
 data/maps/GoldenrodCity_GameCorner_hns/map.json
 data/maps/GoldenrodCity_GameCorner_hns/scripts.inc
