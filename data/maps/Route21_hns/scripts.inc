@@ -23,11 +23,11 @@ Route21_EventScript_Npc3::
 	end
 
 Route21_EventScript_Npc1_Text:
-	.string "The trees shelter small POKéMON.\nWatch the grass as you pass.$"
+	.string "The current pulls west near the\nislands. Swim with it and you'll\psave your strength.$"
 
 Route21_EventScript_Npc2_Text:
 	.string "I always check my supplies\nbefore heading into the trees.$"
 
 Route21_EventScript_Npc3_Text:
-	.string "The trees shelter small POKéMON.\nWatch the grass as you pass.$"
+	.string "TENTACOOL keep snagging my line.\nI came for the big fish out past\pthe reef.$"
 

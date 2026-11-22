@@ -103,16 +103,28 @@ def beat(name, text, completion, prerequisites=(), extra=""):
     speech(*msg)
 
 
+GIFT_DONE_LINES = {
+    'Fuji': "FUJI: EEVEE seems lighter on its feet already. Thank you for giving it a home.",
+    'Space': "How is EEVEE adapting? Our logs end where your journey begins.",
+}
+
+
 def gift(name, text, prerequisites=()):
     done = flag("GIFT_" + name.upper())
     start(name, prerequisites)
-    emit(f"\tgoto_if_set {done}, Pox_GiftDone")
+    if name in GIFT_DONE_LINES:
+        emit(f"\tgoto_if_set {done}, Pox_{name}_GiftDone")
+    else:
+        emit(f"\tgoto_if_set {done}, Pox_GiftDone")
     msg = message(name, text)
     emit("\tgivemon SPECIES_EEVEE, 5\n\tgoto_if_eq VAR_RESULT, MON_CANT_GIVE, Pox_NoRoom")
     emit(f"\tsetflag {done}")
     emit("\tmsgbox Pox_Text_GiftReceived, MSGBOX_DEFAULT")
     finish()
     speech(*msg)
+    if name in GIFT_DONE_LINES:
+        emit(f"Pox_{name}_GiftDone::\n\tmsgbox Pox_Text_{name}_GiftDone, MSGBOX_DEFAULT\n\treleaseall\n\tend")
+        speech(f"Pox_Text_{name}_GiftDone", GIFT_DONE_LINES[name])
 
 
 def trainer(name, display, team, level, pic="Leader Roxanne", cls="Leader", double=False):
@@ -142,21 +154,58 @@ def trainer(name, display, team, level, pic="Leader Roxanne", cls="Leader", doub
     return tid
 
 
+# Every story trainer gets its own defeat line (no two NPCs share dialogue).
+# Names missing here fall back to the shared Pox_Text_Defeat.
+DEFEAT_LINES = {
+    'Roxanne': "ROXANNE: A textbook battle. I'll be revising my notes tonight.",
+    'Whitney': "WHITNEY: Waaah! Okay, okay, you win! That was actually kind of fun.",
+    'Winona': "WINONA: You rode the wind better than my birds did today.",
+    'Blaine': "BLAINE: Hah! You doused my flames without breaking a sweat!",
+    'TateLiza': "TATE: We lost… LIZA: …but we lost together.",
+    'Bruno': "BRUNO: Hrrgh! My training isn't finished. Neither is yours.",
+    'Clair': "CLAIR: Fine. You've earned it. Don't expect me to say so twice.",
+    'MoonGrunt1': "Ugh! The boss is gonna dock my pay for this.",
+    'MoonGrunt2': "Tch. Fossils are heavy anyway. Who needs 'em?",
+    'TowerGrunt1': "Ow! FUJI isn't going anywhere, but I sure am.",
+    'TowerGrunt2': "No fair! They told me this was an easy shift.",
+    'SilphGrunt1': "Fine! The terminals didn't like me anyway.",
+    'SilphGrunt2': "I'm just here for the overtime, kid!",
+    'SilphGrunt3': "Go on, then. The BOSS will deal with you himself.",
+    'Giovanni': "GIOVANNI: Hmph. You have no idea what you just interrupted.",
+    'Wallace': "WALLACE: Such elegance. You've earned the next door.",
+    'Steven': "STEVEN: Hard as stone. I'm glad I got to see your team up close.",
+    'LeagueLance': "LANCE: Your POKéMON fight like they trust you completely.",
+    'Blue': "BLUE: Tch. Fine. Smell ya at the next room.",
+    'Bill': "BILL: …You really did it. I couldn't have predicted that.",
+    'VictoryRoad': "ACE: You're ready. The LEAGUE won't know what hit it.",
+    'PU_ROUTE33': "Like a rockslide! You flattened us!",
+    'PU_ROUTE35': "Aw, my partners wanted to play longer!",
+    'PU_PARK': "My bugs need more meadow time, I guess.",
+    'PU_ROUTE36': "The old trees saw that coming. I didn't.",
+}
+
+
+def defeat_label(name):
+    return f"Pox_Text_{name}_Defeat" if name in DEFEAT_LINES else "Pox_Text_Defeat"
+
+
 def battle(name, display, text, team, level, completion, prerequisites=(), extra="", pic="Leader Roxanne", cls="Leader", double=False, repeat="Pox_Done"):
     tid = trainer(name, display, team, level, pic, cls, double)
     start(name, prerequisites)
     emit(f"\tgoto_if_set {completion}, {repeat}")
     if double:
         emit('\tsetvar VAR_0x8004, PARTY_SIZE\n\tspecialvar VAR_RESULT, CountPartyAliveNonEggMons_IgnoreVar0x8004Slot\n\tgoto_if_lt VAR_RESULT, 2, Pox_TwoMons')
-        emit(f"\ttrainerbattle_double {tid}, Pox_Text_{name}, Pox_Text_Defeat, Pox_Text_TwoMons, Pox_{name}_Won")
+        emit(f"\ttrainerbattle_double {tid}, Pox_Text_{name}, {defeat_label(name)}, Pox_Text_TwoMons, Pox_{name}_Won")
     else:
-        emit(f"\ttrainerbattle_single {tid}, Pox_Text_{name}, Pox_Text_Defeat, Pox_{name}_Won")
+        emit(f"\ttrainerbattle_single {tid}, Pox_Text_{name}, {defeat_label(name)}, Pox_{name}_Won")
     # Trainer defeat flag survives an interrupted reward script. Talking again
     # must resume the reward, not fall through into dialogue data.
     emit(f"\tgoto Pox_{name}_Won\nPox_{name}_Won::\n\tsetflag {completion}")
     emit(extra)
     finish()
     speech(f"Pox_Text_{name}", text)
+    if name in DEFEAT_LINES:
+        speech(defeat_label(name), DEFEAT_LINES[name])
 
 
 def npc(script, x, y, gfx="OBJ_EVENT_GFX_MAN_3", hidden="FLAG_POX_HIDE_STORY_NPCS"):
@@ -241,6 +290,24 @@ def travel(name, destination, x, y, text, prerequisites=()):
 
 
 room_names = []
+# Each room's exit attendant says something of its own.
+ROOM_EXIT_LINES = {
+    'WhitneyGym': "Heading out? Mind the flower beds on your way!",
+    'BlaineGym': "Need some air? I'll walk you out of the heat.",
+    'BrunoGym': "Leaving the DOJO? Bow on your way out, please.",
+    'ClairGym': "The lava's hot today. I'll lead you back to town.",
+    'PokemonTower': "Let's get you out of the tower. Watch the stairs.",
+    'FujiHouse': "The door sticks. Here, I'll get it for you.",
+    'Mansion': "These halls are easy to get lost in. Follow me out.",
+    'Silph': "Elevators are down. I'll take you out the back.",
+    'WhirlIslands': "The tide's turning. Let's head back to shore.",
+    'VictoryRoad': "Not ready yet? I'll guide you back down the trail.",
+    'WallaceRoom': "Want to step out? The LEAGUE lobby is this way.",
+    'StevenRoom': "Need to regroup? I'll take you back to the lobby.",
+    'LeagueLanceRoom': "Take a breather if you need one. Lobby's this way.",
+    'BlueRoom': "Backing out? No shame in it. This way to the lobby.",
+    'BillRoom': "Not yet? Of course. I'll show you to the lobby.",
+}
 
 
 def room(name, parent, boss, source="RustboroCity_Gym", objects=None, return_xy=(10, 10)):
@@ -272,7 +339,7 @@ def room(name, parent, boss, source="RustboroCity_Gym", objects=None, return_xy=
         save_map(dest,data)
     put(f"data/maps/{dest}/scripts.inc", f"{dest}_MapScripts::\n\t.byte 0\n")
     room_names.append(dest)
-    travel(name + "Exit", parent, *return_xy, "I'll show you back outside.")
+    travel(name + "Exit", parent, *return_xy, ROOM_EXIT_LINES.get(name, "I'll show you back outside."))
     manifest.extend((dest, o['x'], o['y'], o['script'][4:]) for o in data['object_events'])
     return dest
 
@@ -406,7 +473,7 @@ moon_teams = [
     [('Ekans',['Bite','Glare','Wrap']),('Koffing',['Sludge','Smokescreen','Tackle'])],
 ]
 for n, completion, prereq in [(1,moon1,[badges[0]]),(2,moon2,[moon1])]:
-    battle(f'MoonGrunt{n}', 'GRUNT', "These fossils belong to TEAM ROCKET now!", moon_teams[n-1], 14+n, completion, prereq, pic='Team Aqua M', cls='Team Aqua')
+    battle(f'MoonGrunt{n}', 'GRUNT', ["These fossils belong to TEAM ROCKET now!","Hands off! These rocks are company property!"][n-1], moon_teams[n-1], 14+n, completion, prereq, pic='Team Aqua M', cls='Team Aqua')
     # Retired trainer IDs stay reserved for existing saves.
 beat('MoonRocketMap', "You beat both of our grunts! Fine, take this TOWN MAP and leave TEAM ROCKET alone.", moon, [moon1,moon2], '\tgiveitem ITEM_TOWN_MAP\n\tgoto_if_eq VAR_RESULT, FALSE, Pox_Release')
 # Mt. Moon now uses the FireRed floor actors and fossil quest.
@@ -601,7 +668,7 @@ add_npc('FortreeCity','CottageGuide',7,7)
 lav1='FLAG_POX_HIDE_LAVENDER_GRUNT_1'
 lav2='FLAG_POX_HIDE_LAVENDER_GRUNT_2'
 for n,f,req in [(1,lav1,[badges[3]]),(2,lav2,[lav1])]:
-    battle('TowerGrunt'+str(n),'GRUNT',"FUJI knows something about reconstructing POKéMON. He'll answer our questions!", [('Golbat',['Bite','Wing Attack','Confuse Ray']),('Weezing',['Sludge','Smokescreen','Self Destruct'])],35,f,req,pic='Team Aqua M',cls='Team Aqua')
+    battle('TowerGrunt'+str(n),'GRUNT',["FUJI knows something about reconstructing POKéMON. He'll answer our questions!","Upstairs is off limits. The old man is busy talking to the boss's people."][n-1], [('Golbat',['Bite','Wing Attack','Confuse Ray']),('Weezing',['Sludge','Smokescreen','Self Destruct'])],35,f,req,pic='Team Aqua M',cls='Team Aqua')
 beat('FujiRescue', "FUJI: Thank you. They asked about preserving living states... old work I hoped never to hear of again.|The archives on CINNABAR may explain more. Ask BLAINE for access.|Take the UNDERGROUND PATH from ROUTE 8 to ROUTE 7, then cross ROUTE 103. This SURF KEY will help you cross the water.",fuji,[lav1,lav2], '''\tcheckitem ITEM_SURF_KEY
 \tgoto_if_eq VAR_RESULT, TRUE, Pox_FujiRescue_HasSurfKey
 \tgiveitem ITEM_SURF_KEY
@@ -636,7 +703,7 @@ for n in range(1,4):
     f='FLAG_POX_HIDE_SILPH_GRUNT_'+str(n)
     req=[space] if n==1 else [silphgrunts[-1]]
     silphgrunts.append(f)
-    battle('SilphGrunt'+str(n),'GRUNT',"These terminals won't obey us. But the BOSS will make this system his!",[('Muk',['Sludge Bomb','Minimize','Body Slam']),('Golbat',['Bite','Confuse Ray','Wing Attack'])],48,f,req,pic='Team Aqua M',cls='Team Aqua')
+    battle('SilphGrunt'+str(n),'GRUNT',["These terminals won't obey us. But the BOSS will make this system his!","Keep away from the server room! I just got the cables untangled.","You got past two of us? The BOSS won't like this one bit!"][n-1],[('Muk',['Sludge Bomb','Minimize','Body Slam']),('Golbat',['Bite','Confuse Ray','Wing Attack'])],48,f,req,pic='Team Aqua M',cls='Team Aqua')
 gio='FLAG_POX_HIDE_SILPH_GIOVANNI'
 battle('Giovanni','GIOVANNI',"We did not make this world. We followed a signal, then the old man's research.|A system that can rearrange a region can give its owner anything. Stand aside!",[('Nidoking',['Earthquake','Ice Beam','Thunderbolt']),('Kangaskhan',['Return','Shadow Ball','Fake Out']),('Dugtrio',['Earthquake','Rock Slide','Aerial Ace']),('Rhydon',['Earthquake','Rock Slide','Megahorn'])],52,gio,[silphgrunts[-1]],pic='Leader Giovanni Frlg')
 beat('SilphCore','TERMINAL: ADAPTIVE TRAINER SYSTEM.|Battle profiles: BLUE, LANCE, STEVEN, WALLACE. Objective: improve training conditions.|Habitat isolation detected. Regional transfer links reconciled. Environmental restructuring active.|You isolate the environmental controls. The transfer links fall silent.|The existing region remains. Its boundaries have stopped moving.',silph,[gio])
@@ -687,18 +754,45 @@ for i,(name,display,team) in enumerate(league):
 speech('Pox_Text_Champion',"BILL: You did it. These POKéMON and their TRAINER belong in the HALL OF FAME. Congratulations, CHAMPION!")
 guide('IndigoPlateau_PokemonCenter_hns',1,'LeagueEntry','PlasticOx_WallaceRoom','The POKéMON LEAGUE challenge begins here.',badges)
 
+# Visible Institute/Space Center staff and visitors each get a line that fits
+# their sprite (children are on a field trip, not running the lab).
+FACILITY_LINES = {
+    ('Route119_WeatherInstitute_1F',2): "The barometer on this floor gets read every hour. I've had the 3 a.m. reading four nights running.",
+    ('Route119_WeatherInstitute_1F',3): "Rain gauges from ROUTE 119 come back full of mud. Washing them is half my job.",
+    ('Route119_WeatherInstitute_1F',4): "We're here on a school field trip! Teacher says if we behave we get to watch the weather balloon go up!",
+    ('Route119_WeatherInstitute_2F',3): "These printouts track wind over FORTREE. Lately the lines wobble in ways our models never drew.",
+    ('Route119_WeatherInstitute_2F',5): "The coffee machine's broken again. Forecasting runs on coffee, so… expect clouds.",
+    ('MossdeepCity_SpaceCenter_1F',1): "Launch windows depend on the wind high up. We trade data with the WEATHER INSTITUTE every morning.",
+    ('MossdeepCity_SpaceCenter_1F',2): "I ferry rocket parts over from the mainland. Strangest cargo I've ever tied down on deck.",
+    ('MossdeepCity_SpaceCenter_1F',3): "I've watched every launch from this bench since they built the place. The rumble still rattles my teeth.",
+    ('MossdeepCity_SpaceCenter_1F',4): "The gift shop sold out of rocket keychains again. My kids won't forgive me if I go home without one.",
+    ('MossdeepCity_SpaceCenter_1F',9): "When I grow up, I'm gonna ride a rocket! Mom says I have to eat my vegetables first.",
+    ('MossdeepCity_SpaceCenter_1F',10): "STEVEN: Meteorites tell you where a world has been. I came to see the ones kept here.",
+    ('MossdeepCity_SpaceCenter_2F',0): "Dad brought me to look through the telescope! I saw a crater on the moon. It looked like a cookie!",
+    ('MossdeepCity_SpaceCenter_2F',1): "I donated the telescope on this floor. Do have a look. The view over the strait is lovely.",
+    ('MossdeepCity_SpaceCenter_2F',2): "Satellite pictures of the coast came back fuzzy again. We've recalibrated twice this week.",
+    ('MossdeepCity_SpaceCenter_2F',3): "STEVEN: From up here you can see all of MOSSDEEP's shoreline. I never tire of it.",
+}
+for (native,i),line in FACILITY_LINES.items():
+    start(f'Facility_{native}_{i}')
+    emit(f'\tmsgbox Pox_Text_Facility_{native}_{i}, MSGBOX_DEFAULT')
+    finish()
+    speech(f'Pox_Text_Facility_{native}_{i}', line)
+
 # Preserve the Institute/Space Center architecture while removing the unrelated
 # Aqua/Magma occupation scripts and their trainer objects from these chapters.
 for native in ['Route119_WeatherInstitute_1F','Route119_WeatherInstitute_2F',
                'MossdeepCity_SpaceCenter_1F','MossdeepCity_SpaceCenter_2F']:
     data=load_map(native)
     data['coord_events']=[]
-    for obj in data['object_events']:
-        if not obj['script'].startswith('Pox_'):
+    for i,obj in enumerate(data['object_events']):
+        if not obj['script'].startswith('Pox_') or obj['script'] == 'Pox_FacilityWorker' or obj['script'].startswith('Pox_Facility_'):
             obj['script']='Pox_FacilityWorker'
             obj['trainer_type']='TRAINER_TYPE_NONE'
             if any(v in obj['graphics_id'] for v in ['AQUA','MAGMA','MAXIE','SHELLY']):
                 obj['flag']='FLAG_POX_HIDE_UNUSED_ACTOR'
+            elif (native,i) in FACILITY_LINES:
+                obj['script']=f'Pox_Facility_{native}_{i}'
     save_map(native,data)
     p=f'data/maps/{native}/scripts.inc'
     put(p,re.sub(r'\A.*?\t.byte 0',native+'_MapScripts::\n\t.byte 0',read(p),count=1,flags=re.S))
@@ -751,9 +845,11 @@ pu_trainers = [
 for name, display, mapname, index, level, cls, pic, gfx, team, intro, after in pu_trainers:
     tid = trainer(name, display, team, level, pic, cls)
     contest_guard = ''  # Contest protection lives in battle_setup/trainer_see.
-    emit(f'Pox_{name}::\n{contest_guard}\ttrainerbattle_single {tid}, Pox_Text_{name}, Pox_Text_Defeat\n\tmsgbox Pox_Text_{name}_After, MSGBOX_AUTOCLOSE\n\tend')
+    emit(f'Pox_{name}::\n{contest_guard}\ttrainerbattle_single {tid}, Pox_Text_{name}, {defeat_label(name)}\n\tmsgbox Pox_Text_{name}_After, MSGBOX_AUTOCLOSE\n\tend')
     speech('Pox_Text_'+name, intro)
     speech('Pox_Text_'+name+'_After', after)
+    if name in DEFEAT_LINES:
+        speech(defeat_label(name), DEFEAT_LINES[name])
     replace_npc(mapname, index, name, gfx, '0')
     data = load_map(mapname)
     data['object_events'][index].update(trainer_type='TRAINER_TYPE_NONE' if name == 'PU_PARK' else 'TRAINER_TYPE_NORMAL', trainer_sight_or_berry_tree_id='3')

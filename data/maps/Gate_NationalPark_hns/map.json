@@ -37,7 +37,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Gate_NationalPark_EventScript_Officer",
+      "script": "Gate_NationalPark_EventScript_OfficerEast",
       "flag": "0"
     },
     {
@@ -102,7 +102,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Gate_NationalPark_EventScript_Contestant",
+      "script": "Gate_NationalPark_EventScript_Contestant2",
       "flag": "FLAG_POX_HIDE_PARK_CONTEST_CROWD"
     },
     {
@@ -128,7 +128,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Gate_NationalPark_EventScript_Contestant",
+      "script": "Gate_NationalPark_EventScript_Contestant3",
       "flag": "FLAG_POX_HIDE_PARK_CONTEST_CROWD"
     },
     {
@@ -141,7 +141,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Gate_NationalPark_EventScript_Contestant",
+      "script": "Gate_NationalPark_EventScript_Contestant4",
       "flag": "FLAG_POX_HIDE_PARK_CONTEST_CROWD"
     },
     {
@@ -154,7 +154,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Gate_NationalPark_EventScript_Contestant",
+      "script": "Gate_NationalPark_EventScript_Contestant5",
       "flag": "FLAG_POX_HIDE_PARK_CONTEST_CROWD"
     },
     {
@@ -167,7 +167,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Gate_NationalPark_EventScript_Contestant",
+      "script": "Gate_NationalPark_EventScript_Contestant6",
       "flag": "FLAG_POX_HIDE_PARK_CONTEST_CROWD"
     },
     {

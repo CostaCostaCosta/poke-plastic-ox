@@ -63,58 +63,88 @@ PoxLeague_Summit::
 	end
 
 PoxLeague_VICTORYROAD::
-	trainerbattle_single TRAINER_PLASTIC_OX_VICTORYROAD, PoxLeague_Text_VICTORYROAD, PoxLeague_Text_RouteDefeat
-	msgbox PoxLeague_Text_RouteAfter, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_PLASTIC_OX_VICTORYROAD, PoxLeague_Text_VICTORYROAD, PoxLeague_Text_VICTORYROADDefeat
+	msgbox PoxLeague_Text_VICTORYROADAfter, MSGBOX_AUTOCLOSE
 	end
 
 PoxLeague_Text_VICTORYROAD::
 	.string "Six partners, one last test.\nShow me your team!$"
 
+PoxLeague_Text_VICTORYROADDefeat::
+	.string "You earned that victory!$"
+
+PoxLeague_Text_VICTORYROADAfter::
+	.string "The LEAGUE is close. Trust the\nteam you raised.$"
+
 PoxLeague_RIDGE_RAIN::
-	trainerbattle_single TRAINER_PLASTIC_OX_RIDGE_RAIN, PoxLeague_Text_RIDGE_RAIN, PoxLeague_Text_RouteDefeat
-	msgbox PoxLeague_Text_RouteAfter, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_PLASTIC_OX_RIDGE_RAIN, PoxLeague_Text_RIDGE_RAIN, PoxLeague_Text_RIDGE_RAINDefeat
+	msgbox PoxLeague_Text_RIDGE_RAINAfter, MSGBOX_AUTOCLOSE
 	end
 
 PoxLeague_Text_RIDGE_RAIN::
 	.string "Rain changes the pace. Can you\nchange with it?$"
 
+PoxLeague_Text_RIDGE_RAINDefeat::
+	.string "The storm passed you right by.$"
+
+PoxLeague_Text_RIDGE_RAINAfter::
+	.string "Clouds roll in fast up here.\nKeep a dry towel handy.$"
+
 PoxLeague_RIDGE_SAND::
-	trainerbattle_single TRAINER_PLASTIC_OX_RIDGE_SAND, PoxLeague_Text_RIDGE_SAND, PoxLeague_Text_RouteDefeat
-	msgbox PoxLeague_Text_RouteAfter, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_PLASTIC_OX_RIDGE_SAND, PoxLeague_Text_RIDGE_SAND, PoxLeague_Text_RIDGE_SANDDefeat
+	msgbox PoxLeague_Text_RIDGE_SANDAfter, MSGBOX_AUTOCLOSE
 	end
 
 PoxLeague_Text_RIDGE_SAND::
 	.string "Sand wears down every careless\nswitch.$"
 
+PoxLeague_Text_RIDGE_SANDDefeat::
+	.string "Not a single careless switch.\nImpressive.$"
+
+PoxLeague_Text_RIDGE_SANDAfter::
+	.string "Shake the grit out of your boots\nbefore the LEAGUE doors.$"
+
 PoxLeague_RIDGE_STALL::
-	trainerbattle_single TRAINER_PLASTIC_OX_RIDGE_STALL, PoxLeague_Text_RIDGE_STALL, PoxLeague_Text_RouteDefeat
-	msgbox PoxLeague_Text_RouteAfter, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_PLASTIC_OX_RIDGE_STALL, PoxLeague_Text_RIDGE_STALL, PoxLeague_Text_RIDGE_STALLDefeat
+	msgbox PoxLeague_Text_RIDGE_STALLAfter, MSGBOX_AUTOCLOSE
 	end
 
 PoxLeague_Text_RIDGE_STALL::
 	.string "A patient defense gives every\nturn a purpose.$"
 
+PoxLeague_Text_RIDGE_STALLDefeat::
+	.string "You found a purpose for every\nturn, too.$"
+
+PoxLeague_Text_RIDGE_STALLAfter::
+	.string "I camp on this ledge for a week\nbefore every challenge.$"
+
 PoxLeague_RIDGE_OFFENSE::
-	trainerbattle_single TRAINER_PLASTIC_OX_RIDGE_OFFENSE, PoxLeague_Text_RIDGE_OFFENSE, PoxLeague_Text_RouteDefeat
-	msgbox PoxLeague_Text_RouteAfter, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_PLASTIC_OX_RIDGE_OFFENSE, PoxLeague_Text_RIDGE_OFFENSE, PoxLeague_Text_RIDGE_OFFENSEDefeat
+	msgbox PoxLeague_Text_RIDGE_OFFENSEAfter, MSGBOX_AUTOCLOSE
 	end
 
 PoxLeague_Text_RIDGE_OFFENSE::
 	.string "One free turn is all a sweeper\nneeds.$"
 
+PoxLeague_Text_RIDGE_OFFENSEDefeat::
+	.string "My sweeper never got its free\nturn!$"
+
+PoxLeague_Text_RIDGE_OFFENSEAfter::
+	.string "Speed wins games. Next time I go\nfirst.$"
+
 PoxLeague_RIDGE_BALANCE::
-	trainerbattle_single TRAINER_PLASTIC_OX_RIDGE_BALANCE, PoxLeague_Text_RIDGE_BALANCE, PoxLeague_Text_RouteDefeat
-	msgbox PoxLeague_Text_RouteAfter, MSGBOX_AUTOCLOSE
+	trainerbattle_single TRAINER_PLASTIC_OX_RIDGE_BALANCE, PoxLeague_Text_RIDGE_BALANCE, PoxLeague_Text_RIDGE_BALANCEDefeat
+	msgbox PoxLeague_Text_RIDGE_BALANCEAfter, MSGBOX_AUTOCLOSE
 	end
 
 PoxLeague_Text_RIDGE_BALANCE::
 	.string "Every team has a weakness. Can\nyou find mine?$"
 
-PoxLeague_Text_RouteDefeat::
-	.string "You earned that victory!$"
+PoxLeague_Text_RIDGE_BALANCEDefeat::
+	.string "You found it. My weakness was\nyou.$"
 
-PoxLeague_Text_RouteAfter::
-	.string "The LEAGUE is close. Trust the\nteam you raised.$"
+PoxLeague_Text_RIDGE_BALANCEAfter::
+	.string "The summit is just ahead. The\nair thins, so pace yourself.$"
 
 PoxLeague_Item0::
 	lock
@@ -324,7 +354,7 @@ PoxLeague_Text_WallaceDefeat::
 	.string "WALLACE: You found the rhythm\nbefore I did. It's yours now.$"
 
 PoxLeague_Text_WallaceAfter::
-	.string "The next room is yours. Take a\nmoment to prepare.$"
+	.string "WALLACE: The next room is yours.\nLet your team catch its breath\pfirst.$"
 
 PoxLeague_WallaceNext::
 	lockall
@@ -384,7 +414,7 @@ PoxLeague_Text_StevenDefeat::
 	.string "STEVEN: You covered every seam.\nI could not find the gap.$"
 
 PoxLeague_Text_StevenAfter::
-	.string "The next room is yours. Take a\nmoment to prepare.$"
+	.string "STEVEN: Go on. The door ahead\nopened the moment you won.$"
 
 PoxLeague_StevenNext::
 	lockall
@@ -446,7 +476,7 @@ PoxLeague_Text_LeagueLanceDefeat::
 	.string "LANCE: You committed first.\nThat was the whole difference.$"
 
 PoxLeague_Text_LeagueLanceAfter::
-	.string "The next room is yours. Take a\nmoment to prepare.$"
+	.string "LANCE: One room left before the\nCHAMPION. Steady yourself.$"
 
 PoxLeague_LeagueLanceNext::
 	lockall
@@ -510,7 +540,7 @@ PoxLeague_Text_BlueDefeat::
 	.string "BLUE: I adapted. You still won.\nI'll remember that.$"
 
 PoxLeague_Text_BlueAfter::
-	.string "The next room is yours. Take a\nmoment to prepare.$"
+	.string "BLUE: Go on, the CHAMPION is\nwaiting. Don't make me regret\plosing.$"
 
 PoxLeague_BlueNext::
 	lockall

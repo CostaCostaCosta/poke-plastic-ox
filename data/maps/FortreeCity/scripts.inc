@@ -21,10 +21,10 @@ FortreeCity_EventScript_TyRoadblock::
 	end
 
 FortreeCity_Text_GabbyRoadblock:
-	.string "GABBY: Champion interview, right\nhere! Beat WINONA and we're live\lbefore you can leave town.$"
+	.string "GABBY: Shh! There's an invisible\nKECLEON on that walkway. I just\pknow it.\pWe're not moving until it shows\nitself on camera. Sorry, the\ppath's blocked!$"
 
 FortreeCity_Text_TyRoadblock:
-	.string "TY: Camera's been up since dawn.\nTake your time.\pI'm paid by the day, not by the\ninterview.$"
+	.string "TY: Lens has been on that empty\npatch of rope since dawn.\pI swear it blinked at me. I'm\npaid by the day, so I'm not\pcomplaining.$"
 
 FortreeCity_EventScript_Woman::
 	lock

@@ -92,7 +92,7 @@ Route25_EventScript_Npc5_Text:
 	.string "I packed lunch for the cape.\nMy POKéMON packed an appetite.\pNext time, I'm bringing enough\nfor two lunches each.$"
 
 Route25_EventScript_Npc6_Text:
-	.string "My son says a walk is boring.\nThen he races ahead at each turn.\pI wish he'd lend me some of\nthat energy for the trip home.$"
+	.string "My little brother says walks are\nboring. Then he races ahead at\pevery turn.\pI wish he'd lend me some of that\nenergy for the trip home.$"
 
 Route25_EventScript_Npc7_Text:
 	.string "The little tree's branches\nrustle in the breeze.$"
@@ -142,7 +142,7 @@ Route25_LloydDefeat_Text::
 	.string "Now I really need that lunch.$"
 
 Route25_EllenChallenge_Text::
-	.string "My son ran ahead again.\nKeep me company with a battle!$"
+	.string "My little brother ran ahead\nagain. Keep me company with a\pbattle!$"
 
 Route25_EllenDefeat_Text::
 	.string "You have his energy, too!$"

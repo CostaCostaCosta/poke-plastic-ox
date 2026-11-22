@@ -67,9 +67,7 @@ PalletTown_Text_ProfOakTeam::
 	.string "Would you like to receive it?$"
 
 PalletTown_Text_ProfOakTeamGiven::
-	.string "OAK: Your team is ready: SKARMORY,\n"
-	.string "BLISSEY, CLAYDOL, DUGTRIO, GENGAR,\n"
-	.string "and SUICUNE. Good luck!$"
+	.string "OAK: Here you are: SKARMORY,\nBLISSEY, CLAYDOL, DUGTRIO,\pGENGAR and SUICUNE. Make them\nproud!$"
 
 PalletTown_Text_ProfOakTeamDeclined::
 	.string "OAK: I'll wait here outside your house.$"

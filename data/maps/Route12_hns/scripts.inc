@@ -73,19 +73,19 @@ Route12_EventScript_Npc2_Text:
 	.string "The water brings a cool breeze\nalong this path.$"
 
 Route12_EventScript_Npc3_Text:
-	.string "Fishing takes patience. Watch\nyour line, not the clock.$"
+	.string "I've fished this bank since\ndawn. Two MAGIKARP and a sunburn\pso far.$"
 
 Route12_EventScript_Npc4_Text:
-	.string "The water brings a cool breeze\nalong this path.$"
+	.string "The boardwalk planks creak when\nthe tide comes in. Keeps the\pfish nervous, I reckon.$"
 
 Route12_EventScript_Npc5_Text:
-	.string "Fishing takes patience. Watch\nyour line, not the clock.$"
+	.string "I swap bait tips with the\nfellows up the pier. Nobody ever\padmits what they really use.$"
 
 Route12_EventScript_Npc6_Text:
-	.string "The water brings a cool breeze\nalong this path.$"
+	.string "A slender tree leans out over\nthe water. Its roots grip the\pbank.$"
 
 Route12_EventScript_Npc8_Text:
-	.string "Fishing takes patience. Watch\nyour line, not the clock.$"
+	.string "A tangle of fishing line hangs\nin this tree. Somebody's lost\plure dangles from a branch.$"
 
 Route12_EventScript_Sign3_Text:
 	.string "A sign from the old routes.$"

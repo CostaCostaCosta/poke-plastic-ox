@@ -767,7 +767,7 @@ CinnabarIsland_Gym_Text_QuinnIntro::
 	.string "as a TRAINER.$"
 
 CinnabarIsland_Gym_Text_QuinnDefeat::
-	.string "I surrender!$"
+	.string "Caught red-handed! I give up!$"
 
 CinnabarIsland_Gym_Text_QuinnPostBattle::
 	.string "I get this uncontrollable urge to\n"

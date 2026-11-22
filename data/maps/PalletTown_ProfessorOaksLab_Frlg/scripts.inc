@@ -31,11 +31,11 @@ PalletTown_ProfessorOaksLab_EventScript_Aide1::
 	end
 
 PalletTown_ProfessorOaksLab_EventScript_Aide2::
-	msgbox PalletTown_ProfessorOaksLab_Text_Aide, MSGBOX_NPC
+	msgbox PalletTown_ProfessorOaksLab_Text_Aide2, MSGBOX_NPC
 	end
 
 PalletTown_ProfessorOaksLab_EventScript_Aide3::
-	msgbox PalletTown_ProfessorOaksLab_Text_Aide, MSGBOX_NPC
+	msgbox PalletTown_ProfessorOaksLab_Text_Aide3, MSGBOX_NPC
 	end
 
 PalletTown_ProfessorOaksLab_EventScript_BulbasaurBall::
@@ -96,3 +96,9 @@ PalletTown_ProfessorOaksLab_Text_Computer::
 
 PalletTown_ProfessorOaksLab_Text_Sign::
 	.string "POKéMON RESEARCH NOTES$"
+
+PalletTown_ProfessorOaksLab_Text_Aide2::
+	.string "I file the PROFESSOR's field\nreports. Reading his handwriting\pis a research project of its\nown.$"
+
+PalletTown_ProfessorOaksLab_Text_Aide3::
+	.string "I keep the lab's PCs running.\nEvery POKéDEX upload passes\pthrough these machines.$"
