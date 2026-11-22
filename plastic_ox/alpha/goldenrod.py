@@ -41,8 +41,6 @@ def install(read, put):
     for warp in corner['warp_events']:warp.update(dest_map='MAP_GOLDENROD_CITY_HNS',dest_warp_id=str(indices[10]))
     save('MauvilleCity_GameCorner',corner)
     p='data/scripts/plastic_ox_story.inc'
-    text=read(p).replace('warp MAP_PLASTIC_OX_WHITNEY_GYM, 5, 17','warp MAP_GOLDENROD_CITY_GYM_HNS, 10, 21')
-    put(p,text)
     p='data/event_scripts.s';text=read(p)
     for name in manifest['maps']:
         line=f'\t.include "data/maps/{name}/scripts.inc"\n'

@@ -78,10 +78,12 @@ def speech(name, text):
     return name
 
 
-def start(name, prerequisites=()):
+def start(name, prerequisites=(), notready=None):
     emit(f"Pox_{name}::\n\tgoto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End\n\tlockall")
     for required in prerequisites:
-        emit(f"\tgoto_if_unset {required}, Pox_NotReady")
+        # notready maps a prerequisite flag to a leader-specific refusal label.
+        label = (notready or {}).get(required, "Pox_NotReady")
+        emit(f"\tgoto_if_unset {required}, {label}")
 
 
 def finish():
@@ -182,7 +184,7 @@ def trainer(name, display, team, level, pic="Leader Roxanne", cls="Leader", doub
 DEFEAT_LINES = {
     'Roxanne': "ROXANNE: A textbook battle. I'll be revising my notes tonight.",
     'Morty': "MORTY: I saw this ending in the ash. Seeing it in person is different.",
-    'Whitney': "WHITNEY: Waaah! Okay, okay, you win! That was actually kind of fun.",
+    'Whitney': "WHITNEY: Huh. You kept up with every swap. Take the badge.",
     'Winona': "WINONA: You rode the wind better than my birds did today.",
     'Blaine': "BLAINE: Hah! You doused my flames without breaking a sweat!",
     'TateLiza': "TATE: We lost… LIZA: …but we lost together.",
@@ -213,9 +215,9 @@ def defeat_label(name):
     return f"Pox_Text_{name}_Defeat" if name in DEFEAT_LINES else "Pox_Text_Defeat"
 
 
-def battle(name, display, text, team, level, completion, prerequisites=(), extra="", pic="Leader Roxanne", cls="Leader", double=False, repeat="Pox_Done"):
+def battle(name, display, text, team, level, completion, prerequisites=(), extra="", pic="Leader Roxanne", cls="Leader", double=False, repeat="Pox_Done", notready=None):
     tid = trainer(name, display, team, level, pic, cls, double)
-    start(name, prerequisites)
+    start(name, prerequisites, notready)
     emit(f"\tgoto_if_set {completion}, {repeat}")
     if double:
         emit('\tsetvar VAR_0x8004, PARTY_SIZE\n\tspecialvar VAR_RESULT, CountPartyAliveNonEggMons_IgnoreVar0x8004Slot\n\tgoto_if_lt VAR_RESULT, 2, Pox_TwoMons')
@@ -512,6 +514,7 @@ for i, (name, display, town, prereq, level, team) in enumerate(gymdata):
     repeat = "Pox_Done"
     if name == 'Whitney':
         extra += "\n\tmsgbox Pox_Text_WhitneyAfter, MSGBOX_DEFAULT"
+        repeat = "Pox_WhitneyDone"
     if name == 'Blaine':
         extra += "\n\tgoto Pox_MansionKey_Award"
         repeat = "Pox_MansionKey"
@@ -520,8 +523,9 @@ for i, (name, display, town, prereq, level, team) in enumerate(gymdata):
              "MORTY: You went under the tower. You saw them leave, all eleven, and not one of them looked lost.|I have no explanation that would survive daylight. What I have is a GYM and a badge.|Show me the team you carried down there."
              if name == 'Morty' else
              f"{display}: Show me what you and your POKéMON have learned!")
+    whitney = dict(notready={badges[0]: 'Pox_WhitneyNeedsBadge', moon: 'Pox_WhitneyNeedsMoon'}) if name == 'Whitney' else {}
     battle(name, display, intro, team, level, badges[i], prereq, extra,
-           double=name=='TateLiza', repeat=repeat)
+           double=name=='TateLiza', repeat=repeat, **whitney)
     if name in ['Roxanne','Winona','TateLiza']:
         native = {'Roxanne':'RustboroCity_Gym','Winona':'FortreeCity_Gym','TateLiza':'MossdeepCity_Gym'}[name]
         data = load_map(native)
@@ -533,6 +537,15 @@ for i, (name, display, town, prereq, level, team) in enumerate(gymdata):
         dest = room(name + 'Gym', town, name, return_xy={'Whitney':(25,14),'Morty':(35,44),'Blaine':(11,11),'Bruno':(16,23),'Clair':(16,29)}[name])
         guide(town, {'Whitney':0,'Morty':0,'Blaine':1,'Bruno':0,'Clair':0}[name], name+'Guide', dest, f"{display}'s challenge is this way.", prereq if name=='Clair' else ())
 speech("Pox_Text_Badge", "You received a GYM BADGE! A new challenge waits on the next road.")
+# Whitney-specific refusals, repeat line and defeat line (pox-2ma.4); the
+# shared Pox_NotReady/Pox_Done/Pox_Text_Defeat stay for everyone else.
+for label, line in [
+    ('Pox_WhitneyNeedsBadge', "WHITNEY: Badge one first. ROXANNE is in RUSTBORO. The queue starts there."),
+    ('Pox_WhitneyNeedsMoon', "WHITNEY: You have a badge, but MT. MOON is still closed behind you. Go through it, then come back."),
+    ('Pox_WhitneyDone', "WHITNEY: You have the badge. Next challenger, please."),
+]:
+    emit(f"{label}::\n\tmsgbox {label.replace('Pox_', 'Pox_Text_')}, MSGBOX_DEFAULT\n\treleaseall\n\tend")
+    speech(label.replace('Pox_', 'Pox_Text_'), line)
 speech("Pox_Text_WhitneyAfter", "WHITNEY: My friend at the FLOWER SHOP has a SQUIRTBOTTLE. Ask her about the odd tree on ROUTE 36!")
 start("MansionKey", [badges[4]])
 keyflag = flag('MANSION_KEY')
