@@ -141,7 +141,7 @@ goto_if_unset FLAG_POX_STORY_ILEX, Pox_NotReady
 
 goto_if_set FLAG_BADGE01_GET, Pox_Done
 
-trainerbattle_single TRAINER_PLASTIC_OX_ROXANNE, Pox_Text_Roxanne, Pox_Text_Defeat, Pox_Roxanne_Won
+trainerbattle_single TRAINER_PLASTIC_OX_ROXANNE, Pox_Text_Roxanne, Pox_Text_Roxanne_Defeat, Pox_Roxanne_Won
 
 goto Pox_Roxanne_Won
 Pox_Roxanne_Won::
@@ -155,6 +155,9 @@ releaseall
 Pox_Text_Roxanne::
 	.string "ROXANNE: Show me what you and\nyour POKéMON have learned!$"
 
+Pox_Text_Roxanne_Defeat::
+	.string "ROXANNE: A textbook battle. I'll\nbe revising my notes tonight.$"
+
 Pox_Whitney::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
@@ -165,7 +168,7 @@ goto_if_unset FLAG_POX_STORY_MTMOON, Pox_NotReady
 
 goto_if_set FLAG_BADGE02_GET, Pox_Done
 
-trainerbattle_single TRAINER_PLASTIC_OX_WHITNEY, Pox_Text_Whitney, Pox_Text_Defeat, Pox_Whitney_Won
+trainerbattle_single TRAINER_PLASTIC_OX_WHITNEY, Pox_Text_Whitney, Pox_Text_Whitney_Defeat, Pox_Whitney_Won
 
 goto Pox_Whitney_Won
 Pox_Whitney_Won::
@@ -180,6 +183,9 @@ releaseall
 Pox_Text_Whitney::
 	.string "WHITNEY: My team keeps moving!\nShow me how you handle surprises!$"
 
+Pox_Text_Whitney_Defeat::
+	.string "WHITNEY: Waaah! Okay, okay, you\nwin! That was actually kind of\pfun.$"
+
 Pox_WhitneyGymExit::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
@@ -193,7 +199,7 @@ releaseall
 	end
 
 Pox_Text_WhitneyGymExit::
-	.string "I'll show you back outside.$"
+	.string "Heading out? Mind the flower\nbeds on your way!$"
 
 Pox_WhitneyGuide::
 	msgbox Pox_Text_WhitneyGuide, MSGBOX_NPC
@@ -266,7 +272,7 @@ goto_if_unset FLAG_POX_STORY_WEATHER, Pox_NotReady
 
 goto_if_set FLAG_BADGE04_GET, Pox_Done
 
-trainerbattle_single TRAINER_PLASTIC_OX_WINONA, Pox_Text_Winona, Pox_Text_Defeat, Pox_Winona_Won
+trainerbattle_single TRAINER_PLASTIC_OX_WINONA, Pox_Text_Winona, Pox_Text_Winona_Defeat, Pox_Winona_Won
 
 goto Pox_Winona_Won
 Pox_Winona_Won::
@@ -280,6 +286,9 @@ releaseall
 Pox_Text_Winona::
 	.string "WINONA: Show me what you and\nyour POKéMON have learned!$"
 
+Pox_Text_Winona_Defeat::
+	.string "WINONA: You rode the wind better\nthan my birds did today.$"
+
 Pox_Blaine::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
@@ -290,7 +299,7 @@ goto_if_unset FLAG_POX_STORY_FUJI, Pox_NotReady
 
 goto_if_set FLAG_BADGE05_GET, Pox_MansionKey
 
-trainerbattle_single TRAINER_PLASTIC_OX_BLAINE, Pox_Text_Blaine, Pox_Text_Defeat, Pox_Blaine_Won
+trainerbattle_single TRAINER_PLASTIC_OX_BLAINE, Pox_Text_Blaine, Pox_Text_Blaine_Defeat, Pox_Blaine_Won
 
 goto Pox_Blaine_Won
 Pox_Blaine_Won::
@@ -305,6 +314,9 @@ releaseall
 Pox_Text_Blaine::
 	.string "BLAINE: Show me what you and\nyour POKéMON have learned!$"
 
+Pox_Text_Blaine_Defeat::
+	.string "BLAINE: Hah! You doused my\nflames without breaking a sweat!$"
+
 Pox_BlaineGymExit::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
@@ -318,7 +330,7 @@ releaseall
 	end
 
 Pox_Text_BlaineGymExit::
-	.string "I'll show you back outside.$"
+	.string "Need some air? I'll walk you out\nof the heat.$"
 
 Pox_BlaineGuide::
 	goto PoxCinnabar_GymGuide
@@ -340,7 +352,7 @@ setvar VAR_0x8004, PARTY_SIZE
 	specialvar VAR_RESULT, CountPartyAliveNonEggMons_IgnoreVar0x8004Slot
 	goto_if_lt VAR_RESULT, 2, Pox_TwoMons
 
-trainerbattle_double TRAINER_PLASTIC_OX_TATELIZA, Pox_Text_TateLiza, Pox_Text_Defeat, Pox_Text_TwoMons, Pox_TateLiza_Won
+trainerbattle_double TRAINER_PLASTIC_OX_TATELIZA, Pox_Text_TateLiza, Pox_Text_TateLiza_Defeat, Pox_Text_TwoMons, Pox_TateLiza_Won
 
 goto Pox_TateLiza_Won
 Pox_TateLiza_Won::
@@ -354,6 +366,9 @@ releaseall
 Pox_Text_TateLiza::
 	.string "TATE & LIZA: Show me what you\nand your POKéMON have learned!$"
 
+Pox_Text_TateLiza_Defeat::
+	.string "TATE: We lost… LIZA: …but we\nlost together.$"
+
 Pox_Bruno::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
@@ -364,7 +379,7 @@ goto_if_unset FLAG_POX_STORY_SPACE_CENTER, Pox_NotReady
 
 goto_if_set FLAG_BADGE07_GET, Pox_Done
 
-trainerbattle_single TRAINER_PLASTIC_OX_BRUNO, Pox_Text_Bruno, Pox_Text_Defeat, Pox_Bruno_Won
+trainerbattle_single TRAINER_PLASTIC_OX_BRUNO, Pox_Text_Bruno, Pox_Text_Bruno_Defeat, Pox_Bruno_Won
 
 goto Pox_Bruno_Won
 Pox_Bruno_Won::
@@ -377,6 +392,9 @@ releaseall
 
 Pox_Text_Bruno::
 	.string "BRUNO: Show me what you and your\nPOKéMON have learned!$"
+
+Pox_Text_Bruno_Defeat::
+	.string "BRUNO: Hrrgh! My training isn't\nfinished. Neither is yours.$"
 
 Pox_BrunoGymExit::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -391,7 +409,7 @@ releaseall
 	end
 
 Pox_Text_BrunoGymExit::
-	.string "I'll show you back outside.$"
+	.string "Leaving the DOJO? Bow on your\nway out, please.$"
 
 Pox_BrunoGuide::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -416,7 +434,7 @@ goto_if_unset FLAG_POX_STORY_SPACE_CENTER, Pox_NotReady
 
 goto_if_set FLAG_BADGE08_GET, Pox_Done
 
-trainerbattle_single TRAINER_PLASTIC_OX_CLAIR, Pox_Text_Clair, Pox_Text_Defeat, Pox_Clair_Won
+trainerbattle_single TRAINER_PLASTIC_OX_CLAIR, Pox_Text_Clair, Pox_Text_Clair_Defeat, Pox_Clair_Won
 
 goto Pox_Clair_Won
 Pox_Clair_Won::
@@ -429,6 +447,9 @@ releaseall
 
 Pox_Text_Clair::
 	.string "CLAIR: Show me what you and your\nPOKéMON have learned!$"
+
+Pox_Text_Clair_Defeat::
+	.string "CLAIR: Fine. You've earned it.\nDon't expect me to say so twice.$"
 
 Pox_ClairGymExit::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -443,7 +464,7 @@ releaseall
 	end
 
 Pox_Text_ClairGymExit::
-	.string "I'll show you back outside.$"
+	.string "The lava's hot today. I'll lead\nyou back to town.$"
 
 Pox_ClairGuide::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -512,7 +533,7 @@ goto_if_unset FLAG_BADGE01_GET, Pox_NotReady
 
 goto_if_set FLAG_POX_HIDE_MTMOON_GRUNT_1, Pox_Done
 
-trainerbattle_single TRAINER_PLASTIC_OX_MOONGRUNT1, Pox_Text_MoonGrunt1, Pox_Text_Defeat, Pox_MoonGrunt1_Won
+trainerbattle_single TRAINER_PLASTIC_OX_MOONGRUNT1, Pox_Text_MoonGrunt1, Pox_Text_MoonGrunt1_Defeat, Pox_MoonGrunt1_Won
 
 goto Pox_MoonGrunt1_Won
 Pox_MoonGrunt1_Won::
@@ -526,6 +547,9 @@ releaseall
 Pox_Text_MoonGrunt1::
 	.string "These fossils belong to TEAM\nROCKET now!$"
 
+Pox_Text_MoonGrunt1_Defeat::
+	.string "Ugh! The boss is gonna dock my\npay for this.$"
+
 Pox_MoonGrunt2::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
@@ -534,7 +558,7 @@ goto_if_unset FLAG_POX_HIDE_MTMOON_GRUNT_1, Pox_NotReady
 
 goto_if_set FLAG_POX_HIDE_MTMOON_GRUNT_2, Pox_Done
 
-trainerbattle_single TRAINER_PLASTIC_OX_MOONGRUNT2, Pox_Text_MoonGrunt2, Pox_Text_Defeat, Pox_MoonGrunt2_Won
+trainerbattle_single TRAINER_PLASTIC_OX_MOONGRUNT2, Pox_Text_MoonGrunt2, Pox_Text_MoonGrunt2_Defeat, Pox_MoonGrunt2_Won
 
 goto Pox_MoonGrunt2_Won
 Pox_MoonGrunt2_Won::
@@ -546,7 +570,10 @@ releaseall
 	end
 
 Pox_Text_MoonGrunt2::
-	.string "These fossils belong to TEAM\nROCKET now!$"
+	.string "Hands off! These rocks are\ncompany property!$"
+
+Pox_Text_MoonGrunt2_Defeat::
+	.string "Tch. Fossils are heavy anyway.\nWho needs 'em?$"
 
 Pox_MoonRocketMap::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -1153,7 +1180,7 @@ goto_if_unset FLAG_BADGE04_GET, Pox_NotReady
 
 goto_if_set FLAG_POX_HIDE_LAVENDER_GRUNT_1, Pox_Done
 
-trainerbattle_single TRAINER_PLASTIC_OX_TOWERGRUNT1, Pox_Text_TowerGrunt1, Pox_Text_Defeat, Pox_TowerGrunt1_Won
+trainerbattle_single TRAINER_PLASTIC_OX_TOWERGRUNT1, Pox_Text_TowerGrunt1, Pox_Text_TowerGrunt1_Defeat, Pox_TowerGrunt1_Won
 
 goto Pox_TowerGrunt1_Won
 Pox_TowerGrunt1_Won::
@@ -1167,6 +1194,9 @@ releaseall
 Pox_Text_TowerGrunt1::
 	.string "FUJI knows something about\nreconstructing POKéMON. He'll\panswer our questions!$"
 
+Pox_Text_TowerGrunt1_Defeat::
+	.string "Ow! FUJI isn't going anywhere,\nbut I sure am.$"
+
 Pox_TowerGrunt2::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
@@ -1175,7 +1205,7 @@ goto_if_unset FLAG_POX_HIDE_LAVENDER_GRUNT_1, Pox_NotReady
 
 goto_if_set FLAG_POX_HIDE_LAVENDER_GRUNT_2, Pox_Done
 
-trainerbattle_single TRAINER_PLASTIC_OX_TOWERGRUNT2, Pox_Text_TowerGrunt2, Pox_Text_Defeat, Pox_TowerGrunt2_Won
+trainerbattle_single TRAINER_PLASTIC_OX_TOWERGRUNT2, Pox_Text_TowerGrunt2, Pox_Text_TowerGrunt2_Defeat, Pox_TowerGrunt2_Won
 
 goto Pox_TowerGrunt2_Won
 Pox_TowerGrunt2_Won::
@@ -1187,7 +1217,10 @@ releaseall
 	end
 
 Pox_Text_TowerGrunt2::
-	.string "FUJI knows something about\nreconstructing POKéMON. He'll\panswer our questions!$"
+	.string "Upstairs is off limits. The old\nman is busy talking to the\pboss's people.$"
+
+Pox_Text_TowerGrunt2_Defeat::
+	.string "No fair! They told me this was\nan easy shift.$"
 
 Pox_FujiRescue::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -1228,7 +1261,7 @@ releaseall
 	end
 
 Pox_Text_PokemonTowerExit::
-	.string "I'll show you back outside.$"
+	.string "Let's get you out of the tower.\nWatch the stairs.$"
 
 Pox_TowerGuide::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -1253,7 +1286,7 @@ Pox_Fuji::
 
 goto_if_unset FLAG_POX_STORY_FUJI, Pox_NotReady
 
-goto_if_set FLAG_POX_GIFT_FUJI, Pox_GiftDone
+goto_if_set FLAG_POX_GIFT_FUJI, Pox_Fuji_GiftDone
 
 msgbox Pox_Text_Fuji, MSGBOX_DEFAULT
 
@@ -1270,6 +1303,14 @@ releaseall
 Pox_Text_Fuji::
 	.string "FUJI: This EEVEE was abandoned.\nYou have shown it what kindness\plooks like.\pBLAINE keeps the key to the\nCINNABAR archives.$"
 
+Pox_Fuji_GiftDone::
+	msgbox Pox_Text_Fuji_GiftDone, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Pox_Text_Fuji_GiftDone::
+	.string "FUJI: EEVEE seems lighter on its\nfeet already. Thank you for\pgiving it a home.$"
+
 Pox_FujiHouseExit::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
@@ -1283,7 +1324,7 @@ releaseall
 	end
 
 Pox_Text_FujiHouseExit::
-	.string "I'll show you back outside.$"
+	.string "The door sticks. Here, I'll get\nit for you.$"
 
 Pox_FujiGuide::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -1376,7 +1417,7 @@ releaseall
 	end
 
 Pox_Text_MansionExit::
-	.string "I'll show you back outside.$"
+	.string "These halls are easy to get lost\nin. Follow me out.$"
 
 Pox_MansionGuide::
 	goto PoxCinnabar_MansionGuide
@@ -1390,7 +1431,7 @@ Pox_Space::
 
 goto_if_unset FLAG_POX_STORY_SPACE_CENTER, Pox_NotReady
 
-goto_if_set FLAG_POX_GIFT_SPACE, Pox_GiftDone
+goto_if_set FLAG_POX_GIFT_SPACE, Pox_Space_GiftDone
 
 msgbox Pox_Text_Space, MSGBOX_DEFAULT
 
@@ -1407,6 +1448,14 @@ releaseall
 Pox_Text_Space::
 	.string "This EEVEE helped us study\nadaptation. Our observations are\pcomplete. Please take it on your\njourney.$"
 
+Pox_Space_GiftDone::
+	msgbox Pox_Text_Space_GiftDone, MSGBOX_DEFAULT
+	releaseall
+	end
+
+Pox_Text_Space_GiftDone::
+	.string "How is EEVEE adapting? Our logs\nend where your journey begins.$"
+
 Pox_SilphGrunt1::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
@@ -1415,7 +1464,7 @@ goto_if_unset FLAG_POX_STORY_SPACE_CENTER, Pox_NotReady
 
 goto_if_set FLAG_POX_HIDE_SILPH_GRUNT_1, Pox_Done
 
-trainerbattle_single TRAINER_PLASTIC_OX_SILPHGRUNT1, Pox_Text_SilphGrunt1, Pox_Text_Defeat, Pox_SilphGrunt1_Won
+trainerbattle_single TRAINER_PLASTIC_OX_SILPHGRUNT1, Pox_Text_SilphGrunt1, Pox_Text_SilphGrunt1_Defeat, Pox_SilphGrunt1_Won
 
 goto Pox_SilphGrunt1_Won
 Pox_SilphGrunt1_Won::
@@ -1429,6 +1478,9 @@ releaseall
 Pox_Text_SilphGrunt1::
 	.string "These terminals won't obey us.\nBut the BOSS will make this\psystem his!$"
 
+Pox_Text_SilphGrunt1_Defeat::
+	.string "Fine! The terminals didn't like\nme anyway.$"
+
 Pox_SilphGrunt2::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
@@ -1437,7 +1489,7 @@ goto_if_unset FLAG_POX_HIDE_SILPH_GRUNT_1, Pox_NotReady
 
 goto_if_set FLAG_POX_HIDE_SILPH_GRUNT_2, Pox_Done
 
-trainerbattle_single TRAINER_PLASTIC_OX_SILPHGRUNT2, Pox_Text_SilphGrunt2, Pox_Text_Defeat, Pox_SilphGrunt2_Won
+trainerbattle_single TRAINER_PLASTIC_OX_SILPHGRUNT2, Pox_Text_SilphGrunt2, Pox_Text_SilphGrunt2_Defeat, Pox_SilphGrunt2_Won
 
 goto Pox_SilphGrunt2_Won
 Pox_SilphGrunt2_Won::
@@ -1449,7 +1501,10 @@ releaseall
 	end
 
 Pox_Text_SilphGrunt2::
-	.string "These terminals won't obey us.\nBut the BOSS will make this\psystem his!$"
+	.string "Keep away from the server room!\nI just got the cables untangled.$"
+
+Pox_Text_SilphGrunt2_Defeat::
+	.string "I'm just here for the overtime,\nkid!$"
 
 Pox_SilphGrunt3::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -1459,7 +1514,7 @@ goto_if_unset FLAG_POX_HIDE_SILPH_GRUNT_2, Pox_NotReady
 
 goto_if_set FLAG_POX_HIDE_SILPH_GRUNT_3, Pox_Done
 
-trainerbattle_single TRAINER_PLASTIC_OX_SILPHGRUNT3, Pox_Text_SilphGrunt3, Pox_Text_Defeat, Pox_SilphGrunt3_Won
+trainerbattle_single TRAINER_PLASTIC_OX_SILPHGRUNT3, Pox_Text_SilphGrunt3, Pox_Text_SilphGrunt3_Defeat, Pox_SilphGrunt3_Won
 
 goto Pox_SilphGrunt3_Won
 Pox_SilphGrunt3_Won::
@@ -1471,7 +1526,10 @@ releaseall
 	end
 
 Pox_Text_SilphGrunt3::
-	.string "These terminals won't obey us.\nBut the BOSS will make this\psystem his!$"
+	.string "You got past two of us? The BOSS\nwon't like this one bit!$"
+
+Pox_Text_SilphGrunt3_Defeat::
+	.string "Go on, then. The BOSS will deal\nwith you himself.$"
 
 Pox_Giovanni::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -1481,7 +1539,7 @@ goto_if_unset FLAG_POX_HIDE_SILPH_GRUNT_3, Pox_NotReady
 
 goto_if_set FLAG_POX_HIDE_SILPH_GIOVANNI, Pox_Done
 
-trainerbattle_single TRAINER_PLASTIC_OX_GIOVANNI, Pox_Text_Giovanni, Pox_Text_Defeat, Pox_Giovanni_Won
+trainerbattle_single TRAINER_PLASTIC_OX_GIOVANNI, Pox_Text_Giovanni, Pox_Text_Giovanni_Defeat, Pox_Giovanni_Won
 
 goto Pox_Giovanni_Won
 Pox_Giovanni_Won::
@@ -1494,6 +1552,9 @@ releaseall
 
 Pox_Text_Giovanni::
 	.string "We did not make this world. We\nfollowed a signal, then the old\pman's research.\pA system that can rearrange a\nregion can give its owner\panything. Stand aside!$"
+
+Pox_Text_Giovanni_Defeat::
+	.string "GIOVANNI: Hmph. You have no idea\nwhat you just interrupted.$"
 
 Pox_SilphCore::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -1528,7 +1589,7 @@ releaseall
 	end
 
 Pox_Text_SilphExit::
-	.string "I'll show you back outside.$"
+	.string "Elevators are down. I'll take\nyou out the back.$"
 
 Pox_SilphGuide::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -1692,7 +1753,7 @@ releaseall
 	end
 
 Pox_Text_WallaceRoomExit::
-	.string "I'll show you back outside.$"
+	.string "Want to step out? The LEAGUE\nlobby is this way.$"
 
 Pox_StevenRoomExit::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -1707,7 +1768,7 @@ releaseall
 	end
 
 Pox_Text_StevenRoomExit::
-	.string "I'll show you back outside.$"
+	.string "Need to regroup? I'll take you\nback to the lobby.$"
 
 Pox_LeagueLanceRoomExit::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -1722,7 +1783,7 @@ releaseall
 	end
 
 Pox_Text_LeagueLanceRoomExit::
-	.string "I'll show you back outside.$"
+	.string "Take a breather if you need one.\nLobby's this way.$"
 
 Pox_BlueRoomExit::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -1737,7 +1798,7 @@ releaseall
 	end
 
 Pox_Text_BlueRoomExit::
-	.string "I'll show you back outside.$"
+	.string "Backing out? No shame in it.\nThis way to the lobby.$"
 
 Pox_BillRoomExit::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -1752,7 +1813,7 @@ releaseall
 	end
 
 Pox_Text_BillRoomExit::
-	.string "I'll show you back outside.$"
+	.string "Not yet? Of course. I'll show\nyou to the lobby.$"
 
 Pox_WallaceAdvance::
 	goto PoxLeague_WallaceNext
@@ -1769,6 +1830,9 @@ Pox_Wallace_Won::
 Pox_Text_Wallace::
 	.string "WALLACE: The next room must be\nearned. Show me your best\pbattle!$"
 
+Pox_Text_Wallace_Defeat::
+	.string "WALLACE: Such elegance. You've\nearned the next door.$"
+
 Pox_StevenAdvance::
 	goto PoxLeague_StevenNext
 
@@ -1783,6 +1847,9 @@ Pox_Steven_Won::
 
 Pox_Text_Steven::
 	.string "STEVEN: The next room must be\nearned. Show me your best\pbattle!$"
+
+Pox_Text_Steven_Defeat::
+	.string "STEVEN: Hard as stone. I'm glad\nI got to see your team up close.$"
 
 Pox_LeagueLanceAdvance::
 	goto PoxLeague_LeagueLanceNext
@@ -1799,6 +1866,9 @@ Pox_LeagueLance_Won::
 Pox_Text_LeagueLance::
 	.string "LANCE: The next room must be\nearned. Show me your best\pbattle!$"
 
+Pox_Text_LeagueLance_Defeat::
+	.string "LANCE: Your POKéMON fight like\nthey trust you completely.$"
+
 Pox_BlueAdvance::
 	goto PoxLeague_BlueNext
 
@@ -1814,6 +1884,9 @@ Pox_Blue_Won::
 Pox_Text_Blue::
 	.string "BLUE: The next room must be\nearned. Show me your best\pbattle!$"
 
+Pox_Text_Blue_Defeat::
+	.string "BLUE: Tch. Fine. Smell ya at the\nnext room.$"
+
 Pox_Bill::
 	goto PoxLeague_Bill
 
@@ -1823,6 +1896,9 @@ Pox_Bill_Won::
 Pox_Text_Bill::
 	.string "BILL: Funny, isn't it? I built\ntools to help other TRAINERS.\pThen I built one to help myself.\pBLUE, LANCE, STEVEN and WALLACE\nmade it stronger. It made me\pstronger.\pI never told it to move the\nworld. But I built something\pthat could. That responsibility\nis mine.\pYou've beaten all four of them.\nI've been looking forward to\pthis!$"
 
+Pox_Text_Bill_Defeat::
+	.string "BILL: …You really did it. I\ncouldn't have predicted that.$"
+
 Pox_Text_Champion::
 	.string "BILL: You did it. These POKéMON\nand their TRAINER belong in the\pHALL OF FAME. Congratulations,\nCHAMPION!$"
 
@@ -1831,6 +1907,186 @@ Pox_LeagueEntry::
 
 Pox_Text_LeagueEntry::
 	.string "The POKéMON LEAGUE challenge\nbegins here.$"
+
+Pox_Facility_Route119_WeatherInstitute_1F_2::
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
+	lockall
+
+msgbox Pox_Text_Facility_Route119_WeatherInstitute_1F_2, MSGBOX_DEFAULT
+
+releaseall
+	end
+
+Pox_Text_Facility_Route119_WeatherInstitute_1F_2::
+	.string "The barometer on this floor gets\nread every hour. I've had the 3\pa.m. reading four nights\nrunning.$"
+
+Pox_Facility_Route119_WeatherInstitute_1F_3::
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
+	lockall
+
+msgbox Pox_Text_Facility_Route119_WeatherInstitute_1F_3, MSGBOX_DEFAULT
+
+releaseall
+	end
+
+Pox_Text_Facility_Route119_WeatherInstitute_1F_3::
+	.string "Rain gauges from ROUTE 119 come\nback full of mud. Washing them\pis half my job.$"
+
+Pox_Facility_Route119_WeatherInstitute_1F_4::
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
+	lockall
+
+msgbox Pox_Text_Facility_Route119_WeatherInstitute_1F_4, MSGBOX_DEFAULT
+
+releaseall
+	end
+
+Pox_Text_Facility_Route119_WeatherInstitute_1F_4::
+	.string "We're here on a school field\ntrip! Teacher says if we behave\pwe get to watch the weather\nballoon go up!$"
+
+Pox_Facility_Route119_WeatherInstitute_2F_3::
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
+	lockall
+
+msgbox Pox_Text_Facility_Route119_WeatherInstitute_2F_3, MSGBOX_DEFAULT
+
+releaseall
+	end
+
+Pox_Text_Facility_Route119_WeatherInstitute_2F_3::
+	.string "These printouts track wind over\nFORTREE. Lately the lines wobble\pin ways our models never drew.$"
+
+Pox_Facility_Route119_WeatherInstitute_2F_5::
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
+	lockall
+
+msgbox Pox_Text_Facility_Route119_WeatherInstitute_2F_5, MSGBOX_DEFAULT
+
+releaseall
+	end
+
+Pox_Text_Facility_Route119_WeatherInstitute_2F_5::
+	.string "The coffee machine's broken\nagain. Forecasting runs on\pcoffee, so… expect clouds.$"
+
+Pox_Facility_MossdeepCity_SpaceCenter_1F_1::
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
+	lockall
+
+msgbox Pox_Text_Facility_MossdeepCity_SpaceCenter_1F_1, MSGBOX_DEFAULT
+
+releaseall
+	end
+
+Pox_Text_Facility_MossdeepCity_SpaceCenter_1F_1::
+	.string "Launch windows depend on the\nwind high up. We trade data with\pthe WEATHER INSTITUTE every\nmorning.$"
+
+Pox_Facility_MossdeepCity_SpaceCenter_1F_2::
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
+	lockall
+
+msgbox Pox_Text_Facility_MossdeepCity_SpaceCenter_1F_2, MSGBOX_DEFAULT
+
+releaseall
+	end
+
+Pox_Text_Facility_MossdeepCity_SpaceCenter_1F_2::
+	.string "I ferry rocket parts over from\nthe mainland. Strangest cargo\pI've ever tied down on deck.$"
+
+Pox_Facility_MossdeepCity_SpaceCenter_1F_3::
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
+	lockall
+
+msgbox Pox_Text_Facility_MossdeepCity_SpaceCenter_1F_3, MSGBOX_DEFAULT
+
+releaseall
+	end
+
+Pox_Text_Facility_MossdeepCity_SpaceCenter_1F_3::
+	.string "I've watched every launch from\nthis bench since they built the\pplace. The rumble still rattles\nmy teeth.$"
+
+Pox_Facility_MossdeepCity_SpaceCenter_1F_4::
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
+	lockall
+
+msgbox Pox_Text_Facility_MossdeepCity_SpaceCenter_1F_4, MSGBOX_DEFAULT
+
+releaseall
+	end
+
+Pox_Text_Facility_MossdeepCity_SpaceCenter_1F_4::
+	.string "The gift shop sold out of rocket\nkeychains again. My kids won't\pforgive me if I go home without\none.$"
+
+Pox_Facility_MossdeepCity_SpaceCenter_1F_9::
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
+	lockall
+
+msgbox Pox_Text_Facility_MossdeepCity_SpaceCenter_1F_9, MSGBOX_DEFAULT
+
+releaseall
+	end
+
+Pox_Text_Facility_MossdeepCity_SpaceCenter_1F_9::
+	.string "When I grow up, I'm gonna ride a\nrocket! Mom says I have to eat\pmy vegetables first.$"
+
+Pox_Facility_MossdeepCity_SpaceCenter_1F_10::
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
+	lockall
+
+msgbox Pox_Text_Facility_MossdeepCity_SpaceCenter_1F_10, MSGBOX_DEFAULT
+
+releaseall
+	end
+
+Pox_Text_Facility_MossdeepCity_SpaceCenter_1F_10::
+	.string "STEVEN: Meteorites tell you\nwhere a world has been. I came\pto see the ones kept here.$"
+
+Pox_Facility_MossdeepCity_SpaceCenter_2F_0::
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
+	lockall
+
+msgbox Pox_Text_Facility_MossdeepCity_SpaceCenter_2F_0, MSGBOX_DEFAULT
+
+releaseall
+	end
+
+Pox_Text_Facility_MossdeepCity_SpaceCenter_2F_0::
+	.string "Dad brought me to look through\nthe telescope! I saw a crater on\pthe moon. It looked like a\ncookie!$"
+
+Pox_Facility_MossdeepCity_SpaceCenter_2F_1::
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
+	lockall
+
+msgbox Pox_Text_Facility_MossdeepCity_SpaceCenter_2F_1, MSGBOX_DEFAULT
+
+releaseall
+	end
+
+Pox_Text_Facility_MossdeepCity_SpaceCenter_2F_1::
+	.string "I donated the telescope on this\nfloor. Do have a look. The view\pover the strait is lovely.$"
+
+Pox_Facility_MossdeepCity_SpaceCenter_2F_2::
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
+	lockall
+
+msgbox Pox_Text_Facility_MossdeepCity_SpaceCenter_2F_2, MSGBOX_DEFAULT
+
+releaseall
+	end
+
+Pox_Text_Facility_MossdeepCity_SpaceCenter_2F_2::
+	.string "Satellite pictures of the coast\ncame back fuzzy again. We've\precalibrated twice this week.$"
+
+Pox_Facility_MossdeepCity_SpaceCenter_2F_3::
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
+	lockall
+
+msgbox Pox_Text_Facility_MossdeepCity_SpaceCenter_2F_3, MSGBOX_DEFAULT
+
+releaseall
+	end
+
+Pox_Text_Facility_MossdeepCity_SpaceCenter_2F_3::
+	.string "STEVEN: From up here you can see\nall of MOSSDEEP's shoreline. I\pnever tire of it.$"
 
 Pox_FacilityWorker::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -1891,7 +2147,7 @@ releaseall
 	end
 
 Pox_Text_WhirlIslandsExit::
-	.string "I'll show you back outside.$"
+	.string "The tide's turning. Let's head\nback to shore.$"
 
 Pox_WhirlGuide::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -1927,7 +2183,7 @@ goto_if_unset FLAG_BADGE08_GET, Pox_NotReady
 
 goto_if_set FLAG_POX_VICTORY_ROAD, Pox_Done
 
-trainerbattle_single TRAINER_PLASTIC_OX_VICTORYROAD, Pox_Text_VictoryRoad, Pox_Text_Defeat, Pox_VictoryRoad_Won
+trainerbattle_single TRAINER_PLASTIC_OX_VICTORYROAD, Pox_Text_VictoryRoad, Pox_Text_VictoryRoad_Defeat, Pox_VictoryRoad_Won
 
 goto Pox_VictoryRoad_Won
 Pox_VictoryRoad_Won::
@@ -1940,6 +2196,9 @@ releaseall
 
 Pox_Text_VictoryRoad::
 	.string "One last test before the LEAGUE!$"
+
+Pox_Text_VictoryRoad_Defeat::
+	.string "ACE: You're ready. The LEAGUE\nwon't know what hit it.$"
 
 Pox_VictoryRoadExit::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -1954,7 +2213,7 @@ releaseall
 	end
 
 Pox_Text_VictoryRoadExit::
-	.string "I'll show you back outside.$"
+	.string "Not ready yet? I'll guide you\nback down the trail.$"
 
 Pox_LeagueContinue::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -1974,7 +2233,7 @@ Pox_Text_LeagueContinue::
 	.string "You are ready for the LEAGUE.$"
 
 Pox_PU_ROUTE33::
-	trainerbattle_single TRAINER_PLASTIC_OX_PU_ROUTE33, Pox_Text_PU_ROUTE33, Pox_Text_Defeat
+	trainerbattle_single TRAINER_PLASTIC_OX_PU_ROUTE33, Pox_Text_PU_ROUTE33, Pox_Text_PU_ROUTE33_Defeat
 	msgbox Pox_Text_PU_ROUTE33_After, MSGBOX_AUTOCLOSE
 	end
 
@@ -1984,8 +2243,11 @@ Pox_Text_PU_ROUTE33::
 Pox_Text_PU_ROUTE33_After::
 	.string "A steady pace gets you up any\nmountain.$"
 
+Pox_Text_PU_ROUTE33_Defeat::
+	.string "Like a rockslide! You flattened\nus!$"
+
 Pox_PU_ROUTE35::
-	trainerbattle_single TRAINER_PLASTIC_OX_PU_ROUTE35, Pox_Text_PU_ROUTE35, Pox_Text_Defeat
+	trainerbattle_single TRAINER_PLASTIC_OX_PU_ROUTE35, Pox_Text_PU_ROUTE35, Pox_Text_PU_ROUTE35_Defeat
 	msgbox Pox_Text_PU_ROUTE35_After, MSGBOX_AUTOCLOSE
 	end
 
@@ -1995,8 +2257,11 @@ Pox_Text_PU_ROUTE35::
 Pox_Text_PU_ROUTE35_After::
 	.string "Different habitats make a\nbalanced team.$"
 
+Pox_Text_PU_ROUTE35_Defeat::
+	.string "Aw, my partners wanted to play\nlonger!$"
+
 Pox_PU_PARK::
-	trainerbattle_single TRAINER_PLASTIC_OX_PU_PARK, Pox_Text_PU_PARK, Pox_Text_Defeat
+	trainerbattle_single TRAINER_PLASTIC_OX_PU_PARK, Pox_Text_PU_PARK, Pox_Text_PU_PARK_Defeat
 	msgbox Pox_Text_PU_PARK_After, MSGBOX_AUTOCLOSE
 	end
 
@@ -2006,8 +2271,11 @@ Pox_Text_PU_PARK::
 Pox_Text_PU_PARK_After::
 	.string "The Contest is for catching.\nThis meadow is for training!$"
 
+Pox_Text_PU_PARK_Defeat::
+	.string "My bugs need more meadow time, I\nguess.$"
+
 Pox_PU_ROUTE36::
-	trainerbattle_single TRAINER_PLASTIC_OX_PU_ROUTE36, Pox_Text_PU_ROUTE36, Pox_Text_Defeat
+	trainerbattle_single TRAINER_PLASTIC_OX_PU_ROUTE36, Pox_Text_PU_ROUTE36, Pox_Text_PU_ROUTE36_Defeat
 	msgbox Pox_Text_PU_ROUTE36_After, MSGBOX_AUTOCLOSE
 	end
 
@@ -2016,6 +2284,9 @@ Pox_Text_PU_ROUTE36::
 
 Pox_Text_PU_ROUTE36_After::
 	.string "That strange tree ahead seems to\nmove when nobody watches.$"
+
+Pox_Text_PU_ROUTE36_Defeat::
+	.string "The old trees saw that coming. I\ndidn't.$"
 
 Pox_SquirtBottle::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End

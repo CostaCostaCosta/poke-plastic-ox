@@ -97,6 +97,14 @@ TRAILS = [
 ]
 
 
+def sign_origin(name):
+    """Second sign line naming the map the sign stands on, so two trails to
+    the same destination never share identical sign text."""
+    base=re.sub(r'_(hns|Frlg)$','',name)
+    base=re.sub(r'(?<=[a-z])(?=[A-Z0-9])',' ',base).replace('_',' ')
+    return 'You are leaving '+base.upper()[:22]
+
+
 def apply_region(read, put):
     def load(name):
         return json.loads(read(f'data/maps/{name}/map.json'))
@@ -526,7 +534,7 @@ def apply_region(read, put):
             d['bg_events'].append(dict(type='sign',x=sx,y=sy,elevation=0,player_facing_dir='BG_EVENT_PLAYER_FACING_ANY',script=script+'_Sign'))
             d['object_events'].append(dict(graphics_id='OBJ_EVENT_GFX_SIGN',x=sx,y=sy,elevation=0,movement_type='MOVEMENT_TYPE_NONE',movement_range_x=0,movement_range_y=0,trainer_type='TRAINER_TYPE_NONE',trainer_sight_or_berry_tree_id='0',script=script+'_Sign',flag='0'))
             save(name,d)
-            text=sign_text.get(key, f'{label[:30]}\\nMarked passage ahead.$')
+            text=sign_text.get(key, f'{label[:30]}\\nMarked passage ahead.\\p{sign_origin(name)}.$')
             scripts.append(f'{script}_Sign::\n\tmsgbox {script}_Text, MSGBOX_SIGN\n\tend\n{script}_Text::\n\t.string "{text}"')
 
     for key,a,at,b,bt,requirements in TRAILS:
@@ -610,12 +618,13 @@ def apply_region(read, put):
         ('Route36_hns', 25, (55, 56, 57), 'Route36_EventScript_RuinsGateClosed'),
     ]:
         d=load(name)
-        d['object_events']=[o for o in d['object_events'] if o.get('script') != script]
-        for x in xs:
+        # Each guard in the line gets its own script (no two NPCs share dialogue).
+        d['object_events']=[o for o in d['object_events'] if not o.get('script','').startswith(script)]
+        for i,x in enumerate(xs):
             d['object_events'].append(dict(graphics_id='OBJ_EVENT_GFX_MAN_3',x=x,y=y,elevation=3,
                 movement_type='MOVEMENT_TYPE_FACE_UP',movement_range_x=0,movement_range_y=0,
                 trainer_type='TRAINER_TYPE_NONE',trainer_sight_or_berry_tree_id='0',
-                script=script,flag='0'))
+                script=script if i==0 else f'{script}_{i+1}',flag='0'))
         save(name,d)
     # Route 44's gate handler and dialogue are authored in its local scripts.
 

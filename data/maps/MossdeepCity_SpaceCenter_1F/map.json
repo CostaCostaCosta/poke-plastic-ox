@@ -40,7 +40,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Pox_FacilityWorker",
+      "script": "Pox_Facility_MossdeepCity_SpaceCenter_1F_1",
       "flag": "0"
     },
     {
@@ -54,7 +54,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Pox_FacilityWorker",
+      "script": "Pox_Facility_MossdeepCity_SpaceCenter_1F_2",
       "flag": "0"
     },
     {
@@ -68,7 +68,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Pox_FacilityWorker",
+      "script": "Pox_Facility_MossdeepCity_SpaceCenter_1F_3",
       "flag": "0"
     },
     {
@@ -82,7 +82,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Pox_FacilityWorker",
+      "script": "Pox_Facility_MossdeepCity_SpaceCenter_1F_4",
       "flag": "0"
     },
     {
@@ -148,7 +148,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Pox_FacilityWorker",
+      "script": "Pox_Facility_MossdeepCity_SpaceCenter_1F_9",
       "flag": "FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_MAGMA_NOTE"
     },
     {
@@ -161,7 +161,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "Pox_FacilityWorker",
+      "script": "Pox_Facility_MossdeepCity_SpaceCenter_1F_10",
       "flag": "FLAG_HIDE_MOSSDEEP_CITY_SPACE_CENTER_1F_STEVEN"
     },
     {

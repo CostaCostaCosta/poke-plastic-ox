@@ -65,15 +65,18 @@ def install(read, put):
     portal('Return',city['id'],9,35)
     portal('Summit','MAP_INDIGO_PLATEAU_HNS',12,18,BADGES)
     trainers=[('VICTORYROAD','ACE',26,43,'FACE_LEFT',2),('RIDGE_RAIN','MARINA',24,33,'FACE_RIGHT',4),('RIDGE_SAND','DARIUS',26,25,'FACE_LEFT',2),('RIDGE_STALL','HELEN',9,26,'FACE_RIGHT',0),('RIDGE_OFFENSE','REX',22,13,'FACE_LEFT',2),('RIDGE_BALANCE','SAGE',13,5,'FACE_RIGHT',2)]
+    # Each ridge trainer keeps their own defeat and after-battle lines.
+    ROUTE_DEFEAT={'VICTORYROAD':'You earned that victory!','RIDGE_RAIN':'The storm passed you right by.','RIDGE_SAND':'Not a single careless switch. Impressive.','RIDGE_STALL':'You found a purpose for every turn, too.','RIDGE_OFFENSE':'My sweeper never got its free turn!','RIDGE_BALANCE':'You found it. My weakness was you.'}
+    ROUTE_AFTER={'VICTORYROAD':'The LEAGUE is close. Trust the team you raised.','RIDGE_RAIN':'Clouds roll in fast up here. Keep a dry towel handy.','RIDGE_SAND':'Shake the grit out of your boots before the LEAGUE doors.','RIDGE_STALL':'I camp on this ledge for a week before every challenge.','RIDGE_OFFENSE':'Speed wins games. Next time I go first.','RIDGE_BALANCE':'The summit is just ahead. The air thins, so pace yourself.'}
     intros=['Six partners, one last test. Show me your team!', 'Rain changes the pace. Can you change with it?', 'Sand wears down every careless switch.', 'A patient defense gives every turn a purpose.', 'One free turn is all a sweeper needs.', 'Every team has a weakness. Can you find mine?']
     for (tid,name,x,y,direction,sight),intro in zip(trainers,intros):
         o=obj(tid,x,y,'COOLTRAINER_F' if name in ['MARINA','HELEN'] else 'COOLTRAINER_M')
         o.update(trainer_type='TRAINER_TYPE_NORMAL',trainer_sight_or_berry_tree_id=str(sight),movement_type='MOVEMENT_TYPE_'+direction)
         route['object_events'].append(o)
-        emit(f'PoxLeague_{tid}::\n\ttrainerbattle_single TRAINER_PLASTIC_OX_{tid}, PoxLeague_Text_{tid}, PoxLeague_Text_RouteDefeat\n\tmsgbox PoxLeague_Text_RouteAfter, MSGBOX_AUTOCLOSE\n\tend')
+        emit(f'PoxLeague_{tid}::\n\ttrainerbattle_single TRAINER_PLASTIC_OX_{tid}, PoxLeague_Text_{tid}, PoxLeague_Text_{tid}Defeat\n\tmsgbox PoxLeague_Text_{tid}After, MSGBOX_AUTOCLOSE\n\tend')
         text(tid,intro)
-    text('RouteDefeat','You earned that victory!')
-    text('RouteAfter','The LEAGUE is close. Trust the team you raised.')
+        text(tid+'Defeat',ROUTE_DEFEAT[tid])
+        text(tid+'After',ROUTE_AFTER[tid])
     # Optional side trail rewards, persistent and bag-full safe.
     for i,(x,y,item) in enumerate([(9,34,'LEFTOVERS'),(15,28,'MAX_ELIXIR'),(20,11,'RARE_CANDY')]):
         flag=f'FLAG_POX_LEAGUE_REWARD_{i}'
@@ -134,6 +137,12 @@ def install(read, put):
         'BLUE: You made it through three different styles. Good. I have been watching.|I will adapt to whatever you bring. Earn your place beyond this room!',
         'CHAMPION BILL would like to battle.'
     ]
+    E4_AFTER = {
+        'Wallace': 'WALLACE: The next room is yours. Let your team catch its breath first.',
+        'Steven': 'STEVEN: Go on. The door ahead opened the moment you won.',
+        'LeagueLance': 'LANCE: One room left before the CHAMPION. Steady yourself.',
+        'Blue': 'BLUE: Go on, the CHAMPION is waiting. Don\'t make me regret losing.',
+    }
     DEFEAT_LINES = {
         'Wallace': 'WALLACE: You found the rhythm before I did. It is yours now.',
         'Steven': 'STEVEN: You covered every seam. I could not find the gap.',
@@ -159,7 +168,7 @@ def install(read, put):
         prereq=BADGES+FLAGS[:i]
         emit(f'PoxLeague_{n}::\n\tlock\n\tfaceplayer\n'+checks(prereq)+f'\tgoto_if_set {FLAGS[i]}, PoxLeague_{n}After\n\tplaybgm '+('MUS_ENCOUNTER_CHAMPION' if i==4 else 'MUS_ENCOUNTER_ELITE_FOUR')+f', FALSE\n\tmsgbox PoxLeague_Text_{n}, MSGBOX_DEFAULT\n\ttrainerbattle_no_intro TRAINER_PLASTIC_OX_{n.upper()}, PoxLeague_Text_{n}Defeat\nPoxLeague_{n}Won::\n\tsetflag {FLAGS[i]}\n\tcall PoxLeague_{n}Open\n\tspecial DrawWholeMapView\nPoxLeague_{n}After::\n\tmsgbox PoxLeague_Text_{n}After, MSGBOX_DEFAULT\n'+ ('\twarp MAP_PLASTIC_OX_HALL_OF_FAME, 7, 12\n\twaitstate\n' if i==4 else '')+'\treleaseall\n\tend')
         text(n,speeches[i]);text(n+'Defeat',DEFEAT_LINES.get(n,'That was a battle to remember!'))
-        text(n+'After','The next room is yours. Take a moment to prepare.' if i<4 else 'BILL: I built the foundations of the transfer network, and tools that learned from battles.|The system learned to improve training conditions. Then it began moving the world. I never asked for that. But I made it possible.|I thought better predictions would make me a better TRAINER. You learned from places, people, and your POKéMON.|You surpassed my calculations. That journey belongs to you. Come, CHAMPION. Let us record it.')
+        text(n+'After',E4_AFTER.get(n,'The next room is yours. Take a moment to prepare.') if i<4 else 'BILL: I built the foundations of the transfer network, and tools that learned from battles.|The system learned to improve training conditions. Then it began moving the world. I never asked for that. But I made it possible.|I thought better predictions would make me a better TRAINER. You learned from places, people, and your POKéMON.|You surpassed my calculations. That journey belongs to you. Come, CHAMPION. Let us record it.')
         if i<4: portal(n+'Next',load('PlasticOx_'+MEMBERS[i+1]+'Room')['id'],6,11,prereq+[FLAGS[i]])
 
     hof=load('EverGrandeCity_HallOfFame')
