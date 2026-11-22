@@ -287,42 +287,20 @@ PoxRegion_goldenrod_route35_b_Text::
 	.string "GOLDENROD CITY - SOUTH\nThrough the gatehouse.$"
 
 PoxRegion_route119_fortree_a::
-	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route119_fortree_a_Open
 	goto_if_unset FLAG_POX_STORY_WEATHER, PoxRegion_route119_fortree_a_Closed
 PoxRegion_route119_fortree_a_Open::
-	warp MAP_FORTREE_CITY, 0, 9
-	waitstate
-	releaseall
 	end
 PoxRegion_route119_fortree_a_Closed::
-	msgbox Pox_Text_WI_CrossingClosed, MSGBOX_DEFAULT
-	warp MAP_ROUTE119, 38, 8
-	waitstate
-	releaseall
-	end
-
-PoxRegion_route119_fortree_b::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route119_fortree_b_Open
-	goto_if_unset FLAG_POX_STORY_WEATHER, PoxRegion_route119_fortree_b_Closed
-PoxRegion_route119_fortree_b_Open::
-	warp MAP_ROUTE119, 38, 8
-	waitstate
+	msgbox Pox_Text_WI_CrossingClosed, MSGBOX_DEFAULT
+	applymovement OBJ_EVENT_ID_PLAYER, PoxRegion_route119_fortree_a_StepBack
+	waitmovement 0
 	releaseall
 	end
-PoxRegion_route119_fortree_b_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_FORTREE_CITY, 0, 9
-	waitstate
-	releaseall
-	end
-
-PoxRegion_route119_fortree_b_Sign::
-	msgbox PoxRegion_route119_fortree_b_Text, MSGBOX_SIGN
-	end
-PoxRegion_route119_fortree_b_Text::
-	.string "Route119\nMarked passage ahead.$"
+PoxRegion_route119_fortree_a_StepBack:
+	walk_left
+	step_end
 
 PoxRegion_fortree_route110_a::
 	lockall
