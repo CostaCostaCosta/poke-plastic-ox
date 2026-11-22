@@ -2,8 +2,9 @@
 """Fortree riggers' house and the Route 119 wild table.
 
 Static part: every species in Route 119's land/water/fishing tables is legal
-at the 'fortree' (RU) checkpoint, apart from the fishing-only Magikarp/Feebas
-lines that every Plastic Ox water table carries; Linoone is in neither Route 119
+at the 'fortree' (RU) checkpoint, apart from the fishing-only Magikarp line that
+every Plastic Ox water table carries; Feebas is allowed only in the Old Rod
+slots (and Good/Super Rods have no special Feebas tiles); Linoone is in neither Route 119
 nor Route 117.
 Emulator part (mGBA): FortreeCity_House2 no longer runs the Hidden Power TM
 coin game or the Sleep Talk tutor. The span keeper and the old rigger speak
@@ -20,23 +21,34 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(ROOT / "plastic_ox/tools"))
 
-FISH_EXEMPT = {"SPECIES_MAGIKARP", "SPECIES_FEEBAS"}
+FISH_EXEMPT = {"SPECIES_MAGIKARP"}
 
 
 def static_checks() -> None:
     import pox_progression as P
     allowed = P.tiers_unlocked("fortree")
     data = json.loads((ROOT / "src/data/wild_encounters.json").read_text())
-    tables = {e["base_label"]: e for e in data["wild_encounter_groups"][0]["encounters"]}
+    group = data["wild_encounter_groups"][0]
+    tables = {e["base_label"]: e for e in group["encounters"]}
+    rods = next(f for f in group["fields"] if f["type"] == "fishing_mons")["groups"]
+    old_rod = set(rods["old_rod"])
+    # Feebas: Route 119 Old Rod slots only (the engine picks slot by rod index).
+    fish = tables["gRoute119"]["fishing_mons"]["mons"]
+    feebas = {i for i, m in enumerate(fish) if m["species"] == "SPECIES_FEEBAS"}
+    assert feebas and feebas <= old_rod, ("Feebas outside Old Rod slots", sorted(feebas), sorted(old_rod))
+    src = (ROOT / "src/wild_encounter.c").read_text()
+    assert "rod != OLD_ROD && CheckFeebasAtCoords" not in src, "Good/Super Rod Feebas tiles still active"
     for label in ("gRoute119", "gRoute117"):
         e = tables[label]
         for field in P.FIELDS:
             for m in e.get(field, {}).get("mons", []):
                 sp = m["species"]
                 assert sp != "SPECIES_LINOONE", (label, field)
+                if sp == "SPECIES_FEEBAS":
+                    continue  # checked above: Old Rod slots only
                 if label == "gRoute119" and not (field == "fishing_mons" and sp in FISH_EXEMPT):
                     assert P.tier_of(sp) in allowed, (label, field, sp, P.tier_of(sp))
-    print("  ok  Route 119 wild species are RU-legal; no Linoone on Routes 117/119")
+    print("  ok  Route 119 wild species are RU-legal; Feebas only via Old Rod; no Linoone on Routes 117/119")
 
 
 def emulator_checks() -> None:

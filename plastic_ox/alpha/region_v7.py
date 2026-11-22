@@ -716,6 +716,10 @@ def apply_region(read, put):
         old=read(p)
         callback='PoxRegion_Arrival_'+name
         header=f'{name}_MapScripts::\n\tmap_script MAP_SCRIPT_ON_TRANSITION, {callback}\n\t.byte 0'
+        if name=='Route119':
+            # Arriving from the Ecruteak east gate on (18,138): face up the
+            # route, away from the south-edge gate triggers.
+            header=header.replace('\t.byte 0','\tmap_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, Route119_OnWarp\n\t.byte 0')
         if name=='CinnabarIsland_Frlg':
             old=header+'\n\nCinnabarIsland_EventScript_IslandSign::\n\tmsgbox CinnabarIsland_Text_IslandSign, MSGBOX_SIGN\n\tend\nCinnabarIsland_Text_IslandSign::\n\t.string "CINNABAR ISLAND\\nThe Fiery Town of Burning Desire$"\n\nCinnabarIsland_EventScript_PokemonLabSign::\n\tmsgbox CinnabarIsland_Text_PokemonLabSign, MSGBOX_SIGN\n\tend\nCinnabarIsland_Text_PokemonLabSign::\n\t.string "POKéMON LAB$"\n\nCinnabarIsland_EventScript_GymSign::\n\tmsgbox CinnabarIsland_Text_GymSign, MSGBOX_SIGN\n\tend\nCinnabarIsland_Text_GymSign::\n\t.string "CINNABAR ISLAND POKéMON GYM$"\n'
         elif old:

@@ -17200,7 +17200,7 @@ Ability: Levitate
 EVs: 252 HP / 252 Def / 4 SpD
 Bold Nature
 - Rest
-- Sleep Talk
+- Toxic
 - Blizzard
 - Night Shade
 
@@ -18138,7 +18138,7 @@ EVs: 252 HP / 36 Atk / 20 Def / 200 SpD
 Careful Nature
 - Shadow Ball
 - Rest
-- Sleep Talk
+- Ice Beam
 - Will-O-Wisp
 
 Kadabra @ Leftovers
@@ -20374,7 +20374,7 @@ Ability: Levitate
 EVs: 252 HP / 252 Def / 4 SpD
 Bold Nature
 - Rest
-- Sleep Talk
+- Toxic
 - Blizzard
 - Night Shade
 

@@ -626,14 +626,59 @@
       "dest_warp_id": "0"
     },
     {
-      "x": 17,
-      "y": 137,
+      "x": 18,
+      "y": 138,
       "elevation": 0,
       "dest_map": "MAP_GATE_ECRUTEAK_CITY_ROUTE42_HNS",
       "dest_warp_id": "1"
     }
   ],
   "coord_events": [
+    {
+      "type": "trigger",
+      "x": 16,
+      "y": 139,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "Route119_EventScript_PoxEcruteakGate"
+    },
+    {
+      "type": "trigger",
+      "x": 17,
+      "y": 139,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "Route119_EventScript_PoxEcruteakGate"
+    },
+    {
+      "type": "trigger",
+      "x": 18,
+      "y": 139,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "Route119_EventScript_PoxEcruteakGate"
+    },
+    {
+      "type": "trigger",
+      "x": 19,
+      "y": 139,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "Route119_EventScript_PoxEcruteakGate"
+    },
+    {
+      "type": "trigger",
+      "x": 20,
+      "y": 139,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "Route119_EventScript_PoxEcruteakGate"
+    },
     {
       "type": "trigger",
       "x": 39,

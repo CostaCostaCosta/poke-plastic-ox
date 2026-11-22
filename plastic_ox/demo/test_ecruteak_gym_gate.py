@@ -69,16 +69,16 @@ def main() -> None:
         "gate east door did not reach Route 119", game.state())
     print("  ok  city -> gate -> Route 119")
 
-    # Route 119's south gatehouse door (17,137) -> gate -> town centre. The
-    # gate's east door lands the player just south of that door.
-    game.frame(240)  # let the door exit step finish
+    # Route 119's south edge (16..20,139) -> gate -> town centre. The gate's
+    # east door lands the player on the bottom path at (18,138).
+    game.frame(120)
     state = game.state()
-    assert (state["x"], state["y"]) == (17, 138), state
-    assert press_until(game, K.KEY_UP, lambda: at(game, "Gate_EcruteakCity_Route42_hns")), (
-        "Route 119 gatehouse door did not open", game.state())
+    assert (state["x"], state["y"]) == (18, 138), state
+    assert press_until(game, K.KEY_DOWN, lambda: at(game, "Gate_EcruteakCity_Route42_hns")), (
+        "Route 119 south edge did not enter the gate", game.state())
     assert press_until(game, K.KEY_LEFT, lambda: at(game, "EcruteakCity_hns")), (
         "gate west door did not reach the town centre", game.state())
-    print("  ok  Route 119 gatehouse door -> gate -> city centre")
+    print("  ok  Route 119 south edge -> gate -> city centre")
 
     # Before badge 3 the west guard still blocks the gate approach.
     game.flag("FLAG_BADGE03_GET", False)
