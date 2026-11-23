@@ -255,7 +255,7 @@
 #define FLAG_POX_HIDE_HAIRCUT_OLDER   0x90F // set = older brother off duty (map ON_TRANSITION)
 #define FLAG_POX_HIDE_HAIRCUT_YOUNGER 0x910 // set = younger brother off duty
 #define FLAG_POX_KIMONO_GATE_OPEN     0x911 // reserved: opens both switch-room entrances later
-#define FLAG_POX_HIDDEN_UNDERGROUND_STEEL_TABLET 0x912
+#define FLAG_POX_HIDDEN_UNDERGROUND_STEEL_TABLET 0x912 // unused: reserved for another legendary's Underground item
 #define FLAG_POX_BAD_HAIRCUT_KNOWN    0x913 // set = player has had one bad haircut
 #define FLAG_POX_ROUTE36_SNORLAX_CLEARED 0x914 // Route 36 eastern path opens after battle
 #define FLAG_POX_CONTEST_EVERSTONE_PENDING 0x915

@@ -82,7 +82,7 @@ PoxTournament_Check2::
 	trainerbattle_single TRAINER_PLASTIC_OX_TOURNAMENT_2, PoxTournament_Text_Intro2, PoxTournament_Text_Defeat2, PoxTournament_Reward2
 	goto PoxTournament_Reward2
 PoxTournament_Reward2::
-	giveitem ITEM_ANCIENT_BRAILLE_TABLET
+	giveitem ITEM_ANCIENT_STEEL_TABLET
 	goto_if_eq VAR_RESULT, FALSE, PoxTournament_End
 	setflag FLAG_POX_TOURNAMENT_REWARD_2
 	msgbox PoxTournament_Text_Reward2, MSGBOX_DEFAULT
@@ -243,10 +243,9 @@ PoxTournament_Text_Reward1::
 	.string "Return after BLAINE for round two.$"
 
 PoxTournament_Text_Reward2::
-	.string "Take this ancient BRAILLE tablet\n"
-	.string "to the SEALED CHAMBER.\p"
-	.string "Its inscription speaks of WAILORD\n"
-	.string "first and RELICANTH last.\p"
+	.string "Take this ancient STEEL tablet.\n"
+	.string "Its seal waits on ROUTE 127,\p"
+	.string "in a tomb south of MOSSDEEP.\p"
 	.string "REGIROCK belongs to the UUBL stage.\n"
 	.string "The other seals await your OU BADGE.\p"
 	.string "Return after TATE and LIZA\n"

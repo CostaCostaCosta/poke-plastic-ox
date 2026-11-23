@@ -204,16 +204,6 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "PoxGoldenrod_Directory"
-    },
-    {
-      "type": "hidden_item",
-      "x": 2,
-      "y": 29,
-      "elevation": 3,
-      "item": "ITEM_ANCIENT_STEEL_TABLET",
-      "flag": "FLAG_POX_HIDDEN_UNDERGROUND_STEEL_TABLET",
-      "quantity": 1,
-      "underfoot": false
     }
   ],
   "region": "REGION_HOENN"

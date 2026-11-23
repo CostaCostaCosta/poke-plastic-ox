@@ -22,8 +22,6 @@ CAVES = [
 
 
 def game():
-    # Standard named-player boot (test_cinnabar.game() swaps in an unnamed
-    # boot that assert_test_player rejects).
     g = Game()
     g.flag('FLAG_POX_TRIGGERS_ENABLED', True)
     run_code(g, opcode(g, 'callnative') + struct.pack('<I', g.syms['GivePlasticOxPlayerParty'] | 1)
@@ -128,22 +126,9 @@ def test_cave(cave, mouth, tablet_name, species):
     print(f'PASS: {species}: Route 127 mouth, sealed without {tablet_name}, open and battle with it', flush=True)
 
 
-def test_steel_tablet_hidden():
-    tablet = const('ITEM_ANCIENT_STEEL_TABLET', 'items.h')
-    g = game()
-    g.warp('GoldenrodCity_UndergroundTunnel_hns', 2, 30)
-    g.frame(60)
-    assert bag(g, tablet) == 0
-    talk(g, K.KEY_UP)
-    settle(g)
-    assert bag(g, tablet) == 1
-    assert g.flag('FLAG_POX_HIDDEN_UNDERGROUND_STEEL_TABLET')
-    print('PASS: ANCIENT STEEL TABLET is hidden in the Goldenrod Underground', flush=True)
-
 
 if __name__ == '__main__':
     test_trail()
     for args in CAVES:
         test_cave(*args)
-    test_steel_tablet_hidden()
     print('Regi caves: PASS', flush=True)
