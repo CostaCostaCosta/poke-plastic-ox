@@ -11250,6 +11250,48 @@
       "include_in_versions": [
         "emerald"
       ]
+    },
+    {
+      "id": "LAYOUT_BELLCHIME_TRAIL_HNS",
+      "name": "BellchimeTrail_hns_Layout",
+      "width": 70,
+      "height": 69,
+      "primary_tileset": "gTileset_Johto_NorthWest_Hns",
+      "secondary_tileset": "gTileset_BellchimeTrail_Hns",
+      "border_filepath": "data/layouts/BellchimeTrail_hns/border.bin",
+      "blockdata_filepath": "data/layouts/BellchimeTrail_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
+      "id": "LAYOUT_TIN_TOWER_1F_HNS",
+      "name": "TinTower_1F_hns_Layout",
+      "width": 21,
+      "height": 19,
+      "primary_tileset": "gTileset_Johto_Building_Hns",
+      "secondary_tileset": "gTileset_TinTower_Hns",
+      "border_filepath": "data/layouts/TinTower_1F_hns/border.bin",
+      "blockdata_filepath": "data/layouts/TinTower_1F_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
+      "id": "LAYOUT_TIN_TOWER_ROOF_DAY_HNS",
+      "name": "TinTower_RoofDay_hns_Layout",
+      "width": 23,
+      "height": 21,
+      "primary_tileset": "gTileset_Johto_Building_Hns",
+      "secondary_tileset": "gTileset_TinTower_Hns",
+      "border_filepath": "data/layouts/TinTower_RoofDay_hns/border.bin",
+      "blockdata_filepath": "data/layouts/TinTower_RoofDay_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
     }
   ]
 }

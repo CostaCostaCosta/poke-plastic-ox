@@ -41,6 +41,8 @@ def all_labels() -> set[str]:
             # pox_fruit_tree <Name>, ... emits PlasticOx_BerryTree_<Name>.
             for name in re.findall(r"^\s*pox_fruit_tree\s+([A-Za-z0-9_]+)\s*,", text, re.M):
                 labels.add(f"PlasticOx_BerryTree_{name}")
+            # pox_legendary_sage <Label>, ... emits <Label>::.
+            labels.update(re.findall(r"^\s*pox_legendary_sage\s+([A-Za-z0-9_]+)\s*,", text, re.M))
     return labels
 
 

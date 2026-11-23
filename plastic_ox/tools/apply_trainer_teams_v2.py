@@ -297,6 +297,7 @@ ROSTERS: dict[str, tuple[str, list[tuple[str, int]]]] = {
 KEEP_AS_IS = {
     "TRAINER_PLASTIC_OX_ARTICUNO_SAGE": "Authored UUBL legendary challenge; canonical team in alpha/seafoam/trainers.party.",
     "TRAINER_PLASTIC_OX_ENTEI_SAGE": "Authored UUBL legendary challenge; canonical team in alpha/cinnabar/trainers.party.",
+    "TRAINER_PLASTIC_OX_MOLTRES_SAGE": "Authored ADV OU legendary challenge on the Tin Tower roof; canonical team in alpha/tin_tower/trainers.party.",
     # The task's designated format reference. Already six LC-legal Pokemon at
     # exactly the Gym 1 cap, all obtainable before Gym 1.
     "TRAINER_PLASTIC_OX_ROXANNE": "designated format reference; already a legal six",

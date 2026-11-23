@@ -358,6 +358,25 @@ Route110_EventScript_EndChallenge::
 	setvar VAR_CYCLING_CHALLENGE_STATE, 3
 	savebgm MUS_DUMMY
 	fadedefaultbgm
+	call_if_eq VAR_0x8004, TRUE, Route110_EventScript_TabletReward
+	return
+
+@ Plastic Ox: a run under 12.10 seconds with no collisions earns whichever
+@ Mt. Moon tablet (ice or rock) the player left for Miguel. Holding exactly
+@ one of the two is the only state that pays out, so it pays out once.
+Route110_EventScript_TabletReward::
+	checkitem ITEM_ANCIENT_ICE_TABLET
+	copyvar VAR_0x8005, VAR_RESULT
+	checkitem ITEM_ANCIENT_ROCK_TABLET
+	goto_if_eq VAR_0x8005, VAR_RESULT, Route110_EventScript_TabletRewardNone
+	msgbox Route110_Text_TabletReward, MSGBOX_DEFAULT
+	goto_if_eq VAR_0x8005, TRUE, Route110_EventScript_GiveRockTablet
+	giveitem ITEM_ANCIENT_ICE_TABLET
+	return
+Route110_EventScript_GiveRockTablet::
+	giveitem ITEM_ANCIENT_ROCK_TABLET
+	return
+Route110_EventScript_TabletRewardNone::
 	return
 
 
@@ -441,6 +460,13 @@ Route110_Text_ChallengeReactionBest:
 	.string "Your love of cycling comes from deep\n"
 	.string "within your heart.\l"
 	.string "You've shaken me to my very soul!$"
+
+Route110_Text_TabletReward:
+	.string "A flawless run, and that fast!\p"
+	.string "A rider like you deserves something\n"
+	.string "old and heavy for the basket.\p"
+	.string "A digger from MT. MOON paid his\n"
+	.string "toll with this. I never wanted it.$"
 
 Route110_Text_ChallengeReactionGood:
 	.string "Your technique is remarkable.\p"

@@ -14,17 +14,11 @@ AncientTomb_EventScript_TryRemoveRegisteel::
 	removeobject VAR_LAST_TALKED
 	return
 
-AncientTomb_OnTransition:
-	setflag FLAG_LANDMARK_ANCIENT_TOMB
-	call_if_unset FLAG_DEFEATED_REGISTEEL, AncientTomb_EventScript_ShowRegisteel
-	end
-
-AncientTomb_EventScript_ShowRegisteel::
-	clearflag FLAG_HIDE_REGISTEEL
-	return
-
+@ Plastic Ox: the inner chamber opens only while the player carries the
+@ ANCIENT STEEL TABLET. No braille, Sealed Chamber or step puzzle.
 AncientTomb_OnLoad:
-	call_if_unset FLAG_SYS_REGISTEEL_PUZZLE_COMPLETED, AncientTomb_EventScript_HideRegiEntrance
+	checkitem ITEM_ANCIENT_STEEL_TABLET
+	call_if_eq VAR_RESULT, FALSE, AncientTomb_EventScript_HideRegiEntrance
 	end
 
 AncientTomb_EventScript_HideRegiEntrance::
@@ -36,21 +30,26 @@ AncientTomb_EventScript_HideRegiEntrance::
 	setmetatile 9, 20, METATILE_Cave_SealedChamberBraille_Mid, TRUE
 	return
 
+AncientTomb_OnTransition:
+	setflag FLAG_LANDMARK_ANCIENT_TOMB
+	call_if_unset FLAG_DEFEATED_REGISTEEL, AncientTomb_EventScript_ShowRegisteel
+	end
+
+AncientTomb_EventScript_ShowRegisteel::
+	clearflag FLAG_HIDE_REGISTEEL
+	return
+
 AncientTomb_EventScript_CaveEntranceMiddle::
-	lockall
-	goto_if_set FLAG_SYS_REGISTEEL_PUZZLE_COMPLETED, AncientTomb_EventScript_BigHoleInWall
-	braillemsgbox AncientTomb_Braille_ShineInTheMiddle
-	releaseall
-	end
-
-AncientTomb_EventScript_BigHoleInWall::
-	msgbox gText_BigHoleInTheWall, MSGBOX_DEFAULT
-	releaseall
-	end
-
 AncientTomb_EventScript_CaveEntranceSide::
 	lockall
-	braillemsgbox AncientTomb_Braille_ShineInTheMiddle
+	checkitem ITEM_ANCIENT_STEEL_TABLET
+	goto_if_eq VAR_RESULT, TRUE, AncientTomb_EventScript_SealOpen
+	msgbox AncientTomb_Text_Sealed, MSGBOX_DEFAULT
+	releaseall
+	end
+
+AncientTomb_EventScript_SealOpen::
+	msgbox AncientTomb_Text_SealOpen, MSGBOX_DEFAULT
 	releaseall
 	end
 
@@ -67,3 +66,12 @@ AncientTomb_EventScript_RanFromRegisteel::
 	goto Common_EventScript_LegendaryFlewAway
 	end
 
+AncientTomb_Text_Sealed:
+	.string "A dark metal plate seals the far\n"
+	.string "wall. At its center is a polished\p"
+	.string "recess the size of a tablet.$"
+
+AncientTomb_Text_SealOpen:
+	.string "The ANCIENT STEEL TABLET rings\n"
+	.string "faintly in the BAG. The metal\p"
+	.string "plate has slid aside.$"

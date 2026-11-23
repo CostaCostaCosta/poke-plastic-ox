@@ -118,7 +118,11 @@
     "Pox_TateLiza": "the twin leaders share one battle script",
     "PalletTown_ProfessorOaksLab_EventScript_Pokedex": "two Pokedex props on Oak's desk",
     "Route119_House_EventScript_Wingull": "Pokemon cry, not dialogue",
-    "RustboroCity_Flat1_2F_EventScript_PokeDoll": "decoration dolls"
+    "RustboroCity_Flat1_2F_EventScript_PokeDoll": "decoration dolls",
+    "PoxTournament_Raikou": "pox_legendary_sage: the sage and its legendary sprite share one script; seal/challenge/defeat lines are the shared legendary-sage order (follow-up: give each sage its own line)",
+    "PoxTournament_Regirock": "pox_legendary_sage: the sage and its legendary sprite share one script; seal/challenge/defeat lines are the shared legendary-sage order (follow-up: give each sage its own line)",
+    "PoxTournament_Regice": "pox_legendary_sage: the sage and its legendary sprite share one script; seal/challenge/defeat lines are the shared legendary-sage order (follow-up: give each sage its own line)",
+    "PoxTournament_Registeel": "pox_legendary_sage: the sage and its legendary sprite share one script; seal/challenge/defeat lines are the shared legendary-sage order (follow-up: give each sage its own line)"
   },
   "sprite_ok": {
     "Pox_Treecko": "starter ball runs the three-professor scene; the professors speak, not the ball",

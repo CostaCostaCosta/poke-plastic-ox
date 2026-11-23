@@ -22,7 +22,7 @@ A walled meadow between two gatehouses: mown paths, flowerbeds, a fountain, bug 
 ## Plot points
 
 1. **The breathing space (beat 5).** `STORY_TRIGGERS.md` files the park as "mandatory geographic passage, catching/trainer respite; no plot escalation". Nothing here advances the mystery, and nothing here may gate it. Four winnable trainers, one hidden item, one berry line — that is the whole content contract.
-2. **The Bug-Catching Contest is a calendar, not a quest.** Tuesday and Saturday are open to all. Thursday is the **Safari Zone Warden's round**: he sponsors it, trucks Scyther and Pinsir up from his Fuchsia preserve, and stands in the south gatehouse at `(11,2)` (Thursday only, `FLAG_POX_HIDE_PARK_WARDEN`). Entry is by his guest list, `FLAG_POX_WARDEN_GUEST`, checked in `PlasticOxContest_CheckEntry`. The gate crowds appear on contest days via `Gate_NationalPark_OnTransition` (temp flag `FLAG_POX_HIDE_PARK_CONTEST_CROWD`).
+2. **The Bug-Catching Contest is a calendar, not a quest.** Tuesday and Saturday are open to all. Thursday is the **Safari Zone Warden's round**: he sponsors it, trucks Scyther and Pinsir up from his Safari Zone, and stands in the south gatehouse at `(11,2)` (Thursday only, `FLAG_POX_HIDE_PARK_WARDEN`). Entry is by his guest list, `FLAG_POX_WARDEN_GUEST`, checked in `PlasticOxContest_CheckEntry`. The gate crowds appear on contest days via `Gate_NationalPark_OnTransition` (temp flag `FLAG_POX_HIDE_PARK_CONTEST_CROWD`).
 3. **The Warden's Gold Teeth.** He lost his gold dentures on the Magnet Train; a sailor sold them in the Saffron market to Mr. Pokémon, who offers them as the curio prize for tournament round one (`PoxTournament_Reward1`, gated on `FLAG_BADGE04_GET`). Without them the Warden speaks in toothless mumbles. Handing them over (`Gate_NationalPark_EventScript_Warden`) consumes `ITEM_GOLD_TEETH`, sets the guest flag for life, and from then on he signs the player in himself. The Gameboy Kid at `(35,28)` passes on the rumour that a Saffron collector has them.
 4. **A Johto park with Hoenn grass.** The encounter table is Tropius-heavy alongside Hoppip, Lickitung and Jigglypuff (Hoothoot and Spinarak on the night table). That is a convergence tell, and it must stay a logistics detail — a keeper's note about a southern species overwintering, never an explanation.
 5. **Dead furniture.** Two `OBJ_EVENT_GFX_POKE_BALL` objects at `(3,43)` and `(39,15)` carry flavour text and no item, and five text labels (`Npc2`, `Npc5`–`Npc8`, `Npc10`) exist with no object attached. Either is fine as writing; neither is fine as a player experience.
@@ -59,9 +59,9 @@ A walled meadow between two gatehouses: mown paths, flowerbeds, a fountain, bug 
 
 > OLD WOMAN: My husband planted that row the year we married. He was wrong about the spacing, and he was right about the shade.
 
-> GAMEBOY KID: Thursday's the real one. Passes come from the tournament — ask anyone who's been.
+> GAMEBOY KID: Thursday's the real one. Only the Warden's guests get in, and he's lost his teeth — nobody can understand a word he says.
 
-> PARK ATTENDANT: Tuesday and Saturday you just queue. Thursday you show the pass, and then you queue anyway.
+> PARK ATTENDANT: Tuesday and Saturday you just queue. Thursday you get the Warden to sign you in, and then you queue anyway.
 
 **Do not:** explain the merged geography, have a ranger mention Saffron's seal, or turn the contest into a story gate. Do not reuse the trainers' battle lines as NPC filler.
 
@@ -79,11 +79,11 @@ A walled meadow between two gatehouses: mown paths, flowerbeds, a fountain, bug 
 - Maps: `NationalPark_Normal_hns` (`MAP_NATIONAL_PARK_NORMAL_HNS`), `Gate_NationalPark_hns` (`MAP_GATE_NATIONAL_PARK_HNS`)
 - Scripts: `data/maps/NationalPark_Normal_hns/scripts.inc` (`NationalPark_Normal_EventScript_Npc1`, `Npc3`, `Npc4`, `Npc9`, `Npc11`, `Npc12`; `Pox_PU_PARK` in `data/scripts/plastic_ox_story.inc`); `data/maps/Gate_NationalPark_hns/scripts.inc` (`Gate_NationalPark_OnTransition`, `Gate_NationalPark_EventScript_Officer`, `_Contestant`, `_SouthAttendant`, `_EastAttendant`); `data/scripts/plastic_ox_contest.inc`
 - Flags: `FLAG_POX_HIDE_PARK_CONTEST_CROWD` (an alias of `FLAG_TEMP_1`, so it must be re-derived on every map load)
-- Items: hidden `ITEM_FULL_HEAL` at `(33,44)`, `ITEM_CONTEST_PASS` as the Thursday entry requirement; trainers `TRAINER_PLASTIC_OX_JOHTO_BEVERLY`, `_JACK`, `_KRISE`, `TRAINER_PLASTIC_OX_PU_PARK`
-- Known gaps: two item-looking props with no item; five orphan text labels; five identical contestants and two identical officials; the Contest Pass pointer names a location that is sealed when the player first reads it.
+- Items: hidden `ITEM_FULL_HEAL` at `(33,44)`, `ITEM_GOLD_TEETH` (tournament round one) returned to the Warden sets `FLAG_POX_WARDEN_GUEST`, the Thursday entry requirement; trainers `TRAINER_PLASTIC_OX_JOHTO_BEVERLY`, `_JACK`, `_KRISE`, `TRAINER_PLASTIC_OX_PU_PARK`
+- Known gaps: two item-looking props with no item; five orphan text labels; five identical contestants and two identical officials; the Gold Teeth rumour points at Saffron, which is sealed when the player first hears it (the teeth actually come from Mr. Pokémon's tournament).
 
 ## Open questions
 
-- Do we want a return loop for the Thursday contest, or is "come back after badge 4" enough? Recommendation: let the Gameboy Kid say the pass comes from the tournament, and leave the return trip unsignposted.
+- Do we want a return loop for the Thursday contest, or is "come back after badge 4" enough? Recommendation: let Mr. Pokémon's round-one reward line point at the Warden, and leave the return trip unsignposted.
 - Should the gate crowd appear on all three contest days at full strength, or thin out for Tuesday/Saturday? Five clones look like a bug whichever day it is.
 - Does the park ever connect onward (Ruins of Alph, a Johto-side exit), or is it permanently a two-gate cul-de-sac? The map currently has no onward connection, which makes it the safest place in the region.

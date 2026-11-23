@@ -337,4 +337,6 @@
 #define FLAG_POX_RED_RESTING (POX_EVENT_FLAGS_START + 54)
 // Route 119 Wingull house: the Fly Key item ball was picked up.
 #define FLAG_POX_HIDE_ROUTE119_FLY_KEY (POX_EVENT_FLAGS_START + 55)
+// Tin Tower roof: Moltres caught after its sage (TRAINER_PLASTIC_OX_MOLTRES_SAGE).
+#define FLAG_POX_CAUGHT_MOLTRES (POX_EVENT_FLAGS_START + 56)
 #endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H

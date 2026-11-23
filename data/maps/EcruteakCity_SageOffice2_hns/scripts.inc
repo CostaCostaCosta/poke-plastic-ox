@@ -1,4 +1,5 @@
 EcruteakCity_SageOffice2_hns_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxTinTower_Office_OnTransition
 	.byte 0
 
 PoxEcruteak_SageOffice2_Caretaker::

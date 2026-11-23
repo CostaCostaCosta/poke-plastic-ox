@@ -15770,6 +15770,22 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_StonePlate,
     },
 
+    [ITEM_ANCIENT_STEEL_TABLET] =
+    {
+        .name = ITEM_NAME("Ancient Steel Tablet"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "An ancient tablet\n"
+            "said to unlock\n"
+            "Registeel's seal."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_Plate,
+        .iconPalette = gItemIconPalette_IronPlate,
+    },
+
     [ITEM_FLY_KEY] =
     {
         .name = ITEM_NAME("Fly Key"),

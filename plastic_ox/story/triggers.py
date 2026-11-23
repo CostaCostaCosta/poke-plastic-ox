@@ -57,6 +57,8 @@ REGISTRY: dict[str, tuple[str, str]] = {
     "SeafoamIslands_B4F_EventScript_UpwardCurrent": ("Mechanic", "B4F current pushes the player back until it is stopped (VAR_POX_SEAFOAM_STATE)."),
     "Route110_SeasideCyclingRoadNorthEntrance_EventScript_BikeCheck": ("Mechanic", "Cycling Road gatehouse: no entry on foot; sets the cycling-road state."),
     "Route110_SeasideCyclingRoadNorthEntrance_EventScript_ClearCyclingRoad": ("Mechanic", "Leaving the Cycling Road clears its state."),
+    "NewMauville_Entrance_EventScript_Door": ("Story gate", "New Mauville's locked door: opens with the NEW MAUVILLE KEY and Badge 6 (Raikou inside)."),
+    "Route110_TrickHouseEntrance_EventScript_TrickMasterHiding": ("Mechanic", "Trick House entrance: stepping near the Trick Master's hiding spot starts the hide-and-seek scene."),
     "Route110_SeasideCyclingRoadSouthEntrance_EventScript_BikeCheck": ("Mechanic", "Cycling Road gatehouse: no entry on foot; sets the cycling-road state."),
     "Route110_SeasideCyclingRoadSouthEntrance_EventScript_ClearCyclingRoad": ("Mechanic", "Leaving the Cycling Road clears its state."),
 }

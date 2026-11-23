@@ -69,21 +69,35 @@ def finish_trainer(g, win):
     for i in range(20000):
         if in_overworld(g):
             g.frame(30)
+            # A loss whites out: the "scurried back home" screen is a task on
+            # the overworld callback. Finish it so callers can warp again.
+            for _ in range(600):
+                if not g.task('Task_RushInjuredPokemonToCenter'):
+                    break
+                g.tap(K.KEY_A, hold=1, wait=6)
+            g.frame(30)
             return
         if g.controller('HandleInputChooseAction'):
             g.write(g.syms['gActionSelectionCursor'], 0)
             base = g.syms['gBattleMons']
+            # Sage battles are doubles: adjust both player slots (battlers
+            # 0, 2) and both opponent slots (1, 3); in singles 2/3 are unused.
             if win:
-                g.write(base + lay[6] + lay[10], 1, 2)
-                for off in range(2, 12, 2):
-                    g.write(base + off, 9999, 2)
-                g.write(base + lay[7], const('MOVE_AERIAL_ACE', 'moves.h'), 2)
-                g.write(base + lay[12], 30)
+                for foe in (1, 3):
+                    g.write(base + foe * lay[6] + lay[10], 1, 2)
+                own, move = (0, 2), const('MOVE_AERIAL_ACE', 'moves.h')
+                stat = 9999
             else:
-                g.write(base + lay[10], 1, 2)
+                own, move = (0, 2), const('MOVE_SPLASH', 'moves.h')
+                stat = 1
+            for b in own:
+                mon = base + b * lay[6]
+                if not win:
+                    g.write(mon + lay[10], 1, 2)
                 for off in range(2, 12, 2):
-                    g.write(base + off, 1, 2)
-                g.write(base + lay[7], const('MOVE_SPLASH', 'moves.h'), 2)
+                    g.write(mon + off, stat, 2)
+                g.write(mon + lay[7], move, 2)
+                g.write(mon + lay[12], 30)
             g.tap(K.KEY_A, hold=1, wait=4)
         elif g.controller('HandleInputChooseMove'):
             g.write(g.syms['gMoveSelectionCursor'], 0)

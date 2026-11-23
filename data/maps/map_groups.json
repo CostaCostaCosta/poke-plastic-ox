@@ -1215,7 +1215,10 @@
     "EcruteakCity_Theater_hns",
     "Gate_EcruteakCity_Route38_hns",
     "Gate_EcruteakCity_Route42_hns",
-    "Gate_NationalPark_hns"
+    "Gate_NationalPark_hns",
+    "BellchimeTrail_hns",
+    "TinTower_1F_hns",
+    "TinTower_RoofDay_hns"
   ],
   "gMapGroup_PlasticOxJohtoKanto": [
     "Route29_hns",

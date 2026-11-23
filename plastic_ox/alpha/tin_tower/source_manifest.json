@@ -1,0 +1,30 @@
+{
+  "donor": "/home/eddie/repos/pokehns-expansion",
+  "revision": "44f50eedefe58691b0444973e4138e9190d8fafc",
+  "group": "gMapGroup_PlasticOxInteriors",
+  "tilesets": [
+    {
+      "donor": "gTileset_BellchimeTrail_Hns",
+      "here": "gTileset_BellchimeTrail_Hns",
+      "path": "data/tilesets/secondary/bellchime_trail_hns"
+    },
+    {
+      "donor": "gTileset_PowerPlant_GeneratorRoom_Hns",
+      "here": "gTileset_TinTower_Hns",
+      "path": "data/tilesets/secondary/tin_tower_hns"
+    }
+  ],
+  "route": "Route: Ecruteak sage office (north door) -> Bellchime Trail -> Tin Tower 1F -> ladder -> roof. The donor's 2F-9F are not imported: the tower is kept short on purpose (and the donor's 3F-6F could not be climbed anyway; every ladder there sits in its own sealed pocket).",
+  "events": "Donor story is dropped: wandering Pok\u00e9mon, lamps, Morty and the item ball on the trail; the trail's door coord trigger and its south seam into Ecruteak (the trail is reached only through the office); the 1F sages and tower beam; the Ho-Oh/Kimono roof scene; every statue sign. ",
+  "maps": {
+    "BellchimeTrail_hns": {
+      "layout": "LAYOUT_BELLCHIME_TRAIL_HNS"
+    },
+    "TinTower_1F_hns": {
+      "layout": "LAYOUT_TIN_TOWER_1F_HNS"
+    },
+    "TinTower_RoofDay_hns": {
+      "layout": "LAYOUT_TIN_TOWER_ROOF_DAY_HNS"
+    }
+  }
+}

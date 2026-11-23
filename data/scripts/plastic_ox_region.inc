@@ -722,6 +722,36 @@ PoxRegion_mossdeep_route19_b_Sign::
 PoxRegion_mossdeep_route19_b_Text::
 	.string "MossdeepCity\nMarked passage ahead.\pYou are leaving ROUTE 19.$"
 
+PoxRegion_mossdeep_route127_a::
+	lockall
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_mossdeep_route127_a_Open
+PoxRegion_mossdeep_route127_a_Open::
+	warp MAP_ROUTE127, 39, 1
+	waitstate
+	releaseall
+	end
+PoxRegion_mossdeep_route127_a_Closed::
+	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
+	warp MAP_MOSSDEEP_CITY, 33, 39
+	waitstate
+	releaseall
+	end
+
+PoxRegion_mossdeep_route127_b::
+	lockall
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_mossdeep_route127_b_Open
+PoxRegion_mossdeep_route127_b_Open::
+	warp MAP_MOSSDEEP_CITY, 33, 39
+	waitstate
+	releaseall
+	end
+PoxRegion_mossdeep_route127_b_Closed::
+	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
+	warp MAP_ROUTE127, 39, 1
+	waitstate
+	releaseall
+	end
+
 PoxRegion_route19_saffron_a::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route19_saffron_a_Open
@@ -1330,6 +1360,10 @@ PoxRegion_Arrival_Route119::
 	setflag FLAG_HIDE_ROUTE_119_RIVAL
 	setflag FLAG_HIDE_ROUTE_119_RIVAL_ON_BIKE
 PoxRegion_Arrival_Route119_End::
+	end
+
+PoxRegion_Arrival_Route127::
+PoxRegion_Arrival_Route127_End::
 	end
 
 PoxRegion_Arrival_Route19_Frlg::
