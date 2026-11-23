@@ -18,7 +18,7 @@ Start here instead.
 | mGBA emulator harnesses | `plastic_ox/demo/` (`test_*.py`, `walklib.py`, `test_story.py`) |
 | Map data | `data/maps/<Map>/map.json`, `data/maps/<Map>/scripts.inc`, `data/layouts/` |
 | Shared Plastic Ox scripts | `data/scripts/plastic_ox_*.inc` |
-| Flags | `include/constants/plastic_ox_flags.h`, ids reserved in `plastic_ox/alpha/story_flags.json` |
+| Flags | `include/constants/plastic_ox_flags.h`, ids reserved in `plastic_ox/alpha/story_flags.json`; free IDs from `plastic_ox/tools/audit_flags.py` (skill `plastic-ox-flags`) |
 | Trainers | `src/data/trainers.party` |
 | Engine code | `src/plastic_ox_*.c`, `src/metamon_*.c` (battle AI, see `plastic_ox/battle/metamon/`) |
 | Agent skills | `.agents/skills/` (also visible to Claude Code as `.claude/skills/`) |
@@ -63,8 +63,10 @@ runs in parallel in one checkout. Use a separate worktree for each agent.
    Emerald-format 16-bit attributes and a 2x2 border. Never let one fall back to
    Emerald partitioning. Read the `plastic-ox-map-port` skill before touching
    layouts, tilesets or seams.
-4. **Flags:** new persistent flags get a stable id in `story_flags.json`.
-   Never reuse or renumber a retired id; save compatibility depends on it.
+4. **Flags:** follow the `plastic-ox-flags` skill. New persistent flags go in the
+   `POX_EXT_FLAGS` block by default; `plastic_ox/tools/audit_flags.py --free` lists
+   every usable ID and `--check` (part of `pox-check-static`) fails on collisions.
+   Never reuse or renumber a released id; save compatibility depends on it.
 5. **Story:** if a location note disagrees with the v7 story bible, the bible wins. Fix the note.
    No two NPCs may share identical dialogue. NPCs are ordinary citizens, so
    any meta-commentary about the merged region stays subtle.
@@ -102,3 +104,4 @@ runs in parallel in one checkout. Use a separate worktree for each agent.
 | `plastic-ox-map-baseline` | Stripping a map back to foundational events |
 | `plastic-ox-artifact-cleanup` | Removing donor maps, dead scripts, obsolete generated content |
 | `plastic-ox-emulator-test` | Writing or running mGBA harnesses |
+| `plastic-ox-flags` | Allocating a new event flag, finding free or reclaimable IDs |

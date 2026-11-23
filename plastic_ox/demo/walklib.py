@@ -331,3 +331,16 @@ def boot_to_bedroom(g):
     if st is None or (st['group'], st['num']) != (38, 1):
         raise RuntimeError(f"test new game did not start in bedroom: {g.describe()}")
     assert_test_player(g)
+
+# SaveBlock3 ends with: poxEventFlags[16] (0xB00..0xB7F), poxExtFlagsMagic,
+# poxExtFlags[128] (0xB80..0xF7F). See include/global.h.
+POX_EXT_FLAGS_BYTES = 128
+
+
+def pox_virtual_flag_addr(sb3_ptr, sb3_size, flag):
+    end = sb3_ptr + sb3_size
+    if 0xB80 <= flag < 0xB80 + POX_EXT_FLAGS_BYTES * 8:
+        return end - POX_EXT_FLAGS_BYTES + (flag - 0xB80) // 8
+    if 0xB00 <= flag < 0xB80:
+        return end - POX_EXT_FLAGS_BYTES - 4 - 16 + (flag - 0xB00) // 8
+    return None

@@ -13,6 +13,7 @@ import struct
 import sys
 from pathlib import Path
 from test_story import StoryGame, ROOT
+from walklib import pox_virtual_flag_addr
 from test_training_kit import run_code
 from test_qol import opcode, begin_code
 from test_trainer_recovery import secure, item
@@ -27,8 +28,8 @@ OUT=ROOT/'plastic_ox/demo/shots/league'
 class Game(StoryGame):
     def flag(self,name,value=None):
         flag=self.const(name)
-        if 0xB00<=flag<0xB80:
-            addr=self.u32(self.syms['gSaveBlock3Ptr'])+self.sizes['gSaveblock3']-16+(flag-0xB00)//8
+        addr=pox_virtual_flag_addr(self.u32(self.syms['gSaveBlock3Ptr']),self.sizes['gSaveblock3'],flag)
+        if addr is not None:
             if value is not None:self.write(addr,(self.u8(addr)&~(1<<(flag%8)))|(bool(value)<<(flag%8)))
             return bool(self.u8(addr)&(1<<(flag%8)))
         return super().flag(name,value)
