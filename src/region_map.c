@@ -123,7 +123,8 @@ static const u16 sRegionMapCursorPal[] = INCGFX_U16("graphics/pokenav/region_map
 static const u32 sRegionMapCursorSmallGfxLZ[] = INCGFX_U32("graphics/pokenav/region_map/cursor_small.png", ".4bpp.smol");
 static const u32 sRegionMapCursorLargeGfxLZ[] = INCGFX_U32("graphics/pokenav/region_map/cursor_large.png", ".4bpp.smol");
 static const u16 sRegionMapBg_Pal[] = INCGFX_U16("graphics/pokenav/region_map/map.pal", ".gbapal");
-static const u32 sRegionMapBg_GfxLZ[] = INCGFX_U32("graphics/pokenav/region_map/map.png", ".8bpp.smol", "-num_tiles 233 -Wnum_tiles");
+// Plastic Ox: map.png/map.bin/map.pal come from plastic_ox/town_map/build_fly_map.py.
+static const u32 sRegionMapBg_GfxLZ[] = INCGFX_U32("graphics/pokenav/region_map/map.png", ".8bpp.smol");
 static const u32 sRegionMapBg_TilemapLZ[] = INCGFX_U32("graphics/pokenav/region_map/map.bin", ".smolTM");
 static const u16 sRegionMapPlayerIcon_BrendanPal[] = INCGFX_U16("graphics/pokenav/region_map/brendan_icon.png", ".gbapal");
 static const u8 sRegionMapPlayerIcon_BrendanGfx[] = INCGFX_U8("graphics/pokenav/region_map/brendan_icon.png", ".4bpp");
@@ -140,6 +141,38 @@ static const u8 sRegionMapPlayerIcon_LeafGfx[] = INCGFX_U8("graphics/pokenav/reg
 #include "data/region_map/region_map_layout_sevii45.h"
 #include "data/region_map/region_map_layout_sevii67.h"
 #include "data/region_map/region_map_entries.h"
+
+// Plastic Ox: one region map for the merged region. Every fly destination
+// (towns and the Pokemon League) is listed here with its visited flag and
+// landing tile.
+struct PoxFlySpot
+{
+    u16 mapsec;
+    u16 flag;
+    s8 mapGroup;
+    s8 mapNum;
+    s8 x;
+    s8 y;
+};
+#include "data/region_map/plastic_ox_fly_spots.h"
+
+static const struct PoxFlySpot *GetPoxFlySpot(u32 mapSecId)
+{
+    u32 i;
+    for (i = 0; i < ARRAY_COUNT(sPoxFlySpots); i++)
+    {
+        if (sPoxFlySpots[i].mapsec == mapSecId)
+            return &sPoxFlySpots[i];
+    }
+    return NULL;
+}
+
+void PoxFlyMap_MarkVisited(void)
+{
+    const struct PoxFlySpot *spot = GetPoxFlySpot(gMapHeader.regionMapSectionId);
+    if (spot != NULL)
+        FlagSet(spot->flag);
+}
 
 static const mapsec_u16_t sRegionMap_SpecialPlaceLocations[][2] =
 {
@@ -1164,6 +1197,9 @@ void PokedexAreaScreen_UpdateRegionMapVariablesAndVideoRegs(s16 x, s16 y)
 
 enum RegionMapType GetRegionMapType(u32 mapSecId)
 {
+    // Plastic Ox has a single region map; never swap in Kanto or Sevii art.
+    return REGION_MAP_HOENN;
+
     switch (GetRegionForSectionId(mapSecId))
     {
     case REGION_KANTO:
@@ -1193,6 +1229,8 @@ static mapsec_u16_t GetMapSecIdAt(u16 x, u16 y)
     }
     y -= MAPCURSOR_Y_MIN;
     x -= MAPCURSOR_X_MIN;
+
+    return sRegionMap_MapSectionLayout[y][x];
 
     switch (GetCurrentRegion())
     {
@@ -1424,6 +1462,14 @@ static void RegionMap_InitializeStateBasedOnSSTidalLocation(void)
 
 static u8 GetMapsecType(mapsec_u16_t mapSecId)
 {
+    const struct PoxFlySpot *spot = GetPoxFlySpot(mapSecId);
+
+    if (mapSecId == MAPSEC_NONE)
+        return MAPSECTYPE_NONE;
+    if (spot != NULL)
+        return FlagGet(spot->flag) ? MAPSECTYPE_CITY_CANFLY : MAPSECTYPE_CITY_CANTFLY;
+    return MAPSECTYPE_ROUTE;
+
     switch (mapSecId)
     {
     case MAPSEC_NONE:
@@ -2339,12 +2385,10 @@ static void CreateFlyDestIcons(void)
     u16 shape;
     u8 spriteId;
 
-    for (i = 0; i < ARRAY_COUNT(sFlyLocations); i++)
+    (void)regionMapType;
+    for (i = 0; i < ARRAY_COUNT(sPoxFlySpots); i++)
     {
-        if (sFlyLocations[i].regionMapType != regionMapType)
-            continue;
-
-        GetMapSecDimensions(sFlyLocations[i].mapsec, &x, &y, &width, &height);
+        GetMapSecDimensions(sPoxFlySpots[i].mapsec, &x, &y, &width, &height);
         x = (x + MAPCURSOR_X_MIN) * 8 + 4;
         y = (y + MAPCURSOR_Y_MIN) * 8 + 4;
 
@@ -2360,13 +2404,13 @@ static void CreateFlyDestIcons(void)
         {
             gSprites[spriteId].oam.shape = shape;
 
-            if (FlagGet(sFlyLocations[i].flag))
+            if (FlagGet(sPoxFlySpots[i].flag))
                 gSprites[spriteId].callback = SpriteCB_FlyDestIcon;
             else
                 shape += 3;
 
             StartSpriteAnim(&gSprites[spriteId], shape);
-            gSprites[spriteId].sIconMapSec = sFlyLocations[i].mapsec;
+            gSprites[spriteId].sIconMapSec = sPoxFlySpots[i].mapsec;
         }
     }
 }
@@ -2382,6 +2426,9 @@ static void TryCreateRedOutlineFlyDestIcons(void)
     u16 height;
     mapsec_u16_t mapSecId;
     u8 spriteId;
+
+    // Plastic Ox: no red-outline destinations (the Battle Frontier is not on the map).
+    return;
 
     for (i = 0; sRedOutlineFlyDestinations[i][1] != MAPSEC_NONE; i++)
     {
@@ -2528,7 +2575,15 @@ u32 FilterFlyDestination(struct RegionMap* regionMap)
 
 void SetFlyDestination(struct RegionMap* regionMap)
 {
-    u32 flyDestination = FilterFlyDestination(regionMap);
+    const struct PoxFlySpot *spot = GetPoxFlySpot(regionMap->mapSecId);
+    u32 flyDestination;
+
+    if (spot != NULL)
+    {
+        SetWarpDestination(spot->mapGroup, spot->mapNum, WARP_ID_NONE, spot->x, spot->y);
+        return;
+    }
+    flyDestination = FilterFlyDestination(regionMap);
 
     if (flyDestination != WARP_ID_NONE)
         SetWarpDestinationToHealLocation(flyDestination);

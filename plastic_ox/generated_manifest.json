@@ -94,6 +94,24 @@
         "include/constants/map_groups.h",
         "include/constants/layouts.h"
       ]
+    },
+    {
+      "name": "fly-map",
+      "command": "python3 plastic_ox/town_map/build_fly_map.py  # --check verifies",
+      "sources": [
+        "plastic_ox/town_map/build_fly_map.py (v7 grid layout, fly spots)",
+        "plastic_ox/town_map/plastic_ox_town_map_unlabeled.png (terrain)"
+      ],
+      "outputs": [
+        "graphics/pokenav/region_map/map.png",
+        "graphics/pokenav/region_map/map.bin",
+        "graphics/pokenav/region_map/map.pal",
+        "src/data/region_map/region_map_layout.h",
+        "src/data/region_map/region_map_sections.json (x/y/width/height of placed map sections)",
+        "src/data/region_map/plastic_ox_fly_spots.h",
+        "plastic_ox/town_map/fly_map_preview.png"
+      ],
+      "drift_check": "python3 plastic_ox/town_map/build_fly_map.py --check (run by pox-check-static)"
     }
   ]
 }

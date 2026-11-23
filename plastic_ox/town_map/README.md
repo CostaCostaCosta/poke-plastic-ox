@@ -1,5 +1,14 @@
 # Plastic Ox town-map concept
 
+**In-game fly map:** `build_fly_map.py` turns this concept's terrain into the
+ROM's region map (Fly, Town Map). It holds the v7 grid layout: the 13 fly
+destinations (towns plus the Pokémon League at Indigo Plateau), landmarks and
+route chains on the 28×15 region-map grid, plus each destination's visited flag
+and landing tile. Edit the layout there and rerun it; never hand-edit its
+outputs (listed in `../generated_manifest.json`). `fly_map_preview.png` is a
+labelled review image. Visited flags are set automatically on entering a town
+(`PoxFlyMap_MarkVisited` in `src/region_map.c`).
+
 Version status: these rendered assets predate the v7 implementation plan and
 must be refreshed after its topology is verified. Current design references
 are [map v7](../plastic_ox_map_v7.md), [topology](../plastic_ox_topology.svg), and
