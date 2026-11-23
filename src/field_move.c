@@ -52,6 +52,9 @@ static bool32 IsFieldMoveUnlocked_Surf(void)
 
 static bool32 IsFieldMoveUnlocked_Fly(void)
 {
+    if (CheckBagHasItem(ITEM_FLY_KEY, 1))
+        return TRUE;
+
     if (IS_FRLG)
         return FlagGet(FLAG_BADGE03_GET);
 

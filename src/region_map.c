@@ -81,6 +81,8 @@ static EWRAM_DATA struct {
 } *sFlyMap = NULL;
 
 static bool32 sDrawFlyDestTextWindow;
+// Set by the Fly Key: cancelling returns to the field, not the party menu.
+bool8 gFlyMapOpenedFromKeyItem;
 
 static u8 ProcessRegionMapInput_Full(void);
 static u8 MoveRegionMapCursor_Full(void);
@@ -2488,10 +2490,15 @@ static void CB_ExitFlyMap(void)
                 SetFlyDestination(tempRegionMap);
                 ReturnToFieldFromFlyMapSelect();
             }
+            else if (gFlyMapOpenedFromKeyItem)
+            {
+                SetMainCallback2(CB2_ReturnToField);
+            }
             else
             {
                 SetMainCallback2(CB2_ReturnToPartyMenuFromFlyMap);
             }
+            gFlyMapOpenedFromKeyItem = FALSE;
             TRY_FREE_AND_SET_NULL(sFlyMap);
             FreeAllWindowBuffers();
         }
