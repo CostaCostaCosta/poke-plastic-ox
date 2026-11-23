@@ -81,13 +81,13 @@ SaffronCity_EventScript_Npc5_Text:
 	.string "The busy streets make the DOJO\nfeel wonderfully quiet.$"
 
 SaffronCity_EventScript_Npc6_Text:
-	.string "Trainers come from far away to\ntest themselves at the DOJO.$"
+	.string "I peek into the DOJO after\nschool. The BLACK BELTS shout so\ploud!$"
 
 SaffronCity_EventScript_Npc7_Text:
-	.string "The busy streets make the DOJO\nfeel wonderfully quiet.$"
+	.string "Pavement is murder on my boots.\nGive me a mountain trail any\pday.$"
 
 SaffronCity_EventScript_Npc8_Text:
-	.string "Trainers come from far away to\ntest themselves at the DOJO.$"
+	.string "The trains here are so fast! I\ncounted six while I waited for\pmy sister.$"
 
 SaffronCity_EventScript_Npc9_Text:
-	.string "The busy streets make the DOJO\nfeel wonderfully quiet.$"
+	.string "The department stores open\nearly. I like to shop before the\pcrowds arrive.$"

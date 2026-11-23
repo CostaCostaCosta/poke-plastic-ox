@@ -23,7 +23,11 @@ LINES = {
 'Gate_SaffronCity': ['Keep the doorway clear so travelers can pass safely.', 'SAFFRON draws visitors from every nearby road.'],
 }
 def replace(text, name):
-    lines=next((v for k,v in LINES.items() if name.startswith(k)),None)
+    # Match the area exactly (Route3 must not catch Route34/Route38, Route2
+    # must not catch Route21). The donor placeholders are already replaced in
+    # the checked-in maps; per-NPC lines there were since made unique by hand
+    # (plastic_ox/tools/audit_npc_dialogue.py enforces it).
+    lines=next((v for k,v in LINES.items() if name==k or name.startswith(k+'_')),None)
     if not lines: return text
     import textwrap
     i=0

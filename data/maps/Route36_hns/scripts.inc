@@ -90,7 +90,7 @@ Route36_EventScript_Alan::
 	msgbox Route36_EventScript_Alan_After, MSGBOX_AUTOCLOSE
 	end
 Route36_EventScript_Alan_Intro:
-	.string "I study the plants on this\nroad. Let's compare field\pnotes in a battle!$"
+	.string "I'm doing a plant project for\nschool! Let's compare notes in a\pbattle!$"
 Route36_EventScript_Alan_Defeat:
 	.string "I missed a detail!$"
 Route36_EventScript_Alan_After:
@@ -102,3 +102,17 @@ Route36_EventScript_RuinsGateClosed::
 
 Route36_EventScript_RuinsGateClosed_Text:
 	.string "The RUINS OF ALPH gate is closed.\nPlease keep the entrance clear.$"
+
+Route36_EventScript_RuinsGateClosed_2::
+	msgbox Route36_EventScript_RuinsGateClosed_2_Text, MSGBOX_NPC
+	end
+
+Route36_EventScript_RuinsGateClosed_2_Text:
+	.string "The ruins are off limits while\nthe dig site gets catalogued.$"
+
+Route36_EventScript_RuinsGateClosed_3::
+	msgbox Route36_EventScript_RuinsGateClosed_3_Text, MSGBOX_NPC
+	end
+
+Route36_EventScript_RuinsGateClosed_3_Text:
+	.string "Nothing back there but scaffolding\nanyway. Turn around, please.$"

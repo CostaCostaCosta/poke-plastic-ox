@@ -9375,6 +9375,9 @@ static void Cmd_pickup(void)
                 && species != SPECIES_NONE
                 && species != SPECIES_EGG
                 && heldItem == ITEM_NONE
+                // Plastic Ox: a mon whose own item was consumed/lost gets it back after battle,
+                // so only mons that entered battle empty-handed can pick something up.
+                && (!B_POX_RESTORE_ALL_HELD_ITEMS || gBattleStruct->itemLost[B_TRAINER_PLAYER][i].originalItem == ITEM_NONE)
                 && (Random() % 10) == 0)
             {
                 if (isInPyramid)

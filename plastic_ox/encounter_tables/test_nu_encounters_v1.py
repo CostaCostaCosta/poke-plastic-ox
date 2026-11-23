@@ -82,7 +82,7 @@ NU_ROOT_COVERAGE = {
     "Plusle":     ("Route 37 grass 10%", "route37" in P.CHECKPOINT_NAMES),
     "Murkrow":    ("Route 37 night grass 10%", "route37" in P.CHECKPOINT_NAMES),
     "Kecleon":    ("Route 37 Headbutt 5%", "route37" in P.CHECKPOINT_NAMES),
-    "Relicanth":  ("Ecruteak Corsola NPC trade", False),   # trade not implemented
+    "Relicanth":  ("Ecruteak House 2 NPC trade (for Clamperl)", True),
     "Torkoal":    ("Burned Tower 1F wild 10%", "burnedtower" in P.CHECKPOINT_NAMES),
     "Dunsparce":  ("Burned Tower B1F wild 10%", "burnedtower" in P.CHECKPOINT_NAMES),
     "Chimecho":   ("Burned Tower B1F wild 10%", "burnedtower" in P.CHECKPOINT_NAMES),
@@ -253,7 +253,7 @@ def main() -> int:
     missing = sorted(s for s, (_w, ok) in NU_ROOT_COVERAGE.items() if not ok)
     print(f"PASS: {checked} NU-block encounter checks "
           f"({sum(1 for _w, ok in NU_ROOT_COVERAGE.values() if ok)}/{len(NU_ROOT_COVERAGE)} "
-          f"documented NU roots implemented; still open: {', '.join(missing)})")
+          f"documented NU roots implemented; still open: {', '.join(missing) or 'none'})")
     return 0
 
 

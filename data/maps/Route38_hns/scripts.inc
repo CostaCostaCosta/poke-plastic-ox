@@ -65,28 +65,28 @@ Route38_EventScript_Npc9::
 	end
 
 Route38_EventScript_Npc1_Text:
-	.string "MooMoo Milk farm ahead! The milk is region-neutral.$"
+	.string "I haul MOOMOO MILK down to the\nharbor boats. The farm's just\pahead!$"
 
 Route38_EventScript_Npc2_Text:
-	.string "Rocky ground can wear your team\ndown. Rest when you can.$"
+	.string "The farm dogs chase my MAREEP\nevery time we pass. I think\pthey're only playing.$"
 
 Route38_EventScript_Npc3_Text:
-	.string "The mountain draws hikers and\ncurious trainers alike.$"
+	.string "I buy a crate of MOOMOO MILK\nevery week. My family finishes\pit in two days.$"
 
 Route38_EventScript_Npc4_Text:
-	.string "Rocky ground can wear your team\ndown. Rest when you can.$"
+	.string "I practice guitar out here. The\nMILTANK are a great audience.\pVery polite.$"
 
 Route38_EventScript_Npc5_Text:
-	.string "The mountain draws hikers and\ncurious trainers alike.$"
+	.string "I get to help milk the MILTANK\ntoday! Grandpa says I'm big\penough now.$"
 
 Route38_EventScript_Npc6_Text:
-	.string "Rocky ground can wear your team\ndown. Rest when you can.$"
+	.string "Fresh air and fresh milk. That's\nmy whole beauty routine,\phonestly.$"
 
 Route38_EventScript_Npc7_Text:
-	.string "The mountain draws hikers and\ncurious trainers alike.$"
+	.string "We're picking flowers for Mom! I\nget all the yellow ones.$"
 
 Route38_EventScript_Npc8_Text:
-	.string "Rocky ground can wear your team\ndown. Rest when you can.$"
+	.string "We're picking flowers too! I\nget... um... the ones that\paren't yellow!$"
 
 Route38_EventScript_Npc9_Text:
-	.string "The mountain draws hikers and\ncurious trainers alike.$"
+	.string "A POKé BALL lies by the fence,\nhalf buried in hay.$"

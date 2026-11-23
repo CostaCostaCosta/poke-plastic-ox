@@ -13,7 +13,13 @@
   "allow_running": true,
   "show_map_name": true,
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
-  "connections": [],
+  "connections": [
+    {
+      "map": "MAP_FORTREE_CITY",
+      "offset": 0,
+      "direction": "right"
+    }
+  ],
   "object_events": [
     {
       "graphics_id": "OBJ_EVENT_GFX_BERRY_TREE",
@@ -630,15 +636,6 @@
   "coord_events": [
     {
       "type": "trigger",
-      "x": 39,
-      "y": 8,
-      "elevation": 0,
-      "var": "VAR_POX_PORTAL_TRIGGER",
-      "var_value": 0,
-      "script": "PoxRegion_route119_fortree_a"
-    },
-    {
-      "type": "trigger",
       "x": 16,
       "y": 139,
       "elevation": 0,
@@ -681,6 +678,51 @@
       "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
       "script": "Route119_EventScript_PoxEcruteakGate"
+    },
+    {
+      "type": "trigger",
+      "x": 39,
+      "y": 8,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "PoxRegion_route119_fortree_a"
+    },
+    {
+      "type": "trigger",
+      "x": 39,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "PoxRegion_route119_fortree_a"
+    },
+    {
+      "type": "trigger",
+      "x": 39,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "PoxRegion_route119_fortree_a"
+    },
+    {
+      "type": "trigger",
+      "x": 39,
+      "y": 6,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "PoxRegion_route119_fortree_a"
+    },
+    {
+      "type": "trigger",
+      "x": 39,
+      "y": 10,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "PoxRegion_route119_fortree_a"
     }
   ],
   "bg_events": [

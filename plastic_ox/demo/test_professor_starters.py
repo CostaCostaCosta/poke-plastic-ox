@@ -6,7 +6,7 @@ generation; duplicates and Gen 4+ species don't count; evolved species count;
 B/CANCEL never consumes a reward; any pick order, claimed starters vanish from
 the menu; a 75-species player can claim all three and never a fourth; a full
 party sends the starter to the PC; gifts register as owned; reward flags
-survive save/reload; Elm's Goldenrod house and Birch's Fortree house are
+survive save/reload; Elm's Goldenrod house and Birch's Fortree house (House3) are
 walked into and out of through their existing doors; Oak's story talk still
 runs before the reward; the displaced Fortree Hidden Power giver still works.
 
@@ -21,7 +21,6 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'battle/metamon'))
 from test_story import StoryGame, ROOT
 from test_sudowoodo_v1 import SudoGame
-from test_cinnabar import save_reload
 from test_qol import begin_code, opcode
 from walklib import K
 from walk_leg1 import navigate, enter_warp
@@ -33,6 +32,23 @@ OAK, ELM, BIRCH = 0, 1, 2
 class Game(StoryGame):
     clear_text = SudoGame.clear_text
     text = SudoGame.text
+
+
+def save_reload(g):
+    """Save through the game's own routine, reset, and Continue."""
+    begin_code(g, opcode(g, 'callnative') + struct.pack('<I', g.syms['Script_ForceSaveGame'] | 1)
+               + opcode(g, 'waitstate') + opcode(g, 'releaseall') + opcode(g, 'end'))
+    for _ in range(2000):
+        if g.u8(g.syms['sGlobalScriptContextStatus']) == 2:
+            break
+        g.tap(K.KEY_A, hold=1, wait=6)
+    g.core.reset()
+    main = g.syms['gMain']
+    for _ in range(300):
+        g.tap(K.KEY_A, hold=2, wait=20)
+        if g.u32(main + 4) & ~1 == g.syms['CB2_Overworld'] & ~1:
+            break
+    g.frame(180)
 
 
 def map_id(name):
@@ -120,14 +136,14 @@ def flags(g, prof):
 
 
 def static_checks():
-    for name, gfx in [('GoldenrodCity_House2_hns', 'OBJ_EVENT_GFX_SCIENTIST'), ('FortreeCity_House2', 'OBJ_EVENT_GFX_PROF_BIRCH')]:
+    for name, gfx in [('GoldenrodCity_House2_hns', 'OBJ_EVENT_GFX_SCIENTIST'), ('FortreeCity_House3', 'OBJ_EVENT_GFX_PROF_BIRCH')]:
         objs = json.loads((ROOT / f'data/maps/{name}/map.json').read_text())['object_events']
         assert [o['graphics_id'] for o in objs] == [gfx], (name, objs)
     print('ok  map objects: Elm and Birch placed')
 
 
 def logic_tests():
-    g = Game(spawn=('FortreeCity_House2', 3, 4))
+    g = Game(spawn=('FortreeCity_House3', 3, 4))
     g.write(g.syms['gPartiesCount'], 0) if g.count() else None
     # 24 Kanto + duplicates + Gen 2 / Gen 4 noise: not yet a reward.
     own(g, list(range(1, 25)) + list(range(1, 10)) + [152, 387, 400, 493])
@@ -201,14 +217,14 @@ def walk_tests():
     enter_warp(g, (4, 7), 'DOWN', city, 'goldenrod house2 out')
     print('ok  Goldenrod House2 door -> talk to Elm -> back out to the city')
 
-    g.warp('FortreeCity', 17, 4)
-    city, house = map_id('FortreeCity'), map_id('FortreeCity_House2')
-    enter_warp(g, (17, 4), 'UP', house, 'fortree house2 in')
-    navigate(g, (2, 4))
-    text, _ = converse(g, lambda: (g.tap(K.KEY_UP, hold=2, wait=16), g.tap(K.KEY_A, hold=2, wait=16)))
+    g.warp('FortreeCity', 25, 4)
+    city, house = map_id('FortreeCity'), map_id('FortreeCity_House3')
+    enter_warp(g, (25, 4), 'UP', house, 'fortree house3 in')
+    navigate(g, (4, 4))
+    text, _ = converse(g, lambda: (g.tap(K.KEY_RIGHT, hold=2, wait=16), g.tap(K.KEY_A, hold=2, wait=16)))
     assert 'PROFESSOR BIRCH' in text and 'HOENN' in text, text
-    enter_warp(g, (3, 4), 'DOWN', city, 'fortree house2 out')
-    print('ok  Fortree House2 door -> talk to Birch -> back out to the city')
+    enter_warp(g, (3, 4), 'DOWN', city, 'fortree house3 out')
+    print('ok  Fortree House3 door -> talk to Birch -> back out to the city')
 
     for f in ['FLAG_POX_STORY_STARTER', 'FLAG_POX_LAB_INTRO', 'FLAG_POX_STARTER_SUPPLIES', 'FLAG_POX_HIDE_BATTLE_OAK_LAB',
               'FLAG_POX_ELM_EXP_ALL', 'FLAG_POX_ELM_TMS']:

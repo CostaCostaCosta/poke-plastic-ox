@@ -9,6 +9,7 @@ Run from the repo root. `make pox-check-static` runs the checks marked ✓.
 | `pox_progression.py` | Story checkpoints, species availability, tier gating, move legality (library) |
 | `write_trainer_teams_v2_report.py` | Regenerates `TRAINER_TEAMS_V2_REPORT.md` |
 | `audit_warp_connections.py` ✓ | Static warp/connection graph audit |
+| `audit_npc_dialogue.py` ✓ | No two NPCs share dialogue; sprite/dialogue plausibility (`--sprites`, `--dump --map X`); exceptions in `npc_dialogue_allow.json` |
 | `check_map_refs.py` ✓ (`--changed`) | Unknown constants in map JSON (`--map X`, `--changed`); the full run has known donor-map noise |
 | `check_generated.py` ✓ | New drift between `build_story.py` output and checked-in files |
 | `audit_native_seams.py` | Native seam audit for camera connections |

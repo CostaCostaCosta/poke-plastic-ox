@@ -413,14 +413,6 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "GoldenrodCity_EventScript_Sign8"
-    },
-    {
-      "type": "sign",
-      "x": 32,
-      "y": 43,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "PoxRegion_route33_goldenrod_b_Sign"
     }
   ],
   "region": "REGION_HOENN"

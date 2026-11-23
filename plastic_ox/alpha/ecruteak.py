@@ -140,15 +140,16 @@ def install(read, put):
 
     retargeted = sum(retarget(name) for name in manifest['maps'])
 
-    # EAST GATEHOUSE ↔ city strip / ROUTE 119. The west door returns to the
-    # city door at (55,42); the east door opens onto Route 119, which needs a
-    # destination warp on its west edge for that landing.
+    # EAST GATEHOUSE ↔ city / ROUTE 119. The west door returns to the city
+    # door at (55,42); the east door lands on Route 119's south path at
+    # (18,138). Route 119 enters the gate through invisible south-edge
+    # triggers on (16..20,139) (Route119_EventScript_PoxEcruteakGate).
     route119 = load('Route119')
     anchor = next((i for i, w in enumerate(route119['warp_events'])
-                   if (w['x'], w['y']) == (5, 124)), None)
+                   if (w['x'], w['y']) == (18, 138)), None)
     if anchor is None:
         route119['warp_events'].append(dict(
-            x=5, y=124, elevation=0,
+            x=18, y=138, elevation=0,
             dest_map='MAP_GATE_ECRUTEAK_CITY_ROUTE42_HNS', dest_warp_id='1'))
         anchor = len(route119['warp_events']) - 1
     save('Route119', route119)
