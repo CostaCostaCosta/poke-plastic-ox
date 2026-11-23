@@ -326,4 +326,13 @@
 #define FLAG_POX_PROF_BIRCH_TREECKO  (POX_EVENT_FLAGS_START + 49)
 #define FLAG_POX_PROF_BIRCH_TORCHIC  (POX_EVENT_FLAGS_START + 50)
 #define FLAG_POX_PROF_BIRCH_MUDKIP   (POX_EVENT_FLAGS_START + 51)
+// Cerulean Cave summit: RED (TRAINER_PLASTIC_OX_RED, ID 958) was defeated.
+// Also hides RED and MEWTWO on MtSilver_SummitDay_hns afterwards.
+#define FLAG_POX_TRAINER_RED (POX_EVENT_FLAGS_START + 52)
+// Cerulean Cave summit: MEWTWO caught in its post-RED reward battle (any ball
+// succeeds). Hides MEWTWO on MtSilver_SummitDay_hns.
+#define FLAG_POX_CAUGHT_MEWTWO (POX_EVENT_FLAGS_START + 53)
+// Cerulean Cave summit: RED was beaten and is gone until the player wins the
+// League again (cleared by PoxLeague_Hall on every Hall of Fame entry). Hides RED.
+#define FLAG_POX_RED_RESTING (POX_EVENT_FLAGS_START + 54)
 #endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H

@@ -2323,3 +2323,25 @@ const struct Tileset gTileset_GoldenrodBuilding_Hns =
     .metatileAttributes = gMetatileAttributes_GoldenrodBuilding_Hns,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_Cave_Gray_Hns =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_Cave_Gray_Hns,
+    .palettes = gTilesetPalettes_Cave_Gray_Hns,
+    .metatiles = gMetatiles_Cave_Gray_Hns,
+    .metatileAttributes = gMetatileAttributes_Cave_Gray_Hns,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_MtSilverSnow_Hns =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_MtSilverSnow_Hns,
+    .palettes = gTilesetPalettes_MtSilverSnow_Hns,
+    .metatiles = gMetatiles_MtSilverSnow_Hns,
+    .metatileAttributes = gMetatileAttributes_MtSilverSnow_Hns,
+    .callback = NULL,
+};

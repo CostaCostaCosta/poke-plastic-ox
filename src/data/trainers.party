@@ -22100,3 +22100,78 @@ Careful Nature
 - Seismic Toss
 - Counter
 - Explosion
+
+=== TRAINER_PLASTIC_OX_RED ===
+Name: RED
+Class: Champion
+Pic: Red
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Mewtwo @ Lum Berry
+Level: 72
+Ability: Pressure
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 Atk / 252 SpA / 252 Spe
+Mild Nature
+- Thunder
+- Ice Beam
+- Calm Mind
+- Self-Destruct
+
+Kyogre @ Leftovers
+Level: 70
+Ability: Drizzle
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpA
+Modest Nature
+- Surf
+- Ice Beam
+- Calm Mind
+- Thunder Wave
+
+Metagross @ Choice Band
+Level: 70
+Ability: Clear Body
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Adamant Nature
+- Meteor Mash
+- Earthquake
+- Explosion
+- Rock Slide
+
+Snorlax @ Leftovers
+Level: 70
+Ability: Immunity
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 136 HP / 120 Atk / 252 SpD
+Sassy Nature
+- Body Slam
+- Thunder
+- Curse
+- Self-Destruct
+
+Latios (M) @ Soul Dew
+Level: 70
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Modest Nature
+- Thunder
+- Ice Beam
+- Recover
+- Refresh
+
+Deoxys-Attack @ Spell Tag
+Level: 70
+Ability: Pressure
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpA / 252 Spe
+Hasty Nature
+- Shadow Ball
+- Superpower
+- Thunder
+- Extreme Speed
