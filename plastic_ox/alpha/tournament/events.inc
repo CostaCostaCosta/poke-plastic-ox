@@ -296,27 +296,24 @@ PoxTournament_LegendLocked::
 
 PoxTournament_Regirock::
 	lockall
-	checkitem ITEM_ANCIENT_BRAILLE_TABLET
+	checkitem ITEM_ANCIENT_ROCK_TABLET
 	goto_if_eq VAR_RESULT, FALSE, PoxTournament_LegendLocked
-	goto_if_unset FLAG_REGI_DOORS_OPENED, PoxTournament_LegendLocked
 	goto_if_unset FLAG_BADGE05_GET, PoxTournament_LegendLocked
 	goto PoxTournament_RegirockBattle
 pox_legendary_sage PoxTournament_RegirockBattle, TRAINER_PLASTIC_OX_REGIROCK_SAGE, SPECIES_REGIROCK, 50, FLAG_POX_CAUGHT_REGIROCK, LOCALID_POX_REGIROCK_SAGE, LOCALID_POX_REGIROCK, PoxTournament_Text_Regi, PoxTournament_Text_SageDefeat
 
 PoxTournament_Regice::
 	lockall
-	checkitem ITEM_ANCIENT_BRAILLE_TABLET
+	checkitem ITEM_ANCIENT_ICE_TABLET
 	goto_if_eq VAR_RESULT, FALSE, PoxTournament_LegendLocked
-	goto_if_unset FLAG_REGI_DOORS_OPENED, PoxTournament_LegendLocked
 	goto_if_unset FLAG_BADGE06_GET, PoxTournament_LegendLocked
 	goto PoxTournament_RegiceBattle
 pox_legendary_sage PoxTournament_RegiceBattle, TRAINER_PLASTIC_OX_REGICE_SAGE, SPECIES_REGICE, 55, FLAG_POX_CAUGHT_REGICE, LOCALID_POX_REGICE_SAGE, LOCALID_POX_REGICE, PoxTournament_Text_Regi, PoxTournament_Text_SageDefeat
 
 PoxTournament_Registeel::
 	lockall
-	checkitem ITEM_ANCIENT_BRAILLE_TABLET
+	checkitem ITEM_ANCIENT_STEEL_TABLET
 	goto_if_eq VAR_RESULT, FALSE, PoxTournament_LegendLocked
-	goto_if_unset FLAG_REGI_DOORS_OPENED, PoxTournament_LegendLocked
 	goto_if_unset FLAG_BADGE06_GET, PoxTournament_LegendLocked
 	goto PoxTournament_RegisteelBattle
 pox_legendary_sage PoxTournament_RegisteelBattle, TRAINER_PLASTIC_OX_REGISTEEL_SAGE, SPECIES_REGISTEEL, 55, FLAG_POX_CAUGHT_REGISTEEL, LOCALID_POX_REGISTEEL_SAGE, LOCALID_POX_REGISTEEL, PoxTournament_Text_Regi, PoxTournament_Text_SageDefeat
