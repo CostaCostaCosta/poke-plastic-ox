@@ -84,6 +84,10 @@ STORY_ORDER = [
     "route21-hns",
     "plasticox-route20east",
     "mossdeepcity",
+    # Act III coda — the sages come home; Bellchime Trail and the Tin Tower
+    "bellchimetrail-hns",
+    "tintower-1f-hns",
+    "tintower-roofday-hns",
     # Act IV — Saffron
     "saffroncity-hns",
     "route19-frlg",

@@ -1756,6 +1756,28 @@ const struct Tileset gTileset_EcruteakTheater_Hns =
     .callback = NULL,
 };
 
+const struct Tileset gTileset_BellchimeTrail_Hns =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_BellchimeTrail_Hns,
+    .palettes = gTilesetPalettes_BellchimeTrail_Hns,
+    .metatiles = gMetatiles_BellchimeTrail_Hns,
+    .metatileAttributes = gMetatileAttributes_BellchimeTrail_Hns,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_TinTower_Hns =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_TinTower_Hns,
+    .palettes = gTilesetPalettes_TinTower_Hns,
+    .metatiles = gMetatiles_TinTower_Hns,
+    .metatileAttributes = gMetatileAttributes_TinTower_Hns,
+    .callback = NULL,
+};
+
 const struct Tileset gTileset_SeaCottage_Hns =
 {
     .isCompressed = TRUE,

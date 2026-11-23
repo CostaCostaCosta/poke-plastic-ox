@@ -314,4 +314,6 @@
 // National Park: the Safari Zone Warden got his Gold Teeth back (tournament
 // round-one prize) and keeps the player on his Thursday contest guest list.
 #define FLAG_POX_WARDEN_GUEST (POX_EVENT_FLAGS_START + 41)
+// Tin Tower roof: Moltres caught after its sage (TRAINER_PLASTIC_OX_MOLTRES_SAGE).
+#define FLAG_POX_CAUGHT_MOLTRES (POX_EVENT_FLAGS_START + 42)
 #endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H

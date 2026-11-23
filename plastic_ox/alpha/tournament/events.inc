@@ -238,8 +238,8 @@ PoxTournament_Text_Reward1::
 	.string "WARDEN.” Fancy that!\p"
 	.string "He runs a Bug-Catching Contest at\n"
 	.string "NATIONAL PARK every Thursday.\p"
-	.string "Bring his teeth back. I hear he\n"
-	.string "rewards honesty with SCYTHER.\p"
+	.string "Bring his teeth back, and he'll\n"
+	.string "put you on his guest list.\p"
 	.string "Return after BLAINE for round two.$"
 
 PoxTournament_Text_Reward2::

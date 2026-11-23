@@ -501,6 +501,12 @@ const u16 gMetatiles_EcruteakTheater_Hns[] = INCBIN_U16("data/tilesets/secondary
 
 const u16 gMetatileAttributes_EcruteakTheater_Hns[] = INCBIN_U16("data/tilesets/secondary/ecruteak_theater_hns/metatile_attributes.bin");
 
+const u16 gMetatiles_BellchimeTrail_Hns[] = INCBIN_U16("data/tilesets/secondary/bellchime_trail_hns/metatiles.bin");
+const u16 gMetatileAttributes_BellchimeTrail_Hns[] = INCBIN_U16("data/tilesets/secondary/bellchime_trail_hns/metatile_attributes.bin");
+
+const u16 gMetatiles_TinTower_Hns[] = INCBIN_U16("data/tilesets/secondary/tin_tower_hns/metatiles.bin");
+const u16 gMetatileAttributes_TinTower_Hns[] = INCBIN_U16("data/tilesets/secondary/tin_tower_hns/metatile_attributes.bin");
+
 const u16 gMetatiles_SeaCottage_Hns[] = INCBIN_U16("data/tilesets/secondary/sea_cottage_hns/metatiles.bin");
 
 const u16 gMetatileAttributes_SeaCottage_Hns[] = INCBIN_U16("data/tilesets/secondary/sea_cottage_hns/metatile_attributes.bin");

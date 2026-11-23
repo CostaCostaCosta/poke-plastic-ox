@@ -484,6 +484,8 @@ Its presence should feel like another consequence of the converged world rather 
 
 Entei's release timing remains governed by the competitive encounter-progression rules. Next to Entei is a sage NPC. Battling and defeating the Sage NPC will allow the player to catch Entei with any ball type on the first try. This sage + legendary mechanic is present for all legendary pokemon.
 
+Each sage whose legendary has been caught returns home to the Ecruteak sage office that opens onto Bellchime Trail. A keeper holds the office's back door until five sages are home, then steps aside. The trail leads to the Tin Tower, which is kept short: one floor, then the roof, where a final sage keeps Moltres.
+
 ---
 
 # Seafoam Islands — Mandatory Southern Dungeon

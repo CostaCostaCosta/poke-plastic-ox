@@ -727,5 +727,7 @@ def apply_region(read, put):
 
     from ecruteak_repairs import install as repair_ecruteak
     repair_ecruteak(read, put)
+    from tin_tower import install as install_tin_tower
+    install_tin_tower(read, put)
     from mart_repairs import install as repair_marts
     repair_marts(read, put)

@@ -464,6 +464,9 @@ void FinishCyclingRoadChallenge(void)
 
     DetermineCyclingRoadResults(numFrames, gBikeCollisions);
     RecordCyclingRoadResults(numFrames, gBikeCollisions);
+    // Plastic Ox: a clean run shown as under 12.10 seconds (726 frames) earns
+    // the Mt. Moon tablet the player passed up. Read by Route110 scripts.
+    gSpecialVar_0x8004 = (numFrames < 726 && gBikeCollisions == 0);
 }
 
 static void RecordCyclingRoadResults(u32 numFrames, u8 numBikeCollisions)

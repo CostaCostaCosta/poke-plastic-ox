@@ -15,7 +15,7 @@ Gate_NationalPark_OnTransition::
 	setflag FLAG_POX_HIDE_PARK_WARDEN
 	return
 
-@ The Safari Zone Warden comes up from Fuchsia to host Thursday's round.
+@ The Safari Zone Warden comes up to host Thursday's round.
 Gate_NationalPark_ContestDay::
 	clearflag FLAG_POX_HIDE_PARK_CONTEST_CROWD
 	setflag FLAG_POX_HIDE_PARK_WARDEN
@@ -89,7 +89,13 @@ Gate_NationalPark_EventScript_Warden::
 	goto_if_set FLAG_POX_WARDEN_GUEST, Gate_NationalPark_EventScript_WardenHost
 	checkitem ITEM_GOLD_TEETH
 	goto_if_eq VAR_RESULT, TRUE, Gate_NationalPark_EventScript_WardenTeeth
-	msgbox Gate_NationalPark_Text_WardenToothless, MSGBOX_DEFAULT
+	msgbox Gate_NationalPark_Text_WardenToothless, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, Gate_NationalPark_EventScript_WardenToothlessYes
+	msgbox Gate_NationalPark_Text_WardenToothlessNo, MSGBOX_DEFAULT
+	release
+	end
+Gate_NationalPark_EventScript_WardenToothlessYes::
+	msgbox Gate_NationalPark_Text_WardenToothlessYes, MSGBOX_DEFAULT
 	release
 	end
 Gate_NationalPark_EventScript_WardenTeeth::
@@ -112,10 +118,14 @@ Gate_NationalPark_EventScript_WardenHost::
 	goto PlasticOxContest_EventScript_Attendant
 
 Gate_NationalPark_Text_WardenToothless:
-	.string "WARDEN: Hwelcome hoo he Hursday\n"
-	.string "Hafari Hontest! Hi'm hee Hwarden!\p"
-	.string "Hut hoo hust he hon hy huest hist.\n"
-	.string "Hy holden heeth... hone! Hwaaah!$"
+	.string "WARDEN: Hif fuff hefifoo! Ha lof ha\n"
+	.string "feef ee hafahi ho. Heff hee fwee!$"
+Gate_NationalPark_Text_WardenToothlessNo:
+	.string "WARDEN: Ha? He ohay heh ha hoo\n"
+	.string "ee haheh!$"
+Gate_NationalPark_Text_WardenToothlessYes:
+	.string "WARDEN: Ah howhee ho hoo!\n"
+	.string "Eef ee hafahi ho!$"
 Gate_NationalPark_Text_WardenSees:
 	.string "WARDEN: Hwah?! Hoze are... HY\n"
 	.string "HEETH! Hive! Hive hem here!$"
@@ -125,14 +135,13 @@ Gate_NationalPark_Text_GaveTeeth:
 Gate_NationalPark_Text_PoppedIn:
 	.string "The WARDEN popped in his teeth!$"
 Gate_NationalPark_Text_WardenThanks:
-	.string "WARDEN: Ahh, I can talk again!\n"
-	.string "I lost these on the MAGNET TRAIN.\p"
-	.string "A collector in SAFFRON had them?\n"
-	.string "As a trophy? Well, I never!\p"
-	.string "I'm the SAFARI ZONE WARDEN from\n"
-	.string "FUCHSIA. Every Thursday I bring\l"
-	.string "SCYTHER and PINSIR up from my\n"
-	.string "preserve and let them loose here.\p"
+	.string "WARDEN: Thanks, kid! No one could\n"
+	.string "understand a word that I said.\p"
+	.string "I couldn't work that way.\n"
+	.string "Let me give you something for\l"
+	.string "your trouble.\p"
+	.string "Every Thursday I bring SCYTHER and\n"
+	.string "PINSIR up from my SAFARI ZONE.\p"
 	.string "Only my guests may enter, and from\n"
 	.string "today, you're on my list for life!\p"
 	.string "Talk to me any Thursday and I'll\n"
@@ -145,7 +154,7 @@ Gate_NationalPark_Text_WardenHost:
 
 Gate_NationalPark_Text_Thursday:
 	.string "The old man in the hat is the\n"
-	.string "SAFARI ZONE WARDEN from FUCHSIA.\p"
+	.string "SAFARI ZONE WARDEN.\p"
 	.string "He sponsors today's contest and\n"
 	.string "brings SCYTHER and PINSIR himself.\p"
 	.string "Entry is by his invitation only.\n"

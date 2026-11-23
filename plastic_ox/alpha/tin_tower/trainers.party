@@ -1,0 +1,74 @@
+=== TRAINER_PLASTIC_OX_MOLTRES_SAGE ===
+Name: SAGE
+Class: Expert
+Pic: Sage Hns
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Metagross @ Leftovers
+Level: 55
+Ability: Clear Body
+IVs: 31 HP / 30 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 168 HP / 16 Def / 252 SpA / 72 Spe
+Rash Nature
+- Meteor Mash
+- Thunder Punch
+- Hidden Power
+- Explosion
+
+Skarmory @ Leftovers
+Level: 55
+Ability: Keen Eye
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 248 HP / 252 SpD / 8 Spe
+Careful Nature
+- Spikes
+- Protect
+- Drill Peck
+- Roar
+
+Starmie @ Leftovers
+Level: 55
+Ability: Natural Cure
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 8 Def / 40 SpA / 32 SpD / 176 Spe
+Timid Nature
+- Rapid Spin
+- Recover
+- Thunder Wave
+- Surf
+
+Blissey (F) @ Leftovers
+Level: 55
+Ability: Natural Cure
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Def / 248 SpA / 8 Spe
+Modest Nature
+- Soft-Boiled
+- Calm Mind
+- Ice Beam
+- Thunderbolt
+
+Flygon @ Leftovers
+Level: 55
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 220 Def / 36 Spe
+Lax Nature
+- Protect
+- Toxic
+- Earthquake
+- Flamethrower
+
+Moltres @ Leftovers
+Level: 55
+Ability: Pressure
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Will-O-Wisp
+- Flamethrower
+- Hidden Power
+- Roar
