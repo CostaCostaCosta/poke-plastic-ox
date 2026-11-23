@@ -335,4 +335,6 @@
 // Cerulean Cave summit: RED was beaten and is gone until the player wins the
 // League again (cleared by PoxLeague_Hall on every Hall of Fame entry). Hides RED.
 #define FLAG_POX_RED_RESTING (POX_EVENT_FLAGS_START + 54)
+// Route 119 Wingull house: the Fly Key item ball was picked up.
+#define FLAG_POX_HIDE_ROUTE119_FLY_KEY (POX_EVENT_FLAGS_START + 55)
 #endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H

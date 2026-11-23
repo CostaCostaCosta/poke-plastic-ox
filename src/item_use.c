@@ -37,6 +37,7 @@
 #include "party_menu.h"
 #include "pokeblock.h"
 #include "pokemon.h"
+#include "region_map.h"
 #include "plastic_ox_contest.h"
 #include "safari_zone.h"
 #include "script.h"
@@ -405,6 +406,61 @@ static void ItemUseOnFieldCB_WarpBlock(u8 taskId)
     Overworld_ResetStateAfterTeleport();
     FldEff_TeleportWarpOut();
     DestroyTask(taskId);
+}
+
+// The Fly Key opens the fly map without a party menu. The flight animation
+// still shows a party Pokémon, so prefer a Flying type and fall back to the
+// first hatched one. With no hatched Pokémon it returns PARTY_SIZE and the
+// key cannot be used.
+static u8 GetFlyKeyMonId(void)
+{
+    u32 i, fallback = PARTY_SIZE;
+
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        u32 species = GetMonData(&gPlayerParty[i], MON_DATA_SPECIES_OR_EGG);
+        if (species == SPECIES_NONE || species == SPECIES_EGG)
+            continue;
+        if (GetSpeciesType(species, 0) == TYPE_FLYING || GetSpeciesType(species, 1) == TYPE_FLYING)
+            return i;
+        if (fallback == PARTY_SIZE)
+            fallback = i;
+    }
+    return fallback;
+}
+
+static void Task_OpenFlyMapFromField(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        CleanupOverworldWindowsAndTilemaps();
+        SetMainCallback2(CB2_OpenFlyMap);
+        DestroyTask(taskId);
+    }
+}
+
+void ItemUseOutOfBattle_FlyKey(u8 taskId)
+{
+    u32 monId = GetFlyKeyMonId();
+
+    if (monId == PARTY_SIZE || CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE || !SetUpFieldMove_Fly())
+    {
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+        return;
+    }
+
+    gPartyMenu.slotId = monId;
+    gFlyMapOpenedFromKeyItem = TRUE;
+    if (gTasks[taskId].tUsingRegisteredKeyItem)
+    {
+        FadeScreen(FADE_TO_BLACK, 0);
+        gTasks[taskId].func = Task_OpenFlyMapFromField;
+    }
+    else
+    {
+        gBagMenu->newScreenCallback = CB2_OpenFlyMap;
+        Task_FadeAndCloseBagMenu(taskId);
+    }
 }
 
 void ItemUseOutOfBattle_WarpBlock(u8 taskId)
