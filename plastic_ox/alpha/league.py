@@ -175,7 +175,7 @@ def install(read, put):
     hof.update(id='MAP_PLASTIC_OX_HALL_OF_FAME',name='PlasticOx_HallOfFame',region_map_section='MAPSEC_INDIGO_PLATEAU',object_events=[obj('HallGuide',6,7,'MAN_3')],warp_events=[],coord_events=[],bg_events=[])
     save('PlasticOx_HallOfFame',hof)
     put('data/maps/PlasticOx_HallOfFame/scripts.inc','PlasticOx_HallOfFame_MapScripts::\n\tmap_script MAP_SCRIPT_ON_FRAME_TABLE, PoxLeague_HallTable\n\t.byte 0\nPoxLeague_HallTable::\n\tmap_script_2 VAR_TEMP_1, 0, PoxLeague_Hall\n\t.2byte 0\n')
-    emit('PoxLeague_Hall::\n\tlockall\n'+checks(BADGES+FLAGS)+'\tsetvar VAR_TEMP_1, 1\n\tapplymovement LOCALID_PLAYER, Common_Movement_WalkUp4\n\twaitmovement 0\n\tmsgbox PoxLeague_Text_Hall, MSGBOX_DEFAULT\n\tclosemessage\n\tdofieldeffect FLDEFF_HALL_OF_FAME_RECORD\n\twaitfieldeffect FLDEFF_HALL_OF_FAME_RECORD\n\tsetrespawn HEAL_LOCATION_POX_INDIGO\n\tfadescreenspeed FADE_TO_BLACK, 24\n\tspecial GameClear\n\tend')
+    emit('PoxLeague_Hall::\n\tlockall\n'+checks(BADGES+FLAGS)+'\tsetvar VAR_TEMP_1, 1\n\tclearflag FLAG_POX_RED_RESTING\n\tapplymovement LOCALID_PLAYER, Common_Movement_WalkUp4\n\twaitmovement 0\n\tmsgbox PoxLeague_Text_Hall, MSGBOX_DEFAULT\n\tclosemessage\n\tdofieldeffect FLDEFF_HALL_OF_FAME_RECORD\n\twaitfieldeffect FLDEFF_HALL_OF_FAME_RECORD\n\tsetrespawn HEAL_LOCATION_POX_INDIGO\n\tfadescreenspeed FADE_TO_BLACK, 24\n\tspecial GameClear\n\tend')
     talk('HallGuide','Your partners have earned their place here.')
     text('Hall','BILL: From your first partner to the POKéMON beside you now, every step brought you here.|Welcome to the HALL OF FAME, CHAMPION! The ferry south of LAVENDER is now open to you.')
 

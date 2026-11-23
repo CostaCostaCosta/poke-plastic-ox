@@ -92,9 +92,31 @@
       "trainer_sight_or_berry_tree_id": "ITEM_NUGGET",
       "script": "Common_EventScript_FindItem",
       "flag": "FLAG_POX_ROUTE24_NUGGET"
+    },
+    {
+      "local_id": "LOCALID_ROUTE24_CAVE_GUARD",
+      "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
+      "x": 8,
+      "y": 11,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "Route24_EventScript_CaveGuard",
+      "flag": "FLAG_SYS_GAME_CLEAR"
     }
   ],
-  "warp_events": [],
+  "warp_events": [
+    {
+      "x": 8,
+      "y": 10,
+      "elevation": 3,
+      "dest_map": "MAP_MT_SILVER_1F_WATERFALL_ROOM_HNS",
+      "dest_warp_id": "0"
+    }
+  ],
   "coord_events": [],
   "bg_events": [
     {

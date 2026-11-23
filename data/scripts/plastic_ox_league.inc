@@ -626,6 +626,7 @@ PoxLeague_Hall::
 	goto_if_unset FLAG_POX_LEAGUE_BLUE, PoxLeague_Denied
 	goto_if_unset FLAG_POX_LEAGUE_BILL, PoxLeague_Denied
 	setvar VAR_TEMP_1, 1
+	clearflag FLAG_POX_RED_RESTING
 	applymovement LOCALID_PLAYER, Common_Movement_WalkUp4
 	waitmovement 0
 	msgbox PoxLeague_Text_Hall, MSGBOX_DEFAULT

@@ -7,7 +7,7 @@ stage: "1 — Rustboro and Sea Cottage"
 depth: full
 wiki: route24-hns
 maps: [Route24_hns]
-flags: [FLAG_POX_ROUTE24_NUGGET, FLAG_POX_HIDDEN_ROUTE24_18]
+flags: [FLAG_POX_ROUTE24_NUGGET, FLAG_POX_HIDDEN_ROUTE24_18, FLAG_SYS_GAME_CLEAR]
 trainers: [TRAINER_PLASTIC_OX_ROUTE24_ROCKET, TRAINER_PLASTIC_OX_ROUTE24]
 items: [ITEM_NUGGET, ITEM_PECHA_BERRY]
 status: drafted
@@ -35,6 +35,8 @@ The short northern road out of Rustboro, running up to Route 25 and the Sea Cott
 | Nugget ball | `(26,20)` `Common_EventScript_FindItem` | `FLAG_POX_ROUTE24_NUGGET` | gives `ITEM_NUGGET` | keep; the only "reward" on the branch and it should feel like finding money in a coat |
 | Hidden item | `(24,20)` `FLAG_POX_HIDDEN_ROUTE24_18` | flag unset | `ITEM_PECHA_BERRY` two tiles from the Nugget | move it north of the bridge; two collectibles on one screen flattens both |
 | Trainer script | `data/scripts/plastic_ox_route_trainers.inc` `PoxRouteTrainer_Route24` | never called | complete battle script for `TRAINER_PLASTIC_OX_ROUTE24`, attached to no object | attach it to the recast `(18,8)` trainer or delete it |
+| Cerulean Cave guard | `(8,11)` `Route24_EventScript_CaveGuard` | hidden by `FLAG_SYS_GAME_CLEAR` | League officer in the knoll's cave mouth; says the cave is closed until the Hall of Fame | keep; post-game only, see `mtsilver-1f-waterfallroom-hns.md` |
+| Cerulean Cave door | `(8,10)` warp 0 | open after the guard leaves | to `MtSilver_1F_WaterfallRoom_hns` | keep |
 | Encounter table | whole map | three identical `land_mons` slots | Pichu…Elekid at Lv.8–11 repeated three times | collapse to one table; the repetition looks like a copy error and hides any intended slot split |
 
 ## Dialogue guidance
@@ -62,7 +64,8 @@ The short northern road out of Rustboro, running up to Route 25 and the Sea Cott
 - Scripts: `data/maps/Route24_hns/scripts.inc` — `Route24_EventScript_Npc1` … `Npc4`; unused `PoxRouteTrainer_Route24` in `data/scripts/plastic_ox_route_trainers.inc`
 - Flags: `FLAG_POX_ROUTE24_NUGGET`, `FLAG_POX_HIDDEN_ROUTE24_18`
 - Trainers: `TRAINER_PLASTIC_OX_ROUTE24_ROCKET` (six mons, Lv.12 — an approved incidental Rocket, deliberately stronger than his story role suggests), `TRAINER_PLASTIC_OX_ROUTE24` (authored, unplaced)
-- Known gaps: orphaned trainer script; three identical encounter blocks; no sign, heal, or warp events.
+- Cave: the rock knoll at `(7,8)`–`(9,10)` is the post-game Cerulean Cave entrance (warp at `(8,10)`, guard at `(8,11)`); the grunt's "cave" rumour now has a real cave behind it, which he still must not name.
+- Known gaps: orphaned trainer script; three identical encounter blocks; no sign or heal events.
 
 ## Open questions
 - The grunt is approved as an incidental Rocket encounter (design decision, 2026-11-11); no move or recast. Should his six-mon Lv.12 party be trimmed so he reads as lost rather than elite?

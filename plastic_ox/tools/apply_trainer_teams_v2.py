@@ -311,6 +311,10 @@ KEEP_AS_IS = {
     # re-checks every species and move against the 'fortree' checkpoint.
     "TRAINER_PLASTIC_OX_WEATHER_DEVON": "authored ADV RU rain team; Devon trial 1",
     "TRAINER_PLASTIC_OX_WEATHER": "authored ADV RU sun team; Silph trial 2 (VALE)",
+    # Post-game final boss on the Cerulean Cave summit. The ADV Ubers team is
+    # the requested design (Mewtwo, Kyogre, Latios, Deoxys-A); it sits outside
+    # every story checkpoint on purpose and is checked by test_cerulean_cave.py.
+    "TRAINER_PLASTIC_OX_RED": "authored ADV Ubers final boss; Cerulean Cave summit",
 }
 
 # Endgame sets retain the ROSTERS species/levels but have authored roles,

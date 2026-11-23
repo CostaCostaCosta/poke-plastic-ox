@@ -3991,6 +3991,44 @@ const u16 gTilesetPalettes_LavenderTown_Hns[][16] =
     INCGFX_U16("data/tilesets/secondary/lavender_town_hns/palettes/12.pal", ".gbapal"),
 };
 
+const u32 gTilesetTiles_Cave_Gray_Hns[] = INCGFX_U32("data/tilesets/secondary/cave_gray_hns/tiles.png", ".4bpp.fastSmol");
+
+const u16 gTilesetPalettes_Cave_Gray_Hns[][16] =
+{
+    INCGFX_U16("data/tilesets/secondary/cave_gray_hns/palettes/00.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/cave_gray_hns/palettes/01.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/cave_gray_hns/palettes/02.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/cave_gray_hns/palettes/03.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/cave_gray_hns/palettes/04.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/cave_gray_hns/palettes/05.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/cave_gray_hns/palettes/06.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/cave_gray_hns/palettes/07.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/cave_gray_hns/palettes/08.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/cave_gray_hns/palettes/09.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/cave_gray_hns/palettes/10.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/cave_gray_hns/palettes/11.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/cave_gray_hns/palettes/12.pal", ".gbapal"),
+};
+
+const u32 gTilesetTiles_MtSilverSnow_Hns[] = INCGFX_U32("data/tilesets/secondary/mt_silver_snow_hns/tiles.png", ".4bpp.fastSmol");
+
+const u16 gTilesetPalettes_MtSilverSnow_Hns[][16] =
+{
+    INCGFX_U16("data/tilesets/secondary/mt_silver_snow_hns/palettes/00.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/mt_silver_snow_hns/palettes/01.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/mt_silver_snow_hns/palettes/02.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/mt_silver_snow_hns/palettes/03.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/mt_silver_snow_hns/palettes/04.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/mt_silver_snow_hns/palettes/05.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/mt_silver_snow_hns/palettes/06.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/mt_silver_snow_hns/palettes/07.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/mt_silver_snow_hns/palettes/08.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/mt_silver_snow_hns/palettes/09.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/mt_silver_snow_hns/palettes/10.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/mt_silver_snow_hns/palettes/11.pal", ".gbapal"),
+    INCGFX_U16("data/tilesets/secondary/mt_silver_snow_hns/palettes/12.pal", ".gbapal"),
+};
+
 const u32 gTilesetTiles_AzaleaTown_Hns[] = INCGFX_U32("data/tilesets/secondary/azalea_town_hns/tiles.png", ".4bpp.fastSmol");
 const u16 gTilesetPalettes_AzaleaTown_Hns[][16] = {
     INCGFX_U16("data/tilesets/secondary/azalea_town_hns/palettes/00.pal", ".gbapal"),

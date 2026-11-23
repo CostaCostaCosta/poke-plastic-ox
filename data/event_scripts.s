@@ -2004,6 +2004,14 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/PlasticOx_HallOfFame/scripts.inc"
 	.include "data/maps/PlasticOx_LeagueRestHouse1/scripts.inc"
 	.include "data/maps/PlasticOx_LeagueRestHouse2/scripts.inc"
+	.include "data/maps/MtSilver_1F_WaterfallRoom_hns/scripts.inc"
+	.include "data/maps/MtSilver_1F_ItemRoom_hns/scripts.inc"
+	.include "data/maps/MtSilver_1F_MoltresRoom_hns/scripts.inc"
+	.include "data/maps/MtSilver_MountainSide_hns/scripts.inc"
+	.include "data/maps/MtSilver_2F_hns/scripts.inc"
+	.include "data/maps/MtSilver_Snow_hns/scripts.inc"
+	.include "data/maps/MtSilver_3F_hns/scripts.inc"
+	.include "data/maps/MtSilver_SummitDay_hns/scripts.inc"
 
 	.include "data/scripts/plastic_ox_tournament.inc"
 
