@@ -85,6 +85,11 @@ A town built at canopy height: plank walkways between trunk platforms, rope and 
 - Trainers: `TRAINER_PLASTIC_OX_WINONA` (Lv.33–36, RU)
 - Known gaps: the arrival script sets `FLAG_KECLEON_FLED_FORTREE` unconditionally (must be removed); the Kecleon object is gated by `FLAG_POX_HIDE_UNUSED_ACTOR`, a flag with no story meaning; the vanilla `FortreeCity_Gym_EventScript_Winona` (badge 6, `TRAINER_WINONA_1`, TM Aerial Ace) is still present but not called by the live object; the cottage guide's directions mix Hoenn and Kanto; the sky watcher references Route 131 and a volcano; both edge signs are identical; GABBY and TY are the last live remnant of the roaming reporter system.
 
+## Professor Birch's field station (2026-11-23)
+
+- `FortreeCity_House2` (door `(17,3)`) is now PROF. BIRCH's field station. Littleroot isn't in the playable world, and the wilderness around Fortree suits his fieldwork. He gives a Hoenn starter for every 25 Gen 3 species owned (`PoxProf_Birch`, `data/scripts/plastic_ox_professor_starters.inc`).
+- The old couple who lived there (Hidden Power TM coin game, Sleep Talk tutor) were removed on purpose; neither feature is wanted in Plastic Ox. `FortreeCity_House5` is unchanged.
+
 ## Open questions
 
 - Kecleon resolution (design decision, 2026-11-11): it blocks the **east exit**, never the Gym, and clears on badge 4. Which exact walkway tile is the chokepoint, and should the reporters stand behind it or in front of it?

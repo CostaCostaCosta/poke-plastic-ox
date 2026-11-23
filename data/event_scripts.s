@@ -1844,6 +1844,7 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/PlasticOx_Route20West/scripts.inc"
 	.include "data/maps/PlasticOx_Route20East/scripts.inc"
 	.include "data/scripts/plastic_ox_pu_acquisitions.inc"
+	.include "data/scripts/plastic_ox_professor_starters.inc"
 	.include "data/scripts/plastic_ox_contest.inc"
 
 @ Plastic Ox v7 FRLG modules (Emerald inclusion).

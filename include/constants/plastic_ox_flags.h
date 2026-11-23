@@ -314,4 +314,15 @@
 // National Park: the Safari Zone Warden got his Gold Teeth back (tournament
 // round-one prize) and keeps the player on his Thursday contest guest list.
 #define FLAG_POX_WARDEN_GUEST (POX_EVENT_FLAGS_START + 41)
+// Professor starter rewards (src/plastic_ox_professor_starters.c): one flag
+// per starter so the save records exactly which ones the player chose.
+#define FLAG_POX_PROF_OAK_BULBASAUR  (POX_EVENT_FLAGS_START + 42)
+#define FLAG_POX_PROF_OAK_CHARMANDER (POX_EVENT_FLAGS_START + 43)
+#define FLAG_POX_PROF_OAK_SQUIRTLE   (POX_EVENT_FLAGS_START + 44)
+#define FLAG_POX_PROF_ELM_CHIKORITA  (POX_EVENT_FLAGS_START + 45)
+#define FLAG_POX_PROF_ELM_CYNDAQUIL  (POX_EVENT_FLAGS_START + 46)
+#define FLAG_POX_PROF_ELM_TOTODILE   (POX_EVENT_FLAGS_START + 47)
+#define FLAG_POX_PROF_BIRCH_TREECKO  (POX_EVENT_FLAGS_START + 48)
+#define FLAG_POX_PROF_BIRCH_TORCHIC  (POX_EVENT_FLAGS_START + 49)
+#define FLAG_POX_PROF_BIRCH_MUDKIP   (POX_EVENT_FLAGS_START + 50)
 #endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H
