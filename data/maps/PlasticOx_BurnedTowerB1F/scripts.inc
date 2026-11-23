@@ -12,6 +12,16 @@ PoxBurnedTower_AssembledSageText::
 	.string "POKéMON far from their homes.\n"
 	.string "They must be frightened.$"
 
+PoxBurnedTower_AssembledSage2::
+	msgbox PoxBurnedTower_AssembledSage2Text, MSGBOX_NPC
+	end
+
+PoxBurnedTower_AssembledSage2Text::
+	.string "The bell you found has not rung\n"
+	.string "in years. We will carry its sound\p"
+	.string "to every POKéMON that has lost\n"
+	.string "its way.$"
+
 PoxBurnedTower_UltraBall::
 	finditem ITEM_ULTRA_BALL
 	end

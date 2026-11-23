@@ -59,7 +59,7 @@ def static():
 
 def runtime():
     from test_league import prepare, finish_battle, settle, trainer_flag, current, save_continue
-    from test_cinnabar import save_reload
+    from pox_fixtures import save_reload
     from test_sudowoodo_v1 import bag, const, give_item, wait_for_battle, in_battle
     from test_training_kit import run_code
     from test_qol import opcode
@@ -134,7 +134,7 @@ def runtime():
 
 
 def downstream():
-    from test_cinnabar import Game, save_reload, finish_trainer
+    from pox_fixtures import Game, save_reload, finish_trainer
     from test_league import finish_battle, trainer_flag, current
     from test_sudowoodo_v1 import (bag, const, give_item, wait_for_battle,
         in_battle, talk, drain, fight, battle_mon, settle, K, opcode, run_code, POCKET_BALLS, in_overworld)

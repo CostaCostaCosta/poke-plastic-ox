@@ -60,6 +60,10 @@ gSpecials::
 	def_special SavePlayerParty
 	def_special LoadPlayerParty
 	def_special GivePlasticOxPlayerParty
+	def_special PoxProfStarters_Status
+	def_special PoxProfStarters_BufferChoices
+	def_special PoxProfStarters_GetChoice
+	def_special PoxProfStarters_Claim
 	def_special ChooseHalfPartyForBattle, waitstate=1
 	def_special Script_ShowLinkTrainerCard, waitstate=1
 	def_special ObjectEventInteractionGetBerryTreeData
@@ -670,4 +674,5 @@ gSpecials::
 	def_special PoxMaximizeSelectedMonFriendship
 	def_special PoxMinimizeSelectedMonFriendship
 	def_special PoxGetDayOfWeek
+	def_special PoxShowPlayerTrainerCard, waitstate=1
 	def_special BattleSetup_StartLegendaryRewardBattle, waitstate=1

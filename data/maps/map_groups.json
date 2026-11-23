@@ -80,7 +80,8 @@
     "gMapGroup_PlasticOxJohtoKanto",
     "gMapGroup_PlasticOxDungeons",
     "gMapGroup_PlasticOxStory",
-    "gMapGroup_PlasticOxV7"
+    "gMapGroup_PlasticOxV7",
+    "gMapGroup_CeruleanCave"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",
@@ -1254,7 +1255,8 @@
   "gMapGroup_PlasticOxDungeons": [
     "IlexForest_hns",
     "MtMoon_Cave_hns",
-    "NationalPark_Normal_hns"
+    "NationalPark_Normal_hns",
+    "MtSilver_1F_WaterfallRoom_hns"
   ],
   "gMapGroup_PlasticOxStory": [
     "PlasticOx_WhitneyGym",
@@ -1287,5 +1289,14 @@
     "PlasticOx_Route20West",
     "PlasticOx_Route20East",
     "PlasticOx_Harbor"
+  ],
+  "gMapGroup_CeruleanCave": [
+    "MtSilver_1F_ItemRoom_hns",
+    "MtSilver_1F_MoltresRoom_hns",
+    "MtSilver_MountainSide_hns",
+    "MtSilver_2F_hns",
+    "MtSilver_Snow_hns",
+    "MtSilver_3F_hns",
+    "MtSilver_SummitDay_hns"
   ]
 }

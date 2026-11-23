@@ -123,6 +123,10 @@ opening that happens to have three professors in it.
   the opening; the town's southern tree wall is reported as visually cut off
   from Route 21 in `plastic_ox/human_todo_list.txt`.
 
+## Oak's Kanto starter rewards (2026-11-23)
+
+- After his existing lines (`Pox_OakAfter` and the lab's OU-team Oak), Oak runs `PoxProf_Talk`. It gives a Kanto starter for every 25 Gen 1 species owned, up to three. The rewards are tracked by `FLAG_POX_PROF_OAK_BULBASAUR`, `FLAG_POX_PROF_OAK_CHARMANDER` and `FLAG_POX_PROF_OAK_SQUIRTLE` and are separate from the opening starter.
+
 ## Open questions
 
 - Confirm whether the Oak OU-team gift is intentionally kept as a debug hook or

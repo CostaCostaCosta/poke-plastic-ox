@@ -36,3 +36,38 @@ PlasticOx_WhitneyGym_Text_GreeterBannedItem:
 	.string "This GYM follows PU rules.\p"
 	.string "That item is banned here.\n"
 	.string "Please remove it before entering.$"
+
+PlasticOx_WhitneyGym_EventScript_Hint1::
+	msgbox PlasticOx_WhitneyGym_Text_Hint1, MSGBOX_NPC
+	end
+
+PlasticOx_WhitneyGym_Text_Hint1:
+	.string "WHITNEY's team can set up fast.\nBreak a SUBSTITUTE when you\psee it.$"
+
+PlasticOx_WhitneyGym_EventScript_Hint2::
+	msgbox PlasticOx_WhitneyGym_Text_Hint2, MSGBOX_NPC
+	end
+
+PlasticOx_WhitneyGym_Text_Hint2:
+	.string "Her YANMA put mine to sleep.\nI barely heard the whistle.$"
+
+PlasticOx_WhitneyGym_EventScript_Hint3::
+	msgbox PlasticOx_WhitneyGym_Text_Hint3, MSGBOX_NPC
+	end
+
+PlasticOx_WhitneyGym_Text_Hint3:
+	.string "A dancing DRAGONAIR swept me.\nDon't give it a free turn.$"
+
+PlasticOx_WhitneyGym_EventScript_Hint4::
+	msgbox PlasticOx_WhitneyGym_Text_Hint4, MSGBOX_NPC
+	end
+
+PlasticOx_WhitneyGym_Text_Hint4:
+	.string "MINUN takes a bow, then passes\nthe spotlight to a teammate.$"
+
+PlasticOx_WhitneyGym_EventScript_Hint5::
+	msgbox PlasticOx_WhitneyGym_Text_Hint5, MSGBOX_NPC
+	end
+
+PlasticOx_WhitneyGym_Text_Hint5:
+	.string "WHITNEY changes her lineup\noften. The badge always looks\pthe same.$"

@@ -261,15 +261,7 @@ PoxRegion_route33_goldenrod_a_Text::
 
 PoxRegion_route33_goldenrod_b::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route33_goldenrod_b_Open
-PoxRegion_route33_goldenrod_b_Open::
 	warp MAP_ROUTE33_HNS, 1, 23
-	waitstate
-	releaseall
-	end
-PoxRegion_route33_goldenrod_b_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_GOLDENROD_CITY_HNS, 32, 44
 	waitstate
 	releaseall
 	end
@@ -287,42 +279,20 @@ PoxRegion_goldenrod_route35_b_Text::
 	.string "GOLDENROD CITY - SOUTH\nThrough the gatehouse.$"
 
 PoxRegion_route119_fortree_a::
-	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route119_fortree_a_Open
 	goto_if_unset FLAG_POX_STORY_WEATHER, PoxRegion_route119_fortree_a_Closed
 PoxRegion_route119_fortree_a_Open::
-	warp MAP_FORTREE_CITY, 0, 9
-	waitstate
-	releaseall
 	end
 PoxRegion_route119_fortree_a_Closed::
-	msgbox Pox_Text_WI_CrossingClosed, MSGBOX_DEFAULT
-	warp MAP_ROUTE119, 38, 8
-	waitstate
-	releaseall
-	end
-
-PoxRegion_route119_fortree_b::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route119_fortree_b_Open
-	goto_if_unset FLAG_POX_STORY_WEATHER, PoxRegion_route119_fortree_b_Closed
-PoxRegion_route119_fortree_b_Open::
-	warp MAP_ROUTE119, 38, 8
-	waitstate
+	msgbox Pox_Text_WI_CrossingClosed, MSGBOX_DEFAULT
+	applymovement OBJ_EVENT_ID_PLAYER, PoxRegion_route119_fortree_a_StepBack
+	waitmovement 0
 	releaseall
 	end
-PoxRegion_route119_fortree_b_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_FORTREE_CITY, 0, 9
-	waitstate
-	releaseall
-	end
-
-PoxRegion_route119_fortree_b_Sign::
-	msgbox PoxRegion_route119_fortree_b_Text, MSGBOX_SIGN
-	end
-PoxRegion_route119_fortree_b_Text::
-	.string "Route119\nMarked passage ahead.$"
+PoxRegion_route119_fortree_a_StepBack:
+	walk_left
+	step_end
 
 PoxRegion_fortree_route110_a::
 	lockall
@@ -430,7 +400,7 @@ PoxRegion_route110_lavender_b_Sign::
 	msgbox PoxRegion_route110_lavender_b_Text, MSGBOX_SIGN
 	end
 PoxRegion_route110_lavender_b_Text::
-	.string "Route110\nMarked passage ahead.$"
+	.string "Route110\nMarked passage ahead.\pYou are leaving LAVENDER TOWN.$"
 
 PoxRegion_lavender_route8_a::
 	lockall
@@ -452,7 +422,7 @@ PoxRegion_lavender_route8_a_Sign::
 	msgbox PoxRegion_lavender_route8_a_Text, MSGBOX_SIGN
 	end
 PoxRegion_lavender_route8_a_Text::
-	.string "Route8\nMarked passage ahead.$"
+	.string "Route8\nMarked passage ahead.\pYou are leaving LAVENDER TOWN.$"
 
 PoxRegion_lavender_route8_b::
 	lockall
@@ -474,7 +444,7 @@ PoxRegion_lavender_route8_b_Sign::
 	msgbox PoxRegion_lavender_route8_b_Text, MSGBOX_SIGN
 	end
 PoxRegion_lavender_route8_b_Text::
-	.string "LavenderTown\nMarked passage ahead.$"
+	.string "LavenderTown\nMarked passage ahead.\pYou are leaving ROUTE 8.$"
 
 PoxRegion_route8_saffron_a::
 	lockall
@@ -496,7 +466,7 @@ PoxRegion_route8_saffron_a_Sign::
 	msgbox PoxRegion_route8_saffron_a_Text, MSGBOX_SIGN
 	end
 PoxRegion_route8_saffron_a_Text::
-	.string "SaffronCity\nMarked passage ahead.$"
+	.string "SaffronCity\nMarked passage ahead.\pYou are leaving ROUTE 8.$"
 
 PoxRegion_route8_saffron_b::
 	lockall
@@ -518,7 +488,7 @@ PoxRegion_route8_saffron_b_Sign::
 	msgbox PoxRegion_route8_saffron_b_Text, MSGBOX_SIGN
 	end
 PoxRegion_route8_saffron_b_Text::
-	.string "Route8\nMarked passage ahead.$"
+	.string "Route8\nMarked passage ahead.\pYou are leaving SAFFRON CITY.$"
 
 PoxRegion_route7_saffron_a::
 	lockall
@@ -540,7 +510,7 @@ PoxRegion_route7_saffron_a_Sign::
 	msgbox PoxRegion_route7_saffron_a_Text, MSGBOX_SIGN
 	end
 PoxRegion_route7_saffron_a_Text::
-	.string "SaffronCity\nMarked passage ahead.$"
+	.string "SaffronCity\nMarked passage ahead.\pYou are leaving ROUTE 7.$"
 
 PoxRegion_route7_saffron_b::
 	lockall
@@ -578,7 +548,7 @@ PoxRegion_route7_route103_a_Sign::
 	msgbox PoxRegion_route7_route103_a_Text, MSGBOX_SIGN
 	end
 PoxRegion_route7_route103_a_Text::
-	.string "Route103\nMarked passage ahead.$"
+	.string "Route103\nMarked passage ahead.\pYou are leaving ROUTE 7.$"
 
 PoxRegion_route7_route103_b::
 	lockall
@@ -644,7 +614,7 @@ PoxRegion_route103_cinnabar_b_Sign::
 	msgbox PoxRegion_route103_cinnabar_b_Text, MSGBOX_SIGN
 	end
 PoxRegion_route103_cinnabar_b_Text::
-	.string "Route103\nMarked passage ahead.$"
+	.string "Route103\nMarked passage ahead.\pYou are leaving CINNABAR ISLAND.$"
 
 PoxRegion_cinnabar_sea_a::
 	lockall
@@ -666,7 +636,7 @@ PoxRegion_cinnabar_sea_a_Sign::
 	msgbox PoxRegion_cinnabar_sea_a_Text, MSGBOX_SIGN
 	end
 PoxRegion_cinnabar_sea_a_Text::
-	.string "Route20West\nMarked passage ahead.$"
+	.string "Route20West\nMarked passage ahead.\pYou are leaving CINNABAR ISLAND.$"
 
 PoxRegion_cinnabar_sea_b::
 	lockall
@@ -750,7 +720,7 @@ PoxRegion_mossdeep_route19_b_Sign::
 	msgbox PoxRegion_mossdeep_route19_b_Text, MSGBOX_SIGN
 	end
 PoxRegion_mossdeep_route19_b_Text::
-	.string "MossdeepCity\nMarked passage ahead.$"
+	.string "MossdeepCity\nMarked passage ahead.\pYou are leaving ROUTE 19.$"
 
 PoxRegion_mossdeep_route127_a::
 	lockall
@@ -802,7 +772,7 @@ PoxRegion_route19_saffron_a_Sign::
 	msgbox PoxRegion_route19_saffron_a_Text, MSGBOX_SIGN
 	end
 PoxRegion_route19_saffron_a_Text::
-	.string "SaffronCity\nMarked passage ahead.$"
+	.string "SaffronCity\nMarked passage ahead.\pYou are leaving ROUTE 19.$"
 
 PoxRegion_route19_saffron_b::
 	lockall
@@ -824,7 +794,7 @@ PoxRegion_route19_saffron_b_Sign::
 	msgbox PoxRegion_route19_saffron_b_Text, MSGBOX_SIGN
 	end
 PoxRegion_route19_saffron_b_Text::
-	.string "Route19\nMarked passage ahead.$"
+	.string "Route19\nMarked passage ahead.\pYou are leaving SAFFRON CITY.$"
 
 PoxRegion_saffron_route5_a::
 	lockall
@@ -846,7 +816,7 @@ PoxRegion_saffron_route5_a_Sign::
 	msgbox PoxRegion_saffron_route5_a_Text, MSGBOX_SIGN
 	end
 PoxRegion_saffron_route5_a_Text::
-	.string "Route5\nMarked passage ahead.$"
+	.string "Route5\nMarked passage ahead.\pYou are leaving SAFFRON CITY.$"
 
 PoxRegion_saffron_route5_b::
 	lockall
@@ -868,7 +838,7 @@ PoxRegion_saffron_route5_b_Sign::
 	msgbox PoxRegion_saffron_route5_b_Text, MSGBOX_SIGN
 	end
 PoxRegion_saffron_route5_b_Text::
-	.string "SaffronCity\nMarked passage ahead.$"
+	.string "SaffronCity\nMarked passage ahead.\pYou are leaving ROUTE 5.$"
 
 PoxRegion_route5_route115_a::
 	lockall
@@ -890,7 +860,7 @@ PoxRegion_route5_route115_a_Sign::
 	msgbox PoxRegion_route5_route115_a_Text, MSGBOX_SIGN
 	end
 PoxRegion_route5_route115_a_Text::
-	.string "Route115\nMarked passage ahead.$"
+	.string "Route115\nMarked passage ahead.\pYou are leaving ROUTE 5.$"
 
 PoxRegion_route5_route115_b::
 	lockall
@@ -912,7 +882,7 @@ PoxRegion_route5_route115_b_Sign::
 	msgbox PoxRegion_route5_route115_b_Text, MSGBOX_SIGN
 	end
 PoxRegion_route5_route115_b_Text::
-	.string "Route5\nMarked passage ahead.$"
+	.string "Route5\nMarked passage ahead.\pYou are leaving ROUTE 115.$"
 
 PoxRegion_meteor_blackthorn_a::
 	lockall
@@ -934,7 +904,7 @@ PoxRegion_meteor_blackthorn_a_Sign::
 	msgbox PoxRegion_meteor_blackthorn_a_Text, MSGBOX_SIGN
 	end
 PoxRegion_meteor_blackthorn_a_Text::
-	.string "BlackthornCity\nMarked passage ahead.$"
+	.string "BlackthornCity\nMarked passage ahead.\pYou are leaving METEOR FALLS 1F 1R.$"
 
 PoxRegion_meteor_blackthorn_b::
 	lockall
@@ -956,7 +926,7 @@ PoxRegion_meteor_blackthorn_b_Sign::
 	msgbox PoxRegion_meteor_blackthorn_b_Text, MSGBOX_SIGN
 	end
 PoxRegion_meteor_blackthorn_b_Text::
-	.string "MeteorFalls_1F_1R\nMarked passage ahead.$"
+	.string "MeteorFalls_1F_1R\nMarked passage ahead.\pYou are leaving BLACKTHORN CITY.$"
 
 PoxRegion_blackthorn_route45_a::
 	lockall
@@ -994,7 +964,7 @@ PoxRegion_blackthorn_route45_b_Sign::
 	msgbox PoxRegion_blackthorn_route45_b_Text, MSGBOX_SIGN
 	end
 PoxRegion_blackthorn_route45_b_Text::
-	.string "BlackthornCity\nMarked passage ahead.$"
+	.string "BlackthornCity\nMarked passage ahead.\pYou are leaving ROUTE 45.$"
 
 PoxRegion_route45_route46_a::
 	lockall
@@ -1016,7 +986,7 @@ PoxRegion_route45_route46_a_Sign::
 	msgbox PoxRegion_route45_route46_a_Text, MSGBOX_SIGN
 	end
 PoxRegion_route45_route46_a_Text::
-	.string "Route46\nMarked passage ahead.$"
+	.string "Route46\nMarked passage ahead.\pYou are leaving ROUTE 45.$"
 
 PoxRegion_ecruteak_league_a::
 	goto PoxLeague_Checkpoint
@@ -1052,7 +1022,7 @@ PoxRegion_ecruteak_league_b_Sign::
 	msgbox PoxRegion_ecruteak_league_b_Text, MSGBOX_SIGN
 	end
 PoxRegion_ecruteak_league_b_Text::
-	.string "EcruteakCity\nMarked passage ahead.$"
+	.string "EcruteakCity\nMarked passage ahead.\pYou are leaving VICTORY ROAD 1F.$"
 
 PoxRegion_victory_indigo_a::
 	goto PoxLeague_Summit
@@ -1073,7 +1043,7 @@ PoxRegion_victory_indigo_a_Sign::
 	msgbox PoxRegion_victory_indigo_a_Text, MSGBOX_SIGN
 	end
 PoxRegion_victory_indigo_a_Text::
-	.string "IndigoPlateau\nMarked passage ahead.$"
+	.string "IndigoPlateau\nMarked passage ahead.\pYou are leaving VICTORY ROAD 1F.$"
 
 PoxRegion_victory_indigo_b::
 	goto PoxLeague_Downhill
@@ -1094,7 +1064,7 @@ PoxRegion_victory_indigo_b_Sign::
 	msgbox PoxRegion_victory_indigo_b_Text, MSGBOX_SIGN
 	end
 PoxRegion_victory_indigo_b_Text::
-	.string "VictoryRoad_1F\nMarked passage ahead.$"
+	.string "VictoryRoad_1F\nMarked passage ahead.\pYou are leaving INDIGO PLATEAU.$"
 
 PoxRegion_lavender_harbor_a::
 	lockall
@@ -1116,7 +1086,7 @@ PoxRegion_lavender_harbor_a_Sign::
 	msgbox PoxRegion_lavender_harbor_a_Text, MSGBOX_SIGN
 	end
 PoxRegion_lavender_harbor_a_Text::
-	.string "Harbor\nMarked passage ahead.$"
+	.string "Harbor\nMarked passage ahead.\pYou are leaving LAVENDER TOWN.$"
 
 PoxRegion_lavender_harbor_b::
 	lockall
@@ -1138,7 +1108,7 @@ PoxRegion_lavender_harbor_b_Sign::
 	msgbox PoxRegion_lavender_harbor_b_Text, MSGBOX_SIGN
 	end
 PoxRegion_lavender_harbor_b_Text::
-	.string "LavenderTown\nMarked passage ahead.$"
+	.string "LavenderTown\nMarked passage ahead.\pYou are leaving PLASTIC OX HARBOR.$"
 
 PoxRegion_harbor_frontier_a::
 	lockall
@@ -1160,7 +1130,7 @@ PoxRegion_harbor_frontier_a_Sign::
 	msgbox PoxRegion_harbor_frontier_a_Text, MSGBOX_SIGN
 	end
 PoxRegion_harbor_frontier_a_Text::
-	.string "BattleFrontier_OutsideWest\nMarked passage ahead.$"
+	.string "BattleFrontier_OutsideWest\nMarked passage ahead.\pYou are leaving PLASTIC OX HARBOR.$"
 
 PoxRegion_harbor_frontier_b::
 	lockall
@@ -1182,7 +1152,7 @@ PoxRegion_harbor_frontier_b_Sign::
 	msgbox PoxRegion_harbor_frontier_b_Text, MSGBOX_SIGN
 	end
 PoxRegion_harbor_frontier_b_Text::
-	.string "Harbor\nMarked passage ahead.$"
+	.string "Harbor\nMarked passage ahead.\pYou are leaving BATTLE FRONTIER OUTSID.$"
 
 PoxRegion_underground_west::
 	lockall
@@ -1203,7 +1173,7 @@ PoxRegion_underground_west_Sign::
 	msgbox PoxRegion_underground_west_Text, MSGBOX_SIGN
 	end
 PoxRegion_underground_west_Text::
-	.string "Underground Path\nMarked passage ahead.$"
+	.string "Underground Path\nMarked passage ahead.\pYou are leaving ROUTE 7.$"
 
 PoxRegion_underground_return_5::
 	lockall

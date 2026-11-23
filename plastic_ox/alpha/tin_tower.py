@@ -18,7 +18,7 @@ from pathlib import Path
 BASE = Path(__file__).with_suffix('')
 OFFICE = 'EcruteakCity_SageOffice2_hns'
 ROOF = 'TinTower_RoofDay_hns'
-TRAINER_ID = 958
+TRAINER_ID = 959
 TOWER_DOOR = dict(x=8, y=5, elevation=0, dest_map='MAP_BELLCHIME_TRAIL_HNS', dest_warp_id='1')
 
 # (local id suffix, x, y, temp flag that hides them while away, script)

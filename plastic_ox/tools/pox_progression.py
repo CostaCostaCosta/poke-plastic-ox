@@ -136,7 +136,8 @@ SPECIALS = {
     "route25": ["SPECIES_KABUTO", "SPECIES_ANORITH", "SPECIES_LILEEP"],  # Sea Cottage fossils
     "goldenrod": ["SPECIES_EEVEE", "SPECIES_BELDUM",         # Bill's family / Devon trade
                   "SPECIES_CASTFORM", "SPECIES_LUVDISC", "SPECIES_DELIBIRD"],
-    "ecruteak": ["SPECIES_SUDOWOODO"],                                # Route 36 odd tree
+    "ecruteak": ["SPECIES_SUDOWOODO",                                 # Route 36 odd tree
+                 "SPECIES_RELICANTH"],                                # Ecruteak House 2 trade (for Clamperl)
 }
 
 # Evolution items and the checkpoint that distributes them. The source document

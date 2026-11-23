@@ -146,5 +146,7 @@ extern const struct Tileset gTileset_PokemonDayCare_Hns;
 extern const struct Tileset gTileset_ShopRooftop_Hns;
 
 extern const struct Tileset gTileset_GoldenrodBuilding_Hns;
+extern const struct Tileset gTileset_Cave_Gray_Hns;
+extern const struct Tileset gTileset_MtSilverSnow_Hns;
 
 #endif //GUARD_tilesets_H

@@ -3,7 +3,7 @@
 import sys
 from pathlib import Path
 
-from test_cinnabar import game, finish_trainer, save_reload
+from pox_fixtures import game, finish_trainer, save_reload
 from test_sudowoodo_v1 import (K, const, talk, wait_for_battle, battle_mon,
     drain, fight, settle_overworld, bag, POCKET_BALLS, in_overworld)
 from test_burned_tower import visible_actor_ids

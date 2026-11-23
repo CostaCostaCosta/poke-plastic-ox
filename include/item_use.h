@@ -3,6 +3,7 @@
 
 void ItemUseOutOfBattle_Cut(u8 taskId);
 void ItemUseOutOfBattle_Headbutt(u8 taskId);
+void ItemUseOutOfBattle_FlyKey(u8 taskId);
 void ItemUseOutOfBattle_WarpBlock(u8 taskId);
 
 void ItemUseOutOfBattle_Mail(u8 taskId);

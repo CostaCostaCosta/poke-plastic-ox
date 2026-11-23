@@ -15,7 +15,7 @@ Route8_Text_AidanDefeat::
 	.string "Meltdown!$"
 
 Route8_Text_AidanPostBattle::
-	.string "I am better at school than this!$"
+	.string "I'm much better at the lab bench\nthan at this!$"
 
 Route8_Text_StanIntro::
 	.string "All right!\n"

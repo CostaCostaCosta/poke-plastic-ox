@@ -251,11 +251,10 @@
 // One-time gift from the Devon worker in Rustboro's dormitory.
 #define FLAG_POX_RUSTBORO_CHOICE_BAND 0x90E
 
-// Run 7: Underground haircut brothers, kimono gate, and the Steel Tablet.
+// Run 7: Underground haircut brothers. 0x911/0x912 are retired (kimono gate and
+// Steel Tablet were never built; the stair at Tunnel (12,10) is deliberately open).
 #define FLAG_POX_HIDE_HAIRCUT_OLDER   0x90F // set = older brother off duty (map ON_TRANSITION)
 #define FLAG_POX_HIDE_HAIRCUT_YOUNGER 0x910 // set = younger brother off duty
-#define FLAG_POX_KIMONO_GATE_OPEN     0x911 // reserved: opens both switch-room entrances later
-#define FLAG_POX_HIDDEN_UNDERGROUND_STEEL_TABLET 0x912 // unused: reserved for another legendary's Underground item
 #define FLAG_POX_BAD_HAIRCUT_KNOWN    0x913 // set = player has had one bad haircut
 #define FLAG_POX_ROUTE36_SNORLAX_CLEARED 0x914 // Route 36 eastern path opens after battle
 #define FLAG_POX_CONTEST_EVERSTONE_PENDING 0x915
@@ -314,6 +313,30 @@
 // National Park: the Safari Zone Warden got his Gold Teeth back (tournament
 // round-one prize) and keeps the player on his Thursday contest guest list.
 #define FLAG_POX_WARDEN_GUEST (POX_EVENT_FLAGS_START + 41)
+// Ecruteak City House 2: the river dredger traded his RELICANTH (INGAME_TRADE_RELICANTH).
+#define FLAG_POX_ECRUTEAK_RELICANTH_TRADE (POX_EVENT_FLAGS_START + 42)
+// Professor starter rewards (src/plastic_ox_professor_starters.c): one flag
+// per starter so the save records exactly which ones the player chose.
+#define FLAG_POX_PROF_OAK_BULBASAUR  (POX_EVENT_FLAGS_START + 43)
+#define FLAG_POX_PROF_OAK_CHARMANDER (POX_EVENT_FLAGS_START + 44)
+#define FLAG_POX_PROF_OAK_SQUIRTLE   (POX_EVENT_FLAGS_START + 45)
+#define FLAG_POX_PROF_ELM_CHIKORITA  (POX_EVENT_FLAGS_START + 46)
+#define FLAG_POX_PROF_ELM_CYNDAQUIL  (POX_EVENT_FLAGS_START + 47)
+#define FLAG_POX_PROF_ELM_TOTODILE   (POX_EVENT_FLAGS_START + 48)
+#define FLAG_POX_PROF_BIRCH_TREECKO  (POX_EVENT_FLAGS_START + 49)
+#define FLAG_POX_PROF_BIRCH_TORCHIC  (POX_EVENT_FLAGS_START + 50)
+#define FLAG_POX_PROF_BIRCH_MUDKIP   (POX_EVENT_FLAGS_START + 51)
+// Cerulean Cave summit: RED (TRAINER_PLASTIC_OX_RED, ID 958) was defeated.
+// Also hides RED and MEWTWO on MtSilver_SummitDay_hns afterwards.
+#define FLAG_POX_TRAINER_RED (POX_EVENT_FLAGS_START + 52)
+// Cerulean Cave summit: MEWTWO caught in its post-RED reward battle (any ball
+// succeeds). Hides MEWTWO on MtSilver_SummitDay_hns.
+#define FLAG_POX_CAUGHT_MEWTWO (POX_EVENT_FLAGS_START + 53)
+// Cerulean Cave summit: RED was beaten and is gone until the player wins the
+// League again (cleared by PoxLeague_Hall on every Hall of Fame entry). Hides RED.
+#define FLAG_POX_RED_RESTING (POX_EVENT_FLAGS_START + 54)
+// Route 119 Wingull house: the Fly Key item ball was picked up.
+#define FLAG_POX_HIDE_ROUTE119_FLY_KEY (POX_EVENT_FLAGS_START + 55)
 // Tin Tower roof: Moltres caught after its sage (TRAINER_PLASTIC_OX_MOLTRES_SAGE).
-#define FLAG_POX_CAUGHT_MOLTRES (POX_EVENT_FLAGS_START + 42)
+#define FLAG_POX_CAUGHT_MOLTRES (POX_EVENT_FLAGS_START + 56)
 #endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H

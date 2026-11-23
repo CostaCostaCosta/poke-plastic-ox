@@ -130,13 +130,13 @@ Route34_EventScript_Npc7_Text:
 	.string "Keep east for GOLDENROD... or was it\nRUSTBORO? The signs gave up.$"
 
 Route34_EventScript_Npc8_Text:
-	.string "Rocky ground can wear your team\ndown. Rest when you can.$"
+	.string "A toy POKé BALL, chewed at the\nedges. It probably rolled out of\pthe DAY CARE yard.$"
 
 Route34_EventScript_Npc9_Text:
-	.string "The mountain draws hikers and\ncurious trainers alike.$"
+	.string "An empty POKé BALL rests in the\ngrass. Its owner must have\pdropped it.$"
 
 Route34_EventScript_Npc10_Text:
-	.string "Rocky ground can wear your team\ndown. Rest when you can.$"
+	.string "I patrol from the DAY CARE to\nthe GOLDENROD gate. Mostly I\phand back dropped POKé BALLS.$"
 
 Route34_EventScript_Npc11_Text:
 	.string "I nap here. The border runs right\nthrough my blanket.$"
@@ -145,7 +145,7 @@ Route34_EventScript_Npc12_Text:
 	.string "This route used to just end. Now it's\nsomebody's shortcut.$"
 
 Route34_EventScript_Npc13_Text:
-	.string "The mountain draws hikers and\ncurious trainers alike.$"
+	.string "A POKé BALL with its owner's\nname scratched off. Someone will\pcome looking for it.$"
 
 Route34_EventScript_Sign1_Text:
 	.string "ROUTE 34\nNorth: ILEX FOREST. South: anywhere.$"

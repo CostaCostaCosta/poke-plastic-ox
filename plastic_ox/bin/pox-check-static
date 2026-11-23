@@ -24,6 +24,7 @@ run "$PY" plastic_ox/tools/audit_warp_connections.py
 run "$PY" .agents/skills/plastic-ox-map-port/scripts/audit_imports.py .
 run "$PY" plastic_ox/tools/check_map_refs.py --changed
 run "$PY" plastic_ox/tools/check_generated.py
+run "$PY" plastic_ox/tools/audit_npc_dialogue.py
 run "$PY" plastic_ox/battle/metamon/test_import_model.py
 run "$PY" plastic_ox/battle/metamon/test_heap_simulation.py
 run "$PY" plastic_ox/wiki/editor/test_editor.py

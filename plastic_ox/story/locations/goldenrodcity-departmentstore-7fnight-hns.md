@@ -7,13 +7,13 @@ stage: "3 — Goldenrod"
 depth: supporting
 wiki: goldenrodcity-departmentstore-7fnight-hns
 maps: [GoldenrodCity_DepartmentStore_7FNight_hns]
-status: drafted
+status: implemented
 ---
 
 # Goldenrod City Department Store 7FNight
 
 ## Snapshot
-A second, complete copy of the department store roof, identical in geometry and warp to `GoldenrodCity_DepartmentStore_7F_hns`, with four different night lines. It is currently unreachable: no map, script or code path warps here. Treat this note as an audit, not a design brief.
+A second, complete copy of the department store roof, identical in geometry and warp to `GoldenrodCity_DepartmentStore_7F_hns`, with four different night lines. It was unreachable: no map, script or code path warped here. **Decision (pox-2ma.8): retired.** The map is now an empty tombstone (no objects, no signs, no scripts) kept only to hold its map and layout IDs stable for existing saves; its one warp ejects to the day roof. Treat this note as an audit record, not a design brief.
 
 ## Plot points
 1. **What the map is.** Same deck, same stair warp at `(22,5)` into `GoldenrodCity_DepartmentStore_6F_hns`, four objects at the day map's coordinates: the nerd at `(22,11)`, the fat man at `(11,6)`, the bug catcher at `(12,10)`, the woman at `(19,8)`. The day map's `LOCALID_GOLDENROD_ROOF_NERD` is not carried over, so any future script must not assume it here.
@@ -43,7 +43,8 @@ A second, complete copy of the department store roof, identical in geometry and 
 
 ## Implementation hooks
 - Wiki page: `goldenrodcity-departmentstore-7fnight-hns.html`; map `GoldenrodCity_DepartmentStore_7FNight_hns` (`MAP_GOLDENROD_CITY_DEPARTMENT_STORE_7FNIGHT_HNS`); scripts `data/maps/GoldenrodCity_DepartmentStore_7FNight_hns/scripts.inc` (`PoxGoldenrod_GoldenrodCity_DepartmentStore_7FNight_hns_0`–`3`)
-- Known gaps: no inbound warp anywhere in the checkout; no `LOCALID_*` on this map's objects; warp target (6F, warp 2) shared with the day map; nothing references the four texts.
+- Retired: objects, signs and the four scripts were removed from `data/maps/` and `plastic_ox/alpha/goldenrod/`; the warp at `(22,5)` now lands on `MAP_GOLDENROD_CITY_DEPARTMENT_STORE_7F_HNS` warp 0. The four night lines were not carried over; the tower-light count remains a candidate for the day roof's voice pass. Removing the registration entirely would renumber later `gMapGroup_PlasticOxInteriors` maps.
+- Known gaps (pre-retirement): no inbound warp anywhere in the checkout; no `LOCALID_*` on this map's objects; warp target (6F, warp 2) shared with the day map; nothing references the four texts.
 
 ## Open questions
 - Keep or retire? Recommendation: one map, one set of four voices. If the day roof takes the light-counting line, retire this map and its layout; if night is wanted, branch the 6F stair on `GetTimeOfDay` and delete the duplicate geometry instead of maintaining two copies.

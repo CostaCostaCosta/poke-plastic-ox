@@ -693,3 +693,11 @@ const u16 gMetatiles_ShopRooftop_Hns[] = INCBIN_U16("data/tilesets/secondary/sho
 const u16 gMetatileAttributes_ShopRooftop_Hns[] = INCBIN_U16("data/tilesets/secondary/shop_rooftop_hns/metatile_attributes.bin");
 
 const u16 gMetatileAttributes_GoldenrodBuilding_Hns[] = INCBIN_U16("data/tilesets/primary/johto_building_hns/goldenrod_metatile_attributes.bin");
+
+const u16 gMetatiles_Cave_Gray_Hns[] = INCBIN_U16("data/tilesets/secondary/cave_gray_hns/metatiles.bin");
+
+const u16 gMetatileAttributes_Cave_Gray_Hns[] = INCBIN_U16("data/tilesets/secondary/cave_gray_hns/metatile_attributes.bin");
+
+const u16 gMetatiles_MtSilverSnow_Hns[] = INCBIN_U16("data/tilesets/secondary/mt_silver_snow_hns/metatiles.bin");
+
+const u16 gMetatileAttributes_MtSilverSnow_Hns[] = INCBIN_U16("data/tilesets/secondary/mt_silver_snow_hns/metatile_attributes.bin");

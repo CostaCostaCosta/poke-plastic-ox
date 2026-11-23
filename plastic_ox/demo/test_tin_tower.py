@@ -11,7 +11,7 @@ import struct
 from collections import deque
 from pathlib import Path
 
-from test_cinnabar import game, at, shot as _shot
+from pox_fixtures import game, at, shot as _shot
 from test_sudowoodo_v1 import K, talk, settle, wait_for_battle, battle_mon, const
 
 ROOT = Path(__file__).resolve().parents[2]

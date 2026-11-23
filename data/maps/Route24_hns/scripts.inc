@@ -28,6 +28,13 @@ Route24_EventScript_Npc4::
 	release
 	end
 
+Route24_EventScript_CaveGuard::
+	lock
+	faceplayer
+	msgbox Route24_EventScript_CaveGuard_Text, MSGBOX_NPC
+	release
+	end
+
 Route24_EventScript_Npc1_Text:
 	.string "I was told to go to a cave,\nbut I got lost out here.\pDon't tell the BOSS you saw me!$"
 
@@ -45,3 +52,6 @@ Route24_EventScript_Npc3_Text:
 
 Route24_EventScript_Npc4_Text:
 	.string "I brought lunch and some bait.\nThey're in separate tins.\pLast time I mixed them up.\nI checked twice today.$"
+
+Route24_EventScript_CaveGuard_Text:
+	.string "The POKéMON LEAGUE keeps this cave\nclosed. The POKéMON inside are\ltoo strong for most TRAINERS.\pCome back once your name is in\nthe HALL OF FAME.$"

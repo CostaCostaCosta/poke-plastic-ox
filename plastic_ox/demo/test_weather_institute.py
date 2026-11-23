@@ -52,7 +52,7 @@ def static_checks() -> None:
 
 
 def emulator_checks() -> None:
-    from test_cinnabar import finish_trainer, save_reload
+    from pox_fixtures import finish_trainer, save_reload
     from test_sudowoodo_v1 import SudoGame as StoryGame
     from test_sudowoodo_v1 import talk, settle, settle_overworld, in_battle
     from test_ecruteak_gym_gate import at

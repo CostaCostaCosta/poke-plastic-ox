@@ -1,0 +1,71 @@
+{
+  "id": "MAP_MT_SILVER_SNOW_HNS",
+  "name": "MtSilver_Snow_hns",
+  "layout": "LAYOUT_MT_SILVER_SNOW_HNS",
+  "music": "MUS_RG_SEVII_CAVE",
+  "region_map_section": "MAPSEC_CERULEAN_CAVE",
+  "requires_flash": false,
+  "weather": "WEATHER_SNOW",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": true,
+  "allow_running": false,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": null,
+  "object_events": [],
+  "warp_events": [
+    {
+      "x": 14,
+      "y": 39,
+      "elevation": 0,
+      "dest_map": "MAP_MT_SILVER_3F_HNS",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 18,
+      "y": 51,
+      "elevation": 0,
+      "dest_map": "MAP_MT_SILVER_2F_HNS",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 32,
+      "y": 51,
+      "elevation": 0,
+      "dest_map": "MAP_MT_SILVER_2F_HNS",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 39,
+      "y": 43,
+      "elevation": 0,
+      "dest_map": "MAP_MT_SILVER_2F_HNS",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 39,
+      "y": 34,
+      "elevation": 0,
+      "dest_map": "MAP_MT_SILVER_2F_HNS",
+      "dest_warp_id": "4"
+    },
+    {
+      "x": 39,
+      "y": 23,
+      "elevation": 0,
+      "dest_map": "MAP_MT_SILVER_2F_HNS",
+      "dest_warp_id": "5"
+    },
+    {
+      "x": 24,
+      "y": 17,
+      "elevation": 0,
+      "dest_map": "MAP_MT_SILVER_2F_HNS",
+      "dest_warp_id": "6"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [],
+  "region": "REGION_HOENN"
+}

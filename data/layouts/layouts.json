@@ -11140,6 +11140,118 @@
       ]
     },
     {
+      "id": "LAYOUT_MT_SILVER_1F_WATERFALL_ROOM_HNS",
+      "name": "MtSilver_1F_WaterfallRoom_hns_Layout",
+      "width": 60,
+      "height": 50,
+      "primary_tileset": "gTileset_Johto_General_Hns",
+      "secondary_tileset": "gTileset_Cave_Gray_Hns",
+      "border_filepath": "data/layouts/MtSilver_1F_WaterfallRoom_hns/border.bin",
+      "blockdata_filepath": "data/layouts/MtSilver_1F_WaterfallRoom_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
+      "id": "LAYOUT_MT_SILVER_1F_ITEM_ROOM_HNS",
+      "name": "MtSilver_1F_ItemRoom_hns_Layout",
+      "width": 20,
+      "height": 20,
+      "primary_tileset": "gTileset_Johto_General_Hns",
+      "secondary_tileset": "gTileset_Cave_Gray_Hns",
+      "border_filepath": "data/layouts/MtSilver_1F_ItemRoom_hns/border.bin",
+      "blockdata_filepath": "data/layouts/MtSilver_1F_ItemRoom_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
+      "id": "LAYOUT_MT_SILVER_1F_MOLTRES_ROOM_HNS",
+      "name": "MtSilver_1F_MoltresRoom_hns_Layout",
+      "width": 35,
+      "height": 35,
+      "primary_tileset": "gTileset_Johto_General_Hns",
+      "secondary_tileset": "gTileset_Cave_Gray_Hns",
+      "border_filepath": "data/layouts/MtSilver_1F_MoltresRoom_hns/border.bin",
+      "blockdata_filepath": "data/layouts/MtSilver_1F_MoltresRoom_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
+      "id": "LAYOUT_MT_SILVER_MOUNTAIN_SIDE_HNS",
+      "name": "MtSilver_MountainSide_hns_Layout",
+      "width": 55,
+      "height": 61,
+      "primary_tileset": "gTileset_Johto_NorthEast_Hns",
+      "secondary_tileset": "gTileset_Blackthorn_Hns",
+      "border_filepath": "data/layouts/MtSilver_MountainSide_hns/border.bin",
+      "blockdata_filepath": "data/layouts/MtSilver_MountainSide_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
+      "id": "LAYOUT_MT_SILVER_2F_HNS",
+      "name": "MtSilver_2F_hns_Layout",
+      "width": 51,
+      "height": 51,
+      "primary_tileset": "gTileset_Johto_NorthEast_Hns",
+      "secondary_tileset": "gTileset_Cave_Gray_Hns",
+      "border_filepath": "data/layouts/MtSilver_2F_hns/border.bin",
+      "blockdata_filepath": "data/layouts/MtSilver_2F_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
+      "id": "LAYOUT_MT_SILVER_SNOW_HNS",
+      "name": "MtSilver_Snow_hns_Layout",
+      "width": 55,
+      "height": 64,
+      "primary_tileset": "gTileset_Johto_General_Hns",
+      "secondary_tileset": "gTileset_MtSilverSnow_Hns",
+      "border_filepath": "data/layouts/MtSilver_Snow_hns/border.bin",
+      "blockdata_filepath": "data/layouts/MtSilver_Snow_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
+      "id": "LAYOUT_MT_SILVER_3F_HNS",
+      "name": "MtSilver_3F_hns_Layout",
+      "width": 55,
+      "height": 25,
+      "primary_tileset": "gTileset_Johto_NorthEast_Hns",
+      "secondary_tileset": "gTileset_Cave_Gray_Hns",
+      "border_filepath": "data/layouts/MtSilver_3F_hns/border.bin",
+      "blockdata_filepath": "data/layouts/MtSilver_3F_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
+      "id": "LAYOUT_MT_SILVER_SUMMIT_DAY_HNS",
+      "name": "MtSilver_SummitDay_hns_Layout",
+      "width": 21,
+      "height": 27,
+      "primary_tileset": "gTileset_Johto_General_Hns",
+      "secondary_tileset": "gTileset_MtSilverSnow_Hns",
+      "border_filepath": "data/layouts/MtSilver_SummitDay_hns/border.bin",
+      "blockdata_filepath": "data/layouts/MtSilver_SummitDay_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
       "id": "LAYOUT_BELLCHIME_TRAIL_HNS",
       "name": "BellchimeTrail_hns_Layout",
       "width": 70,

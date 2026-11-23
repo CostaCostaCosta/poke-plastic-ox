@@ -15786,6 +15786,22 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_IronPlate,
     },
 
+    [ITEM_FLY_KEY] =
+    {
+        .name = ITEM_NAME("Fly Key"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "A gull-feather key\n"
+            "that lets you FLY\n"
+            "to towns you know."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_FlyKey,
+        .iconPic = gItemIcon_PrettyFeather,
+        .iconPalette = gItemIconPalette_PrettyFeather,
+    },
+
     [ITEM_TRAINING_KIT] =
     {
         .name = ITEM_NAME("Training Kit"),

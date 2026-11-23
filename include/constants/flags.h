@@ -1359,8 +1359,10 @@
 // Ecruteak Gym staff (953..956) use four appended POX event flags because the
 // 0x4A0 run ends exactly at ID 952 and the Sage range is not for Gym staff.
 // The Weather Institute's Devon trial (957) uses the next appended POX flag.
+// RED on the Cerulean Cave summit (958) uses FLAG_POX_TRAINER_RED.
 #define TRAINER_FLAG(id) \
-    ((!IS_FRLG && (id) == 957) ? (POX_EVENT_FLAGS_START + 40) : \
+    ((!IS_FRLG && (id) == 958) ? (POX_EVENT_FLAGS_START + 52) : \
+     (!IS_FRLG && (id) == 957) ? (POX_EVENT_FLAGS_START + 40) : \
      (!IS_FRLG && (id) >= 953 && (id) <= 956) ? (POX_EVENT_FLAGS_START + 36 + (id) - 953) : \
      (!IS_FRLG && (id) >= 938 && (id) < 1002) ? (POX_SAGE_TRAINER_FLAGS_START + (id) - 938) : \
      (!IS_FRLG && (id) == 932) ? 0x082 : \

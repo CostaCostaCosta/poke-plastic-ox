@@ -56,24 +56,48 @@ Gate_NationalPark_EventScript_Officer::
 	msgbox Gate_NationalPark_Text_Schedule, MSGBOX_NPC
 	end
 
-Gate_NationalPark_EventScript_BirdWatcher::
+Gate_NationalPark_EventScript_OfficerEast::
 	special PoxGetDayOfWeek
 	compare VAR_RESULT, WEEKDAY_THU
-	goto_if_eq Gate_NationalPark_EventScript_Thursday
+	goto_if_eq Gate_NationalPark_EventScript_ThursdayEast
+	msgbox Gate_NationalPark_Text_ScheduleEast, MSGBOX_NPC
+	end
+
+Gate_NationalPark_EventScript_ThursdayEast::
+	msgbox Gate_NationalPark_Text_ThursdayEast, MSGBOX_NPC
+	end
+
+@ Everyone else in the gate keeps their own line on every day of the week.
+Gate_NationalPark_EventScript_BirdWatcher::
 	msgbox Gate_NationalPark_Text_BirdWatcher, MSGBOX_NPC
 	end
 
 Gate_NationalPark_EventScript_Contestant::
-	special PoxGetDayOfWeek
-	compare VAR_RESULT, WEEKDAY_THU
-	goto_if_eq Gate_NationalPark_EventScript_Thursday
 	msgbox Gate_NationalPark_Text_Contestant, MSGBOX_NPC
 	end
 
+Gate_NationalPark_EventScript_Contestant2::
+	msgbox Gate_NationalPark_Text_Contestant2, MSGBOX_NPC
+	end
+
+Gate_NationalPark_EventScript_Contestant3::
+	msgbox Gate_NationalPark_Text_Contestant3, MSGBOX_NPC
+	end
+
+Gate_NationalPark_EventScript_Contestant4::
+	msgbox Gate_NationalPark_Text_Contestant4, MSGBOX_NPC
+	end
+
+Gate_NationalPark_EventScript_Contestant5::
+	msgbox Gate_NationalPark_Text_Contestant5, MSGBOX_NPC
+	end
+
+Gate_NationalPark_EventScript_Contestant6::
+	msgbox Gate_NationalPark_Text_Contestant6, MSGBOX_NPC
+	end
+
+
 Gate_NationalPark_EventScript_Visitor::
-	special PoxGetDayOfWeek
-	compare VAR_RESULT, WEEKDAY_THU
-	goto_if_eq Gate_NationalPark_EventScript_Thursday
 	msgbox Gate_NationalPark_Text_Visitor, MSGBOX_NPC
 	end
 
@@ -182,3 +206,24 @@ Gate_NationalPark_Text_Contestant:
 Gate_NationalPark_Text_Visitor:
 	.string "This gate leads to ROUTE 36.\n"
 	.string "The south gate leads to ROUTE 35.$"
+
+Gate_NationalPark_Text_ScheduleEast::
+	.string "East gate, ROUTE 36 side.\nContest entrants, please sign in\pwith the attendant here.\pThe park itself is open every\nday.$"
+
+Gate_NationalPark_Text_ThursdayEast::
+	.string "Thursday's round belongs to the\nWARDEN. Guests only today, I'm\pafraid.\pHe's the fellow in the hat. Good\nluck understanding a word he\psays.$"
+
+Gate_NationalPark_Text_Contestant2::
+	.string "My new net is made for SCYTHER.\nI've practiced swinging it all\pweek!$"
+
+Gate_NationalPark_Text_Contestant3::
+	.string "Last time I caught a CATERPIE.\nThis time I want something with\phorns!$"
+
+Gate_NationalPark_Text_Contestant4::
+	.string "I'm mostly here for the prize\nBERRIES. Don't tell the judges.$"
+
+Gate_NationalPark_Text_Contestant5::
+	.string "The east side of the park has\nthe big bugs. Everybody knows\pthat!$"
+
+Gate_NationalPark_Text_Contestant6::
+	.string "I borrowed my brother's VENONAT\nfor luck. He doesn't know yet.$"

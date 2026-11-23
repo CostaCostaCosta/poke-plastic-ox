@@ -8,7 +8,7 @@ Setup writes emulator RAM only (flags, bag, position); never ROM or save files.
 """
 import struct
 
-from test_cinnabar import Game, at, shot as _shot
+from pox_fixtures import Game, at, shot as _shot
 from test_sudowoodo_v1 import (K, const, talk, give_item, bag, settle, wait_for_battle,
     run_code, opcode)
 

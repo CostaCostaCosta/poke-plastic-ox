@@ -70,7 +70,7 @@ BlackthornCity_EventScript_Npc4_Text:
 	.string "The mountain air makes every\nmorning feel sharp and clear.$"
 
 BlackthornCity_EventScript_Npc5_Text:
-	.string "Dragon training takes patience.\nPower alone is not enough.$"
+	.string "I cycle the switchbacks up from\nROUTE 45 every morning. My legs\phave stopped speaking to me.$"
 
 BlackthornCity_EventScript_Npc6_Text:
-	.string "The mountain air makes every\nmorning feel sharp and clear.$"
+	.string "I meditate under the falls\nbehind town. The cold water\psharpens the mind.$"
