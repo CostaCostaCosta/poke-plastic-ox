@@ -244,9 +244,10 @@ def downstream():
         assert not in_battle(g) and not trainer_flag(g,name.upper()+'_SAGE')
     for name,area in [('Regirock','DesertRuins'),('Regice','IslandCave'),('Registeel','AncientTomb')]:
         if name!='Regirock':g.flag('FLAG_BADGE06_GET',True)
-        assert interact(area,8,8)['battle'];assert wait_for_battle(g)
+        r=interact(area,8,8);assert r['battle'],(name,r,g.state());assert wait_for_battle(g)
         assert g.u16(g.syms['gTrainerBattleParameter']+2)==g.const('TRAINER_PLASTIC_OX_'+name.upper()+'_SAGE')
-        finish_trainer(g,False);assert drain(g)
+        # The loss whites out home; settle() taps through the arrival script.
+        finish_trainer(g,False);assert settle(g)
         assert not trainer_flag(g,name.upper()+'_SAGE')
     print('PASS: per-Regi tablets, UUBL Regirock and OU-only Regice/Registeel sages',flush=True)
 
