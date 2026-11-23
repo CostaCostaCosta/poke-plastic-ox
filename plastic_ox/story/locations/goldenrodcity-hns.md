@@ -90,6 +90,10 @@ One long commercial street on a slope, entered from `Route33_hns` in the south a
 - Gates: badge 2 needs `FLAG_BADGE01_GET` and `FLAG_POX_STORY_MTMOON`; the family EEVEE needs `FLAG_POX_STORY_STARTER`; the SquirtBottle needs `FLAG_BADGE02_GET`.
 - Known gaps: two `Pox_SquirtBottle` objects with identical text; two identical prize desks; the coin clerk is a Mauville script; the Kimono guard calls the switch chamber closed while `(12,10)` is open and stocked with a Max Revive before badge 2; the Lavaridge herb clerk sells nothing; `PoxGoldenrod_Directory` is pasted on shelf signs inside the Bike Shop, the switch chamber, the Department Store and two corners of the Game Corner; `PoxGoldenrod_Bike` gives `ITEM_MACH_BIKE` with no flag and no price, so repeat visits say "Your bicycle is ready"; the south portal's `_Closed` branch is dead code.
 
+## Professor Elm's research base (2026-11-23)
+
+- `GoldenrodCity_House2_hns` (city door `(48,15)`) is now PROF. ELM's research base, because New Bark Town isn't in the playable world. He gives a Johto starter for every 25 Gen 2 species owned (`PoxProf_Elm`). The clock-repairer couple and their two lines were removed. They had no items, trades or flags. Edit `plastic_ox/alpha/goldenrod/GoldenrodCity_House2_hns.{json,inc}` along with the live map, because `goldenrod.py` reinstalls them.
+
 ## Open questions
 
 - RESOLVED (pox-2ma.7): the switch chamber stays open; the story bible has no Steel Tablet/kimono gate, so the dead flags were retired. Revisit only if the bible adds a Registeel beat.

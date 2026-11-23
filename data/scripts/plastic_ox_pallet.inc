@@ -231,6 +231,8 @@ Pox_Oak::
 Pox_OakAfter::
     call Pox_StarterSupplies
     msgbox Pox_Text_OakAfter, MSGBOX_DEFAULT
+    setvar VAR_0x8004, 0
+    call PoxProf_Talk
     release
     end
 

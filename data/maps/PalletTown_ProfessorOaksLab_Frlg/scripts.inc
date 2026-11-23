@@ -14,11 +14,15 @@ PalletTown_ProfessorOaksLab_EventScript_ProfOak::
 	special GivePlasticOxPlayerParty
 	additem ITEM_GOOD_ROD
 	msgbox PalletTown_ProfessorOaksLab_Text_ProfOakTeamGiven, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 0
+	call PoxProf_Talk
 	release
 	end
 
 PalletTown_ProfessorOaksLab_EventScript_ProfOakDeclined::
 	msgbox PalletTown_ProfessorOaksLab_Text_ProfOakDeclined, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 0
+	call PoxProf_Talk
 	release
 	end
 

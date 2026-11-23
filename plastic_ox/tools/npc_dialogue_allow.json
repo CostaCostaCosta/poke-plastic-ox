@@ -96,7 +96,17 @@
     "SlateportCity_NameRatersHouse_Text_MonShallBeKnownAsName": "Name Rater service prompts",
     "SlateportCity_NameRatersHouse_Text_NameNoDifferentYetSuperior": "Name Rater service prompts",
     "SlateportCity_NameRatersHouse_Text_ThatIsMerelyAnEgg": "Name Rater service prompts",
-    "SlateportCity_NameRatersHouse_Text_WhatShallNewNameBe": "Name Rater service prompts"
+    "SlateportCity_NameRatersHouse_Text_WhatShallNewNameBe": "Name Rater service prompts",
+    "PoxProf_Text_Complete": "Professor starter rewards: one shared script for Oak/Elm/Birch; region name and counts are filled in at runtime",
+    "PoxProf_Text_Reward": "Professor starter rewards: one shared script for Oak/Elm/Birch; region name and counts are filled in at runtime",
+    "PoxProf_Text_IntroOak": "Professor starter rewards: per-professor intro, selected at runtime by VAR_0x8004 (static reachability sees all three)",
+    "PoxProf_Text_IntroElm": "Professor starter rewards: per-professor intro, selected at runtime by VAR_0x8004 (static reachability sees all three)",
+    "PoxProf_Text_IntroBirch": "Professor starter rewards: per-professor intro, selected at runtime by VAR_0x8004 (static reachability sees all three)",
+    "PoxProf_Text_NoRoom": "Professor starter rewards: one shared script for Oak/Elm/Birch; region name and counts are filled in at runtime",
+    "PoxProf_Text_TakeCare": "Professor starter rewards: one shared script for Oak/Elm/Birch; region name and counts are filled in at runtime",
+    "PoxProf_Text_Declined": "Professor starter rewards: one shared script for Oak/Elm/Birch; region name and counts are filled in at runtime",
+    "PoxProf_Text_Progress": "Professor starter rewards: one shared script for Oak/Elm/Birch; region name and counts are filled in at runtime",
+    "PoxProf_Text_SentToPC": "Professor starter rewards: one shared script for Oak/Elm/Birch; region name and counts are filled in at runtime"
   },
   "shared_scripts": {
     "Pox_Blaine": "same leader on the native gym map and the story gym room",
