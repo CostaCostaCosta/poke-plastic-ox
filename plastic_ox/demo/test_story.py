@@ -16,7 +16,7 @@ import struct
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from walklib import GBA, K, assert_test_player, boot_test_game
+from walklib import GBA, K, assert_test_player, boot_test_game, pox_virtual_flag_addr
 from walk_leg1 import find_path_elev, navigate
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -72,9 +72,8 @@ class StoryGame(GBA):
 
     def flag(self,name,value=None):
         f=self.const(name)
-        if 0xB00 <= f < 0xB80:
-            addr=self.u32(self.syms['gSaveBlock3Ptr'])+self.sizes['gSaveblock3']-16+(f-0xB00)//8
-        else:
+        addr=pox_virtual_flag_addr(self.u32(self.syms['gSaveBlock3Ptr']),self.sizes['gSaveblock3'],f)
+        if addr is None:
             addr=int(self.state()['ptr'],16)+0x1270+f//8
         if value is not None:
             self.write(addr,(self.u8(addr)&~(1<<(f%8))) | (bool(value)<<(f%8)))

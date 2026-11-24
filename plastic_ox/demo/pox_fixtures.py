@@ -14,6 +14,7 @@ from test_sudowoodo_v1 import (SudoGame, const, give_item, opcode, run_code,
     settle, K, in_overworld)
 import test_story
 import walklib
+from walklib import pox_virtual_flag_addr
 
 ROOT = Path(__file__).resolve().parents[2]
 SHOTS = Path('/tmp/pox_fixture_shots')
@@ -22,9 +23,8 @@ SHOTS = Path('/tmp/pox_fixture_shots')
 class Game(SudoGame):
     def flag(self, name, value=None):
         flag = self.const(name)
-        if 0xB00 <= flag < 0xB80:
-            ptr = self.u32(self.syms['gSaveBlock3Ptr'])
-            addr = ptr + self.sizes['gSaveblock3'] - 16 + (flag - 0xB00) // 8
+        addr = pox_virtual_flag_addr(self.u32(self.syms['gSaveBlock3Ptr']), self.sizes['gSaveblock3'], flag)
+        if addr is not None:
             if value is not None:
                 self.write(addr, (self.u8(addr) & ~(1 << (flag % 8))) | (bool(value) << (flag % 8)))
             return bool(self.u8(addr) & (1 << (flag % 8)))

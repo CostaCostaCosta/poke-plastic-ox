@@ -239,6 +239,17 @@ u8 *GetFlagPointer(u16 id)
         }
         return &gSaveBlock3Ptr->poxEventFlags[(id - POX_EVENT_FLAGS_START) / 8];
     }
+    else if (id >= POX_EXT_FLAGS_START && id < POX_EXT_FLAGS_START + POX_EXT_FLAGS_COUNT)
+    {
+        // Appended after poxEventFlags; saves from before it existed hold
+        // arbitrary bytes here until the magic is written.
+        if (gSaveBlock3Ptr->poxExtFlagsMagic != 0x504F5846)
+        {
+            memset(gSaveBlock3Ptr->poxExtFlags, 0, sizeof(gSaveBlock3Ptr->poxExtFlags));
+            gSaveBlock3Ptr->poxExtFlagsMagic = 0x504F5846;
+        }
+        return &gSaveBlock3Ptr->poxExtFlags[(id - POX_EXT_FLAGS_START) / 8];
+    }
     else if (id >= POX_KANTO_HIDDEN_FLAGS_START && id <= POX_KANTO_HIDDEN_FLAGS_END)
     {
         // Older saves used these SaveBlock3 bytes as spare space. Initialize
