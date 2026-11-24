@@ -670,6 +670,46 @@
       "label": "MossdeepCity"
     },
     {
+      "id": "mossdeep_route127_a",
+      "source": "MossdeepCity",
+      "destination": "Route127",
+      "tile": [
+        34,
+        39
+      ],
+      "approach": [
+        33,
+        39
+      ],
+      "direction": "E",
+      "landing": [
+        39,
+        1
+      ],
+      "requires": [],
+      "label": "Route127"
+    },
+    {
+      "id": "mossdeep_route127_b",
+      "source": "Route127",
+      "destination": "MossdeepCity",
+      "tile": [
+        40,
+        1
+      ],
+      "approach": [
+        39,
+        1
+      ],
+      "direction": "E",
+      "landing": [
+        33,
+        39
+      ],
+      "requires": [],
+      "label": "MossdeepCity"
+    },
+    {
       "id": "route19_saffron_a",
       "source": "Route19_Frlg",
       "destination": "SaffronCity_hns",

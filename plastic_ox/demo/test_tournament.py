@@ -19,7 +19,7 @@ import pox_progression as P
 from region_geometry import Geometry
 
 TUNNEL = 'UndergroundPath_EastWestTunnel_Frlg'
-ITEMS = ['GOLD_TEETH', 'ANCIENT_BRAILLE_TABLET', 'NEW_MAUVILLE_KEY', 'RED_ORB']
+ITEMS = ['GOLD_TEETH', 'ANCIENT_STEEL_TABLET', 'NEW_MAUVILLE_KEY', 'RED_ORB']
 GATES = ['FLAG_BADGE04_GET', 'FLAG_BADGE05_GET', 'FLAG_BADGE06_GET', 'FLAG_POX_LEAGUE_BILL']
 POSITIONS = [36, 39, 42, 33]
 PARTIES = ROOT / 'plastic_ox/alpha/tournament/trainers.party'
@@ -235,27 +235,21 @@ def downstream():
     assert g.flag('FLAG_POX_CAUGHT_RAIKOU')
     shot('raikou_caught')
     print('PASS: real stop switch, OU gate, six-member Raikou sage battle, flee/save/retry and guaranteed capture',flush=True)
-    # Preserve the original chamber party puzzle; the tablet is an extra gate.
-    g.warp('SealedChamber_InnerRoom',10,5);g.frame(120)
-    assert talk(g,K.KEY_UP)['dialogue'];assert not g.flag('FLAG_REGI_DOORS_OPENED')
-    give_item(g,const('ITEM_ANCIENT_BRAILLE_TABLET','items.h'))
-    assert talk(g,K.KEY_UP)['dialogue'];assert not g.flag('FLAG_REGI_DOORS_OPENED')
-    g.write(g.syms['gPartiesCount'],0)
-    for j in range(g.sizes['gParties']//4):g.write(g.syms['gParties']+j,0)
-    for species in ['WAILORD','RELICANTH']:
-        run_code(g,opcode(g,'callnative')+struct.pack('<I',g.syms['ScrCmd_createmon']|1)+struct.pack('<BBHHI',0,6,const('SPECIES_'+species,'species.h'),50,0))
-    assert talk(g,K.KEY_UP)['dialogue'];assert g.flag('FLAG_REGI_DOORS_OPENED')
+    # Each Regi chamber is opened by its own tablet (see test_regi_caves.py).
+    for tablet in ['ROCK','ICE','STEEL']:
+        give_item(g,const('ITEM_ANCIENT_'+tablet+'_TABLET','items.h'))
     g.flag('FLAG_BADGE06_GET',False)
     for name in ['Regice','Registeel']:
         g.run('PoxTournament_'+name)
         assert not in_battle(g) and not trainer_flag(g,name.upper()+'_SAGE')
     for name,area in [('Regirock','DesertRuins'),('Regice','IslandCave'),('Registeel','AncientTomb')]:
         if name!='Regirock':g.flag('FLAG_BADGE06_GET',True)
-        assert interact(area,8,8)['battle'];assert wait_for_battle(g)
+        r=interact(area,8,8);assert r['battle'],(name,r,g.state());assert wait_for_battle(g)
         assert g.u16(g.syms['gTrainerBattleParameter']+2)==g.const('TRAINER_PLASTIC_OX_'+name.upper()+'_SAGE')
-        finish_trainer(g,False);assert drain(g)
+        # The loss whites out home; settle() taps through the arrival script.
+        finish_trainer(g,False);assert settle(g)
         assert not trainer_flag(g,name.upper()+'_SAGE')
-    print('PASS: tablet plus Wailord/Relicanth chamber puzzle, UUBL Regirock and OU-only Regice/Registeel sages',flush=True)
+    print('PASS: per-Regi tablets, UUBL Regirock and OU-only Regice/Registeel sages',flush=True)
 
 
 if __name__ == '__main__':

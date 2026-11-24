@@ -82,7 +82,7 @@ PoxTournament_Check2::
 	trainerbattle_single TRAINER_PLASTIC_OX_TOURNAMENT_2, PoxTournament_Text_Intro2, PoxTournament_Text_Defeat2, PoxTournament_Reward2
 	goto PoxTournament_Reward2
 PoxTournament_Reward2::
-	giveitem ITEM_ANCIENT_BRAILLE_TABLET
+	giveitem ITEM_ANCIENT_STEEL_TABLET
 	goto_if_eq VAR_RESULT, FALSE, PoxTournament_End
 	setflag FLAG_POX_TOURNAMENT_REWARD_2
 	msgbox PoxTournament_Text_Reward2, MSGBOX_DEFAULT
@@ -238,15 +238,14 @@ PoxTournament_Text_Reward1::
 	.string "WARDEN.” Fancy that!\p"
 	.string "He runs a Bug-Catching Contest at\n"
 	.string "NATIONAL PARK every Thursday.\p"
-	.string "Bring his teeth back. I hear he\n"
-	.string "rewards honesty with SCYTHER.\p"
+	.string "Bring his teeth back, and he'll\n"
+	.string "put you on his guest list.\p"
 	.string "Return after BLAINE for round two.$"
 
 PoxTournament_Text_Reward2::
-	.string "Take this ancient BRAILLE tablet\n"
-	.string "to the SEALED CHAMBER.\p"
-	.string "Its inscription speaks of WAILORD\n"
-	.string "first and RELICANTH last.\p"
+	.string "Take this ancient STEEL tablet.\n"
+	.string "Its seal waits on ROUTE 127,\p"
+	.string "in a tomb south of MOSSDEEP.\p"
 	.string "REGIROCK belongs to the UUBL stage.\n"
 	.string "The other seals await your OU BADGE.\p"
 	.string "Return after TATE and LIZA\n"
@@ -296,27 +295,24 @@ PoxTournament_LegendLocked::
 
 PoxTournament_Regirock::
 	lockall
-	checkitem ITEM_ANCIENT_BRAILLE_TABLET
+	checkitem ITEM_ANCIENT_ROCK_TABLET
 	goto_if_eq VAR_RESULT, FALSE, PoxTournament_LegendLocked
-	goto_if_unset FLAG_REGI_DOORS_OPENED, PoxTournament_LegendLocked
 	goto_if_unset FLAG_BADGE05_GET, PoxTournament_LegendLocked
 	goto PoxTournament_RegirockBattle
 pox_legendary_sage PoxTournament_RegirockBattle, TRAINER_PLASTIC_OX_REGIROCK_SAGE, SPECIES_REGIROCK, 50, FLAG_POX_CAUGHT_REGIROCK, LOCALID_POX_REGIROCK_SAGE, LOCALID_POX_REGIROCK, PoxTournament_Text_Regi, PoxTournament_Text_SageDefeat
 
 PoxTournament_Regice::
 	lockall
-	checkitem ITEM_ANCIENT_BRAILLE_TABLET
+	checkitem ITEM_ANCIENT_ICE_TABLET
 	goto_if_eq VAR_RESULT, FALSE, PoxTournament_LegendLocked
-	goto_if_unset FLAG_REGI_DOORS_OPENED, PoxTournament_LegendLocked
 	goto_if_unset FLAG_BADGE06_GET, PoxTournament_LegendLocked
 	goto PoxTournament_RegiceBattle
 pox_legendary_sage PoxTournament_RegiceBattle, TRAINER_PLASTIC_OX_REGICE_SAGE, SPECIES_REGICE, 55, FLAG_POX_CAUGHT_REGICE, LOCALID_POX_REGICE_SAGE, LOCALID_POX_REGICE, PoxTournament_Text_Regi, PoxTournament_Text_SageDefeat
 
 PoxTournament_Registeel::
 	lockall
-	checkitem ITEM_ANCIENT_BRAILLE_TABLET
+	checkitem ITEM_ANCIENT_STEEL_TABLET
 	goto_if_eq VAR_RESULT, FALSE, PoxTournament_LegendLocked
-	goto_if_unset FLAG_REGI_DOORS_OPENED, PoxTournament_LegendLocked
 	goto_if_unset FLAG_BADGE06_GET, PoxTournament_LegendLocked
 	goto PoxTournament_RegisteelBattle
 pox_legendary_sage PoxTournament_RegisteelBattle, TRAINER_PLASTIC_OX_REGISTEEL_SAGE, SPECIES_REGISTEEL, 55, FLAG_POX_CAUGHT_REGISTEEL, LOCALID_POX_REGISTEEL_SAGE, LOCALID_POX_REGISTEEL, PoxTournament_Text_Regi, PoxTournament_Text_SageDefeat

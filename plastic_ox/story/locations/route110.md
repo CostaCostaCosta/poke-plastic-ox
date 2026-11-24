@@ -7,7 +7,7 @@ stage: "6 — Fortree to Lavender"
 depth: full
 wiki: route110
 maps: [Route110]
-also_maps: [Route110_SeasideCyclingRoadNorthEntrance, Route110_SeasideCyclingRoadSouthEntrance]
+also_maps: [Route110_SeasideCyclingRoadNorthEntrance, Route110_SeasideCyclingRoadSouthEntrance, Route110_TrickHouseEntrance, NewMauville_Entrance]
 flags: [FLAG_POX_REACHED_FORTREE]
 items: [ITEM_REVIVE, ITEM_GREAT_BALL, ITEM_POKE_BALL, ITEM_FULL_HEAL]
 trainers: [TRAINER_JASMINE]
@@ -63,7 +63,7 @@ Two roads stacked on one hillside: a raised cycleway on the ridge and a slow lan
 
 > KID: Up top you can see the sea. Down low you can see the Pokémon. I always go low.
 
-- **Do not:** say "convergence", "anomaly", or "the region"; mention Mauville, Slateport, Rydel, or the Trick House; reuse the Burned Tower or Route 119 imagery.
+- **Do not:** say "convergence", "anomaly", or "the region"; mention Mauville, Slateport or Rydel; reuse the Burned Tower or Route 119 imagery.
 
 ## Inspiration
 
@@ -76,7 +76,7 @@ Two roads stacked on one hillside: a raised cycleway on the ridge and a slow lan
 ## Implementation hooks
 
 - Wiki page: `route110.html`
-- Map: `Route110` (`MAP_ROUTE110`); no connections, 4 warps (the two Cycling Road gatehouses), 36 objects, 14 trainers
+- Map: `Route110` (`MAP_ROUTE110`); no connections, 6 warps (the two Cycling Road gatehouses, New Mauville `(35,24)` as warp 4, the Trick House `(11,66)` as warp 5), 36 objects, 14 trainers
 - Scripts: `data/maps/Route110/scripts.inc`, `data/scripts/plastic_ox_region.inc` (`PoxRegion_fortree_route110_b`, `PoxRegion_route110_lavender_a`, `PoxRegion_route36_shortcut_b`)
 - Flags: `FLAG_POX_REACHED_FORTREE` (set on Fortree arrival), badge gates use `FLAG_BADGE04_GET`
 - Known gaps: four live Team Aqua grunts plus one dead one; two objects stacked on `(34,54)`; `OBJ_EVENT_GFX_PROF_BIRCH` at `(9,79)` with script `0x0`; all 14 trainers are Lv.6–16 on a stage-6 route; a cyclist shares the name of a Johto Gym Leader; the "RYDEL" bike sign text repeats eight times.
@@ -85,5 +85,5 @@ Two roads stacked on one hillside: a raised cycleway on the ridge and a slow lan
 
 - Recast the Aqua grunts as what — a delivery crew, a cycle club, or hauliers on strike? Any of the three keeps the junction busy without importing a team.
 - Rescale the 14 trainers to the Lv.28–33 band, or move Route 110 earlier in the story? As written the difficulty curve drops by ten levels the moment the player leaves Fortree.
-- The New Mauville and Trick House door warps were retired in the 2026-11-21 trigger audit; their buildings are now decorative. Repurpose them later as the junction's garage and a storage shed?
+- The New Mauville and Trick House doors, retired in the 2026-11-21 trigger audit, are restored (2026-11-23): New Mauville holds Raikou behind the NEW MAUVILLE KEY, and the Trick House is playable. Should Route 110 locals acknowledge the Trick House now that it is open?
 - Should the Route 36 shortcut announce itself, or open silently and let the player discover the west road on their own?

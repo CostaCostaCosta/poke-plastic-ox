@@ -14,8 +14,11 @@ IslandCave_EventScript_TryRemoveRegice::
 	removeobject VAR_LAST_TALKED
 	return
 
+@ Plastic Ox: the inner chamber opens only while the player carries the
+@ ANCIENT ICE TABLET. No braille, Sealed Chamber or step puzzle.
 IslandCave_OnLoad:
-	call_if_unset FLAG_SYS_BRAILLE_REGICE_COMPLETED, IslandCave_EventScript_HideRegiEntrance
+	checkitem ITEM_ANCIENT_ICE_TABLET
+	call_if_eq VAR_RESULT, FALSE, IslandCave_EventScript_HideRegiEntrance
 	end
 
 IslandCave_EventScript_HideRegiEntrance::
@@ -29,7 +32,6 @@ IslandCave_EventScript_HideRegiEntrance::
 
 IslandCave_OnTransition:
 	setflag FLAG_LANDMARK_ISLAND_CAVE
-	call IslandCave_EventScript_ClearSteps
 	call_if_unset FLAG_DEFEATED_REGICE, IslandCave_EventScript_ShowRegice
 	end
 
@@ -37,55 +39,24 @@ IslandCave_EventScript_ShowRegice::
 	clearflag FLAG_HIDE_REGICE
 	return
 
-IslandCave_EventScript_OpenRegiEntrance::
-	setmetatile 7, 19, METATILE_Cave_SealedChamberEntrance_TopLeft, TRUE
-	setmetatile 8, 19, METATILE_Cave_SealedChamberEntrance_TopMid, TRUE
-	setmetatile 9, 19, METATILE_Cave_SealedChamberEntrance_TopRight, TRUE
-	setmetatile 7, 20, METATILE_Cave_SealedChamberEntrance_BottomLeft, TRUE
-	setmetatile 8, 20, METATILE_Cave_SealedChamberEntrance_BottomMid, FALSE
-	setmetatile 9, 20, METATILE_Cave_SealedChamberEntrance_BottomRight, TRUE
-	special DrawWholeMapView
-	playse SE_BANG
-	setflag FLAG_SYS_BRAILLE_REGICE_COMPLETED
-	end
-
 IslandCave_EventScript_CaveEntranceMiddle::
-	lockall
-	call_if_set FLAG_TEMP_REGICE_PUZZLE_FAILED, IslandCave_EventScript_ClearSteps
-	goto_if_set FLAG_SYS_BRAILLE_REGICE_COMPLETED, IslandCave_EventScript_BigHoleInWall
-	braillemessage IslandCave_Braille_RunLapAroundWall
-	setflag FLAG_TEMP_REGICE_PUZZLE_STARTED
-	special ShouldDoBrailleRegicePuzzle
-	goto IslandCave_EventScript_CloseBrailleMsg
-	end
-
-IslandCave_EventScript_BigHoleInWall::
-	msgbox gText_BigHoleInTheWall, MSGBOX_DEFAULT
-	releaseall
-	end
-
 IslandCave_EventScript_CaveEntranceSide::
 	lockall
-	call_if_set FLAG_TEMP_REGICE_PUZZLE_FAILED, IslandCave_EventScript_ClearSteps
-	braillemessage IslandCave_Braille_RunLapAroundWall
-	goto_if_set FLAG_SYS_BRAILLE_REGICE_COMPLETED, IslandCave_EventScript_CloseBrailleMsg
-	setflag FLAG_TEMP_REGICE_PUZZLE_STARTED
-	special ShouldDoBrailleRegicePuzzle
-	goto IslandCave_EventScript_CloseBrailleMsg
-	end
-
-IslandCave_EventScript_CloseBrailleMsg::
-	waitbuttonpress
-	closebraillemessage
+	checkitem ITEM_ANCIENT_ICE_TABLET
+	goto_if_eq VAR_RESULT, TRUE, IslandCave_EventScript_SealOpen
+	msgbox IslandCave_Text_Sealed, MSGBOX_DEFAULT
 	releaseall
 	end
 
-IslandCave_EventScript_ClearSteps::
-	setvar VAR_REGICE_STEPS_1, 0
-	setvar VAR_REGICE_STEPS_2, 0
-	setvar VAR_REGICE_STEPS_3, 0
-	clearflag FLAG_TEMP_REGICE_PUZZLE_FAILED
-	return
+IslandCave_EventScript_SealOpen::
+	msgbox IslandCave_Text_SealOpen, MSGBOX_DEFAULT
+	releaseall
+	end
+
+@ Still referenced by the vanilla braille step puzzle in field_control_avatar.c;
+@ Plastic Ox never starts that puzzle, so it only needs to exist.
+IslandCave_EventScript_OpenRegiEntrance::
+	end
 
 IslandCave_EventScript_Regice::
 	goto PoxTournament_Regice
@@ -99,3 +70,13 @@ IslandCave_EventScript_RanFromRegice::
 	setvar VAR_0x8004, SPECIES_REGICE
 	goto Common_EventScript_LegendaryFlewAway
 	end
+
+IslandCave_Text_Sealed:
+	.string "A slab of frozen stone seals the\n"
+	.string "far wall. Frost rims a hollow\p"
+	.string "shaped like a tablet.$"
+
+IslandCave_Text_SealOpen:
+	.string "The ANCIENT ICE TABLET is cold\n"
+	.string "even through the BAG. The frost\p"
+	.string "has drawn back from the passage.$"

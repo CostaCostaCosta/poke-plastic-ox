@@ -1,7 +1,5 @@
 Route127_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, Route127_OnTransition
-	map_script MAP_SCRIPT_ON_LOAD, Route127_OnLoad
-	map_script MAP_SCRIPT_ON_FRAME_TABLE, Route127_OnFrame
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_Route127
 	.byte 0
 
 Route127_OnTransition:

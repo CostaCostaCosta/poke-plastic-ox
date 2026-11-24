@@ -29,7 +29,7 @@ ANCHORS = {
     'LavenderTown_hns':(9,7), 'Route8_Frlg':(60,20), 'Route7_hns':(4,25),
     'Route103':(10,10), 'Route21_North_Frlg':(12,10),
     'Route21_South_Frlg':(12,10), 'CinnabarIsland_Frlg':(12,10),
-    'MossdeepCity':(28,17),
+    'MossdeepCity':(28,17), 'Route127':(40,1),
     'Route19_Frlg':(12,8), 'SaffronCity_hns':(16,23), 'Route5_hns':(25,35),
     'Route115':(27,38), 'MeteorFalls_1F_1R':(6,38), 'BlackthornCity_hns':(27,49),
     'Route45_hns':(15,5), 'Route46_hns':(20,12), 'VictoryRoad_1F':(15,39),
@@ -38,7 +38,7 @@ ANCHORS = {
     'BattleFrontier_OutsideWest':(26,66),
 }
 WATER = {'Route103','Route19_Frlg','Route21_North_Frlg','Route21_South_Frlg',
-         'Route115','MossdeepCity','CinnabarIsland_Frlg',
+         'Route115','MossdeepCity','Route127','CinnabarIsland_Frlg',
          'PlasticOx_Route20West','PlasticOx_Route20East'}
 
 # Only these authored portals have a reviewed outdoor throat wide enough to
@@ -50,7 +50,7 @@ LANE_PORTALS = {
     'route119_fortree','route36_shortcut',
     'route110_lavender','lavender_route8','route8_saffron','route7_saffron',
     'route7_route103','oldale_route103','route103_cinnabar','cinnabar_sea',
-    'sea_mossdeep','mossdeep_route19','route19_saffron','saffron_route5',
+    'sea_mossdeep','mossdeep_route19','mossdeep_route127','route19_saffron','saffron_route5',
     'route5_route115','blackthorn_route45','route45_route46',
     'lavender_harbor','harbor_frontier',
 }
@@ -84,6 +84,8 @@ TRAILS = [
     ('cinnabar_sea','CinnabarIsland_Frlg','E','PlasticOx_Route20West','W',MANSION),
     ('sea_mossdeep','PlasticOx_Route20East','E','MossdeepCity','W',MANSION),
     ('mossdeep_route19','MossdeepCity','N','Route19_Frlg','S',[]),
+    # Open sea south of Mossdeep: the three Regi caves, each sealed by its tablet.
+    ('mossdeep_route127','MossdeepCity','S','Route127','N',[]),
     ('route19_saffron','Route19_Frlg','N','SaffronCity_hns','S',SPACE),
     ('saffron_route5','SaffronCity_hns','N','Route5_hns','S',SPACE),
     ('route5_route115','Route5_hns','N','Route115','S',SPACE),
@@ -785,5 +787,7 @@ def apply_region(read, put):
 
     from ecruteak_repairs import install as repair_ecruteak
     repair_ecruteak(read, put)
+    from tin_tower import install as install_tin_tower
+    install_tin_tower(read, put)
     from mart_repairs import install as repair_marts
     repair_marts(read, put)

@@ -14,6 +14,7 @@ from test_sudowoodo_v1 import (SudoGame, const, give_item, opcode, run_code,
     settle, K, in_overworld)
 import test_story
 import walklib
+from walklib import pox_virtual_flag_addr
 
 ROOT = Path(__file__).resolve().parents[2]
 SHOTS = Path('/tmp/pox_fixture_shots')
@@ -22,9 +23,8 @@ SHOTS = Path('/tmp/pox_fixture_shots')
 class Game(SudoGame):
     def flag(self, name, value=None):
         flag = self.const(name)
-        if 0xB00 <= flag < 0xB80:
-            ptr = self.u32(self.syms['gSaveBlock3Ptr'])
-            addr = ptr + self.sizes['gSaveblock3'] - 16 + (flag - 0xB00) // 8
+        addr = pox_virtual_flag_addr(self.u32(self.syms['gSaveBlock3Ptr']), self.sizes['gSaveblock3'], flag)
+        if addr is not None:
             if value is not None:
                 self.write(addr, (self.u8(addr) & ~(1 << (flag % 8))) | (bool(value) << (flag % 8)))
             return bool(self.u8(addr) & (1 << (flag % 8)))
@@ -69,21 +69,35 @@ def finish_trainer(g, win):
     for i in range(20000):
         if in_overworld(g):
             g.frame(30)
+            # A loss whites out: the "scurried back home" screen is a task on
+            # the overworld callback. Finish it so callers can warp again.
+            for _ in range(600):
+                if not g.task('Task_RushInjuredPokemonToCenter'):
+                    break
+                g.tap(K.KEY_A, hold=1, wait=6)
+            g.frame(30)
             return
         if g.controller('HandleInputChooseAction'):
             g.write(g.syms['gActionSelectionCursor'], 0)
             base = g.syms['gBattleMons']
+            # Sage battles are doubles: adjust both player slots (battlers
+            # 0, 2) and both opponent slots (1, 3); in singles 2/3 are unused.
             if win:
-                g.write(base + lay[6] + lay[10], 1, 2)
-                for off in range(2, 12, 2):
-                    g.write(base + off, 9999, 2)
-                g.write(base + lay[7], const('MOVE_AERIAL_ACE', 'moves.h'), 2)
-                g.write(base + lay[12], 30)
+                for foe in (1, 3):
+                    g.write(base + foe * lay[6] + lay[10], 1, 2)
+                own, move = (0, 2), const('MOVE_AERIAL_ACE', 'moves.h')
+                stat = 9999
             else:
-                g.write(base + lay[10], 1, 2)
+                own, move = (0, 2), const('MOVE_SPLASH', 'moves.h')
+                stat = 1
+            for b in own:
+                mon = base + b * lay[6]
+                if not win:
+                    g.write(mon + lay[10], 1, 2)
                 for off in range(2, 12, 2):
-                    g.write(base + off, 1, 2)
-                g.write(base + lay[7], const('MOVE_SPLASH', 'moves.h'), 2)
+                    g.write(mon + off, stat, 2)
+                g.write(mon + lay[7], move, 2)
+                g.write(mon + lay[12], 30)
             g.tap(K.KEY_A, hold=1, wait=4)
         elif g.controller('HandleInputChooseMove'):
             g.write(g.syms['gMoveSelectionCursor'], 0)

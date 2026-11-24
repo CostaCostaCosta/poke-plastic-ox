@@ -26,6 +26,104 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "PoxEcruteak_SageOffice2_Caretaker",
       "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_POX_TIN_TOWER_KEEPER",
+      "graphics_id": "OBJ_EVENT_GFX_SAGE_HNS",
+      "x": 8,
+      "y": 5,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxTinTower_Keeper",
+      "flag": "0"
+    },
+    {
+      "local_id": "LOCALID_POX_HOME_ENTEI_SAGE",
+      "graphics_id": "OBJ_EVENT_GFX_SAGE_HNS",
+      "x": 2,
+      "y": 3,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxTinTower_SageEntei",
+      "flag": "FLAG_TEMP_1"
+    },
+    {
+      "local_id": "LOCALID_POX_HOME_ARTICUNO_SAGE",
+      "graphics_id": "OBJ_EVENT_GFX_SAGE_HNS",
+      "x": 4,
+      "y": 3,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxTinTower_SageArticuno",
+      "flag": "FLAG_TEMP_2"
+    },
+    {
+      "local_id": "LOCALID_POX_HOME_RAIKOU_SAGE",
+      "graphics_id": "OBJ_EVENT_GFX_SAGE_HNS",
+      "x": 6,
+      "y": 3,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxTinTower_SageRaikou",
+      "flag": "FLAG_TEMP_3"
+    },
+    {
+      "local_id": "LOCALID_POX_HOME_REGIROCK_SAGE",
+      "graphics_id": "OBJ_EVENT_GFX_SAGE_HNS",
+      "x": 2,
+      "y": 12,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxTinTower_SageRegirock",
+      "flag": "FLAG_TEMP_4"
+    },
+    {
+      "local_id": "LOCALID_POX_HOME_REGICE_SAGE",
+      "graphics_id": "OBJ_EVENT_GFX_SAGE_HNS",
+      "x": 4,
+      "y": 12,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxTinTower_SageRegice",
+      "flag": "FLAG_TEMP_5"
+    },
+    {
+      "local_id": "LOCALID_POX_HOME_REGISTEEL_SAGE",
+      "graphics_id": "OBJ_EVENT_GFX_SAGE_HNS",
+      "x": 6,
+      "y": 12,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxTinTower_SageRegisteel",
+      "flag": "FLAG_TEMP_6"
     }
   ],
   "warp_events": [
@@ -34,6 +132,13 @@
       "y": 15,
       "elevation": 0,
       "dest_map": "MAP_ECRUTEAK_CITY_SAGE_OFFICE1_HNS",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 8,
+      "y": 5,
+      "elevation": 0,
+      "dest_map": "MAP_BELLCHIME_TRAIL_HNS",
       "dest_warp_id": "1"
     }
   ],

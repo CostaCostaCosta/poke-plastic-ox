@@ -14,8 +14,11 @@ DesertRuins_EventScript_TryRemoveRegirock::
 	removeobject VAR_LAST_TALKED
 	return
 
+@ Plastic Ox: the inner chamber opens only while the player carries the
+@ ANCIENT ROCK TABLET. No braille, Sealed Chamber or step puzzle.
 DesertRuins_OnLoad:
-	call_if_unset FLAG_SYS_REGIROCK_PUZZLE_COMPLETED, DesertRuins_EventScript_HideRegiEntrance
+	checkitem ITEM_ANCIENT_ROCK_TABLET
+	call_if_eq VAR_RESULT, FALSE, DesertRuins_EventScript_HideRegiEntrance
 	end
 
 DesertRuins_EventScript_HideRegiEntrance::
@@ -37,20 +40,16 @@ DesertRuins_EventScript_ShowRegirock::
 	return
 
 DesertRuins_EventScript_CaveEntranceMiddle::
-	lockall
-	goto_if_set FLAG_SYS_REGIROCK_PUZZLE_COMPLETED, DesertRuins_EventScript_BigHoleInWall
-	braillemsgbox DesertRuins_Braille_UseRockSmash
-	releaseall
-	end
-
-DesertRuins_EventScript_BigHoleInWall::
-	msgbox gText_BigHoleInTheWall, MSGBOX_DEFAULT
-	releaseall
-	end
-
 DesertRuins_EventScript_CaveEntranceSide::
 	lockall
-	braillemsgbox DesertRuins_Braille_UseRockSmash
+	checkitem ITEM_ANCIENT_ROCK_TABLET
+	goto_if_eq VAR_RESULT, TRUE, DesertRuins_EventScript_SealOpen
+	msgbox DesertRuins_Text_Sealed, MSGBOX_DEFAULT
+	releaseall
+	end
+
+DesertRuins_EventScript_SealOpen::
+	msgbox DesertRuins_Text_SealOpen, MSGBOX_DEFAULT
 	releaseall
 	end
 
@@ -67,3 +66,13 @@ DesertRuins_EventScript_RanFromRegirock::
 	goto Common_EventScript_LegendaryFlewAway
 	end
 
+DesertRuins_Text_Sealed:
+	.string "Weathered stone seals the far\n"
+	.string "wall. A tablet-shaped hollow is\p"
+	.string "cut into it, rough as split\n"
+	.string "boulder.$"
+
+DesertRuins_Text_SealOpen:
+	.string "The ANCIENT ROCK TABLET is heavy\n"
+	.string "in your BAG. Grit has fallen\p"
+	.string "away from an open passage.$"

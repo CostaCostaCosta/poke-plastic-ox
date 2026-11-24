@@ -1067,7 +1067,7 @@ enum __attribute__((packed)) Item
 
     ITEM_ANCIENT_BRAILLE_TABLET = 887,
     ITEM_NEW_MAUVILLE_KEY = 888,
-    // 889 is ITEM_ANCIENT_STEEL_TABLET (PR #25, regi caves).
+    ITEM_ANCIENT_STEEL_TABLET = 889,
     ITEM_FLY_KEY = 890,
 
     ITEMS_COUNT,

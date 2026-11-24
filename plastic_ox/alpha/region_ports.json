@@ -604,6 +604,28 @@
     ],
     "direction": "E"
   },
+  "mossdeep_route127_a": {
+    "tile": [
+      34,
+      39
+    ],
+    "approach": [
+      33,
+      39
+    ],
+    "direction": "E"
+  },
+  "mossdeep_route127_b": {
+    "tile": [
+      40,
+      1
+    ],
+    "approach": [
+      39,
+      1
+    ],
+    "direction": "E"
+  },
   "lavender_route8_a": {
     "tile": [
       1,

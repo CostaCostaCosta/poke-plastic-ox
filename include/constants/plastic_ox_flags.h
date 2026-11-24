@@ -8,6 +8,13 @@
 #define POX_EVENT_FLAGS_START 0xB00
 #define POX_EVENT_FLAGS_COUNT 128
 #define POX_SAGE_TRAINER_FLAGS_START (POX_EVENT_FLAGS_START + 64)
+
+// Extended Plastic Ox flags: the default home for new persistent flags.
+// Appended SaveBlock3 bytes with their own magic, so existing saves start
+// with all of them clear. Allocate in order; see the plastic-ox-flags skill
+// and plastic_ox/tools/audit_flags.py. Never renumber a released ID.
+#define POX_EXT_FLAGS_START 0xB80
+#define POX_EXT_FLAGS_COUNT 1024
 #define FLAG_POX_MANSION_SWITCH (POX_EVENT_FLAGS_START + 0)
 #define FLAG_POX_CINNABAR_QUIZ_1 (POX_EVENT_FLAGS_START + 1)
 #define FLAG_POX_CINNABAR_QUIZ_2 (POX_EVENT_FLAGS_START + 2)
@@ -29,9 +36,12 @@
 
 // Plastic Ox alpha flags (emerald build only).
 //
-// Primary allocation: documented-unused general flags 0x264-0x2BB. The run is
-// full. Supplemental allocations use only explicitly audited unused Emerald
-// flags listed below. FLAGS_COUNT (= DAILY_FLAGS_END + 1)
+// New flags: use the POX_EXT_FLAGS block above unless something needs a low
+// SaveBlock1 ID. "python3 plastic_ox/tools/audit_flags.py --free" lists every
+// usable ID; the plastic-ox-flags skill explains the pools.
+//
+// Historic allocation: documented-unused general flags 0x264-0x2BB (full),
+// then audited unused Emerald flags listed below. FLAGS_COUNT (= DAILY_FLAGS_END + 1)
 // sizes the save-block flag array, so anything at or above it would write
 // out of bounds, and the 0x500+ / 0x920+ sub-ranges belong to trainer and
 // daily flags.
@@ -350,4 +360,6 @@
 #define FLAG_POX_VISITED_SAFFRON     FLAG_VISITED_LILYCOVE_CITY
 #define FLAG_POX_VISITED_BLACKTHORN  FLAG_VISITED_SOOTOPOLIS_CITY
 #define FLAG_POX_VISITED_INDIGO      FLAG_VISITED_EVER_GRANDE_CITY
+// Tin Tower roof: Moltres caught after its sage (TRAINER_PLASTIC_OX_MOLTRES_SAGE).
+#define FLAG_POX_CAUGHT_MOLTRES (POX_EVENT_FLAGS_START + 56)
 #endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H

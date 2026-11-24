@@ -13,8 +13,17 @@ def boot_new_game(g):
     g.write(g.syms['gMain'] + 0x438, 0)
     g.write(g.syms['gMain'] + 4, g.syms['CB2_NewGame'] | 1, 4)
     g.frame(360)
-    print('New-game fixture ready', flush=True)
     assert g.u32(g.syms['gMain'] + 4) & ~1 == g.syms['CB2_Overworld'] & ~1
+    # The new game opens with a field script (the arrival tremor and its
+    # dialogue). Drive it to the end so later warps/scripts may start.
+    for _ in range(400):
+        if g.u8(g.syms['sGlobalScriptContextStatus']) == 2:
+            break
+        g.tap(K.KEY_A, hold=1, wait=10)
+    else:
+        raise RuntimeError('new-game opening script never finished')
+    g.frame(30)
+    print('New-game fixture ready', flush=True)
 
 
 def assert_offline(g):
