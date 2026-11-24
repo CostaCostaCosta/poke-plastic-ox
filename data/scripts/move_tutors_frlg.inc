@@ -178,36 +178,6 @@ EventScript_MegaKickTaught::
 	release
 	end
 
-EventScript_DreamEaterTutor::
-	lock
-	faceplayer
-.if I_REUSABLE_TMS == FALSE
-	goto_if_set FLAG_TUTOR_DREAM_EATER, EventScript_DreamEaterTaught
-.endif
-	msgbox Text_DreamEaterTeach, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, EventScript_DreamEaterDeclined
-	call EventScript_CanOnlyBeLearnedOnce
-	goto_if_eq VAR_RESULT, NO, EventScript_DreamEaterDeclined
-	msgbox Text_DreamEaterWhichMon
-	setvar VAR_0x8005, MOVE_DREAM_EATER
-	call EventScript_ChooseMoveTutorMon
-	goto_if_eq VAR_RESULT, FALSE, EventScript_DreamEaterDeclined
-.if I_REUSABLE_TMS == FALSE
-	setflag FLAG_TUTOR_DREAM_EATER
-.endif
-	goto EventScript_DreamEaterTaught
-	end
-
-EventScript_DreamEaterDeclined::
-	msgbox Text_DreamEaterDeclined
-	release
-	end
-
-EventScript_DreamEaterTaught::
-	msgbox Text_DreamEaterTaught
-	release
-	end
-
 EventScript_SoftboiledTutor::
 	lock
 	faceplayer
@@ -235,36 +205,6 @@ EventScript_SoftboiledDeclined::
 
 EventScript_SoftboiledTaught::
 	msgbox Text_SoftboiledTaught
-	release
-	end
-
-FuchsiaCity_EventScript_SubstituteTutor::
-	lock
-	faceplayer
-.if I_REUSABLE_TMS == FALSE
-	goto_if_set FLAG_TUTOR_SUBSTITUTE, EventScript_SubstituteTaught
-.endif
-	msgbox Text_SubstituteTeach, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, EventScript_SubstituteDeclined
-	call EventScript_CanOnlyBeLearnedOnce
-	goto_if_eq VAR_RESULT, NO, EventScript_SubstituteDeclined
-	msgbox Text_SubstituteWhichMon
-	setvar VAR_0x8005, MOVE_SUBSTITUTE
-	call EventScript_ChooseMoveTutorMon
-	goto_if_eq VAR_RESULT, FALSE, EventScript_SubstituteDeclined
-.if I_REUSABLE_TMS == FALSE
-	setflag FLAG_TUTOR_SUBSTITUTE
-.endif
-	goto EventScript_SubstituteTaught
-	end
-
-EventScript_SubstituteDeclined::
-	msgbox Text_SubstituteDeclined
-	release
-	end
-
-EventScript_SubstituteTaught::
-	msgbox Text_SubstituteTaught
 	release
 	end
 

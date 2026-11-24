@@ -20,11 +20,6 @@
       "map": "MAP_ROUTE17",
       "offset": 0,
       "direction": "up"
-    },
-    {
-      "map": "MAP_FUCHSIA_CITY",
-      "offset": -10,
-      "direction": "right"
     }
   ],
   "object_events": [

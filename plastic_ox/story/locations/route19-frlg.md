@@ -58,13 +58,13 @@ Open water between the southern gate of `SaffronCity_hns` and the Mossdeep appro
 
 ## Implementation hooks
 
-- Wiki page `route19-frlg.html`; map `Route19_Frlg` (`MAP_ROUTE19`, layout `LAYOUT_ROUTE19_HNS`, region Hoenn, vanilla `MAPSEC_ROUTE_19`); neighbours `MossdeepCity`, `SaffronCity_hns`, and the donor-connected `FuchsiaCity_Frlg` and `Route20_Frlg`.
+- Wiki page `route19-frlg.html`; map `Route19_Frlg` (`MAP_ROUTE19`, layout `LAYOUT_ROUTE19_HNS`, region Hoenn, vanilla `MAPSEC_ROUTE_19`); neighbours `MossdeepCity`, `SaffronCity_hns`, and the donor-connected `Route20_Frlg`.
 - Scripts: `data/maps/Route19_Frlg/scripts.inc` holds only the text and `Route19_EventScript_RouteSign`; live wrappers in `data/scripts/plastic_ox_region.inc`; dead battle bodies in `data/scripts/trainers_frlg.inc` behind `.if IS_FRLG`; both passages and the empty `PoxRegion_Arrival_Route19_Frlg` stub in the region file.
 - Gates: `FLAG_POX_STORY_SPACE_CENTER` on the Saffron passage only; `FLAG_POX_TRIGGERS_ENABLED` short-circuits every portal script; `VAR_POX_PORTAL_TRIGGER` is the coord-event var on both triggers and is zero, so both fire on contact.
-- Known gaps: the map declares 0 warps and 0 connections while `FuchsiaCity_Frlg` (down, offset 12) and `Route20_Frlg` (right, offset -40) both declare one-way drops into it, so any Kanto-side access would be one-way in; the Mossdeep passage has no story gate at all, which makes the sea a Gym 6 approach for anything that reaches it; all eleven parties are unattached; each passage's `_Closed` branch is unreachable; a Hoenn region header sits on a Kanto sea map.
+- Known gaps: the map declares 0 warps and 0 connections while `Route20_Frlg` (right, offset -40) declares a one-way drop (the `FuchsiaCity_Frlg` drop went when Fuchsia City was deleted on 2026-11-23) into it, so any Kanto-side access would be one-way in; the Mossdeep passage has no story gate at all, which makes the sea a Gym 6 approach for anything that reaches it; all eleven parties are unattached; each passage's `_Closed` branch is unreachable; a Hoenn region header sits on a Kanto sea map.
 
 ## Open questions
 
 - Restore the eleven swimmer battles at act-4 levels, or keep the crossing quiet and make them residents? The parties exist, so silence is currently the bug.
-- Cut the donor `FuchsiaCity_Frlg` / `Route20_Frlg` drops, or keep them and gate the Mossdeep passage with the Space Center flag? Either closes the shortcut; only the second keeps the old Kanto shore walkable if the Cycling Road gate is ever fixed. Fuchsia and the Cycling Road chain still have no note of their own.
+- Cut the donor `Route20_Frlg` drop, or keep them and gate the Mossdeep passage with the Space Center flag? Either closes the shortcut; only the second keeps the old Kanto shore walkable if the Cycling Road gate is ever fixed. Fuchsia and the Cycling Road chain still have no note of their own.
 - Does a full crossing earn something — a held item on the far shingle, one hidden find — or is the view of the Saffron gate the reward?

@@ -452,10 +452,6 @@ PokemonMansion_2F_EventScript_ItemHPUp::
 	finditem ITEM_HP_UP
 	end
 
-ViridianCity_EventScript_ItemPotion::
-	finditem ITEM_POTION
-	end
-
 Route11_EventScript_ItemGreatBall::
 	finditem ITEM_GREAT_BALL
 	end
@@ -466,14 +462,6 @@ Route11_EventScript_ItemAwakening::
 
 PokemonTower_5F_EventScript_ItemCleanseTag::
 	finditem ITEM_CLEANSE_TAG
-	end
-
-@ Relocated from SafariZone_West_Frlg when the FRLG Safari Zone family was
-@ removed on 2026-10-02. The Warden's GOLD TEETH exchange in
-@ FuchsiaCity_WardensHouse_Frlg still keys off this flag, so the item moves
-@ into the Warden's house rather than dying with the map.
-FuchsiaCity_WardensHouse_EventScript_ItemGoldTeeth::
-	finditem ITEM_GOLD_TEETH
 	end
 
 CeladonCity_EventScript_ItemEther::

@@ -5088,22 +5088,6 @@
       "layout_version": "frlg"
     },
     {
-      "id": "LAYOUT_FUCHSIA_CITY_GYM",
-      "name": "FuchsiaCity_Gym_Layout",
-      "width": 15,
-      "height": 23,
-      "border_width": 2,
-      "border_height": 2,
-      "primary_tileset": "gTileset_BuildingFrlg",
-      "secondary_tileset": "gTileset_FuchsiaGym",
-      "border_filepath": "data/layouts/FuchsiaCity_Gym_Frlg/border.bin",
-      "blockdata_filepath": "data/layouts/FuchsiaCity_Gym_Frlg/map.bin",
-      "layout_version": "frlg",
-      "include_in_versions": [
-        "emerald"
-      ]
-    },
-    {
       "id": "LAYOUT_HOUSE5_FRLG",
       "name": "House5_Layout",
       "width": 11,
@@ -5240,19 +5224,6 @@
       "include_in_versions": [
         "emerald"
       ]
-    },
-    {
-      "id": "LAYOUT_VIRIDIAN_CITY_GYM",
-      "name": "ViridianCity_Gym_Layout",
-      "width": 20,
-      "height": 24,
-      "border_width": 2,
-      "border_height": 2,
-      "primary_tileset": "gTileset_BuildingFrlg",
-      "secondary_tileset": "gTileset_ViridianGym",
-      "border_filepath": "data/layouts/ViridianCity_Gym_Frlg/border.bin",
-      "blockdata_filepath": "data/layouts/ViridianCity_Gym_Frlg/map.bin",
-      "layout_version": "frlg"
     },
     {
       "id": "LAYOUT_RS_SAFARI_ZONE_ENTRANCE",
@@ -5431,19 +5402,6 @@
       ]
     },
     {
-      "id": "LAYOUT_VIRIDIAN_CITY",
-      "name": "ViridianCity_Layout",
-      "width": 48,
-      "height": 40,
-      "border_width": 2,
-      "border_height": 2,
-      "primary_tileset": "gTileset_General_Frlg",
-      "secondary_tileset": "gTileset_ViridianCity",
-      "border_filepath": "data/layouts/ViridianCity_Frlg/border.bin",
-      "blockdata_filepath": "data/layouts/ViridianCity_Frlg/map.bin",
-      "layout_version": "frlg"
-    },
-    {
       "id": "LAYOUT_PEWTER_CITY",
       "name": "PewterCity_Layout",
       "width": 48,
@@ -5518,22 +5476,6 @@
       "secondary_tileset": "gTileset_CeladonCity",
       "border_filepath": "data/layouts/CeladonCity_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/CeladonCity_Frlg/map.bin",
-      "layout_version": "frlg",
-      "include_in_versions": [
-        "emerald"
-      ]
-    },
-    {
-      "id": "LAYOUT_FUCHSIA_CITY",
-      "name": "FuchsiaCity_Layout",
-      "width": 48,
-      "height": 40,
-      "border_width": 2,
-      "border_height": 2,
-      "primary_tileset": "gTileset_General_Frlg",
-      "secondary_tileset": "gTileset_FuchsiaCity",
-      "border_filepath": "data/layouts/FuchsiaCity_Frlg/border.bin",
-      "blockdata_filepath": "data/layouts/FuchsiaCity_Frlg/map.bin",
       "layout_version": "frlg",
       "include_in_versions": [
         "emerald"
@@ -7228,38 +7170,6 @@
       ]
     },
     {
-      "id": "LAYOUT_FUCHSIA_CITY_WARDENS_HOUSE",
-      "name": "FuchsiaCity_WardensHouse_Layout",
-      "width": 13,
-      "height": 11,
-      "border_width": 2,
-      "border_height": 2,
-      "primary_tileset": "gTileset_BuildingFrlg",
-      "secondary_tileset": "gTileset_Museum",
-      "border_filepath": "data/layouts/FuchsiaCity_WardensHouse_Frlg/border.bin",
-      "blockdata_filepath": "data/layouts/FuchsiaCity_WardensHouse_Frlg/map.bin",
-      "layout_version": "frlg",
-      "include_in_versions": [
-        "emerald"
-      ]
-    },
-    {
-      "id": "LAYOUT_FUCHSIA_CITY_HOUSE2",
-      "name": "FuchsiaCity_House2_Layout",
-      "width": 10,
-      "height": 10,
-      "border_width": 2,
-      "border_height": 2,
-      "primary_tileset": "gTileset_BuildingFrlg",
-      "secondary_tileset": "gTileset_Museum",
-      "border_filepath": "data/layouts/FuchsiaCity_House2_Frlg/border.bin",
-      "blockdata_filepath": "data/layouts/FuchsiaCity_House2_Frlg/map.bin",
-      "layout_version": "frlg",
-      "include_in_versions": [
-        "emerald"
-      ]
-    },
-    {
       "id": "LAYOUT_CINNABAR_ISLAND_POKEMON_LAB_ENTRANCE",
       "name": "CinnabarIsland_PokemonLab_Entrance_Layout",
       "width": 28,
@@ -8142,19 +8052,6 @@
       "layout_version": "frlg"
     },
     {
-      "id": "LAYOUT_VIRIDIAN_CITY_SCHOOL",
-      "name": "ViridianCity_School_Layout",
-      "width": 10,
-      "height": 9,
-      "border_width": 2,
-      "border_height": 2,
-      "primary_tileset": "gTileset_BuildingFrlg",
-      "secondary_tileset": "gTileset_School",
-      "border_filepath": "data/layouts/ViridianCity_School_Frlg/border.bin",
-      "blockdata_filepath": "data/layouts/ViridianCity_School_Frlg/map.bin",
-      "layout_version": "frlg"
-    },
-    {
       "id": "LAYOUT_CELADON_CITY_RESTAURANT_DUPLICATE",
       "name": "CeladonCity_Restaurant_Duplicate_Layout",
       "width": 15,
@@ -8279,19 +8176,6 @@
       "include_in_versions": [
         "emerald"
       ]
-    },
-    {
-      "id": "LAYOUT_VIRIDIAN_CITY_HOUSE",
-      "name": "ViridianCity_House_Layout",
-      "width": 11,
-      "height": 9,
-      "border_width": 2,
-      "border_height": 2,
-      "primary_tileset": "gTileset_BuildingFrlg",
-      "secondary_tileset": "gTileset_GenericBuilding2",
-      "border_filepath": "data/layouts/ViridianCity_House_Frlg/border.bin",
-      "blockdata_filepath": "data/layouts/ViridianCity_House_Frlg/map.bin",
-      "layout_version": "frlg"
     },
     {
       "id": "LAYOUT_FOUR_ISLAND_POKEMON_DAY_CARE",
