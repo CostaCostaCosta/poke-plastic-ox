@@ -5226,19 +5226,6 @@
       ]
     },
     {
-      "id": "LAYOUT_VIRIDIAN_CITY_GYM",
-      "name": "ViridianCity_Gym_Layout",
-      "width": 20,
-      "height": 24,
-      "border_width": 2,
-      "border_height": 2,
-      "primary_tileset": "gTileset_BuildingFrlg",
-      "secondary_tileset": "gTileset_ViridianGym",
-      "border_filepath": "data/layouts/ViridianCity_Gym_Frlg/border.bin",
-      "blockdata_filepath": "data/layouts/ViridianCity_Gym_Frlg/map.bin",
-      "layout_version": "frlg"
-    },
-    {
       "id": "LAYOUT_RS_SAFARI_ZONE_ENTRANCE",
       "name": "RS_SafariZone_Entrance_Layout",
       "width": 18,
@@ -5413,19 +5400,6 @@
         "emerald",
         "firered"
       ]
-    },
-    {
-      "id": "LAYOUT_VIRIDIAN_CITY",
-      "name": "ViridianCity_Layout",
-      "width": 48,
-      "height": 40,
-      "border_width": 2,
-      "border_height": 2,
-      "primary_tileset": "gTileset_General_Frlg",
-      "secondary_tileset": "gTileset_ViridianCity",
-      "border_filepath": "data/layouts/ViridianCity_Frlg/border.bin",
-      "blockdata_filepath": "data/layouts/ViridianCity_Frlg/map.bin",
-      "layout_version": "frlg"
     },
     {
       "id": "LAYOUT_PEWTER_CITY",
@@ -8078,19 +8052,6 @@
       "layout_version": "frlg"
     },
     {
-      "id": "LAYOUT_VIRIDIAN_CITY_SCHOOL",
-      "name": "ViridianCity_School_Layout",
-      "width": 10,
-      "height": 9,
-      "border_width": 2,
-      "border_height": 2,
-      "primary_tileset": "gTileset_BuildingFrlg",
-      "secondary_tileset": "gTileset_School",
-      "border_filepath": "data/layouts/ViridianCity_School_Frlg/border.bin",
-      "blockdata_filepath": "data/layouts/ViridianCity_School_Frlg/map.bin",
-      "layout_version": "frlg"
-    },
-    {
       "id": "LAYOUT_CELADON_CITY_RESTAURANT_DUPLICATE",
       "name": "CeladonCity_Restaurant_Duplicate_Layout",
       "width": 15,
@@ -8215,19 +8176,6 @@
       "include_in_versions": [
         "emerald"
       ]
-    },
-    {
-      "id": "LAYOUT_VIRIDIAN_CITY_HOUSE",
-      "name": "ViridianCity_House_Layout",
-      "width": 11,
-      "height": 9,
-      "border_width": 2,
-      "border_height": 2,
-      "primary_tileset": "gTileset_BuildingFrlg",
-      "secondary_tileset": "gTileset_GenericBuilding2",
-      "border_filepath": "data/layouts/ViridianCity_House_Frlg/border.bin",
-      "blockdata_filepath": "data/layouts/ViridianCity_House_Frlg/map.bin",
-      "layout_version": "frlg"
     },
     {
       "id": "LAYOUT_FOUR_ISLAND_POKEMON_DAY_CARE",

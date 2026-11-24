@@ -855,7 +855,6 @@
     "NavelRock_Harbor_Frlg"
   ],
   "gMapGroup_TownsAndRoutes_Frlg": [
-    "ViridianCity_Frlg",
     "PewterCity_Frlg",
     "CeruleanCity_Frlg",
     "LavenderTown_Frlg",
@@ -922,14 +921,7 @@
     "PalletTown_RivalsHouse_Frlg",
     "PalletTown_ProfessorOaksLab_Frlg"
   ],
-  "gMapGroup_IndoorViridian_Frlg": [
-    "ViridianCity_House_Frlg",
-    "ViridianCity_Gym_Frlg",
-    "ViridianCity_School_Frlg",
-    "ViridianCity_Mart_Frlg",
-    "ViridianCity_PokemonCenter_1F_Frlg",
-    "ViridianCity_PokemonCenter_2F_Frlg"
-  ],
+  "gMapGroup_IndoorViridian_Frlg": [],
   "gMapGroup_IndoorPewter_Frlg": [
     "PewterCity_Museum_1F_Frlg",
     "PewterCity_Museum_2F_Frlg",

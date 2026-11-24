@@ -452,10 +452,6 @@ PokemonMansion_2F_EventScript_ItemHPUp::
 	finditem ITEM_HP_UP
 	end
 
-ViridianCity_EventScript_ItemPotion::
-	finditem ITEM_POTION
-	end
-
 Route11_EventScript_ItemGreatBall::
 	finditem ITEM_GREAT_BALL
 	end
