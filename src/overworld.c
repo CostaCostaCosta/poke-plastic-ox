@@ -1,5 +1,6 @@
 #include "global.h"
 #include "overworld.h"
+#include "region_map.h"
 #include "battle_pyramid.h"
 #include "battle_pike.h"
 #include "battle_setup.h"
@@ -921,6 +922,7 @@ bool8 LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
     SetDefaultFlashLevel();
     Overworld_ClearSavedMusic();
     RunOnTransitionMapScript();
+    PoxFlyMap_MarkVisited();
     InitMap();
     if (tilesetsChanged)
     {
@@ -1016,6 +1018,7 @@ static void LoadMapFromWarp(bool32 a1)
     SetDefaultFlashLevel();
     Overworld_ClearSavedMusic();
     RunOnTransitionMapScript();
+    PoxFlyMap_MarkVisited();
     UpdateLocationHistoryForRoamer();
     MoveAllRoamersToOtherLocationSets();
     gChainFishingDexNavStreak = 0;

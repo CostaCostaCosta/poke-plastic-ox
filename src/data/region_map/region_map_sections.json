@@ -11,8 +11,8 @@
     {
       "id": "MAPSEC_OLDALE_TOWN",
       "name": "OLDALE TOWN",
-      "x": 4,
-      "y": 9,
+      "x": 2,
+      "y": 10,
       "width": 1,
       "height": 1
     },
@@ -83,16 +83,16 @@
     {
       "id": "MAPSEC_RUSTBORO_CITY",
       "name": "RUSTBORO CITY",
-      "x": 0,
-      "y": 5,
+      "x": 11,
+      "y": 11,
       "width": 1,
-      "height": 2
+      "height": 1
     },
     {
       "id": "MAPSEC_FORTREE_CITY",
       "name": "FORTREE CITY",
-      "x": 12,
-      "y": 0,
+      "x": 19,
+      "y": 4,
       "width": 1,
       "height": 1
     },
@@ -107,9 +107,9 @@
     {
       "id": "MAPSEC_MOSSDEEP_CITY",
       "name": "MOSSDEEP CITY",
-      "x": 24,
-      "y": 5,
-      "width": 2,
+      "x": 25,
+      "y": 11,
+      "width": 1,
       "height": 1
     },
     {
@@ -131,8 +131,8 @@
     {
       "id": "MAPSEC_ROUTE_101",
       "name": "ROUTE 101",
-      "x": 4,
-      "y": 10,
+      "x": 2,
+      "y": 11,
       "width": 1,
       "height": 1
     },
@@ -147,10 +147,10 @@
     {
       "id": "MAPSEC_ROUTE_103",
       "name": "ROUTE 103",
-      "x": 4,
-      "y": 8,
-      "width": 4,
-      "height": 1
+      "x": 19,
+      "y": 10,
+      "width": 2,
+      "height": 2
     },
     {
       "id": "MAPSEC_ROUTE_104",
@@ -203,9 +203,9 @@
     {
       "id": "MAPSEC_ROUTE_110",
       "name": "ROUTE 110",
-      "x": 8,
-      "y": 7,
-      "width": 1,
+      "x": 20,
+      "y": 4,
+      "width": 2,
       "height": 3
     },
     {
@@ -243,10 +243,10 @@
     {
       "id": "MAPSEC_ROUTE_115",
       "name": "ROUTE 115",
-      "x": 0,
-      "y": 2,
+      "x": 25,
+      "y": 4,
       "width": 1,
-      "height": 3
+      "height": 2
     },
     {
       "id": "MAPSEC_ROUTE_116",
@@ -275,10 +275,10 @@
     {
       "id": "MAPSEC_ROUTE_119",
       "name": "ROUTE 119",
-      "x": 11,
-      "y": 0,
-      "width": 1,
-      "height": 6
+      "x": 15,
+      "y": 3,
+      "width": 5,
+      "height": 1
     },
     {
       "id": "MAPSEC_ROUTE_120",
@@ -507,7 +507,7 @@
     {
       "id": "MAPSEC_METEOR_FALLS",
       "name": "METEOR FALLS",
-      "x": 0,
+      "x": 25,
       "y": 3,
       "width": 1,
       "height": 1
@@ -563,9 +563,9 @@
     {
       "id": "MAPSEC_VICTORY_ROAD",
       "name": "VICTORY ROAD",
-      "x": 27,
-      "y": 9,
-      "width": 1,
+      "x": 10,
+      "y": 3,
+      "width": 4,
       "height": 1
     },
     {
@@ -694,8 +694,8 @@
     {
       "id": "MAPSEC_PALLET_TOWN",
       "name": "PALLET TOWN",
-      "x": 4,
-      "y": 11,
+      "x": 2,
+      "y": 12,
       "width": 1,
       "height": 1
     },
@@ -726,8 +726,8 @@
     {
       "id": "MAPSEC_LAVENDER_TOWN",
       "name": "LAVENDER TOWN",
-      "x": 18,
-      "y": 6,
+      "x": 21,
+      "y": 7,
       "width": 1,
       "height": 1
     },
@@ -758,15 +758,15 @@
     {
       "id": "MAPSEC_CINNABAR_ISLAND",
       "name": "CINNABAR ISLAND",
-      "x": 4,
-      "y": 14,
+      "x": 19,
+      "y": 12,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_INDIGO_PLATEAU",
       "name": "INDIGO PLATEAU",
-      "x": 2,
+      "x": 9,
       "y": 3,
       "width": 1,
       "height": 1
@@ -774,8 +774,8 @@
     {
       "id": "MAPSEC_SAFFRON_CITY",
       "name": "SAFFRON CITY",
-      "x": 14,
-      "y": 6,
+      "x": 25,
+      "y": 7,
       "width": 1,
       "height": 1
     },
@@ -808,9 +808,9 @@
     {
       "id": "MAPSEC_ROUTE_2",
       "name": "ROUTE 2",
-      "x": 4,
-      "y": 5,
-      "width": 1,
+      "x": 7,
+      "y": 8,
+      "width": 5,
       "height": 3
     },
     {
@@ -832,10 +832,10 @@
     {
       "id": "MAPSEC_ROUTE_5",
       "name": "ROUTE 5",
-      "x": 14,
-      "y": 4,
+      "x": 25,
+      "y": 6,
       "width": 1,
-      "height": 2
+      "height": 1
     },
     {
       "id": "MAPSEC_ROUTE_6",
@@ -848,17 +848,17 @@
     {
       "id": "MAPSEC_ROUTE_7",
       "name": "ROUTE 7",
-      "x": 12,
-      "y": 6,
-      "width": 2,
-      "height": 1
+      "x": 21,
+      "y": 9,
+      "width": 1,
+      "height": 2
     },
     {
       "id": "MAPSEC_ROUTE_8",
       "name": "ROUTE 8",
-      "x": 15,
-      "y": 6,
-      "width": 3,
+      "x": 21,
+      "y": 8,
+      "width": 1,
       "height": 1
     },
     {
@@ -944,26 +944,26 @@
     {
       "id": "MAPSEC_ROUTE_19",
       "name": "ROUTE 19",
-      "x": 12,
-      "y": 13,
+      "x": 25,
+      "y": 8,
       "width": 1,
-      "height": 2
+      "height": 3
     },
     {
       "id": "MAPSEC_ROUTE_20",
       "name": "ROUTE 20",
-      "x": 5,
-      "y": 14,
-      "width": 7,
+      "x": 20,
+      "y": 12,
+      "width": 6,
       "height": 1
     },
     {
       "id": "MAPSEC_ROUTE_21",
       "name": "ROUTE 21",
-      "x": 4,
-      "y": 12,
+      "x": 19,
+      "y": 13,
       "width": 1,
-      "height": 2
+      "height": 1
     },
     {
       "id": "MAPSEC_ROUTE_22",
@@ -984,16 +984,16 @@
     {
       "id": "MAPSEC_ROUTE_24",
       "name": "ROUTE 24",
-      "x": 14,
-      "y": 1,
+      "x": 11,
+      "y": 12,
       "width": 1,
       "height": 2
     },
     {
       "id": "MAPSEC_ROUTE_25",
       "name": "ROUTE 25",
-      "x": 15,
-      "y": 1,
+      "x": 12,
+      "y": 13,
       "width": 2,
       "height": 1
     },
@@ -1008,8 +1008,8 @@
     {
       "id": "MAPSEC_MT_MOON",
       "name": "MT. MOON",
-      "x": 9,
-      "y": 3,
+      "x": 14,
+      "y": 10,
       "width": 1,
       "height": 1
     },
@@ -1072,7 +1072,7 @@
     },
     {
       "id": "MAPSEC_POKEMON_MANSION",
-      "name": "POK\u00e9MON MANSION",
+      "name": "POKéMON MANSION",
       "x": 4,
       "y": 14,
       "width": 1,
@@ -1088,7 +1088,7 @@
     },
     {
       "id": "MAPSEC_POKEMON_LEAGUE",
-      "name": "POK\u00e9MON LEAGUE",
+      "name": "POKéMON LEAGUE",
       "x": 2,
       "y": 3,
       "width": 1,
@@ -1105,14 +1105,14 @@
     {
       "id": "MAPSEC_SEAFOAM_ISLANDS",
       "name": "SEAFOAM ISLANDS",
-      "x": 8,
-      "y": 14,
+      "x": 22,
+      "y": 12,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_POKEMON_TOWER",
-      "name": "POK\u00e9MON TOWER",
+      "name": "POKéMON TOWER",
       "x": 18,
       "y": 6,
       "width": 1,
@@ -1642,32 +1642,32 @@
     {
       "id": "MAPSEC_ECRUTEAK_CITY",
       "name": "ECRUTEAK CITY",
-      "x": 21,
-      "y": 11,
+      "x": 14,
+      "y": 3,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_ROUTE_37",
       "name": "ROUTE 37",
-      "x": 22,
-      "y": 11,
+      "x": 14,
+      "y": 4,
       "width": 1,
-      "height": 1
+      "height": 2
     },
     {
       "id": "MAPSEC_NATIONAL_PARK",
       "name": "NATIONAL PARK",
-      "x": 23,
-      "y": 11,
+      "x": 11,
+      "y": 5,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_ROUTE_36",
       "name": "ROUTE 36",
-      "x": 24,
-      "y": 11,
+      "x": 12,
+      "y": 5,
       "width": 2,
       "height": 1
     },
@@ -1714,9 +1714,9 @@
     {
       "id": "MAPSEC_ILEX_FOREST",
       "name": "ILEX FOREST",
-      "x": 24,
-      "y": 12,
-      "width": 2,
+      "x": 9,
+      "y": 8,
+      "width": 1,
       "height": 1
     },
     {
@@ -1738,25 +1738,25 @@
     {
       "id": "MAPSEC_CHERRYGROVE_CITY",
       "name": "CHERRYGROVE CITY",
-      "x": 21,
-      "y": 13,
+      "x": 6,
+      "y": 10,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_ROUTE_35",
       "name": "ROUTE 35",
-      "x": 22,
-      "y": 13,
-      "width": 1,
+      "x": 11,
+      "y": 6,
+      "width": 4,
       "height": 1
     },
     {
       "id": "MAPSEC_ROUTE_29",
       "name": "ROUTE 29",
-      "x": 23,
-      "y": 13,
-      "width": 1,
+      "x": 3,
+      "y": 10,
+      "width": 3,
       "height": 1
     },
     {
@@ -1778,16 +1778,16 @@
     {
       "id": "MAPSEC_DARK_CAVE",
       "name": "DARK CAVE",
-      "x": 19,
-      "y": 14,
-      "width": 2,
+      "x": 6,
+      "y": 7,
+      "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_BLACKTHORN_CITY",
       "name": "BLACKTHORN CITY",
-      "x": 21,
-      "y": 14,
+      "x": 25,
+      "y": 2,
       "width": 1,
       "height": 1
     },
@@ -1818,18 +1818,18 @@
     {
       "id": "MAPSEC_ROUTE_44",
       "name": "ROUTE 44",
-      "x": 25,
-      "y": 14,
-      "width": 1,
+      "x": 12,
+      "y": 11,
+      "width": 3,
       "height": 1
     },
     {
       "id": "MAPSEC_ROUTE_46",
       "name": "ROUTE 46",
-      "x": 26,
-      "y": 14,
+      "x": 6,
+      "y": 8,
       "width": 1,
-      "height": 1
+      "height": 2
     },
     {
       "id": "MAPSEC_ROUTE_26",
@@ -1842,18 +1842,18 @@
     {
       "id": "MAPSEC_GOLDENROD_CITY",
       "name": "GOLDENROD CITY",
-      "x": 20,
-      "y": 12,
+      "x": 14,
+      "y": 7,
       "width": 1,
       "height": 1
     },
     {
       "id": "MAPSEC_ROUTE_33",
       "name": "ROUTE 33",
-      "x": 22,
-      "y": 15,
+      "x": 14,
+      "y": 8,
       "width": 1,
-      "height": 1
+      "height": 2
     }
   ]
 }
