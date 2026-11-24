@@ -861,7 +861,6 @@
     "LavenderTown_Frlg",
     "VermilionCity_Frlg",
     "CeladonCity_Frlg",
-    "FuchsiaCity_Frlg",
     "CinnabarIsland_Frlg",
     "IndigoPlateau_Exterior_Frlg",
     "SaffronCity_Frlg",
@@ -993,16 +992,7 @@
     "CeladonCity_House1_Frlg",
     "CeladonCity_Hotel_Frlg"
   ],
-  "gMapGroup_IndoorFuchsia_Frlg": [
-    "FuchsiaCity_Mart_Frlg",
-    "FuchsiaCity_Gym_Frlg",
-    "FuchsiaCity_House1_Frlg",
-    "FuchsiaCity_PokemonCenter_1F_Frlg",
-    "FuchsiaCity_PokemonCenter_2F_Frlg",
-    "FuchsiaCity_WardensHouse_Frlg",
-    "FuchsiaCity_House2_Frlg",
-    "FuchsiaCity_House3_Frlg"
-  ],
+  "gMapGroup_IndoorFuchsia_Frlg": [],
   "gMapGroup_IndoorCinnabar_Frlg": [
     "CinnabarIsland_Gym_Frlg",
     "CinnabarIsland_PokemonLab_Entrance_Frlg",

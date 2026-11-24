@@ -853,6 +853,10 @@ entire groups. Names may be retained for shared mechanics or other build version
 
 - `MtMoon_Cave_hns`
 
+## Completed removals
+
+- **2026-11-23 — Fuchsia City (FRLG), all 9 maps.** Deleted `FuchsiaCity_Frlg` and its 8 interiors (`Mart`, `Gym`, `House1-3`, `PokemonCenter_1F/2F`, `WardensHouse`) plus the 4 layouts only they used (`LAYOUT_FUCHSIA_CITY`, `_GYM`, `_HOUSE2`, `_WARDENS_HOUSE`). `gMapGroup_IndoorFuchsia_Frlg` stays as an empty group so later group numbers don't shift; `FuchsiaCity_Frlg` came out of `gMapGroup_TownsAndRoutes_Frlg`, so maps after it in that group moved down one index. Also removed: the `Route15_Frlg`/`Route18_Frlg` connections into Fuchsia, both `MAP_FUCHSIA_CITY` water-encounter entries, the Gold Teeth item ball script (a second source of the Warden's teeth; the tournament is now the only one), and the Fuchsia-only Substitute tutor in `move_tutors_frlg.inc`. Kept: `gTileset_FuchsiaCity` (Route 19 and others use it), Koga's trainer parties, the MUS_RG_FUCHSIA music. The engine C references (`region_map.c`, `credits_frlg.c`) build against mapjson's placeholder define from `required_map_defines.json`. Checks: `make pox-build`, `check_map_refs.py --changed`, `check_generated.py`, `make pox-check-emu TESTS=test_national_park`.
+
 ## Validation and future updates
 
 The initial audit was executed twice with identical output; the named reporter

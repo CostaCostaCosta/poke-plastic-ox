@@ -238,36 +238,6 @@ EventScript_SoftboiledTaught::
 	release
 	end
 
-FuchsiaCity_EventScript_SubstituteTutor::
-	lock
-	faceplayer
-.if I_REUSABLE_TMS == FALSE
-	goto_if_set FLAG_TUTOR_SUBSTITUTE, EventScript_SubstituteTaught
-.endif
-	msgbox Text_SubstituteTeach, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, EventScript_SubstituteDeclined
-	call EventScript_CanOnlyBeLearnedOnce
-	goto_if_eq VAR_RESULT, NO, EventScript_SubstituteDeclined
-	msgbox Text_SubstituteWhichMon
-	setvar VAR_0x8005, MOVE_SUBSTITUTE
-	call EventScript_ChooseMoveTutorMon
-	goto_if_eq VAR_RESULT, FALSE, EventScript_SubstituteDeclined
-.if I_REUSABLE_TMS == FALSE
-	setflag FLAG_TUTOR_SUBSTITUTE
-.endif
-	goto EventScript_SubstituteTaught
-	end
-
-EventScript_SubstituteDeclined::
-	msgbox Text_SubstituteDeclined
-	release
-	end
-
-EventScript_SubstituteTaught::
-	msgbox Text_SubstituteTaught
-	release
-	end
-
 SevenIsland_EventScript_SwordsDanceTutor::
 	lock
 	faceplayer

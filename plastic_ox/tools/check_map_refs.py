@@ -182,8 +182,7 @@ def main() -> int:
     wanted = args.map or (changed_maps() if args.changed else sorted(maps))
     if pox:
         wanted = [name for name in wanted if name in pox]
-    if args.map:
-        wanted = [name for name in wanted if name in maps]
+    wanted = [name for name in wanted if name in maps]  # deleted maps have nothing to check
     if not wanted:
         print("no maps in scope")
         return 0

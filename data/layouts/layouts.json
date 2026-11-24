@@ -5088,22 +5088,6 @@
       "layout_version": "frlg"
     },
     {
-      "id": "LAYOUT_FUCHSIA_CITY_GYM",
-      "name": "FuchsiaCity_Gym_Layout",
-      "width": 15,
-      "height": 23,
-      "border_width": 2,
-      "border_height": 2,
-      "primary_tileset": "gTileset_BuildingFrlg",
-      "secondary_tileset": "gTileset_FuchsiaGym",
-      "border_filepath": "data/layouts/FuchsiaCity_Gym_Frlg/border.bin",
-      "blockdata_filepath": "data/layouts/FuchsiaCity_Gym_Frlg/map.bin",
-      "layout_version": "frlg",
-      "include_in_versions": [
-        "emerald"
-      ]
-    },
-    {
       "id": "LAYOUT_HOUSE5_FRLG",
       "name": "House5_Layout",
       "width": 11,
@@ -5518,22 +5502,6 @@
       "secondary_tileset": "gTileset_CeladonCity",
       "border_filepath": "data/layouts/CeladonCity_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/CeladonCity_Frlg/map.bin",
-      "layout_version": "frlg",
-      "include_in_versions": [
-        "emerald"
-      ]
-    },
-    {
-      "id": "LAYOUT_FUCHSIA_CITY",
-      "name": "FuchsiaCity_Layout",
-      "width": 48,
-      "height": 40,
-      "border_width": 2,
-      "border_height": 2,
-      "primary_tileset": "gTileset_General_Frlg",
-      "secondary_tileset": "gTileset_FuchsiaCity",
-      "border_filepath": "data/layouts/FuchsiaCity_Frlg/border.bin",
-      "blockdata_filepath": "data/layouts/FuchsiaCity_Frlg/map.bin",
       "layout_version": "frlg",
       "include_in_versions": [
         "emerald"
@@ -7222,38 +7190,6 @@
       "secondary_tileset": "gTileset_DepartmentStore",
       "border_filepath": "data/layouts/CeladonCity_DepartmentStore_Roof_Frlg/border.bin",
       "blockdata_filepath": "data/layouts/CeladonCity_DepartmentStore_Roof_Frlg/map.bin",
-      "layout_version": "frlg",
-      "include_in_versions": [
-        "emerald"
-      ]
-    },
-    {
-      "id": "LAYOUT_FUCHSIA_CITY_WARDENS_HOUSE",
-      "name": "FuchsiaCity_WardensHouse_Layout",
-      "width": 13,
-      "height": 11,
-      "border_width": 2,
-      "border_height": 2,
-      "primary_tileset": "gTileset_BuildingFrlg",
-      "secondary_tileset": "gTileset_Museum",
-      "border_filepath": "data/layouts/FuchsiaCity_WardensHouse_Frlg/border.bin",
-      "blockdata_filepath": "data/layouts/FuchsiaCity_WardensHouse_Frlg/map.bin",
-      "layout_version": "frlg",
-      "include_in_versions": [
-        "emerald"
-      ]
-    },
-    {
-      "id": "LAYOUT_FUCHSIA_CITY_HOUSE2",
-      "name": "FuchsiaCity_House2_Layout",
-      "width": 10,
-      "height": 10,
-      "border_width": 2,
-      "border_height": 2,
-      "primary_tileset": "gTileset_BuildingFrlg",
-      "secondary_tileset": "gTileset_Museum",
-      "border_filepath": "data/layouts/FuchsiaCity_House2_Frlg/border.bin",
-      "blockdata_filepath": "data/layouts/FuchsiaCity_House2_Frlg/map.bin",
       "layout_version": "frlg",
       "include_in_versions": [
         "emerald"
