@@ -11,6 +11,7 @@
 #include "mirage_tower.h"
 #include "overworld.h"
 #include "palette.h"
+#include "plastic_ox_borders.h"
 #include "pokenav.h"
 #include "script.h"
 #include "secret_base.h"
@@ -57,6 +58,10 @@ static bool8 IsCoordInIncomingConnectingMap(s32 coord, s32 srcMax, s32 destMax, 
 static inline u16 GetBorderBlockAt(int x, int y)
 {
     const struct MapLayout *mapLayout = gMapHeader.mapLayout;
+    u16 override;
+
+    if (PlasticOx_GetBorderOverride(x - MAP_OFFSET, y - MAP_OFFSET, &override))
+        return override | MAPGRID_IMPASSABLE;
 
     if (mapLayout->layoutVersion == LAYOUT_VERSION_FRLG)
     {

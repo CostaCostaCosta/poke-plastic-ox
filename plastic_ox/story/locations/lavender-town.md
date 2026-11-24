@@ -66,7 +66,7 @@ plan; open the harbour early; show Bill anywhere near this.
 | Fuji rescue | Tower `(5,2)` | `FLAG_POX_STORY_FUJI` | long rescue text naming Cinnabar and Blaine | keep content; break into two beats (relief, then directions) |
 | Fuji's house / Eevee | `PlasticOx_FujiHouse` `(5,2)` | `FLAG_POX_GIFT_FUJI` | gives Eevee #4 | keep; make the gift feel like a foster, not a prize |
 | Tower exit | Tower `(3,12)` | always | "I'll show you back outside" | keep as a silent walk-out if possible |
-| Signs | town `(15,1)`, `(1,17)`, `(18,21)` | always | "Marked passage ahead." ×3 | replace with place-specific signs: tower, Route 8, harbour |
+| Signs | town `(1,17)`, `(18,21)` | always | "Marked passage ahead." ×2 (the north road to Route 110 is a plain connection with no sign) | replace with place-specific signs: tower, Route 8, harbour |
 
 ## Dialogue guidance
 

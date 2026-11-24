@@ -18,6 +18,11 @@
       "map": "MAP_ROUTE119",
       "offset": 0,
       "direction": "left"
+    },
+    {
+      "map": "MAP_ROUTE110",
+      "offset": 5,
+      "direction": "right"
     }
   ],
   "object_events": [
@@ -153,8 +158,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SIGN",
-      "x": 39,
-      "y": 9,
+      "x": 37,
+      "y": 7,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_NONE",
       "movement_range_x": 0,
@@ -257,6 +262,33 @@
     }
   ],
   "coord_events": [
+    {
+      "type": "trigger",
+      "x": 39,
+      "y": 8,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "PoxRegion_fortree_route110_a"
+    },
+    {
+      "type": "trigger",
+      "x": 39,
+      "y": 7,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "PoxRegion_fortree_route110_a"
+    },
+    {
+      "type": "trigger",
+      "x": 39,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "PoxRegion_fortree_route110_a"
+    },
     {
       "type": "trigger",
       "x": 39,

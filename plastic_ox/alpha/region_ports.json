@@ -68,57 +68,57 @@
   "fortree_route110_a": {
     "tile": [
       39,
-      10
+      8
     ],
     "approach": [
       38,
-      10
+      8
     ],
     "direction": "E"
   },
   "fortree_route110_b": {
     "tile": [
-      18,
-      0
+      0,
+      3
     ],
     "approach": [
-      17,
-      0
+      1,
+      3
     ],
-    "direction": "E"
+    "direction": "W"
   },
   "route36_shortcut_a": {
     "tile": [
       65,
-      18
+      20
     ],
     "approach": [
       64,
-      18
+      20
     ],
     "direction": "E"
   },
   "route36_shortcut_b": {
     "tile": [
-      1,
-      67
+      0,
+      69
     ],
     "approach": [
-      0,
-      67
+      1,
+      69
     ],
-    "direction": "E"
+    "direction": "W"
   },
   "route110_lavender_b": {
     "tile": [
-      16,
+      14,
       0
     ],
     "approach": [
-      15,
-      0
+      14,
+      1
     ],
-    "direction": "E"
+    "direction": "N"
   },
   "route7_saffron_a": {
     "tile": [
@@ -507,14 +507,14 @@
   },
   "route110_lavender_a": {
     "tile": [
-      16,
-      5
+      17,
+      99
     ],
     "approach": [
-      15,
-      5
+      17,
+      98
     ],
-    "direction": "E"
+    "direction": "S"
   },
   "route103_cinnabar_a": {
     "tile": [

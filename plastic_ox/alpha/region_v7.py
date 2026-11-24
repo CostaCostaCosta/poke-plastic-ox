@@ -59,7 +59,13 @@ LANE_PORTALS = {
 # coordinate triggers along the shared edge, but an open gate never warps:
 # the player simply walks across the map connection in either direction.
 # key: (connection from a, connection from b, offset)
-SEAM_TRAILS = {'route119_fortree': ('right', 'left', 0)}
+SEAM_TRAILS = {
+    'route119_fortree': ('right', 'left', 0),
+    # Route 110's three exits; route110_seams.py cuts the matching geometry.
+    'fortree_route110': ('right', 'left', 5),
+    'route36_shortcut': ('right', 'left', -49),
+    'route110_lavender': ('down', 'up', 3),
+}
 
 # These transitions are visually self-explanatory roads.  Extra object signs
 # narrowed their approaches and duplicated nearby native wayfinding.
@@ -72,8 +78,8 @@ TRAILS = [
     ('route33_goldenrod','Route33_hns','W','GoldenrodCity_hns','S',[]),
     ('goldenrod_route35','GoldenrodCity_hns',(33,8),'Route35_hns','S',[]),
     ('route119_fortree','Route119',(39,8),'FortreeCity','W',['FLAG_POX_STORY_WEATHER']),
-    ('fortree_route110','FortreeCity','E','Route110','N',['FLAG_BADGE04_GET']),
-    ('route36_shortcut','Route36_hns','E','Route110',(1,67),['FLAG_POX_REACHED_FORTREE']),
+    ('fortree_route110','FortreeCity','E','Route110',(0,3),['FLAG_BADGE04_GET']),
+    ('route36_shortcut','Route36_hns','E','Route110',(0,69),['FLAG_POX_REACHED_FORTREE']),
     ('route110_lavender','Route110','S','LavenderTown_hns','N',['FLAG_BADGE04_GET']),
     ('lavender_route8','LavenderTown_hns','W','Route8_Frlg','E',FUJI),
     ('route8_saffron','Route8_Frlg',(8,20),'SaffronCity_hns','E',SPACE),
@@ -545,7 +551,6 @@ def apply_region(read, put):
 
     for key,a,at,b,bt,requirements in TRAILS:
         overrides={('route2_rustboro','Route2_Frlg'):((6,0),(6,5)),
-                   ('route110_lavender','Route110'):((17,5),(17,0)),
                    ('route103_cinnabar','Route103'):((75,15),(78,11))}
         pa_target,pa_anchor=overrides.get((key,a),(at,None))
         pa=port(key+'_a',a,pa_target,pa_anchor)
@@ -604,18 +609,18 @@ def apply_region(read, put):
     d['object_events'][3]['script']='POX_PU_CoinPrizes'
     save('MauvilleCity_GameCorner',d)
     # Restore the donor's three-way junction before placing these objects:
-    # Sudowoodo blocks both Route 37 and the eastern road, while Snorlax
-    # blocks only the eastern branch beyond it.
+    # Sudowoodo blocks both Route 37 and the eastern road, while a hiker
+    # asleep across the eastern branch holds it shut until Winona's badge.
     d=load('Route36_hns')
-    d['object_events']=[o for o in d['object_events'] if o.get('script') not in ('Pox_Sudowoodo', 'Route36_EventScript_Snorlax')]
+    d['object_events']=[o for o in d['object_events'] if o.get('script') not in ('Pox_Sudowoodo', 'Route36_EventScript_Snorlax', 'Route36_EventScript_Sleeper')]
     d['object_events'].append(dict(graphics_id='OBJ_EVENT_GFX_SUDOWOODO',x=39,y=19,elevation=3,
         movement_type='MOVEMENT_TYPE_NONE',movement_range_x=0,movement_range_y=0,
         trainer_type='TRAINER_TYPE_NONE',trainer_sight_or_berry_tree_id='0',
         script='Pox_Sudowoodo',flag='FLAG_POX_SUDOWOODO_CLEARED'))
-    d['object_events'].append(dict(graphics_id='OBJ_EVENT_GFX_SNORLAX',x=43,y=19,elevation=3,
-        movement_type='MOVEMENT_TYPE_NONE',movement_range_x=0,movement_range_y=0,
+    d['object_events'].append(dict(graphics_id='OBJ_EVENT_GFX_HIKER',x=43,y=19,elevation=3,
+        movement_type='MOVEMENT_TYPE_FACE_DOWN',movement_range_x=0,movement_range_y=0,
         trainer_type='TRAINER_TYPE_NONE',trainer_sight_or_berry_tree_id='0',
-        script='Route36_EventScript_Snorlax',flag='FLAG_POX_ROUTE36_SNORLAX_CLEARED'))
+        script='Route36_EventScript_Sleeper',flag='FLAG_POX_ROUTE36_SLEEPER_MOVED'))
     save('Route36_hns',d)
     # Permanently close the unused southern road and Ruins of Alph gate.
     # Cover all three walkable tiles; local scripts own the closure dialogue.
