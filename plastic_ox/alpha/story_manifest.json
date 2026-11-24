@@ -205,52 +205,10 @@
       "script": "Pox_CottageGuide"
     },
     {
-      "map": "PlasticOx_PokemonTower",
-      "x": 6,
-      "y": 12,
-      "script": "Pox_TowerGrunt1"
-    },
-    {
-      "map": "PlasticOx_PokemonTower",
-      "x": 7,
-      "y": 9,
-      "script": "Pox_TowerGrunt2"
-    },
-    {
-      "map": "PlasticOx_PokemonTower",
-      "x": 5,
-      "y": 2,
-      "script": "Pox_FujiRescue"
-    },
-    {
-      "map": "PlasticOx_PokemonTower",
-      "x": 3,
-      "y": 12,
-      "script": "Pox_PokemonTowerExit"
-    },
-    {
-      "map": "LavenderTown_hns",
-      "x": 17,
-      "y": 7,
-      "script": "Pox_TowerGuide"
-    },
-    {
-      "map": "PlasticOx_FujiHouse",
-      "x": 5,
-      "y": 2,
-      "script": "Pox_Fuji"
-    },
-    {
       "map": "PlasticOx_FujiHouse",
       "x": 4,
       "y": 8,
       "script": "Pox_FujiHouseExit"
-    },
-    {
-      "map": "LavenderTown_hns",
-      "x": 12,
-      "y": 10,
-      "script": "Pox_FujiGuide"
     },
     {
       "map": "PlasticOx_Mansion",
@@ -563,6 +521,24 @@
       "x": 8,
       "y": 9,
       "script": "Pox_BurnedTower"
+    },
+    {
+      "map": "PokemonTower_7F_Frlg",
+      "x": 9,
+      "y": 10,
+      "script": "Pox_TowerGrunt1"
+    },
+    {
+      "map": "PokemonTower_7F_Frlg",
+      "x": 13,
+      "y": 8,
+      "script": "Pox_TowerGrunt2"
+    },
+    {
+      "map": "PokemonTower_7F_Frlg",
+      "x": 9,
+      "y": 6,
+      "script": "Pox_TowerGrunt3"
     }
   ],
   "flags": [

@@ -4,7 +4,9 @@
   "layout": "LAYOUT_POKEMON_TOWER_5F",
   "music": "MUS_RG_POKE_TOWER",
   "region": "REGION_KANTO",
-  "include_in_versions": ["emerald"],
+  "include_in_versions": [
+    "emerald"
+  ],
   "region_map_section": "MAPSEC_POKEMON_TOWER",
   "requires_flash": false,
   "weather": "WEATHER_FOG_HORIZONTAL",
@@ -26,9 +28,9 @@
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "2",
-      "script": "PokemonTower_5F_EventScript_Ruth",
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxLavender_T5Channeler1",
       "flag": "0"
     },
     {
@@ -40,9 +42,9 @@
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "3",
-      "script": "PokemonTower_5F_EventScript_Tammy",
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxLavender_T5Channeler2",
       "flag": "0"
     },
     {
@@ -54,9 +56,9 @@
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "2",
-      "script": "PokemonTower_5F_EventScript_Karina",
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxLavender_T5Channeler3",
       "flag": "0"
     },
     {
@@ -68,9 +70,9 @@
       "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
       "movement_range_x": 1,
       "movement_range_y": 1,
-      "trainer_type": "TRAINER_TYPE_NORMAL",
-      "trainer_sight_or_berry_tree_id": "2",
-      "script": "PokemonTower_5F_EventScript_Janae",
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxLavender_T5Channeler4",
       "flag": "0"
     },
     {
@@ -84,7 +86,7 @@
       "movement_range_y": 1,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PokemonTower_5F_EventScript_Channeler",
+      "script": "PoxLavender_T5Purifier",
       "flag": "0"
     },
     {
@@ -99,7 +101,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "PokemonTower_5F_EventScript_ItemNugget",
-      "flag": "FLAG_HIDE_POKEMON_TOWER_5F_NUGGET"
+      "flag": "FLAG_POX_HIDE_TOWER_5F_NUGGET"
     },
     {
       "type": "object",
@@ -113,7 +115,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "PokemonTower_5F_EventScript_ItemCleanseTag",
-      "flag": "FLAG_HIDE_POKEMON_TOWER_5F_CLEANSE_TAG"
+      "flag": "FLAG_POX_HIDE_TOWER_5F_CLEANSE_TAG"
     }
   ],
   "warp_events": [

@@ -1,4 +1,5 @@
 LavenderTown_VolunteerPokemonHouse_Frlg_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxLavender_HouseOnTransition
 	.byte 0
 
 LavenderTown_VolunteerPokemonHouse_EventScript_MrFuji::

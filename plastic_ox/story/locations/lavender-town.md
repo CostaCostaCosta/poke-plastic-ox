@@ -7,11 +7,11 @@ stage: "9 — Lavender / Team Rocket II"
 depth: full
 wiki: lavendertown-hns
 maps: [LavenderTown_hns]
-also_maps: [PlasticOx_PokemonTower, PlasticOx_FujiHouse, PlasticOx_Harbor]
-flags: [FLAG_POX_STORY_FUJI, FLAG_POX_GIFT_FUJI, FLAG_POX_HIDE_LAVENDER_GRUNT_1, FLAG_POX_HIDE_LAVENDER_GRUNT_2]
+also_maps: [PokemonTower_1F_Frlg, PokemonTower_2F_Frlg, PokemonTower_3F_Frlg, PokemonTower_4F_Frlg, PokemonTower_5F_Frlg, PokemonTower_6F_Frlg, PokemonTower_7F_Frlg, LavenderTown_VolunteerPokemonHouse_Frlg, LavenderTown_House1_Frlg, PlasticOx_Harbor, PlasticOx_PokemonTower, PlasticOx_FujiHouse]
+flags: [FLAG_POX_STORY_FUJI, FLAG_POX_GIFT_FUJI, FLAG_POX_FUJI_RESCUED, FLAG_POX_HIDE_HOUSE_FUJI, FLAG_POX_HIDE_LAVENDER_GRUNT_1, FLAG_POX_HIDE_LAVENDER_GRUNT_2, FLAG_POX_HIDE_LAVENDER_GRUNT_3]
 badges: []
-trainers: [TRAINER_PLASTIC_OX_TOWERGRUNT1, TRAINER_PLASTIC_OX_TOWERGRUNT2]
-status: drafted
+trainers: [TRAINER_PLASTIC_OX_TOWERGRUNT1, TRAINER_PLASTIC_OX_TOWERGRUNT2, TRAINER_PLASTIC_OX_TOWERGRUNT3]
+status: implemented
 ---
 
 # Lavender Town
@@ -56,17 +56,29 @@ plan; open the harbour early; show Bill anywhere near this.
 
 ## Key interactions
 
-| Interaction | Where | Trigger / state | Current behavior | Target behavior |
-| --- | --- | --- | --- | --- |
-| Tower lead | town `(17,7)` `Pox_TowerGuide` | Fuji not rescued | "TEAM ROCKET is holding MR. FUJI" | keep the information; give it to a mourner or a tower caretaker, not a quest-giver kid |
-| Fuji guide | town `(12,10)` `Pox_FujiGuide` | Fuji rescued | "The POKéMON HOUSE welcomes everyone" | rewrite: she is Fuji's neighbour and has been worried |
-| Cinnabar road | town `(15,17)` `Pox_CinnabarRoad` | after Fuji | Route 8 / Underground / Route 103 directions | keep; phrase as directions a local would actually give |
-| South road barrier | town `(13,24)`–`(15,24)`, three identical `MAN_3` | always | "The southern road is closed." | three different people at the barrier: a ferry clerk, a fisherman, a kid. No two identical lines |
-| Tower grunts | `PlasticOx_PokemonTower` `(6,12)`, `(7,9)` | grunt flags unset | trainers `TOWERGRUNT1/2`, hide flags after defeat | keep; add post-battle lines that are *questions*, not threats |
-| Fuji rescue | Tower `(5,2)` | `FLAG_POX_STORY_FUJI` | long rescue text naming Cinnabar and Blaine | keep content; break into two beats (relief, then directions) |
-| Fuji's house / Eevee | `PlasticOx_FujiHouse` `(5,2)` | `FLAG_POX_GIFT_FUJI` | gives Eevee #4 | keep; make the gift feel like a foster, not a prize |
-| Tower exit | Tower `(3,12)` | always | "I'll show you back outside" | keep as a silent walk-out if possible |
-| Signs | town `(15,1)`, `(1,17)`, `(18,21)` | always | "Marked passage ahead." ×3 | replace with place-specific signs: tower, Route 8, harbour |
+Implemented 2026-11-24 (`plastic_ox/alpha/lavender.py`; run log
+`plastic_ox/story/runs/2026-11-24-lavender-town.md`). Nothing in Lavender
+teleports the player except FUJI walking them home after the rescue (the FRLG
+original beat).
+
+| Interaction | Where | Trigger / state | Behavior |
+| --- | --- | --- | --- |
+| Tower caretaker | town `(17,7)` | before / after `FLAG_POX_FUJI_RESCUED` | candles; men in black went up / FUJI is home |
+| FUJI's neighbour | town `(12,10)` | before / after rescue | worried / relieved |
+| Mourner | town `(8,21)` | always | visits a NIDORINO buried thirty years ago |
+| Cinnabar road | town `(15,17)` `Pox_CinnabarRoad` | always | Route 8 / Underground / Route 103 directions |
+| South road barrier | town `(13..15,24)` | always | ferry clerk, fisherman, kid; three different lines |
+| Doors | town `(22,6)` tower, `(8,13)` FUJI's house, `(10,19)` House1 | always | real warps to the FRLG interiors and back |
+| Tower floors | `PokemonTower_1F..6F_Frlg` | always | mourners and channelers who speak in fragments (no channeler battles); 5F purified zone heals; item balls on their own POX_EXT flags |
+| Rocket II | `PokemonTower_7F_Frlg` `(9,10)`, `(13,8)`, `(9,6)` | in order, badge 4 | `TOWERGRUNT1..3` (Team Rocket); each disappears when beaten |
+| FUJI rescue | 7F `(11,4)` | after grunt 3 | relief, then walks the player to his house; sets `FLAG_POX_FUJI_RESCUED` |
+| SURF KEY | FUJI's house `(3,3)` | rescued | two beats (what they asked, where the records are), SURF KEY, sets `FLAG_POX_STORY_FUJI` (opens Route 8), then the EEVEE foster |
+| Signs | town `(16,4)`, `(19,7)`, `(12,13)`, `(19,18)` | always | town, tower, volunteer house, Soul House (closed) |
+
+Wild encounters: tower 3F–7F use `gPoxUUPokemonTower3F..7F` (Lv34–40,
+Gastly, Haunter, Cubone, Shuppet, Duskull, Banette and the UU Misdreavus, rarer
+low down and about 16% on 7F). `pox_progression.py` counts them at the
+`cinnabar` (UU) checkpoint.
 
 ## Dialogue guidance
 
@@ -117,22 +129,19 @@ plan; open the harbour early; show Bill anywhere near this.
 ## Implementation hooks
 
 - Wiki page: `lavendertown-hns.html`
-- Maps: `LavenderTown_hns` (`MAP_LAVENDER_TOWN_HNS`), `PlasticOx_PokemonTower`
-  (`MAP_PLASTIC_OX_POKEMON_TOWER`), `PlasticOx_FujiHouse`, `PlasticOx_Harbor`
-- Scripts: `data/maps/LavenderTown_hns/scripts.inc`,
-  `data/maps/PlasticOx_PokemonTower/scripts.inc`,
-  `data/scripts/plastic_ox_story.inc`
-- Flags: `FLAG_POX_STORY_FUJI`, `FLAG_POX_GIFT_FUJI`,
-  `FLAG_POX_HIDE_LAVENDER_GRUNT_1`, `FLAG_POX_HIDE_LAVENDER_GRUNT_2`
-- Trainers: `TRAINER_PLASTIC_OX_TOWERGRUNT1` (Lv.36–38 mixed, Ghost/Poison),
-  `TRAINER_PLASTIC_OX_TOWERGRUNT2` (Lv.37–38 mixed, physical)
-- Known gaps: `PlasticOx_PokemonTower` has **0 warp events**, so the tower is
-  entered by a scripted transport — verify both entry and exit; three identical
-  `SouthRoadClosed` men; all three signs say "Marked passage ahead."
+- Generator: `plastic_ox/alpha/lavender.py` (installed last by `region_v7.py`);
+  grunts 1–2 and FUJI's EEVEE remain `build_story.py` battles/gift.
+- Scripts: `data/scripts/plastic_ox_lavender.inc` (generated),
+  `Pox_TowerGrunt1/2` and `Pox_Fuji` in `data/scripts/plastic_ox_story.inc`
+- Retired: `PlasticOx_PokemonTower`, `PlasticOx_FujiHouse` are empty
+  placeholder maps kept for map numbering; remove them with the other
+  placeholder slots before release.
+- Test: `plastic_ox/demo/test_lavender.py`
 
 ## Open questions
 
-- Should the tower keep native wild encounters (Gastly/Cubone) or be encounter-
-  free for pacing? The current map data suggests no encounters are assigned.
+- From outside, the tower is still the HNS radio-station building. Swapping
+  its metatiles for a tower facade would need HNS tileset art.
+- The Soul House door `(22,19)` has no interior yet.
 - Is `PlasticOx_Harbor` the postgame dock map, or should the harbour be an
   interior added later? The note assumes the former.

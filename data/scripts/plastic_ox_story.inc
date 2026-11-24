@@ -1226,16 +1226,16 @@ goto Pox_TowerGrunt1_Won
 Pox_TowerGrunt1_Won::
 	setflag FLAG_POX_HIDE_LAVENDER_GRUNT_1
 
-
+removeobject VAR_LAST_TALKED
 
 releaseall
 	end
 
 Pox_Text_TowerGrunt1::
-	.string "FUJI knows something about\nreconstructing POKéMON. He'll\panswer our questions!$"
+	.string "Don't come any closer. We're\nasking the old man a few\pquestions, that's all.\pHow do you move a POKéMON\nwithout moving the room it's in?\pHe knows. He won't say.$"
 
 Pox_Text_TowerGrunt1_Defeat::
-	.string "Ow! FUJI isn't going anywhere,\nbut I sure am.$"
+	.string "Fine. Ask him yourself. Maybe\nhe'll answer you.$"
 
 Pox_TowerGrunt2::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -1251,74 +1251,16 @@ goto Pox_TowerGrunt2_Won
 Pox_TowerGrunt2_Won::
 	setflag FLAG_POX_HIDE_LAVENDER_GRUNT_2
 
-
+removeobject VAR_LAST_TALKED
 
 releaseall
 	end
 
 Pox_Text_TowerGrunt2::
-	.string "Upstairs is off limits. The old\nman is busy talking to the\pboss's people.$"
+	.string "We were told to find a man, not\na library. Every answer he gives\pis another stack of paper.\pWhat does 'preserve a living\nstate' even mean? You tell me!$"
 
 Pox_Text_TowerGrunt2_Defeat::
-	.string "No fair! They told me this was\nan easy shift.$"
-
-Pox_FujiRescue::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
-
-goto_if_unset FLAG_POX_HIDE_LAVENDER_GRUNT_1, Pox_NotReady
-
-goto_if_unset FLAG_POX_HIDE_LAVENDER_GRUNT_2, Pox_NotReady
-
-goto_if_set FLAG_POX_STORY_FUJI, Pox_Done
-
-msgbox Pox_Text_FujiRescue, MSGBOX_DEFAULT
-
-checkitem ITEM_SURF_KEY
-	goto_if_eq VAR_RESULT, TRUE, Pox_FujiRescue_HasSurfKey
-	giveitem ITEM_SURF_KEY
-	goto_if_eq VAR_RESULT, FALSE, Pox_Release
-Pox_FujiRescue_HasSurfKey::
-
-setflag FLAG_POX_STORY_FUJI
-
-releaseall
-	end
-
-Pox_Text_FujiRescue::
-	.string "FUJI: Thank you. They asked\nabout preserving living\pstates... old work I hoped never\nto hear of again.\pThe archives on CINNABAR may\nexplain more. Ask BLAINE for\paccess.\pTake the UNDERGROUND PATH from\nROUTE 8 to ROUTE 7, then cross\pROUTE 103. This SURF KEY will\nhelp you cross the water.$"
-
-Pox_PokemonTowerExit::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
-
-msgbox Pox_Text_PokemonTowerExit, MSGBOX_DEFAULT
-
-warp MAP_LAVENDER_TOWN_HNS, 17, 8
-	waitstate
-
-releaseall
-	end
-
-Pox_Text_PokemonTowerExit::
-	.string "Let's get you out of the tower.\nWatch the stairs.$"
-
-Pox_TowerGuide::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
-
-goto_if_unset FLAG_BADGE04_GET, Pox_NotReady
-
-msgbox Pox_Text_TowerGuide, MSGBOX_DEFAULT
-
-warp MAP_PLASTIC_OX_POKEMON_TOWER, 5, 10
-	waitstate
-
-releaseall
-	end
-
-Pox_Text_TowerGuide::
-	.string "TEAM ROCKET is holding MR. FUJI\nin the POKéMON TOWER.$"
+	.string "Paper. It was all just paper.\nWhy are we even fighting over\pit?$"
 
 Pox_Fuji::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -1341,7 +1283,7 @@ releaseall
 	end
 
 Pox_Text_Fuji::
-	.string "FUJI: This EEVEE was abandoned.\nYou have shown it what kindness\plooks like.\pBLAINE keeps the key to the\nCINNABAR archives.$"
+	.string "FUJI: One more thing. This EEVEE\ncame to the house last winter\pand never left. I think it has\nbeen waiting for someone like\pyou.\pTake good care of it.$"
 
 Pox_Fuji_GiftDone::
 	msgbox Pox_Text_Fuji_GiftDone, MSGBOX_DEFAULT
@@ -1349,37 +1291,7 @@ Pox_Fuji_GiftDone::
 	end
 
 Pox_Text_Fuji_GiftDone::
-	.string "FUJI: EEVEE seems lighter on its\nfeet already. Thank you for\pgiving it a home.$"
-
-Pox_FujiHouseExit::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
-
-msgbox Pox_Text_FujiHouseExit, MSGBOX_DEFAULT
-
-warp MAP_LAVENDER_TOWN_HNS, 12, 11
-	waitstate
-
-releaseall
-	end
-
-Pox_Text_FujiHouseExit::
-	.string "The door sticks. Here, I'll get\nit for you.$"
-
-Pox_FujiGuide::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
-
-msgbox Pox_Text_FujiGuide, MSGBOX_DEFAULT
-
-warp MAP_PLASTIC_OX_FUJI_HOUSE, 5, 8
-	waitstate
-
-releaseall
-	end
-
-Pox_Text_FujiGuide::
-	.string "The POKéMON HOUSE welcomes\neveryone.$"
+	.string "FUJI: EEVEE seems lighter on its\nfeet already. Thank you for\pgiving it a home.\pThe archives on CINNABAR will\nnot wait forever. ROUTE 8 west,\pthen the UNDERGROUND PATH.$"
 
 Pox_Archive1::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
