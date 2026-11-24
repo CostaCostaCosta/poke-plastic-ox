@@ -68,12 +68,13 @@ original beat).
 | Mourner | town `(8,21)` | always | visits a NIDORINO buried thirty years ago |
 | Cinnabar road | town `(15,17)` `Pox_CinnabarRoad` | always | Route 8 / Underground / Route 103 directions |
 | South road barrier | town `(13..15,24)` | always | ferry clerk, fisherman, kid; three different lines |
-| Doors | town `(22,6)` tower, `(8,13)` FUJI's house, `(10,19)` House1 | always | real warps to the FRLG interiors and back |
+| Doors | town `(22,6)` tower, `(8,13)` FUJI's house, `(10,19)` House1, `(22,19)` Soul House | always | real warps to the interiors and back |
+| Soul House | `PlasticOx_FujiHouse` (HNS generic house) | before / after `FLAG_POX_FUJI_RESCUED` | keeper (names, somewhere to sit / FUJI swept the step) and a visitor |
 | Tower floors | `PokemonTower_1F..6F_Frlg` | always | mourners and channelers who speak in fragments (no channeler battles); 5F purified zone heals; item balls on their own POX_EXT flags |
 | Rocket II | `PokemonTower_7F_Frlg` `(9,10)`, `(13,8)`, `(9,6)` | in order, badge 4 | `TOWERGRUNT1..3` (Team Rocket); each disappears when beaten |
 | FUJI rescue | 7F `(11,4)` | after grunt 3 | relief, then walks the player to his house; sets `FLAG_POX_FUJI_RESCUED` |
 | SURF KEY | FUJI's house `(3,3)` | rescued | two beats (what they asked, where the records are), SURF KEY, sets `FLAG_POX_STORY_FUJI` (opens Route 8), then the EEVEE foster |
-| Signs | town `(16,4)`, `(19,7)`, `(12,13)`, `(19,18)` | always | town, tower, volunteer house, Soul House (closed) |
+| Signs | town `(16,4)`, `(19,7)`, `(12,13)`, `(19,18)` | always | town, tower, volunteer house, Soul House |
 
 Wild encounters: tower 3F–7F use `gPoxUUPokemonTower3F..7F` (Lv34–40,
 Gastly, Haunter, Cubone, Shuppet, Duskull, Banette and the UU Misdreavus, rarer
@@ -133,15 +134,14 @@ low down and about 16% on 7F). `pox_progression.py` counts them at the
   grunts 1–2 and FUJI's EEVEE remain `build_story.py` battles/gift.
 - Scripts: `data/scripts/plastic_ox_lavender.inc` (generated),
   `Pox_TowerGrunt1/2` and `Pox_Fuji` in `data/scripts/plastic_ox_story.inc`
-- Retired: `PlasticOx_PokemonTower`, `PlasticOx_FujiHouse` are empty
-  placeholder maps kept for map numbering; remove them with the other
-  placeholder slots before release.
+- Retired: `PlasticOx_PokemonTower` is an empty placeholder map kept for map
+  numbering; remove it with the other placeholder slots before release.
+  `PlasticOx_FujiHouse` (the old FUJI teleport room) is now the Soul House.
 - Test: `plastic_ox/demo/test_lavender.py`
 
 ## Open questions
 
 - From outside, the tower is still the HNS radio-station building. Swapping
   its metatiles for a tower facade would need HNS tileset art.
-- The Soul House door `(22,19)` has no interior yet.
 - Is `PlasticOx_Harbor` the postgame dock map, or should the harbour be an
   interior added later? The note assumes the former.

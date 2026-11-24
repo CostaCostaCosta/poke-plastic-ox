@@ -12,8 +12,10 @@ Installed last by region_v7.apply_region, so it owns the final shape of:
 * FUJI's rescue: talking to him on 7F after the third grunt walks the player
   home; in the house he gives the SURF KEY, sets FLAG_POX_STORY_FUJI (which
   opens Route 8) and offers the Eevee (Pox_Fuji, build_story.py).
-* The old teleport rooms PlasticOx_PokemonTower / PlasticOx_FujiHouse are
-  empty placeholders that keep their map numbers for existing saves.
+* The Soul House door (22,19) leads into the retired PlasticOx_FujiHouse room
+  (HNS generic house), now the town's small memorial house.
+* The old teleport room PlasticOx_PokemonTower is an empty placeholder that
+  keeps its map number for existing saves.
 
 Story source: plastic_ox/story/locations/lavender-town.md.
 """
@@ -67,7 +69,11 @@ LINES = {
     'TownSign': "LAVENDER TOWN\nThe Noble Purple Town",
     'TowerSign': "POKéMON TOWER\nBecalm the spirits of POKéMON.\\pPlease keep voices low.",
     'HouseSign': "VOLUNTEER POKéMON HOUSE\nMR. FUJI cares for POKéMON that\\pno longer have a home.",
-    'SoulSign': "Closed for repairs.\nCandles may be left at the door.",
+    'SoulSign': "SOUL HOUSE\nA quiet place to remember\\pthe POKéMON who came before.",
+    # --- Soul House (PlasticOx_FujiHouse) ---
+    'SoulKeeper': ("I keep this little house for people who can't manage the tower stairs.|There are no graves here. Just names, and somewhere to sit.",
+                   "MR. FUJI came by after he got home. He sat a long time and didn't say anything.|Then he swept the step. He always sweeps the step."),
+    'SoulVisitor': "My grandmother wrote her BUTTERFREE's name on the wall here. I come to make sure it hasn't faded.|It hasn't. Somebody keeps tracing over it.",
     # --- tower 1F ---
     'T1Keeper': ("Welcome to the POKéMON TOWER. Visiting hours never end, but please don't run on the stairs.|Some men went up without signing the book. MR. FUJI is up there too.",
                  "MR. FUJI signed out this morning. He wrote, Thank you, in the margin. He's never done that before."),
@@ -236,6 +242,7 @@ def install(read, put):
     del warps[4:]
     warps.append(door(22, 6, 'MAP_POKEMON_TOWER_1F', '1'))       # warp 4
     warps.append(door(10, 19, 'MAP_LAVENDER_TOWN_HOUSE1', '1'))   # warp 5
+    warps.append(door(22, 19, 'MAP_PLASTIC_OX_FUJI_HOUSE', '0'))  # warp 6: Soul House
     keep = []
     for o in town['object_events']:
         s = o['script']
@@ -324,11 +331,20 @@ def install(read, put):
             d['coord_events'] = []
         save(name, d)
 
-    # --- old teleport rooms: empty placeholders (map numbers stay put) ---
-    for name in ('PlasticOx_PokemonTower', 'PlasticOx_FujiHouse'):
-        d = load(name)
-        d.update(object_events=[], warp_events=[], coord_events=[], bg_events=[])
-        save(name, d)
+    # --- old teleport tower room: empty placeholder (map number stays put) ---
+    d = load('PlasticOx_PokemonTower')
+    d.update(object_events=[], warp_events=[], coord_events=[], bg_events=[])
+    save('PlasticOx_PokemonTower', d)
+
+    # --- Soul House: the retired FUJI teleport room, entered from (22,19) ---
+    d = load('PlasticOx_FujiHouse')
+    d.update(music='MUS_RG_LAVENDER', region='REGION_KANTO', allow_running=False,
+             include_in_versions=['emerald'],
+             object_events=[npc('OBJ_EVENT_GFX_OLD_WOMAN', 4, 4, 'SoulKeeper'),
+                            npc('OBJ_EVENT_GFX_LASS', 8, 6, 'SoulVisitor', movement='MOVEMENT_TYPE_FACE_UP')],
+             warp_events=[dict(x=4, y=8, elevation=0, dest_map=TOWN_ID, dest_warp_id='6')],
+             coord_events=[], bg_events=[])
+    save('PlasticOx_FujiHouse', d)
 
     # --- TowerGrunt3: its own trainer id after the existing ones ---
     path = 'include/constants/opponents.h'

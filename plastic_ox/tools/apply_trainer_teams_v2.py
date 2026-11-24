@@ -851,7 +851,11 @@ ROSTERS.update({name: (data['checkpoint'], [tuple(mon) for mon in data['roster']
                 for name, data in JOHTO_TRAINERS.items()})
 # Trainers added after a salt layout shipped get a fixed salt so adding them
 # never reshuffles every other generated party.
-LATE_SALTS = {"TRAINER_PLASTIC_OX_TOWERGRUNT3": 3000}
+LATE_SALTS = {"TRAINER_PLASTIC_OX_TOWERGRUNT3": 3000,
+              "TRAINER_PLASTIC_OX_ECRUTEAK_KADO": 3003,
+              "TRAINER_PLASTIC_OX_ECRUTEAK_YUI": 3006,
+              "TRAINER_PLASTIC_OX_ECRUTEAK_GENZO": 3009,
+              "TRAINER_PLASTIC_OX_ECRUTEAK_RIN": 3012}
 TRAINER_SALT = {name: i * 3 for i, name in enumerate(sorted(ROSTERS.keys() - NEW_OPENING_TRAINERS - JOHTO_TRAINERS.keys() - LATE_SALTS.keys()))}
 TRAINER_SALT.update({name: 3 * (len(ROSTERS) - len(NEW_OPENING_TRAINERS) - len(JOHTO_TRAINERS) + i)
                      for i, name in enumerate(sorted(NEW_OPENING_TRAINERS))})

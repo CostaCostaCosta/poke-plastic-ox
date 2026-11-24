@@ -56,6 +56,22 @@ PoxLavender_SoulSign::
 	msgbox PoxLavender_Text_SoulSign, MSGBOX_SIGN
 	end
 
+PoxLavender_SoulKeeper::
+	lock
+	faceplayer
+	goto_if_set FLAG_POX_FUJI_RESCUED, PoxLavender_SoulKeeper_After
+	msgbox PoxLavender_Text_SoulKeeper, MSGBOX_DEFAULT
+	release
+	end
+PoxLavender_SoulKeeper_After::
+	msgbox PoxLavender_Text_SoulKeeper_After, MSGBOX_DEFAULT
+	release
+	end
+
+PoxLavender_SoulVisitor::
+	msgbox PoxLavender_Text_SoulVisitor, MSGBOX_NPC
+	end
+
 PoxLavender_T1Keeper::
 	lock
 	faceplayer
@@ -278,7 +294,16 @@ PoxLavender_Text_HouseSign::
 	.string "VOLUNTEER POKéMON HOUSE\nMR. FUJI cares for POKéMON that\pno longer have a home.$"
 
 PoxLavender_Text_SoulSign::
-	.string "Closed for repairs.\nCandles may be left at the door.$"
+	.string "SOUL HOUSE\nA quiet place to remember\pthe POKéMON who came before.$"
+
+PoxLavender_Text_SoulKeeper::
+	.string "I keep this little house for\npeople who can't manage the\ptower stairs.\pThere are no graves here. Just\nnames, and somewhere to sit.$"
+
+PoxLavender_Text_SoulKeeper_After::
+	.string "MR. FUJI came by after he got\nhome. He sat a long time and\pdidn't say anything.\pThen he swept the step. He\nalways sweeps the step.$"
+
+PoxLavender_Text_SoulVisitor::
+	.string "My grandmother wrote her\nBUTTERFREE's name on the wall\phere. I come to make sure it\nhasn't faded.\pIt hasn't. Somebody keeps\ntracing over it.$"
 
 PoxLavender_Text_T1Keeper::
 	.string "Welcome to the POKéMON TOWER.\nVisiting hours never end, but\pplease don't run on the stairs.\pSome men went up without signing\nthe book. MR. FUJI is up there\ptoo.$"

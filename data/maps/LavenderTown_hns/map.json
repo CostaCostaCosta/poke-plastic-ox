@@ -187,6 +187,13 @@
       "elevation": 3,
       "dest_map": "MAP_LAVENDER_TOWN_HOUSE1",
       "dest_warp_id": "1"
+    },
+    {
+      "x": 22,
+      "y": 19,
+      "elevation": 3,
+      "dest_map": "MAP_PLASTIC_OX_FUJI_HOUSE",
+      "dest_warp_id": "0"
     }
   ],
   "coord_events": [

@@ -9,6 +9,7 @@ Proves, with the D-pad wherever a transition is under test:
   three, then walks the player to his house (the (8,13) door);
 * in the house FUJI gives the SURF KEY, sets FLAG_POX_STORY_FUJI and offers EEVEE;
 * the house and the (10,19) House1 door both walk back to town;
+* the Soul House door (22,19) walks in and back out;
 * the tower's encounter tables include the UU MISDREAVUS (static check).
 """
 import json
@@ -163,6 +164,16 @@ def main():
     walk_in(g, (4, 7), 'DOWN', TOWN, 'house1 -> town')
     assert (g.state()['x'], g.state()['y']) in ((10, 19), (10, 20)), g.describe()
     print('ok  FUJI house (8,13) and House1 (10,19) doors, both ways', flush=True)
+
+    walk_in(g, (22, 20), 'UP', 'PlasticOx_FujiHouse', 'town -> soul house')
+    g.frame(120)
+    shot(g, 'lavender_soul_house')
+    navigate(g, (4, 5))
+    r = talk(g, K.KEY_UP)
+    assert 'sweeps the step' in ' '.join(r['text']), r
+    walk_in(g, (4, 8), 'DOWN', TOWN, 'soul house -> town')
+    assert (g.state()['x'], g.state()['y']) in ((22, 19), (22, 20)), g.describe()
+    print('ok  Soul House (22,19) door, both ways; keeper knows FUJI is home', flush=True)
 
     g.warp('PokemonTower_7F_Frlg', 11, 14)
     g.frame(90)
