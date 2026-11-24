@@ -72,6 +72,8 @@
 	.include "data/maps/LavenderTown_Frlg/scripts.inc"
 	.include "data/maps/VermilionCity_Frlg/scripts.inc"
 	.include "data/maps/CeladonCity_Frlg/scripts.inc"
+	.include "data/maps/PoxRetired_ViridianCity_Frlg/scripts.inc"
+	.include "data/maps/PoxRetired_FuchsiaCity_Frlg/scripts.inc"
 	.include "data/maps/SaffronCity_Frlg/scripts.inc"
 	.include "data/maps/SaffronCity_Connection_Frlg/scripts.inc"
 	.include "data/maps/Route3_Frlg/scripts.inc"
