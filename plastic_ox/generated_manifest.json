@@ -28,7 +28,8 @@
       "command": "python3 plastic_ox/tools/apply_trainer_teams_v2.py",
       "sources": [
         "plastic_ox/tools/apply_trainer_teams_v2.py",
-        "plastic_ox/tools/pox_progression.py"
+        "plastic_ox/tools/pox_progression.py",
+        "plastic_ox/tools/authored_trainers.party (hand-authored parties: copied verbatim, never regenerated)"
       ],
       "outputs": [
         "src/data/trainers.party (route trainer parties)",

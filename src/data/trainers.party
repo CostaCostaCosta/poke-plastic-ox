@@ -22319,3 +22319,71 @@ Modest Nature
 - Solar Beam
 - Hidden Power
 
+=== TRAINER_PLASTIC_OX_KIMONO_TROUPE ===
+Name: NAOKO
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer / Check Viability / Smart Switching
+
+Eevee @ Silk Scarf
+Level: 27
+Ability: Run Away
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Return
+- Shadow Ball
+- Quick Attack
+- Toxic
+
+Jolteon @ Magnet
+Level: 28
+Ability: Volt Absorb
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Thunder Wave
+- Shadow Ball
+- Substitute
+
+Vaporeon @ Leftovers
+Level: 28
+Ability: Water Absorb
+EVs: 252 HP / 160 Def / 96 SpA
+Bold Nature
+- Surf
+- Ice Beam
+- Toxic
+- Protect
+
+Flareon @ Charcoal
+Level: 28
+Ability: Flash Fire
+EVs: 252 Atk / 4 SpA / 252 Spe
+Hasty Nature
+- Flamethrower
+- Shadow Ball
+- Quick Attack
+- Toxic
+
+Umbreon @ Leftovers
+Level: 28
+Ability: Synchronize
+EVs: 252 HP / 128 Def / 128 SpD
+Calm Nature
+- Toxic
+- Protect
+- Pursuit
+- Sand Attack
+
+Espeon @ Leftovers
+Level: 29
+Ability: Synchronize
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Calm Mind
+- Psychic
+- Reflect
+- Hidden Power
