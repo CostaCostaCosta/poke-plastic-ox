@@ -1,0 +1,788 @@
+# Hand-authored Plastic Ox trainer parties.
+#
+# plastic_ox/tools/apply_trainer_teams_v2.py never regenerates a trainer listed
+# here, and test_trainer_teams_v2.py fails unless src/data/trainers.party holds
+# exactly the same block. Edit the block here AND in trainers.party (or copy it
+# across); the trainer's ROSTERS entry still sets its checkpoint, so species,
+# tier, level-cap and move-legality checks keep applying.
+#
+# Moved here 2026-11-25: these teams had been tuned by hand in trainers.party
+# and no longer matched what the generator would write.
+
+=== TRAINER_PLASTIC_OX_CLAIR ===
+Name: CLAIR
+Class: Leader
+Pic: Leader Roxanne
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Gyarados @ Leftovers
+Level: 59
+Ability: Intimidate
+EVs: 216 HP / 16 Atk / 88 SpD / 188 Spe
+Adamant Nature
+- Dragon Dance
+- Hidden Power
+- Earthquake
+- Rest
+
+Jolteon @ Leftovers
+Level: 58
+Ability: Volt Absorb
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Hidden Power
+- Hyper Beam
+- Roar
+
+Swampert @ Leftovers
+Level: 58
+Ability: Torrent
+EVs: 248 HP / 204 Def / 44 SpD / 12 Spe
+Bold Nature
+- Surf
+- Toxic
+- Protect
+- Hyper Beam
+
+Tyranitar @ Lum Berry
+Level: 59
+Ability: Sand Stream
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Hyper Beam
+- Rock Slide
+- Earthquake
+- Hidden Power
+
+Medicham @ Leftovers
+Level: 58
+Ability: Pure Power
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Brick Break
+- Focus Punch
+- Substitute
+- Shadow Ball
+
+Flygon @ Leftovers
+Level: 58
+Ability: Levitate
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Earthquake
+- Rock Slide
+- Hidden Power
+- Substitute
+
+=== TRAINER_PLASTIC_OX_GIOVANNI ===
+Name: GIOVANNI
+Class: Leader
+Pic: Leader Giovanni Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Tyranitar @ Lum Berry
+Level: 55
+Ability: Sand Stream
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Hyper Beam
+- Rock Slide
+- Earthquake
+- Hidden Power
+
+Salamence @ Leftovers
+Level: 55
+Ability: Intimidate
+IVs: 31 HP / 31 Atk / 31 Def / 30 SpA / 30 SpD / 30 Spe
+EVs: 116 HP / 252 Atk / 140 Spe
+Adamant Nature
+- Hyper Beam
+- Hidden Power
+- Rock Slide
+- Earthquake
+
+Metagross @ Leftovers
+Level: 55
+Ability: Clear Body
+EVs: 252 HP / 176 Atk / 80 Def
+Adamant Nature
+- Meteor Mash
+- Earthquake
+- Protect
+- Explosion
+
+Forretress @ Leftovers
+Level: 54
+Ability: Sturdy
+EVs: 252 HP / 4 Def / 252 SpD
+Careful Nature
+- Spikes
+- Rapid Spin
+- Hidden Power
+- Earthquake
+
+Gengar @ Leftovers
+Level: 53
+Ability: Levitate
+EVs: 168 HP / 164 SpD / 176 Spe
+Hasty Nature
+- Hypnosis
+- Explosion
+- Ice Punch
+- Thunderbolt
+
+Starmie @ Leftovers
+Level: 54
+Ability: Natural Cure
+EVs: 252 HP / 40 SpA / 216 Spe
+Timid Nature
+- Rapid Spin
+- Recover
+- Surf
+- Thunder Wave
+
+=== TRAINER_PLASTIC_OX_PU_ROUTE35 ===
+Name: BROOKE
+Class: Picnicker
+Pic: Picnicker
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Abra @ Salac Berry
+Level: 20
+Ability: Synchronize
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Calm Mind
+- Psychic
+- Fire Punch
+- Substitute
+
+Farfetch'd @ Salac Berry
+Level: 20
+Ability: Inner Focus
+EVs: 252 Atk / 4 Def / 252 Spe
+Adamant Nature
+- Substitute
+- Iron Tail
+- Hidden Power
+- Swords Dance
+
+Yanma @ Liechi Berry
+Level: 20
+Ability: Speed Boost
+EVs: 252 Atk / 4 Def / 252 Spe
+Adamant Nature
+- Substitute
+- Solar Beam
+- Hidden Power
+- Protect
+
+Minun @ Leftovers
+Level: 20
+Ability: Minus
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Thunderbolt
+- Thunder Punch
+- Hidden Power
+- Toxic
+
+Drowzee @ Leftovers
+Level: 20
+Ability: Insomnia
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Psychic
+- Dream Eater
+- Hidden Power
+- Toxic
+
+Corsola @ Leftovers
+Level: 20
+Ability: Natural Cure
+EVs: 136 Def / 252 SpA / 120 SpD
+Modest Nature
+- Recover
+- Surf
+- Ice Beam
+- Toxic
+
+=== TRAINER_PLASTIC_OX_PU_PARK ===
+Name: WILLIAM
+Class: Bug Catcher
+Pic: Bug Catcher
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Lickitung @ Leftovers
+Level: 20
+Ability: Own Tempo
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Hidden Power
+- Body Slam
+- Surf
+- Toxic
+
+Jigglypuff @ Leftovers
+Level: 20
+Ability: Cute Charm
+EVs: 252 HP / 252 Def
+Bold Nature
+- Hidden Power
+- Thunderbolt
+- Toxic
+- Flamethrower
+
+Tropius @ Leftovers
+Level: 20
+Ability: Chlorophyll
+EVs: 196 HP / 188 Atk / 124 SpD
+Adamant Nature
+- Swords Dance
+- Hidden Power
+- Earthquake
+- Substitute
+
+Skiploom @ Leftovers
+Level: 20
+Ability: Chlorophyll
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Giga Drain
+- Aerial Ace
+- Hidden Power
+- Toxic
+
+Nidorina @ Leftovers
+Level: 20
+Ability: Poison Point
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Sludge Bomb
+- Poison Sting
+- Hidden Power
+- Toxic
+
+Ledian @ Choice Band
+Level: 20
+Ability: Swarm
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Aerial Ace
+- Hidden Power
+- Giga Drain
+- Toxic
+
+=== TRAINER_PLASTIC_OX_PU_ROUTE36 ===
+Name: MARK
+Class: Psychic
+Pic: Psychic M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Tangela @ Leftovers
+Level: 21
+Ability: Chlorophyll
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Sunny Day
+- Sleep Powder
+- Solar Beam
+- Hidden Power
+
+Vulpix @ Leftovers
+Level: 21
+Ability: Flash Fire
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Flamethrower
+- Fire Blast
+- Hidden Power
+- Toxic
+
+Drowzee @ Leftovers
+Level: 21
+Ability: Insomnia
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Psychic
+- Dream Eater
+- Hidden Power
+- Toxic
+
+Weepinbell @ Sitrus Berry
+Level: 21
+Ability: Chlorophyll
+EVs: 80 Atk / 200 SpA / 200 Spe
+Rash Nature
+- Sunny Day
+- Solar Beam
+- Hidden Power
+- Sludge Bomb
+
+Natu @ Leftovers
+Level: 21
+Ability: Synchronize
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Psychic
+- Aerial Ace
+- Hidden Power
+- Toxic
+
+Baltoy @ Sitrus Berry
+Level: 21
+Ability: Levitate
+EVs: 36 HP / 196 Atk / 156 Def / 36 SpD / 76 Spe
+Careful Nature
+- Earthquake
+- Shadow Ball
+- Rock Tomb
+- Explosion
+
+=== TRAINER_PLASTIC_OX_MOON_LASS_IRIS ===
+Name: IRIS
+Class: Lass Frlg
+Pic: Lass Frlg
+Gender: Male
+Music: Female
+Double Battle: No
+AI: Check Bad Move
+
+Meowth @ Sitrus Berry
+Level: 15
+Ability: Pickup
+EVs: 36 HP / 236 Atk / 36 SpD / 196 Spe
+Jolly Nature
+- Thunder
+- Double-Edge
+- Shadow Ball
+- Taunt
+
+Cleffa @ Leftovers
+Level: 15
+Ability: Cute Charm
+EVs: 252 HP / 252 Def
+Bold Nature
+- Hidden Power
+- Flamethrower
+- Toxic
+- Psychic
+
+Furret @ Leftovers
+Level: 15
+Ability: Run Away
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Hidden Power
+- Body Slam
+- Surf
+- Toxic
+
+=== TRAINER_PLASTIC_OX_JOHTO_ANN_ANNE ===
+Name: ANN & ANNE
+Class: Twins
+Pic: Twins
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Ledian @ Leftovers
+Level: 22
+Ability: Early Bird
+EVs: 252 HP / 4 Def / 252 Spe
+Timid Nature
+- Reflect
+- Light Screen
+- Hyper Beam
+- Substitute
+
+Ariados @ Leftovers
+Level: 22
+Ability: Swarm
+EVs: 124 HP / 84 Atk / 84 SpA / 216 Spe
+Adamant Nature
+- Sludge Bomb
+- Poison Sting
+- Hidden Power
+- Toxic
+
+Jigglypuff @ Leftovers
+Level: 22
+Ability: Cute Charm
+EVs: 252 HP / 252 Def
+Bold Nature
+- Hidden Power
+- Thunderbolt
+- Toxic
+- Flamethrower
+
+=== TRAINER_PLASTIC_OX_JOHTO_JACK ===
+Name: JACK
+Class: School Kid
+Pic: School Kid M
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Gloom @ Sitrus Berry
+Level: 20
+Ability: Chlorophyll
+IVs: 31 HP / 2 Atk / 30 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 76 HP / 80 Def / 236 SpA / 116 Spe
+Modest Nature
+- Sunny Day
+- Solar Beam
+- Hidden Power
+- Bullet Seed
+
+Voltorb @ Silk Scarf
+Level: 20
+Ability: Static
+EVs: 252 Atk / 4 SpA / 252 Spe
+Naive Nature
+- Rain Dance
+- Thunder
+- Light Screen
+- Explosion
+
+=== TRAINER_PLASTIC_OX_JOHTO_KRISE ===
+Name: KRISE
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Gloom @ Sitrus Berry
+Level: 20
+Ability: Chlorophyll
+IVs: 31 HP / 2 Atk / 30 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 76 HP / 80 Def / 236 SpA / 116 Spe
+Modest Nature
+- Sunny Day
+- Solar Beam
+- Hidden Power
+- Bullet Seed
+
+Cubone @ Thick Club
+Level: 20
+Ability: Rock Head
+EVs: 36 HP / 196 Atk / 40 SpD / 236 Spe
+Adamant Nature
+- Focus Punch
+- Double-Edge
+- Hidden Power
+- Protect
+
+Flaaffy @ Leftovers
+Level: 20
+Ability: Static
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Thunder
+- Hidden Power
+- Toxic
+
+=== TRAINER_PLASTIC_OX_ECRUTEAK_KADO ===
+Name: KADO
+Class: Expert
+Pic: Sage Hns
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Chimecho @ Leftovers
+Level: 25
+Ability: Levitate
+EVs: 252 HP / 252 Def / 4 SpD
+Bold Nature
+- Confusion
+- Uproar
+- Yawn
+- Astonish
+
+Duskull @ Sitrus Berry
+Level: 24
+Ability: Levitate
+EVs: 252 HP / 4 Def / 252 SpD
+Careful Nature
+- Night Shade
+- Confuse Ray
+- Astonish
+- Disable
+
+Murkrow @ Sitrus Berry
+Level: 24
+Ability: Insomnia
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Peck
+- Pursuit
+- Astonish
+- Haze
+
+=== TRAINER_PLASTIC_OX_ECRUTEAK_YUI ===
+Name: YUI
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Venomoth @ Leftovers
+Level: 26
+Ability: Shield Dust
+EVs: 4 Def / 252 SpA / 252 Spe
+Timid Nature
+- Confusion
+- Poison Powder
+- Leech Life
+- Supersonic
+
+Golbat @ Sitrus Berry
+Level: 25
+Ability: Inner Focus
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Wing Attack
+- Bite
+- Astonish
+- Supersonic
+
+=== TRAINER_PLASTIC_OX_ECRUTEAK_GENZO ===
+Name: GENZO
+Class: Expert
+Pic: Sage Hns
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Pupitar @ Leftovers
+Level: 27
+Ability: Shed Skin
+EVs: 252 HP / 252 Atk / 4 Def
+Adamant Nature
+- Rock Slide
+- Bite
+- Screech
+- Sandstorm
+
+Sableye @ Leftovers
+Level: 26
+Ability: Keen Eye
+EVs: 252 HP / 4 Atk / 252 SpD
+Careful Nature
+- Night Shade
+- Fake Out
+- Detect
+- Fury Swipes
+
+Torkoal @ Sitrus Berry
+Level: 25
+Ability: White Smoke
+EVs: 252 HP / 252 Def / 4 SpD
+Relaxed Nature
+- Ember
+- Curse
+- Body Slam
+- Smokescreen
+
+=== TRAINER_PLASTIC_OX_ECRUTEAK_RIN ===
+Name: RIN
+Class: Lass
+Pic: Lass
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Haunter @ Sitrus Berry
+Level: 27
+Ability: Levitate
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Night Shade
+- Lick
+- Hypnosis
+- Curse
+
+Duskull @ Sitrus Berry
+Level: 26
+Ability: Levitate
+EVs: 252 HP / 4 Def / 252 SpD
+Careful Nature
+- Night Shade
+- Confuse Ray
+- Foresight
+- Disable
+
+Pidgeot @ Leftovers
+Level: 27
+Ability: Keen Eye
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Wing Attack
+- Quick Attack
+- Whirlwind
+- Sand Attack
+
+=== TRAINER_PLASTIC_OX_TOWERGRUNT3 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Nidoking @ Choice Band
+Level: 40
+Ability: Poison Point
+EVs: 4 HP / 252 Atk / 252 Spe
+Hasty Nature
+- Earthquake
+- Hyper Beam
+- Sludge Bomb
+- Ice Beam
+
+Nidoqueen @ Leftovers
+Level: 39
+Ability: Poison Point
+EVs: 128 HP / 252 Atk / 56 SpA / 72 Spe
+Lonely Nature
+- Earthquake
+- Shadow Ball
+- Sludge Bomb
+- Ice Beam
+
+Electrode @ Petaya Berry
+Level: 39
+Ability: Static
+EVs: 12 HP / 32 Atk / 116 Def / 252 SpA / 96 Spe
+Rash Nature
+- Thunderbolt
+- Substitute
+- Explosion
+- Hidden Power
+
+Misdreavus @ Leftovers
+Level: 40
+Ability: Levitate
+EVs: 252 HP / 84 Def / 172 SpD
+Calm Nature
+- Thunderbolt
+- Hidden Power
+- Thunder Wave
+- Pain Split
+
+Hitmonlee @ Choice Band
+Level: 39
+Ability: Limber
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Brick Break
+- Hidden Power
+- Earthquake
+- Focus Punch
+
+Vileplume @ Leftovers
+Level: 39
+Ability: Chlorophyll
+EVs: 120 HP / 252 SpA / 136 Spe
+Modest Nature
+- Sunny Day
+- Hyper Beam
+- Solar Beam
+- Hidden Power
+
+=== TRAINER_PLASTIC_OX_KIMONO_TROUPE ===
+Name: NAOKO
+Class: Beauty
+Pic: Beauty
+Gender: Female
+Music: Female
+Double Battle: No
+AI: Basic Trainer / Check Viability / Smart Switching
+
+Eevee @ Silk Scarf
+Level: 27
+Ability: Run Away
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Return
+- Shadow Ball
+- Quick Attack
+- Toxic
+
+Jolteon @ Magnet
+Level: 28
+Ability: Volt Absorb
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Thunder Wave
+- Shadow Ball
+- Substitute
+
+Vaporeon @ Leftovers
+Level: 28
+Ability: Water Absorb
+EVs: 252 HP / 160 Def / 96 SpA
+Bold Nature
+- Surf
+- Ice Beam
+- Toxic
+- Protect
+
+Flareon @ Charcoal
+Level: 28
+Ability: Flash Fire
+EVs: 252 Atk / 4 SpA / 252 Spe
+Hasty Nature
+- Flamethrower
+- Shadow Ball
+- Quick Attack
+- Toxic
+
+Umbreon @ Leftovers
+Level: 28
+Ability: Synchronize
+EVs: 252 HP / 128 Def / 128 SpD
+Calm Nature
+- Toxic
+- Protect
+- Pursuit
+- Sand Attack
+
+Espeon @ Leftovers
+Level: 29
+Ability: Synchronize
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Calm Mind
+- Psychic
+- Reflect
+- Hidden Power

@@ -212,21 +212,11 @@ ROSTERS: dict[str, tuple[str, list[tuple[str, int]]]] = {
     "TRAINER_PLASTIC_OX_PU_ROUTE36": ("route36", [
         ("SPECIES_TANGELA", 21), ("SPECIES_VULPIX", 21), ("SPECIES_DROWZEE", 21),
         ("SPECIES_WEEPINBELL", 21), ("SPECIES_NATU", 21), ("SPECIES_BALTOY", 21)]),
-    "TRAINER_PLASTIC_OX_KIMONOFLAREON": ("gym3", [
-        ("SPECIES_FLAREON", 26), ("SPECIES_VULPIX", 22), ("SPECIES_GROWLITHE", 23),
-        ("SPECIES_ARBOK", 24), ("SPECIES_MEOWTH", 23), ("SPECIES_DELIBIRD", 24)]),
-    "TRAINER_PLASTIC_OX_KIMONOVAPOREON": ("gym3", [
-        ("SPECIES_VAPOREON", 26), ("SPECIES_PSYDUCK", 23), ("SPECIES_SEEL", 23),
-        ("SPECIES_STARYU", 24), ("SPECIES_SLOWPOKE", 24), ("SPECIES_TENTACOOL", 24)]),
-    "TRAINER_PLASTIC_OX_KIMONOJOLTEON": ("gym3", [
-        ("SPECIES_JOLTEON", 26), ("SPECIES_ELEKID", 23), ("SPECIES_ELECTRIKE", 23),
-        ("SPECIES_VOLTORB", 24), ("SPECIES_MAGNEMITE", 23), ("SPECIES_SKITTY", 24)]),
-    "TRAINER_PLASTIC_OX_KIMONOESPEON": ("gym3", [
-        ("SPECIES_ESPEON", 26), ("SPECIES_MEDITITE", 23), ("SPECIES_MEOWTH", 23),
-        ("SPECIES_KIRLIA", 24), ("SPECIES_SLOWPOKE", 24), ("SPECIES_NATU", 23)]),
-    "TRAINER_PLASTIC_OX_KIMONOUMBREON": ("gym3", [
-        ("SPECIES_UMBREON", 26), ("SPECIES_SPOINK", 23), ("SPECIES_HOUNDOUR", 24),
-        ("SPECIES_DUSKULL", 24), ("SPECIES_MEOWTH", 23), ("SPECIES_NIDORAN_M", 24)]),
+    # Dance Theater: one troupe battle. NAOKO leads; EEVEE opens the rite and
+    # each dancer's Eeveelution follows in the order she takes the floor.
+    "TRAINER_PLASTIC_OX_KIMONO_TROUPE": ("gym3", [
+        ("SPECIES_EEVEE", 27), ("SPECIES_JOLTEON", 28), ("SPECIES_VAPOREON", 28),
+        ("SPECIES_FLAREON", 28), ("SPECIES_UMBREON", 28), ("SPECIES_ESPEON", 29)]),
     "TRAINER_PLASTIC_OX_MORTY": ("gym3", [
         ("SPECIES_HITMONCHAN", 30), ("SPECIES_PELIPPER", 30), ("SPECIES_HAUNTER", 30),
         ("SPECIES_ROSELIA", 30), ("SPECIES_RELICANTH", 30), ("SPECIES_KECLEON", 30)]),
@@ -323,6 +313,19 @@ KEEP_AS_IS = {
     # every story checkpoint on purpose and is checked by test_cerulean_cave.py.
     "TRAINER_PLASTIC_OX_RED": "authored ADV Ubers final boss; Cerulean Cave summit",
 }
+# The five one-dancer battles were merged into TRAINER_PLASTIC_OX_KIMONO_TROUPE
+# (2026-11-25). Their ids stay (save data); nothing battles them any more.
+KEEP_AS_IS.update({f"TRAINER_PLASTIC_OX_KIMONO{s}": "retired; superseded by TRAINER_PLASTIC_OX_KIMONO_TROUPE"
+                   for s in ("VAPOREON", "JOLTEON", "FLAREON", "ESPEON", "UMBREON")})
+
+# Hand-authored parties. Every trainer listed in this file keeps its ROSTERS
+# entry (so test_trainer_teams_v2.py still checks species, tiers, levels and
+# move legality), but the generator never rewrites it: the block in
+# src/data/trainers.party must equal this file's block. To tune a generated
+# team by hand, move its block here instead of editing trainers.party alone,
+# or the next full run will undo the edit.
+AUTHORED_PARTIES = Path(__file__).resolve().parent / "authored_trainers.party"
+AUTHORED_TRAINERS = set(re.findall(r"^=== (\w+) ===", AUTHORED_PARTIES.read_text(), re.M))
 
 # Endgame sets retain the ROSTERS species/levels but have authored roles,
 # inherited/egg moves and explicit Hidden Power IVs. The league overlay owns
@@ -335,19 +338,17 @@ TOURNAMENT_PARTIES = P.ROOT / "plastic_ox/alpha/tournament/trainers.party"
 KEEP_AS_IS.update({tid: "Authored tournament/sage set; alpha/tournament/trainers.party"
                    for tid in re.findall(r"^=== (\w+) ===", TOURNAMENT_PARTIES.read_text(), re.M)})
 
-# The Dance Theater girls are named for, and gated on, their Eeveelution, but
-# Vaporeon/Jolteon/Espeon/Umbreon are UUBL/OU and the fights unlock at two
+# The Dance Theater troupe fights with its five Eeveelutions, but
+# Vaporeon/Jolteon/Espeon/Umbreon are UUBL/OU and the fight unlocks at two
 # badges (NU). The signature is kept as designed and reported as an exception;
-# the other five slots obey the rules strictly.
+# EEVEE and FLAREON obey the rules strictly.
 SIGNATURE_EXCEPTIONS = {
     # Whitney's requested ADV PU roster includes three species the player
     # cannot catch before Gym 2. All three are PU-tier species.
     "TRAINER_PLASTIC_OX_WHITNEY": ["SPECIES_MINUN", "SPECIES_YANMA",
                                    "SPECIES_LICKITUNG"],
-    "TRAINER_PLASTIC_OX_KIMONOVAPOREON": ["SPECIES_VAPOREON"],
-    "TRAINER_PLASTIC_OX_KIMONOJOLTEON": ["SPECIES_JOLTEON"],
-    "TRAINER_PLASTIC_OX_KIMONOESPEON": ["SPECIES_ESPEON"],
-    "TRAINER_PLASTIC_OX_KIMONOUMBREON": ["SPECIES_UMBREON"],
+    "TRAINER_PLASTIC_OX_KIMONO_TROUPE": ["SPECIES_JOLTEON", "SPECIES_VAPOREON",
+                                         "SPECIES_UMBREON", "SPECIES_ESPEON"],
     # Blaine's requested fixed six: these four are not catchable by Cinnabar.
     "TRAINER_PLASTIC_OX_BLAINE": ["SPECIES_OMASTAR", "SPECIES_KANGASKHAN",
                                   "SPECIES_MISDREAVUS", "SPECIES_SOLROCK"],
@@ -852,12 +853,18 @@ ROSTERS.update({name: (data['checkpoint'], [tuple(mon) for mon in data['roster']
 # Trainers added after a salt layout shipped get a fixed salt so adding them
 # never reshuffles every other generated party.
 LATE_SALTS = {"TRAINER_PLASTIC_OX_TOWERGRUNT3": 3000,
+              "TRAINER_PLASTIC_OX_KIMONO_TROUPE": 3015,
               "TRAINER_PLASTIC_OX_ECRUTEAK_KADO": 3003,
               "TRAINER_PLASTIC_OX_ECRUTEAK_YUI": 3006,
               "TRAINER_PLASTIC_OX_ECRUTEAK_GENZO": 3009,
               "TRAINER_PLASTIC_OX_ECRUTEAK_RIN": 3012}
-TRAINER_SALT = {name: i * 3 for i, name in enumerate(sorted(ROSTERS.keys() - NEW_OPENING_TRAINERS - JOHTO_TRAINERS.keys() - LATE_SALTS.keys()))}
-TRAINER_SALT.update({name: 3 * (len(ROSTERS) - len(NEW_OPENING_TRAINERS) - len(JOHTO_TRAINERS) + i)
+# Retired trainers keep their place in the salt order, so dropping them from
+# ROSTERS never reshuffles the trainers sorted after them.
+RETIRED_SALT_SLOTS = {f"TRAINER_PLASTIC_OX_KIMONO{s}"
+                      for s in ("VAPOREON", "JOLTEON", "FLAREON", "ESPEON", "UMBREON")}
+SALT_KEYS = ROSTERS.keys() | RETIRED_SALT_SLOTS
+TRAINER_SALT = {name: i * 3 for i, name in enumerate(sorted(SALT_KEYS - NEW_OPENING_TRAINERS - JOHTO_TRAINERS.keys() - LATE_SALTS.keys()))}
+TRAINER_SALT.update({name: 3 * (len(SALT_KEYS - {"TRAINER_PLASTIC_OX_KIMONO_TROUPE"}) - len(NEW_OPENING_TRAINERS) - len(JOHTO_TRAINERS) + i)
                      for i, name in enumerate(sorted(NEW_OPENING_TRAINERS))})
 TRAINER_SALT.update({name: data['id'] * 3 for name, data in JOHTO_TRAINERS.items()})
 TRAINER_SALT.update(LATE_SALTS)
@@ -962,6 +969,11 @@ def main() -> int:
     for trainer, (checkpoint, roster) in sorted(ROSTERS.items()):
         if trainer in AUTHORED_LEAGUE or (only is not None and trainer not in only):
             continue
+        if trainer in AUTHORED_TRAINERS:
+            built[trainer] = {"checkpoint": None, "kept": "authored; plastic_ox/tools/authored_trainers.party",
+                              "monsters": [m.splitlines()[0]
+                                           for m in split_block(parsed[trainer])[1]]}
+            continue
         if trainer not in parsed:
             problems.append(f"{trainer}: not present in trainers.party")
             continue
@@ -1033,7 +1045,7 @@ def main() -> int:
         built = report["trainers"]
         print(f"rewrote {len(only)} trainer parties in {PARTY}")
     else:
-        print(f"rewrote {len(built) - len(KEEP_AS_IS)} trainer parties in {PARTY}")
+        print(f"rewrote {sum(d.get('checkpoint') is not None for d in built.values())} trainer parties in {PARTY}")
     REPORT.write_text(json.dumps({"trainers": built}, indent=1) + "\n")
     for p in problems:
         print("PROBLEM:", p)

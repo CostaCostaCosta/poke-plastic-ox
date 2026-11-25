@@ -134,31 +134,31 @@
     },
     {
       "map": "PlasticOx_DanceTheater",
-      "x": 5,
-      "y": 3,
-      "script": "Pox_KimonoVaporeon"
+      "x": 10,
+      "y": 2,
+      "script": "Pox_KimonoTroupe"
     },
     {
       "map": "PlasticOx_DanceTheater",
-      "x": 7,
-      "y": 2,
+      "x": 6,
+      "y": 4,
       "script": "Pox_KimonoJolteon"
     },
     {
       "map": "PlasticOx_DanceTheater",
-      "x": 10,
-      "y": 3,
+      "x": 14,
+      "y": 4,
       "script": "Pox_KimonoFlareon"
     },
     {
       "map": "PlasticOx_DanceTheater",
-      "x": 13,
-      "y": 2,
+      "x": 8,
+      "y": 3,
       "script": "Pox_KimonoEspeon"
     },
     {
       "map": "PlasticOx_DanceTheater",
-      "x": 15,
+      "x": 12,
       "y": 3,
       "script": "Pox_KimonoUmbreon"
     },
