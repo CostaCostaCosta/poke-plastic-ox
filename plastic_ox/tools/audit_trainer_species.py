@@ -35,6 +35,10 @@ UNDEREVOLVED_EXCEPTIONS: set[tuple[str, str]] = set()
 EXTRA_CHECKPOINTS = {
     "TRAINER_PLASTIC_OX_WEATHER": "fortree",        # Magneton is OU, Magnemite stays
     "TRAINER_PLASTIC_OX_WEATHER_DEVON": "fortree",
+    # Retired one-dancer Kimono battles (superseded by KIMONO_TROUPE); their
+    # Ecruteak checkpoint still decides which evolutions count.
+    **{f"TRAINER_PLASTIC_OX_KIMONO{s}": "gym3"
+       for s in ("VAPOREON", "JOLTEON", "FLAREON", "ESPEON", "UMBREON")},
 }
 
 
