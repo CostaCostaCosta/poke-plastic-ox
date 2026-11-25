@@ -54,6 +54,8 @@ REGISTRY: dict[str, tuple[str, str]] = {
     "PoxLeague_LeagueLanceNext": ("League", "Exit from Lance's room to Blue's once Lance is beaten."),
     "PoxLeague_BlueNext": ("League", "Exit from Blue's room to Bill's room (the final battle) once Blue is beaten."),
     # Dungeon and route mechanics
+    "PokemonTower_5F_EventScript_PurifiedZone": ("Mechanic", "Pokemon Tower 5F purified zone: stepping in heals the party."),
+    "PokemonTower_5F_EventScript_ExitPurifiedZone": ("Mechanic", "Leaving the 5F purified zone re-arms its heal."),
     "SeafoamIslands_B4F_EventScript_UpwardCurrent": ("Mechanic", "B4F current pushes the player back until it is stopped (VAR_POX_SEAFOAM_STATE)."),
     "Route110_SeasideCyclingRoadNorthEntrance_EventScript_BikeCheck": ("Mechanic", "Cycling Road gatehouse: no entry on foot; sets the cycling-road state."),
     "Route110_SeasideCyclingRoadNorthEntrance_EventScript_ClearCyclingRoad": ("Mechanic", "Leaving the Cycling Road clears its state."),

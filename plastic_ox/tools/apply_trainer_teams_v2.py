@@ -235,12 +235,18 @@ ROSTERS: dict[str, tuple[str, list[tuple[str, int]]]] = {
     "TRAINER_PLASTIC_OX_WINONA": ("fortree", [
         ("SPECIES_OCTILLERY", 36), ("SPECIES_AGGRON", 36), ("SPECIES_CAMERUPT", 36),
         ("SPECIES_CLEFABLE", 36), ("SPECIES_POLIWRATH", 36), ("SPECIES_XATU", 36)]),
+    # Pokemon Tower 7F: three Rocket grunts around MR. FUJI, fought in order.
+    # They raided the tower's ghosts and Lavender's back gardens; the last one
+    # carries the MISDREAVUS that only the tower's upper floors give up.
     "TRAINER_PLASTIC_OX_TOWERGRUNT1": ("cinnabar", [
-        ("SPECIES_HAUNTER", 38), ("SPECIES_HYPNO", 37), ("SPECIES_CUBONE", 37),
-        ("SPECIES_MUK", 37), ("SPECIES_KOFFING", 36), ("SPECIES_SABLEYE", 38)]),
+        ("SPECIES_HAUNTER", 38), ("SPECIES_GOLBAT", 38), ("SPECIES_MUK", 38),
+        ("SPECIES_ARBOK", 37), ("SPECIES_HYPNO", 37), ("SPECIES_SABLEYE", 37)]),
     "TRAINER_PLASTIC_OX_TOWERGRUNT2": ("cinnabar", [
-        ("SPECIES_MACHOKE", 38), ("SPECIES_CUBONE", 38), ("SPECIES_ONIX", 38),
-        ("SPECIES_MUK", 37), ("SPECIES_RHYHORN", 37), ("SPECIES_HAUNTER", 38)]),
+        ("SPECIES_MACHOKE", 38), ("SPECIES_SANDSLASH", 39), ("SPECIES_RHYHORN", 38),
+        ("SPECIES_PERSIAN", 38), ("SPECIES_BANETTE", 38), ("SPECIES_GRANBULL", 38)]),
+    "TRAINER_PLASTIC_OX_TOWERGRUNT3": ("cinnabar", [
+        ("SPECIES_NIDOKING", 40), ("SPECIES_NIDOQUEEN", 39), ("SPECIES_ELECTRODE", 39),
+        ("SPECIES_MISDREAVUS", 40), ("SPECIES_HITMONLEE", 39), ("SPECIES_VILEPLUME", 39)]),
     "TRAINER_PLASTIC_OX_BLAINE": ("cinnabar", [
         ("SPECIES_OMASTAR", 42), ("SPECIES_VILEPLUME", 42), ("SPECIES_ARCANINE", 42),
         ("SPECIES_KANGASKHAN", 42), ("SPECIES_MISDREAVUS", 42), ("SPECIES_SOLROCK", 42)]),
@@ -843,10 +849,18 @@ NEW_OPENING_TRAINERS = {"TRAINER_PLASTIC_OX_ROUTE2_BEN",
 JOHTO_TRAINERS = json.loads((ROOT / 'plastic_ox/alpha/johto_outdoors/trainers.json').read_text())
 ROSTERS.update({name: (data['checkpoint'], [tuple(mon) for mon in data['roster']])
                 for name, data in JOHTO_TRAINERS.items()})
-TRAINER_SALT = {name: i * 3 for i, name in enumerate(sorted(ROSTERS.keys() - NEW_OPENING_TRAINERS - JOHTO_TRAINERS.keys()))}
+# Trainers added after a salt layout shipped get a fixed salt so adding them
+# never reshuffles every other generated party.
+LATE_SALTS = {"TRAINER_PLASTIC_OX_TOWERGRUNT3": 3000,
+              "TRAINER_PLASTIC_OX_ECRUTEAK_KADO": 3003,
+              "TRAINER_PLASTIC_OX_ECRUTEAK_YUI": 3006,
+              "TRAINER_PLASTIC_OX_ECRUTEAK_GENZO": 3009,
+              "TRAINER_PLASTIC_OX_ECRUTEAK_RIN": 3012}
+TRAINER_SALT = {name: i * 3 for i, name in enumerate(sorted(ROSTERS.keys() - NEW_OPENING_TRAINERS - JOHTO_TRAINERS.keys() - LATE_SALTS.keys()))}
 TRAINER_SALT.update({name: 3 * (len(ROSTERS) - len(NEW_OPENING_TRAINERS) - len(JOHTO_TRAINERS) + i)
                      for i, name in enumerate(sorted(NEW_OPENING_TRAINERS))})
 TRAINER_SALT.update({name: data['id'] * 3 for name, data in JOHTO_TRAINERS.items()})
+TRAINER_SALT.update(LATE_SALTS)
 
 
 # Actual map groups, rather than checkpoint groups: Route 2 spans two
@@ -939,9 +953,14 @@ def main() -> int:
     parsed = parse_party(text)
     problems: list[str] = []
     built: dict[str, dict] = {}
+    # --only T1,T2 regenerates just those parties and leaves every other block
+    # (and its report entry) as checked in.
+    only = None
+    if "--only" in sys.argv:
+        only = set(sys.argv[sys.argv.index("--only") + 1].split(","))
 
     for trainer, (checkpoint, roster) in sorted(ROSTERS.items()):
-        if trainer in AUTHORED_LEAGUE:
+        if trainer in AUTHORED_LEAGUE or (only is not None and trainer not in only):
             continue
         if trainer not in parsed:
             problems.append(f"{trainer}: not present in trainers.party")
@@ -982,7 +1001,7 @@ def main() -> int:
         built[trainer] = {"checkpoint": checkpoint, "cap": cap,
                           "tier": P.tier_at(checkpoint), "monsters": mons}
 
-    for trainer in KEEP_AS_IS:
+    for trainer in ([] if only is not None else KEEP_AS_IS):
         if trainer not in parsed:
             problems.append(f"{trainer}: expected in trainers.party but missing")
         built[trainer] = {"checkpoint": None, "kept": KEEP_AS_IS[trainer],
@@ -1008,10 +1027,16 @@ def main() -> int:
         out, count = pattern.subn(lambda m: m.group(1) + body, out, count=1)
         assert count == 1, f"could not rewrite {trainer}"
     PARTY.write_text(out)
+    if only is not None:
+        report = json.loads(REPORT.read_text())
+        report["trainers"].update(built)
+        built = report["trainers"]
+        print(f"rewrote {len(only)} trainer parties in {PARTY}")
+    else:
+        print(f"rewrote {len(built) - len(KEEP_AS_IS)} trainer parties in {PARTY}")
     REPORT.write_text(json.dumps({"trainers": built}, indent=1) + "\n")
     for p in problems:
         print("PROBLEM:", p)
-    print(f"rewrote {len(built) - len(KEEP_AS_IS)} trainer parties in {PARTY}")
     return 1 if problems else 0
 
 

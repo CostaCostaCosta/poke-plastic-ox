@@ -17947,132 +17947,12 @@ Calm Nature
 
 === TRAINER_PLASTIC_OX_TOWERGRUNT1 ===
 Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt M
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
 Gender: Male
 Music: Male
 Double Battle: No
 AI: Basic Trainer / Smart Switching / PP Stall Prevention
-
-Haunter @ Leftovers
-Level: 38
-Ability: Levitate
-EVs: 252 SpA / 4 SpD / 252 Spe
-Timid Nature
-- Psychic
-- Thunderbolt
-- Taunt
-- Explosion
-
-Hypno @ Leftovers
-Level: 37
-Ability: Insomnia
-EVs: 4 HP / 252 SpA / 252 Spe
-Timid Nature
-- Psychic
-- Dream Eater
-- Hidden Power
-- Toxic
-
-Cubone @ Thick Club
-Level: 37
-Ability: Rock Head
-EVs: 36 HP / 196 Atk / 40 SpD / 236 Spe
-Adamant Nature
-- Bonemerang
-- Double-Edge
-- Hidden Power
-- Protect
-
-Muk @ Leftovers
-Level: 37
-Ability: Sticky Hold
-EVs: 252 HP / 252 Atk / 4 SpD
-Brave Nature
-- Sludge Bomb
-- Ice Punch
-- Explosion
-- Hidden Power
-
-Koffing @ Sitrus Berry
-Level: 36
-Ability: Levitate
-IVs: 31 HP / 31 Atk / 31 Def / 30 SpA / 31 SpD / 30 Spe
-EVs: 116 HP / 76 Atk / 236 Def / 80 Spe
-Impish Nature
-- Sludge Bomb
-- Hidden Power
-- Thief
-- Explosion
-
-Sableye @ Leftovers
-Level: 38
-Ability: Keen Eye
-EVs: 160 HP / 92 Def / 32 SpA / 224 Spe
-Timid Nature
-- Thunderbolt
-- Psychic
-- Explosion
-- Taunt
-
-=== TRAINER_PLASTIC_OX_TOWERGRUNT2 ===
-Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt M
-Gender: Male
-Music: Male
-Double Battle: No
-AI: Basic Trainer / Smart Switching / PP Stall Prevention
-
-Machoke @ Sitrus Berry
-Level: 38
-Ability: Guts
-EVs: 36 HP / 116 Atk / 40 Def / 240 SpD / 76 Spe
-Adamant Nature
-- Bulk Up
-- Focus Punch
-- Hidden Power
-- Endure
-
-Cubone @ Thick Club
-Level: 38
-Ability: Rock Head
-EVs: 36 HP / 196 Atk / 40 SpD / 236 Spe
-Adamant Nature
-- Bonemerang
-- Double-Edge
-- Hidden Power
-- Protect
-
-Onix @ Salac Berry
-Level: 38
-Ability: Sturdy
-EVs: 112 HP / 144 Atk / 252 Spe
-Jolly Nature
-- Sunny Day
-- Explosion
-- Earthquake
-- Hidden Power
-
-Muk @ Leftovers
-Level: 37
-Ability: Sticky Hold
-EVs: 252 HP / 156 Atk / 100 SpD
-Sassy Nature
-- Explosion
-- Sludge Bomb
-- Fire Blast
-- Hidden Power
-
-Rhyhorn @ Choice Band
-Level: 37
-Ability: Lightning Rod
-EVs: 4 HP / 252 Atk / 252 Spe
-Adamant Nature
-- Earthquake
-- Rock Slide
-- Hidden Power
-- Toxic
 
 Haunter @ Salac Berry
 Level: 38
@@ -18083,6 +17963,125 @@ Hasty Nature
 - Psychic
 - Explosion
 - Endure
+
+Golbat @ Choice Band
+Level: 38
+Ability: Inner Focus
+EVs: 252 Atk / 4 Def / 252 Spe
+Jolly Nature
+- Sludge Bomb
+- Aerial Ace
+- Hidden Power
+- Hyper Beam
+
+Muk @ Leftovers
+Level: 38
+Ability: Sticky Hold
+EVs: 252 HP / 156 Atk / 100 SpD
+Sassy Nature
+- Explosion
+- Sludge Bomb
+- Fire Blast
+- Hidden Power
+
+Arbok @ Choice Band
+Level: 37
+Ability: Intimidate
+EVs: 252 Atk / 4 Def / 252 Spe
+Jolly Nature
+- Sludge Bomb
+- Earthquake
+- Rock Slide
+- Sleep Talk
+
+Hypno @ Leftovers
+Level: 37
+Ability: Insomnia
+EVs: 252 HP / 192 Def / 64 Spe
+Bold Nature
+- Seismic Toss
+- Thunder Wave
+- Hyper Beam
+- Reflect
+
+Sableye @ Leftovers
+Level: 37
+Ability: Keen Eye
+EVs: 252 HP / 252 Def / 4 SpD
+Impish Nature
+- Seismic Toss
+- Toxic
+- Knock Off
+- Focus Punch
+
+=== TRAINER_PLASTIC_OX_TOWERGRUNT2 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Machoke @ Leftovers
+Level: 38
+Ability: Guts
+EVs: 208 HP / 252 Atk / 44 Spe
+Adamant Nature
+- Bulk Up
+- Revenge
+- Hidden Power
+- Earthquake
+
+Sandslash @ Leftovers
+Level: 39
+Ability: Sand Veil
+EVs: 252 HP / 72 Atk / 36 SpD / 148 Spe
+Adamant Nature
+- Swords Dance
+- Earthquake
+- Counter
+- Rock Slide
+
+Rhyhorn @ Choice Band
+Level: 38
+Ability: Lightning Rod
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Earthquake
+- Rock Slide
+- Hidden Power
+- Toxic
+
+Persian @ Liechi Berry
+Level: 38
+Ability: Limber
+EVs: 80 HP / 252 Atk / 176 Spe
+Jolly Nature
+- Substitute
+- Return
+- Shadow Ball
+- Hyper Beam
+
+Banette @ Salac Berry
+Level: 38
+Ability: Insomnia
+EVs: 32 HP / 252 Atk / 224 Spe
+Adamant Nature
+- Hyper Beam
+- Endure
+- Shadow Ball
+- Will-O-Wisp
+
+Granbull @ Leftovers
+Level: 38
+Ability: Intimidate
+EVs: 252 HP / 40 Atk / 216 Def
+Adamant Nature
+- Return
+- Focus Punch
+- Shadow Ball
+- Hyper Beam
 
 === TRAINER_PLASTIC_OX_SILPHGRUNT1 ===
 Name: GRUNT
@@ -22250,3 +22249,73 @@ Careful Nature
 - Seismic Toss
 - Counter
 - Explosion
+
+=== TRAINER_PLASTIC_OX_TOWERGRUNT3 ===
+Name: GRUNT
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Nidoking @ Choice Band
+Level: 40
+Ability: Poison Point
+EVs: 4 HP / 252 Atk / 252 Spe
+Hasty Nature
+- Earthquake
+- Hyper Beam
+- Sludge Bomb
+- Ice Beam
+
+Nidoqueen @ Leftovers
+Level: 39
+Ability: Poison Point
+EVs: 128 HP / 252 Atk / 56 SpA / 72 Spe
+Lonely Nature
+- Earthquake
+- Shadow Ball
+- Sludge Bomb
+- Ice Beam
+
+Electrode @ Petaya Berry
+Level: 39
+Ability: Static
+EVs: 12 HP / 32 Atk / 116 Def / 252 SpA / 96 Spe
+Rash Nature
+- Thunderbolt
+- Substitute
+- Explosion
+- Hidden Power
+
+Misdreavus @ Leftovers
+Level: 40
+Ability: Levitate
+EVs: 252 HP / 84 Def / 172 SpD
+Calm Nature
+- Thunderbolt
+- Hidden Power
+- Thunder Wave
+- Pain Split
+
+Hitmonlee @ Choice Band
+Level: 39
+Ability: Limber
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Brick Break
+- Hidden Power
+- Earthquake
+- Focus Punch
+
+Vileplume @ Leftovers
+Level: 39
+Ability: Chlorophyll
+EVs: 120 HP / 252 SpA / 136 Spe
+Modest Nature
+- Sunny Day
+- Hyper Beam
+- Solar Beam
+- Hidden Power
+
