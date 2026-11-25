@@ -266,7 +266,7 @@
 #define FLAG_POX_HIDE_HAIRCUT_OLDER   0x90F // set = older brother off duty (map ON_TRANSITION)
 #define FLAG_POX_HIDE_HAIRCUT_YOUNGER 0x910 // set = younger brother off duty
 #define FLAG_POX_BAD_HAIRCUT_KNOWN    0x913 // set = player has had one bad haircut
-#define FLAG_POX_ROUTE36_SNORLAX_CLEARED 0x914 // Route 36 eastern path opens after battle
+#define FLAG_POX_ROUTE36_SLEEPER_MOVED 0x914 // Route 36 eastern road: the sleeping hiker has left (was the Snorlax flag)
 #define FLAG_POX_CONTEST_EVERSTONE_PENDING 0x915
 #define FLAG_POX_CONTEST_SITRUS_PENDING    0x916
 #define FLAG_POX_CONTEST_ORAN_PENDING      0x917

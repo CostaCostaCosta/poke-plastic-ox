@@ -30,7 +30,6 @@ data/maps/PlasticOx_VictoryRoad/map.json
 data/maps/PlasticOx_WhitneyGym/map.json
 data/maps/PlasticOx_WhitneyGym/scripts.inc
 data/maps/Route103/map.json
-data/maps/Route110/map.json
 data/maps/Route115/map.json
 data/maps/Route119/map.json
 data/maps/Route119_WeatherInstitute_1F/scripts.inc

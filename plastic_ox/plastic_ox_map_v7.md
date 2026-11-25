@@ -234,6 +234,7 @@ Recommended implementation:
 
 - barrier controlled by `FLAG_REACHED_FORTREE` or equivalent
 - obstruction is removed/opened from the Route 110 side after Fortree is reached
+- as built: a hiker asleep across the road on Route 36 who only moves once shown Winona's badge, plus a `FLAG_POX_REACHED_FORTREE` check on the Route 36 edge
 
 After unlocking:
 

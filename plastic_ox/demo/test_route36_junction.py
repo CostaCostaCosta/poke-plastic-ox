@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Verify Sudowoodo closes Route 36's three-way junction in the built ROM."""
+"""Verify Sudowoodo closes Route 36's three-way junction in the built ROM.
+
+The eastern branch is held by a hiker asleep on (43,19); he walks off once the
+player has Winona's badge (see test_route110_seams.py for that conversation).
+"""
 
 import json
 import sys
@@ -14,8 +18,8 @@ from region_geometry import Geometry
 
 PARK = (16, 21)
 SUDOWOODO = (39, 19)
-SNORLAX = (43, 19)
-EAST_PORT = (65, 18)
+SLEEPER = (43, 19)
+EAST_PORT = (65, 20)
 
 
 def map_id(name):
@@ -29,7 +33,7 @@ def static_gate():
     geom = Geometry('Route36_hns')
     events = {o['script']: (o['x'], o['y']) for o in geom.data['object_events']}
     assert events['Pox_Sudowoodo'] == SUDOWOODO
-    assert events['Route36_EventScript_Snorlax'] == SNORLAX
+    assert events['Route36_EventScript_Sleeper'] == SLEEPER
     assert all(geom.passable(*p) and geom.tile(*p)[1] == 3
                for p in [SUDOWOODO, (39, 18), (40, 19), (39, 20)])
     assert not geom.passable(38, 19)
@@ -37,7 +41,7 @@ def static_gate():
 
     north = {(x, 0) for x in range(geom.w) if geom.passable(x, 0)}
     assert north
-    for can_sudo, can_snorlax, north_open, east_open in [
+    for can_sudo, can_sleeper, north_open, east_open in [
         (False, False, False, False),
         (True, False, True, False),
         (True, True, True, True),
@@ -45,8 +49,8 @@ def static_gate():
         blocked = set()
         if not can_sudo:
             blocked.add(SUDOWOODO)
-        if not can_snorlax:
-            blocked.add(SNORLAX)
+        if not can_sleeper:
+            blocked.add(SLEEPER)
         for water in (False, True):
             reachable = geom.component(PARK, blocked=blocked, water=water)
             assert bool(reachable & north) == north_open, (blocked, 'north', water)
@@ -54,7 +58,7 @@ def static_gate():
             if not can_sudo:
                 reverse = geom.component((35, 0), blocked=blocked, water=water)
                 assert PARK not in reverse, (blocked, 'reverse bypass', water)
-    print('three-way junction: no walking or Surf bypass; north opens after Sudowoodo; east after Snorlax PASS', flush=True)
+    print('three-way junction: no walking or Surf bypass; north opens after Sudowoodo; east after the sleeper PASS', flush=True)
 
 
 def runtime_gate():
@@ -64,10 +68,10 @@ def runtime_gate():
         ({'FLAG_POX_SUDOWOODO_CLEARED': True}, (39, 20), K.KEY_UP,
          (39, 19), 'sudowoodo_open'),
         ({'FLAG_POX_SUDOWOODO_CLEARED': True}, (42, 19), K.KEY_RIGHT,
-         (42, 19), 'snorlax_blocked'),
+         (42, 19), 'sleeper_blocked'),
         ({'FLAG_POX_SUDOWOODO_CLEARED': True,
-          'FLAG_POX_ROUTE36_SNORLAX_CLEARED': True}, (42, 19), K.KEY_RIGHT,
-         (43, 19), 'snorlax_open'),
+          'FLAG_POX_ROUTE36_SLEEPER_MOVED': True}, (42, 19), K.KEY_RIGHT,
+         (43, 19), 'sleeper_open'),
     ]
     for flags, start, key, expected, shot in cases:
         game = StoryGame()

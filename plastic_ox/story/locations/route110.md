@@ -18,14 +18,14 @@ status: drafted
 
 ## Snapshot
 
-Two roads stacked on one hillside: a raised cycleway on the ridge and a slow lane through the grass below it, meeting at the Lavender junction. The player arrives from `FortreeCity` after badge 4 and leaves south toward `LavenderTown_hns`; the westward spur at `(1,67)` is the region's midgame shortcut back to Route 36 and only becomes live once Fortree is reached. The route's emotional note is traffic — it is the first place in the game where the world feels *commuted through* rather than travelled.
+Two roads stacked on one hillside: a raised cycleway on the ridge and a slow lane through the grass below it, meeting at the Lavender junction. The player arrives from `FortreeCity` after badge 4 and leaves south toward `LavenderTown_hns`; the westward spur at rows `67..71` is the region's midgame shortcut back to Route 36 and only becomes live once Fortree is reached. The route's emotional note is traffic — it is the first place in the game where the world feels *commuted through* rather than travelled.
 
 ## Plot points
 
-1. **Arrival from Fortree.** `(18,0)` `PoxRegion_fortree_route110_b` requires badge 4, dropping the player at `(17,0)`. No cutscene; the two roads are visible from the first step and their difference is the route's whole argument.
+1. **Arrival from Fortree.** Fortree's east clearing and a forest corridor on Route 110 rows `2..5` are one native connection: the player walks across with no fade and comes out of the trees above the two roads. Fortree's edge tiles (`PoxRegion_fortree_route110_a`) hold the badge 4 check. No cutscene; the two roads' difference is the route's whole argument.
 2. **The route teaches its own shape.** The upper deck is fast, safe, and boring. The lower road holds the grass, the berry trees, the trainers, and the items. An old man at `(10,11)` already has the best line in the file about it; keep him and make him the route's thesis.
-3. **The shortcut folds the middle of the world.** `(1,67)` `PoxRegion_route36_shortcut_b` gates on `FLAG_POX_REACHED_FORTREE`, opening the west spur back to `Route36_hns` permanently. This is the map's one structural story beat: Fortree stops being a far edge.
-4. **The Lavender junction.** `(16,5)` `PoxRegion_route110_lavender_a` requires badge 4 and delivers the player to Lavender. The gate should read as an ordinary road junction, not a story door.
+3. **The shortcut folds the middle of the world.** The west spur's sand road (rows `67..71`) is a native connection to `Route36_hns`. From this side it is always open; on Route 36 a sleeping hiker and `FLAG_POX_REACHED_FORTREE` hold it. This is the map's one structural story beat: Fortree stops being a far edge.
+4. **The Lavender junction.** The south road (`15..19,99`) is a native connection into Lavender's north meadow (`12..16,0`); `PoxRegion_route110_lavender_a` on the edge tiles checks badge 4. It should read as an ordinary road, not a story door.
 5. **Do not stage the mystery here.** Route 110 is breathing room between the Weather Institute and Rocket II. People talk about haulage, bikes, wind, and the price of a repair.
 
 **Must not:** mention Bill, Silph, Team Rocket, or Team Aqua; reference Hoenn geography (Mauville, Slateport, Rydel) as if it were reachable; give the player a new bike mechanic; put a story gate at both ends of the same stretch.
@@ -34,9 +34,9 @@ Two roads stacked on one hillside: a raised cycleway on the ridge and a slow lan
 
 | Interaction | Where | Trigger / state | Current behavior | Target behavior |
 | --- | --- | --- | --- | --- |
-| Fortree gate | `(18,0)` `PoxRegion_fortree_route110_b` | badge 4 | closed → generic text + bounce back | keep; the closure should be wind or a closed deck, not an invisible wall |
-| Lavender gate | `(16,5)` `PoxRegion_route110_lavender_a` | badge 4 | warps to `LavenderTown_hns` `(15,0)` | keep; add a junction sign with distances, not a warning |
-| Route 36 shortcut | `(1,67)` `PoxRegion_route36_shortcut_b` | `FLAG_POX_REACHED_FORTREE` | opens the west spur to `Route36_hns` | keep; this is the route's only real story moment and deserves one line of acknowledgement |
+| Fortree road | west edge `(0,2..5)` | always | walk west into `FortreeCity` `(39,7..10)` | keep; the badge check lives on Fortree's side |
+| Lavender road | south edge `(15..19,99)` `PoxRegion_route110_lavender_a` | badge 4 | walk south into `LavenderTown_hns` `(12..16,0)`; closed: generic text and a step back | keep; add a junction sign with distances, not a warning |
+| Route 36 shortcut | west edge `(0,67..71)` | always | walk west into `Route36_hns` `(65,18..22)` | keep; this is the route's only real story moment and deserves one line of acknowledgement |
 | Aqua grunts | `(7,83)`, `(8,83)`, `(9,83)`, `(10,83)` | always | four `TEAM AQUA` lines about Slateport and "kicking up a ruckus" | recast: a delivery crew, a cycle club, or striking hauliers. There is no Team Aqua in this story |
 | Fifth grunt | `(8,82)` | — | object with script `0x0` | delete; it is an invisible body under the four above |
 | Duplicate rivals | `(34,54)` twice (`LOCALID_ROUTE110_RIVAL`, `LOCALID_ROUTE110_RIVAL_ON_BIKE`) | — | two objects, same tile, both script `0x0` | delete both or place one properly; stacked objects are a save and collision hazard |
@@ -76,8 +76,8 @@ Two roads stacked on one hillside: a raised cycleway on the ridge and a slow lan
 ## Implementation hooks
 
 - Wiki page: `route110.html`
-- Map: `Route110` (`MAP_ROUTE110`); no connections, 6 warps (the two Cycling Road gatehouses, New Mauville `(35,24)` as warp 4, the Trick House `(11,66)` as warp 5), 36 objects, 14 trainers
-- Scripts: `data/maps/Route110/scripts.inc`, `data/scripts/plastic_ox_region.inc` (`PoxRegion_fortree_route110_b`, `PoxRegion_route110_lavender_a`, `PoxRegion_route36_shortcut_b`)
+- Map: `Route110` (`MAP_ROUTE110`); connections `left` to `MAP_FORTREE_CITY` (offset -5) and `MAP_ROUTE36_HNS` (offset 49), `down` to `MAP_LAVENDER_TOWN_HNS` (offset 3); the forest beyond the land edges comes from `src/plastic_ox_borders.c`; 6 warps (the two Cycling Road gatehouses, New Mauville `(35,24)` as warp 4, the Trick House `(11,66)` as warp 5), 36 objects, 14 trainers
+- Scripts: `data/maps/Route110/scripts.inc`, `data/scripts/plastic_ox_region.inc` (`PoxRegion_route110_lavender_a`)
 - Flags: `FLAG_POX_REACHED_FORTREE` (set on Fortree arrival), badge gates use `FLAG_BADGE04_GET`
 - Known gaps: four live Team Aqua grunts plus one dead one; two objects stacked on `(34,54)`; `OBJ_EVENT_GFX_PROF_BIRCH` at `(9,79)` with script `0x0`; all 14 trainers are Lv.6–16 on a stage-6 route; a cyclist shares the name of a Johto Gym Leader; the "RYDEL" bike sign text repeats eight times.
 

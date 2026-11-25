@@ -27,6 +27,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Install Python dependencies
+        run: pip install pillow
       - name: Static Plastic Ox checks (no ROM build needed)
         run: make -f plastic_ox/pox.mk pox-check-static POX_CI=1
       - name: Build wiki

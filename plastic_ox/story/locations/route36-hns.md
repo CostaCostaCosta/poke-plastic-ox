@@ -7,9 +7,9 @@ stage: "3 — Goldenrod to Ecruteak"
 depth: full
 wiki: route36-hns
 maps: [Route36_hns]
-flags: [FLAG_POX_SUDOWOODO_CLEARED, FLAG_POX_ROUTE36_SNORLAX_CLEARED]
+flags: [FLAG_POX_SUDOWOODO_CLEARED, FLAG_POX_ROUTE36_SLEEPER_MOVED]
 trainers: [TRAINER_PLASTIC_OX_PU_ROUTE36, TRAINER_PLASTIC_OX_JOHTO_ALAN]
-items: [ITEM_AWAKENING, ITEM_SQUIRT_BOTTLE, ITEM_POKE_FLUTE]
+items: [ITEM_AWAKENING, ITEM_SQUIRT_BOTTLE]
 status: drafted
 ---
 
@@ -23,7 +23,7 @@ A crossroads rather than a corridor: the road down to Route 35, the road up to R
 
 1. **The junction reads as a junction.** Real connections `up` to `MAP_ROUTE37_HNS` and `down` to `MAP_ROUTE35_HNS`, a warp at `(16,20)` into `Gate_NationalPark_hns`, and the blocked eastern road. The player should see all four before touching any of them.
 2. **Sudowoodo, and the borrowed bottle.** `Pox_Sudowoodo` at `(39,19)` refuses until `FLAG_BADGE02_GET` and `ITEM_SQUIRT_BOTTLE` are both present; the waiting line points at "someone near WHITNEY's GYM", i.e. the `GoldenrodCity_FlowerShop_hns` giver. Spending the bottle starts a single wild Lv. 20 Sudowoodo; catch or defeat both set `FLAG_POX_SUDOWOODO_CLEARED`, remove the object and take the bottle back. One clean errand: talk, walk back, walk out.
-3. **The east road is closed on purpose.** Snorlax at `(43,19)` blocks it until `ITEM_POKE_FLUTE`, which Mr. Fuji hands out in Lavender, long after this stage; past him the coord event at `(65,18)` (`PoxRegion_route36_shortcut_a`) refuses the seam unless `FLAG_POX_REACHED_FORTREE` is set. Keep the visible teasing; two locks on one road is the open question below.
+3. **The east road is closed on purpose.** A hiker is asleep across it at `(43,19)` (`Route36_EventScript_Sleeper`). Spoken to, he only mumbles about "the feather one" until the player holds Winona's badge (`FLAG_BADGE04_GET`); then he wakes, walks off and sets `FLAG_POX_ROUTE36_SLEEPER_MOVED`. Past him the road runs off the east edge as a real connection to Route 110's west spur (rows `18..22`), whose edge tiles still refuse without `FLAG_POX_REACHED_FORTREE`. He replaced the Snorlax and its Poké Flute lock.
 4. **The Ruins gate guards nothing.** Three identical men at `(55,25)`, `(56,25)`, `(57,25)` all run `Route36_EventScript_RuinsGateClosed` and repeat one line about the Ruins of Alph. No Ruins map exists in the build.
 5. **Reveal ladder: nothing here.** Step 4 at most, and unused. The east road is a geography tease, not a clue; the bible asks that this obstruction feel physical and ordinary.
 
@@ -35,9 +35,9 @@ A crossroads rather than a corridor: the road down to Route 35, the road up to R
 | --- | --- | --- | --- | --- |
 | Sudowoodo check | `(39,19)`, `Pox_Sudowoodo` | `FLAG_POX_SUDOWOODO_CLEARED` unset, badge 2 or bottle missing | refuses with a hint naming Whitney's Gym | keep the hint, but sound like a park warden's advice, not a fetch-quest log |
 | Sudowoodo battle | `(39,19)` | badge 2 set + `ITEM_SQUIRT_BOTTLE` held | wild `SPECIES_SUDOWOODO` Lv. 20; catch or win clears and returns the bottle | keep; add a line about the flattened grass afterwards |
-| East road block | `(43,19)`, `Route36_EventScript_Snorlax` | no `ITEM_POKE_FLUTE` | "SNORLAX blocks the eastern road" + flute hint | keep the block; do not name who holds the flute |
-| Snorlax woken | `(43,19)` | flute held | Lv. 30 battle, sets `FLAG_POX_ROUTE36_SNORLAX_CLEARED` | keep; the "went back to sleep" retry line is good |
-| Shortcut seam | coord `(65,18)`, `PoxRegion_route36_shortcut_a` | `FLAG_POX_REACHED_FORTREE` | bounce back with `PoxRegion_ClosedText` ("Return after your next objective") | replace the system register with a physical obstruction line |
+| East road block | `(43,19)`, `Route36_EventScript_Sleeper` | badge 4 unset | "Zzz…" and a sleep-talked hint about the feather badge | keep; never name Fortree or Winona outright |
+| Sleeper woken | `(43,19)` | badge 4 set | wakes, says his piece, walks away from the player, sets `FLAG_POX_ROUTE36_SLEEPER_MOVED` | keep; works from either side of him |
+| Shortcut seam | east edge `(65,18..22)`, `PoxRegion_route36_shortcut_a` | `FLAG_POX_REACHED_FORTREE` | open: walk straight across into Route 110 `(0,67..71)`; closed: `PoxRegion_ClosedText` and a step back | replace the system register with a physical obstruction line |
 | PU trainer | `(24,24)`, `Pox_PU_ROUTE36` | unbeaten | `TRAINER_PLASTIC_OX_PU_ROUTE36`, six Lv. 21 | keep; his after-line about the moving tree is the map's best foreshadow |
 | Alan | `(31,23)`, `Route36_EventScript_Alan` | unbeaten | `TRAINER_PLASTIC_OX_JOHTO_ALAN`, Magnemite / Ponyta Lv. 21 | keep; his notebook already points at Sudowoodo |
 | Ruins minders | `(55,25)`/`(56,25)`/`(57,25)` | always | three identical sprites, one repeated line | cut to one man with one specific job, or delete all three |
@@ -74,13 +74,13 @@ A crossroads rather than a corridor: the road down to Route 35, the road up to R
 
 - Wiki page: `route36-hns.html`
 - Maps: `Route36_hns` (`MAP_ROUTE36_HNS`); neighbours `MAP_ROUTE35_HNS`, `MAP_ROUTE37_HNS`, `MAP_GATE_NATIONAL_PARK_HNS`
-- Scripts: `data/maps/Route36_hns/scripts.inc` (`Route36_EventScript_Snorlax`, `Route36_EventScript_RuinsGateClosed`, `Route36_EventScript_Alan`); `data/scripts/plastic_ox_story.inc` (`Pox_Sudowoodo`); `data/scripts/plastic_ox_region.inc` (`PoxRegion_route36_shortcut_a`, `PoxRegion_ClosedText`)
-- Flags: `FLAG_POX_SUDOWOODO_CLEARED`, `FLAG_POX_ROUTE36_SNORLAX_CLEARED`, badge 2 (`FLAG_BADGE02_GET`), `FLAG_POX_REACHED_FORTREE` at the seam
-- Items: `ITEM_SQUIRT_BOTTLE` (borrowed from the Goldenrod flower shop), `ITEM_POKE_FLUTE` (Lavender), hidden `ITEM_AWAKENING` at `(59,17)`; trainers `TRAINER_PLASTIC_OX_PU_ROUTE36`, `TRAINER_PLASTIC_OX_JOHTO_ALAN`
+- Scripts: `data/maps/Route36_hns/scripts.inc` (`Route36_EventScript_Sleeper`, `Route36_EventScript_RuinsGateClosed`, `Route36_EventScript_Alan`); `data/scripts/plastic_ox_story.inc` (`Pox_Sudowoodo`); `data/scripts/plastic_ox_region.inc` (`PoxRegion_route36_shortcut_a`, `PoxRegion_ClosedText`)
+- Flags: `FLAG_POX_SUDOWOODO_CLEARED`, `FLAG_POX_ROUTE36_SLEEPER_MOVED` (id `0x914`, formerly the Snorlax flag), badge 2 (`FLAG_BADGE02_GET`), badge 4 for the sleeper, `FLAG_POX_REACHED_FORTREE` at the seam
+- Items: `ITEM_SQUIRT_BOTTLE` (borrowed from the Goldenrod flower shop), hidden `ITEM_AWAKENING` at `(59,17)`; trainers `TRAINER_PLASTIC_OX_PU_ROUTE36`, `TRAINER_PLASTIC_OX_JOHTO_ALAN`
 - Known gaps: three duplicate Ruins minders guarding a non-existent interior; generic `PoxRegion_ClosedText` used for an in-world obstruction; orphan labels `Route36_EventScript_Npc4`/`Npc5`; the east stub is walked only for the hidden Awakening.
 
 ## Open questions
 
-- Snorlax is approved as-is: keep the visible block and the second lock. Waking him is the moment the player learns the road goes somewhere new, even while `FLAG_POX_REACHED_FORTREE` holds the seam shut.
+- 2026-11-24: the Snorlax was replaced by the sleeping hiker at the owner's request; he moves for Winona's badge, not the Poké Flute.
 - Should the Ruins of Alph gate become an honest "not in this build" sign, one bored guard, or a removable prop? Do not leave three clones.
 - Does Route 36 need any Eevee / Bill-family texture (ladder step 4), or is that Goldenrod's alone? Recommendation: Goldenrod only.

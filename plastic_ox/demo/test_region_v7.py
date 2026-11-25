@@ -77,15 +77,24 @@ def main():
         try:
             g.warp(p['source'], *p['approach'])
             start = g.state()
-            g.tap(KEYS[p['direction']], hold=24, wait=90)
-            for _ in range(30):
-                if (g.state()['group'],g.state()['num']) == ids[p['destination']]:
-                    break
-                g.tap(K.KEY_A, hold=2, wait=20)
+            if p.get('seam'):
+                # A native connection: keep walking until the map changes.
+                # The lane, not a fixed landing, decides where the player is.
+                for _ in range(6):
+                    g.hold(KEYS[p['direction']], 16)
+                    if (g.state()['group'],g.state()['num']) == ids[p['destination']]:
+                        break
+            else:
+                g.tap(KEYS[p['direction']], hold=24, wait=90)
+                for _ in range(30):
+                    if (g.state()['group'],g.state()['num']) == ids[p['destination']]:
+                        break
+                    g.tap(K.KEY_A, hold=2, wait=20)
             g.frame(180)
             state = g.state()
             assert (state['group'],state['num']) == ids[p['destination']], (p['id'],start,state)
-            assert [state['x'],state['y']] == p['landing'], (p['id'],'landing',state,p['landing'])
+            if not p.get('seam'):
+                assert [state['x'],state['y']] == p['landing'], (p['id'],'landing',state,p['landing'])
             assert g.collision_at(state['x'],state['y'])[0] == 0, (p['id'],'blocked landing')
             result = dict(id=p['id'],passed=True)
         except (AssertionError, KeyError) as e:

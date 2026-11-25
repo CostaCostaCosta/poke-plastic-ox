@@ -295,112 +295,52 @@ PoxRegion_route119_fortree_a_StepBack:
 	step_end
 
 PoxRegion_fortree_route110_a::
-	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_fortree_route110_a_Open
 	goto_if_unset FLAG_BADGE04_GET, PoxRegion_fortree_route110_a_Closed
 PoxRegion_fortree_route110_a_Open::
-	warp MAP_ROUTE110, 17, 0
-	waitstate
-	releaseall
 	end
 PoxRegion_fortree_route110_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_FORTREE_CITY, 38, 10
-	waitstate
-	releaseall
-	end
-
-PoxRegion_fortree_route110_a_Sign::
-	msgbox PoxRegion_fortree_route110_a_Text, MSGBOX_SIGN
-	end
-PoxRegion_fortree_route110_a_Text::
-	.string "Route110\nMarked passage ahead.$"
-
-PoxRegion_fortree_route110_b::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_fortree_route110_b_Open
-	goto_if_unset FLAG_BADGE04_GET, PoxRegion_fortree_route110_b_Closed
-PoxRegion_fortree_route110_b_Open::
-	warp MAP_FORTREE_CITY, 38, 10
-	waitstate
-	releaseall
-	end
-PoxRegion_fortree_route110_b_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE110, 17, 0
-	waitstate
+	applymovement OBJ_EVENT_ID_PLAYER, PoxRegion_fortree_route110_a_StepBack
+	waitmovement 0
 	releaseall
 	end
+PoxRegion_fortree_route110_a_StepBack:
+	walk_left
+	step_end
 
 PoxRegion_route36_shortcut_a::
-	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route36_shortcut_a_Open
 	goto_if_unset FLAG_POX_REACHED_FORTREE, PoxRegion_route36_shortcut_a_Closed
 PoxRegion_route36_shortcut_a_Open::
-	warp MAP_ROUTE110, 0, 67
-	waitstate
-	releaseall
 	end
 PoxRegion_route36_shortcut_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE36_HNS, 64, 18
-	waitstate
-	releaseall
-	end
-
-PoxRegion_route36_shortcut_b::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route36_shortcut_b_Open
-	goto_if_unset FLAG_POX_REACHED_FORTREE, PoxRegion_route36_shortcut_b_Closed
-PoxRegion_route36_shortcut_b_Open::
-	warp MAP_ROUTE36_HNS, 64, 18
-	waitstate
-	releaseall
-	end
-PoxRegion_route36_shortcut_b_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE110, 0, 67
-	waitstate
+	applymovement OBJ_EVENT_ID_PLAYER, PoxRegion_route36_shortcut_a_StepBack
+	waitmovement 0
 	releaseall
 	end
+PoxRegion_route36_shortcut_a_StepBack:
+	walk_left
+	step_end
 
 PoxRegion_route110_lavender_a::
-	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route110_lavender_a_Open
 	goto_if_unset FLAG_BADGE04_GET, PoxRegion_route110_lavender_a_Closed
 PoxRegion_route110_lavender_a_Open::
-	warp MAP_LAVENDER_TOWN_HNS, 15, 0
-	waitstate
-	releaseall
 	end
 PoxRegion_route110_lavender_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE110, 15, 5
-	waitstate
-	releaseall
-	end
-
-PoxRegion_route110_lavender_b::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route110_lavender_b_Open
-	goto_if_unset FLAG_BADGE04_GET, PoxRegion_route110_lavender_b_Closed
-PoxRegion_route110_lavender_b_Open::
-	warp MAP_ROUTE110, 15, 5
-	waitstate
-	releaseall
-	end
-PoxRegion_route110_lavender_b_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_LAVENDER_TOWN_HNS, 15, 0
-	waitstate
+	applymovement OBJ_EVENT_ID_PLAYER, PoxRegion_route110_lavender_a_StepBack
+	waitmovement 0
 	releaseall
 	end
-
-PoxRegion_route110_lavender_b_Sign::
-	msgbox PoxRegion_route110_lavender_b_Text, MSGBOX_SIGN
-	end
-PoxRegion_route110_lavender_b_Text::
-	.string "Route110\nMarked passage ahead.\pYou are leaving LAVENDER TOWN.$"
+PoxRegion_route110_lavender_a_StepBack:
+	walk_up
+	step_end
 
 PoxRegion_lavender_route8_a::
 	lockall
