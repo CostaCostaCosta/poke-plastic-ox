@@ -4,7 +4,9 @@
   "layout": "LAYOUT_HOUSE5_FRLG",
   "music": "MUS_RG_LAVENDER",
   "region": "REGION_KANTO",
-  "include_in_versions": ["emerald"],
+  "include_in_versions": [
+    "emerald"
+  ],
   "region_map_section": "MAPSEC_LAVENDER_TOWN",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -52,21 +54,21 @@
       "y": 7,
       "elevation": 3,
       "dest_map": "MAP_LAVENDER_TOWN_HNS",
-      "dest_warp_id": "2"
+      "dest_warp_id": "5"
     },
     {
       "x": 4,
       "y": 7,
       "elevation": 3,
       "dest_map": "MAP_LAVENDER_TOWN_HNS",
-      "dest_warp_id": "2"
+      "dest_warp_id": "5"
     },
     {
       "x": 5,
       "y": 7,
       "elevation": 3,
       "dest_map": "MAP_LAVENDER_TOWN_HNS",
-      "dest_warp_id": "2"
+      "dest_warp_id": "5"
     }
   ],
   "coord_events": [],

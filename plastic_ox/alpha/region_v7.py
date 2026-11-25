@@ -796,3 +796,5 @@ def apply_region(read, put):
     install_tin_tower(read, put)
     from mart_repairs import install as repair_marts
     repair_marts(read, put)
+    from lavender import install as install_lavender
+    install_lavender(read, put)

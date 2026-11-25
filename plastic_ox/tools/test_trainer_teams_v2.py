@@ -40,7 +40,7 @@ from apply_trainer_teams_v2 import (  # noqa: E402
     KEEP_AS_IS, ROSTERS, SIGNATURE_EXCEPTIONS, WHITNEY_COMPETITIVE_TEAM,
     WINONA, WINONA_COMPETITIVE_TEAM, MORTY, MORTY_COMPETITIVE_TEAM,
     BLAINE, BLAINE_COMPETITIVE_TEAM,
-    AUTHORED_LEAGUE, LEAGUE_PARTIES,
+    AUTHORED_LEAGUE, LEAGUE_PARTIES, AUTHORED_TRAINERS, AUTHORED_PARTIES,
     split_block, ROUTE_GROUPS, minimum_level, expected_party_size,
 )
 
@@ -147,6 +147,15 @@ def main() -> int:
     for tid in AUTHORED_LEAGUE:
         if parsed[tid].strip() != authored[tid].strip():
             problems.append(f"{tid}: differs from canonical authored endgame party")
+    # Hand-authored parties: trainers.party must carry the authored block
+    # verbatim, and each one still needs a ROSTERS checkpoint so the legality
+    # checks below cover it.
+    hand = parse(AUTHORED_PARTIES.read_text())
+    for tid in sorted(AUTHORED_TRAINERS):
+        if tid not in ROSTERS:
+            problems.append(f"{tid}: authored party has no ROSTERS checkpoint")
+        if tid not in parsed or parsed[tid].strip() != hand[tid].strip():
+            problems.append(f"{tid}: trainers.party differs from plastic_ox/tools/authored_trainers.party")
     for trainer in sorted(ROSTERS):
         checkpoint, _roster = ROSTERS[trainer]
         legal = P.legal_for(checkpoint)
@@ -155,12 +164,7 @@ def main() -> int:
         header, blocks = split_block(parsed[trainer])
         checked += 1
         expected_size = expected_party_size(trainer)
-        if trainer.startswith("TRAINER_PLASTIC_OX_KIMONO"):
-            # Optional signature troupe: thematically 3-6 partners, not a full boss squad.
-            if not 3 <= len(blocks) <= expected_size:
-                problems.append(f"{trainer}: {len(blocks)} Pokemon, expected 3-{expected_size}")
-                continue
-        elif len(blocks) != expected_size:
+        if len(blocks) != expected_size:
             problems.append(f"{trainer}: {len(blocks)} Pokemon, expected {expected_size}")
             continue
         for index, block in enumerate(blocks):

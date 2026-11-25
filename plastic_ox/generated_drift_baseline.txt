@@ -23,7 +23,6 @@ data/maps/MtMoon_1F_Frlg/scripts.inc
 data/maps/MtMoon_B2F_Frlg/scripts.inc
 data/maps/OldaleTown/map.json
 data/maps/PalletTown_ProfessorOaksLab_Frlg/map.json
-data/maps/PlasticOx_FujiHouse/map.json
 data/maps/PlasticOx_Harbor/map.json
 data/maps/PlasticOx_Route20East/map.json
 data/maps/PlasticOx_Route20West/map.json

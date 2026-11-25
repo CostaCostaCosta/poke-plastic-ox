@@ -362,4 +362,22 @@
 #define FLAG_POX_VISITED_INDIGO      FLAG_VISITED_EVER_GRANDE_CITY
 // Tin Tower roof: Moltres caught after its sage (TRAINER_PLASTIC_OX_MOLTRES_SAGE).
 #define FLAG_POX_CAUGHT_MOLTRES (POX_EVENT_FLAGS_START + 56)
+// Lavender / Pokemon Tower (plastic_ox/alpha/lavender.py).
+// Pokemon Tower 7F: FUJI walked home after the three grunts.
+#define FLAG_POX_FUJI_RESCUED (POX_EXT_FLAGS_START + 0)
+// FUJI's house: hides FUJI until he is rescued (set on transition).
+#define FLAG_POX_HIDE_HOUSE_FUJI (POX_EXT_FLAGS_START + 1)
+// Pokemon Tower 7F: third Rocket grunt beaten.
+#define FLAG_POX_HIDE_LAVENDER_GRUNT_3 (POX_EXT_FLAGS_START + 2)
+// Pokemon Tower item balls.
+#define FLAG_POX_HIDE_TOWER_3F_ESCAPE_ROPE (POX_EXT_FLAGS_START + 3)
+#define FLAG_POX_HIDE_TOWER_4F_ELIXIR (POX_EXT_FLAGS_START + 4)
+#define FLAG_POX_HIDE_TOWER_4F_AWAKENING (POX_EXT_FLAGS_START + 5)
+#define FLAG_POX_HIDE_TOWER_4F_GREAT_BALL (POX_EXT_FLAGS_START + 6)
+#define FLAG_POX_HIDE_TOWER_5F_NUGGET (POX_EXT_FLAGS_START + 7)
+#define FLAG_POX_HIDE_TOWER_5F_CLEANSE_TAG (POX_EXT_FLAGS_START + 8)
+#define FLAG_POX_HIDE_TOWER_6F_RARE_CANDY (POX_EXT_FLAGS_START + 9)
+#define FLAG_POX_HIDE_TOWER_6F_X_ACCURACY (POX_EXT_FLAGS_START + 10)
+// End Lavender flags.
+
 #endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H

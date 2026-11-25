@@ -7884,273 +7884,63 @@
    "tier": "UU",
    "monsters": [
     {
-     "species": "SPECIES_GASTLY",
-     "level": 38,
-     "moves": [
-      "MOVE_PSYCHIC",
-      "MOVE_THUNDERBOLT",
-      "MOVE_TAUNT",
-      "MOVE_EXPLOSION"
-     ],
-     "ability": "Levitate",
-     "item": "Leftovers",
-     "nature": "Timid",
-     "evs": {
-      "spa": 252,
-      "spd": 4,
-      "spe": 252
-     },
-     "set_name": "Stallbreaker",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Will O Wisp -> Explosion (egg or special-case only)"
-     ],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_DROWZEE",
-     "level": 37,
-     "moves": [
-      "MOVE_PSYCHIC",
-      "MOVE_DREAM_EATER",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_TOXIC"
-     ],
-     "ability": "Insomnia",
-     "item": "Leftovers",
-     "nature": "Timid",
-     "evs": {
-      "hp": 4,
-      "spa": 252,
-      "spe": 252
-     },
-     "set_name": "learnset-derived",
-     "set_source": "derived from the ROM learnset (no tier-dex entry)",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_CUBONE",
-     "level": 37,
-     "moves": [
-      "MOVE_BONEMERANG",
-      "MOVE_DOUBLE_EDGE",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_PROTECT"
-     ],
-     "ability": "Rock Head",
-     "item": "Thick Club",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 36,
-      "atk": 196,
-      "spd": 40,
-      "spe": 236
-     },
-     "set_name": "Offensive",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
-     ],
-     "ivs": null,
-     "hp_type": "Ghost",
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_MUK",
-     "level": 37,
-     "moves": [
-      "MOVE_SLUDGE_BOMB",
-      "MOVE_ICE_PUNCH",
-      "MOVE_EXPLOSION",
-      "MOVE_HIDDEN_POWER"
-     ],
-     "ability": "Sticky Hold",
-     "item": "Leftovers",
-     "nature": "Brave",
-     "evs": {
-      "hp": 252,
-      "atk": 252,
-      "spd": 4
-     },
-     "set_name": "Standard",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
-     ],
-     "ivs": null,
-     "hp_type": "Ghost",
-     "why_available": "evolves from Grimer at Lv38",
-     "tier": "UU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_KOFFING",
-     "level": 36,
-     "moves": [
-      "MOVE_SLUDGE_BOMB",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_THIEF",
-      "MOVE_EXPLOSION"
-     ],
-     "ability": "Levitate",
-     "item": "Sitrus Berry",
-     "nature": "Impish",
-     "evs": {
-      "hp": 116,
-      "atk": 76,
-      "def": 236,
-      "spe": 80
-     },
-     "set_name": "Defensive",
-     "set_source": "gen3_movesets.json",
-     "notes": [],
-     "ivs": {
-      "spa": 30,
-      "spe": 30
-     },
-     "hp_type": null,
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
-    },
-    {
      "species": "SPECIES_HAUNTER",
      "level": 38,
      "moves": [
       "MOVE_THUNDERBOLT",
       "MOVE_PSYCHIC",
       "MOVE_EXPLOSION",
-      "MOVE_TAUNT"
-     ],
-     "ability": "Levitate",
-     "item": "Leftovers",
-     "nature": "Timid",
-     "evs": {
-      "hp": 160,
-      "def": 92,
-      "spa": 32,
-      "spe": 224
-     },
-     "set_name": "Offensive Utility",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Will O Wisp -> Explosion (egg or special-case only)"
-     ],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "evolves from Gastly at Lv25",
-     "tier": "NU",
-     "flagged": false
-    }
-   ]
-  },
-  "TRAINER_PLASTIC_OX_TOWERGRUNT2": {
-   "checkpoint": "cinnabar",
-   "cap": 42,
-   "tier": "UU",
-   "monsters": [
-    {
-     "species": "SPECIES_MACHOP",
-     "level": 38,
-     "moves": [
-      "MOVE_BULK_UP",
-      "MOVE_FOCUS_PUNCH",
-      "MOVE_HIDDEN_POWER",
       "MOVE_ENDURE"
      ],
-     "ability": "Guts",
-     "item": "Sitrus Berry",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 36,
-      "atk": 116,
-      "def": 40,
-      "spd": 240,
-      "spe": 76
-     },
-     "set_name": "Offensive",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Cross Chop -> Focus Punch (level-up move needs Lv40)",
-      "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
-     ],
-     "ivs": null,
-     "hp_type": "Ghost",
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_CUBONE",
-     "level": 38,
-     "moves": [
-      "MOVE_BONEMERANG",
-      "MOVE_DOUBLE_EDGE",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_PROTECT"
-     ],
-     "ability": "Rock Head",
-     "item": "Thick Club",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 36,
-      "atk": 196,
-      "spd": 40,
-      "spe": 236
-     },
-     "set_name": "Offensive",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
-     ],
-     "ivs": null,
-     "hp_type": "Ghost",
-     "why_available": "wild / special acquisition",
-     "tier": "PU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_ONIX",
-     "level": 38,
-     "moves": [
-      "MOVE_SUNNY_DAY",
-      "MOVE_EXPLOSION",
-      "MOVE_EARTHQUAKE",
-      "MOVE_HIDDEN_POWER"
-     ],
-     "ability": "Sturdy",
+     "ability": "Levitate",
      "item": "Salac Berry",
-     "nature": "Jolly",
+     "nature": "Hasty",
      "evs": {
-      "hp": 112,
-      "atk": 144,
+      "hp": 4,
+      "spa": 252,
       "spe": 252
      },
-     "set_name": "Sunny Day Support",
+     "set_name": "Pinch Berry",
      "set_source": "gen3_movesets.json",
-     "notes": [
-      "Block -> Earthquake (egg or special-case only)"
-     ],
+     "notes": [],
      "ivs": null,
      "hp_type": null,
      "why_available": "wild / special acquisition",
-     "tier": "LC",
+     "tier": "NU",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_GOLBAT",
+     "level": 38,
+     "moves": [
+      "MOVE_SLUDGE_BOMB",
+      "MOVE_AERIAL_ACE",
+      "MOVE_HIDDEN_POWER",
+      "MOVE_HYPER_BEAM"
+     ],
+     "ability": "Inner Focus",
+     "item": "Choice Band",
+     "nature": "Jolly",
+     "evs": {
+      "atk": 252,
+      "def": 4,
+      "spe": 252
+     },
+     "set_name": "Choice Band",
+     "set_source": "gen3_movesets.json",
+     "notes": [
+      "Quick Attack -> Hyper Beam (egg or special-case only)",
+      "Hidden Power type Ground dropped: trainerproc has no HP-type field in the .party format"
+     ],
+     "ivs": null,
+     "hp_type": "Ground",
+     "why_available": "evolves from Zubat at Lv22",
+     "tier": "NU",
      "flagged": false
     },
     {
      "species": "SPECIES_MUK",
-     "level": 37,
+     "level": 38,
      "moves": [
       "MOVE_EXPLOSION",
       "MOVE_SLUDGE_BOMB",
@@ -8177,8 +7967,152 @@
      "flagged": false
     },
     {
-     "species": "SPECIES_RHYHORN",
+     "species": "SPECIES_ARBOK",
      "level": 37,
+     "moves": [
+      "MOVE_SLUDGE_BOMB",
+      "MOVE_EARTHQUAKE",
+      "MOVE_ROCK_SLIDE",
+      "MOVE_SLEEP_TALK"
+     ],
+     "ability": "Intimidate",
+     "item": "Choice Band",
+     "nature": "Jolly",
+     "evs": {
+      "atk": 252,
+      "def": 4,
+      "spe": 252
+     },
+     "set_name": "Choice Band",
+     "set_source": "gen3_movesets.json",
+     "notes": [],
+     "ivs": null,
+     "hp_type": null,
+     "why_available": "evolves from Ekans at Lv20",
+     "tier": "PU",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_HYPNO",
+     "level": 37,
+     "moves": [
+      "MOVE_SEISMIC_TOSS",
+      "MOVE_THUNDER_WAVE",
+      "MOVE_HYPER_BEAM",
+      "MOVE_REFLECT"
+     ],
+     "ability": "Insomnia",
+     "item": "Leftovers",
+     "nature": "Bold",
+     "evs": {
+      "hp": 252,
+      "def": 192,
+      "spe": 64
+     },
+     "set_name": "Support",
+     "set_source": "gen3_movesets.json",
+     "notes": [
+      "Wish -> Hyper Beam (cannot learn)"
+     ],
+     "ivs": null,
+     "hp_type": null,
+     "why_available": "evolves from Drowzee at Lv26",
+     "tier": "RU",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_SABLEYE",
+     "level": 37,
+     "moves": [
+      "MOVE_SEISMIC_TOSS",
+      "MOVE_TOXIC",
+      "MOVE_KNOCK_OFF",
+      "MOVE_FOCUS_PUNCH"
+     ],
+     "ability": "Keen Eye",
+     "item": "Leftovers",
+     "nature": "Impish",
+     "evs": {
+      "hp": 252,
+      "def": 252,
+      "spd": 4
+     },
+     "set_name": "Wall",
+     "set_source": "gen3_movesets.json",
+     "notes": [
+      "Recover -> Focus Punch (egg or special-case only)"
+     ],
+     "ivs": null,
+     "hp_type": null,
+     "why_available": "wild / special acquisition",
+     "tier": "NU",
+     "flagged": false
+    }
+   ]
+  },
+  "TRAINER_PLASTIC_OX_TOWERGRUNT2": {
+   "checkpoint": "cinnabar",
+   "cap": 42,
+   "tier": "UU",
+   "monsters": [
+    {
+     "species": "SPECIES_MACHOKE",
+     "level": 38,
+     "moves": [
+      "MOVE_BULK_UP",
+      "MOVE_REVENGE",
+      "MOVE_HIDDEN_POWER",
+      "MOVE_EARTHQUAKE"
+     ],
+     "ability": "Guts",
+     "item": "Leftovers",
+     "nature": "Adamant",
+     "evs": {
+      "hp": 208,
+      "atk": 252,
+      "spe": 44
+     },
+     "set_name": "Bulk Up",
+     "set_source": "gen3_movesets.json",
+     "notes": [
+      "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
+     ],
+     "ivs": null,
+     "hp_type": "Ghost",
+     "why_available": "evolves from Machop at Lv28",
+     "tier": "NU",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_SANDSLASH",
+     "level": 39,
+     "moves": [
+      "MOVE_SWORDS_DANCE",
+      "MOVE_EARTHQUAKE",
+      "MOVE_COUNTER",
+      "MOVE_ROCK_SLIDE"
+     ],
+     "ability": "Sand Veil",
+     "item": "Leftovers",
+     "nature": "Adamant",
+     "evs": {
+      "hp": 252,
+      "atk": 72,
+      "spd": 36,
+      "spe": 148
+     },
+     "set_name": "Counter",
+     "set_source": "gen3_movesets.json",
+     "notes": [],
+     "ivs": null,
+     "hp_type": null,
+     "why_available": "evolves from Sandshrew at Lv22",
+     "tier": "UU",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_RHYHORN",
+     "level": 38,
      "moves": [
       "MOVE_EARTHQUAKE",
       "MOVE_ROCK_SLIDE",
@@ -8203,29 +8137,87 @@
      "flagged": false
     },
     {
-     "species": "SPECIES_HAUNTER",
+     "species": "SPECIES_PERSIAN",
      "level": 38,
      "moves": [
-      "MOVE_THUNDERBOLT",
-      "MOVE_PSYCHIC",
-      "MOVE_EXPLOSION",
-      "MOVE_ENDURE"
+      "MOVE_SUBSTITUTE",
+      "MOVE_RETURN",
+      "MOVE_SHADOW_BALL",
+      "MOVE_HYPER_BEAM"
      ],
-     "ability": "Levitate",
-     "item": "Salac Berry",
-     "nature": "Hasty",
+     "ability": "Limber",
+     "item": "Liechi Berry",
+     "nature": "Jolly",
      "evs": {
-      "hp": 4,
-      "spa": 252,
-      "spe": 252
+      "hp": 80,
+      "atk": 252,
+      "spe": 176
      },
-     "set_name": "Pinch Berry",
+     "set_name": "Liechi Berry",
      "set_source": "gen3_movesets.json",
-     "notes": [],
+     "notes": [
+      "Hypnosis -> Hyper Beam (egg or special-case only)"
+     ],
      "ivs": null,
      "hp_type": null,
-     "why_available": "evolves from Gastly at Lv25",
-     "tier": "NU",
+     "why_available": "evolves from Meowth at Lv28",
+     "tier": "RU",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_BANETTE",
+     "level": 38,
+     "moves": [
+      "MOVE_HYPER_BEAM",
+      "MOVE_ENDURE",
+      "MOVE_SHADOW_BALL",
+      "MOVE_WILL_O_WISP"
+     ],
+     "ability": "Insomnia",
+     "item": "Salac Berry",
+     "nature": "Adamant",
+     "evs": {
+      "hp": 32,
+      "atk": 252,
+      "spe": 224
+     },
+     "set_name": "Salac + Destiny Bond",
+     "set_source": "gen3_movesets.json",
+     "notes": [
+      "Destiny Bond -> Hyper Beam (egg or special-case only)"
+     ],
+     "ivs": null,
+     "hp_type": null,
+     "why_available": "wild / special acquisition",
+     "tier": "RU",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_GRANBULL",
+     "level": 38,
+     "moves": [
+      "MOVE_RETURN",
+      "MOVE_FOCUS_PUNCH",
+      "MOVE_SHADOW_BALL",
+      "MOVE_HYPER_BEAM"
+     ],
+     "ability": "Intimidate",
+     "item": "Leftovers",
+     "nature": "Adamant",
+     "evs": {
+      "hp": 252,
+      "atk": 40,
+      "def": 216
+     },
+     "set_name": "Offensive Utility",
+     "set_source": "gen3_movesets.json",
+     "notes": [
+      "Heal Bell -> Hyper Beam (egg or special-case only)"
+     ],
+     "ivs": null,
+     "hp_type": null,
+     "why_available": "evolves from Snubbull at Lv23",
+     "tier": "UU",
      "flagged": false
     }
    ]
@@ -9154,6 +9146,184 @@
     "Dugtrio @ Choice Band",
     "Gengar @ Leftovers",
     "Suicune @ Leftovers"
+   ]
+  },
+  "TRAINER_PLASTIC_OX_TOWERGRUNT3": {
+   "checkpoint": "cinnabar",
+   "cap": 42,
+   "tier": "UU",
+   "monsters": [
+    {
+     "species": "SPECIES_NIDOKING",
+     "level": 40,
+     "moves": [
+      "MOVE_EARTHQUAKE",
+      "MOVE_HYPER_BEAM",
+      "MOVE_SLUDGE_BOMB",
+      "MOVE_ICE_BEAM"
+     ],
+     "ability": "Poison Point",
+     "item": "Choice Band",
+     "nature": "Hasty",
+     "evs": {
+      "hp": 4,
+      "atk": 252,
+      "spe": 252
+     },
+     "set_name": "Choice Band",
+     "set_source": "gen3_movesets.json",
+     "notes": [
+      "Megahorn -> Hyper Beam (cannot learn)"
+     ],
+     "ivs": null,
+     "hp_type": null,
+     "why_available": "evolves from NIDORINO (Moon_Stone)",
+     "tier": "UU",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_NIDOQUEEN",
+     "level": 39,
+     "moves": [
+      "MOVE_EARTHQUAKE",
+      "MOVE_SHADOW_BALL",
+      "MOVE_SLUDGE_BOMB",
+      "MOVE_ICE_BEAM"
+     ],
+     "ability": "Poison Point",
+     "item": "Leftovers",
+     "nature": "Lonely",
+     "evs": {
+      "hp": 128,
+      "atk": 252,
+      "spa": 56,
+      "spe": 72
+     },
+     "set_name": "Standard",
+     "set_source": "gen3_movesets.json",
+     "notes": [],
+     "ivs": null,
+     "hp_type": null,
+     "why_available": "evolves from NIDORINA (Moon_Stone)",
+     "tier": "UU",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_ELECTRODE",
+     "level": 39,
+     "moves": [
+      "MOVE_THUNDERBOLT",
+      "MOVE_SUBSTITUTE",
+      "MOVE_EXPLOSION",
+      "MOVE_HIDDEN_POWER"
+     ],
+     "ability": "Static",
+     "item": "Petaya Berry",
+     "nature": "Rash",
+     "evs": {
+      "hp": 12,
+      "atk": 32,
+      "def": 116,
+      "spa": 252,
+      "spe": 96
+     },
+     "set_name": "Substitute",
+     "set_source": "gen3_movesets.json",
+     "notes": [
+      "Hidden Power type Ice dropped: trainerproc has no HP-type field in the .party format"
+     ],
+     "ivs": null,
+     "hp_type": "Ice",
+     "why_available": "evolves from Voltorb at Lv30",
+     "tier": "UU",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_MISDREAVUS",
+     "level": 40,
+     "moves": [
+      "MOVE_THUNDERBOLT",
+      "MOVE_HIDDEN_POWER",
+      "MOVE_THUNDER_WAVE",
+      "MOVE_PAIN_SPLIT"
+     ],
+     "ability": "Levitate",
+     "item": "Leftovers",
+     "nature": "Calm",
+     "evs": {
+      "hp": 252,
+      "def": 84,
+      "spd": 172
+     },
+     "set_name": "Defensive Utility",
+     "set_source": "gen3_movesets.json",
+     "notes": [
+      "Hidden Power type Ice dropped: trainerproc has no HP-type field in the .party format"
+     ],
+     "ivs": null,
+     "hp_type": "Ice",
+     "why_available": "wild / special acquisition",
+     "tier": "UU",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_HITMONLEE",
+     "level": 39,
+     "moves": [
+      "MOVE_BRICK_BREAK",
+      "MOVE_HIDDEN_POWER",
+      "MOVE_EARTHQUAKE",
+      "MOVE_FOCUS_PUNCH"
+     ],
+     "ability": "Limber",
+     "item": "Choice Band",
+     "nature": "Adamant",
+     "evs": {
+      "hp": 4,
+      "atk": 252,
+      "spe": 252
+     },
+     "set_name": "Choice Band",
+     "set_source": "gen3_movesets.json",
+     "notes": [
+      "Mach Punch -> Focus Punch (egg or special-case only)",
+      "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
+     ],
+     "ivs": null,
+     "hp_type": "Ghost",
+     "why_available": "evolves from Tyrogue at Lv20",
+     "tier": "UU",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_VILEPLUME",
+     "level": 39,
+     "moves": [
+      "MOVE_SUNNY_DAY",
+      "MOVE_HYPER_BEAM",
+      "MOVE_SOLAR_BEAM",
+      "MOVE_HIDDEN_POWER"
+     ],
+     "ability": "Chlorophyll",
+     "item": "Leftovers",
+     "nature": "Modest",
+     "evs": {
+      "hp": 120,
+      "spa": 252,
+      "spe": 136
+     },
+     "set_name": "SunnyBeam",
+     "set_source": "gen3_movesets.json",
+     "notes": [
+      "Sleep Powder -> Hyper Beam (cannot learn)",
+      "Hidden Power type Fire dropped: trainerproc has no HP-type field in the .party format"
+     ],
+     "ivs": null,
+     "hp_type": "Fire",
+     "why_available": "evolves from GLOOM (Leaf_Stone)",
+     "tier": "UU",
+     "flagged": false
+    }
    ]
   }
  }

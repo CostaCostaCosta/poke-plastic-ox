@@ -2010,3 +2010,5 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/TinTower_RoofDay_hns/scripts.inc"
 
 	.include "data/scripts/plastic_ox_tin_tower.inc"
+
+	.include "data/scripts/plastic_ox_lavender.inc"

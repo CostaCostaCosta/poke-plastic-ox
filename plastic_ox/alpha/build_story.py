@@ -106,7 +106,7 @@ def beat(name, text, completion, prerequisites=(), extra=""):
 
 
 GIFT_DONE_LINES = {
-    'Fuji': "FUJI: EEVEE seems lighter on its feet already. Thank you for giving it a home.",
+    'Fuji': "FUJI: EEVEE seems lighter on its feet already. Thank you for giving it a home.|The archives on CINNABAR will not wait forever. ROUTE 8 west, then the UNDERGROUND PATH.",
     'Space': "How is EEVEE adapting? Our logs end where your journey begins.",
     'Family': "My father-in-law writes more than BILL does. The sea air suits him.|If you pass the SEA COTTAGE, tell him the EEVEE is walking every day.",
 }
@@ -192,8 +192,8 @@ DEFEAT_LINES = {
     'Clair': "CLAIR: Fine. You've earned it. Don't expect me to say so twice.",
     'MoonGrunt1': "Ugh! The boss is gonna dock my pay for this.",
     'MoonGrunt2': "Tch. Fossils are heavy anyway. Who needs 'em?",
-    'TowerGrunt1': "Ow! FUJI isn't going anywhere, but I sure am.",
-    'TowerGrunt2': "No fair! They told me this was an easy shift.",
+    'TowerGrunt1': "Fine. Ask him yourself. Maybe he'll answer you.",
+    'TowerGrunt2': "Paper. It was all just paper. Why are we even fighting over it?",
     'SilphGrunt1': "Fine! The terminals didn't like me anyway.",
     'SilphGrunt2': "I'm just here for the overtime, kid!",
     'SilphGrunt3': "Go on, then. The BOSS will deal with you himself.",
@@ -324,8 +324,6 @@ ROOM_EXIT_LINES = {
     'BlaineGym': "Need some air? I'll walk you out of the heat.",
     'BrunoGym': "Leaving the DOJO? Bow on your way out, please.",
     'ClairGym': "The lava's hot today. I'll lead you back to town.",
-    'PokemonTower': "Let's get you out of the tower. Watch the stairs.",
-    'FujiHouse': "The door sticks. Here, I'll get it for you.",
     'Mansion': "These halls are easy to get lost in. Follow me out.",
     'Silph': "Elevators are down. I'll take you out the back.",
     'WhirlIslands': "The tide's turning. Let's head back to shore.",
@@ -575,41 +573,80 @@ emit("@ BILL's mother, at home in Goldenrod (the family's later EEVEE). The firs
 gift('Family', "I used to dance in ECRUTEAK, back when my knees agreed with me.|BILL is my son. He writes about POKéMON and never about himself.|My father-in-law keeps the SEA COTTAGE up north. He sent this EEVEE down on the ferry.|It hates sitting still. Will you walk it for us?", [starter])
 replace_npc('GoldenrodCity_BillsHouse_hns', 0, 'Family')
 
-# Ecruteak: the optional full troupe and the mandatory tower investigation.
-# Each dancer has her own intro, defeat and after-battle lines (2026-11-11 fix
-# pass); her team is authored by apply_trainer_teams_v2.py and her header by
-# TRAINER_HEADERS above.
-KIMONO_LINES = {
-    'Vaporeon': ("Our tide step is slow on purpose. VAPOREON sets the tempo and I follow it.|Will you try the turn with us?",
-                 "The tide turned before I did. You read the water better than I dance it.",
+# Ecruteak: the optional troupe battle and the mandatory tower investigation.
+# Since 2026-11-25 the troupe is ONE battle. The five dancers stand in a
+# semicircle on the stage, open toward the audience; NAOKO leads from the
+# centre and fights with the whole troupe's party: EEVEE opens the rite, then
+# each dancer's Eeveelution in the order she takes the floor (Jolteon,
+# Vaporeon, Flareon, Umbreon, Espeon). The party is authored in
+# plastic_ox/tools/authored_trainers.party.
+#
+# The five old per-dancer trainer ids keep their slots (trainer numbers are
+# save data) but nothing battles them any more. Winning the troupe battle sets
+# all five FLAG_POX_KIMONO_* flags, so the EEVEE gift and old saves (where some
+# dancers were already beaten one at a time) keep working.
+KIMONO_TROUPE = 'TRAINER_PLASTIC_OX_KIMONO_TROUPE'
+KIMONO_TROUPE_ID = 961
+KIMONO_TROUPE_HEADER = ('Name: NAOKO\nClass: Beauty\nPic: Beauty\nGender: Female\nMusic: Female\n'
+                        'Double Battle: No\nAI: Basic Trainer / Check Viability / Smart Switching')
+# species -> (dancer, stage cell, facing, line before the dance, line after it)
+KIMONO_DANCERS = {
+    'Vaporeon': ('NAOKO', (10, 2), 'DOWN', None,
                  "Come at dusk sometime. The river sounds different once the lamps are lit."),
-    'Jolteon': ("Rain step, spark step. Same count, faster than you can blink.|Keep up!",
-                "Too quick for me. I will drill that turn until my feet complain.",
+    'Jolteon': ('SAYO', (6, 4), 'RIGHT',
+                "Rain step, spark step. I go second, right after EEVEE, and I don't wait for anyone.|NAOKO calls the figures. Stand in the middle of the circle and she'll start us.",
                 "A quick step is a short one. MORTY says the same about battles, only slower."),
-    'Flareon': ("We close the rite with the ember step. It is not meant to be gentle.|Ready?",
-                "The ember went out. You kept a cooler head than mine.",
+    'Flareon': ('ZUKI', (14, 4), 'LEFT',
+                "The ember step comes after the tide. It is not meant to be gentle.|NAOKO has the first word. Mind the edge of the stage on your way round.",
                 "The brazier holds its heat till morning. Warm up before you cross the river."),
-    'Espeon': ("The mirror step is danced with the eyes closed. You hear the next move before it happens.|Follow me if you can.",
-               "You heard the turn before I did. That is the whole dance, and you already have it.",
+    'Espeon': ('KUNI', (8, 3), 'DOWN',
+               "The mirror step closes the rite, so I dance last. You hear the next move before it happens.|NAOKO is waiting in the middle. She already knows you're here.",
                "Sit a moment. A dance settles like water after a stone."),
-    'Umbreon': ("The moon step comes last. After the second bell there are no lamps, only us.|Shall we?",
-                "The moon went behind a cloud. You were the shadow I missed.",
+    'Umbreon': ('MIKI', (12, 3), 'DOWN',
+                "The moon step comes after the ember, once the lamps are out. Only us after the second bell.|When you're ready, NAOKO will start the dance.",
                 "The moon step ends facing the tower. We still face it, even now.|Come back at dusk and watch from the door."),
 }
+KIMONO_TROUPE_LINES = (
+    "We don't dance the rite one at a time. EEVEE opens it, and each of us answers in turn.|Stay in the middle of the circle. All five of us will dance with you.",
+    "Every figure, every turn, and you were still standing in the middle. Go and see our mistress by the door.",
+)
 kimono_flags = []
 kimono_objects = []
-for i, species in enumerate(['Vaporeon','Jolteon','Flareon','Espeon','Umbreon']):
+for species in ['Vaporeon','Jolteon','Flareon','Espeon','Umbreon']:
     f = flag('KIMONO_' + species.upper())
     kimono_flags.append(f)
     name = 'Kimono' + species
-    intro, defeat, after = KIMONO_LINES[species]
-    DEFEAT_LINES[name] = defeat
-    battle(name, ['NAOKO','SAYO','ZUKI','KUNI','MIKI'][i], intro, [(species,['Quick Attack', {'Vaporeon':'Water Pulse','Jolteon':'Shock Wave','Flareon':'Flamethrower','Espeon':'Psybeam','Umbreon':'Faint Attack'}[species]])], 24, f, [badges[1]],
-           extra=f"\tmsgbox Pox_Text_{name}_After, MSGBOX_DEFAULT", pic='Beauty', cls='Beauty', repeat=f"Pox_{name}_After")
-    emit(f"Pox_{name}_After::\n\tmsgbox Pox_Text_{name}_After, MSGBOX_DEFAULT\n\treleaseall\n\tend")
-    speech(f"Pox_Text_{name}_After", after)
-    kimono_objects.append(npc(name, [5,7,10,13,15][i], [3,2,3,2,3][i], 'OBJ_EVENT_GFX_KIMONO_HNS'))
-gift('Kimono', 'You danced with all five of my girls, and none of them took it easy on you.|This EEVEE has watched us from the mat since the first night. It copies every turn, and it has no partner of its own.|Take it with you - not as a prize, but as a dance partner.', kimono_flags)
+    dancer, (x, y), facing, before, after = KIMONO_DANCERS[species]
+    # Retired one-dancer battle: the header and id stay, the script does not.
+    trainer(name, dancer, [(species,['Quick Attack'])], 24, pic='Beauty', cls='Beauty')
+    if before is not None:
+        start(name)
+        for done in ['FLAG_POX_KIMONO_' + other.upper() for other in KIMONO_DANCERS]:
+            emit(f"\tgoto_if_unset {done}, Pox_{name}_Before")
+        emit(f"\tmsgbox Pox_Text_{name}_After, MSGBOX_DEFAULT")
+        finish()
+        emit(f"Pox_{name}_Before::\n\tmsgbox Pox_Text_{name}_Before, MSGBOX_DEFAULT\n\treleaseall\n\tend")
+        speech(f"Pox_Text_{name}_Before", before)
+        speech(f"Pox_Text_{name}_After", after)
+    obj = npc('KimonoTroupe' if before is None else name, x, y, 'OBJ_EVENT_GFX_KIMONO_HNS')
+    obj['movement_type'] = 'MOVEMENT_TYPE_FACE_' + facing
+    kimono_objects.append(obj)
+# NAOKO's troupe battle. Fought unless every dancer's flag is already set.
+start('KimonoTroupe', [badges[1]])
+for done in kimono_flags:
+    emit(f"\tgoto_if_unset {done}, Pox_KimonoTroupe_Battle")
+emit("\tgoto Pox_KimonoTroupe_After")
+emit(f"Pox_KimonoTroupe_Battle::\n\ttrainerbattle_single {KIMONO_TROUPE}, Pox_Text_KimonoTroupe, Pox_Text_KimonoTroupe_Defeat, Pox_KimonoTroupe_Won")
+emit("\tgoto Pox_KimonoTroupe_Won\nPox_KimonoTroupe_Won::")
+for done in kimono_flags:
+    emit(f"\tsetflag {done}")
+emit("\tmsgbox Pox_Text_KimonoTroupe_After, MSGBOX_DEFAULT")
+finish()
+emit("Pox_KimonoTroupe_After::\n\tmsgbox Pox_Text_KimonoTroupe_After, MSGBOX_DEFAULT\n\treleaseall\n\tend")
+speech("Pox_Text_KimonoTroupe", KIMONO_TROUPE_LINES[0])
+speech("Pox_Text_KimonoTroupe_Defeat", KIMONO_TROUPE_LINES[1])
+speech("Pox_Text_KimonoTroupe_After", KIMONO_DANCERS['Vaporeon'][4])
+gift('Kimono', 'You danced with all five of my girls, and none of them took it easy on you.|The EEVEE that opens our rite had a litter this spring. This one copies every turn, and it has no partner of its own.|Take it with you - not as a prize, but as a dance partner.', kimono_flags)
 kimono_objects.append(npc('Kimono', 5, 15, 'OBJ_EVENT_GFX_OLD_WOMAN'))
 dance = room('DanceTheater','EcruteakCity_hns',None,objects=kimono_objects,return_xy=(36,33))
 guide('EcruteakCity_hns',1,'DanceGuide',dance,'The KIMONO troupe is performing. MORTY is investigating the BURNED TOWER.')
@@ -794,20 +831,27 @@ travel('CottageExit','Route25_hns',85,14,'Safe travels!')
 travel('CottageGuide','Route25_BillsHouse_hns',7,7,'The SEA COTTAGE is a short trip from here.',[badges[3]])
 add_npc('FortreeCity','CottageGuide',7,7)
 
+# Lavender / Pokemon Tower (Team Rocket II). The three grunts stand around
+# MR. FUJI on the FRLG tower's 7F; plastic_ox/alpha/lavender.py places them,
+# owns the tower floors, FUJI's rescue and the SURF KEY hand-off in his house.
 lav1='FLAG_POX_HIDE_LAVENDER_GRUNT_1'
 lav2='FLAG_POX_HIDE_LAVENDER_GRUNT_2'
+tower_grunt_lines=[
+    "Don't come any closer. We're asking the old man a few questions, that's all.|How do you move a POKéMON without moving the room it's in? He knows. He won't say.",
+    "We were told to find a man, not a library. Every answer he gives is another stack of paper.|What does 'preserve a living state' even mean? You tell me!",
+    "You got past both of them? Then you've seen it too, haven't you. The roads that weren't there last year.|We just want to know who did it before somebody else finds out first.",
+]
+# TowerGrunt3 (a later trainer id) is authored in lavender.py so the story
+# trainer ids in this file keep their numbering.
 for n,f,req in [(1,lav1,[badges[3]]),(2,lav2,[lav1])]:
-    battle('TowerGrunt'+str(n),'GRUNT',["FUJI knows something about reconstructing POKéMON. He'll answer our questions!","Upstairs is off limits. The old man is busy talking to the boss's people."][n-1], [('Golbat',['Bite','Wing Attack','Confuse Ray']),('Weezing',['Sludge','Smokescreen','Self Destruct'])],35,f,req,pic='Team Aqua M',cls='Team Aqua')
-beat('FujiRescue', "FUJI: Thank you. They asked about preserving living states... old work I hoped never to hear of again.|The archives on CINNABAR may explain more. Ask BLAINE for access.|Take the UNDERGROUND PATH from ROUTE 8 to ROUTE 7, then cross ROUTE 103. This SURF KEY will help you cross the water.",fuji,[lav1,lav2], '''\tcheckitem ITEM_SURF_KEY
-\tgoto_if_eq VAR_RESULT, TRUE, Pox_FujiRescue_HasSurfKey
-\tgiveitem ITEM_SURF_KEY
-\tgoto_if_eq VAR_RESULT, FALSE, Pox_Release
-Pox_FujiRescue_HasSurfKey::''')
-ptower=room('PokemonTower','LavenderTown_hns',None,objects=[npc('TowerGrunt1',5,12,'OBJ_EVENT_GFX_ROCKET_GRUNT_M',lav1),npc('TowerGrunt2',7,9,'OBJ_EVENT_GFX_ROCKET_GRUNT_M',lav2),npc('FujiRescue',5,2,'OBJ_EVENT_GFX_OLD_MAN')],return_xy=(17,8))
-guide('LavenderTown_hns',0,'TowerGuide',ptower,'TEAM ROCKET is holding MR. FUJI in the POKéMON TOWER.',[badges[3]])
-gift('Fuji','FUJI: This EEVEE was abandoned. You have shown it what kindness looks like.|BLAINE keeps the key to the CINNABAR archives.',[fuji])
-house=room('FujiHouse','LavenderTown_hns','Fuji',return_xy=(12,11))
-guide('LavenderTown_hns',1,'FujiGuide',house,'The POKéMON HOUSE welcomes everyone.')
+    battle('TowerGrunt'+str(n),'GRUNT',tower_grunt_lines[n-1],[('Golbat',['Bite','Wing Attack','Confuse Ray']),('Weezing',['Sludge','Smokescreen','Self Destruct'])],35,f,req,
+           extra='\tremoveobject VAR_LAST_TALKED',pic='Rocket Grunt M Frlg',cls='Team Rocket Frlg')
+# The old teleport rooms keep their map-group slots (map numbers are save
+# data); lavender.py empties them.
+room_names += ['PlasticOx_PokemonTower', 'PlasticOx_FujiHouse']
+for n,(x,y) in enumerate([(9,10),(13,8),(9,6)],1):
+    manifest_event('PokemonTower_7F_Frlg','TowerGrunt'+str(n),x,y)
+gift('Fuji','FUJI: One more thing. This EEVEE came to the house last winter and never left. I think it has been waiting for someone like you.|Take good care of it.',[fuji])
 
 archive1=flag('ARCHIVE_1')
 archive2=flag('ARCHIVE_2')
@@ -1098,6 +1142,25 @@ for tid,text in trainers:
         s=s[:m.start()]+head+'\n\n'+s[m.end():]
     else:
         s=s.rstrip('\n')+'\n\n'+text
+put(path,s)
+# The Kimono troupe trainer has a fixed id after the existing ones (the story
+# block above numbers its trainers by position, so it can't join that list).
+# Its party body is authored in plastic_ox/tools/authored_trainers.party.
+path='include/constants/opponents.h'
+s=read(path)
+if f'#define {KIMONO_TROUPE} ' not in s:
+    s=s.replace('// End Plastic Ox story trainers.',f'#define {KIMONO_TROUPE} {KIMONO_TROUPE_ID}\n// End Plastic Ox story trainers.')
+for c in ['TRAINERS_COUNT_EMERALD','MAX_TRAINERS_COUNT_EMERALD']:
+    s=re.sub(r'(#define '+c+r'\s+)(\d+)',lambda m:m[1]+str(max(KIMONO_TROUPE_ID+1,int(m[2]))),s)
+put(path,s)
+path='src/data/trainers.party'
+s=read(path)
+m=re.search(r'^=== '+KIMONO_TROUPE+r' ===\n.*?\n\n',s,flags=re.M|re.S)
+head=f'=== {KIMONO_TROUPE} ===\n{KIMONO_TROUPE_HEADER}\n\n'
+if m:
+    s=s[:m.start()]+head+s[m.end():]
+else:
+    s=s.rstrip('\n')+'\n\n'+head+'Eevee\nLevel: 27\n- Quick Attack\n'
 put(path,s)
 put('plastic_ox/alpha/story_manifest.json',json.dumps(dict(events=[dict(map=m,x=x,y=y,script='Pox_'+s) for m,x,y,s in manifest],flags=flags,trainers=[t for t,_ in trainers],rooms=room_names),indent=2)+'\n')
 
