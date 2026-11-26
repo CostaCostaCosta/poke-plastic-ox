@@ -32,7 +32,7 @@ A low Hoenn coastal road that has been dropped between Saffron's west gate and C
 
 | Interaction | Where | Trigger / state | Current behavior | Target behavior |
 | --- | --- | --- | --- | --- |
-| Route 7 crossing | `Route103` `(79,11)` | `FLAG_POX_STORY_FUJI` | `PoxRegion_route7_route103_b` warps to `Route7_hns` `(1,23)` | keep |
+| Route 7 crossing | `Route103` `(79,11)` | `FLAG_POX_STORY_FUJI` | `PoxRegion_route7_route103_b` warps to `Route7_hns` `(1,6)` on its west road | keep |
 | Cinnabar crossing | `(75,15)` | always | `PoxRegion_route103_cinnabar_a` warps onward | keep; sign at `(75,13)` should name the island and the ferry |
 | Oldale connection | south edge | always | walkable connection to `OldaleTown` | keep; no NPC should comment on it as unusual |
 | May | `(10,3)` | none — ungated | `Route103_EventScript_May` battles `TRAINER_MAY_ROUTE_103_TREECKO`, Torchic Lv. 5 | retire, or gate behind a flag and re-cast as a local kid; do not leave a Lv. 5 rival in act 3 |

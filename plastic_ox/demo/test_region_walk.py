@@ -38,7 +38,7 @@ LEGS={
      'rustboro_route44_a',('warp',0),('warp',0),('warp',3),('warp',3),('warp',7),'route33_goldenrod_a']),
  'central':('GoldenrodCity_hns',(28,37),['goldenrod_route35_a','route35_park_a','park_route36_a',
      ('seam','N','Route37_hns'),('seam','N','EcruteakCity_hns'),'ecruteak_route119_a',('seam','E','FortreeCity'),('seam','E','Route110'),('seam','S','LavenderTown_hns')]),
- 'underground':('LavenderTown_hns',(9,7),['lavender_route8_a',('warp',0),('warp',3),('warp',1),'underground_return_6','route7_route103_a','route103_cinnabar_a']),
+ 'underground':('LavenderTown_hns',(9,7),[('seam','W','Route8_Frlg'),('warp',0),('warp',3),('warp',1),('warp',0),'route7_route103_a','route103_cinnabar_a']),
  'coast':('PalletTown_Frlg',(12,18),[('seam','S','Route21_North_Frlg'),('seam','S','Route21_South_Frlg'),
      ('seam','S','CinnabarIsland_Frlg')]),
  'north':('MossdeepCity',(28,17),['mossdeep_route19_a','route19_saffron_a','saffron_route5_a','route5_route115_a',('warp',0),'meteor_blackthorn_a','blackthorn_route45_a','route45_route46_a',('warp',2),('warp',0)]),
@@ -73,7 +73,8 @@ def pathfind(g,goal,avoid):
                 xx+=dx;yy+=dy
                 if not(0<=xx<info['w'] and 0<=yy<info['h']):continue
                 c,ee=g.collision_at(xx,yy);b=BEHAVIORS[g.behavior_at(xx,yy)[0]]
-            if c or (xx,yy) in occupied or (xx,yy) in avoid:continue
+            # A goal may itself be a trigger tile (a gated seam's edge).
+            if c or (xx,yy) in occupied or ((xx,yy) in avoid and not goal(xx,yy)):continue
             if any(t in b for t in ['DOOR','WARP','LADDER','HOLE','SECRET_BASE','WATERFALL']):continue
             oldb=BEHAVIORS[g.behavior_at(x,y)[0]]
             if water(b) and not g.test_water:continue
@@ -155,6 +156,8 @@ def setup(spawn=None):
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('leg',choices=LEGS);args=parser.parse_args()
     name,xy,steps=LEGS[args.leg];g=setup((name,*xy));g.test_water=args.leg not in ('early','central','route2')
+    # The starter script leaves the player in Oak's lab; return to the leg's start.
+    g.warp(name,*xy);g.frame(60)
     if args.leg == 'coast':
         g.flag('FLAG_POX_TRIGGERS_ENABLED',False);g.flag('FLAG_BADGE05_GET',True)
     out=ROOT/'plastic_ox/demo/shots/region_walk';out.mkdir(exist_ok=True)

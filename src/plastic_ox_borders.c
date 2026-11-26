@@ -5,7 +5,8 @@
 
 // A rectangle of camera margin, in map coordinates (inclusive), and the
 // metatiles to draw there on even and odd columns. First match wins.
-// plastic_ox/alpha/route110_seams.py documents the seams these dress.
+// plastic_ox/alpha/route110_seams.py documents the seams these dress;
+// plastic_ox/alpha/lavender_tower_crown.py the Lavender tower crown.
 struct BorderZone
 {
     u16 layoutId;
@@ -16,6 +17,7 @@ struct BorderZone
 #define LO (-0x4000)
 #define HI 0x4000
 #define ONE(id) id, id
+#define TOWER(x, y, id) {LAYOUT_LAVENDER_TOWN_HNS, x, x, y, y, ONE(id)}
 
 static const struct BorderZone sBorderZones[] =
 {
@@ -41,6 +43,14 @@ static const struct BorderZone sBorderZones[] =
     {LAYOUT_ROUTE110, 36, 36, 100,  HI, ONE(0x190)},
     // Fortree City, east: tree bases over the Route 110 corridor.
     {LAYOUT_FORTREE_CITY, 40, HI, 6, 6, ONE(0x017)},
+    // Lavender Town, north: the tower's dome, spire and roof ledge, which
+    // the layout crops (plastic_ox/alpha/lavender_tower_crown.py).
+    TOWER(21, -6, 0x3CB), TOWER(22, -6, 0x3CC), TOWER(23, -6, 0x3CD),
+    TOWER(19, -5, 0x3CE), TOWER(20, -5, 0x3CF), TOWER(21, -5, 0x3D0), TOWER(22, -5, 0x3D1), TOWER(23, -5, 0x3D2), TOWER(24, -5, 0x3D3), TOWER(25, -5, 0x3D4),
+    TOWER(19, -4, 0x3D5), TOWER(20, -4, 0x3D6), TOWER(21, -4, 0x3D7), TOWER(22, -4, 0x3D8), TOWER(23, -4, 0x3D9), TOWER(24, -4, 0x3DA), TOWER(25, -4, 0x3DB),
+    TOWER(19, -3, 0x3DC), TOWER(20, -3, 0x2BA), TOWER(21, -3, 0x2BB), TOWER(22, -3, 0x2BC), TOWER(23, -3, 0x2BD), TOWER(24, -3, 0x2BE), TOWER(25, -3, 0x3DD),
+    TOWER(19, -2, 0x2C1), TOWER(20, -2, 0x2C2), TOWER(21, -2, 0x2C3), TOWER(22, -2, 0x2C4), TOWER(23, -2, 0x2C5), TOWER(24, -2, 0x2C6), TOWER(25, -2, 0x2C7),
+    TOWER(19, -1, 0x2C9), TOWER(20, -1, 0x2CA), TOWER(21, -1, 0x2CB), TOWER(22, -1, 0x2CC), TOWER(23, -1, 0x2CD), TOWER(24, -1, 0x2CE), TOWER(25, -1, 0x2CF),
     // Lavender Town, north: cliff faces either side of the Route 110 road.
     {LAYOUT_LAVENDER_TOWN_HNS, 11, 11, LO, -1, ONE(0x072)},
     {LAYOUT_LAVENDER_TOWN_HNS, 17, 17, LO, -1, ONE(0x070)},

@@ -36,21 +36,21 @@
       "x": 5,
       "y": 8,
       "elevation": 3,
-      "dest_map": "MAP_UNDERGROUND_PATH_WEST_ENTRANCE",
+      "dest_map": "MAP_ROUTE7_HNS",
       "dest_warp_id": "0"
     },
     {
       "x": 6,
       "y": 8,
       "elevation": 3,
-      "dest_map": "MAP_UNDERGROUND_PATH_WEST_ENTRANCE",
+      "dest_map": "MAP_ROUTE7_HNS",
       "dest_warp_id": "0"
     },
     {
       "x": 7,
       "y": 8,
       "elevation": 3,
-      "dest_map": "MAP_UNDERGROUND_PATH_WEST_ENTRANCE",
+      "dest_map": "MAP_ROUTE7_HNS",
       "dest_warp_id": "0"
     },
     {
@@ -61,34 +61,6 @@
       "dest_warp_id": "1"
     }
   ],
-  "coord_events": [
-    {
-      "type": "trigger",
-      "x": 5,
-      "y": 7,
-      "elevation": 0,
-      "var": "VAR_POX_PORTAL_TRIGGER",
-      "var_value": 0,
-      "script": "PoxRegion_underground_return_5"
-    },
-    {
-      "type": "trigger",
-      "x": 6,
-      "y": 7,
-      "elevation": 0,
-      "var": "VAR_POX_PORTAL_TRIGGER",
-      "var_value": 0,
-      "script": "PoxRegion_underground_return_6"
-    },
-    {
-      "type": "trigger",
-      "x": 7,
-      "y": 7,
-      "elevation": 0,
-      "var": "VAR_POX_PORTAL_TRIGGER",
-      "var_value": 0,
-      "script": "PoxRegion_underground_return_7"
-    }
-  ],
+  "coord_events": [],
   "bg_events": []
 }

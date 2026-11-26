@@ -219,14 +219,14 @@
       "source": "LavenderTown_hns",
       "destination": "Route8_Frlg",
       "tile": [
-        1,
-        15
+        0,
+        10
       ],
       "approach": [
         1,
-        16
+        10
       ],
-      "direction": "N",
+      "direction": "W",
       "landing": [
         66,
         20
@@ -234,131 +234,22 @@
       "requires": [
         "FLAG_POX_STORY_FUJI"
       ],
-      "label": "Route8"
-    },
-    {
-      "id": "lavender_route8_b",
-      "source": "Route8_Frlg",
-      "destination": "LavenderTown_hns",
-      "tile": [
-        67,
-        20
-      ],
-      "approach": [
-        66,
-        20
-      ],
-      "direction": "E",
-      "landing": [
-        1,
-        16
-      ],
-      "requires": [
-        "FLAG_POX_STORY_FUJI"
-      ],
-      "label": "LavenderTown"
-    },
-    {
-      "id": "route8_saffron_a",
-      "source": "Route8_Frlg",
-      "destination": "SaffronCity_hns",
-      "tile": [
-        8,
-        20
-      ],
-      "approach": [
-        7,
-        20
-      ],
-      "direction": "E",
-      "landing": [
-        60,
-        27
-      ],
-      "requires": [
-        "FLAG_POX_STORY_SPACE_CENTER"
-      ],
-      "label": "SaffronCity"
-    },
-    {
-      "id": "route8_saffron_b",
-      "source": "SaffronCity_hns",
-      "destination": "Route8_Frlg",
-      "tile": [
-        61,
-        27
-      ],
-      "approach": [
-        60,
-        27
-      ],
-      "direction": "E",
-      "landing": [
-        7,
-        20
-      ],
-      "requires": [
-        "FLAG_POX_STORY_SPACE_CENTER"
-      ],
-      "label": "Route8"
-    },
-    {
-      "id": "route7_saffron_a",
-      "source": "Route7_hns",
-      "destination": "SaffronCity_hns",
-      "tile": [
-        6,
-        22
-      ],
-      "approach": [
-        5,
-        22
-      ],
-      "direction": "E",
-      "landing": [
-        2,
-        25
-      ],
-      "requires": [
-        "FLAG_POX_STORY_SPACE_CENTER"
-      ],
-      "label": "SaffronCity"
-    },
-    {
-      "id": "route7_saffron_b",
-      "source": "SaffronCity_hns",
-      "destination": "Route7_hns",
-      "tile": [
-        2,
-        26
-      ],
-      "approach": [
-        2,
-        25
-      ],
-      "direction": "S",
-      "landing": [
-        5,
-        22
-      ],
-      "requires": [
-        "FLAG_POX_STORY_SPACE_CENTER"
-      ],
-      "label": "Route7"
+      "label": "Route8",
+      "seam": true
     },
     {
       "id": "route7_route103_a",
       "source": "Route7_hns",
       "destination": "Route103",
       "tile": [
-        1,
-        22
+        0,
+        6
       ],
       "approach": [
         1,
-        23
+        6
       ],
-      "direction": "N",
+      "direction": "W",
       "landing": [
         78,
         11
@@ -383,7 +274,7 @@
       "direction": "E",
       "landing": [
         1,
-        23
+        6
       ],
       "requires": [
         "FLAG_POX_STORY_FUJI"
@@ -1073,86 +964,6 @@
         "FLAG_SYS_GAME_CLEAR"
       ],
       "label": "Harbor"
-    },
-    {
-      "id": "underground_west",
-      "source": "Route7_hns",
-      "destination": "UndergroundPath_WestEntrance_Frlg",
-      "tile": [
-        4,
-        22
-      ],
-      "approach": [
-        3,
-        22
-      ],
-      "direction": "E",
-      "landing": [
-        6,
-        6
-      ],
-      "requires": [],
-      "label": "Underground Path"
-    },
-    {
-      "id": "underground_return_5",
-      "source": "UndergroundPath_WestEntrance_Frlg",
-      "destination": "Route7_hns",
-      "tile": [
-        5,
-        7
-      ],
-      "approach": [
-        5,
-        6
-      ],
-      "direction": "S",
-      "landing": [
-        3,
-        22
-      ],
-      "requires": [],
-      "label": "Route 7"
-    },
-    {
-      "id": "underground_return_6",
-      "source": "UndergroundPath_WestEntrance_Frlg",
-      "destination": "Route7_hns",
-      "tile": [
-        6,
-        7
-      ],
-      "approach": [
-        6,
-        6
-      ],
-      "direction": "S",
-      "landing": [
-        3,
-        22
-      ],
-      "requires": [],
-      "label": "Route 7"
-    },
-    {
-      "id": "underground_return_7",
-      "source": "UndergroundPath_WestEntrance_Frlg",
-      "destination": "Route7_hns",
-      "tile": [
-        7,
-        7
-      ],
-      "approach": [
-        7,
-        6
-      ],
-      "direction": "S",
-      "landing": [
-        3,
-        22
-      ],
-      "requires": [],
-      "label": "Route 7"
     }
   ],
   "native_seams": {

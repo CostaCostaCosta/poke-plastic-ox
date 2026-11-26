@@ -19,9 +19,9 @@ Twenty tiles of open road on Saffron's western flank, with a wall on one side an
 
 ## Plot points
 
-1. **Out of the tunnel.** The West Entrance stair of `UndergroundPath_WestEntrance_Frlg` at `(5,7)`–`(7,7)` returns the player here at `(3,22)`. Reveal-ladder **step 8** continues: they have now physically passed beneath Saffron and are standing on its far side.
-2. **Three ways, one of them open.** Saffron at `(6,22)` refuses until `FLAG_POX_STORY_SPACE_CENTER`; Route 103 at `(1,22)` opens on `FLAG_POX_STORY_FUJI`, which is already true by the time anyone can reach this map; the Underground stair at `(4,22)` is always usable.
-3. **The map is currently empty.** No NPCs, no items, no wild encounters, no trainers, no map objects beyond three signs. Nothing here is broken — but nothing here is a place yet, and the note's job is to decide what it should say.
+1. **Out of the tunnel.** The exit mats of `UndergroundPath_WestEntrance_Frlg` `(5..7,8)` return the player through Route 7's tunnel hut door `(7,16)`. Reveal-ladder **step 8** continues: they have now physically passed beneath Saffron and are standing on its far side.
+2. **Three ways, one of them open.** Saffron's west gatehouse (arrow `(15,12)` -> `Route7_EastEntrance_Frlg`) is held by its guard until `FLAG_POX_STORY_SPACE_CENTER`; the west road `(0,4..7)` leads to Route 103 on `FLAG_POX_STORY_FUJI`, which is already true by the time anyone can reach this map; the tunnel hut door `(7,16)` is always usable.
+3. **The map is currently empty.** No NPCs, no items, no wild encounters, no trainers; one sign by the tunnel hut. Nothing here is broken — but nothing here is a place yet, and the note's job is to decide what it should say.
 4. **The wall is the scene.** Every sightline should end at Saffron's back wall: rooftops over it, a tannoy, traffic noise that stops at the boundary. The player may not enter, and the map's whole composition should say so without a textbox.
 5. **Must not:** add a fourth exit, a hidden path or a trash-can entrance into Saffron; put Rocket, Bill, Silph or the system here; explain in dialogue why the city is closed (nobody local knows); turn the junction into a puzzle.
 
@@ -29,12 +29,10 @@ Twenty tiles of open road on Saffron's western flank, with a wall on one side an
 
 | Interaction | Where | Trigger / state | Current behavior | Target behavior |
 | --- | --- | --- | --- | --- |
-| Saffron crossing | `Route7_hns` `(6,22)` | `FLAG_POX_STORY_SPACE_CENTER` unset | `PoxRegion_route7_saffron_a` prints the generic closed text and bumps the player to `(5,22)` | keep the lock; put a bored guard or a barrier here so the refusal is physical |
-| Route 103 crossing | `(1,22)` | `FLAG_POX_STORY_FUJI` | `PoxRegion_route7_route103_a` warps to `Route103` `(78,11)` | keep; this is the map's real exit and should look like one |
-| Underground stair | `(4,22)` | always | `PoxRegion_underground_west` warps to `UndergroundPath_WestEntrance_Frlg` `(6,6)` | keep |
-| Three signs | `(5,23)`, `(1,24)`, `(3,23)` | always | "SaffronCity / Route103 / Underground Path / Marked passage ahead." ×3, all in the same generated voice | three place-specific signs: the city, the long road west, the stair |
-| Duplicate sign events | same three tiles | always | each sign exists twice — an object **and** a background sign event at the identical coordinate | remove one of each pair; two signposts on one tile reads as a collision |
-| Legacy sign posts | `(5,16)`, `(7,16)` bg events | always | `Route7_EventScript_Sign1` and `Route7_EventScript_Sign2`, both "A sign from the old routes." | delete or repurpose; the line breaks the fourth wall |
+| Saffron gatehouse | `Route7_hns` arrow `(15,12)` -> `Route7_EastEntrance_Frlg` | `FLAG_POX_STORY_SPACE_CENTER` unset | the room's guard (`PoxRegion_route7_saffron_GuardTalk`) refuses at `x=6` and steps the player back west; open, the room exits at Saffron `(2,27)` | keep the lock |
+| Route 103 crossing | west edge `(0,4..7)` | `FLAG_POX_STORY_FUJI` | `PoxRegion_route7_route103_a` warps to `Route103` `(78,11)`; no sign, the road runs off the map | keep |
+| Underground hut | door `(7,16)` | always | native warp to `UndergroundPath_WestEntrance_Frlg`; the room's exit mats return here | keep |
+| Hut sign | `(5,16)` bg event | always | `Route7_EventScript_Sign1`: "UNDERGROUND PATH / ROUTE 7 - ROUTE 8"; the donor's second sign on the door tile is gone | keep |
 | Empty map | whole map | — | 0 NPCs, 0 items, 0 encounters, 0 trainers | add two or three people with a reason to stand at a wall, not a full cast |
 | Arrival hook | map load | always | `PoxRegion_Arrival_Route7_hns` is an empty stub | use it if the gate needs to change state on the Space Center flag, otherwise leave empty |
 

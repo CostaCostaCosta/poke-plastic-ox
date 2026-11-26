@@ -120,38 +120,16 @@
     ],
     "direction": "N"
   },
-  "route7_saffron_a": {
-    "tile": [
-      6,
-      22
-    ],
-    "approach": [
-      5,
-      22
-    ],
-    "direction": "E"
-  },
-  "route7_saffron_b": {
-    "tile": [
-      2,
-      26
-    ],
-    "approach": [
-      2,
-      25
-    ],
-    "direction": "S"
-  },
   "route7_route103_a": {
     "tile": [
-      1,
-      22
+      0,
+      6
     ],
     "approach": [
       1,
-      23
+      6
     ],
-    "direction": "N"
+    "direction": "W"
   },
   "route7_route103_b": {
     "tile": [
@@ -417,17 +395,6 @@
     ],
     "direction": "E"
   },
-  "underground_west": {
-    "tile": [
-      4,
-      22
-    ],
-    "approach": [
-      3,
-      22
-    ],
-    "direction": "E"
-  },
   "goldenrod_route35_a": {
     "tile": [
       33,
@@ -628,14 +595,14 @@
   },
   "lavender_route8_a": {
     "tile": [
-      1,
-      15
+      0,
+      10
     ],
     "approach": [
       1,
-      16
+      10
     ],
-    "direction": "N"
+    "direction": "W"
   },
   "lavender_route8_b": {
     "tile": [
@@ -645,28 +612,6 @@
     "approach": [
       66,
       20
-    ],
-    "direction": "E"
-  },
-  "route8_saffron_a": {
-    "tile": [
-      8,
-      20
-    ],
-    "approach": [
-      7,
-      20
-    ],
-    "direction": "E"
-  },
-  "route8_saffron_b": {
-    "tile": [
-      61,
-      27
-    ],
-    "approach": [
-      60,
-      27
     ],
     "direction": "E"
   }
