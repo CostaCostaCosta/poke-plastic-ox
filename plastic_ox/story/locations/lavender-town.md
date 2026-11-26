@@ -76,6 +76,8 @@ original beat).
 | SURF KEY | FUJI's house `(3,3)` | rescued | two beats (what they asked, where the records are), SURF KEY, sets `FLAG_POX_STORY_FUJI` (opens Route 8), then the EEVEE foster |
 | Signs | town `(16,4)`, `(19,7)`, `(12,13)`, `(19,18)` | always | town, tower, volunteer house, Soul House |
 
+The SILPH SCOPE comes from VALE at the Weather Institute (`Pox_WI_Vale_Scope`), before Fortree, so every player reaches the tower with it; without it the engine turns tower wild battles into unidentifiable GHOST encounters.
+
 Wild encounters: tower 3F–7F use `gPoxUUPokemonTower3F..7F` (Lv34–40,
 Gastly, Haunter, Cubone, Shuppet, Duskull, Banette and the UU Misdreavus, rarer
 low down and about 16% on 7F). `pox_progression.py` counts them at the
