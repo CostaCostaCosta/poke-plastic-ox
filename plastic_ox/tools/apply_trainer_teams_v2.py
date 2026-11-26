@@ -708,6 +708,69 @@ def legalise_moves(species: str, level: int, moves: list[str],
     return uniq[:4], notes
 
 
+# Substitute is a boss-battle move: only gym leaders, the Elite Four, the
+# champion, rivals and evil-team leaders/admins keep it. Everyone else gets a
+# same-role legal move instead (first legal candidate for the species, else
+# the best-ranked legal attack the set lacks, else Protect).
+SUBSTITUTE_CLASSES = {
+    "Leader", "Elite Four", "Elite Four Frlg", "Champion", "Rival",
+    "Aqua Leader", "Aqua Admin", "Magma Leader", "Magma Admin",
+}
+NO_SUBSTITUTE_CANDIDATES = {
+    "SPECIES_MAGNEMITE": ["MOVE_THUNDER_WAVE", "MOVE_HIDDEN_POWER", "MOVE_SONIC_BOOM"],
+    "SPECIES_PERSIAN": ["MOVE_IRON_TAIL", "MOVE_FAKE_OUT", "MOVE_BITE"],
+    "SPECIES_SLOWBRO": ["MOVE_ICE_BEAM", "MOVE_THUNDER_WAVE"],
+    "SPECIES_DRAGONITE": ["MOVE_FLAMETHROWER", "MOVE_EARTHQUAKE"],
+    "SPECIES_MAGBY": ["MOVE_THUNDER_PUNCH", "MOVE_CROSS_CHOP", "MOVE_FIRE_PUNCH"],
+    "SPECIES_CLAMPERL": ["MOVE_TOXIC", "MOVE_REST"],
+    "SPECIES_PONYTA": ["MOVE_QUICK_ATTACK", "MOVE_IRON_TAIL", "MOVE_STOMP"],
+    "SPECIES_ABRA": ["MOVE_THUNDER_PUNCH", "MOVE_ICE_PUNCH", "MOVE_SHADOW_BALL"],
+    "SPECIES_FARFETCHD": ["MOVE_SLASH", "MOVE_RETURN", "MOVE_FURY_CUTTER"],
+    "SPECIES_YANMA": ["MOVE_WING_ATTACK", "MOVE_SHADOW_BALL", "MOVE_QUICK_ATTACK"],
+    "SPECIES_TROPIUS": ["MOVE_BODY_SLAM", "MOVE_RETURN", "MOVE_AERIAL_ACE"],
+    "SPECIES_MANKEY": ["MOVE_ROCK_SLIDE", "MOVE_CROSS_CHOP", "MOVE_KARATE_CHOP"],
+    "SPECIES_LEDIAN": ["MOVE_SILVER_WIND", "MOVE_AERIAL_ACE", "MOVE_SWIFT"],
+    "SPECIES_HAUNTER": ["MOVE_SHADOW_BALL", "MOVE_HYPNOSIS", "MOVE_GIGA_DRAIN"],
+    "SPECIES_ARTICUNO": ["MOVE_REST", "MOVE_REFLECT", "MOVE_ROAR"],
+    "SPECIES_JOLTEON": ["MOVE_AGILITY", "MOVE_SHADOW_BALL", "MOVE_THUNDER_WAVE"],
+    "SPECIES_MANECTRIC": ["MOVE_THUNDER_WAVE", "MOVE_ROAR"],
+    "SPECIES_ESPEON": ["MOVE_MORNING_SUN", "MOVE_REFLECT"],
+    "SPECIES_FLYGON": ["MOVE_DRAGON_CLAW", "MOVE_FIRE_BLAST"],
+    "SPECIES_RAIKOU": ["MOVE_REFLECT", "MOVE_CRUNCH", "MOVE_ROAR"],
+    "SPECIES_ELECTRODE": ["MOVE_THUNDER_WAVE", "MOVE_TAUNT"],
+}
+
+
+def substitute_allowed(header: list[str]) -> bool:
+    """True when the trainer header (Class: line) marks a boss battle."""
+    for line in header:
+        for row in line.splitlines():
+            if row.startswith("Class:"):
+                return row.split(":", 1)[1].strip() in SUBSTITUTE_CLASSES
+    return False
+
+
+def drop_substitute(species: str, level: int, moves: list[str]) -> list[str]:
+    """Replace MOVE_SUBSTITUTE with a legal, same-role move for a non-boss."""
+    if "MOVE_SUBSTITUTE" not in moves:
+        return moves
+    rest = [m for m in moves if m != "MOVE_SUBSTITUTE"]
+    pick = None
+    for cand in NO_SUBSTITUTE_CANDIDATES.get(species, []):
+        if cand not in rest and P.move_legal(species, cand, level, True)[0]:
+            pick = cand
+            break
+    if pick is None:
+        for cand in sorted(P.legal_moves(species, level, gen3_only=True) - set(rest),
+                           key=lambda m: _rank(m, MOVE_META.get(m, {}).get("power", 0))):
+            if MOVE_META.get(cand, {}).get("power", 0) > 0:
+                pick = cand
+                break
+    if pick is None and P.move_legal(species, "MOVE_PROTECT", level, True)[0]:
+        pick = "MOVE_PROTECT"
+    return [pick if m == "MOVE_SUBSTITUTE" else m for m in moves if m != "MOVE_SUBSTITUTE" or pick]
+
+
 def build_mon(species: str, level: int, checkpoint: str, salt: int) -> dict:
     """One party slot: a set plus its provenance and any substitutions."""
     if checkpoint in OPENING_CHECKPOINTS:
@@ -1006,6 +1069,8 @@ def main() -> int:
                            notes=[])
             else:
                 mon = build_mon(species, level, checkpoint, TRAINER_SALT[trainer] + index)
+            if mon.get("moves") and not substitute_allowed(split_block(parsed[trainer])[0]):
+                mon["moves"] = drop_substitute(species, level, mon["moves"])
             mon["why_available"] = how.get(species, "signature exception")
             mon["tier"] = P.tier_of(species)
             mon["flagged"] = species not in legal

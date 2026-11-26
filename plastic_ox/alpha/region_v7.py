@@ -772,15 +772,16 @@ def apply_region(read, put):
                    'PoxRoute2_RustboroGate_Text::\n\t.string "RUSTBORO will have to wait.\\nTake the ILEX FOREST trail first.\\pWatch those roots in the woods.\\nThey nearly tripped me twice!$"')
     # Gatehouse and trade-house actors and scripts are authored in local maps;
     # do not replace the house trade or the gate guards with shared dialogue.
-    # The imported HNS trade house has one real animated door at (4, 8), not
-    # the three-tile FRLG exit strip. Keep the exterior and interior indices
-    # reciprocal so entering and leaving cannot strand the player.
+    # The imported HNS trade house has one real exit mat at (4, 8), not
+    # the three-tile FRLG exit strip. (4, 7) is ordinary floor: a warp there
+    # threw the player back outside on the first step into the room. Keep the
+    # exterior and interior indices reciprocal so entering and leaving cannot
+    # strand the player.
     d=load('Route2_Frlg')
     d['warp_events'][4]['dest_warp_id']='0'
     save('Route2_Frlg',d)
     d=load('Route2_House_Frlg')
     d['warp_events']=[
-        dict(x=4,y=7,elevation=0,dest_map=mid('Route2_House_Frlg'),dest_warp_id='0'),
         dict(x=4,y=8,elevation=0,dest_map=mid('Route2_Frlg'),dest_warp_id='4'),
     ]
     save('Route2_House_Frlg',d)

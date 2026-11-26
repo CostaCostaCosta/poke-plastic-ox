@@ -58,7 +58,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 30 Spe
 EVs: 44 HP / 248 SpA / 216 Spe
 Timid Nature
 - Thunderbolt
-- Substitute
+- Thunder Wave
 - Crunch
 - Hidden Power
 
@@ -140,7 +140,7 @@ EVs: 200 HP / 236 SpD / 72 Spe
 Timid Nature
 - Psychic
 - Calm Mind
-- Substitute
+- Reflect
 - Baton Pass
 
 === TRAINER_PLASTIC_OX_TOURNAMENT_3 ===
@@ -160,7 +160,7 @@ EVs: 4 HP / 252 SpA / 252 Spe
 Timid Nature
 - Thunderbolt
 - Hidden Power
-- Substitute
+- Agility
 - Baton Pass
 
 Swampert @ Leftovers
@@ -269,7 +269,7 @@ Jolly Nature
 - Earthquake
 - Rock Slide
 - Hidden Power
-- Substitute
+- Dragon Claw
 
 Suicune @ Leftovers
 Level: 75
@@ -355,7 +355,7 @@ Jolly Nature
 - Earthquake
 - Rock Slide
 - Hidden Power
-- Substitute
+- Dragon Claw
 
 Raikou @ Leftovers
 Level: 55
@@ -366,7 +366,7 @@ Timid Nature
 - Calm Mind
 - Thunderbolt
 - Hidden Power
-- Substitute
+- Reflect
 
 === TRAINER_PLASTIC_OX_REGIROCK_SAGE ===
 Name: SAGE
@@ -455,7 +455,7 @@ EVs: 4 HP / 252 SpA / 252 Spe
 Timid Nature
 - Thunderbolt
 - Hidden Power
-- Substitute
+- Agility
 - Baton Pass
 
 Swampert @ Leftovers
@@ -530,7 +530,7 @@ EVs: 4 HP / 252 SpA / 252 Spe
 Timid Nature
 - Thunderbolt
 - Hidden Power
-- Substitute
+- Agility
 - Baton Pass
 
 Swampert @ Leftovers
