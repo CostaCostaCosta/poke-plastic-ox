@@ -84,7 +84,6 @@ u32 ChooseHiddenMonIndex(void);
 bool32 MapHasNoEncounterData(void);
 enum TimeOfDay GetTimeOfDayForEncounters(u32 headerId, enum WildPokemonArea area);
 void PlasticOx_HeadbuttEncounter(void);
-bool32 PlasticOx_IsParkThursdayEncounter(void);
 void PlasticOx_CheckHeadbutt(void);
 void PlasticOx_PrepareSudowoodoMoves(void);
 

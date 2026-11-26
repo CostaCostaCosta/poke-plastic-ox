@@ -1355,17 +1355,6 @@
       "layout_version": "emerald"
     },
     {
-      "id": "LAYOUT_ROUTE121_SAFARI_ZONE_ENTRANCE",
-      "name": "Route121_SafariZoneEntrance_Layout",
-      "width": 18,
-      "height": 14,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_Shop",
-      "border_filepath": "data/layouts/Route121_SafariZoneEntrance/border.bin",
-      "blockdata_filepath": "data/layouts/Route121_SafariZoneEntrance/map.bin",
-      "layout_version": "emerald"
-    },
-    {
       "id": "LAYOUT_METEOR_FALLS_1F_1R",
       "name": "MeteorFalls_1F_1R_Layout",
       "width": 30,
@@ -2609,50 +2598,6 @@
       "layout_version": "emerald"
     },
     {
-      "id": "LAYOUT_SAFARI_ZONE_NORTHWEST",
-      "name": "SafariZone_Northwest_Layout",
-      "width": 40,
-      "height": 40,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Lilycove",
-      "border_filepath": "data/layouts/SafariZone_Northwest/border.bin",
-      "blockdata_filepath": "data/layouts/SafariZone_Northwest/map.bin",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_SAFARI_ZONE_NORTH",
-      "name": "SafariZone_North_Layout",
-      "width": 40,
-      "height": 40,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Lilycove",
-      "border_filepath": "data/layouts/SafariZone_North/border.bin",
-      "blockdata_filepath": "data/layouts/SafariZone_North/map.bin",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_SAFARI_ZONE_SOUTHWEST",
-      "name": "SafariZone_Southwest_Layout",
-      "width": 40,
-      "height": 40,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Lilycove",
-      "border_filepath": "data/layouts/SafariZone_Southwest/border.bin",
-      "blockdata_filepath": "data/layouts/SafariZone_Southwest/map.bin",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_SAFARI_ZONE_SOUTH",
-      "name": "SafariZone_South_Layout",
-      "width": 40,
-      "height": 40,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Lilycove",
-      "border_filepath": "data/layouts/SafariZone_South/border.bin",
-      "blockdata_filepath": "data/layouts/SafariZone_South/map.bin",
-      "layout_version": "emerald"
-    },
-    {
       "id": "LAYOUT_UNUSED_OUTDOOR_AREA",
       "name": "UnusedOutdoorArea_Layout",
       "width": 58,
@@ -3610,17 +3555,6 @@
       "layout_version": "emerald"
     },
     {
-      "id": "LAYOUT_SAFARI_ZONE_REST_HOUSE",
-      "name": "SafariZone_RestHouse_Layout",
-      "width": 10,
-      "height": 9,
-      "primary_tileset": "gTileset_Building",
-      "secondary_tileset": "gTileset_GenericBuilding",
-      "border_filepath": "data/layouts/SafariZone_RestHouse/border.bin",
-      "blockdata_filepath": "data/layouts/SafariZone_RestHouse/map.bin",
-      "layout_version": "emerald"
-    },
-    {
       "id": "LAYOUT_SKY_PILLAR_5F",
       "name": "SkyPillar_5F_Layout",
       "width": 14,
@@ -4322,28 +4256,6 @@
       "secondary_tileset": "gTileset_UnionRoom",
       "border_filepath": "data/layouts/UnionRoom/border.bin",
       "blockdata_filepath": "data/layouts/UnionRoom/map.bin",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_SAFARI_ZONE_NORTHEAST",
-      "name": "SafariZone_Northeast_Layout",
-      "width": 40,
-      "height": 40,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Lilycove",
-      "border_filepath": "data/layouts/SafariZone_Northeast/border.bin",
-      "blockdata_filepath": "data/layouts/SafariZone_Northeast/map.bin",
-      "layout_version": "emerald"
-    },
-    {
-      "id": "LAYOUT_SAFARI_ZONE_SOUTHEAST",
-      "name": "SafariZone_Southeast_Layout",
-      "width": 40,
-      "height": 40,
-      "primary_tileset": "gTileset_General",
-      "secondary_tileset": "gTileset_Lilycove",
-      "border_filepath": "data/layouts/SafariZone_Southeast/border.bin",
-      "blockdata_filepath": "data/layouts/SafariZone_Southeast/map.bin",
       "layout_version": "emerald"
     },
     {

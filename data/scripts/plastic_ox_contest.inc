@@ -142,6 +142,12 @@ PlasticOxContest_EventScript_Winner::
 	return
 PlasticOxContest_EventScript_Prize::
 	special PlasticOxContest_ClaimPrize
+	compare VAR_RESULT, POX_CONTEST_PRIZE_MON_PARTY
+	goto_if_eq PlasticOxContest_EventScript_KangaskhanParty
+	compare VAR_RESULT, POX_CONTEST_PRIZE_MON_PC
+	goto_if_eq PlasticOxContest_EventScript_KangaskhanPC
+	compare VAR_RESULT, POX_CONTEST_PRIZE_MON_NO_ROOM
+	goto_if_eq PlasticOxContest_EventScript_KangaskhanNoRoom
 	compare VAR_RESULT, TRUE
 	goto_if_ne PlasticOxContest_EventScript_BagFull
 	playfanfare MUS_OBTAIN_ITEM
@@ -150,6 +156,24 @@ PlasticOxContest_EventScript_Prize::
 	return
 PlasticOxContest_EventScript_BagFull::
 	msgbox PlasticOxContest_Text_BagFull, MSGBOX_DEFAULT
+	return
+@ The Warden's Thursday prize, paid on every first place after badge 4.
+PlasticOxContest_EventScript_KangaskhanParty::
+	call PlasticOxContest_EventScript_KangaskhanHandover
+	msgbox PlasticOxContest_Text_KangaskhanParty, MSGBOX_DEFAULT
+	return
+PlasticOxContest_EventScript_KangaskhanPC::
+	call PlasticOxContest_EventScript_KangaskhanHandover
+	msgbox PlasticOxContest_Text_KangaskhanPC, MSGBOX_DEFAULT
+	return
+PlasticOxContest_EventScript_KangaskhanHandover::
+	msgbox PlasticOxContest_Text_KangaskhanWarden, MSGBOX_DEFAULT
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox PlasticOxContest_Text_KangaskhanReceived, MSGBOX_DEFAULT
+	waitfanfare
+	return
+PlasticOxContest_EventScript_KangaskhanNoRoom::
+	msgbox PlasticOxContest_Text_KangaskhanNoRoom, MSGBOX_DEFAULT
 	return
 PlasticOxContest_EventScript_DeliveryBlocked::
 	msgbox PlasticOxContest_Text_DeliveryBlocked, MSGBOX_DEFAULT
@@ -247,6 +271,33 @@ PlasticOxContest_Text_Third:
 PlasticOxContest_Text_Prize:
 	.string "{PLAYER} received a {STR_VAR_2}!\p"
 	.string "Come back on another contest day!$"
+PlasticOxContest_Text_KangaskhanWarden:
+	.string "The SAFARI ZONE WARDEN shuffles\n"
+	.string "over to the desk, beaming.\p"
+	.string "WARDEN: First place in my round!\n"
+	.string "You've a patient hand with bugs.\p"
+	.string "I don't give stones on a Thursday.\n"
+	.string "I give family.\p"
+	.string "This KANGASKHAN rode up in the\n"
+	.string "truck with the SCYTHER. She's\l"
+	.string "raised more young than I've had\l"
+	.string "hot dinners. Take her along.$"
+PlasticOxContest_Text_KangaskhanReceived:
+	.string "{PLAYER} received a KANGASKHAN\n"
+	.string "from the WARDEN!$"
+PlasticOxContest_Text_KangaskhanParty:
+	.string "WARDEN: Win again next Thursday and\n"
+	.string "I'll find another who wants a road.$"
+PlasticOxContest_Text_KangaskhanPC:
+	.string "WARDEN: Party's full, is it? Then\n"
+	.string "she'll wait in your PC. She's used\l"
+	.string "to waiting. They all are.\p"
+	.string "Come back next Thursday!$"
+PlasticOxContest_Text_KangaskhanNoRoom:
+	.string "WARDEN: No room in your party, and\n"
+	.string "none in your PC either?\p"
+	.string "Then she stays with me. Free up a\n"
+	.string "space and come see me again.$"
 PlasticOxContest_Text_BagFull:
 	.string "Your Bag is full. Your {STR_VAR_2} is\n"
 	.string "safe with me. Make room and return!$"

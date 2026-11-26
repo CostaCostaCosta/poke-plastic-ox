@@ -140,8 +140,8 @@ SPECIALS = {
     "route25": ["SPECIES_KABUTO", "SPECIES_ANORITH", "SPECIES_LILEEP"],  # Sea Cottage fossils
     "goldenrod": ["SPECIES_EEVEE", "SPECIES_BELDUM",         # Bill's family / Devon trade
                   "SPECIES_CASTFORM", "SPECIES_LUVDISC", "SPECIES_DELIBIRD"],
-    # National Park on Thursdays, gated on badge 4 (UU): SCYTHER/PINSIR wild,
-    # KANGASKHAN the Warden's contest prize. First UU checkpoint is cinnabar.
+    # The Warden's Thursday Bug-Catching Contest, gated on badge 4 (UU):
+    # SCYTHER/PINSIR in the contest table only, KANGASKHAN the winner's prize. First UU checkpoint is cinnabar.
     "cinnabar": ["SPECIES_SCYTHER", "SPECIES_PINSIR", "SPECIES_KANGASKHAN"],
     "ecruteak": ["SPECIES_SUDOWOODO",                                 # Route 36 odd tree
                  "SPECIES_RELICANTH"],                                # Ecruteak House 2 trade (for Clamperl)

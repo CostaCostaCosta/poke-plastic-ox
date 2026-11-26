@@ -23,7 +23,7 @@ A 24×50 strip of Kanto sea between Pallet Town and Route 21 South. The player c
 1. **The gate is water, not a flag.** Pallet's south edge at `x 7–10` (rows 17–19) is surf-elevation water, and so are this map's first two rows at `(7–10, 0–1)`. Surf needs `ITEM_SURF_KEY`, which Fuji hands over in the conversation that sets `FLAG_POX_STORY_FUJI` and names the intended road — Route 8, the Underground Path, Route 7, Route 103. The coast opens at the exact moment the Cinnabar leg does.
 2. **A parallel approach, not a second scene.** No flag changes here, and the route lands on Cinnabar's north beach without passing the `FLAG_POX_STORY_FUJI` guard at Cinnabar's `(12,12)`. Nothing here carries a reveal-ladder step; step 9 is the Mansion, and it stays there.
 3. **Four parties, no battles.** Ronald, Wade, Spencer and the pair Lil and Ian have trainer entries in `trainers_frlg.inc`, but the bodies sit inside `.if IS_FRLG` and the Plastic Ox build compiles them out. Every object is a plain NPC printing its own post-battle line — the same wiring failure Route 8 has.
-4. **A hillside of vines.** `gPoxUURoute21North`/`South` (UU-capped, Lv 38–40 grass): Tangela still leads, with Jumpluff, Venomoth, Butterfree, Beedrill, Parasect, Tropius, Bellossom, Sunflora, Vileplume and Ledian (evolved forms only). Surf is Tentacruel, Pelipper, Lanturn, Mantine and a rare Lapras (Lv 36–41); fishing keeps Old Rod slot 1 Magikarp, then Seaking, Kingler, Seadra, Whiscash, Octillery, Dewgong, Sharpedo, Qwilfish and Slowking.
+4. **A hillside of vines.** `gPoxUURoute21North`/`South` (UU-capped, evolved forms only, trimmed to a coherent coast): grass is Tangela (46%), Vileplume (15%), Venomoth (14%), Jumpluff (14%) and Parasect (11%), Lv 38–40; Surf is Tentacruel, Pelipper and Lanturn (Lv 36–41); fishing keeps Old Rod slot 1 Magikarp, then Seaking (Old/Good Rod), Kingler (Good/Super), Seadra and Octillery (Super Rod), Lv 36–41.
 5. **Must not:** name Bill, Silph, Rocket or the convergence; explain Surf's origin; give the coast a Cinnabar revelation; restore the battles at levels that make the sea road mandatory.
 
 ## Key interactions
@@ -53,7 +53,7 @@ A 24×50 strip of Kanto sea between Pallet Town and Route 21 South. The player c
 
 ## Inspiration
 
-- **The long swim home, through a Tangela hillside.** Gen 1's Route 21 is the water you cross to get back to Pallet, with nothing between the towns but trainers and vines. Keep the feeling of a crossing rather than a route — no signage, no shops, no reason to stop — and treat the twelve identical grass slots as a local fact: one rise of ground, nothing else growing on it.
+- **The long swim home, through a Tangela hillside.** Gen 1's Route 21 is the water you cross to get back to Pallet, with nothing between the towns but trainers and vines. Keep the feeling of a crossing rather than a route — no signage, no shops, no reason to stop — and treat the five-species grass as a local fact: one rise of ground, nothing else growing on it.
 - **A working shore, not a postcard.** Pallet's beach is a launch point for a kid, and this map is what the kid sees first: buoys, an unread noticeboard, the back of the lab's fence.
 
 ## Implementation hooks

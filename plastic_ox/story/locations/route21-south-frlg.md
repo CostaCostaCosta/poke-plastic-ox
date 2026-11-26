@@ -60,6 +60,7 @@ The second 24×50 panel of the Pallet–Cinnabar water line, from Route 21 North
 - Wiki page: `route21-south-frlg.html`
 - Maps: `Route21_South_Frlg` (`MAP_ROUTE21_SOUTH`, `LAYOUT_ROUTE21_SOUTH`, 24×50, FRLG general and Cinnabar Island tilesets, music `MUS_RG_ROUTE3`)
 - Scripts: `data/maps/Route21_South_Frlg/scripts.inc`; `PoxRegion_Arrival_Route21_South_Frlg` is an empty stub; talk wrappers in `data/scripts/plastic_ox_region.inc`
+- Wild: `gPoxUURoute21South`, identical to the north panel (see `route21-north-frlg.md`): grass Tangela/Vileplume/Venomoth/Jumpluff/Parasect, Surf Tentacruel/Pelipper/Lanturn, rods Magikarp (Old Rod slot 1)/Seaking/Kingler/Seadra/Octillery; UU cap, Lv 36–41.
 - Trainers / items: `TRAINER_FISHERMAN_CLAUDE`, `TRAINER_FISHERMAN_NOLAN`, `TRAINER_SWIMMER_MALE_JACK`, `TRAINER_SWIMMER_MALE_JEROME`, `TRAINER_SWIMMER_MALE_ROLAND` — all compiled out; the map carries no items
 - Known gaps: the Cinnabar seam has no coordinate trigger while the island's other two edges do; the arrival script does nothing; the five parties cannot be fought; no signs, no hidden items, no item balls.
 

@@ -363,9 +363,8 @@
 // Tin Tower roof: Moltres caught after its sage (TRAINER_PLASTIC_OX_MOLTRES_SAGE).
 #define FLAG_POX_CAUGHT_MOLTRES (POX_EVENT_FLAGS_START + 56)
 // National Park: Thursday (Warden) contest won with 4 badges; KANGASKHAN awaits at the gate.
+// Set on every such win and cleared when the Warden hands one over (repeatable).
 #define FLAG_POX_CONTEST_KANGASKHAN_PENDING (POX_EXT_FLAGS_START + 11)
-// National Park: the Warden's one-time Thursday KANGASKHAN prize was handed over.
-#define FLAG_POX_GIFT_PARK_KANGASKHAN (POX_EXT_FLAGS_START + 12)
 
 // Lavender / Pokemon Tower (plastic_ox/alpha/lavender.py).
 // Pokemon Tower 7F: FUJI walked home after the three grunts.

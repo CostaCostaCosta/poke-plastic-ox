@@ -158,6 +158,52 @@ Pox_TowerGrunt3_Won::
 	releaseall
 	end
 
+@ 7F Rockets battle on sight. The object script must open with
+@ trainerbattle so the engine can spot the player; talking to a beaten or
+@ dormant one falls through to the story script (Done / NotReady).
+{P}TowerGrunt1Sight::
+	trainerbattle_single TRAINER_PLASTIC_OX_TOWERGRUNT1, Pox_Text_TowerGrunt1, Pox_Text_TowerGrunt1_Defeat, Pox_TowerGrunt1_Won
+	goto Pox_TowerGrunt1
+{P}TowerGrunt2Sight::
+	trainerbattle_single TRAINER_PLASTIC_OX_TOWERGRUNT2, Pox_Text_TowerGrunt2, Pox_Text_TowerGrunt2_Defeat, Pox_TowerGrunt2_Won
+	goto Pox_TowerGrunt2
+{P}TowerGrunt3Sight::
+	trainerbattle_single TRAINER_PLASTIC_OX_TOWERGRUNT3, {P}Text_Grunt3Intro, {P}Text_Grunt3Defeat, Pox_TowerGrunt3_Won
+	goto Pox_TowerGrunt3
+
+@ A grunt spots the player only while his story battle is due: story mode
+@ (FLAG_POX_TRIGGERS_ENABLED), badge 4 (GRUNT 1's story prerequisite)
+@ and not yet beaten (FLAG_POX_HIDE_LAVENDER_GRUNT_n, the real record). The
+@ trainer flag is only the engine's "don't look" switch, recomputed on entry.
+{P}Tower7FOnTransition::
+	call {P}Tower7FGrunt1
+	call {P}Tower7FGrunt2
+	call {P}Tower7FGrunt3
+	end
+{P}Tower7FGrunt1::
+	settrainerflag TRAINER_PLASTIC_OX_TOWERGRUNT1
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, {P}Return
+	goto_if_unset FLAG_BADGE04_GET, {P}Return
+	goto_if_set FLAG_POX_HIDE_LAVENDER_GRUNT_1, {P}Return
+	cleartrainerflag TRAINER_PLASTIC_OX_TOWERGRUNT1
+	return
+{P}Tower7FGrunt2::
+	settrainerflag TRAINER_PLASTIC_OX_TOWERGRUNT2
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, {P}Return
+	goto_if_unset FLAG_BADGE04_GET, {P}Return
+	goto_if_set FLAG_POX_HIDE_LAVENDER_GRUNT_2, {P}Return
+	cleartrainerflag TRAINER_PLASTIC_OX_TOWERGRUNT2
+	return
+{P}Tower7FGrunt3::
+	settrainerflag TRAINER_PLASTIC_OX_TOWERGRUNT3
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, {P}Return
+	goto_if_unset FLAG_BADGE04_GET, {P}Return
+	goto_if_set FLAG_POX_HIDE_LAVENDER_GRUNT_3, {P}Return
+	cleartrainerflag TRAINER_PLASTIC_OX_TOWERGRUNT3
+	return
+{P}Return::
+	return
+
 {P}TowerFuji::
 	lock
 	faceplayer
@@ -322,8 +368,12 @@ def install(read, put):
             n = {'LOCALID_POKEMON_TOWER_GRUNT1': 1, 'LOCALID_POKEMON_TOWER_GRUNT2': 2,
                  'LOCALID_POKEMON_TOWER_GRUNT3': 3}.get(o.get('local_id'))
             if n:
-                o.update(script=f'Pox_TowerGrunt{n}', flag=f'FLAG_POX_HIDE_LAVENDER_GRUNT_{n}',
-                         trainer_type='TRAINER_TYPE_NONE', trainer_sight_or_berry_tree_id='0')
+                # Line-of-sight trainers. 7F is one corridor (x 9..13): GRUNT1
+                # (9,10) and PROTON (9,6) face east and GRUNT2 (13,8) faces
+                # west, so a sight of 4 covers every tile of rows 10, 8 and 6
+                # and nobody reaches FUJI unseen, in that order.
+                o.update(script=f'{P}TowerGrunt{n}Sight', flag=f'FLAG_POX_HIDE_LAVENDER_GRUNT_{n}',
+                         trainer_type='TRAINER_TYPE_NORMAL', trainer_sight_or_berry_tree_id='4')
             if s in ('PokemonTower_1F_EventScript_Woman1', P + 'T1Woman1'):
                 # She has visited her GROWLITHE for fifty years: an old woman.
                 o['graphics_id'] = 'OBJ_EVENT_GFX_OLD_WOMAN_FRLG'
@@ -334,6 +384,10 @@ def install(read, put):
         if floor in (2, 6):
             d['coord_events'] = []
         save(name, d)
+
+    p = 'data/maps/PokemonTower_7F_Frlg/scripts.inc'
+    put(p, re.sub(r'\A.*?\t\.byte 0', 'PokemonTower_7F_Frlg_MapScripts::\n\tmap_script MAP_SCRIPT_ON_TRANSITION, '
+                  + P + 'Tower7FOnTransition\n\t.byte 0', read(p), count=1, flags=re.S))
 
     # --- old teleport tower room: empty placeholder (map number stays put) ---
     d = load('PlasticOx_PokemonTower')

@@ -366,9 +366,7 @@
   "gMapGroup_IndoorRoute117": [
     "Route117_PokemonDayCare"
   ],
-  "gMapGroup_IndoorRoute121": [
-    "Route121_SafariZoneEntrance"
-  ],
+  "gMapGroup_IndoorRoute121": [],
   "gMapGroup_Dungeons": [
     "MeteorFalls_1F_1R",
     "MeteorFalls_1F_2R",
@@ -543,10 +541,10 @@
     "UnionRoom"
   ],
   "gMapGroup_SpecialArea": [
-    "SafariZone_Northwest",
-    "SafariZone_North",
-    "SafariZone_Southwest",
-    "SafariZone_South",
+    "PoxRetired_SafariZone_Northwest",
+    "PoxRetired_SafariZone_North",
+    "PoxRetired_SafariZone_Southwest",
+    "PoxRetired_SafariZone_South",
     "BattleFrontier_OutsideWest",
     "BattleFrontier_BattleTowerLobby",
     "BattleFrontier_BattleTowerElevator",
@@ -554,9 +552,9 @@
     "BattleFrontier_BattleTowerBattleRoom",
     "SouthernIsland_Exterior",
     "SouthernIsland_Interior",
-    "SafariZone_RestHouse",
-    "SafariZone_Northeast",
-    "SafariZone_Southeast",
+    "PoxRetired_SafariZone_RestHouse",
+    "PoxRetired_SafariZone_Northeast",
+    "PoxRetired_SafariZone_Southeast",
     "BattleFrontier_OutsideEast",
     "BattleFrontier_BattleTowerMultiPartnerRoom",
     "BattleFrontier_BattleTowerMultiCorridor",

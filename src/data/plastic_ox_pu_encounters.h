@@ -95,18 +95,6 @@ static const struct WildPokemon sPoxParkContestPassNightMons[] = {
 };
 static const u8 sPoxParkContestPassNightWeights[] = { 20, 20, 10, 10, 10, 10, 5, 5, 5, 5 };
 static const struct WildPokemonInfo sPoxParkContestPassNight = { 20, sPoxParkContestPassNightMons, sPoxParkContestPassNightWeights, ARRAY_COUNT(sPoxParkContestPassNightMons) };
-static const struct WildPokemon sPoxParkThursdayDayMons[] = {
-    { 36, 40, SPECIES_SCYTHER },
-    { 36, 40, SPECIES_PINSIR },
-};
-static const u8 sPoxParkThursdayDayWeights[] = { 50, 50 };
-static const struct WildPokemonInfo sPoxParkThursdayDay = { 20, sPoxParkThursdayDayMons, sPoxParkThursdayDayWeights, ARRAY_COUNT(sPoxParkThursdayDayMons) };
-static const struct WildPokemon sPoxParkThursdayNightMons[] = {
-    { 36, 40, SPECIES_SCYTHER },
-    { 36, 40, SPECIES_PINSIR },
-};
-static const u8 sPoxParkThursdayNightWeights[] = { 50, 50 };
-static const struct WildPokemonInfo sPoxParkThursdayNight = { 20, sPoxParkThursdayNightMons, sPoxParkThursdayNightWeights, ARRAY_COUNT(sPoxParkThursdayNightMons) };
 static const struct WildPokemon sPoxParkHeadbuttDayMons[] = {
     { 17, 19, SPECIES_LEDYBA },
     { 17, 19, SPECIES_EXEGGCUTE },

@@ -7,10 +7,12 @@
 * Route 44's grass is Surf-only: no walking path from the Rustboro seam
   reaches a grass tile (water is the only way in), and the grass rolls the UU
   table with GIRAFARIG.
-* National Park, Thursday (RTC), after badge 4: land encounters can be
-  SCYTHER or PINSIR; on another weekday, or before badge 4, they cannot.
-* The Warden's Thursday contest win (after badge 4) gives KANGASKHAN once;
-  the next Thursday win is the usual SUN STONE.
+* SCYTHER and PINSIR are contest-only: the Warden's Thursday Bug-Catching
+  Contest round (after badge 4) can roll them; a Tuesday round, a Thursday
+  round before badge 4 and the park's ordinary Thursday grass cannot.
+* Every Warden's Thursday contest win (after badge 4) gives a KANGASKHAN
+  (two in a row both do; a full party sends it to the PC); before badge 4
+  the win pays the usual SUN STONE.
 
 The field warp only places the player; the encounter or prize is the thing
 under test.
@@ -146,19 +148,33 @@ def route44_surf_only():
     print(f'PASS Route44_hns: {len(grass)} grass tiles, 0 reachable on foot, {len(by_surf)} via Surf', flush=True)
 
 
-def park_thursday():
-    g = StoryGame()
+def contest_game():
+    g = StoryGame(spawn=('Gate_NationalPark_hns', 38, 3))
+    g.run('Pox_Cyndaquil')
     g.flag('FLAG_POX_TRIGGERS_ENABLED', True)
     g.flag('FLAG_SYS_CLOCK_SET', True)
+    g.flag('FLAG_POX_WARDEN_GUEST', True)
     g.test_water = False
-    g.warp('NationalPark_Normal_hns', 26, 30)
-    g.frame(90)
+    return g
+
+
+def park_thursday():
+    """SCYTHER/PINSIR only inside the Warden's Thursday contest after badge 4."""
     extras = {sp_id('SCYTHER'), sp_id('PINSIR')}
     rng = random.Random(4)
 
-    def sample(day, badge, tries):
+    def sample(day, badge, contest, tries):
+        g = contest_game()
         g.flag('FLAG_BADGE04_GET', badge)
         set_weekday(g, day)
+        if contest:
+            g.write(g.syms['gSpecialVar_0x8004'], 0, 2)
+            g.write(g.syms['gSpecialVar_0x8007'], 1, 2)
+            assert call(g, 'PlasticOxContest_Start') == 0, (day, badge)
+        g.warp('NationalPark_Normal_hns', 26, 30)
+        g.frame(90)
+        if contest:
+            assert g.u8(g.syms['sRunning']), 'contest session lost on entry'
         start = g.core.save_raw_state()
         seen = []
         for _ in range(tries):
@@ -166,24 +182,21 @@ def park_thursday():
             g.write(g.syms['gRngValue'], rng.getrandbits(32), 4)
             step_until_battle(g, 'NationalPark_Normal_hns')
             seen.append(enemy(g))
-            if day == 4 and badge and seen[-1][0] in extras:
+            if seen[-1][0] in extras:
                 break
-        assert g.core.load_raw_state(start)
         return seen
-    thu = sample(4, True, 40)
-    assert thu[-1][0] in extras and 36 <= thu[-1][1] <= 40, thu
-    for day, badge in ((3, True), (4, False)):
-        other = sample(day, badge, 12)
-        assert not extras & {sp for sp, _lv in other}, (day, badge, other)
-    print(f'PASS National Park: Thursday+badge 4 rolled species {thu[-1][0]} Lv{thu[-1][1]} '
-          f'after {len(thu)} encounters; Wednesday and pre-badge-4 Thursday never did', flush=True)
+    thu = sample(4, True, True, 60)
+    assert thu[-1][0] in extras, thu
+    for day, badge, contest in ((2, True, True), (4, False, True), (4, True, False)):
+        other = sample(day, badge, contest, 12)
+        assert not extras & {sp for sp, _lv in other}, (day, badge, contest, other)
+    print(f'PASS Thursday contest after badge 4 rolled species {thu[-1][0]} Lv{thu[-1][1]} after '
+          f'{len(thu)} encounters; Tuesday contest, pre-badge-4 Thursday contest and Thursday '
+          'park grass never did', flush=True)
 
 
 def contest_kangaskhan():
-    g = StoryGame(spawn=('Gate_NationalPark_hns', 38, 3))
-    g.run('Pox_Cyndaquil')
-    g.flag('FLAG_SYS_CLOCK_SET', True)
-    g.flag('FLAG_POX_WARDEN_GUEST', True)
+    g = contest_game()
     kangaskhan = sp_id('KANGASKHAN')
 
     def win(day, badge):
@@ -202,24 +215,27 @@ def contest_kangaskhan():
         g.write(g.syms['sRivalScore'], 0, 2)
         assert call(g, 'PlasticOxContest_Judge') == 1, 'not first place'
         before = g.count()
-        assert call(g, 'PlasticOxContest_ClaimPrize') == 1
-        return before
-    before = win(4, True)
-    assert g.flag('FLAG_POX_GIFT_PARK_KANGASKHAN') and not g.flag('FLAG_POX_CONTEST_KANGASKHAN_PENDING')
-    assert g.count() == before + 1 and g.party_species(before) == kangaskhan, g.party_species(before)
-    mon = g.syms['gParties'] + before * (g.sizes['gParties'] // 24)
-    assert g.u8(mon + 0x54) == 36, g.u8(mon + 0x54)
-    before = win(4, True)
-    assert g.count() == before, 'second Thursday win must not give another KANGASKHAN'
-    g2 = StoryGame(spawn=('Gate_NationalPark_hns', 38, 3))
-    g2.run('Pox_Cyndaquil')
-    g2.flag('FLAG_SYS_CLOCK_SET', True)
-    g2.flag('FLAG_POX_WARDEN_GUEST', True)
-    g, before = g2, None
-    before = win(4, False)
-    assert g.count() == before and not g.flag('FLAG_POX_GIFT_PARK_KANGASKHAN'), 'pre-badge-4 Thursday win'
-    print('PASS Warden contest: Thursday win after badge 4 gives KANGASKHAN Lv36 once; '
-          'repeat and pre-badge-4 Thursday wins pay the SUN STONE', flush=True)
+        return before, call(g, 'PlasticOxContest_ClaimPrize')
+
+    stride = g.sizes['gParties'] // 24
+    for n in (1, 2):
+        before, result = win(4, True)
+        assert result == 2, (n, result)   # POX_CONTEST_PRIZE_MON_PARTY
+        assert not g.flag('FLAG_POX_CONTEST_KANGASKHAN_PENDING')
+        assert g.count() == before + 1 and g.party_species(before) == kangaskhan, (n, g.party_species(before))
+        assert g.u8(g.syms['gParties'] + before * stride + 0x54) == 36
+    # Two consecutive Thursday wins both paid out. Fill the party; the next goes to the PC.
+    while g.count() < 6:
+        before, result = win(4, True)
+        assert result in (2, 3), result
+    before, result = win(4, True)
+    assert result == 3 and g.count() == 6, (result, g.count())   # POX_CONTEST_PRIZE_MON_PC
+    assert not g.flag('FLAG_POX_CONTEST_KANGASKHAN_PENDING')
+    g = contest_game()
+    before, result = win(4, False)
+    assert result == 1 and g.count() == before, 'pre-badge-4 Thursday win must pay the SUN STONE'
+    print('PASS Warden contest: two consecutive Thursday wins after badge 4 each give KANGASKHAN Lv36, '
+          'a full party sends it to the PC, a pre-badge-4 Thursday win pays the SUN STONE', flush=True)
 
 
 def main():

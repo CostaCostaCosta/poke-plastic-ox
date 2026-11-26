@@ -10,4 +10,9 @@
 #define POX_CONTEST_ENTRY_INVALID_MON   6
 #define POX_CONTEST_ENTRY_PASS_REQUIRED 7
 
+// PlasticOxContest_ClaimPrize results (TRUE = item prize bagged, FALSE = bag full).
+#define POX_CONTEST_PRIZE_MON_PARTY     2
+#define POX_CONTEST_PRIZE_MON_PC        3
+#define POX_CONTEST_PRIZE_MON_NO_ROOM   4
+
 #endif // GUARD_CONSTANTS_PLASTIC_OX_CONTEST_H

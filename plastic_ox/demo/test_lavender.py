@@ -5,8 +5,10 @@ Proves, with the D-pad wherever a transition is under test:
 * the old teleport guides are gone; the caretaker stands where one stood;
 * LavenderTown_hns's (22,6) door is the POKeMON TOWER and walks back out;
 * the tower's stairs walk 1F -> 7F;
-* the three Rocket grunts on 7F must be beaten in order, FUJI waits for all
-  three, then walks the player to his house (the (8,13) door);
+* the three Rockets on 7F are line-of-sight trainers: before badge 4 they are
+  dormant and FUJI waits; after it, walking up the corridor is spotted by each
+  in turn (rows 10, 8, 6), beaten ones never re-trigger, and FUJI then walks
+  the player to his house (the (8,13) door);
 * in the house FUJI gives the SURF KEY, sets FLAG_POX_STORY_FUJI and offers EEVEE;
 * the house and the (10,19) House1 door both walk back to town;
 * the Soul House door (22,19) walks in and back out;
@@ -80,6 +82,14 @@ def static_checks():
                                       'SPOINK', 'SKIPLOOM', 'TENTACOOL', 'CHINCHOU', 'HORSEA', 'KRABBY',
                                       'SLOWPOKE'}, (m, sp)
         assert 'UU' in land_tiers, (m, land_tiers)
+        if m.startswith('MAP_ROUTE21'):
+            # Route 21 is a trimmed, coherent coast: a Tangela hillside, three
+            # surfers, five rod catches (Old Rod slot 1 Magikarp).
+            kinds = {f: {mon['species'][8:] for mon in tables[0][f]['mons']}
+                     for f in ('land_mons', 'water_mons', 'fishing_mons')}
+            assert kinds == {'land_mons': {'TANGELA', 'VILEPLUME', 'VENOMOTH', 'JUMPLUFF', 'PARASECT'},
+                             'water_mons': {'TENTACRUEL', 'PELIPPER', 'LANTURN'},
+                             'fishing_mons': {'MAGIKARP', 'SEAKING', 'KINGLER', 'SEADRA', 'OCTILLERY'}}, (m, kinds)
     print('ok  routes 8, 7 and 21 have UU-capped gPoxUU tables (levels 30-42)', flush=True)
 
     party = (ROOT / 'src/data/trainers.party').read_text()
@@ -108,6 +118,30 @@ def object_gfx(g, local_id):
 def walk_in(g, approach, key, name, stage):
     enter_warp(g, approach, key, mid(name), stage)
     assert at(g, name), (stage, g.describe())
+
+
+def walk_until_spotted(g, steps=14):
+    """Walk north until a trainer's sight script starts its battle.
+
+    Returns the text boxes shown on the way and the row the player was
+    standing on when the Rocket spotted them."""
+    seen, y = [], None
+    g.clear_text()
+    for _ in range(steps * 20):
+        if in_battle(g):
+            return seen, y
+        t = g.text()
+        if t:
+            if not seen or seen[-1] != t:
+                seen.append(t)
+            if y is None:
+                y = g.state()['y']
+            g.tap(K.KEY_A, hold=2, wait=10)
+        elif y is None:
+            g.tap(K.KEY_UP, hold=8, wait=16)
+        else:
+            g.frame(10)
+    raise AssertionError(('never spotted', g.describe(), seen))
 
 
 def climb(g, stairs, name):
@@ -176,21 +210,31 @@ def main():
     print('ok  walked the stairs 1F -> 7F', flush=True)
 
     shot(g, 'lavender_7f_arrival')
+    # Before badge 4 the grunts are dormant (their story battle is not due):
+    # nobody spots the player, and FUJI waits for all three.
+    g.flag('FLAG_BADGE04_GET', False)
+    g.warp('PokemonTower_7F_Frlg', 11, 14)
+    g.frame(90)
     navigate(g, (11, 5))
+    assert not in_battle(g)
     r = talk(g, K.KEY_UP)
     assert 'frightened' in ' '.join(r['text']) and at(g, 'PokemonTower_7F_Frlg'), r
     assert not g.flag('FLAG_POX_FUJI_RESCUED')
-    navigate(g, (13, 9))
-    r = talk(g, K.KEY_UP)
-    assert not r['battle'] and not g.flag('FLAG_POX_HIDE_LAVENDER_GRUNT_2'), r
-    print('ok  FUJI and the second grunt wait for the grunts in order', flush=True)
+    print('ok  before badge 4 the grunts stay put and FUJI waits', flush=True)
 
-    for n, (spot, key) in enumerate([((9, 11), K.KEY_UP), ((13, 9), K.KEY_UP), ((9, 7), K.KEY_UP)], 1):
-        navigate(g, spot)
-        r = talk(g, key)
-        assert r['battle'], (n, r)
-        if n == 3:
-            assert 'PROTON' in ' '.join(r['text']), r
+    # With badge 4, walking straight up the corridor walks into each Rocket's
+    # line of sight in turn. Re-entering the floor between battles proves a
+    # beaten Rocket never spots the player again.
+    g.flag('FLAG_BADGE04_GET', True)
+    intros = ['come any closer', None, 'PROTON']
+    for n, row in enumerate((10, 8, 6), 1):
+        g.warp('PokemonTower_7F_Frlg', 11, 14)
+        g.frame(90)
+        texts, y = walk_until_spotted(g)
+        assert y == row, (n, y, texts)
+        if intros[n - 1]:
+            assert intros[n - 1] in ' '.join(texts), (n, texts)
+        assert not g.flag(f'FLAG_POX_HIDE_LAVENDER_GRUNT_{n}'), n
         finish_trainer(g, True)
         settle(g)
         # The battle callback leaves this diagnostic flag stale on the field;
@@ -198,7 +242,12 @@ def main():
         g.write(g.syms['gBattleTypeFlags'], 0, 4)
         assert g.flag(f'FLAG_POX_HIDE_LAVENDER_GRUNT_{n}'), n
         assert at(g, 'PokemonTower_7F_Frlg')
-    print('ok  beat two Rocket grunts and Executive PROTON', flush=True)
+        print(f'ok  Rocket {n} spotted the player at row {row} and was beaten', flush=True)
+    g.warp('PokemonTower_7F_Frlg', 11, 14)
+    g.frame(90)
+    navigate(g, (11, 5))
+    assert not in_battle(g), 'a beaten Rocket re-triggered'
+    print('ok  beat two Rocket grunts and Executive PROTON on sight; none re-trigger', flush=True)
 
     navigate(g, (11, 5))
     talk(g, K.KEY_UP)

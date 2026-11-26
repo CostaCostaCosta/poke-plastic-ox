@@ -241,10 +241,11 @@ void PlasticOxContest_Judge(void)
     if (sHasCatch)
     {
         gSpecialVar_Result = score >= sRivalScore ? 1 : score + 40 >= sRivalScore ? 2 : 3;
-        // Thursday's Warden round pays out a KANGASKHAN once, but only after
-        // the 4th badge: it is a UU species (cinnabar checkpoint).
-        if (gSpecialVar_Result == 1 && sPassRound && FlagGet(FLAG_BADGE04_GET)
-         && !FlagGet(FLAG_POX_GIFT_PARK_KANGASKHAN))
+        // Every first place in the Warden's Thursday round pays a KANGASKHAN
+        // instead of the SUN STONE, but only after the 4th badge: it is a UU
+        // species (cinnabar checkpoint). The flag carries the prize from the
+        // judging to the gate desk, across a save if need be.
+        if (gSpecialVar_Result == 1 && sPassRound && FlagGet(FLAG_BADGE04_GET))
             FlagSet(FLAG_POX_CONTEST_KANGASKHAN_PENDING);
         else if (gSpecialVar_Result == 1)
             FlagSet(FLAG_POX_CONTEST_PRIZE_PENDING);
@@ -287,15 +288,18 @@ void PlasticOxContest_ClaimPrize(void)
     gSpecialVar_Result = FALSE;
     if (FlagGet(FLAG_POX_CONTEST_KANGASKHAN_PENDING))
     {
-        if (ScriptGiveMon(SPECIES_KANGASKHAN, POX_CONTEST_KANGASKHAN_LEVEL, ITEM_NONE) == MON_CANT_GIVE)
+        // Repeatable: every qualifying win sends one. A full party goes to the
+        // PC (POX_CONTEST_PRIZE_MON_PC); party and PC both full keeps the
+        // flag set so the Warden holds it until there is room.
+        u8 given = ScriptGiveMon(SPECIES_KANGASKHAN, POX_CONTEST_KANGASKHAN_LEVEL, ITEM_NONE);
+        StringCopy(gStringVar2, GetSpeciesName(SPECIES_KANGASKHAN));
+        if (given == MON_CANT_GIVE)
         {
-            StringCopy(gStringVar2, GetSpeciesName(SPECIES_KANGASKHAN));
+            gSpecialVar_Result = POX_CONTEST_PRIZE_MON_NO_ROOM;
             return;
         }
-        StringCopy(gStringVar2, GetSpeciesName(SPECIES_KANGASKHAN));
         FlagClear(FLAG_POX_CONTEST_KANGASKHAN_PENDING);
-        FlagSet(FLAG_POX_GIFT_PARK_KANGASKHAN);
-        gSpecialVar_Result = TRUE;
+        gSpecialVar_Result = (given == MON_GIVEN_TO_PC) ? POX_CONTEST_PRIZE_MON_PC : POX_CONTEST_PRIZE_MON_PARTY;
         return;
     }
     if (FlagGet(FLAG_POX_CONTEST_PRIZE_PENDING))

@@ -448,8 +448,11 @@ def battle_tests():
             assert not g.u32(g.syms['gBattleTypeFlags']),'double battle started with one Pokemon'
             g.run('Pox_Family')
         maps=[(p.parent.name,json.loads(p.read_text())) for p in (ROOT/'data/maps').glob('*/map.json')]
-        mapname,data=next((n,d) for n,d in maps if any(o.get('script')=='Pox_'+name for o in d.get('object_events',[])))
-        obj=next(o for o in data['object_events'] if o.get('script')=='Pox_'+name)
+        # Line-of-sight trainers (the 7F tower Rockets) keep the story script
+        # behind a PoxLavender_<name>Sight label that opens with trainerbattle.
+        scripts={'Pox_'+name,'PoxLavender_'+name+'Sight'}
+        mapname,data=next((n,d) for n,d in maps if any(o.get('script') in scripts for o in d.get('object_events',[])))
+        obj=next(o for o in data['object_events'] if o.get('script') in scripts)
         g.warp(mapname,obj['x'],obj['y']+1)
         g.tap(K.KEY_UP,hold=2,wait=12)
         for i in range(300):
