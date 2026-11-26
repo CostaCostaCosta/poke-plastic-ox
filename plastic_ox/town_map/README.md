@@ -1,13 +1,29 @@
 # Plastic Ox town-map concept
 
-**In-game fly map:** `build_fly_map.py` turns this concept's terrain into the
-ROM's region map (Fly, Town Map). It holds the v7 grid layout: the 13 fly
-destinations (towns plus the Pokémon League at Indigo Plateau), landmarks and
-route chains on the 28×15 region-map grid, plus each destination's visited flag
-and landing tile. Edit the layout there and rerun it; never hand-edit its
-outputs (listed in `../generated_manifest.json`). `fly_map_preview.png` is a
-labelled review image. Visited flags are set automatically on entering a town
-(`PoxFlyMap_MarkVisited` in `src/region_map.c`).
+**In-game fly map:** `build_fly_map.py` generates the ROM's region map (Fly
+Key, Town Map). It holds the v7 grid layout: the 13 fly destinations (towns
+plus the Pokémon League at Indigo Plateau), landmarks and route chains on the
+28×15 region-map grid, plus each destination's visited flag, landing tile and
+gym badge. Cell positions follow [the topology](../plastic_ox_topology.svg);
+the coast, sea and hills are derived from the cells, so the script no longer
+reads the concept art below. Edit the layout there and rerun it; never
+hand-edit its outputs (listed in `../generated_manifest.json`).
+`fly_map_preview.png` is a labelled review image.
+
+Two screen corners are covered by windows, so keep cells out of them: the fly
+map's name box (x ≥ 15 on rows 13–14) and the Town Map's title (x ≥ 20 on rows
+0–1).
+
+Engine side (`src/region_map.c`, `src/field_region_map.c`):
+
+- Entering a destination's map section sets its visited flag
+  (`PoxFlyMap_MarkVisited`), also on Continue.
+- Saves from before the fly map are backfilled once on Continue
+  (`PoxFlyMap_BackfillVisited`, save migration version 2): the furthest
+  destination the save proves it reached (badge, current map, last Pokémon
+  Center) marks every earlier one, so `TOWNS` must stay in story order.
+- With the Fly Key in the bag, A on a visited destination in the Town Map flies
+  there.
 
 Version status: these rendered assets predate the v7 implementation plan and
 must be refreshed after its topology is verified. Current design references

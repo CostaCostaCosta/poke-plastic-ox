@@ -90,7 +90,7 @@
 #include "constants/weather.h"
 #include "constants/vars.h"
 
-#define POX_SAVE_MIGRATION_VERSION 1
+#define POX_SAVE_MIGRATION_VERSION 2
 
 STATIC_ASSERT((B_FLAG_FOLLOWERS_DISABLED == 0 || OW_FOLLOWERS_ENABLED), FollowersFlagAssignedWithoutEnablingThem);
 
@@ -2228,14 +2228,18 @@ void CB2_ContinueSavedGame(void)
     // Route 103 May used these bits before she became a normal trainer. Clear
     // them once so old saves cannot accidentally complete future story flags
     // when the now-unused IDs are reassigned.
-    if (VarGet(VAR_POX_SAVE_MIGRATION_VERSION) < POX_SAVE_MIGRATION_VERSION)
+    if (VarGet(VAR_POX_SAVE_MIGRATION_VERSION) < 1)
     {
         FlagClear(0x82);
         FlagClear(0x2D3);
-        VarSet(VAR_POX_SAVE_MIGRATION_VERSION, POX_SAVE_MIGRATION_VERSION);
     }
 
     LoadSaveblockMapHeader();
+    // Version 2: saves from before the fly map get their visited towns back.
+    if (VarGet(VAR_POX_SAVE_MIGRATION_VERSION) < 2)
+        PoxFlyMap_BackfillVisited();
+    VarSet(VAR_POX_SAVE_MIGRATION_VERSION, POX_SAVE_MIGRATION_VERSION);
+    PoxFlyMap_MarkVisited();
     ClearDiveAndHoleWarps();
     trainerHillMapId = GetCurrentTrainerHillMapId();
     if (gMapHeader.mapLayoutId == LAYOUT_BATTLE_FRONTIER_BATTLE_PYRAMID_FLOOR)

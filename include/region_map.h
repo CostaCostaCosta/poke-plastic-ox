@@ -132,6 +132,7 @@ void ShowRegionMapForPokedexAreaScreen(struct RegionMap *regionMap);
 void PokedexAreaScreen_UpdateRegionMapVariablesAndVideoRegs(s16 x, s16 y);
 void CB2_OpenFlyMap(void);
 void PoxFlyMap_MarkVisited(void);
+void PoxFlyMap_BackfillVisited(void);
 extern bool8 gFlyMapOpenedFromKeyItem;
 bool8 IsRegionMapZoomed(void);
 void TrySetPlayerIconBlink(void);

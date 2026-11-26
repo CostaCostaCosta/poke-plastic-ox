@@ -100,8 +100,7 @@
       "name": "fly-map",
       "command": "python3 plastic_ox/town_map/build_fly_map.py  # --check verifies",
       "sources": [
-        "plastic_ox/town_map/build_fly_map.py (v7 grid layout, fly spots)",
-        "plastic_ox/town_map/plastic_ox_town_map_unlabeled.png (terrain)"
+        "plastic_ox/town_map/build_fly_map.py (v7 grid layout from plastic_ox_topology.svg, fly spots, derived terrain)"
       ],
       "outputs": [
         "graphics/pokenav/region_map/map.png",
