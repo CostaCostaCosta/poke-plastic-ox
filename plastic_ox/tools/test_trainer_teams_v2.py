@@ -42,6 +42,7 @@ from apply_trainer_teams_v2 import (  # noqa: E402
     BLAINE, BLAINE_COMPETITIVE_TEAM,
     AUTHORED_LEAGUE, LEAGUE_PARTIES, AUTHORED_TRAINERS, AUTHORED_PARTIES,
     split_block, ROUTE_GROUPS, minimum_level, expected_party_size,
+    substitute_allowed,
 )
 
 PARTY = P.ROOT / "src/data/trainers.party"
@@ -156,6 +157,12 @@ def main() -> int:
             problems.append(f"{tid}: authored party has no ROSTERS checkpoint")
         if tid not in parsed or parsed[tid].strip() != hand[tid].strip():
             problems.append(f"{tid}: trainers.party differs from plastic_ox/tools/authored_trainers.party")
+    # Substitute is reserved for boss battles (SUBSTITUTE_CLASSES).
+    for trainer in pox:
+        header, blocks = split_block(parsed[trainer])
+        if not substitute_allowed(header) and any(
+                "MOVE_SUBSTITUTE" in parse_mon(b)["moves"] for b in blocks):
+            problems.append(f"{trainer}: Substitute on a non-boss trainer")
     for trainer in sorted(ROSTERS):
         checkpoint, _roster = ROSTERS[trainer]
         legal = P.legal_for(checkpoint)

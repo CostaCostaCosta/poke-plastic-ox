@@ -1071,7 +1071,7 @@
       "MOVE_THUNDERBOLT",
       "MOVE_HIDDEN_POWER",
       "MOVE_TOXIC",
-      "MOVE_SUBSTITUTE"
+      "MOVE_THUNDER_WAVE"
      ],
      "ability": "Sturdy",
      "item": "Sitrus Berry",
@@ -1101,7 +1101,7 @@
       "MOVE_SUNNY_DAY",
       "MOVE_FIRE_BLAST",
       "MOVE_SOLAR_BEAM",
-      "MOVE_SUBSTITUTE"
+      "MOVE_IRON_TAIL"
      ],
      "ability": "Flash Fire",
      "item": "Sitrus Berry",
@@ -1444,7 +1444,7 @@
      "moves": [
       "MOVE_PSYCHIC",
       "MOVE_THUNDERBOLT",
-      "MOVE_SUBSTITUTE",
+      "MOVE_SHADOW_BALL",
       "MOVE_EXPLOSION"
      ],
      "ability": "Levitate",
@@ -2718,7 +2718,7 @@
       "MOVE_THUNDERBOLT",
       "MOVE_HIDDEN_POWER",
       "MOVE_TOXIC",
-      "MOVE_SUBSTITUTE"
+      "MOVE_THUNDER_WAVE"
      ],
      "ability": "Sturdy",
      "item": "Sitrus Berry",
@@ -3187,7 +3187,7 @@
       "MOVE_THUNDERBOLT",
       "MOVE_HIDDEN_POWER",
       "MOVE_TOXIC",
-      "MOVE_SUBSTITUTE"
+      "MOVE_THUNDER_WAVE"
      ],
      "ability": "Sturdy",
      "item": "Sitrus Berry",
@@ -3253,7 +3253,7 @@
       "MOVE_THUNDERBOLT",
       "MOVE_HIDDEN_POWER",
       "MOVE_TOXIC",
-      "MOVE_SUBSTITUTE"
+      "MOVE_THUNDER_WAVE"
      ],
      "ability": "Sturdy",
      "item": "Sitrus Berry",
@@ -3529,7 +3529,7 @@
       "MOVE_THUNDERBOLT",
       "MOVE_HIDDEN_POWER",
       "MOVE_TOXIC",
-      "MOVE_SUBSTITUTE"
+      "MOVE_THUNDER_WAVE"
      ],
      "ability": "Sturdy",
      "item": "Sitrus Berry",
@@ -3679,7 +3679,7 @@
       "MOVE_THUNDERBOLT",
       "MOVE_HIDDEN_POWER",
       "MOVE_TOXIC",
-      "MOVE_SUBSTITUTE"
+      "MOVE_THUNDER_WAVE"
      ],
      "ability": "Sturdy",
      "item": "Sitrus Berry",
@@ -3767,7 +3767,7 @@
      "moves": [
       "MOVE_FOCUS_PUNCH",
       "MOVE_HIDDEN_POWER",
-      "MOVE_SUBSTITUTE",
+      "MOVE_ROCK_SLIDE",
       "MOVE_ENDURE"
      ],
      "ability": "Vital Spirit",
@@ -5238,7 +5238,7 @@
       "MOVE_FIRE_BLAST",
       "MOVE_FOCUS_PUNCH",
       "MOVE_TOXIC",
-      "MOVE_SUBSTITUTE"
+      "MOVE_THUNDER_PUNCH"
      ],
      "ability": "Flame Body",
      "item": "Sitrus Berry",
@@ -5402,7 +5402,7 @@
      "species": "SPECIES_PONYTA",
      "level": 11,
      "moves": [
-      "MOVE_SUBSTITUTE",
+      "MOVE_IRON_TAIL",
       "MOVE_OVERHEAT",
       "MOVE_BODY_SLAM",
       "MOVE_TOXIC"
@@ -6263,7 +6263,7 @@
       "MOVE_SURF",
       "MOVE_ICE_BEAM",
       "MOVE_HIDDEN_POWER",
-      "MOVE_SUBSTITUTE"
+      "MOVE_TOXIC"
      ],
      "ability": "Shell Armor",
      "item": "Deep Sea Tooth",
@@ -6537,7 +6537,7 @@
       "MOVE_THUNDERBOLT",
       "MOVE_HIDDEN_POWER",
       "MOVE_TOXIC",
-      "MOVE_SUBSTITUTE"
+      "MOVE_THUNDER_WAVE"
      ],
      "ability": "Sturdy",
      "item": "Sitrus Berry",
@@ -6645,7 +6645,7 @@
       "MOVE_FIRE_BLAST",
       "MOVE_FOCUS_PUNCH",
       "MOVE_TOXIC",
-      "MOVE_SUBSTITUTE"
+      "MOVE_THUNDER_PUNCH"
      ],
      "ability": "Flame Body",
      "item": "Sitrus Berry",
@@ -7255,7 +7255,7 @@
      "species": "SPECIES_SLOWBRO",
      "level": 51,
      "moves": [
-      "MOVE_SUBSTITUTE",
+      "MOVE_ICE_BEAM",
       "MOVE_FOCUS_PUNCH",
       "MOVE_SURF",
       "MOVE_PSYCHIC"
@@ -7374,7 +7374,7 @@
      "species": "SPECIES_DRAGONITE",
      "level": 53,
      "moves": [
-      "MOVE_SUBSTITUTE",
+      "MOVE_FLAMETHROWER",
       "MOVE_FOCUS_PUNCH",
       "MOVE_THUNDERBOLT",
       "MOVE_ICE_BEAM"
@@ -8140,7 +8140,7 @@
      "species": "SPECIES_PERSIAN",
      "level": 38,
      "moves": [
-      "MOVE_SUBSTITUTE",
+      "MOVE_IRON_TAIL",
       "MOVE_RETURN",
       "MOVE_SHADOW_BALL",
       "MOVE_HYPER_BEAM"
