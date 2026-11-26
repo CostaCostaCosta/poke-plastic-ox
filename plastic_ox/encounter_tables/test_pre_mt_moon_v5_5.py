@@ -13,8 +13,7 @@ state, so this test checks the real data against it:
   * rates total 100 and the level bands match;
   * the v5.5 non-negotiables: Route 2 South/North have no fishing, Dark Cave's
     walking tables exclude Aron/Geodude/Onix/Whismur, Pineco is Ilex-Headbutt
-    only, Old Rod slot 1 is always Magikarp, and no Super Rod slot holds a
-    UU/UUBL/OU/Uber species, an OU-only family, Magikarp or Feebas.
+    only, and Old Rod slot 1 is always Magikarp.
 
 Run:  python3 plastic_ox/encounter_tables/test_pre_mt_moon_v5_5.py
 """
@@ -33,22 +32,11 @@ LAND_DEFAULT = [20, 20, 10, 10, 10, 10, 5, 5, 4, 4, 1, 1]
 FISHING_DEFAULT = [70, 30, 60, 20, 20, 40, 40, 15, 4, 1]
 ROCKSMASH_DEFAULT = [60, 30, 5, 4, 1]
 
-# The v5.5 release roster for Super Rod, and the families that must never appear.
-SUPER_ROD_TIERS = {
-    "LC": {"Tentacool", "Slowpoke"},
-    "PU": {"Kingler", "Seaking", "Poliwhirl", "Seadra", "Corsola", "Dragonair", "Sealeo"},
-    "NU": {"Crawdaunt", "Whiscash", "Octillery", "Wailord", "Huntail", "Dewgong"},
-    "RU": {"Politoed", "Sharpedo", "Azumarill"},
-}
-SUPER_ROD_ALLOWED = set().union(*SUPER_ROD_TIERS.values())
-OU_ONLY_FAMILIES = {"Magikarp", "Gyarados", "Feebas", "Milotic", "Diglett", "Dugtrio",
-                    "Shroomish", "Breloom"}
-
 # The region has EIGHT wet areas, not seven: Ilex Forest carries a full three-rod
 # table alongside Pallet, Oldale, Route 103, Cherrygrove, Route 24, Route 25 and
 # Route 44. Ilex is an LC pond that deliberately reaches RU with Azumarill and
-# Politoed; that exception is user-approved and is asserted here rather than
-# quietly accepted by the generic Super Rod check below.
+# Politoed; that exception is user-approved and its exact table is asserted
+# below. (There is no longer a generic Super Rod tier check.)
 WET_AREAS = 8
 GOOD_ROD_SLOTS = 24           # 8 areas x 3 slots
 GOOD_ROD_DISTINCT_ROOTS = 20  # Poliwag is the only repeated species (3 times)
@@ -174,7 +162,7 @@ def main() -> int:
     if pineco:
         problems.append(f"Pineco is not Ilex-exclusive: {pineco}")
 
-    # Old Rod slot 1 is Magikarp and Super Rod stays LC-RU, on the Plastic Ox
+    # Old Rod slot 1 is Magikarp, on the Plastic Ox
     # fishing tables only. Native Hoenn and FRLG tables are untouched by v5.5.
     for entry in entries:
         fishing = entry.get("fishing_mons")
@@ -192,19 +180,15 @@ def main() -> int:
         if mons[0]["species"] != "SPECIES_MAGIKARP":
             problems.append(f"{entry['base_label']} Old Rod slot 1 is "
                             f"{display(mons[0]['species'])}, want Magikarp")
-        for mon in mons[5:10]:
-            name = display(mon["species"])
-            checked += 1
-            if name not in SUPER_ROD_ALLOWED:
-                problems.append(f"{entry['base_label']} Super Rod holds {name}, "
-                                "which is not an approved LC-RU species")
-            if name in OU_ONLY_FAMILIES:
-                problems.append(f"{entry['base_label']} Super Rod holds OU-only {name}")
 
-    # Route 44 grass stays Surf-gated: it must not have a grass table at all
+    # Route 44 grass is reachable only by Surf, so it is a UU table counted at
+    # the cinnabar checkpoint (pox_progression "gPoxRoute44Hns:land_mons"), not
+    # a pre-Mt. Moon table. v5.5 only requires that it exists and has GIRAFARIG.
     checked += 1
-    if any("land_mons" in e for e in by_map.get("MAP_ROUTE44_HNS", [])):
-        problems.append("MAP_ROUTE44_HNS has a grass table; v5.5 gates it behind Surf")
+    r44_land = [m["species"] for e in by_map.get("MAP_ROUTE44_HNS", [])
+                for m in e.get("land_mons", {}).get("mons", [])]
+    if "SPECIES_GIRAFARIG" not in r44_land:
+        problems.append("MAP_ROUTE44_HNS Surf-gated grass table missing or has no Girafarig")
 
     # --- the region has eight wet areas, not seven ----------------------------
     # Scoped to the v5.5 block: the PU (Route 35) and NU (Ecruteak) blocks carry

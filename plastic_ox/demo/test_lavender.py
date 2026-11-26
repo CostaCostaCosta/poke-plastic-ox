@@ -10,7 +10,9 @@ Proves, with the D-pad wherever a transition is under test:
 * in the house FUJI gives the SURF KEY, sets FLAG_POX_STORY_FUJI and offers EEVEE;
 * the house and the (10,19) House1 door both walk back to town;
 * the Soul House door (22,19) walks in and back out;
-* the tower's encounter tables include the UU MISDREAVUS (static check).
+* the tower's encounter tables include the UU MISDREAVUS (static check);
+* Routes 8, 7 and 21 carry UU-capped gPoxUU tables (static check);
+* the third 7F Rocket is Executive PROTON; the 1F GROWLITHE mourner is an old woman.
 """
 import json
 import re
@@ -49,6 +51,58 @@ def static_checks():
             seen.add(sp)
     assert 'SPECIES_MISDREAVUS' in seen
     print('ok  tower encounters are UU-capped and include MISDREAVUS', flush=True)
+
+    # Routes 8, 7 and 21 follow the tower on the Lavender -> Cinnabar leg: one
+    # UU-capped gPoxUU table each, levels inside the cinnabar cap (42), with
+    # at least one UU species in the grass.
+    for m, label in [('MAP_ROUTE8', 'gPoxUURoute8'), ('MAP_ROUTE7', 'gPoxUURoute7'),
+                     ('MAP_ROUTE7_HNS', 'gPoxUURoute7Hns'),
+                     ('MAP_ROUTE21_NORTH', 'gPoxUURoute21North'),
+                     ('MAP_ROUTE21_SOUTH', 'gPoxUURoute21South')]:
+        tables = [e for e in data['wild_encounter_groups'][0]['encounters'] if e.get('map') == m]
+        assert len(tables) == 1 and tables[0]['base_label'] == label, (m, tables)
+        land_tiers = set()
+        for field in ('land_mons', 'water_mons', 'fishing_mons'):
+            for i, mon in enumerate(tables[0].get(field, {}).get('mons', [])):
+                sp = mon['species']
+                assert 36 <= mon['min_level'] <= mon['max_level'] <= 42, (m, mon)
+                if field == 'fishing_mons' and i == 0:
+                    assert sp == 'SPECIES_MAGIKARP', (m, mon)  # v5.5 Old Rod rule
+                    continue
+                tier = tiers.split(f'[{sp}] = EVO_TIER_', 1)[1].split(',', 1)[0]
+                assert tier in order, (m, sp, tier)
+                if field == 'land_mons':
+                    land_tiers.add(tier)
+                # National Park Thursday / Warden-prize exclusives, and the
+                # unevolved forms this Lv36+ band would long since have evolved.
+                assert sp[8:] not in {'KANGASKHAN', 'GIRAFARIG', 'SCYTHER', 'PINSIR', 'GROWLITHE', 'VULPIX',
+                                      'MEOWTH', 'EKANS', 'SANDSHREW', 'ODDISH', 'BELLSPROUT', 'SNUBBULL',
+                                      'SPOINK', 'SKIPLOOM', 'TENTACOOL', 'CHINCHOU', 'HORSEA', 'KRABBY',
+                                      'SLOWPOKE'}, (m, sp)
+        assert 'UU' in land_tiers, (m, land_tiers)
+    print('ok  routes 8, 7 and 21 have UU-capped gPoxUU tables (levels 30-42)', flush=True)
+
+    party = (ROOT / 'src/data/trainers.party').read_text()
+    block = party.split('=== TRAINER_PLASTIC_OX_TOWERGRUNT3 ===', 1)[1].split('\n\n', 1)[0]
+    assert 'Name: PROTON' in block and 'Class: Rocket Executive Hns' in block and 'Pic: Proton Hns' in block, block
+    print('ok  the last tower Rocket (TOWERGRUNT3) is Executive PROTON', flush=True)
+
+
+def gfx_id(name):
+    """OBJ_EVENT_GFX_* value from the enum in event_objects.h."""
+    text = (ROOT / 'include/constants/event_objects.h').read_text()
+    body = text[text.index('OBJ_EVENT_GFX_BRENDAN_NORMAL'):]
+    names = re.findall(r'^\s*(OBJ_EVENT_GFX_\w+)\s*,', body, re.M)
+    return names.index(name)
+
+
+def object_gfx(g, local_id):
+    stride = g.sizes['gObjectEvents'] // 16
+    for i in range(16):
+        a = g.syms['gObjectEvents'] + i * stride
+        if g.u8(a) & 1 and g.u8(a + 8) == local_id:
+            return g.u8(a + 4) | (g.u8(a + 5) << 8)
+    return None
 
 
 def walk_in(g, approach, key, name, stage):
@@ -100,6 +154,14 @@ def main():
 
     walk_in(g, (22, 7), 'UP', 'PokemonTower_1F_Frlg', 'town -> tower')
     shot(g, 'lavender_tower_1f')
+    # 1F object 2 is the CHANNELER (checks the enum parse); object 3 is the
+    # mourner whose GROWLITHE "would be fifty now": an old woman, not a girl.
+    navigate(g, (16, 10))  # objects spawn only near the camera
+    g.frame(30)
+    assert object_gfx(g, 2) == gfx_id('OBJ_EVENT_GFX_CHANNELER'), object_gfx(g, 2)
+    assert object_gfx(g, 3) == gfx_id('OBJ_EVENT_GFX_OLD_WOMAN_FRLG'), object_gfx(g, 3)
+    print('ok  1F GROWLITHE mourner is drawn as an old woman', flush=True)
+    navigate(g, (11, 18))  # back to the door mat
     walk_in(g, (g.state()['x'], g.state()['y'] + 1), 'DOWN', TOWN, 'tower -> town')
     assert (g.state()['x'], g.state()['y']) in ((22, 7), (22, 6)), g.describe()
     walk_in(g, (22, 7), 'UP', 'PokemonTower_1F_Frlg', 'town -> tower again')
@@ -127,6 +189,8 @@ def main():
         navigate(g, spot)
         r = talk(g, key)
         assert r['battle'], (n, r)
+        if n == 3:
+            assert 'PROTON' in ' '.join(r['text']), r
         finish_trainer(g, True)
         settle(g)
         # The battle callback leaves this diagnostic flag stale on the field;
@@ -134,7 +198,7 @@ def main():
         g.write(g.syms['gBattleTypeFlags'], 0, 4)
         assert g.flag(f'FLAG_POX_HIDE_LAVENDER_GRUNT_{n}'), n
         assert at(g, 'PokemonTower_7F_Frlg')
-    print('ok  beat the three Rocket grunts', flush=True)
+    print('ok  beat two Rocket grunts and Executive PROTON', flush=True)
 
     navigate(g, (11, 5))
     talk(g, K.KEY_UP)

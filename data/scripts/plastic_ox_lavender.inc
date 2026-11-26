@@ -369,7 +369,7 @@ PoxLavender_Text_T6Channeler3::
 	.string "...The top floor is very cold\nnow... colder than the dead like\pit...$"
 
 PoxLavender_Text_Grunt3Intro::
-	.string "You got past both of them? Then\nyou've seen it too, haven't you.\pThe roads that weren't there\nlast year.\pWe just want to know who did it\nbefore somebody else finds out\pfirst.$"
+	.string "So you got past both of my\ngrunts. I'm PROTON, an EXECUTIVE\pof TEAM ROCKET.\pYou've seen the roads that\nweren't there last year. We'll\pknow who moved them before\nanyone else does.$"
 
 PoxLavender_Text_Grunt3Defeat::
 	.string "Go on, then. But whatever's\nmoving the roads, it isn't going\pto stop for you.$"

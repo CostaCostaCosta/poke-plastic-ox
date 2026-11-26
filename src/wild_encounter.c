@@ -33,6 +33,7 @@
 #include "constants/weather.h"
 #include "plastic_ox.h"
 #include "plastic_ox_contest.h"
+#include "rtc.h"
 #include "constants/moves.h"
 
 extern const u8 EventScript_SprayWoreOff[];
@@ -675,6 +676,18 @@ void PlasticOx_PrepareSudowoodoMoves(void)
     SetMonMoveSlot(&gParties[B_TRAINER_OPPONENT_A][0], MOVE_LOW_KICK, 3);
 }
 
+// National Park, Thursday (RTC), after the 4th badge (UU unlock): one land
+// encounter in four comes from sPoxParkThursday (SCYTHER, PINSIR), which no
+// other wild table holds.
+#define POX_PARK_THURSDAY_CHANCE 25
+bool32 PlasticOx_IsParkThursdayEncounter(void)
+{
+    return gMapHeader.mapLayoutId == LAYOUT_NATIONAL_PARK_NORMAL_HNS
+        && FlagGet(FLAG_BADGE04_GET)
+        && GetDayOfWeek() == WEEKDAY_THU
+        && Random() % 100 < POX_PARK_THURSDAY_CHANCE;
+}
+
 #ifdef BUGFIX
 #define TRY_GET_ABILITY_INFLUENCED_WILD_MON_INDEX(wildPokemon, type, ability, ptr, count) TryGetAbilityInfluencedWildMonIndex(wildPokemon, type, ability, ptr, count)
 #else
@@ -688,6 +701,8 @@ bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, enum WildPok
 
     if (area == WILD_AREA_LAND && PlasticOxContest_IsActive())
         return GenerateWeightedWildMon(PlasticOxContest_IsPassRound() ? &sPoxParkContestPassDay : &sPoxParkContestDay, 0);
+    if (area == WILD_AREA_LAND && PlasticOx_IsParkThursdayEncounter())
+        return GenerateWeightedWildMon(&sPoxParkThursdayDay, 0);
     if (wildMonInfo->weights != NULL)
         return GenerateWeightedWildMon(wildMonInfo, flags);
 

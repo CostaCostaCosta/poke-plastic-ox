@@ -10,6 +10,7 @@
 #include "random.h"
 #include "rtc.h"
 #include "safari_zone.h"
+#include "script_pokemon_util.h"
 #include "script.h"
 #include "string_util.h"
 #include "plastic_ox_contest.h"
@@ -20,6 +21,8 @@
 
 #define CONTEST_BALLS 20
 #define CONTEST_STEPS 500
+// Cinnabar (UU) checkpoint band, matching Routes 8/7/21.
+#define POX_CONTEST_KANGASKHAN_LEVEL 36
 
 enum { PENDING_NONE = 0, PENDING_AFTER_BATTLE, PENDING_FINISH };
 
@@ -62,7 +65,8 @@ static bool32 HasPendingPrize(void)
     return FlagGet(FLAG_POX_CONTEST_PRIZE_PENDING)
         || FlagGet(FLAG_POX_CONTEST_EVERSTONE_PENDING)
         || FlagGet(FLAG_POX_CONTEST_SITRUS_PENDING)
-        || FlagGet(FLAG_POX_CONTEST_ORAN_PENDING);
+        || FlagGet(FLAG_POX_CONTEST_ORAN_PENDING)
+        || FlagGet(FLAG_POX_CONTEST_KANGASKHAN_PENDING);
 }
 
 void PlasticOxContest_CheckEntry(void)
@@ -237,7 +241,12 @@ void PlasticOxContest_Judge(void)
     if (sHasCatch)
     {
         gSpecialVar_Result = score >= sRivalScore ? 1 : score + 40 >= sRivalScore ? 2 : 3;
-        if (gSpecialVar_Result == 1)
+        // Thursday's Warden round pays out a KANGASKHAN once, but only after
+        // the 4th badge: it is a UU species (cinnabar checkpoint).
+        if (gSpecialVar_Result == 1 && sPassRound && FlagGet(FLAG_BADGE04_GET)
+         && !FlagGet(FLAG_POX_GIFT_PARK_KANGASKHAN))
+            FlagSet(FLAG_POX_CONTEST_KANGASKHAN_PENDING);
+        else if (gSpecialVar_Result == 1)
             FlagSet(FLAG_POX_CONTEST_PRIZE_PENDING);
         else if (gSpecialVar_Result == 2)
             FlagSet(FLAG_POX_CONTEST_EVERSTONE_PENDING);
@@ -276,6 +285,19 @@ void PlasticOxContest_ClaimPrize(void)
     u16 flag;
 
     gSpecialVar_Result = FALSE;
+    if (FlagGet(FLAG_POX_CONTEST_KANGASKHAN_PENDING))
+    {
+        if (ScriptGiveMon(SPECIES_KANGASKHAN, POX_CONTEST_KANGASKHAN_LEVEL, ITEM_NONE) == MON_CANT_GIVE)
+        {
+            StringCopy(gStringVar2, GetSpeciesName(SPECIES_KANGASKHAN));
+            return;
+        }
+        StringCopy(gStringVar2, GetSpeciesName(SPECIES_KANGASKHAN));
+        FlagClear(FLAG_POX_CONTEST_KANGASKHAN_PENDING);
+        FlagSet(FLAG_POX_GIFT_PARK_KANGASKHAN);
+        gSpecialVar_Result = TRUE;
+        return;
+    }
     if (FlagGet(FLAG_POX_CONTEST_PRIZE_PENDING))
     {
         item = ITEM_SUN_STONE;

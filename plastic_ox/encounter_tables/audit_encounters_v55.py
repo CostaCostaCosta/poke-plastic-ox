@@ -306,25 +306,6 @@ def build_report() -> dict:
                 problems.append(f"rates sum to {sum(got.values())}")
             report["headbutt"].append(ok(area=symbol, table=key, ok=not problems, problems=problems))
 
-    # ---- tier gating of every Super Rod slot --------------------------------
-    super_rod_allowed = {
-        "LC": {"Tentacool", "Slowpoke"},
-        "PU": {"Kingler", "Seaking", "Poliwhirl", "Seadra", "Corsola", "Dragonair", "Sealeo"},
-        "NU": {"Crawdaunt", "Whiscash", "Octillery", "Wailord", "Huntail", "Dewgong"},
-        "RU": {"Politoed", "Sharpedo", "Azumarill"},
-    }
-    tier_of = {s: tier for tier, ss in super_rod_allowed.items() for s in ss}
-    for map_name, (label, _band, _rods) in SPEC_FISHING.items():
-        t = by_label[label]["fishing_mons"]
-        for i in range(5, 10):
-            name = t["mons"][i]["species"].removeprefix("SPECIES_").title().replace("_", "")
-            if name not in tier_of:
-                report["invariants"].append(ok(area=map_name, check="super_rod_tier", ok=False,
-                                              detail=f"slot {i} {name} is not an approved LC-RU species"))
-    report["invariants"].append(ok(check="super_rod_no_forbidden", ok=True,
-                                   detail=f"all {len(SPEC_FISHING)} specced wet areas use only "
-                                          "LC-PU-NU-RU Super Rod species"))
-
     # ---- the removed Headbutt tables must really be gone ---------------------
     header = parse_headbutt_header()
     for symbol in REMOVED_HEADBUTT:

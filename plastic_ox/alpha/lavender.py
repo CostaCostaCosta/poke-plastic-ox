@@ -97,8 +97,9 @@ LINES = {
     'T6Channeler1': "...Turn back... no... keep going... he needs someone...",
     'T6Channeler2': "...They asked the ghosts how to bring a POKéMON back... The ghosts laughed...",
     'T6Channeler3': "...The top floor is very cold now... colder than the dead like it...",
-    # --- Rocket grunt 3 (the other two are build_story.py's TowerGrunt1/2) ---
-    'Grunt3Intro': "You got past both of them? Then you've seen it too, haven't you. The roads that weren't there last year.|We just want to know who did it before somebody else finds out first.",
+    # --- Rocket grunts 1-2 are build_story.py's TowerGrunt1/2 ---
+    # --- Rocket Executive PROTON: the last Rocket before FUJI (TOWERGRUNT3 id) ---
+    'Grunt3Intro': "So you got past both of my grunts. I'm PROTON, an EXECUTIVE of TEAM ROCKET.|You've seen the roads that weren't there last year. We'll know who moved them before anyone else does.",
     'Grunt3Defeat': "Go on, then. But whatever's moving the roads, it isn't going to stop for you.",
     # --- FUJI ---
     'TowerFujiWaiting': "FUJI: Please, be careful. Those men are not cruel. They are frightened, and that is worse.",
@@ -323,6 +324,9 @@ def install(read, put):
             if n:
                 o.update(script=f'Pox_TowerGrunt{n}', flag=f'FLAG_POX_HIDE_LAVENDER_GRUNT_{n}',
                          trainer_type='TRAINER_TYPE_NONE', trainer_sight_or_berry_tree_id='0')
+            if s in ('PokemonTower_1F_EventScript_Woman1', P + 'T1Woman1'):
+                # She has visited her GROWLITHE for fifty years: an old woman.
+                o['graphics_id'] = 'OBJ_EVENT_GFX_OLD_WOMAN_FRLG'
             if o['graphics_id'] == 'OBJ_EVENT_GFX_MR_FUJI':
                 o.update(script=P + 'TowerFuji', flag='FLAG_POX_FUJI_RESCUED')
         # The FRLG rival (2F) and Silph Scope ghost (6F) scenes use FRLG vars
@@ -357,7 +361,7 @@ def install(read, put):
     put(path, s)
     path = 'src/data/trainers.party'
     s = read(path)
-    head = ('=== TRAINER_PLASTIC_OX_TOWERGRUNT3 ===\nName: GRUNT\nClass: Team Rocket Frlg\nPic: Rocket Grunt M Frlg\n'
+    head = ('=== TRAINER_PLASTIC_OX_TOWERGRUNT3 ===\nName: PROTON\nClass: Rocket Executive Hns\nPic: Proton Hns\n'
             'Gender: Male\nMusic: Male\nDouble Battle: No\nAI: Basic Trainer / Smart Switching / PP Stall Prevention\n\n')
     m = re.search(r'^=== TRAINER_PLASTIC_OX_TOWERGRUNT3 ===\n.*?\n\n', s, flags=re.M | re.S)
     if m:  # party body belongs to plastic_ox/tools/apply_trainer_teams_v2.py
