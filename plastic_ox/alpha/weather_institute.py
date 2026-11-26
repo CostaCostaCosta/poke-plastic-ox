@@ -201,6 +201,19 @@ script(f"""
     	goto Pox_WI_Vale_Won
     Pox_WI_Vale_Won::
     	msgbox Pox_Text_WI_ValePost, MSGBOX_DEFAULT
+    	goto Pox_WI_Vale_Scope
+
+    @ VALE lends the SILPH SCOPE (identifies the POKéMON TOWER's ghosts; the
+    @ battle engine checks the bag). A key item cannot be discarded, so the bag
+    @ itself is the record; saves that finished the trials before this gift
+    @ get it the next time they talk to VALE.
+    Pox_WI_Vale_Scope::
+    	checkitem ITEM_SILPH_SCOPE
+    	goto_if_eq VAR_RESULT, TRUE, Pox_WI_Vale_ScopeHeld
+    	msgbox Pox_Text_WI_ValeScope, MSGBOX_DEFAULT
+    	giveitem ITEM_SILPH_SCOPE
+    	msgbox Pox_Text_WI_ValeScopeAfter, MSGBOX_DEFAULT
+    Pox_WI_Vale_ScopeHeld::
     	release
     	end
 
@@ -215,8 +228,7 @@ script(f"""
     	lock
     	faceplayer
     	msgbox Pox_Text_WI_ValeAfter, MSGBOX_DEFAULT
-    	release
-    	end
+    	goto Pox_WI_Vale_Scope
     """)
 string("Pox_Text_WI_ValeWait",
        "VALE, SILPH CO. systems research.|"
@@ -236,6 +248,13 @@ string("Pox_Text_WI_ValePost",
        "closed, but the data lines still run.|"
        "They're investigating something similar. The DIRECTOR will want to see you "
        "downstairs.")
+string("Pox_Text_WI_ValeScope",
+       "One more thing. SILPH lends these to its field teams: a SILPH SCOPE.|"
+       "It separates a signal from the noise around it. Shapes, too.|"
+       "The keepers at LAVENDER's POKéMON TOWER say some visitors up there can't be "
+       "made out at all. If your road goes that way, take it with you.")
+string("Pox_Text_WI_ValeScopeAfter",
+       "Keep it in your bag. It works on its own once you're inside the tower.")
 string("Pox_Text_WI_ValeAfter",
        "My colleagues at DEVON believe we're witnessing natural adaptation.|"
        "But adaptation takes time.|"

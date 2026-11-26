@@ -110,6 +110,19 @@ Pox_WI_Vale::
 	goto Pox_WI_Vale_Won
 Pox_WI_Vale_Won::
 	msgbox Pox_Text_WI_ValePost, MSGBOX_DEFAULT
+	goto Pox_WI_Vale_Scope
+
+@ VALE lends the SILPH SCOPE (identifies the POKéMON TOWER's ghosts; the
+@ battle engine checks the bag). A key item cannot be discarded, so the bag
+@ itself is the record; saves that finished the trials before this gift
+@ get it the next time they talk to VALE.
+Pox_WI_Vale_Scope::
+	checkitem ITEM_SILPH_SCOPE
+	goto_if_eq VAR_RESULT, TRUE, Pox_WI_Vale_ScopeHeld
+	msgbox Pox_Text_WI_ValeScope, MSGBOX_DEFAULT
+	giveitem ITEM_SILPH_SCOPE
+	msgbox Pox_Text_WI_ValeScopeAfter, MSGBOX_DEFAULT
+Pox_WI_Vale_ScopeHeld::
 	release
 	end
 
@@ -124,8 +137,7 @@ Pox_WI_Vale_After::
 	lock
 	faceplayer
 	msgbox Pox_Text_WI_ValeAfter, MSGBOX_DEFAULT
-	release
-	end
+	goto Pox_WI_Vale_Scope
 
 Pox_Text_WI_ValeWait::
 	.string "VALE, SILPH CO. systems\nresearch.\pMy model needs DEVON's\nenvironmental readings first.\lLINDEN is running that trial.\pCome back once LINDEN has the\nnumbers.$"
@@ -138,6 +150,12 @@ Pox_Text_WI_ValeDefeat::
 
 Pox_Text_WI_ValePost::
 	.string "Our model predicted the\natmospheric changes during that\lbattle almost perfectly.\pPerhaps the world is more\npredictable than we realized.\pI'll forward these results to\nour head office in SAFFRON. The\lroads there are closed, but the\ldata lines still run.\pThey're investigating something\nsimilar. The DIRECTOR will want\lto see you downstairs.$"
+
+Pox_Text_WI_ValeScope::
+	.string "One more thing. SILPH lends\nthese to its field teams: a\lSILPH SCOPE.\pIt separates a signal from the\nnoise around it. Shapes, too.\pThe keepers at LAVENDER's\nPOKéMON TOWER say some visitors\lup there can't be made out at\lall. If your road goes that way,\ltake it with you.$"
+
+Pox_Text_WI_ValeScopeAfter::
+	.string "Keep it in your bag. It works on\nits own once you're inside the\ltower.$"
 
 Pox_Text_WI_ValeAfter::
 	.string "My colleagues at DEVON believe\nwe're witnessing natural\ladaptation.\pBut adaptation takes time.\pSome of the patterns we've\nobserved were present almost\limmediately.\pThat's what interests me.$"

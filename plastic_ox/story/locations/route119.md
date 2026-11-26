@@ -25,7 +25,7 @@ A river gorge climbing through wet forest, crossed by three wooden decks, with a
 1. **The crossing has a face.** At `(39,8)` the generated gate `PoxRegion_route119_fortree_a` still refuses passage until `FLAG_POX_STORY_WEATHER`, but now speaks as the Silph ENGINEER at `(38,7)` (`Pox_WI_Engineer`): Devon's sensors cover the gorge, Silph's model checks itself against them live, and the team inside needs a TRAINER. The engineer is hidden by `FLAG_POX_STORY_WEATHER` and reappears on 1F `(1,11)` (`Pox_WI_EngineerInside`) afterwards.
 2. **The Director frames the project.** 1F `(10,5)` `Pox_WI_Director`: "Devon brought the instruments. Silph brought the computers. We brought decades of weather observations… Mostly, we have better questions." Sends the player upstairs; Devon goes first.
 3. **Trial 1 — Devon, rain.** 2F `(11,6)` `Pox_WI_Devon`, LINDEN (`TRAINER_PLASTIC_OX_WEATHER_DEVON`, id 957, Lv33–36 rain/Swift Swim). Requires badge 3. Victory flag `FLAG_POX_TRAINER_WEATHER_DEVON`.
-4. **Trial 2 — Silph, sun and prediction.** 2F `(18,6)` `Pox_WI_Vale`, VALE (`TRAINER_PLASTIC_OX_WEATHER`, id 872, Lv33–36 sun). Refuses to battle until trial 1 is won. Afterwards forwards the results to Silph's head office in SAFFRON — "the roads there are closed, but the data lines still run."
+4. **Trial 2 — Silph, sun and prediction.** 2F `(18,6)` `Pox_WI_Vale`, VALE (`TRAINER_PLASTIC_OX_WEATHER`, id 872, Lv33–36 sun). Refuses to battle until trial 1 is won. Afterwards forwards the results to Silph's head office in SAFFRON — "the roads there are closed, but the data lines still run." — then lends the player a SILPH SCOPE for LAVENDER's Pokémon Tower (`Pox_WI_Vale_Scope`; the bag is the record, so a save that finished the trials earlier gets it on the next talk). The battle engine's tower ghost check (`CheckSilphScopeInPokemonTower`) needs the scope in the bag.
 5. **Conclusion.** With both trainer flags set, the Director sets `FLAG_POX_STORY_WEATHER`. Nothing downstream changed: the crossing, `PoxRegion_Arrival_FortreeCity` (`FLAG_POX_REACHED_FORTREE`) and `Pox_Winona` already key on that flag. Gabby/Ty, the Kecleon and badge 4 still hold Fortree's east exit.
 6. **Reveal-ladder step 6, reconciled with the brief.** The researchers' disagreement is scientific: Devon reads the fast resettling of habitats as adaptability; Silph notes the patterns were present too soon for adaptation; the Institute collects evidence. The Director's post-event line keeps the canonical step — the habitat lines keep moving — and adds that each move lands somewhere suitable.
 7. **Optional research files.** Six `Pox_WI_File00x` signs (two to five boxes each) on the 1F/2F racks and desks; none changes state.
@@ -41,12 +41,13 @@ A river gorge climbing through wet forest, crossed by three wooden decks, with a
 | Engineer, indoors | 1F `(1,11)` `Pox_WI_EngineerInside` | hidden via `FLAG_TEMP_1` (1F `ON_TRANSITION`) until `FLAG_POX_STORY_WEATHER` | "sensor line pulled off the crossing" |
 | Director | 1F `(10,5)` `Pox_WI_Director` | intro → halfway (trial 1 won) → conclude (both won; sets flag) → after | concise; only the conclusion writes state |
 | LINDEN (Devon) | 2F `(11,6)` `Pox_WI_Devon` | badge 3; talk-triggered | battle → post line; after event: adaptability speech |
-| VALE (Silph) | 2F `(18,6)` `Pox_WI_Vale` | trial 1 won; talk-triggered | battle → post line (Saffron); after event: "adaptation takes time" |
+| VALE (Silph) | 2F `(18,6)` `Pox_WI_Vale` | trial 1 won; talk-triggered | battle → post line (Saffron) → SILPH SCOPE; after event: "adaptation takes time" (gives the scope if missing) |
 | Research files 001/003/004 | 2F racks `(5-7,2)`, `(10-14,2)`; desk `(8-9,3-5)` | always | `MSGBOX_SIGN` |
 | Research files 002/005/006 | 1F rack `(9-12,2)`; cabinet `(13-14,1)`; desk `(16-17,4-6)` | always | `MSGBOX_SIGN` |
 | Institute door | `(6,32)` → `Route119_WeatherInstitute_1F` | always | plain warp |
 | Other 1F/2F staff | `Pox_FacilityWorker` | always | unchanged generic line; Aqua-sprite actors stay hidden |
-| MIMIC CIRCLE, Kecleon, berry trees, hidden items | route | — | unchanged by this pass |
+| Invisible Kecleon | `(31,6)`, `(25,15)` `Route119_EventScript_Kecleon1/2` | hidden by `FLAG_HIDE_ROUTE_119_KECLEON_1/2` once beaten, caught or fled | "something unseeable" until the player holds the DEVON SCOPE (given after Winona), then the Emerald reveal and a Lv30 battle |
+| MIMIC CIRCLE, berry trees, hidden items | route | — | unchanged by this pass |
 
 ## Project Equilibrium teams (ADV RU, `fortree` checkpoint, cap 36)
 

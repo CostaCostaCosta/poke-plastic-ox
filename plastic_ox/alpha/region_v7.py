@@ -252,6 +252,11 @@ def apply_region(read, put):
                     o['movement_type']='MOVEMENT_TYPE_FACE_DOWN'
                 if o.get('script')=='0x0' or any(x in o.get('script','') for x in ['Wally','Cozmo','Kecleon','BridgeAqua']):
                     o['flag']='FLAG_POX_HIDE_UNUSED_ACTOR'
+                # Route 119's invisible KECLEON stay, revealed with the DEVON
+                # SCOPE that LINDEN hands over after Winona (as in Emerald).
+                m=re.fullmatch(r'Route119_EventScript_Kecleon(\d)',o.get('script',''))
+                if name=='Route119' and m:
+                    o['flag']='FLAG_HIDE_ROUTE_119_KECLEON_'+m[1]
             if name in ['Route33_hns','Route44_hns','Route45_hns']:
                 geometry=Geometry(name,d)
                 d['object_events']=[o for o in d['object_events'] if 0<=o['x']<geometry.w and 0<=o['y']<geometry.h]
