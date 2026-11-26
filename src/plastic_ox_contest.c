@@ -293,6 +293,10 @@ void PlasticOxContest_ClaimPrize(void)
         // flag set so the Warden holds it until there is room.
         u8 given = ScriptGiveMon(SPECIES_KANGASKHAN, POX_CONTEST_KANGASKHAN_LEVEL, ITEM_NONE);
         StringCopy(gStringVar2, GetSpeciesName(SPECIES_KANGASKHAN));
+        // The Warden stands in the gate only on Thursdays; a prize claimed on
+        // another day (after a save, say) is handed over by the desk instead.
+        DoTimeBasedEvents();
+        gSpecialVar_0x8006 = (GetDayOfWeek() == WEEKDAY_THU);
         if (given == MON_CANT_GIVE)
         {
             gSpecialVar_Result = POX_CONTEST_PRIZE_MON_NO_ROOM;

@@ -375,6 +375,12 @@ def apply_region(read, put):
     d['warp_events']=[dict(x=7,y=16,elevation=3,dest_map=mid('UndergroundPath_WestEntrance_Frlg'),dest_warp_id='0')]
     # The donor's second sign event sat on the hut door itself.
     d['bg_events']=[b for b in d.get('bg_events',[]) if (b['x'],b['y'])!=(7,16)]
+    # The grass patch (11..18,4..9) is behind a Cut tree in the row-10 fence
+    # (route7_cut_hedge.py paints the fence; this is the tree).
+    d['object_events']=[o for o in d.get('object_events',[]) if o.get('script')!='EventScript_CutTree']
+    d['object_events'].append(dict(graphics_id='OBJ_EVENT_GFX_CUTTABLE_TREE',x=13,y=10,elevation=3,
+        movement_type='MOVEMENT_TYPE_NONE',movement_range_x=0,movement_range_y=0,trainer_type='TRAINER_TYPE_NONE',
+        trainer_sight_or_berry_tree_id='0',script='EventScript_CutTree',flag='FLAG_TEMP_1'))
     save('Route7_hns',d)
     d=load('UndergroundPath_WestEntrance_Frlg')
     for w in d['warp_events'][:3]:

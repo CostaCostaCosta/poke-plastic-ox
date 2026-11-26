@@ -17,7 +17,7 @@
       "direction": "E",
       "landing": [
         1,
-        13
+        15
       ],
       "requires": [],
       "label": "Route44"
@@ -28,11 +28,11 @@
       "destination": "RustboroCity",
       "tile": [
         0,
-        13
+        15
       ],
       "approach": [
         1,
-        13
+        15
       ],
       "direction": "W",
       "landing": [
@@ -374,11 +374,11 @@
       "source": "CinnabarIsland_Frlg",
       "destination": "PlasticOx_Route20West",
       "tile": [
-        23,
+        22,
         10
       ],
       "approach": [
-        22,
+        21,
         10
       ],
       "direction": "E",
@@ -405,7 +405,7 @@
       ],
       "direction": "N",
       "landing": [
-        22,
+        21,
         10
       ],
       "requires": [
@@ -968,9 +968,11 @@
   ],
   "native_seams": {
     "PalletTown_Frlg": [
-      "MAP_ROUTE101"
+      "MAP_ROUTE101",
+      "MAP_ROUTE21_NORTH"
     ],
     "Route21_North_Frlg": [
+      "MAP_PALLET_TOWN",
       "MAP_ROUTE21_SOUTH"
     ],
     "Route21_South_Frlg": [
@@ -1011,6 +1013,9 @@
     "Route25_hns": [
       "MAP_ROUTE24_HNS"
     ],
+    "Route35_hns": [
+      "MAP_ROUTE36_HNS"
+    ],
     "Route36_hns": [
       "MAP_ROUTE35_HNS",
       "MAP_ROUTE37_HNS"
@@ -1024,9 +1029,6 @@
     ],
     "BattleFrontier_OutsideWest": [
       "MAP_BATTLE_FRONTIER_OUTSIDE_EAST"
-    ],
-    "Route35_hns": [
-      "MAP_ROUTE36_HNS"
     ]
   }
 }

@@ -49,5 +49,4 @@ data/scripts/plastic_ox_goldenrod.inc
 data/scripts/plastic_ox_league.inc
 data/scripts/plastic_ox_region.inc
 data/scripts/plastic_ox_story.inc
-plastic_ox/alpha/region_manifest.json
 plastic_ox/alpha/story_manifest.json

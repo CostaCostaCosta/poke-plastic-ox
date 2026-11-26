@@ -17,14 +17,18 @@
 The field warp only places the player; the encounter or prize is the thing
 under test.
 """
+import json
 import random
+import re
 import struct
 import sys
+from pathlib import Path
 
 from test_region_walk import current, navigate, KEYS, DELTAS, BEHAVIORS, water
 from test_story import StoryGame
 from test_national_park import call, set_weekday
-from test_sudowoodo_v1 import const
+from test_sudowoodo_v1 import CHARMAP, const
+from walklib import K
 
 
 def sp_id(name):
@@ -36,8 +40,6 @@ CASES = [
     # Route 7's grass is the patch at (11..18, 4..8); spawn inside it.
     ('Route7_hns', (13, 6), 'gPoxUURoute7Hns_LandMons'),
     ('Route21_North_Frlg', None, 'gPoxUURoute21North_LandMons'),
-    # Route 44's grass is Surf-only (checked by route44_surf_only); spawn on it.
-    ('Route44_hns', (32, 14), 'gPoxRoute44Hns_LandMons'),
 ]
 FORBIDDEN = {'KANGASKHAN', 'SCYTHER', 'PINSIR'}
 
@@ -148,6 +150,128 @@ def route44_surf_only():
     print(f'PASS Route44_hns: {len(grass)} grass tiles, 0 reachable on foot, {len(by_surf)} via Surf', flush=True)
 
 
+def route44_surf_to_grass():
+    """Walk Route 44 from the Rustboro seam, Surf from the shore for real (the
+    YES/NO prompt with a Surf mon and the SURF KEY), cross the water and land
+    on the grass, then roll its UU table (GIRAFARIG)."""
+    from test_warps_v1 import make_playtest
+    name, symbol = 'Route44_hns', 'gPoxRoute44Hns_LandMons'
+    g = make_playtest()
+    g.flag('FLAG_POX_TRIGGERS_ENABLED', True)
+    g.test_water = False
+    # Route 44's sight trainers would stop the swim; they are not under test.
+    root = Path(__file__).resolve().parents[2]
+    opponents = (root / 'include/constants/opponents.h').read_text()
+    for trainer in set(re.findall(r'trainerbattle_\w+ (TRAINER_\w+)',
+                                  (root / f'data/maps/{name}/scripts.inc').read_text())):
+        tid = int(re.search(r'#define ' + trainer + r'\s+(\d+)', opponents)[1])
+        # TRAINER_FLAG() in include/constants/flags.h: Plastic Ox ids 857..925
+        # live in the 0x4A0 run; older ids use TRAINER_FLAGS_START (0x500).
+        assert tid < 926, (trainer, tid)
+        g.flag(0x4A0 + tid - 857 if tid >= 857 else 0x500 + tid, True)
+    g.warp(name, 1, 15)
+    g.frame(90)
+    table = slots(g, symbol)
+    banned = {sp_id(s) for s in FORBIDDEN}
+    assert not banned & {sp for _lo, _hi, sp in table}, table
+    assert all(36 <= lo <= hi <= 42 for lo, hi, _sp in table), table
+    assert sp_id('GIRAFARIG') in {sp for _lo, _hi, sp in table}, table
+    tiles = {}
+    for x in range(80):
+        for y in range(40):
+            try:
+                tiles[(x, y)] = (g.collision_at(x, y)[0], BEHAVIORS[g.behavior_at(x, y)[0]])
+            except Exception:
+                pass
+    seen, todo = {(1, 15)}, [(1, 15)]
+    while todo:
+        x, y = todo.pop()
+        for dx, dy in DELTAS.values():
+            n = (x + dx, y + dy)
+            if n not in seen and n in tiles and not tiles[n][0] and not water(tiles[n][1]):
+                seen.add(n)
+                todo.append(n)
+    # Nearest the Rustboro seam first: the walk there stays on the open road.
+    # Only water that actually touches the grass is worth launching into.
+    open_water = {p for p, (c, b) in tiles.items() if not c and water(b)}
+    lake, todo = set(), [p for p in open_water
+                         if any(tiles.get((p[0] + dx, p[1] + dy), (1, ''))[1] == 'MB_TALL_GRASS'
+                                for dx, dy in DELTAS.values())]
+    lake.update(todo)
+    while todo:
+        x, y = todo.pop()
+        for dx, dy in DELTAS.values():
+            n = (x + dx, y + dy)
+            if n in open_water and n not in lake:
+                lake.add(n)
+                todo.append(n)
+    shores = sorted(((abs(x - 1) + abs(y - 15), (x, y), d) for (x, y) in seen
+                     for d, (dx, dy) in DELTAS.items() if (x + dx, y + dy) in lake))
+    assert shores, 'no shore on the walkable side of Route 44'
+    ok, note = False, 'no shore tried'
+    for _dist, shore, d in shores[:40]:
+        g.release_scripts()
+        g.warp(name, 1, 15)
+        g.frame(60)
+        try:
+            navigate(g, lambda x, y, s=shore: (x, y) == s)
+        except AssertionError as e:
+            note = str(e)
+            print('   shore', shore, 'unreachable:', note, flush=True)
+            continue
+        ok, note = g.mount_surf({'N': 'UP', 'S': 'DOWN', 'E': 'RIGHT', 'W': 'LEFT'}[d])
+        if ok:
+            break
+        print('   shore', shore, d, 'no Surf:', note, g.state(), flush=True)
+    else:
+        raise AssertionError(('could not Surf from any shore', note))
+    print(f'ok  Route44_hns: surfed from the shore at {shore} ({note})', flush=True)
+    # Swim: a breadth-first path over open water to a tile beside the grass,
+    # then one stroke onto the grass (the engine dismounts there).
+    occupied = {(o['x'], o['y']) for o in json.loads((Path(__file__).resolve().parents[2]
+                / f'data/maps/{name}/map.json').read_text())['object_events']}
+    s = g.state()
+    start, prev = (s['x'], s['y']), {(s['x'], s['y']): None}
+    queue, end = [start], None
+    while queue and end is None:
+        cur = queue.pop(0)
+        for dx, dy in DELTAS.values():
+            n = (cur[0] + dx, cur[1] + dy)
+            if n in prev or n not in tiles or tiles[n][0] or n in occupied:
+                continue
+            if tiles[n][1] == 'MB_TALL_GRASS':
+                prev[n], end = cur, n
+                break
+            if water(tiles[n][1]):
+                prev[n] = cur
+                queue.append(n)
+    assert end, ('no swim route to the grass', start)
+    path = []
+    while end is not None:
+        path.append(end)
+        end = prev[end]
+    path.reverse()
+    keys = {(1, 0): K.KEY_RIGHT, (-1, 0): K.KEY_LEFT, (0, 1): K.KEY_DOWN, (0, -1): K.KEY_UP}
+    for _ in range(len(path) * 4):
+        here = (g.state()['x'], g.state()['y'])
+        if here == path[-1]:
+            break
+        assert here in path, ('swim left the route', here, path)
+        i = path.index(here)
+        nxt = path[i + 1]
+        g.tap(keys[(nxt[0] - here[0], nxt[1] - here[1])], hold=1, wait=18)
+    assert (g.state()['x'], g.state()['y']) == path[-1], ('swim stalled', g.state(), path)
+    g.frame(60)
+    landed = (g.state()['x'], g.state()['y'])
+    assert not g.surfing() and BEHAVIORS[g.behavior_at(*landed)[0]] == 'MB_TALL_GRASS', g.state()
+    print(f'ok  Route44_hns: swam {len(path) - 1} tiles and stepped onto the grass at {landed}', flush=True)
+    steps = step_until_battle(g, name)
+    species, level = enemy(g)
+    assert any(sp == species and lo <= level <= hi for lo, hi, sp in table), (species, level, table)
+    print(f'PASS Route44_hns: surfed to the grass, encounter after {steps} steps, species {species} '
+          f'Lv{level} is a {symbol} slot', flush=True)
+
+
 def contest_game():
     g = StoryGame(spawn=('Gate_NationalPark_hns', 38, 3))
     g.run('Pox_Cyndaquil')
@@ -238,16 +362,72 @@ def contest_kangaskhan():
           'a full party sends it to the PC, a pre-badge-4 Thursday win pays the SUN STONE', flush=True)
 
 
+def script_texts(g, label, limit=600):
+    """Run a field script to completion, pressing A; return its text boxes."""
+    def text():
+        out = []
+        for i in range(400):
+            b = g.u8(g.syms['gStringVar4'] + i)
+            if b == 0xFF:
+                break
+            out.append(CHARMAP.get(b, '?'))
+        return ''.join(out)
+    g.write(g.syms['gStringVar4'], 0xFF)
+    g.begin(label)
+    seen = []
+    for _ in range(limit):
+        t = text()
+        if t and (not seen or seen[-1] != t):
+            seen.append(t)
+        if g.u8(g.syms['sGlobalScriptContextStatus']) == 2:
+            return seen
+        g.tap(K.KEY_A, hold=2, wait=10)
+    raise AssertionError(('script never ended', label, seen))
+
+
+def contest_claim_any_day():
+    """A Thursday win claimed at the desk: the WARDEN speaks on Thursday, the
+    desk attendant (with its own lines) any other day."""
+    kangaskhan = sp_id('KANGASKHAN')
+    for day, who, absent in ((4, 'beaming', 'lunches'), (1, 'lunches', 'beaming')):
+        g = contest_game()
+        g.flag('FLAG_BADGE04_GET', True)
+        set_weekday(g, 4)
+        g.write(g.syms['gSpecialVar_0x8004'], 0, 2)
+        g.write(g.syms['gSpecialVar_0x8007'], 1, 2)
+        assert call(g, 'PlasticOxContest_Start') == 0
+        stride = g.sizes['gParties'] // 24
+        for i in range(stride):
+            g.write(g.syms['sCandidate'] + i, g.u8(g.syms['gParties'] + i))
+        g.write(g.syms['sNewCatch'], 1)
+        g.write(g.syms['gSpecialVar_0x8004'], 1, 2)
+        call(g, 'PlasticOxContest_AcceptCatch')
+        g.write(g.syms['sRivalScore'], 0, 2)
+        assert call(g, 'PlasticOxContest_Judge') == 1
+        assert g.flag('FLAG_POX_CONTEST_KANGASKHAN_PENDING')
+        set_weekday(g, day)   # the claim happens on this day
+        before = g.count()
+        texts = ' '.join(script_texts(g, 'PlasticOxContest_EventScript_AttendantPrize'))
+        assert who in texts and absent not in texts, (day, texts)
+        assert g.count() == before + 1 and g.party_species(before) == kangaskhan, (day, g.party_species(before))
+        assert not g.flag('FLAG_POX_CONTEST_KANGASKHAN_PENDING')
+    print('PASS pending KANGASKHAN: the WARDEN hands it over on Thursday, the desk on Monday, '
+          'each with its own lines', flush=True)
+
+
 def main():
-    which = sys.argv[1:] or ['routes', 'route44', 'park', 'contest']
+    which = sys.argv[1:] or ['routes', 'route44', 'park', 'contest', 'claim']
     if 'routes' in which:
         route_tables()
     if 'route44' in which:
         route44_surf_only()
+        route44_surf_to_grass()
     if 'park' in which:
         park_thursday()
     if 'contest' in which:
         contest_kangaskhan()
+    if 'claim' in which:
+        contest_claim_any_day()
 
 
 if __name__ == '__main__':

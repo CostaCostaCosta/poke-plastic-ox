@@ -158,11 +158,15 @@ PlasticOxContest_EventScript_BagFull::
 	msgbox PlasticOxContest_Text_BagFull, MSGBOX_DEFAULT
 	return
 @ The Warden's Thursday prize, paid on every first place after badge 4.
+@ VAR_0x8006 (set by PlasticOxContest_ClaimPrize) is TRUE on a Thursday,
+@ when the WARDEN is in the gate; any other day the desk hands her over.
 PlasticOxContest_EventScript_KangaskhanParty::
+	goto_if_eq VAR_0x8006, FALSE, PlasticOxContest_EventScript_DeskKangaskhanParty
 	call PlasticOxContest_EventScript_KangaskhanHandover
 	msgbox PlasticOxContest_Text_KangaskhanParty, MSGBOX_DEFAULT
 	return
 PlasticOxContest_EventScript_KangaskhanPC::
+	goto_if_eq VAR_0x8006, FALSE, PlasticOxContest_EventScript_DeskKangaskhanPC
 	call PlasticOxContest_EventScript_KangaskhanHandover
 	msgbox PlasticOxContest_Text_KangaskhanPC, MSGBOX_DEFAULT
 	return
@@ -173,7 +177,25 @@ PlasticOxContest_EventScript_KangaskhanHandover::
 	waitfanfare
 	return
 PlasticOxContest_EventScript_KangaskhanNoRoom::
+	goto_if_eq VAR_0x8006, FALSE, PlasticOxContest_EventScript_DeskKangaskhanNoRoom
 	msgbox PlasticOxContest_Text_KangaskhanNoRoom, MSGBOX_DEFAULT
+	return
+PlasticOxContest_EventScript_DeskKangaskhanParty::
+	call PlasticOxContest_EventScript_DeskKangaskhanHandover
+	msgbox PlasticOxContest_Text_DeskKangaskhanParty, MSGBOX_DEFAULT
+	return
+PlasticOxContest_EventScript_DeskKangaskhanPC::
+	call PlasticOxContest_EventScript_DeskKangaskhanHandover
+	msgbox PlasticOxContest_Text_DeskKangaskhanPC, MSGBOX_DEFAULT
+	return
+PlasticOxContest_EventScript_DeskKangaskhanHandover::
+	msgbox PlasticOxContest_Text_DeskKangaskhan, MSGBOX_DEFAULT
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox PlasticOxContest_Text_DeskKangaskhanReceived, MSGBOX_DEFAULT
+	waitfanfare
+	return
+PlasticOxContest_EventScript_DeskKangaskhanNoRoom::
+	msgbox PlasticOxContest_Text_DeskKangaskhanNoRoom, MSGBOX_DEFAULT
 	return
 PlasticOxContest_EventScript_DeliveryBlocked::
 	msgbox PlasticOxContest_Text_DeliveryBlocked, MSGBOX_DEFAULT
@@ -298,6 +320,29 @@ PlasticOxContest_Text_KangaskhanNoRoom:
 	.string "none in your PC either?\p"
 	.string "Then she stays with me. Free up a\n"
 	.string "space and come see me again.$"
+PlasticOxContest_Text_DeskKangaskhan:
+	.string "Oh, you're the one who won the\n"
+	.string "WARDEN's Thursday round!\p"
+	.string "He couldn't wait for you, so he\n"
+	.string "left your prize in our care.\p"
+	.string "She's been napping behind the desk\n"
+	.string "and eating our lunches. Here!$"
+PlasticOxContest_Text_DeskKangaskhanReceived:
+	.string "{PLAYER} received the WARDEN's\n"
+	.string "KANGASKHAN from the desk!$"
+PlasticOxContest_Text_DeskKangaskhanParty:
+	.string "The WARDEN said to tell you: well\n"
+	.string "caught. He's back on Thursday.$"
+PlasticOxContest_Text_DeskKangaskhanPC:
+	.string "Your party was full, so we sent\n"
+	.string "her on to your PC. She went\l"
+	.string "without a fuss.$"
+PlasticOxContest_Text_DeskKangaskhanNoRoom:
+	.string "The WARDEN left a KANGASKHAN here\n"
+	.string "for you, but your party and PC\l"
+	.string "are both full.\p"
+	.string "She can stay behind the desk a\n"
+	.string "while longer. Come back with room.$"
 PlasticOxContest_Text_BagFull:
 	.string "Your Bag is full. Your {STR_VAR_2} is\n"
 	.string "safe with me. Make room and return!$"

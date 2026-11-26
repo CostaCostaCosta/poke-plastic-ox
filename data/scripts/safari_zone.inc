@@ -2,20 +2,18 @@
 @ MAP_FUCHSIA_CITY_SAFARI_ZONE_ENTRANCE, which was deleted with the Kanto
 @ Safari Zone family on 2026-10-02. The Hoenn Safari Zone (SafariZone_* and
 @ Route121_SafariZoneEntrance) was deleted on 2026-11-26, so nothing enters
-@ Safari mode any more; the exits below fall back to Route 121 only so the
-@ engine's script pointers still resolve; the Kanto Safari Zone engine, its globals
+@ Safari mode any more. The two exits below only leave Safari mode (no warp);
+@ they stay so the engine's script pointers still resolve; the Kanto Safari Zone engine, its globals
 @ and the National Park contest that borrows them are untouched.
 SafariZone_EventScript_OutOfBallsMidBattle::
 	setvar VAR_SAFARI_ZONE_STATE, 1
 	special ExitSafariMode
-	setwarp MAP_ROUTE121, 37, 6
 	end
 
 SafariZone_EventScript_Exit::
 	setvar VAR_SAFARI_ZONE_STATE, 1
 	special ExitSafariMode
-	warp MAP_ROUTE121, 37, 6
-	waitstate
+	releaseall
 	end
 
 SafariZone_EventScript_RetirePrompt::

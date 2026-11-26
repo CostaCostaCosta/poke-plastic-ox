@@ -11,6 +11,8 @@ Walked with the D-pad in a fresh ROM; spawn warps only place the player.
   east-west tunnel -> UndergroundPath_WestEntrance -> Route 7's hut door
   (7,16), and back in through that door.
 * Route 7's west road (0, 4..7) leads to Route 103 once FUJI is done.
+* Route 7's grass patch is behind a Cut tree: every lane of row 10 blocks,
+  and Cut on the tree at (13,10) lets the player into the grass.
 * Saffron's gatehouses are arrow doorways into the FRLG gate rooms:
   Route 8 (3,21) <-> Route8_WestEntrance <-> Saffron (62,27) and
   Route 7 (15,12) <-> Route7_EastEntrance <-> Saffron (2,27). The room's
@@ -18,6 +20,8 @@ Walked with the D-pad in a fresh ROM; spawn warps only place the player.
 * Screenshots of the seam and of the Pokemon Tower's crown above Lavender
   (src/plastic_ox_borders.c) go to plastic_ox/demo/shots/lavender_kanto_*.png.
 """
+import re
+import struct
 import sys
 from pathlib import Path
 
@@ -27,6 +31,9 @@ from test_burned_tower import at  # noqa: E402
 from test_sudowoodo_v1 import drain  # noqa: E402
 from walk_leg1 import navigate  # noqa: E402
 from walklib import K  # noqa: E402
+from test_national_park import finish_dialogue  # noqa: E402
+
+ROOT = Path(__file__).resolve().parents[2]
 
 SHOTS = Path(__file__).resolve().parent / 'shots'
 FUJI = 'FLAG_POX_STORY_FUJI'
@@ -130,6 +137,31 @@ def route7_route103(g):
     print('ok  Route 7 west road (0,4..7) leads to Route 103', flush=True)
 
 
+def route7_cut(g):
+    """Route 7's grass patch (11..18, 4..9) is fenced off along row 10 except
+    for a Cut tree at (13,10) (route7_cut_hedge.py, region_v7.py)."""
+    for lane in range(11, 16):
+        place(g, 'Route7_hns', lane, 11)
+        g.hold(K.KEY_UP, 32)
+        assert pos(g) == (lane, 11), ('walked into the grass without Cut', lane, g.describe())
+    place(g, 'Route7_hns', 13, 12)
+    shot(g, 'lavender_kanto_route7_cut_tree.png')
+    navigate(g, (13, 11))
+    item = int(re.search(r'ITEM_CUT_KEY\s*=\s*(\d+)',
+                         (ROOT / 'include/constants/items.h').read_text())[1])
+    ptr = g.syms['gStringVar4']
+    code = bytes([0x44]) + struct.pack('<HH', item, 1) + bytes([0x6C, 2])  # additem; end
+    for i, b in enumerate(code):
+        g.write(ptr + i, b)
+    g.run(ptr)
+    g.tap(K.KEY_UP, hold=2, wait=12)
+    g.tap(K.KEY_A, wait=30)
+    finish_dialogue(g)
+    navigate(g, (13, 8))
+    assert pos(g) == (13, 8), g.describe()
+    print('ok  Route 7 grass is fenced off on every lane; Cut opens the tree at (13,10)', flush=True)
+
+
 def gate(g, outside, arrow, out_key, room, saffron, saffron_arrow, back_key, room_exit):
     ax, ay = arrow
     dx = -1 if out_key == K.KEY_LEFT else 1
@@ -184,6 +216,7 @@ def main():
     lavender_route8(g)
     underground(g)
     route7_route103(g)
+    route7_cut(g)
     gate(g, 'Route8_Frlg', (3, 21), K.KEY_LEFT, 'Route8_WestEntrance_Frlg',
          'SaffronCity_hns', (62, 27), K.KEY_RIGHT, (10, 5))
     gate(g, 'Route7_hns', (15, 12), K.KEY_RIGHT, 'Route7_EastEntrance_Frlg',

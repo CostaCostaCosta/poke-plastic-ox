@@ -1288,7 +1288,9 @@ def keep_stable_trainer_layout():
 
 
 keep_stable_trainer_layout()
-manifest=[(m,x,y,s) for m,x,y,s in manifest if any(o.get('script') == 'Pox_'+s and (o['x'],o['y']) == (x,y) for o in load_map(m)['object_events'])]
+# Line-of-sight trainers (lavender.py's 7F tower Rockets) run their story
+# battle through a PoxLavender_<name>Sight label that opens with trainerbattle.
+manifest=[(m,x,y,s) for m,x,y,s in manifest if any(o.get('script') in ('Pox_'+s,'PoxLavender_'+s+'Sight') and (o['x'],o['y']) == (x,y) for o in load_map(m)['object_events'])]
 put('plastic_ox/alpha/story_manifest.json',json.dumps(dict(events=[dict(map=m,x=x,y=y,script='Pox_'+s) for m,x,y,s in manifest],flags=flags,trainers=[t for t,_ in trainers],rooms=room_names),indent=2)+'\n')
 
 different={p:t for p,t in changes.items() if not Path(p).exists() or Path(p).read_text()!=t}
