@@ -273,7 +273,7 @@ goto_if_unset FLAG_BADGE03_GET, Pox_NotReady
 
 goto_if_unset FLAG_POX_STORY_WEATHER, Pox_NotReady
 
-goto_if_set FLAG_BADGE04_GET, Pox_Done
+goto_if_set FLAG_BADGE04_GET, Pox_WinonaDone
 
 trainerbattle_single TRAINER_PLASTIC_OX_WINONA, Pox_Text_Winona, Pox_Text_Winona_Defeat, Pox_Winona_Won
 
@@ -282,6 +282,7 @@ Pox_Winona_Won::
 	setflag FLAG_BADGE04_GET
 
 msgbox Pox_Text_Badge, MSGBOX_DEFAULT
+	goto Pox_DevonScope_Award
 
 releaseall
 	end
@@ -488,6 +489,123 @@ Pox_Text_ClairGuide::
 
 Pox_Text_Badge::
 	.string "You received a GYM BADGE! A new\nchallenge waits on the next\proad.$"
+
+Pox_DevonScopeLinden::
+	end
+Pox_WinonaDone::
+	goto_if_set FLAG_RECEIVED_DEVON_SCOPE, Pox_Done
+Pox_DevonScope_Award::
+	getplayerxy VAR_0x8004, VAR_0x8005
+	addobject LOCALID_FORTREE_GYM_LINDEN
+	goto_if_eq VAR_0x8004, 14, Pox_DevonScope_Left
+	goto_if_eq VAR_0x8004, 16, Pox_DevonScope_Right
+	applymovement LOCALID_FORTREE_GYM_LINDEN, Pox_Movement_LindenApproachCenter
+	waitmovement 0
+	call Pox_DevonScope_Give
+	applymovement LOCALID_FORTREE_GYM_LINDEN, Pox_Movement_LindenLeaveCenter
+	goto Pox_DevonScope_End
+Pox_DevonScope_Left::
+	applymovement LOCALID_FORTREE_GYM_LINDEN, Pox_Movement_LindenApproachLeft
+	waitmovement 0
+	call Pox_DevonScope_Give
+	applymovement LOCALID_FORTREE_GYM_LINDEN, Pox_Movement_LindenLeaveLeft
+	goto Pox_DevonScope_End
+Pox_DevonScope_Right::
+	applymovement LOCALID_FORTREE_GYM_LINDEN, Pox_Movement_LindenApproachRight
+	waitmovement 0
+	call Pox_DevonScope_Give
+	applymovement LOCALID_FORTREE_GYM_LINDEN, Pox_Movement_LindenLeaveRight
+Pox_DevonScope_End::
+	waitmovement 0
+	removeobject LOCALID_FORTREE_GYM_LINDEN
+	releaseall
+	end
+Pox_DevonScope_Give::
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterDown
+	waitmovement 0
+	msgbox Pox_Text_DevonScope, MSGBOX_DEFAULT
+	giveitem ITEM_DEVON_SCOPE
+	setflag FLAG_RECEIVED_DEVON_SCOPE
+	msgbox Pox_Text_DevonScopeAfter, MSGBOX_DEFAULT
+	closemessage
+	return
+
+Pox_Movement_LindenApproachCenter:
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	face_up
+	step_end
+
+Pox_Movement_LindenApproachLeft:
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_up
+	step_end
+
+Pox_Movement_LindenApproachRight:
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_up
+	step_end
+
+Pox_Movement_LindenLeaveCenter:
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+Pox_Movement_LindenLeaveLeft:
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+Pox_Movement_LindenLeaveRight:
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	step_end
+
+Pox_Text_DevonScope::
+	.string "LINDEN: There you are! We met at\nthe WEATHER INSTITUTE. LINDEN,\pDEVON field research.\pOur sensors keep logging\nsomething on FORTREE's walkways\pthat no camera can see.\pThis is a DEVON SCOPE. It picks\nout POKéMON that would rather\pnot be seen. You'll get more use\nfrom it out on the road than I\pwill in a lab.$"
+
+Pox_Text_DevonScopeAfter::
+	.string "LINDEN: If something invisible\nis in your way, look at it\pthrough the SCOPE.\pWell, back to the INSTITUTE.\nThose readings won't log\pthemselves!$"
 
 Pox_WhitneyNeedsBadge::
 	msgbox Pox_Text_WhitneyNeedsBadge, MSGBOX_DEFAULT

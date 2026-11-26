@@ -26,7 +26,7 @@ ANCHORS = {
     'GoldenrodCity_hns':(28,37), 'Route35_hns':(15,47), 'NationalPark_Normal_hns':(39,24),
     'Route36_hns':(16,21), 'Route37_hns':(16,39), 'EcruteakCity_hns':(39,48),
     'Route119':(18,138), 'FortreeCity':(8,8), 'Route110':(15,95),
-    'LavenderTown_hns':(9,7), 'Route8_Frlg':(60,20), 'Route7_hns':(4,25),
+    'LavenderTown_hns':(9,7), 'Route8_Frlg':(60,20), 'Route7_hns':(5,12),
     'Route103':(10,10), 'Route21_North_Frlg':(12,10),
     'Route21_South_Frlg':(12,10), 'CinnabarIsland_Frlg':(12,10),
     'MossdeepCity':(28,17), 'Route127':(40,1),
@@ -48,7 +48,7 @@ WATER = {'Route103','Route19_Frlg','Route21_North_Frlg','Route21_South_Frlg',
 LANE_PORTALS = {
     'rustboro_route44','route33_goldenrod','goldenrod_route35',
     'route119_fortree','route36_shortcut',
-    'route110_lavender','lavender_route8','route8_saffron','route7_saffron',
+    'route110_lavender','lavender_route8',
     'route7_route103','oldale_route103','route103_cinnabar','cinnabar_sea',
     'sea_mossdeep','mossdeep_route19','mossdeep_route127','route19_saffron','saffron_route5',
     'route5_route115','blackthorn_route45','route45_route46',
@@ -65,11 +65,47 @@ SEAM_TRAILS = {
     'fortree_route110': ('right', 'left', 5),
     'route36_shortcut': ('right', 'left', -49),
     'route110_lavender': ('down', 'up', 3),
+    # Lavender's west road and Route 8's east meadow share three rows
+    # (Lavender 9..11 = Route 8 19..21); both use the HNS Kanto tilesets.
+    'lavender_route8': ('left', 'right', -10),
+}
+
+# Seam and edge ports pinned to the map edge. Geometry.port() otherwise picks
+# the nearest interior tile, which turns a road edge into a mid-map portal.
+PINNED_PORTS = {
+    'lavender_route8_a': {'tile': [0, 10], 'approach': [1, 10], 'direction': 'W'},
+    'lavender_route8_b': {'tile': [67, 20], 'approach': [66, 20], 'direction': 'E'},
+    'route7_route103_a': {'tile': [0, 6], 'approach': [1, 6], 'direction': 'W'},
+}
+
+# Saffron's east and west gatehouses, as in FRLG: an arrow doorway on each
+# outdoor map leads into the FRLG gate room, whose guard holds the counter
+# line until the requirement is met.
+# key, outdoor A, A arrow, room, room warps to A, outdoor B, B arrow,
+# room warps to B, requirement, step back for a player refused from A.
+GATE_ROOMS = [
+    ('route8_saffron', 'Route8_Frlg', (3, 21), 'Route8_WestEntrance_Frlg', (2, 3),
+     'SaffronCity_hns', (62, 27), (0, 1), SPACE, 'walk_right'),
+    ('route7_saffron', 'Route7_hns', (15, 12), 'Route7_EastEntrance_Frlg', (0, 1),
+     'SaffronCity_hns', (2, 27), (2, 3), SPACE, 'walk_left'),
+]
+GATE_TEXT = {
+    'route8_saffron': (
+        'Sorry, SAFFRON CITY is closed.\\nNobody goes in until we hear otherwise.$',
+        'The city asked us to keep this road\\nshut. Don\'t ask me why, either.\\p'
+        'Heading west? The UNDERGROUND PATH\\nruns right under the city.$',
+        'SAFFRON\'s open again. Go on\\nthrough, it\'s been a long wait.$'),
+    'route7_saffron': (
+        'Hold it. SAFFRON CITY is closed\\nfrom this side as well.$',
+        'Orders came down this morning.\\nSame as yesterday. Same as the day\\lbefore that.$',
+        'The gate\'s open now. Mind the\\ncrowds on the other side.$'),
 }
 
 # These transitions are visually self-explanatory roads.  Extra object signs
 # narrowed their approaches and duplicated nearby native wayfinding.
 SIGNLESS_TRAILS = {'rustboro_route44'}
+# Single endpoints whose approach is an open road edge; a sign would stand in a lane.
+SIGNLESS_ENDPOINTS = {'route7_route103_a'}
 
 # Explicit source/destination port targets. A target may name a compass edge;
 # coordinates denote a native gate plaza, cave mouth, or dock.
@@ -82,8 +118,6 @@ TRAILS = [
     ('route36_shortcut','Route36_hns','E','Route110',(0,69),['FLAG_POX_REACHED_FORTREE']),
     ('route110_lavender','Route110','S','LavenderTown_hns','N',['FLAG_BADGE04_GET']),
     ('lavender_route8','LavenderTown_hns','W','Route8_Frlg','E',FUJI),
-    ('route8_saffron','Route8_Frlg',(8,20),'SaffronCity_hns','E',SPACE),
-    ('route7_saffron','Route7_hns','E','SaffronCity_hns','W',SPACE),
     ('route7_route103','Route7_hns','W','Route103','E',FUJI),
     ('oldale_route103','OldaleTown','N','Route103',(10,20),FUJI),
     ('route103_cinnabar','Route103',(10,15),'CinnabarIsland_Frlg',(12,12),FUJI),
@@ -218,6 +252,11 @@ def apply_region(read, put):
                     o['movement_type']='MOVEMENT_TYPE_FACE_DOWN'
                 if o.get('script')=='0x0' or any(x in o.get('script','') for x in ['Wally','Cozmo','Kecleon','BridgeAqua']):
                     o['flag']='FLAG_POX_HIDE_UNUSED_ACTOR'
+                # Route 119's invisible KECLEON stay, revealed with the DEVON
+                # SCOPE that LINDEN hands over after Winona (as in Emerald).
+                m=re.fullmatch(r'Route119_EventScript_Kecleon(\d)',o.get('script',''))
+                if name=='Route119' and m:
+                    o['flag']='FLAG_HIDE_ROUTE_119_KECLEON_'+m[1]
             if name in ['Route33_hns','Route44_hns','Route45_hns']:
                 geometry=Geometry(name,d)
                 d['object_events']=[o for o in d['object_events'] if 0<=o['x']<geometry.w and 0<=o['y']<geometry.h]
@@ -327,13 +366,26 @@ def apply_region(read, put):
     # The native east-west Underground is independent of Saffron's surface gates.
     d=load('Route8_Frlg')
     d['warp_events']=[d['warp_events'][0]]
-    d['warp_events'][0]['dest_warp_id']='1'
+    # The hut's door (route8_tunnel_hut.py), not a lane cut through the hut.
+    d['warp_events'][0].update(x=12,y=18,dest_warp_id='1')
     save('Route8_Frlg',d)
     d=load('Route7_hns')
-    # Existing HNS tunnel doorway is (4,20); choose an approachable trail door
-    # below if its behavior is not an ordinary FRLG door.
-    d['warp_events']=[]
+    # The tunnel hut's own door (7,16) is warp 0; GATE_ROOMS appends the
+    # Saffron gatehouse arrow as warp 1.
+    d['warp_events']=[dict(x=7,y=16,elevation=3,dest_map=mid('UndergroundPath_WestEntrance_Frlg'),dest_warp_id='0')]
+    # The donor's second sign event sat on the hut door itself.
+    d['bg_events']=[b for b in d.get('bg_events',[]) if (b['x'],b['y'])!=(7,16)]
+    # The grass patch (11..18,4..9) is behind a Cut tree in the row-10 fence
+    # (route7_cut_hedge.py paints the fence; this is the tree).
+    d['object_events']=[o for o in d.get('object_events',[]) if o.get('script')!='EventScript_CutTree']
+    d['object_events'].append(dict(graphics_id='OBJ_EVENT_GFX_CUTTABLE_TREE',x=13,y=10,elevation=3,
+        movement_type='MOVEMENT_TYPE_NONE',movement_range_x=0,movement_range_y=0,trainer_type='TRAINER_TYPE_NONE',
+        trainer_sight_or_berry_tree_id='0',script='EventScript_CutTree',flag='FLAG_TEMP_1'))
     save('Route7_hns',d)
+    d=load('UndergroundPath_WestEntrance_Frlg')
+    for w in d['warp_events'][:3]:
+        w.update(dest_map=mid('Route7_hns'),dest_warp_id='0')
+    save('UndergroundPath_WestEntrance_Frlg',d)
     for name in ['UndergroundPath_EastEntrance_Frlg','UndergroundPath_WestEntrance_Frlg','UndergroundPath_EastWestTunnel_Frlg']:
         d=load(name);d['region']='REGION_HOENN';d['coord_events']=[]
         save(name,d)
@@ -349,8 +401,10 @@ def apply_region(read, put):
     path='plastic_ox/alpha/region_ports.json'
     ports=json.loads(read(path)) if read(path) else {}
     ports={k:v for k,v in ports.items() if not k.startswith(('cherry_route1','route1_route31','ilex_route104',
-                                                             'lavender_route8','route8_saffron','route2_rustboro',
-                                                             'route24_route25','route35_park','park_route36','ecruteak_route119'))}
+                                                             'lavender_route8','route8_saffron','route7_saffron','route2_rustboro',
+                                                             'route24_route25','route35_park','park_route36','ecruteak_route119',
+                                                             'underground_west'))}
+    ports.update(copy.deepcopy(PINNED_PORTS))
     reserved={}
     for key,a,at,b,bt,requirements in TRAILS:
         for suffix,name in [('_a',a),('_b',b)]:
@@ -478,6 +532,9 @@ def apply_region(read, put):
         # the three-lane cap left both outer rows at a dead end.
         if key == 'rustboro_route44_a':
             lanes=(0,-1,1,-2,2)
+        if key == 'route7_route103_a':
+            # Route 7's west road is four rows wide (4..7); +2 is row 4.
+            lanes=(0,-1,1,2)
         if key[:-2] in SEAM_TRAILS:
             # Every edge tile that crosses the connection must be gated.
             span=g.h if dx else g.w
@@ -537,7 +594,7 @@ def apply_region(read, put):
         # A visible sign next to the approach identifies every authored trail.
         g=Geometry(name,load(name));x,y=p['approach']
         occupied={(o['x'],o['y']) for o in load(name).get('object_events',[])}
-        candidates=[] if name in extra_frlg or key[:-2] in SIGNLESS_TRAILS else [(x+dx,y+dy) for dx,dy in DIRECTIONS.values() if g.passable(x+dx,y+dy,False) and (x+dx,y+dy) not in reserved[name] and (x+dx,y+dy) not in occupied and sum(g.passable(x+dx+ddx,y+dy+ddy,False) for ddx,ddy in DIRECTIONS.values())>=3]
+        candidates=[] if name in extra_frlg or key[:-2] in SIGNLESS_TRAILS or key in SIGNLESS_ENDPOINTS else [(x+dx,y+dy) for dx,dy in DIRECTIONS.values() if g.passable(x+dx,y+dy,False) and (x+dx,y+dy) not in reserved[name] and (x+dx,y+dy) not in occupied and sum(g.passable(x+dx+ddx,y+dy+ddy,False) for ddx,ddy in DIRECTIONS.values())>=3]
         trigger_tiles={(c['x'],c['y']) for c in d['coord_events']}
         candidates=[c for c in candidates if tuple(p['approach']) in g.component(ANCHORS.get(name,p['approach']),name in WATER,occupied | trigger_tiles | {c})]
         if candidates:
@@ -639,19 +696,47 @@ def apply_region(read, put):
         save(name,d)
     # Route 44's gate handler and dialogue are authored in its local scripts.
 
-    # HNS Route7 lacks the FRLG tunnel mouth; a marked stair passage uses the
-    # existing tunnel entrance room rather than skipping the tunnel.
-    p=port('underground_west','Route7_hns',(4,20))
-    endpoint('underground_west','Route7_hns',p,'UndergroundPath_WestEntrance_Frlg',[6,6],[], 'Underground Path')
-    # Return through the room's three exit tiles using coordinate triggers;
-    # remove those native warp events to avoid the absent HNS door index.
-    d=load('UndergroundPath_WestEntrance_Frlg')
-    for w in d['warp_events'][:3]:
-        w.update(dest_map=mid('UndergroundPath_WestEntrance_Frlg'),dest_warp_id='0')
-    save('UndergroundPath_WestEntrance_Frlg',d)
-    for x in [5,6,7]:
-        q={'tile':[x,7],'approach':[x,6],'direction':'S'}
-        endpoint('underground_return_'+str(x),'UndergroundPath_WestEntrance_Frlg',q,'Route7_hns',p['approach'],[], 'Route 7')
+    # Saffron's gatehouses: native arrow doorways and FRLG gate rooms.
+    for key,a,a_xy,room,a_warps,b,b_xy,b_warps,requirements,back in GATE_ROOMS:
+        ids={}
+        for name,xy,warps in [(a,a_xy,a_warps),(b,b_xy,b_warps)]:
+            d=load(name)
+            warp=dict(x=xy[0],y=xy[1],elevation=3,dest_map=mid(room),dest_warp_id=str(warps[0]))
+            at=[i for i,w in enumerate(d['warp_events']) if (w['x'],w['y'])==tuple(xy)]
+            if at:
+                d['warp_events'][at[0]]=warp
+            else:
+                d['warp_events'].append(warp)
+            ids[name]=at[0] if at else len(d['warp_events'])-1
+            save(name,d)
+        r=load(room)
+        r['region']='REGION_HOENN'
+        for i in a_warps:
+            r['warp_events'][i].update(dest_map=mid(a),dest_warp_id=str(ids[a]))
+        for i in b_warps:
+            r['warp_events'][i].update(dest_map=mid(b),dest_warp_id=str(ids[b]))
+        guard='PoxRegion_'+key+'_Guard'
+        r['object_events'][0].update(script=guard+'Talk',movement_type='MOVEMENT_TYPE_FACE_DOWN',
+                                     movement_range_x=0,movement_range_y=0)
+        r['coord_events']=[dict(type='trigger',x=6,y=y,elevation=3,var='VAR_POX_PORTAL_TRIGGER',var_value=0,script=guard)
+                           for y in (4,5,6)]
+        save(room,r)
+        closed,talk,opened=GATE_TEXT[key]
+        body=f'{guard}::\n\tgoto_if_unset FLAG_POX_TRIGGERS_ENABLED, {guard}_Open\n'
+        for flag in requirements:
+            body+=f'\tgoto_if_unset {flag}, {guard}_Closed\n'
+        body+=(f'{guard}_Open::\n\tend\n{guard}_Closed::\n\tlockall\n\tmsgbox {guard}_ClosedText, MSGBOX_DEFAULT\n'
+               f'\tclosemessage\n\tapplymovement OBJ_EVENT_ID_PLAYER, {guard}_StepBack\n\twaitmovement 0\n\treleaseall\n\tend\n'
+               f'{guard}_StepBack:\n\t{back}\n\tstep_end\n'
+               f'{guard}Talk::\n')
+        for flag in requirements:
+            body+=f'\tgoto_if_unset {flag}, {guard}Talk_Closed\n'
+        body+=(f'\tmsgbox {guard}_OpenText, MSGBOX_NPC\n\tend\n'
+               f'{guard}Talk_Closed::\n\tmsgbox {guard}_TalkText, MSGBOX_NPC\n\tend\n'
+               f'{guard}_ClosedText::\n\t.string "{closed}"\n'
+               f'{guard}_TalkText::\n\t.string "{talk}"\n'
+               f'{guard}_OpenText::\n\t.string "{opened}"')
+        scripts.append(body)
 
     # Route 2 retains its native gatehouses, local buildings and cave mouth.
     # Ilex's north threshold uses a dedicated, visually identical north-arrow
@@ -693,15 +778,16 @@ def apply_region(read, put):
                    'PoxRoute2_RustboroGate_Text::\n\t.string "RUSTBORO will have to wait.\\nTake the ILEX FOREST trail first.\\pWatch those roots in the woods.\\nThey nearly tripped me twice!$"')
     # Gatehouse and trade-house actors and scripts are authored in local maps;
     # do not replace the house trade or the gate guards with shared dialogue.
-    # The imported HNS trade house has one real animated door at (4, 8), not
-    # the three-tile FRLG exit strip. Keep the exterior and interior indices
-    # reciprocal so entering and leaving cannot strand the player.
+    # The imported HNS trade house has one real exit mat at (4, 8), not
+    # the three-tile FRLG exit strip. (4, 7) is ordinary floor: a warp there
+    # threw the player back outside on the first step into the room. Keep the
+    # exterior and interior indices reciprocal so entering and leaving cannot
+    # strand the player.
     d=load('Route2_Frlg')
     d['warp_events'][4]['dest_warp_id']='0'
     save('Route2_Frlg',d)
     d=load('Route2_House_Frlg')
     d['warp_events']=[
-        dict(x=4,y=7,elevation=0,dest_map=mid('Route2_House_Frlg'),dest_warp_id='0'),
         dict(x=4,y=8,elevation=0,dest_map=mid('Route2_Frlg'),dest_warp_id='4'),
     ]
     save('Route2_House_Frlg',d)

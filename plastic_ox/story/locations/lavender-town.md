@@ -70,11 +70,13 @@ original beat).
 | South road barrier | town `(13..15,24)` | always | ferry clerk, fisherman, kid; three different lines |
 | Doors | town `(22,6)` tower, `(8,13)` FUJI's house, `(10,19)` House1, `(22,19)` Soul House | always | real warps to the interiors and back |
 | Soul House | `PlasticOx_FujiHouse` (HNS generic house) | before / after `FLAG_POX_FUJI_RESCUED` | keeper (names, somewhere to sit / FUJI swept the step) and a visitor |
-| Tower floors | `PokemonTower_1F..6F_Frlg` | always | mourners and channelers who speak in fragments (no channeler battles); 5F purified zone heals; item balls on their own POX_EXT flags |
-| Rocket II | `PokemonTower_7F_Frlg` `(9,10)`, `(13,8)`, `(9,6)` | in order, badge 4 | `TOWERGRUNT1..3` (Team Rocket); each disappears when beaten |
+| Tower floors | `PokemonTower_1F..6F_Frlg` | always | mourners (1F GROWLITHE mourner is an old woman: fifty years of visits) and channelers who speak in fragments (no channeler battles); 5F purified zone heals; item balls on their own POX_EXT flags |
+| Rocket II | `PokemonTower_7F_Frlg` `(9,10)`, `(13,8)`, `(9,6)` | in order, badge 4 | line-of-sight trainers (sight 4; GRUNT1 and PROTON face east, GRUNT2 west), so walking up the corridor is spotted on rows 10, 8 and 6: `TOWERGRUNT1..2` (Team Rocket grunts), then `TOWERGRUNT3` = EXECUTIVE PROTON (HNS pic, own `Rocket Executive Hns` class); each disappears when beaten. Objects run `PoxLavender_TowerGrunt1Sight`..`3Sight` (each opens with `trainerbattle` and falls back to its `Pox_TowerGrunt1`..`3` story script); `PoxLavender_Tower7FOnTransition` keeps a grunt dormant (trainer flag set) until story mode + badge 4 and while its `FLAG_POX_HIDE_LAVENDER_GRUNT_1..3` hide flag is unset |
 | FUJI rescue | 7F `(11,4)` | after grunt 3 | relief, then walks the player to his house; sets `FLAG_POX_FUJI_RESCUED` |
 | SURF KEY | FUJI's house `(3,3)` | rescued | two beats (what they asked, where the records are), SURF KEY, sets `FLAG_POX_STORY_FUJI` (opens Route 8), then the EEVEE foster |
 | Signs | town `(16,4)`, `(19,7)`, `(12,13)`, `(19,18)` | always | town, tower, volunteer house, Soul House |
+
+The SILPH SCOPE comes from VALE at the Weather Institute (`Pox_WI_Vale_Scope`), before Fortree, so every player reaches the tower with it; without it the engine turns tower wild battles into unidentifiable GHOST encounters.
 
 Wild encounters: tower 3F–7F use `gPoxUUPokemonTower3F..7F` (Lv34–40,
 Gastly, Haunter, Cubone, Shuppet, Duskull, Banette and the UU Misdreavus, rarer

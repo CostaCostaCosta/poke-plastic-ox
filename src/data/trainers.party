@@ -17629,7 +17629,7 @@ Modest Nature
 - Thunderbolt
 - Hidden Power
 - Toxic
-- Substitute
+- Thunder Wave
 
 Onix @ Sitrus Berry
 Level: 16
@@ -17932,7 +17932,7 @@ EVs: 4 HP / 252 SpA / 252 Spe
 Modest Nature
 - Thunderbolt
 - Thunder Wave
-- Substitute
+- Hidden Power
 - Toxic
 
 Xatu @ Leftovers
@@ -18058,7 +18058,7 @@ Level: 38
 Ability: Limber
 EVs: 80 HP / 252 Atk / 176 Spe
 Jolly Nature
-- Substitute
+- Iron Tail
 - Return
 - Shadow Ball
 - Hyper Beam
@@ -18186,7 +18186,7 @@ Level: 51
 Ability: Own Tempo
 EVs: 252 HP / 96 Atk / 160 SpA
 Relaxed Nature
-- Substitute
+- Ice Beam
 - Focus Punch
 - Surf
 - Psychic
@@ -18235,7 +18235,7 @@ Level: 53
 Ability: Inner Focus
 EVs: 120 HP / 64 Atk / 252 SpA / 68 SpD / 4 Spe
 Brave Nature
-- Substitute
+- Flamethrower
 - Focus Punch
 - Thunderbolt
 - Ice Beam
@@ -19071,7 +19071,7 @@ Hasty Nature
 - Fire Blast
 - Focus Punch
 - Toxic
-- Substitute
+- Thunder Punch
 
 Swablu @ Leftovers
 Level: 12
@@ -19180,7 +19180,7 @@ Modest Nature
 - Surf
 - Ice Beam
 - Hidden Power
-- Substitute
+- Toxic
 
 Poliwag @ Leftovers
 Level: 13
@@ -19230,7 +19230,7 @@ Modest Nature
 - Thunderbolt
 - Hidden Power
 - Toxic
-- Substitute
+- Thunder Wave
 
 === TRAINER_PLASTIC_OX_ROUTE44_WILTON ===
 Name: WILTON
@@ -19249,7 +19249,7 @@ Hasty Nature
 - Fire Blast
 - Focus Punch
 - Toxic
-- Substitute
+- Thunder Punch
 
 Numel @ Leftovers
 Level: 13
@@ -19441,7 +19441,7 @@ Level: 11
 Ability: Flash Fire
 EVs: 236 SpA / 76 SpD / 196 Spe
 Hasty Nature
-- Substitute
+- Iron Tail
 - Overheat
 - Body Slam
 - Toxic
@@ -19812,14 +19812,14 @@ Timid Nature
 - Calm Mind
 - Psychic
 - Fire Punch
-- Substitute
+- Thunder Punch
 
 Farfetch'd @ Salac Berry
 Level: 20
 Ability: Inner Focus
 EVs: 252 Atk / 4 Def / 252 Spe
 Adamant Nature
-- Substitute
+- Return
 - Iron Tail
 - Hidden Power
 - Swords Dance
@@ -19829,7 +19829,7 @@ Level: 20
 Ability: Speed Boost
 EVs: 252 Atk / 4 Def / 252 Spe
 Adamant Nature
-- Substitute
+- Shadow Ball
 - Solar Beam
 - Hidden Power
 - Protect
@@ -19901,7 +19901,7 @@ Adamant Nature
 - Swords Dance
 - Hidden Power
 - Earthquake
-- Substitute
+- Body Slam
 
 Skiploom @ Leftovers
 Level: 20
@@ -20265,7 +20265,7 @@ Modest Nature
 - Thunderbolt
 - Hidden Power
 - Toxic
-- Substitute
+- Thunder Wave
 
 Spoink @ Leftovers
 Level: 13
@@ -20296,7 +20296,7 @@ Modest Nature
 - Thunderbolt
 - Hidden Power
 - Toxic
-- Substitute
+- Thunder Wave
 
 Spoink @ Leftovers
 Level: 15
@@ -20407,7 +20407,7 @@ Modest Nature
 - Thunderbolt
 - Hidden Power
 - Toxic
-- Substitute
+- Thunder Wave
 
 Drowzee @ Leftovers
 Level: 13
@@ -20476,7 +20476,7 @@ Modest Nature
 - Thunderbolt
 - Hidden Power
 - Toxic
-- Substitute
+- Thunder Wave
 
 Onix @ Sitrus Berry
 Level: 15
@@ -20514,7 +20514,7 @@ EVs: 36 HP / 196 Atk / 80 Def / 196 Spe
 Jolly Nature
 - Focus Punch
 - Hidden Power
-- Substitute
+- Rock Slide
 - Endure
 
 Meowth @ Sitrus Berry
@@ -20545,7 +20545,7 @@ Modest Nature
 - Thunderbolt
 - Hidden Power
 - Toxic
-- Substitute
+- Thunder Wave
 
 Ponyta @ Sitrus Berry
 Level: 21
@@ -20555,7 +20555,7 @@ Timid Nature
 - Sunny Day
 - Fire Blast
 - Solar Beam
-- Substitute
+- Iron Tail
 
 === TRAINER_PLASTIC_OX_JOHTO_ANN_ANNE ===
 Name: ANN & ANNE
@@ -20574,7 +20574,7 @@ Timid Nature
 - Reflect
 - Light Screen
 - Hyper Beam
-- Substitute
+- Aerial Ace
 
 Ariados @ Leftovers
 Level: 22
@@ -20662,7 +20662,7 @@ EVs: 4 Def / 252 SpA / 252 Spe
 Timid Nature
 - Psychic
 - Thunderbolt
-- Substitute
+- Shadow Ball
 - Explosion
 
 === TRAINER_PLASTIC_OX_JOHTO_BEVERLY ===
@@ -20909,7 +20909,7 @@ EVs: 252 HP / 96 Def / 160 Spe
 Bold Nature
 - Ice Beam
 - Toxic
-- Substitute
+- Rest
 - Protect
 
 === TRAINER_PLASTIC_OX_RIDGE_RAIN ===
@@ -20951,7 +20951,7 @@ EVs: 4 HP / 252 SpA / 252 Spe
 Timid Nature
 - Thunderbolt
 - Hidden Power
-- Substitute
+- Agility
 - Baton Pass
 
 Metagross @ Leftovers
@@ -21229,7 +21229,7 @@ EVs: 4 HP / 252 SpA / 252 Spe
 Timid Nature
 - Thunderbolt
 - Hidden Power
-- Substitute
+- Agility
 - Baton Pass
 
 Swampert @ Leftovers
@@ -21720,7 +21720,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 30 Spe
 EVs: 44 HP / 248 SpA / 216 Spe
 Timid Nature
 - Thunderbolt
-- Substitute
+- Thunder Wave
 - Crunch
 - Hidden Power
 
@@ -21802,7 +21802,7 @@ EVs: 200 HP / 236 SpD / 72 Spe
 Timid Nature
 - Psychic
 - Calm Mind
-- Substitute
+- Reflect
 - Baton Pass
 
 === TRAINER_PLASTIC_OX_TOURNAMENT_3 ===
@@ -21822,7 +21822,7 @@ EVs: 4 HP / 252 SpA / 252 Spe
 Timid Nature
 - Thunderbolt
 - Hidden Power
-- Substitute
+- Agility
 - Baton Pass
 
 Swampert @ Leftovers
@@ -21931,7 +21931,7 @@ Jolly Nature
 - Earthquake
 - Rock Slide
 - Hidden Power
-- Substitute
+- Dragon Claw
 
 Suicune @ Leftovers
 Level: 75
@@ -22017,7 +22017,7 @@ Jolly Nature
 - Earthquake
 - Rock Slide
 - Hidden Power
-- Substitute
+- Dragon Claw
 
 Raikou @ Leftovers
 Level: 55
@@ -22028,7 +22028,7 @@ Timid Nature
 - Calm Mind
 - Thunderbolt
 - Hidden Power
-- Substitute
+- Reflect
 
 === TRAINER_PLASTIC_OX_REGIROCK_SAGE ===
 Name: SAGE
@@ -22117,7 +22117,7 @@ EVs: 4 HP / 252 SpA / 252 Spe
 Timid Nature
 - Thunderbolt
 - Hidden Power
-- Substitute
+- Agility
 - Baton Pass
 
 Swampert @ Leftovers
@@ -22192,7 +22192,7 @@ EVs: 4 HP / 252 SpA / 252 Spe
 Timid Nature
 - Thunderbolt
 - Hidden Power
-- Substitute
+- Agility
 - Baton Pass
 
 Swampert @ Leftovers
@@ -22251,9 +22251,9 @@ Careful Nature
 - Explosion
 
 === TRAINER_PLASTIC_OX_TOWERGRUNT3 ===
-Name: GRUNT
-Class: Team Rocket Frlg
-Pic: Rocket Grunt M Frlg
+Name: PROTON
+Class: Rocket Executive Hns
+Pic: Proton Hns
 Gender: Male
 Music: Male
 Double Battle: No
@@ -22285,7 +22285,7 @@ Ability: Static
 EVs: 12 HP / 32 Atk / 116 Def / 252 SpA / 96 Spe
 Rash Nature
 - Thunderbolt
-- Substitute
+- Thunder Wave
 - Explosion
 - Hidden Power
 
@@ -22346,7 +22346,7 @@ Timid Nature
 - Thunderbolt
 - Thunder Wave
 - Shadow Ball
-- Substitute
+- Hidden Power
 
 Vaporeon @ Leftovers
 Level: 28

@@ -10,6 +10,7 @@
 #include "random.h"
 #include "rtc.h"
 #include "safari_zone.h"
+#include "script_pokemon_util.h"
 #include "script.h"
 #include "string_util.h"
 #include "plastic_ox_contest.h"
@@ -20,6 +21,8 @@
 
 #define CONTEST_BALLS 20
 #define CONTEST_STEPS 500
+// Cinnabar (UU) checkpoint band, matching Routes 8/7/21.
+#define POX_CONTEST_KANGASKHAN_LEVEL 36
 
 enum { PENDING_NONE = 0, PENDING_AFTER_BATTLE, PENDING_FINISH };
 
@@ -62,7 +65,8 @@ static bool32 HasPendingPrize(void)
     return FlagGet(FLAG_POX_CONTEST_PRIZE_PENDING)
         || FlagGet(FLAG_POX_CONTEST_EVERSTONE_PENDING)
         || FlagGet(FLAG_POX_CONTEST_SITRUS_PENDING)
-        || FlagGet(FLAG_POX_CONTEST_ORAN_PENDING);
+        || FlagGet(FLAG_POX_CONTEST_ORAN_PENDING)
+        || FlagGet(FLAG_POX_CONTEST_KANGASKHAN_PENDING);
 }
 
 void PlasticOxContest_CheckEntry(void)
@@ -237,7 +241,13 @@ void PlasticOxContest_Judge(void)
     if (sHasCatch)
     {
         gSpecialVar_Result = score >= sRivalScore ? 1 : score + 40 >= sRivalScore ? 2 : 3;
-        if (gSpecialVar_Result == 1)
+        // Every first place in the Warden's Thursday round pays a KANGASKHAN
+        // instead of the SUN STONE, but only after the 4th badge: it is a UU
+        // species (cinnabar checkpoint). The flag carries the prize from the
+        // judging to the gate desk, across a save if need be.
+        if (gSpecialVar_Result == 1 && sPassRound && FlagGet(FLAG_BADGE04_GET))
+            FlagSet(FLAG_POX_CONTEST_KANGASKHAN_PENDING);
+        else if (gSpecialVar_Result == 1)
             FlagSet(FLAG_POX_CONTEST_PRIZE_PENDING);
         else if (gSpecialVar_Result == 2)
             FlagSet(FLAG_POX_CONTEST_EVERSTONE_PENDING);
@@ -276,6 +286,26 @@ void PlasticOxContest_ClaimPrize(void)
     u16 flag;
 
     gSpecialVar_Result = FALSE;
+    if (FlagGet(FLAG_POX_CONTEST_KANGASKHAN_PENDING))
+    {
+        // Repeatable: every qualifying win sends one. A full party goes to the
+        // PC (POX_CONTEST_PRIZE_MON_PC); party and PC both full keeps the
+        // flag set so the Warden holds it until there is room.
+        u8 given = ScriptGiveMon(SPECIES_KANGASKHAN, POX_CONTEST_KANGASKHAN_LEVEL, ITEM_NONE);
+        StringCopy(gStringVar2, GetSpeciesName(SPECIES_KANGASKHAN));
+        // The Warden stands in the gate only on Thursdays; a prize claimed on
+        // another day (after a save, say) is handed over by the desk instead.
+        DoTimeBasedEvents();
+        gSpecialVar_0x8006 = (GetDayOfWeek() == WEEKDAY_THU);
+        if (given == MON_CANT_GIVE)
+        {
+            gSpecialVar_Result = POX_CONTEST_PRIZE_MON_NO_ROOM;
+            return;
+        }
+        FlagClear(FLAG_POX_CONTEST_KANGASKHAN_PENDING);
+        gSpecialVar_Result = (given == MON_GIVEN_TO_PC) ? POX_CONTEST_PRIZE_MON_PC : POX_CONTEST_PRIZE_MON_PARTY;
+        return;
+    }
     if (FlagGet(FLAG_POX_CONTEST_PRIZE_PENDING))
     {
         item = ITEM_SUN_STONE;

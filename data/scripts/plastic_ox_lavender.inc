@@ -210,6 +210,52 @@ Pox_TowerGrunt3_Won::
 	releaseall
 	end
 
+@ 7F Rockets battle on sight. The object script must open with
+@ trainerbattle so the engine can spot the player; talking to a beaten or
+@ dormant one falls through to the story script (Done / NotReady).
+PoxLavender_TowerGrunt1Sight::
+	trainerbattle_single TRAINER_PLASTIC_OX_TOWERGRUNT1, Pox_Text_TowerGrunt1, Pox_Text_TowerGrunt1_Defeat, Pox_TowerGrunt1_Won
+	goto Pox_TowerGrunt1
+PoxLavender_TowerGrunt2Sight::
+	trainerbattle_single TRAINER_PLASTIC_OX_TOWERGRUNT2, Pox_Text_TowerGrunt2, Pox_Text_TowerGrunt2_Defeat, Pox_TowerGrunt2_Won
+	goto Pox_TowerGrunt2
+PoxLavender_TowerGrunt3Sight::
+	trainerbattle_single TRAINER_PLASTIC_OX_TOWERGRUNT3, PoxLavender_Text_Grunt3Intro, PoxLavender_Text_Grunt3Defeat, Pox_TowerGrunt3_Won
+	goto Pox_TowerGrunt3
+
+@ A grunt spots the player only while his story battle is due: story mode
+@ (FLAG_POX_TRIGGERS_ENABLED), badge 4 (GRUNT 1's story prerequisite)
+@ and not yet beaten (FLAG_POX_HIDE_LAVENDER_GRUNT_n, the real record). The
+@ trainer flag is only the engine's "don't look" switch, recomputed on entry.
+PoxLavender_Tower7FOnTransition::
+	call PoxLavender_Tower7FGrunt1
+	call PoxLavender_Tower7FGrunt2
+	call PoxLavender_Tower7FGrunt3
+	end
+PoxLavender_Tower7FGrunt1::
+	settrainerflag TRAINER_PLASTIC_OX_TOWERGRUNT1
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxLavender_Return
+	goto_if_unset FLAG_BADGE04_GET, PoxLavender_Return
+	goto_if_set FLAG_POX_HIDE_LAVENDER_GRUNT_1, PoxLavender_Return
+	cleartrainerflag TRAINER_PLASTIC_OX_TOWERGRUNT1
+	return
+PoxLavender_Tower7FGrunt2::
+	settrainerflag TRAINER_PLASTIC_OX_TOWERGRUNT2
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxLavender_Return
+	goto_if_unset FLAG_BADGE04_GET, PoxLavender_Return
+	goto_if_set FLAG_POX_HIDE_LAVENDER_GRUNT_2, PoxLavender_Return
+	cleartrainerflag TRAINER_PLASTIC_OX_TOWERGRUNT2
+	return
+PoxLavender_Tower7FGrunt3::
+	settrainerflag TRAINER_PLASTIC_OX_TOWERGRUNT3
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxLavender_Return
+	goto_if_unset FLAG_BADGE04_GET, PoxLavender_Return
+	goto_if_set FLAG_POX_HIDE_LAVENDER_GRUNT_3, PoxLavender_Return
+	cleartrainerflag TRAINER_PLASTIC_OX_TOWERGRUNT3
+	return
+PoxLavender_Return::
+	return
+
 PoxLavender_TowerFuji::
 	lock
 	faceplayer
@@ -369,7 +415,7 @@ PoxLavender_Text_T6Channeler3::
 	.string "...The top floor is very cold\nnow... colder than the dead like\pit...$"
 
 PoxLavender_Text_Grunt3Intro::
-	.string "You got past both of them? Then\nyou've seen it too, haven't you.\pThe roads that weren't there\nlast year.\pWe just want to know who did it\nbefore somebody else finds out\pfirst.$"
+	.string "So you got past both of my\ngrunts. I'm PROTON, an EXECUTIVE\pof TEAM ROCKET.\pYou've seen the roads that\nweren't there last year. We'll\pknow who moved them before\nanyone else does.$"
 
 PoxLavender_Text_Grunt3Defeat::
 	.string "Go on, then. But whatever's\nmoving the roads, it isn't going\pto stop for you.$"

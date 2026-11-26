@@ -188,6 +188,24 @@
       "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
       "script": "PoxRegion_cinnabar_sea_a"
+    },
+    {
+      "type": "trigger",
+      "x": 23,
+      "y": 9,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "PoxRegion_cinnabar_sea_a"
+    },
+    {
+      "type": "trigger",
+      "x": 23,
+      "y": 11,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "PoxRegion_cinnabar_sea_a"
     }
   ],
   "bg_events": [

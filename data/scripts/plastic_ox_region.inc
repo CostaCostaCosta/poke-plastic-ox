@@ -343,130 +343,20 @@ PoxRegion_route110_lavender_a_StepBack:
 	step_end
 
 PoxRegion_lavender_route8_a::
-	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_lavender_route8_a_Open
 	goto_if_unset FLAG_POX_STORY_FUJI, PoxRegion_lavender_route8_a_Closed
 PoxRegion_lavender_route8_a_Open::
-	warp MAP_ROUTE8, 66, 20
-	waitstate
-	releaseall
 	end
 PoxRegion_lavender_route8_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_LAVENDER_TOWN_HNS, 1, 16
-	waitstate
-	releaseall
-	end
-
-PoxRegion_lavender_route8_a_Sign::
-	msgbox PoxRegion_lavender_route8_a_Text, MSGBOX_SIGN
-	end
-PoxRegion_lavender_route8_a_Text::
-	.string "Route8\nMarked passage ahead.\pYou are leaving LAVENDER TOWN.$"
-
-PoxRegion_lavender_route8_b::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_lavender_route8_b_Open
-	goto_if_unset FLAG_POX_STORY_FUJI, PoxRegion_lavender_route8_b_Closed
-PoxRegion_lavender_route8_b_Open::
-	warp MAP_LAVENDER_TOWN_HNS, 1, 16
-	waitstate
-	releaseall
-	end
-PoxRegion_lavender_route8_b_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE8, 66, 20
-	waitstate
+	applymovement OBJ_EVENT_ID_PLAYER, PoxRegion_lavender_route8_a_StepBack
+	waitmovement 0
 	releaseall
 	end
-
-PoxRegion_lavender_route8_b_Sign::
-	msgbox PoxRegion_lavender_route8_b_Text, MSGBOX_SIGN
-	end
-PoxRegion_lavender_route8_b_Text::
-	.string "LavenderTown\nMarked passage ahead.\pYou are leaving ROUTE 8.$"
-
-PoxRegion_route8_saffron_a::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route8_saffron_a_Open
-	goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxRegion_route8_saffron_a_Closed
-PoxRegion_route8_saffron_a_Open::
-	warp MAP_SAFFRON_CITY_HNS, 60, 27
-	waitstate
-	releaseall
-	end
-PoxRegion_route8_saffron_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE8, 7, 20
-	waitstate
-	releaseall
-	end
-
-PoxRegion_route8_saffron_a_Sign::
-	msgbox PoxRegion_route8_saffron_a_Text, MSGBOX_SIGN
-	end
-PoxRegion_route8_saffron_a_Text::
-	.string "SaffronCity\nMarked passage ahead.\pYou are leaving ROUTE 8.$"
-
-PoxRegion_route8_saffron_b::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route8_saffron_b_Open
-	goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxRegion_route8_saffron_b_Closed
-PoxRegion_route8_saffron_b_Open::
-	warp MAP_ROUTE8, 7, 20
-	waitstate
-	releaseall
-	end
-PoxRegion_route8_saffron_b_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_SAFFRON_CITY_HNS, 60, 27
-	waitstate
-	releaseall
-	end
-
-PoxRegion_route8_saffron_b_Sign::
-	msgbox PoxRegion_route8_saffron_b_Text, MSGBOX_SIGN
-	end
-PoxRegion_route8_saffron_b_Text::
-	.string "Route8\nMarked passage ahead.\pYou are leaving SAFFRON CITY.$"
-
-PoxRegion_route7_saffron_a::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route7_saffron_a_Open
-	goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxRegion_route7_saffron_a_Closed
-PoxRegion_route7_saffron_a_Open::
-	warp MAP_SAFFRON_CITY_HNS, 2, 25
-	waitstate
-	releaseall
-	end
-PoxRegion_route7_saffron_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE7_HNS, 5, 22
-	waitstate
-	releaseall
-	end
-
-PoxRegion_route7_saffron_a_Sign::
-	msgbox PoxRegion_route7_saffron_a_Text, MSGBOX_SIGN
-	end
-PoxRegion_route7_saffron_a_Text::
-	.string "SaffronCity\nMarked passage ahead.\pYou are leaving ROUTE 7.$"
-
-PoxRegion_route7_saffron_b::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route7_saffron_b_Open
-	goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxRegion_route7_saffron_b_Closed
-PoxRegion_route7_saffron_b_Open::
-	warp MAP_ROUTE7_HNS, 5, 22
-	waitstate
-	releaseall
-	end
-PoxRegion_route7_saffron_b_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_SAFFRON_CITY_HNS, 2, 25
-	waitstate
-	releaseall
-	end
+PoxRegion_lavender_route8_a_StepBack:
+	walk_right
+	step_end
 
 PoxRegion_route7_route103_a::
 	lockall
@@ -479,23 +369,17 @@ PoxRegion_route7_route103_a_Open::
 	end
 PoxRegion_route7_route103_a_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE7_HNS, 1, 23
+	warp MAP_ROUTE7_HNS, 1, 6
 	waitstate
 	releaseall
 	end
-
-PoxRegion_route7_route103_a_Sign::
-	msgbox PoxRegion_route7_route103_a_Text, MSGBOX_SIGN
-	end
-PoxRegion_route7_route103_a_Text::
-	.string "Route103\nMarked passage ahead.\pYou are leaving ROUTE 7.$"
 
 PoxRegion_route7_route103_b::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route7_route103_b_Open
 	goto_if_unset FLAG_POX_STORY_FUJI, PoxRegion_route7_route103_b_Closed
 PoxRegion_route7_route103_b_Open::
-	warp MAP_ROUTE7_HNS, 1, 23
+	warp MAP_ROUTE7_HNS, 1, 6
 	waitstate
 	releaseall
 	end
@@ -1094,71 +978,65 @@ PoxRegion_harbor_frontier_b_Sign::
 PoxRegion_harbor_frontier_b_Text::
 	.string "Harbor\nMarked passage ahead.\pYou are leaving BATTLE FRONTIER OUTSID.$"
 
-PoxRegion_underground_west::
+PoxRegion_route8_saffron_Guard::
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route8_saffron_Guard_Open
+	goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxRegion_route8_saffron_Guard_Closed
+PoxRegion_route8_saffron_Guard_Open::
+	end
+PoxRegion_route8_saffron_Guard_Closed::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_underground_west_Open
-PoxRegion_underground_west_Open::
-	warp MAP_UNDERGROUND_PATH_WEST_ENTRANCE, 6, 6
-	waitstate
+	msgbox PoxRegion_route8_saffron_Guard_ClosedText, MSGBOX_DEFAULT
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, PoxRegion_route8_saffron_Guard_StepBack
+	waitmovement 0
 	releaseall
 	end
-PoxRegion_underground_west_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE7_HNS, 3, 22
-	waitstate
-	releaseall
+PoxRegion_route8_saffron_Guard_StepBack:
+	walk_right
+	step_end
+PoxRegion_route8_saffron_GuardTalk::
+	goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxRegion_route8_saffron_GuardTalk_Closed
+	msgbox PoxRegion_route8_saffron_Guard_OpenText, MSGBOX_NPC
 	end
-
-PoxRegion_underground_west_Sign::
-	msgbox PoxRegion_underground_west_Text, MSGBOX_SIGN
+PoxRegion_route8_saffron_GuardTalk_Closed::
+	msgbox PoxRegion_route8_saffron_Guard_TalkText, MSGBOX_NPC
 	end
-PoxRegion_underground_west_Text::
-	.string "Underground Path\nMarked passage ahead.\pYou are leaving ROUTE 7.$"
+PoxRegion_route8_saffron_Guard_ClosedText::
+	.string "Sorry, SAFFRON CITY is closed.\nNobody goes in until we hear otherwise.$"
+PoxRegion_route8_saffron_Guard_TalkText::
+	.string "The city asked us to keep this road\nshut. Don't ask me why, either.\pHeading west? The UNDERGROUND PATH\nruns right under the city.$"
+PoxRegion_route8_saffron_Guard_OpenText::
+	.string "SAFFRON's open again. Go on\nthrough, it's been a long wait.$"
 
-PoxRegion_underground_return_5::
+PoxRegion_route7_saffron_Guard::
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route7_saffron_Guard_Open
+	goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxRegion_route7_saffron_Guard_Closed
+PoxRegion_route7_saffron_Guard_Open::
+	end
+PoxRegion_route7_saffron_Guard_Closed::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_underground_return_5_Open
-PoxRegion_underground_return_5_Open::
-	warp MAP_ROUTE7_HNS, 3, 22
-	waitstate
+	msgbox PoxRegion_route7_saffron_Guard_ClosedText, MSGBOX_DEFAULT
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, PoxRegion_route7_saffron_Guard_StepBack
+	waitmovement 0
 	releaseall
 	end
-PoxRegion_underground_return_5_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_UNDERGROUND_PATH_WEST_ENTRANCE, 5, 6
-	waitstate
-	releaseall
+PoxRegion_route7_saffron_Guard_StepBack:
+	walk_left
+	step_end
+PoxRegion_route7_saffron_GuardTalk::
+	goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxRegion_route7_saffron_GuardTalk_Closed
+	msgbox PoxRegion_route7_saffron_Guard_OpenText, MSGBOX_NPC
 	end
-
-PoxRegion_underground_return_6::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_underground_return_6_Open
-PoxRegion_underground_return_6_Open::
-	warp MAP_ROUTE7_HNS, 3, 22
-	waitstate
-	releaseall
+PoxRegion_route7_saffron_GuardTalk_Closed::
+	msgbox PoxRegion_route7_saffron_Guard_TalkText, MSGBOX_NPC
 	end
-PoxRegion_underground_return_6_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_UNDERGROUND_PATH_WEST_ENTRANCE, 6, 6
-	waitstate
-	releaseall
-	end
-
-PoxRegion_underground_return_7::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_underground_return_7_Open
-PoxRegion_underground_return_7_Open::
-	warp MAP_ROUTE7_HNS, 3, 22
-	waitstate
-	releaseall
-	end
-PoxRegion_underground_return_7_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_UNDERGROUND_PATH_WEST_ENTRANCE, 7, 6
-	waitstate
-	releaseall
-	end
+PoxRegion_route7_saffron_Guard_ClosedText::
+	.string "Hold it. SAFFRON CITY is closed\nfrom this side as well.$"
+PoxRegion_route7_saffron_Guard_TalkText::
+	.string "Orders came down this morning.\nSame as yesterday. Same as the day\lbefore that.$"
+PoxRegion_route7_saffron_Guard_OpenText::
+	.string "The gate's open now. Mind the\ncrowds on the other side.$"
 
 PoxRoute2_Ether::
 	finditem ITEM_ETHER

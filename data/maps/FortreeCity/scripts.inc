@@ -68,7 +68,8 @@ FortreeCity_EventScript_EastJunctionSign::
 FortreeCity_EventScript_Kecleon::
 	lock
 	faceplayer
-	goto_if_set FLAG_BADGE04_GET, FortreeCity_EventScript_KecleonReveal
+	checkitem ITEM_DEVON_SCOPE
+	goto_if_eq VAR_RESULT, TRUE, FortreeCity_EventScript_KecleonReveal
 	msgbox FortreeCity_Text_SomethingInvisibleInTheWay, MSGBOX_DEFAULT
 	release
 	end
@@ -131,6 +132,8 @@ FortreeCity_Text_SomethingInvisibleInTheWay:
 	.string "It isn't going to move.$"
 
 FortreeCity_Text_KecleonRevealed:
+	.string "{PLAYER} looked through the\n"
+	.string "DEVON SCOPE.\p"
 	.string "The shape in the walkway shivers\n"
 	.string "and comes into view.\p"
 	.string "It's a KECLEON!\p"

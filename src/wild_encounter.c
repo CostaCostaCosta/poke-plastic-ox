@@ -33,6 +33,7 @@
 #include "constants/weather.h"
 #include "plastic_ox.h"
 #include "plastic_ox_contest.h"
+#include "rtc.h"
 #include "constants/moves.h"
 
 extern const u8 EventScript_SprayWoreOff[];
@@ -675,6 +676,17 @@ void PlasticOx_PrepareSudowoodoMoves(void)
     SetMonMoveSlot(&gParties[B_TRAINER_OPPONENT_A][0], MOVE_LOW_KICK, 3);
 }
 
+// SCYTHER and PINSIR exist only in the Warden's Thursday contest round
+// (sPoxParkContestPass), and only after the 4th badge: both are UU (cinnabar
+// checkpoint). Any other contest day, or a Thursday before badge 4, rolls the
+// ordinary bug table. No other wild table holds them.
+static const struct WildPokemonInfo *PoxContestLandTable(void)
+{
+    if (PlasticOxContest_IsPassRound() && FlagGet(FLAG_BADGE04_GET))
+        return &sPoxParkContestPassDay;
+    return &sPoxParkContestDay;
+}
+
 #ifdef BUGFIX
 #define TRY_GET_ABILITY_INFLUENCED_WILD_MON_INDEX(wildPokemon, type, ability, ptr, count) TryGetAbilityInfluencedWildMonIndex(wildPokemon, type, ability, ptr, count)
 #else
@@ -687,7 +699,7 @@ bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, enum WildPok
     u8 level;
 
     if (area == WILD_AREA_LAND && PlasticOxContest_IsActive())
-        return GenerateWeightedWildMon(PlasticOxContest_IsPassRound() ? &sPoxParkContestPassDay : &sPoxParkContestDay, 0);
+        return GenerateWeightedWildMon(PoxContestLandTable(), 0);
     if (wildMonInfo->weights != NULL)
         return GenerateWeightedWildMon(wildMonInfo, flags);
 
@@ -921,7 +933,7 @@ bool8 StandardWildEncounter(u16 curMetatileBehavior, u16 prevMetatileBehavior)
 
             if (PlasticOxContest_IsActive())
             {
-                GenerateWeightedWildMon(PlasticOxContest_IsPassRound() ? &sPoxParkContestPassDay : &sPoxParkContestDay, 0);
+                GenerateWeightedWildMon(PoxContestLandTable(), 0);
                 BattleSetup_StartWildBattle();
                 return TRUE;
             }
@@ -1117,7 +1129,7 @@ bool8 SweetScentWildEncounter(void)
 
             if (PlasticOxContest_IsActive())
             {
-                GenerateWeightedWildMon(PlasticOxContest_IsPassRound() ? &sPoxParkContestPassDay : &sPoxParkContestDay, 0);
+                GenerateWeightedWildMon(PoxContestLandTable(), 0);
                 BattleSetup_StartWildBattle();
                 return TRUE;
             }

@@ -516,6 +516,11 @@ for i, (name, display, town, prereq, level, team) in enumerate(gymdata):
     if name == 'Blaine':
         extra += "\n\tgoto Pox_MansionKey_Award"
         repeat = "Pox_MansionKey"
+    if name == 'Winona':
+        # LINDEN (Devon, met at the Weather Institute) walks up with the
+        # DEVON SCOPE; talking to Winona again resumes an interrupted gift.
+        extra += "\n\tgoto Pox_DevonScope_Award"
+        repeat = "Pox_WinonaDone"
     intro = ("WHITNEY: My team keeps moving! Show me how you handle surprises!"
              if name == 'Whitney' else
              "MORTY: You went under the tower. You saw them leave, all eleven, and not one of them looked lost.|I have no explanation that would survive daylight. What I have is a GYM and a badge.|Show me the team you carried down there."
@@ -530,11 +535,70 @@ for i, (name, display, town, prereq, level, team) in enumerate(gymdata):
         for obj in data['object_events']:
             if any(leader in obj['script'] for leader in ['Roxanne','Winona','TateAndLiza','Tate','Liza']):
                 obj['script'] = 'Pox_' + name
+        if name == 'Winona':
+            # Only ever shown by addobject in Pox_DevonScope_Award.
+            data['object_events'] = [o for o in data['object_events'] if o['script'] != 'Pox_DevonScopeLinden']
+            linden = npc('DevonScopeLinden', 7, 4, 'OBJ_EVENT_GFX_SCIENTIST_1', 'FLAG_POX_HIDE_UNUSED_ACTOR')
+            linden = {'local_id': 'LOCALID_FORTREE_GYM_LINDEN', **linden}
+            data['object_events'].append(linden)
         save_map(native, data)
     else:
         dest = room(name + 'Gym', town, name, return_xy={'Whitney':(25,14),'Morty':(35,44),'Blaine':(11,11),'Bruno':(16,23),'Clair':(16,29)}[name])
         guide(town, {'Whitney':0,'Morty':0,'Blaine':1,'Bruno':0,'Clair':0}[name], name+'Guide', dest, f"{display}'s challenge is this way.", prereq if name=='Clair' else ())
 speech("Pox_Text_Badge", "You received a GYM BADGE! A new challenge waits on the next road.")
+# Fortree: after Winona, LINDEN brings the DEVON SCOPE (reveals invisible
+# KECLEON, as in Emerald). He enters along the gym's row 4 from (7,4) and stops
+# just below the player, who may be facing Winona from (15,3), (14,2) or (16,2).
+emit("""Pox_DevonScopeLinden::
+\tend
+Pox_WinonaDone::
+\tgoto_if_set FLAG_RECEIVED_DEVON_SCOPE, Pox_Done
+Pox_DevonScope_Award::
+\tgetplayerxy VAR_0x8004, VAR_0x8005
+\taddobject LOCALID_FORTREE_GYM_LINDEN
+\tgoto_if_eq VAR_0x8004, 14, Pox_DevonScope_Left
+\tgoto_if_eq VAR_0x8004, 16, Pox_DevonScope_Right
+\tapplymovement LOCALID_FORTREE_GYM_LINDEN, Pox_Movement_LindenApproachCenter
+\twaitmovement 0
+\tcall Pox_DevonScope_Give
+\tapplymovement LOCALID_FORTREE_GYM_LINDEN, Pox_Movement_LindenLeaveCenter
+\tgoto Pox_DevonScope_End
+Pox_DevonScope_Left::
+\tapplymovement LOCALID_FORTREE_GYM_LINDEN, Pox_Movement_LindenApproachLeft
+\twaitmovement 0
+\tcall Pox_DevonScope_Give
+\tapplymovement LOCALID_FORTREE_GYM_LINDEN, Pox_Movement_LindenLeaveLeft
+\tgoto Pox_DevonScope_End
+Pox_DevonScope_Right::
+\tapplymovement LOCALID_FORTREE_GYM_LINDEN, Pox_Movement_LindenApproachRight
+\twaitmovement 0
+\tcall Pox_DevonScope_Give
+\tapplymovement LOCALID_FORTREE_GYM_LINDEN, Pox_Movement_LindenLeaveRight
+Pox_DevonScope_End::
+\twaitmovement 0
+\tremoveobject LOCALID_FORTREE_GYM_LINDEN
+\treleaseall
+\tend
+Pox_DevonScope_Give::
+\tapplymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterDown
+\twaitmovement 0
+\tmsgbox Pox_Text_DevonScope, MSGBOX_DEFAULT
+\tgiveitem ITEM_DEVON_SCOPE
+\tsetflag FLAG_RECEIVED_DEVON_SCOPE
+\tmsgbox Pox_Text_DevonScopeAfter, MSGBOX_DEFAULT
+\tclosemessage
+\treturn""")
+for label, steps in [
+    ('ApproachCenter', ['walk_right'] * 8 + ['face_up']),
+    ('ApproachLeft', ['walk_right'] * 7 + ['walk_up']),
+    ('ApproachRight', ['walk_right'] * 9 + ['walk_up']),
+    ('LeaveCenter', ['walk_left'] * 8),
+    ('LeaveLeft', ['walk_down'] + ['walk_left'] * 7),
+    ('LeaveRight', ['walk_down'] + ['walk_left'] * 9),
+]:
+    emit(f"Pox_Movement_Linden{label}:\n" + "".join(f"\t{s}\n" for s in steps) + "\tstep_end")
+speech("Pox_Text_DevonScope", "LINDEN: There you are! We met at the WEATHER INSTITUTE. LINDEN, DEVON field research.|Our sensors keep logging something on FORTREE's walkways that no camera can see.|This is a DEVON SCOPE. It picks out POKéMON that would rather not be seen. You'll get more use from it out on the road than I will in a lab.")
+speech("Pox_Text_DevonScopeAfter", "LINDEN: If something invisible is in your way, look at it through the SCOPE.|Well, back to the INSTITUTE. Those readings won't log themselves!")
 # Whitney-specific refusals, repeat line and defeat line (pox-2ma.4); the
 # shared Pox_NotReady/Pox_Done/Pox_Text_Defeat stay for everyone else.
 for label, line in [
@@ -1224,7 +1288,9 @@ def keep_stable_trainer_layout():
 
 
 keep_stable_trainer_layout()
-manifest=[(m,x,y,s) for m,x,y,s in manifest if any(o.get('script') == 'Pox_'+s and (o['x'],o['y']) == (x,y) for o in load_map(m)['object_events'])]
+# Line-of-sight trainers (lavender.py's 7F tower Rockets) run their story
+# battle through a PoxLavender_<name>Sight label that opens with trainerbattle.
+manifest=[(m,x,y,s) for m,x,y,s in manifest if any(o.get('script') in ('Pox_'+s,'PoxLavender_'+s+'Sight') and (o['x'],o['y']) == (x,y) for o in load_map(m)['object_events'])]
 put('plastic_ox/alpha/story_manifest.json',json.dumps(dict(events=[dict(map=m,x=x,y=y,script='Pox_'+s) for m,x,y,s in manifest],flags=flags,trainers=[t for t,_ in trainers],rooms=room_names),indent=2)+'\n')
 
 different={p:t for p,t in changes.items() if not Path(p).exists() or Path(p).read_text()!=t}

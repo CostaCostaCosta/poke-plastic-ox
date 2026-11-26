@@ -18,14 +18,14 @@ status: drafted
 
 ## Snapshot
 
-A fenced east–west road on the outside of Saffron, wide enough for two carts and lit only by the sky. The player enters from Lavender at `(66,20)`, walks its whole length with the city wall always to one side, and drops through the Underground Path stair at `(12,17)`; the route exists almost entirely as a walk. It is the first leg of the Lavender→Cinnabar bypass, and its emotional note is *waiting* — a road built for a city that has stopped letting anyone in.
+A fenced east–west road on the outside of Saffron, wide enough for two carts and lit only by the sky. The player walks in from Lavender across the east edge `(67,19..21)`, walks its whole length with the city wall always to one side, and goes down through the Underground Path hut door at `(12,18)`; the route exists almost entirely as a walk. It is the first leg of the Lavender→Cinnabar bypass, and its emotional note is *waiting* — a road built for a city that has stopped letting anyone in.
 
 ## Plot points
 
-1. **Lavender gate.** The east edge is a scripted crossing at `(67,20)` (`PoxRegion_lavender_route8_b`), opened by `FLAG_POX_STORY_FUJI`. Reveal-ladder **step 8** begins here: the player is now walking around the city instead of toward it.
+1. **Lavender gate.** The east edge `(67,19..21)` is a native camera connection to Lavender's west road `(0,9..11)` (`region_v7.SEAM_TRAILS`, offset -10); Lavender's edge tiles (`PoxRegion_lavender_route8_a`) refuse until `FLAG_POX_STORY_FUJI`. Reveal-ladder **step 8** begins here: the player is now walking around the city instead of toward it.
 2. **The road is inhabited, not hostile.** Thirteen FRLG residents stand along it and not one battles: every object is a plain NPC and its script only prints a post-battle line. Treat them as the road's population — gate-waiters, foragers, couriers — not as a trainer gauntlet.
-3. **The Saffron gate is the promise.** At `(8,20)` the west crossing (`PoxRegion_route8_saffron_a`) refuses until `FLAG_POX_STORY_SPACE_CENTER`. The player should read a wall, a queue and a guard; the city stays shut for three more Badges.
-4. **The stair down.** `(12,17)` warps into `UndergroundPath_EastEntrance_Frlg`; the tunnel runs beneath the city and surfaces at `UndergroundPath_WestEntrance_Frlg`, which is Route 7's problem.
+3. **The Saffron gate is the promise.** The gatehouse arrow at `(3,21)` leads into `Route8_WestEntrance_Frlg`, whose guard (`PoxRegion_route8_saffron_Guard`) turns the player back until `FLAG_POX_STORY_SPACE_CENTER`; past him the room opens onto Saffron's east gate `(62,27)`. The player should read a wall, a queue and a guard; the city stays shut for three more Badges.
+4. **The stair down.** The hut door `(12,18)` warps into `UndergroundPath_EastEntrance_Frlg`; the tunnel runs beneath the city and surfaces at `UndergroundPath_WestEntrance_Frlg`, which is Route 7's problem.
 5. **MR. POKéMON's sideshow.** In the tunnel at `(33,2)`, `PoxTournament_Host` opens round one to anyone holding Badge 4 — just earned at Fortree. Optional, loud, and the only cheerful person in the bypass.
 6. **The berries are the reward.** Three hidden berries at `(40,21)`, `(36,23)`, `(40,31)`; two cuttable trees at `(31,31)` and `(44,25)` hide nothing story-critical. Add no quest item here.
 
@@ -35,12 +35,10 @@ A fenced east–west road on the outside of Saffron, wide enough for two carts a
 
 | Interaction | Where | Trigger / state | Current behavior | Target behavior |
 | --- | --- | --- | --- | --- |
-| Lavender crossing | `Route8_Frlg` `(67,20)` | `FLAG_POX_STORY_FUJI` unset | closed text, warp back to `(66,20)` | keep; give the barrier a person, not just text |
-| Saffron crossing | `(8,20)` | `FLAG_POX_STORY_SPACE_CENTER` unset | `PoxRegion_route8_saffron_a` closed text, warp to `(7,20)` | keep the lock; the sign describes a city, not a map name |
-| Underground stair | `(12,17)` | always | warp to `UndergroundPath_EastEntrance_Frlg` | keep |
-| Retired gateway warp | `(9,20)` | — | was a warp to the legacy `Route8_WestEntrance_Frlg` gate (vanilla thirsty-guard triggers, exit into `SaffronCity_Frlg`) | removed 2026-11-21 (trigger audit); the `(8,20)` crossing is the only west exit |
-| Underground sign | `(7,19)` object | always | `PoxRegion_route8_saffron_a_Sign`: "SaffronCity / Marked passage ahead." | rewrite in-world: distance, direction, what the queue is for |
-| Lavender sign | `(66,19)` object | always | `PoxRegion_lavender_route8_b_Sign`: "LavenderTown / Marked passage ahead." | same treatment, different wording |
+| Lavender crossing | `Route8_Frlg` east edge `(67,19..21)` | `FLAG_POX_STORY_FUJI` unset | camera connection; Lavender's edge refuses with the closed text and steps the player back | keep; give the barrier a person, not just text |
+| Saffron gatehouse | arrow `(3,21)` -> `Route8_WestEntrance_Frlg` | `FLAG_POX_STORY_SPACE_CENTER` unset | the room's guard (`PoxRegion_route8_saffron_GuardTalk`) refuses at `x=6` and steps the player back east | keep the lock |
+| Underground hut | door `(12,18)` | always | warp to `UndergroundPath_EastEntrance_Frlg`; the lane that used to cut through the hut is restored (`plastic_ox/alpha/route8_tunnel_hut.py`) | keep |
+| Gate room | `Route8_WestEntrance_Frlg` | — | vanilla thirsty-guard triggers replaced by the Space Center gate; exits now lead to `SaffronCity_hns` and back to `(3,21)` | keep |
 | Gate-waiters | `(27,8)` Leslie, `(27,12)` Megan | always | both blame "the gates at SAFFRON" | keep the grievance, split the reasons: a delivery, a sister inside |
 | Road residents | `(59,29)` Julia, `(52,31)` Rich, `(48,12)` Glenn, `(27,6)` Paige, `(27,10)` Andrea, `(20,6)` Stan, `(8,12)` Aidan | always, no battles | vanilla one-liners (Moon Stone rumour, "eating peanuts", Grimer mumble, "Things didn't work today") | one voice each: berry forager, gate idler, off-shift scientist, a child who has never been inside the city |
 | Twins | `(38,6)` Eli, `(39,6)` Anne | always | two halves of one twin joke | keep the pair, give them a job (counting carts, selling water) |
@@ -91,4 +89,4 @@ A fenced east–west road on the outside of Saffron, wide enough for two carts a
 - Restore the twelve FRLG battles at act-3 levels, or keep Route 8 quiet and let the tunnel be the only combat? Right now it is neither: parties exist, nobody fights.
 - The `(9,20)` warp into `Route8_WestEntrance_Frlg` was removed in the 2026-11-21 trigger audit. Retire the dangling legacy connections too?
 - Should the tournament stay in a public tunnel, or move to a dedicated facility once the underground stops being the main road?
-- Route 8 still rolls FireRed/LeafGreen wild encounters (Pidgey, Meowth, Growlithe or Vulpix, Ekans or Sandshrew, Lv 15–20). Keep as road texture, or retune for an act-3 party?
+- Route 8 rolls `gPoxUURoute8` (Lv 36–38, UU-capped for the cinnabar checkpoint): evolved forms only: Persian, Pidgeot, Raticate, Arbok, Ninetales, Sandslash, Primeape, Hypno, Mightyena, Rapidash, Fearow and a rare Arcanine. Verified by `plastic_ox/demo/test_kanto_uu_encounters.py`.

@@ -165,14 +165,14 @@ Timid Nature
 - Calm Mind
 - Psychic
 - Fire Punch
-- Substitute
+- Thunder Punch
 
 Farfetch'd @ Salac Berry
 Level: 20
 Ability: Inner Focus
 EVs: 252 Atk / 4 Def / 252 Spe
 Adamant Nature
-- Substitute
+- Return
 - Iron Tail
 - Hidden Power
 - Swords Dance
@@ -182,7 +182,7 @@ Level: 20
 Ability: Speed Boost
 EVs: 252 Atk / 4 Def / 252 Spe
 Adamant Nature
-- Substitute
+- Shadow Ball
 - Solar Beam
 - Hidden Power
 - Protect
@@ -254,7 +254,7 @@ Adamant Nature
 - Swords Dance
 - Hidden Power
 - Earthquake
-- Substitute
+- Body Slam
 
 Skiploom @ Leftovers
 Level: 20
@@ -411,7 +411,7 @@ Timid Nature
 - Reflect
 - Light Screen
 - Hyper Beam
-- Substitute
+- Aerial Ace
 
 Ariados @ Leftovers
 Level: 22
@@ -650,9 +650,9 @@ Jolly Nature
 - Sand Attack
 
 === TRAINER_PLASTIC_OX_TOWERGRUNT3 ===
-Name: GRUNT
-Class: Team Rocket Frlg
-Pic: Rocket Grunt M Frlg
+Name: PROTON
+Class: Rocket Executive Hns
+Pic: Proton Hns
 Gender: Male
 Music: Male
 Double Battle: No
@@ -684,7 +684,7 @@ Ability: Static
 EVs: 12 HP / 32 Atk / 116 Def / 252 SpA / 96 Spe
 Rash Nature
 - Thunderbolt
-- Substitute
+- Thunder Wave
 - Explosion
 - Hidden Power
 
@@ -745,7 +745,7 @@ Timid Nature
 - Thunderbolt
 - Thunder Wave
 - Shadow Ball
-- Substitute
+- Hidden Power
 
 Vaporeon @ Leftovers
 Level: 28

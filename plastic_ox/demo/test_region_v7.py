@@ -14,6 +14,34 @@ from test_story import StoryGame, ROOT
 from walklib import K
 
 KEYS = dict(N=K.KEY_UP, S=K.KEY_DOWN, W=K.KEY_LEFT, E=K.KEY_RIGHT)
+PLAYER_AVATAR_FLAG_SURFING = 1 << 3
+
+# region_manifest.json is written by region_v7.py, but these crossings were
+# reworked by hand afterwards and their maps are baselined generator drift
+# (plastic_ox/generated_drift_baseline.txt). The test walks the crossings the
+# ROM actually has; each entry overrides the generated manifest row.
+#   * Route 33 <-> Goldenrod: the trigger scripts land at Goldenrod (33,44)
+#     and Route 33 (1,23) (Goldenrod south-passage rework, 821a0851ad).
+#   * Goldenrod <-> Route 35: the real gatehouse, Gate_GoldenrodCity_Route35_hns
+#     (Goldenrod (33,7) -> gate (7,9) .. (7,1) -> Route 35 (13,48)).
+#   * Oldale <-> Route 103: a plain map connection, deliberately ungated
+#     (route103.md: "the Oldale road is a real road, not a story gate").
+#   * Cinnabar <-> sea: Cinnabar's trigger is the east-edge tile (23,10); the
+#     Route 20 West return moved from the mid-sea tripwire (48,13) to the west
+#     edge (0,10) in the surf-skip fix (61d7d01f90), reached on the water.
+#     Cinnabar's (23,10) is sea at a lower elevation than the quay, so the
+#     crossing is a real Surf mount from (22,10) (test_warps_v1.mount_surf)
+#     followed by one stroke along the edge column (23,9..11).
+DISK_CROSSINGS = {
+    'route33_goldenrod_a': dict(landing=[33, 44]),
+    'route33_goldenrod_b': dict(landing=[1, 23]),
+    'goldenrod_route35_a': dict(approach=[33, 8], direction='N', gate=True),
+    'goldenrod_route35_b': dict(approach=[13, 47], direction='S', gate=True),
+    'oldale_route103_a': dict(approach=[10, 1], direction='N', seam=True, requires=[]),
+    'oldale_route103_b': dict(approach=[10, 20], direction='S', seam=True, requires=[]),
+    'cinnabar_sea_a': dict(tile=[23, 10], approach=[22, 10], mount=True),
+    'cinnabar_sea_b': dict(tile=[0, 10], approach=[1, 10], direction='W', surf=True, landing=[22, 10]),
+}
 
 
 def main():
@@ -23,6 +51,8 @@ def main():
     parser.add_argument('--warps', action='store_true', help='Test retained native dungeon/door crossings')
     args = parser.parse_args()
     manifest = json.loads((ROOT/'plastic_ox/alpha/region_manifest.json').read_text())
+    for p in manifest['transitions']:
+        p.update(DISK_CROSSINGS.get(p['id'], {}))
     groups = json.loads((ROOT/'data/maps/map_groups.json').read_text())
     ids = {n: (i,j) for i,k in enumerate(groups['group_order']) for j,n in enumerate(groups[k])}
     out = ROOT/'plastic_ox/demo/shots/region_v7'
@@ -46,6 +76,7 @@ def main():
     g.flag('FLAG_BADGE07_GET', False)
     g.flag('FLAG_POX_STORY_SILPH', False)
     results = []
+    surfer = None
     for p in manifest['transitions']:
         if args.only and args.only not in p['id']:
             continue
@@ -75,9 +106,50 @@ def main():
         else:
             g.flag('FLAG_BADGE07_GET', False)
         try:
+            if p.get('mount'):
+                # A real Surf prompt from the shore; the hop onto the water is
+                # the step that fires the trigger.
+                if surfer is None:
+                    from test_warps_v1 import make_playtest
+                    surfer = make_playtest()
+                for flag in p['requires'] + ['FLAG_POX_TRIGGERS_ENABLED']:
+                    surfer.flag(flag, True)
+                surfer.warp(p['source'], *p['approach'])
+                surfer.frame(60)
+                ok, note = surfer.mount_surf({'N': 'UP', 'S': 'DOWN', 'E': 'RIGHT', 'W': 'LEFT'}[p['direction']])
+                assert ok, (p['id'], note)
+                # The Surf hop is not a step, so it never fires a coord
+                # trigger; the sea exit is the whole edge column (23,9..11),
+                # so the first stroke along it crosses.
+                for _ in range(3):
+                    if (surfer.state()['group'],surfer.state()['num']) == ids[p['destination']]:
+                        break
+                    surfer.tap(K.KEY_UP, hold=16, wait=60)
+                for _ in range(30):
+                    if (surfer.state()['group'],surfer.state()['num']) == ids[p['destination']]:
+                        break
+                    surfer.frame(10)
+                surfer.frame(180)
+                state = surfer.state()
+                assert (state['group'],state['num']) == ids[p['destination']], (p['id'],note,state)
+                assert [state['x'],state['y']] == p['landing'], (p['id'],'landing',state,p['landing'])
+                results.append(dict(id=p['id'],passed=True))
+                print(json.dumps(results[-1]),flush=True)
+                continue
             g.warp(p['source'], *p['approach'])
+            if p.get('surf'):
+                avatar = g.syms['gPlayerAvatar']
+                g.write(avatar, g.u8(avatar) | PLAYER_AVATAR_FLAG_SURFING)
+                g.frame(30)
             start = g.state()
-            if p.get('seam'):
+            if p.get('gate'):
+                # Through the gatehouse: keep walking the same way; the
+                # gate is one straight N-S aisle between its two doors.
+                for _ in range(24):
+                    g.tap(KEYS[p['direction']], hold=16, wait=30)
+                    if (g.state()['group'],g.state()['num']) == ids[p['destination']]:
+                        break
+            elif p.get('seam'):
                 # A native connection: keep walking until the map changes.
                 # The lane, not a fixed landing, decides where the player is.
                 for _ in range(6):
@@ -93,7 +165,7 @@ def main():
             g.frame(180)
             state = g.state()
             assert (state['group'],state['num']) == ids[p['destination']], (p['id'],start,state)
-            if not p.get('seam'):
+            if not p.get('seam') and not p.get('gate'):
                 assert [state['x'],state['y']] == p['landing'], (p['id'],'landing',state,p['landing'])
             assert g.collision_at(state['x'],state['y'])[0] == 0, (p['id'],'blocked landing')
             result = dict(id=p['id'],passed=True)

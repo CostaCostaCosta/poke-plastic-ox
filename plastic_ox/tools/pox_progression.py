@@ -50,8 +50,12 @@ def load_wild() -> dict[str, set[str]]:
             continue
         bag = out.setdefault(e["base_label"], set())
         for field in FIELDS:
+            # "<label>:<field>" lets a checkpoint claim one method of a header
+            # (Route 44: fishing at route44, Surf-gated grass at cinnabar).
+            part = out.setdefault(e["base_label"] + ":" + field, set())
             for m in e.get(field, {}).get("mons", []):
                 bag.add(m["species"])
+                part.add(m["species"])
     return out
 
 
@@ -104,7 +108,7 @@ CHECKPOINTS = [
     ("route24",     "LC",   13, ["gPoxRoute24Hns#"], []),
     ("route25",     "LC",   13, ["gPoxRoute25Hns#"], []),
     ("gym1",        "LC",   13, [], []),                                    # Roxanne, Rustboro
-    ("route44",     "PU",   20, ["gPoxRoute44Hns"], []),
+    ("route44",     "PU",   20, ["gPoxRoute44Hns:fishing_mons"], []),  # grass is Surf-gated: cinnabar
     ("mtmoon",      "PU",   20, ["gPoxPUMtMoonCaveHns#", "gPoxPUMtMoon1F#"], []),
     ("mtmoondeep",  "PU",   20, ["gPoxPUMtMoonB1F#", "gPoxPUMtMoonB2F#"], []),
     ("route33",     "PU",   20, ["gPoxPURoute33Hns#"], ["MAP_ROUTE33_HNS"]),
@@ -119,7 +123,7 @@ CHECKPOINTS = [
                                 "gPoxNUBurnedTowerB1F"], []),
     ("gym3",        "NU",   30, [], []),          # Morty, Dance Theater
     ("fortree",     "RU",   36, [], []),          # Route 119, Weather Institute, Fortree
-    ("cinnabar",    "UU",   42, ["gPoxUUPokemonTower#"], []),  # Lavender tower, Cinnabar
+    ("cinnabar",    "UU",   42, ["gPoxUUPokemonTower#", "gPoxUURoute#", "gPoxRoute44Hns:land_mons"], []),  # Lavender tower, Routes 8/7/21, Cinnabar
     ("mossdeep",    "UUBL", 50, [], []),          # Mossdeep gym
     ("saffron",     "OU",   55, [], []),          # Silph
     ("blackthorn",  "OU",   60, [], []),          # Clair
@@ -136,6 +140,9 @@ SPECIALS = {
     "route25": ["SPECIES_KABUTO", "SPECIES_ANORITH", "SPECIES_LILEEP"],  # Sea Cottage fossils
     "goldenrod": ["SPECIES_EEVEE", "SPECIES_BELDUM",         # Bill's family / Devon trade
                   "SPECIES_CASTFORM", "SPECIES_LUVDISC", "SPECIES_DELIBIRD"],
+    # The Warden's Thursday Bug-Catching Contest, gated on badge 4 (UU):
+    # SCYTHER/PINSIR in the contest table only, KANGASKHAN the winner's prize. First UU checkpoint is cinnabar.
+    "cinnabar": ["SPECIES_SCYTHER", "SPECIES_PINSIR", "SPECIES_KANGASKHAN"],
     "ecruteak": ["SPECIES_SUDOWOODO",                                 # Route 36 odd tree
                  "SPECIES_RELICANTH"],                                # Ecruteak House 2 trade (for Clamperl)
 }
