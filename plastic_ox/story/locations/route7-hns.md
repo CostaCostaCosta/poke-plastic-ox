@@ -35,7 +35,7 @@ Twenty tiles of open road on Saffron's western flank, with a wall on one side an
 | Three signs | `(5,23)`, `(1,24)`, `(3,23)` | always | "SaffronCity / Route103 / Underground Path / Marked passage ahead." ×3, all in the same generated voice | three place-specific signs: the city, the long road west, the stair |
 | Duplicate sign events | same three tiles | always | each sign exists twice — an object **and** a background sign event at the identical coordinate | remove one of each pair; two signposts on one tile reads as a collision |
 | Legacy sign posts | `(5,16)`, `(7,16)` bg events | always | `Route7_EventScript_Sign1` and `Route7_EventScript_Sign2`, both "A sign from the old routes." | delete or repurpose; the line breaks the fourth wall |
-| Empty map | whole map | — | 0 NPCs, 0 items, 0 trainers; grass patch (11..18,4..8) rolls `gPoxUURoute7Hns` (UU, Lv 37–39) | add two or three people with a reason to stand at a wall, not a full cast |
+| Empty map | whole map | — | 0 NPCs, 0 items, 0 trainers; grass patch (11..18,4..8) rolls `gPoxUURoute7Hns` (UU cap, Lv 37–39: Persian, Venomoth, Victreebel, Wigglytuff, Bellossom, Parasect, Granbull, Grumpig, Delcatty, Sunflora, Jumpluff, Vileplume) | add two or three people with a reason to stand at a wall, not a full cast |
 | Arrival hook | map load | always | `PoxRegion_Arrival_Route7_hns` is an empty stub | use it if the gate needs to change state on the Space Center flag, otherwise leave empty |
 
 ## Dialogue guidance

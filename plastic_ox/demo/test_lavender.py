@@ -65,7 +65,7 @@ def static_checks():
         for field in ('land_mons', 'water_mons', 'fishing_mons'):
             for i, mon in enumerate(tables[0].get(field, {}).get('mons', [])):
                 sp = mon['species']
-                assert 30 <= mon['min_level'] <= mon['max_level'] <= 42, (m, mon)
+                assert 36 <= mon['min_level'] <= mon['max_level'] <= 42, (m, mon)
                 if field == 'fishing_mons' and i == 0:
                     assert sp == 'SPECIES_MAGIKARP', (m, mon)  # v5.5 Old Rod rule
                     continue
@@ -73,6 +73,12 @@ def static_checks():
                 assert tier in order, (m, sp, tier)
                 if field == 'land_mons':
                     land_tiers.add(tier)
+                # National Park Thursday / Warden-prize exclusives, and the
+                # unevolved forms this Lv36+ band would long since have evolved.
+                assert sp[8:] not in {'KANGASKHAN', 'GIRAFARIG', 'SCYTHER', 'PINSIR', 'GROWLITHE', 'VULPIX',
+                                      'MEOWTH', 'EKANS', 'SANDSHREW', 'ODDISH', 'BELLSPROUT', 'SNUBBULL',
+                                      'SPOINK', 'SKIPLOOM', 'TENTACOOL', 'CHINCHOU', 'HORSEA', 'KRABBY',
+                                      'SLOWPOKE'}, (m, sp)
         assert 'UU' in land_tiers, (m, land_tiers)
     print('ok  routes 8, 7 and 21 have UU-capped gPoxUU tables (levels 30-42)', flush=True)
 
