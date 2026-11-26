@@ -4,17 +4,21 @@
 #include "field_effect.h"
 #include "gpu_regs.h"
 #include "international_string_util.h"
+#include "item.h"
 #include "main.h"
 #include "malloc.h"
 #include "menu.h"
 #include "overworld.h"
 #include "palette.h"
+#include "party_menu.h"
 #include "region_map.h"
+#include "script.h"
 #include "sound.h"
 #include "strings.h"
 #include "text.h"
 #include "text_window.h"
 #include "window.h"
+#include "constants/items.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
 
@@ -40,7 +44,7 @@ enum {
 
 static EWRAM_DATA struct {
     MainCallback callback;
-    u32 unused;
+    u32 flying; // Plastic Ox: a fly destination was chosen on the Town Map
     struct RegionMap regionMap;
     u16 state;
 } *sFieldRegionMapHandler = NULL;
@@ -49,6 +53,7 @@ static void MCB2_InitRegionMapRegisters(void);
 static void VBCB_FieldUpdateRegionMap(void);
 static void MCB2_FieldUpdateRegionMap(void);
 static void FieldUpdateRegionMap(void);
+static bool32 CanFlyFromFieldRegionMap(void);
 static void PrintRegionMapSecName();
 static void PrintTitleWindowText();
 
@@ -100,6 +105,7 @@ void FieldInitRegionMap(MainCallback callback)
     SetVBlankCallback(NULL);
     sFieldRegionMapHandler = Alloc(sizeof(*sFieldRegionMapHandler));
     sFieldRegionMapHandler->state = 0;
+    sFieldRegionMapHandler->flying = FALSE;
     sFieldRegionMapHandler->callback = callback;
     SetMainCallback2(MCB2_InitRegionMapRegisters);
 }
@@ -183,18 +189,22 @@ static void FieldUpdateRegionMap(void)
                 PrintTitleWindowText();
                 break;
         case MAP_INPUT_A_BUTTON:
+        case MAP_INPUT_R_BUTTON:
+                // Plastic Ox: with the Fly Key, picking a visited town on the
+                // Town Map flies there. Anywhere else A still closes the map.
+                if (CanFlyFromFieldRegionMap())
+                {
+                    PlaySE(SE_SELECT);
+                    sFieldRegionMapHandler->flying = TRUE;
+                    sFieldRegionMapHandler->state++;
+                    break;
+                }
+                if (JOY_NEW(A_BUTTON))
+                    sFieldRegionMapHandler->state++;
+                break;
         case MAP_INPUT_B_BUTTON:
                 sFieldRegionMapHandler->state++;
                 break;
-        case MAP_INPUT_R_BUTTON:
-                if (sFieldRegionMapHandler->regionMap.mapSecType == MAPSECTYPE_CITY_CANFLY
-                    && FlagGet(OW_FLAG_POKE_RIDER) && Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType) == TRUE)
-                {
-                    PlaySE(SE_SELECT);
-                    SetFlyDestination(&sFieldRegionMapHandler->regionMap);
-                    gSkipShowMonAnim = TRUE;
-                    ReturnToFieldFromFlyMapSelect();
-                }
         }
         break;
     case 5:
@@ -205,12 +215,33 @@ static void FieldUpdateRegionMap(void)
         if (!gPaletteFade.active)
         {
             FreeRegionMapIconResources();
-            SetMainCallback2(sFieldRegionMapHandler->callback);
+            if (sFieldRegionMapHandler->flying)
+            {
+                // The Town Map script would otherwise resume on the field
+                // and release the player in the middle of the take-off.
+                ScriptContext_Stop();
+                SetFlyDestination(&sFieldRegionMapHandler->regionMap);
+                gSkipShowMonAnim = TRUE;
+                ReturnToFieldFromFlyMapSelect();
+            }
+            else
+            {
+                SetMainCallback2(sFieldRegionMapHandler->callback);
+            }
             TRY_FREE_AND_SET_NULL(sFieldRegionMapHandler);
             FreeAllWindowBuffers();
         }
         break;
     }
+}
+
+// The wall maps in Pokemon Centers use this screen too; they are indoors, so
+// SetUpFieldMove_Fly refuses there.
+static bool32 CanFlyFromFieldRegionMap(void)
+{
+    return sFieldRegionMapHandler->regionMap.mapSecType == MAPSECTYPE_CITY_CANFLY
+        && (FlagGet(OW_FLAG_POKE_RIDER) || CheckBagHasItem(ITEM_FLY_KEY, 1))
+        && SetUpFieldMove_Fly();
 }
 
 static void PrintRegionMapSecName(void)
@@ -230,7 +261,7 @@ static void PrintRegionMapSecName(void)
 
 static void PrintTitleWindowText(void)
 {
-    static const u8 FlyPromptText[] = _("{R_BUTTON} FLY");
+    static const u8 FlyPromptText[] = _("{A_BUTTON} FLY");
     const u8 *region;
     if (IS_FRLG)
         region = gText_Kanto;
@@ -241,8 +272,7 @@ static void PrintTitleWindowText(void)
 
     FillWindowPixelBuffer(WIN_TITLE, PIXEL_FILL(1));
 
-    if (sFieldRegionMapHandler->regionMap.mapSecType == MAPSECTYPE_CITY_CANFLY
-        && FlagGet(OW_FLAG_POKE_RIDER) && Overworld_MapTypeAllowsTeleportAndFly(gMapHeader.mapType) == TRUE)
+    if (CanFlyFromFieldRegionMap())
     {
         AddTextPrinterParameterized(WIN_TITLE, FONT_NORMAL, FlyPromptText, flyOffset, 1, 0, NULL);
         ScheduleBgCopyTilemapToVram(WIN_TITLE);

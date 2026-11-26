@@ -262,7 +262,7 @@ void NewGameInitData(void)
     // expect the adventure-started flag (notably Oldale's west exit).
     FlagSet(FLAG_ADVENTURE_STARTED);
     FlagSet(FLAG_POX_HIDE_UNUSED_ACTOR);
-    VarSet(VAR_POX_SAVE_MIGRATION_VERSION, 1);
+    VarSet(VAR_POX_SAVE_MIGRATION_VERSION, 2); // POX_SAVE_MIGRATION_VERSION: nothing to migrate
 
     // The authored Plastic Ox story is the normal game flow. Keep only the
     // dedicated battle-demo build in its open-world fixture state. Set this

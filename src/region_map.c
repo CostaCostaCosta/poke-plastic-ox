@@ -149,6 +149,7 @@ struct PoxFlySpot
 {
     u16 mapsec;
     u16 flag;
+    u16 badgeFlag; // gym badge won in this town, or 0
     s8 mapGroup;
     s8 mapNum;
     s8 x;
@@ -172,6 +173,58 @@ void PoxFlyMap_MarkVisited(void)
     const struct PoxFlySpot *spot = GetPoxFlySpot(gMapHeader.regionMapSectionId);
     if (spot != NULL)
         FlagSet(spot->flag);
+}
+
+// Saves from before the fly map existed have no visited flags, so nothing on
+// the map could be chosen until each town was entered again. The story visits
+// the destinations in table order, so the furthest one the save proves it has
+// reached (a gym badge, the current map or the last Pokemon Center) marks
+// every earlier one as visited too. Needs gMapHeader to be loaded.
+void PoxFlyMap_BackfillVisited(void)
+{
+    const struct WarpData *heal = &gSaveBlock1Ptr->lastHealLocation;
+    u32 healMapSec = Overworld_GetMapHeaderByGroupAndId(heal->mapGroup, heal->mapNum)->regionMapSectionId;
+    s32 i, furthest = -1;
+
+    for (i = 0; i < (s32)ARRAY_COUNT(sPoxFlySpots); i++)
+    {
+        const struct PoxFlySpot *spot = &sPoxFlySpots[i];
+
+        if (FlagGet(spot->flag)
+         || (spot->badgeFlag != 0 && FlagGet(spot->badgeFlag))
+         || spot->mapsec == gMapHeader.regionMapSectionId
+         || spot->mapsec == healMapSec)
+            furthest = i;
+    }
+    for (i = 0; i <= furthest; i++)
+        FlagSet(sPoxFlySpots[i].flag);
+}
+
+// Plastic Ox routes bend, so a map section's bounding box holds cells that
+// belong to other sections. Move a cursor that landed on one of those to the
+// nearest cell of its own section.
+static void PoxSnapCursorToMapSec(void)
+{
+    s32 x, y, dist, best = 0x7FFF;
+    s32 cx = sRegionMap->cursorPosX, cy = sRegionMap->cursorPosY;
+
+    if (sRegionMap->mapSecId == MAPSEC_NONE || GetMapSecIdAt(cx, cy) == sRegionMap->mapSecId)
+        return;
+    for (y = MAPCURSOR_Y_MIN; y <= MAPCURSOR_Y_MAX; y++)
+    {
+        for (x = MAPCURSOR_X_MIN; x <= MAPCURSOR_X_MAX; x++)
+        {
+            if (GetMapSecIdAt(x, y) != sRegionMap->mapSecId)
+                continue;
+            dist = abs(x - cx) + abs(y - cy);
+            if (dist < best)
+            {
+                best = dist;
+                sRegionMap->cursorPosX = x;
+                sRegionMap->cursorPosY = y;
+            }
+        }
+    }
 }
 
 static const mapsec_u16_t sRegionMap_SpecialPlaceLocations[][2] =
@@ -807,6 +860,7 @@ bool8 LoadRegionMapGfx(void)
         break;
     case 5:
         InitMapBasedOnPlayerLocation();
+        PoxSnapCursorToMapSec();
         sRegionMap->playerIconSpritePosX = sRegionMap->cursorPosX;
         sRegionMap->playerIconSpritePosY = sRegionMap->cursorPosY;
         sRegionMap->mapSecId = CorrectSpecialMapSecId_Internal(sRegionMap->mapSecId);
