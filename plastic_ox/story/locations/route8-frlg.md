@@ -91,4 +91,4 @@ A fenced east–west road on the outside of Saffron, wide enough for two carts a
 - Restore the twelve FRLG battles at act-3 levels, or keep Route 8 quiet and let the tunnel be the only combat? Right now it is neither: parties exist, nobody fights.
 - The `(9,20)` warp into `Route8_WestEntrance_Frlg` was removed in the 2026-11-21 trigger audit. Retire the dangling legacy connections too?
 - Should the tournament stay in a public tunnel, or move to a dedicated facility once the underground stops being the main road?
-- Route 8 still rolls FireRed/LeafGreen wild encounters (Pidgey, Meowth, Growlithe or Vulpix, Ekans or Sandshrew, Lv 15–20). Keep as road texture, or retune for an act-3 party?
+- Route 8 rolls `gPoxUURoute8` (Lv 36–38, UU-capped for the cinnabar checkpoint): Growlithe, Vulpix, Meowth, Ekans, Sandshrew and their evolutions, plus Kangaskhan and Girafarig. Verified by `plastic_ox/demo/test_kanto_uu_encounters.py`.

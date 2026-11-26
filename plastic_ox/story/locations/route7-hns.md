@@ -21,7 +21,7 @@ Twenty tiles of open road on Saffron's western flank, with a wall on one side an
 
 1. **Out of the tunnel.** The West Entrance stair of `UndergroundPath_WestEntrance_Frlg` at `(5,7)`–`(7,7)` returns the player here at `(3,22)`. Reveal-ladder **step 8** continues: they have now physically passed beneath Saffron and are standing on its far side.
 2. **Three ways, one of them open.** Saffron at `(6,22)` refuses until `FLAG_POX_STORY_SPACE_CENTER`; Route 103 at `(1,22)` opens on `FLAG_POX_STORY_FUJI`, which is already true by the time anyone can reach this map; the Underground stair at `(4,22)` is always usable.
-3. **The map is currently empty.** No NPCs, no items, no wild encounters, no trainers, no map objects beyond three signs. Nothing here is broken — but nothing here is a place yet, and the note's job is to decide what it should say.
+3. **The map is currently empty.** No NPCs, no items, no trainers (the grass now has a UU wild table), no map objects beyond three signs. Nothing here is broken — but nothing here is a place yet, and the note's job is to decide what it should say.
 4. **The wall is the scene.** Every sightline should end at Saffron's back wall: rooftops over it, a tannoy, traffic noise that stops at the boundary. The player may not enter, and the map's whole composition should say so without a textbox.
 5. **Must not:** add a fourth exit, a hidden path or a trash-can entrance into Saffron; put Rocket, Bill, Silph or the system here; explain in dialogue why the city is closed (nobody local knows); turn the junction into a puzzle.
 
@@ -35,7 +35,7 @@ Twenty tiles of open road on Saffron's western flank, with a wall on one side an
 | Three signs | `(5,23)`, `(1,24)`, `(3,23)` | always | "SaffronCity / Route103 / Underground Path / Marked passage ahead." ×3, all in the same generated voice | three place-specific signs: the city, the long road west, the stair |
 | Duplicate sign events | same three tiles | always | each sign exists twice — an object **and** a background sign event at the identical coordinate | remove one of each pair; two signposts on one tile reads as a collision |
 | Legacy sign posts | `(5,16)`, `(7,16)` bg events | always | `Route7_EventScript_Sign1` and `Route7_EventScript_Sign2`, both "A sign from the old routes." | delete or repurpose; the line breaks the fourth wall |
-| Empty map | whole map | — | 0 NPCs, 0 items, 0 encounters, 0 trainers | add two or three people with a reason to stand at a wall, not a full cast |
+| Empty map | whole map | — | 0 NPCs, 0 items, 0 trainers; grass patch (11..18,4..8) rolls `gPoxUURoute7Hns` (UU, Lv 37–39) | add two or three people with a reason to stand at a wall, not a full cast |
 | Arrival hook | map load | always | `PoxRegion_Arrival_Route7_hns` is an empty stub | use it if the gate needs to change state on the Space Center flag, otherwise leave empty |
 
 ## Dialogue guidance
@@ -69,7 +69,7 @@ Twenty tiles of open road on Saffron's western flank, with a wall on one side an
 - Scripts: `data/maps/Route7_hns/scripts.inc`, generated `data/scripts/plastic_ox_region.inc` (`PoxRegion_route7_saffron_a`, `PoxRegion_route7_route103_a`, `PoxRegion_underground_west`, and the three sign labels)
 - Gates: `FLAG_POX_STORY_SPACE_CENTER` (Saffron), `FLAG_POX_STORY_FUJI` (Route 103), `FLAG_POX_TRIGGERS_ENABLED` (walkable-build bypass)
 - Trainers / items: none exist and none are needed.
-- Known gaps: the map has no NPCs, items or encounters at all; every sign is placed twice (object plus background event); sign text is the generated `<MapName>\nMarked passage ahead.` placeholder; two leftover bg signs say "A sign from the old routes."; `Route7_hns` has no connections and no warps, so its three crossings are the only traversal; the legacy `Route7_Frlg` (`MAP_ROUTE7`) is still registered in `gMapGroup_TownsAndRoutes_Frlg` and still holds a warp into the live `UndergroundPath_WestEntrance_Frlg` plus links to the unloadable `CeladonCity_Frlg` / `SaffronCity_Connection_Frlg` side.
+- Known gaps: the map has no NPCs or items; its grass patch at (11..18,4..8) has `gPoxUURoute7Hns` but no walking path from the (4,25) crossing reached it in mGBA; every sign is placed twice (object plus background event); sign text is the generated `<MapName>\nMarked passage ahead.` placeholder; two leftover bg signs say "A sign from the old routes."; `Route7_hns` has no connections and no warps, so its three crossings are the only traversal; the legacy `Route7_Frlg` (`MAP_ROUTE7`) is still registered in `gMapGroup_TownsAndRoutes_Frlg` and still holds a warp into the live `UndergroundPath_WestEntrance_Frlg` plus links to the unloadable `CeladonCity_Frlg` / `SaffronCity_Connection_Frlg` side.
 
 ## Open questions
 
