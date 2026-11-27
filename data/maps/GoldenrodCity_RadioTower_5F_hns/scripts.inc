@@ -1,4 +1,5 @@
 GoldenrodCity_RadioTower_5F_hns_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxRadioTower_OnTransition
 	.byte 0
 
 PoxGoldenrod_GoldenrodCity_RadioTower_5F_hns_0::

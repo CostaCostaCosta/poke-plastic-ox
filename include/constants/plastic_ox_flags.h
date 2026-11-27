@@ -371,6 +371,13 @@
 // Ilex Forest shrine: Celebi caught after its sage (TRAINER_PLASTIC_OX_CELEBI_SAGE, needs ITEM_GS_BALL).
 // Hides Celebi and the sage; the sage then stands in the Ecruteak sage office.
 #define FLAG_POX_CAUGHT_CELEBI (POX_EXT_FLAGS_START + 13)
+// Goldenrod Radio Tower 5F: ZAPDOS caught after its sage (TRAINER_PLASTIC_OX_ZAPDOS_SAGE).
+// Hides ZAPDOS and the sage; the sage then stands in the Ecruteak sage office.
+#define FLAG_POX_CAUGHT_ZAPDOS (POX_EXT_FLAGS_START + 14)
+// Burned Tower B1F: SUICUNE caught after MORTY (TRAINER_PLASTIC_OX_SUICUNE_SAGE); MORTY returns to his gym.
+#define FLAG_POX_CAUGHT_SUICUNE (POX_EXT_FLAGS_START + 15)
+// Burned Tower B1F: MORTY rang the CLEAR BELL and SUICUNE came back (shows SUICUNE until caught).
+#define FLAG_POX_RANG_CLEAR_BELL (POX_EXT_FLAGS_START + 16)
 
 // Lavender / Pokemon Tower (plastic_ox/alpha/lavender.py).
 // Pokemon Tower 7F: FUJI walked home after the three grunts.

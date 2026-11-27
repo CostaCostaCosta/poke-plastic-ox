@@ -1070,6 +1070,7 @@ enum __attribute__((packed)) Item
     ITEM_ANCIENT_STEEL_TABLET = 889,
     ITEM_FLY_KEY = 890,
     ITEM_GS_BALL = 891,
+    ITEM_CLEAR_BELL = 892,
 
     ITEMS_COUNT,
     ITEM_FIELD_ARROW = ITEMS_COUNT,
