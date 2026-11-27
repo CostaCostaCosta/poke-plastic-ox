@@ -541,6 +541,18 @@ The Space Center also detects enormous communication and state-transfer traffic 
 
 Completing the Mossdeep event sets the global progression flag that **opens Saffron City**.
 
+## Raikou — New Mauville (optional)
+
+**Raikou has made New Mauville its home.**
+
+When the beasts scattered from the Burned Tower, Raikou went looking for thunder and found the abandoned power plant beneath Route 110. The old generator still runs, hot and unattended, and the storm it throws off is close enough to what Raikou left behind that it stayed. A sage followed it there, as Morty ordered, and has kept watch at the generator's foot ever since.
+
+The site is optional and opens after Gym 6. The NEW MAUVILLE KEY is the round-three prize of the Underground Path tournament, and the door off Route 110 holds until the player has both the key and the sixth badge.
+
+Inside, the sage asks the player to quiet the generator first. The runaway machine keeps Raikou agitated, and nobody can earn its trust over that noise. Once the red stop switch is pressed, the sage and Raikou follow the standard sage + legendary mechanic: beat the sage and Raikou can be caught on the first try. Afterwards the sage goes home to the Ecruteak sage office.
+
+The scene stays small. Raikou is not a clue, the generator is not evidence of the convergence, and nobody explains why a Johto legend chose a Hoenn ruin. The place felt like home, and that is enough.
+
 ---
 
 # Act IV — Saffron Finally Opens
@@ -725,6 +737,16 @@ Possible uses include:
 - additional islands or facilities drawn from Generations I–III
 
 This keeps the main story's southern Lavender exit clean while giving the geography a strong postgame payoff.
+
+## Dragon's Den — Rayquaza (postgame)
+
+**Blackthorn's Dragon's Den stays shut for the whole main story.**
+
+The Den's door is across the lake north of the Gym. An elder stands in it and turns everyone away: the Pokémon inside are far too powerful. He is not a quest and has nothing to unlock during the story.
+
+After the player enters the Hall of Fame the elder is gone. Inside, across the flooded cavern, Rayquaza comes down onto the shrine plaza. It is an ordinary wild legendary: Lv.70, or the level of the party's strongest Pokémon when that is higher, with no guaranteed capture and no sage. It stays until it is caught.
+
+This is a deliberate exception to staging Ubers on the postgame islands. The scene explains nothing: Rayquaza is not a clue and nobody says why it is there.
 
 ---
 

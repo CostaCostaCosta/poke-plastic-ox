@@ -84,6 +84,7 @@ STORY_ORDER = [
     "route21-hns",
     "plasticox-route20east",
     "mossdeepcity",
+    "newmauville",
     # Act III coda — the sages come home; Bellchime Trail and the Tin Tower
     "bellchimetrail-hns",
     "tintower-1f-hns",
@@ -103,6 +104,7 @@ STORY_ORDER = [
     # Postgame
     "battlefrontier-outsidewest",
     "plasticox-whirlislands",
+    "dragonsden-entrance-hns",
     "mtsilver-1f-waterfallroom-hns",
 ]
 

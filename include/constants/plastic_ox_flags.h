@@ -366,6 +366,17 @@
 // Set on every such win and cleared when the Warden hands one over (repeatable).
 #define FLAG_POX_CONTEST_KANGASKHAN_PENDING (POX_EXT_FLAGS_START + 11)
 
+// Post-game Dragon's Den (plastic_ox/alpha/import_dragons_den.py).
+// Cavern shrine plaza: RAYQUAZA caught.
+#define FLAG_POX_CAUGHT_RAYQUAZA (POX_EXT_FLAGS_START + 12)
+// Cavern shrine plaza: RAYQUAZA's arrival scene has played.
+#define FLAG_POX_DEN_RAYQUAZA_ARRIVED (POX_EXT_FLAGS_START + 13)
+// Cavern item balls.
+#define FLAG_POX_HIDE_DRAGONS_DEN_PP_MAX (POX_EXT_FLAGS_START + 14)
+#define FLAG_POX_HIDE_DRAGONS_DEN_MAX_POTION (POX_EXT_FLAGS_START + 15)
+#define FLAG_POX_HIDE_DRAGONS_DEN_DRAGON_FANG (POX_EXT_FLAGS_START + 16)
+// End Dragon's Den flags.
+
 // Lavender / Pokemon Tower (plastic_ox/alpha/lavender.py).
 // Pokemon Tower 7F: FUJI walked home after the three grunts.
 #define FLAG_POX_FUJI_RESCUED (POX_EXT_FLAGS_START + 0)
