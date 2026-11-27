@@ -42,8 +42,11 @@ def game():
     for n in range(1, 9):
         g.flag(f'FLAG_BADGE{n:02}_GET', False)
     # Initialize virtual storage through the native flag implementation.
+    # Both blocks carry their own magic, so touch one flag in each.
     run_code(g, opcode(g, 'setflag') + struct.pack('<H', 0xB7F)
-             + opcode(g, 'clearflag') + struct.pack('<H', 0xB7F))
+             + opcode(g, 'clearflag') + struct.pack('<H', 0xB7F)
+             + opcode(g, 'setflag') + struct.pack('<H', 0xF7F)
+             + opcode(g, 'clearflag') + struct.pack('<H', 0xF7F))
     give_item(g, const('ITEM_POKE_BALL', 'items.h'), 20)
     return g
 

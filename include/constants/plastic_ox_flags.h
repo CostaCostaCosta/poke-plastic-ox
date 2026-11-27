@@ -365,6 +365,9 @@
 // National Park: Thursday (Warden) contest won with 4 badges; KANGASKHAN awaits at the gate.
 // Set on every such win and cleared when the Warden hands one over (repeatable).
 #define FLAG_POX_CONTEST_KANGASKHAN_PENDING (POX_EXT_FLAGS_START + 11)
+// Meteor Falls B1F 2R: JIRACHI caught after its sage (TRAINER_PLASTIC_OX_JIRACHI_SAGE).
+// Hides JIRACHI and the sage; the sage then stands in the Ecruteak sage office.
+#define FLAG_POX_CAUGHT_JIRACHI (POX_EXT_FLAGS_START + 12)
 
 // Lavender / Pokemon Tower (plastic_ox/alpha/lavender.py).
 // Pokemon Tower 7F: FUJI walked home after the three grunts.
