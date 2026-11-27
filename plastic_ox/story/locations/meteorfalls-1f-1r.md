@@ -7,9 +7,9 @@ stage: "13 — Meteor Falls"
 depth: full
 wiki: meteorfalls-1f-1r
 maps: [MeteorFalls_1F_1R]
-also_maps: [MeteorFalls_1F_2R, MeteorFalls_B1F_1R]
-flags: [FLAG_POX_STORY_SPACE_CENTER, FLAG_MET_PROF_COZMO, FLAG_DEFEATED_METEOR_FALLS_STEVEN]
-trainers: [TRAINER_NICOLAS_1, TRAINER_JOHN_AND_JAY_1, TRAINER_STEVEN]
+also_maps: [MeteorFalls_1F_2R, MeteorFalls_B1F_1R, MeteorFalls_B1F_2R]
+flags: [FLAG_POX_STORY_SPACE_CENTER, FLAG_POX_CAUGHT_JIRACHI, FLAG_MET_PROF_COZMO, FLAG_DEFEATED_METEOR_FALLS_STEVEN]
+trainers: [TRAINER_PLASTIC_OX_JIRACHI_SAGE, TRAINER_NICOLAS_1, TRAINER_JOHN_AND_JAY_1, TRAINER_STEVEN]
 items: [ITEM_NUGGET, ITEM_MOON_STONE, ITEM_FULL_HEAL, ITEM_PP_UP]
 status: drafted
 ---
@@ -28,7 +28,8 @@ The wet first hall of the final mountain, entered from Route 115 at `(6,39)`: a 
 4. **The standoff is already dead.** Magma grunts `(12,20)`/`(14,21)`, Archie `(6,20)`, Aqua grunts `(6,20)`/`(6,21)` all have script `0x0`; Archie and one Aqua grunt share `(6,20)`. Nothing triggers, and the sprites are the only thing left of the cutscene. Delete them.
 5. **Nothing new is revealed here.** Reveal-ladder step 15 is Blackthorn's Gym; Act V must not assume Silph is resolved and must not open a new mystery. The falls are a place, never an explanation.
 6. **1F 2R is the cave's human room.** Nicolas `(13,2)` and the married pair John & Jay at `(6,12)`/`(7,12)` — a fifty-year double battle — are vanilla text but the right note for a cold dungeon. Keep the marriage; rewrite the lines so they are not merely cute.
-7. **Must not:** stage Magma, Aqua, or Rocket; mention the Meteorite, Mt. Chimney, or Sootopolis; connect the falls to the Space Center; hand out a legendary; let a sign or NPC explain the convergence.
+7. **Must not:** stage Magma, Aqua, or Rocket; mention the Meteorite, Mt. Chimney, or Sootopolis; connect the falls to the Space Center; hand out any legendary other than the Jirachi below; let a sign or NPC explain the convergence.
+8. **Jirachi sleeps in the Bagon chamber.** `MeteorFalls_B1F_2R` (reached from B1F 1R `(17,3)` by Surf) keeps its Bagon table and Dragon Claw ball `(5,3)`. JIRACHI `(6,3)` sleeps on the north shelf with its sage `(6,4)` in front (`PoxMeteorFalls_JirachiSage`, `TRAINER_PLASTIC_OX_JIRACHI_SAGE`, Lv 55 legendary). This is the standard sage + legendary mechanic from the story bible ("Meteor Falls — Jirachi"). Once `FLAG_POX_CAUGHT_JIRACHI` is set, both are gone and the sage stands in the Ecruteak sage office at `(2,8)`, counting toward the Tin Tower keeper's five. Owned by `plastic_ox/alpha/meteor_falls.py`. The sage mentions the Bagon and Morty's order, nothing more.
 
 ## Key interactions
 

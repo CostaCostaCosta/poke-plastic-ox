@@ -21660,6 +21660,81 @@ Timid Nature
 - Hidden Power
 - Roar
 
+=== TRAINER_PLASTIC_OX_JIRACHI_SAGE ===
+Name: SAGE
+Class: Expert
+Pic: Sage Hns
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Milotic @ Leftovers
+Level: 55
+Ability: Marvel Scale
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 248 HP / 252 Def / 8 Spe
+Bold Nature
+- Recover
+- Refresh
+- Toxic
+- Surf
+
+Skarmory
+Level: 55
+Ability: Keen Eye
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 248 HP / 252 SpD / 8 Spe
+Careful Nature
+- Spikes
+- Thief
+- Drill Peck
+- Roar
+
+Claydol @ Leftovers
+Level: 55
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 112 Def / 136 SpD / 8 Spe
+Sassy Nature
+- Rapid Spin
+- Rest
+- Psychic
+- Explosion
+
+Blissey (F) @ Leftovers
+Level: 55
+Ability: Natural Cure
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 248 HP / 252 Def / 8 Spe
+Impish Nature
+- Soft-Boiled
+- Aromatherapy
+- Thunder Wave
+- Seismic Toss
+
+Jirachi @ Leftovers
+Level: 55
+Ability: Serene Grace
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 224 Def / 32 Spe
+Bold Nature
+- Wish
+- Calm Mind
+- Fire Punch
+- Psychic
+
+Dugtrio @ Choice Band
+Level: 55
+Ability: Arena Trap
+IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 252 Atk / 4 Def / 252 Spe
+Jolly Nature
+- Earthquake
+- Hidden Power
+- Aerial Ace
+- Rock Slide
+
 === TRAINER_PLASTIC_OX_TOURNAMENT_1 ===
 Name: IRIS
 Class: Cooltrainer

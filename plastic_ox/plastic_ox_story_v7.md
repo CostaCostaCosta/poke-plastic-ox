@@ -649,6 +649,10 @@ Meteor Falls functions as the final mountain dungeon and the replacement for Ice
 The player may take this stretch before or after resolving Silph. Keep it focused
 on Trainer progression; dialogue must not assume the story crisis is already resolved.
 
+## Meteor Falls — Jirachi
+
+Jirachi left the Burned Tower straight upward and came down where stars had fallen before: the deep chamber of Meteor Falls, where young Bagon gather at the water's edge. It fell asleep on the chamber's north shelf and has not woken. A sage followed it there and keeps watch in front of it. The pair follow the standard sage + legendary mechanic: beat the sage and Jirachi can be caught on the first try. Afterwards the sage goes home to the Ecruteak sage office and counts toward the five the Tin Tower keeper waits for. The scene stays quiet. It explains nothing about the convergence, and Jirachi grants no wish on screen.
+
 # Blackthorn City — Gym 8
 
 ## Gym 8 — Clair
