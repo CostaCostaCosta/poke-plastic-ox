@@ -1,0 +1,74 @@
+=== TRAINER_PLASTIC_OX_CELEBI_SAGE ===
+Name: SAGE
+Class: Expert
+Pic: Sage Hns
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Breloom @ Leftovers
+Level: 55
+Ability: Effect Spore
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 Def / 252 Spe
+Jolly Nature
+- Spore
+- Focus Punch
+- Sky Uppercut
+- Mach Punch
+
+Jumpluff @ Leftovers
+Level: 55
+Ability: Chlorophyll
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 188 HP / 104 SpD / 216 Spe
+Jolly Nature
+- Encore
+- Leech Seed
+- Giga Drain
+- Sleep Powder
+
+Heracross @ Leftovers
+Level: 55
+Ability: Guts
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Megahorn
+- Rock Slide
+- Focus Punch
+- Swords Dance
+
+Ludicolo @ Leftovers
+Level: 55
+Ability: Rain Dish
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 36 SpA / 220 SpD
+Calm Nature
+- Surf
+- Leech Seed
+- Toxic
+- Synthesis
+
+Venusaur @ Leftovers
+Level: 55
+Ability: Overgrow
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 84 Def / 148 SpD / 24 Spe
+Careful Nature
+- Sleep Powder
+- Leech Seed
+- Sludge Bomb
+- Synthesis
+
+Exeggutor @ Leftovers
+Level: 55
+Ability: Chlorophyll
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 52 HP / 252 SpA / 204 Spe
+Modest Nature
+- Sleep Powder
+- Psychic
+- Giga Drain
+- Explosion

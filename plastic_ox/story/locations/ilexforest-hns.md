@@ -29,7 +29,7 @@ An 82×73 wood crossed once, south door `(22,63)` to north door `(20,15)`, on th
 5. **Forage is the economy.** Tiny Mushroom `(56,36)`, Big Mushroom `(57,8)`, Antidote `(76,32)`, and four item balls at `(45,16)`, `(34,28)`, `(50,48)`, `(71,42)` that all give `ITEM_POKE_BALL`. The mushrooms are the good part; four identical balls are filler.
 6. **The north door does not open.** The warp event at `(20,15)` sits on secondary metatile `0x3B`; that tileset ships 60 metatiles and only 59 attribute entries, so the tile has no door behavior and the warp never fires. The south door works. As built, this is a progression blocker, not a flavour bug.
 
-**Must not:** use the forest for a convergence reveal (the fact that it exits toward Hoenn is enough); stage Celebi, a legendary or a shrine quest; let the shrine sign grant anything; name Bill, Silph or Rocket; give Kurt apricorns or a ball-making job; turn the wood into a maze.
+**Must not:** use the forest for a convergence reveal (the fact that it exits toward Hoenn is enough); stage Celebi, a legendary or a shrine quest on the first pass (the Celebi sage appears only after `FLAG_POX_STORY_BURNED_TOWER` and battles only when the player holds the GS BALL, per the bible's *Celebi — Ilex Forest*); let the shrine sign grant anything; name Bill, Silph or Rocket; give Kurt apricorns or a ball-making job; turn the wood into a maze.
 
 ## Key interactions
 
