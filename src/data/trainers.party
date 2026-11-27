@@ -21585,80 +21585,7 @@ Hasty Nature
 - Thunder
 - Extreme Speed
 
-=== TRAINER_PLASTIC_OX_MOLTRES_SAGE ===
-Name: SAGE
-Class: Expert
-Pic: Sage Hns
-Gender: Male
-Music: Male
-Double Battle: No
-AI: Basic Trainer / Smart Switching / PP Stall Prevention
 
-Metagross @ Leftovers
-Level: 55
-Ability: Clear Body
-IVs: 31 HP / 30 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
-EVs: 168 HP / 16 Def / 252 SpA / 72 Spe
-Rash Nature
-- Meteor Mash
-- Thunder Punch
-- Hidden Power
-- Explosion
-
-Skarmory @ Leftovers
-Level: 55
-Ability: Keen Eye
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 248 HP / 252 SpD / 8 Spe
-Careful Nature
-- Spikes
-- Protect
-- Drill Peck
-- Roar
-
-Starmie @ Leftovers
-Level: 55
-Ability: Natural Cure
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP / 8 Def / 40 SpA / 32 SpD / 176 Spe
-Timid Nature
-- Rapid Spin
-- Recover
-- Thunder Wave
-- Surf
-
-Blissey (F) @ Leftovers
-Level: 55
-Ability: Natural Cure
-IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Def / 248 SpA / 8 Spe
-Modest Nature
-- Soft-Boiled
-- Calm Mind
-- Ice Beam
-- Thunderbolt
-
-Flygon @ Leftovers
-Level: 55
-Ability: Levitate
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP / 220 Def / 36 Spe
-Lax Nature
-- Protect
-- Toxic
-- Earthquake
-- Flamethrower
-
-Moltres @ Leftovers
-Level: 55
-Ability: Pressure
-IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 4 SpD / 252 Spe
-Timid Nature
-- Will-O-Wisp
-- Flamethrower
-- Hidden Power
-- Roar
 
 === TRAINER_PLASTIC_OX_TOURNAMENT_1 ===
 Name: IRIS
@@ -22387,3 +22314,378 @@ Timid Nature
 - Psychic
 - Reflect
 - Hidden Power
+
+=== TRAINER_PLASTIC_OX_MOLTRES_SAGE ===
+Name: SAGE
+Class: Expert
+Pic: Sage Hns
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Metagross @ Leftovers
+Level: 55
+Ability: Clear Body
+IVs: 31 HP / 30 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 168 HP / 16 Def / 252 SpA / 72 Spe
+Rash Nature
+- Meteor Mash
+- Thunder Punch
+- Hidden Power
+- Explosion
+
+Skarmory @ Leftovers
+Level: 55
+Ability: Keen Eye
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 248 HP / 252 SpD / 8 Spe
+Careful Nature
+- Spikes
+- Protect
+- Drill Peck
+- Roar
+
+Starmie @ Leftovers
+Level: 55
+Ability: Natural Cure
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 8 Def / 40 SpA / 32 SpD / 176 Spe
+Timid Nature
+- Rapid Spin
+- Recover
+- Thunder Wave
+- Surf
+
+Blissey (F) @ Leftovers
+Level: 55
+Ability: Natural Cure
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Def / 248 SpA / 8 Spe
+Modest Nature
+- Soft-Boiled
+- Calm Mind
+- Ice Beam
+- Thunderbolt
+
+Flygon @ Leftovers
+Level: 55
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 220 Def / 36 Spe
+Lax Nature
+- Protect
+- Toxic
+- Earthquake
+- Flamethrower
+
+Moltres @ Leftovers
+Level: 55
+Ability: Pressure
+IVs: 31 HP / 2 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Timid Nature
+- Will-O-Wisp
+- Flamethrower
+- Hidden Power
+- Roar
+
+=== TRAINER_PLASTIC_OX_JIRACHI_SAGE ===
+Name: SAGE
+Class: Expert
+Pic: Sage Hns
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Milotic @ Leftovers
+Level: 55
+Ability: Marvel Scale
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 248 HP / 252 Def / 8 Spe
+Bold Nature
+- Recover
+- Refresh
+- Toxic
+- Surf
+
+Skarmory
+Level: 55
+Ability: Keen Eye
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 248 HP / 252 SpD / 8 Spe
+Careful Nature
+- Spikes
+- Thief
+- Drill Peck
+- Roar
+
+Claydol @ Leftovers
+Level: 55
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 112 Def / 136 SpD / 8 Spe
+Sassy Nature
+- Rapid Spin
+- Rest
+- Psychic
+- Explosion
+
+Blissey (F) @ Leftovers
+Level: 55
+Ability: Natural Cure
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 248 HP / 252 Def / 8 Spe
+Impish Nature
+- Soft-Boiled
+- Aromatherapy
+- Thunder Wave
+- Seismic Toss
+
+Jirachi @ Leftovers
+Level: 55
+Ability: Serene Grace
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 224 Def / 32 Spe
+Bold Nature
+- Wish
+- Calm Mind
+- Fire Punch
+- Psychic
+
+Dugtrio @ Choice Band
+Level: 55
+Ability: Arena Trap
+IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 252 Atk / 4 Def / 252 Spe
+Jolly Nature
+- Earthquake
+- Hidden Power
+- Aerial Ace
+- Rock Slide
+
+=== TRAINER_PLASTIC_OX_CELEBI_SAGE ===
+Name: SAGE
+Class: Expert
+Pic: Sage Hns
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Breloom @ Leftovers
+Level: 55
+Ability: Effect Spore
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 Def / 252 Spe
+Jolly Nature
+- Spore
+- Focus Punch
+- Sky Uppercut
+- Mach Punch
+
+Jumpluff @ Leftovers
+Level: 55
+Ability: Chlorophyll
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 188 HP / 104 SpD / 216 Spe
+Jolly Nature
+- Encore
+- Leech Seed
+- Giga Drain
+- Sleep Powder
+
+Heracross @ Leftovers
+Level: 55
+Ability: Guts
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Megahorn
+- Rock Slide
+- Focus Punch
+- Swords Dance
+
+Ludicolo @ Leftovers
+Level: 55
+Ability: Rain Dish
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 36 SpA / 220 SpD
+Calm Nature
+- Surf
+- Leech Seed
+- Toxic
+- Synthesis
+
+Venusaur @ Leftovers
+Level: 55
+Ability: Overgrow
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 84 Def / 148 SpD / 24 Spe
+Careful Nature
+- Sleep Powder
+- Leech Seed
+- Sludge Bomb
+- Synthesis
+
+Exeggutor @ Leftovers
+Level: 55
+Ability: Chlorophyll
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 52 HP / 252 SpA / 204 Spe
+Modest Nature
+- Sleep Powder
+- Psychic
+- Giga Drain
+- Explosion
+
+=== TRAINER_PLASTIC_OX_ZAPDOS_SAGE ===
+Name: SAGE
+Class: Expert
+Pic: Sage Hns
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Jolteon @ Leftovers
+Level: 55
+Ability: Volt Absorb
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Agility
+- Baton Pass
+- Shadow Ball
+
+Metagross @ Leftovers
+Level: 55
+Ability: Clear Body
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Adamant Nature
+- Meteor Mash
+- Earthquake
+- Explosion
+- Rock Slide
+
+Magneton @ Leftovers
+Level: 55
+Ability: Magnet Pull
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 Spe
+Modest Nature
+- Thunderbolt
+- Thunder Wave
+- Rest
+- Toxic
+
+Swampert @ Leftovers
+Level: 55
+Ability: Torrent
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 Def
+Relaxed Nature
+- Earthquake
+- Surf
+- Ice Beam
+- Protect
+
+Gengar @ Leftovers
+Level: 55
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Ice Punch
+- Giga Drain
+- Explosion
+
+Zapdos @ Leftovers
+Level: 55
+Ability: Pressure
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Drill Peck
+- Thunder Wave
+- Toxic
+
+=== TRAINER_PLASTIC_OX_SUICUNE_SAGE ===
+Name: MORTY
+Class: Leader
+Pic: Leader Roxanne
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Gengar @ Leftovers
+Level: 55
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Thunderbolt
+- Ice Punch
+- Psychic
+- Explosion
+
+Dusclops @ Leftovers
+Level: 55
+Ability: Pressure
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 128 Def / 128 SpD
+Bold Nature
+- Will-O-Wisp
+- Seismic Toss
+- Rest
+- Sleep Talk
+
+Espeon @ Leftovers
+Level: 55
+Ability: Synchronize
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Psychic
+- Calm Mind
+- Baton Pass
+- Morning Sun
+
+Snorlax @ Leftovers
+Level: 55
+Ability: Immunity
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 SpD
+Careful Nature
+- Body Slam
+- Curse
+- Rest
+- Shadow Ball
+
+Starmie @ Leftovers
+Level: 55
+Ability: Natural Cure
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Surf
+- Thunderbolt
+- Ice Beam
+- Recover
+
+Suicune @ Leftovers
+Level: 55
+Ability: Pressure
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Bold Nature
+- Calm Mind
+- Surf
+- Rest
+- Sleep Talk

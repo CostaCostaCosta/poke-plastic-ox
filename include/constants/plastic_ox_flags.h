@@ -365,16 +365,31 @@
 // National Park: Thursday (Warden) contest won with 4 badges; KANGASKHAN awaits at the gate.
 // Set on every such win and cleared when the Warden hands one over (repeatable).
 #define FLAG_POX_CONTEST_KANGASKHAN_PENDING (POX_EXT_FLAGS_START + 11)
+// Meteor Falls B1F 2R: JIRACHI caught after its sage (TRAINER_PLASTIC_OX_JIRACHI_SAGE).
+// Hides JIRACHI and the sage; the sage then stands in the Ecruteak sage office.
+#define FLAG_POX_CAUGHT_JIRACHI (POX_EXT_FLAGS_START + 12)
+// Ilex Forest shrine: Celebi caught after its sage (TRAINER_PLASTIC_OX_CELEBI_SAGE, needs ITEM_GS_BALL).
+// Hides Celebi and the sage; the sage then stands in the Ecruteak sage office.
+#define FLAG_POX_CAUGHT_CELEBI (POX_EXT_FLAGS_START + 13)
+// Goldenrod Radio Tower 5F: ZAPDOS caught after its sage (TRAINER_PLASTIC_OX_ZAPDOS_SAGE).
+// Hides ZAPDOS and the sage; the sage then stands in the Ecruteak sage office.
+#define FLAG_POX_CAUGHT_ZAPDOS (POX_EXT_FLAGS_START + 14)
+// Burned Tower B1F: SUICUNE caught after MORTY (TRAINER_PLASTIC_OX_SUICUNE_SAGE); MORTY returns to his gym.
+#define FLAG_POX_CAUGHT_SUICUNE (POX_EXT_FLAGS_START + 15)
+// Burned Tower B1F: MORTY rang the CLEAR BELL and SUICUNE came back (shows SUICUNE until caught).
+#define FLAG_POX_RANG_CLEAR_BELL (POX_EXT_FLAGS_START + 16)
+// Ilex Forest shrine: the GS BALL was handed to the Celebi sage (Celebi shows until caught).
+#define FLAG_POX_CELEBI_GS_BALL_GIVEN (POX_EXT_FLAGS_START + 17)
 
 // Post-game Dragon's Den (plastic_ox/alpha/import_dragons_den.py).
 // Cavern shrine plaza: RAYQUAZA caught.
-#define FLAG_POX_CAUGHT_RAYQUAZA (POX_EXT_FLAGS_START + 12)
+#define FLAG_POX_CAUGHT_RAYQUAZA (POX_EXT_FLAGS_START + 18)
 // Cavern shrine plaza: RAYQUAZA's arrival scene has played.
-#define FLAG_POX_DEN_RAYQUAZA_ARRIVED (POX_EXT_FLAGS_START + 13)
+#define FLAG_POX_DEN_RAYQUAZA_ARRIVED (POX_EXT_FLAGS_START + 19)
 // Cavern item balls.
-#define FLAG_POX_HIDE_DRAGONS_DEN_PP_MAX (POX_EXT_FLAGS_START + 14)
-#define FLAG_POX_HIDE_DRAGONS_DEN_MAX_POTION (POX_EXT_FLAGS_START + 15)
-#define FLAG_POX_HIDE_DRAGONS_DEN_DRAGON_FANG (POX_EXT_FLAGS_START + 16)
+#define FLAG_POX_HIDE_DRAGONS_DEN_PP_MAX (POX_EXT_FLAGS_START + 20)
+#define FLAG_POX_HIDE_DRAGONS_DEN_MAX_POTION (POX_EXT_FLAGS_START + 21)
+#define FLAG_POX_HIDE_DRAGONS_DEN_DRAGON_FANG (POX_EXT_FLAGS_START + 22)
 // End Dragon's Den flags.
 
 // Lavender / Pokemon Tower (plastic_ox/alpha/lavender.py).

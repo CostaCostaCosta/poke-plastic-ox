@@ -84,7 +84,7 @@ STORY_ORDER = [
     "route21-hns",
     "plasticox-route20east",
     "mossdeepcity",
-    "newmauville",
+    "newmauville-inside",
     # Act III coda — the sages come home; Bellchime Trail and the Tin Tower
     "bellchimetrail-hns",
     "tintower-1f-hns",
@@ -94,6 +94,7 @@ STORY_ORDER = [
     "route19-frlg",
     "route6-hns",
     "route5-hns",
+    "goldenrodcity-radiotower-5f-hns",
     # Act V — Meteor Falls, Blackthorn, Victory Road, the League
     "route115",
     "meteorfalls-1f-1r",

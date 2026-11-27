@@ -880,7 +880,13 @@ def apply_region(read, put):
     repair_ecruteak(read, put)
     from tin_tower import install as install_tin_tower
     install_tin_tower(read, put)
+    from meteor_falls import install as install_meteor_falls
+    install_meteor_falls(read, put)
+    from celebi import install as install_celebi
+    install_celebi(read, put)
     from mart_repairs import install as repair_marts
     repair_marts(read, put)
     from lavender import install as install_lavender
     install_lavender(read, put)
+    from clear_bell import install as install_clear_bell
+    install_clear_bell(read, put)

@@ -63,7 +63,7 @@ A post-game cave behind Blackthorn. The door sits on the north shore of the town
 
 - Import: `plastic_ox/alpha/import_dragons_den.py` (layouts, both maps, the cavern's wild tables, the Blackthorn warp and elder; map groups `gMapGroup_PlasticOxDungeons` and `gMapGroup_DragonsDen`).
 - Scripts: `data/maps/DragonsDen_Cavern_hns/scripts.inc`; elder in `data/maps/BlackthornCity_hns/scripts.inc`; special `PoxRaiseWildMonToPartyLevel` in `src/battle_setup.c`.
-- Flags: `FLAG_POX_CAUGHT_RAYQUAZA` (POX ext +12), `FLAG_POX_DEN_RAYQUAZA_ARRIVED` (+13), item balls +14 to +16, gate `FLAG_SYS_GAME_CLEAR`.
+- Flags: `FLAG_POX_CAUGHT_RAYQUAZA` (POX ext +18), `FLAG_POX_DEN_RAYQUAZA_ARRIVED` (+19), item balls +20 to +22, gate `FLAG_SYS_GAME_CLEAR`.
 - Test: `plastic_ox/demo/test_dragons_den.py`.
 - Known gaps: the shrine interior, the donor's whirlpools, decorative POKéMON and hidden items were not imported; music is `MUS_RG_SEVII_CAVE` because the HGSS Den theme is not in this ROM; tileset animations are static.
 

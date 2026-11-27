@@ -23,6 +23,7 @@ import story_notes  # noqa: E402
 import story_render  # noqa: E402
 import triggers  # noqa: E402
 SITE = WIKI / "site"
+EXTRA_PAGES = {"NewMauville_Inside"}
 MAP_TYPES = {"MAP_TYPE_ROUTE": "Route", "MAP_TYPE_TOWN": "Town", "MAP_TYPE_CITY": "City", "MAP_TYPE_UNDERGROUND": "Cave"}
 ENCOUNTER_FIELDS = ("land_mons", "water_mons", "rock_smash_mons", "fishing_mons", "hidden_mons")
 FIELD_NAMES = {"land_mons": "Walking", "water_mons": "Surfing", "rock_smash_mons": "Rock Smash", "fishing_mons": "Fishing", "hidden_mons": "Hidden"}
@@ -91,6 +92,9 @@ def region_names() -> set[str]:
     for group, members in groups.items():
         if group.startswith("gMapGroup_PlasticOx"):
             names.update(members)
+    # Optional story sites that no seam reaches (entered through an interior
+    # door) but that own a location note.
+    names.update(EXTRA_PAGES)
     return names - {""}
 
 
