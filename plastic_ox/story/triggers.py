@@ -67,6 +67,9 @@ REGISTRY: dict[str, tuple[str, str]] = {
     "Route110_TrickHouseEntrance_EventScript_TrickMasterHiding": ("Mechanic", "Trick House entrance: stepping near the Trick Master's hiding spot starts the hide-and-seek scene."),
     "Route110_SeasideCyclingRoadSouthEntrance_EventScript_BikeCheck": ("Mechanic", "Cycling Road gatehouse: no entry on foot; sets the cycling-road state."),
     "Route110_SeasideCyclingRoadSouthEntrance_EventScript_ClearCyclingRoad": ("Mechanic", "Leaving the Cycling Road clears its state."),
+    "NewMauville_Inside_EventScript_BlueButton": ("Puzzle", "New Mauville floor switch: raises the blue barriers and lowers the green ones."),
+    "NewMauville_Inside_EventScript_GreenButton": ("Puzzle", "New Mauville floor switch: raises the green barriers and lowers the blue ones."),
+    "NewMauville_Inside_EventScript_RedButton": ("Mechanic", "New Mauville red switch: stops the generator (VAR_NEW_MAUVILLE_STATE 2), which lets the Raikou sage battle start."),
 }
 
 _LABEL = re.compile(r"^([A-Za-z_][A-Za-z0-9_]*)::?\s*$", re.M)

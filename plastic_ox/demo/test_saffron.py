@@ -13,6 +13,7 @@ Proves, with the D-pad wherever a transition is under test:
   while their story battle is due, the east pad joins the two halves of 11F,
   stepping into the boardroom starts GIOVANNI's battle, and the terminal sets
   FLAG_POX_STORY_SILPH and brings the PRESIDENT back with the MASTER BALL;
+* both purple-door houses open; a loss in Silph whites out to Saffron itself;
 * a save made in either retired teleport room can walk out to the street;
 * every Saffron line is unique and the dialogue rules hold (static check).
 """
@@ -83,21 +84,23 @@ def static_checks():
         assert label not in story + inc + (ROOT / f'data/maps/{CITY}/scripts.inc').read_text(), label
     warps = [(w['x'], w['y'], w['dest_map']) for w in city['warp_events']]
     assert warps[3:] == [(45, 12, 'MAP_SAFFRON_CITY_DOJO'), (33, 30, 'MAP_SILPH_CO_1F'),
-                         (18, 38, 'MAP_POKEMON_CENTER_KANTO_HNS')], warps
+                         (18, 38, 'MAP_POKEMON_CENTER_KANTO_HNS'), (21, 21, 'MAP_SAFFRON_CITY_HOUSE'),
+                         (47, 38, 'MAP_SAFFRON_CITY_MR_PSYCHICS_HOUSE')], warps
     assert city['layout'] == 'LAYOUT_SAFFRON_CITY_HNS'
-    print('ok  nine residents, no teleport guides, three real doors', flush=True)
+    print('ok  nine residents, no teleport guides, five real doors', flush=True)
 
     party = (ROOT / 'src/data/trainers.party').read_text()
     block = lambda t: party.split(f'=== TRAINER_PLASTIC_OX_{t} ===', 1)[1].split('\n=== ', 1)[0]
     assert 'Pic: Elite Four Bruno Frlg' in block('BRUNO') and 'Class: Leader' in block('BRUNO')
-    fighters = sum(s in block('BRUNO') for s in ('Medicham', 'Machamp', 'Hariyama', 'Blaziken', 'Hitmontop'))
-    assert fighters == 5 and 'Steelix' in block('BRUNO'), block('BRUNO')
+    team = re.findall(r'^(\w+) @', block('BRUNO'), re.M)
+    assert team == ['Zapdos', 'Ludicolo', 'Blaziken', 'Heracross', 'Regirock', 'Celebi'], team
+    assert 'Rain Dance' in block('BRUNO') and 'Class: Rocket Boss' in block('GIOVANNI')
     for n in (1, 2, 3):
         assert 'Class: Team Rocket Frlg' in block(f'SILPHGRUNT{n}') and 'Aqua' not in block(f'SILPHGRUNT{n}')
     special = (ROOT / 'src/field_specials.c').read_text()
     body = special.split('static u16 CheckADVOUGymRules(void)', 1)[1].split('\n}\n', 1)[0]
     assert 'CheckRustboroGymLittleCupRules' not in body, 'the OU check must not apply the Little Cup bans'
-    print('ok  BRUNO fights as BRUNO with five Fighting-types; Silph grunts are Team Rocket; OU check is OU', flush=True)
+    print('ok  BRUNO has his requested six; GIOVANNI is the ROCKET BOSS; grunts are Team Rocket; OU check is OU', flush=True)
 
 
 def clean(text):
@@ -203,6 +206,20 @@ def city(g):
     walk_in(g, (7, 8), 'DOWN', CITY, 'center -> city')
     assert pos(g) in ((18, 38), (18, 39)), g.describe()
     print('ok  (18,38) is the POKeMON CENTER, both ways', flush=True)
+
+    walk_in(g, (21, 22), 'UP', 'SaffronCity_House_Frlg', 'city -> west house')
+    text, _ = say(g, (3, 4), 'RIGHT')
+    assert 'counting trains' in text, text
+    text, _ = say(g, (5, 3), 'DOWN')
+    assert 'RENT IS STILL DUE' in text, text
+    walk_in(g, (4, 7), 'DOWN', CITY, 'west house -> city')
+    assert pos(g) in ((21, 21), (21, 22)), g.describe()
+    walk_in(g, (47, 39), 'UP', 'SaffronCity_MrPsychicsHouse_Frlg', 'city -> south house')
+    text, _ = say(g, (8, 4), 'LEFT')
+    assert 'left hand' in text, text
+    walk_in(g, (4, 7), 'DOWN', CITY, 'south house -> city')
+    assert pos(g) in ((47, 38), (47, 39)), g.describe()
+    print('ok  both houses (21,21) and (47,38) open, both ways, with their residents', flush=True)
 
 
 def dojo(g):
@@ -374,6 +391,27 @@ def silph(g):
     print('ok  walked back out by pad, lift and door; the street noticed, vaguely', flush=True)
 
 
+def whiteout():
+    """Losing inside Silph comes back to Saffron, healed, at the Center door."""
+    g = game()
+    g.flag('FLAG_BADGE06_GET', True)
+    g.flag('FLAG_POX_STORY_SPACE_CENTER', True)
+    g.warp(CITY, 33, 33)                    # entering the city sets the respawn
+    g.frame(90)
+    walk_in(g, (33, 31), 'UP', LOBBY, 'city -> silph')
+    navigate(g, (20, 7), LIFT)
+    walk_until_spotted(g, 'RIGHT')
+    assert battle_id(g) == g.const('TRAINER_PLASTIC_OX_SILPHGRUNT1')
+    finish_trainer(g, False)
+    settle(g)
+    g.write(g.syms['gBattleTypeFlags'], 0, 4)
+    g.frame(120)
+    assert at(g, CITY) and pos(g) == (18, 39), ('whiteout', g.describe())
+    cur, top, _addr = hp(g)
+    assert cur == top and not g.flag('FLAG_POX_HIDE_SILPH_GRUNT_1')
+    print('ok  a loss in Silph returns to Saffron (18,39), healed', flush=True)
+
+
 def dormant_and_retired():
     # A Rocket spots the player only while his own story battle is due.
     g = game()
@@ -415,6 +453,7 @@ def main():
     city(g)
     dojo(g)
     silph(g)
+    whiteout()
     dormant_and_retired()
     print('PASS: Saffron, the Fighting Dojo and Silph Co.', flush=True)
 

@@ -4,7 +4,9 @@ Installed last by region_v7.apply_region, so it owns the final shape of:
 
 * SaffronCity_hns: nine residents, real doors and building signs. The wooden
   hall's doorway (45,12) is the FIGHTING DOJO, the tower door (33,30) is SILPH
-  CO. and the red-roofed door (18,38) is the shared Kanto POKeMON CENTER. The
+  CO. and the red-roofed door (18,38) is the shared Kanto POKeMON CENTER; the
+  two purple doors (21,21) and (47,38) open onto FRLG house interiors.
+  Entering the city sets the whiteout point (HEAL_LOCATION_POX_SAFFRON). The
   three teleport guides are gone. Edge crossings, their two signs and the mart
   and gatehouse warps (0-2) stay with region_v7.py.
 * SaffronCity_Dojo_Frlg: BRUNO's Gym in the FRLG Dojo interior. A desk clerk
@@ -30,6 +32,11 @@ import re
 import textwrap
 
 CITY = 'SaffronCity_hns'
+WEST_HOUSE = 'SaffronCity_House_Frlg'
+SOUTH_HOUSE = 'SaffronCity_MrPsychicsHouse_Frlg'
+# Whiteout point: the street tile in front of the POKeMON CENTER door. The
+# shared Kanto Center nurse sets no respawn, so entering the city does.
+HEAL_LOCATION = 'HEAL_LOCATION_POX_SAFFRON'
 CITY_ID = 'MAP_SAFFRON_CITY_HNS'
 DOJO = 'SaffronCity_Dojo_Frlg'
 LOBBY = 'SilphCo_1F_Frlg'
@@ -37,23 +44,23 @@ BOARD = 'SilphCo_11F_Frlg'
 P = 'PoxSaffron_'
 
 # City warp ids. 0-2 (mart, east and west gatehouses) belong to region_v7.py.
-WARP_DOJO, WARP_SILPH, WARP_CENTER = '3', '4', '5'
+WARP_DOJO, WARP_SILPH, WARP_CENTER, WARP_WEST_HOUSE, WARP_SOUTH_HOUSE = '3', '4', '5', '6', '7'
 # FRLG Silph warp-pad metatile (MB_AQUA_HIDEOUT_WARP), as at 11F (2,5).
 PAD_METATILE = '0x390'
 PRIZE_LEVEL = 45
 
 # New persistent flags (POX_EXT pool; see the plastic-ox-flags skill).
 EXT_FLAGS = [
-    ('FLAG_POX_DOJO_PRIZE', 12, 'Fighting Dojo: took HITMONLEE or HITMONCHAN (hides both prize balls).'),
-    ('FLAG_POX_SILPH_MASTER_BALL', 13, "Silph Co. 11F: the PRESIDENT's MASTER BALL was handed over."),
-    ('FLAG_POX_HIDE_SILPH_STAFF', 14, 'Silph Co. 11F: hides the PRESIDENT and SECRETARY until Silph is resolved (set on transition).'),
+    ('FLAG_POX_DOJO_PRIZE', 13, 'Fighting Dojo: took HITMONLEE or HITMONCHAN (hides both prize balls).'),
+    ('FLAG_POX_SILPH_MASTER_BALL', 14, "Silph Co. 11F: the PRESIDENT's MASTER BALL was handed over."),
+    ('FLAG_POX_HIDE_SILPH_STAFF', 15, 'Silph Co. 11F: hides the PRESIDENT and SECRETARY until Silph is resolved (set on transition).'),
 ]
 
 # Dojo trainers get their own ids after the existing ones. Party bodies belong
 # to plastic_ox/tools/apply_trainer_teams_v2.py.
 DOJO_TRAINERS = [
-    ('TRAINER_PLASTIC_OX_DOJO_KENJI', 962, 'KENJI', 'Hitmonlee\nLevel: 52\n- Brick Break\n'),
-    ('TRAINER_PLASTIC_OX_DOJO_NOB', 963, 'NOB', 'Hitmonchan\nLevel: 52\n- Brick Break\n'),
+    ('TRAINER_PLASTIC_OX_DOJO_KENJI', 963, 'KENJI', 'Hitmonlee\nLevel: 52\n- Brick Break\n'),
+    ('TRAINER_PLASTIC_OX_DOJO_NOB', 964, 'NOB', 'Hitmonchan\nLevel: 52\n- Brick Break\n'),
 ]
 
 # Two registers. The street is loud and knows nothing; the Dojo is etiquette;
@@ -78,8 +85,12 @@ LINES = {
     'StationSign': "SAFFRON STATION\nService suspended.\\pTrains will not stop until the\nline has been surveyed again.",
     'OldHallDoor': "The doors are locked. Through\nthe glass, the floor is covered\\pin dust sheets.",
     'StationDoor': "The station doors are chained.\nA timetable is taped inside\\pwith every row crossed out.",
-    'WestHouseDoor': "Nobody answers. A note says:\nBACK WHEN THE OFFICE REOPENS.",
-    'SouthHouseDoor': "The door is locked. Someone\ninside is practising scales.",
+    # --- the two houses ---
+    'HouseSister': "My little brother is at the station counting trains. I told him the drivers are lost. I made it up, and now he tells everyone.|I'm supposed to fetch him. Ten more minutes.",
+    'HouseBrother': "PIDGEY used to fly out of the window and be home by supper. Now it gets as far as the gate and turns round.|I think the sky is a different size than it remembers.",
+    'HousePidgey': "PIDGEY: Prrrip!",
+    'HouseLetter': "A letter on a clipboard.\nTO THE TENANT: THE OFFICE ON 4F\pIS CLOSED UNTIL FURTHER NOTICE.\nRENT IS STILL DUE.",
+    'Pianist': "Forty years at the piano and the left hand still won't do what it's told.|The neighbours were grateful when the gates shut. Nobody could visit, so nobody had to listen.",
     # --- Dojo ---
     'DeskHello': "Sign here, bag on the shelf, and mind the floor. The MASTER has been on it since the morning bell.|This hall is a LEAGUE GYM under OU rules. No one-hit knockout moves and no evasion items. I check every team at the desk.",
     'DeskClear': "Your team is in order. Walk up the middle of the mat.|The BLACK BELTS will only stop you if you step into their half. Some people do it on purpose.",
@@ -145,10 +156,10 @@ LINES = {
 # FLAG_POX_STORY_SILPH; 'sign' is a MSGBOX_SIGN; everything else is text only.
 SIMPLE = {
     'npc': ['Queue', 'Grocer', 'Courier', 'Schoolkid', 'TrainKid', 'Overtime', 'OldHall',
-            'StudentLeft', 'StudentRight', 'Secretary'],
+            'HouseSister', 'HouseBrother', 'Pianist', 'StudentLeft', 'StudentRight', 'Secretary'],
     'silph': ['Clerk'],
     'sign': ['DojoSign', 'OldHallSign', 'SilphSign', 'StationSign', 'OldHallDoor', 'StationDoor',
-             'WestHouseDoor', 'SouthHouseDoor', 'StatueLeft', 'StatueRight', 'ScrollLeft', 'ScrollRight',
+             'HouseLetter', 'StatueLeft', 'StatueRight', 'ScrollLeft', 'ScrollRight',
              'LobbySign', 'BoardSign'],
 }
 
@@ -194,6 +205,22 @@ def scripts():
         out.append(f'{P}{label}::\n\tmsgbox {P}Text_{label}, MSGBOX_SIGN\n\tend\n')
     out.append(f'''{P}Return::
 	return
+
+@ Entering the city makes it the whiteout point, then runs the region's own
+@ arrival script.
+{P}CityOnTransition::
+	setrespawn {HEAL_LOCATION}
+	goto PoxRegion_Arrival_{CITY}
+
+{P}HousePidgey::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_PIDGEY, CRY_MODE_NORMAL
+	msgbox {P}Text_HousePidgey, MSGBOX_DEFAULT
+	waitmoncry
+	release
+	end
 
 @ ---------------------------------------------------------------- Dojo
 @ The desk reports the first ADV OU clause the party breaks. BRUNO runs the
@@ -552,15 +579,40 @@ def install(read, put):
         door(45, 12, 'MAP_SAFFRON_CITY_DOJO', '1'),       # warp 3: the Dojo's open doorway
         door(33, 30, 'MAP_SILPH_CO_1F', '1'),              # warp 4
         door(18, 38, 'MAP_POKEMON_CENTER_KANTO_HNS', '0'),  # warp 5: shared interior, dynamic exit
+        door(21, 21, 'MAP_SAFFRON_CITY_HOUSE', '1'),               # warp 6
+        door(47, 38, 'MAP_SAFFRON_CITY_MR_PSYCHICS_HOUSE', '1'),   # warp 7
     ]
     city['bg_events'] = [b for b in city['bg_events'] if region_owned(b)] + [
         sign(47, 14, 'DojoSign'), sign(54, 14, 'OldHallSign'), sign(30, 31, 'SilphSign'),
-        sign(20, 15, 'StationSign'), sign(52, 12, 'OldHallDoor'), sign(17, 14, 'StationDoor'),
-        sign(21, 21, 'WestHouseDoor'), sign(47, 38, 'SouthHouseDoor')]
+        sign(20, 15, 'StationSign'), sign(52, 12, 'OldHallDoor'), sign(17, 14, 'StationDoor')]
     city['music'] = 'MUS_RG_PEWTER'  # FRLG's Saffron theme; MUS_RG_SILPH belongs inside the tower
     save(CITY, city)
-    put(f'data/maps/{CITY}/scripts.inc', f'{CITY}_MapScripts::\n'
-        f'\tmap_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_{CITY}\n\t.byte 0\n')
+    map_scripts(CITY, ('MAP_SCRIPT_ON_TRANSITION', 'CityOnTransition'))
+    path = 'src/data/heal_locations.json'
+    heal = json.loads(read(path))
+    heal['heal_locations'] = [h for h in heal['heal_locations'] if h['id'] != HEAL_LOCATION]
+    heal['heal_locations'].append(dict(id=HEAL_LOCATION, map=CITY_ID, x=18, y=39))
+    put(path, json.dumps(heal, indent=2) + '\n')
+
+    # --- two houses (FRLG interiors) ---
+    d = load(WEST_HOUSE)
+    d.update(object_events=[
+                 npc('OBJ_EVENT_GFX_PIDGEY', 0, 5, P + 'HousePidgey', movement='MOVEMENT_TYPE_WANDER_UP_AND_DOWN'),
+                 npc('OBJ_EVENT_GFX_LASS_FRLG', 4, 4, P + 'HouseSister', movement='MOVEMENT_TYPE_FACE_RIGHT'),
+                 npc('OBJ_EVENT_GFX_YOUNGSTER_FRLG', 6, 2, P + 'HouseBrother'),
+                 npc('OBJ_EVENT_GFX_CLIPBOARD', 5, 4, '0x0', movement='MOVEMENT_TYPE_FACE_UP'),
+             ],
+             warp_events=[door(x, 7, CITY_ID, WARP_WEST_HOUSE) for x in (3, 4, 5)],
+             coord_events=[], bg_events=[sign(5, 4, 'HouseLetter')])
+    d['object_events'][0].update(movement_range_x=0, movement_range_y=1)
+    save(WEST_HOUSE, d)
+    map_scripts(WEST_HOUSE)
+    d = load(SOUTH_HOUSE)
+    d.update(object_events=[npc('OBJ_EVENT_GFX_BALDING_MAN', 7, 4, P + 'Pianist', movement='MOVEMENT_TYPE_FACE_LEFT')],
+             warp_events=[door(x, 7, CITY_ID, WARP_SOUTH_HOUSE) for x in (3, 4, 5)],
+             coord_events=[], bg_events=[])
+    save(SOUTH_HOUSE, d)
+    map_scripts(SOUTH_HOUSE)
 
     # --- the Dojo ---
     d = load(DOJO)

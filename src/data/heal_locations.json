@@ -359,6 +359,12 @@
       "respawn_npc": "LOCALID_POX_LEAGUE_NURSE",
       "respawn_x": 19,
       "respawn_y": 12
+    },
+    {
+      "id": "HEAL_LOCATION_POX_SAFFRON",
+      "map": "MAP_SAFFRON_CITY_HNS",
+      "x": 18,
+      "y": 39
     }
   ]
 }

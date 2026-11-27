@@ -17452,65 +17452,68 @@ Music: Intense
 Double Battle: No
 AI: Basic Trainer / Smart Switching / PP Stall Prevention
 
-Medicham @ Leftovers
+Zapdos @ Choice Band
 Level: 55
-Ability: Pure Power
-EVs: 4 HP / 252 Atk / 252 Spe
-Adamant Nature
-- Bulk Up
-- Brick Break
-- Shadow Ball
-- Recover
-
-Machamp @ Leftovers
-Level: 55
-Ability: Guts
-EVs: 252 Atk / 4 SpD / 252 Spe
-Adamant Nature
-- Bulk Up
-- Cross Chop
-- Rock Slide
+Ability: Pressure
+IVs: 31 HP / 31 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+EVs: 252 Atk / 12 SpA / 244 Spe
+Lonely Nature
+- Thunderbolt
 - Hidden Power
+- Drill Peck
+- Baton Pass
 
-Hariyama @ Leftovers
-Level: 54
-Ability: Guts
-EVs: 252 Atk / 228 Def / 28 Spe
-Adamant Nature
-- Focus Punch
-- Brick Break
-- Knock Off
-- Hidden Power
+Ludicolo @ Lum Berry
+Level: 53
+Ability: Swift Swim
+EVs: 104 HP / 252 SpA / 152 Spe
+Modest Nature
+- Rain Dance
+- Surf
+- Ice Beam
+- Giga Drain
 
 Blaziken @ Salac Berry
 Level: 54
 Ability: Blaze
-EVs: 80 HP / 252 Atk / 176 Spe
-Jolly Nature
-- Substitute
+EVs: 228 Atk / 80 SpA / 200 Spe
+Hasty Nature
+- Endure
 - Swords Dance
-- Focus Punch
+- Reversal
 - Fire Blast
 
-Hitmontop @ Leftovers
-Level: 53
-Ability: Intimidate
-EVs: 252 HP / 136 Atk / 112 Def / 8 Spe
+Heracross @ Salac Berry
+Level: 55
+Ability: Swarm
+EVs: 252 Atk / 4 Def / 252 Spe
 Adamant Nature
-- Counter
-- Brick Break
-- Hidden Power
-- Endeavor
+- Swords Dance
+- Megahorn
+- Substitute
+- Reversal
 
-Steelix @ Choice Band
-Level: 53
-Ability: Rock Head
-EVs: 144 HP / 228 Atk / 136 SpD
+Regirock @ Choice Band
+Level: 54
+Ability: Clear Body
+IVs: 31 HP / 31 Atk / 30 Def / 31 SpA / 30 SpD / 30 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Adamant Nature
+- Hidden Power
+- Superpower
 - Earthquake
-- Iron Tail
-- Double-Edge
 - Explosion
+
+Celebi @ Leftovers
+Level: 54
+Ability: Natural Cure
+IVs: 31 HP / 2 Atk / 30 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Modest Nature
+- Leech Seed
+- Giga Drain
+- Hidden Power
+- Psychic
 
 === TRAINER_PLASTIC_OX_CLAIR ===
 Name: CLAIR
@@ -18291,7 +18294,7 @@ Jolly Nature
 
 === TRAINER_PLASTIC_OX_GIOVANNI ===
 Name: GIOVANNI
-Class: Leader
+Class: Rocket Boss
 Pic: Leader Giovanni Frlg
 Gender: Male
 Music: Male
@@ -21658,6 +21661,81 @@ Timid Nature
 - Flamethrower
 - Hidden Power
 - Roar
+
+=== TRAINER_PLASTIC_OX_JIRACHI_SAGE ===
+Name: SAGE
+Class: Expert
+Pic: Sage Hns
+Gender: Male
+Music: Male
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Milotic @ Leftovers
+Level: 55
+Ability: Marvel Scale
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 248 HP / 252 Def / 8 Spe
+Bold Nature
+- Recover
+- Refresh
+- Toxic
+- Surf
+
+Skarmory
+Level: 55
+Ability: Keen Eye
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 248 HP / 252 SpD / 8 Spe
+Careful Nature
+- Spikes
+- Thief
+- Drill Peck
+- Roar
+
+Claydol @ Leftovers
+Level: 55
+Ability: Levitate
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 112 Def / 136 SpD / 8 Spe
+Sassy Nature
+- Rapid Spin
+- Rest
+- Psychic
+- Explosion
+
+Blissey (F) @ Leftovers
+Level: 55
+Ability: Natural Cure
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 248 HP / 252 Def / 8 Spe
+Impish Nature
+- Soft-Boiled
+- Aromatherapy
+- Thunder Wave
+- Seismic Toss
+
+Jirachi @ Leftovers
+Level: 55
+Ability: Serene Grace
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 224 Def / 32 Spe
+Bold Nature
+- Wish
+- Calm Mind
+- Fire Punch
+- Psychic
+
+Dugtrio @ Choice Band
+Level: 55
+Ability: Arena Trap
+IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 252 Atk / 4 Def / 252 Spe
+Jolly Nature
+- Earthquake
+- Hidden Power
+- Aerial Ace
+- Rock Slide
 
 === TRAINER_PLASTIC_OX_TOURNAMENT_1 ===
 Name: IRIS

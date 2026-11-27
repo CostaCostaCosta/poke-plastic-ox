@@ -7,7 +7,7 @@ stage: "10 — Saffron hub"
 depth: full
 wiki: saffroncity-hns
 maps: [SaffronCity_hns]
-also_maps: [SaffronCity_Dojo_Frlg, SilphCo_1F_Frlg, SilphCo_11F_Frlg, PlasticOx_BrunoGym, PlasticOx_Silph]
+also_maps: [SaffronCity_Dojo_Frlg, SilphCo_1F_Frlg, SilphCo_11F_Frlg, SaffronCity_House_Frlg, SaffronCity_MrPsychicsHouse_Frlg, PlasticOx_BrunoGym, PlasticOx_Silph]
 flags: [FLAG_POX_STORY_SPACE_CENTER, FLAG_POX_STORY_SILPH, FLAG_POX_HIDE_SILPH_GRUNT_1, FLAG_POX_HIDE_SILPH_GRUNT_2, FLAG_POX_HIDE_SILPH_GRUNT_3, FLAG_POX_HIDE_SILPH_GIOVANNI, FLAG_POX_DOJO_PRIZE, FLAG_POX_SILPH_MASTER_BALL, FLAG_POX_HIDE_SILPH_STAFF]
 badges: [7]
 trainers: [TRAINER_PLASTIC_OX_BRUNO, TRAINER_PLASTIC_OX_DOJO_KENJI, TRAINER_PLASTIC_OX_DOJO_NOB, TRAINER_PLASTIC_OX_SILPHGRUNT1, TRAINER_PLASTIC_OX_SILPHGRUNT2, TRAINER_PLASTIC_OX_SILPHGRUNT3, TRAINER_PLASTIC_OX_GIOVANNI]
@@ -40,7 +40,9 @@ A grey, dense city centre that has been shut for most of the game and now stands
 | Pokémon Center | `(18,38)` → `PokemonCenter_Kanto_hns` | always | the shared Kanto interior with a dynamic exit; the hub can heal |
 | Mart | `(44,21)` | always | `MAP_MART_KANTO_HNS` |
 | Building signs | Dojo `(47,14)`, old hall `(54,14)`, Silph `(30,31)`, station `(20,15)` | always | one sign each. The GYM-plated hall next to the Dojo is closed and says League challenges are held next door |
-| Closed doors | old hall `(52,12)`, station `(17,14)`, houses `(21,21)` and `(47,38)` | always | a short line each, so no door is silent |
+| Houses | `(21,21)` → `SaffronCity_House_Frlg`, `(47,38)` → `SaffronCity_MrPsychicsHouse_Frlg` | always | a sister, a brother, their PIDGEY and a letter; a man at his piano |
+| Closed doors | old hall `(52,12)`, station `(17,14)` | always | a short line each; both are closed in the fiction (hall shut, trains not stopping) |
+| Whiteout point | entering `SaffronCity_hns` | always | `setrespawn HEAL_LOCATION_POX_SAFFRON`: a loss in the Dojo or Silph returns to `(18,39)`, healed, in front of the Center |
 | Four crossings | `(61,27)`, `(2,26)`, `(32,44)`, `(30,6)` | `FLAG_POX_STORY_SPACE_CENTER` | `PoxRegion_*_saffron_*` (region_v7.py). The north and south gate signs name the gate and the road |
 | Dojo desk | `SaffronCity_Dojo_Frlg` `(8,13)` `PoxSaffron_DojoDesk` | `CheckSaffronGymOURules`; `FLAG_BADGE07_GET` | welcomes, states the OU clauses, names the first banned move or item in the party; after the badge, the logbook line |
 | Black Belts | `(1,10)` KENJI, `(11,10)` NOB | sight 3 | optional: the middle of the mat (x 5–7) is clear, their halves are not |
@@ -93,13 +95,11 @@ A grey, dense city centre that has been shut for most of the game and now stands
 - Maps: `SaffronCity_hns` (`MAP_SAFFRON_CITY_HNS`, layout `LAYOUT_SAFFRON_CITY_HNS`, 66×55), `SaffronCity_Dojo_Frlg` (`MAP_SAFFRON_CITY_DOJO`), `SilphCo_1F_Frlg` (`MAP_SILPH_CO_1F`), `SilphCo_11F_Frlg` (`MAP_SILPH_CO_11F`). The other FRLG Silph floors are unused donors and nothing warps into them.
 - Scripts: `data/scripts/plastic_ox_saffron.inc` (`PoxSaffron_*`, `Pox_SilphCore`), `data/scripts/plastic_ox_story.inc` (`Pox_Bruno`, `Pox_SilphGrunt1`–`3`, `Pox_Giovanni`, `Pox_BlackthornRoad`), `data/scripts/plastic_ox_region.inc` (the four edge crossings and two gate signs)
 - Gates: `FLAG_POX_STORY_SPACE_CENTER` (city and all four edges), `FLAG_POX_STORY_SILPH`, the four Silph hide flags, `FLAG_BADGE06_GET` (Bruno's prerequisite), `FLAG_BADGE07_GET` (awarded), `CheckSaffronGymOURules` (OHKO moves, Assist, Lax Incense; the evasion moves and BrightPowder are removed from the ROM)
-- Trainers / items: `TRAINER_PLASTIC_OX_BRUNO` (OU, Lv. 53–55, five Fighting-types and Steelix), `TRAINER_PLASTIC_OX_DOJO_KENJI` and `TRAINER_PLASTIC_OX_DOJO_NOB` (Lv. 51–52), `TRAINER_PLASTIC_OX_SILPHGRUNT1`–`3` (Team Rocket, Lv. 50–53), `TRAINER_PLASTIC_OX_GIOVANNI` (Lv. 53–55). HITMONLEE or HITMONCHAN from the Dojo; a MASTER BALL from the President.
+- Trainers / items: `TRAINER_PLASTIC_OX_BRUNO` (OU, Lv. 53–55; hand-authored in `tools/authored_trainers.party`: Zapdos, Ludicolo, Blaziken, Heracross, Regirock, Celebi), `TRAINER_PLASTIC_OX_DOJO_KENJI` and `TRAINER_PLASTIC_OX_DOJO_NOB` (Lv. 51–52), `TRAINER_PLASTIC_OX_SILPHGRUNT1`–`3` (Team Rocket, Lv. 50–53), `TRAINER_PLASTIC_OX_GIOVANNI` (class `Rocket Boss`, Lv. 53–55). HITMONLEE or HITMONCHAN from the Dojo; a MASTER BALL from the President.
 - Harness: `plastic_ox/demo/test_saffron.py`
-- Known gaps: a whiteout inside Silph or the Dojo still returns to the last vanilla heal location, because the shared `PokemonCenter_Kanto_hns` nurse (`Pox_Heal`) sets no respawn point; the station, the closed hall and the two houses have doors but no interiors; Silph is two floors, not a climb.
+- Known gaps: the station and the closed training hall are doors with a line and no interior, on purpose; Silph is two floors, not a climb.
 
 ## Open questions
 
-- Should the shared Kanto Pokémon Center set a per-city respawn (it would need a heal location per city that uses it)?
 - Does the closed training hall next to the Dojo ever open, and as what?
 - Is a MASTER BALL the right Silph reward for this region's legendaries, or should the President give something else?
-- Giovanni is still the `Leader` trainer class; there is no Rocket Boss class in this build. Add one, or leave him as the Gym Leader he also is?

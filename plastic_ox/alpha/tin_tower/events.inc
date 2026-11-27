@@ -11,6 +11,7 @@ PoxTinTower_CountSages::
 	call_if_set FLAG_POX_CAUGHT_REGIROCK, PoxTinTower_AddSage
 	call_if_set FLAG_POX_CAUGHT_REGICE, PoxTinTower_AddSage
 	call_if_set FLAG_POX_CAUGHT_REGISTEEL, PoxTinTower_AddSage
+	call_if_set FLAG_POX_CAUGHT_JIRACHI, PoxTinTower_AddSage
 	return
 PoxTinTower_AddSage::
 	addvar VAR_TEMP_1, 1
@@ -24,6 +25,7 @@ PoxTinTower_Office_OnTransition::
 	call_if_unset FLAG_POX_CAUGHT_REGIROCK, PoxTinTower_AwayRegirock
 	call_if_unset FLAG_POX_CAUGHT_REGICE, PoxTinTower_AwayRegice
 	call_if_unset FLAG_POX_CAUGHT_REGISTEEL, PoxTinTower_AwayRegisteel
+	call_if_unset FLAG_POX_CAUGHT_JIRACHI, PoxTinTower_AwayJirachi
 	call PoxTinTower_CountSages
 	goto_if_lt VAR_TEMP_1, 5, PoxTinTower_Office_End
 	setobjectxyperm LOCALID_POX_TIN_TOWER_KEEPER, 8, 4
@@ -47,6 +49,9 @@ PoxTinTower_AwayRegice::
 	return
 PoxTinTower_AwayRegisteel::
 	setflag FLAG_TEMP_6
+	return
+PoxTinTower_AwayJirachi::
+	setflag FLAG_TEMP_7
 	return
 
 PoxTinTower_Keeper::
@@ -80,6 +85,9 @@ PoxTinTower_SageRegice::
 	end
 PoxTinTower_SageRegisteel::
 	msgbox PoxTinTower_Text_SageRegisteel, MSGBOX_NPC
+	end
+PoxTinTower_SageJirachi::
+	msgbox PoxTinTower_Text_SageJirachi, MSGBOX_NPC
 	end
 
 pox_legendary_sage PoxTinTower_MoltresSage, TRAINER_PLASTIC_OX_MOLTRES_SAGE, SPECIES_MOLTRES, 55, FLAG_POX_CAUGHT_MOLTRES, LOCALID_POX_MOLTRES_SAGE, LOCALID_POX_MOLTRES, PoxTinTower_Text_MoltresSage, PoxTinTower_Text_MoltresSageDefeat
@@ -136,6 +144,13 @@ PoxTinTower_Text_SageRegisteel::
 	.string "the wall, so I stopped knocking.\p"
 	.string "REGISTEEL did not stop. You can\n"
 	.string "still hear it if you sleep light.$"
+
+PoxTinTower_Text_SageJirachi::
+	.string "The falls roared the whole time\n"
+	.string "I was down there. I learned to\l"
+	.string "read lips.\p"
+	.string "The BAGON learned to read mine.\n"
+	.string "I miss them more than the quiet.$"
 
 PoxTinTower_Text_MoltresSage::
 	.string "SAGE: It came down on this roof\n"

@@ -2012,4 +2012,6 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 
 	.include "data/scripts/plastic_ox_lavender.inc"
 
+	.include "data/scripts/plastic_ox_meteor_falls.inc"
+
 	.include "data/scripts/plastic_ox_saffron.inc"

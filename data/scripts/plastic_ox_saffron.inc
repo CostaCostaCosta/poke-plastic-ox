@@ -28,6 +28,18 @@ PoxSaffron_OldHall::
 	msgbox PoxSaffron_Text_OldHall, MSGBOX_NPC
 	end
 
+PoxSaffron_HouseSister::
+	msgbox PoxSaffron_Text_HouseSister, MSGBOX_NPC
+	end
+
+PoxSaffron_HouseBrother::
+	msgbox PoxSaffron_Text_HouseBrother, MSGBOX_NPC
+	end
+
+PoxSaffron_Pianist::
+	msgbox PoxSaffron_Text_Pianist, MSGBOX_NPC
+	end
+
 PoxSaffron_StudentLeft::
 	msgbox PoxSaffron_Text_StudentLeft, MSGBOX_NPC
 	end
@@ -76,12 +88,8 @@ PoxSaffron_StationDoor::
 	msgbox PoxSaffron_Text_StationDoor, MSGBOX_SIGN
 	end
 
-PoxSaffron_WestHouseDoor::
-	msgbox PoxSaffron_Text_WestHouseDoor, MSGBOX_SIGN
-	end
-
-PoxSaffron_SouthHouseDoor::
-	msgbox PoxSaffron_Text_SouthHouseDoor, MSGBOX_SIGN
+PoxSaffron_HouseLetter::
+	msgbox PoxSaffron_Text_HouseLetter, MSGBOX_SIGN
 	end
 
 PoxSaffron_StatueLeft::
@@ -110,6 +118,22 @@ PoxSaffron_BoardSign::
 
 PoxSaffron_Return::
 	return
+
+@ Entering the city makes it the whiteout point, then runs the region's own
+@ arrival script.
+PoxSaffron_CityOnTransition::
+	setrespawn HEAL_LOCATION_POX_SAFFRON
+	goto PoxRegion_Arrival_SaffronCity_hns
+
+PoxSaffron_HousePidgey::
+	lock
+	faceplayer
+	waitse
+	playmoncry SPECIES_PIDGEY, CRY_MODE_NORMAL
+	msgbox PoxSaffron_Text_HousePidgey, MSGBOX_DEFAULT
+	waitmoncry
+	release
+	end
 
 @ ---------------------------------------------------------------- Dojo
 @ The desk reports the first ADV OU clause the party breaks. BRUNO runs the
@@ -489,11 +513,20 @@ PoxSaffron_Text_OldHallDoor::
 PoxSaffron_Text_StationDoor::
 	.string "The station doors are chained.\nA timetable is taped inside\pwith every row crossed out.$"
 
-PoxSaffron_Text_WestHouseDoor::
-	.string "Nobody answers. A note says:\nBACK WHEN THE OFFICE REOPENS.$"
+PoxSaffron_Text_HouseSister::
+	.string "My little brother is at the\nstation counting trains. I told\phim the drivers are lost. I made\nit up, and now he tells\peveryone.\pI'm supposed to fetch him. Ten\nmore minutes.$"
 
-PoxSaffron_Text_SouthHouseDoor::
-	.string "The door is locked. Someone\ninside is practising scales.$"
+PoxSaffron_Text_HouseBrother::
+	.string "PIDGEY used to fly out of the\nwindow and be home by supper.\pNow it gets as far as the gate\nand turns round.\pI think the sky is a different\nsize than it remembers.$"
+
+PoxSaffron_Text_HousePidgey::
+	.string "PIDGEY: Prrrip!$"
+
+PoxSaffron_Text_HouseLetter::
+	.string "A letter on a clipboard.\nTO THE TENANT: THE OFFICE ON 4F\pIS CLOSED UNTIL FURTHER NOTICE.\nRENT IS STILL DUE.$"
+
+PoxSaffron_Text_Pianist::
+	.string "Forty years at the piano and the\nleft hand still won't do what\pit's told.\pThe neighbours were grateful\nwhen the gates shut. Nobody\pcould visit, so nobody had to\nlisten.$"
 
 PoxSaffron_Text_DeskHello::
 	.string "Sign here, bag on the shelf, and\nmind the floor. The MASTER has\pbeen on it since the morning\nbell.\pThis hall is a LEAGUE GYM under\nOU rules. No one-hit knockout\pmoves and no evasion items. I\ncheck every team at the desk.$"

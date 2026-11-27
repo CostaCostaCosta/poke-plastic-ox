@@ -138,6 +138,8 @@ TRAINER_HEADERS = {
     # BRUNO keeps the Leader class (his Dojo is the League's seventh Gym) but
     # fights under his own FRLG portrait (2026-11-27 Saffron pass).
     'Bruno': dict(pic='Elite Four Bruno Frlg', music='Intense'),
+    # GIOVANNI is the Rocket Boss at Silph, not a Gym Leader (class added 2026-11-27).
+    'Giovanni': dict(cls='Rocket Boss'),
     'KimonoVaporeon': dict(gender='Female', music='Female'),
     'KimonoJolteon': dict(cls='Cooltrainer', pic='Cooltrainer F', gender='Female', music='Cool',
                           ai='Basic Trainer / Try To Faint / HP Aware'),

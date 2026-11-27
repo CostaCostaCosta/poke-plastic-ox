@@ -541,6 +541,18 @@ The Space Center also detects enormous communication and state-transfer traffic 
 
 Completing the Mossdeep event sets the global progression flag that **opens Saffron City**.
 
+## Raikou — New Mauville (optional)
+
+**Raikou has made New Mauville its home.**
+
+When the beasts scattered from the Burned Tower, Raikou went looking for thunder and found the abandoned power plant beneath Route 110. The old generator still runs, hot and unattended, and the storm it throws off is close enough to what Raikou left behind that it stayed. A sage followed it there, as Morty ordered, and has kept watch at the generator's foot ever since.
+
+The site is optional and opens after Gym 6. The NEW MAUVILLE KEY is the round-three prize of the Underground Path tournament, and the door off Route 110 holds until the player has both the key and the sixth badge.
+
+Inside, the sage asks the player to quiet the generator first. The runaway machine keeps Raikou agitated, and nobody can earn its trust over that noise. Once the red stop switch is pressed, the sage and Raikou follow the standard sage + legendary mechanic: beat the sage and Raikou can be caught on the first try. Afterwards the sage goes home to the Ecruteak sage office.
+
+The scene stays small. Raikou is not a clue, the generator is not evidence of the convergence, and nobody explains why a Johto legend chose a Hoenn ruin. The place felt like home, and that is enough.
+
 ---
 
 # Act IV — Saffron Finally Opens
@@ -636,6 +648,10 @@ Meteor Falls functions as the final mountain dungeon and the replacement for Ice
 
 The player may take this stretch before or after resolving Silph. Keep it focused
 on Trainer progression; dialogue must not assume the story crisis is already resolved.
+
+## Meteor Falls — Jirachi
+
+Jirachi left the Burned Tower straight upward and came down where stars had fallen before: the deep chamber of Meteor Falls, where young Bagon gather at the water's edge. It fell asleep on the chamber's north shelf and has not woken. A sage followed it there and keeps watch in front of it. The pair follow the standard sage + legendary mechanic: beat the sage and Jirachi can be caught on the first try. Afterwards the sage goes home to the Ecruteak sage office and counts toward the five the Tin Tower keeper waits for. The scene stays quiet. It explains nothing about the convergence, and Jirachi grants no wish on screen.
 
 # Blackthorn City — Gym 8
 

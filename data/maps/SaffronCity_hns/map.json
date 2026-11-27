@@ -200,6 +200,20 @@
       "elevation": 3,
       "dest_map": "MAP_POKEMON_CENTER_KANTO_HNS",
       "dest_warp_id": "0"
+    },
+    {
+      "x": 21,
+      "y": 21,
+      "elevation": 3,
+      "dest_map": "MAP_SAFFRON_CITY_HOUSE",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 47,
+      "y": 38,
+      "elevation": 3,
+      "dest_map": "MAP_SAFFRON_CITY_MR_PSYCHICS_HOUSE",
+      "dest_warp_id": "1"
     }
   ],
   "coord_events": [
@@ -286,22 +300,6 @@
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
       "script": "PoxSaffron_StationDoor"
-    },
-    {
-      "type": "sign",
-      "x": 21,
-      "y": 21,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "PoxSaffron_WestHouseDoor"
-    },
-    {
-      "type": "sign",
-      "x": 47,
-      "y": 38,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "PoxSaffron_SouthHouseDoor"
     }
   ],
   "region": "REGION_HOENN"

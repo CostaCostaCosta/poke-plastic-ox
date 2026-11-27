@@ -6,7 +6,7 @@ This module owns three things on top of them:
 * the Ecruteak sage office's north door (warp 1 of EcruteakCity_SageOffice2_hns)
   onto Bellchime Trail, held by a door keeper until five sages are home;
 * one sage per caught legendary standing in that office (Entei, Articuno,
-  Raikou, Regirock, Regice, Registeel);
+  Raikou, Regirock, Regice, Registeel, Jirachi);
 * the Moltres sage and Moltres on the roof, via the shared pox_legendary_sage.
 
 Runs after ecruteak.install, which copies the office's base map verbatim.
@@ -29,6 +29,7 @@ HOME_SAGES = [
     ('REGIROCK', 2, 12, 'FLAG_TEMP_4'),
     ('REGICE', 4, 12, 'FLAG_TEMP_5'),
     ('REGISTEEL', 6, 12, 'FLAG_TEMP_6'),
+    ('JIRACHI', 2, 8, 'FLAG_TEMP_7'),
 ]
 
 

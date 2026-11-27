@@ -30,15 +30,22 @@ def install(read, put):
     def emit(s): scripts.append(s)
     def text(n,s):
         pages=[]
+        # One textbox page per paragraph; longer paragraphs scroll (\l)
+        # rather than breaking the page mid-sentence.
         for paragraph in s.split('|'):
             lines=textwrap.wrap(paragraph,32)
-            pages.extend('\\n'.join(lines[i:i+2]) for i in range(0,len(lines),2))
+            pages.append(''.join(l if i==0 else ('\\n' if i==1 else '\\l')+l for i,l in enumerate(lines)))
         emit(f'PoxLeague_Text_{n}::\n\t.string "'+ '\\p'.join(pages)+'$"')
     def checks(flags,target='Denied'):
         return ''.join(f'\tgoto_if_unset {f}, PoxLeague_{target}\n' for f in flags)
-    def talk(n,s):
-        emit(f'PoxLeague_{n}::\n\tlock\n\tfaceplayer\n\tmsgbox PoxLeague_Text_{n}, MSGBOX_DEFAULT\n\trelease\n\tend')
+    def talk(n,s,cleared=None):
+        # cleared: what the speaker says once FLAG_SYS_GAME_CLEAR is set.
+        branch=f'\tgoto_if_set FLAG_SYS_GAME_CLEAR, PoxLeague_{n}Cleared\n' if cleared else ''
+        emit(f'PoxLeague_{n}::\n\tlock\n\tfaceplayer\n{branch}\tmsgbox PoxLeague_Text_{n}, MSGBOX_DEFAULT\n\trelease\n\tend')
         text(n,s)
+        if cleared:
+            emit(f'PoxLeague_{n}Cleared::\n\tmsgbox PoxLeague_Text_{n}Cleared, MSGBOX_DEFAULT\n\trelease\n\tend')
+            text(n+'Cleared',cleared)
     def portal(n,dest,x,y,flags=()):
         emit(f'PoxLeague_{n}::\n\tlockall\n'+checks(flags, 'GateDenied' if n=='Checkpoint' else 'Denied')+f'\twarp {dest}, {x}, {y}\n\twaitstate\n\treleaseall\n\tend')
 
@@ -60,15 +67,20 @@ def install(read, put):
     route=load('PlasticOx_VictoryRoad')
     route.update(layout='LAYOUT_PLASTIC_OX_VICTORY_ROAD',map_type='MAP_TYPE_ROUTE',music='MUS_RG_VICTORY_ROAD',allow_running=True,allow_cycling=True,allow_escaping=False,show_map_name=True,region_map_section='MAPSEC_VICTORY_ROAD',connections=[],warp_events=[],object_events=[],coord_events=[],bg_events=[])
     # Keep arrivals one step off their portal, avoiding immediate return loops.
-    route['coord_events'] += [trigger('Return',x,49) for x in range(25,29)]
+    route['coord_events'] += [trigger('Return',x,50) for x in range(25,29)]
     route['coord_events'] += [trigger('Summit',x,1) for x in range(13,16)]
     portal('Return',city['id'],9,35)
     portal('Summit','MAP_INDIGO_PLATEAU_HNS',12,18,BADGES)
     trainers=[('VICTORYROAD','ACE',26,43,'FACE_LEFT',2),('RIDGE_RAIN','MARINA',24,33,'FACE_RIGHT',4),('RIDGE_SAND','DARIUS',26,25,'FACE_LEFT',2),('RIDGE_STALL','HELEN',9,26,'FACE_RIGHT',0),('RIDGE_OFFENSE','REX',22,13,'FACE_LEFT',2),('RIDGE_BALANCE','SAGE',13,5,'FACE_RIGHT',2)]
     # Each ridge trainer keeps their own defeat and after-battle lines.
-    ROUTE_DEFEAT={'VICTORYROAD':'You earned that victory!','RIDGE_RAIN':'The storm passed you right by.','RIDGE_SAND':'Not a single careless switch. Impressive.','RIDGE_STALL':'You found a purpose for every turn, too.','RIDGE_OFFENSE':'My sweeper never got its free turn!','RIDGE_BALANCE':'You found it. My weakness was you.'}
-    ROUTE_AFTER={'VICTORYROAD':'The LEAGUE is close. Trust the team you raised.','RIDGE_RAIN':'Clouds roll in fast up here. Keep a dry towel handy.','RIDGE_SAND':'Shake the grit out of your boots before the LEAGUE doors.','RIDGE_STALL':'I camp on this ledge for a week before every challenge.','RIDGE_OFFENSE':'Speed wins games. Next time I go first.','RIDGE_BALANCE':'The summit is just ahead. The air thins, so pace yourself.'}
-    intros=['Six partners, one last test. Show me your team!', 'Rain changes the pace. Can you change with it?', 'Sand wears down every careless switch.', 'A patient defense gives every turn a purpose.', 'One free turn is all a sweeper needs.', 'Every team has a weakness. Can you find mine?']
+    ROUTE_DEFEAT={'VICTORYROAD':'Fair enough. You would have walked past me anyway.','RIDGE_RAIN':'The storm passed you right by.','RIDGE_SAND':'Not a single careless switch. Impressive.','RIDGE_STALL':'You found a purpose for every turn, too.','RIDGE_OFFENSE':'My sweeper never got its free turn!','RIDGE_BALANCE':'You found it. My weakness was you.'}
+    ROUTE_AFTER={'VICTORYROAD':'We got here early, liked the wind, and stayed. Five more of us up the ridge. None of them will go easy on you.',
+                 'RIDGE_RAIN':'It rains on this side most afternoons. If your team only works in the sun, take the terraces and think about it.',
+                 'RIDGE_SAND':'You never switched into a hit you did not need to take. That is the whole lesson. I just add sand.',
+                 'RIDGE_STALL':'Nobody learns anything from a straight line. The long way up shows you what your team does when it is tired.',
+                 'RIDGE_OFFENSE':'Past here the wind comes off the west side hard. It will not touch your battles, but hold on to your hat.',
+                 'RIDGE_BALANCE':'Past me it is a door, a lobby, and five TRAINERS better than me. Try to arrive with something left.'}
+    intros=['Six of us train up here, and not one works for the LEAGUE. I am the welcome. Show me your team!', 'Rain changes the pace. Can you change with it?', 'Sand wears down every careless switch.', 'You came up the quiet side. Good. A patient defense gives every turn a purpose.', 'One free turn is all a sweeper needs.', 'Every team has a weakness. Can you find mine?']
     for (tid,name,x,y,direction,sight),intro in zip(trainers,intros):
         o=obj(tid,x,y,'COOLTRAINER_F' if name in ['MARINA','HELEN'] else 'COOLTRAINER_M')
         o.update(trainer_type='TRAINER_TYPE_NORMAL',trainer_sight_or_berry_tree_id=str(sight),movement_type='MOVEMENT_TYPE_'+direction)
@@ -92,13 +104,14 @@ def install(read, put):
                      region='REGION_HOENN',region_map_section='MAPSEC_VICTORY_ROAD',
                      connections=[],coord_events=[],bg_events=[],
                      object_events=[obj('RestKeeper' if i else 'RestAdvice',4,4,'WOMAN_3')],
-                     warp_events=[warp(4,9,route['id'],i)])
+                     # (4,8) is the house's south-arrow carpet; row 9 has no warp tile.
+                     warp_events=[warp(4,8,route['id'],i)])
         save(name,house)
         put(f'data/maps/{name}/scripts.inc',name+'_MapScripts::\n\t.byte 0\n')
         route['warp_events'].append(warp(x,y,house['id'],0))
     emit('PoxLeague_RestKeeper::\n\tlock\n\tfaceplayer\n\tcall Common_EventScript_OutOfCenterPartyHeal\n\tmsgbox PoxLeague_Text_RestKeeper, MSGBOX_DEFAULT\n\trelease\n\tend')
-    text('RestKeeper','Rest a while. Your POKéMON have worked hard to bring you this far.|Follow the ridge north when you are ready.')
-    talk('RestAdvice','An opponent who can switch freely controls the battle. Hazards make every switch a choice.|Before the LEAGUE, check your moves, held items and healing supplies. The summit is just ahead.')
+    text('RestKeeper','Boots off. There is a bench, there is tea, and there is no hurry.|The mountain is not going anywhere, and neither is the LEAGUE.')
+    talk('RestAdvice','No beds here, sorry. The rest hut with the kettle is down on the western terraces.|One thing before the summit: a team that switches freely controls the battle, and hazards make every switch cost something.')
     save('PlasticOx_VictoryRoad',route)
     put('data/maps/PlasticOx_VictoryRoad/scripts.inc','PlasticOx_VictoryRoad_MapScripts::\n\t.byte 0\n')
 
@@ -110,7 +123,7 @@ def install(read, put):
     save('IndigoPlateau_hns',plateau)
     portal('Downhill',route['id'],14,2)
     emit('PoxLeague_Shortcut::\n\tlock\n\tfaceplayer\n\tmsgbox PoxLeague_Text_Shortcut, MSGBOX_YESNO\n\tgoto_if_eq VAR_RESULT, NO, PoxLeague_Release\n\twarp MAP_ECRUTEAK_CITY_HNS, 9, 35\n\twaitstate\n\trelease\n\tend')
-    text('Shortcut','The downhill express returns to ECRUTEAK. Would you like a ride?')
+    text('Shortcut','Downhill express to ECRUTEAK. Last descent is at dark, and the wind is picking up from the west.|Walk off the south edge instead and you are back on VICTORY ROAD, on foot.|Want a ride down?')
 
     lobby=load('IndigoPlateau_PokemonCenter_hns')
     lobby['object_events']=[obj('Nurse',19,10,'NURSE',local_id='LOCALID_POX_LEAGUE_NURSE'),obj('Shop',10,10,'MART_EMPLOYEE'),obj('Entry',32,3,'BLACK_BELT'),obj('Advice',29,10,'COOLTRAINER_M'),obj('Welcome',7,15,'WOMAN_3')]
@@ -122,19 +135,21 @@ def install(read, put):
     emit('PoxLeague_LobbyLoad::\n\tsetrespawn HEAL_LOCATION_POX_INDIGO\n\tcall PoxLeague_Reset\n\tend')
     put('data/maps/IndigoPlateau_PokemonCenter_hns/scripts.inc','IndigoPlateau_PokemonCenter_hns_MapScripts::\n\tmap_script MAP_SCRIPT_ON_TRANSITION, PoxLeague_LobbyLoad\n\t.byte 0\n')
     emit('PoxLeague_Nurse::\n\tlock\n\tfaceplayer\n\tsetrespawn HEAL_LOCATION_POX_INDIGO\n\tcall Common_EventScript_OutOfCenterPartyHeal\n\tmsgbox PoxLeague_Text_Nurse, MSGBOX_DEFAULT\n\trelease\n\tend')
-    text('Nurse','Your team is fully rested. Good luck at the POKéMON LEAGUE!')
+    text('Nurse','Your team is fully rested. I have patched up everyone in this queue today. Good luck in there.')
     emit('PoxLeague_Shop::\n\tlock\n\tfaceplayer\n\tmessage gText_HowMayIServeYou\n\twaitmessage\n\tpokemart PoxLeague_Stock\n\tmsgbox gText_PleaseComeAgain, MSGBOX_DEFAULT\n\trelease\n\tend\n\t.align 2\nPoxLeague_Stock:\n\t.2byte ITEM_FULL_RESTORE\n\t.2byte ITEM_MAX_POTION\n\t.2byte ITEM_HYPER_POTION\n\t.2byte ITEM_REVIVE\n\t.2byte ITEM_FULL_HEAL\n\t.2byte ITEM_ETHER\n\t.2byte ITEM_MAX_REPEL\n\t.2byte ITEM_ULTRA_BALL\n\t.2byte ITEM_NONE')
-    talk('Advice','WALLACE controls tempo. STEVEN builds a defense. LANCE attacks without pause. BLUE adapts.|Prepare for all four, then the CHAMPION.')
-    talk('Welcome','The PC is beside the healing counter. Stock up before speaking to the official in the northeast.|You can use your items between matches. Inside, the doors only open forward. A loss restarts the challenge here.')
-    emit('PoxLeague_Entry::\n\tlockall\n'+checks(BADGES)+'\tmsgbox PoxLeague_Text_Entry, MSGBOX_YESNO\n\tgoto_if_eq VAR_RESULT, NO, PoxLeague_Release\n\tsetrespawn HEAL_LOCATION_POX_INDIGO\n\tcall PoxLeague_Reset\n\twarp MAP_PLASTIC_OX_WALLACE_ROOM, 6, 11\n\twaitstate\n\treleaseall\n\tend')
-    text('Entry','All eight BADGES verified. Four battles, then the CHAMPION. Bring your own healing supplies.|Ready to begin?')
+    talk('Advice','WALLACE keeps a tempo. STEVEN keeps cover. LANCE commits. BLUE watches you do all of it.|Four examiners, four questions. Nobody out here has seen the room after that.','I lost to WALLACE again. Still. I have the lobby chair warmed up for you whenever you want another run.')
+    talk('Welcome','The PC is beside the healing counter, and the shop is on the left. The official in the northeast signs you in.|Bag items work between matches. Inside, the doors only open forward, and a loss starts the challenge again from here.','We are closing up soon, CHAMPION. You know the rules by now; the official will sign you in again if you want.')
+    emit('PoxLeague_Entry::\n\tlockall\n'+checks(BADGES)+'\tgoto_if_set FLAG_SYS_GAME_CLEAR, PoxLeague_EntryCleared\n\tmsgbox PoxLeague_Text_Entry, MSGBOX_YESNO\nPoxLeague_EntryAnswer::\n\tgoto_if_eq VAR_RESULT, NO, PoxLeague_Release\n\tsetrespawn HEAL_LOCATION_POX_INDIGO\n\tcall PoxLeague_Reset\n\twarp MAP_PLASTIC_OX_WALLACE_ROOM, 6, 11\n\twaitstate\n\treleaseall\n\tend')
+    text('Entry','Eight BADGES verified. Four matches, then the CHAMPION. Your bag goes in with you; nothing else does.|If you fall, the book opens again and we start from the top. That is the rule, not a punishment.|Shall I sign you in?')
+    emit('PoxLeague_EntryCleared::\n\tmsgbox PoxLeague_Text_EntryCleared, MSGBOX_YESNO\n\tgoto PoxLeague_EntryAnswer')
+    text('EntryCleared','Your name is already in the HALL book. The challenge still runs in full: four matches, then the CHAMPION.|Shall I sign you in again?')
     emit('PoxLeague_Release::\n\treleaseall\n\tend')
 
     speeches=[
-        'WALLACE: From your first small team to this stage, you have learned to change.|A battle has a rhythm. I intend to lead it. Show me how you answer!',
-        'STEVEN: A strong team is more than six powerful partners. Each must cover the others.|Look closely. Even the finest defense has a moment when it must attack.',
-        'LANCE: Preparation matters. But when the opening comes, you must commit.|I will keep the pressure on. Show me your courage!',
-        'BLUE: You made it through three different styles. Good. I have been watching.|I will adapt to whatever you bring. Earn your place beyond this room!',
+        'WALLACE: A battle has a beat. I will keep it, and you will have to break it.',
+        'STEVEN: Six strong POKéMON are not a team until each one covers the others.|I will keep my cover up. Find the turn where I have to step out from behind it.',
+        'LANCE: I will not talk long. When the opening comes, commit to it. So will I.',
+        'BLUE: STEVEN kept his wall up. LANCE never let you breathe. I watched both.|I am going to do neither, and you will have to notice which. Let\'s go!',
         'CHAMPION BILL would like to battle.'
     ]
     E4_AFTER = {
@@ -148,7 +163,7 @@ def install(read, put):
         'Steven': 'STEVEN: You covered every seam. I could not find the gap.',
         'LeagueLance': 'LANCE: You committed first. That was the whole difference.',
         'Blue': "BLUE: I adapted. You still won. I'll remember that.",
-        'Bill': 'BILL: The calculation was wrong. You were the variable I missed.',
+        'Bill': "BILL: ...Ha. That's it, then. You won, fair and square.",
     }
     for i,n in enumerate(MEMBERS):
         room=load('PlasticOx_'+n+'Room')
@@ -166,18 +181,22 @@ def install(read, put):
         champion='Champion' if i==4 else ''
         emit(f'PoxLeague_{n}Open::\n\tsetmetatile 6, 1, METATILE_EliteFour_OpenDoor{champion}_Frame, FALSE\n\tsetmetatile 6, 2, METATILE_EliteFour_OpenDoor{champion}_Opening, FALSE\n\treturn')
         prereq=BADGES+FLAGS[:i]
-        emit(f'PoxLeague_{n}::\n\tlock\n\tfaceplayer\n'+checks(prereq)+f'\tgoto_if_set {FLAGS[i]}, PoxLeague_{n}After\n\tplaybgm '+('MUS_ENCOUNTER_CHAMPION' if i==4 else 'MUS_ENCOUNTER_ELITE_FOUR')+f', FALSE\n\tmsgbox PoxLeague_Text_{n}, MSGBOX_DEFAULT\n\ttrainerbattle_no_intro TRAINER_PLASTIC_OX_{n.upper()}, PoxLeague_Text_{n}Defeat\nPoxLeague_{n}Won::\n\tsetflag {FLAGS[i]}\n\tcall PoxLeague_{n}Open\n\tspecial DrawWholeMapView\nPoxLeague_{n}After::\n\tmsgbox PoxLeague_Text_{n}After, MSGBOX_DEFAULT\n'+ ('\twarp MAP_PLASTIC_OX_HALL_OF_FAME, 7, 12\n\twaitstate\n' if i==4 else '')+'\treleaseall\n\tend')
+        emit(f'PoxLeague_{n}::\n\tlock\n\tfaceplayer\n'+checks(prereq)+f'\tgoto_if_set {FLAGS[i]}, PoxLeague_{n}After\n\tplaybgm '+('MUS_ENCOUNTER_CHAMPION' if i==4 else 'MUS_ENCOUNTER_ELITE_FOUR')+f', FALSE\n\tmsgbox PoxLeague_Text_{n}, MSGBOX_DEFAULT\n\ttrainerbattle_no_intro TRAINER_PLASTIC_OX_{n.upper()}, PoxLeague_Text_{n}Defeat\nPoxLeague_{n}Won::\n\tsetflag {FLAGS[i]}\n\tcall PoxLeague_{n}Open\n\tspecial DrawWholeMapView\nPoxLeague_{n}After::\n'+('\tgoto_if_set FLAG_SYS_GAME_CLEAR, PoxLeague_BillAgain\n' if i==4 else '')+f'\tmsgbox PoxLeague_Text_{n}After, MSGBOX_DEFAULT\n'+('PoxLeague_BillToHall::\n' if i==4 else '')+ ('\twarp MAP_PLASTIC_OX_HALL_OF_FAME, 7, 12\n\twaitstate\n' if i==4 else '')+'\treleaseall\n\tend')
         text(n,speeches[i]);text(n+'Defeat',DEFEAT_LINES.get(n,'That was a battle to remember!'))
-        text(n+'After',E4_AFTER.get(n,'The next room is yours. Take a moment to prepare.') if i<4 else 'BILL: I built the foundations of the transfer network, and tools that learned from battles.|The system learned to improve training conditions. Then it began moving the world. I never asked for that. But I made it possible.|I thought better predictions would make me a better TRAINER. You learned from places, people, and your POKéMON.|You surpassed my calculations. That journey belongs to you. Come, CHAMPION. Let us record it.')
+        text(n+'After',E4_AFTER.get(n,'The next room is yours. Take a moment to prepare.') if i<4 else 'BILL: I owe you an explanation. I built the foundations of the transfer network, and the tools that learn from battles.|The system was meant to improve training conditions. Then it began moving ground I never touched. I never asked for that, but I made it possible.|I thought better predictions would make me a better TRAINER. You learned from places, people, and your POKéMON instead.|That journey is yours. Come on, CHAMPION. Let us put it on record.')
         if i<4: portal(n+'Next',load('PlasticOx_'+MEMBERS[i+1]+'Room')['id'],6,11,prereq+[FLAGS[i]])
+
+    # A rematch win skips the confession; the player has already heard it.
+    emit('PoxLeague_BillAgain::\n\tmsgbox PoxLeague_Text_BillAgain, MSGBOX_DEFAULT\n\tgoto PoxLeague_BillToHall')
+    text('BillAgain',"BILL: You again, and my team on the floor again. I should be taking notes. Come on, the HALL is this way.")
 
     hof=load('EverGrandeCity_HallOfFame')
     hof.update(id='MAP_PLASTIC_OX_HALL_OF_FAME',name='PlasticOx_HallOfFame',region_map_section='MAPSEC_INDIGO_PLATEAU',object_events=[obj('HallGuide',6,7,'MAN_3')],warp_events=[],coord_events=[],bg_events=[])
     save('PlasticOx_HallOfFame',hof)
     put('data/maps/PlasticOx_HallOfFame/scripts.inc','PlasticOx_HallOfFame_MapScripts::\n\tmap_script MAP_SCRIPT_ON_FRAME_TABLE, PoxLeague_HallTable\n\t.byte 0\nPoxLeague_HallTable::\n\tmap_script_2 VAR_TEMP_1, 0, PoxLeague_Hall\n\t.2byte 0\n')
     emit('PoxLeague_Hall::\n\tlockall\n'+checks(BADGES+FLAGS)+'\tsetvar VAR_TEMP_1, 1\n\tclearflag FLAG_POX_RED_RESTING\n\tapplymovement LOCALID_PLAYER, Common_Movement_WalkUp4\n\twaitmovement 0\n\tmsgbox PoxLeague_Text_Hall, MSGBOX_DEFAULT\n\tclosemessage\n\tdofieldeffect FLDEFF_HALL_OF_FAME_RECORD\n\twaitfieldeffect FLDEFF_HALL_OF_FAME_RECORD\n\tsetrespawn HEAL_LOCATION_POX_INDIGO\n\tfadescreenspeed FADE_TO_BLACK, 24\n\tspecial GameClear\n\tend')
-    talk('HallGuide','Your partners have earned their place here.')
-    text('Hall','BILL: From your first partner to the POKéMON beside you now, every step brought you here.|Welcome to the HALL OF FAME, CHAMPION! The ferry south of LAVENDER is now open to you.')
+    talk('HallGuide','I write the names exactly as they stand. No titles, no speeches. That is the whole ceremony.')
+    text('Hall','REGISTRAR: Every POKéMON beside you goes into the book exactly as it stands today.|Welcome to the HALL OF FAME, CHAMPION. The ferry south of LAVENDER will take you on from here.')
 
     groups=json.loads(read('data/maps/map_groups.json'))
     for name in ['PlasticOx_HallOfFame','PlasticOx_LeagueRestHouse1','PlasticOx_LeagueRestHouse2']:

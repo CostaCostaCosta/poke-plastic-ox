@@ -247,12 +247,13 @@ ROSTERS: dict[str, tuple[str, list[tuple[str, int]]]] = {
         ("SPECIES_URSARING", 45), ("SPECIES_STEELIX", 44), ("SPECIES_HOUNDOOM", 44)]),
 
     # ---- Gym 7, Saffron, OU cap 55 ---------------------------------------
-    # BRUNO is the OU Gym 7 (story bible): a Fighting Dojo master with a
-    # Fighting core and STEELIX for his old ONIX, on the Saffron cap beside
-    # GIOVANNI rather than on Mossdeep's UUBL cap (2026-11-27 Saffron pass).
+    # BRUNO is the OU Gym 7 (story bible), on the Saffron cap beside GIOVANNI
+    # rather than on Mossdeep's UUBL cap. His six are the maintainer's
+    # requested ADV OU team (2026-11-27), hand-authored in
+    # authored_trainers.party; four of them are signature exceptions below.
     "TRAINER_PLASTIC_OX_BRUNO": ("saffron", [
-        ("SPECIES_MEDICHAM", 55), ("SPECIES_MACHAMP", 55), ("SPECIES_HARIYAMA", 54),
-        ("SPECIES_BLAZIKEN", 54), ("SPECIES_HITMONTOP", 53), ("SPECIES_STEELIX", 53)]),
+        ("SPECIES_ZAPDOS", 55), ("SPECIES_LUDICOLO", 53), ("SPECIES_BLAZIKEN", 54),
+        ("SPECIES_HERACROSS", 55), ("SPECIES_REGIROCK", 54), ("SPECIES_CELEBI", 54)]),
     # Dojo BLACK BELTS: optional sight battles on either side of the mat.
     "TRAINER_PLASTIC_OX_DOJO_KENJI": ("saffron", [
         ("SPECIES_HITMONLEE", 52), ("SPECIES_GOLEM", 51), ("SPECIES_URSARING", 51)]),
@@ -302,6 +303,7 @@ KEEP_AS_IS = {
     "TRAINER_PLASTIC_OX_ARTICUNO_SAGE": "Authored UUBL legendary challenge; canonical team in alpha/seafoam/trainers.party.",
     "TRAINER_PLASTIC_OX_ENTEI_SAGE": "Authored UUBL legendary challenge; canonical team in alpha/cinnabar/trainers.party.",
     "TRAINER_PLASTIC_OX_MOLTRES_SAGE": "Authored ADV OU legendary challenge on the Tin Tower roof; canonical team in alpha/tin_tower/trainers.party.",
+    "TRAINER_PLASTIC_OX_JIRACHI_SAGE": "Authored ADV OU legendary challenge in the Meteor Falls Bagon chamber; canonical team in alpha/meteor_falls/trainers.party.",
     # The task's designated format reference. Already six LC-legal Pokemon at
     # exactly the Gym 1 cap, all obtainable before Gym 1.
     "TRAINER_PLASTIC_OX_ROXANNE": "designated format reference; already a legal six",
@@ -360,6 +362,10 @@ SIGNATURE_EXCEPTIONS = {
     # Blaine's requested fixed six: these four are not catchable by Cinnabar.
     "TRAINER_PLASTIC_OX_BLAINE": ["SPECIES_OMASTAR", "SPECIES_KANGASKHAN",
                                   "SPECIES_MISDREAVUS", "SPECIES_SOLROCK"],
+    # Bruno's requested fixed six: these four are not obtainable by Saffron
+    # (three are one-off legendaries the player meets later or elsewhere).
+    "TRAINER_PLASTIC_OX_BRUNO": ["SPECIES_ZAPDOS", "SPECIES_HERACROSS",
+                                 "SPECIES_REGIROCK", "SPECIES_CELEBI"],
 }
 
 # Fixed ADV PU sets for Whitney. Her trainer-only move access permits the
