@@ -135,12 +135,16 @@ TEXTS = {
     'CinnabarRuleSpecies': raw("Hold on. {STR_VAR_1}? A {STR_VAR_2}\nis over this GYM's weight class.", "BLAINE keeps to UU in here.\nIt's a house rule.", "Leave it in the PC before you get\nto him."),
     'CinnabarRuleDuplicate': raw("Hold on. {STR_VAR_1} is a second\n{STR_VAR_2}.", "BLAINE battles one of each in here.\nIt's a house rule.", "Leave one in the PC before you get\nto him."),
     'CinnabarRuleAbility': raw("Hold on. {STR_VAR_1} has\n{STR_VAR_2}.", "BLAINE doesn't allow that ability in\nhere. It's a house rule.", "Leave it in the PC before you get\nto him."),
+    'CinnabarRuleBatonPass': raw("Hold on. {STR_VAR_1} has BATON PASS\nwith {STR_VAR_2}.", "BLAINE won't battle that pairing in\nhere. It's a house rule.", "Change its moves before you get\nto him."),
+    'CinnabarRuleBoostPasser': raw("Hold on. {STR_VAR_1} passes\n{STR_VAR_2} boosts too.", "BLAINE allows one boost passer in\nhere. It's a house rule.", "Change its moves before you get\nto him."),
     'CinnabarRuleClean': "I had a look at your team on the way in. Nothing BLAINE would object to. Go on, then.",
     'TwinsRuleMove': raw("Wait. {STR_VAR_1} knows\n{STR_VAR_2}.", "TATE and LIZA won't battle against\nthat move. Twins' rule.", "Change it before you cross the\nfloor, or they'll send you back."),
     'TwinsRuleItem': raw("Wait. {STR_VAR_1} is holding\n{STR_VAR_2}.", "TATE and LIZA won't battle against\nthat item. Twins' rule.", "Bag it before you cross the floor."),
     'TwinsRuleSpecies': raw("Wait. {STR_VAR_1}? A {STR_VAR_2}\nis over the twins' weight class.", "TATE and LIZA keep to UUBL.\nTwins' rule.", "Box it before you cross the floor."),
     'TwinsRuleDuplicate': raw("Wait. {STR_VAR_1} is a second\n{STR_VAR_2}.", "TATE and LIZA face one of each.\nTwins' rule.", "Box one before you cross the floor."),
     'TwinsRuleAbility': raw("Wait. {STR_VAR_1} has\n{STR_VAR_2}.", "TATE and LIZA won't battle against\nthat ability. Twins' rule.", "Box it before you cross the floor."),
+    'TwinsRuleBatonPass': raw("Wait. {STR_VAR_1} has BATON PASS\nwith {STR_VAR_2}.", "TATE and LIZA won't battle against\nthat pairing. Twins' rule.", "Swap its moves before you cross."),
+    'TwinsRuleBoostPasser': raw("Wait. {STR_VAR_1} passes\n{STR_VAR_2} boosts too.", "TATE and LIZA allow one boost\npasser. Twins' rule.", "Pick one passer before you cross."),
     'TwinsRuleClean': "Your team passes the twins' rules. I checked twice, the way they would.",
 }
 
@@ -338,7 +342,8 @@ BLOCKS = [
 # (src/field_specials.c CheckADVTierGymRules: species tier, Ubers, OHKO and
 # evasion clauses). It returns 1 for a banned move, 2 for an item, 3 for a
 # species over the tier, 4 for a duplicate species (Species Clause), 5 for a
-# banned ability. A violation is reported, not enforced.
+# banned ability, 6 for a banned Baton Pass pairing, 7 for a second boost
+# passer. A violation is reported, not enforced.
 GUIDES = [
     ('CinnabarGymGuide', 'FLAG_BADGE05_GET', 'CinnabarIsland_Gym_EventScript_GymGuyPostVictory',
      'CinnabarIsland_Gym_Text_GymGuyAdvice', 'CheckCinnabarGymUURules', 'Cinnabar'),
@@ -360,6 +365,8 @@ def guide(label, badge, after, advice, special, rules):
 	goto_if_eq VAR_RESULT, 3, {P}{label}_Species
 	goto_if_eq VAR_RESULT, 4, {P}{label}_Duplicate
 	goto_if_eq VAR_RESULT, 5, {P}{label}_Ability
+	goto_if_eq VAR_RESULT, 6, {P}{label}_BatonPass
+	goto_if_eq VAR_RESULT, 7, {P}{label}_BoostPasser
 	msgbox {P}Text_{rules}RuleClean, MSGBOX_DEFAULT
 	release
 	end
@@ -381,6 +388,14 @@ def guide(label, badge, after, advice, special, rules):
 	end
 {P}{label}_Ability::
 	msgbox {P}Text_{rules}RuleAbility, MSGBOX_DEFAULT
+	release
+	end
+{P}{label}_BatonPass::
+	msgbox {P}Text_{rules}RuleBatonPass, MSGBOX_DEFAULT
+	release
+	end
+{P}{label}_BoostPasser::
+	msgbox {P}Text_{rules}RuleBoostPasser, MSGBOX_DEFAULT
 	release
 	end
 '''

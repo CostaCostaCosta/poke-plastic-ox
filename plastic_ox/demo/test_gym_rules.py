@@ -26,7 +26,8 @@ GYMS = ['CheckRustboroGymLittleCupRules', 'CheckGoldenrodGymPURules', 'CheckEcru
         'CheckSaffronGymOURules', 'CheckBlackthornGymOURules']
 THUNDER_WAVE, FISSURE = 86, 90
 BELDUM, SALAMENCE, MEWTWO, KANGASKHAN = 374, 373, 150, 115
-TREECKO, SANDSHREW = 252, 27
+TREECKO, SANDSHREW, SMEARGLE = 252, 27, 235
+BATON_PASS, MEAN_LOOK, AGILITY, SWORDS_DANCE, BULK_UP, INGRAIN = 226, 212, 97, 14, 339, 275
 
 
 def main() -> None:
@@ -52,8 +53,8 @@ def main() -> None:
             out.append(g.u16(g.syms['gSpecialVar_Result']))
         return out
 
-    def teach(slot, move):
-        script(bytes([0x7B, 0, slot]) + move.to_bytes(2, 'little'))
+    def teach(slot, move, mon=0):
+        script(bytes([0x7B, mon, slot]) + move.to_bytes(2, 'little'))
 
     # givemon: the bytes of Steven's compiled BELDUM gift, species swapped.
     src = g.syms['MossdeepCity_StevensHouse_EventScript_GiveBeldum']
@@ -100,6 +101,25 @@ def main() -> None:
     expect('second TREECKO: Species Clause in every gym', [4] * 8)
     give(SANDSHREW, 5)
     expect('SANDSHREW (Sand Veil): ability ban in every gym', [5] * 8)
+    # §18 Baton Pass. Rustboro bans Baton Pass outright (1).
+    give(BELDUM, 5)
+    teach(0, BATON_PASS, 1)
+    teach(1, MEAN_LOOK, 1)
+    expect('Baton Pass + Mean Look', [1] + [6] * 7)
+    teach(1, AGILITY, 1)
+    expect('Baton Pass + Agility (Speed)', [1] + [6] * 7)
+    teach(1, SWORDS_DANCE, 1)
+    expect('one Baton Pass + Swords Dance passer is legal', [1] + [0] * 7)
+    teach(2, BATON_PASS)
+    teach(3, BULK_UP)
+    expect('a second boost passer (Bulk Up lead)', [1] + [7] * 7)
+    teach(2, 0)
+    teach(3, 0)
+    give(SMEARGLE, 5)
+    teach(0, INGRAIN, 1)
+    got = rules()
+    assert got[6:] == [1, 1] and all(r in (1, 3) for r in got), got
+    print(f'  ok  Smeargle + Ingrain: {got}')
 
     def said(mapname, x, y, key, *fragments):
         g.warp(mapname, x, y)
@@ -128,6 +148,10 @@ def main() -> None:
     said('PlasticOx_ClairGym', 7, 18, K.KEY_UP, 'OU rules', 'is a second Treecko', 'one of each')
     give(SANDSHREW, 5)
     said('FortreeCity_Gym', 15, 22, K.KEY_UP, 'RU rules', 'has Sand Veil', 'ability is banned')
+    give(BELDUM, 5)
+    teach(0, BATON_PASS, 1)
+    teach(1, MEAN_LOOK, 1)
+    said('PlasticOx_BrunoGym', 7, 18, K.KEY_UP, 'OU rules', 'has BATON PASS', 'with Mean Look', 'combination is banned')
     print('  ok  Ecruteak, Saffron, Blackthorn and Fortree greeters run their tier checks')
     give(SALAMENCE)
     print('  ok  Rustboro guide and Goldenrod greeter name the over-tier SALAMENCE')

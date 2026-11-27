@@ -132,13 +132,16 @@ static bool32 IsADVOUBannedItem(enum Item item)
     return item == ITEM_BRIGHT_POWDER || item == ITEM_LAX_INCENSE;
 }
 
-// §13 Species Clause and §19 banned abilities, checked over the whole party after the
-// per-POKéMON checks. Returns 4 when two POKéMON share a species (the second one's
-// nickname in gStringVar1, the species in gStringVar2), 5 for Sand Veil or Soundproof
-// (nickname in gStringVar1, ability in gStringVar2), else 0.
+// §13 Species Clause, §19 banned abilities and §18 Baton Pass restrictions, checked
+// over the whole party after the per-POKéMON checks. The nickname is in gStringVar1.
+// Returns 4 when two POKéMON share a species (species in gStringVar2), 5 for Sand Veil
+// or Soundproof (ability in gStringVar2), 1 / 6 from CheckBatonPassSet, 7 for a second
+// Baton Pass user that can raise its stats (its boosting move in gStringVar2), else 0.
+static u16 CheckBatonPassSet(struct Pokemon *mon, bool32 *boosts);
+
 static u16 CheckADVPartyClauses(void)
 {
-    u32 i, j;
+    u32 i, j, boostPassers = 0;
 
     for (i = 0; i < gPartiesCount[B_TRAINER_PLAYER]; i++)
     {
@@ -171,6 +174,117 @@ static u16 CheckADVPartyClauses(void)
             StringCopy(gStringVar2, gAbilitiesInfo[ability].name);
             return 5;
         }
+
+        {
+            bool32 boosts;
+            u16 result = CheckBatonPassSet(mon, &boosts);
+
+            if (result != 0 || (boosts && ++boostPassers > 1))
+            {
+                GetMonData(mon, MON_DATA_NICKNAME, gStringVar1);
+                return result != 0 ? result : 7;
+            }
+        }
+    }
+    return 0;
+}
+
+// §18 Baton Pass restrictions, read from the move data rather than a move list.
+// A move "boosts" when one of its effects raises the user's own stats: a status move
+// aimed at the user (Agility, Dragon Dance, Bulk Up...), a self secondary effect
+// (Ancient Power, Silver Wind), or Curse / Growth / Defense Curl / Stockpile.
+static bool32 MoveRaisesUserStat(enum Move move, bool32 speedOnly)
+{
+    u32 i;
+
+    switch (GetMoveEffect(move))
+    {
+    case EFFECT_CURSE:  // Curse lowers Speed, so it boosts but never Speed
+    case EFFECT_GROWTH:
+    case EFFECT_DEFENSE_CURL:
+    case EFFECT_STOCKPILE:
+        return !speedOnly;
+    default:
+        break;
+    }
+    for (i = 0; i < GetMoveAdditionalEffectCount(move); i++)
+    {
+        const struct AdditionalEffect *effect = GetMoveAdditionalEffectById(move, i);
+        bool32 onUser = (effect->moveEffect == STAT_CHANGE_EFFECT_PLUS && GetMoveTarget(move) == TARGET_USER)
+                     || (effect->moveEffect == MOVE_EFFECT_STAT_PLUS && effect->self);
+
+        if (!onUser)
+            continue;
+        if (speedOnly ? effect->speed > 0
+                      : (effect->attack | effect->defense | effect->spAtk | effect->spDef
+                         | effect->speed | effect->accuracy | effect->evasion) > 0)
+            return TRUE;
+    }
+    return FALSE;
+}
+
+// Checks one POKéMON's set. Returns 1 for Smeargle + Ingrain (move name in
+// gStringVar2), 6 for Baton Pass with a trapping move or a way to boost Speed (the
+// move, ability or item in gStringVar2), else 0. *boosts is set when the POKéMON has
+// Baton Pass and any way to raise its own stats (One Boost Passer Clause).
+static u16 CheckBatonPassSet(struct Pokemon *mon, bool32 *boosts)
+{
+    enum Move moves[MAX_MON_MOVES];
+    enum Move boostMove = MOVE_NONE;
+    bool32 hasBatonPass = FALSE;
+    enum Ability ability = GetMonAbility(mon);
+    enum Item item = GetMonData(mon, MON_DATA_HELD_ITEM);
+    u32 i;
+
+    *boosts = FALSE;
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        moves[i] = GetMonData(mon, MON_DATA_MOVE1 + i);
+        if (moves[i] == MOVE_BATON_PASS)
+            hasBatonPass = TRUE;
+        if (moves[i] == MOVE_INGRAIN && GET_BASE_SPECIES_ID(GetMonData(mon, MON_DATA_SPECIES)) == SPECIES_SMEARGLE)
+        {
+            StringCopy(gStringVar2, GetMoveName(MOVE_INGRAIN));
+            return 1;
+        }
+    }
+    if (!hasBatonPass)
+        return 0;
+
+    for (i = 0; i < MAX_MON_MOVES; i++)
+    {
+        switch (moves[i])
+        {
+        case MOVE_MEAN_LOOK:  // Trapping + Baton Pass
+        case MOVE_BLOCK:
+        case MOVE_SPIDER_WEB:
+            StringCopy(gStringVar2, GetMoveName(moves[i]));
+            return 6;
+        default:
+            break;
+        }
+        if (moves[i] != MOVE_NONE && MoveRaisesUserStat(moves[i], TRUE))  // Baton Pass Stat Clause
+        {
+            StringCopy(gStringVar2, GetMoveName(moves[i]));
+            return 6;
+        }
+        if (moves[i] != MOVE_NONE && boostMove == MOVE_NONE && MoveRaisesUserStat(moves[i], FALSE))
+            boostMove = moves[i];
+    }
+    if (ability == ABILITY_SPEED_BOOST)
+    {
+        StringCopy(gStringVar2, gAbilitiesInfo[ability].name);
+        return 6;
+    }
+    if (item == ITEM_SALAC_BERRY)
+    {
+        CopyItemName(item, gStringVar2);
+        return 6;
+    }
+    if (boostMove != MOVE_NONE)
+    {
+        *boosts = TRUE;
+        StringCopy(gStringVar2, GetMoveName(boostMove));
     }
     return 0;
 }
@@ -303,8 +417,7 @@ static u16 CheckADVTierGymRules(enum EvolutionTier maxTier)
 }
 
 // Every tiered gym past Rustboro checks its own ADV tier the same way. Not checked
-// here: Baton Pass combination clauses (§18) and the battle-side Sleep / Freeze /
-// Wrap clauses (§11/§12).
+// here: the battle-side Sleep / Freeze / Wrap clauses (§11/§12).
 u16 CheckGoldenrodGymPURules(void)  { return CheckADVTierGymRules(EVO_TIER_PU); }
 u16 CheckEcruteakGymNURules(void)   { return CheckADVTierGymRules(EVO_TIER_NU); }
 u16 CheckFortreeGymRURules(void)    { return CheckADVTierGymRules(EVO_TIER_RU); }
