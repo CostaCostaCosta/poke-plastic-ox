@@ -168,11 +168,7 @@ MossdeepCity_StevensHouse_Text_ExplainDive:
 	.string "for you to surface, though.$"
 
 MossdeepCity_StevensHouse_Text_UnderwateCavernBetweenMossdeepSootopolis:
-	.string "STEVEN: Apparently, there's an\n"
-	.string "underwater cavern between\l"
-	.string "MOSSDEEP and SOOTOPOLIS.\p"
-	.string "You know, the one that CAPT. STERN\n"
-	.string "found in his submarine.$"
+	.string "STEVEN: The neighbours call this\nthe stone house. They aren't\lwrong.\pI'm not home much. When I am, I\nsort rocks and listen for the\llaunches.$"
 
 MossdeepCity_StevensHouse_Text_TakeBallContainingBeldum:
 	.string "{PLAYER} checked the POKé BALL.\p"
@@ -192,23 +188,8 @@ MossdeepCity_StevensHouse_Text_LeftPokeBallWhereItWas:
 	.string "it was.$"
 
 MossdeepCity_StevensHouse_Text_LetterFromSteven:
-	.string "It's a letter.\p"
-	.string "… … … … … …\p"
-	.string "To {PLAYER}{KUN}…\p"
-	.string "I've decided to do a little soul-\n"
-	.string "searching and train on the road.\p"
-	.string "I don't plan to return home for some\n"
-	.string "time.\p"
-	.string "I have a favor to ask of you.\p"
-	.string "I want you to take the POKé BALL on\n"
-	.string "the desk.\p"
-	.string "Inside it is a BELDUM, my favorite\n"
-	.string "POKéMON.\p"
-	.string "I'm counting on you.\p"
-	.string "May our paths cross someday.\p"
-	.string "STEVEN STONE$"
+	.string "It's a letter.\p… … … … … …\pTo {PLAYER}. I've gone walking\nfor a while. The house will\lkeep.\pThe POKé BALL on the desk holds\na BELDUM. It has been patient\lwith me. I think it would do\lbetter on the road.\pTake it, if you would. STEVEN$"
 
 MossdeepCity_StevensHouse_Text_CollectionOfRareRocks:
-	.string "It's a collection of rare rocks and\n"
-	.string "stones assembled by STEVEN.$"
+	.string "Stones, labelled in a careful hand.\nNone of the labels say where from.$"
 

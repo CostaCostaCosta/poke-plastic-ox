@@ -29,6 +29,20 @@
   existing labels). No new flags, trainers or warps.
 - Verified: see the PR. `plastic_ox/demo/test_south_isles.py` talks to every changed speaker in
   each story state in mGBA.
-- Still open: live Cinnabar gym enforces no tier rule; Entei ritual does not wait for archive 3;
-  Mossdeep houses, Game Corner and Steven's house still speak vanilla text; hidden Magma objects
-  and their dead scripts remain in the Mossdeep maps; Route 20 West / East have no encounter tables.
+- Second pass (release readiness), same generator:
+  - Gym rules: the Cinnabar and Mossdeep gym guides (`PoxIsles_CinnabarGymGuide`,
+    `PoxIsles_MossdeepGymGuide`) run `CheckCinnabarGymUURules` / `CheckMossdeepGymUUBLRules`
+    and name a banned move or item as the house's rule, or say the team is clean. They warn and do
+    not block, the same as the other gyms' greeters. The game has no species-tier table, so UU/UUBL
+    roster legality is still not checked anywhere.
+  - Entei: the sage and Entei share `PoxIsles_EnteiSage`, which asks the player to read all three
+    files first and hands over to `PoxCinnabar_EnteiSage` once `FLAG_POX_STORY_MANSION` is set.
+  - Mossdeep: four houses, Steven's house and the Game Corner have their own lines (mechanics unchanged).
+    The Game Corner's two men now stand beside dark link cabinets, since the link is off.
+  - Magma: the 14 objects are deleted from MossdeepCity and Space Center 1F/2F, and `south_isles.prune`
+    removes every script block nothing reaches (about 1,200 lines). The debug menu's Steven multi
+    battle keeps its 2F block, minus the Magma movements.
+  - Encounters: Route 20 West gets `gPoxUURoute20West` (Surf + fishing, UU, cap 42). Route 20 East
+    stays barren as its note requires.
+- Still open: species-tier enforcement (no tier table exists); the debug-only Steven multi battle
+  on Space Center 2F still references Maxie/Tabitha trainers.

@@ -92,12 +92,15 @@ The island at the bottom of the map: white rock and wish tags on the shore, a ha
 - Scripts: `data/scripts/plastic_ox_story.inc` (`Pox_TateLiza`, `Pox_SpaceReport`, `Pox_Space`, `Pox_SaffronRoad`, `Pox_FacilityWorker`), `data/maps/MossdeepCity/scripts.inc`, `data/maps/MossdeepCity_Gym/scripts.inc`
 - Trainers / items: `TRAINER_PLASTIC_OX_TATELIZA` (six mons, Lv 44–46, Leftovers-heavy), `ITEM_KINGS_ROCK`, `ITEM_OLD_ROD`, `ITEM_NET_BALL`
 - Town, Gym, Center, Mart and Space Center wording for this pass is authored in `plastic_ox/alpha/south_isles.py` (emits `data/scripts/plastic_ox_south_isles.inc`, prefix `PoxIsles_`). Harness: `plastic_ox/demo/test_south_isles.py`.
-- Known gaps: fourteen Magma objects (five in town, nine in the Space Center) are hidden behind `FLAG_POX_HIDE_UNUSED_ACTOR` but still carried in the map data with their dead Hoenn scripts, including the unused Magma/Aqua sailor text in `data/maps/MossdeepCity/scripts.inc`; `FLAG_DEFEATED_MOSSDEEP_GYM` and `FLAG_RECEIVED_HM_DIVE` are never set here, so anything still keyed on them is dead (the Gym guide and statues now use `FLAG_BADGE06_GET`); the houses (Pokéblock taster, Fortree mail, Super Rod, Secret Base family, Steven's house) and the Game Corner still speak vanilla Hoenn text; 2F Steven is hidden from a new game, so only the 1F Steven is met; the leader record uses `Pic: Leader Roxanne` with `Gender: Male` for a two-person team.
+- Magma removed (2026-11-27): the fourteen Magma objects (five in town, nine in the Space Center) are gone from the map data. `south_isles.prune` also drops every block of the town and Space Center scripts that nothing reaches any more, including the Magma/Aqua sailor text. The debug menu's Steven multi battle still reaches one 2F block, which keeps its lines minus the Magma movements.
+- Interiors (2026-11-27): the houses (taster, Fortree mail, Super Rod, hideout family), Steven's house (Steven, rock display, postgame letter) and the Game Corner (two people beside the dark link cabinets) speak their own lines. Mechanics are unchanged.
+- Gym guide: `PoxIsles_MossdeepGymGuide` runs `CheckMossdeepGymUUBLRules` and names a banned move or item as the twins' rule. It warns but does not block.
+- Known gaps: `FLAG_DEFEATED_MOSSDEEP_GYM` and `FLAG_RECEIVED_HM_DIVE` are never set here, so anything still keyed on them is dead (the Gym guide and statues now use `FLAG_BADGE06_GET`); 2F Steven is hidden from a new game, so only the 1F Steven is met; the leader record uses `Pic: Leader Roxanne` with `Gender: Male` for a two-person team.
 
 ## Open questions
 
 - Is 2F a room or a view? Recommend one post-report scene at the window, then retire the stairs; the current nine duplicates are worse than an empty floor.
-- Delete the Magma clusters, or re-skin them as Space Center staff? Recommend delete — the sprites alone spoil Act V's "no villain crisis" rule.
+- ~~Delete the Magma clusters, or re-skin them as Space Center staff?~~ Deleted on 2026-11-27.
 - Split the report at the flag, or keep one box? Recommend split: the flag currently flips mid-conversation, hiding the moment Saffron opens.
 - Should Steven appear in the Space Center at all? He is a Mossdeep neighbour and a League-tier trainer; recommend one line, no League reference.
 - Is the Old Rod's Badge 6 gate deliberate? It is the only gift tied to the Gym, and it makes the badge feel civic rather than heroic.

@@ -115,6 +115,14 @@ PoxIsles_SchoolKid::
 	msgbox PoxIsles_Text_SchoolKid, MSGBOX_NPC
 	end
 
+PoxIsles_ArcadeHost::
+	msgbox PoxIsles_Text_ArcadeHost, MSGBOX_NPC
+	end
+
+PoxIsles_ArcadeOldTimer::
+	msgbox PoxIsles_Text_ArcadeOldTimer, MSGBOX_NPC
+	end
+
 PoxIsles_BlaineNotReady::
 	msgbox PoxIsles_Text_BlaineNotReady, MSGBOX_DEFAULT
 	releaseall
@@ -180,6 +188,54 @@ PoxIsles_Archive2Again::
 PoxIsles_Archive3Again::
 	msgbox Pox_Text_Archive3, MSGBOX_DEFAULT
 	releaseall
+	end
+
+@ The ENTEI sage keeps his guest until the whole archive is read.
+PoxIsles_EnteiSage::
+	goto_if_set FLAG_POX_STORY_MANSION, PoxCinnabar_EnteiSage
+	lock
+	msgbox PoxIsles_Text_EnteiWaits, MSGBOX_DEFAULT
+	release
+	end
+
+PoxIsles_CinnabarGymGuide::
+	lock
+	faceplayer
+	goto_if_set FLAG_BADGE05_GET, CinnabarIsland_Gym_EventScript_GymGuyPostVictory
+	msgbox CinnabarIsland_Gym_Text_GymGuyAdvice, MSGBOX_DEFAULT
+	specialvar VAR_RESULT, CheckCinnabarGymUURules
+	goto_if_eq VAR_RESULT, 1, PoxIsles_CinnabarGymGuide_Move
+	goto_if_eq VAR_RESULT, 2, PoxIsles_CinnabarGymGuide_Item
+	msgbox PoxIsles_Text_CinnabarRuleClean, MSGBOX_DEFAULT
+	release
+	end
+PoxIsles_CinnabarGymGuide_Move::
+	msgbox PoxIsles_Text_CinnabarRuleMove, MSGBOX_DEFAULT
+	release
+	end
+PoxIsles_CinnabarGymGuide_Item::
+	msgbox PoxIsles_Text_CinnabarRuleItem, MSGBOX_DEFAULT
+	release
+	end
+
+PoxIsles_MossdeepGymGuide::
+	lock
+	faceplayer
+	goto_if_set FLAG_BADGE06_GET, MossdeepCity_Gym_EventScript_GymGuidePostVictory
+	msgbox MossdeepCity_Gym_Text_GymGuideAdvice, MSGBOX_DEFAULT
+	specialvar VAR_RESULT, CheckMossdeepGymUUBLRules
+	goto_if_eq VAR_RESULT, 1, PoxIsles_MossdeepGymGuide_Move
+	goto_if_eq VAR_RESULT, 2, PoxIsles_MossdeepGymGuide_Item
+	msgbox PoxIsles_Text_TwinsRuleClean, MSGBOX_DEFAULT
+	release
+	end
+PoxIsles_MossdeepGymGuide_Move::
+	msgbox PoxIsles_Text_TwinsRuleMove, MSGBOX_DEFAULT
+	release
+	end
+PoxIsles_MossdeepGymGuide_Item::
+	msgbox PoxIsles_Text_TwinsRuleItem, MSGBOX_DEFAULT
+	release
 	end
 
 PoxIsles_Text_MansionGuide::
@@ -248,6 +304,12 @@ PoxIsles_Text_DockClerk::
 PoxIsles_Text_SchoolKid::
 	.string "The board says the next launch\nis soon. It has said soon since\lmy brother was little.\pWe get the day off when it goes.\nI've had my bag packed for a\lyear.$"
 
+PoxIsles_Text_ArcadeHost::
+	.string "The link cabinets have been dark\nsince the last storm took the\laerial off the roof.\pWe keep the lights on anyway.\nPeople come in to get out of the\lwind.$"
+
+PoxIsles_Text_ArcadeOldTimer::
+	.string "I held the POKéMON JUMP record\nhere six summers running. The\lboard still says so.\pNobody can beat it while the\nmachines are off. I've decided\lthat counts.$"
+
 PoxIsles_Text_BlaineNotReady::
 	.string "BLAINE: Not yet. Four BADGES and\na reason to be here. That is the\ldoor charge on this island.\pCome back with both.$"
 
@@ -289,3 +351,24 @@ PoxIsles_Text_SeaClosed::
 
 PoxIsles_Text_CrossingClosed::
 	.string "The crossing to SEAFOAM is\nrunning hard. Your POKéMON turns\lback for the beach.$"
+
+PoxIsles_Text_EnteiWaits::
+	.string "SAGE: Not yet, if you please. My\nguest is listening to the house.\pThere are three files in these\nrooms. Read them all, in their\lorder, then come back down.\pENTEI will know whether you\nhave. I would rather it did not\lhave to wonder.$"
+
+PoxIsles_Text_CinnabarRuleMove::
+	.string "Hold on. {STR_VAR_1} knows\n{STR_VAR_2}.\pBLAINE doesn't allow that move in\nhere. It's a house rule.\pSwap it out before you get to him.\nThe whole island will hear if not.$"
+
+PoxIsles_Text_CinnabarRuleItem::
+	.string "Hold on. {STR_VAR_1} is holding\n{STR_VAR_2}.\pBLAINE doesn't allow that item in\nhere. It's a house rule.\pPut it in your bag before you get\nto him.$"
+
+PoxIsles_Text_CinnabarRuleClean::
+	.string "I had a look at your team on the\nway in. Nothing BLAINE would\lobject to. Go on, then.$"
+
+PoxIsles_Text_TwinsRuleMove::
+	.string "Wait. {STR_VAR_1} knows\n{STR_VAR_2}.\pTATE and LIZA won't battle against\nthat move. Twins' rule.\pChange it before you cross the\nfloor, or they'll send you back.$"
+
+PoxIsles_Text_TwinsRuleItem::
+	.string "Wait. {STR_VAR_1} is holding\n{STR_VAR_2}.\pTATE and LIZA won't battle against\nthat item. Twins' rule.\pBag it before you cross the floor.$"
+
+PoxIsles_Text_TwinsRuleClean::
+	.string "Your team passes the twins'\nrules. I checked twice, the way\lthey would.$"

@@ -51,6 +51,20 @@ def static_checks() -> None:
         seen.add(laid)
     print(f'  ok  {len(texts)} texts fit the box, are unique, and name no villain team or BILL')
 
+    import json
+    enc = json.loads((ROOT / 'src/data/wild_encounters.json').read_text())['wild_encounter_groups'][0]['encounters']
+    sea = {e['map']: e for e in enc if e['map'] in s.SEA}
+    assert set(sea) == set(s.SEA), sorted(sea)
+    assert not [e for e in enc if e['map'] in s.BARREN], 'Route 20 East must stay barren'
+    for e in sea.values():
+        assert e['base_label'].startswith('gPoxUURoute') and 'water_mons' in e and 'fishing_mons' in e, e['base_label']
+        assert max(m['max_level'] for k in ('water_mons', 'fishing_mons') for m in e[k]['mons']) <= 42
+    for name in s.PRUNED:
+        d = json.loads((ROOT / f'data/maps/{name}/map.json').read_text())
+        assert not [o for o in d['object_events'] if o['graphics_id'] in s.MAGMA_GFX], name
+        assert not re.search(r'LOCALID_\w*(GRUNT|MAXIE|TABITHA)', (ROOT / f'data/maps/{name}/scripts.inc').read_text()), name
+    print('  ok  Route 20 West carries a UU sea table (cap 42), East stays barren; no Magma people or scripts in Mossdeep')
+
     r = subprocess.run([sys.executable, 'plastic_ox/tools/check_generated.py'], cwd=ROOT, capture_output=True, text=True)
     assert r.returncode == 0, r.stdout[-1500:]
     r = subprocess.run([sys.executable, 'plastic_ox/tools/audit_npc_dialogue.py'], cwd=ROOT, capture_output=True, text=True)
@@ -72,10 +86,11 @@ def emulator_checks() -> None:
 
     def said(mapname, x, y, key, *fragments, shot=None, absent=()):
         # Let the previous conversation finish before the setup warp.
-        for _ in range(400):
+        for i in range(400):
             if g.u8(g.syms['sGlobalScriptContextStatus']) == 2:
                 break
-            g.tap(K.KEY_B, hold=2, wait=12)
+            # A as well as B: a YES/NO box or a text waiting on A holds the script.
+            g.tap(K.KEY_A if i % 3 == 2 else K.KEY_B, hold=2, wait=12)
         g.warp(mapname, x, y)
         g.frame(60)
         if shot:
@@ -117,8 +132,20 @@ def emulator_checks() -> None:
     said(CIN, 21, 9, K.KEY_RIGHT, 'EAST QUAY', 'SEAFOAM ISLANDS', 'scratched out', absent=('Marked passage',))
     print('  ok  Cinnabar islanders, quay and road signs (before the badge)')
     said('CinnabarIsland_Gym_Frlg', 5, 5, K.KEY_UP, 'Four BADGES', 'door charge')
-    said('CinnabarIsland_Gym_Frlg', 24, 21, K.KEY_UP, 'Forget the BURN HEALS', 'house rule')
-    print('  ok  BLAINE refuses in his own voice; the gym guide describes the real team')
+    said('CinnabarIsland_Gym_Frlg', 24, 21, K.KEY_UP, 'Forget the BURN HEALS', 'House rules', 'Nothing BLAINE would object to')
+
+    def teach(slot, move):
+        # setmonmove 0, slot, move; end -- run from gStringVar4 like test_national_park.call.
+        ptr = g.syms['gStringVar4']
+        for i, b in enumerate(bytes([0x7B, 0, slot]) + move.to_bytes(2, 'little') + bytes([0x02])):
+            g.write(ptr + i, b)
+        g.run(ptr)
+    teach(3, 86)  # MOVE_THUNDER_WAVE in the lead's empty fourth slot
+    said('CinnabarIsland_Gym_Frlg', 24, 21, K.KEY_UP, 'Hold on.', 'knows Thunder Wave', 'house rule',
+         absent=('Nothing BLAINE',))
+    said('MossdeepCity_Gym', 5, 34, K.KEY_UP, 'knows Thunder Wave', "Twins' rule")
+    teach(3, 0)
+    print('  ok  BLAINE refuses in his own voice; the gym guide describes the real team and checks the party')
 
     # --- with BLAINE's key ---
     flags(FLAG_BADGE04_GET=True, FLAG_POX_STORY_FUJI=True, FLAG_BADGE05_GET=True, FLAG_POX_MANSION_KEY=True)
@@ -129,6 +156,9 @@ def emulator_checks() -> None:
     print('  ok  with the key: neighbour, gym regular, dock hand and gym guide move on')
     said('PokemonMansion_B1F_Frlg', 21, 26, K.KEY_DOWN, 'FILE 3', 'IN SEQUENCE')
     assert not g.flag('FLAG_POX_STORY_MANSION')
+    said('PokemonMansion_B1F_Frlg', 5, 8, K.KEY_UP, 'Not yet, if you please', 'three files', shot='entei_waits')
+    assert not g.flag('FLAG_POX_ENTEI')
+    print('  ok  the ENTEI sage waits for the whole archive')
     t = said('PokemonMansion_2F_Frlg', 24, 4, K.KEY_RIGHT, 'ARCHIVE, FILE 1', 'living state')
     assert g.flag('FLAG_POX_ARCHIVE_1'), t
     said('PokemonMansion_2F_Frlg', 24, 4, K.KEY_RIGHT, 'ARCHIVE, FILE 1', absent=('Good luck',))
@@ -171,7 +201,7 @@ def emulator_checks() -> None:
     flags(FLAG_POX_STORY_MANSION=False)
     said('MossdeepCity_Gym', 23, 8, K.KEY_UP, 'Not quite yet', 'by sea')
     flags(FLAG_POX_STORY_MANSION=True)
-    said('MossdeepCity_Gym', 5, 34, K.KEY_UP, 'double battle', 'round one')
+    said('MossdeepCity_Gym', 5, 34, K.KEY_UP, 'double battle', 'round one', "passes the twins' rules")
     said('MossdeepCity_SpaceCenter_1F', 7, 3, K.KEY_UP, 'middle of a count', 'TATE and LIZA')
     said('MossdeepCity_SpaceCenter_1F', 5, 8, K.KEY_UP, 'feeding time')
     said('MossdeepCity_SpaceCenter_1F', 1, 7, K.KEY_UP, 'ride a rocket')
@@ -185,6 +215,24 @@ def emulator_checks() -> None:
     said('MossdeepCity_Gym', 23, 8, K.KEY_UP, 'already beat us', 'white rock')
     said('MossdeepCity_Gym', 5, 34, K.KEY_UP, 'at their own game', 'SPACE CENTER')
     print('  ok  Mossdeep after the report: sailor, launch board, twins and gym guide turn over')
+
+    # --- Mossdeep interiors ---
+    said('MossdeepCity_House1', 7, 5, K.KEY_UP, 'canteen')
+    said('MossdeepCity_House2', 6, 7, K.KEY_UP, 'the worrying')
+    said('MossdeepCity_House2', 3, 4, K.KEY_RIGHT, 'better than the ferry')
+    said('MossdeepCity_House3', 4, 5, K.KEY_UP, 'starter rod')
+    said('MossdeepCity_House4', 3, 5, K.KEY_UP, 'hideouts in the bushes')
+    said('MossdeepCity_GameCorner_1F', 4, 3, K.KEY_UP, 'aerial', shot='mossdeep_game_corner')
+    said('MossdeepCity_GameCorner_1F', 6, 3, K.KEY_UP, 'six summers')
+    print('  ok  Mossdeep houses and Game Corner speak their own lines')
+
+    # Last, because it ends in a battle: once FILE 3 is read the sage takes the challenge.
+    flags(FLAG_POX_STORY_MANSION=True, FLAG_POX_ENTEI=False)
+    g.warp('PokemonMansion_B1F_Frlg', 5, 8)
+    g.frame(60)
+    r = talk(g, K.KEY_UP)
+    assert r['battle'] and any('Forgive me' in t for t in r['text']), r['text']
+    print('  ok  after the archive, the ENTEI sage starts his battle')
 
 
 if __name__ == '__main__':

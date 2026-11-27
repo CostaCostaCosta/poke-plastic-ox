@@ -11,6 +11,11 @@ lavender.py, so it owns the final wording of the stage 9-11 leg:
   BILL / Seagallop props and the Center's One Island BILL are gone.
 * Seafoam: an ice cutter and a swimmer at the two doors, the B4F signs, a
   fisherman and a sign on the Route 20 West landing.
+* Gym guides at Cinnabar and Mossdeep check the party against the gym's
+  rules special (warn, not block); the ENTEI sage waits for archive FILE 3.
+* Mossdeep: the Magma people are deleted and unreachable scripts pruned; the
+  houses, Steven's house and the Game Corner speak their own lines; Route 20
+  West gets a UU sea table (East stays barren).
 * Mossdeep: the town speaks in tides and launch windows, the SAFFRON sailor
   and the launch-board woman change with FLAG_POX_STORY_SPACE_CENTER, TATE &
   LIZA get their own challenge / refusal / badge lines, the Gym guide stops
@@ -96,6 +101,9 @@ NPCS = {
     ],
     'DockClerk': "You came out of the cave? Then you're the first thing I've logged all morning.|Ferry is at six and six. The GYM is up the hill, and the white roof past it is the SPACE CENTER.",
     'SchoolKid': "The board says the next launch is soon. It has said soon since my brother was little.|We get the day off when it goes. I've had my bag packed for a year.",
+    # --- Mossdeep Game Corner: the link cabinets are dark (POX_LINK_ENABLED is off) ---
+    'ArcadeHost': "The link cabinets have been dark since the last storm took the aerial off the roof.|We keep the lights on anyway. People come in to get out of the wind.",
+    'ArcadeOldTimer': "I held the POKéMON JUMP record here six summers running. The board still says so.|Nobody can beat it while the machines are off. I've decided that counts.",
     # --- story refusals / repeats that used the global Pox_NotReady / Pox_Done ---
     'BlaineNotReady': "BLAINE: Not yet. Four BADGES and a reason to be here. That is the door charge on this island.|Come back with both.",
     'TwinsNotReady': raw("TATE: Not yet.\nLIZA: Not quite yet.", "TATE: Five BADGES, and the long\nway round by sea.", "LIZA: Then we'll play."),
@@ -117,6 +125,17 @@ TEXTS = {
     'MindBadge': raw("TATE: Best game all season.\nLIZA: Take the MIND BADGE.", "{PLAYER} received the MIND BADGE\nfrom TATE and LIZA.", "TATE: The SPACE CENTER people…\nLIZA: …count things.", "TATE: Go and be counted."),
     'SeaClosed': "A sharp whistle from the quay. The DOCK HAND is waving you back to shore.|The east channel isn't open to you yet.",
     'CrossingClosed': "The crossing to SEAFOAM is running hard. Your POKéMON turns back for the beach.",
+    # The Entei sage waits for the whole archive (FLAG_POX_STORY_MANSION, set by FILE 3).
+    'EnteiWaits': "SAGE: Not yet, if you please. My guest is listening to the house.|There are three files in these rooms. Read them all, in their order, then come back down.|ENTEI will know whether you have. I would rather it did not have to wonder.",
+    # Gym guides run the gym's rules check (CheckCinnabarGymUURules /
+    # CheckMossdeepGymUUBLRules), as the greeters in the other gyms do.
+    # STR_VAR_1 is the POKéMON's nickname, STR_VAR_2 the move or item.
+    'CinnabarRuleMove': raw("Hold on. {STR_VAR_1} knows\n{STR_VAR_2}.", "BLAINE doesn't allow that move in\nhere. It's a house rule.", "Swap it out before you get to him.\nThe whole island will hear if not."),
+    'CinnabarRuleItem': raw("Hold on. {STR_VAR_1} is holding\n{STR_VAR_2}.", "BLAINE doesn't allow that item in\nhere. It's a house rule.", "Put it in your bag before you get\nto him."),
+    'CinnabarRuleClean': "I had a look at your team on the way in. Nothing BLAINE would object to. Go on, then.",
+    'TwinsRuleMove': raw("Wait. {STR_VAR_1} knows\n{STR_VAR_2}.", "TATE and LIZA won't battle against\nthat move. Twins' rule.", "Change it before you cross the\nfloor, or they'll send you back."),
+    'TwinsRuleItem': raw("Wait. {STR_VAR_1} is holding\n{STR_VAR_2}.", "TATE and LIZA won't battle against\nthat item. Twins' rule.", "Bag it before you cross the floor."),
+    'TwinsRuleClean': "Your team passes the twins' rules. I checked twice, the way they would.",
 }
 
 # --------------------------------------------------------------------------
@@ -163,7 +182,7 @@ REWRITES = {
         'CinnabarIsland_Gym_Text_ZacIntro': "Last question, last TRAINER. Fire is weak against H2O. Write that down.",
         'CinnabarIsland_Gym_Text_ZacDefeat': "Extinguished.",
         'CinnabarIsland_Gym_Text_ZacPostBattle': "BLAINE is through there. He was a firefighter, you know.|He knows more ways to put a thing out than to light it.",
-        'CinnabarIsland_Gym_Text_GymGuyAdvice': "Yo! Champ in the making! Forget the BURN HEALS.|BLAINE's team isn't the fire brigade you're picturing. He picks whatever holds a line: rock, water, a ghost.|He only fields what suits this GYM's weight class, mind. That's his own house rule.|Answer the quiz right and you walk straight through. Answer wrong and you get a TRAINER and some exercise.",
+        'CinnabarIsland_Gym_Text_GymGuyAdvice': "Yo! Champ in the making! Forget the BURN HEALS.|BLAINE's team isn't the fire brigade you're picturing. He picks whatever holds a line: rock, water, a ghost.|House rules in here, too: no sleep moves, no THUNDER WAVE, no passing the baton. Let me look at your team.|Answer the quiz right and you walk straight through. Answer wrong and you get a TRAINER and some exercise.",
         'CinnabarIsland_Gym_Text_GymGuyPostVictory': "{PLAYER}! You put the old firefighter out!|He gave you the house key? Then I'm staying down here, where it's warm.",
         'CinnabarIsland_Gym_Text_GymStatue': raw("CINNABAR ISLAND POKéMON GYM\nLEADER: BLAINE", "The Hotheaded Quiz Master!"),
         'CinnabarIsland_Gym_Text_GymStatuePlayerWon': raw("CINNABAR ISLAND POKéMON GYM\nLEADER: BLAINE", "WINNING TRAINERS:\n{PLAYER}"),
@@ -244,6 +263,34 @@ REWRITES = {
         'MossdeepCity_Mart_Text_MaxRepelLastsLongest': "MAX REPEL lasts the longest. I timed it on the path round the SPACE CENTER.|Twice, to be sure.",
         'MossdeepCity_Mart_Text_NetAndDiveBallsRare': "NET BALLS and DIVE BALLS are made here on MOSSDEEP.|The NET ones are for anything that swims or crawls. I keep a few for whatever comes up with the catch.",
     },
+    M % 'MossdeepCity_House1': {
+        'MossdeepCity_House1_Text_HmmYourPokemon': raw("Hold still. Your {STR_VAR_1}…"),
+        'MossdeepCity_House1_Text_ItLikesXPokeblocks': raw("It likes {STR_VAR_1}S.\nI'd bet the boat on it.", "I cook for the launch crews.\nI know a picky eater on sight."),
+        'MossdeepCity_House1_Text_DoesntLikeOrDislikePokeblocks': "It would eat anything you put in front of it. Easy to feed. I like that in a POKéMON.",
+        'MossdeepCity_House1_Text_HusbandCanTellPokeblockMonLikes': "My husband runs the SPACE CENTER canteen. He reads appetites the way the old sailors read weather.",
+    },
+    M % 'MossdeepCity_House2': {
+        'MossdeepCity_House2_Text_SisterMailsBoyfriendInFortree': "My sister writes to a boy in FORTREE. The WINGULL does the flying and I do the worrying.",
+        'MossdeepCity_House2_Text_PokemonCarriesMailBackAndForth': "My WINGULL takes MAIL to FORTREE and back. It knows the way better than the ferry does.|My friend writes about trees. I write about the sea. We both think the other one has it better.",
+    },
+    M % 'MossdeepCity_House3': {
+        'MossdeepCity_House3_Text_YouWantSuperRod': "You crossed the sound with a starter rod? I have a SUPER ROD here I've outgrown.|It drops past the shelf to where the big ones sit. Do you want it?",
+        'MossdeepCity_House3_Text_SuperRodIsSuper': "Good. Don't let the tide take it.",
+        'MossdeepCity_House3_Text_TryDroppingRodInWater': "Try it off the east pier at the turn of the tide. That's when the deep water comes up to look.",
+        'MossdeepCity_House3_Text_DontYouLikeToFish': "No? Suit yourself. It'll keep.",
+        'MossdeepCity_House3_Text_GoAfterSeafloorPokemon': "Caught anything off the shelf yet? Don't tell me the size. Everybody on this island lies about the size.",
+    },
+    M % 'MossdeepCity_House4': {
+        'MossdeepCity_House4_Text_BrotherLikesToFindBases': "My little brother finds hideouts in the bushes. He never says whose they are.",
+        'MossdeepCity_House4_Text_BrotherLikesToVisitBasesAndBattle': "My brother says the hideouts all have people in them now, and every one of them wants a battle.|He comes home sunburnt and happy.",
+        'MossdeepCity_House4_Text_YouMadeSecretBaseNearX': raw("Was that your hideout near\n{STR_VAR_1}? I sat in it.", "I didn't touch anything.\nMuch."),
+        'MossdeepCity_House4_Text_MakeSecretBase': "You should make a hideout somewhere. A tree, a cave, a bush. I'll find it. I always do.",
+    },
+    M % 'MossdeepCity_StevensHouse': {
+        'MossdeepCity_StevensHouse_Text_UnderwateCavernBetweenMossdeepSootopolis': "STEVEN: The neighbours call this the stone house. They aren't wrong.|I'm not home much. When I am, I sort rocks and listen for the launches.",
+        'MossdeepCity_StevensHouse_Text_CollectionOfRareRocks': raw("Stones, labelled in a careful hand.\nNone of the labels say where from."),
+        'MossdeepCity_StevensHouse_Text_LetterFromSteven': "It's a letter.|… … … … … …|To {PLAYER}. I've gone walking for a while. The house will keep.|The POKé BALL on the desk holds a BELDUM. It has been patient with me. I think it would do better on the road.|Take it, if you would. STEVEN",
+    },
     M % 'MossdeepCity_Gym': {
         'MossdeepCity_Gym_Text_GymGuideAdvice': "Yo, {PLAYER}. This one is a double battle. Two LEADERS, and two of yours out at once.|Don't plan around a type. TATE and LIZA field whatever covers the other one's back, right at the top of this island's weight class.|The floor is part of it. Step on a switch and the arrows turn. Think of the walk as round one.",
         'MossdeepCity_Gym_Text_GymGuidePostVictory': "That's the twins beaten at their own game. They'll be pleased. They like company that can keep up.|If you haven't been yet, the SPACE CENTER wants a word with anyone who has walked the whole road.",
@@ -279,6 +326,41 @@ BLOCKS = [
     (M % 'CinnabarIsland_Gym_Frlg', 'CinnabarIsland_Gym_EventScript_GymStatue::', 'CinnabarIsland_Gym_EventScript_GymStatuePostVictory::',
      [('FLAG_BADGE07_GET', 'FLAG_BADGE05_GET')]),
 ]
+
+
+# Gym guides that check the party against the gym's rules special, as the
+# other gyms' greeters do. A violation is reported, not enforced: the rule is
+# the house's, and the special only knows banned moves (1) and items (2).
+GUIDES = [
+    ('CinnabarGymGuide', 'FLAG_BADGE05_GET', 'CinnabarIsland_Gym_EventScript_GymGuyPostVictory',
+     'CinnabarIsland_Gym_Text_GymGuyAdvice', 'CheckCinnabarGymUURules', 'Cinnabar'),
+    ('MossdeepGymGuide', 'FLAG_BADGE06_GET', 'MossdeepCity_Gym_EventScript_GymGuidePostVictory',
+     'MossdeepCity_Gym_Text_GymGuideAdvice', 'CheckMossdeepGymUUBLRules', 'Twins'),
+]
+
+
+def guide(label, badge, after, advice, special, rules):
+    return f'''
+{P}{label}::
+	lock
+	faceplayer
+	goto_if_set {badge}, {after}
+	msgbox {advice}, MSGBOX_DEFAULT
+	specialvar VAR_RESULT, {special}
+	goto_if_eq VAR_RESULT, 1, {P}{label}_Move
+	goto_if_eq VAR_RESULT, 2, {P}{label}_Item
+	msgbox {P}Text_{rules}RuleClean, MSGBOX_DEFAULT
+	release
+	end
+{P}{label}_Move::
+	msgbox {P}Text_{rules}RuleMove, MSGBOX_DEFAULT
+	release
+	end
+{P}{label}_Item::
+	msgbox {P}Text_{rules}RuleItem, MSGBOX_DEFAULT
+	release
+	end
+'''
 
 
 def scripts():
@@ -328,7 +410,15 @@ def scripts():
 	msgbox Pox_Text_Archive3, MSGBOX_DEFAULT
 	releaseall
 	end
-''')
+
+@ The ENTEI sage keeps his guest until the whole archive is read.
+{P}EnteiSage::
+	goto_if_set {MANSION}, PoxCinnabar_EnteiSage
+	lock
+	msgbox {P}Text_EnteiWaits, MSGBOX_DEFAULT
+	release
+	end
+''' + ''.join(guide(*g) for g in GUIDES))
     return '\n'.join(out) + '\n' + '\n'.join(texts)
 
 
@@ -386,12 +476,104 @@ REPOINT = {
     'CinnabarIsland_Frlg': {'PoxCinnabar_MansionGuide': 'MansionGuide', 'Pox_MansionGuide': 'MansionGuide',
                             'PoxCinnabar_GymGuide': 'GymRegular', 'Pox_BlaineGuide': 'GymRegular'},
     'MossdeepCity': {'Pox_SaffronRoad': 'SaffronSailor', 'MossdeepCity_EventScript_PokefanF': 'LaunchBoard'},
+    'MossdeepCity_GameCorner_1F': {'MossdeepCity_GameCorner_1F_EventScript_InfoMan': 'ArcadeHost',
+                                   'MossdeepCity_GameCorner_1F_EventScript_OldMan': 'ArcadeOldTimer'},
+    'CinnabarIsland_Gym_Frlg': {'CinnabarIsland_Gym_EventScript_GymGuy': 'CinnabarGymGuide'},
+    'MossdeepCity_Gym': {'MossdeepCity_Gym_EventScript_GymGuide': 'MossdeepGymGuide'},
+    # The sage and ENTEI share one script; both now wait for FILE 3.
+    'PokemonMansion_B1F_Frlg': {'PoxCinnabar_EnteiSage': 'EnteiSage'},
 }
 # Donor props and the two interchangeable direction-givers the new islanders replace.
 REMOVED = {
     'CinnabarIsland_Frlg': lambda o: o.get('local_id') in ('LOCALID_CINNABAR_BILL', 'LOCALID_CINNABAR_SEAGALLOP')
     or o['script'] in ('Pox_MossdeepRoad', 'Pox_WhirlGuide'),
 }
+
+
+# Team Magma's Space Center occupation never happens here (Act V has no villain
+# crisis); its people were only hidden. They and every script that becomes
+# unreachable without them are removed from these maps.
+MAGMA_GFX = ('OBJ_EVENT_GFX_MAGMA_MEMBER_M', 'OBJ_EVENT_GFX_MAGMA_MEMBER_F', 'OBJ_EVENT_GFX_MAXIE')
+PRUNED = ('MossdeepCity', 'MossdeepCity_SpaceCenter_1F', 'MossdeepCity_SpaceCenter_2F')
+_LABEL = re.compile(r'^([A-Za-z_][A-Za-z0-9_]*)::?[ \t]*(?:@.*)?$', re.M)
+_WORD = re.compile(r'[A-Za-z_][A-Za-z0-9_]*')
+_STOPS = ('end', 'return', 'goto ', 'step_end', '.string', '.byte 0', '.2byte 0', 'releaseall', 'release')
+
+
+def outside_refs(skip):
+    """Every identifier used in the game's sources outside the files in skip."""
+    words = set()
+    for pattern in ('data/**/*.inc', 'data/**/*.s', 'data/maps/*/map.json', 'src/**/*.c', 'src/**/*.h'):
+        for f in Path('.').glob(pattern):
+            if str(f) not in skip:
+                words.update(_WORD.findall(f.read_text(errors='replace')))
+    return words
+
+
+def prune(src, roots, path, gone_ids=()):
+    """Drop label blocks of a map's scripts.inc that nothing can reach, and the
+    lines of kept blocks that still move or remove a deleted person (the debug
+    menu's Space Center multi battle reaches one such block)."""
+    if gone_ids:
+        dead = re.compile(r'^[^\n]*\b(?:' + '|'.join(map(re.escape, gone_ids)) + r')\b[^\n]*\n', re.M)
+        src = dead.sub('', src)
+    marks = [(m.start(), m[1]) for m in _LABEL.finditer(src)]
+    if not marks:
+        return src
+    blocks = []
+    for i, (pos, label) in enumerate(marks):
+        end = marks[i + 1][0] if i + 1 < len(marks) else len(src)
+        blocks.append((label, src[pos:end]))
+    names = {label for label, _ in blocks}
+    index = {label: i for i, (label, _) in enumerate(blocks)}
+    keep = set()
+    todo = [i for i, (label, _) in enumerate(blocks) if label in roots]
+    while todo:
+        i = todo.pop()
+        if i in keep:
+            continue
+        keep.add(i)
+        label, body = blocks[i]
+        rest = body.split('\n', 1)[-1]
+        todo += [index[w] for w in set(_WORD.findall(rest)) if w in index and w != label]
+        code = [l.strip() for l in rest.split('\n') if l.strip() and not l.strip().startswith(('@', '//'))]
+        if code and not code[-1].startswith(_STOPS) and i + 1 < len(blocks):
+            todo.append(i + 1)  # falls through into the next label
+    out = src[:marks[0][0]] + ''.join(body for i, (_, body) in enumerate(blocks) if i in keep)
+    for gone in sorted(names - {blocks[i][0] for i in keep}):
+        if re.search(r'\b' + gone + r'\b', out):
+            raise SystemExit(f'south_isles: pruned {gone} is still used in {path}')
+    return out.rstrip('\n') + '\n'
+
+
+# Route 20 West: the open sea between CINNABAR and SEAFOAM, inside the cinnabar
+# checkpoint (UU, level cap 42; counted by pox_progression as gPoxUURoute#).
+# Fishing keeps the v5.5 rule: the Old Rod slot is MAGIKARP. Route 20 East stays
+# barren on purpose (plasticox-route20east.md: Seafoam is the only sea content
+# on that leg); install_sea_encounters drops any table there.
+def _mons(rows):
+    return [dict(min_level=lo, max_level=hi, species='SPECIES_' + s) for s, lo, hi in rows]
+
+
+SEA = {
+    'MAP_PLASTIC_OX_ROUTE20_WEST': ('gPoxUURoute20West', 4, [
+        ('TENTACRUEL', 37, 40), ('PELIPPER', 37, 40), ('TENTACRUEL', 38, 41), ('LANTURN', 38, 41), ('PELIPPER', 39, 41)]),
+}
+BARREN = ('MAP_PLASTIC_OX_ROUTE20_EAST',)
+SEA_FISHING = [('MAGIKARP', 36, 38), ('SEAKING', 36, 39), ('KINGLER', 37, 40), ('SEAKING', 37, 40), ('OCTILLERY', 38, 40),
+               ('KINGLER', 38, 41), ('SEADRA', 38, 41), ('OCTILLERY', 38, 41), ('SEADRA', 39, 41), ('LANTURN', 39, 41)]
+
+
+def install_sea_encounters(read, put):
+    path = 'src/data/wild_encounters.json'
+    data = json.loads(read(path))
+    table = data['wild_encounter_groups'][0]['encounters']
+    table[:] = [e for e in table if e.get('map') not in SEA and e.get('map') not in BARREN]
+    for mapname, (label, rate, surf) in SEA.items():
+        table.append(dict(map=mapname, base_label=label,
+                          water_mons=dict(encounter_rate=rate, mons=_mons(surf)),
+                          fishing_mons=dict(encounter_rate=20, mons=_mons(SEA_FISHING))))
+    put(path, json.dumps(data, indent=2) + '\n')
 
 
 def install(read, put):
@@ -450,6 +632,24 @@ def install(read, put):
         if o['script'] == 'Pox_Facility_MossdeepCity_SpaceCenter_1F_9':
             o.update(x=1, y=6, elevation=3, movement_type='MOVEMENT_TYPE_LOOK_AROUND', flag='0')
     save('MossdeepCity_SpaceCenter_1F', d)
+
+    # Magma people out, then everything in these maps' scripts nothing reaches.
+    gone_ids = set()
+    for name in PRUNED:
+        d = load(name)
+        gone_ids |= {o['local_id'] for o in d['object_events'] if o['graphics_id'] in MAGMA_GFX and o.get('local_id')}
+        d['object_events'] = [o for o in d['object_events'] if o['graphics_id'] not in MAGMA_GFX]
+        save(name, d)
+    # Local ids are per map, but these names are unique to the Magma people.
+    gone_ids |= {'LOCALID_MOSSDEEP_MAXIE', 'LOCALID_SPACE_CENTER_MAXIE', 'LOCALID_SPACE_CENTER_TABITHA',
+                 'LOCALID_SPACE_CENTER_1F_STAIR_GRUNT'} | {f'LOCALID_MOSSDEEP_GRUNT_{n}' for n in range(1, 5)} \
+        | {f'LOCALID_SPACE_CENTER_GRUNT_{n}' for n in range(1, 8)}
+    paths = [M % name for name in PRUNED]
+    refs = outside_refs(set(paths) | {f'data/maps/{name}/map.json' for name in PRUNED})
+    for name, path in zip(PRUNED, paths):
+        words = set(_WORD.findall(read(f'data/maps/{name}/map.json')))
+        put(path, prune(read(path), refs | words | {name + '_MapScripts'}, path, sorted(gone_ids)))
+    install_sea_encounters(read, put)
 
     for path, labels in REWRITES.items():
         src = read(path)
