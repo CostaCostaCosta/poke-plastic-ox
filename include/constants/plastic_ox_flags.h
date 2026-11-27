@@ -372,6 +372,10 @@
 // Hides Celebi and the sage; the sage then stands in the Ecruteak sage office.
 #define FLAG_POX_CAUGHT_CELEBI (POX_EXT_FLAGS_START + 13)
 
+// Route 36: the Ruins of Alph researcher has walked into the gatehouse (he
+// lets the player through once FLAG_POX_STORY_MANSION is set). Hides him on the route.
+#define FLAG_POX_HIDE_RUINS_RESEARCHER (POX_EXT_FLAGS_START + 14)
+
 // Lavender / Pokemon Tower (plastic_ox/alpha/lavender.py).
 // Pokemon Tower 7F: FUJI walked home after the three grunts.
 #define FLAG_POX_FUJI_RESCUED (POX_EXT_FLAGS_START + 0)

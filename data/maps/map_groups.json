@@ -1200,7 +1200,10 @@
     "Gate_NationalPark_hns",
     "BellchimeTrail_hns",
     "TinTower_1F_hns",
-    "TinTower_RoofDay_hns"
+    "TinTower_RoofDay_hns",
+    "Gate_RuinsOfAlph_Route36_hns",
+    "RuinsOfAlph_Outside_hns",
+    "RuinsOfAlph_PuzzleAndRewardChambers_hns"
   ],
   "gMapGroup_PlasticOxJohtoKanto": [
     "Route29_hns",

@@ -40214,6 +40214,105 @@
           }
         },
         {
+          "map": "MAP_RUINS_OF_ALPH_OUTSIDE_HNS",
+          "base_label": "gPoxUURuinsOfAlphOutside",
+          "land_mons": {
+            "encounter_rate": 21,
+            "mons": [
+              {
+                "min_level": 37,
+                "max_level": 39,
+                "species": "SPECIES_XATU"
+              },
+              {
+                "min_level": 37,
+                "max_level": 39,
+                "species": "SPECIES_GIRAFARIG"
+              },
+              {
+                "min_level": 36,
+                "max_level": 38,
+                "species": "SPECIES_NATU"
+              },
+              {
+                "min_level": 36,
+                "max_level": 38,
+                "species": "SPECIES_BALTOY"
+              },
+              {
+                "min_level": 38,
+                "max_level": 39,
+                "species": "SPECIES_XATU"
+              },
+              {
+                "min_level": 38,
+                "max_level": 39,
+                "species": "SPECIES_GIRAFARIG"
+              },
+              {
+                "min_level": 37,
+                "max_level": 38,
+                "species": "SPECIES_NATU"
+              },
+              {
+                "min_level": 37,
+                "max_level": 38,
+                "species": "SPECIES_BALTOY"
+              },
+              {
+                "min_level": 38,
+                "max_level": 39,
+                "species": "SPECIES_XATU"
+              },
+              {
+                "min_level": 38,
+                "max_level": 39,
+                "species": "SPECIES_GIRAFARIG"
+              },
+              {
+                "min_level": 38,
+                "max_level": 39,
+                "species": "SPECIES_NATU"
+              },
+              {
+                "min_level": 38,
+                "max_level": 39,
+                "species": "SPECIES_BALTOY"
+              }
+            ]
+          },
+          "water_mons": {
+            "encounter_rate": 4,
+            "mons": [
+              {
+                "min_level": 36,
+                "max_level": 38,
+                "species": "SPECIES_QUAGSIRE"
+              },
+              {
+                "min_level": 34,
+                "max_level": 36,
+                "species": "SPECIES_WOOPER"
+              },
+              {
+                "min_level": 37,
+                "max_level": 39,
+                "species": "SPECIES_QUAGSIRE"
+              },
+              {
+                "min_level": 35,
+                "max_level": 37,
+                "species": "SPECIES_WOOPER"
+              },
+              {
+                "min_level": 38,
+                "max_level": 39,
+                "species": "SPECIES_QUAGSIRE"
+              }
+            ]
+          }
+        },
+        {
           "map": "MAP_PLASTIC_OX_VICTORY_ROAD",
           "base_label": "gPoxVictoryRoadOutdoor",
           "land_mons": {

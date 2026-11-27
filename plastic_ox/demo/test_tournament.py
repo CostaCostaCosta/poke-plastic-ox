@@ -235,16 +235,18 @@ def downstream():
     assert g.flag('FLAG_POX_CAUGHT_RAIKOU')
     shot('raikou_caught')
     print('PASS: real stop switch, OU gate, six-member Raikou sage battle, flee/save/retry and guaranteed capture',flush=True)
-    # Each Regi chamber is opened by its own tablet (see test_regi_caves.py).
+    # Each Regi chamber is opened by its own tablet (see test_ruins_of_alph.py).
     for tablet in ['ROCK','ICE','STEEL']:
         give_item(g,const('ITEM_ANCIENT_'+tablet+'_TABLET','items.h'))
     g.flag('FLAG_BADGE06_GET',False)
     for name in ['Regice','Registeel']:
         g.run('PoxTournament_'+name)
         assert not in_battle(g) and not trainer_flag(g,name.upper()+'_SAGE')
-    for name,area in [('Regirock','DesertRuins'),('Regice','IslandCave'),('Registeel','AncientTomb')]:
+    # The sages stand in the Ruins of Alph back rooms; talk from the tile below each.
+    chambers='RuinsOfAlph_PuzzleAndRewardChambers_hns'
+    for name,x,y in [('Regirock',20,40),('Regice',20,57),('Registeel',4,57)]:
         if name!='Regirock':g.flag('FLAG_BADGE06_GET',True)
-        r=interact(area,8,8);assert r['battle'],(name,r,g.state());assert wait_for_battle(g)
+        r=interact(chambers,x,y);assert r['battle'],(name,r,g.state());assert wait_for_battle(g)
         assert g.u16(g.syms['gTrainerBattleParameter']+2)==g.const('TRAINER_PLASTIC_OX_'+name.upper()+'_SAGE')
         # The loss whites out home; settle() taps through the arrival script.
         finish_trainer(g,False);assert settle(g)

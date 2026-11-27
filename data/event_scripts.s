@@ -2015,3 +2015,9 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/scripts/plastic_ox_meteor_falls.inc"
 
 	.include "data/scripts/plastic_ox_celebi.inc"
+
+	.include "data/maps/Gate_RuinsOfAlph_Route36_hns/scripts.inc"
+
+	.include "data/maps/RuinsOfAlph_Outside_hns/scripts.inc"
+
+	.include "data/maps/RuinsOfAlph_PuzzleAndRewardChambers_hns/scripts.inc"

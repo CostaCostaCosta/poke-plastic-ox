@@ -85,6 +85,9 @@ STORY_ORDER = [
     "plasticox-route20east",
     "mossdeepcity",
     "newmauville-inside",
+    # Act III side area — the Ruins of Alph dig reopens after Cinnabar
+    "ruinsofalph-outside-hns",
+    "ruinsofalph-puzzleandrewardchambers-hns",
     # Act III coda — the sages come home; Bellchime Trail and the Tin Tower
     "bellchimetrail-hns",
     "tintower-1f-hns",

@@ -1,0 +1,11 @@
+# 2026-11-27 — ruins-of-alph
+
+- Notes: plastic_ox/story/locations/ruinsofalph-outside-hns.md and ruinsofalph-puzzleandrewardchambers-hns.md (new, implemented); route36-hns.md item 4 and the three-clones question; mossdeepcity.md step 5a
+- Maps: Route36_hns, Gate_RuinsOfAlph_Route36_hns, RuinsOfAlph_Outside_hns, RuinsOfAlph_PuzzleAndRewardChambers_hns (all three imported from the HNS donor at 44f50eedef), DesertRuins, IslandCave, AncientTomb
+- Changed: Route 36's three gate men are one researcher at (56,24) with step triggers on (55,24)/(57,24); he opens on a live check of FLAG_POX_STORY_MANSION (confirmed in build_story.py: set by Pox_Archive3, the last Mansion archive), walks into the gatehouse and sets FLAG_POX_HIDE_RUINS_RESEARCHER (POX_EXT_FLAGS_START + 14)
+- Changed: Regirock (north chamber), Registeel (south-west) and Regice (south-east) and their sages stand in the chamber back rooms; same PoxTournament_* scripts, tablets, badge gates 5/6/6 and FLAG_POX_CAUGHT_* flags. The Route 127 caves are empty side areas with open inner rooms
+- Changed: dig-site access without Union Cave: ledge tiles (22,40) and (18,38) repainted as ground, cave mouths (13,25) and (14,36) lead to each other, the pond is crossed with Surf
+- Changed: steel-tablet reward text and the Regice/Registeel home-sage lines no longer point at Route 127; new wild table gPoxUURuinsOfAlphOutside (species already in the Cinnabar pool)
+- Dialogue: 4 NPC lines and 13 sign/wall lines on the Ruins maps, 2 researcher lines on Route 36, 3 cave wall lines; test_ruins_of_alph.py diffs all of them for duplicates
+- Verified: see the PR for the exact commands; mGBA walk of both researcher states on all three lanes, the gatehouse chain both ways, a real Surf crossing, both ledge gaps both ways, the crawlway, each Regi's three states, the emptied caves
+- Still open: the west chamber is unused; research centre, B1F, Words Rooms and the east (Route 32) gatehouse are not imported and their doors are solid with signs; the crawlway is a cave-mouth pair standing in for Union Cave; the dig has no town-map section (MAPSEC_ROUTE_36, name popup off); route36-hns stays `drafted` because its other target behaviours are not done

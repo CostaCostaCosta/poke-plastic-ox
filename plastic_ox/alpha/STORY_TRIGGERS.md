@@ -38,6 +38,7 @@ item placement; preserve gift identities and document save compatibility.
 | Reached Fortree | Proposed `FLAG_POX_REACHED_FORTREE` | First legitimate arrival through the Morty/Weather route; permanently opens both sides of Route36/110. |
 | Fuji rescued | Existing `FLAG_POX_STORY_FUJI` | Rocket II resolved; directions to Route8 Underground and Cinnabar. |
 | Mansion key / investigation | Existing `FLAG_POX_MANSION_KEY`, `FLAG_POX_STORY_MANSION` | Key delivery after Blaine must retry if bag full; archives completion enables onward sea progression. |
+| Ruins of Alph open | Live check of `FLAG_POX_STORY_MANSION`; `FLAG_POX_HIDE_RUINS_RESEARCHER` only hides the Route 36 researcher | Set when he lets the player through and walks into the gatehouse. Never set from the Mansion script, so a save that already finished Cinnabar is let in on its next visit. |
 | Space Center complete | Existing `FLAG_POX_STORY_SPACE_CENTER` | Investigation after badge 6; opens every Saffron surface entrance. |
 | Bruno defeated | Native `FLAG_BADGE07_GET` | Successful Dojo battle; separate from Silph. |
 | Silph resolved | Existing `FLAG_POX_STORY_SILPH` | Giovanni defeated and core shut down; creator unnamed. |

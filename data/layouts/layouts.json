@@ -11088,6 +11088,48 @@
       "include_in_versions": [
         "emerald"
       ]
+    },
+    {
+      "id": "LAYOUT_GATE_RUINS_OF_ALPH_ROUTE36_HNS",
+      "name": "Gate_RuinsOfAlph_Route36_hns_Layout",
+      "width": 15,
+      "height": 12,
+      "primary_tileset": "gTileset_Johto_Building_Hns",
+      "secondary_tileset": "gTileset_Gate_Standard_Hns",
+      "border_filepath": "data/layouts/Gate_RuinsOfAlph_Route36_hns/border.bin",
+      "blockdata_filepath": "data/layouts/Gate_RuinsOfAlph_Route36_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
+      "id": "LAYOUT_RUINS_OF_ALPH_OUTSIDE_HNS",
+      "name": "RuinsOfAlph_Outside_hns_Layout",
+      "width": 46,
+      "height": 48,
+      "primary_tileset": "gTileset_Johto_NorthEast_Hns",
+      "secondary_tileset": "gTileset_RuinsOfAlph_Outside_Hns",
+      "border_filepath": "data/layouts/RuinsOfAlph_Outside_hns/border.bin",
+      "blockdata_filepath": "data/layouts/RuinsOfAlph_Outside_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
+      "id": "LAYOUT_RUINS_OF_ALPH_PUZZLE_AND_REWARD_CHAMBERS_HNS",
+      "name": "RuinsOfAlph_PuzzleAndRewardChambers_hns_Layout",
+      "width": 26,
+      "height": 68,
+      "primary_tileset": "gTileset_Johto_Building_Hns",
+      "secondary_tileset": "gTileset_RuinsOfAlphWriting_Hns",
+      "border_filepath": "data/layouts/RuinsOfAlph_PuzzleAndRewardChambers_hns/border.bin",
+      "blockdata_filepath": "data/layouts/RuinsOfAlph_PuzzleAndRewardChambers_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
     }
   ]
 }

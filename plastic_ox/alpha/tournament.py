@@ -57,20 +57,15 @@ def install(read, put):
         s = s.replace('SealedChamber_InnerRoom_EventScript_BrailleBackWall::\n\tlockall',
                       'SealedChamber_InnerRoom_EventScript_BrailleBackWall::\n\tlockall\n\tcheckitem ITEM_ANCIENT_BRAILLE_TABLET\n\tgoto_if_eq VAR_RESULT, FALSE, PoxTournament_LegendLocked\n\tgoto_if_unset FLAG_BADGE05_GET, PoxTournament_LegendLocked')
     put(path, s)
+    # The Regis and their sages moved to the Ruins of Alph chambers
+    # (ruins_of_alph.py places them; their scripts are still in events.inc).
+    # The Route 127 caves stay as empty side areas: no Regi, no sage.
     for species, name in [('Regirock', 'DesertRuins'), ('Regice', 'IslandCave'), ('Registeel', 'AncientTomb')]:
-        upper = species.upper()
+        gone = {'OBJ_EVENT_GFX_' + species.upper(), 'OBJ_EVENT_GFX_SAGE_HNS'}
         path = f'data/maps/{name}/map.json'
         d = json.loads(read(path))
-        d['object_events'] = [o for o in d['object_events'] if o['graphics_id'] != 'OBJ_EVENT_GFX_' + upper]
+        d['object_events'] = [o for o in d['object_events'] if o['graphics_id'] not in gone]
         put(path, json.dumps(d, indent=2) + '\n')
-        actors(name, [npc(upper, upper, 8, 7, 'PoxTournament_' + species, 'FLAG_POX_CAUGHT_' + upper),
-                      npc(upper + '_SAGE', 'SAGE_HNS', 7, 7, 'PoxTournament_' + species, 'FLAG_POX_CAUGHT_' + upper)])
-        path = f'data/maps/{name}/scripts.inc'
-        s = read(path)
-        # Replace the legacy direct-capture entry, including coordinate callers.
-        s = re.sub(name + '_EventScript_' + species + r'::.*?(?=\n\w+::|\Z)',
-                   name + '_EventScript_' + species + '::\n\tgoto PoxTournament_' + species + '\n', s, count=1, flags=re.S)
-        put(path, s)
 
     put('data/scripts/plastic_ox_tournament.inc', (BASE / 'events.inc').read_text())
     line = '\t.include "data/scripts/plastic_ox_tournament.inc"\n'

@@ -1,0 +1,115 @@
+{
+  "donor": "pokehns-expansion",
+  "revision": "44f50eedefe58691b0444973e4138e9190d8fafc",
+  "group": "gMapGroup_PlasticOxInteriors",
+  "tilesets": [
+    {
+      "donor": "gTileset_RuinsOfAlph_Outside_Hns",
+      "here": "gTileset_RuinsOfAlph_Outside_Hns",
+      "path": "data/tilesets/secondary/ruins_of_alph_outside_hns"
+    },
+    {
+      "donor": "gTileset_RuinsOfAlphWriting_Hns",
+      "here": "gTileset_RuinsOfAlphWriting_Hns",
+      "path": "data/tilesets/secondary/ruins_of_alph_writing_hns"
+    }
+  ],
+  "route": "Route: Route 36 south gate (55-57,25) -> gatehouse -> dig site -> four chamber doors. Warps only: the donor's seams to Route 36 and Route 32 are not restored.",
+  "access": "The donor reaches the west and south terraces only through Union Cave B1F, which this build does not have. Here the pond between the main site and the south terraces is crossed with Surf, two east-facing ledge tiles are repainted as plain ground so the south terraces are two-way, and the two Union Cave mouths lead to each other, which joins the west terrace to the rest.",
+  "events": "Donor story is dropped: wandering Pokemon, Unown beams, lamps, both trainers, the visitors and both hidden items outside; the gatehouse staff; the sliding puzzles, holes to B1F, item balls, statue text and the reward-room doors to the Words Rooms in the chambers. The lab, B1F, the Route 32 gatehouse and the Words Rooms are not imported; their doors are made solid. ",
+  "repaint": {
+    "RuinsOfAlph_Outside_hns": {
+      "18,38": "0x30d9",
+      "22,40": "0x30d9"
+    }
+  },
+  "solid": {
+    "RuinsOfAlph_Outside_hns": [
+      [
+        21,
+        21
+      ],
+      [
+        38,
+        27
+      ]
+    ],
+    "RuinsOfAlph_PuzzleAndRewardChambers_hns": [
+      [
+        4,
+        5
+      ],
+      [
+        5,
+        5
+      ],
+      [
+        20,
+        5
+      ],
+      [
+        21,
+        5
+      ],
+      [
+        4,
+        22
+      ],
+      [
+        5,
+        22
+      ],
+      [
+        20,
+        22
+      ],
+      [
+        21,
+        22
+      ],
+      [
+        4,
+        36
+      ],
+      [
+        5,
+        36
+      ],
+      [
+        20,
+        36
+      ],
+      [
+        21,
+        36
+      ],
+      [
+        4,
+        53
+      ],
+      [
+        5,
+        53
+      ],
+      [
+        20,
+        53
+      ],
+      [
+        21,
+        53
+      ]
+    ]
+  },
+  "maps": {
+    "Gate_RuinsOfAlph_Route36_hns": {
+      "layout": "LAYOUT_GATE_RUINS_OF_ALPH_ROUTE36_HNS"
+    },
+    "RuinsOfAlph_Outside_hns": {
+      "layout": "LAYOUT_RUINS_OF_ALPH_OUTSIDE_HNS"
+    },
+    "RuinsOfAlph_PuzzleAndRewardChambers_hns": {
+      "layout": "LAYOUT_RUINS_OF_ALPH_PUZZLE_AND_REWARD_CHAMBERS_HNS"
+    }
+  }
+}

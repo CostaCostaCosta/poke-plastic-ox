@@ -1,0 +1,71 @@
+{
+  "id": "MAP_RUINS_OF_ALPH_OUTSIDE_HNS",
+  "name": "RuinsOfAlph_Outside_hns",
+  "layout": "LAYOUT_RUINS_OF_ALPH_OUTSIDE_HNS",
+  "music": "MUS_RG_ROUTE24",
+  "region_map_section": "MAPSEC_ROUTE_36",
+  "requires_flash": false,
+  "weather": "WEATHER_NONE",
+  "map_type": "MAP_TYPE_ROUTE",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": false,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [],
+  "object_events": [],
+  "warp_events": [
+    {
+      "x": 20,
+      "y": 6,
+      "elevation": 0,
+      "dest_map": "MAP_GATE_RUINS_OF_ALPH_ROUTE36_HNS",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 28,
+      "y": 11,
+      "elevation": 0,
+      "dest_map": "MAP_RUINS_OF_ALPH_PUZZLE_AND_REWARD_CHAMBERS_HNS",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 5,
+      "y": 23,
+      "elevation": 0,
+      "dest_map": "MAP_RUINS_OF_ALPH_PUZZLE_AND_REWARD_CHAMBERS_HNS",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 7,
+      "y": 40,
+      "elevation": 0,
+      "dest_map": "MAP_RUINS_OF_ALPH_PUZZLE_AND_REWARD_CHAMBERS_HNS",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 34,
+      "y": 42,
+      "elevation": 0,
+      "dest_map": "MAP_RUINS_OF_ALPH_PUZZLE_AND_REWARD_CHAMBERS_HNS",
+      "dest_warp_id": "3"
+    },
+    {
+      "x": 13,
+      "y": 25,
+      "elevation": 0,
+      "dest_map": "MAP_RUINS_OF_ALPH_OUTSIDE_HNS",
+      "dest_warp_id": "6"
+    },
+    {
+      "x": 14,
+      "y": 36,
+      "elevation": 0,
+      "dest_map": "MAP_RUINS_OF_ALPH_OUTSIDE_HNS",
+      "dest_warp_id": "5"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [],
+  "region": "REGION_HOENN"
+}
