@@ -294,6 +294,8 @@ KEEP_AS_IS = {
     "TRAINER_PLASTIC_OX_ARTICUNO_SAGE": "Authored UUBL legendary challenge; canonical team in alpha/seafoam/trainers.party.",
     "TRAINER_PLASTIC_OX_ENTEI_SAGE": "Authored UUBL legendary challenge; canonical team in alpha/cinnabar/trainers.party.",
     "TRAINER_PLASTIC_OX_MOLTRES_SAGE": "Authored ADV OU legendary challenge on the Tin Tower roof; canonical team in alpha/tin_tower/trainers.party.",
+    "TRAINER_PLASTIC_OX_ZAPDOS_SAGE": "Authored ADV OU legendary challenge at the Goldenrod Radio Tower; canonical team in alpha/clear_bell/trainers.party.",
+    "TRAINER_PLASTIC_OX_SUICUNE_SAGE": "MORTY as SUICUNE's sage under the Burned Tower, ADV OU; canonical team in alpha/clear_bell/trainers.party.",
     "TRAINER_PLASTIC_OX_JIRACHI_SAGE": "Authored ADV OU legendary challenge in the Meteor Falls Bagon chamber; canonical team in alpha/meteor_falls/trainers.party.",
     # The task's designated format reference. Already six LC-legal Pokemon at
     # exactly the Gym 1 cap, all obtainable before Gym 1.

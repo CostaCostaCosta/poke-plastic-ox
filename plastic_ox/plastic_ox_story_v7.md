@@ -334,6 +334,8 @@ The player learns that the convergence has scattered Pokémon that do not belong
 
 **Battle tier: NU**
 
+After the player wins, Morty leaves the Gym to wait under the Burned Tower for Suicune (see "Suicune — the Clear Bell"). He returns once Suicune is caught.
+
 After victory, the intended route is unambiguous:
 
 **Ecruteak east → Route 119 → Weather Institute → Fortree**
@@ -552,6 +554,26 @@ The site is optional and opens after Gym 6. The NEW MAUVILLE KEY is the round-th
 Inside, the sage asks the player to quiet the generator first. The runaway machine keeps Raikou agitated, and nobody can earn its trust over that noise. Once the red stop switch is pressed, the sage and Raikou follow the standard sage + legendary mechanic: beat the sage and Raikou can be caught on the first try. Afterwards the sage goes home to the Ecruteak sage office.
 
 The scene stays small. Raikou is not a clue, the generator is not evidence of the convergence, and nobody explains why a Johto legend chose a Hoenn ruin. The place felt like home, and that is enough.
+
+## Zapdos — Goldenrod Radio Tower (optional)
+
+**Zapdos followed the storm, and the storm went out.**
+
+Zapdos had been sheltering, unseen, in the weather New Mauville's runaway generator threw off. When the player quiets the generator for Raikou, that storm ends and Zapdos goes looking for the next loudest sky. It finds the Goldenrod Radio Tower's aerial and settles in the closed east studio on the top floor, humming along with the transmitter. A sage followed it, as Morty ordered. The Raikou sage notices only that something else left when the hum stopped and flew north toward the city towers.
+
+The site opens when the generator is off and the OU region is open (the Space Center flag). Before that the tower is ordinary. Once the generator is off but before OU, the tower engineer complains about static on every band, every night, and says the director has closed the east studio. After OU, Zapdos and its sage are in the studio and follow the standard sage + legendary mechanic: beat the sage and Zapdos can be caught on the first try. Afterwards the sage goes home to the Ecruteak sage office and counts toward the Tin Tower keeper's five.
+
+With the static gone, the engineer gives the player the **CLEAR BELL**. It was dug out of the transmitter footing years ago, rang on its own the night Zapdos arrived, and is "old Ecruteak work." Nobody at the tower knows what it is for.
+
+## Suicune — the Clear Bell (optional)
+
+**Morty kept the hardest watch for himself.**
+
+After the player earns the third Badge, Morty leaves his Gym and waits under the Burned Tower, on the spot where Suicune looked back at the player. He says the tower once called its Pokémon with a bell, the bell is long gone, and he will wait anyway. He is Suicune's sage.
+
+When the player brings the CLEAR BELL, Morty recognises the tower's own bell and rings it. The ground shakes, and Suicune comes back to the place it last saw the player. Morty battles with his own OU team ending in Suicune; beating him lets any ball catch Suicune on the first try. Afterwards Morty returns to his Gym. He does not join the sage office.
+
+The chain is optional and ordered: the tournament's NEW MAUVILLE KEY → Raikou's generator → Zapdos at the Radio Tower → the CLEAR BELL → Suicune. The bell is the only explanation. Nobody says why Suicune answers it, and Morty does not explain the convergence. He says only that it came back for the player.
 
 ---
 

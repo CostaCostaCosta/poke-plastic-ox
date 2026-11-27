@@ -7,7 +7,8 @@ stage: "4 — Ecruteak and the Burned Tower"
 depth: full
 wiki: plasticox-burnedtowerb1f
 maps: [PlasticOx_BurnedTowerB1F]
-flags: [FLAG_POX_STORY_BURNED_TOWER]
+flags: [FLAG_POX_STORY_BURNED_TOWER, FLAG_POX_RANG_CLEAR_BELL, FLAG_POX_CAUGHT_SUICUNE]
+trainers: [TRAINER_PLASTIC_OX_SUICUNE_SAGE]
 items: [ITEM_ULTRA_BALL, ITEM_BIG_PEARL]
 status: drafted
 ---
@@ -27,7 +28,9 @@ The basement landing under the tower, where the fire stopped: a single wall of d
 5. **Morty's reading.** "Places remember what they were" — then he pivots immediately to the practical: the displaced Pokémon need help now. He orders the sages to search the region, shelter them, and stay until they feel safe. They accept and are removed; Morty is removed and returns to `PlasticOx_MortyGym`.
 6. **State.** `FLAG_POX_STORY_BURNED_TOWER` sets, the scene cannot replay, and the room is left empty behind the player.
 
-**Must not:** release Raikou, Entei, or Suicune; restore more than the one stair; name the cause or the mechanism; have Morty explain the phenomenon twice; let a sage name the legendary they will find.
+7. **Morty waits for Suicune (after badge 3).** `LOCALID_POX_SUICUNE_MORTY` `(16,12)` stands where Suicune looked back. He is hidden on transition (`FLAG_TEMP_1`) before `FLAG_BADGE03_GET` and after `FLAG_POX_CAUGHT_SUICUNE`, and his Gym self is away for the same span. Without the CLEAR BELL he says he will wait. With it, he rings it, the camera shakes, `FLAG_POX_RANG_CLEAR_BELL` is set, and SUICUNE `(16,11)` appears behind him. Morty is Suicune's sage: `TRAINER_PLASTIC_OX_SUICUNE_SAGE` (his own Lv 55 OU team ending in Suicune) through `pox_legendary_sage`, then the reward capture. Afterwards he returns to the Gym. Owned by `plastic_ox/alpha/clear_bell.py`. The bell comes from the Radio Tower (`goldenrodcity-radiotower-5f-hns`).
+
+**Must not:** release Raikou, Entei, or Suicune during the scene (Suicune comes back only to the CLEAR BELL, post-OU); restore more than the one stair; name the cause or the mechanism; have Morty explain the phenomenon twice; let a sage name the legendary they will find.
 
 ## Key interactions
 
@@ -79,7 +82,7 @@ The basement landing under the tower, where the fire stopped: a single wall of d
 
 ## Open questions
 
-- Does the ceremonial bell become a key item (new item required) that later identifies the sage-beside-a-legendary scenes, or stay as prose?
+- The ceremonial bell in this scene stays prose. The key item is the CLEAR BELL from the Radio Tower, which Morty calls "the tower's own bell."
 - Should the stair be revealed in place with a short animation instead of two white fades? The current version writes a better scene than it shows.
 - Do the two sages need separate lines, or should one be silent so the player notices the other is speaking for both?
 - Should the landing be encounter-free after the scene, so leaving the room is quiet?

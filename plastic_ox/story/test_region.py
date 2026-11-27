@@ -52,9 +52,9 @@ def test_order() -> None:
 
     data = region_data()
     stops = data["stops"]
-    check("66 stops", len(stops) == 66, str(len(stops)))
+    check("67 stops", len(stops) == 67, str(len(stops)))
     check("40 mainline", data["counts"]["mainline"] == 40, str(data["counts"]))
-    check("26 supporting", data["counts"]["supporting"] == 26, str(data["counts"]))
+    check("27 supporting", data["counts"]["supporting"] == 27, str(data["counts"]))
     check("first stop", stops[0]["slug"] == "pallet-town", stops[0]["slug"])
     check("last stop", stops[-1]["slug"] == "mtsilver-1f-waterfallroom-hns", stops[-1]["slug"])
     mainline = [stop["slug"] for stop in stops if stop["mainline"]]
@@ -162,7 +162,7 @@ def test_built_page() -> None:
         region_page = (out / "region.html").read_text(encoding="utf-8")
         check("built region page", 'id="region-data"' in region_page and "id=\"prev-stop\"" in region_page)
         metadata = json.loads((out / "build.json").read_text(encoding="utf-8"))
-        check("build metadata counts region stops", metadata.get("region_stops") == 66, str(metadata))
+        check("build metadata counts region stops", metadata.get("region_stops") == 67, str(metadata))
         check("built topology asset", (out / "assets/topology.svg").is_file())
 
 

@@ -94,6 +94,7 @@ STORY_ORDER = [
     "route19-frlg",
     "route6-hns",
     "route5-hns",
+    "goldenrodcity-radiotower-5f-hns",
     # Act V — Meteor Falls, Blackthorn, Victory Road, the League
     "route115",
     "meteorfalls-1f-1r",

@@ -15802,6 +15802,22 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_PrettyFeather,
     },
 
+    [ITEM_CLEAR_BELL] =
+    {
+        .name = ITEM_NAME("Clear Bell"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "An old temple bell.\n"
+            "Its ring carries on\n"
+            "long after it stops."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_SootheBell,
+        .iconPalette = gItemIconPalette_SootheBell,
+    },
+
     [ITEM_TRAINING_KIT] =
     {
         .name = ITEM_NAME("Training Kit"),
