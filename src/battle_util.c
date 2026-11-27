@@ -5250,19 +5250,36 @@ bool32 CanBeParalyzed(enum BattlerId battlerAtk, enum BattlerId battlerDef, enum
     return FALSE;
 }
 
+// ADV OU Freeze Clause Mod: while one POKéMON on battlerDef's side is frozen, no other
+// one can be frozen; the freeze simply doesn't happen. Checks the battlers in play
+// (gBattleMons) and the benched party, so it holds for player and AI alike.
+static bool32 IsFreezeClauseActive(enum BattlerId battlerDef)
+{
+    struct Pokemon *party;
+    enum BattlerId battler;
+    u32 i;
+
+    if (!B_FREEZE_CLAUSE)
+        return FALSE;
+    for (battler = 0; battler < gBattlersCount; battler++)
+    {
+        if (battler != battlerDef && IsBattlerAlly(battler, battlerDef)
+         && IsBattlerAlive(battler) && (gBattleMons[battler].status1 & STATUS1_FREEZE))
+            return TRUE;
+    }
+    party = gParties[GetBattlerTrainer(battlerDef)];
+    for (i = 0; i < PARTY_SIZE; i++)
+    {
+        if (i == gBattlerPartyIndexes[battlerDef])
+            continue;
+        if (GetMonData(&party[i], MON_DATA_HP) != 0 && (GetMonData(&party[i], MON_DATA_STATUS) & STATUS1_FREEZE))
+            return TRUE;
+    }
+    return FALSE;
+}
+
 bool32 CanBeFrozen(enum BattlerId battlerAtk, enum BattlerId battlerDef, enum Ability abilityDef)
 {
-    if (B_FREEZE_CLAUSE)
-    {
-        struct Pokemon *party = gParties[GetBattlerTrainer(battlerDef)];
-
-        for (u32 i = 0; i < PARTY_SIZE; i++)
-        {
-            if (GetMonData(&party[i], MON_DATA_STATUS) & STATUS1_FREEZE)
-                return FALSE;
-        }
-    }
-
     if (CanSetNonVolatileStatus(
             battlerAtk,
             battlerDef,
@@ -5401,6 +5418,8 @@ bool32 CanSetNonVolatileStatus(enum BattlerId battlerAtk, enum BattlerId battler
         break;
     case MOVE_EFFECT_FREEZE:
     case MOVE_EFFECT_FROSTBITE:
+        if (effect == MOVE_EFFECT_FREEZE && IsFreezeClauseActive(battlerDef))
+            return FALSE;  // Freeze Clause: fails silently, like a secondary that didn't roll
         if (gBattleMons[battlerDef].status1 & STATUS1_ICY_ANY)
         {
             battleScript = BattleScript_AlreadyBurned;
