@@ -7,12 +7,12 @@ stage: "11 — Mossdeep and the Space Center"
 depth: full
 wiki: mossdeepcity
 maps: [MossdeepCity]
-also_maps: [MossdeepCity_Gym, MossdeepCity_SpaceCenter_1F, MossdeepCity_SpaceCenter_2F]
+also_maps: [MossdeepCity_Gym, MossdeepCity_SpaceCenter_1F, MossdeepCity_SpaceCenter_2F, MossdeepCity_PokemonCenter_1F, MossdeepCity_Mart]
 flags: [FLAG_POX_STORY_SPACE_CENTER, FLAG_POX_GIFT_SPACE, FLAG_BADGE06_GET, FLAG_POX_STORY_MANSION, FLAG_RECEIVED_KINGS_ROCK, FLAG_RECEIVED_OLD_ROD]
 badges: [6]
 trainers: [TRAINER_PLASTIC_OX_TATELIZA]
 items: [ITEM_NET_BALL, ITEM_KINGS_ROCK, ITEM_OLD_ROD]
-status: drafted
+status: implemented
 ---
 
 # Mossdeep City
@@ -38,18 +38,24 @@ The island at the bottom of the map: white rock and wish tags on the shore, a ha
 
 | Interaction | Where | Trigger / state | Current behavior | Target behavior |
 | --- | --- | --- | --- | --- |
-| Saffron road | city `(38,12)` `Pox_SaffronRoad` | always | "northern coast leads through ROUTE 19 to SAFFRON" | two states on `FLAG_POX_STORY_SPACE_CENTER`: shut before the report, open after; keep it as directions |
-| South shore seam | city `(0,20)` `PoxRegion_sea_mossdeep_b` | `FLAG_POX_STORY_MANSION` unset | generic "This passage is still closed" and a warp back | keep the lock; name the Seafoam crossing, not "your next objective" |
-| Gym leaders | Gym `(23,7)`, `(24,7)` `Pox_TateLiza` | badge 5 + Mansion; two healthy mons | badge 6, shared `Pox_Text_Badge`; refusal is global `Pox_NotReady` | own refusal line; split the badge line so "the next road" is Saffron |
-| Gym trainers | Gym, twelve trainer scripts | always | vanilla RS defeat lines (dust bunny, "the indecisive lose") | keep the psychic-teen register; diff strings so no two share a line |
-| The report | 1F `(7,2)` `Pox_SpaceReport` | `FLAG_BADGE06_GET`, then flag set | one long box; flag flips at the end | two beats — observation, then Saffron — with a silent walk to the window between |
-| Field staff | 1F `(2,2)`,`(6,6)`,`(10,2)`,`(14,7)`; 2F `(6,2)`,`(11,8)`,`(5,6)` | always | all say "Our field researchers can explain…" | one redirect at 1F `(2,2)`; the rest get jobs: docking clerk, scheduler, school group, telemetry |
-| Villain leftovers | city `(44,23)`–`(44,26)`, `(45,25)`; 1F `(10,2)`,`(11,6)`,`(12,9)`,`(13,2)`; 2F `(12,2)`,`(13,3)`,`(14,2)`,`(0,8)`,`(1,9)` | script `0x0` or the redirect | Magma grunts, Maxie, Tabitha as dead props; two objects share 1F `(10,2)` | delete, or re-skin as staff; never script them as villains |
-| White rock | city `(56,21)` | always | wish-tag speech for safe launches | keep; the town's one piece of unironic ritual |
-| King's Rock boy | city `(23,13)` | `FLAG_RECEIVED_KINGS_ROCK` | gives `ITEM_KINGS_ROCK`, "keep it a secret from STEVEN" | keep the secret; make it a trade of something he cannot use |
-| Old Rod | city `(54,4)` | `FLAG_BADGE06_GET` | gives `ITEM_OLD_ROD`, mostly MAGNEMITE | keep the gate; he lends it once the harbour clears |
-| Net Ball | city `(62,35)` | `FLAG_ITEM_MOSSDEEP_CITY_NET_BALL` | `ITEM_NET_BALL` | keep; place it on the tide line |
-| Scott | city `(61,29)` | `VAR_SCOTT_STATE`; object removed after one talk | vanilla scout text about a "warning letter" | rewrite as a travelling talent scout; no Battle Frontier, no letter |
+| Saffron road | city `(38,12)` `PoxIsles_SaffronSailor` | `FLAG_POX_STORY_SPACE_CENTER` | two states: "the water gets you there long before the gate lets you in", then "SAFFRON is open… the gate is the easy part" | shipped |
+| Launch board | city `(32,12)` `PoxIsles_LaunchBoard` | `FLAG_POX_STORY_SPACE_CENTER` | the date pasted over three times; after the report the board is taken down. No letter, no threat | shipped |
+| Arrival | city `(4,21)` `PoxIsles_DockClerk` | always | logs the player off the Seafoam crossing, gives ferry times and points at the Gym and the white roof | shipped |
+| South shore seam | city `(0,20)` `PoxRegion_sea_mossdeep_b` | `FLAG_POX_STORY_MANSION` unset | "The crossing to SEAFOAM is running hard" and a warp back | shipped (unreachable in normal play) |
+| Gym leaders | Gym `(23,7)`, `(24,7)` `Pox_TateLiza` | badge 5 + Mansion; two healthy mons | duet challenge ("…is just manners"), own refusal, own two-Pokémon line, "MIND BADGE" line that sends the player to the Space Center, own repeat line | shipped |
+| Gym guide and statues | Gym `(5,33)`, statues | `FLAG_BADGE06_GET` | describes a double battle and a mixed team, not the Hoenn psychic gym; post-victory branch and statue now key off badge 6 | shipped |
+| Gym trainers | Gym, twelve trainer scripts | always | vanilla RS psychic-teen lines, all distinct | keep |
+| The report | 1F `(7,2)` `Pox_SpaceReport` | `FLAG_BADGE06_GET`, then flag set | two beats with a turn to the console between; before badge 6 the chief waves the player off in his own words (`PoxIsles_ReportBusy`) | shipped |
+| Field staff | 1F and 2F, e.g. `Pox_Facility_MossdeepCity_SpaceCenter_1F_9` | always | one line each by job; the child who wants to ride a rocket is now a visible child at 1F `(1,6)` (it was an invisible object on the plan table) | shipped |
+| Eevee | 1F `(5,7)` `Pox_Space` | `FLAG_POX_STORY_SPACE_CENTER`, `FLAG_POX_GIFT_SPACE` | a study animal retired to the road; busy with feeding time before the report (`PoxIsles_SpaceBusy`) | shipped |
+| Villain leftovers | city `(44,23)`–`(44,26)`, `(45,25)`; Space Center 1F / 2F | `FLAG_POX_HIDE_UNUSED_ACTOR` | never on screen; the objects and their dead Hoenn scripts remain in the data | delete with their scripts (artifact cleanup) |
+| White rock | city `(56,21)`, sign `(57,21)` | always | wish tags every launch window; the rock reads "SAFE FLIGHT" and one tag hoping it is not a Monday | shipped |
+| School kid | city `(65,16)` `PoxIsles_SchoolKid` | always | reads the Space Center sign: the board has said "soon" since his brother was little | shipped |
+| King's Rock boy | city `(23,13)` | `FLAG_RECEIVED_KINGS_ROCK` | Steven's neighbour hands over a rock he cannot use; "don't tell him what for" | shipped |
+| Old Rod | city `(54,4)` | `FLAG_BADGE06_GET` | gives `ITEM_OLD_ROD`, mostly MAGNEMITE | keep |
+| Net Ball | city `(62,35)` | `FLAG_ITEM_MOSSDEEP_CITY_NET_BALL` | `ITEM_NET_BALL` | keep |
+| Townspeople | city, Center, Mart | always | tide-watcher, Wailmer counter, ferry passenger, black belt training against the tide, mart regulars: island register, no vanilla Hoenn lines | shipped |
+| Scott | city `(61,29)` | `VAR_SCOTT_STATE`; object removed after one talk | a travelling talent scout who came to see the twins; no Battle Frontier, no letter | shipped |
 
 ## Dialogue guidance
 
@@ -85,12 +91,16 @@ The island at the bottom of the map: white rock and wish tags on the shore, a ha
 - Maps: `MossdeepCity` (`MAP_MOSSDEEP_CITY`), `MossdeepCity_Gym` (`MAP_MOSSDEEP_CITY_GYM`), `MossdeepCity_SpaceCenter_1F` (`MAP_MOSSDEEP_CITY_SPACE_CENTER_1F`), `MossdeepCity_SpaceCenter_2F` (`MAP_MOSSDEEP_CITY_SPACE_CENTER_2F`)
 - Scripts: `data/scripts/plastic_ox_story.inc` (`Pox_TateLiza`, `Pox_SpaceReport`, `Pox_Space`, `Pox_SaffronRoad`, `Pox_FacilityWorker`), `data/maps/MossdeepCity/scripts.inc`, `data/maps/MossdeepCity_Gym/scripts.inc`
 - Trainers / items: `TRAINER_PLASTIC_OX_TATELIZA` (six mons, Lv 44–46, Leftovers-heavy), `ITEM_KINGS_ROCK`, `ITEM_OLD_ROD`, `ITEM_NET_BALL`
-- Known gaps: fourteen dead Magma/Aqua objects (five in town with script `0x0`, nine in the Space Center, one overlapping pair at 1F `(10,2)`, Tabitha on a male Magma sprite); nineteen NPCs (ten on 1F, nine on 2F) share the single `Pox_FacilityWorker` redirect; legacy Hoenn flags `FLAG_MET_PROF_COZMO`, `FLAG_DEFEATED_MOSSDEEP_GYM`, and `FLAG_RECEIVED_HM_DIVE` are all defined as `0`, so the Pokéfan's and Gym guide's "after" branches can never fire; the report flag flips inside one msgbox; 2F has no content beyond duplicates; the leader record uses `Pic: Leader Roxanne` with `Gender: Male` for a two-person team.
+- Town, Gym, Center, Mart and Space Center wording for this pass is authored in `plastic_ox/alpha/south_isles.py` (emits `data/scripts/plastic_ox_south_isles.inc`, prefix `PoxIsles_`). Harness: `plastic_ox/demo/test_south_isles.py`.
+- Magma removed (2026-11-27): the fourteen Magma objects (five in town, nine in the Space Center) are gone from the map data. `south_isles.prune` also drops every block of the town and Space Center scripts that nothing reaches any more, including the Magma/Aqua sailor text. The debug menu's Steven multi battle still reaches one 2F block, which keeps its lines minus the Magma movements.
+- Interiors (2026-11-27): the houses (taster, Fortree mail, Super Rod, hideout family), Steven's house (Steven, rock display, postgame letter) and the Game Corner (two people beside the dark link cabinets) speak their own lines. Mechanics are unchanged.
+- Gym guide: `PoxIsles_MossdeepGymGuide` runs `CheckMossdeepGymUUBLRules` (ADV UUBL: species at UUBL or below, no Ubers, OHKO/evasion/Assist/Swagger clauses) and names the first offender as the twins' rule. It warns but does not block.
+- Known gaps: `FLAG_DEFEATED_MOSSDEEP_GYM` and `FLAG_RECEIVED_HM_DIVE` are never set here, so anything still keyed on them is dead (the Gym guide and statues now use `FLAG_BADGE06_GET`); 2F Steven is hidden from a new game, so only the 1F Steven is met; the leader record uses `Pic: Leader Roxanne` with `Gender: Male` for a two-person team.
 
 ## Open questions
 
 - Is 2F a room or a view? Recommend one post-report scene at the window, then retire the stairs; the current nine duplicates are worse than an empty floor.
-- Delete the Magma clusters, or re-skin them as Space Center staff? Recommend delete — the sprites alone spoil Act V's "no villain crisis" rule.
+- ~~Delete the Magma clusters, or re-skin them as Space Center staff?~~ Deleted on 2026-11-27.
 - Split the report at the flag, or keep one box? Recommend split: the flag currently flips mid-conversation, hiding the moment Saffron opens.
 - Should Steven appear in the Space Center at all? He is a Mossdeep neighbour and a League-tier trainer; recommend one line, no League reference.
 - Is the Old Rod's Badge 6 gate deliberate? It is the only gift tied to the Gym, and it makes the badge feel civic rather than heroic.

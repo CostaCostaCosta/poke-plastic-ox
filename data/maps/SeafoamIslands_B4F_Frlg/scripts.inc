@@ -168,9 +168,7 @@ Text_RockSlideTaught::
 	.string "tunnel…$"
 
 SeafoamIslands_B4F_Text_BouldersMightChangeWaterFlow::
-	.string "Hint: Boulders might change the\n"
-	.string "flow of water.$"
+	.string "Scratched into the rock:\p“Two stones in the upper channel\nand the water lets go.”$"
 
 SeafoamIslands_B4F_Text_DangerFastCurrent::
-	.string "DANGER\n"
-	.string "Fast current!$"
+	.string "A tin plate on a rope:\p“FAST WATER. It takes you where it\nis going, not where you are.”$"

@@ -184,7 +184,7 @@ CinnabarIsland_Gym_EventScript_GymGuyPostVictory::
 
 CinnabarIsland_Gym_EventScript_GymStatue::
 	lockall
-	goto_if_set FLAG_BADGE07_GET, CinnabarIsland_Gym_EventScript_GymStatuePostVictory
+	goto_if_set FLAG_BADGE05_GET, CinnabarIsland_Gym_EventScript_GymStatuePostVictory
 	msgbox CinnabarIsland_Gym_Text_GymStatue
 	releaseall
 	end
@@ -749,126 +749,82 @@ CinnabarIsland_Gym_Text_MakeSpaceForThis::
 	.string "Make space for this, child!$"
 
 CinnabarIsland_Gym_Text_ErikIntro::
-	.string "Do you know how hot POKéMON fire\n"
-	.string "breath can get?$"
+	.string "I wrote question four. Nobody\ngets question four.$"
 
 CinnabarIsland_Gym_Text_ErikDefeat::
-	.string "Yow!\n"
-	.string "Hot, hot, hot!$"
+	.string "Marked down. By a tourist.$"
 
 CinnabarIsland_Gym_Text_ErikPostBattle::
-	.string "Fire, or to be more precise,\n"
-	.string "combustion…\p"
-	.string "…Oxygen in the air…\n"
-	.string "Blah, blah, blah, blah…$"
+	.string "Technically the question is\nfair. Technically.\pI've stopped taking complaints\nabout it.$"
 
 CinnabarIsland_Gym_Text_QuinnIntro::
-	.string "I was a thief, but I went straight\n"
-	.string "as a TRAINER.$"
+	.string "Wrong answer. That makes you\nmine.\pI used to take things without\nasking, too.$"
 
 CinnabarIsland_Gym_Text_QuinnDefeat::
-	.string "Caught red-handed! I give up!$"
+	.string "Caught red-handed. Again.$"
 
 CinnabarIsland_Gym_Text_QuinnPostBattle::
-	.string "I get this uncontrollable urge to\n"
-	.string "steal other people's POKéMON.$"
+	.string "BLAINE caught me in his\nstoreroom nine years ago. He\lhanded me a mop instead of\lcalling anyone.\pI've been on this door since.$"
 
 CinnabarIsland_Gym_Text_AveryIntro::
-	.string "I've studied POKéMON thoroughly.\n"
-	.string "You can't win!$"
+	.string "I've read every answer key this\nGYM ever printed. You can't win.$"
 
 CinnabarIsland_Gym_Text_AveryDefeat::
-	.string "Waah!\n"
-	.string "My studies were insufficient!$"
+	.string "The key was out of date!$"
 
 CinnabarIsland_Gym_Text_AveryPostBattle::
-	.string "My theories are too complicated\n"
-	.string "for you to understand.$"
+	.string "Six questions, two answers each.\nSixty-four ways through, and\lpeople still guess.$"
 
 CinnabarIsland_Gym_Text_RamonIntro::
-	.string "I like using FIRE-type POKéMON.\n"
-	.string "I just do.$"
+	.string "I like the heat in here. I just\ndo.$"
 
 CinnabarIsland_Gym_Text_RamonDefeat::
-	.string "Too hot to handle!$"
+	.string "Ow. Warm, that.$"
 
 CinnabarIsland_Gym_Text_RamonPostBattle::
-	.string "I wish there were a thief POKéMON.\n"
-	.string "I'd use that!$"
+	.string "No challengers since spring.\nI've been battling the boiler.$"
 
 CinnabarIsland_Gym_Text_DerekIntro::
-	.string "I know why BLAINE became a\n"
-	.string "TRAINER.$"
+	.string "I know why BLAINE keeps this\nGYM.$"
 
 CinnabarIsland_Gym_Text_DerekDefeat::
-	.string "Ow!$"
+	.string "Fine. I'll tell you.$"
 
 CinnabarIsland_Gym_Text_DerekPostBattle::
-	.string "Our LEADER, BLAINE, became lost\n"
-	.string "in the mountains but good.\p"
-	.string "Night fell when a fiery bird\n"
-	.string "POKéMON appeared.\p"
-	.string "Its light allowed BLAINE to find\n"
-	.string "his way down safely.$"
+	.string "He was lost on the mountain\nonce, after dark. A burning bird\llit his way down.\pHe has been paying that back\never since. That's the story. He\lsays it was a lamp.$"
 
 CinnabarIsland_Gym_Text_DustyIntro::
-	.string "I've been to many GYMS, but this\n"
-	.string "one best suits my style.$"
+	.string "I've seen a lot of GYMS from the\ninside. This is the only one\lthat let me stay.$"
 
 CinnabarIsland_Gym_Text_DustyDefeat::
-	.string "Yowza!\n"
-	.string "Too hot!$"
+	.string "Yowza. Scorched.$"
 
 CinnabarIsland_Gym_Text_DustyPostBattle::
-	.string "PONYTA, NINETALES…\n"
-	.string "Those are popular FIRE POKéMON.$"
+	.string "Half the island bets on which\ndoor stops a challenger. I had\lyou down for five.$"
 
 CinnabarIsland_Gym_Text_ZacIntro::
-	.string "Fire is weak against H2O.$"
+	.string "Last question, last TRAINER.\nFire is weak against H2O. Write\lthat down.$"
 
 CinnabarIsland_Gym_Text_ZacDefeat::
-	.string "Oh!\n"
-	.string "Snuffed out!$"
+	.string "Extinguished.$"
 
 CinnabarIsland_Gym_Text_ZacPostBattle::
-	.string "Water beats fire, of course.\p"
-	.string "But fire melts ice, so the FIRE\n"
-	.string "type beats ICE-type POKéMON.$"
+	.string "BLAINE is through there. He was\na firefighter, you know.\pHe knows more ways to put a\nthing out than to light it.$"
 
 CinnabarIsland_Gym_Text_GymGuyAdvice::
-	.string "Yo!\n"
-	.string "Champ in the making!\p"
-	.string "The hotheaded BLAINE is a FIRE\n"
-	.string "POKéMON pro.\p"
-	.string "Douse his spirits with water!\p"
-	.string "You'd better take some\n"
-	.string "BURN HEALS, too.$"
+	.string "Yo! Champ in the making! Forget\nthe BURN HEALS.\pBLAINE's team isn't the fire\nbrigade you're picturing. He\lpicks whatever holds a line:\lrock, water, a ghost.\pHe keeps to this GYM's weight\nclass, too: nothing heavier than\lUU, no one-hit KO moves, no\levasion tricks. Let me look at\lyour team.\pAnswer the quiz right and you\nwalk straight through. Answer\lwrong and you get a TRAINER and\lsome exercise.$"
 
 CinnabarIsland_Gym_Text_GymGuyPostVictory::
-	.string "{PLAYER}!\n"
-	.string "You beat that firebrand!$"
+	.string "{PLAYER}! You put the old\nfirefighter out!\pHe gave you the house key? Then\nI'm staying down here, where\lit's warm.$"
 
 CinnabarIsland_Gym_Text_GymStatue::
-	.string "CINNABAR POKéMON GYM\n"
-	.string "LEADER: BLAINE\p"
-	.string "WINNING TRAINERS:\n"
-	.string "{RIVAL}$"
+	.string "CINNABAR ISLAND POKéMON GYM\nLEADER: BLAINE\pThe Hotheaded Quiz Master!$"
 
 CinnabarIsland_Gym_Text_GymStatuePlayerWon::
-	.string "CINNABAR POKéMON GYM\n"
-	.string "LEADER: BLAINE\p"
-	.string "WINNING TRAINERS:\n"
-	.string "{RIVAL}, {PLAYER}$"
+	.string "CINNABAR ISLAND POKéMON GYM\nLEADER: BLAINE\pWINNING TRAINERS:\n{PLAYER}$"
 
 CinnabarIsland_Gym_Text_PokemonQuizRules::
-	.string "POKéMON Quiz!\p"
-	.string "Get it right, and the door opens to\n"
-	.string "the next room.\p"
-	.string "Get it wrong, and face a TRAINER!\p"
-	.string "If you want to conserve your\n"
-	.string "POKéMON for the GYM LEADER…\p"
-	.string "Then get it right!\n"
-	.string "Here we go!$"
+	.string "The CINNABAR GYM quiz! A house\ntradition since before the fire.\pRight answer, and the door\nopens. Wrong answer, and you\lface a TRAINER.\pThe island has tomatoes riding\non you. Here we go!$"
 
 CinnabarIsland_Gym_Text_QuizQuestion1::
 	.string "CATERPIE evolves into METAPOD?$"

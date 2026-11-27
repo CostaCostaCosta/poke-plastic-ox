@@ -4,6 +4,8 @@
 * Routes 8, 7 and 21 (cinnabar checkpoint: tier UU, cap 42) roll their gPoxUU
   land tables: step in tall grass until a wild battle starts, then check the
   POKeMON and its level against the map's slots.
+* Route 20 West's open sea (same checkpoint) rolls its gPoxUU Surf table:
+  Surf off the landing and swim until a wild battle starts.
 * Route 44's grass is Surf-only: no walking path from the Rustboro seam
   reaches a grass tile (water is the only way in), and the grass rolls the UU
   table with GIRAFARIG.
@@ -272,6 +274,76 @@ def route44_surf_to_grass():
           f'Lv{level} is a {symbol} slot', flush=True)
 
 
+def route20_surf():
+    """Route 20 West (the open sea between CINNABAR and SEAFOAM): walk the
+    landing, Surf from its shore for real, swim back and forth until a wild
+    battle starts, and check it against gPoxUURoute20West's five Surf slots."""
+    from test_warps_v1 import make_playtest
+    name, symbol, spawn = 'PlasticOx_Route20West', 'gPoxUURoute20West_WaterMons', (58, 10)
+    g = make_playtest()
+    g.flag('FLAG_POX_TRIGGERS_ENABLED', True)
+    g.test_water = False
+    g.warp(name, *spawn)
+    g.frame(90)
+    assert current(g) == name, current(g)
+    stride = g.sizes[symbol] // 5
+    table = [(g.u8(g.syms[symbol] + i * stride), g.u8(g.syms[symbol] + i * stride + 1),
+              g.u16(g.syms[symbol] + i * stride + 2)) for i in range(5)]
+    assert all(36 <= lo <= hi <= 42 for lo, hi, _sp in table), table
+    assert not {sp_id(s) for s in FORBIDDEN} & {sp for _lo, _hi, sp in table}, table
+    tiles = {}
+    for x in range(spawn[0] - 20, spawn[0] + 20):
+        for y in range(spawn[1] - 15, spawn[1] + 15):
+            try:
+                tiles[(x, y)] = (g.collision_at(x, y)[0], BEHAVIORS[g.behavior_at(x, y)[0]])
+            except Exception:
+                pass
+    seen, todo = {spawn}, [spawn]
+    while todo:
+        x, y = todo.pop()
+        for dx, dy in DELTAS.values():
+            n = (x + dx, y + dy)
+            if n not in seen and n in tiles and not tiles[n][0] and not water(tiles[n][1]):
+                seen.add(n)
+                todo.append(n)
+
+    def open_water(p):
+        return p in tiles and not tiles[p][0] and water(tiles[p][1])
+    # A shore whose water tile has another open water tile beyond it, to swim on.
+    shores = sorted((abs(x - spawn[0]) + abs(y - spawn[1]), (x, y), d) for (x, y) in seen
+                    for d, (dx, dy) in DELTAS.items()
+                    if open_water((x + dx, y + dy)) and open_water((x + 2 * dx, y + 2 * dy)))
+    assert shores, 'no shore on the Route 20 West landing'
+    for _dist, shore, d in shores[:20]:
+        g.release_scripts()
+        g.warp(name, *spawn)
+        g.frame(60)
+        try:
+            navigate(g, lambda x, y, s=shore: (x, y) == s)
+        except AssertionError:
+            continue
+        ok, note = g.mount_surf({'N': 'UP', 'S': 'DOWN', 'E': 'RIGHT', 'W': 'LEFT'}[d])
+        if ok:
+            break
+    else:
+        raise AssertionError('could not Surf from the Route 20 West landing')
+    reverse = dict(N='S', S='N', E='W', W='E')[d]
+    g.tap(KEYS[d], hold=1, wait=18)  # one stroke out, so both legs stay on water
+    g.write(g.syms['sWildEncountersDisabled'], 0)
+    for step in range(600):
+        g.tap(KEYS[d if step % 2 == 0 else reverse], hold=1, wait=18)
+        if g.u32(g.syms['gBattleTypeFlags']):
+            g.frame(120)
+            break
+        assert g.surfing() and current(g) == name, g.state()
+    else:
+        raise AssertionError('no Surf encounter on Route 20 West')
+    species, level = enemy(g)
+    assert any(sp == species and lo <= level <= hi for lo, hi, sp in table), (species, level, table)
+    print(f'PASS {name}: surfed from {shore}, encounter after {step + 1} strokes, species {species} '
+          f'Lv{level} is a {symbol} slot', flush=True)
+
+
 def contest_game():
     g = StoryGame(spawn=('Gate_NationalPark_hns', 38, 3))
     g.run('Pox_Cyndaquil')
@@ -416,12 +488,14 @@ def contest_claim_any_day():
 
 
 def main():
-    which = sys.argv[1:] or ['routes', 'route44', 'park', 'contest', 'claim']
+    which = sys.argv[1:] or ['routes', 'route44', 'route20', 'park', 'contest', 'claim']
     if 'routes' in which:
         route_tables()
     if 'route44' in which:
         route44_surf_only()
         route44_surf_to_grass()
+    if 'route20' in which:
+        route20_surf()
     if 'park' in which:
         park_thursday()
     if 'contest' in which:

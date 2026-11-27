@@ -34,11 +34,8 @@ CinnabarIsland_Mart_Items::
 	end
 
 CinnabarIsland_Mart_Text_DontTheyHaveXAttack::
-	.string "Don't they have X ATTACK?\p"
-	.string "I like it because it raises the\n"
-	.string "ATTACK stat in battle.$"
+	.string "The shelves fill up when a boat\ngets in, and not before.\pBuy the REVIVES while you're\nlooking at them.$"
 
 CinnabarIsland_Mart_Text_ExtraItemsNeverHurt::
-	.string "It never hurts to have extra items.\n"
-	.string "You never know what might happen.$"
+	.string "Two ESCAPE ROPES. I'm going back\ninto the old house for my\lnotebooks, and I am not walking\lout the long way.$"
 

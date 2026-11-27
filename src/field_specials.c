@@ -83,74 +83,31 @@
 
 #define TAG_ITEM_ICON 5500
 
-// Returns the first Little Cup violation and buffers its Pokemon and move/item names.
-u16 CheckRustboroGymLittleCupRules(void)
+// ADV Ubers. The tier table (src/data/pokemon/evolution_tier_gates.h) leaves them
+// unlisted (EVO_TIER_NONE), so they are named here.
+static bool32 IsADVUber(enum Species species)
 {
-    u32 i, j;
-
-    for (i = 0; i < gPartiesCount[B_TRAINER_PLAYER]; i++)
+    switch (species)
     {
-        struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][i];
-        enum Item item;
-
-        if (!GetMonData(mon, MON_DATA_SANITY_HAS_SPECIES) || GetMonData(mon, MON_DATA_IS_EGG))
-            continue;
-
-        GetMonData(mon, MON_DATA_NICKNAME, gStringVar1);
-        for (j = 0; j < MAX_MON_MOVES; j++)
-        {
-            enum Move move = GetMonData(mon, MON_DATA_MOVE1 + j);
-            u32 effectIndex;
-            bool32 isBannedMove = FALSE;
-
-            if (move == MOVE_NONE || move == MOVE_REST)
-                continue;
-
-            switch (move)
-            {
-            case MOVE_DRAGON_RAGE:
-            case MOVE_SONIC_BOOM:
-            case MOVE_BATON_PASS:
-            case MOVE_SWAGGER:
-            case MOVE_THUNDER_WAVE:
-            case MOVE_SECRET_POWER:
-            case MOVE_DIRE_CLAW:
-                isBannedMove = TRUE;
-                break;
-            default:
-                if (GetMoveNonVolatileStatus(move) == MOVE_EFFECT_SLEEP)
-                    isBannedMove = TRUE;
-                for (effectIndex = 0; effectIndex < GetMoveAdditionalEffectCount(move); effectIndex++)
-                {
-                    enum MoveEffect effect = GetMoveAdditionalEffectById(move, effectIndex)->moveEffect;
-                    if (effect == MOVE_EFFECT_SLEEP || effect == MOVE_EFFECT_YAWN_FOE || effect == MOVE_EFFECT_EFFECT_SPORE_SIDE)
-                        isBannedMove = TRUE;
-                }
-                break;
-            }
-
-            if (isBannedMove)
-            {
-                StringCopy(gStringVar2, GetMoveName(move));
-                return 1;
-            }
-        }
-
-        item = GetMonData(mon, MON_DATA_HELD_ITEM);
-        if (item == ITEM_DEEP_SEA_TOOTH)
-        {
-            CopyItemName(item, gStringVar2);
-            return 2;
-        }
+    case SPECIES_MEWTWO:
+    case SPECIES_MEW:
+    case SPECIES_LUGIA:
+    case SPECIES_HO_OH:
+    case SPECIES_LATIAS:
+    case SPECIES_LATIOS:
+    case SPECIES_KYOGRE:
+    case SPECIES_GROUDON:
+    case SPECIES_RAYQUAZA:
+    case SPECIES_WOBBUFFET:
+        return TRUE;
+    default:
+        return GET_BASE_SPECIES_ID(species) == SPECIES_DEOXYS;
     }
-
-    return 0;
 }
 
 // ADV OU clause checks the gym greeter can report. Source of truth:
 // plastic_ox/battle/plastic_ox_adv_ou_battle_mechanics.md (§14-§16, §19).
-// The greeter script only distinguishes a banned move (result 1) from a banned
-// held item (result 2), so anything else below is deliberately not reported here.
+// Every ADV tier (PU through OU) inherits these clauses.
 static bool32 IsADVOUBannedMove(enum Move move)
 {
     switch (move)
@@ -175,15 +132,63 @@ static bool32 IsADVOUBannedItem(enum Item item)
     return item == ITEM_BRIGHT_POWDER || item == ITEM_LAX_INCENSE;
 }
 
-// Base structural check first, then the ADV OU clauses that the greeter UI can report.
-// Both Saffron (Bruno) and Blackthorn (Clair) OU gyms use this.
-static u16 CheckADVOUGymRules(void)
+// §13 Species Clause and §19 banned abilities, checked over the whole party after the
+// per-POKéMON checks. Returns 4 when two POKéMON share a species (the second one's
+// nickname in gStringVar1, the species in gStringVar2), 5 for Sand Veil or Soundproof
+// (nickname in gStringVar1, ability in gStringVar2), else 0.
+static u16 CheckADVPartyClauses(void)
 {
     u32 i, j;
-    u16 result = CheckRustboroGymLittleCupRules();
 
-    if (result != 0)
-        return result;
+    for (i = 0; i < gPartiesCount[B_TRAINER_PLAYER]; i++)
+    {
+        struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][i];
+        enum Species species;
+        enum Ability ability;
+
+        if (!GetMonData(mon, MON_DATA_SANITY_HAS_SPECIES) || GetMonData(mon, MON_DATA_IS_EGG))
+            continue;
+
+        species = GET_BASE_SPECIES_ID(GetMonData(mon, MON_DATA_SPECIES));
+        for (j = 0; j < i; j++)
+        {
+            struct Pokemon *other = &gParties[B_TRAINER_PLAYER][j];
+
+            if (!GetMonData(other, MON_DATA_SANITY_HAS_SPECIES) || GetMonData(other, MON_DATA_IS_EGG))
+                continue;
+            if (GET_BASE_SPECIES_ID(GetMonData(other, MON_DATA_SPECIES)) == species)
+            {
+                GetMonData(mon, MON_DATA_NICKNAME, gStringVar1);
+                StringCopy(gStringVar2, GetSpeciesName(species));
+                return 4;
+            }
+        }
+
+        ability = GetMonAbility(mon);
+        if (ability == ABILITY_SAND_VEIL || ability == ABILITY_SOUNDPROOF)
+        {
+            GetMonData(mon, MON_DATA_NICKNAME, gStringVar1);
+            StringCopy(gStringVar2, gAbilitiesInfo[ability].name);
+            return 5;
+        }
+    }
+    return 0;
+}
+
+// A POKéMON above maxTier in the species tier table, or an Uber, is over the tier.
+static bool32 IsOverGymTier(enum Species species, enum EvolutionTier maxTier)
+{
+    enum EvolutionTier tier = GetSpeciesEvolutionTier(species);
+    return IsADVUber(species) || (tier != EVO_TIER_NONE && tier > maxTier);
+}
+
+// Little Cup (Rustboro): LC species only, the Little Cup move and item bans, and the
+// ADV clauses every tier shares.
+// Returns 3 with the species name, 1 with the move, 2 with the item in gStringVar2;
+// 4 (Species Clause) and 5 (banned ability) come from CheckADVPartyClauses.
+u16 CheckRustboroGymLittleCupRules(void)
+{
+    u32 i, j;
 
     for (i = 0; i < gPartiesCount[B_TRAINER_PLAYER]; i++)
     {
@@ -194,14 +199,46 @@ static u16 CheckADVOUGymRules(void)
             continue;
 
         GetMonData(mon, MON_DATA_NICKNAME, gStringVar1);
+        if (IsOverGymTier(GetMonData(mon, MON_DATA_SPECIES), EVO_TIER_LC))
+        {
+            StringCopy(gStringVar2, GetSpeciesName(GetMonData(mon, MON_DATA_SPECIES)));
+            return 3;
+        }
         for (j = 0; j < MAX_MON_MOVES; j++)
         {
             enum Move move = GetMonData(mon, MON_DATA_MOVE1 + j);
+            u32 effectIndex;
+            bool32 isBannedMove = FALSE;
 
-            if (move == MOVE_NONE)
+            if (move == MOVE_NONE || move == MOVE_REST)
                 continue;
 
-            if (IsADVOUBannedMove(move))
+            switch (move)
+            {
+            case MOVE_DRAGON_RAGE:
+            case MOVE_SONIC_BOOM:
+            case MOVE_BATON_PASS:
+            case MOVE_SWAGGER:
+            case MOVE_THUNDER_WAVE:
+            case MOVE_SECRET_POWER:
+            case MOVE_DIRE_CLAW:
+                isBannedMove = TRUE;
+                break;
+            default:
+                if (IsADVOUBannedMove(move))  // the ADV clauses apply in LC too
+                    isBannedMove = TRUE;
+                if (GetMoveNonVolatileStatus(move) == MOVE_EFFECT_SLEEP)
+                    isBannedMove = TRUE;
+                for (effectIndex = 0; effectIndex < GetMoveAdditionalEffectCount(move); effectIndex++)
+                {
+                    enum MoveEffect effect = GetMoveAdditionalEffectById(move, effectIndex)->moveEffect;
+                    if (effect == MOVE_EFFECT_SLEEP || effect == MOVE_EFFECT_YAWN_FOE || effect == MOVE_EFFECT_EFFECT_SPORE_SIDE)
+                        isBannedMove = TRUE;
+                }
+                break;
+            }
+
+            if (isBannedMove)
             {
                 StringCopy(gStringVar2, GetMoveName(move));
                 return 1;
@@ -209,42 +246,72 @@ static u16 CheckADVOUGymRules(void)
         }
 
         item = GetMonData(mon, MON_DATA_HELD_ITEM);
-        if (IsADVOUBannedItem(item))
+        if (item == ITEM_DEEP_SEA_TOOTH || IsADVOUBannedItem(item))
         {
             CopyItemName(item, gStringVar2);
             return 2;
         }
     }
 
-    return 0;
+    return CheckADVPartyClauses();
 }
 
-// Lower-tier gyms (PU / NU / RU / UU / UUBL) still reuse only the base structural check.
-// Roster-tier enforcement is NOT implemented: the repo has no species-tier table, so no
-// per-tier roster is enforced or advertised. Add one before claiming tier legality.
-u16 CheckGoldenrodGymPURules(void)  { return CheckRustboroGymLittleCupRules(); }
-u16 CheckEcruteakGymNURules(void)  { return CheckRustboroGymLittleCupRules(); }
-u16 CheckFortreeGymRURules(void)  { return CheckRustboroGymLittleCupRules(); }
-u16 CheckCinnabarGymUURules(void)  { return CheckRustboroGymLittleCupRules(); }
-u16 CheckMossdeepGymUUBLRules(void) { return CheckRustboroGymLittleCupRules(); }
-
-// OU gyms (Saffron / Blackthorn): base checks plus the ADV OU clauses the greeter can
-// report -- OHKO moves (§14), Evasion Moves (§15), Evasion Items (§16), Assist/Swagger
-// (§19). Returns 1 with the move name in gStringVar2, 2 with the item name in
-// gStringVar2, else 0.
-// Not enforced here (no greeter UI and/or no data): Species Clause (§13, would need a
-// duplicate-species scan), Sand Veil / Soundproof ability bans (§19, no ability check
-// path in this special), Baton Pass combination clauses (§18), Uber legality (§20),
-// Sleep/Freeze/Wrap clauses (§11/§12, battle-side state), and per-tier rosters.
-u16 CheckSaffronGymOURules(void)
+// ADV tiered gym rules (PU through OU): every POKéMON at or below maxTier in the species
+// tier table and no Uber, plus the ADV clauses the OU gyms check (OHKO, evasion moves
+// and items, Assist/Swagger). Sleep moves, Thunder Wave and Baton Pass are legal here;
+// those are Little Cup bans. Returns 3 with the species name in gStringVar2, 1 with
+// the move name, 2 with the item name; the nickname is in gStringVar1. Then 4 for a
+// duplicate species and 5 for a banned ability (CheckADVPartyClauses). Else 0.
+static u16 CheckADVTierGymRules(enum EvolutionTier maxTier)
 {
-    return CheckADVOUGymRules();
+    u32 i, j;
+
+    for (i = 0; i < gPartiesCount[B_TRAINER_PLAYER]; i++)
+    {
+        struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][i];
+        enum Species species;
+        enum Item item;
+
+        if (!GetMonData(mon, MON_DATA_SANITY_HAS_SPECIES) || GetMonData(mon, MON_DATA_IS_EGG))
+            continue;
+
+        GetMonData(mon, MON_DATA_NICKNAME, gStringVar1);
+        species = GetMonData(mon, MON_DATA_SPECIES);
+        if (IsOverGymTier(species, maxTier))
+        {
+            StringCopy(gStringVar2, GetSpeciesName(species));
+            return 3;
+        }
+        for (j = 0; j < MAX_MON_MOVES; j++)
+        {
+            enum Move move = GetMonData(mon, MON_DATA_MOVE1 + j);
+
+            if (move != MOVE_NONE && IsADVOUBannedMove(move))
+            {
+                StringCopy(gStringVar2, GetMoveName(move));
+                return 1;
+            }
+        }
+        item = GetMonData(mon, MON_DATA_HELD_ITEM);
+        if (IsADVOUBannedItem(item))
+        {
+            CopyItemName(item, gStringVar2);
+            return 2;
+        }
+    }
+    return CheckADVPartyClauses();
 }
 
-u16 CheckBlackthornGymOURules(void)
-{
-    return CheckADVOUGymRules();
-}
+// Every tiered gym past Rustboro checks its own ADV tier the same way. Not checked
+// here: Baton Pass combination clauses (§18) and the battle-side Sleep / Freeze /
+// Wrap clauses (§11/§12).
+u16 CheckGoldenrodGymPURules(void)  { return CheckADVTierGymRules(EVO_TIER_PU); }
+u16 CheckEcruteakGymNURules(void)   { return CheckADVTierGymRules(EVO_TIER_NU); }
+u16 CheckFortreeGymRURules(void)    { return CheckADVTierGymRules(EVO_TIER_RU); }
+u16 CheckCinnabarGymUURules(void)   { return CheckADVTierGymRules(EVO_TIER_UU); }
+u16 CheckMossdeepGymUUBLRules(void) { return CheckADVTierGymRules(EVO_TIER_UUBL); }
+u16 CheckSaffronGymOURules(void)    { return CheckADVTierGymRules(EVO_TIER_OU); }
+u16 CheckBlackthornGymOURules(void) { return CheckADVTierGymRules(EVO_TIER_OU); }
 
 #define GFXTAG_MULTICHOICE_SCROLL_ARROWS 2000
 #define PALTAG_MULTICHOICE_SCROLL_ARROWS 100
