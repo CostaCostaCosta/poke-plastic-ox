@@ -438,7 +438,7 @@ PoxRegion_route103_cinnabar_b_Sign::
 	msgbox PoxRegion_route103_cinnabar_b_Text, MSGBOX_SIGN
 	end
 PoxRegion_route103_cinnabar_b_Text::
-	.string "Route103\nMarked passage ahead.\pYou are leaving CINNABAR ISLAND.$"
+	.string "ROUTE 103\nThe mainland road. Mind the tide.$"
 
 PoxRegion_cinnabar_sea_a::
 	lockall
@@ -450,7 +450,7 @@ PoxRegion_cinnabar_sea_a_Open::
 	releaseall
 	end
 PoxRegion_cinnabar_sea_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
+	msgbox PoxIsles_Text_SeaClosed, MSGBOX_DEFAULT
 	warp MAP_CINNABAR_ISLAND, 22, 10
 	waitstate
 	releaseall
@@ -460,7 +460,7 @@ PoxRegion_cinnabar_sea_a_Sign::
 	msgbox PoxRegion_cinnabar_sea_a_Text, MSGBOX_SIGN
 	end
 PoxRegion_cinnabar_sea_a_Text::
-	.string "Route20West\nMarked passage ahead.\pYou are leaving CINNABAR ISLAND.$"
+	.string "EAST QUAY\nROUTE 20 - SEAFOAM ISLANDS\pFERRY SERVICE SUSPENDED\nThe last sailing is scratched out.$"
 
 PoxRegion_cinnabar_sea_b::
 	lockall
@@ -504,7 +504,7 @@ PoxRegion_sea_mossdeep_b_Open::
 	releaseall
 	end
 PoxRegion_sea_mossdeep_b_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
+	msgbox PoxIsles_Text_CrossingClosed, MSGBOX_DEFAULT
 	warp MAP_MOSSDEEP_CITY, 0, 21
 	waitstate
 	releaseall

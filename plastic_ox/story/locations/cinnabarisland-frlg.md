@@ -7,12 +7,12 @@ stage: "9 — Cinnabar and the Mansion"
 depth: full
 wiki: cinnabarisland-frlg
 maps: [CinnabarIsland_Frlg]
-also_maps: [PlasticOx_BlaineGym, PlasticOx_Mansion, CinnabarIsland_Gym_Frlg, PokemonMansion_1F_Frlg]
+also_maps: [PlasticOx_BlaineGym, PlasticOx_Mansion, CinnabarIsland_Gym_Frlg, PokemonMansion_1F_Frlg, PokemonMansion_2F_Frlg, PokemonMansion_3F_Frlg, PokemonMansion_B1F_Frlg, CinnabarIsland_PokemonCenter_1F_Frlg, CinnabarIsland_Mart_Frlg, CinnabarIsland_PokemonLab_Entrance_Frlg, CinnabarIsland_PokemonLab_Lounge_Frlg, CinnabarIsland_PokemonLab_ResearchRoom_Frlg]
 flags: [FLAG_POX_STORY_FUJI, FLAG_POX_MANSION_KEY, FLAG_POX_ARCHIVE_1, FLAG_POX_ARCHIVE_2, FLAG_POX_STORY_MANSION, FLAG_POX_ENTEI, FLAG_BADGE05_GET]
 badges: [5]
 trainers: [TRAINER_PLASTIC_OX_BLAINE, TRAINER_PLASTIC_OX_ENTEI_SAGE]
 items: [ITEM_SECRET_KEY, ITEM_HM04, ITEM_HM06, ITEM_MOON_STONE, ITEM_STRENGTH_KEY]
-status: drafted
+status: implemented
 ---
 
 # Cinnabar Island
@@ -38,15 +38,18 @@ A bare volcanic island at the end of the southern water road: one street, a gym,
 
 | Interaction | Where | Trigger / state | Current behavior | Target behavior |
 | --- | --- | --- | --- | --- |
-| Blaine | gym `(5,4)` `Pox_Blaine` | badge 4 + Fuji | badge text is the shared generic "You received a GYM BADGE!" | name the Volcano Badge; cut the HM grants, keep only the key |
-| Gym quiz + guide | gym `(24,20)`, doors on `FLAG_CINNABAR_GYM_QUIZ_1`–`6` | `FLAG_DEFEATED_BLAINE` never set | vanilla "BURN HEALS" advice; doors reopen only from quiz flags | one UU warning; open all six doors once `FLAG_BADGE05_GET` is set |
-| Mansion guide | town `(14,6)` `PoxCinnabar_MansionGuide` | `ITEM_SECRET_KEY` | three-line hint; good content | keep, but stop calling it a "MANSION KEY" in one line and `ITEM_SECRET_KEY` in code |
-| Mansion door | town `(8,3)` | no key | `PoxCinnabar_MansionLocked` correctly refuses | keep; add a line after the key is used |
-| Archive 1–3 | 2F `(25,4)`, 3F `(8,16)`, B1F `(21,27)` | key, then flags in order | three "ARCHIVE:" monologues read by bookshelves | keep the order behaviour, rewrite as documents in period voice, add an explicit "sea road" line on 3 |
-| Entei sage | B1F `(5,7)` / `(6,7)` | none beyond the key | full legendary ritual already implemented | decide whether it waits for archive 3; vary the reward text |
-| Seafoam directions | town `(11,12)` `Pox_MossdeepRoad`, `(13,12)` `Pox_WhirlGuide` | always | two near-identical lines that ignore the closed sea | one tells the truth ("not till the mansion's read"), one talks about the water |
-| Dead islanders | town `(20,7)` Bill, `(23,7)` Seagallop | hidden from new game | objects with script `0x0`, mute if ever shown | delete both; Bill must not stand on this island |
-| Signs | town `(12,14)`, `(22,9)` | always | "Marked passage ahead." twice, each doubled by a bg event on the same tile | place names: Route 103, Route 20 / Seafoam |
+| Blaine | gym `(5,4)` `Pox_Blaine` | badge 4 + Fuji | own refusal (`PoxIsles_BlaineNotReady`), firefighter challenge, "VOLCANO BADGE" line, key speech that says FUJI is the reason and that the two machines need their keys; after `FLAG_POX_STORY_MANSION` a last word (`PoxIsles_BlaineKey`) | shipped; the HM grants stay because `Pox_MansionKey` re-grants them on old saves |
+| Gym quiz + guide | gym `(24,20)`, doors on `FLAG_CINNABAR_GYM_QUIZ_1`–`6` | `FLAG_DEFEATED_BLAINE` is an alias of `FLAG_BADGE05_GET` | guide describes the real team and the house weight-class rule, then congratulates; all six doors open once the badge is held; seven trainers and the quiz rules speak as the island's quiz pool; statue names the player after badge 5 | shipped; no tier check is enforced (see hooks) |
+| Mansion neighbour | town `(14,6)` `PoxIsles_MansionGuide` | `FLAG_POX_MANSION_KEY`, `FLAG_POX_STORY_MANSION` | three states: locked house, "SECRET KEY" + statues + the sage, then "you were in there a long time" | shipped |
+| Gym regular | town `(11,11)` `PoxIsles_GymRegular` | `FLAG_BADGE05_GET`, `FLAG_POX_STORY_MANSION` | three states; bets tomatoes on the quiz | shipped |
+| Mansion door | town `(8,3)` | no key | `PoxCinnabar_MansionLocked`: chained door, brass tag "KEY HELD AT THE GYM. BLAINE" | shipped |
+| Archive 1–3 | 2F `(25,4)`, 3F `(8,16)`, B1F `(21,27)` | key, then flags in order | typed files in first-person plural; out of order each shelf has its own sealed line (`PoxIsles_Archive1Sealed`–`3Sealed`); a read file can be read again; file 3 ends on the Burned Tower margin note and a shipping slip "via SEAFOAM, to the observatory at MOSSDEEP" | shipped |
+| Mansion staff and burglars | 1F `(22,24)`, `(8,8)`; 2F–B1F trainers; 2F log `(6,31)` | always | the `ITEM_STRENGTH_KEY` archivist is sent by Blaine; burglars find only paper; the Mew diary is a station log | shipped |
+| Entei sage | B1F `(5,7)` / `(6,7)` | none beyond the key | Ecruteak-formal: Entei is a guest, "MORTY asked for patience. He did not ask for a leash." | decide whether it waits for archive 3 |
+| Dock hand | town `(22,11)` `PoxIsles_DockHand` | `FLAG_BADGE05_GET`, `FLAG_POX_STORY_MANSION` | three states: business with Blaine first; Blaine's rule that nobody crosses with the house unread; "the east channel is yours" with directions to Seafoam's door. The closed sea column answers with his whistle (`PoxRegion_cinnabar_sea_a`) | shipped; replaces `Pox_MossdeepRoad` / `Pox_WhirlGuide` |
+| Islanders | town `(17,5)` `PoxIsles_Greenhouse`, `(6,10)` `PoxIsles_LabTech`; Center, Mart and Lab interiors | always | greenhouse tomatoes in volcanic steam, the Lab's coffee pot, a stranded ferry passenger, the quiz pool, a field-team note about ice on the nets | shipped |
+| Dead islanders | town Bill / Seagallop; Center Bill | — | town props deleted; the Center's One Island Bill and two journal props hidden behind `FLAG_POX_HIDE_UNUSED_ACTOR` (they were always visible and Bill's Sevii ferry script ran) | shipped |
+| Signs | town `(12,14)`, `(22,9)` | always | "ROUTE 103 / The mainland road." and "EAST QUAY / ROUTE 20 - SEAFOAM ISLANDS / FERRY SERVICE SUSPENDED" | shipped; each is still an object plus a bg event on one tile |
 
 ## Dialogue guidance
 
@@ -84,7 +87,8 @@ A bare volcanic island at the end of the southern water road: one street, a gym,
 - Gates: `ITEM_SECRET_KEY` check in `src/field_control_avatar.c`; archive chain `FLAG_POX_ARCHIVE_1` → `FLAG_POX_ARCHIVE_2` → `FLAG_POX_STORY_MANSION`; sea portal `PoxRegion_cinnabar_sea_a`; the unguarded north connection to `MAP_ROUTE21_SOUTH`
 - Trainers / items: `TRAINER_PLASTIC_OX_BLAINE`, `TRAINER_PLASTIC_OX_ENTEI_SAGE`; `ITEM_SECRET_KEY`, `ITEM_HM04`, `ITEM_HM06` from Blaine, `ITEM_STRENGTH_KEY` from the 1F scientist at `(22,24)`, hidden `ITEM_MOON_STONE` at 1F `(2,21)`
 - Story rooms are **orphaned**: `PlasticOx_BlaineGym` and `PlasticOx_Mansion` have zero warps and nothing warps to them. The gym's Blaine is a generic `MAN_3`; its `PlasticOx_BlaineGym_EventScript_Greeter` (UU rules via `CheckCinnabarGymUURules`, which returns `CheckRustboroGymLittleCupRules` — it bans sleep, Thunder Wave, Baton Pass and Deep Sea Tooth, not off-tier species) has no object. The live gym therefore enforces no tier rule and runs seven vanilla FRLG trainers plus Blaine.
-- Known gaps: `FLAG_DEFEATED_BLAINE` is never set, so the gym guide's post-victory branch is dead and the six doors never auto-open after a win; the dead `CinnabarIsland_Gym_EventScript_Blaine` still carries badge 7 and TM38 logic; 3F's diary says Mew gave birth to Mewtwo and B1F's says Mewtwo is too powerful — both contradict the archive story; Blaine gives HMs 04/06 whose field use is actually gated by `ITEM_STRENGTH_KEY` / `ITEM_ROCK_SMASH_KEY`, so his "these will help you" line is false; Bill and Seagallop are hidden, scriptless objects; each sign exists twice (object plus bg event); "I'll show you back outside." is used verbatim by two ushers; `Pox_WhirlGuide` is a legacy name for a Seafoam NPC; `CinnabarIsland_hns` is a second, unreferenced town map with zero warps.
+- Dialogue for the town, gym, Mansion, Lab, Center and Mart is authored in `plastic_ox/alpha/south_isles.py` (emits `data/scripts/plastic_ox_south_isles.inc`, prefix `PoxIsles_`); the locked door and the sage's speech are in `plastic_ox/alpha/cinnabar/events.inc`. Harness: `plastic_ox/demo/test_south_isles.py`.
+- Known gaps: the live gym still enforces no tier rule (the guide only calls it Blaine's own house rule); the dead `CinnabarIsland_Gym_EventScript_Blaine` still carries badge 7 and TM38 logic; the dead 3F / B1F Mewtwo diary texts remain in the map scripts, unreferenced; each region sign exists twice (object plus bg event); `CinnabarIsland_hns` is a second, unreferenced town map with zero warps (its leftover guides are now flagged unused); the trade NPCs in the Lab lounge and the fossil room still speak vanilla service text.
 
 ## Open questions
 
