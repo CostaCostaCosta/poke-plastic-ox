@@ -149,6 +149,8 @@ PoxSaffron_DojoDesk::
 	goto_if_eq VAR_RESULT, 3, PoxSaffron_DojoDeskSpecies
 	goto_if_eq VAR_RESULT, 4, PoxSaffron_DojoDeskDuplicate
 	goto_if_eq VAR_RESULT, 5, PoxSaffron_DojoDeskAbility
+	goto_if_eq VAR_RESULT, 6, PoxSaffron_DojoDeskBatonPass
+	goto_if_eq VAR_RESULT, 7, PoxSaffron_DojoDeskBoostPasser
 	msgbox PoxSaffron_Text_DeskClear, MSGBOX_DEFAULT
 	release
 	end
@@ -162,6 +164,14 @@ PoxSaffron_DojoDeskDuplicate::
 	end
 PoxSaffron_DojoDeskAbility::
 	msgbox PoxSaffron_Text_DeskAbility, MSGBOX_DEFAULT
+	release
+	end
+PoxSaffron_DojoDeskBatonPass::
+	msgbox PoxSaffron_Text_DeskBatonPass, MSGBOX_DEFAULT
+	release
+	end
+PoxSaffron_DojoDeskBoostPasser::
+	msgbox PoxSaffron_Text_DeskBoostPasser, MSGBOX_DEFAULT
 	release
 	end
 PoxSaffron_DojoDeskMove::
@@ -563,6 +573,12 @@ PoxSaffron_Text_DeskDuplicate::
 
 PoxSaffron_Text_DeskAbility::
 	.string "One moment. Your {STR_VAR_1} has\n{STR_VAR_2}. That ability isn't\pallowed on this floor.\pLeave it in the PC and the\nMASTER will see you.$"
+
+PoxSaffron_Text_DeskBatonPass::
+	.string "One moment. Your {STR_VAR_1} has\nBATON PASS with {STR_VAR_2}.\pThat pairing isn't allowed on\nthis floor.\pChange its moves and the MASTER\nwill see you.$"
+
+PoxSaffron_Text_DeskBoostPasser::
+	.string "One moment. Your {STR_VAR_1}\nwould pass {STR_VAR_2} boosts\ptoo. One boost passer per team\non this floor.\pChange one of their moves. I\ndon't mind which.$"
 
 PoxSaffron_Text_DeskAfter::
 	.string "You're in the book now. Seventh\nline, in the MASTER's own\phandwriting. He doesn't usually\nwrite them himself.$"

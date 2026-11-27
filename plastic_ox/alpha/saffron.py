@@ -99,6 +99,8 @@ LINES = {
     'DeskSpecies': "One moment. Your {STR_VAR_1} is a {STR_VAR_2}. That POKéMON is above what this floor allows.|Leave it in the PC and the MASTER will see you.",
     'DeskDuplicate': "One moment. Your {STR_VAR_1} is a second {STR_VAR_2}. One of each on this floor.|Leave one in the PC. I don't mind which.",
     'DeskAbility': "One moment. Your {STR_VAR_1} has {STR_VAR_2}. That ability isn't allowed on this floor.|Leave it in the PC and the MASTER will see you.",
+    'DeskBatonPass': "One moment. Your {STR_VAR_1} has BATON PASS with {STR_VAR_2}. That pairing isn't allowed on this floor.|Change its moves and the MASTER will see you.",
+    'DeskBoostPasser': "One moment. Your {STR_VAR_1} would pass {STR_VAR_2} boosts too. One boost passer per team on this floor.|Change one of their moves. I don't mind which.",
     'DeskAfter': "You're in the book now. Seventh line, in the MASTER's own handwriting. He doesn't usually write them himself.",
     'StudentLeft': "...Forty-one. Forty-two. Hands lower. Forty-three.|Sorry. If I stop counting I have to start again.",
     'StudentRight': "The MASTER gave up a room at the top of the LEAGUE to come back and sweep this one.|I asked him why. He said, 'Again,' so I did the form again. I think that was the answer.",
@@ -239,6 +241,8 @@ def scripts():
 	goto_if_eq VAR_RESULT, 3, {P}DojoDeskSpecies
 	goto_if_eq VAR_RESULT, 4, {P}DojoDeskDuplicate
 	goto_if_eq VAR_RESULT, 5, {P}DojoDeskAbility
+	goto_if_eq VAR_RESULT, 6, {P}DojoDeskBatonPass
+	goto_if_eq VAR_RESULT, 7, {P}DojoDeskBoostPasser
 	msgbox {P}Text_DeskClear, MSGBOX_DEFAULT
 	release
 	end
@@ -252,6 +256,14 @@ def scripts():
 	end
 {P}DojoDeskAbility::
 	msgbox {P}Text_DeskAbility, MSGBOX_DEFAULT
+	release
+	end
+{P}DojoDeskBatonPass::
+	msgbox {P}Text_DeskBatonPass, MSGBOX_DEFAULT
+	release
+	end
+{P}DojoDeskBoostPasser::
+	msgbox {P}Text_DeskBoostPasser, MSGBOX_DEFAULT
 	release
 	end
 {P}DojoDeskMove::

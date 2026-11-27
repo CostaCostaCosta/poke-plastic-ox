@@ -380,12 +380,16 @@ def greeter_scripts(dest, gym, tier, special):
             f'\tgoto_if_eq VAR_RESULT, 2, {p}EventScript_GreeterBannedItem\n'
             f'\tgoto_if_eq VAR_RESULT, 3, {p}EventScript_GreeterBannedSpecies\n'
             f'\tgoto_if_eq VAR_RESULT, 4, {p}EventScript_GreeterDuplicate\n'
-            f'\tgoto_if_eq VAR_RESULT, 5, {p}EventScript_GreeterBannedAbility\n\trelease\n\tend\n\n'
+            f'\tgoto_if_eq VAR_RESULT, 5, {p}EventScript_GreeterBannedAbility\n'
+            f'\tgoto_if_eq VAR_RESULT, 6, {p}EventScript_GreeterBatonPass\n'
+            f'\tgoto_if_eq VAR_RESULT, 7, {p}EventScript_GreeterBoostPasser\n\trelease\n\tend\n\n'
             f'{p}EventScript_GreeterBannedMove::\n\tmsgbox {p}Text_GreeterBannedMove, MSGBOX_DEFAULT\n\trelease\n\tend\n\n'
             f'{p}EventScript_GreeterBannedItem::\n\tmsgbox {p}Text_GreeterBannedItem, MSGBOX_DEFAULT\n\trelease\n\tend\n\n'
             f'{p}EventScript_GreeterBannedSpecies::\n\tmsgbox {p}Text_GreeterBannedSpecies, MSGBOX_DEFAULT\n\trelease\n\tend\n\n'
             f'{p}EventScript_GreeterDuplicate::\n\tmsgbox {p}Text_GreeterDuplicate, MSGBOX_DEFAULT\n\trelease\n\tend\n\n'
             f'{p}EventScript_GreeterBannedAbility::\n\tmsgbox {p}Text_GreeterBannedAbility, MSGBOX_DEFAULT\n\trelease\n\tend\n\n'
+            f'{p}EventScript_GreeterBatonPass::\n\tmsgbox {p}Text_GreeterBatonPass, MSGBOX_DEFAULT\n\trelease\n\tend\n\n'
+            f'{p}EventScript_GreeterBoostPasser::\n\tmsgbox {p}Text_GreeterBoostPasser, MSGBOX_DEFAULT\n\trelease\n\tend\n\n'
             f'{p}Text_Greeter:\n\t.string "Yo! Champ in the making!\\n"\n\t.string "Welcome to {gym}.\\p"\n'
             f'\t.string "This GYM follows {tier} tier rules.\\p"\n\t.string "Bring your best {tier}-tier POKéMON!$"\n\n'
             f'{p}Text_GreeterBannedMove:\n\t.string "{gym} uses {tier} rules.\\p"\n\t.string "That move is banned here.\\n"\n'
@@ -397,7 +401,11 @@ def greeter_scripts(dest, gym, tier, special):
             f'{p}Text_GreeterDuplicate:\n\t.string "{gym} uses {tier} rules.\\p"\n\t.string "{{STR_VAR_1}} is a second {{STR_VAR_2}}.\\p"\n'
             f'\t.string "Only one of each POKéMON.\\n"\n\t.string "Please leave one in the PC.$"\n\n'
             f'{p}Text_GreeterBannedAbility:\n\t.string "{gym} uses {tier} rules.\\p"\n\t.string "{{STR_VAR_1}} has {{STR_VAR_2}}.\\p"\n'
-            f'\t.string "That ability is banned here.\\n"\n\t.string "Please leave it in the PC.$"\n')
+            f'\t.string "That ability is banned here.\\n"\n\t.string "Please leave it in the PC.$"\n\n'
+            f'{p}Text_GreeterBatonPass:\n\t.string "{gym} uses {tier} rules.\\p"\n\t.string "{{STR_VAR_1}} has BATON PASS\\n"\n'
+            f'\t.string "with {{STR_VAR_2}}.\\p"\n\t.string "That combination is banned here.\\n"\n\t.string "Please change its moves.$"\n\n'
+            f'{p}Text_GreeterBoostPasser:\n\t.string "{gym} uses {tier} rules.\\p"\n\t.string "{{STR_VAR_1}} can BATON PASS\\n"\n'
+            f'\t.string "{{STR_VAR_2}} boosts too.\\p"\n\t.string "Only one POKéMON may pass boosts.\\n"\n\t.string "Please change its moves.$"\n')
 
 
 GREETER_HALLS = ('MortyGym', 'ClairGym')

@@ -12,6 +12,8 @@ PlasticOx_MortyGym_EventScript_Greeter::
 	goto_if_eq VAR_RESULT, 3, PlasticOx_MortyGym_EventScript_GreeterBannedSpecies
 	goto_if_eq VAR_RESULT, 4, PlasticOx_MortyGym_EventScript_GreeterDuplicate
 	goto_if_eq VAR_RESULT, 5, PlasticOx_MortyGym_EventScript_GreeterBannedAbility
+	goto_if_eq VAR_RESULT, 6, PlasticOx_MortyGym_EventScript_GreeterBatonPass
+	goto_if_eq VAR_RESULT, 7, PlasticOx_MortyGym_EventScript_GreeterBoostPasser
 	release
 	end
 
@@ -37,6 +39,16 @@ PlasticOx_MortyGym_EventScript_GreeterDuplicate::
 
 PlasticOx_MortyGym_EventScript_GreeterBannedAbility::
 	msgbox PlasticOx_MortyGym_Text_GreeterBannedAbility, MSGBOX_DEFAULT
+	release
+	end
+
+PlasticOx_MortyGym_EventScript_GreeterBatonPass::
+	msgbox PlasticOx_MortyGym_Text_GreeterBatonPass, MSGBOX_DEFAULT
+	release
+	end
+
+PlasticOx_MortyGym_EventScript_GreeterBoostPasser::
+	msgbox PlasticOx_MortyGym_Text_GreeterBoostPasser, MSGBOX_DEFAULT
 	release
 	end
 
@@ -73,3 +85,17 @@ PlasticOx_MortyGym_Text_GreeterBannedAbility:
 	.string "{STR_VAR_1} has {STR_VAR_2}.\p"
 	.string "That ability is banned here.\n"
 	.string "Please leave it in the PC.$"
+
+PlasticOx_MortyGym_Text_GreeterBatonPass:
+	.string "ECRUTEAK GYM uses NU rules.\p"
+	.string "{STR_VAR_1} has BATON PASS\n"
+	.string "with {STR_VAR_2}.\p"
+	.string "That combination is banned here.\n"
+	.string "Please change its moves.$"
+
+PlasticOx_MortyGym_Text_GreeterBoostPasser:
+	.string "ECRUTEAK GYM uses NU rules.\p"
+	.string "{STR_VAR_1} can BATON PASS\n"
+	.string "{STR_VAR_2} boosts too.\p"
+	.string "Only one POKéMON may pass boosts.\n"
+	.string "Please change its moves.$"

@@ -209,6 +209,8 @@ PoxIsles_CinnabarGymGuide::
 	goto_if_eq VAR_RESULT, 3, PoxIsles_CinnabarGymGuide_Species
 	goto_if_eq VAR_RESULT, 4, PoxIsles_CinnabarGymGuide_Duplicate
 	goto_if_eq VAR_RESULT, 5, PoxIsles_CinnabarGymGuide_Ability
+	goto_if_eq VAR_RESULT, 6, PoxIsles_CinnabarGymGuide_BatonPass
+	goto_if_eq VAR_RESULT, 7, PoxIsles_CinnabarGymGuide_BoostPasser
 	msgbox PoxIsles_Text_CinnabarRuleClean, MSGBOX_DEFAULT
 	release
 	end
@@ -232,6 +234,14 @@ PoxIsles_CinnabarGymGuide_Ability::
 	msgbox PoxIsles_Text_CinnabarRuleAbility, MSGBOX_DEFAULT
 	release
 	end
+PoxIsles_CinnabarGymGuide_BatonPass::
+	msgbox PoxIsles_Text_CinnabarRuleBatonPass, MSGBOX_DEFAULT
+	release
+	end
+PoxIsles_CinnabarGymGuide_BoostPasser::
+	msgbox PoxIsles_Text_CinnabarRuleBoostPasser, MSGBOX_DEFAULT
+	release
+	end
 
 PoxIsles_MossdeepGymGuide::
 	lock
@@ -244,6 +254,8 @@ PoxIsles_MossdeepGymGuide::
 	goto_if_eq VAR_RESULT, 3, PoxIsles_MossdeepGymGuide_Species
 	goto_if_eq VAR_RESULT, 4, PoxIsles_MossdeepGymGuide_Duplicate
 	goto_if_eq VAR_RESULT, 5, PoxIsles_MossdeepGymGuide_Ability
+	goto_if_eq VAR_RESULT, 6, PoxIsles_MossdeepGymGuide_BatonPass
+	goto_if_eq VAR_RESULT, 7, PoxIsles_MossdeepGymGuide_BoostPasser
 	msgbox PoxIsles_Text_TwinsRuleClean, MSGBOX_DEFAULT
 	release
 	end
@@ -265,6 +277,14 @@ PoxIsles_MossdeepGymGuide_Duplicate::
 	end
 PoxIsles_MossdeepGymGuide_Ability::
 	msgbox PoxIsles_Text_TwinsRuleAbility, MSGBOX_DEFAULT
+	release
+	end
+PoxIsles_MossdeepGymGuide_BatonPass::
+	msgbox PoxIsles_Text_TwinsRuleBatonPass, MSGBOX_DEFAULT
+	release
+	end
+PoxIsles_MossdeepGymGuide_BoostPasser::
+	msgbox PoxIsles_Text_TwinsRuleBoostPasser, MSGBOX_DEFAULT
 	release
 	end
 
@@ -400,6 +420,12 @@ PoxIsles_Text_CinnabarRuleDuplicate::
 PoxIsles_Text_CinnabarRuleAbility::
 	.string "Hold on. {STR_VAR_1} has\n{STR_VAR_2}.\pBLAINE doesn't allow that ability in\nhere. It's a house rule.\pLeave it in the PC before you get\nto him.$"
 
+PoxIsles_Text_CinnabarRuleBatonPass::
+	.string "Hold on. {STR_VAR_1} has BATON PASS\nwith {STR_VAR_2}.\pBLAINE won't battle that pairing in\nhere. It's a house rule.\pChange its moves before you get\nto him.$"
+
+PoxIsles_Text_CinnabarRuleBoostPasser::
+	.string "Hold on. {STR_VAR_1} passes\n{STR_VAR_2} boosts too.\pBLAINE allows one boost passer in\nhere. It's a house rule.\pChange its moves before you get\nto him.$"
+
 PoxIsles_Text_CinnabarRuleClean::
 	.string "I had a look at your team on the\nway in. Nothing BLAINE would\lobject to. Go on, then.$"
 
@@ -417,6 +443,12 @@ PoxIsles_Text_TwinsRuleDuplicate::
 
 PoxIsles_Text_TwinsRuleAbility::
 	.string "Wait. {STR_VAR_1} has\n{STR_VAR_2}.\pTATE and LIZA won't battle against\nthat ability. Twins' rule.\pBox it before you cross the floor.$"
+
+PoxIsles_Text_TwinsRuleBatonPass::
+	.string "Wait. {STR_VAR_1} has BATON PASS\nwith {STR_VAR_2}.\pTATE and LIZA won't battle against\nthat pairing. Twins' rule.\pSwap its moves before you cross.$"
+
+PoxIsles_Text_TwinsRuleBoostPasser::
+	.string "Wait. {STR_VAR_1} passes\n{STR_VAR_2} boosts too.\pTATE and LIZA allow one boost\npasser. Twins' rule.\pPick one passer before you cross.$"
 
 PoxIsles_Text_TwinsRuleClean::
 	.string "Your team passes the twins'\nrules. I checked twice, the way\lthey would.$"
