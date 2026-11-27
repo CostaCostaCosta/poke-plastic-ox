@@ -15802,6 +15802,22 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_PrettyFeather,
     },
 
+    [ITEM_GS_BALL] =
+    {
+        .name = ITEM_NAME("GS Ball"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "An old, sealed ball.\n"
+            "It won't open, and\n"
+            "it hums in forests."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_PokeBall,
+        .iconPalette = gItemIconPalette_LuxuryBall,
+    },
+
     [ITEM_TRAINING_KIT] =
     {
         .name = ITEM_NAME("Training Kit"),

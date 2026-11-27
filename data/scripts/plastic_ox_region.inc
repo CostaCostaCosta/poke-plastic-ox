@@ -1094,6 +1094,7 @@ PoxRegion_Arrival_GoldenrodCity_hns_End::
 	end
 
 PoxRegion_Arrival_IlexForest_hns::
+	call PoxCelebi_IlexArrival
 PoxRegion_Arrival_IlexForest_hns_End::
 	end
 

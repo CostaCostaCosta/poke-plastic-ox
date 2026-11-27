@@ -105,9 +105,9 @@ Route110_TrickHouseEnd_EventScript_CompletedPuzzle4::
 
 Route110_TrickHouseEnd_EventScript_CompletedPuzzle5::
 	msgbox Route110_TrickHouseEnd_Text_AllNightToMakeMechadolls, MSGBOX_DEFAULT
-	msgbox Route110_TrickHouseEnd_Text_YouHaveEarnedThisReward, MSGBOX_DEFAULT
+	msgbox Route110_TrickHouseEnd_Text_GSBallProp, MSGBOX_DEFAULT
 	setvar VAR_TRICK_HOUSE_PRIZE_PICKUP, 0
-	giveitem ITEM_TM_TAUNT
+	giveitem ITEM_GS_BALL
 	call_if_eq VAR_RESULT, FALSE, Route110_TrickHouseEnd_EventScript_BagFull
 	msgbox Route110_TrickHouseEnd_Text_MakeNewTricksToStumpYou, MSGBOX_DEFAULT
 	closemessage
@@ -354,3 +354,11 @@ Route110_TrickHouseEnd_Text_YoureIgnoringMe:
 	.string "Now, now! You're ignoring me now?\n"
 	.string "Now that, I consider heartbreaking!$"
 
+@ Plastic Ox: puzzle 5's prize is the GS BALL (bible: Celebi — Ilex Forest).
+Route110_TrickHouseEnd_Text_GSBallProp:
+	.string "This one came with the house.\n"
+	.string "It was up in the attic.\p"
+	.string "It won't open. It won't roll.\n"
+	.string "A splendid prop! Too splendid.\p"
+	.string "Take it. It looks better in\n"
+	.string "your hands than on my shelf.$"
