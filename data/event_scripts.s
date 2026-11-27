@@ -2039,3 +2039,5 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/RuinsOfAlph_WordsRoom3_hns/scripts.inc"
 
 	.include "data/maps/RuinsOfAlph_WordsRoom4_hns/scripts.inc"
+
+	.include "data/scripts/plastic_ox_saffron.inc"

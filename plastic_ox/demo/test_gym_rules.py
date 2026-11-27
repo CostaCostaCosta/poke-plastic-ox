@@ -115,7 +115,6 @@ def main() -> None:
     said('RustboroCity_Gym', 3, 19, K.KEY_UP, 'LITTLE CUP', 'is a Salamence', 'leave it in the PC')
     said('PlasticOx_WhitneyGym', 7, 18, K.KEY_UP, 'PU rules', 'is a Salamence', 'over the tier')
     for mapname, x, y, rule in (('PlasticOx_MortyGym', 7, 18, 'NU rules'),
-                                ('PlasticOx_BrunoGym', 7, 18, 'OU rules'),
                                 ('PlasticOx_ClairGym', 7, 18, 'OU rules'),
                                 ('FortreeCity_Gym', 15, 22, 'RU rules')):
         if rule == 'OU rules':
@@ -124,6 +123,15 @@ def main() -> None:
         else:
             give(SALAMENCE)
             said(mapname, x, y, K.KEY_UP, rule, 'is a Salamence', 'over the tier')
+    # BRUNO's Gym is the Fighting Dojo; its desk clerk (8,13) runs the same check
+    # in her own words (plastic_ox/alpha/saffron.py).
+    g.flag('FLAG_BADGE07_GET', False)
+    give(MEWTWO)
+    said('SaffronCity_Dojo_Frlg', 7, 13, K.KEY_RIGHT, 'OU rules', 'is a Mewtwo', 'above what this floor allows')
+    give(TREECKO, 5)
+    said('SaffronCity_Dojo_Frlg', 7, 13, K.KEY_RIGHT, 'is a second Treecko', 'One of each')
+    give(SANDSHREW, 5)
+    said('SaffronCity_Dojo_Frlg', 7, 13, K.KEY_RIGHT, 'has Sand Veil', 'allowed on this floor')
     give(TREECKO, 5)
     said('PlasticOx_ClairGym', 7, 18, K.KEY_UP, 'OU rules', 'is a second Treecko', 'one of each')
     give(SANDSHREW, 5)

@@ -618,7 +618,7 @@ PoxRegion_route19_saffron_b_Sign::
 	msgbox PoxRegion_route19_saffron_b_Text, MSGBOX_SIGN
 	end
 PoxRegion_route19_saffron_b_Text::
-	.string "Route19\nMarked passage ahead.\pYou are leaving SAFFRON CITY.$"
+	.string "SAFFRON CITY - SOUTH GATE\nROUTE 19 and the MOSSDEEP road$"
 
 PoxRegion_saffron_route5_a::
 	lockall
@@ -640,7 +640,7 @@ PoxRegion_saffron_route5_a_Sign::
 	msgbox PoxRegion_saffron_route5_a_Text, MSGBOX_SIGN
 	end
 PoxRegion_saffron_route5_a_Text::
-	.string "Route5\nMarked passage ahead.\pYou are leaving SAFFRON CITY.$"
+	.string "SAFFRON CITY - NORTH GATE\nROUTE 5 to BLACKTHORN$"
 
 PoxRegion_saffron_route5_b::
 	lockall

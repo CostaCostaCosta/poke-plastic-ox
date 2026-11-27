@@ -535,177 +535,15 @@
    ]
   },
   "TRAINER_PLASTIC_OX_BRUNO": {
-   "checkpoint": "mossdeep",
-   "cap": 50,
-   "tier": "UUBL",
+   "checkpoint": null,
+   "kept": "authored; plastic_ox/tools/authored_trainers.party",
    "monsters": [
-    {
-     "species": "SPECIES_RHYDON",
-     "level": 50,
-     "moves": [
-      "MOVE_EARTHQUAKE",
-      "MOVE_SWORDS_DANCE",
-      "MOVE_ROCK_SLIDE",
-      "MOVE_SUBSTITUTE"
-     ],
-     "ability": "Lightning Rod",
-     "item": "Leftovers",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 212,
-      "atk": 122,
-      "spe": 176
-     },
-     "set_name": "Substitute",
-     "set_source": "gen3_movesets.json",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "evolves from Rhyhorn at Lv42",
-     "tier": "UUBL",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_GOLEM",
-     "level": 50,
-     "moves": [
-      "MOVE_EARTHQUAKE",
-      "MOVE_ROCK_SLIDE",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_EXPLOSION"
-     ],
-     "ability": "Rock Head",
-     "item": "Choice Band",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 200,
-      "atk": 220,
-      "spe": 88
-     },
-     "set_name": "Choice Band",
-     "set_source": "gen3_movesets.json",
-     "notes": [],
-     "ivs": {
-      "atk": 30,
-      "def": 30,
-      "spd": 30
-     },
-     "hp_type": null,
-     "why_available": "evolves from GRAVELER (trade)",
-     "tier": "UU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_MACHAMP",
-     "level": 49,
-     "moves": [
-      "MOVE_CROSS_CHOP",
-      "MOVE_ROCK_SLIDE",
-      "MOVE_FOCUS_PUNCH",
-      "MOVE_HIDDEN_POWER"
-     ],
-     "ability": "Guts",
-     "item": "Choice Band",
-     "nature": "Adamant",
-     "evs": {
-      "atk": 252,
-      "def": 4,
-      "spe": 252
-     },
-     "set_name": "Choice Band",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
-     ],
-     "ivs": null,
-     "hp_type": "Ghost",
-     "why_available": "evolves from MACHOKE (trade)",
-     "tier": "UUBL",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_HARIYAMA",
-     "level": 49,
-     "moves": [
-      "MOVE_KNOCK_OFF",
-      "MOVE_BRICK_BREAK",
-      "MOVE_REST",
-      "MOVE_HIDDEN_POWER"
-     ],
-     "ability": "Thick Fat",
-     "item": "Leftovers",
-     "nature": "Impish",
-     "evs": {
-      "atk": 4,
-      "def": 252,
-      "spd": 252
-     },
-     "set_name": "Defensive Knock Off",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Hidden Power type Bug dropped: trainerproc has no HP-type field in the .party format"
-     ],
-     "ivs": null,
-     "hp_type": "Bug",
-     "why_available": "evolves from Makuhita at Lv24",
-     "tier": "UUBL",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_DONPHAN",
-     "level": 48,
-     "moves": [
-      "MOVE_EARTHQUAKE",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_REST",
-      "MOVE_RAPID_SPIN"
-     ],
-     "ability": "Sturdy",
-     "item": "Leftovers",
-     "nature": "Impish",
-     "evs": {
-      "hp": 252,
-      "atk": 44,
-      "def": 188,
-      "spe": 24
-     },
-     "set_name": "Tank",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Hidden Power type Rock dropped: trainerproc has no HP-type field in the .party format"
-     ],
-     "ivs": null,
-     "hp_type": "Rock",
-     "why_available": "evolves from Phanpy at Lv25",
-     "tier": "UUBL",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_STEELIX",
-     "level": 48,
-     "moves": [
-      "MOVE_EARTHQUAKE",
-      "MOVE_IRON_TAIL",
-      "MOVE_DOUBLE_EDGE",
-      "MOVE_EXPLOSION"
-     ],
-     "ability": "Rock Head",
-     "item": "Choice Band",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 144,
-      "atk": 228,
-      "spd": 136
-     },
-     "set_name": "Choice Band",
-     "set_source": "gen3_movesets.json",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "evolves from ONIX (Metal_Coat)",
-     "tier": "UUBL",
-     "flagged": false
-    }
+    "Zapdos @ Choice Band",
+    "Ludicolo @ Lum Berry",
+    "Blaziken @ Salac Berry",
+    "Heracross @ Salac Berry",
+    "Regirock @ Choice Band",
+    "Celebi @ Leftovers"
    ]
   },
   "TRAINER_PLASTIC_OX_CLAIR": {
@@ -886,177 +724,15 @@
    ]
   },
   "TRAINER_PLASTIC_OX_GIOVANNI": {
-   "checkpoint": "saffron",
-   "cap": 55,
-   "tier": "OU",
+   "checkpoint": null,
+   "kept": "authored; plastic_ox/tools/authored_trainers.party",
    "monsters": [
-    {
-     "species": "SPECIES_TYRANITAR",
-     "level": 55,
-     "moves": [
-      "MOVE_HYPER_BEAM",
-      "MOVE_ROCK_SLIDE",
-      "MOVE_EARTHQUAKE",
-      "MOVE_HIDDEN_POWER"
-     ],
-     "ability": "Sand Stream",
-     "item": "Lum Berry",
-     "nature": "Jolly",
-     "evs": {
-      "hp": 4,
-      "atk": 252,
-      "spe": 252
-     },
-     "set_name": "Fast Dragon Dance",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Dragon Dance -> Hyper Beam (egg or special-case only)",
-      "Hidden Power type Bug dropped: trainerproc has no HP-type field in the .party format"
-     ],
-     "ivs": null,
-     "hp_type": "Bug",
-     "why_available": "evolves from Pupitar at Lv55",
-     "tier": "OU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_SALAMENCE",
-     "level": 55,
-     "moves": [
-      "MOVE_HYPER_BEAM",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_ROCK_SLIDE",
-      "MOVE_EARTHQUAKE"
-     ],
-     "ability": "Intimidate",
-     "item": "Leftovers",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 116,
-      "atk": 252,
-      "spe": 140
-     },
-     "set_name": "Dragon Dance",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Dragon Dance -> Hyper Beam (egg or special-case only)"
-     ],
-     "ivs": {
-      "spa": 30,
-      "spd": 30,
-      "spe": 30
-     },
-     "hp_type": null,
-     "why_available": "evolves from Shelgon at Lv50",
-     "tier": "OU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_METAGROSS",
-     "level": 55,
-     "moves": [
-      "MOVE_METEOR_MASH",
-      "MOVE_EARTHQUAKE",
-      "MOVE_PROTECT",
-      "MOVE_EXPLOSION"
-     ],
-     "ability": "Clear Body",
-     "item": "Leftovers",
-     "nature": "Adamant",
-     "evs": {
-      "hp": 252,
-      "atk": 176,
-      "def": 80
-     },
-     "set_name": "Bulky Attacker",
-     "set_source": "gen3_movesets.json",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "evolves from Metang at Lv45",
-     "tier": "OU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_FORRETRESS",
-     "level": 54,
-     "moves": [
-      "MOVE_SPIKES",
-      "MOVE_RAPID_SPIN",
-      "MOVE_HIDDEN_POWER",
-      "MOVE_EARTHQUAKE"
-     ],
-     "ability": "Sturdy",
-     "item": "Leftovers",
-     "nature": "Careful",
-     "evs": {
-      "hp": 252,
-      "def": 4,
-      "spd": 252
-     },
-     "set_name": "Standard",
-     "set_source": "gen3_movesets.json",
-     "notes": [
-      "Hidden Power type Bug dropped: trainerproc has no HP-type field in the .party format"
-     ],
-     "ivs": null,
-     "hp_type": "Bug",
-     "why_available": "evolves from Pineco at Lv31",
-     "tier": "OU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_GENGAR",
-     "level": 53,
-     "moves": [
-      "MOVE_HYPNOSIS",
-      "MOVE_EXPLOSION",
-      "MOVE_ICE_PUNCH",
-      "MOVE_THUNDERBOLT"
-     ],
-     "ability": "Levitate",
-     "item": "Leftovers",
-     "nature": "Hasty",
-     "evs": {
-      "hp": 168,
-      "spd": 164,
-      "spe": 176
-     },
-     "set_name": "Utility",
-     "set_source": "gen3_movesets.json",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "evolves from HAUNTER (trade)",
-     "tier": "OU",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_STARMIE",
-     "level": 54,
-     "moves": [
-      "MOVE_RAPID_SPIN",
-      "MOVE_RECOVER",
-      "MOVE_SURF",
-      "MOVE_THUNDER_WAVE"
-     ],
-     "ability": "Natural Cure",
-     "item": "Leftovers",
-     "nature": "Timid",
-     "evs": {
-      "hp": 252,
-      "spa": 40,
-      "spe": 216
-     },
-     "set_name": "Defensive",
-     "set_source": "gen3_movesets.json",
-     "notes": [],
-     "ivs": null,
-     "hp_type": null,
-     "why_available": "evolves from STARYU (Water_Stone)",
-     "tier": "OU",
-     "flagged": false
-    }
+    "Tyranitar @ Lum Berry",
+    "Salamence @ Leftovers",
+    "Metagross @ Leftovers",
+    "Forretress @ Leftovers",
+    "Gengar @ Leftovers",
+    "Starmie @ Leftovers"
    ]
   },
   "TRAINER_PLASTIC_OX_JOHTO_ALAN": {
@@ -9322,6 +8998,192 @@
      "hp_type": "Fire",
      "why_available": "evolves from GLOOM (Leaf_Stone)",
      "tier": "UU",
+     "flagged": false
+    }
+   ]
+  },
+  "TRAINER_PLASTIC_OX_DOJO_KENJI": {
+   "checkpoint": "saffron",
+   "cap": 55,
+   "tier": "OU",
+   "monsters": [
+    {
+     "species": "SPECIES_HITMONLEE",
+     "level": 52,
+     "moves": [
+      "MOVE_BRICK_BREAK",
+      "MOVE_HIDDEN_POWER",
+      "MOVE_ROCK_SLIDE",
+      "MOVE_FOCUS_PUNCH"
+     ],
+     "ability": "Limber",
+     "item": "Choice Band",
+     "nature": "Adamant",
+     "evs": {
+      "hp": 4,
+      "atk": 252,
+      "spe": 252
+     },
+     "set_name": "Choice Band",
+     "set_source": "gen3_movesets.json",
+     "notes": [
+      "Mach Punch -> Focus Punch (egg or special-case only)",
+      "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
+     ],
+     "ivs": null,
+     "hp_type": "Ghost",
+     "why_available": "evolves from Tyrogue at Lv20",
+     "tier": "UU",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_GOLEM",
+     "level": 51,
+     "moves": [
+      "MOVE_EARTHQUAKE",
+      "MOVE_ROCK_SLIDE",
+      "MOVE_HIDDEN_POWER",
+      "MOVE_EXPLOSION"
+     ],
+     "ability": "Rock Head",
+     "item": "Choice Band",
+     "nature": "Adamant",
+     "evs": {
+      "hp": 200,
+      "atk": 220,
+      "spe": 88
+     },
+     "set_name": "Choice Band",
+     "set_source": "gen3_movesets.json",
+     "notes": [],
+     "ivs": {
+      "atk": 30,
+      "def": 30,
+      "spd": 30
+     },
+     "hp_type": null,
+     "why_available": "evolves from GRAVELER (trade)",
+     "tier": "UU",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_URSARING",
+     "level": 51,
+     "moves": [
+      "MOVE_SWORDS_DANCE",
+      "MOVE_RETURN",
+      "MOVE_HIDDEN_POWER",
+      "MOVE_FOCUS_PUNCH"
+     ],
+     "ability": "Guts",
+     "item": "Leftovers",
+     "nature": "Adamant",
+     "evs": {
+      "hp": 160,
+      "atk": 252,
+      "spe": 96
+     },
+     "set_name": "Swords Dance",
+     "set_source": "gen3_movesets.json",
+     "notes": [
+      "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
+     ],
+     "ivs": null,
+     "hp_type": "Ghost",
+     "why_available": "evolves from Teddiursa at Lv30",
+     "tier": "UUBL",
+     "flagged": false
+    }
+   ]
+  },
+  "TRAINER_PLASTIC_OX_DOJO_NOB": {
+   "checkpoint": "saffron",
+   "cap": 55,
+   "tier": "OU",
+   "monsters": [
+    {
+     "species": "SPECIES_HITMONCHAN",
+     "level": 52,
+     "moves": [
+      "MOVE_SKY_UPPERCUT",
+      "MOVE_MACH_PUNCH",
+      "MOVE_HIDDEN_POWER",
+      "MOVE_ROCK_SLIDE"
+     ],
+     "ability": "Keen Eye",
+     "item": "Leftovers",
+     "nature": "Adamant",
+     "evs": {
+      "hp": 88,
+      "atk": 252,
+      "spe": 168
+     },
+     "set_name": "All-out Attacker",
+     "set_source": "gen3_movesets.json",
+     "notes": [
+      "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
+     ],
+     "ivs": null,
+     "hp_type": "Ghost",
+     "why_available": "evolves from Tyrogue at Lv20",
+     "tier": "NU",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_POLIWRATH",
+     "level": 52,
+     "moves": [
+      "MOVE_BRICK_BREAK",
+      "MOVE_FOCUS_PUNCH",
+      "MOVE_ROCK_TOMB",
+      "MOVE_HIDDEN_POWER"
+     ],
+     "ability": "Water Absorb",
+     "item": "Choice Band",
+     "nature": "Adamant",
+     "evs": {
+      "hp": 72,
+      "atk": 252,
+      "spe": 184
+     },
+     "set_name": "Choice Band",
+     "set_source": "gen3_movesets.json",
+     "notes": [
+      "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
+     ],
+     "ivs": null,
+     "hp_type": "Ghost",
+     "why_available": "evolves from POLIWHIRL (Water_Stone)",
+     "tier": "RU",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_PRIMEAPE",
+     "level": 51,
+     "moves": [
+      "MOVE_EARTHQUAKE",
+      "MOVE_FOCUS_PUNCH",
+      "MOVE_HIDDEN_POWER",
+      "MOVE_TOXIC"
+     ],
+     "ability": "Vital Spirit",
+     "item": "Salac Berry",
+     "nature": "Adamant",
+     "evs": {
+      "hp": 80,
+      "atk": 252,
+      "spe": 176
+     },
+     "set_name": "Reversal",
+     "set_source": "gen3_movesets.json",
+     "notes": [
+      "Reversal -> Focus Punch (egg or special-case only)",
+      "Hidden Power type Ghost dropped: trainerproc has no HP-type field in the .party format"
+     ],
+     "ivs": null,
+     "hp_type": "Ghost",
+     "why_available": "wild / special acquisition",
+     "tier": "RU",
      "flagged": false
     }
    ]

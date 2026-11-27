@@ -245,11 +245,20 @@ ROSTERS: dict[str, tuple[str, list[tuple[str, int]]]] = {
     "TRAINER_PLASTIC_OX_TATELIZA": ("mossdeep", [
         ("SPECIES_ALAKAZAM", 46), ("SPECIES_SLOWBRO", 46), ("SPECIES_MACHAMP", 45),
         ("SPECIES_URSARING", 45), ("SPECIES_STEELIX", 44), ("SPECIES_HOUNDOOM", 44)]),
-    "TRAINER_PLASTIC_OX_BRUNO": ("mossdeep", [
-        ("SPECIES_RHYDON", 50), ("SPECIES_GOLEM", 50), ("SPECIES_MACHAMP", 49),
-        ("SPECIES_HARIYAMA", 49), ("SPECIES_DONPHAN", 48), ("SPECIES_STEELIX", 48)]),
 
     # ---- Gym 7, Saffron, OU cap 55 ---------------------------------------
+    # BRUNO is the OU Gym 7 (story bible), on the Saffron cap beside GIOVANNI
+    # rather than on Mossdeep's UUBL cap. His six are the maintainer's
+    # requested ADV OU team (2026-11-27), hand-authored in
+    # authored_trainers.party; four of them are signature exceptions below.
+    "TRAINER_PLASTIC_OX_BRUNO": ("saffron", [
+        ("SPECIES_ZAPDOS", 55), ("SPECIES_LUDICOLO", 53), ("SPECIES_BLAZIKEN", 54),
+        ("SPECIES_HERACROSS", 55), ("SPECIES_REGIROCK", 54), ("SPECIES_CELEBI", 54)]),
+    # Dojo BLACK BELTS: optional sight battles on either side of the mat.
+    "TRAINER_PLASTIC_OX_DOJO_KENJI": ("saffron", [
+        ("SPECIES_HITMONLEE", 52), ("SPECIES_GOLEM", 51), ("SPECIES_URSARING", 51)]),
+    "TRAINER_PLASTIC_OX_DOJO_NOB": ("saffron", [
+        ("SPECIES_HITMONCHAN", 52), ("SPECIES_POLIWRATH", 52), ("SPECIES_PRIMEAPE", 51)]),
     "TRAINER_PLASTIC_OX_SILPHGRUNT1": ("saffron", [
         ("SPECIES_MACHAMP", 52), ("SPECIES_JYNX", 52), ("SPECIES_WEEZING", 51),
         ("SPECIES_HARIYAMA", 51), ("SPECIES_DUSCLOPS", 50), ("SPECIES_KADABRA", 52)]),
@@ -356,6 +365,10 @@ SIGNATURE_EXCEPTIONS = {
     # Blaine's requested fixed six: these four are not catchable by Cinnabar.
     "TRAINER_PLASTIC_OX_BLAINE": ["SPECIES_OMASTAR", "SPECIES_KANGASKHAN",
                                   "SPECIES_MISDREAVUS", "SPECIES_SOLROCK"],
+    # Bruno's requested fixed six: these four are not obtainable by Saffron
+    # (three are one-off legendaries the player meets later or elsewhere).
+    "TRAINER_PLASTIC_OX_BRUNO": ["SPECIES_ZAPDOS", "SPECIES_HERACROSS",
+                                 "SPECIES_REGIROCK", "SPECIES_CELEBI"],
 }
 
 # Fixed ADV PU sets for Whitney. Her trainer-only move access permits the
@@ -924,14 +937,16 @@ LATE_SALTS = {"TRAINER_PLASTIC_OX_TOWERGRUNT3": 3000,
               "TRAINER_PLASTIC_OX_ECRUTEAK_KADO": 3003,
               "TRAINER_PLASTIC_OX_ECRUTEAK_YUI": 3006,
               "TRAINER_PLASTIC_OX_ECRUTEAK_GENZO": 3009,
-              "TRAINER_PLASTIC_OX_ECRUTEAK_RIN": 3012}
+              "TRAINER_PLASTIC_OX_ECRUTEAK_RIN": 3012,
+              "TRAINER_PLASTIC_OX_DOJO_KENJI": 3018,
+              "TRAINER_PLASTIC_OX_DOJO_NOB": 3021}
 # Retired trainers keep their place in the salt order, so dropping them from
 # ROSTERS never reshuffles the trainers sorted after them.
 RETIRED_SALT_SLOTS = {f"TRAINER_PLASTIC_OX_KIMONO{s}"
                       for s in ("VAPOREON", "JOLTEON", "FLAREON", "ESPEON", "UMBREON")}
 SALT_KEYS = ROSTERS.keys() | RETIRED_SALT_SLOTS
 TRAINER_SALT = {name: i * 3 for i, name in enumerate(sorted(SALT_KEYS - NEW_OPENING_TRAINERS - JOHTO_TRAINERS.keys() - LATE_SALTS.keys()))}
-TRAINER_SALT.update({name: 3 * (len(SALT_KEYS - {"TRAINER_PLASTIC_OX_KIMONO_TROUPE"}) - len(NEW_OPENING_TRAINERS) - len(JOHTO_TRAINERS) + i)
+TRAINER_SALT.update({name: 3 * (len(SALT_KEYS - {"TRAINER_PLASTIC_OX_KIMONO_TROUPE", "TRAINER_PLASTIC_OX_DOJO_KENJI", "TRAINER_PLASTIC_OX_DOJO_NOB"}) - len(NEW_OPENING_TRAINERS) - len(JOHTO_TRAINERS) + i)
                      for i, name in enumerate(sorted(NEW_OPENING_TRAINERS))})
 TRAINER_SALT.update({name: data['id'] * 3 for name, data in JOHTO_TRAINERS.items()})
 TRAINER_SALT.update(LATE_SALTS)

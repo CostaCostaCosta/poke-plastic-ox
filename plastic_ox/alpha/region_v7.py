@@ -418,7 +418,9 @@ def apply_region(read, put):
     scripts.append('PoxRustboroNorthSign::\n\tmsgbox PoxRustboroNorthSign_Text, MSGBOX_SIGN\n\tend\nPoxRustboroNorthSign_Text::\n\t.string "ROUTE 24 - NORTH\\nBILL\'S COTTAGE via ROUTE 25$"')
     sign_text = {
         'route7_route103_b': 'ROUTE 7\\nKeep to the marked passage.$',
-        'route103_cinnabar_a': 'CINNABAR ISLAND\\nFollow the passage south.$'
+        'route103_cinnabar_a': 'CINNABAR ISLAND\\nFollow the passage south.$',
+        'route19_saffron_b': 'SAFFRON CITY - SOUTH GATE\\nROUTE 19 and the MOSSDEEP road$',
+        'saffron_route5_a': 'SAFFRON CITY - NORTH GATE\\nROUTE 5 to BLACKTHORN$'
     }
     # FRLG trainer IDs aren't part of Emerald's trainer table. Keep these
     # people and their authored dialogue without invoking unrelated trainers.
@@ -915,3 +917,5 @@ def apply_region(read, put):
     install_south_isles(read, put)
     from clear_bell import install as install_clear_bell
     install_clear_bell(read, put)
+    from saffron import install as install_saffron
+    install_saffron(read, put)

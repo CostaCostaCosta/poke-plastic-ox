@@ -135,6 +135,11 @@ def gift(name, text, prerequisites=()):
 # music and AI; WHITNEY uses her HNS front pic.
 TRAINER_HEADERS = {
     'Whitney': dict(pic='Leader Whitney Hns', gender='Female', music='Female'),
+    # BRUNO keeps the Leader class (his Dojo is the League's seventh Gym) but
+    # fights under his own FRLG portrait (2026-11-27 Saffron pass).
+    'Bruno': dict(pic='Elite Four Bruno Frlg', music='Intense'),
+    # GIOVANNI is the Rocket Boss at Silph, not a Gym Leader (class added 2026-11-27).
+    'Giovanni': dict(cls='Rocket Boss'),
     'KimonoVaporeon': dict(gender='Female', music='Female'),
     'KimonoJolteon': dict(cls='Cooltrainer', pic='Cooltrainer F', gender='Female', music='Cool',
                           ai='Basic Trainer / Try To Faint / HP Aware'),
@@ -188,16 +193,16 @@ DEFEAT_LINES = {
     'Winona': "WINONA: You rode the wind better than my birds did today.",
     'Blaine': "BLAINE: Hah! You doused my flames without breaking a sweat!",
     'TateLiza': "TATE: We lost… LIZA: …but we lost together.",
-    'Bruno': "BRUNO: Hrrgh! My training isn't finished. Neither is yours.",
+    'Bruno': "BRUNO: ...Good. They got up every time. That is the whole art.",
     'Clair': "CLAIR: Fine. You've earned it. Don't expect me to say so twice.",
     'MoonGrunt1': "Ugh! The boss is gonna dock my pay for this.",
     'MoonGrunt2': "Tch. Fossils are heavy anyway. Who needs 'em?",
     'TowerGrunt1': "Fine. Ask him yourself. Maybe he'll answer you.",
     'TowerGrunt2': "Paper. It was all just paper. Why are we even fighting over it?",
-    'SilphGrunt1': "Fine! The terminals didn't like me anyway.",
-    'SilphGrunt2': "I'm just here for the overtime, kid!",
-    'SilphGrunt3': "Go on, then. The BOSS will deal with you himself.",
-    'Giovanni': "GIOVANNI: Hmph. You have no idea what you just interrupted.",
+    'SilphGrunt1': "That's my bonus gone. You know they dock us for the POTIONS, too?",
+    'SilphGrunt2': "Fine. Go. If it starts talking, I was never here.",
+    'SilphGrunt3': "Then go and read it yourself. Tell me if I was right.",
+    'Giovanni': "GIOVANNI: Hmph. You have no idea what you have just interrupted.",
     'Wallace': "WALLACE: Such elegance. You've earned the next door.",
     'Steven': "STEVEN: Hard as stone. I'm glad I got to see your team up close.",
     'LeagueLance': "LANCE: Your POKéMON fight like they trust you completely.",
@@ -215,10 +220,12 @@ def defeat_label(name):
     return f"Pox_Text_{name}_Defeat" if name in DEFEAT_LINES else "Pox_Text_Defeat"
 
 
-def battle(name, display, text, team, level, completion, prerequisites=(), extra="", pic="Leader Roxanne", cls="Leader", double=False, repeat="Pox_Done", notready=None):
+def battle(name, display, text, team, level, completion, prerequisites=(), extra="", pic="Leader Roxanne", cls="Leader", double=False, repeat="Pox_Done", notready=None, pre=""):
     tid = trainer(name, display, team, level, pic, cls, double)
     start(name, prerequisites, notready)
     emit(f"\tgoto_if_set {completion}, {repeat}")
+    # pre: checks that run once the battle is due (BRUNO's OU clause check).
+    emit(pre)
     if double:
         emit('\tsetvar VAR_0x8004, PARTY_SIZE\n\tspecialvar VAR_RESULT, CountPartyAliveNonEggMons_IgnoreVar0x8004Slot\n\tgoto_if_lt VAR_RESULT, 2, Pox_TwoMons')
         emit(f"\ttrainerbattle_double {tid}, Pox_Text_{name}, {defeat_label(name)}, Pox_Text_TwoMons, Pox_{name}_Won")
@@ -297,7 +304,7 @@ def travel(name, destination, x, y, text, prerequisites=()):
         'CinnabarRoad':'Take ROUTE 8 west. The UNDERGROUND PATH bypasses closed SAFFRON.|From ROUTE 7, cross ROUTE 103 to CINNABAR.',
         'MossdeepRoad':'Follow the southern coast through SEAFOAM ISLANDS to MOSSDEEP.',
         'SaffronRoad':'The northern coast leads through ROUTE 19 to SAFFRON.',
-        'BlackthornRoad':'Take SAFFRON\'s north exit through ROUTES 5 and 115 and METEOR FALLS to BLACKTHORN.',
+        'BlackthornRoad':"Pavement is murder on my boots. I'm out the north gate myself as soon as these laces are done.|ROUTE 5, then ROUTE 115, then down through METEOR FALLS to BLACKTHORN. The gate's open, same as everything else here. Nobody asks what you've done first.",
         'LeagueRoad':'The LEAGUE gate is west of ECRUTEAK. Bring all eight BADGES.',
         'WhirlGuide':'SEAFOAM ISLANDS lie along the coast to MOSSDEEP.',
     }
@@ -322,10 +329,8 @@ ROOM_EXIT_LINES = {
     'MortyGym': "The way out is the way you came in. I will walk you to the last lamp.",
     'DanceTheater': "The door is behind the third curtain. Mind the rope; the dancers leave it out.",
     'BlaineGym': "Need some air? I'll walk you out of the heat.",
-    'BrunoGym': "Leaving the DOJO? Bow on your way out, please.",
     'ClairGym': "The lava's hot today. I'll lead you back to town.",
     'Mansion': "These halls are easy to get lost in. Follow me out.",
-    'Silph': "Elevators are down. I'll take you out the back.",
     'WhirlIslands': "The tide's turning. Let's head back to shore.",
     'VictoryRoad': "Not ready yet? I'll guide you back down the trail.",
     'WallaceRoom': "Want to step out? The LEAGUE lobby is this way.",
@@ -348,16 +353,21 @@ ROOM_OVERRIDES = {
     'DanceTheater': dict(layout='LAYOUT_ECRUTEAK_CITY_THEATER_HNS', music='MUS_RG_CELADON',
                          battle_scene='MAP_BATTLE_SCENE_NORMAL',
                          doors=[(10, 17, 0, 'EcruteakCity_hns', '3')]),
+    # Retired 2026-11-27: BRUNO's Gym is the FRLG Dojo and Silph is the FRLG
+    # tower (plastic_ox/alpha/saffron.py). The rooms keep their map-group
+    # slots (map numbers are save data) but have no actors or exit guide.
+    'BrunoGym': dict(retired=True),
+    'Silph': dict(retired=True),
 }
 # Tier-rule greeter scripts for the gym halls (2026-11-02). Each hall in
 # GREETER_HALLS gets a GYM GUY by the door who runs its tier check; Goldenrod's
 # was placed by hand with the hint NPCs, and Cinnabar's real gym is the FRLG
 # one (south_isles.py). Fortree's native gym guide runs FORTREE_GREETER.
+# BRUNO's hall is retired: his Dojo has its own desk clerk (plastic_ox/alpha/saffron.py).
 GYM_GREETERS = {
     'WhitneyGym': ('GOLDENROD GYM', 'PU', 'CheckGoldenrodGymPURules'),
     'MortyGym': ('ECRUTEAK GYM', 'NU', 'CheckEcruteakGymNURules'),
     'BlaineGym': ('CINNABAR GYM', 'UU', 'CheckCinnabarGymUURules'),
-    'BrunoGym': ('SAFFRON DOJO GYM', 'OU', 'CheckSaffronGymOURules'),
     'ClairGym': ('BLACKTHORN GYM', 'OU', 'CheckBlackthornGymOURules'),
 }
 
@@ -390,7 +400,7 @@ def greeter_scripts(dest, gym, tier, special):
             f'\t.string "That ability is banned here.\\n"\n\t.string "Please leave it in the PC.$"\n')
 
 
-GREETER_HALLS = ('MortyGym', 'BrunoGym', 'ClairGym')
+GREETER_HALLS = ('MortyGym', 'ClairGym')
 FORTREE_GREETER = ('Pox_FortreeGym', 'FORTREE GYM', 'RU', 'CheckFortreeGymRURules')
 
 
@@ -410,7 +420,7 @@ def room(name, parent, boss, source="RustboroCity_Gym", objects=None, return_xy=
     data["name"] = dest
     data["connections"] = None
     data["region_map_section"] = load_map(parent)["region_map_section"]
-    data["object_events"] = objects or [npc(boss, 5, 2)]
+    data["object_events"] = [] if ROOM_OVERRIDES.get(name, {}).get('retired') else objects or [npc(boss, 5, 2)]
     data["coord_events"] = []
     data["bg_events"] = []
     # Exit through a guide on the known walkable entry corridor. All native
@@ -426,7 +436,9 @@ def room(name, parent, boss, source="RustboroCity_Gym", objects=None, return_xy=
         data["object_events"][0]["flag"] = over['boss_flag']
     data["warp_events"] = [dict(x=x, y=y, elevation=e, dest_map=mapid(town), dest_warp_id=w)
                            for x, y, e, town, w in over.get('doors', [])]
-    if over.get('exit_guide', True):
+    if over.get('retired'):
+        data["object_events"] = []
+    elif over.get('exit_guide', True):
         data["object_events"].append(npc(name + "Exit", 4, 17))
     if name in GREETER_HALLS:
         greeter = npc(name + "Greeter", 7, 17, 'OBJ_EVENT_GFX_GYM_GUY', '0')
@@ -439,7 +451,8 @@ def room(name, parent, boss, source="RustboroCity_Gym", objects=None, return_xy=
     put(f"data/maps/{dest}/scripts.inc", f"{dest}_MapScripts::\n\t.byte 0\n"
         + (greeter_scripts(dest, *GYM_GREETERS[name]) if name in GYM_GREETERS else ''))
     room_names.append(dest)
-    travel(name + "Exit", parent, *return_xy, ROOM_EXIT_LINES.get(name, "I'll show you back outside."))
+    if not over.get('retired'):
+        travel(name + "Exit", parent, *return_xy, ROOM_EXIT_LINES.get(name, "I'll show you back outside."))
     manifest.extend((dest, o['x'], o['y'], o['script'][4:]) for o in data['object_events'])
     return dest
 
@@ -543,14 +556,27 @@ for i, (name, display, town, prereq, level, team) in enumerate(gymdata):
         # DEVON SCOPE; talking to Winona again resumes an interrupted gift.
         extra += "\n\tgoto Pox_DevonScope_Award"
         repeat = "Pox_WinonaDone"
+    if name == 'Bruno':
+        # The Dojo's own scripts (prize fighters, refusals) live in saffron.py.
+        extra += "\n\tgoto PoxSaffron_BrunoAfter"
+        repeat = "PoxSaffron_BrunoDone"
     intro = ("WHITNEY: My team keeps moving! Show me how you handle surprises!"
              if name == 'Whitney' else
              "MORTY: You went under the tower. You saw them leave, all eleven, and not one of them looked lost.|I have no explanation that would survive daylight. What I have is a GYM and a badge.|Show me the team you carried down there."
              if name == 'Morty' else
+             "BRUNO: You have already decided to fight. Good. Then we can skip the tea.|I held a room at the top of the LEAGUE once. Everyone who reached it had finished learning. I had not, so I came back to this floor.|I am not interested in your BADGES. I am interested in what your POKéMON do when they are tired. Begin."
+             if name == 'Bruno' else
              f"{display}: Show me what you and your POKéMON have learned!")
-    whitney = dict(notready={badges[0]: 'Pox_WhitneyNeedsBadge', moon: 'Pox_WhitneyNeedsMoon'}) if name == 'Whitney' else {}
+    own = {}
+    if name == 'Whitney':
+        own = dict(notready={badges[0]: 'Pox_WhitneyNeedsBadge', moon: 'Pox_WhitneyNeedsMoon'})
+    if name == 'Bruno':
+        # The Dojo is a League Gym under ADV OU clauses; BRUNO will not begin
+        # while the party breaks one (the desk clerk explains which).
+        own = dict(notready={flag_name: 'PoxSaffron_BrunoNotReady' for flag_name in prereq},
+                   pre="\tspecialvar VAR_RESULT, CheckSaffronGymOURules\n\tgoto_if_ne VAR_RESULT, 0, PoxSaffron_BrunoRules")
     battle(name, display, intro, team, level, badges[i], prereq, extra,
-           double=name=='TateLiza', repeat=repeat, **whitney)
+           double=name=='TateLiza', repeat=repeat, **own)
     if name in ['Roxanne','Winona','TateLiza']:
         native = {'Roxanne':'RustboroCity_Gym','Winona':'FortreeCity_Gym','TateLiza':'MossdeepCity_Gym'}[name]
         data = load_map(native)
@@ -571,6 +597,10 @@ for i, (name, display, town, prereq, level, team) in enumerate(gymdata):
         save_map(native, data)
     else:
         dest = room(name + 'Gym', town, name, return_xy={'Whitney':(25,14),'Morty':(35,44),'Blaine':(11,11),'Bruno':(16,23),'Clair':(16,29)}[name])
+        if name == 'Bruno':
+            # Entered through the Dojo's own door; BRUNO stands in the FRLG hall.
+            manifest_event('SaffronCity_Dojo_Frlg', 'Bruno', 6, 5)
+            continue
         guide(town, {'Whitney':0,'Morty':0,'Blaine':1,'Bruno':0,'Clair':0}[name], name+'Guide', dest, f"{display}'s challenge is this way.", prereq if name=='Clair' else ())
 speech("Pox_Text_Badge", "You received a GYM BADGE! A new challenge waits on the next road.")
 # Fortree: after Winona, LINDEN brings the DEVON SCOPE (reveals invisible
@@ -962,17 +992,34 @@ gift('Space','This EEVEE helped us study adaptation. Our observations are comple
 replace_npc('MossdeepCity_SpaceCenter_1F',0,'SpaceReport',hidden='FLAG_POX_HIDE_STORY_NPCS')
 add_npc('MossdeepCity_SpaceCenter_1F','Space',5,7,'OBJ_EVENT_GFX_SCIENTIST')
 
+# Silph Co. (Team Rocket III). plastic_ox/alpha/saffron.py places the three
+# grunts and GIOVANNI in the FRLG tower (1F lobby and 11F), makes the grunts
+# line-of-sight trainers and owns the terminal (Pox_SilphCore). The battles
+# stay here so their trainer ids keep their numbering. Three technicians who
+# expected a server room: one wants to be paid, one to be safe, one to be right.
+silph_grunt_lines=[
+    "Lift's reserved. I'm on double time until the BOSS comes back down, so do me a favour and make this take a while.",
+    "Don't touch anything! They told us it was a server room. Nobody said the lights would follow you down the corridor.|I'm not guarding this hall. I'm just not walking back through it on my own.",
+    "I've read the logs. Nobody at SILPH wrote the thing on this floor. Nobody at TEAM ROCKET did either.|The BOSS thinks he's here to take it. I've seen what it keeps, and I'd like to be right about it before he is.",
+]
 silphgrunts=[]
 for n in range(1,4):
     f='FLAG_POX_HIDE_SILPH_GRUNT_'+str(n)
     req=[space] if n==1 else [silphgrunts[-1]]
     silphgrunts.append(f)
-    battle('SilphGrunt'+str(n),'GRUNT',["These terminals won't obey us. But the BOSS will make this system his!","Keep away from the server room! I just got the cables untangled.","You got past two of us? The BOSS won't like this one bit!"][n-1],[('Muk',['Sludge Bomb','Minimize','Body Slam']),('Golbat',['Bite','Confuse Ray','Wing Attack'])],48,f,req,pic='Team Aqua M',cls='Team Aqua')
+    battle('SilphGrunt'+str(n),'GRUNT',silph_grunt_lines[n-1],[('Muk',['Sludge Bomb','Minimize','Body Slam']),('Golbat',['Bite','Confuse Ray','Wing Attack'])],48,f,req,
+           extra='\tremoveobject VAR_LAST_TALKED',pic='Rocket Grunt M Frlg',cls='Team Rocket Frlg',
+           repeat='Pox_Release',notready={req[0]:'PoxSaffron_GruntNotYet'+str(n)})
 gio='FLAG_POX_HIDE_SILPH_GIOVANNI'
-battle('Giovanni','GIOVANNI',"We did not make this world. We followed a signal, then the old man's research.|A system that can rearrange a region can give its owner anything. Stand aside!",[('Nidoking',['Earthquake','Ice Beam','Thunderbolt']),('Kangaskhan',['Return','Shadow Ball','Fake Out']),('Dugtrio',['Earthquake','Rock Slide','Aerial Ace']),('Rhydon',['Earthquake','Rock Slide','Megahorn'])],52,gio,[silphgrunts[-1]],pic='Leader Giovanni Frlg')
-beat('SilphCore','TERMINAL: ADAPTIVE TRAINER SYSTEM.|Battle profiles: BLUE, LANCE, STEVEN, WALLACE. Objective: improve training conditions.|Habitat isolation detected. Regional transfer links reconciled. Environmental restructuring active.|You isolate the environmental controls. The transfer links fall silent.|The existing region remains. Its boundaries have stopped moving.',silph,[gio])
-sroom=room('Silph','SaffronCity_hns',None,objects=[npc('SilphGrunt1',3,13,'OBJ_EVENT_GFX_ROCKET_GRUNT_M',silphgrunts[0]),npc('SilphGrunt2',7,13,'OBJ_EVENT_GFX_ROCKET_GRUNT_M',silphgrunts[1]),npc('SilphGrunt3',3,9,'OBJ_EVENT_GFX_ROCKET_GRUNT_M',silphgrunts[2]),npc('Giovanni',7,9,'OBJ_EVENT_GFX_MAN_3',gio),npc('SilphCore',5,2,'OBJ_EVENT_GFX_SCIENTIST')],return_xy=(26,16))
-guide('SaffronCity_hns',1,'SilphGuide',sroom,'SILPH needs help. BRUNO is accepting challenges at the DOJO, and the northern road leads to CLAIR in BLACKTHORN.|You can choose where to go first.',[space])
+# Reveal-ladder step 13: Rocket followed the signal and MR. FUJI's notes (the
+# Pokemon Tower beat); it did not move anything. He never says "convergence".
+battle('Giovanni','GIOVANNI',"GIOVANNI: So you are the one who keeps walking in behind my people. MT. MOON. The tower in LAVENDER. Now here.|Understand something before you embarrass yourself. TEAM ROCKET did not move a single road. We noticed, as you did, and we followed the noise to where it comes from.|MR. FUJI's notes told us what kind of thing it was. This building told us where. A system that can rearrange a region can give its owner anything.|I have spent years following a rumour through other people's ruins. You will forgive me if I am not polite about it. Stand aside.",[('Nidoking',['Earthquake','Ice Beam','Thunderbolt']),('Kangaskhan',['Return','Shadow Ball','Fake Out']),('Dugtrio',['Earthquake','Rock Slide','Aerial Ace']),('Rhydon',['Earthquake','Rock Slide','Megahorn'])],52,gio,[silphgrunts[-1]],
+       extra='\tgoto PoxSaffron_GiovanniLeaves',pic='Leader Giovanni Frlg',
+       repeat='Pox_Release',notready={silphgrunts[-1]:'PoxSaffron_GiovanniNotReady'})
+room('Silph','SaffronCity_hns',None)
+for name,mapname,x,y in [('SilphGrunt1','SilphCo_1F_Frlg',22,4),('SilphGrunt2','SilphCo_11F_Frlg',16,12),
+                         ('SilphGrunt3','SilphCo_11F_Frlg',0,12),('Giovanni','SilphCo_11F_Frlg',6,11)]:
+    manifest_event(mapname,name,x,y)
 
 # Travel services join the currently disconnected demo legs. Prerequisites
 # remain at the objectives as well as at these connections.
@@ -1317,7 +1364,7 @@ def keep_stable_trainer_layout():
 keep_stable_trainer_layout()
 # Line-of-sight trainers (lavender.py's 7F tower Rockets) run their story
 # battle through a PoxLavender_<name>Sight label that opens with trainerbattle.
-manifest=[(m,x,y,s) for m,x,y,s in manifest if any(o.get('script') in ('Pox_'+s,'PoxLavender_'+s+'Sight') and (o['x'],o['y']) == (x,y) for o in load_map(m)['object_events'])]
+manifest=[(m,x,y,s) for m,x,y,s in manifest if any(o.get('script') in ('Pox_'+s,'PoxLavender_'+s+'Sight','PoxSaffron_'+s+'Sight') and (o['x'],o['y']) == (x,y) for o in load_map(m)['object_events'])]
 put('plastic_ox/alpha/story_manifest.json',json.dumps(dict(events=[dict(map=m,x=x,y=y,script='Pox_'+s) for m,x,y,s in manifest],flags=flags,trainers=[t for t,_ in trainers],rooms=room_names),indent=2)+'\n')
 
 different={p:t for p,t in changes.items() if not Path(p).exists() or Path(p).read_text()!=t}
