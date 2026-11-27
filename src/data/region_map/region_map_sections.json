@@ -1854,6 +1854,14 @@
       "y": 3,
       "width": 5,
       "height": 3
+    },
+    {
+      "id": "MAPSEC_RUINS_OF_ALPH",
+      "name": "RUINS OF ALPH",
+      "x": 17,
+      "y": 3,
+      "width": 1,
+      "height": 1
     }
   ]
 }

@@ -123,7 +123,8 @@ CHECKPOINTS = [
                                 "gPoxNUBurnedTowerB1F"], []),
     ("gym3",        "NU",   30, [], []),          # Morty, Dance Theater
     ("fortree",     "RU",   36, [], []),          # Route 119, Weather Institute, Fortree
-    ("cinnabar",    "UU",   42, ["gPoxUUPokemonTower#", "gPoxUURoute#", "gPoxRoute44Hns:land_mons"], []),  # Lavender tower, Routes 8/7/21, Cinnabar
+    ("cinnabar",    "UU",   42, ["gPoxUUPokemonTower#", "gPoxUURoute#", "gPoxRoute44Hns:land_mons",
+                                "gPoxUURuinsOfAlph#"], []),  # Lavender tower, Routes 8/7/21, Cinnabar, Ruins of Alph dig
     ("mossdeep",    "UUBL", 50, [], []),          # Mossdeep gym
     ("saffron",     "OU",   55, [], []),          # Silph
     ("blackthorn",  "OU",   60, [], []),          # Clair

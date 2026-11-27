@@ -2020,4 +2020,22 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 
 	.include "data/scripts/plastic_ox_celebi.inc"
 
+	.include "data/maps/Gate_RuinsOfAlph_Route36_hns/scripts.inc"
+
+	.include "data/maps/RuinsOfAlph_Outside_hns/scripts.inc"
+
+	.include "data/maps/RuinsOfAlph_PuzzleAndRewardChambers_hns/scripts.inc"
+
 	.include "data/scripts/plastic_ox_clear_bell.inc"
+
+	.include "data/maps/RuinsOfAlph_Lab_hns/scripts.inc"
+
+	.include "data/maps/RuinsOfAlph_B1F_hns/scripts.inc"
+
+	.include "data/maps/RuinsOfAlph_WordsRoom1_hns/scripts.inc"
+
+	.include "data/maps/RuinsOfAlph_WordsRoom2_hns/scripts.inc"
+
+	.include "data/maps/RuinsOfAlph_WordsRoom3_hns/scripts.inc"
+
+	.include "data/maps/RuinsOfAlph_WordsRoom4_hns/scripts.inc"

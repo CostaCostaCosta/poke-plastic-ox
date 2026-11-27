@@ -381,6 +381,10 @@
 // Ilex Forest shrine: the GS BALL was handed to the Celebi sage (Celebi shows until caught).
 #define FLAG_POX_CELEBI_GS_BALL_GIVEN (POX_EXT_FLAGS_START + 17)
 
+// Route 36: the Ruins of Alph researcher has walked into the gatehouse (he
+// lets the player through once FLAG_POX_STORY_MANSION is set). Hides him on the route.
+#define FLAG_POX_HIDE_RUINS_RESEARCHER (POX_EXT_FLAGS_START + 23)
+
 // Post-game Dragon's Den (plastic_ox/alpha/import_dragons_den.py).
 // Cavern shrine plaza: RAYQUAZA caught.
 #define FLAG_POX_CAUGHT_RAYQUAZA (POX_EXT_FLAGS_START + 18)
