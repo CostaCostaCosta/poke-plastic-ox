@@ -378,6 +378,8 @@
 #define FLAG_POX_CAUGHT_SUICUNE (POX_EXT_FLAGS_START + 15)
 // Burned Tower B1F: MORTY rang the CLEAR BELL and SUICUNE came back (shows SUICUNE until caught).
 #define FLAG_POX_RANG_CLEAR_BELL (POX_EXT_FLAGS_START + 16)
+// Ilex Forest shrine: the GS BALL was handed to the Celebi sage (Celebi shows until caught).
+#define FLAG_POX_CELEBI_GS_BALL_GIVEN (POX_EXT_FLAGS_START + 17)
 
 // Lavender / Pokemon Tower (plastic_ox/alpha/lavender.py).
 // Pokemon Tower 7F: FUJI walked home after the three grunts.
