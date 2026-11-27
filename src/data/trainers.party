@@ -17446,72 +17446,74 @@ Timid Nature
 === TRAINER_PLASTIC_OX_BRUNO ===
 Name: BRUNO
 Class: Leader
-Pic: Leader Roxanne
+Pic: Elite Four Bruno Frlg
 Gender: Male
-Music: Male
+Music: Intense
 Double Battle: No
 AI: Basic Trainer / Smart Switching / PP Stall Prevention
 
-Rhydon @ Leftovers
-Level: 50
-Ability: Lightning Rod
-EVs: 212 HP / 122 Atk / 176 Spe
-Adamant Nature
-- Earthquake
-- Swords Dance
-- Rock Slide
-- Substitute
-
-Golem @ Choice Band
-Level: 50
-Ability: Rock Head
-IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
-EVs: 200 HP / 220 Atk / 88 Spe
-Adamant Nature
-- Earthquake
-- Rock Slide
+Zapdos @ Choice Band
+Level: 55
+Ability: Pressure
+IVs: 31 HP / 31 Atk / 30 Def / 30 SpA / 30 SpD / 30 Spe
+EVs: 252 Atk / 12 SpA / 244 Spe
+Lonely Nature
+- Thunderbolt
 - Hidden Power
-- Explosion
+- Drill Peck
+- Baton Pass
 
-Machamp @ Choice Band
-Level: 49
-Ability: Guts
+Ludicolo @ Lum Berry
+Level: 53
+Ability: Swift Swim
+EVs: 104 HP / 252 SpA / 152 Spe
+Modest Nature
+- Rain Dance
+- Surf
+- Ice Beam
+- Giga Drain
+
+Blaziken @ Salac Berry
+Level: 54
+Ability: Blaze
+EVs: 228 Atk / 80 SpA / 200 Spe
+Hasty Nature
+- Endure
+- Swords Dance
+- Reversal
+- Fire Blast
+
+Heracross @ Salac Berry
+Level: 55
+Ability: Swarm
 EVs: 252 Atk / 4 Def / 252 Spe
 Adamant Nature
-- Cross Chop
-- Rock Slide
-- Focus Punch
-- Hidden Power
+- Swords Dance
+- Megahorn
+- Substitute
+- Reversal
 
-Hariyama @ Leftovers
-Level: 49
-Ability: Thick Fat
-EVs: 4 Atk / 252 Def / 252 SpD
-Impish Nature
-- Knock Off
-- Brick Break
-- Rest
-- Hidden Power
-
-Donphan @ Leftovers
-Level: 48
-Ability: Sturdy
-EVs: 252 HP / 44 Atk / 188 Def / 24 Spe
-Impish Nature
-- Earthquake
-- Hidden Power
-- Rest
-- Rapid Spin
-
-Steelix @ Choice Band
-Level: 48
-Ability: Rock Head
-EVs: 144 HP / 228 Atk / 136 SpD
+Regirock @ Choice Band
+Level: 54
+Ability: Clear Body
+IVs: 31 HP / 31 Atk / 30 Def / 31 SpA / 30 SpD / 30 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Adamant Nature
+- Hidden Power
+- Superpower
 - Earthquake
-- Iron Tail
-- Double-Edge
 - Explosion
+
+Celebi @ Leftovers
+Level: 54
+Ability: Natural Cure
+IVs: 31 HP / 2 Atk / 30 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Modest Nature
+- Leech Seed
+- Giga Drain
+- Hidden Power
+- Psychic
 
 === TRAINER_PLASTIC_OX_CLAIR ===
 Name: CLAIR
@@ -18085,8 +18087,8 @@ Adamant Nature
 
 === TRAINER_PLASTIC_OX_SILPHGRUNT1 ===
 Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt M
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
 Gender: Male
 Music: Male
 Double Battle: No
@@ -18154,8 +18156,8 @@ Timid Nature
 
 === TRAINER_PLASTIC_OX_SILPHGRUNT2 ===
 Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt M
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
 Gender: Male
 Music: Male
 Double Battle: No
@@ -18223,8 +18225,8 @@ Timid Nature
 
 === TRAINER_PLASTIC_OX_SILPHGRUNT3 ===
 Name: GRUNT
-Class: Team Aqua
-Pic: Aqua Grunt M
+Class: Team Rocket Frlg
+Pic: Rocket Grunt M Frlg
 Gender: Male
 Music: Male
 Double Battle: No
@@ -18292,7 +18294,7 @@ Jolly Nature
 
 === TRAINER_PLASTIC_OX_GIOVANNI ===
 Name: GIOVANNI
-Class: Leader
+Class: Rocket Boss
 Pic: Leader Giovanni Frlg
 Gender: Male
 Music: Male
@@ -22689,3 +22691,83 @@ Bold Nature
 - Surf
 - Rest
 - Sleep Talk
+
+=== TRAINER_PLASTIC_OX_DOJO_KENJI ===
+Name: KENJI
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Intense
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Hitmonlee @ Choice Band
+Level: 52
+Ability: Limber
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Brick Break
+- Hidden Power
+- Rock Slide
+- Focus Punch
+
+Golem @ Choice Band
+Level: 51
+Ability: Rock Head
+IVs: 31 HP / 30 Atk / 30 Def / 31 SpA / 30 SpD / 31 Spe
+EVs: 200 HP / 220 Atk / 88 Spe
+Adamant Nature
+- Earthquake
+- Rock Slide
+- Hidden Power
+- Explosion
+
+Ursaring @ Leftovers
+Level: 51
+Ability: Guts
+EVs: 160 HP / 252 Atk / 96 Spe
+Adamant Nature
+- Swords Dance
+- Return
+- Hidden Power
+- Focus Punch
+
+=== TRAINER_PLASTIC_OX_DOJO_NOB ===
+Name: NOB
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Intense
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Hitmonchan @ Leftovers
+Level: 52
+Ability: Keen Eye
+EVs: 88 HP / 252 Atk / 168 Spe
+Adamant Nature
+- Sky Uppercut
+- Mach Punch
+- Hidden Power
+- Rock Slide
+
+Poliwrath @ Choice Band
+Level: 52
+Ability: Water Absorb
+EVs: 72 HP / 252 Atk / 184 Spe
+Adamant Nature
+- Brick Break
+- Focus Punch
+- Rock Tomb
+- Hidden Power
+
+Primeape @ Salac Berry
+Level: 51
+Ability: Vital Spirit
+EVs: 80 HP / 252 Atk / 176 Spe
+Adamant Nature
+- Earthquake
+- Focus Punch
+- Hidden Power
+- Toxic
+

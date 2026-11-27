@@ -381,6 +381,10 @@
 // Ilex Forest shrine: the GS BALL was handed to the Celebi sage (Celebi shows until caught).
 #define FLAG_POX_CELEBI_GS_BALL_GIVEN (POX_EXT_FLAGS_START + 17)
 
+// Route 36: the Ruins of Alph researcher has walked into the gatehouse (he
+// lets the player through once FLAG_POX_STORY_MANSION is set). Hides him on the route.
+#define FLAG_POX_HIDE_RUINS_RESEARCHER (POX_EXT_FLAGS_START + 23)
+
 // Post-game Dragon's Den (plastic_ox/alpha/import_dragons_den.py).
 // Cavern shrine plaza: RAYQUAZA caught.
 #define FLAG_POX_CAUGHT_RAYQUAZA (POX_EXT_FLAGS_START + 18)
@@ -409,5 +413,14 @@
 #define FLAG_POX_HIDE_TOWER_6F_RARE_CANDY (POX_EXT_FLAGS_START + 9)
 #define FLAG_POX_HIDE_TOWER_6F_X_ACCURACY (POX_EXT_FLAGS_START + 10)
 // End Lavender flags.
+
+// Saffron: Fighting Dojo and Silph Co. (plastic_ox/alpha/saffron.py).
+// Fighting Dojo: took HITMONLEE or HITMONCHAN (hides both prize balls).
+#define FLAG_POX_DOJO_PRIZE (POX_EXT_FLAGS_START + 24)
+// Silph Co. 11F: the PRESIDENT's MASTER BALL was handed over.
+#define FLAG_POX_SILPH_MASTER_BALL (POX_EXT_FLAGS_START + 25)
+// Silph Co. 11F: hides the PRESIDENT and SECRETARY until Silph is resolved (set on transition).
+#define FLAG_POX_HIDE_SILPH_STAFF (POX_EXT_FLAGS_START + 26)
+// End Saffron flags.
 
 #endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H

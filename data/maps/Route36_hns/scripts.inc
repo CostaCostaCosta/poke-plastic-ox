@@ -131,23 +131,66 @@ Route36_EventScript_Alan_Defeat:
 Route36_EventScript_Alan_After:
 	.string "The odd tree has no leaves to\npress in my notebook.\pMaybe I should study Pokemon\nas well as plants.$"
 
-Route36_EventScript_RuinsGateClosed::
-	msgbox Route36_EventScript_RuinsGateClosed_Text, MSGBOX_NPC
+@ The Ruins of Alph researcher stands in the middle lane of the gate path
+@ (56,24); step triggers cover the lanes beside him. He turns the player back
+@ until the Cinnabar archives are read (FLAG_POX_STORY_MANSION), then walks into
+@ the gatehouse for good. The check is live, so a save that already has the
+@ flag is let through the first time it comes here.
+Route36_EventScript_RuinsResearcher::
+	lock
+	faceplayer
+	goto_if_set FLAG_POX_STORY_MANSION, Route36_EventScript_RuinsResearcherOpens
+	msgbox Route36_Text_RuinsDigClosed, MSGBOX_DEFAULT
+	release
 	end
 
-Route36_EventScript_RuinsGateClosed_Text:
-	.string "The RUINS OF ALPH gate is closed.\nPlease keep the entrance clear.$"
-
-Route36_EventScript_RuinsGateClosed_2::
-	msgbox Route36_EventScript_RuinsGateClosed_2_Text, MSGBOX_NPC
+Route36_EventScript_RuinsResearcherStep::
+	goto_if_set FLAG_POX_HIDE_RUINS_RESEARCHER, Route36_EventScript_RuinsResearcherGone
+	lockall
+	applymovement LOCALID_POX_RUINS_RESEARCHER, Common_Movement_FacePlayer
+	waitmovement 0
+	goto_if_set FLAG_POX_STORY_MANSION, Route36_EventScript_RuinsResearcherOpens
+	msgbox Route36_Text_RuinsDigClosed, MSGBOX_DEFAULT
+	closemessage
+	applymovement OBJ_EVENT_ID_PLAYER, Route36_Movement_RuinsStepBack
+	waitmovement 0
+	releaseall
 	end
 
-Route36_EventScript_RuinsGateClosed_2_Text:
-	.string "The ruins are off limits while\nthe dig site gets catalogued.$"
-
-Route36_EventScript_RuinsGateClosed_3::
-	msgbox Route36_EventScript_RuinsGateClosed_3_Text, MSGBOX_NPC
+Route36_EventScript_RuinsResearcherGone::
 	end
 
-Route36_EventScript_RuinsGateClosed_3_Text:
-	.string "Nothing back there but scaffolding\nanyway. Turn around, please.$"
+Route36_EventScript_RuinsResearcherOpens::
+	msgbox Route36_Text_RuinsDigOpen, MSGBOX_DEFAULT
+	closemessage
+	applymovement LOCALID_POX_RUINS_RESEARCHER, Route36_Movement_RuinsResearcherLeaves
+	waitmovement 0
+	playse SE_EXIT
+	removeobject LOCALID_POX_RUINS_RESEARCHER
+	setflag FLAG_POX_HIDE_RUINS_RESEARCHER
+	releaseall
+	end
+
+Route36_Movement_RuinsStepBack:
+	walk_up
+	step_end
+
+Route36_Movement_RuinsResearcherLeaves:
+	walk_down
+	step_end
+
+Route36_Text_RuinsDigClosed:
+	.string "Sorry, the dig is closed while\n"
+	.string "the team is away.\p"
+	.string "I only mind the gate. Nobody has\n"
+	.string "told me when they'll be back.$"
+
+Route36_Text_RuinsDigOpen:
+	.string "Good timing. A crate came up from\n"
+	.string "CINNABAR this morning.\p"
+	.string "Old site records out of the\n"
+	.string "MANSION. Dr. FUJI's hand, they say.\p"
+	.string "The team is on its way back, so\n"
+	.string "the RUINS OF ALPH are open again.\p"
+	.string "Mind the trenches. I'll be at\n"
+	.string "the desk inside.$"

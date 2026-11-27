@@ -1756,6 +1756,39 @@ const struct Tileset gTileset_EcruteakTheater_Hns =
     .callback = NULL,
 };
 
+const struct Tileset gTileset_RuinsOfAlph_B1F_Hns =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_RuinsOfAlph_B1F_Hns,
+    .palettes = gTilesetPalettes_RuinsOfAlph_B1F_Hns,
+    .metatiles = gMetatiles_RuinsOfAlph_B1F_Hns,
+    .metatileAttributes = gMetatileAttributes_RuinsOfAlph_B1F_Hns,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_RuinsOfAlphWriting_Hns =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_RuinsOfAlphWriting_Hns,
+    .palettes = gTilesetPalettes_RuinsOfAlphWriting_Hns,
+    .metatiles = gMetatiles_RuinsOfAlphWriting_Hns,
+    .metatileAttributes = gMetatileAttributes_RuinsOfAlphWriting_Hns,
+    .callback = NULL,
+};
+
+const struct Tileset gTileset_RuinsOfAlph_Outside_Hns =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_RuinsOfAlph_Outside_Hns,
+    .palettes = gTilesetPalettes_RuinsOfAlph_Outside_Hns,
+    .metatiles = gMetatiles_RuinsOfAlph_Outside_Hns,
+    .metatileAttributes = gMetatileAttributes_RuinsOfAlph_Outside_Hns,
+    .callback = NULL,
+};
+
 const struct Tileset gTileset_BellchimeTrail_Hns =
 {
     .isCompressed = TRUE,

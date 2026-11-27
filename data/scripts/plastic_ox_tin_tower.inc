@@ -150,13 +150,13 @@ PoxTinTower_Text_SageRegirock::
 	.string "I think it liked the broom.$"
 
 PoxTinTower_Text_SageRegice::
-	.string "The island cave never drips. I\n"
-	.string "listened for a month to be sure.\p"
+	.string "The frost in that chamber never\n"
+	.string "drips. I listened for a month.\p"
 	.string "Not once. I still do not know\n"
 	.string "what to write about that.$"
 
 PoxTinTower_Text_SageRegisteel::
-	.string "The tomb rang when I knocked on\n"
+	.string "The chamber rang when I knocked on\n"
 	.string "the wall, so I stopped knocking.\p"
 	.string "REGISTEEL did not stop. You can\n"
 	.string "still hear it if you sleep light.$"

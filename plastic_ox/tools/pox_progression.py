@@ -123,7 +123,8 @@ CHECKPOINTS = [
                                 "gPoxNUBurnedTowerB1F"], []),
     ("gym3",        "NU",   30, [], []),          # Morty, Dance Theater
     ("fortree",     "RU",   36, [], []),          # Route 119, Weather Institute, Fortree
-    ("cinnabar",    "UU",   42, ["gPoxUUPokemonTower#", "gPoxUURoute#", "gPoxRoute44Hns:land_mons"], []),  # Lavender tower, Routes 8/7/21, Cinnabar
+    ("cinnabar",    "UU",   42, ["gPoxUUPokemonTower#", "gPoxUURoute#", "gPoxRoute44Hns:land_mons",
+                                "gPoxUURuinsOfAlph#"], []),  # Lavender tower, Routes 8/7/21, Cinnabar, Ruins of Alph dig
     ("mossdeep",    "UUBL", 50, [], []),          # Mossdeep gym
     ("saffron",     "OU",   55, [], []),          # Silph
     ("blackthorn",  "OU",   60, [], []),          # Clair
@@ -595,6 +596,27 @@ def move_legal(species: str, move: str, level: int, gen3_only: bool = False) -> 
     if lvl > level:
         return False, f"level-up move needs Lv{lvl}"
     return True, "level-up"
+
+
+# Gen 3 moves a species only has from an event or from Pokemon XD, which the
+# ROM's learnset tables do not list. Legal in ADV OU.
+GEN3_EVENT_MOVES = {
+    "SPECIES_ZAPDOS": {"MOVE_BATON_PASS"},   # XD purification move
+}
+
+
+def move_legal_adv(species: str, move: str, level: int) -> tuple[bool, str]:
+    """ADV (Gen 3 competitive) legality, for OU-tier trainers: everything
+    `move_legal` allows, plus egg moves and Gen 3 event/XD moves. A late-game
+    opponent is not limited to what the player could have been taught."""
+    ok, why = move_legal(species, move, level)
+    if ok:
+        return ok, why
+    if why == "egg or special-case only":
+        return True, "egg move"
+    if move in GEN3_EVENT_MOVES.get(species, ()):
+        return True, "Gen 3 event/XD move"
+    return ok, why
 
 
 def legal_moves(species: str, level: int, gen3_only: bool = False) -> set[str]:

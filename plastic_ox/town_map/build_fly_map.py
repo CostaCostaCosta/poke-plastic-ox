@@ -58,6 +58,7 @@ LANDMARKS = [
     ('MAPSEC_DARK_CAVE',       (4, 9)),
     ('MAPSEC_MT_MOON',         (9, 3)),
     ('MAPSEC_NATIONAL_PARK',   (14, 2)),
+    ('MAPSEC_RUINS_OF_ALPH',   (17, 3)),
     ('MAPSEC_METEOR_FALLS',    (10, 7)),
     ('MAPSEC_SEAFOAM_ISLANDS', (14, 13)),
 ]

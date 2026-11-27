@@ -135,7 +135,6 @@ def main() -> None:
     said('RustboroCity_Gym', 3, 19, K.KEY_UP, 'LITTLE CUP', 'is a Salamence', 'leave it in the PC')
     said('PlasticOx_WhitneyGym', 7, 18, K.KEY_UP, 'PU rules', 'is a Salamence', 'over the tier')
     for mapname, x, y, rule in (('PlasticOx_MortyGym', 7, 18, 'NU rules'),
-                                ('PlasticOx_BrunoGym', 7, 18, 'OU rules'),
                                 ('PlasticOx_ClairGym', 7, 18, 'OU rules'),
                                 ('FortreeCity_Gym', 15, 22, 'RU rules')):
         if rule == 'OU rules':
@@ -144,6 +143,15 @@ def main() -> None:
         else:
             give(SALAMENCE)
             said(mapname, x, y, K.KEY_UP, rule, 'is a Salamence', 'over the tier')
+    # BRUNO's Gym is the Fighting Dojo; its desk clerk (8,13) runs the same check
+    # in her own words (plastic_ox/alpha/saffron.py).
+    g.flag('FLAG_BADGE07_GET', False)
+    give(MEWTWO)
+    said('SaffronCity_Dojo_Frlg', 7, 13, K.KEY_RIGHT, 'OU rules', 'is a Mewtwo', 'above what this floor allows')
+    give(TREECKO, 5)
+    said('SaffronCity_Dojo_Frlg', 7, 13, K.KEY_RIGHT, 'is a second Treecko', 'One of each')
+    give(SANDSHREW, 5)
+    said('SaffronCity_Dojo_Frlg', 7, 13, K.KEY_RIGHT, 'has Sand Veil', 'allowed on this floor')
     give(TREECKO, 5)
     said('PlasticOx_ClairGym', 7, 18, K.KEY_UP, 'OU rules', 'is a second Treecko', 'one of each')
     give(SANDSHREW, 5)
@@ -151,7 +159,8 @@ def main() -> None:
     give(BELDUM, 5)
     teach(0, BATON_PASS, 1)
     teach(1, MEAN_LOOK, 1)
-    said('PlasticOx_BrunoGym', 7, 18, K.KEY_UP, 'OU rules', 'has BATON PASS', 'with Mean Look', 'combination is banned')
+    said('SaffronCity_Dojo_Frlg', 7, 13, K.KEY_RIGHT, 'BATON PASS with Mean Look', 'That pairing isn')
+    said('PlasticOx_ClairGym', 7, 18, K.KEY_UP, 'OU rules', 'has BATON PASS', 'with Mean Look', 'combination is banned')
     print('  ok  Ecruteak, Saffron, Blackthorn and Fortree greeters run their tier checks')
     give(SALAMENCE)
     print('  ok  Rustboro guide and Goldenrod greeter name the over-tier SALAMENCE')

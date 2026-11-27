@@ -257,7 +257,11 @@ def main() -> int:
                     # Her fixed trainer-only set includes egg and later-level
                     # moves to retain the requested competitive roles at Lv20.
                     continue
-                ok, why = P.move_legal(species, move, mon["level"])
+                # OU checkpoints use ADV OU move legality (egg and Gen 3
+                # event moves included), not the early-game "what the player
+                # could have been taught by now" rule.
+                ou = P.tier_at(checkpoint) == "OU"
+                ok, why = (P.move_legal_adv if ou else P.move_legal)(species, move, mon["level"])
                 if not ok:
                     problems.append(f"{trainer}[{index}] {display(species)} cannot know "
                                     f"{move} at Lv{mon['level']} ({why})")

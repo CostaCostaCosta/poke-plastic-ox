@@ -7,9 +7,11 @@ The former left/Dome choice now awards **Ancient Ice Tablet**
 choice awards **Ancient Rock Tablet** (`ITEM_ANCIENT_ROCK_TABLET`, 886),
 intended for Regirock. Both are protected Key Items, use existing plate icons
 with ice/rock palettes, and have no field-use action. Carrying one opens its
-Regi chamber on Route 127 south of Mossdeep (`IslandCave` / `DesertRuins`);
+Regi chamber's back wall at the Ruins of Alph, behind Route 36
+(`RuinsOfAlph_PuzzleAndRewardChambers_hns`: Regice south-east, Regirock north);
 the third, **Ancient Steel Tablet** (889), is the second-round Underground
-tournament reward and opens `AncientTomb`. See `plastic_ox/demo/test_regi_caves.py`. Miguel still takes the unchosen reward.
+tournament reward and opens the south-west chamber. See
+`plastic_ox/demo/test_ruins_of_alph.py`. Miguel still takes the unchosen reward.
 The choice objects use item-ball graphics and all local dialogue refers to
 tablets. Original fossil script labels and save flags are retained internally
 for source-coordinate comparisons and save-state stability; the original

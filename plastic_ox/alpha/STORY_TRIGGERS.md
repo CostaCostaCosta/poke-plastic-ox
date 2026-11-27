@@ -38,6 +38,7 @@ item placement; preserve gift identities and document save compatibility.
 | Reached Fortree | Proposed `FLAG_POX_REACHED_FORTREE` | First legitimate arrival through the Morty/Weather route; permanently opens both sides of Route36/110. |
 | Fuji rescued | Existing `FLAG_POX_STORY_FUJI` | Rocket II resolved; directions to Route8 Underground and Cinnabar. |
 | Mansion key / investigation | Existing `FLAG_POX_MANSION_KEY`, `FLAG_POX_STORY_MANSION` | Key delivery after Blaine must retry if bag full; archives completion enables onward sea progression. |
+| Ruins of Alph open | Live check of `FLAG_POX_STORY_MANSION`; `FLAG_POX_HIDE_RUINS_RESEARCHER` only hides the Route 36 researcher | Set when he lets the player through and walks into the gatehouse. Never set from the Mansion script, so a save that already finished Cinnabar is let in on its next visit. |
 | Space Center complete | Existing `FLAG_POX_STORY_SPACE_CENTER` | Investigation after badge 6; opens every Saffron surface entrance. |
 | Bruno defeated | Native `FLAG_BADGE07_GET` | Successful Dojo battle; separate from Silph. |
 | Silph resolved | Existing `FLAG_POX_STORY_SILPH` | Giovanni defeated and core shut down; creator unnamed. |
@@ -70,8 +71,8 @@ League still requires all eight badges if Clair is defeated before Bruno.
 | 11 | Cinnabar/Mansion | Gym open immediately; Blaine UU → badge 5, retryable key; mandatory archives. Entei UUBL encounter after tier unlock and sage victory, optional capture. |
 | 12 | Seafoam | Mandatory west-to-east dungeon, rare encounters/items, no major exposition; no Surf bypass. |
 | 13 | Mossdeep | Tate & Liza UUBL double battle → badge 6; Space Center finds training-oriented geography and Silph traffic. Completion opens Saffron; proposed Eevee #5. |
-| 14a | Fighting Dojo | Bruno OU → badge 7. Can precede or follow Silph. |
-| 14b | Silph | Rocket III/Giovanni followed by autonomous system shutdown; Rocket did not create it; creator unnamed. Independent of Bruno and Clair; no northern gate side effect. |
+| 14a | Fighting Dojo | Bruno OU → badge 7. Can precede or follow Silph. Entered through the Dojo's own door (`SaffronCity_Dojo_Frlg`); Bruno will not begin while the party breaks an ADV OU clause (`CheckSaffronGymOURules`), and offers one prize fighter afterwards. Source: `alpha/saffron.py`. |
+| 14b | Silph | Rocket III/Giovanni followed by autonomous system shutdown; Rocket did not create it; creator unnamed. Independent of Bruno and Clair; no northern gate side effect. Entered through the Silph door: lobby lift guard (1F), two corridor grunts and Giovanni's boardroom (11F), then the President's terminal (`Pox_SilphCore`) sets `FLAG_POX_STORY_SILPH`. Source: `alpha/saffron.py`. |
 | 15 | Meteor Falls/Blackthorn | Space Center complete → northern OU region → Clair OU/badge 8, even before Bruno/Silph. No renewed villain crisis; dialogue must support Silph still being unresolved. Downhill return available. |
 | 16 | Ecruteak west/Victory Road | All eight badges open League road; exploration and trainers, no direct Blackthorn transport. |
 | 17 | League | Wallace → Steven → Lance → Blue → Champion Bill. Bill's infrastructure role explained only after winning his battle; defeat/retry and Hall of Fame work. |

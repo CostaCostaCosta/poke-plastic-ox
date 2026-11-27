@@ -85,28 +85,16 @@
       "script": "Pox_BlaineGymExit"
     },
     {
+      "map": "SaffronCity_Dojo_Frlg",
+      "x": 6,
+      "y": 5,
+      "script": "Pox_Bruno"
+    },
+    {
       "map": "CinnabarIsland_Frlg",
       "x": 11,
       "y": 11,
       "script": "Pox_BlaineGuide"
-    },
-    {
-      "map": "PlasticOx_BrunoGym",
-      "x": 5,
-      "y": 2,
-      "script": "Pox_Bruno"
-    },
-    {
-      "map": "PlasticOx_BrunoGym",
-      "x": 4,
-      "y": 17,
-      "script": "Pox_BrunoGymExit"
-    },
-    {
-      "map": "SaffronCity_hns",
-      "x": 16,
-      "y": 22,
-      "script": "Pox_BrunoGuide"
     },
     {
       "map": "PlasticOx_ClairGym",
@@ -259,46 +247,28 @@
       "script": "Pox_Space"
     },
     {
-      "map": "PlasticOx_Silph",
-      "x": 3,
-      "y": 8,
+      "map": "SilphCo_1F_Frlg",
+      "x": 22,
+      "y": 4,
       "script": "Pox_SilphGrunt1"
     },
     {
-      "map": "PlasticOx_Silph",
-      "x": 7,
-      "y": 8,
+      "map": "SilphCo_11F_Frlg",
+      "x": 16,
+      "y": 12,
       "script": "Pox_SilphGrunt2"
     },
     {
-      "map": "PlasticOx_Silph",
-      "x": 3,
-      "y": 9,
+      "map": "SilphCo_11F_Frlg",
+      "x": 0,
+      "y": 12,
       "script": "Pox_SilphGrunt3"
     },
     {
-      "map": "PlasticOx_Silph",
-      "x": 7,
-      "y": 9,
+      "map": "SilphCo_11F_Frlg",
+      "x": 6,
+      "y": 11,
       "script": "Pox_Giovanni"
-    },
-    {
-      "map": "PlasticOx_Silph",
-      "x": 5,
-      "y": 2,
-      "script": "Pox_SilphCore"
-    },
-    {
-      "map": "PlasticOx_Silph",
-      "x": 4,
-      "y": 9,
-      "script": "Pox_SilphExit"
-    },
-    {
-      "map": "SaffronCity_hns",
-      "x": 26,
-      "y": 15,
-      "script": "Pox_SilphGuide"
     },
     {
       "map": "RustboroCity",
@@ -344,8 +314,8 @@
     },
     {
       "map": "SaffronCity_hns",
-      "x": 56,
-      "y": 15,
+      "x": 27,
+      "y": 12,
       "script": "Pox_BlackthornRoad"
     },
     {
