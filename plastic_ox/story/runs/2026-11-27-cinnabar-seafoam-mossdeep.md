@@ -32,9 +32,10 @@
 - Second pass (release readiness), same generator:
   - Gym rules: the Cinnabar and Mossdeep gym guides (`PoxIsles_CinnabarGymGuide`,
     `PoxIsles_MossdeepGymGuide`) run `CheckCinnabarGymUURules` / `CheckMossdeepGymUUBLRules`
-    and name a banned move or item as the house's rule, or say the team is clean. They warn and do
-    not block, the same as the other gyms' greeters. The game has no species-tier table, so UU/UUBL
-    roster legality is still not checked anywhere.
+    which now check ADV tier rules in `src/field_specials.c` (`CheckADVTierGymRules`): species at or
+    below UU / UUBL in `evolution_tier_gates.h`, no Ubers, and the OHKO, evasion and Assist/Swagger
+    clauses. The Little Cup bans (sleep, Thunder Wave, Baton Pass) no longer apply there. The guide
+    names the first offender, or says the team is clean. It warns and does not block.
   - Entei: the sage and Entei share `PoxIsles_EnteiSage`, which asks the player to read all three
     files first and hands over to `PoxCinnabar_EnteiSage` once `FLAG_POX_STORY_MANSION` is set.
   - Mossdeep: four houses, Steven's house and the Game Corner have their own lines (mechanics unchanged).
@@ -44,5 +45,5 @@
     battle keeps its 2F block, minus the Magma movements.
   - Encounters: Route 20 West gets `gPoxUURoute20West` (Surf + fishing, UU, cap 42). Route 20 East
     stays barren as its note requires.
-- Still open: species-tier enforcement (no tier table exists); the debug-only Steven multi battle
+- Still open: Species Clause and ability bans are not checked by the gym specials; the debug-only Steven multi battle
   on Space Center 2F still references Maxie/Tabitha trainers.

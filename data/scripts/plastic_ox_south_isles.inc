@@ -206,6 +206,7 @@ PoxIsles_CinnabarGymGuide::
 	specialvar VAR_RESULT, CheckCinnabarGymUURules
 	goto_if_eq VAR_RESULT, 1, PoxIsles_CinnabarGymGuide_Move
 	goto_if_eq VAR_RESULT, 2, PoxIsles_CinnabarGymGuide_Item
+	goto_if_eq VAR_RESULT, 3, PoxIsles_CinnabarGymGuide_Species
 	msgbox PoxIsles_Text_CinnabarRuleClean, MSGBOX_DEFAULT
 	release
 	end
@@ -217,6 +218,10 @@ PoxIsles_CinnabarGymGuide_Item::
 	msgbox PoxIsles_Text_CinnabarRuleItem, MSGBOX_DEFAULT
 	release
 	end
+PoxIsles_CinnabarGymGuide_Species::
+	msgbox PoxIsles_Text_CinnabarRuleSpecies, MSGBOX_DEFAULT
+	release
+	end
 
 PoxIsles_MossdeepGymGuide::
 	lock
@@ -226,6 +231,7 @@ PoxIsles_MossdeepGymGuide::
 	specialvar VAR_RESULT, CheckMossdeepGymUUBLRules
 	goto_if_eq VAR_RESULT, 1, PoxIsles_MossdeepGymGuide_Move
 	goto_if_eq VAR_RESULT, 2, PoxIsles_MossdeepGymGuide_Item
+	goto_if_eq VAR_RESULT, 3, PoxIsles_MossdeepGymGuide_Species
 	msgbox PoxIsles_Text_TwinsRuleClean, MSGBOX_DEFAULT
 	release
 	end
@@ -235,6 +241,10 @@ PoxIsles_MossdeepGymGuide_Move::
 	end
 PoxIsles_MossdeepGymGuide_Item::
 	msgbox PoxIsles_Text_TwinsRuleItem, MSGBOX_DEFAULT
+	release
+	end
+PoxIsles_MossdeepGymGuide_Species::
+	msgbox PoxIsles_Text_TwinsRuleSpecies, MSGBOX_DEFAULT
 	release
 	end
 
@@ -361,6 +371,9 @@ PoxIsles_Text_CinnabarRuleMove::
 PoxIsles_Text_CinnabarRuleItem::
 	.string "Hold on. {STR_VAR_1} is holding\n{STR_VAR_2}.\pBLAINE doesn't allow that item in\nhere. It's a house rule.\pPut it in your bag before you get\nto him.$"
 
+PoxIsles_Text_CinnabarRuleSpecies::
+	.string "Hold on. {STR_VAR_1}? A {STR_VAR_2}\nis over this GYM's weight class.\pBLAINE keeps to UU in here.\nIt's a house rule.\pLeave it in the PC before you get\nto him.$"
+
 PoxIsles_Text_CinnabarRuleClean::
 	.string "I had a look at your team on the\nway in. Nothing BLAINE would\lobject to. Go on, then.$"
 
@@ -369,6 +382,9 @@ PoxIsles_Text_TwinsRuleMove::
 
 PoxIsles_Text_TwinsRuleItem::
 	.string "Wait. {STR_VAR_1} is holding\n{STR_VAR_2}.\pTATE and LIZA won't battle against\nthat item. Twins' rule.\pBag it before you cross the floor.$"
+
+PoxIsles_Text_TwinsRuleSpecies::
+	.string "Wait. {STR_VAR_1}? A {STR_VAR_2}\nis over the twins' weight class.\pTATE and LIZA keep to UUBL.\nTwins' rule.\pBox it before you cross the floor.$"
 
 PoxIsles_Text_TwinsRuleClean::
 	.string "Your team passes the twins'\nrules. I checked twice, the way\lthey would.$"

@@ -94,7 +94,7 @@ The island at the bottom of the map: white rock and wish tags on the shore, a ha
 - Town, Gym, Center, Mart and Space Center wording for this pass is authored in `plastic_ox/alpha/south_isles.py` (emits `data/scripts/plastic_ox_south_isles.inc`, prefix `PoxIsles_`). Harness: `plastic_ox/demo/test_south_isles.py`.
 - Magma removed (2026-11-27): the fourteen Magma objects (five in town, nine in the Space Center) are gone from the map data. `south_isles.prune` also drops every block of the town and Space Center scripts that nothing reaches any more, including the Magma/Aqua sailor text. The debug menu's Steven multi battle still reaches one 2F block, which keeps its lines minus the Magma movements.
 - Interiors (2026-11-27): the houses (taster, Fortree mail, Super Rod, hideout family), Steven's house (Steven, rock display, postgame letter) and the Game Corner (two people beside the dark link cabinets) speak their own lines. Mechanics are unchanged.
-- Gym guide: `PoxIsles_MossdeepGymGuide` runs `CheckMossdeepGymUUBLRules` and names a banned move or item as the twins' rule. It warns but does not block.
+- Gym guide: `PoxIsles_MossdeepGymGuide` runs `CheckMossdeepGymUUBLRules` (ADV UUBL: species at UUBL or below, no Ubers, OHKO/evasion/Assist/Swagger clauses) and names the first offender as the twins' rule. It warns but does not block.
 - Known gaps: `FLAG_DEFEATED_MOSSDEEP_GYM` and `FLAG_RECEIVED_HM_DIVE` are never set here, so anything still keyed on them is dead (the Gym guide and statues now use `FLAG_BADGE06_GET`); 2F Steven is hidden from a new game, so only the 1F Steven is met; the leader record uses `Pic: Leader Roxanne` with `Gender: Male` for a two-person team.
 
 ## Open questions

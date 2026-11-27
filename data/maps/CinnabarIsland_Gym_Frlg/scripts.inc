@@ -812,7 +812,7 @@ CinnabarIsland_Gym_Text_ZacPostBattle::
 	.string "BLAINE is through there. He was\na firefighter, you know.\pHe knows more ways to put a\nthing out than to light it.$"
 
 CinnabarIsland_Gym_Text_GymGuyAdvice::
-	.string "Yo! Champ in the making! Forget\nthe BURN HEALS.\pBLAINE's team isn't the fire\nbrigade you're picturing. He\lpicks whatever holds a line:\lrock, water, a ghost.\pHouse rules in here, too: no\nsleep moves, no THUNDER WAVE, no\lpassing the baton. Let me look\lat your team.\pAnswer the quiz right and you\nwalk straight through. Answer\lwrong and you get a TRAINER and\lsome exercise.$"
+	.string "Yo! Champ in the making! Forget\nthe BURN HEALS.\pBLAINE's team isn't the fire\nbrigade you're picturing. He\lpicks whatever holds a line:\lrock, water, a ghost.\pHe keeps to this GYM's weight\nclass, too: nothing heavier than\lUU, no one-hit KO moves, no\levasion tricks. Let me look at\lyour team.\pAnswer the quiz right and you\nwalk straight through. Answer\lwrong and you get a TRAINER and\lsome exercise.$"
 
 CinnabarIsland_Gym_Text_GymGuyPostVictory::
 	.string "{PLAYER}! You put the old\nfirefighter out!\pHe gave you the house key? Then\nI'm staying down here, where\lit's warm.$"

@@ -219,14 +219,81 @@ static u16 CheckADVOUGymRules(void)
     return 0;
 }
 
-// Lower-tier gyms (PU / NU / RU / UU / UUBL) still reuse only the base structural check.
-// Roster-tier enforcement is NOT implemented: the repo has no species-tier table, so no
-// per-tier roster is enforced or advertised. Add one before claiming tier legality.
+// ADV Ubers. The tier table (src/data/pokemon/evolution_tier_gates.h) leaves them
+// unlisted (EVO_TIER_NONE), so they are named here.
+static bool32 IsADVUber(enum Species species)
+{
+    switch (species)
+    {
+    case SPECIES_MEWTWO:
+    case SPECIES_MEW:
+    case SPECIES_LUGIA:
+    case SPECIES_HO_OH:
+    case SPECIES_LATIAS:
+    case SPECIES_LATIOS:
+    case SPECIES_KYOGRE:
+    case SPECIES_GROUDON:
+    case SPECIES_RAYQUAZA:
+    case SPECIES_WOBBUFFET:
+        return TRUE;
+    default:
+        return GET_BASE_SPECIES_ID(species) == SPECIES_DEOXYS;
+    }
+}
+
+// ADV tiered gym rules (UU, UUBL): every POKéMON at or below maxTier in the species
+// tier table and no Uber, plus the ADV clauses the OU gyms check (OHKO, evasion moves
+// and items, Assist/Swagger). Sleep moves, Thunder Wave and Baton Pass are legal here;
+// those are Little Cup bans. Returns 3 with the species name in gStringVar2, 1 with
+// the move name, 2 with the item name; the nickname is in gStringVar1. Else 0.
+static u16 CheckADVTierGymRules(enum EvolutionTier maxTier)
+{
+    u32 i, j;
+
+    for (i = 0; i < gPartiesCount[B_TRAINER_PLAYER]; i++)
+    {
+        struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][i];
+        enum Species species;
+        enum EvolutionTier tier;
+        enum Item item;
+
+        if (!GetMonData(mon, MON_DATA_SANITY_HAS_SPECIES) || GetMonData(mon, MON_DATA_IS_EGG))
+            continue;
+
+        GetMonData(mon, MON_DATA_NICKNAME, gStringVar1);
+        species = GetMonData(mon, MON_DATA_SPECIES);
+        tier = GetSpeciesEvolutionTier(species);
+        if (IsADVUber(species) || (tier != EVO_TIER_NONE && tier > maxTier))
+        {
+            StringCopy(gStringVar2, GetSpeciesName(species));
+            return 3;
+        }
+        for (j = 0; j < MAX_MON_MOVES; j++)
+        {
+            enum Move move = GetMonData(mon, MON_DATA_MOVE1 + j);
+
+            if (move != MOVE_NONE && IsADVOUBannedMove(move))
+            {
+                StringCopy(gStringVar2, GetMoveName(move));
+                return 1;
+            }
+        }
+        item = GetMonData(mon, MON_DATA_HELD_ITEM);
+        if (IsADVOUBannedItem(item))
+        {
+            CopyItemName(item, gStringVar2);
+            return 2;
+        }
+    }
+    return 0;
+}
+
+// PU / NU / RU greeters still reuse only the Little Cup structural check.
 u16 CheckGoldenrodGymPURules(void)  { return CheckRustboroGymLittleCupRules(); }
 u16 CheckEcruteakGymNURules(void)  { return CheckRustboroGymLittleCupRules(); }
 u16 CheckFortreeGymRURules(void)  { return CheckRustboroGymLittleCupRules(); }
-u16 CheckCinnabarGymUURules(void)  { return CheckRustboroGymLittleCupRules(); }
-u16 CheckMossdeepGymUUBLRules(void) { return CheckRustboroGymLittleCupRules(); }
+u16 CheckCinnabarGymUURules(void)  { return CheckADVTierGymRules(EVO_TIER_UU); }
+u16 CheckMossdeepGymUUBLRules(void) { return CheckADVTierGymRules(EVO_TIER_UUBL); }
 
 // OU gyms (Saffron / Blackthorn): base checks plus the ADV OU clauses the greeter can
 // report -- OHKO moves (§14), Evasion Moves (§15), Evasion Items (§16), Assist/Swagger

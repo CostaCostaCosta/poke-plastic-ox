@@ -86,11 +86,11 @@ def emulator_checks() -> None:
 
     def said(mapname, x, y, key, *fragments, shot=None, absent=()):
         # Let the previous conversation finish before the setup warp.
-        for i in range(400):
+        # B only: an A press can land just as a sign's script ends and read it again.
+        for _ in range(800):
             if g.u8(g.syms['sGlobalScriptContextStatus']) == 2:
                 break
-            # A as well as B: a YES/NO box or a text waiting on A holds the script.
-            g.tap(K.KEY_A if i % 3 == 2 else K.KEY_B, hold=2, wait=12)
+            g.tap(K.KEY_B, hold=2, wait=12)
         g.warp(mapname, x, y)
         g.frame(60)
         if shot:
@@ -101,6 +101,11 @@ def emulator_checks() -> None:
             # A press after the setup warp; warp again and ask once more.
             if r['text'] or not fragments:
                 break
+            for _ in range(200):
+                if g.u8(g.syms['sGlobalScriptContextStatus']) == 2:
+                    break
+                g.tap(K.KEY_B, hold=2, wait=12)
+            g.warp(mapname, x, y)
             g.frame(90)
             r = talk(g, key)
         text = ' '.join(r['text']).replace('\\n', ' ').replace('{page}', ' ').replace('{scroll}', ' ')
@@ -132,7 +137,7 @@ def emulator_checks() -> None:
     said(CIN, 21, 9, K.KEY_RIGHT, 'EAST QUAY', 'SEAFOAM ISLANDS', 'scratched out', absent=('Marked passage',))
     print('  ok  Cinnabar islanders, quay and road signs (before the badge)')
     said('CinnabarIsland_Gym_Frlg', 5, 5, K.KEY_UP, 'Four BADGES', 'door charge')
-    said('CinnabarIsland_Gym_Frlg', 24, 21, K.KEY_UP, 'Forget the BURN HEALS', 'House rules', 'Nothing BLAINE would object to')
+    said('CinnabarIsland_Gym_Frlg', 24, 21, K.KEY_UP, 'Forget the BURN HEALS', 'nothing heavier than UU', 'Nothing BLAINE would object to')
 
     def teach(slot, move):
         # setmonmove 0, slot, move; end -- run from gStringVar4 like test_national_park.call.
@@ -140,11 +145,14 @@ def emulator_checks() -> None:
         for i, b in enumerate(bytes([0x7B, 0, slot]) + move.to_bytes(2, 'little') + bytes([0x02])):
             g.write(ptr + i, b)
         g.run(ptr)
-    teach(3, 86)  # MOVE_THUNDER_WAVE in the lead's empty fourth slot
-    said('CinnabarIsland_Gym_Frlg', 24, 21, K.KEY_UP, 'Hold on.', 'knows Thunder Wave', 'house rule',
+    teach(3, 86)  # MOVE_THUNDER_WAVE: a Little Cup ban, legal under UU
+    said('CinnabarIsland_Gym_Frlg', 24, 21, K.KEY_UP, 'Nothing BLAINE would object to', absent=('Hold on.',))
+    teach(3, 90)  # MOVE_FISSURE: OHKO clause
+    said('CinnabarIsland_Gym_Frlg', 24, 21, K.KEY_UP, 'Hold on.', 'knows Fissure', 'house rule',
          absent=('Nothing BLAINE',))
-    said('MossdeepCity_Gym', 5, 34, K.KEY_UP, 'knows Thunder Wave', "Twins' rule")
+    said('MossdeepCity_Gym', 5, 34, K.KEY_UP, 'knows Fissure', "Twins' rule")
     teach(3, 0)
+    print('  ok  gym guides check ADV UU / UUBL clauses: Thunder Wave passes, Fissure is named')
     print('  ok  BLAINE refuses in his own voice; the gym guide describes the real team and checks the party')
 
     # --- with BLAINE's key ---
@@ -225,6 +233,25 @@ def emulator_checks() -> None:
     said('MossdeepCity_GameCorner_1F', 4, 3, K.KEY_UP, 'aerial', shot='mossdeep_game_corner')
     said('MossdeepCity_GameCorner_1F', 6, 3, K.KEY_UP, 'six summers')
     print('  ok  Mossdeep houses and Game Corner speak their own lines')
+
+    # A species over the tier: give a SALAMENCE (OU) with the bytes of Steven's
+    # compiled BELDUM givemon, species swapped (no ROM_SIZE arithmetic here).
+    src = g.syms['MossdeepCity_StevensHouse_EventScript_GiveBeldum']
+    rom = bytes(g.u8(src + i) for i in range(32))
+    at = rom.index(0x23)
+    give = bytearray(rom[at:at + 19])
+    assert int.from_bytes(give[7:9], 'little') == 374, give.hex()  # SPECIES_BELDUM
+    give[7:9] = (373).to_bytes(2, 'little')  # SPECIES_SALAMENCE
+    give[9:11] = (50).to_bytes(2, 'little')
+    ptr = g.syms['gStringVar4']
+    for i, b in enumerate(bytes(give) + bytes([0x02])):
+        g.write(ptr + i, b)
+    g.run(ptr)
+    flags(FLAG_BADGE05_GET=False, FLAG_BADGE06_GET=False)
+    said('CinnabarIsland_Gym_Frlg', 24, 21, K.KEY_UP, 'Salamence', "weight class", 'UU',
+         absent=('Nothing BLAINE',))
+    said('MossdeepCity_Gym', 5, 34, K.KEY_UP, 'Salamence', 'UUBL')
+    print('  ok  gym guides name a POKéMON over the tier (SALAMENCE, OU)')
 
     # Last, because it ends in a battle: once FILE 3 is read the sage takes the challenge.
     flags(FLAG_POX_STORY_MANSION=True, FLAG_POX_ENTEI=False)

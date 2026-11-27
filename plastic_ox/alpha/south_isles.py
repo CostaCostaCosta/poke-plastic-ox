@@ -132,9 +132,11 @@ TEXTS = {
     # STR_VAR_1 is the POKéMON's nickname, STR_VAR_2 the move or item.
     'CinnabarRuleMove': raw("Hold on. {STR_VAR_1} knows\n{STR_VAR_2}.", "BLAINE doesn't allow that move in\nhere. It's a house rule.", "Swap it out before you get to him.\nThe whole island will hear if not."),
     'CinnabarRuleItem': raw("Hold on. {STR_VAR_1} is holding\n{STR_VAR_2}.", "BLAINE doesn't allow that item in\nhere. It's a house rule.", "Put it in your bag before you get\nto him."),
+    'CinnabarRuleSpecies': raw("Hold on. {STR_VAR_1}? A {STR_VAR_2}\nis over this GYM's weight class.", "BLAINE keeps to UU in here.\nIt's a house rule.", "Leave it in the PC before you get\nto him."),
     'CinnabarRuleClean': "I had a look at your team on the way in. Nothing BLAINE would object to. Go on, then.",
     'TwinsRuleMove': raw("Wait. {STR_VAR_1} knows\n{STR_VAR_2}.", "TATE and LIZA won't battle against\nthat move. Twins' rule.", "Change it before you cross the\nfloor, or they'll send you back."),
     'TwinsRuleItem': raw("Wait. {STR_VAR_1} is holding\n{STR_VAR_2}.", "TATE and LIZA won't battle against\nthat item. Twins' rule.", "Bag it before you cross the floor."),
+    'TwinsRuleSpecies': raw("Wait. {STR_VAR_1}? A {STR_VAR_2}\nis over the twins' weight class.", "TATE and LIZA keep to UUBL.\nTwins' rule.", "Box it before you cross the floor."),
     'TwinsRuleClean': "Your team passes the twins' rules. I checked twice, the way they would.",
 }
 
@@ -182,7 +184,7 @@ REWRITES = {
         'CinnabarIsland_Gym_Text_ZacIntro': "Last question, last TRAINER. Fire is weak against H2O. Write that down.",
         'CinnabarIsland_Gym_Text_ZacDefeat': "Extinguished.",
         'CinnabarIsland_Gym_Text_ZacPostBattle': "BLAINE is through there. He was a firefighter, you know.|He knows more ways to put a thing out than to light it.",
-        'CinnabarIsland_Gym_Text_GymGuyAdvice': "Yo! Champ in the making! Forget the BURN HEALS.|BLAINE's team isn't the fire brigade you're picturing. He picks whatever holds a line: rock, water, a ghost.|House rules in here, too: no sleep moves, no THUNDER WAVE, no passing the baton. Let me look at your team.|Answer the quiz right and you walk straight through. Answer wrong and you get a TRAINER and some exercise.",
+        'CinnabarIsland_Gym_Text_GymGuyAdvice': "Yo! Champ in the making! Forget the BURN HEALS.|BLAINE's team isn't the fire brigade you're picturing. He picks whatever holds a line: rock, water, a ghost.|He keeps to this GYM's weight class, too: nothing heavier than UU, no one-hit KO moves, no evasion tricks. Let me look at your team.|Answer the quiz right and you walk straight through. Answer wrong and you get a TRAINER and some exercise.",
         'CinnabarIsland_Gym_Text_GymGuyPostVictory': "{PLAYER}! You put the old firefighter out!|He gave you the house key? Then I'm staying down here, where it's warm.",
         'CinnabarIsland_Gym_Text_GymStatue': raw("CINNABAR ISLAND POKéMON GYM\nLEADER: BLAINE", "The Hotheaded Quiz Master!"),
         'CinnabarIsland_Gym_Text_GymStatuePlayerWon': raw("CINNABAR ISLAND POKéMON GYM\nLEADER: BLAINE", "WINNING TRAINERS:\n{PLAYER}"),
@@ -328,9 +330,10 @@ BLOCKS = [
 ]
 
 
-# Gym guides that check the party against the gym's rules special, as the
-# other gyms' greeters do. A violation is reported, not enforced: the rule is
-# the house's, and the special only knows banned moves (1) and items (2).
+# Gym guides that check the party against the gym's ADV tier rules special
+# (src/field_specials.c CheckADVTierGymRules: species tier, Ubers, OHKO and
+# evasion clauses). It returns 1 for a banned move, 2 for an item, 3 for a
+# species over the tier. A violation is reported, not enforced.
 GUIDES = [
     ('CinnabarGymGuide', 'FLAG_BADGE05_GET', 'CinnabarIsland_Gym_EventScript_GymGuyPostVictory',
      'CinnabarIsland_Gym_Text_GymGuyAdvice', 'CheckCinnabarGymUURules', 'Cinnabar'),
@@ -349,6 +352,7 @@ def guide(label, badge, after, advice, special, rules):
 	specialvar VAR_RESULT, {special}
 	goto_if_eq VAR_RESULT, 1, {P}{label}_Move
 	goto_if_eq VAR_RESULT, 2, {P}{label}_Item
+	goto_if_eq VAR_RESULT, 3, {P}{label}_Species
 	msgbox {P}Text_{rules}RuleClean, MSGBOX_DEFAULT
 	release
 	end
@@ -358,6 +362,10 @@ def guide(label, badge, after, advice, special, rules):
 	end
 {P}{label}_Item::
 	msgbox {P}Text_{rules}RuleItem, MSGBOX_DEFAULT
+	release
+	end
+{P}{label}_Species::
+	msgbox {P}Text_{rules}RuleSpecies, MSGBOX_DEFAULT
 	release
 	end
 '''
