@@ -2890,6 +2890,8 @@ BattleScript_LocalBattleWonReward::
 	printstring STRINGID_PLAYERGOTMONEY
 	waitmessage B_WAIT_TIME_LONG
 BattleScript_PayDayMoneyAndPickUpItems::
+	setbyte sGIVEEXP_STATE, 0
+	callnative BS_PoxApplyPendingExp
 	givepaydaymoney
 	pickup
 	end2

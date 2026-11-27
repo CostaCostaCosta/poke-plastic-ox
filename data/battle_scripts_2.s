@@ -209,6 +209,8 @@ BattleScript_TryNicknameCaughtMon::
 BattleScript_GiveCaughtMonEnd::
 	givecaughtmon BattleScript_SuccessBallThrowEnd
 BattleScript_SuccessBallThrowEnd::
+	setbyte sGIVEEXP_STATE, 0
+	callnative BS_PoxApplyPendingExp
 	setbyte gBattleOutcome, B_OUTCOME_CAUGHT
 	finishturn
 
