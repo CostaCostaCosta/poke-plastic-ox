@@ -384,4 +384,13 @@
 #define FLAG_POX_HIDE_TOWER_6F_X_ACCURACY (POX_EXT_FLAGS_START + 10)
 // End Lavender flags.
 
+// Saffron: Fighting Dojo and Silph Co. (plastic_ox/alpha/saffron.py).
+// Fighting Dojo: took HITMONLEE or HITMONCHAN (hides both prize balls).
+#define FLAG_POX_DOJO_PRIZE (POX_EXT_FLAGS_START + 12)
+// Silph Co. 11F: the PRESIDENT's MASTER BALL was handed over.
+#define FLAG_POX_SILPH_MASTER_BALL (POX_EXT_FLAGS_START + 13)
+// Silph Co. 11F: hides the PRESIDENT and SECRETARY until Silph is resolved (set on transition).
+#define FLAG_POX_HIDE_SILPH_STAFF (POX_EXT_FLAGS_START + 14)
+// End Saffron flags.
+
 #endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H

@@ -7,49 +7,55 @@ stage: "10 — Saffron hub"
 depth: full
 wiki: saffroncity-hns
 maps: [SaffronCity_hns]
-also_maps: [PlasticOx_BrunoGym, PlasticOx_Silph]
-flags: [FLAG_POX_STORY_SPACE_CENTER, FLAG_POX_STORY_SILPH, FLAG_POX_HIDE_SILPH_GRUNT_1, FLAG_POX_HIDE_SILPH_GRUNT_2, FLAG_POX_HIDE_SILPH_GRUNT_3, FLAG_POX_HIDE_SILPH_GIOVANNI]
+also_maps: [SaffronCity_Dojo_Frlg, SilphCo_1F_Frlg, SilphCo_11F_Frlg, PlasticOx_BrunoGym, PlasticOx_Silph]
+flags: [FLAG_POX_STORY_SPACE_CENTER, FLAG_POX_STORY_SILPH, FLAG_POX_HIDE_SILPH_GRUNT_1, FLAG_POX_HIDE_SILPH_GRUNT_2, FLAG_POX_HIDE_SILPH_GRUNT_3, FLAG_POX_HIDE_SILPH_GIOVANNI, FLAG_POX_DOJO_PRIZE, FLAG_POX_SILPH_MASTER_BALL, FLAG_POX_HIDE_SILPH_STAFF]
 badges: [7]
-trainers: [TRAINER_PLASTIC_OX_BRUNO, TRAINER_PLASTIC_OX_SILPHGRUNT1, TRAINER_PLASTIC_OX_SILPHGRUNT2, TRAINER_PLASTIC_OX_SILPHGRUNT3, TRAINER_PLASTIC_OX_GIOVANNI]
-status: drafted
+trainers: [TRAINER_PLASTIC_OX_BRUNO, TRAINER_PLASTIC_OX_DOJO_KENJI, TRAINER_PLASTIC_OX_DOJO_NOB, TRAINER_PLASTIC_OX_SILPHGRUNT1, TRAINER_PLASTIC_OX_SILPHGRUNT2, TRAINER_PLASTIC_OX_SILPHGRUNT3, TRAINER_PLASTIC_OX_GIOVANNI]
+status: implemented
 ---
 
 # Saffron City
 
 ## Snapshot
 
-A grey, dense city centre that has been shut for most of the game and now stands open at four corners: Route 8 east, Route 7 west, Route 19 south, Route 5 north. The player walks in from the Mossdeep road, finds a mart, three guides, and two objectives that can be taken in either order — the Fighting Dojo's OU challenge and the Silph Co. seizure. Saffron is the game's late hub and its loudest place: crowds on the street, silence inside the Dojo, and a lift-shaft hum under Silph.
+A grey, dense city centre that has been shut for most of the game and now stands open at four corners: Route 8 east, Route 7 west, Route 19 south, Route 5 north. The player walks in from the Mossdeep road and finds a mart, a Pokémon Center, nine residents with nine jobs, and two objectives that can be taken in either order: the Fighting Dojo's OU challenge and the Silph Co. seizure. Both are real buildings with real doors. Saffron is the game's late hub and its loudest place: crowds on the street, silence inside the Dojo, and a lift-shaft hum under Silph.
 
 ## Plot points
 
 1. **The city opens.** Every surface crossing (`(61,27)`, `(2,26)`, `(32,44)`, `(30,6)`) checks `FLAG_POX_STORY_SPACE_CENTER`; completing Mossdeep is the only key. Reveal-ladder **step 12**: the sealed centre becomes the late-game hub, and the roads the player has been routing around finally meet.
-2. **Two objectives, either order.** Bruno at `(16,22)` (Gym 7, OU) and Silph at `(26,15)` are independent. Neither gates Clair, Route 5, or the other. The guides must keep saying this plainly.
-3. **Gym 7 — Bruno.** The Dojo is entered by talking to the guide, who warps the player to `PlasticOx_BrunoGym` `(5,17)`; `Pox_Bruno` requires Badge 6 and the Space Center flag, then awards Badge 7. Bruno is a former Elite Four member and a world-class Trainer — not a villain and not a gatekeeper for the plot.
-4. **Rocket III — Silph.** Three grunts in sequence (`(3,8)`, `(7,8)`, `(3,9)`), then Giovanni at `(7,9)`, then the core terminal at `(5,2)`. **Step 13:** Rocket did not cause the convergence — it followed a signal and old research. **Step 14:** the adaptive Trainer system caused it while optimising training conditions; the creator is never named.
-5. **The world stays merged.** The core text ends with the region intact and its boundaries no longer moving. Do not describe the city returning to normal or the geography un-merging.
+2. **Two objectives, either order.** The Dojo doorway `(45,12)` (Gym 7, OU) and the Silph door `(33,30)` are independent. Neither gates Clair, Route 5, or the other. The north-road walker says so plainly.
+3. **Gym 7 — Bruno.** The wooden hall at `(45,12)` is `SaffronCity_Dojo_Frlg`. `Pox_Bruno` at `(6,5)` requires Badge 6 and the Space Center flag, refuses to begin while the party breaks an ADV OU clause, then awards Badge 7 and offers one of two prize fighters. Bruno is a former Elite Four member and a world-class Trainer, not a villain and not a gatekeeper for the plot.
+4. **Rocket III — Silph.** Three grunts in order: the lobby lift `SilphCo_1F_Frlg (22,4)`, the east corridor `SilphCo_11F_Frlg (16,12)`, the west corridor `(0,12)`. Then Giovanni in the boardroom `(6,11)`, then the President's terminal `(5,7)`. **Step 13:** Rocket did not cause the convergence; it followed the noise and Mr. Fuji's notes. **Step 14:** the adaptive Trainer system caused it while optimising training conditions; the creator is never named.
+5. **The world stays merged.** The terminal ends with `EXISTING GEOGRAPHY: RETAINED` and the boundaries no longer moving. Nothing un-merges, in the tower or on the street.
 6. **The north road.** `(30,6)` opens with the city, not with Bruno or Silph, and leads to `Route5_hns` and Blackthorn (see `route5-hns.md`).
 7. **Must not:** name Bill anywhere in this city, say Rocket created the convergence, name or hint at the system's creator, have civilians know what is inside Silph before the player does, or let the Gym/Silph objectives gate each other.
 
 ## Key interactions
 
-| Interaction | Where | Trigger / state | Current behavior | Target behavior |
-| --- | --- | --- | --- | --- |
-| Dojo guide | `SaffronCity_hns` `(16,22)` `Pox_BrunoGuide` | `FLAG_POX_TRIGGERS_ENABLED` | "BRUNO's challenge is this way." then warps to `PlasticOx_BrunoGym` `(5,17)` | keep the warp; make her a dojo receptionist with a queue, not a signpost |
-| Silph guide | `(26,15)` `Pox_SilphGuide` | Space Center flag | explains both objectives and the northern road, warps to `PlasticOx_Silph` `(5,9)` | keep the information; cut it to two textboxes and one honest worry |
-| North-road guide | `(56,15)` `Pox_BlackthornRoad` | always | "Take SAFFRON's north exit through ROUTES 5 and 115 and METEOR FALLS to BLACKTHORN." | keep; he should be leaving that way himself |
-| Six street NPCs | `(49,23)`, `(43,34)`, `(53,32)`, `(32,39)`, `(11,15)`, `(19,32)` | always | two lines shared three ways: "Trainers come from far away to test themselves at the DOJO." and "The busy streets make the DOJO feel wonderfully quiet." | six people with six jobs and six opinions; no repeated line anywhere |
-| Unused NPC scripts | `SaffronCity_EventScript_Npc1`–`Npc3` | — | three labelled NPC scripts with text but no object on the map | delete or place them; dead labels read as broken content |
-| Signs | `(60,26)`, `(31,43)`, `(29,7)` | always | objects **and** identical background sign events on the same tiles; texts are "Route8 / Route19 / Route5 / Marked passage ahead." | one sign per tile; rewrite each to name a district or a direction, not a map constant |
-| Four crossings | `(61,27)`, `(2,26)`, `(32,44)`, `(30,6)` | `FLAG_POX_STORY_SPACE_CENTER` | `PoxRegion_*_saffron_*` warps; closed state bumps the player one tile back with generic text | keep; each edge should have a visible landmark (arch, checkpoint, tram stop) |
-| Mart | `(44,21)` | always | only interior warp in the city, to `MAP_MART_KANTO_HNS` | keep; the city still has **no Pokémon Center**, which is a real hub problem |
-| Gym battle | `PlasticOx_BrunoGym` `(5,2)` `Pox_Bruno` | Badge 6 + Space Center; `FLAG_BADGE07_GET` unset | OU single battle, awards Badge 7 | keep; add the pre-battle line about the class/dojo he left |
-| Gym exit | `PlasticOx_BrunoGym` `(4,17)` `Pox_BrunoGymExit` | always | "I'll show you back outside." warps to Saffron `(16,23)` | keep, or make it a silent walk-out |
-| OU rules greeter | `PlasticOx_BrunoGym` script only | — | `PlasticOx_BrunoGym_EventScript_Greeter` checks `CheckSaffronGymOURules`, but **no object uses it**, and the special is a stub that calls the Little Cup check | place a greeter object and implement the documented ADV OU clauses, or drop the pretence |
-| Silph grunts | `PlasticOx_Silph` `(3,8)`, `(7,8)`, `(3,9)` | hide flags 1–3, sequential | three battles, all three share one line: "These terminals won't obey us. But the BOSS will make this system his!" | three different people: one frightened, one greedy, one who has read too much |
-| Giovanni | `PlasticOx_Silph` `(7,9)` | after grunt 3 | "We did not make this world… the old man's research… Stand aside!" | keep the denial; resolve who "the old man" is (Fuji's archives) or cut the phrase |
-| Silph core | `PlasticOx_Silph` `(5,2)` | after Giovanni; `FLAG_POX_STORY_SILPH` | terminal text naming the ADAPTIVE TRAINER SYSTEM, its battle profiles and objective; player isolates the environmental controls | keep the reveal; it is step 14 and the only place the system is named |
-| Silph exit | `PlasticOx_Silph` `(4,9)` | always | warps to Saffron `(26,16)` | keep |
-| Legacy Dojo | `SaffronCity_Dojo_Frlg` | — | vanilla FRLG Dojo: Koichi, five Black Belts, Hitmonlee/Hitmonchan gift balls, door warps to `MAP_SAFFRON_CITY` | **retired 2026-11-21** (trigger audit): no warp or script enters it, its two master-battle coord triggers were removed, and it is no longer claimed by this note |
+| Interaction | Where | Trigger / state | Behavior |
+| --- | --- | --- | --- |
+| Nine residents | `SaffronCity_hns`: queue `(43,13)`, Silph clerk `(35,31)`, north-road walker `(27,12)`, grocer `(49,23)`, courier `(43,34)`, schoolkid `(53,32)`, train kid `(11,15)`, overtime clerk `(20,39)`, old-hall kid `(50,13)` | always; the Silph clerk switches on `FLAG_POX_STORY_SILPH` | nine scripts, nine lines (`PoxSaffron_*`, `Pox_BlackthornRoad`). Nobody teleports the player. After Silph the clerk is relieved and cannot say why |
+| Dojo door | `(45,12)` → `SaffronCity_Dojo_Frlg` | always | open doorway, walks in and out |
+| Silph door | `(33,30)` → `SilphCo_1F_Frlg` | always | walks in and out |
+| Pokémon Center | `(18,38)` → `PokemonCenter_Kanto_hns` | always | the shared Kanto interior with a dynamic exit; the hub can heal |
+| Mart | `(44,21)` | always | `MAP_MART_KANTO_HNS` |
+| Building signs | Dojo `(47,14)`, old hall `(54,14)`, Silph `(30,31)`, station `(20,15)` | always | one sign each. The GYM-plated hall next to the Dojo is closed and says League challenges are held next door |
+| Closed doors | old hall `(52,12)`, station `(17,14)`, houses `(21,21)` and `(47,38)` | always | a short line each, so no door is silent |
+| Four crossings | `(61,27)`, `(2,26)`, `(32,44)`, `(30,6)` | `FLAG_POX_STORY_SPACE_CENTER` | `PoxRegion_*_saffron_*` (region_v7.py). The north and south gate signs name the gate and the road |
+| Dojo desk | `SaffronCity_Dojo_Frlg` `(8,13)` `PoxSaffron_DojoDesk` | `CheckSaffronGymOURules`; `FLAG_BADGE07_GET` | welcomes, states the OU clauses, names the first banned move or item in the party; after the badge, the logbook line |
+| Black Belts | `(1,10)` KENJI, `(11,10)` NOB | sight 3 | optional: the middle of the mat (x 5–7) is clear, their halves are not |
+| Students | `(1,8)`, `(11,8)` | always | etiquette lines, no battle |
+| Gym battle | `(6,5)` `Pox_Bruno` | Badge 6 + Space Center; OU clauses clean; `FLAG_BADGE07_GET` unset | OU single battle, Badge 7, then the prize offer |
+| Prize fighters | item balls `(5,3)` HITMONLEE, `(7,3)` HITMONCHAN | `FLAG_BADGE07_GET`; `FLAG_POX_DOJO_PRIZE` | one of the two at Lv. 45; taking either hides both |
+| Lobby desk | `SilphCo_1F_Frlg` `(3,7)` `PoxSaffron_LobbyDesk` | `FLAG_POX_STORY_SILPH` | hid under the desk; heals the party before and after |
+| Lift guard | `(22,4)` `Pox_SilphGrunt1` | Space Center; hide flag 1 | sight battle; he stands on the only tile that reaches the lift |
+| Stairs | 1F `(31,2)`, 11F `(7,2)` | always | chained; a line and a step back. The lift `(22,3)` ↔ `(13,3)` is the way up |
+| Corridor grunts | `SilphCo_11F_Frlg` `(16,12)`, `(0,12)` | hide flags 1→2→3 | sight battles covering each corridor; dormant until the one before is beaten |
+| Warp pad | `(16,19)` ↔ `(2,5)` | always | joins the lift side of 11F to the boardroom side |
+| Giovanni | `(6,11)` `Pox_Giovanni`; triggers `(5,14)`, `(6,14)` | after grunt 3 | stepping into the boardroom walks the player up to him; he denies moving anything, names Fuji's notes, battles, and leaves |
+| Silph core | terminal `(5,7)` `Pox_SilphCore` | after Giovanni; sets `FLAG_POX_STORY_SILPH` | status read-out naming the ADAPTIVE TRAINER SYSTEM; a yes/no isolates the environmental controls; the geography is retained |
+| President | `(9,9)`, secretary `(11,9)` | `FLAG_POX_HIDE_SILPH_STAFF` cleared by the core | MASTER BALL, once (`FLAG_POX_SILPH_MASTER_BALL`); he does not ask what was on his terminal |
+| Retired rooms | `PlasticOx_BrunoGym`, `PlasticOx_Silph` | — | empty placeholders that keep their map numbers; each has a door back to its real building for a save made inside |
 
 ## Dialogue guidance
 
@@ -83,16 +89,17 @@ A grey, dense city centre that has been shut for most of the game and now stands
 ## Implementation hooks
 
 - Wiki page: `saffroncity-hns.html`
-- Maps: `SaffronCity_hns` (`MAP_SAFFRON_CITY_HNS`, layout `LAYOUT_SAFFRON_CITY_HNS`, 66×55), `PlasticOx_BrunoGym` (`MAP_PLASTIC_OX_BRUNO_GYM`, borrowing `LAYOUT_RUSTBORO_CITY_GYM`), `PlasticOx_Silph` (`MAP_PLASTIC_OX_SILPH`, borrowing `LAYOUT_MOSSDEEP_CITY_SPACE_CENTER_1F`)
-- Scripts: `data/scripts/plastic_ox_story.inc` (`Pox_Bruno`, `Pox_BrunoGuide`, `Pox_BrunoGymExit`, `Pox_SilphGrunt1`–`3`, `Pox_Giovanni`, `Pox_SilphCore`, `Pox_SilphGuide`, `Pox_SilphExit`, `Pox_BlackthornRoad`), `data/scripts/plastic_ox_region.inc` (the four edge crossings and three sign texts), `data/maps/SaffronCity_hns/scripts.inc`, `data/maps/PlasticOx_BrunoGym/scripts.inc`
-- Gates: `FLAG_POX_STORY_SPACE_CENTER` (city and all four edges), `FLAG_POX_STORY_SILPH`, the four Silph hide flags, `FLAG_BADGE06_GET` (Bruno's prerequisite in `Pox_Bruno`), `FLAG_BADGE07_GET` (awarded)
-- Trainers / items: `TRAINER_PLASTIC_OX_BRUNO` (OU, Lv. 48–50), the three `TRAINER_PLASTIC_OX_SILPHGRUNT1`, `TRAINER_PLASTIC_OX_SILPHGRUNT2` and `TRAINER_PLASTIC_OX_SILPHGRUNT3`, `TRAINER_PLASTIC_OX_GIOVANNI` (Lv. 53–55). No items are given in the city; the legacy Dojo's Hitmonlee/Hitmonchan gift belongs to a map that cannot be reached.
-- Known gaps: **no Pokémon Center** anywhere in Saffron (one mart warp only), so a hub city cannot heal; both objective buildings have **zero warps** and are entered by scripted transport from a guide NPC, so the doors are decorative; `PlasticOx_BrunoGym` reuses Rustboro's Gym interior and `PlasticOx_Silph` reuses Mossdeep Space Center 1F, so the "tower climb" is a single room with four NPCs in a 2×2 cluster; all three grunt battles share one line; `SaffronCity_EventScript_Npc1`–`Npc3` are dead; six street NPCs share two lines; every sign is doubled as object plus background event; `CheckSaffronGymOURules` is a stub and its greeter script has no object.
+- Source of truth: `plastic_ox/alpha/saffron.py` (maps, doors, residents, signs, Dojo and Silph scripts, flags, Dojo trainer ids) and the Bruno / Silph battles in `plastic_ox/alpha/build_story.py`. Edit those, not the generated files.
+- Maps: `SaffronCity_hns` (`MAP_SAFFRON_CITY_HNS`, layout `LAYOUT_SAFFRON_CITY_HNS`, 66×55), `SaffronCity_Dojo_Frlg` (`MAP_SAFFRON_CITY_DOJO`), `SilphCo_1F_Frlg` (`MAP_SILPH_CO_1F`), `SilphCo_11F_Frlg` (`MAP_SILPH_CO_11F`). The other FRLG Silph floors are unused donors and nothing warps into them.
+- Scripts: `data/scripts/plastic_ox_saffron.inc` (`PoxSaffron_*`, `Pox_SilphCore`), `data/scripts/plastic_ox_story.inc` (`Pox_Bruno`, `Pox_SilphGrunt1`–`3`, `Pox_Giovanni`, `Pox_BlackthornRoad`), `data/scripts/plastic_ox_region.inc` (the four edge crossings and two gate signs)
+- Gates: `FLAG_POX_STORY_SPACE_CENTER` (city and all four edges), `FLAG_POX_STORY_SILPH`, the four Silph hide flags, `FLAG_BADGE06_GET` (Bruno's prerequisite), `FLAG_BADGE07_GET` (awarded), `CheckSaffronGymOURules` (OHKO moves, Assist, Lax Incense; the evasion moves and BrightPowder are removed from the ROM)
+- Trainers / items: `TRAINER_PLASTIC_OX_BRUNO` (OU, Lv. 53–55, five Fighting-types and Steelix), `TRAINER_PLASTIC_OX_DOJO_KENJI` and `TRAINER_PLASTIC_OX_DOJO_NOB` (Lv. 51–52), `TRAINER_PLASTIC_OX_SILPHGRUNT1`–`3` (Team Rocket, Lv. 50–53), `TRAINER_PLASTIC_OX_GIOVANNI` (Lv. 53–55). HITMONLEE or HITMONCHAN from the Dojo; a MASTER BALL from the President.
+- Harness: `plastic_ox/demo/test_saffron.py`
+- Known gaps: a whiteout inside Silph or the Dojo still returns to the last vanilla heal location, because the shared `PokemonCenter_Kanto_hns` nurse (`Pox_Heal`) sets no respawn point; the station, the closed hall and the two houses have doors but no interiors; Silph is two floors, not a climb.
 
 ## Open questions
 
-- `SaffronCity_Dojo_Frlg` was retired in the 2026-11-21 trigger audit. Bring it back as the Dojo's back room (no battles), or leave it retired?
-- Should the Dojo and Silph get real door warps instead of guide-initiated teleports, and what happens to the three guide NPCs then?
-- Keep the single-room Silph, or build a short multi-floor climb? The bible wants a climax, not a maze, but one room with four NPCs undersells Rocket's last stand.
-- Where does Saffron's healing go — a Pokémon Center interior, a nurse placed in the mart, or a rest house attached to the Dojo?
-- Implement the documented ADV OU clauses in `CheckSaffronGymOURules` and place the greeter, or drop the OU-rules framing from the Gym's dialogue?
+- Should the shared Kanto Pokémon Center set a per-city respawn (it would need a heal location per city that uses it)?
+- Does the closed training hall next to the Dojo ever open, and as what?
+- Is a MASTER BALL the right Silph reward for this region's legendaries, or should the President give something else?
+- Giovanni is still the `Leader` trainer class; there is no Rocket Boss class in this build. Add one, or leave him as the Gym Leader he also is?

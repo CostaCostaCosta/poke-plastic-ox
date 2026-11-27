@@ -141,6 +141,8 @@ goto_if_unset FLAG_POX_STORY_ILEX, Pox_NotReady
 
 goto_if_set FLAG_BADGE01_GET, Pox_Done
 
+
+
 trainerbattle_single TRAINER_PLASTIC_OX_ROXANNE, Pox_Text_Roxanne, Pox_Text_Roxanne_Defeat, Pox_Roxanne_Won
 
 goto Pox_Roxanne_Won
@@ -167,6 +169,8 @@ goto_if_unset FLAG_BADGE01_GET, Pox_WhitneyNeedsBadge
 goto_if_unset FLAG_POX_STORY_MTMOON, Pox_WhitneyNeedsMoon
 
 goto_if_set FLAG_BADGE02_GET, Pox_WhitneyDone
+
+
 
 trainerbattle_single TRAINER_PLASTIC_OX_WHITNEY, Pox_Text_Whitney, Pox_Text_Whitney_Defeat, Pox_Whitney_Won
 
@@ -217,6 +221,8 @@ goto_if_unset FLAG_BADGE02_GET, Pox_NotReady
 goto_if_unset FLAG_POX_STORY_BURNED_TOWER, Pox_NotReady
 
 goto_if_set FLAG_BADGE03_GET, Pox_Done
+
+
 
 trainerbattle_single TRAINER_PLASTIC_OX_MORTY, Pox_Text_Morty, Pox_Text_Morty_Defeat, Pox_Morty_Won
 
@@ -275,6 +281,8 @@ goto_if_unset FLAG_POX_STORY_WEATHER, Pox_NotReady
 
 goto_if_set FLAG_BADGE04_GET, Pox_WinonaDone
 
+
+
 trainerbattle_single TRAINER_PLASTIC_OX_WINONA, Pox_Text_Winona, Pox_Text_Winona_Defeat, Pox_Winona_Won
 
 goto Pox_Winona_Won
@@ -302,6 +310,8 @@ goto_if_unset FLAG_BADGE04_GET, Pox_NotReady
 goto_if_unset FLAG_POX_STORY_FUJI, Pox_NotReady
 
 goto_if_set FLAG_BADGE05_GET, Pox_MansionKey
+
+
 
 trainerbattle_single TRAINER_PLASTIC_OX_BLAINE, Pox_Text_Blaine, Pox_Text_Blaine_Defeat, Pox_Blaine_Won
 
@@ -352,6 +362,8 @@ goto_if_unset FLAG_POX_STORY_MANSION, Pox_NotReady
 
 goto_if_set FLAG_BADGE06_GET, Pox_Done
 
+
+
 setvar VAR_0x8004, PARTY_SIZE
 	specialvar VAR_RESULT, CountPartyAliveNonEggMons_IgnoreVar0x8004Slot
 	goto_if_lt VAR_RESULT, 2, Pox_TwoMons
@@ -377,11 +389,14 @@ Pox_Bruno::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_BADGE06_GET, Pox_NotReady
+goto_if_unset FLAG_BADGE06_GET, PoxSaffron_BrunoNotReady
 
-goto_if_unset FLAG_POX_STORY_SPACE_CENTER, Pox_NotReady
+goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxSaffron_BrunoNotReady
 
-goto_if_set FLAG_BADGE07_GET, Pox_Done
+goto_if_set FLAG_BADGE07_GET, PoxSaffron_BrunoDone
+
+specialvar VAR_RESULT, CheckSaffronGymOURules
+	goto_if_ne VAR_RESULT, 0, PoxSaffron_BrunoRules
 
 trainerbattle_single TRAINER_PLASTIC_OX_BRUNO, Pox_Text_Bruno, Pox_Text_Bruno_Defeat, Pox_Bruno_Won
 
@@ -390,45 +405,16 @@ Pox_Bruno_Won::
 	setflag FLAG_BADGE07_GET
 
 msgbox Pox_Text_Badge, MSGBOX_DEFAULT
+	goto PoxSaffron_BrunoAfter
 
 releaseall
 	end
 
 Pox_Text_Bruno::
-	.string "BRUNO: Show me what you and your\nPOKéMON have learned!$"
+	.string "BRUNO: You have already decided\nto fight. Good. Then we can skip\pthe tea.\pI held a room at the top of the\nLEAGUE once. Everyone who\preached it had finished\nlearning. I had not, so I came\pback to this floor.\pI am not interested in your\nBADGES. I am interested in what\pyour POKéMON do when they are\ntired. Begin.$"
 
 Pox_Text_Bruno_Defeat::
-	.string "BRUNO: Hrrgh! My training isn't\nfinished. Neither is yours.$"
-
-Pox_BrunoGymExit::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
-
-msgbox Pox_Text_BrunoGymExit, MSGBOX_DEFAULT
-
-warp MAP_SAFFRON_CITY_HNS, 16, 23
-	waitstate
-
-releaseall
-	end
-
-Pox_Text_BrunoGymExit::
-	.string "Leaving the DOJO? Bow on your\nway out, please.$"
-
-Pox_BrunoGuide::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
-
-msgbox Pox_Text_BrunoGuide, MSGBOX_DEFAULT
-
-warp MAP_PLASTIC_OX_BRUNO_GYM, 5, 17
-	waitstate
-
-releaseall
-	end
-
-Pox_Text_BrunoGuide::
-	.string "BRUNO's challenge is this way.$"
+	.string "BRUNO: ...Good. They got up\nevery time. That is the whole\part.$"
 
 Pox_Clair::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -437,6 +423,8 @@ Pox_Clair::
 goto_if_unset FLAG_POX_STORY_SPACE_CENTER, Pox_NotReady
 
 goto_if_set FLAG_BADGE08_GET, Pox_Done
+
+
 
 trainerbattle_single TRAINER_PLASTIC_OX_CLAIR, Pox_Text_Clair, Pox_Text_Clair_Defeat, Pox_Clair_Won
 
@@ -676,6 +664,8 @@ goto_if_unset FLAG_BADGE01_GET, Pox_NotReady
 
 goto_if_set FLAG_POX_HIDE_MTMOON_GRUNT_1, Pox_Done
 
+
+
 trainerbattle_single TRAINER_PLASTIC_OX_MOONGRUNT1, Pox_Text_MoonGrunt1, Pox_Text_MoonGrunt1_Defeat, Pox_MoonGrunt1_Won
 
 goto Pox_MoonGrunt1_Won
@@ -700,6 +690,8 @@ Pox_MoonGrunt2::
 goto_if_unset FLAG_POX_HIDE_MTMOON_GRUNT_1, Pox_NotReady
 
 goto_if_set FLAG_POX_HIDE_MTMOON_GRUNT_2, Pox_Done
+
+
 
 trainerbattle_single TRAINER_PLASTIC_OX_MOONGRUNT2, Pox_Text_MoonGrunt2, Pox_Text_MoonGrunt2_Defeat, Pox_MoonGrunt2_Won
 
@@ -1346,6 +1338,8 @@ goto_if_unset FLAG_BADGE04_GET, Pox_NotReady
 
 goto_if_set FLAG_POX_HIDE_LAVENDER_GRUNT_1, Pox_Done
 
+
+
 trainerbattle_single TRAINER_PLASTIC_OX_TOWERGRUNT1, Pox_Text_TowerGrunt1, Pox_Text_TowerGrunt1_Defeat, Pox_TowerGrunt1_Won
 
 goto Pox_TowerGrunt1_Won
@@ -1370,6 +1364,8 @@ Pox_TowerGrunt2::
 goto_if_unset FLAG_POX_HIDE_LAVENDER_GRUNT_1, Pox_NotReady
 
 goto_if_set FLAG_POX_HIDE_LAVENDER_GRUNT_2, Pox_Done
+
+
 
 trainerbattle_single TRAINER_PLASTIC_OX_TOWERGRUNT2, Pox_Text_TowerGrunt2, Pox_Text_TowerGrunt2_Defeat, Pox_TowerGrunt2_Won
 
@@ -1538,9 +1534,11 @@ Pox_SilphGrunt1::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_POX_STORY_SPACE_CENTER, Pox_NotReady
+goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxSaffron_GruntNotYet1
 
-goto_if_set FLAG_POX_HIDE_SILPH_GRUNT_1, Pox_Done
+goto_if_set FLAG_POX_HIDE_SILPH_GRUNT_1, Pox_Release
+
+
 
 trainerbattle_single TRAINER_PLASTIC_OX_SILPHGRUNT1, Pox_Text_SilphGrunt1, Pox_Text_SilphGrunt1_Defeat, Pox_SilphGrunt1_Won
 
@@ -1548,24 +1546,26 @@ goto Pox_SilphGrunt1_Won
 Pox_SilphGrunt1_Won::
 	setflag FLAG_POX_HIDE_SILPH_GRUNT_1
 
-
+removeobject VAR_LAST_TALKED
 
 releaseall
 	end
 
 Pox_Text_SilphGrunt1::
-	.string "These terminals won't obey us.\nBut the BOSS will make this\psystem his!$"
+	.string "Lift's reserved. I'm on double\ntime until the BOSS comes back\pdown, so do me a favour and make\nthis take a while.$"
 
 Pox_Text_SilphGrunt1_Defeat::
-	.string "Fine! The terminals didn't like\nme anyway.$"
+	.string "That's my bonus gone. You know\nthey dock us for the POTIONS,\ptoo?$"
 
 Pox_SilphGrunt2::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_POX_HIDE_SILPH_GRUNT_1, Pox_NotReady
+goto_if_unset FLAG_POX_HIDE_SILPH_GRUNT_1, PoxSaffron_GruntNotYet2
 
-goto_if_set FLAG_POX_HIDE_SILPH_GRUNT_2, Pox_Done
+goto_if_set FLAG_POX_HIDE_SILPH_GRUNT_2, Pox_Release
+
+
 
 trainerbattle_single TRAINER_PLASTIC_OX_SILPHGRUNT2, Pox_Text_SilphGrunt2, Pox_Text_SilphGrunt2_Defeat, Pox_SilphGrunt2_Won
 
@@ -1573,24 +1573,26 @@ goto Pox_SilphGrunt2_Won
 Pox_SilphGrunt2_Won::
 	setflag FLAG_POX_HIDE_SILPH_GRUNT_2
 
-
+removeobject VAR_LAST_TALKED
 
 releaseall
 	end
 
 Pox_Text_SilphGrunt2::
-	.string "Keep away from the server room!\nI just got the cables untangled.$"
+	.string "Don't touch anything! They told\nus it was a server room. Nobody\psaid the lights would follow you\ndown the corridor.\pI'm not guarding this hall. I'm\njust not walking back through it\pon my own.$"
 
 Pox_Text_SilphGrunt2_Defeat::
-	.string "I'm just here for the overtime,\nkid!$"
+	.string "Fine. Go. If it starts talking,\nI was never here.$"
 
 Pox_SilphGrunt3::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_POX_HIDE_SILPH_GRUNT_2, Pox_NotReady
+goto_if_unset FLAG_POX_HIDE_SILPH_GRUNT_2, PoxSaffron_GruntNotYet3
 
-goto_if_set FLAG_POX_HIDE_SILPH_GRUNT_3, Pox_Done
+goto_if_set FLAG_POX_HIDE_SILPH_GRUNT_3, Pox_Release
+
+
 
 trainerbattle_single TRAINER_PLASTIC_OX_SILPHGRUNT3, Pox_Text_SilphGrunt3, Pox_Text_SilphGrunt3_Defeat, Pox_SilphGrunt3_Won
 
@@ -1598,24 +1600,26 @@ goto Pox_SilphGrunt3_Won
 Pox_SilphGrunt3_Won::
 	setflag FLAG_POX_HIDE_SILPH_GRUNT_3
 
-
+removeobject VAR_LAST_TALKED
 
 releaseall
 	end
 
 Pox_Text_SilphGrunt3::
-	.string "You got past two of us? The BOSS\nwon't like this one bit!$"
+	.string "I've read the logs. Nobody at\nSILPH wrote the thing on this\pfloor. Nobody at TEAM ROCKET did\neither.\pThe BOSS thinks he's here to\ntake it. I've seen what it\pkeeps, and I'd like to be right\nabout it before he is.$"
 
 Pox_Text_SilphGrunt3_Defeat::
-	.string "Go on, then. The BOSS will deal\nwith you himself.$"
+	.string "Then go and read it yourself.\nTell me if I was right.$"
 
 Pox_Giovanni::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_POX_HIDE_SILPH_GRUNT_3, Pox_NotReady
+goto_if_unset FLAG_POX_HIDE_SILPH_GRUNT_3, PoxSaffron_GiovanniNotReady
 
-goto_if_set FLAG_POX_HIDE_SILPH_GIOVANNI, Pox_Done
+goto_if_set FLAG_POX_HIDE_SILPH_GIOVANNI, Pox_Release
+
+
 
 trainerbattle_single TRAINER_PLASTIC_OX_GIOVANNI, Pox_Text_Giovanni, Pox_Text_Giovanni_Defeat, Pox_Giovanni_Won
 
@@ -1623,68 +1627,16 @@ goto Pox_Giovanni_Won
 Pox_Giovanni_Won::
 	setflag FLAG_POX_HIDE_SILPH_GIOVANNI
 
-
+goto PoxSaffron_GiovanniLeaves
 
 releaseall
 	end
 
 Pox_Text_Giovanni::
-	.string "We did not make this world. We\nfollowed a signal, then the old\pman's research.\pA system that can rearrange a\nregion can give its owner\panything. Stand aside!$"
+	.string "GIOVANNI: So you are the one who\nkeeps walking in behind my\ppeople. MT. MOON. The tower in\nLAVENDER. Now here.\pUnderstand something before you\nembarrass yourself. TEAM ROCKET\pdid not move a single road. We\nnoticed, as you did, and we\pfollowed the noise to where it\ncomes from.\pMR. FUJI's notes told us what\nkind of thing it was. This\pbuilding told us where. A system\nthat can rearrange a region can\pgive its owner anything.\pI have spent years following a\nrumour through other people's\pruins. You will forgive me if I\nam not polite about it. Stand\paside.$"
 
 Pox_Text_Giovanni_Defeat::
-	.string "GIOVANNI: Hmph. You have no idea\nwhat you just interrupted.$"
-
-Pox_SilphCore::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
-
-goto_if_unset FLAG_POX_HIDE_SILPH_GIOVANNI, Pox_NotReady
-
-goto_if_set FLAG_POX_STORY_SILPH, Pox_Done
-
-msgbox Pox_Text_SilphCore, MSGBOX_DEFAULT
-
-
-
-setflag FLAG_POX_STORY_SILPH
-
-releaseall
-	end
-
-Pox_Text_SilphCore::
-	.string "TERMINAL: ADAPTIVE TRAINER\nSYSTEM.\pBattle profiles: BLUE, LANCE,\nSTEVEN, WALLACE. Objective:\pimprove training conditions.\pHabitat isolation detected.\nRegional transfer links\preconciled. Environmental\nrestructuring active.\pYou isolate the environmental\ncontrols. The transfer links\pfall silent.\pThe existing region remains. Its\nboundaries have stopped moving.$"
-
-Pox_SilphExit::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
-
-msgbox Pox_Text_SilphExit, MSGBOX_DEFAULT
-
-warp MAP_SAFFRON_CITY_HNS, 26, 16
-	waitstate
-
-releaseall
-	end
-
-Pox_Text_SilphExit::
-	.string "Elevators are down. I'll take\nyou out the back.$"
-
-Pox_SilphGuide::
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
-	lockall
-
-goto_if_unset FLAG_POX_STORY_SPACE_CENTER, Pox_NotReady
-
-msgbox Pox_Text_SilphGuide, MSGBOX_DEFAULT
-
-warp MAP_PLASTIC_OX_SILPH, 5, 9
-	waitstate
-
-releaseall
-	end
-
-Pox_Text_SilphGuide::
-	.string "SILPH needs help. BRUNO is\naccepting challenges at the\pDOJO, and the northern road\nleads to CLAIR in BLACKTHORN.\pYou can choose where to go\nfirst.$"
+	.string "GIOVANNI: Hmph. You have no idea\nwhat you have just interrupted.$"
 
 Pox_MoonRoad::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -1804,7 +1756,7 @@ releaseall
 	end
 
 Pox_Text_BlackthornRoad::
-	.string "Take SAFFRON's north exit\nthrough ROUTES 5 and 115 and\pMETEOR FALLS to BLACKTHORN.$"
+	.string "Pavement is murder on my boots.\nI'm out the north gate myself as\psoon as these laces are done.\pROUTE 5, then ROUTE 115, then\ndown through METEOR FALLS to\pBLACKTHORN. The gate's open,\nsame as everything else here.\pNobody asks what you've done\nfirst.$"
 
 Pox_LeagueRoad::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -2260,6 +2212,8 @@ goto_if_unset FLAG_BADGE07_GET, Pox_NotReady
 goto_if_unset FLAG_BADGE08_GET, Pox_NotReady
 
 goto_if_set FLAG_POX_VICTORY_ROAD, Pox_Done
+
+
 
 trainerbattle_single TRAINER_PLASTIC_OX_VICTORYROAD, Pox_Text_VictoryRoad, Pox_Text_VictoryRoad_Defeat, Pox_VictoryRoad_Won
 

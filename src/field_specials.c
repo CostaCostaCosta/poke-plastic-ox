@@ -175,15 +175,13 @@ static bool32 IsADVOUBannedItem(enum Item item)
     return item == ITEM_BRIGHT_POWDER || item == ITEM_LAX_INCENSE;
 }
 
-// Base structural check first, then the ADV OU clauses that the greeter UI can report.
-// Both Saffron (Bruno) and Blackthorn (Clair) OU gyms use this.
+// The ADV OU clauses that the greeter UI can report. Both Saffron (Bruno) and
+// Blackthorn (Clair) OU gyms use this. It deliberately does not chain the Little
+// Cup check: that one bans Thunder Wave, Baton Pass and every sleep move, all of
+// which are legal in ADV OU (Sleep Clause is battle-side state, not a move ban).
 static u16 CheckADVOUGymRules(void)
 {
     u32 i, j;
-    u16 result = CheckRustboroGymLittleCupRules();
-
-    if (result != 0)
-        return result;
 
     for (i = 0; i < gPartiesCount[B_TRAINER_PLAYER]; i++)
     {
@@ -228,7 +226,7 @@ u16 CheckFortreeGymRURules(void)  { return CheckRustboroGymLittleCupRules(); }
 u16 CheckCinnabarGymUURules(void)  { return CheckRustboroGymLittleCupRules(); }
 u16 CheckMossdeepGymUUBLRules(void) { return CheckRustboroGymLittleCupRules(); }
 
-// OU gyms (Saffron / Blackthorn): base checks plus the ADV OU clauses the greeter can
+// OU gyms (Saffron / Blackthorn): the ADV OU clauses the greeter can
 // report -- OHKO moves (§14), Evasion Moves (§15), Evasion Items (§16), Assist/Swagger
 // (§19). Returns 1 with the move name in gStringVar2, 2 with the item name in
 // gStringVar2, else 0.
