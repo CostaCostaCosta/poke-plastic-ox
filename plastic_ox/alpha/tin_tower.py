@@ -30,6 +30,7 @@ HOME_SAGES = [
     ('REGICE', 4, 12, 'FLAG_TEMP_5'),
     ('REGISTEEL', 6, 12, 'FLAG_TEMP_6'),
     ('JIRACHI', 2, 8, 'FLAG_TEMP_7'),
+    ('CELEBI', 7, 8, 'FLAG_TEMP_8'),
     ('ZAPDOS', 4, 8, 'FLAG_TEMP_9'),
 ]
 

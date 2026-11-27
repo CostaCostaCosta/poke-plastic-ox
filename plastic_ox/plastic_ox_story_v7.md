@@ -212,6 +212,8 @@ Ilex Forest is the first substantial exploration area and the final major team-b
 
 Do not use it for a major convergence reveal. The fact that the forest now exits toward Hoenn is sufficient.
 
+The shrine stays quiet on the first pass. After the Burned Tower a sage waits there for Celebi, and that optional OU-tier beat is described under **Celebi — Ilex Forest** below.
+
 ---
 
 # Rustboro City — Gym 1
@@ -574,6 +576,18 @@ After the player earns the third Badge, Morty leaves his Gym and waits under the
 When the player brings the CLEAR BELL, Morty recognises the tower's own bell and rings it. The ground shakes, and Suicune comes back to the place it last saw the player. Morty battles with his own OU team ending in Suicune; beating him lets any ball catch Suicune on the first try. Afterwards Morty returns to his Gym. He does not join the sage office.
 
 The chain is optional and ordered: the tournament's NEW MAUVILLE KEY → Raikou's generator → Zapdos at the Radio Tower → the CLEAR BELL → Suicune. The bell is the only explanation. Nobody says why Suicune answers it, and Morty does not explain the convergence. He says only that it came back for the player.
+
+## Celebi — Ilex Forest (optional)
+
+**Celebi has gone back to the forest it knows, but it will not come out for just anyone.**
+
+When the legendaries scattered from the Burned Tower, Celebi went back to Ilex Forest and the old shrine. A sage followed it, as Morty ordered, and from then on waits in the clearing by the shrine. Celebi stays out of sight. The sage says the forest is waiting for something to be brought back, and won't say more.
+
+That something is the **GS BALL**, an old, sealed ball that turns up as the Trick Master's prize for the fifth Trick House puzzle on Route 110, in place of TM Taunt. The fifth puzzle opens with the sixth badge, and beating Tate & Liza is what unlocks the OU tier. That keeps the GS BALL out of reach before the OU tier while still letting the player catch Celebi before facing Bruno.
+
+With the GS BALL in the bag, the sage at the shrine follows the standard sage + legendary mechanic: beat the sage and Celebi can be caught on the first try. Without the ball the sage won't battle. Afterwards the sage goes home to the Ecruteak sage office and counts toward the five the Tin Tower keeper waits for.
+
+The scene stays small. Nobody explains what the GS BALL is or how the Trick Master came by it; he thinks it is a very good prop. The shrine sign keeps its etiquette and never promises an event. The first pass through Ilex, before Gym 1, stays exactly as it is.
 
 ---
 

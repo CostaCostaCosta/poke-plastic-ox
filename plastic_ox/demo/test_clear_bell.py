@@ -22,7 +22,7 @@ OFFICE = 'EcruteakCity_SageOffice2_hns'
 ZAPDOS, ZAPDOS_SAGE, ENGINEER = 4, 5, 6      # after the three Goldenrod import NPCs
 MORTY, SUICUNE = 17, 18                      # after the sixteen story-scene objects
 GYM_MORTY = 1
-OFFICE_ZAPDOS = 10                           # keeper 2, home sages 3..9, Zapdos sage 10
+OFFICE_ZAPDOS = 11                           # keeper 2, home sages 3..10 (Celebi 10), Zapdos sage 11
 
 
 def var_id(name):

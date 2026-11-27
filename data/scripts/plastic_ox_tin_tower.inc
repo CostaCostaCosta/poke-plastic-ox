@@ -12,6 +12,7 @@ PoxTinTower_CountSages::
 	call_if_set FLAG_POX_CAUGHT_REGICE, PoxTinTower_AddSage
 	call_if_set FLAG_POX_CAUGHT_REGISTEEL, PoxTinTower_AddSage
 	call_if_set FLAG_POX_CAUGHT_JIRACHI, PoxTinTower_AddSage
+	call_if_set FLAG_POX_CAUGHT_CELEBI, PoxTinTower_AddSage
 	call_if_set FLAG_POX_CAUGHT_ZAPDOS, PoxTinTower_AddSage
 	return
 PoxTinTower_AddSage::
@@ -27,6 +28,7 @@ PoxTinTower_Office_OnTransition::
 	call_if_unset FLAG_POX_CAUGHT_REGICE, PoxTinTower_AwayRegice
 	call_if_unset FLAG_POX_CAUGHT_REGISTEEL, PoxTinTower_AwayRegisteel
 	call_if_unset FLAG_POX_CAUGHT_JIRACHI, PoxTinTower_AwayJirachi
+	call_if_unset FLAG_POX_CAUGHT_CELEBI, PoxTinTower_AwayCelebi
 	call_if_unset FLAG_POX_CAUGHT_ZAPDOS, PoxTinTower_AwayZapdos
 	call PoxTinTower_CountSages
 	goto_if_lt VAR_TEMP_1, 5, PoxTinTower_Office_End
@@ -54,6 +56,9 @@ PoxTinTower_AwayRegisteel::
 	return
 PoxTinTower_AwayJirachi::
 	setflag FLAG_TEMP_7
+	return
+PoxTinTower_AwayCelebi::
+	setflag FLAG_TEMP_8
 	return
 PoxTinTower_AwayZapdos::
 	setflag FLAG_TEMP_9
@@ -93,6 +98,9 @@ PoxTinTower_SageRegisteel::
 	end
 PoxTinTower_SageJirachi::
 	msgbox PoxTinTower_Text_SageJirachi, MSGBOX_NPC
+	end
+PoxTinTower_SageCelebi::
+	msgbox PoxTinTower_Text_SageCelebi, MSGBOX_NPC
 	end
 PoxTinTower_SageZapdos::
 	msgbox PoxTinTower_Text_SageZapdos, MSGBOX_NPC
@@ -152,6 +160,13 @@ PoxTinTower_Text_SageRegisteel::
 	.string "the wall, so I stopped knocking.\p"
 	.string "REGISTEEL did not stop. You can\n"
 	.string "still hear it if you sleep light.$"
+
+PoxTinTower_Text_SageCelebi::
+	.string "I sat by that shrine so long the\n"
+	.string "moss started on my sandals.\p"
+	.string "Some mornings the dew was already\n"
+	.string "gone before the sun was up.\l"
+	.string "I stopped asking why.$"
 
 PoxTinTower_Text_SageZapdos::
 	.string "Six weeks beside a transmitter.\n"

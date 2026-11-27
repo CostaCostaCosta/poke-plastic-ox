@@ -198,6 +198,34 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "IlexForest_EventScript_Item13",
       "flag": "FLAG_POX_HIDDEN_ILEXFOREST_13"
+    },
+    {
+      "local_id": "LOCALID_POX_CELEBI",
+      "graphics_id": "OBJ_EVENT_GFX_CELEBI",
+      "x": 24,
+      "y": 26,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxCelebi_Sage",
+      "flag": "FLAG_TEMP_1"
+    },
+    {
+      "local_id": "LOCALID_POX_CELEBI_SAGE",
+      "graphics_id": "OBJ_EVENT_GFX_SAGE_HNS",
+      "x": 24,
+      "y": 28,
+      "elevation": 3,
+      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "PoxCelebi_Sage",
+      "flag": "FLAG_TEMP_1"
     }
   ],
   "warp_events": [

@@ -368,7 +368,9 @@
 // Meteor Falls B1F 2R: JIRACHI caught after its sage (TRAINER_PLASTIC_OX_JIRACHI_SAGE).
 // Hides JIRACHI and the sage; the sage then stands in the Ecruteak sage office.
 #define FLAG_POX_CAUGHT_JIRACHI (POX_EXT_FLAGS_START + 12)
-// +13 is held for FLAG_POX_CAUGHT_CELEBI (Ilex shrine, in progress on agent/celebi-gs-ball).
+// Ilex Forest shrine: Celebi caught after its sage (TRAINER_PLASTIC_OX_CELEBI_SAGE, needs ITEM_GS_BALL).
+// Hides Celebi and the sage; the sage then stands in the Ecruteak sage office.
+#define FLAG_POX_CAUGHT_CELEBI (POX_EXT_FLAGS_START + 13)
 // Goldenrod Radio Tower 5F: ZAPDOS caught after its sage (TRAINER_PLASTIC_OX_ZAPDOS_SAGE).
 // Hides ZAPDOS and the sage; the sage then stands in the Ecruteak sage office.
 #define FLAG_POX_CAUGHT_ZAPDOS (POX_EXT_FLAGS_START + 14)

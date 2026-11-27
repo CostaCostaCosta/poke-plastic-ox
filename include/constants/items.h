@@ -1069,7 +1069,7 @@ enum __attribute__((packed)) Item
     ITEM_NEW_MAUVILLE_KEY = 888,
     ITEM_ANCIENT_STEEL_TABLET = 889,
     ITEM_FLY_KEY = 890,
-    // 891 is held for ITEM_GS_BALL (agent/celebi-gs-ball).
+    ITEM_GS_BALL = 891,
     ITEM_CLEAR_BELL = 892,
 
     ITEMS_COUNT,
