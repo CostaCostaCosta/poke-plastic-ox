@@ -35,6 +35,7 @@ REGISTRY: dict[str, tuple[str, str]] = {
     "Route119_EventScript_PoxEcruteakGate": ("Region crossing", "Route 119's bottom path walks into the Ecruteak east gatehouse."),
     "PoxEcruteak_WestEntrance": ("Region crossing", "Ecruteak's west edge leads into the Route 38 League gatehouse."),
     # Gyms
+    "PoxDragonsDen_RayquazaArrives": ("Story scene", "Dragon's Den shrine plaza: the first step off the dock plays RAYQUAZA's arrival (once; FLAG_POX_DEN_RAYQUAZA_ARRIVED)."),
     "BlackthornCity_EventScript_GymDoor": ("Gym", "Door tile warps into Clair's Gym (PlasticOx_ClairGym)."),
     "RustboroCity_Gym_EventScript_EntranceCheck": ("Gym", "Little Cup rules check at the Gym door; illegal moves/items are turned away until Badge 1."),
     "MossdeepCity_Gym_EventScript_RedFloorSwitch": ("Gym puzzle", "Tate & Liza Gym floor switch: rotates the arrow tiles."),
@@ -63,6 +64,9 @@ REGISTRY: dict[str, tuple[str, str]] = {
     "Route110_TrickHouseEntrance_EventScript_TrickMasterHiding": ("Mechanic", "Trick House entrance: stepping near the Trick Master's hiding spot starts the hide-and-seek scene."),
     "Route110_SeasideCyclingRoadSouthEntrance_EventScript_BikeCheck": ("Mechanic", "Cycling Road gatehouse: no entry on foot; sets the cycling-road state."),
     "Route110_SeasideCyclingRoadSouthEntrance_EventScript_ClearCyclingRoad": ("Mechanic", "Leaving the Cycling Road clears its state."),
+    "NewMauville_Inside_EventScript_BlueButton": ("Puzzle", "New Mauville floor switch: raises the blue barriers and lowers the green ones."),
+    "NewMauville_Inside_EventScript_GreenButton": ("Puzzle", "New Mauville floor switch: raises the green barriers and lowers the blue ones."),
+    "NewMauville_Inside_EventScript_RedButton": ("Mechanic", "New Mauville red switch: stops the generator (VAR_NEW_MAUVILLE_STATE 2), which lets the Raikou sage battle start."),
 }
 
 _LABEL = re.compile(r"^([A-Za-z_][A-Za-z0-9_]*)::?\s*$", re.M)

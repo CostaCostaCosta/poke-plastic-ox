@@ -81,7 +81,8 @@
     "gMapGroup_PlasticOxDungeons",
     "gMapGroup_PlasticOxStory",
     "gMapGroup_PlasticOxV7",
-    "gMapGroup_CeruleanCave"
+    "gMapGroup_CeruleanCave",
+    "gMapGroup_DragonsDen"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",
@@ -1238,7 +1239,8 @@
     "IlexForest_hns",
     "MtMoon_Cave_hns",
     "NationalPark_Normal_hns",
-    "MtSilver_1F_WaterfallRoom_hns"
+    "MtSilver_1F_WaterfallRoom_hns",
+    "DragonsDen_Entrance_hns"
   ],
   "gMapGroup_PlasticOxStory": [
     "PlasticOx_WhitneyGym",
@@ -1280,5 +1282,8 @@
     "MtSilver_Snow_hns",
     "MtSilver_3F_hns",
     "MtSilver_SummitDay_hns"
+  ],
+  "gMapGroup_DragonsDen": [
+    "DragonsDen_Cavern_hns"
   ]
 }

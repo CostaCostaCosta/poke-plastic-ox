@@ -23,7 +23,7 @@ PoxLeague_GateGuide::
 	end
 
 PoxLeague_Text_GateGuide::
-	.string "Eight BADGES. That is the whole\nlist, and the gate counts them,\pnot me.\pBeyond this gate is VICTORY ROAD.\nThen INDIGO PLATEAU.\pNo field moves, no shortcuts. The\nroad is the test.$"
+	.string "Eight BADGES. That is the whole\nlist, and the gate counts them,\lnot me.\pBeyond this gate is VICTORY\nROAD. Then INDIGO PLATEAU.\pNo field moves, no shortcuts.\nThe road is the test.$"
 
 PoxLeague_Denied::
 	msgbox PoxLeague_Text_Denied, MSGBOX_DEFAULT
@@ -38,7 +38,7 @@ PoxLeague_GateDenied::
 	end
 
 PoxLeague_Text_Denied::
-	.string "The gate is not open to you yet.\nEight BADGES. The list is on the\pwall if you want to count them.$"
+	.string "The gate is not open to you yet.\nEight BADGES. The list is on the\lwall if you want to count them.$"
 
 PoxLeague_Return::
 	lockall
@@ -68,13 +68,13 @@ PoxLeague_VICTORYROAD::
 	end
 
 PoxLeague_Text_VICTORYROAD::
-	.string "Six partners, one last test.\nShow me your team!$"
+	.string "Six of us train up here, and not\none works for the LEAGUE. I am\lthe welcome. Show me your team!$"
 
 PoxLeague_Text_VICTORYROADDefeat::
-	.string "You earned that victory!$"
+	.string "Fair enough. You would have\nwalked past me anyway.$"
 
 PoxLeague_Text_VICTORYROADAfter::
-	.string "The LEAGUE is close. Trust the\nteam you raised.$"
+	.string "We got here early, liked the\nwind, and stayed. Five more of\lus up the ridge. None of them\lwill go easy on you.$"
 
 PoxLeague_RIDGE_RAIN::
 	trainerbattle_single TRAINER_PLASTIC_OX_RIDGE_RAIN, PoxLeague_Text_RIDGE_RAIN, PoxLeague_Text_RIDGE_RAINDefeat
@@ -88,7 +88,7 @@ PoxLeague_Text_RIDGE_RAINDefeat::
 	.string "The storm passed you right by.$"
 
 PoxLeague_Text_RIDGE_RAINAfter::
-	.string "Clouds roll in fast up here.\nKeep a dry towel handy.$"
+	.string "It rains on this side most\nafternoons. If your team only\lworks in the sun, take the\lterraces and think about it.$"
 
 PoxLeague_RIDGE_SAND::
 	trainerbattle_single TRAINER_PLASTIC_OX_RIDGE_SAND, PoxLeague_Text_RIDGE_SAND, PoxLeague_Text_RIDGE_SANDDefeat
@@ -102,7 +102,7 @@ PoxLeague_Text_RIDGE_SANDDefeat::
 	.string "Not a single careless switch.\nImpressive.$"
 
 PoxLeague_Text_RIDGE_SANDAfter::
-	.string "Shake the grit out of your boots\nbefore the LEAGUE doors.$"
+	.string "You never switched into a hit\nyou did not need to take. That\lis the whole lesson. I just add\lsand.$"
 
 PoxLeague_RIDGE_STALL::
 	trainerbattle_single TRAINER_PLASTIC_OX_RIDGE_STALL, PoxLeague_Text_RIDGE_STALL, PoxLeague_Text_RIDGE_STALLDefeat
@@ -110,13 +110,13 @@ PoxLeague_RIDGE_STALL::
 	end
 
 PoxLeague_Text_RIDGE_STALL::
-	.string "A patient defense gives every\nturn a purpose.$"
+	.string "You came up the quiet side.\nGood. A patient defense gives\levery turn a purpose.$"
 
 PoxLeague_Text_RIDGE_STALLDefeat::
 	.string "You found a purpose for every\nturn, too.$"
 
 PoxLeague_Text_RIDGE_STALLAfter::
-	.string "I camp on this ledge for a week\nbefore every challenge.$"
+	.string "Nobody learns anything from a\nstraight line. The long way up\lshows you what your team does\lwhen it is tired.$"
 
 PoxLeague_RIDGE_OFFENSE::
 	trainerbattle_single TRAINER_PLASTIC_OX_RIDGE_OFFENSE, PoxLeague_Text_RIDGE_OFFENSE, PoxLeague_Text_RIDGE_OFFENSEDefeat
@@ -130,7 +130,7 @@ PoxLeague_Text_RIDGE_OFFENSEDefeat::
 	.string "My sweeper never got its free\nturn!$"
 
 PoxLeague_Text_RIDGE_OFFENSEAfter::
-	.string "Speed wins games. Next time I go\nfirst.$"
+	.string "Past here the wind comes off the\nwest side hard. It will not\ltouch your battles, but hold on\lto your hat.$"
 
 PoxLeague_RIDGE_BALANCE::
 	trainerbattle_single TRAINER_PLASTIC_OX_RIDGE_BALANCE, PoxLeague_Text_RIDGE_BALANCE, PoxLeague_Text_RIDGE_BALANCEDefeat
@@ -144,7 +144,7 @@ PoxLeague_Text_RIDGE_BALANCEDefeat::
 	.string "You found it. My weakness was\nyou.$"
 
 PoxLeague_Text_RIDGE_BALANCEAfter::
-	.string "The summit is just ahead. The\nair thins, so pace yourself.$"
+	.string "Past me it is a door, a lobby,\nand five TRAINERS better than\lme. Try to arrive with something\lleft.$"
 
 PoxLeague_Item0::
 	lock
@@ -172,7 +172,7 @@ PoxLeague_TrailSign::
 	end
 
 PoxLeague_Text_TrailSign::
-	.string "VICTORY ROAD\pNorth: INDIGO PLATEAU. South:\nECRUTEAK checkpoint.\pThe western terraces are\noptional. The eastern ridge is\pthe direct climb.$"
+	.string "VICTORY ROAD\pNorth: INDIGO PLATEAU. South:\nECRUTEAK checkpoint.\pThe western terraces are\noptional. The eastern ridge is\lthe direct climb.$"
 
 PoxLeague_RestKeeper::
 	lock
@@ -183,7 +183,7 @@ PoxLeague_RestKeeper::
 	end
 
 PoxLeague_Text_RestKeeper::
-	.string "Rest a while. Your POKéMON have\nworked hard to bring you this\pfar.\pFollow the ridge north when you\nare ready.$"
+	.string "Boots off. There is a bench,\nthere is tea, and there is no\lhurry.\pThe mountain is not going\nanywhere, and neither is the\lLEAGUE.$"
 
 PoxLeague_RestAdvice::
 	lock
@@ -193,7 +193,7 @@ PoxLeague_RestAdvice::
 	end
 
 PoxLeague_Text_RestAdvice::
-	.string "An opponent who can switch\nfreely controls the battle.\pHazards make every switch a\nchoice.\pBefore the LEAGUE, check your\nmoves, held items and healing\psupplies. The summit is just\nahead.$"
+	.string "No beds here, sorry. The rest\nhut with the kettle is down on\lthe western terraces.\pOne thing before the summit: a\nteam that switches freely\lcontrols the battle, and hazards\lmake every switch cost\lsomething.$"
 
 PoxLeague_Downhill::
 	lockall
@@ -213,7 +213,7 @@ PoxLeague_Shortcut::
 	end
 
 PoxLeague_Text_Shortcut::
-	.string "The downhill express returns to\nECRUTEAK. Would you like a ride?$"
+	.string "Downhill express to ECRUTEAK.\nLast descent is at dark, and the\lwind is picking up from the\lwest.\pWalk off the south edge instead\nand you are back on VICTORY\lROAD, on foot.\pWant a ride down?$"
 
 PoxLeague_Reset::
 	clearflag FLAG_POX_LEAGUE_WALLACE
@@ -243,7 +243,7 @@ PoxLeague_Nurse::
 	end
 
 PoxLeague_Text_Nurse::
-	.string "Your team is fully rested. Good\nluck at the POKéMON LEAGUE!$"
+	.string "Your team is fully rested. I\nhave patched up everyone in this\lqueue today. Good luck in there.$"
 
 PoxLeague_Shop::
 	lock
@@ -270,22 +270,40 @@ PoxLeague_Stock:
 PoxLeague_Advice::
 	lock
 	faceplayer
+	goto_if_set FLAG_SYS_GAME_CLEAR, PoxLeague_AdviceCleared
 	msgbox PoxLeague_Text_Advice, MSGBOX_DEFAULT
 	release
 	end
 
 PoxLeague_Text_Advice::
-	.string "WALLACE controls tempo. STEVEN\nbuilds a defense. LANCE attacks\pwithout pause. BLUE adapts.\pPrepare for all four, then the\nCHAMPION.$"
+	.string "WALLACE keeps a tempo. STEVEN\nkeeps cover. LANCE commits. BLUE\lwatches you do all of it.\pFour examiners, four questions.\nNobody out here has seen the\lroom after that.$"
+
+PoxLeague_AdviceCleared::
+	msgbox PoxLeague_Text_AdviceCleared, MSGBOX_DEFAULT
+	release
+	end
+
+PoxLeague_Text_AdviceCleared::
+	.string "I lost to WALLACE again. Still.\nI have the lobby chair warmed up\lfor you whenever you want\lanother run.$"
 
 PoxLeague_Welcome::
 	lock
 	faceplayer
+	goto_if_set FLAG_SYS_GAME_CLEAR, PoxLeague_WelcomeCleared
 	msgbox PoxLeague_Text_Welcome, MSGBOX_DEFAULT
 	release
 	end
 
 PoxLeague_Text_Welcome::
-	.string "The PC is beside the healing\ncounter. Stock up before\pspeaking to the official in the\nnortheast.\pYou can use your items between\nmatches. Inside, the doors only\popen forward. A loss restarts\nthe challenge here.$"
+	.string "The PC is beside the healing\ncounter, and the shop is on the\lleft. The official in the\lnortheast signs you in.\pBag items work between matches.\nInside, the doors only open\lforward, and a loss starts the\lchallenge again from here.$"
+
+PoxLeague_WelcomeCleared::
+	msgbox PoxLeague_Text_WelcomeCleared, MSGBOX_DEFAULT
+	release
+	end
+
+PoxLeague_Text_WelcomeCleared::
+	.string "We are closing up soon,\nCHAMPION. You know the rules by\lnow; the official will sign you\lin again if you want.$"
 
 PoxLeague_Entry::
 	lockall
@@ -297,7 +315,9 @@ PoxLeague_Entry::
 	goto_if_unset FLAG_BADGE06_GET, PoxLeague_Denied
 	goto_if_unset FLAG_BADGE07_GET, PoxLeague_Denied
 	goto_if_unset FLAG_BADGE08_GET, PoxLeague_Denied
+	goto_if_set FLAG_SYS_GAME_CLEAR, PoxLeague_EntryCleared
 	msgbox PoxLeague_Text_Entry, MSGBOX_YESNO
+PoxLeague_EntryAnswer::
 	goto_if_eq VAR_RESULT, NO, PoxLeague_Release
 	setrespawn HEAL_LOCATION_POX_INDIGO
 	call PoxLeague_Reset
@@ -307,7 +327,14 @@ PoxLeague_Entry::
 	end
 
 PoxLeague_Text_Entry::
-	.string "All eight BADGES verified. Four\nbattles, then the CHAMPION.\pBring your own healing supplies.\pReady to begin?$"
+	.string "Eight BADGES verified. Four\nmatches, then the CHAMPION. Your\lbag goes in with you; nothing\lelse does.\pIf you fall, the book opens\nagain and we start from the top.\lThat is the rule, not a\lpunishment.\pShall I sign you in?$"
+
+PoxLeague_EntryCleared::
+	msgbox PoxLeague_Text_EntryCleared, MSGBOX_YESNO
+	goto PoxLeague_EntryAnswer
+
+PoxLeague_Text_EntryCleared::
+	.string "Your name is already in the HALL\nbook. The challenge still runs\lin full: four matches, then the\lCHAMPION.\pShall I sign you in again?$"
 
 PoxLeague_Release::
 	releaseall
@@ -348,13 +375,13 @@ PoxLeague_WallaceAfter::
 	end
 
 PoxLeague_Text_Wallace::
-	.string "WALLACE: From your first small\nteam to this stage, you have\plearned to change.\pA battle has a rhythm. I intend\nto lead it. Show me how you\panswer!$"
+	.string "WALLACE: A battle has a beat. I\nwill keep it, and you will have\lto break it.$"
 
 PoxLeague_Text_WallaceDefeat::
-	.string "WALLACE: You found the rhythm\nbefore I did. It's yours now.$"
+	.string "WALLACE: You found the rhythm\nbefore I did. It is yours now.$"
 
 PoxLeague_Text_WallaceAfter::
-	.string "WALLACE: The next room is yours.\nLet your team catch its breath\pfirst.$"
+	.string "WALLACE: The next room is yours.\nLet your team catch its breath\lfirst.$"
 
 PoxLeague_WallaceNext::
 	lockall
@@ -408,7 +435,7 @@ PoxLeague_StevenAfter::
 	end
 
 PoxLeague_Text_Steven::
-	.string "STEVEN: A strong team is more\nthan six powerful partners. Each\pmust cover the others.\pLook closely. Even the finest\ndefense has a moment when it\pmust attack.$"
+	.string "STEVEN: Six strong POKéMON are\nnot a team until each one covers\lthe others.\pI will keep my cover up. Find\nthe turn where I have to step\lout from behind it.$"
 
 PoxLeague_Text_StevenDefeat::
 	.string "STEVEN: You covered every seam.\nI could not find the gap.$"
@@ -470,10 +497,10 @@ PoxLeague_LeagueLanceAfter::
 	end
 
 PoxLeague_Text_LeagueLance::
-	.string "LANCE: Preparation matters. But\nwhen the opening comes, you must\pcommit.\pI will keep the pressure on.\nShow me your courage!$"
+	.string "LANCE: I will not talk long.\nWhen the opening comes, commit\lto it. So will I.$"
 
 PoxLeague_Text_LeagueLanceDefeat::
-	.string "LANCE: You committed first.\nThat was the whole difference.$"
+	.string "LANCE: You committed first. That\nwas the whole difference.$"
 
 PoxLeague_Text_LeagueLanceAfter::
 	.string "LANCE: One room left before the\nCHAMPION. Steady yourself.$"
@@ -534,13 +561,13 @@ PoxLeague_BlueAfter::
 	end
 
 PoxLeague_Text_Blue::
-	.string "BLUE: You made it through three\ndifferent styles. Good. I have\pbeen watching.\pI will adapt to whatever you\nbring. Earn your place beyond\pthis room!$"
+	.string "BLUE: STEVEN kept his wall up.\nLANCE never let you breathe. I\lwatched both.\pI am going to do neither, and\nyou will have to notice which.\lLet's go!$"
 
 PoxLeague_Text_BlueDefeat::
 	.string "BLUE: I adapted. You still won.\nI'll remember that.$"
 
 PoxLeague_Text_BlueAfter::
-	.string "BLUE: Go on, the CHAMPION is\nwaiting. Don't make me regret\plosing.$"
+	.string "BLUE: Go on, the CHAMPION is\nwaiting. Don't make me regret\llosing.$"
 
 PoxLeague_BlueNext::
 	lockall
@@ -595,20 +622,29 @@ PoxLeague_BillWon::
 	call PoxLeague_BillOpen
 	special DrawWholeMapView
 PoxLeague_BillAfter::
+	goto_if_set FLAG_SYS_GAME_CLEAR, PoxLeague_BillAgain
 	msgbox PoxLeague_Text_BillAfter, MSGBOX_DEFAULT
+PoxLeague_BillToHall::
 	warp MAP_PLASTIC_OX_HALL_OF_FAME, 7, 12
 	waitstate
 	releaseall
 	end
 
 PoxLeague_Text_Bill::
-	.string "CHAMPION BILL would like to battle.$"
+	.string "CHAMPION BILL would like to\nbattle.$"
 
 PoxLeague_Text_BillDefeat::
-	.string "BILL: The calculation was wrong.\nYou were the variable I missed.$"
+	.string "BILL: ...Ha. That's it, then.\nYou won, fair and square.$"
 
 PoxLeague_Text_BillAfter::
-	.string "BILL: I built the foundations of\nthe transfer network, and tools\pthat learned from battles.\pThe system learned to improve\ntraining conditions. Then it\pbegan moving the world. I never\nasked for that. But I made it\ppossible.\pI thought better predictions\nwould make me a better TRAINER.\pYou learned from places, people,\nand your POKéMON.\pYou surpassed my calculations.\nThat journey belongs to you.\pCome, CHAMPION. Let us record\nit.$"
+	.string "BILL: I owe you an explanation.\nI built the foundations of the\ltransfer network, and the tools\lthat learn from battles.\pThe system was meant to improve\ntraining conditions. Then it\lbegan moving ground I never\ltouched. I never asked for that,\lbut I made it possible.\pI thought better predictions\nwould make me a better TRAINER.\lYou learned from places, people,\land your POKéMON instead.\pThat journey is yours. Come on,\nCHAMPION. Let us put it on\lrecord.$"
+
+PoxLeague_BillAgain::
+	msgbox PoxLeague_Text_BillAgain, MSGBOX_DEFAULT
+	goto PoxLeague_BillToHall
+
+PoxLeague_Text_BillAgain::
+	.string "BILL: You again, and my team on\nthe floor again. I should be\ltaking notes. Come on, the HALL\lis this way.$"
 
 PoxLeague_Hall::
 	lockall
@@ -646,7 +682,7 @@ PoxLeague_HallGuide::
 	end
 
 PoxLeague_Text_HallGuide::
-	.string "Your partners have earned their\nplace here.$"
+	.string "I write the names exactly as\nthey stand. No titles, no\lspeeches. That is the whole\lceremony.$"
 
 PoxLeague_Text_Hall::
-	.string "BILL: From your first partner to\nthe POKéMON beside you now,\pevery step brought you here.\pWelcome to the HALL OF FAME,\nCHAMPION! The ferry south of\pLAVENDER is now open to you.$"
+	.string "REGISTRAR: Every POKéMON beside\nyou goes into the book exactly\las it stands today.\pWelcome to the HALL OF FAME,\nCHAMPION. The ferry south of\lLAVENDER will take you on from\lhere.$"

@@ -17,6 +17,7 @@
 #include "random.h"
 #include "starter_choose.h"
 #include "script_pokemon_util.h"
+#include "frontier_util.h"
 #include "palette.h"
 #include "window.h"
 #include "event_object_movement.h"
@@ -507,6 +508,17 @@ void BattleSetup_StartLegendaryRewardBattle(void)
 {
     BattleSetup_StartScriptedWildBattle();
     gBattleTypeFlags = BATTLE_TYPE_LEGENDARY | BATTLE_TYPE_LEGENDARY_REWARD;
+}
+
+// Called after setwildbattle: raises the scripted wild Pokémon to the level of
+// the player's strongest party member when that is higher than the script's.
+void PoxRaiseWildMonToPartyLevel(void)
+{
+    struct Pokemon *mon = &gParties[B_TRAINER_OPPONENT_A][0];
+    s32 partyLevel = GetHighestLevelInPlayerParty();
+
+    if (partyLevel > (s32)GetMonData(mon, MON_DATA_LEVEL))
+        CreateScriptedWildMon(GetMonData(mon, MON_DATA_SPECIES), partyLevel, GetMonData(mon, MON_DATA_HELD_ITEM));
 }
 
 void BattleSetup_StartScriptedDoubleWildBattle(void)

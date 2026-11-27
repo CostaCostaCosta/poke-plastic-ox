@@ -133,7 +133,8 @@
     "PoxTournament_Raikou": "pox_legendary_sage: the sage and its legendary sprite share one script; seal/challenge/defeat lines are the shared legendary-sage order (follow-up: give each sage its own line)",
     "PoxTournament_Regirock": "pox_legendary_sage: the sage and its legendary sprite share one script; seal/challenge/defeat lines are the shared legendary-sage order (follow-up: give each sage its own line)",
     "PoxTournament_Regice": "pox_legendary_sage: the sage and its legendary sprite share one script; seal/challenge/defeat lines are the shared legendary-sage order (follow-up: give each sage its own line)",
-    "PoxTournament_Registeel": "pox_legendary_sage: the sage and its legendary sprite share one script; seal/challenge/defeat lines are the shared legendary-sage order (follow-up: give each sage its own line)"
+    "PoxTournament_Registeel": "pox_legendary_sage: the sage and its legendary sprite share one script; seal/challenge/defeat lines are the shared legendary-sage order (follow-up: give each sage its own line)",
+    "PoxCelebi_Sage": "pox_legendary_sage: the Ilex sage and Celebi share one script (the sage speaks; Celebi is the reward)"
   },
   "sprite_ok": {
     "Pox_Treecko": "starter ball runs the three-professor scene; the professors speak, not the ball",

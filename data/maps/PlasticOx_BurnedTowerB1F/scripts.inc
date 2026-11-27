@@ -1,5 +1,5 @@
 PlasticOx_BurnedTowerB1F_MapScripts::
-	map_script MAP_SCRIPT_ON_TRANSITION, PoxTower_InitGraphics
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxClearBell_TowerOnTransition
 	.byte 0
 
 PoxBurnedTower_AssembledSage::

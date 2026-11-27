@@ -2007,9 +2007,17 @@ EventScript_PalletTown_PlayersHouse_2F_TurnOnPC::
 	.include "data/maps/TinTower_1F_hns/scripts.inc"
 
 	.include "data/maps/TinTower_RoofDay_hns/scripts.inc"
+	.include "data/maps/DragonsDen_Entrance_hns/scripts.inc"
+	.include "data/maps/DragonsDen_Cavern_hns/scripts.inc"
 
 	.include "data/scripts/plastic_ox_tin_tower.inc"
 
 	.include "data/scripts/plastic_ox_lavender.inc"
 
 	.include "data/scripts/plastic_ox_south_isles.inc"
+
+	.include "data/scripts/plastic_ox_meteor_falls.inc"
+
+	.include "data/scripts/plastic_ox_celebi.inc"
+
+	.include "data/scripts/plastic_ox_clear_bell.inc"

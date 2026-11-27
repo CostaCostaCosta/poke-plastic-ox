@@ -336,6 +336,9 @@ PoxTournament_Text_Power::
 
 PoxTournament_Text_Raikou::
 	.string "MORTY sent me to help RAIKOU.\p"
+	.string "Something else left when the\n"
+	.string "hum stopped. It flew north, to\l"
+	.string "where the city towers stand.\p"
 	.string "Show us the care and skill\n"
 	.string "you give your partners!$"
 

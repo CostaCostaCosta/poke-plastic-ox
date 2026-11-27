@@ -1,4 +1,5 @@
 PlasticOx_MortyGym_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, PoxClearBell_GymOnTransition
 	.byte 0
 
 PlasticOx_MortyGym_EventScript_Greeter::
