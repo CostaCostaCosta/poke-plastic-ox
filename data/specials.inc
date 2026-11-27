@@ -676,3 +676,4 @@ gSpecials::
 	def_special PoxGetDayOfWeek
 	def_special PoxShowPlayerTrainerCard, waitstate=1
 	def_special BattleSetup_StartLegendaryRewardBattle, waitstate=1
+	def_special PoxRaiseWildMonToPartyLevel

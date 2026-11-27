@@ -797,6 +797,16 @@ Possible uses include:
 
 This keeps the main story's southern Lavender exit clean while giving the geography a strong postgame payoff.
 
+## Dragon's Den — Rayquaza (postgame)
+
+**Blackthorn's Dragon's Den stays shut for the whole main story.**
+
+The Den's door is across the lake north of the Gym. An elder stands in it and turns everyone away: the Pokémon inside are far too powerful. He is not a quest and has nothing to unlock during the story.
+
+After the player enters the Hall of Fame the elder is gone. Inside, across the flooded cavern, Rayquaza comes down onto the shrine plaza. It is an ordinary wild legendary: Lv.70, or the level of the party's strongest Pokémon when that is higher, with no guaranteed capture and no sage. It stays until it is caught.
+
+This is a deliberate exception to staging Ubers on the postgame islands. The scene explains nothing: Rayquaza is not a clue and nobody says why it is there.
+
 ---
 
 # Final Reveal Ladder — Version 7
