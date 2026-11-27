@@ -26,7 +26,6 @@ data/maps/PalletTown_ProfessorOaksLab_Frlg/map.json
 data/maps/PlasticOx_Harbor/map.json
 data/maps/PlasticOx_Route20East/map.json
 data/maps/PlasticOx_Route20West/map.json
-data/maps/PlasticOx_VictoryRoad/map.json
 data/maps/PlasticOx_WhitneyGym/map.json
 data/maps/PlasticOx_WhitneyGym/scripts.inc
 data/maps/Route103/map.json
@@ -46,7 +45,6 @@ data/maps/Route5_hns/map.json
 data/maps/RustboroCity/map.json
 data/maps/SaffronCity_hns/map.json
 data/scripts/plastic_ox_goldenrod.inc
-data/scripts/plastic_ox_league.inc
 data/scripts/plastic_ox_region.inc
 data/scripts/plastic_ox_story.inc
 plastic_ox/alpha/story_manifest.json

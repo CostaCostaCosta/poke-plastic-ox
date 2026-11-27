@@ -4,7 +4,7 @@ import json
 import struct
 from test_league import (prepare, start_battle, finish_battle, settle, current,
                          trainer_flag, save_continue, shot, MEMBERS, FLAGS, BADGES,
-                         ROOT, K, Geometry, navigate)
+                         ROOT, K, Geometry, navigate, GATE)
 from test_sudowoodo_v1 import pocket, bag, POCKET_ITEMS
 
 
@@ -24,9 +24,10 @@ def ordering():
             finish_battle(g,1);settle(g)
             assert g.flag('FLAG_BADGE08_GET' if name=='Clair' else 'FLAG_BADGE07_GET')
             g.write(g.syms['gBattleTypeFlags'],0,4)
-            g.warp('EcruteakCity_hns',9,35)
+            # The badge checkpoint is the Route 38 gatehouse's west column.
+            g.warp(GATE,5,5)
             g.tap(K.KEY_LEFT,hold=16,wait=240);settle(g)
-            assert current(g)==('EcruteakCity_hns' if i==0 else 'PlasticOx_VictoryRoad')
+            assert current(g)==(GATE if i==0 else 'PlasticOx_VictoryRoad'),g.describe()
         print('PASS: actual '+str(order)+' battles/callbacks, gate denies seventh badge and accepts eighth without Silph',flush=True)
 
 

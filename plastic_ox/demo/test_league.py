@@ -22,6 +22,7 @@ from test_region_walk import navigate, current, IDS
 sys.path.insert(0,str(ROOT/'plastic_ox/alpha'))
 from region_geometry import Geometry
 from league import MEMBERS, FLAGS, BADGES
+GATE='Gate_EcruteakCity_Route38_hns'
 
 OUT=ROOT/'plastic_ox/demo/shots/league'
 
@@ -98,16 +99,20 @@ def static():
 
 
 def travel():
+    # Ecruteak's west throat leads into the Route 38 gatehouse; the badge
+    # checkpoint is the gatehouse's western column (ecruteak_repairs.py).
     g=prepare(('EcruteakCity_hns',9,35))
+    g.tap(K.KEY_LEFT,hold=16,wait=240)
+    assert current(g)==GATE,g.describe()
     for missing in BADGES:
-        g.flag(missing,False)
+        g.warp(GATE,5,5);g.flag(missing,False)
         g.tap(K.KEY_LEFT,hold=16,wait=30);settle(g)
-        assert current(g)=='EcruteakCity_hns' and g.state()['x']==9,(missing,g.describe())
+        assert current(g)==GATE and g.state()['x']==5,(missing,g.describe())
         g.flag(missing,True)
-    print('PASS: all eight badges independently required at actual western gate',flush=True)
+    print('PASS: all eight badges independently required at the western gatehouse',flush=True)
     # Prove every traversable lane, then take the complete northbound path.
-    for y in range(34,38):
-        g.warp('EcruteakCity_hns',9,y);g.tap(K.KEY_LEFT,hold=16,wait=240)
+    for y in range(4,7):
+        g.warp(GATE,5,y);g.tap(K.KEY_LEFT,hold=16,wait=240)
         assert current(g)=='PlasticOx_VictoryRoad',(y,g.describe())
     for tid in ['VICTORYROAD','RIDGE_RAIN','RIDGE_SAND','RIDGE_STALL','RIDGE_OFFENSE','RIDGE_BALANCE']:
         trainer_flag(g,tid,True)
@@ -144,8 +149,11 @@ def travel():
     assert current(g)=='IndigoPlateau_hns',g.describe()
     navigate(g,lambda x,y:(x,y)==(12,18));g.tap(K.KEY_DOWN,hold=16,wait=240)
     assert current(g)=='PlasticOx_VictoryRoad'
-    navigate(g,lambda x,y:(x,y)==(27,48));g.tap(K.KEY_DOWN,hold=16,wait=240)
-    assert current(g)=='EcruteakCity_hns'
+    # Arrival tile (27,48) and the row below it are safe; the band is y=50.
+    navigate(g,lambda x,y:(x,y)==(27,48));g.tap(K.KEY_DOWN,hold=16,wait=60)
+    assert current(g)=='PlasticOx_VictoryRoad' and g.state()['y']==49,g.describe()
+    g.tap(K.KEY_DOWN,hold=16,wait=240)
+    assert current(g)==GATE,g.describe()
     print('PASS: full Ecruteak–ridge–Indigo round trip on foot, nurse, PC, shop, fixed lobby exit',flush=True)
 
 
@@ -330,8 +338,8 @@ def route_battles():
     print('PASS: both houses enter, walk, interact, exit and re-enter (8 door crossings); western healer restores HP, advice does not',flush=True)
     g=prepare(('IndigoPlateau_hns',14,9))
     g.tap(K.KEY_RIGHT,hold=2,wait=12);g.tap(K.KEY_A,wait=20);settle(g)
-    assert current(g)=='EcruteakCity_hns'
-    print('PASS: downhill express returns to Ecruteak',flush=True)
+    assert current(g)==GATE,g.describe()
+    print('PASS: downhill express returns to the Ecruteak gatehouse',flush=True)
 
 
 def ai_turns():
@@ -356,6 +364,36 @@ def ai_turns():
         assert g.u32(g.syms['gMetamonDecisions'])>0,(n,'policy never ran')
         assert g.u32(g.syms['gMetamonFault'])==0,(n,'policy fault')
         print('PASS: '+n+' executes an actual Metamon-selected move; decisions='+str(g.u32(g.syms['gMetamonDecisions'])),flush=True)
+
+
+def said(g,label,n=24):
+    """The message box is showing the ROM string at label."""
+    ptr=g.syms['gStringVar4'];rom=g.syms[label]
+    return all(g.u8(ptr+i)==g.u8(rom+i) for i in range(n))
+
+
+def talk_to(g,stand,key,label):
+    navigate(g,lambda x,y:(x,y)==stand);g.tap(key,hold=2,wait=12)
+    g.tap(K.KEY_A,wait=60)
+    ok=said(g,label)
+    # B through the text, and on a YES/NO prompt B answers NO.
+    # (The context reads as idle while a YES/NO menu waits, so do not stop early.)
+    for _ in range(90):g.tap(K.KEY_B,hold=2,wait=10)
+    # Not settle(): its A press would talk to the NPC again.
+    assert g.u8(g.syms['sGlobalScriptContextStatus'])==2,g.describe()
+    return ok
+
+
+def postgame():
+    # Lobby staff and the official change register once FLAG_SYS_GAME_CLEAR is set.
+    for cleared in (False,True):
+        g=prepare(('IndigoPlateau_PokemonCenter_hns',19,14))
+        g.flag('FLAG_SYS_GAME_CLEAR',cleared)
+        suffix='Cleared' if cleared else ''
+        for stand,key,name in [((7,16),K.KEY_UP,'Welcome'),((29,11),K.KEY_UP,'Advice'),((32,4),K.KEY_UP,'Entry')]:
+            assert talk_to(g,stand,key,'PoxLeague_Text_'+name+suffix),(name,cleared,g.describe())
+        assert current(g)=='IndigoPlateau_PokemonCenter_hns',('declining sign-in must stay in the lobby',g.describe())
+    print('PASS: lobby welcome, scout and official switch to post-clear lines; declining stays put',flush=True)
 
 
 def save_continue(g):
@@ -404,7 +442,7 @@ def persistence():
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('--static',action='store_true');p.add_argument('--travel',action='store_true');p.add_argument('--battles',action='store_true');p.add_argument('--route',action='store_true');p.add_argument('--ai',action='store_true');p.add_argument('--persistence',action='store_true');a=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--static',action='store_true');p.add_argument('--travel',action='store_true');p.add_argument('--battles',action='store_true');p.add_argument('--route',action='store_true');p.add_argument('--ai',action='store_true');p.add_argument('--persistence',action='store_true');p.add_argument('--postgame',action='store_true');a=p.parse_args()
     if a.static:static()
     if a.travel:travel()
     if a.battles:battles()
@@ -413,3 +451,4 @@ if __name__=='__main__':
     if a.ai:ai_turns()
 
     if a.persistence:persistence()
+    if a.postgame:postgame()
