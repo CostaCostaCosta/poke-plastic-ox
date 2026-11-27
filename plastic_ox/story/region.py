@@ -105,6 +105,7 @@ STORY_ORDER = [
     # Postgame
     "battlefrontier-outsidewest",
     "plasticox-whirlislands",
+    "dragonsden-entrance-hns",
     "mtsilver-1f-waterfallroom-hns",
 ]
 

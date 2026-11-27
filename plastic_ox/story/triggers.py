@@ -35,6 +35,7 @@ REGISTRY: dict[str, tuple[str, str]] = {
     "Route119_EventScript_PoxEcruteakGate": ("Region crossing", "Route 119's bottom path walks into the Ecruteak east gatehouse."),
     "PoxEcruteak_WestEntrance": ("Region crossing", "Ecruteak's west edge leads into the Route 38 League gatehouse."),
     # Gyms
+    "PoxDragonsDen_RayquazaArrives": ("Story scene", "Dragon's Den shrine plaza: the first step off the dock plays RAYQUAZA's arrival (once; FLAG_POX_DEN_RAYQUAZA_ARRIVED)."),
     "BlackthornCity_EventScript_GymDoor": ("Gym", "Door tile warps into Clair's Gym (PlasticOx_ClairGym)."),
     "RustboroCity_Gym_EventScript_EntranceCheck": ("Gym", "Little Cup rules check at the Gym door; illegal moves/items are turned away until Badge 1."),
     "MossdeepCity_Gym_EventScript_RedFloorSwitch": ("Gym puzzle", "Tate & Liza Gym floor switch: rotates the arrow tiles."),
