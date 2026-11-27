@@ -61,6 +61,8 @@ RustboroCity_Gym_EventScript_GymGuide::
 	goto_if_eq VAR_RESULT, 1, RustboroCity_Gym_EventScript_GymGuideBannedMove
 	goto_if_eq VAR_RESULT, 2, RustboroCity_Gym_EventScript_GymGuideBannedItem
 	goto_if_eq VAR_RESULT, 3, RustboroCity_Gym_EventScript_GymGuideBannedSpecies
+	goto_if_eq VAR_RESULT, 4, RustboroCity_Gym_EventScript_GymGuideDuplicate
+	goto_if_eq VAR_RESULT, 5, RustboroCity_Gym_EventScript_GymGuideBannedAbility
 	msgbox RustboroCity_Gym_Text_GymGuideAdvice, MSGBOX_DEFAULT
 	release
 	end
@@ -72,6 +74,8 @@ RustboroCity_Gym_EventScript_EntranceCheck::
 	goto_if_eq VAR_RESULT, 1, RustboroCity_Gym_EventScript_EntranceBannedMove
 	goto_if_eq VAR_RESULT, 2, RustboroCity_Gym_EventScript_EntranceBannedItem
 	goto_if_eq VAR_RESULT, 3, RustboroCity_Gym_EventScript_EntranceBannedSpecies
+	goto_if_eq VAR_RESULT, 4, RustboroCity_Gym_EventScript_EntranceDuplicate
+	goto_if_eq VAR_RESULT, 5, RustboroCity_Gym_EventScript_EntranceBannedAbility
 RustboroCity_Gym_EventScript_EntranceClear::
 	releaseall
 	end
@@ -86,6 +90,14 @@ RustboroCity_Gym_EventScript_EntranceBannedItem::
 
 RustboroCity_Gym_EventScript_EntranceBannedSpecies::
 	msgbox RustboroCity_Gym_Text_GymGuideBannedSpecies, MSGBOX_DEFAULT
+	goto RustboroCity_Gym_EventScript_TurnAway
+
+RustboroCity_Gym_EventScript_EntranceDuplicate::
+	msgbox RustboroCity_Gym_Text_GymGuideDuplicate, MSGBOX_DEFAULT
+	goto RustboroCity_Gym_EventScript_TurnAway
+
+RustboroCity_Gym_EventScript_EntranceBannedAbility::
+	msgbox RustboroCity_Gym_Text_GymGuideBannedAbility, MSGBOX_DEFAULT
 	goto RustboroCity_Gym_EventScript_TurnAway
 
 RustboroCity_Gym_EventScript_TurnAway::
@@ -106,6 +118,16 @@ RustboroCity_Gym_EventScript_GymGuideBannedItem::
 
 RustboroCity_Gym_EventScript_GymGuideBannedSpecies::
 	msgbox RustboroCity_Gym_Text_GymGuideBannedSpecies, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_Gym_EventScript_GymGuideDuplicate::
+	msgbox RustboroCity_Gym_Text_GymGuideDuplicate, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_Gym_EventScript_GymGuideBannedAbility::
+	msgbox RustboroCity_Gym_Text_GymGuideBannedAbility, MSGBOX_DEFAULT
 	release
 	end
 
@@ -202,6 +224,18 @@ RustboroCity_Gym_Text_GymGuideBannedSpecies:
 	.string "This GYM follows LITTLE CUP rules.\p"
 	.string "{STR_VAR_1} is a {STR_VAR_2}.\p"
 	.string "Only LITTLE CUP POKéMON may enter.\n"
+	.string "Please leave it in the PC.$"
+
+RustboroCity_Gym_Text_GymGuideDuplicate:
+	.string "This GYM follows LITTLE CUP rules.\p"
+	.string "{STR_VAR_1} is a second {STR_VAR_2}.\p"
+	.string "Only one of each POKéMON.\n"
+	.string "Please leave one in the PC.$"
+
+RustboroCity_Gym_Text_GymGuideBannedAbility:
+	.string "This GYM follows LITTLE CUP rules.\p"
+	.string "{STR_VAR_1} has {STR_VAR_2}.\p"
+	.string "That ability is banned here.\n"
 	.string "Please leave it in the PC.$"
 
 RustboroCity_Gym_Text_JoshIntro:

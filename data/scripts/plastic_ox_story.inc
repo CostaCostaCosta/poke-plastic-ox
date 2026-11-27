@@ -293,6 +293,78 @@ Pox_Text_Winona::
 Pox_Text_Winona_Defeat::
 	.string "WINONA: You rode the wind better\nthan my birds did today.$"
 
+Pox_FortreeGym_EventScript_Greeter::
+	lock
+	faceplayer
+	msgbox Pox_FortreeGym_Text_Greeter, MSGBOX_DEFAULT
+	specialvar VAR_RESULT, CheckFortreeGymRURules
+	goto_if_eq VAR_RESULT, 1, Pox_FortreeGym_EventScript_GreeterBannedMove
+	goto_if_eq VAR_RESULT, 2, Pox_FortreeGym_EventScript_GreeterBannedItem
+	goto_if_eq VAR_RESULT, 3, Pox_FortreeGym_EventScript_GreeterBannedSpecies
+	goto_if_eq VAR_RESULT, 4, Pox_FortreeGym_EventScript_GreeterDuplicate
+	goto_if_eq VAR_RESULT, 5, Pox_FortreeGym_EventScript_GreeterBannedAbility
+	release
+	end
+
+Pox_FortreeGym_EventScript_GreeterBannedMove::
+	msgbox Pox_FortreeGym_Text_GreeterBannedMove, MSGBOX_DEFAULT
+	release
+	end
+
+Pox_FortreeGym_EventScript_GreeterBannedItem::
+	msgbox Pox_FortreeGym_Text_GreeterBannedItem, MSGBOX_DEFAULT
+	release
+	end
+
+Pox_FortreeGym_EventScript_GreeterBannedSpecies::
+	msgbox Pox_FortreeGym_Text_GreeterBannedSpecies, MSGBOX_DEFAULT
+	release
+	end
+
+Pox_FortreeGym_EventScript_GreeterDuplicate::
+	msgbox Pox_FortreeGym_Text_GreeterDuplicate, MSGBOX_DEFAULT
+	release
+	end
+
+Pox_FortreeGym_EventScript_GreeterBannedAbility::
+	msgbox Pox_FortreeGym_Text_GreeterBannedAbility, MSGBOX_DEFAULT
+	release
+	end
+
+Pox_FortreeGym_Text_Greeter:
+	.string "Yo! Champ in the making!\n"
+	.string "Welcome to FORTREE GYM.\p"
+	.string "This GYM follows RU tier rules.\p"
+	.string "Bring your best RU-tier POKéMON!$"
+
+Pox_FortreeGym_Text_GreeterBannedMove:
+	.string "FORTREE GYM uses RU rules.\p"
+	.string "That move is banned here.\n"
+	.string "Please change it before entering.$"
+
+Pox_FortreeGym_Text_GreeterBannedItem:
+	.string "FORTREE GYM uses RU rules.\p"
+	.string "That item is banned here.\n"
+	.string "Please remove it before entering.$"
+
+Pox_FortreeGym_Text_GreeterBannedSpecies:
+	.string "FORTREE GYM uses RU rules.\p"
+	.string "{STR_VAR_1} is a {STR_VAR_2}.\p"
+	.string "That POKéMON is over the tier.\n"
+	.string "Please leave it in the PC.$"
+
+Pox_FortreeGym_Text_GreeterDuplicate:
+	.string "FORTREE GYM uses RU rules.\p"
+	.string "{STR_VAR_1} is a second {STR_VAR_2}.\p"
+	.string "Only one of each POKéMON.\n"
+	.string "Please leave one in the PC.$"
+
+Pox_FortreeGym_Text_GreeterBannedAbility:
+	.string "FORTREE GYM uses RU rules.\p"
+	.string "{STR_VAR_1} has {STR_VAR_2}.\p"
+	.string "That ability is banned here.\n"
+	.string "Please leave it in the PC.$"
+
 Pox_Blaine::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall

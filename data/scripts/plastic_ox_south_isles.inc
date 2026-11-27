@@ -207,6 +207,8 @@ PoxIsles_CinnabarGymGuide::
 	goto_if_eq VAR_RESULT, 1, PoxIsles_CinnabarGymGuide_Move
 	goto_if_eq VAR_RESULT, 2, PoxIsles_CinnabarGymGuide_Item
 	goto_if_eq VAR_RESULT, 3, PoxIsles_CinnabarGymGuide_Species
+	goto_if_eq VAR_RESULT, 4, PoxIsles_CinnabarGymGuide_Duplicate
+	goto_if_eq VAR_RESULT, 5, PoxIsles_CinnabarGymGuide_Ability
 	msgbox PoxIsles_Text_CinnabarRuleClean, MSGBOX_DEFAULT
 	release
 	end
@@ -222,6 +224,14 @@ PoxIsles_CinnabarGymGuide_Species::
 	msgbox PoxIsles_Text_CinnabarRuleSpecies, MSGBOX_DEFAULT
 	release
 	end
+PoxIsles_CinnabarGymGuide_Duplicate::
+	msgbox PoxIsles_Text_CinnabarRuleDuplicate, MSGBOX_DEFAULT
+	release
+	end
+PoxIsles_CinnabarGymGuide_Ability::
+	msgbox PoxIsles_Text_CinnabarRuleAbility, MSGBOX_DEFAULT
+	release
+	end
 
 PoxIsles_MossdeepGymGuide::
 	lock
@@ -232,6 +242,8 @@ PoxIsles_MossdeepGymGuide::
 	goto_if_eq VAR_RESULT, 1, PoxIsles_MossdeepGymGuide_Move
 	goto_if_eq VAR_RESULT, 2, PoxIsles_MossdeepGymGuide_Item
 	goto_if_eq VAR_RESULT, 3, PoxIsles_MossdeepGymGuide_Species
+	goto_if_eq VAR_RESULT, 4, PoxIsles_MossdeepGymGuide_Duplicate
+	goto_if_eq VAR_RESULT, 5, PoxIsles_MossdeepGymGuide_Ability
 	msgbox PoxIsles_Text_TwinsRuleClean, MSGBOX_DEFAULT
 	release
 	end
@@ -245,6 +257,14 @@ PoxIsles_MossdeepGymGuide_Item::
 	end
 PoxIsles_MossdeepGymGuide_Species::
 	msgbox PoxIsles_Text_TwinsRuleSpecies, MSGBOX_DEFAULT
+	release
+	end
+PoxIsles_MossdeepGymGuide_Duplicate::
+	msgbox PoxIsles_Text_TwinsRuleDuplicate, MSGBOX_DEFAULT
+	release
+	end
+PoxIsles_MossdeepGymGuide_Ability::
+	msgbox PoxIsles_Text_TwinsRuleAbility, MSGBOX_DEFAULT
 	release
 	end
 
@@ -374,6 +394,12 @@ PoxIsles_Text_CinnabarRuleItem::
 PoxIsles_Text_CinnabarRuleSpecies::
 	.string "Hold on. {STR_VAR_1}? A {STR_VAR_2}\nis over this GYM's weight class.\pBLAINE keeps to UU in here.\nIt's a house rule.\pLeave it in the PC before you get\nto him.$"
 
+PoxIsles_Text_CinnabarRuleDuplicate::
+	.string "Hold on. {STR_VAR_1} is a second\n{STR_VAR_2}.\pBLAINE battles one of each in here.\nIt's a house rule.\pLeave one in the PC before you get\nto him.$"
+
+PoxIsles_Text_CinnabarRuleAbility::
+	.string "Hold on. {STR_VAR_1} has\n{STR_VAR_2}.\pBLAINE doesn't allow that ability in\nhere. It's a house rule.\pLeave it in the PC before you get\nto him.$"
+
 PoxIsles_Text_CinnabarRuleClean::
 	.string "I had a look at your team on the\nway in. Nothing BLAINE would\lobject to. Go on, then.$"
 
@@ -385,6 +411,12 @@ PoxIsles_Text_TwinsRuleItem::
 
 PoxIsles_Text_TwinsRuleSpecies::
 	.string "Wait. {STR_VAR_1}? A {STR_VAR_2}\nis over the twins' weight class.\pTATE and LIZA keep to UUBL.\nTwins' rule.\pBox it before you cross the floor.$"
+
+PoxIsles_Text_TwinsRuleDuplicate::
+	.string "Wait. {STR_VAR_1} is a second\n{STR_VAR_2}.\pTATE and LIZA face one of each.\nTwins' rule.\pBox one before you cross the floor.$"
+
+PoxIsles_Text_TwinsRuleAbility::
+	.string "Wait. {STR_VAR_1} has\n{STR_VAR_2}.\pTATE and LIZA won't battle against\nthat ability. Twins' rule.\pBox it before you cross the floor.$"
 
 PoxIsles_Text_TwinsRuleClean::
 	.string "Your team passes the twins'\nrules. I checked twice, the way\lthey would.$"

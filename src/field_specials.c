@@ -132,6 +132,49 @@ static bool32 IsADVOUBannedItem(enum Item item)
     return item == ITEM_BRIGHT_POWDER || item == ITEM_LAX_INCENSE;
 }
 
+// §13 Species Clause and §19 banned abilities, checked over the whole party after the
+// per-POKéMON checks. Returns 4 when two POKéMON share a species (the second one's
+// nickname in gStringVar1, the species in gStringVar2), 5 for Sand Veil or Soundproof
+// (nickname in gStringVar1, ability in gStringVar2), else 0.
+static u16 CheckADVPartyClauses(void)
+{
+    u32 i, j;
+
+    for (i = 0; i < gPartiesCount[B_TRAINER_PLAYER]; i++)
+    {
+        struct Pokemon *mon = &gParties[B_TRAINER_PLAYER][i];
+        enum Species species;
+        enum Ability ability;
+
+        if (!GetMonData(mon, MON_DATA_SANITY_HAS_SPECIES) || GetMonData(mon, MON_DATA_IS_EGG))
+            continue;
+
+        species = GET_BASE_SPECIES_ID(GetMonData(mon, MON_DATA_SPECIES));
+        for (j = 0; j < i; j++)
+        {
+            struct Pokemon *other = &gParties[B_TRAINER_PLAYER][j];
+
+            if (!GetMonData(other, MON_DATA_SANITY_HAS_SPECIES) || GetMonData(other, MON_DATA_IS_EGG))
+                continue;
+            if (GET_BASE_SPECIES_ID(GetMonData(other, MON_DATA_SPECIES)) == species)
+            {
+                GetMonData(mon, MON_DATA_NICKNAME, gStringVar1);
+                StringCopy(gStringVar2, GetSpeciesName(species));
+                return 4;
+            }
+        }
+
+        ability = GetMonAbility(mon);
+        if (ability == ABILITY_SAND_VEIL || ability == ABILITY_SOUNDPROOF)
+        {
+            GetMonData(mon, MON_DATA_NICKNAME, gStringVar1);
+            StringCopy(gStringVar2, gAbilitiesInfo[ability].name);
+            return 5;
+        }
+    }
+    return 0;
+}
+
 // A POKéMON above maxTier in the species tier table, or an Uber, is over the tier.
 static bool32 IsOverGymTier(enum Species species, enum EvolutionTier maxTier)
 {
@@ -141,7 +184,8 @@ static bool32 IsOverGymTier(enum Species species, enum EvolutionTier maxTier)
 
 // Little Cup (Rustboro): LC species only, the Little Cup move and item bans, and the
 // ADV clauses every tier shares.
-// Returns 3 with the species name, 1 with the move, 2 with the item in gStringVar2.
+// Returns 3 with the species name, 1 with the move, 2 with the item in gStringVar2;
+// 4 (Species Clause) and 5 (banned ability) come from CheckADVPartyClauses.
 u16 CheckRustboroGymLittleCupRules(void)
 {
     u32 i, j;
@@ -209,14 +253,15 @@ u16 CheckRustboroGymLittleCupRules(void)
         }
     }
 
-    return 0;
+    return CheckADVPartyClauses();
 }
 
 // ADV tiered gym rules (PU through OU): every POKéMON at or below maxTier in the species
 // tier table and no Uber, plus the ADV clauses the OU gyms check (OHKO, evasion moves
 // and items, Assist/Swagger). Sleep moves, Thunder Wave and Baton Pass are legal here;
 // those are Little Cup bans. Returns 3 with the species name in gStringVar2, 1 with
-// the move name, 2 with the item name; the nickname is in gStringVar1. Else 0.
+// the move name, 2 with the item name; the nickname is in gStringVar1. Then 4 for a
+// duplicate species and 5 for a banned ability (CheckADVPartyClauses). Else 0.
 static u16 CheckADVTierGymRules(enum EvolutionTier maxTier)
 {
     u32 i, j;
@@ -254,12 +299,11 @@ static u16 CheckADVTierGymRules(enum EvolutionTier maxTier)
             return 2;
         }
     }
-    return 0;
+    return CheckADVPartyClauses();
 }
 
 // Every tiered gym past Rustboro checks its own ADV tier the same way. Not checked
-// (no greeter UI and/or no data): Species Clause (§13), Sand Veil / Soundproof ability
-// bans (§19), Baton Pass combination clauses (§18), and the battle-side Sleep / Freeze /
+// here: Baton Pass combination clauses (§18) and the battle-side Sleep / Freeze /
 // Wrap clauses (§11/§12).
 u16 CheckGoldenrodGymPURules(void)  { return CheckADVTierGymRules(EVO_TIER_PU); }
 u16 CheckEcruteakGymNURules(void)   { return CheckADVTierGymRules(EVO_TIER_NU); }

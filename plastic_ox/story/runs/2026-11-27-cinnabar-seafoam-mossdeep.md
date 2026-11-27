@@ -51,6 +51,6 @@
   greeters (`build_story.greeter_scripts`) and Rustboro's guide and door gain a species branch
   (result 3). `plastic_ox/demo/test_gym_rules.py` runs all eight specials in mGBA and talks to the
   reachable greeters.
-- Still open: Species Clause and ability bans are not checked by the gym specials. Ecruteak, Fortree,
-  Saffron and Blackthorn have no greeter object in play, so their checks exist but nobody runs them; the debug-only Steven multi battle
+- Closed in agent/gym-greeters: the gym specials now check the Species Clause and the Sand Veil /
+  Soundproof bans, and Ecruteak, Fortree, Saffron and Blackthorn have greeters. Still open: the debug-only Steven multi battle
   on Space Center 2F still references Maxie/Tabitha trainers.

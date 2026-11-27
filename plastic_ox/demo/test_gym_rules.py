@@ -9,8 +9,10 @@ evasion moves and items, Assist, Swagger). Each returns 1 for a move, 2 for an
 item, 3 for a species, 0 for a legal party.
 
 The specials are called with real script bytes (specialvar VAR_RESULT, ...) for
-each party below; then the greeters a player can reach (Rustboro's guide and
-door, Goldenrod's greeter) are talked to.
+each party below; then every greeter (Rustboro's guide and door, the Goldenrod,
+Ecruteak, Saffron and Blackthorn hall greeters, Fortree's guide) is talked to.
+4 is the Species Clause (two of one species), 5 a banned ability (Sand Veil,
+Soundproof).
 """
 from __future__ import annotations
 
@@ -24,6 +26,7 @@ GYMS = ['CheckRustboroGymLittleCupRules', 'CheckGoldenrodGymPURules', 'CheckEcru
         'CheckSaffronGymOURules', 'CheckBlackthornGymOURules']
 THUNDER_WAVE, FISSURE = 86, 90
 BELDUM, SALAMENCE, MEWTWO, KANGASKHAN = 374, 373, 150, 115
+TREECKO, SANDSHREW = 252, 27
 
 
 def main() -> None:
@@ -93,6 +96,10 @@ def main() -> None:
     expect('MEWTWO (Uber): over every tier', [3] * 8)
     give(BELDUM, 5)
     expect('BELDUM (LC): legal everywhere', [0] * 8)
+    give(TREECKO, 5)
+    expect('second TREECKO: Species Clause in every gym', [4] * 8)
+    give(SANDSHREW, 5)
+    expect('SANDSHREW (Sand Veil): ability ban in every gym', [5] * 8)
 
     def said(mapname, x, y, key, *fragments):
         g.warp(mapname, x, y)
@@ -107,6 +114,22 @@ def main() -> None:
     g.flag('FLAG_BADGE01_GET', False)
     said('RustboroCity_Gym', 3, 19, K.KEY_UP, 'LITTLE CUP', 'is a Salamence', 'leave it in the PC')
     said('PlasticOx_WhitneyGym', 7, 18, K.KEY_UP, 'PU rules', 'is a Salamence', 'over the tier')
+    for mapname, x, y, rule in (('PlasticOx_MortyGym', 7, 18, 'NU rules'),
+                                ('PlasticOx_BrunoGym', 7, 18, 'OU rules'),
+                                ('PlasticOx_ClairGym', 7, 18, 'OU rules'),
+                                ('FortreeCity_Gym', 15, 22, 'RU rules')):
+        if rule == 'OU rules':
+            give(MEWTWO)
+            said(mapname, x, y, K.KEY_UP, rule, 'is a Mewtwo', 'over the tier')
+        else:
+            give(SALAMENCE)
+            said(mapname, x, y, K.KEY_UP, rule, 'is a Salamence', 'over the tier')
+    give(TREECKO, 5)
+    said('PlasticOx_ClairGym', 7, 18, K.KEY_UP, 'OU rules', 'is a second Treecko', 'one of each')
+    give(SANDSHREW, 5)
+    said('FortreeCity_Gym', 15, 22, K.KEY_UP, 'RU rules', 'has Sand Veil', 'ability is banned')
+    print('  ok  Ecruteak, Saffron, Blackthorn and Fortree greeters run their tier checks')
+    give(SALAMENCE)
     print('  ok  Rustboro guide and Goldenrod greeter name the over-tier SALAMENCE')
     # Rustboro's door turns an over-tier party away (warp back to the city).
     g.warp('RustboroCity_Gym', 5, 19)
