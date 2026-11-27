@@ -911,5 +911,7 @@ def apply_region(read, put):
     repair_marts(read, put)
     from lavender import install as install_lavender
     install_lavender(read, put)
+    from south_isles import install as install_south_isles
+    install_south_isles(read, put)
     from clear_bell import install as install_clear_bell
     install_clear_bell(read, put)

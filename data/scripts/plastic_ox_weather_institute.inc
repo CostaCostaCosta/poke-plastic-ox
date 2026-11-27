@@ -164,7 +164,7 @@ Pox_SpaceReport::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lock
 	faceplayer
-	goto_if_unset FLAG_BADGE06_GET, Pox_NotReady
+	goto_if_unset FLAG_BADGE06_GET, PoxIsles_ReportBusy
 	goto_if_set FLAG_POX_STORY_SPACE_CENTER, Pox_SC_Report_After
 	msgbox Pox_Text_SC_ReportSurvey, MSGBOX_DEFAULT
 	closemessage

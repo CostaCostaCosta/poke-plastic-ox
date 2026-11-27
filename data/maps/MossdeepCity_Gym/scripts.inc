@@ -271,7 +271,7 @@ MossdeepCity_Gym_EventScript_Kathleen::
 MossdeepCity_Gym_EventScript_GymGuide::
 	lock
 	faceplayer
-	goto_if_set FLAG_DEFEATED_MOSSDEEP_GYM, MossdeepCity_Gym_EventScript_GymGuidePostVictory
+	goto_if_set FLAG_BADGE06_GET, MossdeepCity_Gym_EventScript_GymGuidePostVictory
 	msgbox MossdeepCity_Gym_Text_GymGuideAdvice, MSGBOX_DEFAULT
 	release
 	end
@@ -289,13 +289,13 @@ MossdeepCity_Gym_Movement_WaitAfterSwitchUse:
 
 MossdeepCity_Gym_EventScript_LeftGymStatue::
 	lockall
-	goto_if_set FLAG_BADGE07_GET, MossdeepCity_Gym_EventScript_GymStatueCertified
+	goto_if_set FLAG_BADGE06_GET, MossdeepCity_Gym_EventScript_GymStatueCertified
 	goto MossdeepCity_Gym_EventScript_GymStatue
 	end
 
 MossdeepCity_Gym_EventScript_RightGymStatue::
 	lockall
-	goto_if_set FLAG_BADGE07_GET, MossdeepCity_Gym_EventScript_GymStatueCertified
+	goto_if_set FLAG_BADGE06_GET, MossdeepCity_Gym_EventScript_GymStatueCertified
 	goto MossdeepCity_Gym_EventScript_GymStatue
 	end
 
@@ -370,22 +370,10 @@ MossdeepCity_Gym_EventScript_RedFloorSwitch::
 	end
 
 MossdeepCity_Gym_Text_GymGuideAdvice:
-	.string "Yo, how's it going, CHAMPION-bound\n"
-	.string "{PLAYER}?\p"
-	.string "The GYM LEADERS here use\n"
-	.string "PSYCHIC-type POKéMON.\p"
-	.string "If you go up against them with\n"
-	.string "FIGHTING- or POISON-type POKéMON,\l"
-	.string "they'll inflict horrible damage!\p"
-	.string "Plus, they'll come at you with\n"
-	.string "outstanding combination attacks.\p"
-	.string "If you want to win, you'll need to show\n"
-	.string "them how tight you are with your\l"
-	.string "POKéMON. Go for it!$"
+	.string "Yo, {PLAYER}. This one is a\ndouble battle. Two LEADERS, and\ltwo of yours out at once.\pDon't plan around a type. TATE\nand LIZA field whatever covers\lthe other one's back, right at\lthe top of this island's weight\lclass.\pThe floor is part of it. Step on\na switch and the arrows turn.\lThink of the walk as round one.$"
 
 MossdeepCity_Gym_Text_GymGuidePostVictory:
-	.string "Wow, you're astounding!\n"
-	.string "You're one great TRAINER!$"
+	.string "That's the twins beaten at their\nown game. They'll be pleased.\lThey like company that can keep\lup.\pIf you haven't been yet, the\nSPACE CENTER wants a word with\lanyone who has walked the whole\lroad.$"
 
 MossdeepCity_Gym_Text_PrestonIntro:
 	.string "Battles hinge on the strength of your\n"

@@ -140,31 +140,13 @@ CinnabarIsland_PokemonCenter_1F_Movement_PlayerExitWest::
 	step_end
 
 CinnabarIsland_PokemonCenter_1F_Text_CinnabarGymLocked::
-	.string "I came to visit the CINNABAR GYM,\n"
-	.string "but the door is locked tight.\p"
-	.string "There should be a key for it\n"
-	.string "somewhere.\p"
-	.string "Could it be in that burned-out\n"
-	.string "mansion?\p"
-	.string "The GYM LEADER's friend used to\n"
-	.string "live there, they say.$"
+	.string "I came for the GYM and stayed\nfor the hot spring. There isn't\lone. The ash filled it in years\lago.\pThe quiz is real, though. Six\ndoors. I got through five on\lbrains and one on my GOLDUCK.$"
 
 CinnabarIsland_PokemonCenter_1F_Text_VisitUnionRoom::
-	.string "Do you have lots of friends?\p"
-	.string "Linking up with the usual friends\n"
-	.string "is fun, of course.\p"
-	.string "But how about visiting the\n"
-	.string "UNION ROOM every so often?\p"
-	.string "Who knows, you may end up making\n"
-	.string "new friends.\p"
-	.string "I think it would be worth your time\n"
-	.string "to check the UNION ROOM.$"
+	.string "I booked a return ticket. The\nreturn was scratched off the\lboard the day I landed.\pI have read every magazine in\nthis lobby twice. The tomatoes\lare good, I'll say that.$"
 
 CinnabarIsland_PokemonCenter_1F_Text_EvolutionCanWaitForNewMoves::
-	.string "POKéMON can still learn techniques\n"
-	.string "after canceling evolution.\p"
-	.string "Evolution can wait until new moves\n"
-	.string "have been learned.$"
+	.string "Everybody here bets on the GYM\nquiz. Tomatoes, mostly.\pI bet you'd miss one. Did you\nmiss one?$"
 
 CinnabarIsland_PokemonCenter_1F_Text_ReadyToSailToOneIsland::
 	.string "BILL: Hey, you kept me waiting!\n"

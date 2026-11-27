@@ -108,6 +108,7 @@ the water; explain why the sea is closed.
 - Return: `PoxRegion_sea_mossdeep_b` (Mossdeep side) warps back to `(52,10)`
 - Flags: `FLAG_POX_STORY_MANSION` (open), `FLAG_POX_TRIGGERS_ENABLED` (test
   bypass)
+- Audited 2026-11-27 with the Cinnabar / Seafoam / Mossdeep dialogue pass and left empty on purpose; the only voices near it are the swimmer inside Seafoam's east door and the dock clerk on Mossdeep's beach.
 - Known gaps: zero objects and zero encounters; `REGION_HOENN` on a Kanto sea
   lane, and `MUS_RG_ROUTE3` is the Kanto Route 3 theme; the refusal arm is
   unreachable in normal play and lands adjacent to its own trigger.

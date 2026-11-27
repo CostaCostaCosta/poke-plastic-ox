@@ -42,16 +42,13 @@ PokemonMansion_Text_NotQuiteYet::
 .endif
 
 PokemonMansion_1F_Text_ArnieIntro::
-	.string "I can't get out!\n"
-	.string "This old place is one big puzzle.$"
+	.string "Nothing in here but filing\ncabinets! Who locks up filing\lcabinets!$"
 
 PokemonMansion_1F_Text_ArnieDefeat::
-	.string "Oh, no!\n"
-	.string "My bag of loot!$"
+	.string "My bag of loot! It's all carbon\npaper!$"
 
 PokemonMansion_1F_Text_ArniePostBattle::
-	.string "The switches here open and close\n"
-	.string "alternating sets of doors.$"
+	.string "The statues work the doors.\nPress one and every open door\lshuts, and every shut one opens.$"
 
 PokemonMansion_1F_Text_NewMonDiscoveredInGuyanaJungle::
 	.string "Diary: July 5\n"
@@ -60,6 +57,4 @@ PokemonMansion_1F_Text_NewMonDiscoveredInGuyanaJungle::
 	.string "in the jungle.$"
 
 PokemonMansion_1F_Text_ChristenedDiscoveredMonMew::
-	.string "Diary: July 10\n"
-	.string "We christened the newly discovered\l"
-	.string "POKéMON, MEW.$"
+	.string "STATION LOG. Typed.\pGenerator failed again at 0200.\nHolding tanks held on reserve.\pAll stored states intact by the\nmorning count.\pOrdered more carbon paper.$"
