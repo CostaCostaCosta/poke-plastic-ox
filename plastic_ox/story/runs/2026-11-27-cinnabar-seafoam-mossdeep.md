@@ -45,5 +45,12 @@
     battle keeps its 2F block, minus the Magma movements.
   - Encounters: Route 20 West gets `gPoxUURoute20West` (Surf + fishing, UU, cap 42). Route 20 East
     stays barren as its note requires.
-- Still open: Species Clause and ability bans are not checked by the gym specials; the debug-only Steven multi battle
+- Third pass: every gym special uses the same helper. Rustboro is Little Cup: LC species, the
+  Little Cup move/item bans and the ADV clauses. Goldenrod PU, Ecruteak NU, Fortree RU, Cinnabar UU,
+  Mossdeep UUBL, and Saffron and Blackthorn OU use `CheckADVTierGymRules(tier)`. The generated
+  greeters (`build_story.greeter_scripts`) and Rustboro's guide and door gain a species branch
+  (result 3). `plastic_ox/demo/test_gym_rules.py` runs all eight specials in mGBA and talks to the
+  reachable greeters.
+- Still open: Species Clause and ability bans are not checked by the gym specials. Ecruteak, Fortree,
+  Saffron and Blackthorn have no greeter object in play, so their checks exist but nobody runs them; the debug-only Steven multi battle
   on Space Center 2F still references Maxie/Tabitha trainers.

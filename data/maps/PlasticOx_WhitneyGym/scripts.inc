@@ -8,6 +8,7 @@ PlasticOx_WhitneyGym_EventScript_Greeter::
 	specialvar VAR_RESULT, CheckGoldenrodGymPURules
 	goto_if_eq VAR_RESULT, 1, PlasticOx_WhitneyGym_EventScript_GreeterBannedMove
 	goto_if_eq VAR_RESULT, 2, PlasticOx_WhitneyGym_EventScript_GreeterBannedItem
+	goto_if_eq VAR_RESULT, 3, PlasticOx_WhitneyGym_EventScript_GreeterBannedSpecies
 	release
 	end
 
@@ -18,6 +19,11 @@ PlasticOx_WhitneyGym_EventScript_GreeterBannedMove::
 
 PlasticOx_WhitneyGym_EventScript_GreeterBannedItem::
 	msgbox PlasticOx_WhitneyGym_Text_GreeterBannedItem, MSGBOX_DEFAULT
+	release
+	end
+
+PlasticOx_WhitneyGym_EventScript_GreeterBannedSpecies::
+	msgbox PlasticOx_WhitneyGym_Text_GreeterBannedSpecies, MSGBOX_DEFAULT
 	release
 	end
 
@@ -36,6 +42,12 @@ PlasticOx_WhitneyGym_Text_GreeterBannedItem:
 	.string "This GYM follows PU rules.\p"
 	.string "That item is banned here.\n"
 	.string "Please remove it before entering.$"
+
+PlasticOx_WhitneyGym_Text_GreeterBannedSpecies:
+	.string "This GYM follows PU rules.\p"
+	.string "{STR_VAR_1} is a {STR_VAR_2}.\p"
+	.string "That POKéMON is over the tier.\n"
+	.string "Please leave it in the PC.$"
 
 PlasticOx_WhitneyGym_EventScript_Hint1::
 	msgbox PlasticOx_WhitneyGym_Text_Hint1, MSGBOX_NPC

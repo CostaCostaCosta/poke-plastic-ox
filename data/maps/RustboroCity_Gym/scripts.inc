@@ -60,6 +60,7 @@ RustboroCity_Gym_EventScript_GymGuide::
 	specialvar VAR_RESULT, CheckRustboroGymLittleCupRules
 	goto_if_eq VAR_RESULT, 1, RustboroCity_Gym_EventScript_GymGuideBannedMove
 	goto_if_eq VAR_RESULT, 2, RustboroCity_Gym_EventScript_GymGuideBannedItem
+	goto_if_eq VAR_RESULT, 3, RustboroCity_Gym_EventScript_GymGuideBannedSpecies
 	msgbox RustboroCity_Gym_Text_GymGuideAdvice, MSGBOX_DEFAULT
 	release
 	end
@@ -70,6 +71,7 @@ RustboroCity_Gym_EventScript_EntranceCheck::
 	specialvar VAR_RESULT, CheckRustboroGymLittleCupRules
 	goto_if_eq VAR_RESULT, 1, RustboroCity_Gym_EventScript_EntranceBannedMove
 	goto_if_eq VAR_RESULT, 2, RustboroCity_Gym_EventScript_EntranceBannedItem
+	goto_if_eq VAR_RESULT, 3, RustboroCity_Gym_EventScript_EntranceBannedSpecies
 RustboroCity_Gym_EventScript_EntranceClear::
 	releaseall
 	end
@@ -80,6 +82,10 @@ RustboroCity_Gym_EventScript_EntranceBannedMove::
 
 RustboroCity_Gym_EventScript_EntranceBannedItem::
 	msgbox RustboroCity_Gym_Text_GymGuideBannedItem, MSGBOX_DEFAULT
+	goto RustboroCity_Gym_EventScript_TurnAway
+
+RustboroCity_Gym_EventScript_EntranceBannedSpecies::
+	msgbox RustboroCity_Gym_Text_GymGuideBannedSpecies, MSGBOX_DEFAULT
 	goto RustboroCity_Gym_EventScript_TurnAway
 
 RustboroCity_Gym_EventScript_TurnAway::
@@ -95,6 +101,11 @@ RustboroCity_Gym_EventScript_GymGuideBannedMove::
 
 RustboroCity_Gym_EventScript_GymGuideBannedItem::
 	msgbox RustboroCity_Gym_Text_GymGuideBannedItem, MSGBOX_DEFAULT
+	release
+	end
+
+RustboroCity_Gym_EventScript_GymGuideBannedSpecies::
+	msgbox RustboroCity_Gym_Text_GymGuideBannedSpecies, MSGBOX_DEFAULT
 	release
 	end
 
@@ -186,6 +197,12 @@ RustboroCity_Gym_Text_GymGuideBannedItem:
 	.string "{STR_VAR_2}.\p"
 	.string "That item is banned here.\n"
 	.string "Please remove it before entering.$"
+
+RustboroCity_Gym_Text_GymGuideBannedSpecies:
+	.string "This GYM follows LITTLE CUP rules.\p"
+	.string "{STR_VAR_1} is a {STR_VAR_2}.\p"
+	.string "Only LITTLE CUP POKéMON may enter.\n"
+	.string "Please leave it in the PC.$"
 
 RustboroCity_Gym_Text_JoshIntro:
 	.string "Don't take us GYM TRAINERS lightly!\n"

@@ -365,15 +365,19 @@ def greeter_scripts(dest, gym, tier, special):
     return (f'\n{p}EventScript_Greeter::\n\tlock\n\tfaceplayer\n\tmsgbox {p}Text_Greeter, MSGBOX_DEFAULT\n'
             f'\tspecialvar VAR_RESULT, {special}\n'
             f'\tgoto_if_eq VAR_RESULT, 1, {p}EventScript_GreeterBannedMove\n'
-            f'\tgoto_if_eq VAR_RESULT, 2, {p}EventScript_GreeterBannedItem\n\trelease\n\tend\n\n'
+            f'\tgoto_if_eq VAR_RESULT, 2, {p}EventScript_GreeterBannedItem\n'
+            f'\tgoto_if_eq VAR_RESULT, 3, {p}EventScript_GreeterBannedSpecies\n\trelease\n\tend\n\n'
             f'{p}EventScript_GreeterBannedMove::\n\tmsgbox {p}Text_GreeterBannedMove, MSGBOX_DEFAULT\n\trelease\n\tend\n\n'
             f'{p}EventScript_GreeterBannedItem::\n\tmsgbox {p}Text_GreeterBannedItem, MSGBOX_DEFAULT\n\trelease\n\tend\n\n'
+            f'{p}EventScript_GreeterBannedSpecies::\n\tmsgbox {p}Text_GreeterBannedSpecies, MSGBOX_DEFAULT\n\trelease\n\tend\n\n'
             f'{p}Text_Greeter:\n\t.string "Yo! Champ in the making!\\n"\n\t.string "Welcome to {gym}.\\p"\n'
             f'\t.string "This GYM follows {tier} tier rules.\\p"\n\t.string "Bring your best {tier}-tier POKéMON!$"\n\n'
             f'{p}Text_GreeterBannedMove:\n\t.string "This GYM follows {tier} rules.\\p"\n\t.string "That move is banned here.\\n"\n'
             f'\t.string "Please change it before entering.$"\n\n'
             f'{p}Text_GreeterBannedItem:\n\t.string "This GYM follows {tier} rules.\\p"\n\t.string "That item is banned here.\\n"\n'
-            f'\t.string "Please remove it before entering.$"\n')
+            f'\t.string "Please remove it before entering.$"\n\n'
+            f'{p}Text_GreeterBannedSpecies:\n\t.string "This GYM follows {tier} rules.\\p"\n\t.string "{{STR_VAR_1}} is a {{STR_VAR_2}}.\\p"\n'
+            f'\t.string "That POKéMON is over the tier.\\n"\n\t.string "Please leave it in the PC.$"\n')
 
 
 def room(name, parent, boss, source="RustboroCity_Gym", objects=None, return_xy=(10, 10)):
