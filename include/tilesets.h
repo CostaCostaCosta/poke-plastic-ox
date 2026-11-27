@@ -83,6 +83,7 @@ extern const struct Tileset gTileset_NationalPark_Hns;
 extern const struct Tileset gTileset_EcruteakCity_Gym_Hns;
 extern const struct Tileset gTileset_Cafe_Hns;
 extern const struct Tileset gTileset_EcruteakTheater_Hns;
+extern const struct Tileset gTileset_RuinsOfAlph_B1F_Hns;
 extern const struct Tileset gTileset_RuinsOfAlphWriting_Hns;
 extern const struct Tileset gTileset_RuinsOfAlph_Outside_Hns;
 extern const struct Tileset gTileset_BellchimeTrail_Hns;

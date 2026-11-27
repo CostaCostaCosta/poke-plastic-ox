@@ -501,6 +501,9 @@ const u16 gMetatiles_EcruteakTheater_Hns[] = INCBIN_U16("data/tilesets/secondary
 
 const u16 gMetatileAttributes_EcruteakTheater_Hns[] = INCBIN_U16("data/tilesets/secondary/ecruteak_theater_hns/metatile_attributes.bin");
 
+const u16 gMetatiles_RuinsOfAlph_B1F_Hns[] = INCBIN_U16("data/tilesets/secondary/ruins_of_alph_b1f_hns/metatiles.bin");
+const u16 gMetatileAttributes_RuinsOfAlph_B1F_Hns[] = INCBIN_U16("data/tilesets/secondary/ruins_of_alph_b1f_hns/metatile_attributes.bin");
+
 const u16 gMetatiles_RuinsOfAlphWriting_Hns[] = INCBIN_U16("data/tilesets/secondary/ruins_of_alph_writing_hns/metatiles.bin");
 const u16 gMetatileAttributes_RuinsOfAlphWriting_Hns[] = INCBIN_U16("data/tilesets/secondary/ruins_of_alph_writing_hns/metatile_attributes.bin");
 

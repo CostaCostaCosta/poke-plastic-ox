@@ -9,7 +9,9 @@ import_ruins_of_alph.py). This module owns, on top of them:
   The battle scripts stay in tournament/events.inc (PoxTournament_Regirock,
   _Regice, _Registeel): same tablet check, badge gate and caught flag as when
   they stood in the Route 127 caves;
-* the dig site's wild table.
+* the research centre's two staff, the surveyor in the hall under the chambers
+  (B1F), and the floor holes behind each Regi, which stay shut until it is caught;
+* the wild tables for the dig site and the hall.
 
 Route 36's researcher, gate warps and step triggers are placed by region_v7.py;
 his script is in data/maps/Route36_hns/scripts.inc. tournament.install, which
@@ -22,7 +24,10 @@ BASE = Path(__file__).with_suffix('')
 GATE = 'Gate_RuinsOfAlph_Route36_hns'
 OUTSIDE = 'RuinsOfAlph_Outside_hns'
 CHAMBERS = 'RuinsOfAlph_PuzzleAndRewardChambers_hns'
+LAB = 'RuinsOfAlph_Lab_hns'
+B1F = 'RuinsOfAlph_B1F_hns'
 WILD_LABEL = 'gPoxUURuinsOfAlphOutside'
+WILD_LABEL_B1F = 'gPoxUURuinsOfAlphB1F'
 
 # (species, tablet word, back-wall door, sage, Regi) per chamber. The door is
 # warp 4/6/8 of the chambers map; its back room is the donor's reward room.
@@ -32,8 +37,8 @@ REGIS = [
     ('Registeel', 'Steel', (5, 18), (4, 56), (5, 54)),      # south-west chamber
     ('Regice', 'Ice', (21, 18), (20, 56), (21, 54)),        # south-east chamber
 ]
-# The west chamber has no Regi; its back wall never opens.
-SPARE_WALL = (5, 1)
+# The west chamber has no Regi: its back wall stands open (import_ruins_of_alph.py)
+# and the floor hole in its back room is the unguarded way down to the hall.
 # Sliding-panel tiles (solid since the import), one script per chamber.
 PANELS = {'North': [(20, 5), (21, 5)], 'West': [(4, 5), (5, 5)],
           'SouthWest': [(4, 22), (5, 22)], 'SouthEast': [(20, 22), (21, 22)]}
@@ -56,9 +61,14 @@ def mons(*rows):
     return [dict(min_level=lo, max_level=hi, species='SPECIES_' + species) for species, lo, hi in rows]
 
 
-def wild_table():
-    """Species already obtainable by the Cinnabar checkpoint (UU), at its levels."""
-    return {
+def wild_tables():
+    """Species already obtainable by the Cinnabar checkpoint (UU), at its levels,
+    plus Unown (PU) in the hall, which is found nowhere else."""
+    return [{
+        'map': 'MAP_RUINS_OF_ALPH_B1F_HNS',
+        'base_label': WILD_LABEL_B1F,
+        'land_mons': {'encounter_rate': 7, 'mons': mons(*[('UNOWN', 36, 38)] * 12)},
+    }, {
         'map': 'MAP_RUINS_OF_ALPH_OUTSIDE_HNS',
         'base_label': WILD_LABEL,
         'land_mons': {'encounter_rate': 21, 'mons': mons(
@@ -68,7 +78,7 @@ def wild_table():
         'water_mons': {'encounter_rate': 4, 'mons': mons(
             ('QUAGSIRE', 36, 38), ('WOOPER', 34, 36), ('QUAGSIRE', 37, 39),
             ('WOOPER', 35, 37), ('QUAGSIRE', 38, 39))},
-    }
+    }]
 
 
 def install(read, put):
@@ -88,9 +98,15 @@ def install(read, put):
         sign(31, 24, 'PoxRuins_SiteSign'),
         sign(37, 16, 'PoxRuins_LabSign'), sign(38, 16, 'PoxRuins_LabSign'),
         sign(30, 11, 'PoxRuins_NorthChamberSign'),
-        sign(21, 21, 'PoxRuins_RopedStair'),
         sign(38, 27, 'PoxRuins_EastGatehouse'),
     ]
+
+    maps[LAB]['object_events'] = [
+        npc(None, 'SCIENTIST_1', 1, 3, 'PoxRuins_Archivist'),
+        npc(None, 'SCIENTIST_2', 8, 5, 'PoxRuins_Epigrapher', movement='MOVEMENT_TYPE_FACE_LEFT'),
+    ]
+    maps[LAB]['bg_events'] = [sign(x, 4, 'PoxRuins_Casts') for x in (5, 6, 7)]
+    maps[B1F]['object_events'] = [npc(None, 'HIKER', 19, 16, 'PoxRuins_HallSurveyor')]
 
     chambers = maps[CHAMBERS]
     for species, word, door, sage_xy, regi_xy in REGIS:
@@ -102,7 +118,6 @@ def install(read, put):
             npc(f'LOCALID_POX_{upper}_SAGE', 'SAGE_HNS', *sage_xy, script, flag),
         ]
         chambers['bg_events'].append(sign(*door, f'PoxRuins_{word}Wall'))
-    chambers['bg_events'].append(sign(*SPARE_WALL, 'PoxRuins_PlainWall'))
     for where, tiles in PANELS.items():
         chambers['bg_events'] += [sign(x, y, f'PoxRuins_Panel{where}') for x, y in tiles]
 
@@ -121,9 +136,9 @@ def install(read, put):
     path = 'src/data/wild_encounters.json'
     wild = json.loads(read(path))
     group = next(g for g in wild['wild_encounter_groups'] if g['label'] == 'gWildMonHeaders')
-    entries = [e for e in group['encounters'] if e['base_label'] != WILD_LABEL]
+    entries = [e for e in group['encounters'] if e['base_label'] not in (WILD_LABEL, WILD_LABEL_B1F)]
     at = next((i for i, e in enumerate(entries) if e['base_label'] == 'gPoxVictoryRoadOutdoor'), len(entries))
-    entries.insert(at, wild_table())
+    entries[at:at] = wild_tables()
     group['encounters'] = entries
     put(path, json.dumps(wild, indent=2) + '\n')
 

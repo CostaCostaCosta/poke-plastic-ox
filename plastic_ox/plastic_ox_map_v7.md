@@ -107,6 +107,7 @@ LAVENDER
   ↓
 CINNABAR ISLAND [GYM 5 — BLAINE]
   → Pokémon Mansion [Blaine key; Entei]
+  → (optional, back north) Route 36 south gate opens → RUINS OF ALPH [Regirock, Regice, Registeel]
   → southern coast
   → SEAFOAM ISLANDS
   → eastern coast
@@ -221,6 +222,16 @@ Preserve the Johto-like chain:
 **Goldenrod → Route 35 → National Park → Route 36 → Route 37 → Ecruteak**
 
 This is one of the most coherent native-feeling sections of the region and should remain largely intact.
+
+## Route 36 South — Ruins of Alph (optional)
+
+Route 36's south path ends at a gatehouse into the Ruins of Alph dig site. A researcher holds the gate until the Pokémon Mansion archives are read (`FLAG_POX_STORY_MANSION`), then moves to the gatehouse desk.
+
+- Joined by warps only: Route 36 → gatehouse → dig site. There is no seam, and no Route 32 or Union Cave side; the east gatehouse is shuttered.
+- The dig site holds four chambers, the research centre and a stair down to the statue hall beneath them.
+- Regirock (north chamber), Registeel (south-west) and Regice (south-east) each wait with a sage behind a wall that opens for the matching ancient tablet. The two southern chambers are across the pond and need Surf.
+- The west chamber is open and empty; the opening at the back of its inner room, and the one behind each caught Regi, drop through a Words Room into the hall.
+- This is an optional legendary site, not part of main progression.
 
 ## Route 36 East Shortcut — Locked
 
@@ -538,6 +549,7 @@ This prevents Uber availability from interfering with the main game's LC→PU→
 | Connection / Area | Initial State | Unlock Condition | Purpose |
 |---|---|---|---|
 | Route 36 east ↔ Route 110 west | Blocked | Reach Fortree | Midgame shortcut; prevents Morty/Route119 skip |
+| Route 36 south → Ruins of Alph | Blocked by a researcher | Read the Pokémon Mansion archives | Optional Regi site; each chamber also needs its tablet and badge 5 or 6 |
 | Ecruteak east → Route 119 | Open after Morty progression | Gym/story progression | Canonical path to Weather Institute/Fortree |
 | Saffron surface entrances | Blocked | Complete Mossdeep Space Center | Keeps Saffron late-game while allowing underground bypass |
 | Route 8 ↔ Route 7 Underground Path | Open | Available during Lavender segment | Main Lavender→Cinnabar bypass |

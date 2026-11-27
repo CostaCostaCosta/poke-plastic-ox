@@ -79,10 +79,20 @@ def install(read, put):
     for c in ['TRAINERS_COUNT_EMERALD', 'MAX_TRAINERS_COUNT_EMERALD']:
         s = re.sub(r'(#define ' + c + r'\s+)(\d+)', lambda m: m[1] + str(max(953, int(m[2]))), s)
     put(path, s)
+    # Replace each party where it already stands, so trainers that later
+    # generators append after ours keep their place and a re-run changes nothing.
     s = read('src/data/trainers.party')
-    for trainer in TRAINERS:
-        s = re.sub(r'=== TRAINER_PLASTIC_OX_' + trainer + r' ===\n.*?(?=\n=== |\Z)', '', s, flags=re.S)
-    put('src/data/trainers.party', s.rstrip() + '\n\n' + (BASE / 'trainers.party').read_text())
+    block = r'=== TRAINER_PLASTIC_OX_%s ===\n.*?(?=\n=== |\Z)'
+    ours = (BASE / 'trainers.party').read_text()
+    if all(re.search(block % trainer, s, flags=re.S) for trainer in TRAINERS):
+        for trainer in TRAINERS:
+            new = re.search(block % trainer, ours, flags=re.S)[0].rstrip()
+            s = re.sub(block % trainer, lambda m: new + re.search(r'\n*\Z', m[0])[0], s, flags=re.S)
+        put('src/data/trainers.party', s)
+    else:
+        for trainer in TRAINERS:
+            s = re.sub(block % trainer, '', s, flags=re.S)
+        put('src/data/trainers.party', s.rstrip() + '\n\n' + ours)
 
 
 if __name__ == '__main__':

@@ -88,6 +88,7 @@ STORY_ORDER = [
     # Act III side area — the Ruins of Alph dig reopens after Cinnabar
     "ruinsofalph-outside-hns",
     "ruinsofalph-puzzleandrewardchambers-hns",
+    "ruinsofalph-b1f-hns",
     # Act III coda — the sages come home; Bellchime Trail and the Tin Tower
     "bellchimetrail-hns",
     "tintower-1f-hns",
@@ -97,6 +98,7 @@ STORY_ORDER = [
     "route19-frlg",
     "route6-hns",
     "route5-hns",
+    "goldenrodcity-radiotower-5f-hns",
     # Act V — Meteor Falls, Blackthorn, Victory Road, the League
     "route115",
     "meteorfalls-1f-1r",

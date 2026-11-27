@@ -1756,6 +1756,17 @@ const struct Tileset gTileset_EcruteakTheater_Hns =
     .callback = NULL,
 };
 
+const struct Tileset gTileset_RuinsOfAlph_B1F_Hns =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_RuinsOfAlph_B1F_Hns,
+    .palettes = gTilesetPalettes_RuinsOfAlph_B1F_Hns,
+    .metatiles = gMetatiles_RuinsOfAlph_B1F_Hns,
+    .metatileAttributes = gMetatileAttributes_RuinsOfAlph_B1F_Hns,
+    .callback = NULL,
+};
+
 const struct Tileset gTileset_RuinsOfAlphWriting_Hns =
 {
     .isCompressed = TRUE,

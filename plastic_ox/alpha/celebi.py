@@ -1,9 +1,9 @@
 """Install Celebi at the Ilex Forest shrine (bible: Celebi — Ilex Forest).
 
-* a sage and Celebi beside the shrine sign, shown only after the Burned Tower
-  and until Celebi is caught (temp flag set by the Ilex arrival script);
-* the sage battles only when the player holds ITEM_GS_BALL, the Trick House
-  puzzle 5 prize; then the shared pox_legendary_sage reward runs;
+* a sage beside the shrine sign, shown only after the Burned Tower and until
+  Celebi is caught (temp flag 1, set by the Ilex arrival script);
+* Celebi, hidden (temp flag 2) until the player hands the sage ITEM_GS_BALL,
+  the Trick House puzzle 5 prize; then the shared pox_legendary_sage reward runs;
 * TRAINER_PLASTIC_OX_CELEBI_SAGE and its authored party.
 
 The sage's homecoming in the Ecruteak sage office belongs to tin_tower.py.
@@ -19,19 +19,19 @@ TRAINER_ID = 963
 OURS = {'LOCALID_POX_CELEBI', 'LOCALID_POX_CELEBI_SAGE'}
 
 
-def npc(local_id, gfx, x, y, movement):
+def npc(local_id, gfx, x, y, movement, flag):
     return dict(local_id=local_id, graphics_id=gfx, x=x, y=y, elevation=3,
                 movement_type=movement, movement_range_x=0, movement_range_y=0,
                 trainer_type='TRAINER_TYPE_NONE', trainer_sight_or_berry_tree_id='0',
-                script='PoxCelebi_Sage', flag='FLAG_TEMP_1')
+                script='PoxCelebi_Sage', flag=flag)
 
 
 def install(read, put):
     path = f'data/maps/{MAP}/map.json'
     forest = json.loads(read(path))
     forest['object_events'] = [o for o in forest['object_events'] if o.get('local_id') not in OURS] + [
-        npc('LOCALID_POX_CELEBI', 'OBJ_EVENT_GFX_CELEBI', 24, 26, 'MOVEMENT_TYPE_FACE_DOWN'),
-        npc('LOCALID_POX_CELEBI_SAGE', 'OBJ_EVENT_GFX_SAGE_HNS', 24, 28, 'MOVEMENT_TYPE_FACE_DOWN'),
+        npc('LOCALID_POX_CELEBI', 'OBJ_EVENT_GFX_CELEBI', 24, 26, 'MOVEMENT_TYPE_FACE_DOWN', 'FLAG_TEMP_2'),
+        npc('LOCALID_POX_CELEBI_SAGE', 'OBJ_EVENT_GFX_SAGE_HNS', 24, 28, 'MOVEMENT_TYPE_FACE_DOWN', 'FLAG_TEMP_1'),
     ]
     put(path, json.dumps(forest, indent=2) + '\n')
 

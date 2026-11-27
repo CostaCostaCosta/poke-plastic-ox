@@ -26,7 +26,7 @@ The ground floor of the tower is a roped-off ruin: a black timber frame holding 
 4. **Descent.** The ladder at `(24,10)` is the only way on, into `PlasticOx_BurnedTowerB1F` at `(26,7)`. Nothing gates it here; the gate is badge 2 inside the Morty scene itself.
 5. **Aftermath state.** Once `FLAG_POX_STORY_BURNED_TOWER` is set, the sage's text switches to the sages' regional mission and this floor should feel closed: the site becomes a place being watched rather than explored.
 
-**Must not:** stage the restoration here (it belongs to `PlasticOx_BurnedTowerB1F`); release Raikou, Entei, or Suicune; let the sage explain the convergence; add a second NPC who knows what the player is about to see.
+**Must not:** stage the restoration here (it belongs to `PlasticOx_BurnedTowerB1F`); release Raikou, Entei, or Suicune (Suicune's return belongs to B1F and the CLEAR BELL); let the sage explain the convergence; add a second NPC who knows what the player is about to see.
 
 ## Key interactions
 

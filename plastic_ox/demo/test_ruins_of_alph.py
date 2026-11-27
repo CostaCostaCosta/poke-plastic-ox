@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Ruins of Alph: the Route 36 researcher, the gatehouse chain, the dig site's
-terraces and the three Regi chambers that replaced the Route 127 caves.
+terraces, the three Regi chambers that replaced the Route 127 caves, the
+research centre, and the drops through the Words Rooms into the hall below.
 
     plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_ruins_of_alph.py
 
@@ -22,6 +23,17 @@ ROUTE36 = 'Route36_hns'
 GATE = 'Gate_RuinsOfAlph_Route36_hns'
 OUTSIDE = 'RuinsOfAlph_Outside_hns'
 CHAMBERS = 'RuinsOfAlph_PuzzleAndRewardChambers_hns'
+LAB = 'RuinsOfAlph_Lab_hns'
+B1F = 'RuinsOfAlph_B1F_hns'
+WORDS = {n: f'RuinsOfAlph_WordsRoom{n}_hns' for n in (1, 2, 3, 4)}
+# (who, caught flag or None, tile below the opening at the back of the inner
+#  room, Words Room, arrival there, tile left of its hole, landing in the hall)
+DROPS = [
+    ('west', None, (4, 37), 1, (10, 6), (16, 14), (5, 6)),
+    ('Regirock', 'FLAG_POX_CAUGHT_REGIROCK', (20, 37), 4, (5, 2), (16, 10), (21, 6)),
+    ('Registeel', 'FLAG_POX_CAUGHT_REGISTEEL', (4, 54), 3, (10, 6), (16, 10), (5, 23)),
+    ('Regice', 'FLAG_POX_CAUGHT_REGICE', (20, 54), 2, (9, 5), (16, 10), (21, 23)),
+]
 RESEARCHER = (56, 24)
 LANES = (55, 56, 57)
 # (species, tablet, badges needed, dig-site door, chamber door, back-wall door,
@@ -102,12 +114,12 @@ def reach(grid, warps, start, surf):
 
 
 def test_static():
-    layouts = [layout_of(n) for n in (GATE, OUTSIDE, CHAMBERS)]
+    layouts = [layout_of(n) for n in (GATE, OUTSIDE, CHAMBERS, LAB, B1F, *WORDS.values())]
     for lay in layouts:
         assert lay['layout_version'] == 'hns' and lay['include_in_versions'] == ['emerald'], lay
     outside, route36, chambers = load_map(OUTSIDE), load_map(ROUTE36), load_map(CHAMBERS)
     assert not outside['connections'], outside['connections']
-    ruins_ids = {load_map(n)['id'] for n in (GATE, OUTSIDE, CHAMBERS)}
+    ruins_ids = {load_map(n)['id'] for n in (GATE, OUTSIDE, CHAMBERS, LAB, B1F, *WORDS.values())}
     assert not [c for c in route36['connections'] if c['map'] in ruins_ids]
     lanes = sorted((w['x'], w['y']) for w in route36['warp_events'] if w['dest_map'] == load_map(GATE)['id'])
     assert lanes == [(x, 25) for x in LANES], lanes
@@ -156,6 +168,36 @@ def test_static():
         assert word not in scripts, word
     print('PASS: three Regis with their sages, tablet doors only; no puzzle or Unown callbacks', flush=True)
 
+    # Every Ruins warp names a warp that exists, and each drop is wired
+    # chamber -> its Words Room -> the hall; the hall's stair leads outside.
+    ruins = {load_map(n)['id']: load_map(n) for n in (GATE, OUTSIDE, CHAMBERS, LAB, B1F, *WORDS.values())}
+    for data in ruins.values():
+        for w in data['warp_events']:
+            if w['dest_map'] in ruins:
+                assert int(w['dest_warp_id']) < len(ruins[w['dest_map']]['warp_events']), (data['name'], w)
+    def dest(name, xy):
+        w = next(w for w in load_map(name)['warp_events'] if (w['x'], w['y']) == xy)
+        target = ruins[w['dest_map']]
+        t = target['warp_events'][int(w['dest_warp_id'])]
+        return target['name'], (t['x'], t['y'])
+    cgrid = Grid(CHAMBERS)
+    for who, flag, below, room, arrive, beside, land in DROPS:
+        top = (below[0], below[1] - 1)
+        assert dest(CHAMBERS, top) == (WORDS[room], arrive), (who, dest(CHAMBERS, top))
+        assert dest(WORDS[room], (beside[0] + 1, beside[1])) == (B1F, land), who
+        assert cgrid.solid(*top) == (flag is not None), (who, 'a Regi keeps its opening shut in the layout')
+    assert dest(B1F, (15, 16)) == (OUTSIDE, (21, 21)) and dest(OUTSIDE, (21, 21)) == (B1F, (15, 16))
+    assert dest(OUTSIDE, (36, 16)) == (LAB, (2, 7)) and dest(LAB, (2, 7)) == (OUTSIDE, (36, 16))
+    wild = json.loads((ROOT / 'src/data/wild_encounters.json').read_text())
+    hall = next(e for g in wild['wild_encounter_groups'] for e in g['encounters']
+                if e.get('base_label') == 'gPoxUURuinsOfAlphB1F')
+    assert {m['species'] for m in hall['land_mons']['mons']} == {'SPECIES_UNOWN'} and 'water_mons' not in hall
+    sections = {n: load_map(n)['region_map_section'] for n in (GATE, OUTSIDE, CHAMBERS, LAB, B1F)}
+    assert sections.pop(GATE) == 'MAPSEC_ROUTE_36' and set(sections.values()) == {'MAPSEC_RUINS_OF_ALPH'}, sections
+    assert load_map(OUTSIDE)['show_map_name'] is True
+    print('PASS: research centre and hall stair wired both ways; four drops chamber -> Words Room -> hall; '
+          'Unown-only hall table; RUINS OF ALPH map section', flush=True)
+
     # Old sites: nothing left that offers a Regi.
     for cave, _ in OLD_CAVES:
         data = load_map(cave)
@@ -166,7 +208,8 @@ def test_static():
 
     # No two NPCs or signs here share a line.
     lines = {}
-    files = [ROOT / f'data/maps/{n}/scripts.inc' for n in (ROUTE36, GATE, OUTSIDE, CHAMBERS, *[c for c, _ in OLD_CAVES])]
+    files = [ROOT / f'data/maps/{n}/scripts.inc'
+             for n in (ROUTE36, GATE, OUTSIDE, CHAMBERS, LAB, B1F, *[c for c, _ in OLD_CAVES])]
     for path in files:
         for label, body in re.findall(r'^(\w+):+\n((?:\t\.string "[^\n]*\n)+)', path.read_text(), flags=re.M):
             text = ''.join(re.findall(r'"(.*)"', body))
@@ -400,6 +443,74 @@ def emulator():
         shot(g, species.lower() + '_battle')
         print(f'PASS: {species}: sealed without {tablet_name}; sage refuses with {need - 1} badges; '
               f'battle starts with the tablet and {need}', flush=True)
+
+    # --- Research centre: in by the door, both staff and the casts, out again.
+    g = new_game()
+    start(g, OUTSIDE, 36, 17)
+    assert walk_into(g, K.KEY_UP, LAB) and pos(g) == (2, 7), g.describe()
+    shot(g, 'lab')
+    navigate(g, (1, 4))
+    assert 'CINNABAR' in said(talk(g, K.KEY_UP))
+    settle(g)
+    navigate(g, (7, 5))
+    assert 'carvings' in said(talk(g, K.KEY_RIGHT))
+    settle(g)
+    navigate(g, (6, 5))
+    assert 'casts' in said(talk(g, K.KEY_UP))
+    settle(g)
+    navigate(g, (2, 7))
+    assert walk_into(g, K.KEY_DOWN, OUTSIDE) and pos(g) == (36, 17), g.describe()
+    print('PASS: research centre: door (36,16) <-> (2,7); archivist, copyist and the cast table speak', flush=True)
+
+    # --- The hall: down the site's middle stair, the surveyor, back up.
+    start(g, OUTSIDE, 21, 22)
+    assert walk_into(g, K.KEY_UP, B1F) and pos(g) == (15, 16), g.describe()
+    shot(g, 'hall')
+    navigate(g, (19, 17))
+    assert 'limp' in said(talk(g, K.KEY_UP))
+    settle(g)
+    navigate(g, (15, 17))
+    assert walk_into(g, K.KEY_UP, OUTSIDE) and pos(g) == (21, 22), g.describe()
+    print('PASS: hall: stair (21,21) <-> (15,16); surveyor speaks', flush=True)
+
+    # --- West chamber: the back wall is open with no tablet, and its inner room drops to the hall.
+    g = new_game()
+    for _, tablet_name, *_ in REGIS:
+        assert bag(g, const(tablet_name, 'items.h')) == 0
+    start(g, CHAMBERS, 5, 2)
+    hold(g, K.KEY_UP, 40)
+    g.frame(240)
+    assert at(g, CHAMBERS) and pos(g) == (4, 43), ('west back wall', g.describe())
+
+    # --- Drops: a Regi's opening is shut until it is caught; then chamber -> Words Room -> hall -> stair.
+    for who, flag, below, room, arrive, beside, land in DROPS:
+        if flag:
+            g.flag(flag, False)
+            start(g, CHAMBERS, *below)
+            hold(g, K.KEY_UP, 40)
+            g.frame(240)
+            assert at(g, CHAMBERS) and pos(g) == below, (who, 'opening must be shut', g.describe())
+            g.flag(flag, True)
+        start(g, CHAMBERS, *below)               # reload: open now
+        hold(g, K.KEY_UP, 40)
+        assert wait_map(g, WORDS[room]), (who, g.describe())
+        g.frame(200)
+        assert pos(g) == arrive, (who, pos(g))
+        shot(g, f'words_room{room}')
+        navigate(g, beside)
+        hold(g, K.KEY_RIGHT, 40)
+        assert wait_map(g, B1F), (who, g.describe())
+        g.frame(200)
+        assert pos(g) == land, (who, pos(g))
+        navigate(g, (15, 17))                    # every landing can walk to the stair
+        assert walk_into(g, K.KEY_UP, OUTSIDE) and pos(g) == (21, 22), (who, g.describe())
+    print('PASS: west chamber open without a tablet; all four drops reach the hall and its stair; '
+          'each Regi keeps its drop shut until caught', flush=True)
+
+    # --- The dig site announces itself: stone name sign on arrival from the gatehouse.
+    start(g, GATE, 7, 8)
+    assert walk_into(g, K.KEY_DOWN, OUTSIDE) and pos(g) == ARRIVAL, g.describe()
+    shot(g, 'name_popup')
 
     # --- Old Route 127 sites: caves still enterable, nothing to fight.
     g = new_game()

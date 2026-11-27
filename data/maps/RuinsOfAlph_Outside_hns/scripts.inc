@@ -46,7 +46,7 @@ PoxRuins_LabSign::
 
 PoxRuins_Text_LabSign:
 	.string "RUINS RESEARCH CENTER\n"
-	.string "All staff are in the field.$"
+	.string "Deliveries to the side table.$"
 
 PoxRuins_NorthChamberSign::
 	msgbox PoxRuins_Text_NorthChamberSign, MSGBOX_SIGN
@@ -55,14 +55,6 @@ PoxRuins_NorthChamberSign::
 PoxRuins_Text_NorthChamberSign:
 	.string "NORTH CHAMBER\n"
 	.string "Surveyed. Back wall unopened.$"
-
-PoxRuins_RopedStair::
-	msgbox PoxRuins_Text_RopedStair, MSGBOX_SIGN
-	end
-
-PoxRuins_Text_RopedStair:
-	.string "A rope is tied across the stair.\n"
-	.string "The tag on it reads UNSAFE FLOOR.$"
 
 PoxRuins_EastGatehouse::
 	msgbox PoxRuins_Text_EastGatehouse, MSGBOX_SIGN

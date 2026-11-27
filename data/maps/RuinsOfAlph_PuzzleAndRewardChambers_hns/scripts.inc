@@ -5,6 +5,9 @@ RuinsOfAlph_PuzzleAndRewardChambers_hns_MapScripts::
 @ Plastic Ox: a chamber's back wall opens only while the player carries its
 @ tablet. No sliding puzzle, Unown report or fossil callbacks. The Regis and
 @ their sages (PoxTournament_Regirock/_Regice/_Registeel) wait in the back rooms.
+@ Behind each Regi is a floor hole down to a Words Room; it is solid in the
+@ layout and opens here once that Regi is caught. The west chamber has no
+@ Regi: its wall and its hole are always open.
 PoxRuins_Chambers_OnLoad:
 	checkitem ITEM_ANCIENT_ROCK_TABLET
 	call_if_eq VAR_RESULT, TRUE, PoxRuins_Chambers_OpenRock
@@ -12,7 +15,26 @@ PoxRuins_Chambers_OnLoad:
 	call_if_eq VAR_RESULT, TRUE, PoxRuins_Chambers_OpenSteel
 	checkitem ITEM_ANCIENT_ICE_TABLET
 	call_if_eq VAR_RESULT, TRUE, PoxRuins_Chambers_OpenIce
+	call_if_set FLAG_POX_CAUGHT_REGIROCK, PoxRuins_Chambers_OpenRockHole
+	call_if_set FLAG_POX_CAUGHT_REGISTEEL, PoxRuins_Chambers_OpenSteelHole
+	call_if_set FLAG_POX_CAUGHT_REGICE, PoxRuins_Chambers_OpenIceHole
 	end
+
+@ 0x302/0x303 are the two halves of the floor hole.
+PoxRuins_Chambers_OpenRockHole:
+	setmetatile 20, 36, 0x302, FALSE
+	setmetatile 21, 36, 0x303, FALSE
+	return
+
+PoxRuins_Chambers_OpenSteelHole:
+	setmetatile 4, 53, 0x302, FALSE
+	setmetatile 5, 53, 0x303, FALSE
+	return
+
+PoxRuins_Chambers_OpenIceHole:
+	setmetatile 20, 53, 0x302, FALSE
+	setmetatile 21, 53, 0x303, FALSE
+	return
 
 @ 0x308 is the writing tileset's open doorway.
 PoxRuins_Chambers_OpenRock:
@@ -96,14 +118,6 @@ PoxRuins_Text_IceOpen:
 	.string "The ANCIENT ICE TABLET is cold\n"
 	.string "even through the BAG. The frost\p"
 	.string "has drawn back from the doorway.$"
-
-PoxRuins_PlainWall::
-	msgbox PoxRuins_Text_PlainWall, MSGBOX_SIGN
-	end
-
-PoxRuins_Text_PlainWall:
-	.string "The back wall is plain brick.\n"
-	.string "No hollow, and no seam.$"
 
 PoxRuins_PanelNorth::
 	msgbox PoxRuins_Text_PanelNorth, MSGBOX_SIGN

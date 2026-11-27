@@ -12,7 +12,7 @@ import re
 from pathlib import Path
 
 from pox_fixtures import game, at, shot as _shot
-from test_sudowoodo_v1 import K, talk, settle, wait_for_battle, battle_mon, const, give_item
+from test_sudowoodo_v1 import K, talk, settle, wait_for_battle, battle_mon, const, give_item, bag
 
 ROOT = Path(__file__).resolve().parents[2]
 ILEX = 'IlexForest_hns'
@@ -74,26 +74,44 @@ def test_waits_without_ball():
     g.flag('FLAG_POX_CAUGHT_CELEBI', False)
     enter(g, ILEX, 24, 29)
     ids = visible(g)
-    assert {CELEBI, SAGE} <= ids, ids
+    assert SAGE in ids and CELEBI not in ids, ids
     shot(g, 'shrine')
     r = talk(g, K.KEY_UP)
     text = ' '.join(r['text']).replace('\n', ' ')
     assert 'waiting' in text and not r['battle'], r
-    print('PASS: after the tower the sage waits by the shrine and will not battle without the ball', flush=True)
+    assert CELEBI not in visible(g)
+    print('PASS: after the tower only the sage waits; no Celebi and no battle without the ball', flush=True)
 
 
 def test_battle_with_ball():
     g = game()
     g.flag('FLAG_POX_STORY_BURNED_TOWER', True)
     g.flag('FLAG_POX_CAUGHT_CELEBI', False)
+    g.flag('FLAG_POX_CELEBI_GS_BALL_GIVEN', False)
     give_item(g, const('ITEM_GS_BALL', 'items.h'))
     enter(g, ILEX, 24, 29)
+    assert CELEBI not in visible(g), visible(g)
     r = talk(g, K.KEY_UP)
     assert r['battle'] and wait_for_battle(g), r
+    assert g.flag('FLAG_POX_CELEBI_GS_BALL_GIVEN'), 'GS BALL not handed over'
+    assert bag(g, const('ITEM_GS_BALL', 'items.h')) == 0, 'GS BALL still in the bag'
     lead = battle_mon(g, 1)
     assert lead['species'] == const('SPECIES_BRELOOM', 'species.h'), lead
     shot(g, 'sage_battle')
-    print('PASS: with the GS BALL the Celebi sage battles (Breloom lead)', lead, flush=True)
+    print('PASS: handing over the GS BALL brings Celebi down and starts the sage battle (Breloom lead)', lead, flush=True)
+
+
+def test_returns_after_handoff():
+    g = game()
+    g.flag('FLAG_POX_STORY_BURNED_TOWER', True)
+    g.flag('FLAG_POX_CAUGHT_CELEBI', False)
+    g.flag('FLAG_POX_CELEBI_GS_BALL_GIVEN', True)
+    enter(g, ILEX, 24, 29)
+    assert {CELEBI, SAGE} <= visible(g), visible(g)
+    shot(g, 'after_handoff')
+    r = talk(g, K.KEY_UP)
+    assert r['battle'], r
+    print('PASS: after a lost or fled battle Celebi stays at the shrine and the sage battles again', flush=True)
 
 
 def test_caught():
@@ -116,5 +134,6 @@ if __name__ == '__main__':
     test_hidden_before_tower()
     test_waits_without_ball()
     test_battle_with_ball()
+    test_returns_after_handoff()
     test_caught()
     print('Celebi: PASS', flush=True)
