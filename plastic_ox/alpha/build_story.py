@@ -359,10 +359,11 @@ ROOM_OVERRIDES = {
     'BrunoGym': dict(retired=True),
     'Silph': dict(retired=True),
 }
-# Tier-rule greeter scripts for the gym halls (2026-11-02). WHITNEY's hall
-# places one by hand; the others have no map object yet (see the
-# cinnabarisland-frlg note). BRUNO's Dojo has its own desk clerk in
-# plastic_ox/alpha/saffron.py.
+# Tier-rule greeter scripts for the gym halls (2026-11-02). Each hall in
+# GREETER_HALLS gets a GYM GUY by the door who runs its tier check; Goldenrod's
+# was placed by hand with the hint NPCs, and Cinnabar's real gym is the FRLG
+# one (south_isles.py). Fortree's native gym guide runs FORTREE_GREETER.
+# BRUNO's hall is retired: his Dojo has its own desk clerk (plastic_ox/alpha/saffron.py).
 GYM_GREETERS = {
     'WhitneyGym': ('GOLDENROD GYM', 'PU', 'CheckGoldenrodGymPURules'),
     'MortyGym': ('ECRUTEAK GYM', 'NU', 'CheckEcruteakGymNURules'),
@@ -376,15 +377,31 @@ def greeter_scripts(dest, gym, tier, special):
     return (f'\n{p}EventScript_Greeter::\n\tlock\n\tfaceplayer\n\tmsgbox {p}Text_Greeter, MSGBOX_DEFAULT\n'
             f'\tspecialvar VAR_RESULT, {special}\n'
             f'\tgoto_if_eq VAR_RESULT, 1, {p}EventScript_GreeterBannedMove\n'
-            f'\tgoto_if_eq VAR_RESULT, 2, {p}EventScript_GreeterBannedItem\n\trelease\n\tend\n\n'
+            f'\tgoto_if_eq VAR_RESULT, 2, {p}EventScript_GreeterBannedItem\n'
+            f'\tgoto_if_eq VAR_RESULT, 3, {p}EventScript_GreeterBannedSpecies\n'
+            f'\tgoto_if_eq VAR_RESULT, 4, {p}EventScript_GreeterDuplicate\n'
+            f'\tgoto_if_eq VAR_RESULT, 5, {p}EventScript_GreeterBannedAbility\n\trelease\n\tend\n\n'
             f'{p}EventScript_GreeterBannedMove::\n\tmsgbox {p}Text_GreeterBannedMove, MSGBOX_DEFAULT\n\trelease\n\tend\n\n'
             f'{p}EventScript_GreeterBannedItem::\n\tmsgbox {p}Text_GreeterBannedItem, MSGBOX_DEFAULT\n\trelease\n\tend\n\n'
+            f'{p}EventScript_GreeterBannedSpecies::\n\tmsgbox {p}Text_GreeterBannedSpecies, MSGBOX_DEFAULT\n\trelease\n\tend\n\n'
+            f'{p}EventScript_GreeterDuplicate::\n\tmsgbox {p}Text_GreeterDuplicate, MSGBOX_DEFAULT\n\trelease\n\tend\n\n'
+            f'{p}EventScript_GreeterBannedAbility::\n\tmsgbox {p}Text_GreeterBannedAbility, MSGBOX_DEFAULT\n\trelease\n\tend\n\n'
             f'{p}Text_Greeter:\n\t.string "Yo! Champ in the making!\\n"\n\t.string "Welcome to {gym}.\\p"\n'
             f'\t.string "This GYM follows {tier} tier rules.\\p"\n\t.string "Bring your best {tier}-tier POKéMON!$"\n\n'
-            f'{p}Text_GreeterBannedMove:\n\t.string "This GYM follows {tier} rules.\\p"\n\t.string "That move is banned here.\\n"\n'
+            f'{p}Text_GreeterBannedMove:\n\t.string "{gym} uses {tier} rules.\\p"\n\t.string "That move is banned here.\\n"\n'
             f'\t.string "Please change it before entering.$"\n\n'
-            f'{p}Text_GreeterBannedItem:\n\t.string "This GYM follows {tier} rules.\\p"\n\t.string "That item is banned here.\\n"\n'
-            f'\t.string "Please remove it before entering.$"\n')
+            f'{p}Text_GreeterBannedItem:\n\t.string "{gym} uses {tier} rules.\\p"\n\t.string "That item is banned here.\\n"\n'
+            f'\t.string "Please remove it before entering.$"\n\n'
+            f'{p}Text_GreeterBannedSpecies:\n\t.string "{gym} uses {tier} rules.\\p"\n\t.string "{{STR_VAR_1}} is a {{STR_VAR_2}}.\\p"\n'
+            f'\t.string "That POKéMON is over the tier.\\n"\n\t.string "Please leave it in the PC.$"\n\n'
+            f'{p}Text_GreeterDuplicate:\n\t.string "{gym} uses {tier} rules.\\p"\n\t.string "{{STR_VAR_1}} is a second {{STR_VAR_2}}.\\p"\n'
+            f'\t.string "Only one of each POKéMON.\\n"\n\t.string "Please leave one in the PC.$"\n\n'
+            f'{p}Text_GreeterBannedAbility:\n\t.string "{gym} uses {tier} rules.\\p"\n\t.string "{{STR_VAR_1}} has {{STR_VAR_2}}.\\p"\n'
+            f'\t.string "That ability is banned here.\\n"\n\t.string "Please leave it in the PC.$"\n')
+
+
+GREETER_HALLS = ('MortyGym', 'ClairGym')
+FORTREE_GREETER = ('Pox_FortreeGym', 'FORTREE GYM', 'RU', 'CheckFortreeGymRURules')
 
 
 def room(name, parent, boss, source="RustboroCity_Gym", objects=None, return_xy=(10, 10)):
@@ -423,6 +440,10 @@ def room(name, parent, boss, source="RustboroCity_Gym", objects=None, return_xy=
         data["object_events"] = []
     elif over.get('exit_guide', True):
         data["object_events"].append(npc(name + "Exit", 4, 17))
+    if name in GREETER_HALLS:
+        greeter = npc(name + "Greeter", 7, 17, 'OBJ_EVENT_GFX_GYM_GUY', '0')
+        greeter['script'] = dest + '_EventScript_Greeter'
+        data["object_events"].append(greeter)
     save_map(dest, data)
     for obj in data['object_events']:
         obj['x'],obj['y']=floor_cell(dest,obj['x'],obj['y'],obj['script'])
@@ -568,6 +589,11 @@ for i, (name, display, town, prereq, level, team) in enumerate(gymdata):
             linden = npc('DevonScopeLinden', 7, 4, 'OBJ_EVENT_GFX_SCIENTIST_1', 'FLAG_POX_HIDE_UNUSED_ACTOR')
             linden = {'local_id': 'LOCALID_FORTREE_GYM_LINDEN', **linden}
             data['object_events'].append(linden)
+            # The gym guide by the door is the RU greeter.
+            for obj in data['object_events']:
+                if obj['script'] == 'FortreeCity_Gym_EventScript_GymGuide':
+                    obj['script'] = FORTREE_GREETER[0] + '_EventScript_Greeter'
+            emit(greeter_scripts(*FORTREE_GREETER))
         save_map(native, data)
     else:
         dest = room(name + 'Gym', town, name, return_xy={'Whitney':(25,14),'Morty':(35,44),'Blaine':(11,11),'Bruno':(16,23),'Clair':(16,29)}[name])

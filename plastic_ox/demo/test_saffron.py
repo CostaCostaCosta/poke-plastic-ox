@@ -98,8 +98,9 @@ def static_checks():
     for n in (1, 2, 3):
         assert 'Class: Team Rocket Frlg' in block(f'SILPHGRUNT{n}') and 'Aqua' not in block(f'SILPHGRUNT{n}')
     special = (ROOT / 'src/field_specials.c').read_text()
-    body = special.split('static u16 CheckADVOUGymRules(void)', 1)[1].split('\n}\n', 1)[0]
+    body = special.split('static u16 CheckADVTierGymRules(enum EvolutionTier maxTier)', 1)[1].split('\n}\n', 1)[0]
     assert 'CheckRustboroGymLittleCupRules' not in body, 'the OU check must not apply the Little Cup bans'
+    assert 'CheckSaffronGymOURules(void)    { return CheckADVTierGymRules(EVO_TIER_OU); }' in special
     print('ok  BRUNO has his requested six; GIOVANNI is the ROCKET BOSS; grunts are Team Rocket; OU check is OU', flush=True)
 
 

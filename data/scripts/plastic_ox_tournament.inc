@@ -244,8 +244,8 @@ PoxTournament_Text_Reward1::
 
 PoxTournament_Text_Reward2::
 	.string "Take this ancient STEEL tablet.\n"
-	.string "Its seal waits on ROUTE 127,\p"
-	.string "in a tomb south of MOSSDEEP.\p"
+	.string "Its seal waits in a chamber at\p"
+	.string "the RUINS OF ALPH, off ROUTE 36.\p"
 	.string "REGIROCK belongs to the UUBL stage.\n"
 	.string "The other seals await your OU BADGE.\p"
 	.string "Return after TATE and LIZA\n"
@@ -336,6 +336,9 @@ PoxTournament_Text_Power::
 
 PoxTournament_Text_Raikou::
 	.string "MORTY sent me to help RAIKOU.\p"
+	.string "Something else left when the\n"
+	.string "hum stopped. It flew north, to\l"
+	.string "where the city towers stand.\p"
 	.string "Show us the care and skill\n"
 	.string "you give your partners!$"
 

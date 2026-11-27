@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""Regi caves on Route 127, south of Mossdeep: each sealed chamber opens only
-with its ANCIENT tablet (no braille, Sealed Chamber, Wailord or Relicanth).
+"""The old Regi caves on Route 127, south of Mossdeep, are empty side areas.
+Regirock, Regice and Registeel moved to the Ruins of Alph chambers
+(test_ruins_of_alph.py); the caves keep their mouths and open, bare inner rooms.
 
     plastic_ox/bin/pox-mgba-python plastic_ox/demo/test_regi_caves.py
 
@@ -76,10 +77,16 @@ def test_trail():
     print('PASS: Mossdeep south shore <-> Route 127 opens with no story flags', flush=True)
 
 
+def visible(g):
+    stride = g.sizes['gObjectEvents'] // 16
+    return {g.u8(g.syms['gObjectEvents'] + i * stride + 8)
+            for i in range(16) if g.u8(g.syms['gObjectEvents'] + i * stride) & 1} - {0xFF}
+
+
 def test_cave(cave, mouth, tablet_name, species):
     tablet = const(tablet_name, 'items.h')
     g = game()
-    for n in range(1, 7):
+    for n in range(1, 9):
         g.flag(f'FLAG_BADGE{n:02}_GET', True)
     # Cave mouth on Route 127 and the cave's own exit.
     g.warp('Route127', mouth[0], mouth[1] + 1)
@@ -92,38 +99,30 @@ def test_cave(cave, mouth, tablet_name, species):
     assert wait_map(g, 'Route127'), g.describe()
     assert pos(g) == (mouth[0], mouth[1] + 1), pos(g)
 
-    # Without the tablet the chamber wall is sealed.
+    # The inner room stands open with no tablet, and nothing is in it.
     assert bag(g, tablet) == 0
     g.warp(cave, 8, 21)
     g.frame(60)
+    assert not visible(g), (cave, visible(g))
     r = talk(g, K.KEY_UP)
     text = ' '.join(r['text']).replace('\n', ' ')
-    assert 'tablet' in text and not r['battle'], r
+    assert 'tablet' not in text.lower() and not r['battle'], r
     settle(g)
-    hold(g, K.KEY_UP)
-    assert at(g, cave) and pos(g) == (8, 21), pos(g)
-    shot(g, cave + '_sealed')
-    # Warped straight to the Regi, it still refuses without the tablet.
-    g.warp(cave, 8, 8)
-    g.frame(60)
-    r = talk(g, K.KEY_UP)
-    assert not r['battle'] and any('sealed' in s for s in r['text']), r
-
-    # With the tablet, the wall is open on load and the chamber is reachable.
-    give_item(g, tablet)
-    assert bag(g, tablet) == 1
-    g.warp(cave, 8, 21)
-    g.frame(60)
-    shot(g, cave + '_open')
     hold(g, K.KEY_UP)
     g.frame(120)
     x, y = pos(g)
     assert at(g, cave) and y <= 11, (cave, x, y)
+    shot(g, cave + '_inner')
+    # Carrying the tablet changes nothing: no sage, no Regi, no battle.
+    give_item(g, tablet)
+    assert bag(g, tablet) == 1
     g.warp(cave, 8, 8)
     g.frame(60)
+    assert not visible(g), (cave, visible(g))
     r = talk(g, K.KEY_UP)
-    assert r['battle'] and wait_for_battle(g), (species, r)
-    print(f'PASS: {species}: Route 127 mouth, sealed without {tablet_name}, open and battle with it', flush=True)
+    assert not r['battle'] and not r['text'], (species, r)
+    print(f'PASS: {cave}: Route 127 mouth both ways, inner room open and empty, no {species} with or without '
+          f'{tablet_name}', flush=True)
 
 
 
@@ -131,4 +130,4 @@ if __name__ == '__main__':
     test_trail()
     for args in CAVES:
         test_cave(*args)
-    print('Regi caves: PASS', flush=True)
+    print('Route 127 caves: PASS', flush=True)

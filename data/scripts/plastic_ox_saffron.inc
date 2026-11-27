@@ -146,7 +146,22 @@ PoxSaffron_DojoDesk::
 	specialvar VAR_RESULT, CheckSaffronGymOURules
 	goto_if_eq VAR_RESULT, 1, PoxSaffron_DojoDeskMove
 	goto_if_eq VAR_RESULT, 2, PoxSaffron_DojoDeskItem
+	goto_if_eq VAR_RESULT, 3, PoxSaffron_DojoDeskSpecies
+	goto_if_eq VAR_RESULT, 4, PoxSaffron_DojoDeskDuplicate
+	goto_if_eq VAR_RESULT, 5, PoxSaffron_DojoDeskAbility
 	msgbox PoxSaffron_Text_DeskClear, MSGBOX_DEFAULT
+	release
+	end
+PoxSaffron_DojoDeskSpecies::
+	msgbox PoxSaffron_Text_DeskSpecies, MSGBOX_DEFAULT
+	release
+	end
+PoxSaffron_DojoDeskDuplicate::
+	msgbox PoxSaffron_Text_DeskDuplicate, MSGBOX_DEFAULT
+	release
+	end
+PoxSaffron_DojoDeskAbility::
+	msgbox PoxSaffron_Text_DeskAbility, MSGBOX_DEFAULT
 	release
 	end
 PoxSaffron_DojoDeskMove::
@@ -539,6 +554,15 @@ PoxSaffron_Text_DeskMove::
 
 PoxSaffron_Text_DeskItem::
 	.string "One moment. Your {STR_VAR_1} is\nholding {STR_VAR_2}. That item\pisn't allowed on this floor.\pLeave it in your BAG and the\nMASTER will see you.$"
+
+PoxSaffron_Text_DeskSpecies::
+	.string "One moment. Your {STR_VAR_1} is\na {STR_VAR_2}. That POKéMON is\pabove what this floor allows.\pLeave it in the PC and the\nMASTER will see you.$"
+
+PoxSaffron_Text_DeskDuplicate::
+	.string "One moment. Your {STR_VAR_1} is\na second {STR_VAR_2}. One of\peach on this floor.\pLeave one in the PC. I don't\nmind which.$"
+
+PoxSaffron_Text_DeskAbility::
+	.string "One moment. Your {STR_VAR_1} has\n{STR_VAR_2}. That ability isn't\pallowed on this floor.\pLeave it in the PC and the\nMASTER will see you.$"
 
 PoxSaffron_Text_DeskAfter::
 	.string "You're in the book now. Seventh\nline, in the MASTER's own\phandwriting. He doesn't usually\nwrite them himself.$"

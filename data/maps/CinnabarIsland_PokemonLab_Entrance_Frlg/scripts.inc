@@ -37,14 +37,10 @@ CinnabarIsland_Gym_Text_PhotoOfBlaineAndFuji::
 	.string "shoulder with big grins.$"
 
 CinnabarIsland_PokemonLab_Entrance_Text_StudyMonsExtensively::
-	.string "We study POKéMON extensively\n"
-	.string "every day.\p"
-	.string "People often bring us rare POKéMON\n"
-	.string "for examination.$"
+	.string "We study fossils here. People\nbring them over from MT. MOON in\lbiscuit tins.\pThe older work, the work this\nisland was known for, went up\lthe hill and didn't come back\ldown.$"
 
 CinnabarIsland_PokemonLab_Entrance_Text_PhotoOfLabFounderDrFuji::
-	.string "A photo of the LAB's founder…\n"
-	.string "DR. FUJI?!$"
+	.string "A photo of the LAB's founder.\nThe plate reads: DR. FUJI.\pHe is younger here, and smiling at\nsomething just out of frame.$"
 
 CinnabarIsland_PokemonLab_Entrance_Text_MeetingRoomSign::
 	.string "POKéMON LAB\n"

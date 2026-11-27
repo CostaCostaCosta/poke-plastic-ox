@@ -969,16 +969,19 @@
 #define TRAINER_PLASTIC_OX_TOWERGRUNT3 960
 #define TRAINER_PLASTIC_OX_KIMONO_TROUPE 961
 #define TRAINER_PLASTIC_OX_JIRACHI_SAGE 962
-#define TRAINER_PLASTIC_OX_DOJO_KENJI 963
-#define TRAINER_PLASTIC_OX_DOJO_NOB 964
+#define TRAINER_PLASTIC_OX_CELEBI_SAGE 963
+#define TRAINER_PLASTIC_OX_ZAPDOS_SAGE 964
+#define TRAINER_PLASTIC_OX_SUICUNE_SAGE 965
+#define TRAINER_PLASTIC_OX_DOJO_KENJI 966
+#define TRAINER_PLASTIC_OX_DOJO_NOB 967
 // End Plastic Ox story trainers.
 
 // Plastic Ox trainer victories above ID 856 use the reserved general flags in
 // constants/flags.h, preserving the original system-flag and save-block layout.
 // Keep new IDs below the end of that reserved range.
 
-#define TRAINERS_COUNT_EMERALD 965
-#define MAX_TRAINERS_COUNT_EMERALD 965
+#define TRAINERS_COUNT_EMERALD 968
+#define MAX_TRAINERS_COUNT_EMERALD 968
 
 #if IS_FRLG
 #define TRAINERS_COUNT                      TRAINERS_COUNT_FRLG

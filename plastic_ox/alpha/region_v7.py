@@ -681,11 +681,10 @@ def apply_region(read, put):
         trainer_type='TRAINER_TYPE_NONE',trainer_sight_or_berry_tree_id='0',
         script='Route36_EventScript_Sleeper',flag='FLAG_POX_ROUTE36_SLEEPER_MOVED'))
     save('Route36_hns',d)
-    # Permanently close the unused southern road and Ruins of Alph gate.
+    # Permanently close Lavender's unused southern road.
     # Cover all three walkable tiles; local scripts own the closure dialogue.
     for name, y, xs, script in [
         ('LavenderTown_hns', 24, (13, 14, 15), 'LavenderTown_EventScript_SouthRoadClosed'),
-        ('Route36_hns', 25, (55, 56, 57), 'Route36_EventScript_RuinsGateClosed'),
     ]:
         d=load(name)
         # Each guard in the line gets its own script (no two NPCs share dialogue).
@@ -877,6 +876,30 @@ def apply_region(read, put):
 
     from tournament import install as install_tournament
     install_tournament(read, put)
+    # Route 36's south path into the Ruins of Alph gatehouse (ruins_of_alph.py).
+    # One researcher stands in the middle lane and step triggers cover the two
+    # beside him; the local script turns the player back until the Cinnabar
+    # archives are read (FLAG_POX_STORY_MANSION), then he walks into the
+    # gatehouse and FLAG_POX_HIDE_RUINS_RESEARCHER keeps him off the route.
+    # Runs after national_park.install so the park door stays Route 36 warp 0
+    # and the three gate lanes are warps 1-3.
+    path='data/maps/Route36_hns/map.json'
+    d=json.loads(read(path))
+    ruins=('Route36_EventScript_RuinsGateClosed','Route36_EventScript_RuinsResearcher')
+    d['object_events']=[o for o in d['object_events'] if not o.get('script','').startswith(ruins)]
+    d['object_events'].append(dict(local_id='LOCALID_POX_RUINS_RESEARCHER',graphics_id='OBJ_EVENT_GFX_SCIENTIST_1',
+        x=56,y=24,elevation=3,movement_type='MOVEMENT_TYPE_FACE_UP',movement_range_x=0,movement_range_y=0,
+        trainer_type='TRAINER_TYPE_NONE',trainer_sight_or_berry_tree_id='0',
+        script='Route36_EventScript_RuinsResearcher',flag='FLAG_POX_HIDE_RUINS_RESEARCHER'))
+    d['coord_events']=[c for c in d['coord_events'] if not c.get('script','').startswith(ruins)]
+    d['coord_events']+=[dict(type='trigger',x=x,y=24,elevation=3,var='VAR_POX_PORTAL_TRIGGER',var_value=0,
+        script='Route36_EventScript_RuinsResearcherStep') for x in (55,57)]
+    gate='MAP_GATE_RUINS_OF_ALPH_ROUTE36_HNS'
+    d['warp_events']=[w for w in d['warp_events'] if w['dest_map']!=gate]
+    d['warp_events']+=[dict(x=x,y=25,elevation=0,dest_map=gate,dest_warp_id='0') for x in (55,56,57)]
+    put(path,json.dumps(d,indent=2)+'\n')
+    from ruins_of_alph import install as install_ruins_of_alph
+    install_ruins_of_alph(read, put)
 
     from ecruteak_repairs import install as repair_ecruteak
     repair_ecruteak(read, put)
@@ -884,9 +907,15 @@ def apply_region(read, put):
     install_tin_tower(read, put)
     from meteor_falls import install as install_meteor_falls
     install_meteor_falls(read, put)
+    from celebi import install as install_celebi
+    install_celebi(read, put)
     from mart_repairs import install as repair_marts
     repair_marts(read, put)
     from lavender import install as install_lavender
     install_lavender(read, put)
+    from south_isles import install as install_south_isles
+    install_south_isles(read, put)
+    from clear_bell import install as install_clear_bell
+    install_clear_bell(read, put)
     from saffron import install as install_saffron
     install_saffron(read, put)

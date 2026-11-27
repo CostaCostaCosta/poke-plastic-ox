@@ -81,7 +81,8 @@
     "gMapGroup_PlasticOxDungeons",
     "gMapGroup_PlasticOxStory",
     "gMapGroup_PlasticOxV7",
-    "gMapGroup_CeruleanCave"
+    "gMapGroup_CeruleanCave",
+    "gMapGroup_DragonsDen"
   ],
   "gMapGroup_TownsAndRoutes": [
     "PetalburgCity",
@@ -1200,7 +1201,16 @@
     "Gate_NationalPark_hns",
     "BellchimeTrail_hns",
     "TinTower_1F_hns",
-    "TinTower_RoofDay_hns"
+    "TinTower_RoofDay_hns",
+    "Gate_RuinsOfAlph_Route36_hns",
+    "RuinsOfAlph_Outside_hns",
+    "RuinsOfAlph_PuzzleAndRewardChambers_hns",
+    "RuinsOfAlph_Lab_hns",
+    "RuinsOfAlph_B1F_hns",
+    "RuinsOfAlph_WordsRoom1_hns",
+    "RuinsOfAlph_WordsRoom2_hns",
+    "RuinsOfAlph_WordsRoom3_hns",
+    "RuinsOfAlph_WordsRoom4_hns"
   ],
   "gMapGroup_PlasticOxJohtoKanto": [
     "Route29_hns",
@@ -1238,7 +1248,8 @@
     "IlexForest_hns",
     "MtMoon_Cave_hns",
     "NationalPark_Normal_hns",
-    "MtSilver_1F_WaterfallRoom_hns"
+    "MtSilver_1F_WaterfallRoom_hns",
+    "DragonsDen_Entrance_hns"
   ],
   "gMapGroup_PlasticOxStory": [
     "PlasticOx_WhitneyGym",
@@ -1280,5 +1291,8 @@
     "MtSilver_Snow_hns",
     "MtSilver_3F_hns",
     "MtSilver_SummitDay_hns"
+  ],
+  "gMapGroup_DragonsDen": [
+    "DragonsDen_Cavern_hns"
   ]
 }

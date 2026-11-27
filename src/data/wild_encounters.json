@@ -40214,6 +40214,441 @@
           }
         },
         {
+          "map": "MAP_DRAGONS_DEN_CAVERN_HNS",
+          "base_label": "gPoxDragonsDenCavern_Morning",
+          "water_mons": {
+            "encounter_rate": 7,
+            "mons": [
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_DRAGONAIR"
+              },
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_SEADRA"
+              },
+              {
+                "min_level": 45,
+                "max_level": 50,
+                "species": "SPECIES_DRATINI"
+              },
+              {
+                "min_level": 52,
+                "max_level": 58,
+                "species": "SPECIES_GYARADOS"
+              },
+              {
+                "min_level": 55,
+                "max_level": 60,
+                "species": "SPECIES_DRAGONAIR"
+              }
+            ]
+          },
+          "fishing_mons": {
+            "encounter_rate": 30,
+            "mons": [
+              {
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_HORSEA"
+              },
+              {
+                "min_level": 35,
+                "max_level": 40,
+                "species": "SPECIES_DRATINI"
+              },
+              {
+                "min_level": 35,
+                "max_level": 40,
+                "species": "SPECIES_HORSEA"
+              },
+              {
+                "min_level": 35,
+                "max_level": 40,
+                "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 45,
+                "max_level": 50,
+                "species": "SPECIES_DRATINI"
+              },
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_SEADRA"
+              },
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_DRAGONAIR"
+              },
+              {
+                "min_level": 52,
+                "max_level": 58,
+                "species": "SPECIES_GYARADOS"
+              },
+              {
+                "min_level": 55,
+                "max_level": 60,
+                "species": "SPECIES_DRAGONAIR"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_DRAGONS_DEN_CAVERN_HNS",
+          "base_label": "gPoxDragonsDenCavern_Day",
+          "water_mons": {
+            "encounter_rate": 7,
+            "mons": [
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_DRAGONAIR"
+              },
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_SEADRA"
+              },
+              {
+                "min_level": 45,
+                "max_level": 50,
+                "species": "SPECIES_DRATINI"
+              },
+              {
+                "min_level": 52,
+                "max_level": 58,
+                "species": "SPECIES_GYARADOS"
+              },
+              {
+                "min_level": 55,
+                "max_level": 60,
+                "species": "SPECIES_DRAGONAIR"
+              }
+            ]
+          },
+          "fishing_mons": {
+            "encounter_rate": 30,
+            "mons": [
+              {
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_HORSEA"
+              },
+              {
+                "min_level": 35,
+                "max_level": 40,
+                "species": "SPECIES_DRATINI"
+              },
+              {
+                "min_level": 35,
+                "max_level": 40,
+                "species": "SPECIES_HORSEA"
+              },
+              {
+                "min_level": 35,
+                "max_level": 40,
+                "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 45,
+                "max_level": 50,
+                "species": "SPECIES_DRATINI"
+              },
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_SEADRA"
+              },
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_DRAGONAIR"
+              },
+              {
+                "min_level": 52,
+                "max_level": 58,
+                "species": "SPECIES_GYARADOS"
+              },
+              {
+                "min_level": 55,
+                "max_level": 60,
+                "species": "SPECIES_DRAGONAIR"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_DRAGONS_DEN_CAVERN_HNS",
+          "base_label": "gPoxDragonsDenCavern_Night",
+          "water_mons": {
+            "encounter_rate": 7,
+            "mons": [
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_DRAGONAIR"
+              },
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_SEADRA"
+              },
+              {
+                "min_level": 45,
+                "max_level": 50,
+                "species": "SPECIES_DRATINI"
+              },
+              {
+                "min_level": 52,
+                "max_level": 58,
+                "species": "SPECIES_GYARADOS"
+              },
+              {
+                "min_level": 55,
+                "max_level": 60,
+                "species": "SPECIES_DRAGONAIR"
+              }
+            ]
+          },
+          "fishing_mons": {
+            "encounter_rate": 30,
+            "mons": [
+              {
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 20,
+                "max_level": 25,
+                "species": "SPECIES_HORSEA"
+              },
+              {
+                "min_level": 35,
+                "max_level": 40,
+                "species": "SPECIES_DRATINI"
+              },
+              {
+                "min_level": 35,
+                "max_level": 40,
+                "species": "SPECIES_HORSEA"
+              },
+              {
+                "min_level": 35,
+                "max_level": 40,
+                "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 45,
+                "max_level": 50,
+                "species": "SPECIES_DRATINI"
+              },
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_SEADRA"
+              },
+              {
+                "min_level": 50,
+                "max_level": 55,
+                "species": "SPECIES_DRAGONAIR"
+              },
+              {
+                "min_level": 52,
+                "max_level": 58,
+                "species": "SPECIES_GYARADOS"
+              },
+              {
+                "min_level": 55,
+                "max_level": 60,
+                "species": "SPECIES_DRAGONAIR"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_RUINS_OF_ALPH_B1F_HNS",
+          "base_label": "gPoxUURuinsOfAlphB1F",
+          "land_mons": {
+            "encounter_rate": 7,
+            "mons": [
+              {
+                "min_level": 36,
+                "max_level": 38,
+                "species": "SPECIES_UNOWN"
+              },
+              {
+                "min_level": 36,
+                "max_level": 38,
+                "species": "SPECIES_UNOWN"
+              },
+              {
+                "min_level": 36,
+                "max_level": 38,
+                "species": "SPECIES_UNOWN"
+              },
+              {
+                "min_level": 36,
+                "max_level": 38,
+                "species": "SPECIES_UNOWN"
+              },
+              {
+                "min_level": 36,
+                "max_level": 38,
+                "species": "SPECIES_UNOWN"
+              },
+              {
+                "min_level": 36,
+                "max_level": 38,
+                "species": "SPECIES_UNOWN"
+              },
+              {
+                "min_level": 36,
+                "max_level": 38,
+                "species": "SPECIES_UNOWN"
+              },
+              {
+                "min_level": 36,
+                "max_level": 38,
+                "species": "SPECIES_UNOWN"
+              },
+              {
+                "min_level": 36,
+                "max_level": 38,
+                "species": "SPECIES_UNOWN"
+              },
+              {
+                "min_level": 36,
+                "max_level": 38,
+                "species": "SPECIES_UNOWN"
+              },
+              {
+                "min_level": 36,
+                "max_level": 38,
+                "species": "SPECIES_UNOWN"
+              },
+              {
+                "min_level": 36,
+                "max_level": 38,
+                "species": "SPECIES_UNOWN"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_RUINS_OF_ALPH_OUTSIDE_HNS",
+          "base_label": "gPoxUURuinsOfAlphOutside",
+          "land_mons": {
+            "encounter_rate": 21,
+            "mons": [
+              {
+                "min_level": 37,
+                "max_level": 39,
+                "species": "SPECIES_XATU"
+              },
+              {
+                "min_level": 37,
+                "max_level": 39,
+                "species": "SPECIES_GIRAFARIG"
+              },
+              {
+                "min_level": 36,
+                "max_level": 38,
+                "species": "SPECIES_NATU"
+              },
+              {
+                "min_level": 36,
+                "max_level": 38,
+                "species": "SPECIES_BALTOY"
+              },
+              {
+                "min_level": 38,
+                "max_level": 39,
+                "species": "SPECIES_XATU"
+              },
+              {
+                "min_level": 38,
+                "max_level": 39,
+                "species": "SPECIES_GIRAFARIG"
+              },
+              {
+                "min_level": 37,
+                "max_level": 38,
+                "species": "SPECIES_NATU"
+              },
+              {
+                "min_level": 37,
+                "max_level": 38,
+                "species": "SPECIES_BALTOY"
+              },
+              {
+                "min_level": 38,
+                "max_level": 39,
+                "species": "SPECIES_XATU"
+              },
+              {
+                "min_level": 38,
+                "max_level": 39,
+                "species": "SPECIES_GIRAFARIG"
+              },
+              {
+                "min_level": 38,
+                "max_level": 39,
+                "species": "SPECIES_NATU"
+              },
+              {
+                "min_level": 38,
+                "max_level": 39,
+                "species": "SPECIES_BALTOY"
+              }
+            ]
+          },
+          "water_mons": {
+            "encounter_rate": 4,
+            "mons": [
+              {
+                "min_level": 36,
+                "max_level": 38,
+                "species": "SPECIES_QUAGSIRE"
+              },
+              {
+                "min_level": 34,
+                "max_level": 36,
+                "species": "SPECIES_WOOPER"
+              },
+              {
+                "min_level": 37,
+                "max_level": 39,
+                "species": "SPECIES_QUAGSIRE"
+              },
+              {
+                "min_level": 35,
+                "max_level": 37,
+                "species": "SPECIES_WOOPER"
+              },
+              {
+                "min_level": 38,
+                "max_level": 39,
+                "species": "SPECIES_QUAGSIRE"
+              }
+            ]
+          }
+        },
+        {
           "map": "MAP_PLASTIC_OX_VICTORY_ROAD",
           "base_label": "gPoxVictoryRoadOutdoor",
           "land_mons": {
@@ -40278,6 +40713,95 @@
                 "min_level": 52,
                 "max_level": 56,
                 "species": "SPECIES_BELDUM"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_PLASTIC_OX_ROUTE20_WEST",
+          "base_label": "gPoxUURoute20West",
+          "water_mons": {
+            "encounter_rate": 4,
+            "mons": [
+              {
+                "min_level": 37,
+                "max_level": 40,
+                "species": "SPECIES_TENTACRUEL"
+              },
+              {
+                "min_level": 37,
+                "max_level": 40,
+                "species": "SPECIES_PELIPPER"
+              },
+              {
+                "min_level": 38,
+                "max_level": 41,
+                "species": "SPECIES_TENTACRUEL"
+              },
+              {
+                "min_level": 38,
+                "max_level": 41,
+                "species": "SPECIES_LANTURN"
+              },
+              {
+                "min_level": 39,
+                "max_level": 41,
+                "species": "SPECIES_PELIPPER"
+              }
+            ]
+          },
+          "fishing_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 36,
+                "max_level": 38,
+                "species": "SPECIES_MAGIKARP"
+              },
+              {
+                "min_level": 36,
+                "max_level": 39,
+                "species": "SPECIES_SEAKING"
+              },
+              {
+                "min_level": 37,
+                "max_level": 40,
+                "species": "SPECIES_KINGLER"
+              },
+              {
+                "min_level": 37,
+                "max_level": 40,
+                "species": "SPECIES_SEAKING"
+              },
+              {
+                "min_level": 38,
+                "max_level": 40,
+                "species": "SPECIES_OCTILLERY"
+              },
+              {
+                "min_level": 38,
+                "max_level": 41,
+                "species": "SPECIES_KINGLER"
+              },
+              {
+                "min_level": 38,
+                "max_level": 41,
+                "species": "SPECIES_SEADRA"
+              },
+              {
+                "min_level": 38,
+                "max_level": 41,
+                "species": "SPECIES_OCTILLERY"
+              },
+              {
+                "min_level": 39,
+                "max_level": 41,
+                "species": "SPECIES_SEADRA"
+              },
+              {
+                "min_level": 39,
+                "max_level": 41,
+                "species": "SPECIES_LANTURN"
               }
             ]
           }

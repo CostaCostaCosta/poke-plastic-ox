@@ -4,7 +4,9 @@
   "layout": "LAYOUT_POKEMON_CENTER_1F_FRLG",
   "music": "MUS_RG_POKE_CENTER",
   "region": "REGION_KANTO",
-  "include_in_versions": ["emerald"],
+  "include_in_versions": [
+    "emerald"
+  ],
   "region_map_section": "MAPSEC_CINNABAR_ISLAND",
   "requires_flash": false,
   "weather": "WEATHER_NONE",
@@ -86,7 +88,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "CinnabarIsland_PokemonCenter_1F_EventScript_PokemonJournalMrFuji",
-      "flag": "FLAG_HIDE_POSTGAME_GOSSIPERS"
+      "flag": "FLAG_POX_HIDE_UNUSED_ACTOR"
     },
     {
       "type": "object",
@@ -100,7 +102,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "CinnabarIsland_PokemonCenter_1F_EventScript_PokemonJournalMrFuji",
-      "flag": "FLAG_HIDE_POSTGAME_GOSSIPERS"
+      "flag": "FLAG_POX_HIDE_UNUSED_ACTOR"
     },
     {
       "local_id": "LOCALID_CINNABAR_POKEMON_CENTER_BILL",
@@ -115,7 +117,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "CinnabarIsland_PokemonCenter_1F_EventScript_Bill",
-      "flag": "FLAG_HIDE_CINNABAR_POKECENTER_BILL"
+      "flag": "FLAG_POX_HIDE_UNUSED_ACTOR"
     }
   ],
   "warp_events": [

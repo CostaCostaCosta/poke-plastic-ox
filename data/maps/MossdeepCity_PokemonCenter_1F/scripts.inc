@@ -24,13 +24,8 @@ MossdeepCity_PokemonCenter_1F_EventScript_Girl::
 	end
 
 MossdeepCity_PokemonCenter_1F_Text_GymLeaderDuoFormidable:
-	.string "The GYM LEADERS in this town are\n"
-	.string "a formidable duo.\p"
-	.string "Their combination attacks are, like,\n"
-	.string "excellent and wow!$"
+	.string "The LEADERS here are twins. They\nbattle as one, two POKéMON at a\ltime.\pBring two that get along. Mine\ndidn't, and it showed.$"
 
 MossdeepCity_PokemonCenter_1F_Text_AbilitiesMightChangeMoves:
-	.string "Depending on the special abilities of\n"
-	.string "POKéMON, some moves might change\l"
-	.string "or not work at all.$"
+	.string "The nurse says the machine hums\na different note on launch days.\pI can't hear it. I think she\njust likes launch days.$"
 

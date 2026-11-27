@@ -8,7 +8,7 @@ depth: full
 wiki: blackthorncity-hns
 maps: [BlackthornCity_hns]
 also_maps: [PlasticOx_ClairGym]
-flags: [FLAG_POX_STORY_SPACE_CENTER, FLAG_BADGE08_GET]
+flags: [FLAG_POX_STORY_SPACE_CENTER, FLAG_BADGE08_GET, FLAG_SYS_GAME_CLEAR]
 badges: [8]
 trainers: [TRAINER_PLASTIC_OX_CLAIR]
 status: drafted
@@ -43,6 +43,7 @@ A 59 × 60 valley city that is the last stop on the northern road: arrived throu
 | Route 45 portal | town `(25,59)` `PoxRegion_blackthorn_route45_a` | `FLAG_POX_STORY_SPACE_CENTER` | warps to `Route45_hns` `(25,1)` | keep; the tile should read as a road, not a trapdoor |
 | Clair | `PlasticOx_ClairGym` `(5,2)` `Pox_Clair` | `FLAG_POX_STORY_SPACE_CENTER`, then `FLAG_BADGE08_GET` | "Show me what you and your POKéMON have learned!" then `trainerbattle_single`; on win the generic badge box | give her a pre-battle line about the team she is testing, and a badge-8 specific post line |
 | Gym exit | `PlasticOx_ClairGym` `(4,17)` `Pox_ClairGymExit` | always | "I'll show you back outside." warps to town `(16,29)` | keep — the only way out of a map with zero warps |
+| Den elder | town `(26,13)` `BlackthornCity_EventScript_DenElder` | hidden by `FLAG_SYS_GAME_CLEAR` | stands in the Dragon's Den door `(26,12)` across the lake and says the POKéMON inside are far too powerful | keep; post-game content lives in `dragonsden-entrance-hns` |
 | City services | town `(27,48)` → `MAP_POKEMON_CENTER_JOHTO_HNS`; `(16,48)` → `MAP_MART_JOHTO_HNS` | always | the shared Johto Center and Mart interiors | keep; give the clerk one Blackthorn-specific complaint |
 
 ## Dialogue guidance
@@ -70,14 +71,14 @@ A 59 × 60 valley city that is the last stop on the northern road: arrived throu
 - **Blaenau Ffestiniog or any slate valley town.** One road in, terraced houses, chapel, weather coming off the mountain, a bus that leaves once. Gives the Mart clerk and the feed merchant their stock and their grudge about the road.
 - **A raptor mews at feeding time.** Scales, hoods, jesses, a weight log on a nail. This is how the tamer talks about dragons, and why "patience" is a technical term for him.
 - **A sumo stable's morning practice.** Small door, no knocking, silence, the stablemaster decides who enters. Converts to the Gym's door policy and to Clair's refusal to perform for a visitor.
-- **GSC's Dragon's Den feeling, kept offscreen.** Deep still water and an elder's test exist as a thing people mention once — never as a map, never as a scene. The battle is the whole rite here.
+- **GSC's Dragon's Den, kept shut.** During the main story the Den is a door across the lake with an elder in it; nobody gets a test or a scene, and the Gym battle is the whole rite. It opens only in the post-game (see `dragonsden-entrance-hns`).
 
 ## Implementation hooks
 
 - Wiki page: `blackthorncity-hns.html`; maps `BlackthornCity_hns` (`MAP_BLACKTHORN_CITY_HNS`) and `PlasticOx_ClairGym` (`MAP_PLASTIC_OX_CLAIR_GYM`).
 - Scripts: `data/maps/BlackthornCity_hns/scripts.inc` (`BlackthornCity_EventScript_Npc1`–`Npc6`); `data/scripts/plastic_ox_story.inc` (`Pox_Clair`, `Pox_ClairGuide`, `Pox_ClairGymExit`, `Pox_LeagueRoad`, `Pox_NotReady`, `Pox_Done`, `Pox_Text_Badge`); `data/scripts/plastic_ox_region.inc` (`PoxRegion_meteor_blackthorn_b`, `PoxRegion_blackthorn_route45_a`, empty `PoxRegion_Arrival_BlackthornCity_hns`).
 - Gates: `Pox_ClairGuide` requires `FLAG_POX_STORY_SPACE_CENTER`; the badge is `FLAG_BADGE08_GET`; the League checkpoint is elsewhere and checks all eight.
-- Known gaps: a 59 × 60 city with **two** warps — every other building entrance, the Gym's included, is not a warp event, and the Gym is entered only by talking to `(16,28)`. Six NPC objects share two strings, while `BlackthornCity_EventScript_Npc1` and `Npc2` exist with no object placed. Two player-facing signs and portals are labelled with raw map directory names (`Route45_hns` still shows "BlackthornCity / Marked passage ahead." at `(25,2)`). The Gym interior is `LAYOUT_RUSTBORO_CITY_GYM`, 11 × 20, with zero warps, zero Gym trainers, and an exit you must talk to. `Pox_Text_Badge` is one shared string for all eight Gyms. The map plays `MUS_RG_ROUTE11`, a Kanto route theme, rather than a Johto city theme.
+- Known gaps: a 59 × 60 city with **two** building warps (plus the Den door) — every other building entrance, the Gym's included, is not a warp event, and the Gym is entered only by talking to `(16,28)`. Six NPC objects share two strings, while `BlackthornCity_EventScript_Npc1` and `Npc2` exist with no object placed. Two player-facing signs and portals are labelled with raw map directory names (`Route45_hns` still shows "BlackthornCity / Marked passage ahead." at `(25,2)`). The Gym interior is `LAYOUT_RUSTBORO_CITY_GYM`, 11 × 20, with zero warps, zero Gym trainers, and an exit you must talk to. `Pox_Text_Badge` is one shared string for all eight Gyms. The map plays `MUS_RG_ROUTE11`, a Kanto route theme, rather than a Johto city theme.
 
 ## Open questions
 

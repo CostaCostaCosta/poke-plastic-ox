@@ -31,24 +31,22 @@ PokemonMansion_3F_EventScript_Braydon::
 	end
 
 PokemonMansion_1F_Text_SimonIntro::
-	.string "This place is, like, huge!$"
+	.string "Three floors up and not one\nthing worth carrying!$"
 
 PokemonMansion_1F_Text_SimonDefeat::
-	.string "Ayah!$"
+	.string "Ayah! Not my day!$"
 
 PokemonMansion_1F_Text_SimonPostBattle::
-	.string "I wonder where my partner went.$"
+	.string "My partner went down to the\nbasement. He said it was warm\ldown there. Too warm.$"
 
 PokemonMansion_1F_Text_BraydonIntro::
-	.string "My mentor once lived here.$"
+	.string "My mentor worked on this floor.\nDon't touch anything.$"
 
 PokemonMansion_1F_Text_BraydonDefeat::
-	.string "Whew!\n"
-	.string "Overwhelming!$"
+	.string "Whew. Overwhelming.$"
 
 PokemonMansion_1F_Text_BraydonPostBattle::
-	.string "So, you're stuck?\n"
-	.string "Try jumping off over there!$"
+	.string "If you're stuck, the floor has\ngone through by the far wall.\pIt's quicker than the stairs,\nand only slightly worse.$"
 
 PokemonMansion_1F_Text_MewGaveBirthToMewtwo::
 	.string "Diary: Feb. 6\n"

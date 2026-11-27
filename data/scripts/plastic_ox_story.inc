@@ -301,15 +301,87 @@ Pox_Text_Winona::
 Pox_Text_Winona_Defeat::
 	.string "WINONA: You rode the wind better\nthan my birds did today.$"
 
+Pox_FortreeGym_EventScript_Greeter::
+	lock
+	faceplayer
+	msgbox Pox_FortreeGym_Text_Greeter, MSGBOX_DEFAULT
+	specialvar VAR_RESULT, CheckFortreeGymRURules
+	goto_if_eq VAR_RESULT, 1, Pox_FortreeGym_EventScript_GreeterBannedMove
+	goto_if_eq VAR_RESULT, 2, Pox_FortreeGym_EventScript_GreeterBannedItem
+	goto_if_eq VAR_RESULT, 3, Pox_FortreeGym_EventScript_GreeterBannedSpecies
+	goto_if_eq VAR_RESULT, 4, Pox_FortreeGym_EventScript_GreeterDuplicate
+	goto_if_eq VAR_RESULT, 5, Pox_FortreeGym_EventScript_GreeterBannedAbility
+	release
+	end
+
+Pox_FortreeGym_EventScript_GreeterBannedMove::
+	msgbox Pox_FortreeGym_Text_GreeterBannedMove, MSGBOX_DEFAULT
+	release
+	end
+
+Pox_FortreeGym_EventScript_GreeterBannedItem::
+	msgbox Pox_FortreeGym_Text_GreeterBannedItem, MSGBOX_DEFAULT
+	release
+	end
+
+Pox_FortreeGym_EventScript_GreeterBannedSpecies::
+	msgbox Pox_FortreeGym_Text_GreeterBannedSpecies, MSGBOX_DEFAULT
+	release
+	end
+
+Pox_FortreeGym_EventScript_GreeterDuplicate::
+	msgbox Pox_FortreeGym_Text_GreeterDuplicate, MSGBOX_DEFAULT
+	release
+	end
+
+Pox_FortreeGym_EventScript_GreeterBannedAbility::
+	msgbox Pox_FortreeGym_Text_GreeterBannedAbility, MSGBOX_DEFAULT
+	release
+	end
+
+Pox_FortreeGym_Text_Greeter:
+	.string "Yo! Champ in the making!\n"
+	.string "Welcome to FORTREE GYM.\p"
+	.string "This GYM follows RU tier rules.\p"
+	.string "Bring your best RU-tier POKéMON!$"
+
+Pox_FortreeGym_Text_GreeterBannedMove:
+	.string "FORTREE GYM uses RU rules.\p"
+	.string "That move is banned here.\n"
+	.string "Please change it before entering.$"
+
+Pox_FortreeGym_Text_GreeterBannedItem:
+	.string "FORTREE GYM uses RU rules.\p"
+	.string "That item is banned here.\n"
+	.string "Please remove it before entering.$"
+
+Pox_FortreeGym_Text_GreeterBannedSpecies:
+	.string "FORTREE GYM uses RU rules.\p"
+	.string "{STR_VAR_1} is a {STR_VAR_2}.\p"
+	.string "That POKéMON is over the tier.\n"
+	.string "Please leave it in the PC.$"
+
+Pox_FortreeGym_Text_GreeterDuplicate:
+	.string "FORTREE GYM uses RU rules.\p"
+	.string "{STR_VAR_1} is a second {STR_VAR_2}.\p"
+	.string "Only one of each POKéMON.\n"
+	.string "Please leave one in the PC.$"
+
+Pox_FortreeGym_Text_GreeterBannedAbility:
+	.string "FORTREE GYM uses RU rules.\p"
+	.string "{STR_VAR_1} has {STR_VAR_2}.\p"
+	.string "That ability is banned here.\n"
+	.string "Please leave it in the PC.$"
+
 Pox_Blaine::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_BADGE04_GET, Pox_NotReady
+goto_if_unset FLAG_BADGE04_GET, PoxIsles_BlaineNotReady
 
-goto_if_unset FLAG_POX_STORY_FUJI, Pox_NotReady
+goto_if_unset FLAG_POX_STORY_FUJI, PoxIsles_BlaineNotReady
 
-goto_if_set FLAG_BADGE05_GET, Pox_MansionKey
+goto_if_set FLAG_BADGE05_GET, PoxIsles_BlaineKey
 
 
 
@@ -319,17 +391,17 @@ goto Pox_Blaine_Won
 Pox_Blaine_Won::
 	setflag FLAG_BADGE05_GET
 
-msgbox Pox_Text_Badge, MSGBOX_DEFAULT
+msgbox PoxIsles_Text_VolcanoBadge, MSGBOX_DEFAULT
 	goto Pox_MansionKey_Award
 
 releaseall
 	end
 
 Pox_Text_Blaine::
-	.string "BLAINE: Show me what you and\nyour POKéMON have learned!$"
+	.string "BLAINE: Hah! Six doors and\nyou're still standing. Good.\pI fought fires on this island\nbefore I ever kept a GYM on it.\lI don't pick POKéMON to match\lthe wallpaper. I pick the ones\lthat hold.\pCome on, then. Show me what you\ndo with a locked door.$"
 
 Pox_Text_Blaine_Defeat::
-	.string "BLAINE: Hah! You doused my\nflames without breaking a sweat!$"
+	.string "BLAINE: Out. Clean out.\nNot an ember left.$"
 
 Pox_BlaineGymExit::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -356,31 +428,31 @@ Pox_TateLiza::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_BADGE05_GET, Pox_NotReady
+goto_if_unset FLAG_BADGE05_GET, PoxIsles_TwinsNotReady
 
-goto_if_unset FLAG_POX_STORY_MANSION, Pox_NotReady
+goto_if_unset FLAG_POX_STORY_MANSION, PoxIsles_TwinsNotReady
 
-goto_if_set FLAG_BADGE06_GET, Pox_Done
+goto_if_set FLAG_BADGE06_GET, PoxIsles_TwinsDone
 
 
 
 setvar VAR_0x8004, PARTY_SIZE
 	specialvar VAR_RESULT, CountPartyAliveNonEggMons_IgnoreVar0x8004Slot
-	goto_if_lt VAR_RESULT, 2, Pox_TwoMons
+	goto_if_lt VAR_RESULT, 2, PoxIsles_TwinsTwoMons
 
-trainerbattle_double TRAINER_PLASTIC_OX_TATELIZA, Pox_Text_TateLiza, Pox_Text_TateLiza_Defeat, Pox_Text_TwoMons, Pox_TateLiza_Won
+trainerbattle_double TRAINER_PLASTIC_OX_TATELIZA, Pox_Text_TateLiza, Pox_Text_TateLiza_Defeat, PoxIsles_Text_TwinsTwoMons, Pox_TateLiza_Won
 
 goto Pox_TateLiza_Won
 Pox_TateLiza_Won::
 	setflag FLAG_BADGE06_GET
 
-msgbox Pox_Text_Badge, MSGBOX_DEFAULT
+msgbox PoxIsles_Text_MindBadge, MSGBOX_DEFAULT
 
 releaseall
 	end
 
 Pox_Text_TateLiza::
-	.string "TATE & LIZA: Show me what you\nand your POKéMON have learned!$"
+	.string "TATE: You came across the water.\nLIZA: And through the cave.\pTATE: There are two of us.\nLIZA: There are two of yours.\pTATE: Everything after that…\nLIZA: …is just manners.$"
 
 Pox_Text_TateLiza_Defeat::
 	.string "TATE: We lost… LIZA: …but we\nlost together.$"
@@ -654,7 +726,7 @@ releaseall
 	end
 
 Pox_Text_MansionKey::
-	.string "BLAINE: This MANSION KEY opens\nthe archives. The old records\pmay help you understand what\nFUJI meant.\pThese STRENGTH and ROCK SMASH\nmachines will help you explore\pthe caves ahead.$"
+	.string "BLAINE: FUJI sent you. He\nwouldn't, unless it mattered.\lThat is the only reason you're\lgetting this.\pThe SECRET KEY opens the old\nresearch house up the hill.\lWhat's left of the records is\linside, and I'm not the man to\lexplain them.\pRead them. All of them. Then\nlock up behind you.\pTake these machines too:\nSTRENGTH and ROCK SMASH. Outside\la battle they do nothing until\lyou hold the key for each. One\lof my old staff in the house\lstill has the first.$"
 
 Pox_MoonGrunt1::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
@@ -1419,9 +1491,9 @@ Pox_Archive1::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_POX_MANSION_KEY, Pox_NotReady
+goto_if_unset FLAG_POX_MANSION_KEY, PoxIsles_Archive1Sealed
 
-goto_if_set FLAG_POX_ARCHIVE_1, Pox_Done
+goto_if_set FLAG_POX_ARCHIVE_1, PoxIsles_Archive1Again
 
 msgbox Pox_Text_Archive1, MSGBOX_DEFAULT
 
@@ -1433,15 +1505,15 @@ releaseall
 	end
 
 Pox_Text_Archive1::
-	.string "ARCHIVE: A stored POKéMON is not\nsimply a picture. Its living\pstate must be preserved.$"
+	.string "ARCHIVE, FILE 1. Typed, with\ncorrections in ink.\pWe are agreed on first\nprinciples. A stored POKéMON is\lnot a picture of one. It is the\lliving state, held.\pIf the state is not kept whole,\nwhat we return is not what was\lgiven to us. We have proved this\lonce and will not prove it\lagain.$"
 
 Pox_Archive2::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_POX_ARCHIVE_1, Pox_NotReady
+goto_if_unset FLAG_POX_ARCHIVE_1, PoxIsles_Archive2Sealed
 
-goto_if_set FLAG_POX_ARCHIVE_2, Pox_Done
+goto_if_set FLAG_POX_ARCHIVE_2, PoxIsles_Archive2Again
 
 msgbox Pox_Text_Archive2, MSGBOX_DEFAULT
 
@@ -1453,15 +1525,15 @@ releaseall
 	end
 
 Pox_Text_Archive2::
-	.string "ARCHIVE: Transfer protocols\nreconcile states recorded in\pdifferent environments. A\nreconstruction can resemble an\pearlier state.$"
+	.string "ARCHIVE, FILE 2.\pA state recorded in one place\ncan be reconciled with a state\lrecorded in another. We did not\lexpect this to work.\pWhat comes back resembles an\nearlier state. It is not a copy.\pWe stored them as states, not\nspecimens. That distinction cost\lus a year, and it is the only\lpart of this work I would\ldefend.$"
 
 Pox_Archive3::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_POX_ARCHIVE_2, Pox_NotReady
+goto_if_unset FLAG_POX_ARCHIVE_2, PoxIsles_Archive3Sealed
 
-goto_if_set FLAG_POX_STORY_MANSION, Pox_Done
+goto_if_set FLAG_POX_STORY_MANSION, PoxIsles_Archive3Again
 
 msgbox Pox_Text_Archive3, MSGBOX_DEFAULT
 
@@ -1473,7 +1545,7 @@ releaseall
 	end
 
 Pox_Text_Archive3::
-	.string "ARCHIVE: Never connect\nenvironmental reconstruction\pcontrols to an unconstrained\ntransfer network.\pThe reports resemble the changes\nat the BURNED TOWER, on a much\plarger scale.$"
+	.string "ARCHIVE, FILE 3. The last page.\pRecommendation, unanimous: the\ncontrols that rebuild a habitat\lmust never be joined to a\ltransfer network without limits.\pWe have seen what one room does.\nWe decline to imagine a region.\pPencilled in the margin, in\nnewer handwriting: ECRUTEAK. The\lBURNED TOWER. The same, and so\lmuch larger.\pClipped behind the page is a\nshipping slip. Remaining\linstruments sent east by sea,\lvia SEAFOAM, to the observatory\lat MOSSDEEP.$"
 
 Pox_Entei::
 	goto PoxCinnabar_MansionGuide
@@ -1503,7 +1575,7 @@ Pox_Space::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End
 	lockall
 
-goto_if_unset FLAG_POX_STORY_SPACE_CENTER, Pox_NotReady
+goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxIsles_SpaceBusy
 
 goto_if_set FLAG_POX_GIFT_SPACE, Pox_Space_GiftDone
 
@@ -1520,7 +1592,7 @@ releaseall
 	end
 
 Pox_Text_Space::
-	.string "This EEVEE helped us study\nadaptation. Our observations are\pcomplete. Please take it on your\njourney.$"
+	.string "This EEVEE rode along on our\nobservations for two years. It\ladapts to wherever it is put,\lwhich is what we were measuring.\pThe study is closed. It\nshouldn't spend its days in a\llab because our paperwork did.\pIt could use a road. You seem to\nhave one.$"
 
 Pox_Space_GiftDone::
 	msgbox Pox_Text_Space_GiftDone, MSGBOX_DEFAULT
@@ -1528,7 +1600,7 @@ Pox_Space_GiftDone::
 	end
 
 Pox_Text_Space_GiftDone::
-	.string "How is EEVEE adapting? Our logs\nend where your journey begins.$"
+	.string "How is EEVEE taking to the road?\nDon't write it down for us.\lWe've stopped keeping that log.$"
 
 Pox_SilphGrunt1::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End

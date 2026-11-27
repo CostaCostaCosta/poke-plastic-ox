@@ -51,16 +51,16 @@ PRIZE_LEVEL = 45
 
 # New persistent flags (POX_EXT pool; see the plastic-ox-flags skill).
 EXT_FLAGS = [
-    ('FLAG_POX_DOJO_PRIZE', 13, 'Fighting Dojo: took HITMONLEE or HITMONCHAN (hides both prize balls).'),
-    ('FLAG_POX_SILPH_MASTER_BALL', 14, "Silph Co. 11F: the PRESIDENT's MASTER BALL was handed over."),
-    ('FLAG_POX_HIDE_SILPH_STAFF', 15, 'Silph Co. 11F: hides the PRESIDENT and SECRETARY until Silph is resolved (set on transition).'),
+    ('FLAG_POX_DOJO_PRIZE', 24, 'Fighting Dojo: took HITMONLEE or HITMONCHAN (hides both prize balls).'),
+    ('FLAG_POX_SILPH_MASTER_BALL', 25, "Silph Co. 11F: the PRESIDENT's MASTER BALL was handed over."),
+    ('FLAG_POX_HIDE_SILPH_STAFF', 26, 'Silph Co. 11F: hides the PRESIDENT and SECRETARY until Silph is resolved (set on transition).'),
 ]
 
 # Dojo trainers get their own ids after the existing ones. Party bodies belong
 # to plastic_ox/tools/apply_trainer_teams_v2.py.
 DOJO_TRAINERS = [
-    ('TRAINER_PLASTIC_OX_DOJO_KENJI', 963, 'KENJI', 'Hitmonlee\nLevel: 52\n- Brick Break\n'),
-    ('TRAINER_PLASTIC_OX_DOJO_NOB', 964, 'NOB', 'Hitmonchan\nLevel: 52\n- Brick Break\n'),
+    ('TRAINER_PLASTIC_OX_DOJO_KENJI', 966, 'KENJI', 'Hitmonlee\nLevel: 52\n- Brick Break\n'),
+    ('TRAINER_PLASTIC_OX_DOJO_NOB', 967, 'NOB', 'Hitmonchan\nLevel: 52\n- Brick Break\n'),
 ]
 
 # Two registers. The street is loud and knows nothing; the Dojo is etiquette;
@@ -96,6 +96,9 @@ LINES = {
     'DeskClear': "Your team is in order. Walk up the middle of the mat.|The BLACK BELTS will only stop you if you step into their half. Some people do it on purpose.",
     'DeskMove': "One moment. Your {STR_VAR_1} knows {STR_VAR_2}. That move isn't allowed on this floor.|The MASTER won't begin until it's gone. I don't write the rules. I hold the clipboard.",
     'DeskItem': "One moment. Your {STR_VAR_1} is holding {STR_VAR_2}. That item isn't allowed on this floor.|Leave it in your BAG and the MASTER will see you.",
+    'DeskSpecies': "One moment. Your {STR_VAR_1} is a {STR_VAR_2}. That POKéMON is above what this floor allows.|Leave it in the PC and the MASTER will see you.",
+    'DeskDuplicate': "One moment. Your {STR_VAR_1} is a second {STR_VAR_2}. One of each on this floor.|Leave one in the PC. I don't mind which.",
+    'DeskAbility': "One moment. Your {STR_VAR_1} has {STR_VAR_2}. That ability isn't allowed on this floor.|Leave it in the PC and the MASTER will see you.",
     'DeskAfter': "You're in the book now. Seventh line, in the MASTER's own handwriting. He doesn't usually write them himself.",
     'StudentLeft': "...Forty-one. Forty-two. Hands lower. Forty-three.|Sorry. If I stop counting I have to start again.",
     'StudentRight': "The MASTER gave up a room at the top of the LEAGUE to come back and sweep this one.|I asked him why. He said, 'Again,' so I did the form again. I think that was the answer.",
@@ -233,7 +236,22 @@ def scripts():
 	specialvar VAR_RESULT, CheckSaffronGymOURules
 	goto_if_eq VAR_RESULT, 1, {P}DojoDeskMove
 	goto_if_eq VAR_RESULT, 2, {P}DojoDeskItem
+	goto_if_eq VAR_RESULT, 3, {P}DojoDeskSpecies
+	goto_if_eq VAR_RESULT, 4, {P}DojoDeskDuplicate
+	goto_if_eq VAR_RESULT, 5, {P}DojoDeskAbility
 	msgbox {P}Text_DeskClear, MSGBOX_DEFAULT
+	release
+	end
+{P}DojoDeskSpecies::
+	msgbox {P}Text_DeskSpecies, MSGBOX_DEFAULT
+	release
+	end
+{P}DojoDeskDuplicate::
+	msgbox {P}Text_DeskDuplicate, MSGBOX_DEFAULT
+	release
+	end
+{P}DojoDeskAbility::
+	msgbox {P}Text_DeskAbility, MSGBOX_DEFAULT
 	release
 	end
 {P}DojoDeskMove::

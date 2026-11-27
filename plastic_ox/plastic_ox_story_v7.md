@@ -212,6 +212,8 @@ Ilex Forest is the first substantial exploration area and the final major team-b
 
 Do not use it for a major convergence reveal. The fact that the forest now exits toward Hoenn is sufficient.
 
+The shrine stays quiet on the first pass. After the Burned Tower a sage waits there for Celebi, and that optional OU-tier beat is described under **Celebi — Ilex Forest** below.
+
 ---
 
 # Rustboro City — Gym 1
@@ -333,6 +335,8 @@ The player learns that the convergence has scattered Pokémon that do not belong
 ## Gym 3 — Morty
 
 **Battle tier: NU**
+
+After the player wins, Morty leaves the Gym to wait under the Burned Tower for Suicune (see "Suicune — the Clear Bell"). He returns once Suicune is caught.
 
 After victory, the intended route is unambiguous:
 
@@ -484,6 +488,25 @@ Entei's release timing remains governed by the competitive encounter-progression
 
 Each sage whose legendary has been caught returns home to the Ecruteak sage office that opens onto Bellchime Trail. A keeper holds the office's back door until five sages are home, then steps aside. The trail leads to the Tin Tower, which is kept short: one floor, then the roof, where a final sage keeps Moltres.
 
+## Regirock, Regice and Registeel — Ruins of Alph (optional)
+
+**The three Regis went to ground together, in the oldest walls they could find.**
+
+When the legendaries scattered from the Burned Tower, Regirock, Regice and Registeel did not go far. They settled in the Ruins of Alph, the dig site south of Route 36, each in the sealed back room of its own brick chamber. Three sages followed them, as Morty ordered, and keep watch inside.
+
+The site is optional and opens after the Pokémon Mansion. Until then a single researcher on Route 36 holds the gate and says only that the dig is closed while the team is away. Once the Cinnabar archives have been read, he mentions a crate of old site records that came up from the Mansion, lets the player through and goes back to the gatehouse desk. Reopening the dig is a delivery, not a revelation: he guards a fence, not a secret, and names nothing wider than Cinnabar, the Mansion and Dr. Fuji's papers.
+
+Each chamber's back wall opens only for the player carrying its tablet:
+
+- **ANCIENT ROCK TABLET** and **ANCIENT ICE TABLET**: the player takes one of the two at Mt. Moon, and earns the other with a clean run on Route 110's Cycling Road.
+- **ANCIENT STEEL TABLET**: the round-two prize of the Underground Path tournament.
+
+Regirock is in the north chamber, on the main site. Registeel (south-west) and Regice (south-east) are across the pond and need Surf. Behind the wall, the sage and the Regi follow the standard sage + legendary mechanic: beat the sage and the Regi can be caught on the first try. The sages will not battle before the fifth badge for Regirock, or the sixth for Regice and Registeel. Afterwards each sage goes home to the Ecruteak sage office and counts toward the five the Tin Tower keeper waits for.
+
+Under the chambers is a hall of statues where Unown drift, reached by the stair in the middle of the site or through the dark opening at the back of each Regi's room, which drops into it once the Regi has gone. The fourth, west chamber holds no Regi and stands open. The research centre on the site is staffed by ordinary archivists who are behind on their filing.
+
+The scene stays quiet. Nobody explains what the Regis are, what the carvings say, or why three Hoenn legends chose a Johto ruin; the dig staff think of the back walls as an unsolved measuring problem. The old Route 127 caves are left as empty side areas.
+
 ---
 
 # Seafoam Islands — Mandatory Southern Dungeon
@@ -552,6 +575,38 @@ The site is optional and opens after Gym 6. The NEW MAUVILLE KEY is the round-th
 Inside, the sage asks the player to quiet the generator first. The runaway machine keeps Raikou agitated, and nobody can earn its trust over that noise. Once the red stop switch is pressed, the sage and Raikou follow the standard sage + legendary mechanic: beat the sage and Raikou can be caught on the first try. Afterwards the sage goes home to the Ecruteak sage office.
 
 The scene stays small. Raikou is not a clue, the generator is not evidence of the convergence, and nobody explains why a Johto legend chose a Hoenn ruin. The place felt like home, and that is enough.
+
+## Zapdos — Goldenrod Radio Tower (optional)
+
+**Zapdos followed the storm, and the storm went out.**
+
+Zapdos had been sheltering, unseen, in the weather New Mauville's runaway generator threw off. When the player quiets the generator for Raikou, that storm ends and Zapdos goes looking for the next loudest sky. It finds the Goldenrod Radio Tower's aerial and settles in the closed east studio on the top floor, humming along with the transmitter. A sage followed it, as Morty ordered. The Raikou sage notices only that something else left when the hum stopped and flew north toward the city towers.
+
+The site opens when the generator is off and the OU region is open (the Space Center flag). Before that the tower is ordinary. Once the generator is off but before OU, the tower engineer complains about static on every band, every night, and says the director has closed the east studio. After OU, Zapdos and its sage are in the studio and follow the standard sage + legendary mechanic: beat the sage and Zapdos can be caught on the first try. Afterwards the sage goes home to the Ecruteak sage office and counts toward the Tin Tower keeper's five.
+
+With the static gone, the engineer gives the player the **CLEAR BELL**. It was dug out of the transmitter footing years ago, rang on its own the night Zapdos arrived, and is "old Ecruteak work." Nobody at the tower knows what it is for.
+
+## Suicune — the Clear Bell (optional)
+
+**Morty kept the hardest watch for himself.**
+
+After the player earns the third Badge, Morty leaves his Gym and waits under the Burned Tower, on the spot where Suicune looked back at the player. He says the tower once called its Pokémon with a bell, the bell is long gone, and he will wait anyway. He is Suicune's sage.
+
+When the player brings the CLEAR BELL, Morty recognises the tower's own bell and rings it. The ground shakes, and Suicune comes back to the place it last saw the player. Morty battles with his own OU team ending in Suicune; beating him lets any ball catch Suicune on the first try. Afterwards Morty returns to his Gym. He does not join the sage office.
+
+The chain is optional and ordered: the tournament's NEW MAUVILLE KEY → Raikou's generator → Zapdos at the Radio Tower → the CLEAR BELL → Suicune. The bell is the only explanation. Nobody says why Suicune answers it, and Morty does not explain the convergence. He says only that it came back for the player.
+
+## Celebi — Ilex Forest (optional)
+
+**Celebi has gone back to the forest it knows, but it will not come out for just anyone.**
+
+When the legendaries scattered from the Burned Tower, Celebi went back to Ilex Forest and the old shrine. A sage followed it, as Morty ordered, and from then on waits in the clearing by the shrine. Celebi stays out of sight; only the sage is there. The sage says the forest is waiting for something to be brought back, and won't say more.
+
+That something is the **GS BALL**, an old, sealed ball that turns up as the Trick Master's prize for the fifth Trick House puzzle on Route 110, in place of TM Taunt. The fifth puzzle opens with the sixth badge, and beating Tate & Liza is what unlocks the OU tier. That keeps the GS BALL out of reach before the OU tier while still letting the player catch Celebi before facing Bruno.
+
+Celebi does not show itself until the player hands the GS BALL to the sage. The sage lays it on the shrine, the seal gives way, and Celebi appears beside it. From there the standard sage + legendary mechanic applies: beat the sage and Celebi can be caught on the first try. Without the ball the sage won't battle. Afterwards the sage goes home to the Ecruteak sage office and counts toward the five the Tin Tower keeper waits for.
+
+The scene stays small. Nobody explains what the GS BALL is or how the Trick Master came by it; he thinks it is a very good prop. The shrine sign keeps its etiquette and never promises an event. The first pass through Ilex, before Gym 1, stays exactly as it is.
 
 ---
 
@@ -741,6 +796,16 @@ Possible uses include:
 - additional islands or facilities drawn from Generations I–III
 
 This keeps the main story's southern Lavender exit clean while giving the geography a strong postgame payoff.
+
+## Dragon's Den — Rayquaza (postgame)
+
+**Blackthorn's Dragon's Den stays shut for the whole main story.**
+
+The Den's door is across the lake north of the Gym. An elder stands in it and turns everyone away: the Pokémon inside are far too powerful. He is not a quest and has nothing to unlock during the story.
+
+After the player enters the Hall of Fame the elder is gone. Inside, across the flooded cavern, Rayquaza comes down onto the shrine plaza. It is an ordinary wild legendary: Lv.70, or the level of the party's strongest Pokémon when that is higher, with no guaranteed capture and no sage. It stays until it is caught.
+
+This is a deliberate exception to staging Ubers on the postgame islands. The scene explains nothing: Rayquaza is not a clue and nobody says why it is there.
 
 ---
 

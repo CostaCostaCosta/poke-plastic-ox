@@ -12,6 +12,8 @@ PoxTinTower_CountSages::
 	call_if_set FLAG_POX_CAUGHT_REGICE, PoxTinTower_AddSage
 	call_if_set FLAG_POX_CAUGHT_REGISTEEL, PoxTinTower_AddSage
 	call_if_set FLAG_POX_CAUGHT_JIRACHI, PoxTinTower_AddSage
+	call_if_set FLAG_POX_CAUGHT_CELEBI, PoxTinTower_AddSage
+	call_if_set FLAG_POX_CAUGHT_ZAPDOS, PoxTinTower_AddSage
 	return
 PoxTinTower_AddSage::
 	addvar VAR_TEMP_1, 1
@@ -26,6 +28,8 @@ PoxTinTower_Office_OnTransition::
 	call_if_unset FLAG_POX_CAUGHT_REGICE, PoxTinTower_AwayRegice
 	call_if_unset FLAG_POX_CAUGHT_REGISTEEL, PoxTinTower_AwayRegisteel
 	call_if_unset FLAG_POX_CAUGHT_JIRACHI, PoxTinTower_AwayJirachi
+	call_if_unset FLAG_POX_CAUGHT_CELEBI, PoxTinTower_AwayCelebi
+	call_if_unset FLAG_POX_CAUGHT_ZAPDOS, PoxTinTower_AwayZapdos
 	call PoxTinTower_CountSages
 	goto_if_lt VAR_TEMP_1, 5, PoxTinTower_Office_End
 	setobjectxyperm LOCALID_POX_TIN_TOWER_KEEPER, 8, 4
@@ -52,6 +56,12 @@ PoxTinTower_AwayRegisteel::
 	return
 PoxTinTower_AwayJirachi::
 	setflag FLAG_TEMP_7
+	return
+PoxTinTower_AwayCelebi::
+	setflag FLAG_TEMP_8
+	return
+PoxTinTower_AwayZapdos::
+	setflag FLAG_TEMP_9
 	return
 
 PoxTinTower_Keeper::
@@ -88,6 +98,12 @@ PoxTinTower_SageRegisteel::
 	end
 PoxTinTower_SageJirachi::
 	msgbox PoxTinTower_Text_SageJirachi, MSGBOX_NPC
+	end
+PoxTinTower_SageCelebi::
+	msgbox PoxTinTower_Text_SageCelebi, MSGBOX_NPC
+	end
+PoxTinTower_SageZapdos::
+	msgbox PoxTinTower_Text_SageZapdos, MSGBOX_NPC
 	end
 
 pox_legendary_sage PoxTinTower_MoltresSage, TRAINER_PLASTIC_OX_MOLTRES_SAGE, SPECIES_MOLTRES, 55, FLAG_POX_CAUGHT_MOLTRES, LOCALID_POX_MOLTRES_SAGE, LOCALID_POX_MOLTRES, PoxTinTower_Text_MoltresSage, PoxTinTower_Text_MoltresSageDefeat
@@ -134,16 +150,28 @@ PoxTinTower_Text_SageRegirock::
 	.string "I think it liked the broom.$"
 
 PoxTinTower_Text_SageRegice::
-	.string "The island cave never drips. I\n"
-	.string "listened for a month to be sure.\p"
+	.string "The frost in that chamber never\n"
+	.string "drips. I listened for a month.\p"
 	.string "Not once. I still do not know\n"
 	.string "what to write about that.$"
 
 PoxTinTower_Text_SageRegisteel::
-	.string "The tomb rang when I knocked on\n"
+	.string "The chamber rang when I knocked on\n"
 	.string "the wall, so I stopped knocking.\p"
 	.string "REGISTEEL did not stop. You can\n"
 	.string "still hear it if you sleep light.$"
+
+PoxTinTower_Text_SageCelebi::
+	.string "I sat by that shrine so long the\n"
+	.string "moss started on my sandals.\p"
+	.string "Some mornings the dew was already\n"
+	.string "gone before the sun was up.\l"
+	.string "I stopped asking why.$"
+
+PoxTinTower_Text_SageZapdos::
+	.string "Six weeks beside a transmitter.\n"
+	.string "I still hear the evening news\l"
+	.string "when the room goes quiet.$"
 
 PoxTinTower_Text_SageJirachi::
 	.string "The falls roared the whole time\n"

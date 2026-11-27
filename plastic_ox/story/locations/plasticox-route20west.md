@@ -9,7 +9,7 @@ wiki: plasticox-route20west
 maps: [PlasticOx_Route20West]
 also_maps: [SeafoamIslands_1F_Frlg, SeafoamIslands_B1F_Frlg, SeafoamIslands_B2F_Frlg, SeafoamIslands_B3F_Frlg, SeafoamIslands_B4F_Frlg]
 flags: [FLAG_POX_STORY_MANSION, FLAG_POX_TRIGGERS_ENABLED, FLAG_POX_STOPPED_SEAFOAM_B3F_CURRENT, FLAG_POX_STOPPED_SEAFOAM_B4F_CURRENT]
-status: drafted
+status: implemented
 ---
 
 # Route 20West
@@ -30,14 +30,18 @@ A 66×20 strip of open ocean between Cinnabar's south shore and the black rock t
 
 ## Key interactions
 
-This map currently holds **zero objects** — no NPCs, signs, trainers, or items. One warp, one coord event, one arrival script.
+The landing holds one angler and one sign; the cave has one worker at each door. One warp, one coord event, one arrival script.
 
 | Interaction | Where | Trigger / state | Current behavior | Target behavior |
 | --- | --- | --- | --- | --- |
-| Seafoam cave mouth | `(60,8)` warp | always | silent warp to `MAP_SEAFOAM_ISLANDS_1F` warp 3, no prompt, no sign | keep; one sign or buoy so the door reads from open water |
+| Seafoam cave mouth | `(60,8)` warp | always | warp to `MAP_SEAFOAM_ISLANDS_1F` warp 3; the signpost drawn at `(64,8)` now reads "SEAFOAM ISLANDS - WEST DOOR / No landing past this rock. / Watch the swell." (`PoxIsles_CaveSign`) | shipped |
+| Angler | `(58,11)` `PoxIsles_Angler` | always | wind, a dry line, the cave breathing on the ebb | shipped |
+| Ice cutter | Seafoam 1F `(4,18)` `PoxIsles_IceCutter` | `FLAG_POX_STOPPED_SEAFOAM_B4F_CURRENT` | cuts ice for the Mossdeep boats; says the water "takes the rocks back" if you leave early; once the lower current is stopped, hears the quiet | shipped |
+| Swimmer | Seafoam 1F `(34,18)` `PoxIsles_Swimmer` | always | flat water to Mossdeep; the launch tower shows before the beach | shipped |
+| B4F signs and sage | Seafoam B4F `(14,18)`, `(30,2)`; `PoxSeafoam_ArticunoSage` | always | the boulder hint is scratched into the rock, the current warning is a tin plate on a rope; the sage keeps Articuno "the cold and the quiet" | shipped |
 | Cinnabar return | `(48,13)` coord | `VAR_POX_PORTAL_TRIGGER` 0, `FLAG_POX_STORY_MANSION` set | `PoxRegion_cinnabar_sea_b` → Cinnabar `(22,10)` | a jetty on the west shore, or a buoy line that marks the tile |
-| Arrival reset | map load | `FLAG_POX_STOPPED_SEAFOAM_B3F_CURRENT` / `...B4F` unset | silently restores the Seafoam boulders | keep; let one line on the rocks acknowledge the water "taking the rocks back" |
-| Open water | x 0–47 | always | `MB_OCEAN_WATER`, no current, no encounter table | one visible reason for the one-wayness: current, rock field, or drop |
+| Arrival reset | map load | `FLAG_POX_STOPPED_SEAFOAM_B3F_CURRENT` / `...B4F` unset | restores the Seafoam boulders; the ice cutter says so in his own words | shipped |
+| Open water | x 0–47 | always | `MB_OCEAN_WATER`, no current; Surf and fishing roll `gPoxUURoute20West` | one visible reason for the one-wayness: current, rock field, or drop |
 | Shoals | `(24,6)` `(42,9)` `(16,14)` sand, `(32,13)` shallow bank | always | `MB_SAND` and `MB_SHALLOW_WATER`, decorative | two become landmarks: a bait digger's spot, a hidden find |
 | Rock islets | `(2,8)` `(13,9)` `(8,13)` | always | plain `MB_NORMAL` rock, no object | one gets a marker or a nesting bird; no more |
 | Donor duplicate | `Route20_Frlg` | unreachable | 120×20, eleven trainer objects, two Seafoam warps, its own copy of the reset | retire (see Open questions) |
@@ -72,12 +76,13 @@ This map currently holds **zero objects** — no NPCs, signs, trainers, or items
 - Wiki page `plasticox-route20west.html`; map `PlasticOx_Route20West` (`MAP_PLASTIC_OX_ROUTE20_WEST`, layout `LAYOUT_PLASTIC_OX_ROUTE20_WEST`, 66×20, HNS primary tileset with the Lavaridge secondary, `MAPSEC_ROUTE_20`, `REGION_HOENN`, `WEATHER_SUNNY`, `MUS_RG_ROUTE3`).
 - Scripts: `data/maps/PlasticOx_Route20West/scripts.inc` holds only the `ON_TRANSITION` call to `PoxRegion_Arrival_PlasticOx_Route20West`; both portals and that arrival live in `data/scripts/plastic_ox_region.inc`; the reset labels `Route20_EventScript_ResetSeafoamBouldersForB3F` / `...ForB4F` are defined in the donor `data/maps/Route20_Frlg/scripts.inc`.
 - Gates: `FLAG_POX_STORY_MANSION` on the Cinnabar side; `FLAG_POX_TRIGGERS_ENABLED` short-circuits every portal script for the walkable build.
-- Trainers / items: none, and **no encounter table** — the map is absent from `src/data/wild_encounters.json`, so Surf and fishing return nothing.
-- Known gaps: zero objects of any kind; no wild encounters on a fully aquatic map; the anti-bypass rule is an invisible border rather than a current, rock field, or one-way drop; the return portal is a mid-water tripwire at x 48 with no jetty or buoy; the arrival silently undoes Seafoam's boulder work; a `REGION_HOENN` header and Lavaridge tileset sit on a Kanto sea map; the unreachable donor `Route20_Frlg` still duplicates this route and owns the reset labels.
+- Trainers / items: none. Encounters: `gPoxUURoute20West` (installed by `south_isles.install_sea_encounters`), cinnabar checkpoint UU, cap 42. Surf Lv37–41 TENTACRUEL / PELIPPER / LANTURN; fishing keeps the v5.5 rule (Old Rod MAGIKARP; Super Rod SEAKING, KINGLER, OCTILLERY, SEADRA, LANTURN). Route 20 East stays barren by its note.
+- Dialogue: `plastic_ox/alpha/south_isles.py` (`PoxIsles_Angler`, `PoxIsles_CaveSign`, `PoxIsles_IceCutter`, `PoxIsles_Swimmer`) and `plastic_ox/alpha/seafoam/events.inc` (the sage). Harness: `plastic_ox/demo/test_south_isles.py`.
+- Known gaps: the anti-bypass rule is an invisible border rather than a current, rock field, or one-way drop; the return portal is a mid-water tripwire at x 48 with no jetty or buoy; the arrival silently undoes Seafoam's boulder work; a `REGION_HOENN` header and Lavaridge tileset sit on a Kanto sea map; the unreachable donor `Route20_Frlg` still duplicates this route and owns the reset labels.
 
 ## Open questions
 
 - Keep the invisible border as the bypass guard, or add a current line between the shoals and the cave mouth? Recommend the current — v7 asks for a visible reason and the shoals already anchor it.
 - Retire the donor `Route20_Frlg`, or keep it as the home of the reset labels? Its only live role is holding two labels; recommend moving them into the Plastic-Ox region file and retiring the donor.
-- Should leaving Seafoam really undo the boulder work, and should something say so aloud — or is the lost progress its own message?
-- Encounters: reuse the donor's Tentacool water table and Magikarp/Horsea fishing, or retune for an act-3 party? The route currently pays nothing for surfing it.
+- Should leaving Seafoam really undo the boulder work? The ice cutter now says it aloud; the mechanic itself is unchanged.
+- ~~Encounters?~~ Retuned for the act-3 party: UU sea table, same species band as Route 21 (2026-11-27).

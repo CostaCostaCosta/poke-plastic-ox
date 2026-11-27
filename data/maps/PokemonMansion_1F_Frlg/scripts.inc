@@ -35,23 +35,19 @@ PoxMansion_EventScript_StrengthKeyBagFull::
 	end
 
 PoxMansion_Text_StrengthKeyIntro::
-	.string "This old key resonates with a\n"
-	.string "POKéMON's hidden power. Take it.$"
+	.string "Careful with that shelf. If it's\nbrittle, it's important.\pBLAINE sent word you'd be\nthrough. He asked me to give you\lthis. It's the STRENGTH KEY,\lfrom when we still moved the big\lcabinets ourselves.$"
 
 PoxMansion_Text_StrengthKeyOwned::
-	.string "The STRENGTH KEY lets a POKéMON\n"
-	.string "use STRENGTH outside battle.$"
+	.string "With the STRENGTH KEY a POKéMON\ncan shove boulders aside outside\lof battle.\pYou'll want that wherever the\nsea has been rearranging a cave.$"
 
 PoxMansion_Text_StrengthKeyBagFull::
-	.string "Make room in your KEY ITEMS POCKET\n"
-	.string "and speak with me again.$"
+	.string "Your KEY ITEMS POCKET is full.\nMake room and come back.\pI'm not going anywhere. Clearly.$"
 
 PoxMansion_EventScript_Explorer::
 	msgbox PoxMansion_Text_Explorer, MSGBOX_NPC
 	end
 PoxMansion_Text_Explorer::
-	.string "This place is spooky. That scientist\n"
-	.string "nearby found an unusual key.$"
+	.string "I came in on a dare. It isn't\neven scary. It's just paper.\lRooms and rooms of paper.\pThere's a man from the LAB\nfurther in who has been here all\lday. He talks to the shelves.$"
 
 PokemonMansion_Text_PressSecretSwitch::
 	.string "A secret switch!\p"
