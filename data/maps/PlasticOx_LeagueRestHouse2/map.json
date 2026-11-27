@@ -32,7 +32,7 @@
   "warp_events": [
     {
       "x": 4,
-      "y": 9,
+      "y": 8,
       "elevation": 0,
       "dest_map": "MAP_PLASTIC_OX_VICTORY_ROAD",
       "dest_warp_id": "1"
