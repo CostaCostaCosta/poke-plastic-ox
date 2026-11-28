@@ -22771,3 +22771,93 @@ Adamant Nature
 - Hidden Power
 - Toxic
 
+=== TRAINER_PLASTIC_OX_FRONTIER_LC ===
+Name: TIMMY
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Intense
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Magikarp
+Level: 5
+- Splash
+
+=== TRAINER_PLASTIC_OX_FRONTIER_PU ===
+Name: BRANT
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Intense
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Magikarp
+Level: 5
+- Splash
+
+=== TRAINER_PLASTIC_OX_FRONTIER_NU ===
+Name: NOELLE
+Class: Pkmn Breeder
+Pic: Pokemon Breeder F
+Gender: Female
+Music: Intense
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Magikarp
+Level: 5
+- Splash
+
+=== TRAINER_PLASTIC_OX_FRONTIER_RU ===
+Name: RIKU
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Intense
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Magikarp
+Level: 5
+- Splash
+
+=== TRAINER_PLASTIC_OX_FRONTIER_UU ===
+Name: UMA
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Intense
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Magikarp
+Level: 5
+- Splash
+
+=== TRAINER_PLASTIC_OX_FRONTIER_UUBL ===
+Name: DOMINIC
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Intense
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Magikarp
+Level: 5
+- Splash
+
+=== TRAINER_PLASTIC_OX_FRONTIER_UBERS ===
+Name: ALDOUS
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Intense
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Magikarp
+Level: 5
+- Splash

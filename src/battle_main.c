@@ -2,6 +2,7 @@
 #include "constants/opponents.h"
 #include "metamon_heap_trace.h"
 #include "metamon_trainer.h"
+#include "plastic_ox_frontier.h"
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_ai_main.h"
@@ -2046,6 +2047,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum)
 
     if (trainerNum == TRAINER_SECRET_BASE)
         return 0;
+    if (PoxFrontier_IsTrainer(trainerNum) && PoxFrontier_IsActive())
+        return PoxFrontier_CreateParty(party);
     if (GetTrainerStructFromId(trainerNum)->overrideTrainer)
     {
         struct Trainer tempTrainer;

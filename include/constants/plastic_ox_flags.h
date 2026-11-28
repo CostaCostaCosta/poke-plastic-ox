@@ -423,4 +423,25 @@
 #define FLAG_POX_HIDE_SILPH_STAFF (POX_EXT_FLAGS_START + 26)
 // End Saffron flags.
 
+// Battle Frontier (plastic_ox/alpha/frontier.py).
+// OAK gave the FRONTIER INVITE; opens Lavender's south harbor and the Frontier gangway.
+#define FLAG_POX_FRONTIER_INVITE (POX_EXT_FLAGS_START + 27)
+// MOM has sent the new Champion to OAK's lab (Pallet arrival or a talk at home).
+#define FLAG_POX_FRONTIER_MOM_TOLD (POX_EXT_FLAGS_START + 28)
+// Frontier: first seven-win LC round.
+#define FLAG_POX_FRONTIER_CLEARED_LC (POX_EXT_FLAGS_START + 29)
+// Frontier: first seven-win PU round.
+#define FLAG_POX_FRONTIER_CLEARED_PU (POX_EXT_FLAGS_START + 30)
+// Frontier: first seven-win NU round.
+#define FLAG_POX_FRONTIER_CLEARED_NU (POX_EXT_FLAGS_START + 31)
+// Frontier: first seven-win RU round.
+#define FLAG_POX_FRONTIER_CLEARED_RU (POX_EXT_FLAGS_START + 32)
+// Frontier: first seven-win UU round.
+#define FLAG_POX_FRONTIER_CLEARED_UU (POX_EXT_FLAGS_START + 33)
+// Frontier: first seven-win UUBL round.
+#define FLAG_POX_FRONTIER_CLEARED_UUBL (POX_EXT_FLAGS_START + 34)
+// Frontier: first seven-win UBERS round.
+#define FLAG_POX_FRONTIER_CLEARED_UBERS (POX_EXT_FLAGS_START + 35)
+// End Battle Frontier flags.
+
 #endif // GUARD_CONSTANTS_PLASTIC_OX_FLAGS_H

@@ -1,0 +1,148 @@
+#!/usr/bin/env python3
+"""Compile the Battle Frontier team pools into a C table.
+
+Source: plastic_ox/frontier/gen3_<tier>_constructed_225.txt (Showdown
+multi-team backups, one file per tier). Output:
+src/data/plastic_ox_frontier_teams.h, read by src/plastic_ox_frontier.c.
+
+Each distinct set (species, item, ability, nature, EVs, IVs, moves) is stored
+once; a team is six indices into that set table. Run from the repo root:
+
+    python3 plastic_ox/tools/build_frontier_teams.py          # write the header
+    python3 plastic_ox/tools/build_frontier_teams.py --check  # fail on drift
+"""
+import re
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+SRC = ROOT / 'plastic_ox/frontier'
+OUT = ROOT / 'src/data/plastic_ox_frontier_teams.h'
+
+# Facility order matches POX_FRONTIER_TIER_* in include/plastic_ox_frontier.h.
+TIERS = ['lc', 'pu', 'nu', 'ru', 'uu', 'uubl', 'ubers']
+STATS = ['HP', 'Atk', 'Def', 'SpA', 'SpD', 'Spe']
+
+
+def constants(path, prefix):
+    text = (ROOT / path).read_text()
+    return set(re.findall(r'\b(' + prefix + r'[A-Z0-9_]+)\b', text))
+
+
+SPECIES = constants('include/constants/species.h', 'SPECIES_')
+MOVES = constants('include/constants/moves.h', 'MOVE_')
+ITEMS = constants('include/constants/items.h', 'ITEM_')
+ABILITIES = constants('include/constants/abilities.h', 'ABILITY_')
+NATURES = constants('include/constants/pokemon.h', 'NATURE_')
+
+SPECIES_ALIASES = {
+    'Nidoran-F': 'NIDORAN_F', 'Nidoran-M': 'NIDORAN_M', 'Mr. Mime': 'MR_MIME',
+    "Farfetch'd": 'FARFETCHD', 'Farfetch’d': 'FARFETCHD', 'Ho-Oh': 'HO_OH',
+    # The Metamon trainer AI only encodes species 1-386 (src/metamon_trainer.c);
+    # a form id (DEOXYS_ATTACK = 1054...) leaves the active foe with no legal
+    # action and trips its observation assert. Every Deoxys plays as its base form.
+    'Deoxys': 'DEOXYS_NORMAL', 'Deoxys-Attack': 'DEOXYS_NORMAL',
+    'Deoxys-Defense': 'DEOXYS_NORMAL', 'Deoxys-Speed': 'DEOXYS_NORMAL',
+    'Castform': 'CASTFORM_NORMAL', 'Unown': 'UNOWN',
+}
+
+
+def ident(name):
+    return re.sub(r'[^A-Z0-9]+', '_', name.upper().replace("'", '').replace('’', '').replace('.', '')).strip('_')
+
+
+def lookup(kind, table, name, prefix, aliases=None):
+    key = (aliases or {}).get(name, ident(name))
+    c = prefix + key
+    if c not in table:
+        raise SystemExit(f'unknown {kind} {name!r} ({c})')
+    return c
+
+
+def parse_mon(block):
+    lines = [l.strip() for l in block.strip().splitlines() if l.strip()]
+    head = lines[0]
+    m = re.match(r'^(.*?)(?:\s*\((?:M|F)\))?(?:\s*@\s*(.*))?$', head)
+    species, item = m[1].strip(), (m[2] or '').strip()
+    mon = dict(species=lookup('species', SPECIES, species, 'SPECIES_', SPECIES_ALIASES),
+               item=lookup('item', ITEMS, item, 'ITEM_') if item else 'ITEM_NONE',
+               ability='ABILITY_NONE', nature='NATURE_HARDY', level=0,
+               evs=[0] * 6, ivs=[31] * 6, moves=[])
+    for line in lines[1:]:
+        if line.startswith('Ability:'):
+            mon['ability'] = lookup('ability', ABILITIES, line.split(':', 1)[1].strip(), 'ABILITY_')
+        elif line.startswith('Level:'):
+            mon['level'] = int(line.split(':', 1)[1])
+        elif line.startswith(('EVs:', 'IVs:')):
+            key = 'evs' if line.startswith('EVs') else 'ivs'
+            for part in line.split(':', 1)[1].split('/'):
+                value, stat = part.split()
+                mon[key][STATS.index(stat)] = int(value)
+        elif line.endswith('Nature'):
+            mon['nature'] = lookup('nature', NATURES, line.split()[0], 'NATURE_')
+        elif line.startswith('- '):
+            move = line[2:].strip()
+            if move.startswith('Hidden Power'):
+                move = 'Hidden Power'
+            mon['moves'].append(lookup('move', MOVES, move, 'MOVE_'))
+    if not 1 <= len(mon['moves']) <= 4:
+        raise SystemExit(f'{head}: {len(mon["moves"])} moves')
+    mon['moves'] += ['MOVE_NONE'] * (4 - len(mon['moves']))
+    return mon
+
+
+def parse_file(path):
+    teams = []
+    for chunk in re.split(r'^=== .* ===$', path.read_text(), flags=re.M)[1:]:
+        mons = [parse_mon(b) for b in re.split(r'\n\s*\n', chunk) if b.strip()]
+        if len(mons) != 6:
+            raise SystemExit(f'{path.name}: team with {len(mons)} members')
+        teams.append(mons)
+    return teams
+
+
+def render():
+    sets, index, tiers = [], {}, []
+    for tier in TIERS:
+        teams = parse_file(SRC / f'gen3_{tier}_constructed_225.txt')
+        rows = []
+        for team in teams:
+            row = []
+            for mon in team:
+                key = (mon['species'], mon['item'], mon['ability'], mon['nature'],
+                       tuple(mon['evs']), tuple(mon['ivs']), tuple(mon['moves']))
+                if key not in index:
+                    index[key] = len(sets)
+                    sets.append(key)
+                row.append(index[key])
+            rows.append(row)
+        tiers.append((tier, rows))
+    out = ['// Generated by plastic_ox/tools/build_frontier_teams.py from plastic_ox/frontier/.',
+           '// Do not edit by hand.', '',
+           'static const struct PoxFrontierSet sPoxFrontierSets[] =', '{']
+    for sp, item, ability, nature, evs, ivs, moves in sets:
+        out.append(f'    {{{sp}, {item}, {ability}, {nature}, {{{", ".join(map(str, evs))}}}, '
+                   f'{{{", ".join(map(str, ivs))}}}, {{{", ".join(moves)}}}}},')
+    out += ['};', '']
+    for tier, rows in tiers:
+        out.append(f'static const u16 sPoxFrontierTeams_{tier}[][PARTY_SIZE] =')
+        out.append('{')
+        out += ['    {' + ', '.join(map(str, r)) + '},' for r in rows]
+        out += ['};', '']
+    out.append('static const struct PoxFrontierPool sPoxFrontierPools[POX_FRONTIER_TIER_COUNT] =')
+    out.append('{')
+    for tier, rows in tiers:
+        out.append(f'    [POX_FRONTIER_TIER_{tier.upper()}] = {{sPoxFrontierTeams_{tier}, ARRAY_COUNT(sPoxFrontierTeams_{tier})}},')
+    out += ['};', '']
+    return '\n'.join(out), len(sets), [(t, len(r)) for t, r in tiers]
+
+
+if __name__ == '__main__':
+    text, nsets, counts = render()
+    if '--check' in sys.argv:
+        if not OUT.exists() or OUT.read_text() != text:
+            sys.exit(f'{OUT.relative_to(ROOT)} is stale: run plastic_ox/tools/build_frontier_teams.py')
+        print(f'frontier teams current: {nsets} sets, {counts}')
+    else:
+        OUT.write_text(text)
+        print(f'wrote {OUT.relative_to(ROOT)}: {nsets} sets, {counts}')

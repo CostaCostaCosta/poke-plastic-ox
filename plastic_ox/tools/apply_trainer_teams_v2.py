@@ -326,6 +326,11 @@ KEEP_AS_IS = {
     # every story checkpoint on purpose and is checked by test_cerulean_cave.py.
     "TRAINER_PLASTIC_OX_RED": "authored ADV Ubers final boss; Cerulean Cave summit",
 }
+# Battle Frontier opponents: the block is a placeholder; src/plastic_ox_frontier.c
+# builds each party from plastic_ox/frontier/ at battle time (alpha/frontier.py).
+KEEP_AS_IS.update({f"TRAINER_PLASTIC_OX_FRONTIER_{t}": "Battle Frontier house; party drawn from plastic_ox/frontier/ at battle time"
+                   for t in ("LC", "PU", "NU", "RU", "UU", "UUBL", "UBERS")})
+
 # The five one-dancer battles were merged into TRAINER_PLASTIC_OX_KIMONO_TROUPE
 # (2026-11-25). Their ids stay (save data); nothing battles them any more.
 KEEP_AS_IS.update({f"TRAINER_PLASTIC_OX_KIMONO{s}": "retired; superseded by TRAINER_PLASTIC_OX_KIMONO_TROUPE"

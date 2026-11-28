@@ -893,14 +893,14 @@ PoxRegion_victory_indigo_b_Text::
 PoxRegion_lavender_harbor_a::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_lavender_harbor_a_Open
-	goto_if_unset FLAG_SYS_GAME_CLEAR, PoxRegion_lavender_harbor_a_Closed
+	goto_if_unset FLAG_POX_FRONTIER_INVITE, PoxRegion_lavender_harbor_a_Closed
 PoxRegion_lavender_harbor_a_Open::
 	warp MAP_PLASTIC_OX_HARBOR, 10, 13
 	waitstate
 	releaseall
 	end
 PoxRegion_lavender_harbor_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
+	msgbox PoxFrontier_Text_HarborClosed, MSGBOX_DEFAULT
 	warp MAP_LAVENDER_TOWN_HNS, 18, 22
 	waitstate
 	releaseall
@@ -915,7 +915,7 @@ PoxRegion_lavender_harbor_a_Text::
 PoxRegion_lavender_harbor_b::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_lavender_harbor_b_Open
-	goto_if_unset FLAG_SYS_GAME_CLEAR, PoxRegion_lavender_harbor_b_Closed
+	goto_if_unset FLAG_POX_FRONTIER_INVITE, PoxRegion_lavender_harbor_b_Closed
 PoxRegion_lavender_harbor_b_Open::
 	warp MAP_LAVENDER_TOWN_HNS, 18, 22
 	waitstate
@@ -937,14 +937,14 @@ PoxRegion_lavender_harbor_b_Text::
 PoxRegion_harbor_frontier_a::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_harbor_frontier_a_Open
-	goto_if_unset FLAG_SYS_GAME_CLEAR, PoxRegion_harbor_frontier_a_Closed
+	goto_if_unset FLAG_POX_FRONTIER_INVITE, PoxRegion_harbor_frontier_a_Closed
 PoxRegion_harbor_frontier_a_Open::
 	warp MAP_BATTLE_FRONTIER_OUTSIDE_WEST, 25, 66
 	waitstate
 	releaseall
 	end
 PoxRegion_harbor_frontier_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
+	msgbox PoxFrontier_Text_HarborClosed, MSGBOX_DEFAULT
 	warp MAP_PLASTIC_OX_HARBOR, 15, 14
 	waitstate
 	releaseall
@@ -959,7 +959,7 @@ PoxRegion_harbor_frontier_a_Text::
 PoxRegion_harbor_frontier_b::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_harbor_frontier_b_Open
-	goto_if_unset FLAG_SYS_GAME_CLEAR, PoxRegion_harbor_frontier_b_Closed
+	goto_if_unset FLAG_POX_FRONTIER_INVITE, PoxRegion_harbor_frontier_b_Closed
 PoxRegion_harbor_frontier_b_Open::
 	warp MAP_PLASTIC_OX_HARBOR, 15, 14
 	waitstate
@@ -1139,6 +1139,7 @@ PoxRegion_Arrival_OldaleTown_End::
 	end
 
 PoxRegion_Arrival_PalletTown_Frlg::
+	call PoxFrontier_PalletArrival
 PoxRegion_Arrival_PalletTown_Frlg_End::
 	end
 

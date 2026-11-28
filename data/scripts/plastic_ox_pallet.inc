@@ -224,6 +224,7 @@ Pox_Oak::
     lock
     faceplayer
     call Pox_LabIntroduction
+    goto_if_set FLAG_SYS_GAME_CLEAR, PoxFrontier_Oak
     goto_if_set FLAG_POX_STORY_STARTER, Pox_OakAfter
     msgbox Pox_Text_OakBefore, MSGBOX_DEFAULT
     release

@@ -26,7 +26,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "BattleFrontier_BattleTowerLobby_EventScript_SinglesAttendant",
+      "script": "PoxFrontier_UBERS_Attendant",
       "flag": "0"
     },
     {
@@ -108,7 +108,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "BattleFrontier_BattleTowerLobby_EventScript_DoublesAttendant",
-      "flag": "0"
+      "flag": "FLAG_SYS_GAME_CLEAR"
     },
     {
       "local_id": "LOCALID_TOWER_ATTENDANT_MULTIS",
@@ -122,7 +122,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "BattleFrontier_BattleTowerLobby_EventScript_MultisAttendant",
-      "flag": "0"
+      "flag": "FLAG_SYS_GAME_CLEAR"
     },
     {
       "local_id": "LOCALID_TOWER_ATTENDANT_LINK_MULTIS",
@@ -136,7 +136,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "BattleFrontier_BattleTowerLobby_EventScript_LinkMultisAttendant",
-      "flag": "0"
+      "flag": "FLAG_SYS_GAME_CLEAR"
     }
   ],
   "warp_events": [

@@ -134,8 +134,9 @@ TRAILS = [
     ('route45_route46','Route45_hns','S','Route46_hns','N',SPACE),
     ('ecruteak_league','EcruteakCity_hns','W','VictoryRoad_1F',(15,39),BADGES),
     ('victory_indigo','VictoryRoad_1F',(39,6),'IndigoPlateau_hns','S',BADGES),
-    ('lavender_harbor','LavenderTown_hns','S','PlasticOx_Harbor',(11,13),['FLAG_SYS_GAME_CLEAR']),
-    ('harbor_frontier','PlasticOx_Harbor',(19,14),'BattleFrontier_OutsideWest',(26,66),['FLAG_SYS_GAME_CLEAR']),
+    # Postgame: OAK's FRONTIER INVITE (frontier.py), not the Hall of Fame alone.
+    ('lavender_harbor','LavenderTown_hns','S','PlasticOx_Harbor',(11,13),['FLAG_POX_FRONTIER_INVITE']),
+    ('harbor_frontier','PlasticOx_Harbor',(19,14),'BattleFrontier_OutsideWest',(26,66),['FLAG_POX_FRONTIER_INVITE']),
 ]
 
 
@@ -576,7 +577,7 @@ def apply_region(read, put):
             body=f'{script}::\n\tgoto_if_unset FLAG_POX_TRIGGERS_ENABLED, {script}_Open\n'
             for flag in requirements:
                 body+=f'\tgoto_if_unset {flag}, {script}_Closed\n'
-            closed_text={'PoxRegion_route119_fortree_a':'Pox_Text_WI_CrossingClosed'}.get(script,'PoxRegion_ClosedText')
+            closed_text={'PoxRegion_route119_fortree_a':'Pox_Text_WI_CrossingClosed','PoxRegion_lavender_harbor_a':'PoxFrontier_Text_HarborClosed','PoxRegion_harbor_frontier_a':'PoxFrontier_Text_HarborClosed'}.get(script,'PoxRegion_ClosedText')
             body+=(f'{script}_Open::\n\tend\n{script}_Closed::\n\tlockall\n\tmsgbox {closed_text}, MSGBOX_DEFAULT\n'
                    f'\tapplymovement OBJ_EVENT_ID_PLAYER, {script}_StepBack\n\twaitmovement 0\n\treleaseall\n\tend\n'
                    f'{script}_StepBack:\n\t{back}\n\tstep_end')
@@ -589,7 +590,7 @@ def apply_region(read, put):
         body+=f'{script}_Open::\n\twarp {mid(destination)}, {landing[0]}, {landing[1]}\n\twaitstate\n\treleaseall\n\tend\n'
         # Rejection returns to the adjacent approach, never across the gate.
         # Gates with an authored refusal (a person at the barrier) name it here.
-        closed_text={'PoxRegion_route119_fortree_a':'Pox_Text_WI_CrossingClosed'}.get(script,'PoxRegion_ClosedText')
+        closed_text={'PoxRegion_route119_fortree_a':'Pox_Text_WI_CrossingClosed','PoxRegion_lavender_harbor_a':'PoxFrontier_Text_HarborClosed','PoxRegion_harbor_frontier_a':'PoxFrontier_Text_HarborClosed'}.get(script,'PoxRegion_ClosedText')
         body+=f'{script}_Closed::\n\tmsgbox {closed_text}, MSGBOX_DEFAULT\n\twarp {mid(name)}, {p["approach"][0]}, {p["approach"][1]}\n\twaitstate\n\treleaseall\n\tend'
         scripts.append(body)
         records.append(dict(id=key,source=name,destination=destination,**p,landing=landing,requires=requirements,label=label))
@@ -919,3 +920,5 @@ def apply_region(read, put):
     install_clear_bell(read, put)
     from saffron import install as install_saffron
     install_saffron(read, put)
+    from frontier import install as install_frontier
+    install_frontier(read, put)

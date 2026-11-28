@@ -15834,6 +15834,22 @@ const struct ItemInfo gItemsInfo[] =
         .iconPalette = gItemIconPalette_SootheBell,
     },
 
+    [ITEM_FRONTIER_INVITE] =
+    {
+        .name = ITEM_NAME("Frontier Invite"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "PROF. OAK's letter\n"
+            "for the BATTLE\n"
+            "FRONTIER's harbor."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_SSTicket,
+        .iconPalette = gItemIconPalette_SSTicket,
+    },
+
     [ITEM_TRAINING_KIT] =
     {
         .name = ITEM_NAME("Training Kit"),
