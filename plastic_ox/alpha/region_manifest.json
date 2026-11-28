@@ -19,28 +19,11 @@
         1,
         15
       ],
-      "requires": [],
-      "label": "Route44"
-    },
-    {
-      "id": "rustboro_route44_b",
-      "source": "Route44_hns",
-      "destination": "RustboroCity",
-      "tile": [
-        0,
-        15
+      "requires": [
+        "FLAG_BADGE01_GET"
       ],
-      "approach": [
-        1,
-        15
-      ],
-      "direction": "W",
-      "landing": [
-        38,
-        10
-      ],
-      "requires": [],
-      "label": "RustboroCity"
+      "label": "Route44",
+      "seam": true
     },
     {
       "id": "route33_goldenrod_a",
