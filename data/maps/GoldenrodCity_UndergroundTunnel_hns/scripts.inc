@@ -6,8 +6,8 @@ GoldenrodCity_UndergroundTunnel_hns_MapScripts::
 @ brother works Sun/Mon/Wed. Neither works on Friday, so the off-duty brother
 @ is hidden before the map's object events are created.
 PoxGoldenrod_UndergroundTunnel_OnTransition::
-	specialvar VAR_0x8004, PoxGetDayOfWeek
-	switch VAR_0x8004
+	special PoxGetDayOfWeek
+	switch VAR_RESULT
 	case WEEKDAY_TUE, PoxGoldenrod_UndergroundTunnel_OlderOnDuty
 	case WEEKDAY_THU, PoxGoldenrod_UndergroundTunnel_OlderOnDuty
 	case WEEKDAY_SAT, PoxGoldenrod_UndergroundTunnel_OlderOnDuty
