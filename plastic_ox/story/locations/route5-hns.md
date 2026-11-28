@@ -16,6 +16,8 @@ status: drafted
 
 ## Snapshot
 
+> **Retired (2026-11-28).** Route 34 replaced this map as Saffron's north road: **Saffron → Route 34 → Route 115 → Meteor Falls → Blackthorn** (see `route34-hns.md`). `region_v7.py` now lists `Route5_hns` in `retired`, which strips its crossings, signs and map script. The rest of this note records the map as it stood. Don't wire it back without changing the story bible.
+
 The northern road out of Saffron: sixty-eight tiles of open ground from the city's back gate to the Route 115 turn, with a checkpoint building that nobody can enter and no population at all. The player crosses it once, at `(32,38)` → `(32,0)`, on the way to Meteor Falls and Clair; nothing happens here, which is exactly the note's problem and its opportunity. Route 5 is the last ordinary road before the mountains, and it should feel like a road people use to *prepare*.
 
 ## Plot points

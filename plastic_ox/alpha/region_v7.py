@@ -30,7 +30,7 @@ ANCHORS = {
     'Route103':(10,10), 'Route21_North_Frlg':(12,10),
     'Route21_South_Frlg':(12,10), 'CinnabarIsland_Frlg':(12,10),
     'MossdeepCity':(28,17), 'Route127':(40,1),
-    'Route19_Frlg':(12,8), 'SaffronCity_hns':(16,23), 'Route5_hns':(25,35),
+    'Route19_Frlg':(12,8), 'SaffronCity_hns':(16,23), 'Route34_hns':(36,40),
     'Route115':(27,38), 'MeteorFalls_1F_1R':(6,38), 'BlackthornCity_hns':(27,49),
     'Route45_hns':(15,5), 'Route46_hns':(20,12), 'VictoryRoad_1F':(15,39),
     'IndigoPlateau_hns':(11,7), 'PlasticOx_Harbor':(11,13),
@@ -50,8 +50,8 @@ LANE_PORTALS = {
     'route119_fortree','route36_shortcut',
     'route110_lavender','lavender_route8',
     'route7_route103','oldale_route103','route103_cinnabar','cinnabar_sea',
-    'sea_mossdeep','mossdeep_route19','mossdeep_route127','route19_saffron','saffron_route5',
-    'route5_route115','blackthorn_route45','route45_route46',
+    'sea_mossdeep','mossdeep_route19','mossdeep_route127','route19_saffron','saffron_route34',
+    'route34_route115','blackthorn_route45','route45_route46',
     'lavender_harbor','harbor_frontier',
 }
 
@@ -60,6 +60,9 @@ LANE_PORTALS = {
 # the player simply walks across the map connection in either direction.
 # key: (connection from a, connection from b, offset)
 SEAM_TRAILS = {
+    # Rustboro's east road (rows 8..12) meets Route 44's west path (14..16):
+    # city row 10 = route row 15. Both edges are tree/cliff walls elsewhere.
+    'rustboro_route44': ('right', 'left', -5),
     'route119_fortree': ('right', 'left', 0),
     # Route 110's three exits; route110_seams.py cuts the matching geometry.
     'fortree_route110': ('right', 'left', 5),
@@ -76,6 +79,14 @@ PINNED_PORTS = {
     'lavender_route8_a': {'tile': [0, 10], 'approach': [1, 10], 'direction': 'W'},
     'lavender_route8_b': {'tile': [67, 20], 'approach': [66, 20], 'direction': 'E'},
     'route7_route103_a': {'tile': [0, 6], 'approach': [1, 6], 'direction': 'W'},
+    # Route 103's sand road leaves the east edge on rows 9..10; the lanes
+    # (9..11) follow it, and src/plastic_ox_borders.c draws it past the edge.
+    'route7_route103_b': {'tile': [79, 10], 'approach': [78, 10], 'direction': 'E'},
+    # Route 34's walkable body runs from the old Goldenrod gatehouse throat
+    # (x 30-33, y 65-66) to the north gap (x 25-28). The strip below the
+    # gatehouse is cut off by water, so the Saffron road enters at the throat.
+    'saffron_route34_b': {'tile': [31, 66], 'approach': [31, 65], 'direction': 'S'},
+    'route34_route115_a': {'tile': [27, 0], 'approach': [27, 1], 'direction': 'N'},
 }
 
 # Saffron's east and west gatehouses, as in FRLG: an arrow doorway on each
@@ -105,12 +116,12 @@ GATE_TEXT = {
 # narrowed their approaches and duplicated nearby native wayfinding.
 SIGNLESS_TRAILS = {'rustboro_route44'}
 # Single endpoints whose approach is an open road edge; a sign would stand in a lane.
-SIGNLESS_ENDPOINTS = {'route7_route103_a'}
+SIGNLESS_ENDPOINTS = {'route7_route103_a', 'route7_route103_b'}
 
 # Explicit source/destination port targets. A target may name a compass edge;
 # coordinates denote a native gate plaza, cave mouth, or dock.
 TRAILS = [
-    ('rustboro_route44','RustboroCity',(39,10),'Route44_hns',(0,15),[]),
+    ('rustboro_route44','RustboroCity',(39,10),'Route44_hns',(0,15),['FLAG_BADGE01_GET']),
     ('route33_goldenrod','Route33_hns','W','GoldenrodCity_hns','S',[]),
     ('goldenrod_route35','GoldenrodCity_hns',(33,8),'Route35_hns','S',[]),
     ('route119_fortree','Route119',(39,8),'FortreeCity','W',['FLAG_POX_STORY_WEATHER']),
@@ -127,15 +138,17 @@ TRAILS = [
     # Open sea south of Mossdeep: the three Regi caves, each sealed by its tablet.
     ('mossdeep_route127','MossdeepCity','S','Route127','N',[]),
     ('route19_saffron','Route19_Frlg','N','SaffronCity_hns','S',SPACE),
-    ('saffron_route5','SaffronCity_hns','N','Route5_hns','S',SPACE),
-    ('route5_route115','Route5_hns','N','Route115','S',SPACE),
+    # Route 34 replaced the empty Route 5 as Saffron's north road to Meteor Falls.
+    ('saffron_route34','SaffronCity_hns','N','Route34_hns','S',SPACE),
+    ('route34_route115','Route34_hns','N','Route115','S',SPACE),
     ('meteor_blackthorn','MeteorFalls_1F_1R',(26,18),'BlackthornCity_hns',(30,10),SPACE),
     ('blackthorn_route45','BlackthornCity_hns','S','Route45_hns','N',SPACE),
     ('route45_route46','Route45_hns','S','Route46_hns','N',SPACE),
     ('ecruteak_league','EcruteakCity_hns','W','VictoryRoad_1F',(15,39),BADGES),
     ('victory_indigo','VictoryRoad_1F',(39,6),'IndigoPlateau_hns','S',BADGES),
-    ('lavender_harbor','LavenderTown_hns','S','PlasticOx_Harbor',(11,13),['FLAG_SYS_GAME_CLEAR']),
-    ('harbor_frontier','PlasticOx_Harbor',(19,14),'BattleFrontier_OutsideWest',(26,66),['FLAG_SYS_GAME_CLEAR']),
+    # Postgame: OAK's FRONTIER INVITE (frontier.py), not the Hall of Fame alone.
+    ('lavender_harbor','LavenderTown_hns','S','PlasticOx_Harbor',(11,13),['FLAG_POX_FRONTIER_INVITE']),
+    ('harbor_frontier','PlasticOx_Harbor',(19,14),'BattleFrontier_OutsideWest',(26,66),['FLAG_POX_FRONTIER_INVITE']),
 ]
 
 
@@ -151,7 +164,7 @@ def apply_region(read, put):
     def load(name):
         return json.loads(read(f'data/maps/{name}/map.json'))
     def save(name, data):
-        indent=4 if name in {'DarkCave_SouthSide_hns','Gate_AzaleaTown_IlexForest_hns'} else 2
+        indent=4 if name in {'DarkCave_SouthSide_hns','Gate_AzaleaTown_IlexForest_hns','Route116'} else 2
         put(f'data/maps/{name}/map.json',json.dumps(data,indent=indent)+'\n')
     def mid(name):
         return load(name)['id']
@@ -179,14 +192,14 @@ def apply_region(read, put):
         'CherrygroveCity_hns':{'MAP_ROUTE29_HNS','MAP_ROUTE2'},
         'Route2_Frlg':{'MAP_CHERRYGROVE_CITY_HNS','MAP_RUSTBORO_CITY'},
         'RustboroCity':{'MAP_ROUTE2','MAP_ROUTE24_HNS'},
-        'Route24_hns':{'MAP_RUSTBORO_CITY','MAP_ROUTE25_HNS'},
+        'Route24_hns':{'MAP_RUSTBORO_CITY','MAP_ROUTE25_HNS','MAP_CERULEAN_CITY'},
         'Route25_hns':{'MAP_ROUTE24_HNS'},
         'Route35_hns':{'MAP_ROUTE36_HNS'},
         'Route36_hns':{'MAP_ROUTE37_HNS','MAP_ROUTE35_HNS'}, 'Route37_hns':{'MAP_ROUTE36_HNS','MAP_ECRUTEAK_CITY_HNS'},
         'EcruteakCity_hns':{'MAP_ROUTE37_HNS'},
         'BattleFrontier_OutsideWest':{'MAP_BATTLE_FRONTIER_OUTSIDE_EAST'},
     }
-    retired={'Route2_hns','Route3_hns','Route4_hns','Route14_hns','Route16_hns','Route26_hns','Route34_hns','Route38_hns','Route41_hns','Route6_hns'}
+    retired={'Route2_hns','Route3_hns','Route4_hns','Route14_hns','Route16_hns','Route26_hns','Route5_hns','Route38_hns','Route41_hns','Route6_hns'}
     retired.update({'Route1_Frlg','Route31_hns','Route104','Gate_AzaleaTown_IlexForest_hns','CinnabarIsland_hns'})
     active=set(ANCHORS)
     extra_frlg=['UndergroundPath_EastEntrance_Frlg','UndergroundPath_WestEntrance_Frlg','UndergroundPath_EastWestTunnel_Frlg']+[f'SeafoamIslands_{floor}_Frlg' for floor in ['1F','B1F','B2F','B3F','B4F']]
@@ -282,6 +295,10 @@ def apply_region(read, put):
         'Route24_hns': [
             {'map':'MAP_ROUTE25_HNS','offset':0,'direction':'up'},
             {'map':'MAP_RUSTBORO_CITY','offset':-3,'direction':'down'},
+            # The river surfs south into Cerulean City's north pond and its
+            # natural Cerulean Cave mouth; the engine prefers the open side
+            # where the two south connections overlap (src/fieldmap.c).
+            {'map':'MAP_CERULEAN_CITY','offset':-8,'direction':'down'},
         ],
         'Route25_hns': [
             {'map':'MAP_ROUTE24_HNS','offset':0,'direction':'down'},
@@ -375,12 +392,8 @@ def apply_region(read, put):
     d['warp_events']=[dict(x=7,y=16,elevation=3,dest_map=mid('UndergroundPath_WestEntrance_Frlg'),dest_warp_id='0')]
     # The donor's second sign event sat on the hut door itself.
     d['bg_events']=[b for b in d.get('bg_events',[]) if (b['x'],b['y'])!=(7,16)]
-    # The grass patch (11..18,4..9) is behind a Cut tree in the row-10 fence
-    # (route7_cut_hedge.py paints the fence; this is the tree).
+    # Route 7 keeps the donor's open grass patch: no added Cut tree or fence.
     d['object_events']=[o for o in d.get('object_events',[]) if o.get('script')!='EventScript_CutTree']
-    d['object_events'].append(dict(graphics_id='OBJ_EVENT_GFX_CUTTABLE_TREE',x=13,y=10,elevation=3,
-        movement_type='MOVEMENT_TYPE_NONE',movement_range_x=0,movement_range_y=0,trainer_type='TRAINER_TYPE_NONE',
-        trainer_sight_or_berry_tree_id='0',script='EventScript_CutTree',flag='FLAG_TEMP_1'))
     save('Route7_hns',d)
     d=load('UndergroundPath_WestEntrance_Frlg')
     for w in d['warp_events'][:3]:
@@ -420,8 +433,14 @@ def apply_region(read, put):
         'route7_route103_b': 'ROUTE 7\\nKeep to the marked passage.$',
         'route103_cinnabar_a': 'CINNABAR ISLAND\\nFollow the passage south.$',
         'route19_saffron_b': 'SAFFRON CITY - SOUTH GATE\\nROUTE 19 and the MOSSDEEP road$',
-        'saffron_route5_a': 'SAFFRON CITY - NORTH GATE\\nROUTE 5 to BLACKTHORN$'
+        'saffron_route34_a': 'SAFFRON CITY - NORTH GATE\\nROUTE 34 to BLACKTHORN$'
     }
+    # Route 34 is Saffron's north road now, so its old Act I door off
+    # Route 116 (an up-connection with no return and a dangling warp) is shut.
+    d=load('Route116')
+    d['connections']=[c for c in d.get('connections') or [] if c['map']!='MAP_ROUTE34_HNS']
+    d['warp_events']=[w for w in d['warp_events'] if w['dest_map']!='MAP_ROUTE34_HNS']
+    save('Route116',d)
     # FRLG trainer IDs aren't part of Emerald's trainer table. Keep these
     # people and their authored dialogue without invoking unrelated trainers.
     for name in ['Route8_Frlg','Route19_Frlg','Route21_North_Frlg','Route21_South_Frlg']:
@@ -457,6 +476,10 @@ def apply_region(read, put):
             item_number+=1
         save(name,d)
     d=load('Route21_North_Frlg')
+    # Pallet is an HNS layout, so Route 21 draws its margin from its own edge;
+    # FRLG's clone of Pallet's fat man would stand on that painted water.
+    d['object_events']=[o for o in d['object_events']
+                        if not (o.get('type')=='clone' and o.get('target_map')=='MAP_PALLET_TOWN')]
     for item in d.get('bg_events',[]):
         if item.get('type')=='hidden_item':
             item['flag']='FLAG_POX_HIDDEN_V7_60'
@@ -576,7 +599,8 @@ def apply_region(read, put):
             body=f'{script}::\n\tgoto_if_unset FLAG_POX_TRIGGERS_ENABLED, {script}_Open\n'
             for flag in requirements:
                 body+=f'\tgoto_if_unset {flag}, {script}_Closed\n'
-            closed_text={'PoxRegion_route119_fortree_a':'Pox_Text_WI_CrossingClosed'}.get(script,'PoxRegion_ClosedText')
+            closed_text={'PoxRegion_route119_fortree_a':'Pox_Text_WI_CrossingClosed','PoxRegion_lavender_harbor_a':'PoxFrontier_Text_HarborClosed','PoxRegion_harbor_frontier_a':'PoxFrontier_Text_HarborClosed',
+                         'PoxRegion_rustboro_route44_a':'PoxRegion_Route44BadgeText'}.get(script,'PoxRegion_ClosedText')
             body+=(f'{script}_Open::\n\tend\n{script}_Closed::\n\tlockall\n\tmsgbox {closed_text}, MSGBOX_DEFAULT\n'
                    f'\tapplymovement OBJ_EVENT_ID_PLAYER, {script}_StepBack\n\twaitmovement 0\n\treleaseall\n\tend\n'
                    f'{script}_StepBack:\n\t{back}\n\tstep_end')
@@ -589,7 +613,7 @@ def apply_region(read, put):
         body+=f'{script}_Open::\n\twarp {mid(destination)}, {landing[0]}, {landing[1]}\n\twaitstate\n\treleaseall\n\tend\n'
         # Rejection returns to the adjacent approach, never across the gate.
         # Gates with an authored refusal (a person at the barrier) name it here.
-        closed_text={'PoxRegion_route119_fortree_a':'Pox_Text_WI_CrossingClosed'}.get(script,'PoxRegion_ClosedText')
+        closed_text={'PoxRegion_route119_fortree_a':'Pox_Text_WI_CrossingClosed','PoxRegion_lavender_harbor_a':'PoxFrontier_Text_HarborClosed','PoxRegion_harbor_frontier_a':'PoxFrontier_Text_HarborClosed'}.get(script,'PoxRegion_ClosedText')
         body+=f'{script}_Closed::\n\tmsgbox {closed_text}, MSGBOX_DEFAULT\n\twarp {mid(name)}, {p["approach"][0]}, {p["approach"][1]}\n\twaitstate\n\treleaseall\n\tend'
         scripts.append(body)
         records.append(dict(id=key,source=name,destination=destination,**p,landing=landing,requires=requirements,label=label))
@@ -657,7 +681,8 @@ def apply_region(read, put):
     # Headbutt populations hang on visible, already-solid trees at the edge of
     # each area's connected walkable component. A facing trigger lets the
     for name, x, y in [('IlexForest_hns',39,7),('Route33_hns',8,17),('Route35_hns',14,4),
-                       ('NationalPark_Normal_hns',40,22),('Route36_hns',39,2)]:
+                       ('NationalPark_Normal_hns',40,22),('Route36_hns',39,2),
+                       ('Route115',20,66)]:
         d=load(name)
         d['bg_events']=[b for b in d.get('bg_events',[]) if b.get('script') != 'PlasticOx_EventScript_HeadbuttTree']
         d['bg_events'].append(dict(type='sign',x=x,y=y,elevation=0,
@@ -830,6 +855,9 @@ def apply_region(read, put):
             body+='\tsetflag FLAG_HIDE_FORTREE_CITY_KECLEON\n\tsetflag FLAG_KECLEON_FLED_FORTREE\n\tgoto_if_unset FLAG_POX_TRIGGERS_ENABLED, '+callback+'_Reached\n\tgoto_if_unset FLAG_POX_STORY_WEATHER, '+callback+'_End\n'+callback+'_Reached::\n\tsetflag FLAG_POX_REACHED_FORTREE\n'
         if name=='Route119':
             body+='\tsetflag FLAG_HIDE_ROUTE_119_TEAM_AQUA\n\tsetflag FLAG_HIDE_ROUTE_119_RIVAL\n\tsetflag FLAG_HIDE_ROUTE_119_RIVAL_ON_BIKE\n'
+        if name=='Route24_hns':
+            # The beaten Rocket walked off toward Rustboro; keep him gone.
+            body+='\tcall_if_defeated TRAINER_PLASTIC_OX_ROUTE24_ROCKET, Route24_EventScript_HideRocket\n'
         if name.startswith('PlasticOx_Route20'):
             body+='\tcall_if_unset FLAG_STOPPED_SEAFOAM_B3F_CURRENT, Route20_EventScript_ResetSeafoamBouldersForB3F\n\tcall_if_unset FLAG_STOPPED_SEAFOAM_B4F_CURRENT, Route20_EventScript_ResetSeafoamBouldersForB4F\n'
         body+=callback+'_End::\n\tend'
@@ -919,3 +947,5 @@ def apply_region(read, put):
     install_clear_bell(read, put)
     from saffron import install as install_saffron
     install_saffron(read, put)
+    from frontier import install as install_frontier
+    install_frontier(read, put)

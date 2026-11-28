@@ -177,7 +177,10 @@ def contest():
     run_code(g, opcode(g, 'additem') + struct.pack('<HH', teeth, 1))
     set_weekday(g, 4)
     assert call(g, 'PlasticOxContest_CheckEntry') == 7, 'teeth alone must not admit'
-    # Hand the Gold Teeth to the actual Thursday Warden object.
+    # Hand the Gold Teeth to the actual Thursday Warden object. With today's
+    # round already used he only takes the teeth; warden_escort() covers the
+    # walk to the desk that follows on an open Thursday.
+    g.flag('FLAG_POX_DAILY_PARK_CONTEST', True)
     g.warp(GATE, 11, 3)
     g.frame(120)
     g.tap(K.KEY_UP, hold=2, wait=12)
@@ -188,6 +191,7 @@ def contest():
     from test_sudowoodo_v1 import bag
     assert bag(g, teeth) == 0, 'Warden kept the teeth'
     g.shot('national_park_warden_teeth.png')
+    g.flag('FLAG_POX_DAILY_PARK_CONTEST', False)
     for day in range(7):
         set_weekday(g, day)
         assert call(g, 'PlasticOxContest_CheckEntry') == (0 if day in (2, 4, 6) else 1), day
@@ -229,6 +233,49 @@ def contest():
                      'FLAG_POX_CONTEST_SITRUS_PENDING', 'FLAG_POX_CONTEST_ORAN_PENDING'):
             assert not g.flag(flag), ('unclaimed prize', flag)
     print('Both gate attendants: registration, park entry, catch retained, exit judging, party restored, prizes, daily limit/reset PASS', flush=True)
+
+
+def warden_escort():
+    """On an open Thursday the Warden walks his guest to the south desk."""
+    g = StoryGame(spawn=(GATE, 11, 3))
+    g.run('Pox_Cyndaquil')
+    g.flag('FLAG_POX_TRIGGERS_ENABLED', True)
+    g.flag('FLAG_SYS_CLOCK_SET', True)
+    g.flag('FLAG_POX_WARDEN_GUEST', True)
+    stride = g.sizes['gObjectEvents'] // 16
+
+    def warden_xy():
+        for i in range(16):
+            ptr = g.syms['gObjectEvents'] + i * stride
+            if g.u8(ptr) & 1 and (g.u8(ptr + 10), g.u8(ptr + 9)) == IDS[GATE] and g.u8(ptr + 8) == 13:
+                return g.s16(ptr + 16) - 7, g.s16(ptr + 18) - 7
+        return None
+
+    for start, face in (((11, 3), K.KEY_UP), ((10, 2), K.KEY_RIGHT), ((12, 2), K.KEY_LEFT)):
+        set_weekday(g, 4)
+        g.flag('FLAG_POX_DAILY_PARK_CONTEST', False)
+        g.warp(GATE, *start)
+        g.frame(120)
+        assert warden_xy() == (11, 2), warden_xy()
+        g.tap(face, hold=2, wait=12)
+        g.tap(K.KEY_A, hold=2, wait=30)
+        assert g.u8(g.syms['sGlobalScriptContextStatus']) != 2, ('Warden did not respond', start)
+        # Advance only until the escort has stopped at the desk.
+        for _ in range(200):
+            g.tap(K.KEY_A, hold=2, wait=10)
+            if (g.state()['x'], g.state()['y']) == (3, 3) and warden_xy() == (4, 4):
+                break
+        assert (g.state()['x'], g.state()['y']) == (3, 3), ('guest not at desk', start, g.describe())
+        assert warden_xy() == (4, 4), ('Warden did not lead', start, warden_xy())
+        g.shot(f'national_park_warden_escort_{start[0]}_{start[1]}.png')
+        finish_dialogue(g)
+        load_ok(g, PARK, f'warden_escort_entry_{start[0]}_{start[1]}')
+        assert (g.state()['x'], g.state()['y']) == (12, 48), g.describe()
+        assert g.u8(g.syms['sRunning']) and g.u8(g.syms['sPassRound'])
+        g.run('PlasticOxContest_EventScript_Finish')
+        finish_dialogue(g)
+        load_ok(g, GATE, f'warden_escort_back_{start[0]}_{start[1]}')
+    print('Thursday Warden walks his guest from all three sides to the south desk; desk walks them into the park PASS', flush=True)
 
 
 def endings():
@@ -332,5 +379,6 @@ if __name__ == '__main__':
     gates()
     shortcut()
     contest()
+    warden_escort()
     endings()
     actual_catch()

@@ -19,28 +19,11 @@
         1,
         15
       ],
-      "requires": [],
-      "label": "Route44"
-    },
-    {
-      "id": "rustboro_route44_b",
-      "source": "Route44_hns",
-      "destination": "RustboroCity",
-      "tile": [
-        0,
-        15
+      "requires": [
+        "FLAG_BADGE01_GET"
       ],
-      "approach": [
-        1,
-        15
-      ],
-      "direction": "W",
-      "landing": [
-        38,
-        10
-      ],
-      "requires": [],
-      "label": "RustboroCity"
+      "label": "Route44",
+      "seam": true
     },
     {
       "id": "route33_goldenrod_a",
@@ -252,7 +235,7 @@
       "direction": "W",
       "landing": [
         78,
-        11
+        10
       ],
       "requires": [
         "FLAG_POX_STORY_FUJI"
@@ -265,11 +248,11 @@
       "destination": "Route7_hns",
       "tile": [
         79,
-        11
+        10
       ],
       "approach": [
         78,
-        11
+        10
       ],
       "direction": "E",
       "landing": [
@@ -582,9 +565,9 @@
       "label": "Route19"
     },
     {
-      "id": "saffron_route5_a",
+      "id": "saffron_route34_a",
       "source": "SaffronCity_hns",
-      "destination": "Route5_hns",
+      "destination": "Route34_hns",
       "tile": [
         30,
         6
@@ -596,26 +579,26 @@
       "direction": "E",
       "landing": [
         31,
-        38
+        65
       ],
       "requires": [
         "FLAG_POX_STORY_SPACE_CENTER"
       ],
-      "label": "Route5"
+      "label": "Route34"
     },
     {
-      "id": "saffron_route5_b",
-      "source": "Route5_hns",
+      "id": "saffron_route34_b",
+      "source": "Route34_hns",
       "destination": "SaffronCity_hns",
       "tile": [
-        32,
-        38
+        31,
+        66
       ],
       "approach": [
         31,
-        38
+        65
       ],
-      "direction": "E",
+      "direction": "S",
       "landing": [
         29,
         6
@@ -626,18 +609,18 @@
       "label": "SaffronCity"
     },
     {
-      "id": "route5_route115_a",
-      "source": "Route5_hns",
+      "id": "route34_route115_a",
+      "source": "Route34_hns",
       "destination": "Route115",
       "tile": [
-        32,
+        27,
         0
       ],
       "approach": [
-        31,
-        0
+        27,
+        1
       ],
-      "direction": "E",
+      "direction": "N",
       "landing": [
         19,
         79
@@ -648,9 +631,9 @@
       "label": "Route115"
     },
     {
-      "id": "route5_route115_b",
+      "id": "route34_route115_b",
       "source": "Route115",
-      "destination": "Route5_hns",
+      "destination": "Route34_hns",
       "tile": [
         20,
         79
@@ -661,13 +644,13 @@
       ],
       "direction": "E",
       "landing": [
-        31,
-        0
+        27,
+        1
       ],
       "requires": [
         "FLAG_POX_STORY_SPACE_CENTER"
       ],
-      "label": "Route5"
+      "label": "Route34"
     },
     {
       "id": "meteor_blackthorn_a",
@@ -895,7 +878,7 @@
         13
       ],
       "requires": [
-        "FLAG_SYS_GAME_CLEAR"
+        "FLAG_POX_FRONTIER_INVITE"
       ],
       "label": "Harbor"
     },
@@ -917,7 +900,7 @@
         22
       ],
       "requires": [
-        "FLAG_SYS_GAME_CLEAR"
+        "FLAG_POX_FRONTIER_INVITE"
       ],
       "label": "LavenderTown"
     },
@@ -939,7 +922,7 @@
         66
       ],
       "requires": [
-        "FLAG_SYS_GAME_CLEAR"
+        "FLAG_POX_FRONTIER_INVITE"
       ],
       "label": "BattleFrontier_OutsideWest"
     },
@@ -961,7 +944,7 @@
         14
       ],
       "requires": [
-        "FLAG_SYS_GAME_CLEAR"
+        "FLAG_POX_FRONTIER_INVITE"
       ],
       "label": "Harbor"
     }
@@ -1007,6 +990,7 @@
       "MAP_ROUTE24_HNS"
     ],
     "Route24_hns": [
+      "MAP_CERULEAN_CITY",
       "MAP_ROUTE25_HNS",
       "MAP_RUSTBORO_CITY"
     ],

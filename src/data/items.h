@@ -9227,13 +9227,9 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_CHOICE_BAND] =
     {
         .name = ITEM_NAME("Choice Band"),
-    #if I_PRICE >= GEN_9
-        .price = 100000,
-    #elif I_PRICE >= GEN_7
+        // Plastic Ox: sold in the Goldenrod Dept. Store (5F) mid-story, so it
+        // keeps the Gen 7 price rather than Gen 9's 100,000.
         .price = 4000,
-    #else
-        .price = 100,
-    #endif
         .holdEffect = HOLD_EFFECT_CHOICE_BAND,
         .description = COMPOUND_STRING(
             "Boosts Attack, but\n"
@@ -15832,6 +15828,22 @@ const struct ItemInfo gItemsInfo[] =
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
         .iconPic = gItemIcon_SootheBell,
         .iconPalette = gItemIconPalette_SootheBell,
+    },
+
+    [ITEM_FRONTIER_INVITE] =
+    {
+        .name = ITEM_NAME("Frontier Invite"),
+        .price = 0,
+        .importance = 1,
+        .description = COMPOUND_STRING(
+            "PROF. OAK's letter\n"
+            "for the BATTLE\n"
+            "FRONTIER's harbor."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_SSTicket,
+        .iconPalette = gItemIconPalette_SSTicket,
     },
 
     [ITEM_TRAINING_KIT] =

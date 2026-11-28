@@ -29,12 +29,12 @@ import story_notes  # noqa: E402
 REGISTRY: dict[str, tuple[str, str]] = {
     # Story gates and scenes
     "Pox_StarterGate": ("Story gate", "Turns the player back from Pallet's north edge until the starter is chosen (FLAG_POX_STORY_STARTER)."),
-    "Route21_South_EventScript_CinnabarSeam": ("Story gate", "Walking south toward Cinnabar is refused until the Mansion is cleared (FLAG_POX_STORY_MANSION)."),
     "Route36_EventScript_RuinsResearcherStep": ("Story gate", "Lanes beside the Ruins of Alph researcher: turned back until the Cinnabar archives are read (FLAG_POX_STORY_MANSION); after that he walks into the gatehouse and the lanes are open."),
     "PoxMoon_EnterFromRoute44": ("Story gate", "Cave mouth into Mt. Moon 1F; turned back without Badge 1."),
     "MtMoon_B2F_EventScript_MiguelTrigger": ("Story scene", "Super Nerd Miguel spots the player and starts the fossil battle (VAR_POX_MTMOON_STATE 0 only)."),
     "Route119_EventScript_PoxEcruteakGate": ("Region crossing", "Route 119's bottom path walks into the Ecruteak east gatehouse."),
     "PoxEcruteak_WestEntrance": ("Region crossing", "Ecruteak's west edge leads into the Route 38 League gatehouse."),
+    "PoxEcruteak_EastGateBlock": ("Gate", "Ecruteak's east door column (55,40/41/43) turns the player back until MORTY's badge (FLAG_BADGE03_GET)."),
     "PoxSaffron_GiovanniTriggerLeft": ("Story scene", "Silph 11F boardroom: walks the player up to GIOVANNI and starts his battle (after the third grunt; once)."),
     "PoxSaffron_GiovanniTriggerRight": ("Story scene", "Silph 11F boardroom: walks the player up to GIOVANNI and starts his battle (after the third grunt; once)."),
     "PoxSaffron_LobbyStairs": ("Mechanic", "Silph 1F stairs are chained: a line and a step back. The lift is the way up."),

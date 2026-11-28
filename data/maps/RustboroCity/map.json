@@ -23,6 +23,11 @@
       "map": "MAP_ROUTE24_HNS",
       "offset": 3,
       "direction": "up"
+    },
+    {
+      "map": "MAP_ROUTE44_HNS",
+      "offset": -5,
+      "direction": "right"
     }
   ],
   "object_events": [
@@ -330,7 +335,7 @@
     {
       "type": "trigger",
       "x": 39,
-      "y": 9,
+      "y": 10,
       "elevation": 0,
       "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
@@ -339,7 +344,7 @@
     {
       "type": "trigger",
       "x": 39,
-      "y": 10,
+      "y": 9,
       "elevation": 0,
       "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,
@@ -367,6 +372,24 @@
       "type": "trigger",
       "x": 39,
       "y": 12,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "PoxRegion_rustboro_route44_a"
+    },
+    {
+      "type": "trigger",
+      "x": 39,
+      "y": 13,
+      "elevation": 0,
+      "var": "VAR_POX_PORTAL_TRIGGER",
+      "var_value": 0,
+      "script": "PoxRegion_rustboro_route44_a"
+    },
+    {
+      "type": "trigger",
+      "x": 39,
+      "y": 14,
       "elevation": 0,
       "var": "VAR_POX_PORTAL_TRIGGER",
       "var_value": 0,

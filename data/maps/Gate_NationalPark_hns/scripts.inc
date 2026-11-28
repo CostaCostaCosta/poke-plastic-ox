@@ -134,12 +134,78 @@ Gate_NationalPark_EventScript_WardenTeeth::
 	removeitem ITEM_GOLD_TEETH
 	setflag FLAG_POX_WARDEN_GUEST
 	msgbox Gate_NationalPark_Text_WardenThanks, MSGBOX_DEFAULT
-	release
-	end
+	goto Gate_NationalPark_EventScript_WardenSignIn
 Gate_NationalPark_EventScript_WardenHost::
 	msgbox Gate_NationalPark_Text_WardenHost, MSGBOX_DEFAULT
+@ When today's round is open, the Warden walks his guest over to the south
+@ desk himself and stands by while the attendant signs them in. Otherwise
+@ (round used, prize waiting...) the desk's own reply is all there is to say.
+Gate_NationalPark_EventScript_WardenSignIn::
+	special PlasticOxContest_CheckEntry
+	goto_if_ne VAR_RESULT, POX_CONTEST_ENTRY_OPEN, Gate_NationalPark_EventScript_WardenDesk
+	msgbox Gate_NationalPark_Text_WardenFollowMe, MSGBOX_DEFAULT
+	closemessage
+	getplayerxy VAR_TEMP_1, VAR_TEMP_2
+	goto_if_eq VAR_TEMP_2, 3, Gate_NationalPark_EventScript_WardenFromBelow
+	goto_if_lt VAR_TEMP_1, 11, Gate_NationalPark_EventScript_WardenFromLeft
+	applymovement LOCALID_PLAYER, Gate_NationalPark_Movement_GuestFromRight
+	goto Gate_NationalPark_EventScript_WardenEscort
+Gate_NationalPark_EventScript_WardenFromBelow::
+	applymovement LOCALID_PLAYER, Gate_NationalPark_Movement_GuestFromBelow
+	goto Gate_NationalPark_EventScript_WardenEscort
+Gate_NationalPark_EventScript_WardenFromLeft::
+	applymovement LOCALID_PLAYER, Gate_NationalPark_Movement_GuestFromLeft
+Gate_NationalPark_EventScript_WardenEscort::
+	waitmovement 0
+	applymovement LOCALID_PARK_WARDEN, Gate_NationalPark_Movement_WardenToDesk
+	applymovement LOCALID_PLAYER, Gate_NationalPark_Movement_GuestToDesk
+	waitmovement 0
+	msgbox Gate_NationalPark_Text_WardenAtDesk, MSGBOX_DEFAULT
+	closemessage
+Gate_NationalPark_EventScript_WardenDesk::
 	setvar VAR_0x8007, 0
 	goto PlasticOxContest_EventScript_Attendant
+
+@ The guest steps to (12,3), east of the Warden's first step down.
+Gate_NationalPark_Movement_GuestFromRight:
+	walk_down
+	step_end
+Gate_NationalPark_Movement_GuestFromBelow:
+	walk_right
+	step_end
+Gate_NationalPark_Movement_GuestFromLeft:
+	walk_down
+	walk_right
+	walk_right
+	step_end
+@ Warden (11,2) leads along row 3 and steps aside at (4,4); the guest
+@ follows a step behind and stops at the desk, (3,3), facing the attendant.
+Gate_NationalPark_Movement_WardenToDesk:
+	walk_down
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_down
+	face_left
+	step_end
+Gate_NationalPark_Movement_GuestToDesk:
+	delay_16
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	walk_left
+	delay_16
+	walk_left
+	walk_left
+	face_up
+	step_end
 
 Gate_NationalPark_Text_WardenToothless:
 	.string "WARDEN: Hif fuff hefifoo! Ha lof ha\n"
@@ -173,8 +239,13 @@ Gate_NationalPark_Text_WardenThanks:
 Gate_NationalPark_Text_WardenHost:
 	.string "WARDEN: Fwahaha! My honored guest!\n"
 	.string "My SCYTHER and PINSIR are restless\l"
-	.string "in the grass today.\p"
-	.string "Let's get you signed in!$"
+	.string "in the grass today.$"
+Gate_NationalPark_Text_WardenFollowMe:
+	.string "WARDEN: Come along, come along!\n"
+	.string "I'll walk you to the desk myself.$"
+Gate_NationalPark_Text_WardenAtDesk:
+	.string "WARDEN: This one's on my list.\n"
+	.string "Sign my guest in, would you?$"
 
 Gate_NationalPark_Text_Thursday:
 	.string "The old man in the hat is the\n"

@@ -19,12 +19,14 @@ run "$PY" plastic_ox/story/check_story_notes.py
 run "$PY" plastic_ox/story/test_region.py
 needs_build "$PY" plastic_ox/encounter_tables/test_pre_mt_moon_v5_5.py
 run "$PY" plastic_ox/encounter_tables/test_nu_encounters_v1.py
+run "$PY" plastic_ox/encounter_tables/test_route34_115_encounters_v1.py
 needs_build "$PY" plastic_ox/tools/test_trainer_teams_v2.py
 run "$PY" plastic_ox/tools/audit_warp_connections.py
 run "$PY" .agents/skills/plastic-ox-map-port/scripts/audit_imports.py .
 run "$PY" plastic_ox/tools/check_map_refs.py --changed
 run "$PY" plastic_ox/tools/check_generated.py
 run "$PY" plastic_ox/town_map/build_fly_map.py --check
+run "$PY" plastic_ox/tools/build_frontier_teams.py --check
 run "$PY" plastic_ox/tools/audit_flags.py --check
 run "$PY" plastic_ox/tools/audit_npc_dialogue.py
 run "$PY" plastic_ox/battle/metamon/test_import_model.py

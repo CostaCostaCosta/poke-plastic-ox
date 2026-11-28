@@ -256,6 +256,33 @@
       "var": "VAR_TEMP_0",
       "var_value": 0,
       "script": "PoxEcruteak_WestEntrance"
+    },
+    {
+      "type": "trigger",
+      "x": 55,
+      "y": 40,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": 0,
+      "script": "PoxEcruteak_EastGateBlock"
+    },
+    {
+      "type": "trigger",
+      "x": 55,
+      "y": 41,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": 0,
+      "script": "PoxEcruteak_EastGateBlock"
+    },
+    {
+      "type": "trigger",
+      "x": 55,
+      "y": 43,
+      "elevation": 0,
+      "var": "VAR_TEMP_0",
+      "var_value": 0,
+      "script": "PoxEcruteak_EastGateBlock"
     }
   ],
   "bg_events": [],

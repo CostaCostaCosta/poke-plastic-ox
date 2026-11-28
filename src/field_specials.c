@@ -376,7 +376,20 @@ u16 CheckRustboroGymLittleCupRules(void)
 // those are Little Cup bans. Returns 3 with the species name in gStringVar2, 1 with
 // the move name, 2 with the item name; the nickname is in gStringVar1. Then 4 for a
 // duplicate species and 5 for a banned ability (CheckADVPartyClauses). Else 0.
+static u16 CheckADVTierRules(enum EvolutionTier maxTier, bool32 allowUbers);
+
 static u16 CheckADVTierGymRules(enum EvolutionTier maxTier)
+{
+    return CheckADVTierRules(maxTier, FALSE);
+}
+
+// Battle Frontier Ubers house: any species, the same ADV clauses as every tier.
+u16 CheckFrontierUbersRules(void)
+{
+    return CheckADVTierRules(EVO_TIER_OU, TRUE);
+}
+
+static u16 CheckADVTierRules(enum EvolutionTier maxTier, bool32 allowUbers)
 {
     u32 i, j;
 
@@ -391,7 +404,7 @@ static u16 CheckADVTierGymRules(enum EvolutionTier maxTier)
 
         GetMonData(mon, MON_DATA_NICKNAME, gStringVar1);
         species = GetMonData(mon, MON_DATA_SPECIES);
-        if (IsOverGymTier(species, maxTier))
+        if (!allowUbers && IsOverGymTier(species, maxTier))
         {
             StringCopy(gStringVar2, GetSpeciesName(species));
             return 3;
@@ -1505,6 +1518,10 @@ static void PCTurnOnEffect(struct Task *task)
 static void PCTurnOnEffect_SetMetatile(s16 isScreenOn, s8 dx, s8 dy)
 {
     u16 metatileId = 0;
+    // Plastic Ox: HNS tilesets don't share Emerald/FRLG PC metatile ids, so
+    // swapping metatiles here paints garbage over the PC. Leave HNS PCs alone.
+    if (gMapHeader.mapLayout->layoutVersion == LAYOUT_VERSION_HNS)
+        return;
     if (isScreenOn)
     {
         // Screen is on, set it off
@@ -1549,6 +1566,8 @@ static void PCTurnOffEffect(void)
 
     if (IsPlayerInFrontOfPC() == FALSE)
         return;
+    if (gMapHeader.mapLayout->layoutVersion == LAYOUT_VERSION_HNS)
+        return; // see PCTurnOnEffect_SetMetatile
     switch (playerDirection)
     {
     case DIR_NORTH:

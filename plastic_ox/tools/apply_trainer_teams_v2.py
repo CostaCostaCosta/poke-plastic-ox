@@ -49,9 +49,30 @@ ROSTERS: dict[str, tuple[str, list[tuple[str, int]]]] = {
     "TRAINER_PLASTIC_OX_ROUTE101": ("start", [
         ("SPECIES_TAILLOW", 4), ("SPECIES_POOCHYENA", 3), ("SPECIES_GOLDEEN", 3),
         ("SPECIES_LOTAD", 3), ("SPECIES_SURSKIT", 3), ("SPECIES_POLIWAG", 3)]),
+    # Route 103 is a short early route full of trainers, so nobody carries six:
+    # every trainer here has two to four LC Pokemon from Route 103's water
+    # table and the neighbouring Route 101 / Oldale grass, at levels 5-7.
     "TRAINER_PLASTIC_OX_ROUTE103": ("route103", [
-        ("SPECIES_WINGULL", 5), ("SPECIES_WHISMUR", 5), ("SPECIES_ELECTRIKE", 5),
-        ("SPECIES_CACNEA", 5), ("SPECIES_GULPIN", 4), ("SPECIES_CORPHISH", 4)]),
+        ("SPECIES_WINGULL", 6), ("SPECIES_WHISMUR", 6), ("SPECIES_ELECTRIKE", 6),
+        ("SPECIES_CACNEA", 7)]),
+    "TRAINER_MAY_ROUTE_103_TREECKO": ("route103", [
+        ("SPECIES_WINGULL", 5), ("SPECIES_TORCHIC", 6)]),
+    "TRAINER_DAISY": ("route103", [
+        ("SPECIES_LOTAD", 6), ("SPECIES_SEEDOT", 6), ("SPECIES_GULPIN", 7)]),
+    "TRAINER_AMY_AND_LIV_1": ("route103", [
+        ("SPECIES_TAILLOW", 6), ("SPECIES_ELECTRIKE", 6)]),
+    "TRAINER_ANDREW": ("route103", [
+        ("SPECIES_BARBOACH", 6), ("SPECIES_TENTACOOL", 6), ("SPECIES_CARVANHA", 7)]),
+    "TRAINER_MIGUEL_1": ("route103", [
+        ("SPECIES_WHISMUR", 6), ("SPECIES_SLAKOTH", 6)]),
+    "TRAINER_MARCOS": ("route103", [
+        ("SPECIES_ELECTRIKE", 6), ("SPECIES_POOCHYENA", 6), ("SPECIES_WHISMUR", 7)]),
+    "TRAINER_RHETT": ("route103", [
+        ("SPECIES_POLIWAG", 6), ("SPECIES_KRABBY", 6), ("SPECIES_CORPHISH", 7)]),
+    "TRAINER_PETE": ("route103", [
+        ("SPECIES_TENTACOOL", 6), ("SPECIES_GOLDEEN", 6), ("SPECIES_WAILMER", 7)]),
+    "TRAINER_ISABELLE": ("route103", [
+        ("SPECIES_WINGULL", 6), ("SPECIES_SURSKIT", 6), ("SPECIES_CORSOLA", 7)]),
     # Route 29's sixth slot used to be Ledyba, whose only LC sources were the
     # Route 29 / Route 24 / Route 25 Headbutt tables -- all of which have no
     # Headbutt tree on their map and were removed. Spinarak keeps the Bug-type
@@ -272,6 +293,33 @@ ROSTERS: dict[str, tuple[str, list[tuple[str, int]]]] = {
         ("SPECIES_TYRANITAR", 55), ("SPECIES_SALAMENCE", 55), ("SPECIES_METAGROSS", 55),
         ("SPECIES_FORRETRESS", 54), ("SPECIES_GENGAR", 53), ("SPECIES_STARMIE", 54)]),
 
+    # ---- Route 115, the OU road from Route 34 to Meteor Falls, cap 55 -----
+    # Opens with Saffron (Space Center flag), before or after Bruno/Silph.
+    # Koichi coaches the beach dojo and is the route's six-Pokemon boss; the
+    # rest keep their RS identities (fighters, Hector's collector pair, the
+    # triathlete, the ninja, two psychics) at the OU band.
+    "TRAINER_KOICHI": ("saffron", [
+        ("SPECIES_MACHAMP", 55), ("SPECIES_HARIYAMA", 54), ("SPECIES_HITMONTOP", 54),
+        ("SPECIES_HERACROSS", 54), ("SPECIES_MEDICHAM", 53), ("SPECIES_POLIWRATH", 53)]),
+    "TRAINER_TIMOTHY_1": ("saffron", [
+        ("SPECIES_URSARING", 53), ("SPECIES_KANGASKHAN", 53), ("SPECIES_TAUROS", 52)]),
+    "TRAINER_NOB_1": ("saffron", [
+        ("SPECIES_PRIMEAPE", 52), ("SPECIES_PINSIR", 53)]),
+    "TRAINER_CYNDY_1": ("saffron", [
+        ("SPECIES_HITMONCHAN", 52), ("SPECIES_MACHOKE", 52)]),
+    "TRAINER_HECTOR": ("saffron", [
+        ("SPECIES_SEVIPER", 52), ("SPECIES_SPINDA", 51), ("SPECIES_KECLEON", 52)]),
+    "TRAINER_KYRA": ("saffron", [
+        ("SPECIES_DODRIO", 53), ("SPECIES_SWELLOW", 52)]),
+    "TRAINER_JAIDEN": ("saffron", [
+        ("SPECIES_NINJASK", 52), ("SPECIES_CROBAT", 52), ("SPECIES_SWALOT", 51)]),
+    "TRAINER_HELENE": ("saffron", [
+        ("SPECIES_HITMONLEE", 53), ("SPECIES_GRANBULL", 52)]),
+    "TRAINER_ALIX": ("saffron", [
+        ("SPECIES_ALAKAZAM", 53), ("SPECIES_GARDEVOIR", 53)]),
+    "TRAINER_MARLENE": ("saffron", [
+        ("SPECIES_GRUMPIG", 52), ("SPECIES_XATU", 52)]),
+
     # ---- Gym 8, Blackthorn, OU cap 60 ------------------------------------
     "TRAINER_PLASTIC_OX_CLAIR": ("blackthorn", [
         ("SPECIES_GYARADOS", 59), ("SPECIES_JOLTEON", 58), ("SPECIES_SWAMPERT", 58),
@@ -326,6 +374,11 @@ KEEP_AS_IS = {
     # every story checkpoint on purpose and is checked by test_cerulean_cave.py.
     "TRAINER_PLASTIC_OX_RED": "authored ADV Ubers final boss; Cerulean Cave summit",
 }
+# Battle Frontier opponents: the block is a placeholder; src/plastic_ox_frontier.c
+# builds each party from plastic_ox/frontier/ at battle time (alpha/frontier.py).
+KEEP_AS_IS.update({f"TRAINER_PLASTIC_OX_FRONTIER_{t}": "Battle Frontier house; party drawn from plastic_ox/frontier/ at battle time"
+                   for t in ("LC", "PU", "NU", "RU", "UU", "UBERS", "OU")})
+
 # The five one-dancer battles were merged into TRAINER_PLASTIC_OX_KIMONO_TROUPE
 # (2026-11-25). Their ids stay (save data); nothing battles them any more.
 KEEP_AS_IS.update({f"TRAINER_PLASTIC_OX_KIMONO{s}": "retired; superseded by TRAINER_PLASTIC_OX_KIMONO_TROUPE"
@@ -957,7 +1010,6 @@ TRAINER_SALT.update(LATE_SALTS)
 # The first listed trainer is the boss. Forest/park follow the same pacing.
 ROUTE_GROUPS = {
     "Route101": ["ROUTE101"],
-    "Route103": ["ROUTE103"],
     "Route1_Frlg": ["ROUTE1"],
     "Route2_Frlg": ["ROUTE2_WADE", "ROUTE2_BEN"],
     "Route31_hns": ["ROUTE31"],

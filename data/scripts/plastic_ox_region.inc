@@ -188,52 +188,24 @@ PoxRegion_MonFlewAway::
 PoxRegion_MonFlewAwayText::
 	.string "The POKéMON flew away!$"
 
-@ ROUTE 44 <-> RUSTBORO threshold.  Story runs require the STONE BADGE in both
-@ directions; the battle demo (FLAG_POX_TRIGGERS_ENABLED unset) keeps the seam
-@ open.  The _Closed arms are reachable now, so neither branch is dead code.
+@ ROUTE 44 <-> RUSTBORO seam.  The city's east edge is a map connection; story
+@ runs need the STONE BADGE to step off it (the battle demo, with
+@ FLAG_POX_TRIGGERS_ENABLED unset, keeps it open).  The way back is ungated.
 PoxRegion_rustboro_route44_a::
-	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_rustboro_route44_a_Open
 	goto_if_unset FLAG_BADGE01_GET, PoxRegion_rustboro_route44_a_Closed
 PoxRegion_rustboro_route44_a_Open::
-	warp MAP_ROUTE44_HNS, 1, 15
-	waitstate
-	releaseall
 	end
 PoxRegion_rustboro_route44_a_Closed::
-	msgbox PoxRegion_Route44BadgeText, MSGBOX_DEFAULT
-	warp MAP_RUSTBORO_CITY, 38, 10
-	waitstate
-	releaseall
-	end
-
-PoxRegion_rustboro_route44_a_Sign::
-	msgbox PoxRegion_rustboro_route44_a_Text, MSGBOX_SIGN
-	end
-PoxRegion_rustboro_route44_a_Text::
-	.string "Route44\nMarked passage ahead.$"
-
-PoxRegion_rustboro_route44_b::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_rustboro_route44_b_Open
-	goto_if_unset FLAG_BADGE01_GET, PoxRegion_rustboro_route44_b_Closed
-PoxRegion_rustboro_route44_b_Open::
-	warp MAP_RUSTBORO_CITY, 38, 10
-	waitstate
-	releaseall
-	end
-PoxRegion_rustboro_route44_b_Closed::
 	msgbox PoxRegion_Route44BadgeText, MSGBOX_DEFAULT
-	warp MAP_ROUTE44_HNS, 1, 15
-	waitstate
+	applymovement OBJ_EVENT_ID_PLAYER, PoxRegion_rustboro_route44_a_StepBack
+	waitmovement 0
 	releaseall
 	end
-
-PoxRegion_rustboro_route44_b_Sign::
-	msgbox PoxRegion_rustboro_route44_b_Text, MSGBOX_SIGN
-	end
-PoxRegion_rustboro_route44_b_Text::
-	.string "RustboroCity\nMarked passage ahead.$"
+PoxRegion_rustboro_route44_a_StepBack:
+	walk_left
+	step_end
 
 PoxRegion_Route44BadgeText::
 	.string "The hiker on the east road checks\nfor the STONE BADGE.\pROXANNE awards it at the\nRUSTBORO GYM.$"
@@ -363,7 +335,7 @@ PoxRegion_route7_route103_a::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route7_route103_a_Open
 	goto_if_unset FLAG_POX_STORY_FUJI, PoxRegion_route7_route103_a_Closed
 PoxRegion_route7_route103_a_Open::
-	warp MAP_ROUTE103, 78, 11
+	warp MAP_ROUTE103, 78, 10
 	waitstate
 	releaseall
 	end
@@ -385,16 +357,11 @@ PoxRegion_route7_route103_b_Open::
 	end
 PoxRegion_route7_route103_b_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE103, 78, 11
+	warp MAP_ROUTE103, 78, 10
 	waitstate
 	releaseall
 	end
 
-PoxRegion_route7_route103_b_Sign::
-	msgbox PoxRegion_route7_route103_b_Text, MSGBOX_SIGN
-	end
-PoxRegion_route7_route103_b_Text::
-	.string "ROUTE 7\nKeep to the marked passage.$"
 
 PoxRegion_route103_cinnabar_a::
 	lockall
@@ -620,93 +587,93 @@ PoxRegion_route19_saffron_b_Sign::
 PoxRegion_route19_saffron_b_Text::
 	.string "SAFFRON CITY - SOUTH GATE\nROUTE 19 and the MOSSDEEP road$"
 
-PoxRegion_saffron_route5_a::
+PoxRegion_saffron_route34_a::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_saffron_route5_a_Open
-	goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxRegion_saffron_route5_a_Closed
-PoxRegion_saffron_route5_a_Open::
-	warp MAP_ROUTE5_HNS, 31, 38
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_saffron_route34_a_Open
+	goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxRegion_saffron_route34_a_Closed
+PoxRegion_saffron_route34_a_Open::
+	warp MAP_ROUTE34_HNS, 31, 65
 	waitstate
 	releaseall
 	end
-PoxRegion_saffron_route5_a_Closed::
+PoxRegion_saffron_route34_a_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
 	warp MAP_SAFFRON_CITY_HNS, 29, 6
 	waitstate
 	releaseall
 	end
 
-PoxRegion_saffron_route5_a_Sign::
-	msgbox PoxRegion_saffron_route5_a_Text, MSGBOX_SIGN
+PoxRegion_saffron_route34_a_Sign::
+	msgbox PoxRegion_saffron_route34_a_Text, MSGBOX_SIGN
 	end
-PoxRegion_saffron_route5_a_Text::
-	.string "SAFFRON CITY - NORTH GATE\nROUTE 5 to BLACKTHORN$"
+PoxRegion_saffron_route34_a_Text::
+	.string "SAFFRON CITY - NORTH GATE\nROUTE 34 to BLACKTHORN$"
 
-PoxRegion_saffron_route5_b::
+PoxRegion_saffron_route34_b::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_saffron_route5_b_Open
-	goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxRegion_saffron_route5_b_Closed
-PoxRegion_saffron_route5_b_Open::
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_saffron_route34_b_Open
+	goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxRegion_saffron_route34_b_Closed
+PoxRegion_saffron_route34_b_Open::
 	warp MAP_SAFFRON_CITY_HNS, 29, 6
 	waitstate
 	releaseall
 	end
-PoxRegion_saffron_route5_b_Closed::
+PoxRegion_saffron_route34_b_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE5_HNS, 31, 38
+	warp MAP_ROUTE34_HNS, 31, 65
 	waitstate
 	releaseall
 	end
 
-PoxRegion_saffron_route5_b_Sign::
-	msgbox PoxRegion_saffron_route5_b_Text, MSGBOX_SIGN
+PoxRegion_saffron_route34_b_Sign::
+	msgbox PoxRegion_saffron_route34_b_Text, MSGBOX_SIGN
 	end
-PoxRegion_saffron_route5_b_Text::
-	.string "SaffronCity\nMarked passage ahead.\pYou are leaving ROUTE 5.$"
+PoxRegion_saffron_route34_b_Text::
+	.string "SaffronCity\nMarked passage ahead.\pYou are leaving ROUTE 34.$"
 
-PoxRegion_route5_route115_a::
+PoxRegion_route34_route115_a::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route5_route115_a_Open
-	goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxRegion_route5_route115_a_Closed
-PoxRegion_route5_route115_a_Open::
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route34_route115_a_Open
+	goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxRegion_route34_route115_a_Closed
+PoxRegion_route34_route115_a_Open::
 	warp MAP_ROUTE115, 19, 79
 	waitstate
 	releaseall
 	end
-PoxRegion_route5_route115_a_Closed::
+PoxRegion_route34_route115_a_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE5_HNS, 31, 0
+	warp MAP_ROUTE34_HNS, 27, 1
 	waitstate
 	releaseall
 	end
 
-PoxRegion_route5_route115_a_Sign::
-	msgbox PoxRegion_route5_route115_a_Text, MSGBOX_SIGN
+PoxRegion_route34_route115_a_Sign::
+	msgbox PoxRegion_route34_route115_a_Text, MSGBOX_SIGN
 	end
-PoxRegion_route5_route115_a_Text::
-	.string "Route115\nMarked passage ahead.\pYou are leaving ROUTE 5.$"
+PoxRegion_route34_route115_a_Text::
+	.string "Route115\nMarked passage ahead.\pYou are leaving ROUTE 34.$"
 
-PoxRegion_route5_route115_b::
+PoxRegion_route34_route115_b::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route5_route115_b_Open
-	goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxRegion_route5_route115_b_Closed
-PoxRegion_route5_route115_b_Open::
-	warp MAP_ROUTE5_HNS, 31, 0
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route34_route115_b_Open
+	goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxRegion_route34_route115_b_Closed
+PoxRegion_route34_route115_b_Open::
+	warp MAP_ROUTE34_HNS, 27, 1
 	waitstate
 	releaseall
 	end
-PoxRegion_route5_route115_b_Closed::
+PoxRegion_route34_route115_b_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
 	warp MAP_ROUTE115, 19, 79
 	waitstate
 	releaseall
 	end
 
-PoxRegion_route5_route115_b_Sign::
-	msgbox PoxRegion_route5_route115_b_Text, MSGBOX_SIGN
+PoxRegion_route34_route115_b_Sign::
+	msgbox PoxRegion_route34_route115_b_Text, MSGBOX_SIGN
 	end
-PoxRegion_route5_route115_b_Text::
-	.string "Route5\nMarked passage ahead.\pYou are leaving ROUTE 115.$"
+PoxRegion_route34_route115_b_Text::
+	.string "Route34\nMarked passage ahead.\pYou are leaving ROUTE 115.$"
 
 PoxRegion_meteor_blackthorn_a::
 	lockall
@@ -893,14 +860,14 @@ PoxRegion_victory_indigo_b_Text::
 PoxRegion_lavender_harbor_a::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_lavender_harbor_a_Open
-	goto_if_unset FLAG_SYS_GAME_CLEAR, PoxRegion_lavender_harbor_a_Closed
+	goto_if_unset FLAG_POX_FRONTIER_INVITE, PoxRegion_lavender_harbor_a_Closed
 PoxRegion_lavender_harbor_a_Open::
 	warp MAP_PLASTIC_OX_HARBOR, 10, 13
 	waitstate
 	releaseall
 	end
 PoxRegion_lavender_harbor_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
+	msgbox PoxFrontier_Text_HarborClosed, MSGBOX_DEFAULT
 	warp MAP_LAVENDER_TOWN_HNS, 18, 22
 	waitstate
 	releaseall
@@ -915,7 +882,7 @@ PoxRegion_lavender_harbor_a_Text::
 PoxRegion_lavender_harbor_b::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_lavender_harbor_b_Open
-	goto_if_unset FLAG_SYS_GAME_CLEAR, PoxRegion_lavender_harbor_b_Closed
+	goto_if_unset FLAG_POX_FRONTIER_INVITE, PoxRegion_lavender_harbor_b_Closed
 PoxRegion_lavender_harbor_b_Open::
 	warp MAP_LAVENDER_TOWN_HNS, 18, 22
 	waitstate
@@ -937,14 +904,14 @@ PoxRegion_lavender_harbor_b_Text::
 PoxRegion_harbor_frontier_a::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_harbor_frontier_a_Open
-	goto_if_unset FLAG_SYS_GAME_CLEAR, PoxRegion_harbor_frontier_a_Closed
+	goto_if_unset FLAG_POX_FRONTIER_INVITE, PoxRegion_harbor_frontier_a_Closed
 PoxRegion_harbor_frontier_a_Open::
 	warp MAP_BATTLE_FRONTIER_OUTSIDE_WEST, 25, 66
 	waitstate
 	releaseall
 	end
 PoxRegion_harbor_frontier_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
+	msgbox PoxFrontier_Text_HarborClosed, MSGBOX_DEFAULT
 	warp MAP_PLASTIC_OX_HARBOR, 15, 14
 	waitstate
 	releaseall
@@ -959,7 +926,7 @@ PoxRegion_harbor_frontier_a_Text::
 PoxRegion_harbor_frontier_b::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_harbor_frontier_b_Open
-	goto_if_unset FLAG_SYS_GAME_CLEAR, PoxRegion_harbor_frontier_b_Closed
+	goto_if_unset FLAG_POX_FRONTIER_INVITE, PoxRegion_harbor_frontier_b_Closed
 PoxRegion_harbor_frontier_b_Open::
 	warp MAP_PLASTIC_OX_HARBOR, 15, 14
 	waitstate
@@ -1139,6 +1106,7 @@ PoxRegion_Arrival_OldaleTown_End::
 	end
 
 PoxRegion_Arrival_PalletTown_Frlg::
+	call PoxFrontier_PalletArrival
 PoxRegion_Arrival_PalletTown_Frlg_End::
 	end
 
@@ -1198,6 +1166,7 @@ PoxRegion_Arrival_Route21_South_Frlg_End::
 	end
 
 PoxRegion_Arrival_Route24_hns::
+	call_if_defeated TRAINER_PLASTIC_OX_ROUTE24_ROCKET, Route24_EventScript_HideRocket
 PoxRegion_Arrival_Route24_hns_End::
 	end
 
@@ -1215,6 +1184,10 @@ PoxRegion_Arrival_Route2_Frlg_End::
 
 PoxRegion_Arrival_Route33_hns::
 PoxRegion_Arrival_Route33_hns_End::
+	end
+
+PoxRegion_Arrival_Route34_hns::
+PoxRegion_Arrival_Route34_hns_End::
 	end
 
 PoxRegion_Arrival_Route35_hns::
@@ -1239,10 +1212,6 @@ PoxRegion_Arrival_Route45_hns_End::
 
 PoxRegion_Arrival_Route46_hns::
 PoxRegion_Arrival_Route46_hns_End::
-	end
-
-PoxRegion_Arrival_Route5_hns::
-PoxRegion_Arrival_Route5_hns_End::
 	end
 
 PoxRegion_Arrival_Route7_hns::

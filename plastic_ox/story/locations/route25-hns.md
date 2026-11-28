@@ -39,7 +39,8 @@ A seaside promenade that ends at a door. `Route25_hns` runs east from Route 24 w
 | Youngster | `(27,19)` `Route25_EventScript_Npc1` | `TRAINER_PLASTIC_OX_ROUTE25_DUDLEY` | counts turns from the bridge, then loses count | keep; the best-written line on the route |
 | Scientist Pat | `(65,18)` `Route25_EventScript_Pat` | none | "I study the POKéMON here between battles." — no battle, though `TRAINER_PLASTIC_OX_ROUTE25_PAT` exists | attach the battle or drop the trainer and keep the flavour |
 | Cuttable tree | `(66,13)` `Route25_EventScript_Npc7` | none | a `CUTTABLE_TREE` with a talk script ("branches rustle") | point it at `EventScript_CutTree`; a tree that cannot be cut and speaks is a placeholder |
-| Misty | `(100,17)` `LOCALID_ROUTE25_MISTY` and `(81,17)` `LOCALID_CAPE_MISTY` | none | two Mistys, two lines, no battle | collapse to one; the cape one should own the Eevee/grandfather remark |
+| Misty | `(100,17)` `LOCALID_ROUTE25_MISTY` | none | the one Misty on the road | keep |
+| Postwoman | `(81,17)` `LOCALID_ROUTE25_POSTWOMAN` `Route25_EventScript_Npc12` | none | was a second Misty; now a postwoman who brings the cottage its parcels and never turns down the tea | keep |
 | Eusine | `(99,23)` `LOCALID_ROUTE25_EUSINE` | none | admires his own shoes | keep only if `Route14_hns` loses its Eusine |
 | Unused label | `Route25_EventScript_Npc2` | never placed | a plain talker script with no object | delete, or place it as the trainer the route is missing |
 | Hidden item | `(50,12)` `FLAG_POX_HIDDEN_ROUTE25_19` | flag unset | `ITEM_REVIVE` | keep; a Revive before the first dungeon is the right generosity |

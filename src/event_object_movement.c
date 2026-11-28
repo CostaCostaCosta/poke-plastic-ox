@@ -2925,6 +2925,28 @@ void TrySpawnObjectEvents(s16 cameraX, s16 cameraY)
     }
 }
 
+// Plastic Ox: after crossing a connection between maps whose tilesets can't
+// render each other, the old map's margin is redrawn from the new map's edge,
+// so NPCs left behind would stand on the wrong terrain. Drop them.
+void PlasticOx_RemoveObjectEventsFromOtherMaps(void)
+{
+    u32 i;
+
+    for (i = 0; i < OBJECT_EVENTS_COUNT; i++)
+    {
+        struct ObjectEvent *objectEvent = &gObjectEvents[i];
+
+        if (!objectEvent->active || objectEvent->isPlayer)
+            continue;
+        if (objectEvent->localId == OBJ_EVENT_ID_NPC_FOLLOWER || objectEvent->localId == OBJ_EVENT_ID_FOLLOWER)
+            continue;
+        if (objectEvent->mapNum == gSaveBlock1Ptr->location.mapNum
+         && objectEvent->mapGroup == gSaveBlock1Ptr->location.mapGroup)
+            continue;
+        RemoveObjectEvent(objectEvent);
+    }
+}
+
 void RemoveObjectEventsOutsideView(void)
 {
     u8 i, j;

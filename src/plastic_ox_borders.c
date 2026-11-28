@@ -58,6 +58,28 @@ static const struct BorderZone sBorderZones[] =
     {LAYOUT_ROUTE36_HNS, 66, HI, 17, 17, 0x024, 0x025},
     {LAYOUT_ROUTE36_HNS, 66, HI, 23, 23, 0x020, 0x021},
     {LAYOUT_ROUTE36_HNS, 66, HI, 24, 24, 0x01A, 0x01B},
+    // Route 103, east: the sand road (rows 9..10) runs on toward Route 7
+    // between grass verges, instead of ending in the forest border. Rows
+    // 8..11 are one whole border tree pair, so no tree is sliced.
+    {LAYOUT_ROUTE103, 80, HI,  8,  8, ONE(0x001)},
+    {LAYOUT_ROUTE103, 80, HI,  9,  9, ONE(0x119)},
+    {LAYOUT_ROUTE103, 80, HI, 10, 10, ONE(0x129)},
+    {LAYOUT_ROUTE103, 80, HI, 11, 11, ONE(0x001)},
+    // Route 7, west: the road (rows 4..7) runs on toward Route 103 under
+    // the tree line, whose bottom row (3) keeps the layout's own edge.
+    {LAYOUT_ROUTE7_HNS, LO, -1,  3,  3, 0x024, 0x025},
+    {LAYOUT_ROUTE7_HNS, LO, -1,  4,  4, 0x008, 0x009},
+    {LAYOUT_ROUTE7_HNS, LO, -1,  5,  5, 0x010, 0x011},
+    {LAYOUT_ROUTE7_HNS, LO, -1,  6,  6, 0x008, 0x009},
+    {LAYOUT_ROUTE7_HNS, LO, -1,  7,  7, 0x010, 0x011},
+    // Goldenrod City, south: the avenue (columns 31..34) runs on toward
+    // Route 33 through the forest border, with a verge where a tree pair
+    // would be sliced (30, 35).
+    {LAYOUT_GOLDENROD_CITY_HNS, 30, 30, 46, HI, ONE(0x008)},
+    {LAYOUT_GOLDENROD_CITY_HNS, 31, 31, 46, HI, ONE(0x3D0)},
+    {LAYOUT_GOLDENROD_CITY_HNS, 32, 33, 46, HI, ONE(0x3D1)},
+    {LAYOUT_GOLDENROD_CITY_HNS, 34, 34, 46, HI, ONE(0x3D2)},
+    {LAYOUT_GOLDENROD_CITY_HNS, 35, 35, 46, HI, ONE(0x009)},
 };
 
 bool32 PlasticOx_GetBorderOverride(s32 x, s32 y, u16 *metatileId)

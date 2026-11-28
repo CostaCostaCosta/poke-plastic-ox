@@ -499,8 +499,8 @@
     {
       "id": "MAPSEC_NEW_MAUVILLE",
       "name": "NEW MAUVILLE",
-      "x": 8,
-      "y": 7,
+      "x": 24,
+      "y": 4,
       "width": 1,
       "height": 1
     },
@@ -1794,8 +1794,8 @@
     {
       "id": "MAPSEC_DRAGONS_DEN",
       "name": "DRAGON'S DEN",
-      "x": 22,
-      "y": 14,
+      "x": 7,
+      "y": 7,
       "width": 1,
       "height": 1
     },

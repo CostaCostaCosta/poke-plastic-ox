@@ -134,11 +134,11 @@
   "route7_route103_b": {
     "tile": [
       79,
-      11
+      10
     ],
     "approach": [
       78,
-      11
+      10
     ],
     "direction": "E"
   },
@@ -590,6 +590,50 @@
     "approach": [
       39,
       1
+    ],
+    "direction": "E"
+  },
+  "saffron_route34_b": {
+    "tile": [
+      31,
+      66
+    ],
+    "approach": [
+      31,
+      65
+    ],
+    "direction": "S"
+  },
+  "route34_route115_a": {
+    "tile": [
+      27,
+      0
+    ],
+    "approach": [
+      27,
+      1
+    ],
+    "direction": "N"
+  },
+  "saffron_route34_a": {
+    "tile": [
+      30,
+      6
+    ],
+    "approach": [
+      29,
+      6
+    ],
+    "direction": "E"
+  },
+  "route34_route115_b": {
+    "tile": [
+      20,
+      79
+    ],
+    "approach": [
+      19,
+      79
     ],
     "direction": "E"
   },

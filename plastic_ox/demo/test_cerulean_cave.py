@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Cerulean Cave: Route 24 gate, Mt. Silver interior, RED and MEWTWO finale.
+"""Cerulean Cave: Cerulean City gate, Mt. Silver interior, RED and MEWTWO finale.
 
-Static part: the Route 24 knoll and the waterfall room warp to each other;
+Static part: Cerulean City's FRLG cave mouth (reached by surfing south from
+Route 24) and the waterfall room warp to each other;
 the cave guard hides on FLAG_SYS_GAME_CLEAR; every imported cave table offers
 UNOWN and WOBBUFFET; RED (trainer 958) carries exactly the requested team and
 records his win in FLAG_POX_TRAINER_RED.
@@ -44,17 +45,18 @@ def load_map(name):
 
 
 def static_checks() -> None:
-    r24, fall = load_map("Route24_hns"), load_map("MtSilver_1F_WaterfallRoom_hns")
-    assert r24["warp_events"] == [dict(x=8, y=10, elevation=3, dest_map="MAP_MT_SILVER_1F_WATERFALL_ROOM_HNS",
-                                       dest_warp_id="0")], r24["warp_events"]
-    assert fall["warp_events"][0]["dest_map"] == "MAP_ROUTE24_HNS" and fall["warp_events"][0]["dest_warp_id"] == "0"
-    guard = [o for o in r24["object_events"] if o["script"] == "Route24_EventScript_CaveGuard"]
-    assert len(guard) == 1 and (guard[0]["x"], guard[0]["y"]) == (8, 11) and guard[0]["flag"] == "FLAG_SYS_GAME_CLEAR"
-    ids = {load_map(m)["id"] for m in CAVE_MAPS + ["MtSilver_SummitDay_hns", "Route24_hns"]}
+    cer, fall = load_map("CeruleanCity_Frlg"), load_map("MtSilver_1F_WaterfallRoom_hns")
+    mouth = cer["warp_events"][7]
+    assert (mouth["x"], mouth["y"], mouth["dest_map"], mouth["dest_warp_id"]) == (
+        1, 12, "MAP_MT_SILVER_1F_WATERFALL_ROOM_HNS", "0"), mouth
+    assert fall["warp_events"][0]["dest_map"] == "MAP_CERULEAN_CITY" and fall["warp_events"][0]["dest_warp_id"] == "7"
+    guard = [o for o in cer["object_events"] if o.get("script") == "CeruleanCity_EventScript_CeruleanCaveGuard"]
+    assert len(guard) == 1 and (guard[0]["x"], guard[0]["y"]) == (1, 13) and guard[0]["flag"] == "FLAG_SYS_GAME_CLEAR"
+    ids = {load_map(m)["id"] for m in CAVE_MAPS + ["MtSilver_SummitDay_hns", "CeruleanCity_Frlg"]}
     for m in CAVE_MAPS + ["MtSilver_SummitDay_hns"]:
         for w in load_map(m)["warp_events"]:
             assert w["dest_map"] in ids, (m, w)
-    print("  ok  Route 24 knoll <-> waterfall room; guard hides on FLAG_SYS_GAME_CLEAR; no dangling warps")
+    print("  ok  Cerulean City mouth <-> waterfall room; guard hides on FLAG_SYS_GAME_CLEAR; no dangling warps")
 
     enc = json.loads((ROOT / "src/data/wild_encounters.json").read_text())["wild_encounter_groups"][0]["encounters"]
     for m in CAVE_MAPS:
@@ -139,39 +141,36 @@ def emulator_checks() -> None:
         return s["x"], s["y"]
 
     # 1. Before the Hall of Fame the League guard stands in the cave mouth.
-    g.warp("Route24_hns", 10, 11)
+    # (test_route24_cerulean.py surfs here from Route 24 with the D-pad.)
+    g.warp("CeruleanCity_Frlg", 1, 14)
     g.frame(60)
-    step(K.KEY_LEFT)
-    assert pos() == (9, 11), pos()
-    r = talk(g, K.KEY_LEFT)
+    r = talk(g, K.KEY_UP)
     assert any("HALL OF FAME" in t for t in r["text"]), r["text"]
     settle(g)
-    step(K.KEY_LEFT, 2)
-    assert at(g, "Route24_hns") and pos() == (9, 11), (g.state(), pos())
+    step(K.KEY_UP, 2)
+    assert at(g, "CeruleanCity_Frlg") and pos() == (1, 14), (g.state(), pos())
     shot(g, "cerulean_cave_guard")
-    print("  ok  guard blocks the Route 24 cave before the Hall of Fame")
+    print("  ok  guard blocks the Cerulean City cave mouth before the Hall of Fame")
 
-    # 2. After the Hall of Fame: walk in through the knoll, then back out.
+    # 2. After the Hall of Fame: walk in through the mouth, then back out.
     g.flag("FLAG_SYS_GAME_CLEAR", True)
-    g.warp("Route24_hns", 10, 11)
+    g.warp("CeruleanCity_Frlg", 1, 14)
     g.frame(60)
-    step(K.KEY_LEFT, 2)
-    assert pos() == (8, 11), ("guard still there", pos())
-    step(K.KEY_UP)
+    step(K.KEY_UP, 2)
     g.frame(120)
-    assert at(g, "MtSilver_1F_WaterfallRoom_hns"), g.state()
+    assert at(g, "MtSilver_1F_WaterfallRoom_hns"), ("guard still there", g.state())
     arrived = pos()
     shot(g, "cerulean_cave_waterfall_room")
-    print(f"  ok  Route 24 knoll -> Cerulean Cave waterfall room at {arrived}")
+    print(f"  ok  Cerulean City mouth -> Cerulean Cave waterfall room at {arrived}")
     for _ in range(4):
-        if at(g, "Route24_hns"):
+        if at(g, "CeruleanCity_Frlg"):
             break
         step(K.KEY_DOWN)
         g.frame(60)
     g.frame(120)
-    assert at(g, "Route24_hns"), g.state()
-    assert pos() in ((8, 10), (8, 11)), pos()
-    print(f"  ok  waterfall room -> Route 24 knoll at {pos()}")
+    assert at(g, "CeruleanCity_Frlg"), g.state()
+    assert pos() in ((1, 12), (1, 13)), pos()
+    print(f"  ok  waterfall room -> Cerulean City cave mouth at {pos()}")
 
     # 3. Summit: RED and MEWTWO in the overworld. A loss leaves RED there.
     def trainer_id():

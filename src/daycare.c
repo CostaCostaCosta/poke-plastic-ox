@@ -503,7 +503,7 @@ static enum Species GetEggSpecies(enum Species species)
         found = FALSE;
         for (j = 1; j < NUM_SPECIES; j++)
         {
-            if (!IsSpeciesEnabled(j))
+            if (!IsSpeciesInGen3Dex(j)) // Plastic Ox: eggs never hatch a later-generation baby (Munchlax, Mantyke)
                 continue;
             const struct Evolution *evolutions = GetSpeciesEvolutions(j);
             if (evolutions == NULL)

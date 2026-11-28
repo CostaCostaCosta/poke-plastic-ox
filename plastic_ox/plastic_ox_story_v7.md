@@ -65,7 +65,7 @@ Badge identities, not prerequisites between those OU objectives.
 21. **Saffron City — two open objectives**
     - **Gym 7: Bruno / Fighting Dojo**
     - **Silph Co. — Team Rocket III / Giovanni / world-crisis climax**
-22. **Route 5 → Route 115 → Meteor Falls**
+22. **Route 34 → Route 115 → Meteor Falls**
 23. **Blackthorn City — Gym 8: Clair**
 24. **Return to Ecruteak — west League gate opens**
 25. **Victory Road**
@@ -623,7 +623,7 @@ Once open, Saffron becomes the central late-game hub connecting:
 - Lavender / Route 8
 - Route 7 / Route 103 / western world
 - Mossdeep / southern approach
-- Route 5 / the future Blackthorn approach
+- Route 34 / the Blackthorn approach
 
 # Saffron City
 
@@ -638,7 +638,7 @@ objective is a prerequisite for reaching or battling the eighth Gym.
 
 Both are OU-level challenges.
 
-The **north exit toward Route 5 opens with Saffron after the Space Center**, so
+The **north exit toward Route 34 opens with Saffron after the Space Center**, so
 the player can explore all the way to Blackthorn and challenge Clair immediately.
 
 ---
@@ -697,7 +697,12 @@ Saffron's north gate opens with the rest of the city after the Space Center.
 
 Progression:
 
-**Saffron → Route 5 → Route 115 → Meteor Falls → Blackthorn**
+**Saffron → Route 34 → Route 115 → Meteor Falls → Blackthorn**
+
+Route 34 is Saffron's north road. It took the place of the empty Kanto Route 5:
+a Johto road whose wild Ditto, headbutt trees and old border signs make it the
+last ordinary ground before the mountains. Its old Act I branch off Route 116 is
+closed.
 
 Meteor Falls functions as the final mountain dungeon and the replacement for Ice Path in the Blackthorn approach.
 

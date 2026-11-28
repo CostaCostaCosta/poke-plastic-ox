@@ -8,7 +8,7 @@ depth: supporting
 wiki: battlefrontier-outsidewest
 maps: [BattleFrontier_OutsideWest]
 also_maps: [BattleFrontier_ReceptionGate, BattleFrontier_RankingHall]
-flags: [FLAG_SYS_GAME_CLEAR, FLAG_POX_TRIGGERS_ENABLED]
+flags: [FLAG_POX_FRONTIER_INVITE, FLAG_SYS_GAME_CLEAR, FLAG_POX_TRIGGERS_ENABLED]
 items: [ITEM_SS_TICKET]
 status: drafted
 ---
@@ -17,11 +17,11 @@ status: drafted
 
 ## Snapshot
 
-The postgame's front square: a paved resort plaza of fountains, scoreboards, and eleven doors, entered only from `PlasticOx_Harbor` at `(25,66)` once `FLAG_SYS_GAME_CLEAR` is set. Nothing here advances the badge spine — the player arrives as Champion and is immediately just another competitor with a lanyard. The emotional note is *holiday crowd*: a place built entirely for people who came to compete, and therefore a place where nobody lives.
+The postgame's front square: a paved resort plaza of fountains, scoreboards, and eleven doors, entered only from `PlasticOx_Harbor` at `(25,66)` once OAK has handed the Champion the FRONTIER INVITE (`FLAG_POX_FRONTIER_INVITE`). Nothing here advances the badge spine — the player arrives as Champion and is immediately just another competitor with a lanyard. The emotional note is *holiday crowd*: a place built entirely for people who came to compete, and therefore a place where nobody lives.
 
 ## Plot points
 
-1. **Champion-only arrival — reveal-ladder step 18.** `PoxRegion_harbor_frontier_a` at the harbor's `(16,14)` warps here to `(25,66)`; `PoxRegion_harbor_frontier_b` at `(26,66)` goes back. Both check `FLAG_SYS_GAME_CLEAR` (and the build's `FLAG_POX_TRIGGERS_ENABLED`), and both fall back to a "closed" message and a return warp. There is no second entrance.
+1. **Champion-only arrival — reveal-ladder step 18.** `PoxRegion_harbor_frontier_a` at the harbor's `(16,14)` warps here to `(25,66)`; `PoxRegion_harbor_frontier_b` at `(26,66)` goes back. Both check `FLAG_POX_FRONTIER_INVITE` (and the build's `FLAG_POX_TRIGGERS_ENABLED`), and both fall back to a "guests only" message and a return warp. The hand-off: after the Hall of Fame, MOM calls the player over on reaching Pallet (or at home), and OAK gives ITEM_FRONTIER_INVITE (`plastic_ox/alpha/frontier.py`). There is no second entrance.
 2. **The square is a wayfinding problem.** Three facility signs (Dome `(15,18)`, Pike `(45,30)`, Factory `(16,43)`), a Mart at `(51,51)`, lounges, Scott's house at `(44,5)`, Artisan Cave at `(39,55)`, and the Reception Gate at `(26,61)`/`(26,65)`. The hub's only narrative job is telling 25 strangers apart and pointing at doors.
 3. **The crowd is donor Emerald, unrewritten.** The Dome Ace fan trio at `(12,9)`, `(12,10)`, `(11,10)` argue about being noticed; `LOCALID_FRONTIER_MANIAC_1` and `_2` at `(13,44)`/`(14,44)` share one string verbatim; the man at `(8,5)` explains that the fans were "obliterated by this certain TRAINER at a tournament". All of it assumes a Hoenn celebrity circuit v7 does not have.
 4. **The harbor still sails to Hoenn.** The attendant at `(19,68)` checks `ITEM_SS_TICKET` and offers Slateport or Lilycove; that ticket is only granted by the unused Littleroot moving-in script. The `LOCALID_FRONTIER_SS_TIDAL` body at `(20,70)` carries no script.
@@ -33,7 +33,7 @@ The postgame's front square: a paved resort plaza of fountains, scoreboards, and
 
 | Interaction | Where | Trigger / state | Current behavior | Target behavior |
 | --- | --- | --- | --- | --- |
-| Harbor gate | `(26,66)` `PoxRegion_harbor_frontier_b` | `FLAG_SYS_GAME_CLEAR` | warps to `MAP_PLASTIC_OX_HARBOR`, `(15,14)`; otherwise "closed" and back to `(25,66)` | keep; the tile should read as a gangway, not a teleport |
+| Harbor gate | `(26,66)` `PoxRegion_harbor_frontier_b` | `FLAG_POX_FRONTIER_INVITE` | warps to `MAP_PLASTIC_OX_HARBOR`, `(15,14)`; otherwise "closed" and back to `(25,66)` | keep; the tile should read as a gangway, not a teleport |
 | Harbor sign | `(25,67)` `PoxRegion_harbor_frontier_b_Sign` | always | "Harbor / Marked passage ahead." | rewrite as a sailing board: destination, time, whether it runs |
 | Reception Gate doors | `(26,61)`, `(26,65)` | always | warp to `BattleFrontier_ReceptionGate` warps 1 and 0 | keep; the pair is a gate, so make one enter and one exit visually |
 | Reception greeter | `BattleFrontier_ReceptionGate` `(0,11)` | always | "The front lines of POKéMON battling!" | keep the welcome, cut the slogan |
@@ -79,9 +79,10 @@ The postgame's front square: a paved resort plaza of fountains, scoreboards, and
 - Wiki page: `battlefrontier-outsidewest.html`.
 - Maps: `BattleFrontier_OutsideWest` (`MAP_BATTLE_FRONTIER_OUTSIDE_WEST`), `BattleFrontier_ReceptionGate` (`MAP_BATTLE_FRONTIER_RECEPTION_GATE`), `BattleFrontier_RankingHall` (`MAP_BATTLE_FRONTIER_RANKING_HALL`); 47 `BattleFrontier_*` maps exist behind the square's doors.
 - Scripts: `data/maps/BattleFrontier_OutsideWest/scripts.inc`, `data/maps/BattleFrontier_ReceptionGate/scripts.inc`, `data/maps/BattleFrontier_RankingHall/scripts.inc`, `data/scripts/plastic_ox_region.inc` (`PoxRegion_harbor_frontier_a`, `PoxRegion_harbor_frontier_b`).
-- Gates: `FLAG_SYS_GAME_CLEAR` from the Hall of Fame's `GameClear`; `FLAG_POX_TRIGGERS_ENABLED` for the relaxed build.
+- Gates: `FLAG_POX_FRONTIER_INVITE` from OAK (after `FLAG_SYS_GAME_CLEAR`); `FLAG_POX_TRIGGERS_ENABLED` for the relaxed build.
+- Houses (`plastic_ox/alpha/frontier.py`): each lobby's singles desk runs seven-battle rounds in one ADV tier against teams from `plastic_ox/frontier/` — Pyramid LC, Pike PU, Factory NU, Arena RU, Palace UU, Dome Ubers, Tower OU. The desk checks the party with the gym tier rules (Tower: the Saffron/Blackthorn OU check; Dome: clauses only); `FLAG_POX_FRONTIER_CLEARED_LC` … `FLAG_POX_FRONTIER_CLEARED_OU` / `_UBERS` record each first clear. The doubles/multis desks and the Pyramid hint giver are hidden.
 - Items: `ITEM_SS_TICKET` is the ferry's only check and is only granted by `PlayersHouse_1F_EventScript_*` in `data/scripts/players_house.inc`.
-- Known gaps: the entire crowd is unrewritten Emerald, including a duplicated Maniac string and a celebrity frame with no v7 owner; the SS Tidal still offers Slateport and Lilycove with an effectively unobtainable ticket; `LOCALID_FRONTIER_RECEPTION_SCOTT` is a scriptless object; the map's only Plastic Ox content is the harbor sign and the two gate triggers; the facilities themselves are full vanilla Emerald with Symbols, and `plastic_ox/alpha/PLAN.md` lists postgame facility content as a separate milestone.
+- Known gaps: the entire crowd is unrewritten Emerald, including a duplicated Maniac string and a celebrity frame with no v7 owner; the SS Tidal still offers Slateport and Lilycove with an effectively unobtainable ticket; `LOCALID_FRONTIER_RECEPTION_SCOTT` is a scriptless object; the map's only Plastic Ox content is the harbor sign and the two gate triggers; the houses run Plastic Ox tier rounds (no Symbols, BP or prizes yet), but their lobby crowds and the battle rooms behind them are still vanilla Emerald.
 
 ## Open questions
 

@@ -2,6 +2,7 @@
 #include "battle.h"
 #include "load_save.h"
 #include "battle_setup.h"
+#include "plastic_ox_frontier.h"
 #include "battle_tower.h"
 #include "battle_transition.h"
 #include "main.h"
@@ -1507,7 +1508,7 @@ static void CB2_EndTrainerBattle(void)
     }
     else if (IsPlayerDefeated(gBattleOutcome))
     {
-        if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE || InTrainerHillChallenge() || FlagGet(B_FLAG_NO_WHITEOUT))
+        if (CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE || InTrainerHillChallenge() || FlagGet(B_FLAG_NO_WHITEOUT) || PoxFrontier_IsActive())
             SetMainCallback2(CB2_ReturnToFieldContinueScriptPlayMapMusic);
         else
             SetMainCallback2(CB2_WhiteOut);
