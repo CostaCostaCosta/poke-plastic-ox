@@ -186,9 +186,25 @@ def contest_quick_ball():
     print(f'ok  contest quick-throw used a Sport Ball ({before} -> {before - 1}); own Poke Balls untouched', flush=True)
 
 
+def cinnabar_open_sea():
+    from test_region_walk import cross, current, setup
+    g = setup()
+    g.flag('FLAG_POX_TRIGGERS_ENABLED', True)
+    g.flag('FLAG_POX_STORY_MANSION', False)
+    g.test_water = True
+    # x=12 is open water on both sides of the seam (Cinnabar's x=11 is a wall).
+    g.warp('Route21_South_Frlg', 12, 47)
+    g.frame(60)
+    cross(g, 'S', 'CinnabarIsland_Frlg')
+    assert current(g) == 'CinnabarIsland_Frlg', g.describe()
+    g.shot('polish_route21_to_cinnabar.png')
+    print('ok  Route 21 swims straight into Cinnabar before the Mansion (no current)', flush=True)
+
+
 if __name__ == '__main__':
     static()
     pokemon_center()
     goldenrod_edges()
     contest_quick_ball()
+    cinnabar_open_sea()
     print('PASS test_goldenrod_polish', flush=True)

@@ -9227,13 +9227,9 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_CHOICE_BAND] =
     {
         .name = ITEM_NAME("Choice Band"),
-    #if I_PRICE >= GEN_9
-        .price = 100000,
-    #elif I_PRICE >= GEN_7
+        // Plastic Ox: sold in the Goldenrod Dept. Store (5F) mid-story, so it
+        // keeps the Gen 7 price rather than Gen 9's 100,000.
         .price = 4000,
-    #else
-        .price = 100,
-    #endif
         .holdEffect = HOLD_EFFECT_CHOICE_BAND,
         .description = COMPOUND_STRING(
             "Boosts Attack, but\n"
