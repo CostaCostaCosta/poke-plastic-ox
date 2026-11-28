@@ -44,6 +44,7 @@ A 78×50 limestone throat with two mouths: one on the north end of Route 2 at `(
 | Hidden Black Flute | `(33,20)` | `FLAG_POX_HIDDEN_DARKCAVE_BLACKFLUTE` | hidden pickup, never explained | keep; let one NPC mention who left it |
 | North mouth | `(14,20)` | warp to `MAP_ROUTE2` | door tile has no behavior, warp never fires | repair the metatile attribute before shipping |
 | South mouth | `(56,46)` | warp to `MAP_ROUTE46_HNS` | same defect | repair |
+| Platform door | `(34,6)`, warp 2 | reached by Surf from the lake's west shore | to `DarkCave_NorthSide_hns` warp 1; the room past it is walled off by one-way ledges | keep: it's the bottom of the Blackthorn descent, never an early way up |
 | Empty middle | whole map | no NPCs, no signs, no map script | silence | two voices at most: one at each mouth |
 
 ## Dialogue guidance

@@ -41,7 +41,23 @@ static EWRAM_DATA u8 sEntrySide = 0;
 static EWRAM_DATA u16 sOriginalSportBalls = 0;
 static EWRAM_DATA struct Pokemon sRetained = {0};
 static EWRAM_DATA struct Pokemon sCandidate = {0};
+// sRivalScore is the best rival entry; Judge caps every rival at it, so a
+// harness can write 0 to force first place.
 static EWRAM_DATA u16 sRivalScore = 0;
+static EWRAM_DATA u16 sRivalSpecies[POX_CONTEST_RIVALS] = {0};
+static EWRAM_DATA u16 sRivalScores[POX_CONTEST_RIVALS] = {0};
+static EWRAM_DATA u8 sPlacing[3] = {0};
+static EWRAM_DATA u16 sPlayerSpecies = 0;
+static EWRAM_DATA u16 sPlayerScore = 0;
+
+static const u8 sRivalName0[] = _("BUG CATCHER ROWAN");
+static const u8 sRivalName1[] = _("SCHOOL KID PIP");
+static const u8 sRivalName2[] = _("LASS NELL");
+static const u8 sRivalName3[] = _("CAMPER OSRIC");
+static const u8 sRivalName4[] = _("BUG MANIAC FERN");
+static const u8 *const sRivalNames[POX_CONTEST_RIVALS] = {
+    sRivalName0, sRivalName1, sRivalName2, sRivalName3, sRivalName4,
+};
 
 bool32 PlasticOxContest_IsActive(void)
 {
@@ -104,18 +120,100 @@ static void RestorePartyAndBalls(void)
         RemoveBagItem(ITEM_SPORT_BALL, currentBalls - sOriginalSportBalls);
 }
 
-static u16 ScoreMon(struct Pokemon *mon)
+// Species strength, level, total IVs and remaining health (0-40).
+static u16 Score(u32 species, u32 level, u32 ivs, u32 health)
 {
-    u32 species = GetMonData(mon, MON_DATA_SPECIES);
     const struct SpeciesInfo *info = &gSpeciesInfo[species];
     u32 stats = info->baseHP + info->baseAttack + info->baseDefense
               + info->baseSpeed + info->baseSpAttack + info->baseSpDefense;
+    return stats / 2 + level * 4 + ivs / 3 + health;
+}
+
+static u16 ScoreMon(struct Pokemon *mon)
+{
     u32 ivs = GetMonData(mon, MON_DATA_HP_IV) + GetMonData(mon, MON_DATA_ATK_IV)
             + GetMonData(mon, MON_DATA_DEF_IV) + GetMonData(mon, MON_DATA_SPEED_IV)
             + GetMonData(mon, MON_DATA_SPATK_IV) + GetMonData(mon, MON_DATA_SPDEF_IV);
     u32 maxHp = GetMonData(mon, MON_DATA_MAX_HP);
-    return stats / 2 + GetMonData(mon, MON_DATA_LEVEL) * 4 + ivs / 3
-         + (maxHp ? 40 * GetMonData(mon, MON_DATA_HP) / maxHp : 0);
+    return Score(GetMonData(mon, MON_DATA_SPECIES), GetMonData(mon, MON_DATA_LEVEL), ivs,
+                 maxHp ? 40 * GetMonData(mon, MON_DATA_HP) / maxHp : 0);
+}
+
+// Each rival keeps one catch rolled from the same table the player hunts in,
+// so a weak bug can finish outside the top three.
+static void RollRivals(void)
+{
+    u32 i;
+    u8 level;
+
+    sRivalScore = 0;
+    for (i = 0; i < POX_CONTEST_RIVALS; i++)
+    {
+        PlasticOxContest_RollRivalCatch(&sRivalSpecies[i], &level);
+        sRivalScores[i] = Score(sRivalSpecies[i], level, Random() % 187, 24 + Random() % 17);
+        if (sRivalScores[i] > sRivalScore)
+            sRivalScore = sRivalScores[i];
+    }
+}
+
+// Ranks the rivals and the player (who wins ties) into sPlacing; returns the
+// player's place, 1-based.
+static u32 RankEntries(u16 score, bool32 entered)
+{
+    u32 i, place, count = 0;
+    u8 order[POX_CONTEST_RIVALS + 1];
+    u32 playerPlace = 0;
+
+    for (i = 0; i < POX_CONTEST_RIVALS; i++)
+        if (sRivalScores[i] > sRivalScore)
+            sRivalScores[i] = sRivalScore;
+    // Insertion by descending score; the player is inserted first so ties
+    // go to the player.
+    if (entered)
+        order[count++] = POX_CONTEST_PLAYER;
+    for (i = 0; i < POX_CONTEST_RIVALS; i++)
+    {
+        u32 j = count++;
+        while (j > 0 && (order[j - 1] == POX_CONTEST_PLAYER ? score : sRivalScores[order[j - 1]]) < sRivalScores[i])
+        {
+            order[j] = order[j - 1];
+            j--;
+        }
+        order[j] = i;
+    }
+    for (place = 0; place < count; place++)
+    {
+        if (place < ARRAY_COUNT(sPlacing))
+            sPlacing[place] = order[place];
+        if (order[place] == POX_CONTEST_PLAYER)
+            playerPlace = place + 1;
+    }
+    return playerPlace;
+}
+
+// VAR_0x8004 = place 1-3, or 0 for the player's own entry. Fills STR_VAR_1
+// (name), STR_VAR_2 (species), STR_VAR_3 (score); VAR_RESULT = player's entry.
+void PlasticOxContest_GetPlacing(void)
+{
+    u32 entrant = gSpecialVar_0x8004 == 0 || gSpecialVar_0x8004 > ARRAY_COUNT(sPlacing)
+                ? POX_CONTEST_PLAYER : sPlacing[gSpecialVar_0x8004 - 1];
+    u16 species, score;
+
+    if (entrant == POX_CONTEST_PLAYER)
+    {
+        StringCopy(gStringVar1, gSaveBlock2Ptr->playerName);
+        species = sPlayerSpecies;
+        score = sPlayerScore;
+    }
+    else
+    {
+        StringCopy(gStringVar1, sRivalNames[entrant]);
+        species = sRivalSpecies[entrant];
+        score = sRivalScores[entrant];
+    }
+    StringCopy(gStringVar2, GetSpeciesName(species));
+    ConvertIntToDecimalStringN(gStringVar3, score, STR_CONV_MODE_LEFT_ALIGN, 3);
+    gSpecialVar_Result = (entrant == POX_CONTEST_PLAYER);
 }
 
 void PlasticOxContest_Status(void)
@@ -162,7 +260,7 @@ void PlasticOxContest_Start(void)
     sPendingScript = PENDING_NONE;
     gNumSafariBalls = CONTEST_BALLS;
     gSafariZoneStepCounter = CONTEST_STEPS;
-    sRivalScore = 300 + Random() % 41;
+    RollRivals();
     FlagSet(FLAG_POX_DAILY_PARK_CONTEST);
     gSpecialVar_Result = POX_CONTEST_ENTRY_OPEN;
 }
@@ -238,9 +336,17 @@ void PlasticOxContest_Judge(void)
         gSpecialVar_Result = 4;
         return;
     }
-    if (sHasCatch)
+    sPlayerScore = score;
+    sPlayerSpecies = sHasCatch ? GetMonData(&sRetained, MON_DATA_SPECIES) : SPECIES_NONE;
+    gSpecialVar_Result = RankEntries(score, sHasCatch);
+    if (gSpecialVar_Result > 3)
     {
-        gSpecialVar_Result = score >= sRivalScore ? 1 : score + 40 >= sRivalScore ? 2 : 3;
+        // Outside the top three: a consolation Oran Berry, like no catch.
+        gSpecialVar_Result = POX_CONTEST_RESULT_UNPLACED;
+        FlagSet(FLAG_POX_CONTEST_ORAN_PENDING);
+    }
+    else if (sHasCatch)
+    {
         // Every first place in the Warden's Thursday round pays a KANGASKHAN
         // instead of the SUN STONE, but only after the 4th badge: it is a UU
         // species (cinnabar checkpoint). The flag carries the prize from the

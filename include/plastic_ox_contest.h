@@ -17,5 +17,7 @@ void PlasticOxContest_Start(void);
 void PlasticOxContest_AcceptCatch(void);
 void PlasticOxContest_Judge(void);
 void PlasticOxContest_ClaimPrize(void);
+void PlasticOxContest_GetPlacing(void);
+void PlasticOxContest_RollRivalCatch(u16 *species, u8 *level);
 
 #endif

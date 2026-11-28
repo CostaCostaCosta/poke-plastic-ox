@@ -659,6 +659,7 @@ gSpecials::
 	def_special PlasticOxContest_AcceptCatch
 	def_special PlasticOxContest_Judge
 	def_special PlasticOxContest_ClaimPrize
+	def_special PlasticOxContest_GetPlacing
 	def_special PlasticOxBuyCoinPrize
 	def_special PlasticOxReviveHelix
 	def_special PlasticOxGiveMailDelibird

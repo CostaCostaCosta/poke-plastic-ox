@@ -9672,6 +9672,20 @@
       ]
     },
     {
+      "id": "LAYOUT_DARK_CAVE_NORTH_SIDE_HNS",
+      "name": "DarkCave_NorthSide_hns_Layout",
+      "width": 57,
+      "height": 44,
+      "primary_tileset": "gTileset_Johto_General_Hns",
+      "secondary_tileset": "gTileset_Cave_Default_Hns",
+      "border_filepath": "data/layouts/DarkCave_NorthSide_hns/border.bin",
+      "blockdata_filepath": "data/layouts/DarkCave_NorthSide_hns/map.bin",
+      "layout_version": "hns",
+      "include_in_versions": [
+        "emerald"
+      ]
+    },
+    {
       "id": "LAYOUT_DARK_CAVE_SOUTH_SIDE_HNS",
       "name": "DarkCave_SouthSide_hns_Layout",
       "width": 78,

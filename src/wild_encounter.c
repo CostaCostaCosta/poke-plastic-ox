@@ -687,6 +687,17 @@ static const struct WildPokemonInfo *PoxContestLandTable(void)
     return &sPoxParkContestDay;
 }
 
+// A rival contestant's catch for the results announcement, rolled from the
+// table the player is hunting in this round.
+void PlasticOxContest_RollRivalCatch(u16 *species, u8 *level)
+{
+    const struct WildPokemonInfo *info = PoxContestLandTable();
+    const struct WildPokemon *mon = &info->wildPokemon[ChooseWeightedWildMonIndex(info)];
+
+    *species = mon->species;
+    *level = mon->minLevel + Random() % (mon->maxLevel - mon->minLevel + 1);
+}
+
 #ifdef BUGFIX
 #define TRY_GET_ABILITY_INFLUENCED_WILD_MON_INDEX(wildPokemon, type, ability, ptr, count) TryGetAbilityInfluencedWildMonIndex(wildPokemon, type, ability, ptr, count)
 #else

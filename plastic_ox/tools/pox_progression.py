@@ -127,7 +127,7 @@ CHECKPOINTS = [
                                 "gPoxUURuinsOfAlph#"], []),  # Lavender tower, Routes 8/7/21, Cinnabar, Ruins of Alph dig
     ("mossdeep",    "UUBL", 50, [], []),          # Mossdeep gym
     ("saffron",     "OU",   55, [], []),          # Silph
-    ("blackthorn",  "OU",   60, [], []),          # Clair
+    ("blackthorn",  "OU",   60, ["gPoxUUDarkCaveNorthSideHns#"], []),  # Dark Cave north half: UU Lv 33-37 by request          # Clair
     ("victoryroad", "OU",   60, [], []),
     ("league",      "OU",   62, [], []),          # Wallace, Steven, Lance
     ("postgame",    "OU",   64, [], []),          # Blue, Bill
