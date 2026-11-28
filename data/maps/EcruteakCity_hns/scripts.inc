@@ -114,3 +114,16 @@ PoxEcruteak_WestEntrance::
 	waitstate
 	releaseall
 	end
+
+PoxEcruteak_EastGateBlock::
+	goto_if_set FLAG_BADGE03_GET, PoxEcruteak_EastGateBlock_End
+	lockall
+	msgbox PoxEcruteak_EastGateBlock_Text, MSGBOX_DEFAULT
+	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkLeft
+	waitmovement 0
+	releaseall
+PoxEcruteak_EastGateBlock_End::
+	end
+
+PoxEcruteak_EastGateBlock_Text:
+	.string "Hold it. The east door stays shut\nuntil MORTY signs your BADGE.$"
