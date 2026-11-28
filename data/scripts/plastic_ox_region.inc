@@ -188,52 +188,24 @@ PoxRegion_MonFlewAway::
 PoxRegion_MonFlewAwayText::
 	.string "The POKéMON flew away!$"
 
-@ ROUTE 44 <-> RUSTBORO threshold.  Story runs require the STONE BADGE in both
-@ directions; the battle demo (FLAG_POX_TRIGGERS_ENABLED unset) keeps the seam
-@ open.  The _Closed arms are reachable now, so neither branch is dead code.
+@ ROUTE 44 <-> RUSTBORO seam.  The city's east edge is a map connection; story
+@ runs need the STONE BADGE to step off it (the battle demo, with
+@ FLAG_POX_TRIGGERS_ENABLED unset, keeps it open).  The way back is ungated.
 PoxRegion_rustboro_route44_a::
-	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_rustboro_route44_a_Open
 	goto_if_unset FLAG_BADGE01_GET, PoxRegion_rustboro_route44_a_Closed
 PoxRegion_rustboro_route44_a_Open::
-	warp MAP_ROUTE44_HNS, 1, 15
-	waitstate
-	releaseall
 	end
 PoxRegion_rustboro_route44_a_Closed::
-	msgbox PoxRegion_Route44BadgeText, MSGBOX_DEFAULT
-	warp MAP_RUSTBORO_CITY, 38, 10
-	waitstate
-	releaseall
-	end
-
-PoxRegion_rustboro_route44_a_Sign::
-	msgbox PoxRegion_rustboro_route44_a_Text, MSGBOX_SIGN
-	end
-PoxRegion_rustboro_route44_a_Text::
-	.string "Route44\nMarked passage ahead.$"
-
-PoxRegion_rustboro_route44_b::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_rustboro_route44_b_Open
-	goto_if_unset FLAG_BADGE01_GET, PoxRegion_rustboro_route44_b_Closed
-PoxRegion_rustboro_route44_b_Open::
-	warp MAP_RUSTBORO_CITY, 38, 10
-	waitstate
-	releaseall
-	end
-PoxRegion_rustboro_route44_b_Closed::
 	msgbox PoxRegion_Route44BadgeText, MSGBOX_DEFAULT
-	warp MAP_ROUTE44_HNS, 1, 15
-	waitstate
+	applymovement OBJ_EVENT_ID_PLAYER, PoxRegion_rustboro_route44_a_StepBack
+	waitmovement 0
 	releaseall
 	end
-
-PoxRegion_rustboro_route44_b_Sign::
-	msgbox PoxRegion_rustboro_route44_b_Text, MSGBOX_SIGN
-	end
-PoxRegion_rustboro_route44_b_Text::
-	.string "RustboroCity\nMarked passage ahead.$"
+PoxRegion_rustboro_route44_a_StepBack:
+	walk_left
+	step_end
 
 PoxRegion_Route44BadgeText::
 	.string "The hiker on the east road checks\nfor the STONE BADGE.\pROXANNE awards it at the\nRUSTBORO GYM.$"
@@ -363,7 +335,7 @@ PoxRegion_route7_route103_a::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route7_route103_a_Open
 	goto_if_unset FLAG_POX_STORY_FUJI, PoxRegion_route7_route103_a_Closed
 PoxRegion_route7_route103_a_Open::
-	warp MAP_ROUTE103, 78, 11
+	warp MAP_ROUTE103, 78, 10
 	waitstate
 	releaseall
 	end
@@ -385,16 +357,11 @@ PoxRegion_route7_route103_b_Open::
 	end
 PoxRegion_route7_route103_b_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE103, 78, 11
+	warp MAP_ROUTE103, 78, 10
 	waitstate
 	releaseall
 	end
 
-PoxRegion_route7_route103_b_Sign::
-	msgbox PoxRegion_route7_route103_b_Text, MSGBOX_SIGN
-	end
-PoxRegion_route7_route103_b_Text::
-	.string "ROUTE 7\nKeep to the marked passage.$"
 
 PoxRegion_route103_cinnabar_a::
 	lockall
@@ -893,14 +860,14 @@ PoxRegion_victory_indigo_b_Text::
 PoxRegion_lavender_harbor_a::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_lavender_harbor_a_Open
-	goto_if_unset FLAG_SYS_GAME_CLEAR, PoxRegion_lavender_harbor_a_Closed
+	goto_if_unset FLAG_POX_FRONTIER_INVITE, PoxRegion_lavender_harbor_a_Closed
 PoxRegion_lavender_harbor_a_Open::
 	warp MAP_PLASTIC_OX_HARBOR, 10, 13
 	waitstate
 	releaseall
 	end
 PoxRegion_lavender_harbor_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
+	msgbox PoxFrontier_Text_HarborClosed, MSGBOX_DEFAULT
 	warp MAP_LAVENDER_TOWN_HNS, 18, 22
 	waitstate
 	releaseall
@@ -915,7 +882,7 @@ PoxRegion_lavender_harbor_a_Text::
 PoxRegion_lavender_harbor_b::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_lavender_harbor_b_Open
-	goto_if_unset FLAG_SYS_GAME_CLEAR, PoxRegion_lavender_harbor_b_Closed
+	goto_if_unset FLAG_POX_FRONTIER_INVITE, PoxRegion_lavender_harbor_b_Closed
 PoxRegion_lavender_harbor_b_Open::
 	warp MAP_LAVENDER_TOWN_HNS, 18, 22
 	waitstate
@@ -937,14 +904,14 @@ PoxRegion_lavender_harbor_b_Text::
 PoxRegion_harbor_frontier_a::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_harbor_frontier_a_Open
-	goto_if_unset FLAG_SYS_GAME_CLEAR, PoxRegion_harbor_frontier_a_Closed
+	goto_if_unset FLAG_POX_FRONTIER_INVITE, PoxRegion_harbor_frontier_a_Closed
 PoxRegion_harbor_frontier_a_Open::
 	warp MAP_BATTLE_FRONTIER_OUTSIDE_WEST, 25, 66
 	waitstate
 	releaseall
 	end
 PoxRegion_harbor_frontier_a_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
+	msgbox PoxFrontier_Text_HarborClosed, MSGBOX_DEFAULT
 	warp MAP_PLASTIC_OX_HARBOR, 15, 14
 	waitstate
 	releaseall
@@ -959,7 +926,7 @@ PoxRegion_harbor_frontier_a_Text::
 PoxRegion_harbor_frontier_b::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_harbor_frontier_b_Open
-	goto_if_unset FLAG_SYS_GAME_CLEAR, PoxRegion_harbor_frontier_b_Closed
+	goto_if_unset FLAG_POX_FRONTIER_INVITE, PoxRegion_harbor_frontier_b_Closed
 PoxRegion_harbor_frontier_b_Open::
 	warp MAP_PLASTIC_OX_HARBOR, 15, 14
 	waitstate
@@ -1139,6 +1106,7 @@ PoxRegion_Arrival_OldaleTown_End::
 	end
 
 PoxRegion_Arrival_PalletTown_Frlg::
+	call PoxFrontier_PalletArrival
 PoxRegion_Arrival_PalletTown_Frlg_End::
 	end
 
@@ -1198,6 +1166,7 @@ PoxRegion_Arrival_Route21_South_Frlg_End::
 	end
 
 PoxRegion_Arrival_Route24_hns::
+	call_if_defeated TRAINER_PLASTIC_OX_ROUTE24_ROCKET, Route24_EventScript_HideRocket
 PoxRegion_Arrival_Route24_hns_End::
 	end
 

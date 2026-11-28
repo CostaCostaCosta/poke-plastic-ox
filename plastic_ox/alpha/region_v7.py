@@ -60,6 +60,9 @@ LANE_PORTALS = {
 # the player simply walks across the map connection in either direction.
 # key: (connection from a, connection from b, offset)
 SEAM_TRAILS = {
+    # Rustboro's east road (rows 8..12) meets Route 44's west path (14..16):
+    # city row 10 = route row 15. Both edges are tree/cliff walls elsewhere.
+    'rustboro_route44': ('right', 'left', -5),
     'route119_fortree': ('right', 'left', 0),
     # Route 110's three exits; route110_seams.py cuts the matching geometry.
     'fortree_route110': ('right', 'left', 5),
@@ -76,6 +79,9 @@ PINNED_PORTS = {
     'lavender_route8_a': {'tile': [0, 10], 'approach': [1, 10], 'direction': 'W'},
     'lavender_route8_b': {'tile': [67, 20], 'approach': [66, 20], 'direction': 'E'},
     'route7_route103_a': {'tile': [0, 6], 'approach': [1, 6], 'direction': 'W'},
+    # Route 103's sand road leaves the east edge on rows 9..10; the lanes
+    # (9..11) follow it, and src/plastic_ox_borders.c draws it past the edge.
+    'route7_route103_b': {'tile': [79, 10], 'approach': [78, 10], 'direction': 'E'},
 }
 
 # Saffron's east and west gatehouses, as in FRLG: an arrow doorway on each
@@ -105,12 +111,12 @@ GATE_TEXT = {
 # narrowed their approaches and duplicated nearby native wayfinding.
 SIGNLESS_TRAILS = {'rustboro_route44'}
 # Single endpoints whose approach is an open road edge; a sign would stand in a lane.
-SIGNLESS_ENDPOINTS = {'route7_route103_a'}
+SIGNLESS_ENDPOINTS = {'route7_route103_a', 'route7_route103_b'}
 
 # Explicit source/destination port targets. A target may name a compass edge;
 # coordinates denote a native gate plaza, cave mouth, or dock.
 TRAILS = [
-    ('rustboro_route44','RustboroCity',(39,10),'Route44_hns',(0,15),[]),
+    ('rustboro_route44','RustboroCity',(39,10),'Route44_hns',(0,15),['FLAG_BADGE01_GET']),
     ('route33_goldenrod','Route33_hns','W','GoldenrodCity_hns','S',[]),
     ('goldenrod_route35','GoldenrodCity_hns',(33,8),'Route35_hns','S',[]),
     ('route119_fortree','Route119',(39,8),'FortreeCity','W',['FLAG_POX_STORY_WEATHER']),
@@ -134,8 +140,9 @@ TRAILS = [
     ('route45_route46','Route45_hns','S','Route46_hns','N',SPACE),
     ('ecruteak_league','EcruteakCity_hns','W','VictoryRoad_1F',(15,39),BADGES),
     ('victory_indigo','VictoryRoad_1F',(39,6),'IndigoPlateau_hns','S',BADGES),
-    ('lavender_harbor','LavenderTown_hns','S','PlasticOx_Harbor',(11,13),['FLAG_SYS_GAME_CLEAR']),
-    ('harbor_frontier','PlasticOx_Harbor',(19,14),'BattleFrontier_OutsideWest',(26,66),['FLAG_SYS_GAME_CLEAR']),
+    # Postgame: OAK's FRONTIER INVITE (frontier.py), not the Hall of Fame alone.
+    ('lavender_harbor','LavenderTown_hns','S','PlasticOx_Harbor',(11,13),['FLAG_POX_FRONTIER_INVITE']),
+    ('harbor_frontier','PlasticOx_Harbor',(19,14),'BattleFrontier_OutsideWest',(26,66),['FLAG_POX_FRONTIER_INVITE']),
 ]
 
 
@@ -179,7 +186,7 @@ def apply_region(read, put):
         'CherrygroveCity_hns':{'MAP_ROUTE29_HNS','MAP_ROUTE2'},
         'Route2_Frlg':{'MAP_CHERRYGROVE_CITY_HNS','MAP_RUSTBORO_CITY'},
         'RustboroCity':{'MAP_ROUTE2','MAP_ROUTE24_HNS'},
-        'Route24_hns':{'MAP_RUSTBORO_CITY','MAP_ROUTE25_HNS'},
+        'Route24_hns':{'MAP_RUSTBORO_CITY','MAP_ROUTE25_HNS','MAP_CERULEAN_CITY'},
         'Route25_hns':{'MAP_ROUTE24_HNS'},
         'Route35_hns':{'MAP_ROUTE36_HNS'},
         'Route36_hns':{'MAP_ROUTE37_HNS','MAP_ROUTE35_HNS'}, 'Route37_hns':{'MAP_ROUTE36_HNS','MAP_ECRUTEAK_CITY_HNS'},
@@ -282,6 +289,10 @@ def apply_region(read, put):
         'Route24_hns': [
             {'map':'MAP_ROUTE25_HNS','offset':0,'direction':'up'},
             {'map':'MAP_RUSTBORO_CITY','offset':-3,'direction':'down'},
+            # The river surfs south into Cerulean City's north pond and its
+            # natural Cerulean Cave mouth; the engine prefers the open side
+            # where the two south connections overlap (src/fieldmap.c).
+            {'map':'MAP_CERULEAN_CITY','offset':-8,'direction':'down'},
         ],
         'Route25_hns': [
             {'map':'MAP_ROUTE24_HNS','offset':0,'direction':'down'},
@@ -375,12 +386,8 @@ def apply_region(read, put):
     d['warp_events']=[dict(x=7,y=16,elevation=3,dest_map=mid('UndergroundPath_WestEntrance_Frlg'),dest_warp_id='0')]
     # The donor's second sign event sat on the hut door itself.
     d['bg_events']=[b for b in d.get('bg_events',[]) if (b['x'],b['y'])!=(7,16)]
-    # The grass patch (11..18,4..9) is behind a Cut tree in the row-10 fence
-    # (route7_cut_hedge.py paints the fence; this is the tree).
+    # Route 7 keeps the donor's open grass patch: no added Cut tree or fence.
     d['object_events']=[o for o in d.get('object_events',[]) if o.get('script')!='EventScript_CutTree']
-    d['object_events'].append(dict(graphics_id='OBJ_EVENT_GFX_CUTTABLE_TREE',x=13,y=10,elevation=3,
-        movement_type='MOVEMENT_TYPE_NONE',movement_range_x=0,movement_range_y=0,trainer_type='TRAINER_TYPE_NONE',
-        trainer_sight_or_berry_tree_id='0',script='EventScript_CutTree',flag='FLAG_TEMP_1'))
     save('Route7_hns',d)
     d=load('UndergroundPath_WestEntrance_Frlg')
     for w in d['warp_events'][:3]:
@@ -576,7 +583,8 @@ def apply_region(read, put):
             body=f'{script}::\n\tgoto_if_unset FLAG_POX_TRIGGERS_ENABLED, {script}_Open\n'
             for flag in requirements:
                 body+=f'\tgoto_if_unset {flag}, {script}_Closed\n'
-            closed_text={'PoxRegion_route119_fortree_a':'Pox_Text_WI_CrossingClosed'}.get(script,'PoxRegion_ClosedText')
+            closed_text={'PoxRegion_route119_fortree_a':'Pox_Text_WI_CrossingClosed','PoxRegion_lavender_harbor_a':'PoxFrontier_Text_HarborClosed','PoxRegion_harbor_frontier_a':'PoxFrontier_Text_HarborClosed',
+                         'PoxRegion_rustboro_route44_a':'PoxRegion_Route44BadgeText'}.get(script,'PoxRegion_ClosedText')
             body+=(f'{script}_Open::\n\tend\n{script}_Closed::\n\tlockall\n\tmsgbox {closed_text}, MSGBOX_DEFAULT\n'
                    f'\tapplymovement OBJ_EVENT_ID_PLAYER, {script}_StepBack\n\twaitmovement 0\n\treleaseall\n\tend\n'
                    f'{script}_StepBack:\n\t{back}\n\tstep_end')
@@ -589,7 +597,7 @@ def apply_region(read, put):
         body+=f'{script}_Open::\n\twarp {mid(destination)}, {landing[0]}, {landing[1]}\n\twaitstate\n\treleaseall\n\tend\n'
         # Rejection returns to the adjacent approach, never across the gate.
         # Gates with an authored refusal (a person at the barrier) name it here.
-        closed_text={'PoxRegion_route119_fortree_a':'Pox_Text_WI_CrossingClosed'}.get(script,'PoxRegion_ClosedText')
+        closed_text={'PoxRegion_route119_fortree_a':'Pox_Text_WI_CrossingClosed','PoxRegion_lavender_harbor_a':'PoxFrontier_Text_HarborClosed','PoxRegion_harbor_frontier_a':'PoxFrontier_Text_HarborClosed'}.get(script,'PoxRegion_ClosedText')
         body+=f'{script}_Closed::\n\tmsgbox {closed_text}, MSGBOX_DEFAULT\n\twarp {mid(name)}, {p["approach"][0]}, {p["approach"][1]}\n\twaitstate\n\treleaseall\n\tend'
         scripts.append(body)
         records.append(dict(id=key,source=name,destination=destination,**p,landing=landing,requires=requirements,label=label))
@@ -830,6 +838,9 @@ def apply_region(read, put):
             body+='\tsetflag FLAG_HIDE_FORTREE_CITY_KECLEON\n\tsetflag FLAG_KECLEON_FLED_FORTREE\n\tgoto_if_unset FLAG_POX_TRIGGERS_ENABLED, '+callback+'_Reached\n\tgoto_if_unset FLAG_POX_STORY_WEATHER, '+callback+'_End\n'+callback+'_Reached::\n\tsetflag FLAG_POX_REACHED_FORTREE\n'
         if name=='Route119':
             body+='\tsetflag FLAG_HIDE_ROUTE_119_TEAM_AQUA\n\tsetflag FLAG_HIDE_ROUTE_119_RIVAL\n\tsetflag FLAG_HIDE_ROUTE_119_RIVAL_ON_BIKE\n'
+        if name=='Route24_hns':
+            # The beaten Rocket walked off toward Rustboro; keep him gone.
+            body+='\tcall_if_defeated TRAINER_PLASTIC_OX_ROUTE24_ROCKET, Route24_EventScript_HideRocket\n'
         if name.startswith('PlasticOx_Route20'):
             body+='\tcall_if_unset FLAG_STOPPED_SEAFOAM_B3F_CURRENT, Route20_EventScript_ResetSeafoamBouldersForB3F\n\tcall_if_unset FLAG_STOPPED_SEAFOAM_B4F_CURRENT, Route20_EventScript_ResetSeafoamBouldersForB4F\n'
         body+=callback+'_End::\n\tend'
@@ -919,3 +930,5 @@ def apply_region(read, put):
     install_clear_bell(read, put)
     from saffron import install as install_saffron
     install_saffron(read, put)
+    from frontier import install as install_frontier
+    install_frontier(read, put)

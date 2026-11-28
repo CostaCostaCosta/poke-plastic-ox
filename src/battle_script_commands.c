@@ -1,6 +1,7 @@
 #include "global.h"
 #include "metamon_trainer.h"
 #include "plastic_ox_contest.h"
+#include "plastic_ox_frontier.h"
 #include "battle.h"
 #include "battle_hold_effects.h"
 #include "battle_message.h"
@@ -12375,7 +12376,7 @@ void BS_JumpIfNoWhiteOut(void)
 {
     NATIVE_ARGS(const u8 *jumpInstr);
 
-    if (FlagGet(B_FLAG_NO_WHITEOUT))
+    if (FlagGet(B_FLAG_NO_WHITEOUT) || PoxFrontier_IsActive())
         gBattlescriptCurrInstr = cmd->jumpInstr;
     else
         gBattlescriptCurrInstr = cmd->nextInstr;

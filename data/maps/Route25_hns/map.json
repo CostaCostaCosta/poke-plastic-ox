@@ -167,8 +167,8 @@
       "flag": "0"
     },
     {
-      "local_id": "LOCALID_CAPE_MISTY",
-      "graphics_id": "OBJ_EVENT_GFX_MISTY",
+      "local_id": "LOCALID_ROUTE25_POSTWOMAN",
+      "graphics_id": "OBJ_EVENT_GFX_WOMAN_2",
       "x": 81,
       "y": 17,
       "elevation": 0,

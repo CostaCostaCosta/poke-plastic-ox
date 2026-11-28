@@ -52,6 +52,17 @@
       ]
     },
     {
+      "name": "frontier-teams",
+      "command": "python3 plastic_ox/tools/build_frontier_teams.py  # --check verifies",
+      "sources": [
+        "plastic_ox/tools/build_frontier_teams.py",
+        "plastic_ox/frontier/gen3_*_constructed_225.txt"
+      ],
+      "outputs": [
+        "src/data/plastic_ox_frontier_teams.h"
+      ]
+    },
+    {
       "name": "title-art",
       "command": "python3 plastic_ox/title/generate_art.py",
       "sources": [

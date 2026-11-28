@@ -671,6 +671,12 @@ gSpecials::
 	def_special CheckMossdeepGymUUBLRules
 	def_special CheckSaffronGymOURules
 	def_special CheckBlackthornGymOURules
+	def_special PoxFrontier_CheckRules
+	def_special PoxFrontier_BufferTierName
+	def_special PoxFrontier_Begin
+	def_special PoxFrontier_NextOpponent
+	def_special PoxFrontier_RecordWin
+	def_special PoxFrontier_End
 	def_special PoxMaximizeSelectedMonFriendship
 	def_special PoxMinimizeSelectedMonFriendship
 	def_special PoxGetDayOfWeek

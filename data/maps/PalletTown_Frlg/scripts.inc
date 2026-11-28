@@ -1,5 +1,6 @@
 PalletTown_Frlg_MapScripts::
 	map_script MAP_SCRIPT_ON_TRANSITION, PoxRegion_Arrival_PalletTown_Frlg
+	map_script MAP_SCRIPT_ON_FRAME_TABLE, PoxFrontier_PalletFrameTable
 	.byte 0
 
 PalletTown_SurfToRoute21::

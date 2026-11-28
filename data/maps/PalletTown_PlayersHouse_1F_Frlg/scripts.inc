@@ -7,6 +7,7 @@ PalletTown_PlayersHouse_1F_EventScript_Mom::
 	goto_if_eq VAR_POX_MOM_STATE, 0, PalletTown_Mom_FirstConversation
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PalletTown_Mom_Rest
 	goto_if_unset FLAG_POX_STORY_STARTER, PalletTown_Mom_BeforeStarter
+	call PoxFrontier_MomAtHome
 PalletTown_Mom_Rest::
 	msgbox PalletTown_PlayersHouse_1F_Text_YouShouldTakeQuickRest
 	closemessage

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Import the HNS Mt. Silver cave interior as the post-game Cerulean Cave.
 
-The cave is entered from the rock knoll on Route 24 (Route24_hns) once the
+The cave is entered at its FRLG mouth in Cerulean City (CeruleanCity_Frlg,
+warp 7, reached by surfing south from Route 24) once the
 player has entered the Hall of Fame (FLAG_SYS_GAME_CLEAR). Inside, the HNS
 Mt. Silver interior is kept as-is: waterfall room, item and side rooms,
 2F, the snowfield, 3F and the summit, where RED waits with MEWTWO.
@@ -13,7 +14,7 @@ What this copies from the donor (POX_HNS_DONOR or --donor):
   * map.json for each room, with donor events reduced to Plastic Ox policy:
     MON_BASE decorations, item balls, NPCs, signs and triggers are dropped;
     breakable rocks are kept; warps to rooms that are not imported are
-    removed; the waterfall-room exit returns to Route 24;
+    removed; the waterfall-room exit returns to Cerulean City;
   * the donor wild tables, with UNOWN and WOBBUFFET written into every land
     table (and Morning mirrored from Day, matching the local schema).
 
@@ -52,9 +53,9 @@ MAPS = [
 ]
 MAP_IDS: set[str] = set()  # filled from the donor map.json ids in main()
 
-# The waterfall room's south exit (warp 0) leads back to the Route 24 knoll.
+# The waterfall room's south exit (warp 0) leads back to Cerulean City's cave mouth.
 EXIT_MAP, EXIT = "MtSilver_1F_WaterfallRoom_hns", 0
-ROUTE24 = "MAP_ROUTE24_HNS"
+CAVE_MOUTH = ("MAP_CERULEAN_CITY", "7")
 
 TILESETS = [  # (C symbol suffix, directory)
     ("Cave_Gray_Hns", "cave_gray_hns"),
@@ -163,7 +164,7 @@ def convert_map(name: str, data: dict) -> dict:
     warps = []
     for i, w in enumerate(data.get("warp_events", [])):
         if name == EXIT_MAP and i == EXIT:
-            w = dict(w, dest_map=ROUTE24, dest_warp_id="0")
+            w = dict(w, dest_map=CAVE_MOUTH[0], dest_warp_id=CAVE_MOUTH[1])
         elif w["dest_map"] not in MAP_IDS:
             # Only trailing warps lead out of the imported set (the Snowswept
             # Cavern exit); dropping them keeps every other warp id stable.
