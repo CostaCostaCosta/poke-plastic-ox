@@ -438,8 +438,8 @@
 #define FLAG_POX_FRONTIER_CLEARED_RU (POX_EXT_FLAGS_START + 32)
 // Frontier: first seven-win UU round.
 #define FLAG_POX_FRONTIER_CLEARED_UU (POX_EXT_FLAGS_START + 33)
-// Frontier: first seven-win UUBL round.
-#define FLAG_POX_FRONTIER_CLEARED_UUBL (POX_EXT_FLAGS_START + 34)
+// Frontier: first seven-win OU round.
+#define FLAG_POX_FRONTIER_CLEARED_OU (POX_EXT_FLAGS_START + 34)
 // Frontier: first seven-win UBERS round.
 #define FLAG_POX_FRONTIER_CLEARED_UBERS (POX_EXT_FLAGS_START + 35)
 // End Battle Frontier flags.
