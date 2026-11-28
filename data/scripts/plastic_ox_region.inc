@@ -363,7 +363,7 @@ PoxRegion_route7_route103_a::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route7_route103_a_Open
 	goto_if_unset FLAG_POX_STORY_FUJI, PoxRegion_route7_route103_a_Closed
 PoxRegion_route7_route103_a_Open::
-	warp MAP_ROUTE103, 78, 11
+	warp MAP_ROUTE103, 78, 10
 	waitstate
 	releaseall
 	end
@@ -385,16 +385,11 @@ PoxRegion_route7_route103_b_Open::
 	end
 PoxRegion_route7_route103_b_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE103, 78, 11
+	warp MAP_ROUTE103, 78, 10
 	waitstate
 	releaseall
 	end
 
-PoxRegion_route7_route103_b_Sign::
-	msgbox PoxRegion_route7_route103_b_Text, MSGBOX_SIGN
-	end
-PoxRegion_route7_route103_b_Text::
-	.string "ROUTE 7\nKeep to the marked passage.$"
 
 PoxRegion_route103_cinnabar_a::
 	lockall

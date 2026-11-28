@@ -252,7 +252,7 @@
       "direction": "W",
       "landing": [
         78,
-        11
+        10
       ],
       "requires": [
         "FLAG_POX_STORY_FUJI"
@@ -265,11 +265,11 @@
       "destination": "Route7_hns",
       "tile": [
         79,
-        11
+        10
       ],
       "approach": [
         78,
-        11
+        10
       ],
       "direction": "E",
       "landing": [

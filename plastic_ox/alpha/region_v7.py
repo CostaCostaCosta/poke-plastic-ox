@@ -76,6 +76,9 @@ PINNED_PORTS = {
     'lavender_route8_a': {'tile': [0, 10], 'approach': [1, 10], 'direction': 'W'},
     'lavender_route8_b': {'tile': [67, 20], 'approach': [66, 20], 'direction': 'E'},
     'route7_route103_a': {'tile': [0, 6], 'approach': [1, 6], 'direction': 'W'},
+    # Route 103's sand road leaves the east edge on rows 9..10; the lanes
+    # (9..11) follow it, and src/plastic_ox_borders.c draws it past the edge.
+    'route7_route103_b': {'tile': [79, 10], 'approach': [78, 10], 'direction': 'E'},
 }
 
 # Saffron's east and west gatehouses, as in FRLG: an arrow doorway on each
@@ -105,7 +108,7 @@ GATE_TEXT = {
 # narrowed their approaches and duplicated nearby native wayfinding.
 SIGNLESS_TRAILS = {'rustboro_route44'}
 # Single endpoints whose approach is an open road edge; a sign would stand in a lane.
-SIGNLESS_ENDPOINTS = {'route7_route103_a'}
+SIGNLESS_ENDPOINTS = {'route7_route103_a', 'route7_route103_b'}
 
 # Explicit source/destination port targets. A target may name a compass edge;
 # coordinates denote a native gate plaza, cave mouth, or dock.
@@ -375,12 +378,8 @@ def apply_region(read, put):
     d['warp_events']=[dict(x=7,y=16,elevation=3,dest_map=mid('UndergroundPath_WestEntrance_Frlg'),dest_warp_id='0')]
     # The donor's second sign event sat on the hut door itself.
     d['bg_events']=[b for b in d.get('bg_events',[]) if (b['x'],b['y'])!=(7,16)]
-    # The grass patch (11..18,4..9) is behind a Cut tree in the row-10 fence
-    # (route7_cut_hedge.py paints the fence; this is the tree).
+    # Route 7 keeps the donor's open grass patch: no added Cut tree or fence.
     d['object_events']=[o for o in d.get('object_events',[]) if o.get('script')!='EventScript_CutTree']
-    d['object_events'].append(dict(graphics_id='OBJ_EVENT_GFX_CUTTABLE_TREE',x=13,y=10,elevation=3,
-        movement_type='MOVEMENT_TYPE_NONE',movement_range_x=0,movement_range_y=0,trainer_type='TRAINER_TYPE_NONE',
-        trainer_sight_or_berry_tree_id='0',script='EventScript_CutTree',flag='FLAG_TEMP_1'))
     save('Route7_hns',d)
     d=load('UndergroundPath_WestEntrance_Frlg')
     for w in d['warp_events'][:3]:
