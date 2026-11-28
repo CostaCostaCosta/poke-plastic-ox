@@ -42,13 +42,20 @@ static void MakeDeliveryMail(struct Mail *mail, u16 identity)
     mail->itemId = ITEM_ORANGE_MAIL;
 }
 
-static bool32 IsDeliveryBird(struct Pokemon *mon, u16 identity)
+// Webster's bird is recognised by what is stamped on the Pokemon itself (his
+// OT id and personality prefix), not by VAR_POX_DELIBIRD_IDENTITY alone: the
+// hand-in must still work if that var no longer matches the bird in the party.
+static bool32 IsWebsterBird(struct Pokemon *mon)
 {
-    return identity != 0
-        && GetMonData(mon, MON_DATA_SPECIES) == SPECIES_DELIBIRD
+    return GetMonData(mon, MON_DATA_SPECIES) == SPECIES_DELIBIRD
         && !GetMonData(mon, MON_DATA_IS_EGG)
         && GetMonData(mon, MON_DATA_OT_ID) == DELIBIRD_OT_ID
-        && GetMonData(mon, MON_DATA_PERSONALITY) == (DELIBIRD_PERSONALITY_BASE | identity);
+        && (GetMonData(mon, MON_DATA_PERSONALITY) & 0xFFFF0000) == DELIBIRD_PERSONALITY_BASE;
+}
+
+static u16 BirdIdentity(struct Pokemon *mon)
+{
+    return GetMonData(mon, MON_DATA_PERSONALITY) & 0xFFFF;
 }
 
 static bool32 IsDeliveryMail(struct Mail *mail, u16 identity)
@@ -122,14 +129,17 @@ void PlasticOxGiveMailDelibird(void)
         // Reissue a discarded letter only to the original bird. A letter saved
         // in the PC or attached to another Pokemon must instead be retrieved.
         gSpecialVar_Result = ACQUISITION_MAIL_MISSING;
-        for (i = 0; i < MAIL_COUNT; i++)
-            if (IsDeliveryMail(&gSaveBlock1Ptr->mail[i], identity))
-                return;
         for (i = 0; i < PARTY_SIZE; i++)
         {
             struct Pokemon *bird = &gParties[B_TRAINER_PLAYER][i];
-            if (!IsDeliveryBird(bird, identity))
+            u32 j;
+            if (!IsWebsterBird(bird))
                 continue;
+            identity = BirdIdentity(bird);
+            VarSet(VAR_POX_DELIBIRD_IDENTITY, identity);
+            for (j = 0; j < MAIL_COUNT; j++)
+                if (IsDeliveryMail(&gSaveBlock1Ptr->mail[j], identity))
+                    return;
             if (GetMonData(bird, MON_DATA_HELD_ITEM) != ITEM_NONE)
                 return;
             MakeDeliveryMail(&mail, identity);
@@ -170,7 +180,7 @@ void PlasticOxGiveMailDelibird(void)
 void PlasticOxDeliverMail(void)
 {
     u32 i;
-    u16 identity = VarGet(VAR_POX_DELIBIRD_IDENTITY);
+    u16 identity;
     gSpecialVar_Result = ACQUISITION_ALREADY_DONE;
     if (FlagGet(FLAG_POX_DELIBIRD_DELIVERED))
         return;
@@ -181,7 +191,10 @@ void PlasticOxDeliverMail(void)
     {
         struct Pokemon *bird = &gParties[B_TRAINER_PLAYER][i];
         u32 mailId = GetMonData(bird, MON_DATA_MAIL);
-        if (!IsDeliveryBird(bird, identity) || mailId >= PARTY_SIZE
+        if (!IsWebsterBird(bird))
+            continue;
+        identity = BirdIdentity(bird);
+        if (mailId >= PARTY_SIZE
             || GetMonData(bird, MON_DATA_HELD_ITEM) != ITEM_ORANGE_MAIL
             || !IsDeliveryMail(&gSaveBlock1Ptr->mail[mailId], identity))
             continue;
