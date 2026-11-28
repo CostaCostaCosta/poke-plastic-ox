@@ -612,6 +612,10 @@ static const struct WildPokemonInfo *GetHeadbuttTable(void)
         return night ? &sPoxRoute36HeadbuttNight : &sPoxRoute36HeadbuttDay;
     case LAYOUT_ROUTE37_HNS:
         return night ? &sPoxRoute37HeadbuttNight : &sPoxRoute37HeadbuttDay;
+    case LAYOUT_ROUTE34_HNS:
+        return night ? &sPoxRoute34HeadbuttNight : &sPoxRoute34HeadbuttDay;
+    case LAYOUT_ROUTE115:
+        return night ? &sPoxRoute115HeadbuttNight : &sPoxRoute115HeadbuttDay;
     default:
         return NULL;
     }

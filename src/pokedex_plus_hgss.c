@@ -6266,6 +6266,14 @@ static void HandlePreEvolutionSpeciesPrint(u8 taskId, enum Species preSpecies, e
     }
 }
 
+// Plastic Ox is a Gen 3 game: the evolution page only lists the species the
+// engine can evolve into or from, so later evolutions, baby forms and regional
+// forms (Galarian Weezing, Magnezone, Mantyke) stay off it.
+static bool32 IsSpeciesShownOnEvoPage(enum Species species)
+{
+    return IsSpeciesInGen3Dex(species);
+}
+
 static bool32 HasTwoPreEvolutions(enum Species species)
 {
     switch (species)
@@ -6320,7 +6328,7 @@ static u8 PrintPreEvolutions(u8 taskId, enum Species species)
     //Calculate previous evolution
     for (i = 0; i < NUM_SPECIES; i++)
     {
-        if (!IsSpeciesEnabled(i))
+        if (!IsSpeciesShownOnEvoPage(i))
             continue;
 
         const struct Evolution *evolutions = GetSpeciesEvolutions(i);
@@ -6369,7 +6377,7 @@ static u8 PrintPreEvolutions(u8 taskId, enum Species species)
     {
         for (i = 0; i < NUM_SPECIES; i++)
         {
-            if (!IsSpeciesEnabled(i))
+            if (!IsSpeciesShownOnEvoPage(i))
                 continue;
 
             const struct Evolution *evolutions = GetSpeciesEvolutions(i);
@@ -6484,7 +6492,21 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, enum Species species
 
     //Calculate number of possible direct evolutions (e.g. Eevee has 5 but torchic has 1)
     for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
-        times += 1;
+    {
+        if (IsSpeciesShownOnEvoPage(evolutions[i].targetSpecies))
+            times += 1;
+    }
+
+    // Plastic Ox: every evolution is from a later generation.
+    if (times == 0)
+    {
+        if (depth == 0)
+        {
+            StringExpandPlaceholders(gStringVar4, sText_EVO_NONE);
+            PrintInfoScreenTextSmall(gStringVar4, FONT_SMALL, base_x-7-7, base_y + base_y_offset*(*depth_i) + numLines);
+        }
+        return;
+    }
 
     if (times > 9 && species == SPECIES_MILCERY)
         times = 9;
@@ -6495,11 +6517,13 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, enum Species species
     sPokedexView->sEvoScreenData.numAllEvolutions += times;
 
     //If there are evolutions find out which and print them 1 by 1
-    for (i = 0; i < times; i++)
+    u32 numPrinted = 0;
+    for (i = 0; evolutions[i].method != EVOLUTIONS_END && numPrinted < times; i++)
     {
         targetSpecies = evolutions[i].targetSpecies;
-        if (!IsSpeciesEnabled(targetSpecies))
+        if (!IsSpeciesShownOnEvoPage(targetSpecies))
             continue;
+        numPrinted++;
 
         left = !left;
 
@@ -6585,12 +6609,14 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, enum Species species
             // Check for additional conditions. Skips if there's no additional conditions.
             for (u32 j = 0; evolutions[i].params != NULL && evolutions[i].params[j].condition != CONDITIONS_END; j++)
             {
-                if (j == 0)
-                {
-                    StringAppend(gStringVar4, COMPOUND_STRING(", "));
-                }
-
                 enum EvolutionConditions condition = evolutions[i].params[j].condition;
+
+                // Plastic Ox: region conditions only pick between a species and
+                // its regional form, which is never listed here.
+                if (condition == IF_REGION || condition == IF_NOT_REGION)
+                    continue;
+
+                StringAppend(gStringVar4, COMPOUND_STRING(", "));
                 switch (condition)
                 {
                 // Gen 2
@@ -6814,11 +6840,6 @@ static void PrintEvolutionTargetSpeciesAndMethod(u8 taskId, enum Species species
                     break;
                 case CONDITIONS_END:
                     break;
-                }
-
-                if (evolutions[i].params[j+1].condition != CONDITIONS_END)
-                {
-                    StringAppend(gStringVar4, COMPOUND_STRING(", "));
                 }
             }
         }
@@ -7140,6 +7161,8 @@ static void PrintForms(u8 taskId, enum Species species)
         if (speciesForm == FORM_SPECIES_END)
             break;
         else if (speciesForm == species)
+            continue;
+        else if (!IsSpeciesInGen3Dex(speciesForm)) // Plastic Ox: no regional or other later-generation forms
             continue;
         else
         {

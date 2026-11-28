@@ -148,7 +148,7 @@ def logic_tests():
     # 24 Kanto + duplicates + Gen 2 / Gen 4 noise: not yet a reward.
     own(g, list(range(1, 25)) + list(range(1, 10)) + [152, 387, 400, 493])
     text, menu = converse(g, script(g, OAK))
-    assert not menu and "I'm PROFESSOR OAK" in text and 'registered 24 KANTO' in text and 'reward is at 25' in text, text
+    assert not menu and 'One more thing' in text and "I'm PROFESSOR" not in text and 'registered 24 KANTO' in text and 'reward is at 25' in text, text
     print('ok  24 owned Kanto (duplicates, Gen 2 and Gen 4 ignored): progress toward 25')
     own(g, [25])
     text, menu = converse(g, script(g, OAK), choose='B')
@@ -176,7 +176,7 @@ def logic_tests():
     own(g, range(152, 158))
     own(g, range(159, 178))
     text, menu = converse(g, script(g, ELM), choose=2)
-    assert "PROFESSOR ELM" in text and 'GOLDENROD CITY' in text and 'registered 25 JOHTO' in text, text
+    assert 'found my new lab' in text and "I'm PROFESSOR" not in text and 'GOLDENROD CITY' in text and 'registered 25 JOHTO' in text, text
     assert flags(g, ELM) == [False, False, True] and party(g)[-1] == 158, (flags(g, ELM), party(g))
     text, _ = converse(g, script(g, ELM))
     assert 'registered 26 JOHTO' in text and 'reward is at 50' in text, text
@@ -192,7 +192,7 @@ def logic_tests():
         g.write(g.syms['gPartiesCount'], n + 1)
     own(g, range(252, 302))
     text, menu = converse(g, script(g, BIRCH), choose=1)
-    assert 'PROFESSOR BIRCH' in text and 'FORTREE CITY' in text and 'sent to the PC' in text, text
+    assert 'Fancy running' in text and "I'm PROFESSOR" not in text and 'FORTREE CITY' in text and 'sent to the PC' in text, text
     assert flags(g, BIRCH) == [False, True, False] and g.count() == 6, flags(g, BIRCH)
     print('ok  Birch counts Gen 3; full party sends TORCHIC to the PC and records it')
 
@@ -212,7 +212,7 @@ def walk_tests():
     enter_warp(g, (48, 16), 'UP', house, 'goldenrod house2 in')
     navigate(g, (4, 4))
     text, _ = converse(g, lambda: (g.tap(K.KEY_RIGHT, hold=2, wait=16), g.tap(K.KEY_A, hold=2, wait=16)))
-    assert 'PROFESSOR ELM' in text and 'registered 0 JOHTO' in text, text
+    assert 'found my new lab' in text and 'registered 0 JOHTO' in text, text
     navigate(g, (4, 7))
     enter_warp(g, (4, 7), 'DOWN', city, 'goldenrod house2 out')
     print('ok  Goldenrod House2 door -> talk to Elm -> back out to the city')
@@ -222,7 +222,7 @@ def walk_tests():
     enter_warp(g, (25, 4), 'UP', house, 'fortree house3 in')
     navigate(g, (4, 4))
     text, _ = converse(g, lambda: (g.tap(K.KEY_RIGHT, hold=2, wait=16), g.tap(K.KEY_A, hold=2, wait=16)))
-    assert 'PROFESSOR BIRCH' in text and 'HOENN' in text, text
+    assert 'Fancy running' in text and 'HOENN' in text, text
     enter_warp(g, (3, 4), 'DOWN', city, 'fortree house3 out')
     print('ok  Fortree House3 door -> talk to Birch -> back out to the city')
 
@@ -238,8 +238,8 @@ def walk_tests():
         g.tap(K.KEY_A, hold=2, wait=10)
     navigate(g, (6, 5))
     text, _ = converse(g, lambda: (g.tap(K.KEY_UP, hold=2, wait=16), g.tap(K.KEY_A, hold=2, wait=16)))
-    assert 'Follow ROUTE 101' in text and "I'm PROFESSOR OAK" in text and 'registered 0 KANTO' in text, text
-    assert text.index('Follow ROUTE 101') < text.index("I'm PROFESSOR OAK"), text
+    assert 'Follow ROUTE 101' in text and 'One more thing' in text and "I'm PROFESSOR" not in text and 'registered 0 KANTO' in text, text
+    assert text.index('Follow ROUTE 101') < text.index('One more thing'), text
     print('ok  Oak keeps his story line, then explains the Kanto reward')
 
 

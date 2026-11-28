@@ -39,7 +39,6 @@ data/maps/Route35_hns/map.json
 data/maps/Route36_hns/map.json
 data/maps/Route36_hns/scripts.inc
 data/maps/Route45_hns/map.json
-data/maps/Route5_hns/map.json
 data/maps/SaffronCity_hns/map.json
 data/scripts/plastic_ox_region.inc
 data/scripts/plastic_ox_story.inc

@@ -3406,6 +3406,26 @@ bool32 IsEvolutionTierUnlocked(enum Species targetSpecies)
     return GetPlayerBadgeCount() >= sEvolutionTierBadgeRequirement[GetSpeciesEvolutionTier(targetSpecies)];
 }
 
+// Plastic Ox is a Gen 3 game. A species counts when it is in the Gen 3
+// National Dex and is not a later-generation form of one (regional forms,
+// Mega Evolutions, Gigantamax and so on). Unown, Castform and Deoxys forms
+// count. Evolution, breeding and the Pokedex evolution and forms pages only
+// use species that pass, so Magneton does not become Magnezone and Koffing
+// never becomes Galarian Weezing.
+bool32 IsSpeciesInGen3Dex(enum Species species)
+{
+    const struct SpeciesInfo *info;
+
+    if (species == SPECIES_NONE || species >= NUM_SPECIES || !IsSpeciesEnabled(species))
+        return FALSE;
+    info = &gSpeciesInfo[species];
+    if (info->natDexNum == NATIONAL_DEX_NONE || info->natDexNum > NATIONAL_DEX_DEOXYS)
+        return FALSE;
+    return !(info->isAlolanForm || info->isGalarianForm || info->isHisuianForm || info->isPaldeanForm
+          || info->isMegaEvolution || info->isPrimalReversion || info->isGigantamax
+          || info->isUltraBurst || info->isTeraForm || info->isTotem);
+}
+
 // Plastic Ox: badges needed before this species can be evolved into.
 // Returns 0 for ungated species (and whenever tier gating is disabled).
 u8 GetSpeciesEvolutionBadgeRequirement(enum Species targetSpecies)
@@ -4553,7 +4573,7 @@ enum Species GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode m
         for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
         {
             bool32 conditionsMet = FALSE;
-            if (SanitizeSpeciesId(evolutions[i].targetSpecies) == SPECIES_NONE)
+            if (!IsSpeciesInGen3Dex(evolutions[i].targetSpecies)) // Plastic Ox: no later-generation evolutions
                 continue;
 
             // Check main primary evolution method
@@ -4583,7 +4603,7 @@ enum Species GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode m
         for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
         {
             bool32 conditionsMet = FALSE;
-            if (SanitizeSpeciesId(evolutions[i].targetSpecies) == SPECIES_NONE)
+            if (!IsSpeciesInGen3Dex(evolutions[i].targetSpecies)) // Plastic Ox: no later-generation evolutions
                 continue;
 
             switch (evolutions[i].method)
@@ -4608,7 +4628,7 @@ enum Species GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode m
         for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
         {
             bool32 conditionsMet = FALSE;
-            if (SanitizeSpeciesId(evolutions[i].targetSpecies) == SPECIES_NONE)
+            if (!IsSpeciesInGen3Dex(evolutions[i].targetSpecies)) // Plastic Ox: no later-generation evolutions
                 continue;
 
             switch (evolutions[i].method)
@@ -4636,7 +4656,7 @@ enum Species GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode m
         for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
         {
             bool32 conditionsMet = FALSE;
-            if (SanitizeSpeciesId(evolutions[i].targetSpecies) == SPECIES_NONE)
+            if (!IsSpeciesInGen3Dex(evolutions[i].targetSpecies)) // Plastic Ox: no later-generation evolutions
                 continue;
 
             switch (evolutions[i].method)
@@ -4661,7 +4681,7 @@ enum Species GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode m
         for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
         {
             bool32 conditionsMet = FALSE;
-            if (SanitizeSpeciesId(evolutions[i].targetSpecies) == SPECIES_NONE)
+            if (!IsSpeciesInGen3Dex(evolutions[i].targetSpecies)) // Plastic Ox: no later-generation evolutions
                 continue;
 
             switch (evolutions[i].method)
@@ -4685,7 +4705,7 @@ enum Species GetEvolutionTargetSpecies(struct Pokemon *mon, enum EvolutionMode m
     case EVO_MODE_SCRIPT_TRIGGER:
         for (i = 0; evolutions[i].method != EVOLUTIONS_END; i++)
         {
-            if (SanitizeSpeciesId(evolutions[i].targetSpecies) == SPECIES_NONE)
+            if (!IsSpeciesInGen3Dex(evolutions[i].targetSpecies)) // Plastic Ox: no later-generation evolutions
                 continue;
             if (evolutions[i].method != EVO_SCRIPT_TRIGGER)
                 continue;
@@ -6683,7 +6703,7 @@ enum Species GetSpeciesPreEvolution(enum Species species)
 
     for (i = SPECIES_BULBASAUR; i < NUM_SPECIES; i++)
     {
-        if (!IsSpeciesEnabled(i))
+        if (!IsSpeciesInGen3Dex(i)) // Plastic Ox: no later-generation baby species
             continue;
 
         const struct Evolution *evolutions = GetSpeciesEvolutions(i);

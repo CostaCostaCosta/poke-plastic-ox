@@ -179,3 +179,41 @@ static const struct WildPokemon sPoxRoute37HeadbuttNightMons[] = {
 };
 static const u8 sPoxRoute37HeadbuttNightWeights[] = { 25, 20, 15, 15, 10, 10, 5 };
 static const struct WildPokemonInfo sPoxRoute37HeadbuttNight = { 20, sPoxRoute37HeadbuttNightMons, sPoxRoute37HeadbuttNightWeights, ARRAY_COUNT(sPoxRoute37HeadbuttNightMons) };
+static const struct WildPokemon sPoxRoute34HeadbuttDayMons[] = {
+    { 44, 48, SPECIES_LEDIAN },
+    { 44, 48, SPECIES_FEAROW },
+    { 44, 48, SPECIES_NOCTOWL },
+    { 44, 48, SPECIES_BEAUTIFLY },
+    { 44, 48, SPECIES_ARIADOS },
+};
+static const u8 sPoxRoute34HeadbuttDayWeights[] = { 30, 25, 15, 15, 15 };
+static const struct WildPokemonInfo sPoxRoute34HeadbuttDay = { 20, sPoxRoute34HeadbuttDayMons, sPoxRoute34HeadbuttDayWeights, ARRAY_COUNT(sPoxRoute34HeadbuttDayMons) };
+static const struct WildPokemon sPoxRoute34HeadbuttNightMons[] = {
+    { 44, 48, SPECIES_NOCTOWL },
+    { 44, 48, SPECIES_ARIADOS },
+    { 44, 48, SPECIES_LEDIAN },
+    { 44, 48, SPECIES_DUSTOX },
+    { 44, 48, SPECIES_FEAROW },
+};
+static const u8 sPoxRoute34HeadbuttNightWeights[] = { 30, 25, 15, 15, 15 };
+static const struct WildPokemonInfo sPoxRoute34HeadbuttNight = { 20, sPoxRoute34HeadbuttNightMons, sPoxRoute34HeadbuttNightWeights, ARRAY_COUNT(sPoxRoute34HeadbuttNightMons) };
+static const struct WildPokemon sPoxRoute115HeadbuttDayMons[] = {
+    { 46, 50, SPECIES_EXEGGUTOR },
+    { 46, 50, SPECIES_LEDIAN },
+    { 46, 50, SPECIES_AIPOM },
+    { 46, 50, SPECIES_KECLEON },
+    { 46, 50, SPECIES_NOCTOWL },
+    { 46, 50, SPECIES_HERACROSS },
+};
+static const u8 sPoxRoute115HeadbuttDayWeights[] = { 25, 20, 20, 15, 10, 10 };
+static const struct WildPokemonInfo sPoxRoute115HeadbuttDay = { 20, sPoxRoute115HeadbuttDayMons, sPoxRoute115HeadbuttDayWeights, ARRAY_COUNT(sPoxRoute115HeadbuttDayMons) };
+static const struct WildPokemon sPoxRoute115HeadbuttNightMons[] = {
+    { 46, 50, SPECIES_NOCTOWL },
+    { 46, 50, SPECIES_ARIADOS },
+    { 46, 50, SPECIES_EXEGGUTOR },
+    { 46, 50, SPECIES_KECLEON },
+    { 46, 50, SPECIES_AIPOM },
+    { 46, 50, SPECIES_HERACROSS },
+};
+static const u8 sPoxRoute115HeadbuttNightWeights[] = { 30, 20, 15, 15, 10, 10 };
+static const struct WildPokemonInfo sPoxRoute115HeadbuttNight = { 20, sPoxRoute115HeadbuttNightMons, sPoxRoute115HeadbuttNightWeights, ARRAY_COUNT(sPoxRoute115HeadbuttNightMons) };

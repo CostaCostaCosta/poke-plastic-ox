@@ -72,6 +72,38 @@ def headbutt_tree_maps() -> set[str]:
         if not map_json.exists():
             continue
         found.add(json.loads(map_json.read_text())["id"])
+    return found | metatile_tree_maps()
+
+
+def metatile_tree_maps() -> set[str]:
+    """Headbutt-table maps whose layout carries MB_HEADBUTT_TREE metatiles.
+
+    Those tiles reach PlasticOx_EventScript_HeadbuttTree through
+    GetInteractionScript() without any bg event (Route 34's nine trees).
+    """
+    import struct
+    sys.path.insert(0, str(ROOT / "plastic_ox/tools"))
+    import render_solidity as R
+    layouts = {l["id"]: l for l in json.loads(
+        (ROOT / "data/layouts/layouts.json").read_text())["layouts"]}
+    found = set()
+    for map_json in MAPS_DIR.glob("*/map.json"):
+        data = json.loads(map_json.read_text())
+        if data["id"] not in P.HEADBUTT_SYMBOLS:
+            continue
+        layout = layouts[data["layout"]]
+        try:
+            prim = R.tileset_attrs(layout["primary_tileset"])
+            sec = R.tileset_attrs(layout["secondary_tileset"])
+        except AttributeError:       # tilesets render_solidity cannot resolve
+            continue
+        raw = (ROOT / layout["blockdata_filepath"]).read_bytes()
+        for block in struct.unpack("<" + "H" * (len(raw) // 2), raw):
+            m = block & 0x3FF
+            attrs, idx = (prim, m) if m < 640 else (sec, m - 640)
+            if R.behavior(attrs, idx) == "MB_HEADBUTT_TREE":
+                found.add(data["id"])
+                break
     return found
 
 
