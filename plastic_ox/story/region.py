@@ -104,6 +104,7 @@ STORY_ORDER = [
     "meteorfalls-1f-1r",
     "route45-hns",
     "blackthorncity-hns",
+    "darkcave-northside-hns",
     "plasticox-victoryroad",
     "indigoplateau-hns",
     # Postgame

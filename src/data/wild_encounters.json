@@ -33618,6 +33618,309 @@
           }
         },
         {
+          "map": "MAP_DARK_CAVE_NORTH_SIDE_HNS",
+          "base_label": "gPoxUUDarkCaveNorthSideHns_Morning",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_GOLEM"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_SANDSLASH"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_GLIGAR"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_GRANBULL"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_NIDOQUEEN"
+              }
+            ],
+            "weights": [
+              35,
+              30,
+              20,
+              10,
+              5
+            ]
+          },
+          "water_mons": {
+            "encounter_rate": 4,
+            "mons": [
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_QUAGSIRE"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_GOLDUCK"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_LANTURN"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_QUAGSIRE"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_OMASTAR"
+              }
+            ]
+          },
+          "rock_smash_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_GOLEM"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_SANDSLASH"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_GOLEM"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_GLIGAR"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_SOLROCK"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_DARK_CAVE_NORTH_SIDE_HNS",
+          "base_label": "gPoxUUDarkCaveNorthSideHns_Day",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_GOLEM"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_SANDSLASH"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_GLIGAR"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_SOLROCK"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_NIDOKING"
+              }
+            ],
+            "weights": [
+              35,
+              30,
+              20,
+              10,
+              5
+            ]
+          },
+          "water_mons": {
+            "encounter_rate": 4,
+            "mons": [
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_QUAGSIRE"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_GOLDUCK"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_LANTURN"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_QUAGSIRE"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_OMASTAR"
+              }
+            ]
+          },
+          "rock_smash_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_GOLEM"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_SANDSLASH"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_GOLEM"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_GLIGAR"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_SOLROCK"
+              }
+            ]
+          }
+        },
+        {
+          "map": "MAP_DARK_CAVE_NORTH_SIDE_HNS",
+          "base_label": "gPoxUUDarkCaveNorthSideHns_Night",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_GOLEM"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_SANDSLASH"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_MISDREAVUS"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_LUNATONE"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_NIDOQUEEN"
+              }
+            ],
+            "weights": [
+              35,
+              30,
+              20,
+              10,
+              5
+            ]
+          },
+          "water_mons": {
+            "encounter_rate": 4,
+            "mons": [
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_QUAGSIRE"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_GOLDUCK"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_LANTURN"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_QUAGSIRE"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_OMASTAR"
+              }
+            ]
+          },
+          "rock_smash_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_GOLEM"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_SANDSLASH"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_GOLEM"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_GLIGAR"
+              },
+              {
+                "min_level": 33,
+                "max_level": 37,
+                "species": "SPECIES_LUNATONE"
+              }
+            ]
+          }
+        },
+        {
           "map": "MAP_ILEX_FOREST_HNS",
           "base_label": "gPoxIlexForestHns_Morning",
           "land_mons": {

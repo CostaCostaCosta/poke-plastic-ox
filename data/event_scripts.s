@@ -628,6 +628,7 @@ gStdScripts_End::
 	.include "data/maps/Route31_hns/scripts.inc"
 	.include "data/maps/Route46_hns/scripts.inc"
 	.include "data/maps/DarkCave_SouthSide_hns/scripts.inc"
+	.include "data/maps/DarkCave_NorthSide_hns/scripts.inc"
 	.include "data/maps/CherrygroveCity_hns/scripts.inc"
 
 .if IS_FRLG

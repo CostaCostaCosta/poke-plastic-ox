@@ -396,6 +396,12 @@
 #define FLAG_POX_HIDE_DRAGONS_DEN_DRAGON_FANG (POX_EXT_FLAGS_START + 22)
 // End Dragon's Den flags.
 
+// Dark Cave North Side (Blackthorn half): item balls and hidden items.
+#define FLAG_POX_DARKCAVE_NORTH_BLACKGLASSES (POX_EXT_FLAGS_START + 36)
+#define FLAG_POX_DARKCAVE_NORTH_STARPIECE (POX_EXT_FLAGS_START + 37)
+#define FLAG_POX_DARKCAVE_NORTH_BIGMUSHROOM (POX_EXT_FLAGS_START + 38)
+#define FLAG_POX_DARKCAVE_NORTH_REVIVE (POX_EXT_FLAGS_START + 39)
+
 // Lavender / Pokemon Tower (plastic_ox/alpha/lavender.py).
 // Pokemon Tower 7F: FUJI walked home after the three grunts.
 #define FLAG_POX_FUJI_RESCUED (POX_EXT_FLAGS_START + 0)

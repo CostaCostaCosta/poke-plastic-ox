@@ -374,7 +374,68 @@ def actual_catch():
     print('Real grass bug battle, Sport Ball consumption, catch callback, gate judging, six original Pokemon restored, catch in PC PASS', flush=True)
 
 
+def results():
+    """Judging announces third, second, then first, and a weak entry can lose."""
+    from test_sudowoodo_v1 import CHARMAP
+
+    def texts(g, ptr, limit=600):
+        out, seen = '', []
+        g.write(g.syms['gStringVar4'], 0xFF)
+        g.begin(ptr)
+        for _ in range(limit):
+            chars = []
+            for i in range(400):
+                b = g.u8(g.syms['gStringVar4'] + i)
+                if b == 0xFF:
+                    break
+                chars.append(CHARMAP.get(b, '?'))
+            t = ''.join(chars)
+            if t and (not seen or seen[-1] != t):
+                seen.append(t)
+            if g.u8(g.syms['sGlobalScriptContextStatus']) == 2:
+                return ' '.join(seen)
+            g.tap(K.KEY_A, hold=2, wait=10)
+        raise AssertionError(('script never ended', seen))
+
+    for rivals, expected, outcome, prize in (
+            ((999, 998, 997, 996, 995), 5, 'quite enough', 'ORAN'),
+            ((999, 998, 1, 1, 1), 3, 'Third place wins', 'SITRUS'),
+            ((1, 1, 1, 1, 1), 1, 'congratulations', 'PRIZE')):
+        g = StoryGame(spawn=(GATE, 7, 10))
+        g.run('Pox_Cyndaquil')
+        g.flag('FLAG_SYS_CLOCK_SET', True)
+        set_weekday(g, 2)
+        g.write(g.syms['gSpecialVar_0x8007'], 0, 2)
+        g.write(g.syms['gSpecialVar_0x8004'], 0, 2)
+        assert call(g, 'PlasticOxContest_Start') == 0
+        stride = g.sizes['gParties'] // 24
+        for i in range(stride):
+            g.write(g.syms['sCandidate'] + i, g.u8(g.syms['gParties'] + i))
+        g.write(g.syms['sNewCatch'], 1)
+        g.write(g.syms['gSpecialVar_0x8004'], 1, 2)
+        call(g, 'PlasticOxContest_AcceptCatch')
+        for i, score in enumerate(rivals):
+            g.write(g.syms['sRivalScores'] + 2 * i, score, 2)
+        g.write(g.syms['sRivalScore'], max(rivals), 2)
+        assert call(g, 'PlasticOxContest_Judge') == expected, rivals
+        assert g.flag(f'FLAG_POX_CONTEST_{prize}_PENDING'), prize
+        # call PlasticOxContest_EventScript_ReportResult; end  (sCandidate is free now)
+        code = g.syms['sCandidate']
+        script = bytes([0x04]) + struct.pack('<I', g.syms['PlasticOxContest_EventScript_ReportResult']) + bytes([0x02])
+        for i, b in enumerate(script):
+            g.write(code + i, b)
+        g.write(g.syms['gSpecialVar_Result'], expected, 2)
+        said = texts(g, code)
+        marks = [said.find(m) for m in ('Placing third', 'In second place', 'winner of today', outcome)]
+        assert -1 not in marks and marks == sorted(marks), (rivals, said)
+        assert 'BUG CATCHER ROWAN' in said and 'CYNDAQUIL' in said.upper(), said
+        assert not g.flag(f'FLAG_POX_CONTEST_{prize}_PENDING'), ('prize not paid', prize)
+    print('Results ceremony: third/second/first announced in order; unplaced entry gets the Oran Berry, '
+          'third gets the Sitrus Berry, first the Sun Stone PASS', flush=True)
+
+
 if __name__ == '__main__':
+    results()
     gate_crowds()
     gates()
     shortcut()

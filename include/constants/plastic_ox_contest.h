@@ -15,4 +15,10 @@
 #define POX_CONTEST_PRIZE_MON_PC        3
 #define POX_CONTEST_PRIZE_MON_NO_ROOM   4
 
+// PlasticOxContest_Judge results: 0 no catch, 1-3 place, 4 delivery blocked.
+#define POX_CONTEST_RESULT_UNPLACED     5
+
+#define POX_CONTEST_RIVALS              5
+#define POX_CONTEST_PLAYER              POX_CONTEST_RIVALS
+
 #endif // GUARD_CONSTANTS_PLASTIC_OX_CONTEST_H

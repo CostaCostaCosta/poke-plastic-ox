@@ -183,16 +183,34 @@ PlasticOxContest_EventScript_ReturnSouth::
 	releaseall
 	end
 
+@ Judge's result: 0 no catch, 1-3 place, 4 delivery blocked, 5 unplaced
+@ (POX_CONTEST_RESULT_UNPLACED). Third, second and first are announced in
+@ turn before the player hears how their own entry did.
 PlasticOxContest_EventScript_ReportResult::
 	compare VAR_RESULT, 4
 	goto_if_eq PlasticOxContest_EventScript_DeliveryBlocked
-	compare VAR_RESULT, 0
-	goto_if_eq PlasticOxContest_EventScript_NoCatch
-	compare VAR_RESULT, 1
-	goto_if_eq PlasticOxContest_EventScript_Winner
-	compare VAR_RESULT, 2
-	goto_if_eq PlasticOxContest_EventScript_Second
+	copyvar VAR_0x8008, VAR_RESULT
+	msgbox PlasticOxContest_Text_Announce, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 3
+	special PlasticOxContest_GetPlacing
+	msgbox PlasticOxContest_Text_PlaceThird, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 2
+	special PlasticOxContest_GetPlacing
+	msgbox PlasticOxContest_Text_PlaceSecond, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 1
+	special PlasticOxContest_GetPlacing
+	msgbox PlasticOxContest_Text_PlaceFirst, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 0
+	special PlasticOxContest_GetPlacing
+	goto_if_eq VAR_0x8008, 0, PlasticOxContest_EventScript_NoCatch
+	goto_if_eq VAR_0x8008, 1, PlasticOxContest_EventScript_Winner
+	goto_if_eq VAR_0x8008, 2, PlasticOxContest_EventScript_Second
+	goto_if_eq VAR_0x8008, POX_CONTEST_RESULT_UNPLACED, PlasticOxContest_EventScript_Unplaced
 	msgbox PlasticOxContest_Text_Third, MSGBOX_DEFAULT
+	call PlasticOxContest_EventScript_Prize
+	return
+PlasticOxContest_EventScript_Unplaced::
+	msgbox PlasticOxContest_Text_Unplaced, MSGBOX_DEFAULT
 	call PlasticOxContest_EventScript_Prize
 	return
 PlasticOxContest_EventScript_Second::
@@ -335,24 +353,50 @@ PlasticOxContest_Text_Replace:
 PlasticOxContest_Text_FirstCatch:
 	.string "{STR_VAR_1} is your first entry!\n"
 	.string "We will keep it safe for judging.$"
+PlasticOxContest_Text_Announce:
+	.string "Attention, contestants!\n"
+	.string "The judging is now complete.\p"
+	.string "We will announce the top three\n"
+	.string "entries, starting with third place!$"
+PlasticOxContest_Text_PlaceThird:
+	.string "Placing third...\n"
+	.string "{STR_VAR_1}!\p"
+	.string "Their {STR_VAR_2} scored\n"
+	.string "{STR_VAR_3} points!$"
+PlasticOxContest_Text_PlaceSecond:
+	.string "In second place...\n"
+	.string "{STR_VAR_1}!\p"
+	.string "Their {STR_VAR_2} earned\n"
+	.string "{STR_VAR_3} points!$"
+PlasticOxContest_Text_PlaceFirst:
+	.string "And the winner of today's\n"
+	.string "Bug-Catching Contest is...\p"
+	.string "{STR_VAR_1}!\p"
+	.string "The winning {STR_VAR_2} scored\n"
+	.string "a mighty {STR_VAR_3} points!$"
 PlasticOxContest_Text_Winner:
-	.string "Your entry scored {STR_VAR_1} points!\n"
-	.string "Congratulations! You took first place!\p"
-	.string "Your caught Pokémon has joined your\n"
-	.string "party or been sent to your PC.$"
+	.string "{PLAYER}, congratulations!\n"
+	.string "That was a champion's catch.\p"
+	.string "Your {STR_VAR_2} has joined your\n"
+	.string "party or been sent to your PC.\p"
+	.string "Here is the first-place prize!$"
 PlasticOxContest_Text_Second:
-	.string "Your entry scored {STR_VAR_1} points!\n"
-	.string "You took second place!\n"
-	.string "An Everstone is your prize.\p"
-	.string "Your caught Pokémon is in your party\n"
-	.string "or PC. Try again for a Sun Stone!$"
+	.string "Well done, {PLAYER}! You were\n"
+	.string "so close to the top spot.\p"
+	.string "Your {STR_VAR_2} is in your party\n"
+	.string "or PC. Second place wins this!$"
 PlasticOxContest_Text_Third:
-	.string "Your entry scored {STR_VAR_1} points!\n"
-	.string "You finished third this round!\n"
-	.string "A Sitrus Berry is your prize.\p"
-	.string "Your caught Pokémon is in your party\n"
-	.string "or PC. Try again on another\n"
-	.string "contest day!$"
+	.string "Nicely done, {PLAYER}! A finish\n"
+	.string "in the top three is no small feat.\p"
+	.string "Your {STR_VAR_2} is in your party\n"
+	.string "or PC. Third place wins this!$"
+PlasticOxContest_Text_Unplaced:
+	.string "{PLAYER}, your {STR_VAR_2} scored\n"
+	.string "{STR_VAR_3} points.\p"
+	.string "That wasn't quite enough for the\n"
+	.string "top three this time. Sorry!\p"
+	.string "You may keep your {STR_VAR_2}.\n"
+	.string "Please take this for joining.$"
 PlasticOxContest_Text_Prize:
 	.string "{PLAYER} received a {STR_VAR_2}!\p"
 	.string "Come back on another contest day!$"
@@ -419,11 +463,10 @@ PlasticOxContest_Text_DeliveryBlocked:
 	.string "Make space, then ask for judging\n"
 	.string "again to receive it.$"
 PlasticOxContest_Text_NoCatch:
-	.string "You did not retain a Pokémon, so\n"
-	.string "there is no entry to judge.\p"
-	.string "You get an Oran Berry for joining.\n"
-	.string "Try again on the next\n"
-	.string "contest day!$"
+	.string "{PLAYER}, you didn't keep a\n"
+	.string "Pokémon, so you had no entry.\p"
+	.string "Please take this for joining.\n"
+	.string "Better luck next contest day!$"
 PlasticOxContest_EventScript_TrainerRest::
 	msgbox PlasticOxContest_Text_TrainerRest, MSGBOX_NPC
 	end

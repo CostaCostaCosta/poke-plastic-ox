@@ -130,7 +130,7 @@ CHECKPOINTS = [
     ("mossdeep",    "UUBL", 50, [], []),          # Mossdeep gym
     ("saffron",     "OU",   55, ["gPoxOURoute34Hns", "gPoxOURoute115"],
                                 ["MAP_ROUTE34_HNS", "MAP_ROUTE115"]),  # Silph; Saffron -> Route 34 -> Route 115
-    ("blackthorn",  "OU",   60, [], []),          # Clair
+    ("blackthorn",  "OU",   60, ["gPoxUUDarkCaveNorthSideHns#"], []),  # Clair; Dark Cave north half (UU Lv 33-37)
     ("victoryroad", "OU",   60, [], []),
     ("league",      "OU",   62, [], []),          # Wallace, Steven, Lance
     ("postgame",    "OU",   64, [], []),          # Blue, Bill
