@@ -25,7 +25,7 @@ collision and offsets must be measured during M0 and each map milestone.
 | G — Gym 5 | Lavender → Route 8 → Underground Path → Route 7 → Route 103 → Cinnabar | Route8_Frlg, UndergroundPath_EastEntrance_Frlg, EastWestTunnel_Frlg, WestEntrance_Frlg are candidates already on disk; integrate with Route7_hns and native Route103. Audit all doors/versions. Gate Oldale-side access to the southern route until the intended segment. Remove direct Lavender→Cinnabar transport and obsolete south mainline. |
 | H — Gym 6 | Cinnabar → Route 20 west coast → Seafoam → Route 20 east coast → Mossdeep | SVG specifies Route20; native FRLG Route20 and SeafoamIslands_1F/B1F/B2F/B3F/B4F_Frlg exist on disk. Select necessary floors, verify tilesets/build inclusion, currents and boulder logic. Split/isolate water halves if needed; no Surf-around path. Whirl room/service leaves the mainline. Route41 is only a documented fallback allowed by map v7. |
 | I — Saffron hub | Mossdeep → Route 19/south approach → Saffron; Route 7/8 surface entrances | SVG Route19 candidate is Route19_Frlg; replace Route125/128/6 detour as needed. All surface ingress checks Space Center completion. Underground remains independent. North opens with the city; neither Bruno nor Silph gates Blackthorn or Clair. |
-| J — Gym 8 | Saffron → Route 5 → Route 115 → Meteor Falls → Blackthorn | Reuse Route5_hns if registered, native Route115 and MeteorFalls floors; audit native Rustboro/Route114 access and every cave branch. No Ice Path/Route26 substitution or direct BlackthornRoad service. Blackthorn return joins leg A-return. |
+| J — Gym 8 | Saffron → Route 34 → Route 115 → Meteor Falls → Blackthorn | Route34_hns (replaced Route5_hns, now retired; its Route 116 branch is closed), native Route115 and MeteorFalls floors; audit native Rustboro/Route114 access and every cave branch. No Ice Path/Route26 substitution or direct BlackthornRoad service. Blackthorn return joins leg A-return. |
 | K — League | Ecruteak west → Hoenn Victory Road → League → Wallace/Steven/Lance/Blue → Bill | SVG selects native VictoryRoad_1F/B1F/B2F. Reuse alpha League rooms/Indigo service hub where suitable, checking all exits. Replace synthetic PlasticOx_VictoryRoad and Blackthorn LeagueRoad/portal as main approach. Require all eight badges at Ecruteak. |
 | L — Postgame | Lavender south → harbor/ferry → Battle Frontier → later islands | Add a visible closed harbor approach and functional round-trip Frontier entry after Champion. Exact harbor map/warp endpoints and island roster are M0/M7 deliverables, not present in the SVG. |
 
@@ -48,7 +48,7 @@ maps to match a diagram label without a reason.
 | Lavender → Cinnabar story | Fuji rescue; Underground available while Saffron closed |
 | Cinnabar → mandatory Seafoam/Mossdeep passage | Blaine/key and Mansion investigation; usable Surf |
 | All Saffron surface entries | Space Center complete after Gym 6 |
-| Saffron north → Route5/Blackthorn/Clair | Space Center complete; independent of Bruno and Silph |
+| Saffron north → Route34/Blackthorn/Clair | Space Center complete; independent of Bruno and Silph |
 | Ecruteak west → Victory Road | All eight native badge flags |
 | Lavender south → harbor | Successful Champion/Hall of Fame completion |
 

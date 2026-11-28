@@ -21,4 +21,4 @@ PoxGoldenrod_GoldenrodCity_DepartmentStore_4F_hns_2::
 	msgbox PoxGoldenrod_GoldenrodCity_DepartmentStore_4F_hns_2_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_DepartmentStore_4F_hns_2_Text:
-	.string "My partner wants to evolve.\nI'm still deciding when.$"
+	.string "Mom says WATER STONES come from\nFORTREE. None on the shelf yet.$"

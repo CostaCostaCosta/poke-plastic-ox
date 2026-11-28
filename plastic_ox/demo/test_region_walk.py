@@ -46,7 +46,7 @@ LEGS={
  'underground':('LavenderTown_hns',(9,7),[('seam','W','Route8_Frlg'),('warp',0),('warp',3),('warp',1),('warp',0),'route7_route103_a','route103_cinnabar_a']),
  'coast':('PalletTown_Frlg',(12,18),[('seam','S','Route21_North_Frlg'),('seam','S','Route21_South_Frlg'),
      ('seam','S','CinnabarIsland_Frlg')]),
- 'north':('MossdeepCity',(28,17),['mossdeep_route19_a','route19_saffron_a','saffron_route5_a','route5_route115_a',('warp',0),'meteor_blackthorn_a','blackthorn_route45_a','route45_route46_a',('warp',2),('warp',0)]),
+ 'north':('MossdeepCity',(28,17),['mossdeep_route19_a','route19_saffron_a','saffron_route34_a','route34_route115_a',('warp',0),'meteor_blackthorn_a','blackthorn_route45_a','route45_route46_a',('warp',2),('warp',0)]),
  'postgame':('LavenderTown_hns',(9,7),['lavender_harbor_a','harbor_frontier_a','harbor_frontier_b','lavender_harbor_b']),
 }
 
@@ -158,6 +158,14 @@ def setup(spawn=None):
         for f in p['requires']:g.flag(f,True)
     for f in range(0x500,0x860):g.flag(f,True)
     g.flag('FLAG_POX_HIDE_UNUSED_ACTOR',True)
+    # Story-mode Surf needs the SURF KEY (Lavender's gift, field_move.c), not
+    # only badge 5; without it every water leg stalls at its first shoreline.
+    surf_key=int(re.search(r"ITEM_SURF_KEY\s*=\s*(\d+)",(ROOT/'include/constants/items.h').read_text())[1])
+    table=g.syms['gScriptCmdTable']
+    op=next(i for i in range((g.syms['gScriptCmdTableEnd']-table)//4) if g.u32(table+i*4)&~0x02000001==g.syms['ScrCmd_additem']&~1)
+    code=bytes([op])+struct.pack('<HH',surf_key,1)+bytes([2])
+    for i,b in enumerate(code):g.write(g.syms['gStringVar4']+i,b)
+    g.run(g.syms['gStringVar4'])
     g.flag('FLAG_BADGE07_GET',False);g.flag('FLAG_POX_STORY_SILPH',False)
     table=g.syms['gScriptCmdTable']
     op=next(i for i in range((g.syms['gScriptCmdTableEnd']-table)//4) if g.u32(table+i*4)&~0x02000001==g.syms['ScrCmd_setmonmove']&~1)

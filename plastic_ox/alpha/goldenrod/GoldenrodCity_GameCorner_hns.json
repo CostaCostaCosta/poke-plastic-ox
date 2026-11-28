@@ -24,7 +24,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "MauvilleCity_GameCorner_EventScript_CoinsClerk",
+      "script": "PoxGoldenrod_CoinClerk",
       "flag": "0"
     },
     {
@@ -50,7 +50,7 @@
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "POX_PU_CoinPrizes",
+      "script": "PoxGoldenrod_PrizeHost",
       "flag": "0"
     },
     {
@@ -303,7 +303,7 @@
       "y": 6,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "PoxGoldenrod_Directory"
+      "script": "PoxGoldenrod_GameCorner_Sign"
     },
     {
       "type": "sign",
@@ -311,7 +311,7 @@
       "y": 9,
       "elevation": 0,
       "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "PoxGoldenrod_Directory"
+      "script": "PoxGoldenrod_GameCorner_Sign"
     }
   ],
   "region": "REGION_HOENN"

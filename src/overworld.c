@@ -925,6 +925,8 @@ bool8 LoadMapFromCameraTransition(u8 mapGroup, u8 mapNum)
     PoxFlyMap_MarkVisited();
     InitMap();
     if (tilesetsChanged)
+        PlasticOx_RemoveObjectEventsFromOtherMaps();
+    if (tilesetsChanged)
     {
         // Keep the old graphics and palette on screen until the destination
         // tilemap has been rebuilt and all three transfers can share a VBlank.

@@ -18,16 +18,16 @@ status: implemented
 
 ## Snapshot
 
-A grey, dense city centre that has been shut for most of the game and now stands open at four corners: Route 8 east, Route 7 west, Route 19 south, Route 5 north. The player walks in from the Mossdeep road and finds a mart, a Pokémon Center, nine residents with nine jobs, and two objectives that can be taken in either order: the Fighting Dojo's OU challenge and the Silph Co. seizure. Both are real buildings with real doors. Saffron is the game's late hub and its loudest place: crowds on the street, silence inside the Dojo, and a lift-shaft hum under Silph.
+A grey, dense city centre that has been shut for most of the game and now stands open at four corners: Route 8 east, Route 7 west, Route 19 south, Route 34 north. The player walks in from the Mossdeep road and finds a mart, a Pokémon Center, nine residents with nine jobs, and two objectives that can be taken in either order: the Fighting Dojo's OU challenge and the Silph Co. seizure. Both are real buildings with real doors. Saffron is the game's late hub and its loudest place: crowds on the street, silence inside the Dojo, and a lift-shaft hum under Silph.
 
 ## Plot points
 
 1. **The city opens.** Every surface crossing (`(61,27)`, `(2,26)`, `(32,44)`, `(30,6)`) checks `FLAG_POX_STORY_SPACE_CENTER`; completing Mossdeep is the only key. Reveal-ladder **step 12**: the sealed centre becomes the late-game hub, and the roads the player has been routing around finally meet.
-2. **Two objectives, either order.** The Dojo doorway `(45,12)` (Gym 7, OU) and the Silph door `(33,30)` are independent. Neither gates Clair, Route 5, or the other. The north-road walker says so plainly.
+2. **Two objectives, either order.** The Dojo doorway `(45,12)` (Gym 7, OU) and the Silph door `(33,30)` are independent. Neither gates Clair, Route 34, or the other. The north-road walker says so plainly.
 3. **Gym 7 — Bruno.** The wooden hall at `(45,12)` is `SaffronCity_Dojo_Frlg`. `Pox_Bruno` at `(6,5)` requires Badge 6 and the Space Center flag, refuses to begin while the party breaks an ADV OU clause, then awards Badge 7 and offers one of two prize fighters. Bruno is a former Elite Four member and a world-class Trainer, not a villain and not a gatekeeper for the plot.
 4. **Rocket III — Silph.** Three grunts in order: the lobby lift `SilphCo_1F_Frlg (22,4)`, the east corridor `SilphCo_11F_Frlg (16,12)`, the west corridor `(0,12)`. Then Giovanni in the boardroom `(6,11)`, then the President's terminal `(5,7)`. **Step 13:** Rocket did not cause the convergence; it followed the noise and Mr. Fuji's notes. **Step 14:** the adaptive Trainer system caused it while optimising training conditions; the creator is never named.
 5. **The world stays merged.** The terminal ends with `EXISTING GEOGRAPHY: RETAINED` and the boundaries no longer moving. Nothing un-merges, in the tower or on the street.
-6. **The north road.** `(30,6)` opens with the city, not with Bruno or Silph, and leads to `Route5_hns` and Blackthorn (see `route5-hns.md`).
+6. **The north road.** `(30,6)` opens with the city, not with Bruno or Silph, and leads to `Route34_hns` (arriving at `(31,65)`), then Route 115 and Blackthorn (see `route34-hns.md`). It used to lead to the empty `Route5_hns`, now retired.
 7. **Must not:** name Bill anywhere in this city, say Rocket created the convergence, name or hint at the system's creator, have civilians know what is inside Silph before the player does, or let the Gym/Silph objectives gate each other.
 
 ## Key interactions

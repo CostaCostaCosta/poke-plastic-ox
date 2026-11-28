@@ -1854,7 +1854,7 @@ releaseall
 	end
 
 Pox_Text_BlackthornRoad::
-	.string "Pavement is murder on my boots.\nI'm out the north gate myself as\psoon as these laces are done.\pROUTE 5, then ROUTE 115, then\ndown through METEOR FALLS to\pBLACKTHORN. The gate's open,\nsame as everything else here.\pNobody asks what you've done\nfirst.$"
+	.string "Pavement is murder on my boots.\nI'm out the north gate myself as\psoon as these laces are done.\pROUTE 34, then ROUTE 115, then\ndown through METEOR FALLS to\pBLACKTHORN. The gate's open,\nsame as everything else here.\pNobody asks what you've done\nfirst.$"
 
 Pox_LeagueRoad::
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, Pox_End

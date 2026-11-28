@@ -9,10 +9,10 @@ PoxGoldenrod_GoldenrodCity_DepartmentStore_3F_hns_0::
 	msgbox PoxGoldenrod_GoldenrodCity_DepartmentStore_3F_hns_0_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_DepartmentStore_3F_hns_0_Text:
-	.string "A good TM stays useful for years.\nI lend mine to my sister.$"
+	.string "A SCOPE LENS won't help if you\nnever land a hit. Trust me.$"
 
 PoxGoldenrod_GoldenrodCity_DepartmentStore_3F_hns_1::
 	msgbox PoxGoldenrod_GoldenrodCity_DepartmentStore_3F_hns_1_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_DepartmentStore_3F_hns_1_Text:
-	.string "PROTECT bought me one turn against\nWHITNEY. One was enough.$"
+	.string "A FOCUS BAND held on against\nWHITNEY. Only once, but enough.$"

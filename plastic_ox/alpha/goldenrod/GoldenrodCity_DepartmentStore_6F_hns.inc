@@ -15,7 +15,7 @@ PoxGoldenrod_GoldenrodCity_DepartmentStore_6F_hns_1::
 	msgbox PoxGoldenrod_GoldenrodCity_DepartmentStore_6F_hns_1_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_DepartmentStore_6F_hns_1_Text:
-	.string "I ate my lunch beside the vent.\nIt smells like fresh bread.$"
+	.string "I always buy LEMONADE here.\nThe left machine is the lucky one.$"
 
 PoxGoldenrod_GoldenrodCity_DepartmentStore_6F_hns_2::
 	msgbox PoxGoldenrod_GoldenrodCity_DepartmentStore_6F_hns_2_Text, MSGBOX_NPC

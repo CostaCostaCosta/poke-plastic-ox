@@ -54,6 +54,7 @@
       "flag": "FLAG_POX_HIDE_PARK_CONTEST_CROWD"
     },
     {
+      "local_id": "LOCALID_PARK_SOUTH_ATTENDANT",
       "graphics_id": "OBJ_EVENT_GFX_MAN_3",
       "x": 3,
       "y": 2,
@@ -81,10 +82,10 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_BUG_CATCHER_HNS",
-      "x": 5,
-      "y": 3,
+      "x": 4,
+      "y": 5,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -121,7 +122,7 @@
     {
       "graphics_id": "OBJ_EVENT_GFX_YOUNGSTER",
       "x": 9,
-      "y": 3,
+      "y": 4,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 0,
@@ -136,7 +137,7 @@
       "x": 5,
       "y": 5,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_UP",
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -171,6 +172,7 @@
       "flag": "FLAG_POX_HIDE_PARK_CONTEST_CROWD"
     },
     {
+      "local_id": "LOCALID_PARK_WARDEN",
       "graphics_id": "OBJ_EVENT_GFX_OLD_MAN_2",
       "x": 11,
       "y": 2,

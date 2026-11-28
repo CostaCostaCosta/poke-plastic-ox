@@ -91,6 +91,18 @@ PoxGoldenrod_Directory::
 PoxGoldenrod_Text_Directory:
 	.string "GOLDENROD CITY\nShops, broadcasts, and friendly faces.$"
 
+PoxGoldenrod_DeptStore7F_Sign::
+	msgbox PoxGoldenrod_Text_DeptStore7F, MSGBOX_SIGN
+	end
+PoxGoldenrod_Text_DeptStore7F:
+	.string "ROOFTOP TERRACE\nFresh air and a view of the whole\lcity. Drinks are sold on 6F.$"
+
+PoxGoldenrod_GameCorner_Sign::
+	msgbox PoxGoldenrod_Text_GameCornerSign, MSGBOX_SIGN
+	end
+PoxGoldenrod_Text_GameCornerSign:
+	.string "GAME CORNER\nCoins in, luck out. Prizes at the\lcounter. Play for fun!$"
+
 PoxGoldenrod_Bike::
 	lock
 	faceplayer
@@ -108,6 +120,20 @@ PoxGoldenrod_Text_Bike:
 	.string "Explore the city on two wheels!\nTake this bicycle with you.$"
 PoxGoldenrod_Text_BikeHave:
 	.string "Your bicycle is ready for the road!$"
+
+@ The street woman points at the FLOWER SHOP counter: the shop is the only
+@ place that hands over the SQUIRTBOTTLE (Pox_SquirtBottle at (2,4)).
+PoxGoldenrod_SquirtBottleNote::
+	goto_if_set FLAG_POX_SUDOWOODO_CLEARED, PoxGoldenrod_SquirtBottleNote_Cleared
+	msgbox PoxGoldenrod_Text_SquirtBottleNote, MSGBOX_NPC
+	end
+PoxGoldenrod_SquirtBottleNote_Cleared::
+	msgbox PoxGoldenrod_Text_SquirtBottleNoteCleared, MSGBOX_NPC
+	end
+PoxGoldenrod_Text_SquirtBottleNoteCleared:
+	.string "Somebody cleared that odd tree off\nROUTE 36. The FLOWER SHOP girl has\pher bottle back for the flowers.$"
+PoxGoldenrod_Text_SquirtBottleNote:
+	.string "The FLOWER SHOP lends a\nSQUIRTBOTTLE for the odd tree on\pROUTE 36. Ask the girl inside.$"
 
 PoxGoldenrod_Slots::
 	lockall
@@ -203,67 +229,141 @@ PoxGoldenrod_Lift7::
 PoxGoldenrod_Shop2F::
 	lock
 	faceplayer
+	msgbox PoxGoldenrod_Shop2F_Text, MSGBOX_DEFAULT
 	pokemart PoxGoldenrod_Shop2F_Items
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
+PoxGoldenrod_Shop2F_Text:
+	.string "Welcome to the TRAINER'S MARKET!\nBALLS and medicine for the road.$"
 	.align 2
 PoxGoldenrod_Shop2F_Items:
 	.2byte ITEM_POKE_BALL
 	.2byte ITEM_GREAT_BALL
+	.2byte ITEM_POTION
 	.2byte ITEM_SUPER_POTION
 	.2byte ITEM_ANTIDOTE
 	.2byte ITEM_PARALYZE_HEAL
 	.2byte ITEM_AWAKENING
+	.2byte ITEM_BURN_HEAL
+	.2byte ITEM_ICE_HEAL
+	.2byte ITEM_ESCAPE_ROPE
 	.2byte ITEM_REPEL
 	.2byte ITEM_NONE
 
 PoxGoldenrod_Shop3F::
 	lock
 	faceplayer
+	msgbox PoxGoldenrod_Shop3F_Text, MSGBOX_DEFAULT
 	pokemart PoxGoldenrod_Shop3F_Items
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
+PoxGoldenrod_Shop3F_Text:
+	.string "BATTLE COLLECTION. Held items\nthat turn a close match around.$"
 	.align 2
 PoxGoldenrod_Shop3F_Items:
-	.2byte ITEM_TM_PROTECT
-	.2byte ITEM_TM_RETURN
-	.2byte ITEM_TM_FRUSTRATION
+	.2byte ITEM_SCOPE_LENS
+	.2byte ITEM_BRIGHT_POWDER
+	.2byte ITEM_FOCUS_BAND
+	.2byte ITEM_WHITE_HERB
+	.2byte ITEM_MENTAL_HERB
 	.2byte ITEM_NONE
 
 PoxGoldenrod_Shop4F::
 	lock
 	faceplayer
+	msgbox PoxGoldenrod_Shop4F_Text, MSGBOX_DEFAULT
 	pokemart PoxGoldenrod_Shop4F_Items
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
+PoxGoldenrod_Shop4F_Text:
+	.string "EVOLUTION CORNER. Stones for the\nbig day, or one to wait a while.$"
 	.align 2
 PoxGoldenrod_Shop4F_Items:
 	.2byte ITEM_FIRE_STONE
-	.2byte ITEM_WATER_STONE
-	.2byte ITEM_THUNDER_STONE
-	.2byte ITEM_LEAF_STONE
+	.2byte ITEM_MOON_STONE
+	.2byte ITEM_SUN_STONE
+	.2byte ITEM_EVERSTONE
 	.2byte ITEM_NONE
 
 PoxGoldenrod_Shop5F::
 	lock
 	faceplayer
+	msgbox PoxGoldenrod_Shop5F_Text, MSGBOX_DEFAULT
 	pokemart PoxGoldenrod_Shop5F_Items
+	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
+PoxGoldenrod_Shop5F_Text:
+	.string "PREMIUM HELD ITEMS. Our\nCHOICE BAND sells out by noon!$"
 	.align 2
 PoxGoldenrod_Shop5F_Items:
-	.2byte ITEM_HP_UP
-	.2byte ITEM_PROTEIN
-	.2byte ITEM_IRON
-	.2byte ITEM_CALCIUM
-	.2byte ITEM_ZINC
-	.2byte ITEM_CARBOS
-	.2byte ITEM_LEFTOVERS
 	.2byte ITEM_CHOICE_BAND
-	.2byte ITEM_CHOICE_SPECS
-	.2byte ITEM_CHOICE_SCARF
-	.2byte ITEM_LIFE_ORB
-	.2byte ITEM_FOCUS_SASH
-	.2byte ITEM_ASSAULT_VEST
-	.2byte ITEM_ROCKY_HELMET
+	.2byte ITEM_LEFTOVERS
+	.2byte ITEM_SHELL_BELL
 	.2byte ITEM_NONE
+
+PoxGoldenrod_Vending6F::
+	lockall
+	msgbox PoxGoldenrod_Vending6F_Text, MSGBOX_DEFAULT
+	pokemart PoxGoldenrod_Vending6F_Items
+	releaseall
+	end
+PoxGoldenrod_Vending6F_Text:
+	.string "A vending machine. The buttons\nare worn smooth.$"
+	.align 2
+PoxGoldenrod_Vending6F_Items:
+	.2byte ITEM_FRESH_WATER
+	.2byte ITEM_SODA_POP
+	.2byte ITEM_LEMONADE
+	.2byte ITEM_NONE
+
+PoxGoldenrod_DeptFloor1F::
+	msgbox PoxGoldenrod_DeptFloor1F_Text, MSGBOX_SIGN
+	end
+PoxGoldenrod_DeptFloor1F_Text:
+	.string "GOLDENROD DEPT. STORE\n1F SERVICE  2F TRAINER'S MARKET\p3F BATTLE COLLECTION\n4F EVOLUTION CORNER\p5F PREMIUM HELD ITEMS\n6F REFRESHMENTS  ROOF TERRACE$"
+
+PoxGoldenrod_DeptFloor2F::
+	msgbox PoxGoldenrod_DeptFloor2F_Text, MSGBOX_SIGN
+	end
+PoxGoldenrod_DeptFloor2F_Text:
+	.string "2F TRAINER'S MARKET\nBALLS, medicine and travel goods.$"
+
+PoxGoldenrod_DeptFloor3F::
+	msgbox PoxGoldenrod_DeptFloor3F_Text, MSGBOX_SIGN
+	end
+PoxGoldenrod_DeptFloor3F_Text:
+	.string "3F BATTLE COLLECTION\nHeld items for close battles.$"
+
+PoxGoldenrod_DeptFloor4F::
+	msgbox PoxGoldenrod_DeptFloor4F_Text, MSGBOX_SIGN
+	end
+PoxGoldenrod_DeptFloor4F_Text:
+	.string "4F EVOLUTION CORNER\nEvolution stones and EVERSTONES.$"
+
+PoxGoldenrod_DeptFloor5F::
+	msgbox PoxGoldenrod_DeptFloor5F_Text, MSGBOX_SIGN
+	end
+PoxGoldenrod_DeptFloor5F_Text:
+	.string "5F PREMIUM HELD ITEMS\nCHOICE BAND, LEFTOVERS and more.$"
+
+PoxGoldenrod_DeptFloor6F::
+	msgbox PoxGoldenrod_DeptFloor6F_Text, MSGBOX_SIGN
+	end
+PoxGoldenrod_DeptFloor6F_Text:
+	.string "6F REFRESHMENTS\nDrinks here. The roof is upstairs.$"
+
+PoxGoldenrod_DeptShelf2F::
+	msgbox PoxGoldenrod_DeptShelf2F_Text, MSGBOX_SIGN
+	end
+PoxGoldenrod_DeptShelf2F_Text:
+	.string "POTIONS in neat rows, every label\nfacing forward. Someone is tidy.$"
+
+PoxGoldenrod_DeptShelf4F::
+	msgbox PoxGoldenrod_DeptShelf4F_Text, MSGBOX_SIGN
+	end
+PoxGoldenrod_DeptShelf4F_Text:
+	.string "A glass case of polished stones.\nAsk the clerk to open it.$"

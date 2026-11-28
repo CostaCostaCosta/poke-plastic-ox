@@ -293,6 +293,33 @@ ROSTERS: dict[str, tuple[str, list[tuple[str, int]]]] = {
         ("SPECIES_TYRANITAR", 55), ("SPECIES_SALAMENCE", 55), ("SPECIES_METAGROSS", 55),
         ("SPECIES_FORRETRESS", 54), ("SPECIES_GENGAR", 53), ("SPECIES_STARMIE", 54)]),
 
+    # ---- Route 115, the OU road from Route 34 to Meteor Falls, cap 55 -----
+    # Opens with Saffron (Space Center flag), before or after Bruno/Silph.
+    # Koichi coaches the beach dojo and is the route's six-Pokemon boss; the
+    # rest keep their RS identities (fighters, Hector's collector pair, the
+    # triathlete, the ninja, two psychics) at the OU band.
+    "TRAINER_KOICHI": ("saffron", [
+        ("SPECIES_MACHAMP", 55), ("SPECIES_HARIYAMA", 54), ("SPECIES_HITMONTOP", 54),
+        ("SPECIES_HERACROSS", 54), ("SPECIES_MEDICHAM", 53), ("SPECIES_POLIWRATH", 53)]),
+    "TRAINER_TIMOTHY_1": ("saffron", [
+        ("SPECIES_URSARING", 53), ("SPECIES_KANGASKHAN", 53), ("SPECIES_TAUROS", 52)]),
+    "TRAINER_NOB_1": ("saffron", [
+        ("SPECIES_PRIMEAPE", 52), ("SPECIES_PINSIR", 53)]),
+    "TRAINER_CYNDY_1": ("saffron", [
+        ("SPECIES_HITMONCHAN", 52), ("SPECIES_MACHOKE", 52)]),
+    "TRAINER_HECTOR": ("saffron", [
+        ("SPECIES_SEVIPER", 52), ("SPECIES_SPINDA", 51), ("SPECIES_KECLEON", 52)]),
+    "TRAINER_KYRA": ("saffron", [
+        ("SPECIES_DODRIO", 53), ("SPECIES_SWELLOW", 52)]),
+    "TRAINER_JAIDEN": ("saffron", [
+        ("SPECIES_NINJASK", 52), ("SPECIES_CROBAT", 52), ("SPECIES_SWALOT", 51)]),
+    "TRAINER_HELENE": ("saffron", [
+        ("SPECIES_HITMONLEE", 53), ("SPECIES_GRANBULL", 52)]),
+    "TRAINER_ALIX": ("saffron", [
+        ("SPECIES_ALAKAZAM", 53), ("SPECIES_GARDEVOIR", 53)]),
+    "TRAINER_MARLENE": ("saffron", [
+        ("SPECIES_GRUMPIG", 52), ("SPECIES_XATU", 52)]),
+
     # ---- Gym 8, Blackthorn, OU cap 60 ------------------------------------
     "TRAINER_PLASTIC_OX_CLAIR": ("blackthorn", [
         ("SPECIES_GYARADOS", 59), ("SPECIES_JOLTEON", 58), ("SPECIES_SWAMPERT", 58),

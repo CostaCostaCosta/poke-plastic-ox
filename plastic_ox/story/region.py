@@ -50,7 +50,6 @@ STORY_ORDER = [
     "route14-hns",
     "route24-hns",
     "route25-hns",
-    "route34-hns",
     # Act I — Mt. Moon, Goldenrod, the road to Ecruteak
     "route44-hns",
     "mtmoon-cave-hns",
@@ -97,7 +96,8 @@ STORY_ORDER = [
     "saffroncity-hns",
     "route19-frlg",
     "route6-hns",
-    "route5-hns",
+    "route34-hns",
+    "route5-hns",  # retired: Route 34 replaced it as Saffron's north road
     "goldenrodcity-radiotower-5f-hns",
     # Act V — Meteor Falls, Blackthorn, Victory Road, the League
     "route115",

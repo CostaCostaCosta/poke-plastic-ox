@@ -9,7 +9,7 @@ PoxGoldenrod_GoldenrodCity_DepartmentStore_5F_hns_0::
 	msgbox PoxGoldenrod_GoldenrodCity_DepartmentStore_5F_hns_0_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_DepartmentStore_5F_hns_0_Text:
-	.string "Training vitamins cost a lot.\nI buy one after each payday.$"
+	.string "LEFTOVERS cost a lot.\nI saved three paydays for one.$"
 
 PoxGoldenrod_GoldenrodCity_DepartmentStore_5F_hns_1::
 	msgbox PoxGoldenrod_GoldenrodCity_DepartmentStore_5F_hns_1_Text, MSGBOX_NPC
@@ -21,10 +21,10 @@ PoxGoldenrod_GoldenrodCity_DepartmentStore_5F_hns_2::
 	msgbox PoxGoldenrod_GoldenrodCity_DepartmentStore_5F_hns_2_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_DepartmentStore_5F_hns_2_Text:
-	.string "The CARBOS shelf is always low.\nThe GYM must buy in bulk.$"
+	.string "The SHELL BELL shelf is always low.\nThe GYM must buy in bulk.$"
 
 PoxGoldenrod_GoldenrodCity_DepartmentStore_5F_hns_3::
 	msgbox PoxGoldenrod_GoldenrodCity_DepartmentStore_5F_hns_3_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_DepartmentStore_5F_hns_3_Text:
-	.string "I carried these crates upstairs.\nNext time I'll use the lift.$"
+	.string "These BANDS used to come by boat\nfrom SLATEPORT. Now it's trucks.$"

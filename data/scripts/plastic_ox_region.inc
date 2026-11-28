@@ -385,28 +385,6 @@ PoxRegion_route103_cinnabar_a_Sign::
 PoxRegion_route103_cinnabar_a_Text::
 	.string "CINNABAR ISLAND\nFollow the passage south.$"
 
-PoxRegion_route103_cinnabar_b::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route103_cinnabar_b_Open
-	goto_if_unset FLAG_POX_STORY_FUJI, PoxRegion_route103_cinnabar_b_Closed
-PoxRegion_route103_cinnabar_b_Open::
-	warp MAP_ROUTE103, 75, 14
-	waitstate
-	releaseall
-	end
-PoxRegion_route103_cinnabar_b_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_CINNABAR_ISLAND, 12, 13
-	waitstate
-	releaseall
-	end
-
-PoxRegion_route103_cinnabar_b_Sign::
-	msgbox PoxRegion_route103_cinnabar_b_Text, MSGBOX_SIGN
-	end
-PoxRegion_route103_cinnabar_b_Text::
-	.string "ROUTE 103\nThe mainland road. Mind the tide.$"
-
 PoxRegion_cinnabar_sea_a::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_cinnabar_sea_a_Open
@@ -587,93 +565,93 @@ PoxRegion_route19_saffron_b_Sign::
 PoxRegion_route19_saffron_b_Text::
 	.string "SAFFRON CITY - SOUTH GATE\nROUTE 19 and the MOSSDEEP road$"
 
-PoxRegion_saffron_route5_a::
+PoxRegion_saffron_route34_a::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_saffron_route5_a_Open
-	goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxRegion_saffron_route5_a_Closed
-PoxRegion_saffron_route5_a_Open::
-	warp MAP_ROUTE5_HNS, 31, 38
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_saffron_route34_a_Open
+	goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxRegion_saffron_route34_a_Closed
+PoxRegion_saffron_route34_a_Open::
+	warp MAP_ROUTE34_HNS, 31, 65
 	waitstate
 	releaseall
 	end
-PoxRegion_saffron_route5_a_Closed::
+PoxRegion_saffron_route34_a_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
 	warp MAP_SAFFRON_CITY_HNS, 29, 6
 	waitstate
 	releaseall
 	end
 
-PoxRegion_saffron_route5_a_Sign::
-	msgbox PoxRegion_saffron_route5_a_Text, MSGBOX_SIGN
+PoxRegion_saffron_route34_a_Sign::
+	msgbox PoxRegion_saffron_route34_a_Text, MSGBOX_SIGN
 	end
-PoxRegion_saffron_route5_a_Text::
-	.string "SAFFRON CITY - NORTH GATE\nROUTE 5 to BLACKTHORN$"
+PoxRegion_saffron_route34_a_Text::
+	.string "SAFFRON CITY - NORTH GATE\nROUTE 34 to BLACKTHORN$"
 
-PoxRegion_saffron_route5_b::
+PoxRegion_saffron_route34_b::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_saffron_route5_b_Open
-	goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxRegion_saffron_route5_b_Closed
-PoxRegion_saffron_route5_b_Open::
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_saffron_route34_b_Open
+	goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxRegion_saffron_route34_b_Closed
+PoxRegion_saffron_route34_b_Open::
 	warp MAP_SAFFRON_CITY_HNS, 29, 6
 	waitstate
 	releaseall
 	end
-PoxRegion_saffron_route5_b_Closed::
+PoxRegion_saffron_route34_b_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE5_HNS, 31, 38
+	warp MAP_ROUTE34_HNS, 31, 65
 	waitstate
 	releaseall
 	end
 
-PoxRegion_saffron_route5_b_Sign::
-	msgbox PoxRegion_saffron_route5_b_Text, MSGBOX_SIGN
+PoxRegion_saffron_route34_b_Sign::
+	msgbox PoxRegion_saffron_route34_b_Text, MSGBOX_SIGN
 	end
-PoxRegion_saffron_route5_b_Text::
-	.string "SaffronCity\nMarked passage ahead.\pYou are leaving ROUTE 5.$"
+PoxRegion_saffron_route34_b_Text::
+	.string "SaffronCity\nMarked passage ahead.\pYou are leaving ROUTE 34.$"
 
-PoxRegion_route5_route115_a::
+PoxRegion_route34_route115_a::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route5_route115_a_Open
-	goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxRegion_route5_route115_a_Closed
-PoxRegion_route5_route115_a_Open::
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route34_route115_a_Open
+	goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxRegion_route34_route115_a_Closed
+PoxRegion_route34_route115_a_Open::
 	warp MAP_ROUTE115, 19, 79
 	waitstate
 	releaseall
 	end
-PoxRegion_route5_route115_a_Closed::
+PoxRegion_route34_route115_a_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_ROUTE5_HNS, 31, 0
+	warp MAP_ROUTE34_HNS, 27, 1
 	waitstate
 	releaseall
 	end
 
-PoxRegion_route5_route115_a_Sign::
-	msgbox PoxRegion_route5_route115_a_Text, MSGBOX_SIGN
+PoxRegion_route34_route115_a_Sign::
+	msgbox PoxRegion_route34_route115_a_Text, MSGBOX_SIGN
 	end
-PoxRegion_route5_route115_a_Text::
-	.string "Route115\nMarked passage ahead.\pYou are leaving ROUTE 5.$"
+PoxRegion_route34_route115_a_Text::
+	.string "Route115\nMarked passage ahead.\pYou are leaving ROUTE 34.$"
 
-PoxRegion_route5_route115_b::
+PoxRegion_route34_route115_b::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route5_route115_b_Open
-	goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxRegion_route5_route115_b_Closed
-PoxRegion_route5_route115_b_Open::
-	warp MAP_ROUTE5_HNS, 31, 0
+	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route34_route115_b_Open
+	goto_if_unset FLAG_POX_STORY_SPACE_CENTER, PoxRegion_route34_route115_b_Closed
+PoxRegion_route34_route115_b_Open::
+	warp MAP_ROUTE34_HNS, 27, 1
 	waitstate
 	releaseall
 	end
-PoxRegion_route5_route115_b_Closed::
+PoxRegion_route34_route115_b_Closed::
 	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
 	warp MAP_ROUTE115, 19, 79
 	waitstate
 	releaseall
 	end
 
-PoxRegion_route5_route115_b_Sign::
-	msgbox PoxRegion_route5_route115_b_Text, MSGBOX_SIGN
+PoxRegion_route34_route115_b_Sign::
+	msgbox PoxRegion_route34_route115_b_Text, MSGBOX_SIGN
 	end
-PoxRegion_route5_route115_b_Text::
-	.string "Route5\nMarked passage ahead.\pYou are leaving ROUTE 115.$"
+PoxRegion_route34_route115_b_Text::
+	.string "Route34\nMarked passage ahead.\pYou are leaving ROUTE 115.$"
 
 PoxRegion_meteor_blackthorn_a::
 	lockall
@@ -1186,6 +1164,10 @@ PoxRegion_Arrival_Route33_hns::
 PoxRegion_Arrival_Route33_hns_End::
 	end
 
+PoxRegion_Arrival_Route34_hns::
+PoxRegion_Arrival_Route34_hns_End::
+	end
+
 PoxRegion_Arrival_Route35_hns::
 PoxRegion_Arrival_Route35_hns_End::
 	end
@@ -1208,10 +1190,6 @@ PoxRegion_Arrival_Route45_hns_End::
 
 PoxRegion_Arrival_Route46_hns::
 PoxRegion_Arrival_Route46_hns_End::
-	end
-
-PoxRegion_Arrival_Route5_hns::
-PoxRegion_Arrival_Route5_hns_End::
 	end
 
 PoxRegion_Arrival_Route7_hns::

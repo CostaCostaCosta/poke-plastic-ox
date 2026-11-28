@@ -15,7 +15,7 @@ PoxGoldenrod_GoldenrodCity_DepartmentStore_1F_hns_1::
 	msgbox PoxGoldenrod_GoldenrodCity_DepartmentStore_1F_hns_1_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_DepartmentStore_1F_hns_1_Text:
-	.string "The elevator has seven stops!\nI want to see the roof first.$"
+	.string "The lift goes from the basement\nall the way up. Roof first!$"
 
 PoxGoldenrod_GoldenrodCity_DepartmentStore_1F_hns_2::
 	msgbox PoxGoldenrod_GoldenrodCity_DepartmentStore_1F_hns_2_Text, MSGBOX_NPC
@@ -27,4 +27,4 @@ PoxGoldenrod_GoldenrodCity_DepartmentStore_1F_hns_3::
 	msgbox PoxGoldenrod_GoldenrodCity_DepartmentStore_1F_hns_3_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_DepartmentStore_1F_hns_3_Text:
-	.string "Returns go to the front desk.\nKeep your receipt handy.$"
+	.string "Welcome! BALLS and medicine are on\n2F. Held items are up on 5F.$"

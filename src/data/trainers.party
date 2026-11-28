@@ -3217,13 +3217,65 @@ Music: Intense
 Double Battle: No
 AI: Check Bad Move
 
-Machop
-Level: 24
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Machamp @ Choice Band
+Level: 55
+Ability: Guts
+EVs: 252 Atk / 4 Def / 252 Spe
+Adamant Nature
+- Cross Chop
+- Rock Slide
+- Focus Punch
+- Hidden Power
 
-Machoke
-Level: 28
-IVs: 18 HP / 18 Atk / 18 Def / 18 SpA / 18 SpD / 18 Spe
+Hariyama @ Leftovers
+Level: 54
+Ability: Thick Fat
+EVs: 4 Atk / 252 Def / 252 SpD
+Impish Nature
+- Knock Off
+- Brick Break
+- Rest
+- Hidden Power
+
+Hitmontop @ Salac Berry
+Level: 54
+Ability: Intimidate
+EVs: 252 Atk / 4 Def / 252 Spe
+Jolly Nature
+- Earthquake
+- Endeavor
+- Mega Kick
+- Hidden Power
+
+Heracross @ Choice Band
+Level: 54
+Ability: Swarm
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Megahorn
+- Brick Break
+- Rock Slide
+- Hidden Power
+
+Medicham @ Salac Berry
+Level: 53
+Ability: Pure Power
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Hidden Power
+- Reversal
+- Focus Punch
+- Shadow Ball
+
+Poliwrath @ Leftovers
+Level: 53
+Ability: Water Absorb
+EVs: 252 HP / 252 Atk / 4 SpD
+Adamant Nature
+- Surf
+- Hypnosis
+- Focus Punch
+- Hidden Power
 
 === TRAINER_NOB_1 ===
 Name: NOB
@@ -3234,9 +3286,25 @@ Music: Intense
 Double Battle: No
 AI: Check Bad Move
 
-Machop
-Level: 19
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Primeape @ Leftovers
+Level: 52
+Ability: Vital Spirit
+EVs: 32 HP / 252 Atk / 224 Spe
+Jolly Nature
+- Bulk Up
+- Cross Chop
+- Hidden Power
+- Rock Slide
+
+Pinsir @ Leftovers
+Level: 53
+Ability: Hyper Cutter
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Swords Dance
+- Earthquake
+- Hidden Power
+- Rock Slide
 
 === TRAINER_NOB_2 ===
 Name: NOB
@@ -5771,9 +5839,35 @@ Music: Intense
 Double Battle: No
 AI: Basic Trainer
 
-Hariyama
-Level: 27
-IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
+Ursaring @ Leftovers
+Level: 53
+Ability: Guts
+EVs: 252 HP / 4 Def / 252 SpD
+Careful Nature
+- Bulk Up
+- Return
+- Hidden Power
+- Earthquake
+
+Kangaskhan @ Leftovers
+Level: 53
+Ability: Early Bird
+EVs: 212 HP / 252 Atk / 44 Spe
+Adamant Nature
+- Return
+- Shadow Ball
+- Rest
+- Earthquake
+
+Tauros @ Choice Band
+Level: 52
+Ability: Intimidate
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Return
+- Earthquake
+- Hidden Power
+- Double-Edge
 
 === TRAINER_TIMOTHY_2 ===
 Name: TIMOTHY
@@ -7867,13 +7961,25 @@ Music: Intense
 Double Battle: No
 AI: Check Bad Move
 
-Meditite
-Level: 18
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Hitmonchan @ Leftovers
+Level: 52
+Ability: Keen Eye
+EVs: 88 HP / 252 Atk / 168 Spe
+Adamant Nature
+- Sky Uppercut
+- Mach Punch
+- Hidden Power
+- Rock Slide
 
-Makuhita
-Level: 18
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Machoke @ Leftovers
+Level: 52
+Ability: Guts
+EVs: 208 HP / 252 Atk / 44 Spe
+Adamant Nature
+- Bulk Up
+- Revenge
+- Hidden Power
+- Earthquake
 
 === TRAINER_CORA ===
 Name: CORA
@@ -9353,13 +9459,35 @@ Music: Suspicious
 Double Battle: No
 AI: Check Bad Move
 
-Zangoose
-Level: 18
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Seviper @ Choice Band
+Level: 52
+Ability: Shed Skin
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Sludge Bomb
+- Earthquake
+- Hidden Power
+- Iron Tail
 
-Seviper
-Level: 18
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Spinda @ Salac Berry
+Level: 51
+Ability: Own Tempo
+EVs: 252 HP / 4 SpA / 252 Spe
+Timid Nature
+- Hypnosis
+- Thunder Punch
+- Calm Mind
+- Focus Punch
+
+Kecleon @ Choice Band
+Level: 52
+Ability: Color Change
+EVs: 252 HP / 252 Atk / 4 SpD
+Adamant Nature
+- Return
+- Shadow Ball
+- Focus Punch
+- Fire Blast
 
 === TRAINER_TABITHA_MOSSDEEP ===
 Name: TABITHA
@@ -13797,13 +13925,25 @@ Music: Female
 Double Battle: No
 AI: Check Bad Move
 
-Doduo
-Level: 26
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Dodrio @ Choice Band
+Level: 53
+Ability: Early Bird
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Drill Peck
+- Return
+- Hyper Beam
+- Hidden Power
 
-Dodrio
-Level: 26
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Swellow @ Liechi Berry
+Level: 52
+Ability: Guts
+EVs: 4 HP / 252 Atk / 252 Spe
+Jolly Nature
+- Hidden Power
+- Endeavor
+- Hyper Beam
+- Return
 
 === TRAINER_JAIDEN ===
 Name: JAIDEN
@@ -13814,13 +13954,35 @@ Music: Suspicious
 Double Battle: No
 AI: Check Bad Move
 
-Ninjask
-Level: 26
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Ninjask @ Choice Band
+Level: 52
+Ability: Speed Boost
+EVs: 60 HP / 252 Atk / 196 Spe
+Adamant Nature
+- Hyper Beam
+- Aerial Ace
+- Hidden Power
+- Shadow Ball
 
-Swalot
-Level: 26
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Crobat @ Leftovers
+Level: 52
+Ability: Inner Focus
+EVs: 252 HP / 4 Def / 252 Spe
+Jolly Nature
+- Sleep Talk
+- Hyper Beam
+- Hidden Power
+- Toxic
+
+Swalot @ Leftovers
+Level: 51
+Ability: Sticky Hold
+EVs: 232 HP / 140 Atk / 136 SpD
+Careful Nature
+- Sludge Bomb
+- Hidden Power
+- Shadow Ball
+- Counter
 
 === TRAINER_ALIX ===
 Name: ALIX
@@ -13831,13 +13993,25 @@ Music: Intense
 Double Battle: No
 AI: Check Bad Move
 
-Kadabra
-Level: 26
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Alakazam @ Leftovers
+Level: 53
+Ability: Synchronize
+EVs: 4 HP / 252 SpA / 252 Spe
+Timid Nature
+- Calm Mind
+- Psychic
+- Fire Punch
+- Thunder Punch
 
-Kirlia
-Level: 26
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Gardevoir @ Leftovers
+Level: 53
+Ability: Trace
+EVs: 56 HP / 252 SpA / 200 Spe
+Timid Nature
+- Calm Mind
+- Psychic
+- Thunderbolt
+- Hyper Beam
 
 === TRAINER_HELENE ===
 Name: HELENE
@@ -13848,13 +14022,25 @@ Music: Intense
 Double Battle: No
 AI: Check Bad Move
 
-Meditite
-Level: 26
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Hitmonlee @ Choice Band
+Level: 53
+Ability: Limber
+EVs: 4 HP / 252 Atk / 252 Spe
+Adamant Nature
+- Brick Break
+- Hidden Power
+- Rock Slide
+- Focus Punch
 
-Hariyama
-Level: 26
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Granbull @ Leftovers
+Level: 52
+Ability: Intimidate
+EVs: 196 HP / 252 Atk / 36 Def / 24 SpD
+Adamant Nature
+- Focus Punch
+- Hidden Power
+- Return
+- Shadow Ball
 
 === TRAINER_MARLENE ===
 Name: MARLENE
@@ -13865,13 +14051,25 @@ Music: Intense
 Double Battle: No
 AI: Check Bad Move
 
-Meditite
-Level: 18
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Grumpig @ Leftovers
+Level: 52
+Ability: Thick Fat
+EVs: 200 HP / 220 SpA / 88 Spe
+Calm Nature
+- Calm Mind
+- Psychic
+- Hidden Power
+- Shadow Ball
 
-Spoink
-Level: 18
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Xatu @ Lum Berry
+Level: 52
+Ability: Synchronize
+EVs: 252 HP / 32 SpA / 224 Spe
+Timid Nature
+- Calm Mind
+- Thief
+- Psychic
+- Wish
 
 === TRAINER_DEVAN ===
 Name: DEVAN
