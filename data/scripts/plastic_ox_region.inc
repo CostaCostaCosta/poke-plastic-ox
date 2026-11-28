@@ -1166,6 +1166,7 @@ PoxRegion_Arrival_Route21_South_Frlg_End::
 	end
 
 PoxRegion_Arrival_Route24_hns::
+	call_if_defeated TRAINER_PLASTIC_OX_ROUTE24_ROCKET, Route24_EventScript_HideRocket
 PoxRegion_Arrival_Route24_hns_End::
 	end
 

@@ -254,9 +254,17 @@ CeruleanCity_EventScript_Youngster::
 	msgbox CeruleanCity_Text_TrainerLifeIsToughIsntIt, MSGBOX_NPC
 	end
 
+@ Plastic Ox: the post-game Cerulean Cave (the Mt. Silver interior) opens
+@ here, at its FRLG mouth; this guard hides on FLAG_SYS_GAME_CLEAR.
 CeruleanCity_EventScript_CeruleanCaveGuard::
-	msgbox CeruleanCity_Text_ThisIsCeruleanCave, MSGBOX_NPC
+	lock
+	faceplayer
+	msgbox CeruleanCity_Text_CaveClosedUntilHallOfFame, MSGBOX_NPC
+	release
 	end
+
+CeruleanCity_Text_CaveClosedUntilHallOfFame:
+	.string "The POKéMON LEAGUE keeps this cave\nclosed. The POKéMON inside are\ltoo strong for most TRAINERS.\pCome back once your name is in\nthe HALL OF FAME.$"
 
 CeruleanCity_EventScript_Woman::
 	lock
