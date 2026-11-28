@@ -260,22 +260,14 @@ PoxGoldenrod_Shop3F::
 	release
 	end
 PoxGoldenrod_Shop3F_Text:
-	.string "BATTLE COLLECTION. Battle goods\nand TMs, tested in the GYM.$"
+	.string "BATTLE COLLECTION. Held items\nthat turn a close match around.$"
 	.align 2
 PoxGoldenrod_Shop3F_Items:
-	.2byte ITEM_X_ATTACK
-	.2byte ITEM_X_DEFENSE
-	.2byte ITEM_X_SPEED
-	.2byte ITEM_X_SP_ATK
-	.2byte ITEM_X_ACCURACY
-	.2byte ITEM_DIRE_HIT
-	.2byte ITEM_GUARD_SPEC
-	.2byte ITEM_TM_PROTECT
-	.2byte ITEM_TM_RETURN
-	.2byte ITEM_TM_FRUSTRATION
-	.2byte ITEM_TM_HIDDEN_POWER
-	.2byte ITEM_TM_ATTRACT
-	.2byte ITEM_TM_REST
+	.2byte ITEM_SCOPE_LENS
+	.2byte ITEM_BRIGHT_POWDER
+	.2byte ITEM_FOCUS_BAND
+	.2byte ITEM_WHITE_HERB
+	.2byte ITEM_MENTAL_HERB
 	.2byte ITEM_NONE
 
 PoxGoldenrod_Shop4F::
@@ -305,23 +297,11 @@ PoxGoldenrod_Shop5F::
 	release
 	end
 PoxGoldenrod_Shop5F_Text:
-	.string "TRAINING and HELD ITEMS. Our\nCHOICE BAND sells out by noon!$"
+	.string "PREMIUM HELD ITEMS. Our\nCHOICE BAND sells out by noon!$"
 	.align 2
 PoxGoldenrod_Shop5F_Items:
-	.2byte ITEM_HP_UP
-	.2byte ITEM_PROTEIN
-	.2byte ITEM_IRON
-	.2byte ITEM_CALCIUM
-	.2byte ITEM_ZINC
-	.2byte ITEM_CARBOS
 	.2byte ITEM_CHOICE_BAND
 	.2byte ITEM_LEFTOVERS
-	.2byte ITEM_QUICK_CLAW
-	.2byte ITEM_SCOPE_LENS
-	.2byte ITEM_BRIGHT_POWDER
-	.2byte ITEM_WHITE_HERB
-	.2byte ITEM_MENTAL_HERB
-	.2byte ITEM_FOCUS_BAND
 	.2byte ITEM_SHELL_BELL
 	.2byte ITEM_NONE
 
@@ -344,7 +324,7 @@ PoxGoldenrod_DeptFloor1F::
 	msgbox PoxGoldenrod_DeptFloor1F_Text, MSGBOX_SIGN
 	end
 PoxGoldenrod_DeptFloor1F_Text:
-	.string "GOLDENROD DEPT. STORE\n1F SERVICE  2F TRAINER'S MARKET\p3F BATTLE COLLECTION\n4F EVOLUTION CORNER\p5F TRAINING & HELD ITEMS\n6F REFRESHMENTS  ROOF TERRACE$"
+	.string "GOLDENROD DEPT. STORE\n1F SERVICE  2F TRAINER'S MARKET\p3F BATTLE COLLECTION\n4F EVOLUTION CORNER\p5F PREMIUM HELD ITEMS\n6F REFRESHMENTS  ROOF TERRACE$"
 
 PoxGoldenrod_DeptFloor2F::
 	msgbox PoxGoldenrod_DeptFloor2F_Text, MSGBOX_SIGN
@@ -356,7 +336,7 @@ PoxGoldenrod_DeptFloor3F::
 	msgbox PoxGoldenrod_DeptFloor3F_Text, MSGBOX_SIGN
 	end
 PoxGoldenrod_DeptFloor3F_Text:
-	.string "3F BATTLE COLLECTION\nBattle goods and TMs.$"
+	.string "3F BATTLE COLLECTION\nHeld items for close battles.$"
 
 PoxGoldenrod_DeptFloor4F::
 	msgbox PoxGoldenrod_DeptFloor4F_Text, MSGBOX_SIGN
@@ -368,7 +348,7 @@ PoxGoldenrod_DeptFloor5F::
 	msgbox PoxGoldenrod_DeptFloor5F_Text, MSGBOX_SIGN
 	end
 PoxGoldenrod_DeptFloor5F_Text:
-	.string "5F TRAINING & HELD ITEMS\nVitamins, CHOICE BAND and more.$"
+	.string "5F PREMIUM HELD ITEMS\nCHOICE BAND, LEFTOVERS and more.$"
 
 PoxGoldenrod_DeptFloor6F::
 	msgbox PoxGoldenrod_DeptFloor6F_Text, MSGBOX_SIGN
