@@ -188,52 +188,24 @@ PoxRegion_MonFlewAway::
 PoxRegion_MonFlewAwayText::
 	.string "The POKéMON flew away!$"
 
-@ ROUTE 44 <-> RUSTBORO threshold.  Story runs require the STONE BADGE in both
-@ directions; the battle demo (FLAG_POX_TRIGGERS_ENABLED unset) keeps the seam
-@ open.  The _Closed arms are reachable now, so neither branch is dead code.
+@ ROUTE 44 <-> RUSTBORO seam.  The city's east edge is a map connection; story
+@ runs need the STONE BADGE to step off it (the battle demo, with
+@ FLAG_POX_TRIGGERS_ENABLED unset, keeps it open).  The way back is ungated.
 PoxRegion_rustboro_route44_a::
-	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_rustboro_route44_a_Open
 	goto_if_unset FLAG_BADGE01_GET, PoxRegion_rustboro_route44_a_Closed
 PoxRegion_rustboro_route44_a_Open::
-	warp MAP_ROUTE44_HNS, 1, 15
-	waitstate
-	releaseall
 	end
 PoxRegion_rustboro_route44_a_Closed::
-	msgbox PoxRegion_Route44BadgeText, MSGBOX_DEFAULT
-	warp MAP_RUSTBORO_CITY, 38, 10
-	waitstate
-	releaseall
-	end
-
-PoxRegion_rustboro_route44_a_Sign::
-	msgbox PoxRegion_rustboro_route44_a_Text, MSGBOX_SIGN
-	end
-PoxRegion_rustboro_route44_a_Text::
-	.string "Route44\nMarked passage ahead.$"
-
-PoxRegion_rustboro_route44_b::
 	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_rustboro_route44_b_Open
-	goto_if_unset FLAG_BADGE01_GET, PoxRegion_rustboro_route44_b_Closed
-PoxRegion_rustboro_route44_b_Open::
-	warp MAP_RUSTBORO_CITY, 38, 10
-	waitstate
-	releaseall
-	end
-PoxRegion_rustboro_route44_b_Closed::
 	msgbox PoxRegion_Route44BadgeText, MSGBOX_DEFAULT
-	warp MAP_ROUTE44_HNS, 1, 15
-	waitstate
+	applymovement OBJ_EVENT_ID_PLAYER, PoxRegion_rustboro_route44_a_StepBack
+	waitmovement 0
 	releaseall
 	end
-
-PoxRegion_rustboro_route44_b_Sign::
-	msgbox PoxRegion_rustboro_route44_b_Text, MSGBOX_SIGN
-	end
-PoxRegion_rustboro_route44_b_Text::
-	.string "RustboroCity\nMarked passage ahead.$"
+PoxRegion_rustboro_route44_a_StepBack:
+	walk_left
+	step_end
 
 PoxRegion_Route44BadgeText::
 	.string "The hiker on the east road checks\nfor the STONE BADGE.\pROXANNE awards it at the\nRUSTBORO GYM.$"

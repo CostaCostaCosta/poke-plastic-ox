@@ -39,10 +39,8 @@ data/maps/Route33_hns/map.json
 data/maps/Route35_hns/map.json
 data/maps/Route36_hns/map.json
 data/maps/Route36_hns/scripts.inc
-data/maps/Route44_hns/map.json
 data/maps/Route45_hns/map.json
 data/maps/Route5_hns/map.json
-data/maps/RustboroCity/map.json
 data/maps/SaffronCity_hns/map.json
 data/scripts/plastic_ox_goldenrod.inc
 data/scripts/plastic_ox_region.inc

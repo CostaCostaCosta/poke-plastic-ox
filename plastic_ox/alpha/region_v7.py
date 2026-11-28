@@ -60,6 +60,9 @@ LANE_PORTALS = {
 # the player simply walks across the map connection in either direction.
 # key: (connection from a, connection from b, offset)
 SEAM_TRAILS = {
+    # Rustboro's east road (rows 8..12) meets Route 44's west path (14..16):
+    # city row 10 = route row 15. Both edges are tree/cliff walls elsewhere.
+    'rustboro_route44': ('right', 'left', -5),
     'route119_fortree': ('right', 'left', 0),
     # Route 110's three exits; route110_seams.py cuts the matching geometry.
     'fortree_route110': ('right', 'left', 5),
@@ -113,7 +116,7 @@ SIGNLESS_ENDPOINTS = {'route7_route103_a', 'route7_route103_b'}
 # Explicit source/destination port targets. A target may name a compass edge;
 # coordinates denote a native gate plaza, cave mouth, or dock.
 TRAILS = [
-    ('rustboro_route44','RustboroCity',(39,10),'Route44_hns',(0,15),[]),
+    ('rustboro_route44','RustboroCity',(39,10),'Route44_hns',(0,15),['FLAG_BADGE01_GET']),
     ('route33_goldenrod','Route33_hns','W','GoldenrodCity_hns','S',[]),
     ('goldenrod_route35','GoldenrodCity_hns',(33,8),'Route35_hns','S',[]),
     ('route119_fortree','Route119',(39,8),'FortreeCity','W',['FLAG_POX_STORY_WEATHER']),
@@ -576,7 +579,8 @@ def apply_region(read, put):
             body=f'{script}::\n\tgoto_if_unset FLAG_POX_TRIGGERS_ENABLED, {script}_Open\n'
             for flag in requirements:
                 body+=f'\tgoto_if_unset {flag}, {script}_Closed\n'
-            closed_text={'PoxRegion_route119_fortree_a':'Pox_Text_WI_CrossingClosed','PoxRegion_lavender_harbor_a':'PoxFrontier_Text_HarborClosed','PoxRegion_harbor_frontier_a':'PoxFrontier_Text_HarborClosed'}.get(script,'PoxRegion_ClosedText')
+            closed_text={'PoxRegion_route119_fortree_a':'Pox_Text_WI_CrossingClosed','PoxRegion_lavender_harbor_a':'PoxFrontier_Text_HarborClosed','PoxRegion_harbor_frontier_a':'PoxFrontier_Text_HarborClosed',
+                         'PoxRegion_rustboro_route44_a':'PoxRegion_Route44BadgeText'}.get(script,'PoxRegion_ClosedText')
             body+=(f'{script}_Open::\n\tend\n{script}_Closed::\n\tlockall\n\tmsgbox {closed_text}, MSGBOX_DEFAULT\n'
                    f'\tapplymovement OBJ_EVENT_ID_PLAYER, {script}_StepBack\n\twaitmovement 0\n\treleaseall\n\tend\n'
                    f'{script}_StepBack:\n\t{back}\n\tstep_end')
