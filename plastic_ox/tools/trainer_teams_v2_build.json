@@ -4498,7 +4498,7 @@
    "monsters": [
     {
      "species": "SPECIES_WINGULL",
-     "level": 5,
+     "level": 6,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -4509,7 +4509,7 @@
     },
     {
      "species": "SPECIES_WHISMUR",
-     "level": 5,
+     "level": 6,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -4520,7 +4520,7 @@
     },
     {
      "species": "SPECIES_ELECTRIKE",
-     "level": 5,
+     "level": 6,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -4531,29 +4531,7 @@
     },
     {
      "species": "SPECIES_CACNEA",
-     "level": 5,
-     "simple": true,
-     "set_name": "level-up moves",
-     "set_source": "opening route",
-     "notes": [],
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_GULPIN",
-     "level": 5,
-     "simple": true,
-     "set_name": "level-up moves",
-     "set_source": "opening route",
-     "notes": [],
-     "why_available": "wild / special acquisition",
-     "tier": "LC",
-     "flagged": false
-    },
-    {
-     "species": "SPECIES_CORPHISH",
-     "level": 5,
+     "level": 7,
      "simple": true,
      "set_name": "level-up moves",
      "set_source": "opening route",
@@ -9184,6 +9162,333 @@
      "hp_type": "Ghost",
      "why_available": "wild / special acquisition",
      "tier": "RU",
+     "flagged": false
+    }
+   ]
+  },
+  "TRAINER_AMY_AND_LIV_1": {
+   "checkpoint": "route103",
+   "cap": 13,
+   "tier": "LC",
+   "monsters": [
+    {
+     "species": "SPECIES_TAILLOW",
+     "level": 6,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_ELECTRIKE",
+     "level": 6,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    }
+   ]
+  },
+  "TRAINER_ANDREW": {
+   "checkpoint": "route103",
+   "cap": 13,
+   "tier": "LC",
+   "monsters": [
+    {
+     "species": "SPECIES_BARBOACH",
+     "level": 6,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_TENTACOOL",
+     "level": 6,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "PU",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_CARVANHA",
+     "level": 7,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    }
+   ]
+  },
+  "TRAINER_DAISY": {
+   "checkpoint": "route103",
+   "cap": 13,
+   "tier": "LC",
+   "monsters": [
+    {
+     "species": "SPECIES_LOTAD",
+     "level": 6,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_SEEDOT",
+     "level": 6,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_GULPIN",
+     "level": 7,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    }
+   ]
+  },
+  "TRAINER_ISABELLE": {
+   "checkpoint": "route103",
+   "cap": 13,
+   "tier": "LC",
+   "monsters": [
+    {
+     "species": "SPECIES_WINGULL",
+     "level": 6,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_SURSKIT",
+     "level": 6,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_CORSOLA",
+     "level": 7,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "PU",
+     "flagged": false
+    }
+   ]
+  },
+  "TRAINER_MARCOS": {
+   "checkpoint": "route103",
+   "cap": 13,
+   "tier": "LC",
+   "monsters": [
+    {
+     "species": "SPECIES_ELECTRIKE",
+     "level": 6,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_POOCHYENA",
+     "level": 6,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_WHISMUR",
+     "level": 7,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    }
+   ]
+  },
+  "TRAINER_MAY_ROUTE_103_TREECKO": {
+   "checkpoint": "route103",
+   "cap": 13,
+   "tier": "LC",
+   "monsters": [
+    {
+     "species": "SPECIES_WINGULL",
+     "level": 5,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_TORCHIC",
+     "level": 6,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    }
+   ]
+  },
+  "TRAINER_MIGUEL_1": {
+   "checkpoint": "route103",
+   "cap": 13,
+   "tier": "LC",
+   "monsters": [
+    {
+     "species": "SPECIES_WHISMUR",
+     "level": 6,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_SLAKOTH",
+     "level": 6,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    }
+   ]
+  },
+  "TRAINER_PETE": {
+   "checkpoint": "route103",
+   "cap": 13,
+   "tier": "LC",
+   "monsters": [
+    {
+     "species": "SPECIES_TENTACOOL",
+     "level": 6,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "PU",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_GOLDEEN",
+     "level": 6,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_WAILMER",
+     "level": 7,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    }
+   ]
+  },
+  "TRAINER_RHETT": {
+   "checkpoint": "route103",
+   "cap": 13,
+   "tier": "LC",
+   "monsters": [
+    {
+     "species": "SPECIES_POLIWAG",
+     "level": 6,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_KRABBY",
+     "level": 6,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
+     "flagged": false
+    },
+    {
+     "species": "SPECIES_CORPHISH",
+     "level": 7,
+     "simple": true,
+     "set_name": "level-up moves",
+     "set_source": "opening route",
+     "notes": [],
+     "why_available": "wild / special acquisition",
+     "tier": "LC",
      "flagged": false
     }
    ]

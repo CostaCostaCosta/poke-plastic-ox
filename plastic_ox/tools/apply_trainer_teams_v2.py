@@ -49,9 +49,30 @@ ROSTERS: dict[str, tuple[str, list[tuple[str, int]]]] = {
     "TRAINER_PLASTIC_OX_ROUTE101": ("start", [
         ("SPECIES_TAILLOW", 4), ("SPECIES_POOCHYENA", 3), ("SPECIES_GOLDEEN", 3),
         ("SPECIES_LOTAD", 3), ("SPECIES_SURSKIT", 3), ("SPECIES_POLIWAG", 3)]),
+    # Route 103 is a short early route full of trainers, so nobody carries six:
+    # every trainer here has two to four LC Pokemon from Route 103's water
+    # table and the neighbouring Route 101 / Oldale grass, at levels 5-7.
     "TRAINER_PLASTIC_OX_ROUTE103": ("route103", [
-        ("SPECIES_WINGULL", 5), ("SPECIES_WHISMUR", 5), ("SPECIES_ELECTRIKE", 5),
-        ("SPECIES_CACNEA", 5), ("SPECIES_GULPIN", 4), ("SPECIES_CORPHISH", 4)]),
+        ("SPECIES_WINGULL", 6), ("SPECIES_WHISMUR", 6), ("SPECIES_ELECTRIKE", 6),
+        ("SPECIES_CACNEA", 7)]),
+    "TRAINER_MAY_ROUTE_103_TREECKO": ("route103", [
+        ("SPECIES_WINGULL", 5), ("SPECIES_TORCHIC", 6)]),
+    "TRAINER_DAISY": ("route103", [
+        ("SPECIES_LOTAD", 6), ("SPECIES_SEEDOT", 6), ("SPECIES_GULPIN", 7)]),
+    "TRAINER_AMY_AND_LIV_1": ("route103", [
+        ("SPECIES_TAILLOW", 6), ("SPECIES_ELECTRIKE", 6)]),
+    "TRAINER_ANDREW": ("route103", [
+        ("SPECIES_BARBOACH", 6), ("SPECIES_TENTACOOL", 6), ("SPECIES_CARVANHA", 7)]),
+    "TRAINER_MIGUEL_1": ("route103", [
+        ("SPECIES_WHISMUR", 6), ("SPECIES_SLAKOTH", 6)]),
+    "TRAINER_MARCOS": ("route103", [
+        ("SPECIES_ELECTRIKE", 6), ("SPECIES_POOCHYENA", 6), ("SPECIES_WHISMUR", 7)]),
+    "TRAINER_RHETT": ("route103", [
+        ("SPECIES_POLIWAG", 6), ("SPECIES_KRABBY", 6), ("SPECIES_CORPHISH", 7)]),
+    "TRAINER_PETE": ("route103", [
+        ("SPECIES_TENTACOOL", 6), ("SPECIES_GOLDEEN", 6), ("SPECIES_WAILMER", 7)]),
+    "TRAINER_ISABELLE": ("route103", [
+        ("SPECIES_WINGULL", 6), ("SPECIES_SURSKIT", 6), ("SPECIES_CORSOLA", 7)]),
     # Route 29's sixth slot used to be Ledyba, whose only LC sources were the
     # Route 29 / Route 24 / Route 25 Headbutt tables -- all of which have no
     # Headbutt tree on their map and were removed. Spinarak keeps the Bug-type
@@ -962,7 +983,6 @@ TRAINER_SALT.update(LATE_SALTS)
 # The first listed trainer is the boss. Forest/park follow the same pacing.
 ROUTE_GROUPS = {
     "Route101": ["ROUTE101"],
-    "Route103": ["ROUTE103"],
     "Route1_Frlg": ["ROUTE1"],
     "Route2_Frlg": ["ROUTE2_WADE", "ROUTE2_BEN"],
     "Route31_hns": ["ROUTE31"],
