@@ -41,7 +41,9 @@ copy one six-Pokémon block into the standard single-team Import/Export box.
 - **NU**: 225 constructed teams, 29 distinct species, file `gen3_nu_constructed_225.txt`.
 - **RU**: 225 constructed teams, 36 distinct species, file `gen3_ru_constructed_225.txt`.
 - **UU**: 225 constructed teams, 31 distinct species, file `gen3_uu_constructed_225.txt`.
-- **UUBL**: 225 constructed teams, 23 distinct species, file `gen3_uubl_constructed_225.txt`.
+- **OU**: 225 constructed teams, 28 distinct species, file `gen3_ou_constructed_225.txt`
+  (Plastic Ox addition, 2026-11-28: 225 distinct six-species draws from 28 standard
+  ADV OU sets, at most one Spikes setter per team; no Uber species).
 - **UBERS**: 225 constructed teams, 28 distinct species, file `gen3_ubers_constructed_225.txt`.
 
 ## Scope and caveats
@@ -55,7 +57,8 @@ copy one six-Pokémon block into the standard single-team Import/Export box.
 - A full Pokémon Showdown legality check is **not available** in this offline
   environment. Some sets may need correction to meet learnset, level, or
   current 2026 format banlist restrictions.
-- **UUBL** is a special historic/custom competitive metagame; official UUBL is
+- **UUBL**: the UUBL pool was dropped from Plastic Ox (2026-11-28) when the
+  BATTLE TOWER became OU and the BATTLE DOME took Ubers. **UUBL** is a special historic/custom competitive metagame; official UUBL is
   normally a UU banlist, not a standard separate ladder. Some 2026 changes
   mean old UUBL sample teams may contain newly OU Pokemon. UUBL constructed
   teams avoid Raikou and Registeel following their 2026 rise to OU.

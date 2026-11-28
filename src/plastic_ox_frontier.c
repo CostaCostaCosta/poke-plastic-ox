@@ -46,16 +46,16 @@ static const u8 sTierName_PU[] = _("PU");
 static const u8 sTierName_NU[] = _("NU");
 static const u8 sTierName_RU[] = _("RU");
 static const u8 sTierName_UU[] = _("UU");
-static const u8 sTierName_UUBL[] = _("UUBL");
 static const u8 sTierName_Ubers[] = _("UBERS");
+static const u8 sTierName_OU[] = _("OU");
 static const u8 *const sTierNames[POX_FRONTIER_TIER_COUNT] = {
     [POX_FRONTIER_TIER_LC] = sTierName_LC,
     [POX_FRONTIER_TIER_PU] = sTierName_PU,
     [POX_FRONTIER_TIER_NU] = sTierName_NU,
     [POX_FRONTIER_TIER_RU] = sTierName_RU,
     [POX_FRONTIER_TIER_UU] = sTierName_UU,
-    [POX_FRONTIER_TIER_UUBL] = sTierName_UUBL,
     [POX_FRONTIER_TIER_UBERS] = sTierName_Ubers,
+    [POX_FRONTIER_TIER_OU] = sTierName_OU,
 };
 
 // Round state. Lives in RAM only: a round runs inside one attendant script, and
@@ -71,12 +71,12 @@ u16 CheckGoldenrodGymPURules(void);
 u16 CheckEcruteakGymNURules(void);
 u16 CheckFortreeGymRURules(void);
 u16 CheckCinnabarGymUURules(void);
-u16 CheckMossdeepGymUUBLRules(void);
+u16 CheckSaffronGymOURules(void);
 u16 CheckFrontierUbersRules(void);
 
 static u8 ScriptTier(void)
 {
-    return gSpecialVar_0x8004 < POX_FRONTIER_TIER_COUNT ? gSpecialVar_0x8004 : POX_FRONTIER_TIER_UBERS;
+    return gSpecialVar_0x8004 < POX_FRONTIER_TIER_COUNT ? gSpecialVar_0x8004 : POX_FRONTIER_TIER_OU;
 }
 
 bool32 PoxFrontier_IsActive(void)
@@ -86,7 +86,7 @@ bool32 PoxFrontier_IsActive(void)
 
 bool32 PoxFrontier_IsTrainer(u16 trainerNum)
 {
-    return trainerNum >= TRAINER_PLASTIC_OX_FRONTIER_LC && trainerNum <= TRAINER_PLASTIC_OX_FRONTIER_UBERS;
+    return trainerNum >= TRAINER_PLASTIC_OX_FRONTIER_LC && trainerNum < TRAINER_PLASTIC_OX_FRONTIER_LC + POX_FRONTIER_TIER_COUNT;
 }
 
 // Special: the house's party rules for the tier in VAR_0x8004, with the gym codes
@@ -100,8 +100,8 @@ u16 PoxFrontier_CheckRules(void)
     case POX_FRONTIER_TIER_NU:   return CheckEcruteakGymNURules();
     case POX_FRONTIER_TIER_RU:   return CheckFortreeGymRURules();
     case POX_FRONTIER_TIER_UU:   return CheckCinnabarGymUURules();
-    case POX_FRONTIER_TIER_UUBL: return CheckMossdeepGymUUBLRules();
-    default:                     return CheckFrontierUbersRules();
+    case POX_FRONTIER_TIER_UBERS: return CheckFrontierUbersRules();
+    default:                     return CheckSaffronGymOURules();  // OU
     }
 }
 

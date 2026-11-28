@@ -30,7 +30,7 @@ EXT_FLAGS = [
     ('FLAG_POX_FRONTIER_INVITE', 27, "OAK gave the FRONTIER INVITE; opens Lavender's south harbor and the Frontier gangway."),
     ('FLAG_POX_FRONTIER_MOM_TOLD', 28, "MOM has sent the new Champion to OAK's lab (Pallet arrival or a talk at home)."),
 ] + [(f'FLAG_POX_FRONTIER_CLEARED_{key}', 29 + i, f'Frontier: first seven-win {key} round.')
-     for i, key in enumerate(['LC', 'PU', 'NU', 'RU', 'UU', 'UUBL', 'UBERS'])]
+     for i, key in enumerate(['LC', 'PU', 'NU', 'RU', 'UU', 'OU', 'UBERS'])]
 AI = 'Basic Trainer / Smart Switching / PP Stall Prevention'
 
 # (tier key, display name, house map, house name, attendant, vanilla desks to hide,
@@ -51,10 +51,10 @@ HOUSES = [
     ('UU', 'UU', 'BattleFrontier_BattlePalaceLobby', 'BATTLE PALACE',
      'LOCALID_PALACE_ATTENDANT_SINGLES', ['LOCALID_PALACE_ATTENDANT_DOUBLES'],
      'UMA', 'Cooltrainer', 'Cooltrainer F', 'Female'),
-    ('UUBL', 'UUBL', 'BattleFrontier_BattleDomeLobby', 'BATTLE DOME',
+    ('UBERS', 'UBERS', 'BattleFrontier_BattleDomeLobby', 'BATTLE DOME',
      'LOCALID_DOME_ATTENDANT_SINGLES', ['LOCALID_DOME_ATTENDANT_DOUBLES'],
      'DOMINIC', 'Cooltrainer', 'Cooltrainer M', 'Male'),
-    ('UBERS', 'UBERS', 'BattleFrontier_BattleTowerLobby', 'BATTLE TOWER',
+    ('OU', 'OU', 'BattleFrontier_BattleTowerLobby', 'BATTLE TOWER',
      'LOCALID_TOWER_ATTENDANT_SINGLES', ['LOCALID_TOWER_ATTENDANT_DOUBLES',
      'LOCALID_TOWER_ATTENDANT_MULTIS', 'LOCALID_TOWER_ATTENDANT_LINK_MULTIS'],
      'ALDOUS', 'Gentleman', 'Gentleman', 'Male'),
@@ -67,8 +67,8 @@ WELCOME = {
     'NU': 'Welcome to the BATTLE FACTORY.\nThis house holds NU rounds.',
     'RU': 'Welcome to the BATTLE ARENA.\nThis house holds RU rounds.',
     'UU': 'Welcome to the BATTLE PALACE.\nThis house holds UU rounds.',
-    'UUBL': 'Welcome to the BATTLE DOME.\nThis house holds UUBL rounds.',
-    'UBERS': 'Welcome to the BATTLE TOWER.\nThis house holds UBERS rounds.\\pAnything goes here, legends too.',
+    'UBERS': 'Welcome to the BATTLE DOME.\nThis house holds UBERS rounds.\\pAnything goes here, legends too.',
+    'OU': 'Welcome to the BATTLE TOWER.\nThis house holds OU rounds.\\pThe standard game, no legends\nfrom the UBERS list.',
 }
 CLEARED = {
     'LC': "Your name's already on the\nPYRAMID board. Back for more?",
@@ -76,8 +76,8 @@ CLEARED = {
     'NU': 'You cleared the FACTORY once.\nShall we see if it holds?',
     'RU': 'The ARENA crowd still talks\nabout your round. Another?',
     'UU': 'The PALACE has your clear\non record. One more round?',
-    'UUBL': 'Your DOME clear is posted\nby the door. Ready again?',
-    'UBERS': 'You conquered the TOWER.\nCare to prove it twice?',
+    'UBERS': 'You conquered the DOME.\nCare to prove it twice?',
+    'OU': 'Your TOWER clear is posted\nby the door. Ready again?',
 }
 TRAINER_DEFEAT = {
     'LC': 'Small team, big lesson.',
@@ -85,8 +85,8 @@ TRAINER_DEFEAT = {
     'NU': 'You read every switch.',
     'RU': 'Clean hits. I yield.',
     'UU': 'Your team was the better one.',
-    'UUBL': 'Beaten fair and square.',
     'UBERS': 'Even legends fall, it seems.',
+    'OU': 'Beaten fair and square.',
 }
 GUARDS = [
     ('LavenderTown_EventScript_SouthRoadClosed', "The FRONTIER harbor's open now.\nWatch your step on the gangway."),
@@ -308,7 +308,7 @@ def install(read, put):
 
     # Opponents.
     path = 'include/constants/opponents.h'
-    text = read(path)
+    text = re.sub(r'#define TRAINER_PLASTIC_OX_FRONTIER_\w+ \d+\n', '', read(path))
     for i, house in enumerate(HOUSES):
         define = f'#define TRAINER_PLASTIC_OX_FRONTIER_{house[0]} {FIRST_TRAINER_ID + i}\n'
         if define not in text:

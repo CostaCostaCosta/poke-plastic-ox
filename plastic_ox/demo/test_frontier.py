@@ -9,9 +9,11 @@ Proves:
 * OAK hands over the FRONTIER INVITE and points south of LAVENDER TOWN;
 * with the invite, Lavender south -> harbor -> Frontier walk through;
 * a house refuses a party that breaks its tier (Little Cup, PU);
-* the UBERS house runs a real seven-battle round: every opponent is a team from
-  plastic_ox/frontier/gen3_ubers_constructed_225.txt at the player's level, and
-  the seventh win sets FLAG_POX_FRONTIER_CLEARED_UBERS;
+* the BATTLE TOWER is the OU house: the fixture's OU party passes its desk and it
+  runs a real seven-battle round: every opponent is a team from
+  plastic_ox/frontier/gen3_ou_constructed_225.txt at the player's level, and
+  the seventh win sets FLAG_POX_FRONTIER_CLEARED_OU;
+* the BATTLE DOME is the UBERS house (one battle in tier_battles());
 * losing a round returns the player to the lobby healed, without whiting out.
 """
 import re
@@ -29,7 +31,7 @@ SET_SPECIES = re.findall(r'^    \{(SPECIES_\w+), ', TEAMS, re.M)
 HOUSES = {  # tier: (lobby, attendant tile, stand tile)
     'LC': ('BattleFrontier_BattlePyramidLobby', (7, 12), (7, 13)),
     'PU': ('BattleFrontier_BattlePikeLobby', (5, 5), (5, 6)),
-    'UBERS': ('BattleFrontier_BattleTowerLobby', (6, 5), (6, 6)),
+    'OU': ('BattleFrontier_BattleTowerLobby', (6, 5), (6, 6)),
 }
 
 
@@ -164,10 +166,10 @@ def party_level(g):
     return max(g.u8(g.syms['gParties'] + i * stride + 0x54) for i in range(6))
 
 
-def ubers_round():
+def ou_round():
     g = champion()
-    species = tier_species('UBERS')
-    stand_at_desk(g, 'UBERS')
+    species = tier_species('OU')
+    stand_at_desk(g, 'OU')
     for n in range(1, 8):
         drive(g, in_battle, taps=600)
         for _ in range(2000):
@@ -182,9 +184,9 @@ def ubers_round():
         finish_trainer(g, True)
         assert at(g, 'BattleFrontier_BattleTowerLobby'), g.describe()
     drive(g, idle, taps=300)
-    assert g.flag('FLAG_POX_FRONTIER_CLEARED_UBERS')
+    assert g.flag('FLAG_POX_FRONTIER_CLEARED_OU')
     shot(g, 'frontier_cleared')
-    print('ok  UBERS house: seven battles against UBERS pool teams, round cleared', flush=True)
+    print('ok  OU house (BATTLE TOWER): seven battles against OU pool teams, round cleared', flush=True)
 
     # Lose the next round's first battle: no white-out, healed, still in the lobby.
     g.clear_text()
@@ -207,13 +209,13 @@ def tier_battles():
     from test_sudowoodo_v1 import opcode
     import struct
     var8004 = 0x8004
-    for i, tier in enumerate(['LC', 'PU', 'NU', 'RU', 'UU', 'UUBL']):
+    for i, tier in enumerate(['LC', 'PU', 'NU', 'RU', 'UU', 'UBERS']):
         g = champion()
         g.flag('FLAG_POX_FRONTIER_INVITE', True)
         lobby = {'LC': 'BattleFrontier_BattlePyramidLobby', 'PU': 'BattleFrontier_BattlePikeLobby',
                  'NU': 'BattleFrontier_BattleFactoryLobby', 'RU': 'BattleFrontier_BattleArenaLobby',
-                 'UU': 'BattleFrontier_BattlePalaceLobby', 'UUBL': 'BattleFrontier_BattleDomeLobby'}[tier]
-        g.warp(lobby, *{'LC': (7, 13), 'PU': (5, 6), 'NU': (4, 8), 'RU': (7, 8), 'UU': (5, 7), 'UUBL': (5, 11)}[tier])
+                 'UU': 'BattleFrontier_BattlePalaceLobby', 'UBERS': 'BattleFrontier_BattleDomeLobby'}[tier]
+        g.warp(lobby, *{'LC': (7, 13), 'PU': (5, 6), 'NU': (4, 8), 'RU': (7, 8), 'UU': (5, 7), 'UBERS': (5, 11)}[tier])
         settle(g)
         from test_qol import begin_code
         begin_code(g, opcode(g, 'setvar') + struct.pack('<HH', var8004, i)
@@ -237,6 +239,6 @@ if __name__ == '__main__':
     static_checks()
     handoff()
     refusals()
-    ubers_round()
+    ou_round()
     tier_battles()
     print('PASS: Battle Frontier', flush=True)

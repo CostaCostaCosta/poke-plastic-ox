@@ -694,137 +694,16 @@ PoxFrontier_UU_Text_RefuseAbility::
 PoxFrontier_UU_Text_RefuseBatonPass::
 	.string "The BATTLE PALACE uses\nUU rules.\p{STR_VAR_1}'s BATON PASS set\nbreaks the Baton Pass clause.$"
 
-PoxFrontier_UUBL_Attendant::
-	lock
-	faceplayer
-	call_if_set FLAG_POX_FRONTIER_CLEARED_UUBL, PoxFrontier_UUBL_Again
-	call_if_unset FLAG_POX_FRONTIER_CLEARED_UUBL, PoxFrontier_UUBL_Welcome
-	goto_if_eq VAR_RESULT, NO, PoxFrontier_UUBL_Declined
-	setvar VAR_0x8004, 5
-	specialvar VAR_RESULT, PoxFrontier_CheckRules
-	goto_if_ne VAR_RESULT, 0, PoxFrontier_UUBL_Refuse
-	setvar VAR_0x8004, 5
-	special PoxFrontier_Begin
-	msgbox PoxFrontier_UUBL_Text_Begin, MSGBOX_DEFAULT
-PoxFrontier_UUBL_Next::
-	special PoxFrontier_NextOpponent
-	msgbox PoxFrontier_UUBL_Text_Opponent, MSGBOX_DEFAULT
-	closemessage
-	cleartrainerflag TRAINER_PLASTIC_OX_FRONTIER_UUBL
-	trainerbattle_no_intro TRAINER_PLASTIC_OX_FRONTIER_UUBL, PoxFrontier_UUBL_Text_Defeat
-	specialvar VAR_RESULT, GetBattleOutcome
-	goto_if_ne VAR_RESULT, B_OUTCOME_WON, PoxFrontier_UUBL_Lost
-	special HealPlayerParty
-	specialvar VAR_RESULT, PoxFrontier_RecordWin
-	goto_if_eq VAR_RESULT, TRUE, PoxFrontier_UUBL_Cleared
-	msgbox PoxFrontier_UUBL_Text_Continue, MSGBOX_YESNO
-	goto_if_eq VAR_RESULT, NO, PoxFrontier_UUBL_Retire
-	goto PoxFrontier_UUBL_Next
-PoxFrontier_UUBL_Cleared::
-	setflag FLAG_POX_FRONTIER_CLEARED_UUBL
-	special PoxFrontier_End
-	playfanfare MUS_OBTAIN_SYMBOL
-	msgbox PoxFrontier_UUBL_Text_Cleared, MSGBOX_DEFAULT
-	waitfanfare
-	release
-	end
-PoxFrontier_UUBL_Lost::
-	special PoxFrontier_End
-	special HealPlayerParty
-	msgbox PoxFrontier_UUBL_Text_Lost, MSGBOX_DEFAULT
-	release
-	end
-PoxFrontier_UUBL_Retire::
-	special PoxFrontier_End
-	msgbox PoxFrontier_UUBL_Text_Retire, MSGBOX_DEFAULT
-	release
-	end
-PoxFrontier_UUBL_Declined::
-	msgbox PoxFrontier_UUBL_Text_Declined, MSGBOX_DEFAULT
-	release
-	end
-PoxFrontier_UUBL_Welcome::
-	msgbox PoxFrontier_UUBL_Text_Welcome, MSGBOX_DEFAULT
-	msgbox PoxFrontier_UUBL_Text_Rules, MSGBOX_YESNO
-	return
-PoxFrontier_UUBL_Again::
-	msgbox PoxFrontier_UUBL_Text_Again, MSGBOX_YESNO
-	return
-PoxFrontier_UUBL_Refuse::
-	goto_if_eq VAR_RESULT, 1, PoxFrontier_UUBL_RefuseMove
-	goto_if_eq VAR_RESULT, 2, PoxFrontier_UUBL_RefuseItem
-	goto_if_eq VAR_RESULT, 3, PoxFrontier_UUBL_RefuseSpecies
-	goto_if_eq VAR_RESULT, 4, PoxFrontier_UUBL_RefuseDuplicate
-	goto_if_eq VAR_RESULT, 5, PoxFrontier_UUBL_RefuseAbility
-	msgbox PoxFrontier_UUBL_Text_RefuseBatonPass, MSGBOX_DEFAULT
-	release
-	end
-PoxFrontier_UUBL_RefuseMove::
-	msgbox PoxFrontier_UUBL_Text_RefuseMove, MSGBOX_DEFAULT
-	release
-	end
-PoxFrontier_UUBL_RefuseItem::
-	msgbox PoxFrontier_UUBL_Text_RefuseItem, MSGBOX_DEFAULT
-	release
-	end
-PoxFrontier_UUBL_RefuseSpecies::
-	msgbox PoxFrontier_UUBL_Text_RefuseSpecies, MSGBOX_DEFAULT
-	release
-	end
-PoxFrontier_UUBL_RefuseDuplicate::
-	msgbox PoxFrontier_UUBL_Text_RefuseDuplicate, MSGBOX_DEFAULT
-	release
-	end
-PoxFrontier_UUBL_RefuseAbility::
-	msgbox PoxFrontier_UUBL_Text_RefuseAbility, MSGBOX_DEFAULT
-	release
-	end
-
-PoxFrontier_UUBL_Text_Welcome::
-	.string "Welcome to the BATTLE DOME.\nThis house holds UUBL rounds.$"
-PoxFrontier_UUBL_Text_Again::
-	.string "Your DOME clear is posted\nby the door. Ready again?$"
-PoxFrontier_UUBL_Text_Rules::
-	.string "Seven straight wins clears the\nBATTLE DOME.\pEvery POKéMON must be UUBL-\nlegal, with the ADV clauses.\pYou are healed after each win.\nShall we begin?$"
-PoxFrontier_UUBL_Text_Declined::
-	.string "The BATTLE DOME is open\nwhenever you are ready.$"
-PoxFrontier_UUBL_Text_Begin::
-	.string "Your first BATTLE DOME\nopponent is on the way.$"
-PoxFrontier_UUBL_Text_Opponent::
-	.string "BATTLE DOME, battle {STR_VAR_1}\nof seven. Good luck!$"
-PoxFrontier_UUBL_Text_Continue::
-	.string "That's {STR_VAR_1} BATTLE DOME wins.\nYour POKéMON have been healed.\pTake on the next opponent?$"
-PoxFrontier_UUBL_Text_Lost::
-	.string "That ends your BATTLE DOME\nround. Your POKéMON are healed.\pCome back and try again!$"
-PoxFrontier_UUBL_Text_Retire::
-	.string "You've retired from the\nBATTLE DOME round. Come again!$"
-PoxFrontier_UUBL_Text_Cleared::
-	.string "Seven straight wins! You've\ncleared the BATTLE DOME.\pYour name goes up on the\nboard by the door.$"
-PoxFrontier_UUBL_Text_Defeat::
-	.string "Beaten fair and square.$"
-PoxFrontier_UUBL_Text_RefuseMove::
-	.string "The BATTLE DOME uses\nUUBL rules.\p{STR_VAR_1}'s {STR_VAR_2}\nis banned here.$"
-PoxFrontier_UUBL_Text_RefuseItem::
-	.string "The BATTLE DOME uses\nUUBL rules.\p{STR_VAR_1} can't hold\n{STR_VAR_2} here.$"
-PoxFrontier_UUBL_Text_RefuseSpecies::
-	.string "The BATTLE DOME uses\nUUBL rules.\p{STR_VAR_2} is over the tier.\nPlease leave {STR_VAR_1} in the PC.$"
-PoxFrontier_UUBL_Text_RefuseDuplicate::
-	.string "The BATTLE DOME uses\nUUBL rules.\p{STR_VAR_1} is a second\n{STR_VAR_2}. Only one each.$"
-PoxFrontier_UUBL_Text_RefuseAbility::
-	.string "The BATTLE DOME uses\nUUBL rules.\p{STR_VAR_1} has {STR_VAR_2}.\nThat ability is banned here.$"
-PoxFrontier_UUBL_Text_RefuseBatonPass::
-	.string "The BATTLE DOME uses\nUUBL rules.\p{STR_VAR_1}'s BATON PASS set\nbreaks the Baton Pass clause.$"
-
 PoxFrontier_UBERS_Attendant::
 	lock
 	faceplayer
 	call_if_set FLAG_POX_FRONTIER_CLEARED_UBERS, PoxFrontier_UBERS_Again
 	call_if_unset FLAG_POX_FRONTIER_CLEARED_UBERS, PoxFrontier_UBERS_Welcome
 	goto_if_eq VAR_RESULT, NO, PoxFrontier_UBERS_Declined
-	setvar VAR_0x8004, 6
+	setvar VAR_0x8004, 5
 	specialvar VAR_RESULT, PoxFrontier_CheckRules
 	goto_if_ne VAR_RESULT, 0, PoxFrontier_UBERS_Refuse
-	setvar VAR_0x8004, 6
+	setvar VAR_0x8004, 5
 	special PoxFrontier_Begin
 	msgbox PoxFrontier_UBERS_Text_Begin, MSGBOX_DEFAULT
 PoxFrontier_UBERS_Next::
@@ -902,39 +781,160 @@ PoxFrontier_UBERS_RefuseAbility::
 	end
 
 PoxFrontier_UBERS_Text_Welcome::
-	.string "Welcome to the BATTLE TOWER.\nThis house holds UBERS rounds.\pAnything goes here, legends too.$"
+	.string "Welcome to the BATTLE DOME.\nThis house holds UBERS rounds.\pAnything goes here, legends too.$"
 PoxFrontier_UBERS_Text_Again::
-	.string "You conquered the TOWER.\nCare to prove it twice?$"
+	.string "You conquered the DOME.\nCare to prove it twice?$"
 PoxFrontier_UBERS_Text_Rules::
-	.string "Seven straight wins clears the\nBATTLE TOWER.\pEvery POKéMON must be UBERS-\nlegal, with the ADV clauses.\pYou are healed after each win.\nShall we begin?$"
+	.string "Seven straight wins clears the\nBATTLE DOME.\pEvery POKéMON must be UBERS-\nlegal, with the ADV clauses.\pYou are healed after each win.\nShall we begin?$"
 PoxFrontier_UBERS_Text_Declined::
-	.string "The BATTLE TOWER is open\nwhenever you are ready.$"
+	.string "The BATTLE DOME is open\nwhenever you are ready.$"
 PoxFrontier_UBERS_Text_Begin::
-	.string "Your first BATTLE TOWER\nopponent is on the way.$"
+	.string "Your first BATTLE DOME\nopponent is on the way.$"
 PoxFrontier_UBERS_Text_Opponent::
-	.string "BATTLE TOWER, battle {STR_VAR_1}\nof seven. Good luck!$"
+	.string "BATTLE DOME, battle {STR_VAR_1}\nof seven. Good luck!$"
 PoxFrontier_UBERS_Text_Continue::
-	.string "That's {STR_VAR_1} BATTLE TOWER wins.\nYour POKéMON have been healed.\pTake on the next opponent?$"
+	.string "That's {STR_VAR_1} BATTLE DOME wins.\nYour POKéMON have been healed.\pTake on the next opponent?$"
 PoxFrontier_UBERS_Text_Lost::
-	.string "That ends your BATTLE TOWER\nround. Your POKéMON are healed.\pCome back and try again!$"
+	.string "That ends your BATTLE DOME\nround. Your POKéMON are healed.\pCome back and try again!$"
 PoxFrontier_UBERS_Text_Retire::
-	.string "You've retired from the\nBATTLE TOWER round. Come again!$"
+	.string "You've retired from the\nBATTLE DOME round. Come again!$"
 PoxFrontier_UBERS_Text_Cleared::
-	.string "Seven straight wins! You've\ncleared the BATTLE TOWER.\pYour name goes up on the\nboard by the door.$"
+	.string "Seven straight wins! You've\ncleared the BATTLE DOME.\pYour name goes up on the\nboard by the door.$"
 PoxFrontier_UBERS_Text_Defeat::
 	.string "Even legends fall, it seems.$"
 PoxFrontier_UBERS_Text_RefuseMove::
-	.string "The BATTLE TOWER uses\nUBERS rules.\p{STR_VAR_1}'s {STR_VAR_2}\nis banned here.$"
+	.string "The BATTLE DOME uses\nUBERS rules.\p{STR_VAR_1}'s {STR_VAR_2}\nis banned here.$"
 PoxFrontier_UBERS_Text_RefuseItem::
-	.string "The BATTLE TOWER uses\nUBERS rules.\p{STR_VAR_1} can't hold\n{STR_VAR_2} here.$"
+	.string "The BATTLE DOME uses\nUBERS rules.\p{STR_VAR_1} can't hold\n{STR_VAR_2} here.$"
 PoxFrontier_UBERS_Text_RefuseSpecies::
-	.string "The BATTLE TOWER uses\nUBERS rules.\p{STR_VAR_2} is over the tier.\nPlease leave {STR_VAR_1} in the PC.$"
+	.string "The BATTLE DOME uses\nUBERS rules.\p{STR_VAR_2} is over the tier.\nPlease leave {STR_VAR_1} in the PC.$"
 PoxFrontier_UBERS_Text_RefuseDuplicate::
-	.string "The BATTLE TOWER uses\nUBERS rules.\p{STR_VAR_1} is a second\n{STR_VAR_2}. Only one each.$"
+	.string "The BATTLE DOME uses\nUBERS rules.\p{STR_VAR_1} is a second\n{STR_VAR_2}. Only one each.$"
 PoxFrontier_UBERS_Text_RefuseAbility::
-	.string "The BATTLE TOWER uses\nUBERS rules.\p{STR_VAR_1} has {STR_VAR_2}.\nThat ability is banned here.$"
+	.string "The BATTLE DOME uses\nUBERS rules.\p{STR_VAR_1} has {STR_VAR_2}.\nThat ability is banned here.$"
 PoxFrontier_UBERS_Text_RefuseBatonPass::
-	.string "The BATTLE TOWER uses\nUBERS rules.\p{STR_VAR_1}'s BATON PASS set\nbreaks the Baton Pass clause.$"
+	.string "The BATTLE DOME uses\nUBERS rules.\p{STR_VAR_1}'s BATON PASS set\nbreaks the Baton Pass clause.$"
+
+PoxFrontier_OU_Attendant::
+	lock
+	faceplayer
+	call_if_set FLAG_POX_FRONTIER_CLEARED_OU, PoxFrontier_OU_Again
+	call_if_unset FLAG_POX_FRONTIER_CLEARED_OU, PoxFrontier_OU_Welcome
+	goto_if_eq VAR_RESULT, NO, PoxFrontier_OU_Declined
+	setvar VAR_0x8004, 6
+	specialvar VAR_RESULT, PoxFrontier_CheckRules
+	goto_if_ne VAR_RESULT, 0, PoxFrontier_OU_Refuse
+	setvar VAR_0x8004, 6
+	special PoxFrontier_Begin
+	msgbox PoxFrontier_OU_Text_Begin, MSGBOX_DEFAULT
+PoxFrontier_OU_Next::
+	special PoxFrontier_NextOpponent
+	msgbox PoxFrontier_OU_Text_Opponent, MSGBOX_DEFAULT
+	closemessage
+	cleartrainerflag TRAINER_PLASTIC_OX_FRONTIER_OU
+	trainerbattle_no_intro TRAINER_PLASTIC_OX_FRONTIER_OU, PoxFrontier_OU_Text_Defeat
+	specialvar VAR_RESULT, GetBattleOutcome
+	goto_if_ne VAR_RESULT, B_OUTCOME_WON, PoxFrontier_OU_Lost
+	special HealPlayerParty
+	specialvar VAR_RESULT, PoxFrontier_RecordWin
+	goto_if_eq VAR_RESULT, TRUE, PoxFrontier_OU_Cleared
+	msgbox PoxFrontier_OU_Text_Continue, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, PoxFrontier_OU_Retire
+	goto PoxFrontier_OU_Next
+PoxFrontier_OU_Cleared::
+	setflag FLAG_POX_FRONTIER_CLEARED_OU
+	special PoxFrontier_End
+	playfanfare MUS_OBTAIN_SYMBOL
+	msgbox PoxFrontier_OU_Text_Cleared, MSGBOX_DEFAULT
+	waitfanfare
+	release
+	end
+PoxFrontier_OU_Lost::
+	special PoxFrontier_End
+	special HealPlayerParty
+	msgbox PoxFrontier_OU_Text_Lost, MSGBOX_DEFAULT
+	release
+	end
+PoxFrontier_OU_Retire::
+	special PoxFrontier_End
+	msgbox PoxFrontier_OU_Text_Retire, MSGBOX_DEFAULT
+	release
+	end
+PoxFrontier_OU_Declined::
+	msgbox PoxFrontier_OU_Text_Declined, MSGBOX_DEFAULT
+	release
+	end
+PoxFrontier_OU_Welcome::
+	msgbox PoxFrontier_OU_Text_Welcome, MSGBOX_DEFAULT
+	msgbox PoxFrontier_OU_Text_Rules, MSGBOX_YESNO
+	return
+PoxFrontier_OU_Again::
+	msgbox PoxFrontier_OU_Text_Again, MSGBOX_YESNO
+	return
+PoxFrontier_OU_Refuse::
+	goto_if_eq VAR_RESULT, 1, PoxFrontier_OU_RefuseMove
+	goto_if_eq VAR_RESULT, 2, PoxFrontier_OU_RefuseItem
+	goto_if_eq VAR_RESULT, 3, PoxFrontier_OU_RefuseSpecies
+	goto_if_eq VAR_RESULT, 4, PoxFrontier_OU_RefuseDuplicate
+	goto_if_eq VAR_RESULT, 5, PoxFrontier_OU_RefuseAbility
+	msgbox PoxFrontier_OU_Text_RefuseBatonPass, MSGBOX_DEFAULT
+	release
+	end
+PoxFrontier_OU_RefuseMove::
+	msgbox PoxFrontier_OU_Text_RefuseMove, MSGBOX_DEFAULT
+	release
+	end
+PoxFrontier_OU_RefuseItem::
+	msgbox PoxFrontier_OU_Text_RefuseItem, MSGBOX_DEFAULT
+	release
+	end
+PoxFrontier_OU_RefuseSpecies::
+	msgbox PoxFrontier_OU_Text_RefuseSpecies, MSGBOX_DEFAULT
+	release
+	end
+PoxFrontier_OU_RefuseDuplicate::
+	msgbox PoxFrontier_OU_Text_RefuseDuplicate, MSGBOX_DEFAULT
+	release
+	end
+PoxFrontier_OU_RefuseAbility::
+	msgbox PoxFrontier_OU_Text_RefuseAbility, MSGBOX_DEFAULT
+	release
+	end
+
+PoxFrontier_OU_Text_Welcome::
+	.string "Welcome to the BATTLE TOWER.\nThis house holds OU rounds.\pThe standard game, no legends\nfrom the UBERS list.$"
+PoxFrontier_OU_Text_Again::
+	.string "Your TOWER clear is posted\nby the door. Ready again?$"
+PoxFrontier_OU_Text_Rules::
+	.string "Seven straight wins clears the\nBATTLE TOWER.\pEvery POKéMON must be OU-\nlegal, with the ADV clauses.\pYou are healed after each win.\nShall we begin?$"
+PoxFrontier_OU_Text_Declined::
+	.string "The BATTLE TOWER is open\nwhenever you are ready.$"
+PoxFrontier_OU_Text_Begin::
+	.string "Your first BATTLE TOWER\nopponent is on the way.$"
+PoxFrontier_OU_Text_Opponent::
+	.string "BATTLE TOWER, battle {STR_VAR_1}\nof seven. Good luck!$"
+PoxFrontier_OU_Text_Continue::
+	.string "That's {STR_VAR_1} BATTLE TOWER wins.\nYour POKéMON have been healed.\pTake on the next opponent?$"
+PoxFrontier_OU_Text_Lost::
+	.string "That ends your BATTLE TOWER\nround. Your POKéMON are healed.\pCome back and try again!$"
+PoxFrontier_OU_Text_Retire::
+	.string "You've retired from the\nBATTLE TOWER round. Come again!$"
+PoxFrontier_OU_Text_Cleared::
+	.string "Seven straight wins! You've\ncleared the BATTLE TOWER.\pYour name goes up on the\nboard by the door.$"
+PoxFrontier_OU_Text_Defeat::
+	.string "Beaten fair and square.$"
+PoxFrontier_OU_Text_RefuseMove::
+	.string "The BATTLE TOWER uses\nOU rules.\p{STR_VAR_1}'s {STR_VAR_2}\nis banned here.$"
+PoxFrontier_OU_Text_RefuseItem::
+	.string "The BATTLE TOWER uses\nOU rules.\p{STR_VAR_1} can't hold\n{STR_VAR_2} here.$"
+PoxFrontier_OU_Text_RefuseSpecies::
+	.string "The BATTLE TOWER uses\nOU rules.\p{STR_VAR_2} is over the tier.\nPlease leave {STR_VAR_1} in the PC.$"
+PoxFrontier_OU_Text_RefuseDuplicate::
+	.string "The BATTLE TOWER uses\nOU rules.\p{STR_VAR_1} is a second\n{STR_VAR_2}. Only one each.$"
+PoxFrontier_OU_Text_RefuseAbility::
+	.string "The BATTLE TOWER uses\nOU rules.\p{STR_VAR_1} has {STR_VAR_2}.\nThat ability is banned here.$"
+PoxFrontier_OU_Text_RefuseBatonPass::
+	.string "The BATTLE TOWER uses\nOU rules.\p{STR_VAR_1}'s BATON PASS set\nbreaks the Baton Pass clause.$"
 
 PoxFrontier_LavenderGuard1::
 	msgbox PoxFrontier_LavenderGuard1_Text, MSGBOX_NPC

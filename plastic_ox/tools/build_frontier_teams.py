@@ -20,7 +20,7 @@ SRC = ROOT / 'plastic_ox/frontier'
 OUT = ROOT / 'src/data/plastic_ox_frontier_teams.h'
 
 # Facility order matches POX_FRONTIER_TIER_* in include/plastic_ox_frontier.h.
-TIERS = ['lc', 'pu', 'nu', 'ru', 'uu', 'uubl', 'ubers']
+TIERS = ['lc', 'pu', 'nu', 'ru', 'uu', 'ubers', 'ou']
 STATS = ['HP', 'Atk', 'Def', 'SpA', 'SpD', 'Spe']
 
 
