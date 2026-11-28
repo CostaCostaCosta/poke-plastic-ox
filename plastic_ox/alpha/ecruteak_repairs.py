@@ -26,6 +26,11 @@ def install(read, put):
     gate_index=len(city['warp_events'])
     for y in range(34,38): city['warp_events'].append(warp(8,y,'MAP_GATE_ECRUTEAK_CITY_ROUTE38_HNS',0))
     city['coord_events'] += [dict(type='trigger',x=8,y=y,elevation=0,var='VAR_TEMP_0',var_value=0,script='PoxEcruteak_WestEntrance') for y in range(34,38)]
+    # East exit: column x=55 (y=40..43) is the only way to the Route 42 gate door
+    # at (55,42); the GateWatch policeman stands on (54,42). Trigger the other
+    # three tiles so nobody slips past him before MORTY's badge.
+    city['coord_events']=[e for e in city['coord_events'] if e['script']!='PoxEcruteak_EastGateBlock']
+    city['coord_events'] += [dict(type='trigger',x=55,y=y,elevation=0,var='VAR_TEMP_0',var_value=0,script='PoxEcruteak_EastGateBlock') for y in (40,41,43)]
     tower_index=next(i for i,w in enumerate(city['warp_events']) if w['dest_map']=='MAP_PLASTIC_OX_BURNED_TOWER')
     tower=load('PlasticOx_BurnedTower');tower['warp_events'][0]['dest_warp_id']=str(tower_index);save('PlasticOx_BurnedTower',tower)
     house=load('EcruteakCity_House2_hns')
@@ -46,6 +51,8 @@ def install(read, put):
     s=read(p).replace('EAST GATE CLOSED\\nFuture POKéMON LEAGUE site.$','MORTY must approve your passage.\\nEarn ECRUTEAK GYM\'s BADGE first.$')
     if 'PoxEcruteak_WestEntrance::' not in s:
         s += '\nPoxEcruteak_WestEntrance::\n\tlockall\n\twarp MAP_GATE_ECRUTEAK_CITY_ROUTE38_HNS, 10, 5\n\twaitstate\n\treleaseall\n\tend\n'
+    if 'PoxEcruteak_EastGateBlock::' not in s:
+        s += "\nPoxEcruteak_EastGateBlock::\n\tgoto_if_set FLAG_BADGE03_GET, PoxEcruteak_EastGateBlock_End\n\tlockall\n\tmsgbox PoxEcruteak_EastGateBlock_Text, MSGBOX_DEFAULT\n\tapplymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkLeft\n\twaitmovement 0\n\treleaseall\nPoxEcruteak_EastGateBlock_End::\n\tend\n\nPoxEcruteak_EastGateBlock_Text:\n\t.string \"Hold it. The east door stays shut\\nuntil MORTY signs your BADGE.$\"\n"
     put(p,s)
     gym=load('EcruteakCity_Gym_hns')
     gym['object_events'][-1].update(graphics_id='OBJ_EVENT_GFX_MAN_3',script='Pox_Morty')

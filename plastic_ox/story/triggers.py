@@ -35,6 +35,7 @@ REGISTRY: dict[str, tuple[str, str]] = {
     "MtMoon_B2F_EventScript_MiguelTrigger": ("Story scene", "Super Nerd Miguel spots the player and starts the fossil battle (VAR_POX_MTMOON_STATE 0 only)."),
     "Route119_EventScript_PoxEcruteakGate": ("Region crossing", "Route 119's bottom path walks into the Ecruteak east gatehouse."),
     "PoxEcruteak_WestEntrance": ("Region crossing", "Ecruteak's west edge leads into the Route 38 League gatehouse."),
+    "PoxEcruteak_EastGateBlock": ("Gate", "Ecruteak's east door column (55,40/41/43) turns the player back until MORTY's badge (FLAG_BADGE03_GET)."),
     "PoxSaffron_GiovanniTriggerLeft": ("Story scene", "Silph 11F boardroom: walks the player up to GIOVANNI and starts his battle (after the third grunt; once)."),
     "PoxSaffron_GiovanniTriggerRight": ("Story scene", "Silph 11F boardroom: walks the player up to GIOVANNI and starts his battle (after the third grunt; once)."),
     "PoxSaffron_LobbyStairs": ("Mechanic", "Silph 1F stairs are chained: a line and a step back. The lift is the way up."),
