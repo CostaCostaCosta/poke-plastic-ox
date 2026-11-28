@@ -331,28 +331,6 @@
       "label": "CinnabarIsland"
     },
     {
-      "id": "route103_cinnabar_b",
-      "source": "CinnabarIsland_Frlg",
-      "destination": "Route103",
-      "tile": [
-        12,
-        12
-      ],
-      "approach": [
-        12,
-        13
-      ],
-      "direction": "N",
-      "landing": [
-        75,
-        14
-      ],
-      "requires": [
-        "FLAG_POX_STORY_FUJI"
-      ],
-      "label": "Route103"
-    },
-    {
       "id": "cinnabar_sea_a",
       "source": "CinnabarIsland_Frlg",
       "destination": "PlasticOx_Route20West",

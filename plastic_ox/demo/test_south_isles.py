@@ -133,7 +133,7 @@ def emulator_checks() -> None:
     said(CIN, 21, 11, K.KEY_RIGHT, 'off the timetable', 'BLAINE first', shot='cinnabar_quay')
     said(CIN, 17, 6, K.KEY_UP, 'Tomatoes', 'matches')
     said(CIN, 7, 10, K.KEY_LEFT, 'Coffee break', 'up the hill')
-    said(CIN, 12, 13, K.KEY_DOWN, 'ROUTE 103', 'mainland road', absent=('Marked passage',))
+    assert not said(CIN, 12, 13, K.KEY_DOWN), 'Cinnabar must carry no ROUTE 103 sign'
     said(CIN, 21, 9, K.KEY_RIGHT, 'EAST QUAY', 'SEAFOAM ISLANDS', 'scratched out', absent=('Marked passage',))
     print('  ok  Cinnabar islanders, quay and road signs (before the badge)')
     said('CinnabarIsland_Gym_Frlg', 5, 5, K.KEY_UP, 'Four BADGES', 'door charge')
@@ -162,6 +162,13 @@ def emulator_checks() -> None:
     said(CIN, 21, 11, K.KEY_RIGHT, "BLAINE's key", 'still unread')
     said('CinnabarIsland_Gym_Frlg', 24, 21, K.KEY_UP, 'old firefighter')
     print('  ok  with the key: neighbour, gym regular, dock hand and gym guide move on')
+    # Route 103 -> Cinnabar is one-way: the old (12,12) return portal is gone.
+    g.warp(CIN, 12, 13)
+    g.frame(60)
+    where = g.walk('UP', target=(12, 11), timeout=600)
+    assert where.startswith('CINNABAR') or 'Cinnabar' in where or g.state()['y'] <= 12, where
+    assert 'ROUTE103' not in where.replace(' ', '').upper() and 'ROUTE_103' not in where.upper(), where
+    print('  ok  no portal back to ROUTE 103 from the Cinnabar road')
     said('PokemonMansion_B1F_Frlg', 21, 26, K.KEY_DOWN, 'FILE 3', 'IN SEQUENCE')
     assert not g.flag('FLAG_POX_STORY_MANSION')
     said('PokemonMansion_B1F_Frlg', 5, 8, K.KEY_UP, 'Not yet, if you please', 'three files', shot='entei_waits')

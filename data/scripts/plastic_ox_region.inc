@@ -385,28 +385,6 @@ PoxRegion_route103_cinnabar_a_Sign::
 PoxRegion_route103_cinnabar_a_Text::
 	.string "CINNABAR ISLAND\nFollow the passage south.$"
 
-PoxRegion_route103_cinnabar_b::
-	lockall
-	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_route103_cinnabar_b_Open
-	goto_if_unset FLAG_POX_STORY_FUJI, PoxRegion_route103_cinnabar_b_Closed
-PoxRegion_route103_cinnabar_b_Open::
-	warp MAP_ROUTE103, 75, 14
-	waitstate
-	releaseall
-	end
-PoxRegion_route103_cinnabar_b_Closed::
-	msgbox PoxRegion_ClosedText, MSGBOX_DEFAULT
-	warp MAP_CINNABAR_ISLAND, 12, 13
-	waitstate
-	releaseall
-	end
-
-PoxRegion_route103_cinnabar_b_Sign::
-	msgbox PoxRegion_route103_cinnabar_b_Text, MSGBOX_SIGN
-	end
-PoxRegion_route103_cinnabar_b_Text::
-	.string "ROUTE 103\nThe mainland road. Mind the tide.$"
-
 PoxRegion_cinnabar_sea_a::
 	lockall
 	goto_if_unset FLAG_POX_TRIGGERS_ENABLED, PoxRegion_cinnabar_sea_a_Open
