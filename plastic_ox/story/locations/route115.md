@@ -75,11 +75,12 @@ A beach at the bottom, a stair-path up a cliff, a cave mouth at the top: the las
 - Scripts: `data/maps/Route115/scripts.inc`, `data/scripts/plastic_ox_region.inc` (`PoxRegion_route5_route115_b`)
 - Gates / flags: `FLAG_POX_STORY_SPACE_CENTER` on the south crossing; `FLAG_POX_TRIGGERS_ENABLED` bypasses gate text in the walkable build
 - Trainers / items: ten `TRAINER_*` ids listed in front matter, mons Lv 18–28; `ITEM_SUPER_POTION`, `ITEM_IRON`, `ITEM_GREAT_BALL`, `ITEM_PP_UP`, `ITEM_HEAL_POWDER`, `ITEM_NUGGET`, `ITEM_HEART_SCALE`
-- Known gaps: trainer levels (18–28) and encounters (Lv 23–25 Swablu/Taillow/Swellow; water Tentacool/Wingull/Pelipper; fishing Magikarp/Tentacool/Wailmer) are Hoenn-native and far below the Act V OU band; two self-warps at `(21,6)` and `(36,10)`; `Route115_EventScript_RouteSignRustboro` and `Route115_EventScript_MeteorFallsSign` exist but no sign object uses them; the TM ball at `(18,7)` gives a Nugget; the only sign is the generator's route placeholder; `PoxRegion_Arrival_Route115` is an empty stub.
+- Encounters: OU band, owned by `plastic_ox/encounter_tables/apply_route34_115_v1.py` (`gPoxOURoute115`): grass Lv 46–50 with a 5% Chansey, Surf Lv 45–50, fishing Lv 40–50, and a Headbutt tree at `(20,66)` (`sPoxRoute115Headbutt`, Heracross 10% day and night).
+- Known gaps: trainer levels (18–28) are Hoenn-native and far below the Act V OU band; two self-warps at `(21,6)` and `(36,10)`; `Route115_EventScript_RouteSignRustboro` and `Route115_EventScript_MeteorFallsSign` exist but no sign object uses them; the TM ball at `(18,7)` gives a Nugget; the only sign is the generator's route placeholder; `PoxRegion_Arrival_Route115` is an empty stub.
 
 ## Open questions
 
-- Rescale the trainers and encounters into the Act V band, or keep Route 115 as an optional low-level area for rematches? Recommend rescale — it is the only road to the eighth Badge.
+- Rescale the trainers into the Act V band (encounters already are), or keep them low for rematches? Recommend rescale — it is the only road to the eighth Badge.
 - Is `(18,7)` meant to be the Focus Punch TM or a Nugget? Restore the TM, or rename the flag; do not ship a ball whose flag and contents disagree.
 - Should the self-warps at `(21,6)` and `(36,10)` become Meteor Falls' upper entrances, as in Hoenn, or be deleted outright?
 - Does the route need a rest stop — berry reset or a healer — before the cave, or is the mountain meant to be entered on supplies?

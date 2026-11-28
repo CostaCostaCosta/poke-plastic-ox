@@ -665,7 +665,8 @@ def apply_region(read, put):
     # Headbutt populations hang on visible, already-solid trees at the edge of
     # each area's connected walkable component. A facing trigger lets the
     for name, x, y in [('IlexForest_hns',39,7),('Route33_hns',8,17),('Route35_hns',14,4),
-                       ('NationalPark_Normal_hns',40,22),('Route36_hns',39,2)]:
+                       ('NationalPark_Normal_hns',40,22),('Route36_hns',39,2),
+                       ('Route115',20,66)]:
         d=load(name)
         d['bg_events']=[b for b in d.get('bg_events',[]) if b.get('script') != 'PlasticOx_EventScript_HeadbuttTree']
         d['bg_events'].append(dict(type='sign',x=x,y=y,elevation=0,

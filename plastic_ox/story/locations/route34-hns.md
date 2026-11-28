@@ -62,6 +62,7 @@ A 60×90 Johto route grafted onto the top of `Route116`, entered only by walking
 - Wiki page / map: `route34-hns.html`; `Route34_hns` (`MAP_ROUTE34_HNS`, layout 60×90, `gTileset_Johto_General_Hns`, `MUS_RG_ROUTE24`); sole neighbour `Route116` (`MAP_ROUTE116`, connection `up` offset 17, dangling warp `(40,1)`).
 - Scripts: `data/maps/Route34_hns/scripts.inc` — objects are `Route34_EventScript_Npc1`…`Npc13`, signs `Route34_EventScript_Sign1`…`Sign4`; no map script, no coord events.
 - Flags / items: `FLAG_POX_HIDDEN_ROUTE34_17` (Super Potion `(47,38)`), `FLAG_POX_HIDDEN_ROUTE34_18` (Rare Candy `(17,17)`); no `TRAINER_*` objects anywhere on the map.
+- Encounters: Little Cup, owned by `plastic_ox/encounter_tables/apply_route34_115_v1.py`: grass `gPoxRoute34Hns` Lv 8–11, and Headbutt `sPoxRoute34Headbutt` for the nine `MB_HEADBUTT_TREE` tiles (e.g. `(26,26)`). No Surf or fishing table: Surf is not available at this checkpoint.
 - Known gaps: zero warps and zero connections (one-way entry, soft-lock); three `OBJ_EVENT_GFX_POKE_BALL` NPCs; duplicate lines as above; all four signs describe Johto geography that no longer borders this map; `LOCALID_ROUTE34_DAYCAREMAN` has no interior; sign 4 advertises trainers that do not exist; nothing explains the mountain.
 
 ## Open questions
