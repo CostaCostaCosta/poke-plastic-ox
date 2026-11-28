@@ -70,7 +70,7 @@ HEADBUTT_SYMBOLS = {
     "MAP_NATIONAL_PARK_NORMAL_HNS": "sPoxParkHeadbutt",
     "MAP_ROUTE36_HNS": "sPoxRoute36Headbutt",
     "MAP_ROUTE37_HNS": "sPoxRoute37Headbutt",
-    "MAP_ROUTE34_HNS": "sPoxRoute34Headbutt",   # MB_HEADBUTT_TREE tiles
+    "MAP_ROUTE34_HNS": "sPoxRoute34Headbutt",   # MB_HEADBUTT_TREE tiles (OU)
     "MAP_ROUTE115": "sPoxRoute115Headbutt",
 }
 # Kept separately so the NU-block analysis can say "reachable" vs "defined".
@@ -109,7 +109,7 @@ CHECKPOINTS = [
     ("route46",     "LC",   13, ["gPoxRoute46Hns#"], []),
     ("route24",     "LC",   13, ["gPoxRoute24Hns#"], []),
     ("route25",     "LC",   13, ["gPoxRoute25Hns#"], []),
-    ("gym1",        "LC",   13, ["gPoxRoute34Hns"], ["MAP_ROUTE34_HNS"]),  # Roxanne, Rustboro; Route 34 off Route 116
+    ("gym1",        "LC",   13, [], []),                                    # Roxanne, Rustboro
     ("route44",     "PU",   20, ["gPoxRoute44Hns:fishing_mons"], []),  # grass is Surf-gated: cinnabar
     ("mtmoon",      "PU",   20, ["gPoxPUMtMoonCaveHns#", "gPoxPUMtMoon1F#"], []),
     ("mtmoondeep",  "PU",   20, ["gPoxPUMtMoonB1F#", "gPoxPUMtMoonB2F#"], []),
@@ -128,7 +128,8 @@ CHECKPOINTS = [
     ("cinnabar",    "UU",   42, ["gPoxUUPokemonTower#", "gPoxUURoute#", "gPoxRoute44Hns:land_mons",
                                 "gPoxUURuinsOfAlph#"], []),  # Lavender tower, Routes 8/7/21, Cinnabar, Ruins of Alph dig
     ("mossdeep",    "UUBL", 50, [], []),          # Mossdeep gym
-    ("saffron",     "OU",   55, ["gPoxOURoute115"], ["MAP_ROUTE115"]),  # Silph; Route 115 opens with Saffron
+    ("saffron",     "OU",   55, ["gPoxOURoute34Hns", "gPoxOURoute115"],
+                                ["MAP_ROUTE34_HNS", "MAP_ROUTE115"]),  # Silph; Saffron -> Route 34 -> Route 115
     ("blackthorn",  "OU",   60, [], []),          # Clair
     ("victoryroad", "OU",   60, [], []),
     ("league",      "OU",   62, [], []),          # Wallace, Steven, Lance

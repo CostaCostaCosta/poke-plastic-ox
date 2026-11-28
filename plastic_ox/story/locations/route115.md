@@ -17,11 +17,11 @@ status: drafted
 
 ## Snapshot
 
-A beach at the bottom, a stair-path up a cliff, a cave mouth at the top: the last outdoor ground before the final mountain. The player enters from Route 5 at `(20,79)`, climbs past ten trainers who all train with their hands, and leaves through `(27,37)` into Meteor Falls. Act V, stage 13, the OU approach to Blackthorn. The route exists to make the player feel over-prepared for a road and under-prepared for a cave, and its emotional note is **repetition**: the same hundred metres of sand, done again, better.
+A beach at the bottom, a stair-path up a cliff, a cave mouth at the top: the last outdoor ground before the final mountain. The player enters from Route 34 at `(20,79)`, climbs past ten trainers who all train with their hands, and leaves through `(27,37)` into Meteor Falls. Act V, stage 13, the OU approach to Blackthorn. The route exists to make the player feel over-prepared for a road and under-prepared for a cave, and its emotional note is **repetition**: the same hundred metres of sand, done again, better.
 
 ## Plot points
 
-1. **The pass is visibly locked.** Stepping on `(20,79)` runs `PoxRegion_route5_route115_b`, which refuses until `FLAG_POX_STORY_SPACE_CENTER` and warps the player back to `(19,79)` with the generic closed text. The sign at `(19,78)` is the generator's "Route5 / Marked passage ahead." The player sees the road up before they may use it.
+1. **The pass is visibly locked.** Stepping on `(20,79)` runs `PoxRegion_route34_route115_b`, which refuses until `FLAG_POX_STORY_SPACE_CENTER` and warps the player back to `(19,79)` with the generic closed text. The sign at `(19,78)` is the generator's "Route34 / Marked passage ahead." The player sees the road up before they may use it.
 2. **The beach is a training floor.** Cyndy `(15,50)` explains why sand is a cushion; the hidden `ITEM_HEART_SCALE` sits one tile north at `(15,49)`, on the tide line. A single breakable rock at `(29,50)` is the route's only Rock Smash obstacle, and the berry trees at `(12,5)`–`(14,5)` and `(31,64)`–`(31,65)` are the last supplies before the cave.
 3. **The climb is a dojo.** Ten trainers, mostly Fighting-, Normal-, and Flying-type teams: Koichi's Machop crew `(19,15)`, Timothy `(5,15)`, Nob `(27,53)`, Kyra running `(10,15)`, Jaiden in tree disguise `(11,12)`, Helene and Alix at the top `(15,7)`/`(10,7)`, Marlene meditating `(28,62)`, Hector with his collector's pair `(24,62)`. They are the route's population; nobody here is merely travelling.
 4. **No story beat lives here.** Stage 13's reveal belongs to Blackthorn's Badge, not this road. The player may take it before or after Silph, so dialogue must not assume either state and must never mention the crisis.
@@ -32,12 +32,12 @@ A beach at the bottom, a stair-path up a cliff, a cave mouth at the top: the las
 
 | Interaction | Where | Trigger / state | Current behavior | Target behavior |
 | --- | --- | --- | --- | --- |
-| South crossing | `(20,79)` `PoxRegion_route5_route115_b` | `FLAG_POX_STORY_SPACE_CENTER` unset | generic closed text, warp to `(19,79)` | keep the lock; make the closed line about the pass and the weather, not "your next objective" |
-| Sign | `(19,78)` `PoxRegion_route5_route115_b_Sign` | always | "Route5 / Marked passage ahead." | rewrite: last water, distance to the falls, what the cliff is called |
+| South crossing | `(20,79)` `PoxRegion_route34_route115_b` | `FLAG_POX_STORY_SPACE_CENTER` unset | generic closed text, warp to `(19,79)` | keep the lock; make the closed line about the pass and the weather, not "your next objective" |
+| Sign | `(19,78)` `PoxRegion_route34_route115_b_Sign` | always | "Route34 / Marked passage ahead." | rewrite: last water, distance to the falls, what the cliff is called |
 | Cyndy and the Heart Scale | `(15,50)` / `(15,49)` | always | vanilla sand-cushion line; hidden `ITEM_HEART_SCALE` on the next tile | let her point at the tide line; the scale should feel found, not awarded |
 | Breakable rock | `(29,50)` `EventScript_RockSmash` | always | one boulder, no reason given | decide what it guards — a berry path or a shortcut — or delete it |
 | Berry trees | `(12,5)`–`(14,5)`, `(31,64)`, `(31,65)` | always | five `BerryTreeScript` trees, unremarked | decide planted or wild; if wild, Cyndy can say nobody tends them |
-| Trainers | Koichi `(19,15)`, Timothy `(5,15)`, Hector `(24,62)`, others | always | vanilla RS intro/defeat text, mons Lv 18–28 | rewrite as one training camp with its own etiquette; rescale to Act V |
+| Trainers | Koichi `(19,15)`, Timothy `(5,15)`, Hector `(24,62)`, others | always | vanilla RS intro/defeat text; parties rescaled to OU Lv 51–55 | rewrite as one training camp with its own etiquette |
 | Item balls | `(20,60)`, `(18,7)`, `(23,29)`, `(31,56)`, `(26,67)`, `(12,14)` | item flags | `(18,7)` is flagged `FLAG_ITEM_ROUTE_115_TM_FOCUS_PUNCH` but contains `ITEM_NUGGET` | fix the mismatch: restore the TM or rename the flag to match the Nugget |
 | Cave mouth | `(27,37)` → Meteor Falls `(6,39)` | always | seamless warp, no sign, no framing | keep seamless; a worn board at the mouth is enough |
 | Dead warps | `(21,6)`, `(36,10)` | always | each warps to its own tile | delete, or wire them as Meteor Falls' upper entrances |
@@ -72,15 +72,15 @@ A beach at the bottom, a stair-path up a cliff, a cave mouth at the top: the las
 
 - Wiki page: `route115.html`
 - Maps: `Route115` (`MAP_ROUTE115`, layout `LAYOUT_ROUTE115`, music `MUS_ROUTE104`), plus the handoff to `MeteorFalls_1F_1R` (`MAP_METEOR_FALLS_1F_1R`) at `(27,37)`
-- Scripts: `data/maps/Route115/scripts.inc`, `data/scripts/plastic_ox_region.inc` (`PoxRegion_route5_route115_b`)
+- Scripts: `data/maps/Route115/scripts.inc`, `data/scripts/plastic_ox_region.inc` (`PoxRegion_route34_route115_b`)
 - Gates / flags: `FLAG_POX_STORY_SPACE_CENTER` on the south crossing; `FLAG_POX_TRIGGERS_ENABLED` bypasses gate text in the walkable build
 - Trainers / items: ten `TRAINER_*` ids listed in front matter, mons Lv 18–28; `ITEM_SUPER_POTION`, `ITEM_IRON`, `ITEM_GREAT_BALL`, `ITEM_PP_UP`, `ITEM_HEAL_POWDER`, `ITEM_NUGGET`, `ITEM_HEART_SCALE`
 - Encounters: OU band, owned by `plastic_ox/encounter_tables/apply_route34_115_v1.py` (`gPoxOURoute115`): grass Lv 46–50 with a 5% Chansey, Surf Lv 45–50, fishing Lv 40–50, and a Headbutt tree at `(20,66)` (`sPoxRoute115Headbutt`, Heracross 10% day and night).
-- Known gaps: trainer levels (18–28) are Hoenn-native and far below the Act V OU band; two self-warps at `(21,6)` and `(36,10)`; `Route115_EventScript_RouteSignRustboro` and `Route115_EventScript_MeteorFallsSign` exist but no sign object uses them; the TM ball at `(18,7)` gives a Nugget; the only sign is the generator's route placeholder; `PoxRegion_Arrival_Route115` is an empty stub.
+- Trainers: OU band (Lv 51–55, checkpoint `saffron`), authored in `plastic_ox/tools/apply_trainer_teams_v2.py`. Koichi is the six-Pokémon route boss; the others carry two or three each. Only the first battle of each trainer is rescaled. The `_2`–`_5` rematch parties are still vanilla.
+- Known gaps: two self-warps at `(21,6)` and `(36,10)`; `Route115_EventScript_RouteSignRustboro` and `Route115_EventScript_MeteorFallsSign` exist but no sign object uses them; the TM ball at `(18,7)` gives a Nugget; the only sign is the generator's route placeholder; `PoxRegion_Arrival_Route115` is an empty stub.
 
 ## Open questions
 
-- Rescale the trainers into the Act V band (encounters already are), or keep them low for rematches? Recommend rescale — it is the only road to the eighth Badge.
 - Is `(18,7)` meant to be the Focus Punch TM or a Nugget? Restore the TM, or rename the flag; do not ship a ball whose flag and contents disagree.
 - Should the self-warps at `(21,6)` and `(36,10)` become Meteor Falls' upper entrances, as in Hoenn, or be deleted outright?
 - Does the route need a rest stop — berry reset or a healer — before the cave, or is the mountain meant to be entered on supplies?

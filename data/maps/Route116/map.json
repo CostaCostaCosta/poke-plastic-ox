@@ -23,11 +23,6 @@
             "map": "MAP_RUSTBORO_CITY",
             "offset": 0,
             "direction": "left"
-        },
-        {
-            "map": "MAP_ROUTE34_HNS",
-            "direction": "up",
-            "offset": 17
         }
     ],
     "object_events": [
@@ -433,13 +428,6 @@
             "elevation": 0,
             "dest_map": "MAP_TERRA_CAVE_ENTRANCE",
             "dest_warp_id": "0"
-        },
-        {
-            "x": 40,
-            "y": 1,
-            "elevation": 0,
-            "dest_map": "MAP_ROUTE34_HNS",
-            "dest_warp_id": "1"
         }
     ],
     "coord_events": [],

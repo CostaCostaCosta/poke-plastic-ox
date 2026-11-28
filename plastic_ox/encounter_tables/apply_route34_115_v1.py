@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Install the Route 34 (Little Cup) and Route 115 (OU) encounter tables.
 
-Route 34 is the Act I branch off Route 116 (checkpoint gym1, LC, level cap 13).
-It had grass and nine MB_HEADBUTT_TREE tiles but no tables, so the grass was
-empty and its trees did nothing.
+Route 34 is the OU road north out of Saffron (it replaced the empty Route 5):
+Saffron -> Route 34 -> Route 115 -> Meteor Falls -> Blackthorn, open once the
+Space Center flag opens Saffron. Its grass carries the late game's wild Ditto,
+and its nine MB_HEADBUTT_TREE tiles get their own Headbutt table.
 
 Route 115 is the post-Mossdeep OU road to Meteor Falls and Blackthorn. Its
 tables were vanilla Emerald (Lv. 23-26); this rescales them to the OU band and
@@ -20,6 +21,7 @@ Run after apply_pu_v1.py and apply_nu_v1.py (apply_pu_v1 rewrites the header).
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -29,14 +31,18 @@ HEADER = ROOT / "src/data/plastic_ox_pu_encounters.h"
 OWNED_MAPS = ("MAP_ROUTE34_HNS", "MAP_ROUTE115")
 
 # ------------------------------------------------------------------ Route 34
-ROUTE34_GRASS = (8, 11, [(20, "PIDGEY"), (15, "RATTATA"), (15, "SENTRET"),
-                         (10, "NIDORAN_F"), (10, "NIDORAN_M"), (10, "SNUBBULL"),
-                         (10, "IGGLYBUFF"), (10, "TAILLOW")])
+ROUTE34_GRASS = (44, 48, [(20, "DITTO"), (15, "GRANBULL"), (15, "HYPNO"),
+                          (10, "KADABRA"), (10, "RATICATE"), (10, "PIDGEOT"),
+                          (10, "FURRET"), (5, "NIDORINA"), (5, "NIDORINO")])
+ROUTE34_SURF = (44, 48, [(40, "TENTACRUEL"), (25, "QUAGSIRE"), (20, "PELIPPER"),
+                         (15, "LANTURN")])
+ROUTE34_FISHING = (40, 48, [(25, "OCTILLERY"), (20, "QWILFISH"), (15, "GYARADOS"),
+                            (15, "SEAKING"), (15, "KINGLER"), (10, "CORSOLA")])
 ROUTE34_HEADBUTT = {
-    "Day":   (8, 11, [(30, "LEDYBA"), (25, "SPEAROW"), (15, "HOOTHOOT"),
-                      (15, "WURMPLE"), (15, "SPINARAK")]),
-    "Night": (8, 11, [(30, "HOOTHOOT"), (25, "SPINARAK"), (15, "LEDYBA"),
-                      (15, "WURMPLE"), (15, "SPEAROW")]),
+    "Day":   (44, 48, [(30, "LEDIAN"), (25, "FEAROW"), (15, "NOCTOWL"),
+                       (15, "BEAUTIFLY"), (15, "ARIADOS")]),
+    "Night": (44, 48, [(30, "NOCTOWL"), (25, "ARIADOS"), (15, "LEDIAN"),
+                       (15, "DUSTOX"), (15, "FEAROW")]),
 }
 
 # ----------------------------------------------------------------- Route 115
@@ -77,8 +83,10 @@ def install(data):
     entries = [e for e in group["encounters"] if e["map"] not in OWNED_MAPS]
     # No time-of-day suffix: one table serves every time of day (fallback).
     ours = [{"map": "MAP_ROUTE34_HNS",
-             "base_label": "gPoxRoute34Hns",
-             "land_mons": table(ROUTE34_GRASS, 12)},
+             "base_label": "gPoxOURoute34Hns",
+             "land_mons": table(ROUTE34_GRASS, 12),
+             "water_mons": table(ROUTE34_SURF, 5),
+             "fishing_mons": table(ROUTE34_FISHING, 10)},
             {"map": "MAP_ROUTE115",
              "base_label": "gPoxOURoute115",
              "land_mons": table(ROUTE115_GRASS, 12),
@@ -112,10 +120,15 @@ def write_headbutt_tables():
     lines = []
     for base, times in HEADBUTT.items():
         for time, data in times.items():
-            if base + time + "Mons[]" not in text:
-                lines.extend(headbutt_lines(base + time, data))
-    if lines:
-        HEADER.write_text(text.rstrip("\n") + "\n" + "\n".join(lines) + "\n")
+            block = "\n".join(headbutt_lines(base + time, data))
+            # Replace an existing table in place (Route 34 moved LC -> OU).
+            pat = re.compile(rf"static const struct WildPokemon {base}{time}Mons\[\] = \{{.*?"
+                             rf"static const struct WildPokemonInfo {base}{time} = [^\n]*\n", re.S)
+            if pat.search(text):
+                text = pat.sub(lambda _m: block + "\n", text)
+            else:
+                lines.append(block)
+    HEADER.write_text(text.rstrip("\n") + "\n" + "".join(l + "\n" for l in lines))
 
 
 def main():

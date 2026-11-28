@@ -383,7 +383,7 @@ def gate_tests():
             g.flag('FLAG_POX_STORY_SILPH',silph)
             initial=location(g)
             g.run('Pox_BlackthornRoad')
-            # v7 uses the physical Route 5 -> Route 115 -> Meteor Falls chain;
+            # v7 uses the physical Route 34 -> Route 115 -> Meteor Falls chain;
             # this Saffron actor is directions, not a legacy teleport.
             assert location(g)==initial,(space,bruno,silph,g.describe())
             g.warp('BlackthornCity_hns',16,29)

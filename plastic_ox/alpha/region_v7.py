@@ -30,7 +30,7 @@ ANCHORS = {
     'Route103':(10,10), 'Route21_North_Frlg':(12,10),
     'Route21_South_Frlg':(12,10), 'CinnabarIsland_Frlg':(12,10),
     'MossdeepCity':(28,17), 'Route127':(40,1),
-    'Route19_Frlg':(12,8), 'SaffronCity_hns':(16,23), 'Route5_hns':(25,35),
+    'Route19_Frlg':(12,8), 'SaffronCity_hns':(16,23), 'Route34_hns':(36,40),
     'Route115':(27,38), 'MeteorFalls_1F_1R':(6,38), 'BlackthornCity_hns':(27,49),
     'Route45_hns':(15,5), 'Route46_hns':(20,12), 'VictoryRoad_1F':(15,39),
     'IndigoPlateau_hns':(11,7), 'PlasticOx_Harbor':(11,13),
@@ -50,8 +50,8 @@ LANE_PORTALS = {
     'route119_fortree','route36_shortcut',
     'route110_lavender','lavender_route8',
     'route7_route103','oldale_route103','route103_cinnabar','cinnabar_sea',
-    'sea_mossdeep','mossdeep_route19','mossdeep_route127','route19_saffron','saffron_route5',
-    'route5_route115','blackthorn_route45','route45_route46',
+    'sea_mossdeep','mossdeep_route19','mossdeep_route127','route19_saffron','saffron_route34',
+    'route34_route115','blackthorn_route45','route45_route46',
     'lavender_harbor','harbor_frontier',
 }
 
@@ -82,6 +82,11 @@ PINNED_PORTS = {
     # Route 103's sand road leaves the east edge on rows 9..10; the lanes
     # (9..11) follow it, and src/plastic_ox_borders.c draws it past the edge.
     'route7_route103_b': {'tile': [79, 10], 'approach': [78, 10], 'direction': 'E'},
+    # Route 34's walkable body runs from the old Goldenrod gatehouse throat
+    # (x 30-33, y 65-66) to the north gap (x 25-28). The strip below the
+    # gatehouse is cut off by water, so the Saffron road enters at the throat.
+    'saffron_route34_b': {'tile': [31, 66], 'approach': [31, 65], 'direction': 'S'},
+    'route34_route115_a': {'tile': [27, 0], 'approach': [27, 1], 'direction': 'N'},
 }
 
 # Saffron's east and west gatehouses, as in FRLG: an arrow doorway on each
@@ -133,8 +138,9 @@ TRAILS = [
     # Open sea south of Mossdeep: the three Regi caves, each sealed by its tablet.
     ('mossdeep_route127','MossdeepCity','S','Route127','N',[]),
     ('route19_saffron','Route19_Frlg','N','SaffronCity_hns','S',SPACE),
-    ('saffron_route5','SaffronCity_hns','N','Route5_hns','S',SPACE),
-    ('route5_route115','Route5_hns','N','Route115','S',SPACE),
+    # Route 34 replaced the empty Route 5 as Saffron's north road to Meteor Falls.
+    ('saffron_route34','SaffronCity_hns','N','Route34_hns','S',SPACE),
+    ('route34_route115','Route34_hns','N','Route115','S',SPACE),
     ('meteor_blackthorn','MeteorFalls_1F_1R',(26,18),'BlackthornCity_hns',(30,10),SPACE),
     ('blackthorn_route45','BlackthornCity_hns','S','Route45_hns','N',SPACE),
     ('route45_route46','Route45_hns','S','Route46_hns','N',SPACE),
@@ -158,7 +164,7 @@ def apply_region(read, put):
     def load(name):
         return json.loads(read(f'data/maps/{name}/map.json'))
     def save(name, data):
-        indent=4 if name in {'DarkCave_SouthSide_hns','Gate_AzaleaTown_IlexForest_hns'} else 2
+        indent=4 if name in {'DarkCave_SouthSide_hns','Gate_AzaleaTown_IlexForest_hns','Route116'} else 2
         put(f'data/maps/{name}/map.json',json.dumps(data,indent=indent)+'\n')
     def mid(name):
         return load(name)['id']
@@ -193,7 +199,7 @@ def apply_region(read, put):
         'EcruteakCity_hns':{'MAP_ROUTE37_HNS'},
         'BattleFrontier_OutsideWest':{'MAP_BATTLE_FRONTIER_OUTSIDE_EAST'},
     }
-    retired={'Route2_hns','Route3_hns','Route4_hns','Route14_hns','Route16_hns','Route26_hns','Route34_hns','Route38_hns','Route41_hns','Route6_hns'}
+    retired={'Route2_hns','Route3_hns','Route4_hns','Route14_hns','Route16_hns','Route26_hns','Route5_hns','Route38_hns','Route41_hns','Route6_hns'}
     retired.update({'Route1_Frlg','Route31_hns','Route104','Gate_AzaleaTown_IlexForest_hns','CinnabarIsland_hns'})
     active=set(ANCHORS)
     extra_frlg=['UndergroundPath_EastEntrance_Frlg','UndergroundPath_WestEntrance_Frlg','UndergroundPath_EastWestTunnel_Frlg']+[f'SeafoamIslands_{floor}_Frlg' for floor in ['1F','B1F','B2F','B3F','B4F']]
@@ -427,8 +433,14 @@ def apply_region(read, put):
         'route7_route103_b': 'ROUTE 7\\nKeep to the marked passage.$',
         'route103_cinnabar_a': 'CINNABAR ISLAND\\nFollow the passage south.$',
         'route19_saffron_b': 'SAFFRON CITY - SOUTH GATE\\nROUTE 19 and the MOSSDEEP road$',
-        'saffron_route5_a': 'SAFFRON CITY - NORTH GATE\\nROUTE 5 to BLACKTHORN$'
+        'saffron_route34_a': 'SAFFRON CITY - NORTH GATE\\nROUTE 34 to BLACKTHORN$'
     }
+    # Route 34 is Saffron's north road now, so its old Act I door off
+    # Route 116 (an up-connection with no return and a dangling warp) is shut.
+    d=load('Route116')
+    d['connections']=[c for c in d.get('connections') or [] if c['map']!='MAP_ROUTE34_HNS']
+    d['warp_events']=[w for w in d['warp_events'] if w['dest_map']!='MAP_ROUTE34_HNS']
+    save('Route116',d)
     # FRLG trainer IDs aren't part of Emerald's trainer table. Keep these
     # people and their authored dialogue without invoking unrelated trainers.
     for name in ['Route8_Frlg','Route19_Frlg','Route21_North_Frlg','Route21_South_Frlg']:

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regression checks for the Route 34 (LC) and Route 115 (OU) encounter tables.
+"""Regression checks for the Route 34 and Route 115 (both OU) encounter tables.
 
 Installed by plastic_ox/encounter_tables/apply_route34_115_v1.py. Asserts that
 the ROM data matches the generator's tables, that every species is legal for the
@@ -55,16 +55,20 @@ def expect(label, field, data, tier, cap):
         check(t is not None and rank[t] <= rank[tier], f"{label}.{field} {sp} is {t}, above {tier}")
 
 
-expect("gPoxRoute34Hns", "land_mons", A.ROUTE34_GRASS, "LC", 13)
+expect("gPoxOURoute34Hns", "land_mons", A.ROUTE34_GRASS, "OU", 55)
+expect("gPoxOURoute34Hns", "water_mons", A.ROUTE34_SURF, "OU", 55)
+expect("gPoxOURoute34Hns", "fishing_mons", A.ROUTE34_FISHING, "OU", 55)
 expect("gPoxOURoute115", "land_mons", A.ROUTE115_GRASS, "OU", 55)
 expect("gPoxOURoute115", "water_mons", A.ROUTE115_SURF, "OU", 55)
 expect("gPoxOURoute115", "fishing_mons", A.ROUTE115_FISHING, "OU", 55)
 check("gRoute115" not in entries, "vanilla gRoute115 table still present")
 check(entries.get("gPoxOURoute115", {}).get("map") == "MAP_ROUTE115", "gPoxOURoute115 map")
-check(entries.get("gPoxRoute34Hns", {}).get("map") == "MAP_ROUTE34_HNS", "gPoxRoute34Hns map")
+check(entries.get("gPoxOURoute34Hns", {}).get("map") == "MAP_ROUTE34_HNS", "gPoxOURoute34Hns map")
+check("SPECIES_DITTO" in {m["species"] for m in entries.get("gPoxOURoute34Hns", {}).get("land_mons", {}).get("mons", [])},
+      "Route 34 grass has no Ditto")
 
 header = (ROOT / "src/data/plastic_ox_pu_encounters.h").read_text()
-for symbol, times, tier, cap in [("sPoxRoute34Headbutt", A.ROUTE34_HEADBUTT, "LC", 13),
+for symbol, times, tier, cap in [("sPoxRoute34Headbutt", A.ROUTE34_HEADBUTT, "OU", 55),
                                  ("sPoxRoute115Headbutt", A.ROUTE115_HEADBUTT, "OU", 55)]:
     for time, (lo, hi, rows) in times.items():
         m = re.search(rf"{symbol}{time}Mons\[\] = \{{(.*?)\n\}};", header, re.S)
@@ -92,10 +96,10 @@ check(any(b.get("script") == "PlasticOx_EventScript_HeadbuttTree" and (b["x"], b
           for b in route115["bg_events"]), "Route 115 headbutt tree bg event missing")
 
 # The progression model sees the new acquisitions at the right checkpoints.
-check("SPECIES_PIDGEY" in P.acquired_at("gym1"), "Route 34 not credited at gym1")
-check("SPECIES_CHANSEY" not in P.acquired_at("mossdeep"), "Chansey credited before Saffron opens")
-check({"SPECIES_CHANSEY", "SPECIES_HERACROSS"} <= P.acquired_at("saffron"),
-      "Chansey/Heracross not credited at saffron")
+for sp in ("SPECIES_CHANSEY", "SPECIES_HERACROSS"):
+    check(sp not in P.acquired_at("mossdeep"), f"{sp} credited before Saffron opens")
+for sp in ("SPECIES_CHANSEY", "SPECIES_HERACROSS", "SPECIES_DITTO"):
+    check(sp in P.acquired_at("saffron"), f"{sp} not credited at saffron")
 
 if fails:
     print("FAIL route34/115 encounters:")

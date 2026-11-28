@@ -40328,69 +40328,69 @@
         },
         {
           "map": "MAP_ROUTE34_HNS",
-          "base_label": "gPoxRoute34Hns",
+          "base_label": "gPoxOURoute34Hns",
           "land_mons": {
             "encounter_rate": 20,
             "mons": [
               {
-                "min_level": 8,
-                "max_level": 11,
-                "species": "SPECIES_PIDGEY"
+                "min_level": 44,
+                "max_level": 48,
+                "species": "SPECIES_DITTO"
               },
               {
-                "min_level": 8,
-                "max_level": 11,
-                "species": "SPECIES_RATTATA"
+                "min_level": 44,
+                "max_level": 48,
+                "species": "SPECIES_GRANBULL"
               },
               {
-                "min_level": 8,
-                "max_level": 11,
-                "species": "SPECIES_SENTRET"
+                "min_level": 44,
+                "max_level": 48,
+                "species": "SPECIES_HYPNO"
               },
               {
-                "min_level": 8,
-                "max_level": 11,
-                "species": "SPECIES_NIDORAN_F"
+                "min_level": 44,
+                "max_level": 48,
+                "species": "SPECIES_KADABRA"
               },
               {
-                "min_level": 8,
-                "max_level": 11,
-                "species": "SPECIES_NIDORAN_M"
+                "min_level": 44,
+                "max_level": 48,
+                "species": "SPECIES_RATICATE"
               },
               {
-                "min_level": 8,
-                "max_level": 11,
-                "species": "SPECIES_SNUBBULL"
+                "min_level": 44,
+                "max_level": 48,
+                "species": "SPECIES_PIDGEOT"
               },
               {
-                "min_level": 8,
-                "max_level": 11,
-                "species": "SPECIES_IGGLYBUFF"
+                "min_level": 44,
+                "max_level": 48,
+                "species": "SPECIES_FURRET"
               },
               {
-                "min_level": 8,
-                "max_level": 11,
-                "species": "SPECIES_TAILLOW"
+                "min_level": 44,
+                "max_level": 48,
+                "species": "SPECIES_NIDORINA"
               },
               {
-                "min_level": 8,
-                "max_level": 11,
-                "species": "SPECIES_TAILLOW"
+                "min_level": 44,
+                "max_level": 48,
+                "species": "SPECIES_NIDORINO"
               },
               {
-                "min_level": 8,
-                "max_level": 11,
-                "species": "SPECIES_TAILLOW"
+                "min_level": 44,
+                "max_level": 48,
+                "species": "SPECIES_NIDORINO"
               },
               {
-                "min_level": 8,
-                "max_level": 11,
-                "species": "SPECIES_TAILLOW"
+                "min_level": 44,
+                "max_level": 48,
+                "species": "SPECIES_NIDORINO"
               },
               {
-                "min_level": 8,
-                "max_level": 11,
-                "species": "SPECIES_TAILLOW"
+                "min_level": 44,
+                "max_level": 48,
+                "species": "SPECIES_NIDORINO"
               }
             ],
             "weights": [
@@ -40401,6 +40401,110 @@
               10,
               10,
               10,
+              5,
+              5,
+              0,
+              0,
+              0
+            ]
+          },
+          "water_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 44,
+                "max_level": 48,
+                "species": "SPECIES_TENTACRUEL"
+              },
+              {
+                "min_level": 44,
+                "max_level": 48,
+                "species": "SPECIES_QUAGSIRE"
+              },
+              {
+                "min_level": 44,
+                "max_level": 48,
+                "species": "SPECIES_PELIPPER"
+              },
+              {
+                "min_level": 44,
+                "max_level": 48,
+                "species": "SPECIES_LANTURN"
+              },
+              {
+                "min_level": 44,
+                "max_level": 48,
+                "species": "SPECIES_LANTURN"
+              }
+            ],
+            "weights": [
+              40,
+              25,
+              20,
+              15,
+              0
+            ]
+          },
+          "fishing_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 40,
+                "max_level": 48,
+                "species": "SPECIES_OCTILLERY"
+              },
+              {
+                "min_level": 40,
+                "max_level": 48,
+                "species": "SPECIES_QWILFISH"
+              },
+              {
+                "min_level": 40,
+                "max_level": 48,
+                "species": "SPECIES_GYARADOS"
+              },
+              {
+                "min_level": 40,
+                "max_level": 48,
+                "species": "SPECIES_SEAKING"
+              },
+              {
+                "min_level": 40,
+                "max_level": 48,
+                "species": "SPECIES_KINGLER"
+              },
+              {
+                "min_level": 40,
+                "max_level": 48,
+                "species": "SPECIES_CORSOLA"
+              },
+              {
+                "min_level": 40,
+                "max_level": 48,
+                "species": "SPECIES_CORSOLA"
+              },
+              {
+                "min_level": 40,
+                "max_level": 48,
+                "species": "SPECIES_CORSOLA"
+              },
+              {
+                "min_level": 40,
+                "max_level": 48,
+                "species": "SPECIES_CORSOLA"
+              },
+              {
+                "min_level": 40,
+                "max_level": 48,
+                "species": "SPECIES_CORSOLA"
+              }
+            ],
+            "weights": [
+              25,
+              20,
+              15,
+              15,
+              15,
               10,
               0,
               0,

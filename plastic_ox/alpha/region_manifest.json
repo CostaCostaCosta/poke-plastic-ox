@@ -565,9 +565,9 @@
       "label": "Route19"
     },
     {
-      "id": "saffron_route5_a",
+      "id": "saffron_route34_a",
       "source": "SaffronCity_hns",
-      "destination": "Route5_hns",
+      "destination": "Route34_hns",
       "tile": [
         30,
         6
@@ -579,26 +579,26 @@
       "direction": "E",
       "landing": [
         31,
-        38
+        65
       ],
       "requires": [
         "FLAG_POX_STORY_SPACE_CENTER"
       ],
-      "label": "Route5"
+      "label": "Route34"
     },
     {
-      "id": "saffron_route5_b",
-      "source": "Route5_hns",
+      "id": "saffron_route34_b",
+      "source": "Route34_hns",
       "destination": "SaffronCity_hns",
       "tile": [
-        32,
-        38
+        31,
+        66
       ],
       "approach": [
         31,
-        38
+        65
       ],
-      "direction": "E",
+      "direction": "S",
       "landing": [
         29,
         6
@@ -609,18 +609,18 @@
       "label": "SaffronCity"
     },
     {
-      "id": "route5_route115_a",
-      "source": "Route5_hns",
+      "id": "route34_route115_a",
+      "source": "Route34_hns",
       "destination": "Route115",
       "tile": [
-        32,
+        27,
         0
       ],
       "approach": [
-        31,
-        0
+        27,
+        1
       ],
-      "direction": "E",
+      "direction": "N",
       "landing": [
         19,
         79
@@ -631,9 +631,9 @@
       "label": "Route115"
     },
     {
-      "id": "route5_route115_b",
+      "id": "route34_route115_b",
       "source": "Route115",
-      "destination": "Route5_hns",
+      "destination": "Route34_hns",
       "tile": [
         20,
         79
@@ -644,13 +644,13 @@
       ],
       "direction": "E",
       "landing": [
-        31,
-        0
+        27,
+        1
       ],
       "requires": [
         "FLAG_POX_STORY_SPACE_CENTER"
       ],
-      "label": "Route5"
+      "label": "Route34"
     },
     {
       "id": "meteor_blackthorn_a",
