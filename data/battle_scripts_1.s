@@ -3567,7 +3567,7 @@ BattleScript_SeedSowerActivates::
 
 BattleScript_WindPowerActivates::
 	call BattleScript_AbilityPopUp
-	setvolatile BS_ABILITY_BATTLER, VOLATILE_CHARGE_TIMER, 1
+	setvolatile BS_ABILITY_BATTLER, VOLATILE_CHARGE_TIMER, 2
     copybyte gEffectBattler, gBattlerAbility
 	printstring STRINGID_BEINGHITCHARGEDPKMNWITHPOWER
 	waitmessage B_WAIT_TIME_LONG
