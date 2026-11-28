@@ -110,7 +110,7 @@ Route25_EventScript_Npc11_Text:
 	.string "A fine place to take the air!\nI wore my best shoes for it.\pA little dust never hurt them.\nAt least, I hope it hasn't.$"
 
 Route25_EventScript_Npc12_Text:
-	.string "BILL's grandfather is looking\nafter the cottage while he's out.\pHe was brushing an EEVEE when\nI visited. There was fur on him!$"
+	.string "I bring the post out to the cape.\nThe cottage gets more parcels\lthan the rest of the road.\pThe old man always offers tea.\nI always say I'm too busy.\pI am never too busy.$"
 
 Route25_EventScript_Pat::
 	trainerbattle_single TRAINER_PLASTIC_OX_ROUTE25_PAT, Route25_PatChallenge_Text, Route25_PatDefeat_Text

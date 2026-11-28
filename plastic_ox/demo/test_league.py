@@ -60,6 +60,8 @@ def prepare(spawn):
     # A single fixture partner; no HM moves are needed for any route walk.
     run_code(g, opcode(g,'callnative')+struct.pack('<I',g.syms['ScrCmd_createmon']|1)+struct.pack('<BBHHI',0,6,376,64,0))
     run_code(g,opcode(g,'setflag')+struct.pack('<H',0xB7F)+opcode(g,'clearflag')+struct.pack('<H',0xB7F))
+    # The POX_EXT block too: FLAG_POX_FRONTIER_INVITE (the ferry gate) lives there.
+    run_code(g,opcode(g,'setflag')+struct.pack('<H',0xF7F)+opcode(g,'clearflag')+struct.pack('<H',0xF7F))
     g.warp(*spawn)
     return g
 
@@ -258,8 +260,9 @@ def battles():
     assert struct.unpack_from('<I',data,offsets[3]+8)[0]&(1<<15),'Champion ribbon not saved'
     shot(g,'continue')
     g.tap(K.KEY_DOWN,hold=16,wait=30)
-    # Use the Champion save's real flag to open the existing ferry gate.
+    # The ferry needs OAK's FRONTIER INVITE (test_frontier.py covers the hand-off).
     g.flag('FLAG_POX_TRIGGERS_ENABLED',True)
+    g.flag('FLAG_POX_FRONTIER_INVITE',True)
     from test_region_walk import PORTS
     port=PORTS['lavender_harbor_a']
     g.warp(port['source'],*port['approach'])

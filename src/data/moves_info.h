@@ -7370,7 +7370,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .contestCategory = CONTEST_CATEGORY_SMART,
         .contestComboStarterId = COMBO_STARTER_CHARGE,
         .contestComboMoves = {0},
-        .battleAnimScript = gBattleAnimMove_Charge,
+        .battleAnimScript = gBattleAnimMove_None, // Plastic Ox: Charge plays no animation
         .validApprenticeMove = TRUE,
     },
 

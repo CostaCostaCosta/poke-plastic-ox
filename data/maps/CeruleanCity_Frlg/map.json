@@ -4,7 +4,9 @@
   "layout": "LAYOUT_CERULEAN_CITY",
   "music": "MUS_RG_FUCHSIA",
   "region": "REGION_KANTO",
-  "include_in_versions": ["emerald"],
+  "include_in_versions": [
+    "emerald"
+  ],
   "region_map_section": "MAPSEC_CERULEAN_CITY",
   "requires_flash": false,
   "weather": "WEATHER_SUNNY",
@@ -17,24 +19,9 @@
   "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
   "connections": [
     {
-      "map": "MAP_ROUTE24",
-      "offset": 12,
+      "map": "MAP_ROUTE24_HNS",
+      "offset": 8,
       "direction": "up"
-    },
-    {
-      "map": "MAP_ROUTE5",
-      "offset": 0,
-      "direction": "down"
-    },
-    {
-      "map": "MAP_ROUTE4",
-      "offset": 10,
-      "direction": "left"
-    },
-    {
-      "map": "MAP_ROUTE9",
-      "offset": 10,
-      "direction": "right"
     }
   ],
   "object_events": [
@@ -153,7 +140,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "0x0",
-      "flag": "FLAG_HIDE_CERULEAN_RIVAL"
+      "flag": "FLAG_POX_HIDE_UNUSED_ACTOR"
     },
     {
       "type": "object",
@@ -195,7 +182,7 @@
     {
       "local_id": "LOCALID_CERULEAN_CAVE_GUARD",
       "type": "object",
-      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_M",
+      "graphics_id": "OBJ_EVENT_GFX_POLICEMAN",
       "x": 1,
       "y": 13,
       "elevation": 3,
@@ -205,7 +192,7 @@
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "CeruleanCity_EventScript_CeruleanCaveGuard",
-      "flag": "FLAG_HIDE_CERULEAN_CAVE_GUARD"
+      "flag": "FLAG_SYS_GAME_CLEAR"
     }
   ],
   "warp_events": [
@@ -262,7 +249,7 @@
       "x": 1,
       "y": 12,
       "elevation": 0,
-      "dest_map": "MAP_CERULEAN_CAVE_1F",
+      "dest_map": "MAP_MT_SILVER_1F_WATERFALL_ROOM_HNS",
       "dest_warp_id": "0"
     },
     {
@@ -308,53 +295,7 @@
       "dest_warp_id": "0"
     }
   ],
-  "coord_events": [
-    {
-      "type": "trigger",
-      "x": 22,
-      "y": 6,
-      "elevation": 3,
-      "var": "VAR_MAP_SCENE_CERULEAN_CITY_RIVAL",
-      "var_value": "0",
-      "script": "CeruleanCity_EventScript_RivalTriggerLeft"
-    },
-    {
-      "type": "trigger",
-      "x": 23,
-      "y": 6,
-      "elevation": 3,
-      "var": "VAR_MAP_SCENE_CERULEAN_CITY_RIVAL",
-      "var_value": "0",
-      "script": "CeruleanCity_EventScript_RivalTriggerMid"
-    },
-    {
-      "type": "trigger",
-      "x": 24,
-      "y": 6,
-      "elevation": 3,
-      "var": "VAR_MAP_SCENE_CERULEAN_CITY_RIVAL",
-      "var_value": "0",
-      "script": "CeruleanCity_EventScript_RivalTriggerRight"
-    },
-    {
-      "type": "trigger",
-      "x": 33,
-      "y": 5,
-      "elevation": 3,
-      "var": "VAR_MAP_SCENE_CERULEAN_CITY_ROCKET",
-      "var_value": "0",
-      "script": "CeruleanCity_EventScript_GruntTriggerTop"
-    },
-    {
-      "type": "trigger",
-      "x": 33,
-      "y": 7,
-      "elevation": 3,
-      "var": "VAR_MAP_SCENE_CERULEAN_CITY_ROCKET",
-      "var_value": "0",
-      "script": "CeruleanCity_EventScript_GruntTriggerBottom"
-    }
-  ],
+  "coord_events": [],
   "bg_events": [
     {
       "type": "sign",

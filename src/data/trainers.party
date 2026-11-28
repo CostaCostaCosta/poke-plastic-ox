@@ -634,13 +634,14 @@ Music: Female
 Double Battle: No
 AI: Check Bad Move
 
-Shroomish
-Level: 14
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Lotad
+Level: 6
 
-Roselia
-Level: 14
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Seedot
+Level: 6
+
+Gulpin
+Level: 7
 
 === TRAINER_ROSE_1 ===
 Name: ROSE
@@ -5514,9 +5515,11 @@ Music: Twins
 Double Battle: No
 AI: Check Bad Move
 
-Skitty @ Oran Berry
-Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Whismur
+Level: 6
+
+Slakoth
+Level: 6
 
 === TRAINER_COLTON ===
 Name: COLTON
@@ -6310,17 +6313,14 @@ Music: Hiker
 Double Battle: No
 AI: Check Bad Move
 
-Magikarp
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Barboach
+Level: 6
 
 Tentacool
-Level: 10
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 6
 
-Milotic
-Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Carvanha
+Level: 7
 
 === TRAINER_IVAN ===
 Name: IVAN
@@ -8773,13 +8773,11 @@ Music: Twins
 Double Battle: Yes
 AI: Check Bad Move
 
-Plusle
-Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Taillow
+Level: 6
 
-Minun
-Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Electrike
+Level: 6
 
 === TRAINER_AMY_AND_LIV_2 ===
 Name: AMY & LIV
@@ -9732,9 +9730,11 @@ Music: Female
 Double Battle: No
 AI: Basic Trainer
 
-Torchic
+Wingull
 Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+
+Torchic
+Level: 6
 
 === TRAINER_MAY_ROUTE_110_TREECKO ===
 Name: MAY
@@ -13068,9 +13068,14 @@ Music: Intense
 Double Battle: No
 AI: Check Bad Move
 
-Voltorb
-Level: 15
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Electrike
+Level: 6
+
+Poochyena
+Level: 6
+
+Whismur
+Level: 7
 
 === TRAINER_RHETT ===
 Name: RHETT
@@ -13081,9 +13086,14 @@ Music: Intense
 Double Battle: No
 AI: Check Bad Move
 
-Makuhita
-Level: 15
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
+Poliwag
+Level: 6
+
+Krabby
+Level: 6
+
+Corphish
+Level: 7
 
 === TRAINER_TYRON ===
 Name: TYRON
@@ -13560,8 +13570,13 @@ Double Battle: No
 AI: Check Bad Move
 
 Tentacool
-Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 6
+
+Goldeen
+Level: 6
+
+Wailmer
+Level: 7
 
 === TRAINER_ISABELLE ===
 Name: ISABELLE
@@ -13572,9 +13587,14 @@ Music: Swimmer
 Double Battle: No
 AI: Check Bad Move
 
-Marill
-Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Wingull
+Level: 6
+
+Surskit
+Level: 6
+
+Corsola
+Level: 7
 
 === TRAINER_ANDRES_1 ===
 Name: ANDRES
@@ -18849,22 +18869,16 @@ Double Battle: No
 AI: Basic Trainer
 
 Wingull
-Level: 5
+Level: 6
 
 Whismur
-Level: 5
+Level: 6
 
 Electrike
-Level: 5
+Level: 6
 
 Cacnea
-Level: 5
-
-Gulpin
-Level: 5
-
-Corphish
-Level: 5
+Level: 7
 
 === TRAINER_PLASTIC_OX_ROUTE29 ===
 Name: JOEY
@@ -22771,3 +22785,93 @@ Adamant Nature
 - Hidden Power
 - Toxic
 
+=== TRAINER_PLASTIC_OX_FRONTIER_LC ===
+Name: TIMMY
+Class: Youngster
+Pic: Youngster
+Gender: Male
+Music: Intense
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Magikarp
+Level: 5
+- Splash
+
+=== TRAINER_PLASTIC_OX_FRONTIER_PU ===
+Name: BRANT
+Class: Hiker
+Pic: Hiker
+Gender: Male
+Music: Intense
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Magikarp
+Level: 5
+- Splash
+
+=== TRAINER_PLASTIC_OX_FRONTIER_NU ===
+Name: NOELLE
+Class: Pkmn Breeder
+Pic: Pokemon Breeder F
+Gender: Female
+Music: Intense
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Magikarp
+Level: 5
+- Splash
+
+=== TRAINER_PLASTIC_OX_FRONTIER_RU ===
+Name: RIKU
+Class: Black Belt
+Pic: Black Belt
+Gender: Male
+Music: Intense
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Magikarp
+Level: 5
+- Splash
+
+=== TRAINER_PLASTIC_OX_FRONTIER_UU ===
+Name: UMA
+Class: Cooltrainer
+Pic: Cooltrainer F
+Gender: Female
+Music: Intense
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Magikarp
+Level: 5
+- Splash
+
+=== TRAINER_PLASTIC_OX_FRONTIER_UBERS ===
+Name: DOMINIC
+Class: Cooltrainer
+Pic: Cooltrainer M
+Gender: Male
+Music: Intense
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Magikarp
+Level: 5
+- Splash
+
+=== TRAINER_PLASTIC_OX_FRONTIER_OU ===
+Name: ALDOUS
+Class: Gentleman
+Pic: Gentleman
+Gender: Male
+Music: Intense
+Double Battle: No
+AI: Basic Trainer / Smart Switching / PP Stall Prevention
+
+Magikarp
+Level: 5
+- Splash

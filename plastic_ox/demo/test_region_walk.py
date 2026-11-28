@@ -147,6 +147,13 @@ def setup(spawn=None):
     # Route 36's ALAN, whose sight would otherwise stop the central leg.
     for f in (0x082,0x4FA,0x4FF,0x91D,0x91E,0x91F):g.flag(f,True)
     g.write(g.syms['sWildEncountersDisabled'],1)
+    # Touch the POX_EXT virtual flag block natively so its magic is set before
+    # gate flags stored there (FLAG_POX_FRONTIER_INVITE) are written directly.
+    table=g.syms['gScriptCmdTable']
+    opof=lambda n:next(i for i in range((g.syms['gScriptCmdTableEnd']-table)//4) if g.u32(table+i*4)&~0x02000001==g.syms['ScrCmd_'+n]&~1)
+    code=bytes([opof('setflag')])+struct.pack('<H',0xF7F)+bytes([opof('clearflag')])+struct.pack('<H',0xF7F)+bytes([2])
+    for i,b in enumerate(code):g.write(g.syms['gStringVar4']+i,b)
+    g.run(g.syms['gStringVar4'])
     for p in PORTS.values():
         for f in p['requires']:g.flag(f,True)
     for f in range(0x500,0x860):g.flag(f,True)
