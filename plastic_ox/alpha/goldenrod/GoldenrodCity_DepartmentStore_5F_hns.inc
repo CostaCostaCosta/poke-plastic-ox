@@ -27,4 +27,4 @@ PoxGoldenrod_GoldenrodCity_DepartmentStore_5F_hns_3::
 	msgbox PoxGoldenrod_GoldenrodCity_DepartmentStore_5F_hns_3_Text, MSGBOX_NPC
 	end
 PoxGoldenrod_GoldenrodCity_DepartmentStore_5F_hns_3_Text:
-	.string "I carried these crates upstairs.\nNext time I'll use the lift.$"
+	.string "These BANDS used to come by boat\nfrom SLATEPORT. Now it's trucks.$"

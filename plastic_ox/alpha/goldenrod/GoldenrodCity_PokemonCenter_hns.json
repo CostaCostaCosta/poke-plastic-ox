@@ -1,7 +1,7 @@
 {
   "id": "MAP_GOLDENROD_CITY_POKEMON_CENTER_HNS",
   "name": "GoldenrodCity_PokemonCenter_hns",
-  "layout": "LAYOUT_GOLDENROD_CITY_POKEMON_CENTER_HNS",
+  "layout": "LAYOUT_POKEMON_CENTER_JOHTO_HNS",
   "music": "MUS_RG_CELADON",
   "region_map_section": "MAPSEC_GOLDENROD_CITY",
   "requires_flash": false,
@@ -15,38 +15,25 @@
   "connections": [],
   "object_events": [
     {
-      "local_id": "LOCALID_NURSE",
-      "graphics_id": "OBJ_EVENT_GFX_NURSE",
-      "x": 5,
+      "local_id": "LOCALID_GOLDENROD_NURSE",
+      "graphics_id": "OBJ_EVENT_GFX_NURSE_FRLG",
+      "x": 7,
       "y": 2,
-      "elevation": 0,
+      "elevation": 3,
       "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PokemonCenter_Johto_hns_EventScript_Nurse",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_CHANSEY",
-      "x": 6,
-      "y": 2,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "PoxGoldenrod_GoldenrodCity_PokemonCenter_hns_1",
+      "script": "GoldenrodCity_PokemonCenter_hns_EventScript_Nurse",
       "flag": "0"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_LASS_HNS",
-      "x": 15,
-      "y": 9,
+      "x": 2,
+      "y": 7,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -56,10 +43,10 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_GAMEBOY_KID",
-      "x": 2,
-      "y": 7,
+      "x": 12,
+      "y": 3,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -68,24 +55,11 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN",
-      "x": 5,
-      "y": 8,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "PoxGoldenrod_GoldenrodCity_PokemonCenter_hns_4",
-      "flag": "0"
-    },
-    {
       "graphics_id": "OBJ_EVENT_GFX_GAMEBOY_KID",
-      "x": 3,
-      "y": 7,
+      "x": 13,
+      "y": 3,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
@@ -94,49 +68,23 @@
       "flag": "0"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_LINK_RECEPTIONIST",
-      "x": 14,
-      "y": 5,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "PoxGoldenrod_GoldenrodCity_PokemonCenter_hns_6",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_LINK_RECEPTIONIST",
-      "x": 15,
-      "y": 5,
-      "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
-      "movement_range_x": 0,
-      "movement_range_y": 0,
-      "trainer_type": "TRAINER_TYPE_NONE",
-      "trainer_sight_or_berry_tree_id": "0",
-      "script": "PoxGoldenrod_GoldenrodCity_PokemonCenter_hns_7",
-      "flag": "0"
-    },
-    {
-      "graphics_id": "OBJ_EVENT_GFX_LINK_RECEPTIONIST",
-      "x": 16,
+      "graphics_id": "OBJ_EVENT_GFX_OLD_WOMAN",
+      "x": 4,
       "y": 6,
       "elevation": 0,
-      "movement_type": "MOVEMENT_TYPE_FACE_DOWN",
+      "movement_type": "MOVEMENT_TYPE_FACE_UP",
       "movement_range_x": 0,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_NONE",
       "trainer_sight_or_berry_tree_id": "0",
-      "script": "PoxGoldenrod_GoldenrodCity_PokemonCenter_hns_8",
+      "script": "PoxGoldenrod_GoldenrodCity_PokemonCenter_hns_4",
       "flag": "0"
     }
   ],
   "warp_events": [
     {
-      "x": 9,
-      "y": 9,
+      "x": 7,
+      "y": 8,
       "elevation": 0,
       "dest_map": "MAP_GOLDENROD_CITY_HNS",
       "dest_warp_id": "12"
@@ -149,24 +97,16 @@
       "x": 1,
       "y": 1,
       "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "PoxGoldenrod_Directory"
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "EventScript_BookShelf"
     },
     {
       "type": "sign",
-      "x": 1,
-      "y": -1,
+      "x": 2,
+      "y": 1,
       "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "PoxGoldenrod_Directory"
-    },
-    {
-      "type": "sign",
-      "x": 0,
-      "y": -1,
-      "elevation": 0,
-      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
-      "script": "PoxGoldenrod_Directory"
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_NORTH",
+      "script": "EventScript_BookShelf"
     }
   ],
   "region": "REGION_HOENN"

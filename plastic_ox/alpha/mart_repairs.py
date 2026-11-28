@@ -30,6 +30,8 @@ def install(read,put):
     for p in ['data/scripts/plastic_ox_goldenrod.inc','data/scripts/plastic_ox_league.inc']:
         s=read(p)
         for label in re.findall(r'^\s*pokemart (\w+)',s,re.M):
+            # Department Store floors and vending machines keep curated, themed stock.
+            if label.startswith(('PoxGoldenrod_Shop','PoxGoldenrod_Vending')):continue
             s=re.sub(r'('+label+r':+\n)((?:\s*\.2byte[^\n]+\n)+)',stock,s)
         put(p,s)
     p='data/scripts/plastic_ox_regional_mart.inc'

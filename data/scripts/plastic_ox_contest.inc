@@ -25,18 +25,81 @@ PlasticOxContest_EventScript_AttendantPrize::
 	call PlasticOxContest_EventScript_Prize
 	goto PlasticOxContest_EventScript_Release
 
+@ The entrant walks from the desk to the park door before the warp. Desk
+@ positions not listed here (behind the counter) warp straight through.
 PlasticOxContest_EventScript_EnterPark::
+	closemessage
+	getplayerxy VAR_TEMP_1, VAR_TEMP_2
 	compare VAR_0x8007, 0
 	goto_if_eq PlasticOxContest_EventScript_EnterSouth
+	goto_if_ne VAR_TEMP_2, 3, PlasticOxContest_EventScript_EnterEastFromSide
+	goto_if_ne VAR_TEMP_1, 38, PlasticOxContest_EventScript_EnterEastWarp
+	applymovement LOCALID_PLAYER, PlasticOxContest_Movement_EastDeskToDoor
+	goto PlasticOxContest_EventScript_EnterEastWait
+PlasticOxContest_EventScript_EnterEastFromSide::
+	goto_if_ne VAR_TEMP_1, 37, PlasticOxContest_EventScript_EnterEastWarp
+	applymovement LOCALID_PLAYER, PlasticOxContest_Movement_EastSideToDoor
+PlasticOxContest_EventScript_EnterEastWait::
+	waitmovement 0
+PlasticOxContest_EventScript_EnterEastWarp::
 	warp MAP_NATIONAL_PARK_NORMAL_HNS, 39, 19
 	waitstate
 	releaseall
 	end
 PlasticOxContest_EventScript_EnterSouth::
+	goto_if_ne VAR_TEMP_2, 3, PlasticOxContest_EventScript_EnterSouthFromSide
+	goto_if_ne VAR_TEMP_1, 3, PlasticOxContest_EventScript_EnterSouthWarp
+	applymovement LOCALID_PLAYER, PlasticOxContest_Movement_SouthDeskToDoor
+	goto PlasticOxContest_EventScript_EnterSouthWait
+PlasticOxContest_EventScript_EnterSouthFromSide::
+	goto_if_ne VAR_TEMP_1, 4, PlasticOxContest_EventScript_EnterSouthWarp
+	applymovement LOCALID_PLAYER, PlasticOxContest_Movement_SouthSideToDoor
+PlasticOxContest_EventScript_EnterSouthWait::
+	waitmovement 0
+PlasticOxContest_EventScript_EnterSouthWarp::
 	warp MAP_NATIONAL_PARK_NORMAL_HNS, 12, 48
 	waitstate
 	releaseall
 	end
+
+@ South desk (3,3) or its side (4,2) -> park door (7,1).
+PlasticOxContest_Movement_SouthSideToDoor:
+	walk_down
+	walk_right
+	walk_right
+	walk_right
+	walk_up
+	walk_up
+	step_end
+PlasticOxContest_Movement_SouthDeskToDoor:
+	walk_right
+	walk_right
+	walk_right
+	walk_right
+	walk_up
+	walk_up
+	step_end
+@ East desk (38,3) or its side (37,2) -> park door (34,7).
+PlasticOxContest_Movement_EastSideToDoor:
+	walk_down
+	walk_left
+	walk_left
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_left
+	step_end
+PlasticOxContest_Movement_EastDeskToDoor:
+	walk_left
+	walk_left
+	walk_left
+	walk_down
+	walk_down
+	walk_down
+	walk_down
+	walk_left
+	step_end
 
 PlasticOxContest_EventScript_EntryUnavailable::
 	compare VAR_RESULT, POX_CONTEST_ENTRY_PASS_REQUIRED

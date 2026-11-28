@@ -72,6 +72,14 @@ static const struct BorderZone sBorderZones[] =
     {LAYOUT_ROUTE7_HNS, LO, -1,  5,  5, 0x010, 0x011},
     {LAYOUT_ROUTE7_HNS, LO, -1,  6,  6, 0x008, 0x009},
     {LAYOUT_ROUTE7_HNS, LO, -1,  7,  7, 0x010, 0x011},
+    // Goldenrod City, south: the avenue (columns 31..34) runs on toward
+    // Route 33 through the forest border, with a verge where a tree pair
+    // would be sliced (30, 35).
+    {LAYOUT_GOLDENROD_CITY_HNS, 30, 30, 46, HI, ONE(0x008)},
+    {LAYOUT_GOLDENROD_CITY_HNS, 31, 31, 46, HI, ONE(0x3D0)},
+    {LAYOUT_GOLDENROD_CITY_HNS, 32, 33, 46, HI, ONE(0x3D1)},
+    {LAYOUT_GOLDENROD_CITY_HNS, 34, 34, 46, HI, ONE(0x3D2)},
+    {LAYOUT_GOLDENROD_CITY_HNS, 35, 35, 46, HI, ONE(0x009)},
 };
 
 bool32 PlasticOx_GetBorderOverride(s32 x, s32 y, u16 *metatileId)

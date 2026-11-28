@@ -23,6 +23,7 @@
 #include "random.h"
 #include "text.h"
 #include "safari_zone.h"
+#include "plastic_ox_contest.h"
 #include "sound.h"
 #include "sprite.h"
 #include "string_util.h"
@@ -800,9 +801,13 @@ void HandleAction_ThrowBall(void)
     gBattlerAttacker = gBattlerByTurnOrder[gCurrentTurnActionNumber];
     gBattle_BG0_X = 0;
     gBattle_BG0_Y = 0;
+    if (PlasticOxContest_IsActive())
+        gBallToDisplay = ITEM_SPORT_BALL;
     gLastUsedItem = gBallToDisplay;
     if (!GetItemImportance(gLastUsedItem))
         RemoveBagItem(gLastUsedItem, 1);
+    if (PlasticOxContest_IsActive() && gNumSafariBalls != 0)
+        gNumSafariBalls--;
     gBattlescriptCurrInstr = BattleScript_BallThrow;
     gCurrentActionFuncId = B_ACTION_EXEC_SCRIPT;
 }

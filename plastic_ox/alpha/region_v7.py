@@ -476,6 +476,10 @@ def apply_region(read, put):
             item_number+=1
         save(name,d)
     d=load('Route21_North_Frlg')
+    # Pallet is an HNS layout, so Route 21 draws its margin from its own edge;
+    # FRLG's clone of Pallet's fat man would stand on that painted water.
+    d['object_events']=[o for o in d['object_events']
+                        if not (o.get('type')=='clone' and o.get('target_map')=='MAP_PALLET_TOWN')]
     for item in d.get('bg_events',[]):
         if item.get('type')=='hidden_item':
             item['flag']='FLAG_POX_HIDDEN_V7_60'
