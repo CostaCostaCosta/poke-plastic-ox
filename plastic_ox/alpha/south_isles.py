@@ -167,7 +167,6 @@ REWRITES = {
         'Pox_Text_Space_GiftDone': "How is EEVEE taking to the road? Don't write it down for us. We've stopped keeping that log.",
     },
     REGION: {
-        'PoxRegion_route103_cinnabar_b_Text': raw("ROUTE 103\nThe mainland road. Mind the tide."),
         'PoxRegion_cinnabar_sea_a_Text': raw("EAST QUAY\nROUTE 20 - SEAFOAM ISLANDS", "FERRY SERVICE SUSPENDED\nThe last sailing is scratched out."),
     },
     M % 'CinnabarIsland_Gym_Frlg': {

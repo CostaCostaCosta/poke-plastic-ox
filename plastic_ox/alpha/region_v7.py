@@ -117,6 +117,9 @@ GATE_TEXT = {
 SIGNLESS_TRAILS = {'rustboro_route44'}
 # Single endpoints whose approach is an open road edge; a sign would stand in a lane.
 SIGNLESS_ENDPOINTS = {'route7_route103_a', 'route7_route103_b'}
+# Trails with no reverse portal. Route 103 drops south to Cinnabar; nothing on
+# the island leads back (map bible, Stage 7).
+ONE_WAY_TRAILS = {'route45_route46', 'route103_cinnabar'}
 
 # Explicit source/destination port targets. A target may name a compass edge;
 # coordinates denote a native gate plaza, cave mouth, or dock.
@@ -648,7 +651,7 @@ def apply_region(read, put):
             save(b,d)
             continue
         # Native ledges plus no reverse transition preserve the downhill return.
-        if key!='route45_route46':
+        if key not in ONE_WAY_TRAILS:
             endpoint(key+'_b',b,pb,a,pa['approach'],requirements,a.replace('_hns','').replace('_Frlg','').replace('PlasticOx_',''))
 
     # A badge-hidden object on the Route 44 portal tile physically blocks the
