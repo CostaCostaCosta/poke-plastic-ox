@@ -179,7 +179,7 @@ def apply_region(read, put):
         'CherrygroveCity_hns':{'MAP_ROUTE29_HNS','MAP_ROUTE2'},
         'Route2_Frlg':{'MAP_CHERRYGROVE_CITY_HNS','MAP_RUSTBORO_CITY'},
         'RustboroCity':{'MAP_ROUTE2','MAP_ROUTE24_HNS'},
-        'Route24_hns':{'MAP_RUSTBORO_CITY','MAP_ROUTE25_HNS'},
+        'Route24_hns':{'MAP_RUSTBORO_CITY','MAP_ROUTE25_HNS','MAP_CERULEAN_CITY'},
         'Route25_hns':{'MAP_ROUTE24_HNS'},
         'Route35_hns':{'MAP_ROUTE36_HNS'},
         'Route36_hns':{'MAP_ROUTE37_HNS','MAP_ROUTE35_HNS'}, 'Route37_hns':{'MAP_ROUTE36_HNS','MAP_ECRUTEAK_CITY_HNS'},
@@ -282,6 +282,10 @@ def apply_region(read, put):
         'Route24_hns': [
             {'map':'MAP_ROUTE25_HNS','offset':0,'direction':'up'},
             {'map':'MAP_RUSTBORO_CITY','offset':-3,'direction':'down'},
+            # The river surfs south into Cerulean City's north pond and its
+            # natural Cerulean Cave mouth; the engine prefers the open side
+            # where the two south connections overlap (src/fieldmap.c).
+            {'map':'MAP_CERULEAN_CITY','offset':-8,'direction':'down'},
         ],
         'Route25_hns': [
             {'map':'MAP_ROUTE24_HNS','offset':0,'direction':'down'},
@@ -830,6 +834,9 @@ def apply_region(read, put):
             body+='\tsetflag FLAG_HIDE_FORTREE_CITY_KECLEON\n\tsetflag FLAG_KECLEON_FLED_FORTREE\n\tgoto_if_unset FLAG_POX_TRIGGERS_ENABLED, '+callback+'_Reached\n\tgoto_if_unset FLAG_POX_STORY_WEATHER, '+callback+'_End\n'+callback+'_Reached::\n\tsetflag FLAG_POX_REACHED_FORTREE\n'
         if name=='Route119':
             body+='\tsetflag FLAG_HIDE_ROUTE_119_TEAM_AQUA\n\tsetflag FLAG_HIDE_ROUTE_119_RIVAL\n\tsetflag FLAG_HIDE_ROUTE_119_RIVAL_ON_BIKE\n'
+        if name=='Route24_hns':
+            # The beaten Rocket walked off toward Rustboro; keep him gone.
+            body+='\tcall_if_defeated TRAINER_PLASTIC_OX_ROUTE24_ROCKET, Route24_EventScript_HideRocket\n'
         if name.startswith('PlasticOx_Route20'):
             body+='\tcall_if_unset FLAG_STOPPED_SEAFOAM_B3F_CURRENT, Route20_EventScript_ResetSeafoamBouldersForB3F\n\tcall_if_unset FLAG_STOPPED_SEAFOAM_B4F_CURRENT, Route20_EventScript_ResetSeafoamBouldersForB4F\n'
         body+=callback+'_End::\n\tend'

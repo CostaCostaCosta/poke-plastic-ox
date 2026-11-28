@@ -64,7 +64,8 @@ The short northern road out of Rustboro, running up to Route 25 and the Sea Cott
 - Scripts: `data/maps/Route24_hns/scripts.inc` — `Route24_EventScript_Npc1` … `Npc4`; unused `PoxRouteTrainer_Route24` in `data/scripts/plastic_ox_route_trainers.inc`
 - Flags: `FLAG_POX_ROUTE24_NUGGET`, `FLAG_POX_HIDDEN_ROUTE24_18`
 - Trainers: `TRAINER_PLASTIC_OX_ROUTE24_ROCKET` (six mons, Lv.12 — an approved incidental Rocket, deliberately stronger than his story role suggests), `TRAINER_PLASTIC_OX_ROUTE24` (authored, unplaced)
-- Cave: the rock knoll at `(7,8)`–`(9,10)` is the post-game Cerulean Cave entrance (warp at `(8,10)`, guard at `(8,11)`); the grunt's "cave" rumour now has a real cave behind it, which he still must not name.
+- Cave: Route 24 has no cave entrance. The river surfs south (lanes x 8..12) across a second south connection into `CeruleanCity_Frlg`'s north pond, which leads to the FRLG Cerulean Cave mouth (warp 7 at `(1,12)`, League guard at `(1,13)`, hidden on `FLAG_SYS_GAME_CLEAR`). The road lanes still lead to Rustboro; `src/fieldmap.c` picks whichever overlapping south connection has an open entry tile.
+- Rocket exit: after his battle the grunt walks south toward Rustboro and is removed; `PoxRegion_Arrival_Route24_hns` re-hides him (`FLAG_TEMP_11`) whenever his trainer flag is set.
 - Known gaps: orphaned trainer script; three identical encounter blocks; no sign or heal events.
 
 ## Open questions

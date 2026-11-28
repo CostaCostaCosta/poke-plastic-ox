@@ -54,6 +54,8 @@ static bool8 SkipCopyingMetatileFromSavedMap(u16 *mapBlock, u16 mapWidth, u8 yMo
 static const struct MapConnection *GetIncomingConnection(enum Connection direction, s32 x, s32 y);
 static bool8 IsPosInIncomingConnectingMap(enum Connection direction, s32 x, s32 y, const struct MapConnection *connection);
 static bool8 IsCoordInIncomingConnectingMap(s32 coord, s32 srcMax, s32 destMax, s32 offset);
+static bool8 IsConnectionEntryOpen(const struct MapConnection *connection, enum Connection direction, s32 coord);
+static bool8 IsEdgeCellOwnedByOtherConnection(const struct MapHeader *mapHeader, const struct MapHeader *connectedMapHeader, s32 offset, enum Connection direction, s32 coord);
 
 static inline u16 GetBorderBlockAt(int x, int y)
 {
@@ -293,6 +295,9 @@ static void FillConnectionWithCurrentMapEdge(const struct MapHeader *mapHeader, 
         {
             localX = destX - MAP_OFFSET;
             localY = destY - MAP_OFFSET;
+            if (IsEdgeCellOwnedByOtherConnection(mapHeader, connectedMapHeader, offset, direction,
+                    direction == CONNECTION_NORTH || direction == CONNECTION_SOUTH ? localX : localY))
+                continue;
             srcX = localX;
             srcY = localY;
 
@@ -900,6 +905,16 @@ static const struct MapConnection *GetIncomingConnection(enum Connection directi
         return NULL;
 #endif
     count = connections->count;
+    // Plastic Ox: two connections may share an edge (Route 24's south edge
+    // opens onto Rustboro's road and onto Cerulean City's water). Prefer the
+    // one whose entry tile is open; otherwise keep the vanilla first match.
+    connection = connections->connections;
+    for (i = 0; i < count; i++, connection++)
+    {
+        if (connection->direction == direction && IsPosInIncomingConnectingMap(direction, x, y, connection) == TRUE
+         && IsConnectionEntryOpen(connection, direction, direction == CONNECTION_NORTH || direction == CONNECTION_SOUTH ? x : y))
+            return connection;
+    }
     connection = connections->connections;
     for (i = 0; i < count; i++, connection++)
     {
@@ -907,6 +922,64 @@ static const struct MapConnection *GetIncomingConnection(enum Connection directi
             return connection;
     }
     return NULL;
+}
+
+// The tile a player enters in the connected map when crossing at coord
+// (x for north/south edges, y for west/east) is inside it and not blocked.
+static bool8 IsConnectionEntryOpen(const struct MapConnection *connection, enum Connection direction, s32 coord)
+{
+    const struct MapLayout *layout = GetMapHeaderFromConnection(connection)->mapLayout;
+    s32 nx, ny;
+
+    switch (direction)
+    {
+    case CONNECTION_SOUTH:
+    case CONNECTION_NORTH:
+        nx = coord - connection->offset;
+        ny = direction == CONNECTION_SOUTH ? 0 : layout->height - 1;
+        break;
+    case CONNECTION_WEST:
+    case CONNECTION_EAST:
+        nx = direction == CONNECTION_EAST ? 0 : layout->width - 1;
+        ny = coord - connection->offset;
+        break;
+    default:
+        return FALSE;
+    }
+    if (nx < 0 || nx >= layout->width || ny < 0 || ny >= layout->height)
+        return FALSE;
+    return (layout->map[nx + ny * layout->width] & MAPGRID_COLLISION_MASK) == 0;
+}
+
+// When two connections overlap on one edge, only the connection the player
+// would actually enter at that cell (see GetIncomingConnection) draws it.
+static bool8 IsEdgeCellOwnedByOtherConnection(const struct MapHeader *mapHeader, const struct MapHeader *connectedMapHeader, s32 offset, enum Connection direction, s32 coord)
+{
+    const struct MapConnection *connection, *mine = NULL, *open = NULL, *first = NULL;
+    const struct MapHeader *cMap;
+    s32 i, span;
+
+    if (!mapHeader->connections)
+        return FALSE;
+    connection = mapHeader->connections->connections;
+    for (i = 0; i < mapHeader->connections->count; i++, connection++)
+    {
+        if (connection->direction != direction)
+            continue;
+        cMap = GetMapHeaderFromConnection(connection);
+        span = (direction == CONNECTION_NORTH || direction == CONNECTION_SOUTH) ? cMap->mapLayout->width : cMap->mapLayout->height;
+        if (coord - connection->offset < 0 || coord - connection->offset >= span)
+            continue;
+        if (cMap == connectedMapHeader && connection->offset == offset)
+            mine = connection;
+        if (first == NULL)
+            first = connection;
+        if (open == NULL && IsConnectionEntryOpen(connection, direction, coord))
+            open = connection;
+    }
+    if (mine == NULL)
+        return FALSE;
+    return (open != NULL ? open : first) != mine;
 }
 
 static bool8 IsPosInIncomingConnectingMap(enum Connection direction, s32 x, s32 y, const struct MapConnection *connection)
