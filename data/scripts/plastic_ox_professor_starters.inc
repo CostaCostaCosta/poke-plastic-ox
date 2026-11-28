@@ -101,16 +101,17 @@ PoxProf_SentToPC::
 	return
 
 PoxProf_Text_IntroOak::
-	.string "I'm PROFESSOR OAK!\p"
-	.string "I've spent many years studying\n"
-	.string "the POKéMON of KANTO.\p"
+	.string "Ah, {PLAYER}! One more thing\n"
+	.string "before you go.\p"
+	.string "KANTO's POKéMON have been my\n"
+	.string "life's work.\p"
 	.string "For every 25 different KANTO\n"
 	.string "POKéMON you register in your\l"
 	.string "POKéDEX, I'll give you one of the\l"
 	.string "region's starter POKéMON!$"
 
 PoxProf_Text_IntroElm::
-	.string "Hello! I'm PROFESSOR ELM.\p"
+	.string "{PLAYER}! You found my new lab!\p"
 	.string "I've moved my research here to\n"
 	.string "GOLDENROD CITY to continue\l"
 	.string "studying JOHTO's POKéMON.\p"
@@ -121,13 +122,15 @@ PoxProf_Text_IntroElm::
 	.string "25 you register!$"
 
 PoxProf_Text_IntroBirch::
-	.string "Hey there! I'm PROFESSOR BIRCH!\p"
+	.string "Hey, {PLAYER}! Fancy running\n"
+	.string "into you all the way out here!\p"
 	.string "I've set up my research here in\n"
 	.string "FORTREE CITY. The surrounding\l"
 	.string "wilderness is perfect for studying\l"
 	.string "POKéMON!\p"
-	.string "I'm looking for TRAINERS who can\n"
-	.string "help document HOENN's POKéMON.\p"
+	.string "Since you're out exploring, why\n"
+	.string "not help me document HOENN's\l"
+	.string "POKéMON?\p"
 	.string "For every 25 different HOENN\n"
 	.string "POKéMON you register, I'll reward\l"
 	.string "you with one of our starter POKéMON!$"
