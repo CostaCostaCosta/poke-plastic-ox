@@ -9,6 +9,7 @@ from walklib import K, DIRKEY
 sys.path.insert(0,str(ROOT/'plastic_ox/alpha'))
 from region_geometry import Geometry
 from goldenrod import BASE, install
+import clear_bell
 
 MANIFEST=json.loads((BASE/'source_manifest.json').read_text())
 NAMES=['GoldenrodCity_hns','GoldenrodCity_BillsHouse_hns',*MANIFEST['maps']]
@@ -28,11 +29,18 @@ def same_map(g,n):return (g.state()['group'],g.state()['num'])==IDS[n]
 
 
 def sources():
-    changes={}
-    def put(p,s):
-        if (ROOT/p).read_text()!=s:changes[p]=s
-    install(lambda p:(ROOT/p).read_text(),put)
+    # Replay the Goldenrod import, then the Clear Bell layer that adds the
+    # Radio Tower 5F Zapdos scene, and require the live files to match.
+    staged={}
+    read=lambda p:staged.get(p) if p in staged else (ROOT/p).read_text()
+    def put(p,s):staged[p]=s
+    install(read,put)
+    owned=set(staged)
+    clear_bell.install(read,put)
+    changes={p:staged[p] for p in owned if (ROOT/p).read_text()!=staged[p]}
     assert not changes,list(changes)
+    # Maps no warp leads into (the retired donor gym) have nothing to round-trip.
+    entered={w['dest_map'] for d in MAPS.values() for w in d['warp_events']}
     for name in NAMES:
         data=MAPS[name]
         if name in MANIFEST['maps']:
@@ -46,7 +54,7 @@ def sources():
             if w['dest_map'] not in BYID:continue  # neighboring gatehouses/routes
             dest=MAPS[BYID[w['dest_map']]]
             landing=dest['warp_events'][int(w['dest_warp_id'])]
-            if '7FNight' not in name:
+            if '7FNight' not in name and data['id'] in entered:
                 assert landing['dest_map'] in [data['id'],'MAP_DYNAMIC'],(name,i,landing)
     city=Geometry('GoldenrodCity_hns')
     blocked={(o['x'],o['y']) for o in city.data['object_events']}
@@ -212,10 +220,15 @@ def haircuts():
     import struct
     from test_training_kit import run_code, native
     from test_qol import opcode
+    from test_national_park import set_weekday
     g=StoryGame()
+    g.flag('FLAG_SYS_CLOCK_SET',True)
     for species in [19,25,133]:
         run_code(g,opcode(g,'callnative')+struct.pack('<I',g.syms['ScrCmd_createmon']|1)+struct.pack('<BBHHI',0,6,species,5,0))
-    for label,y,price in [('Older',20,500),('Younger',16,300)]:
+    # GSC schedule: older brother Tue/Thu/Sat (good cut, friendship 255),
+    # younger brother Sun/Mon/Wed (bad cut, friendship 0).
+    for label,y,price,day,cut in [('Older',20,500,2,255),('Younger',16,300,1,0)]:
+        set_weekday(g,day)
         for cancel,poor in [(False,False),(True,False),(False,True)]:
             for i,v in enumerate([20,40,60]):friendship(g,i,v)
             money(g,0 if poor else 2000)
@@ -237,7 +250,7 @@ def haircuts():
                 if g.u8(g.syms['sGlobalScriptContextStatus'])==2:break
             else:raise AssertionError((label,'haircut did not release controls'))
             result=[friendship(g,i) for i in range(3)]
-            assert result==([20,40,60] if cancel or poor else [20,255,60]),(label,cancel,poor,result)
+            assert result==([20,40,60] if cancel or poor else [20,cut,60]),(label,cancel,poor,result)
             assert money(g)==(0 if poor else 2000 if cancel else 2000-price),(label,cancel,poor,money(g))
             g.shot(f'goldenrod_haircut_{label}_{cancel}_{poor}.png')
             print('haircut PASS',label,'cancel',cancel,'poor',poor,result,flush=True)
