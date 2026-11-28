@@ -5,7 +5,6 @@ Each route below has exactly one six-Pokémon boss. Other trainers use two or th
 | Area | Boss | Boss levels | Other party sizes |
 | --- | --- | --- | --- |
 | Route101 | ROUTE101 | 4–4 | Only trainer |
-| Route103 | ROUTE103 | 5–5 | Only trainer |
 | Route1_Frlg | ROUTE1 | 6–6 | Only trainer |
 | Route2_Frlg | ROUTE2_WADE | 9–9 | 3 |
 | Route31_hns | ROUTE31 | 9–9 | Only trainer |
@@ -21,5 +20,7 @@ Each route below has exactly one six-Pokémon boss. Other trainers use two or th
 | Route36_hns | PU_ROUTE36 | 21–21 | 2 |
 | Route37_hns | JOHTO_GREG | 22–22 | 3 |
 | NationalPark_Normal_hns | PU_PARK | 20–20 | 3, 2, 3 |
+
+Route 103 has no six-Pokémon boss: every trainer there (Daisy the Lass, May, and the retained Emerald trainers) has two to four LC Pokémon at levels 5–7.
 
 Mt. Moon follows the same policy across all floors. The final Rocket on the main B2F path (Grunt1 at 12,20, before Miguel and the tablets) is the six-Pokémon boss at level 16. All other Mt. Moon trainers, including Miguel and retained legacy Rocket parties, have 2–3 species absent from that boss. Levels stay between the progression floor of 13 and the cap of 20. Dialogue is unchanged.
