@@ -139,6 +139,7 @@ u8 GetFirstInactiveObjectEventId(void);
 u8 GetObjectEventIdByLocalId(u8);
 void RemoveObjectEvent(struct ObjectEvent *objectEvent);
 void RemoveObjectEventByLocalIdAndMap(u8 localId, u8 mapNum, u8 mapGroup);
+void PlasticOx_RemoveObjectEventsFromOtherMaps(void);
 void LoadSpecialObjectReflectionPalette(u16 tag, u8 slot);
 void TryMoveObjectEventToMapCoords(u8 localId, u8 mapNum, u8 mapGroup, s16 x, s16 y);
 void PatchObjectPalette(u16 paletteTag, u8 paletteSlot);

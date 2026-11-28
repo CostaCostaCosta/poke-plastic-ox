@@ -1,4 +1,5 @@
 #include "global.h"
+#include "plastic_ox_contest.h"
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_arena.h"
@@ -201,6 +202,8 @@ static enum Item GetPrevBall(enum Item ballId)
     enum PokeBall index = ItemIdToBallId(ballId);
     enum Item newBall = ITEM_NONE;
 
+    if (PlasticOxContest_IsActive())
+        return ITEM_SPORT_BALL;
     for (i = 0; i < POKEBALL_COUNT; i++)
     {
         index--;
@@ -219,6 +222,8 @@ static enum Item GetNextBall(enum Item ballId)
     s32 index = ItemIdToBallId(ballId);
     enum Item newBall = ITEM_NONE;
 
+    if (PlasticOxContest_IsActive())
+        return ITEM_SPORT_BALL;
     for (i = 0; i < POKEBALL_COUNT; i++)
     {
         index++;

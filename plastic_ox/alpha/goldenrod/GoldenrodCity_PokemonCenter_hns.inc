@@ -1,11 +1,14 @@
 GoldenrodCity_PokemonCenter_hns_MapScripts::
 	.byte 0
 
-PoxGoldenrod_GoldenrodCity_PokemonCenter_hns_1::
-	msgbox PoxGoldenrod_GoldenrodCity_PokemonCenter_hns_1_Text, MSGBOX_NPC
+@ Standard Pokémon Center nurse: greeting, Yes/No, heal-machine animation, bow.
+GoldenrodCity_PokemonCenter_hns_EventScript_Nurse::
+	lock
+	faceplayer
+	call EventScript_PkmnCenterNurse_Frlg
+	release
 	end
-PoxGoldenrod_GoldenrodCity_PokemonCenter_hns_1_Text:
-	.string "CHANSEY: Chan! Chansey!\nIt straightens a stack of blankets.$"
+
 
 PoxGoldenrod_GoldenrodCity_PokemonCenter_hns_2::
 	msgbox PoxGoldenrod_GoldenrodCity_PokemonCenter_hns_2_Text, MSGBOX_NPC
@@ -31,20 +34,3 @@ PoxGoldenrod_GoldenrodCity_PokemonCenter_hns_5::
 PoxGoldenrod_GoldenrodCity_PokemonCenter_hns_5_Text:
 	.string "We practiced link battles all week.\nI still can't beat my brother.$"
 
-PoxGoldenrod_GoldenrodCity_PokemonCenter_hns_6::
-	msgbox PoxGoldenrod_GoldenrodCity_PokemonCenter_hns_6_Text, MSGBOX_NPC
-	end
-PoxGoldenrod_GoldenrodCity_PokemonCenter_hns_6_Text:
-	.string "The cable desk opens at noon.\nI arrived far too early.$"
-
-PoxGoldenrod_GoldenrodCity_PokemonCenter_hns_7::
-	msgbox PoxGoldenrod_GoldenrodCity_PokemonCenter_hns_7_Text, MSGBOX_NPC
-	end
-PoxGoldenrod_GoldenrodCity_PokemonCenter_hns_7_Text:
-	.string "I keep the trade records here.\nSome POKéMON travel very far.$"
-
-PoxGoldenrod_GoldenrodCity_PokemonCenter_hns_8::
-	msgbox PoxGoldenrod_GoldenrodCity_PokemonCenter_hns_8_Text, MSGBOX_NPC
-	end
-PoxGoldenrod_GoldenrodCity_PokemonCenter_hns_8_Text:
-	.string "Our spare cables live in that box.\nPlease leave them coiled.$"

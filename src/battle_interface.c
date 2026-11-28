@@ -21,6 +21,7 @@
 #include "palette.h"
 #include "international_string_util.h"
 #include "safari_zone.h"
+#include "plastic_ox_contest.h"
 #include "battle_anim.h"
 #include "data.h"
 #include "pokemon_summary_screen.h"
@@ -2841,6 +2842,14 @@ bool32 CanThrowLastUsedBall(void)
 {
     if (B_LAST_USED_BALL == FALSE)
         return FALSE;
+    // Plastic Ox: the park contest allows only its own Sport Balls, so the
+    // quick-throw shortcut is pinned to them and stops when they run out.
+    if (PlasticOxContest_IsActive())
+    {
+        gBallToDisplay = ITEM_SPORT_BALL;
+        if (gNumSafariBalls == 0)
+            return FALSE;
+    }
     if (!CanThrowBall())
         return FALSE;
     if (gBattleTypeFlags & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_FRONTIER))
@@ -2855,7 +2864,9 @@ void TryAddLastUsedBallItemSprites(void)
 {
     if (B_LAST_USED_BALL == FALSE)
         return;
-    if (gLastThrownBall == 0
+    if (PlasticOxContest_IsActive())
+        gBallToDisplay = ITEM_SPORT_BALL;
+    else if (gLastThrownBall == 0
       || (gLastThrownBall != 0 && !CheckBagHasItem(gLastThrownBall, 1)))
     {
         // we're out of the last used ball, so just set it to the first ball in the bag

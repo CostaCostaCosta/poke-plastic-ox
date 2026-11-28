@@ -1518,6 +1518,10 @@ static void PCTurnOnEffect(struct Task *task)
 static void PCTurnOnEffect_SetMetatile(s16 isScreenOn, s8 dx, s8 dy)
 {
     u16 metatileId = 0;
+    // Plastic Ox: HNS tilesets don't share Emerald/FRLG PC metatile ids, so
+    // swapping metatiles here paints garbage over the PC. Leave HNS PCs alone.
+    if (gMapHeader.mapLayout->layoutVersion == LAYOUT_VERSION_HNS)
+        return;
     if (isScreenOn)
     {
         // Screen is on, set it off
@@ -1562,6 +1566,8 @@ static void PCTurnOffEffect(void)
 
     if (IsPlayerInFrontOfPC() == FALSE)
         return;
+    if (gMapHeader.mapLayout->layoutVersion == LAYOUT_VERSION_HNS)
+        return; // see PCTurnOnEffect_SetMetatile
     switch (playerDirection)
     {
     case DIR_NORTH:

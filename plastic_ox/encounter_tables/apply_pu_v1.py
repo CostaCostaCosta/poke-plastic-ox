@@ -36,7 +36,7 @@ TABLES = {
     "ParkContest": (17, 20, [(20, "CATERPIE"), (20, "WEEDLE"), (10, "METAPOD"), (10, "KAKUNA"), (10, "PARAS"), (10, "VENONAT"), (5, "BUTTERFREE"), (5, "BEEDRILL"), (5, "VOLBEAT"), (5, "ILLUMISE")]),
     # The Warden's Thursday contest round (src/wild_encounter.c uses it only
     # after badge 4, since SCYTHER/PINSIR are UU); no other table has them.
-    "ParkContestPass": (17, 20, [(20, "CATERPIE"), (20, "WEEDLE"), (10, "METAPOD"), (10, "KAKUNA"), (10, "PARAS"), (10, "VENONAT"), (5, "BUTTERFREE"), (5, "BEEDRILL"), (5, "SCYTHER"), (5, "PINSIR")]),
+    "ParkContestPass": (34, 38, [(15, "SCYTHER"), (15, "PINSIR"), (10, "BUTTERFREE"), (10, "BEEDRILL"), (10, "PARASECT"), (10, "VENOMOTH"), (10, "LEDIAN"), (10, "ARIADOS"), (5, "BEAUTIFLY"), (5, "DUSTOX")]),
     "ParkHeadbutt": (17, 19, [(30, "LEDYBA", "SPINARAK"), (15, "EXEGGCUTE"), (15, "AIPOM"), (15, "TAILLOW"), (15, "WURMPLE"), (10, "SUNKERN")]),
     "Route36Grass": (18, 20, [(25, "BELLSPROUT"), (20, "NATU"), (10, "TANGELA"), (10, "VULPIX", "GASTLY"), (10, "PIDGEY", "HOOTHOOT"), (10, "HOPPIP"), (10, "DROWZEE"), (5, "BALTOY")]),
     "Route36Headbutt": (18, 20, [(30, "NATU"), (20, "SLAKOTH"), (15, "EXEGGCUTE"), (15, "AIPOM"), (10, "SHUPPET"), (10, "DUSKULL")]),
