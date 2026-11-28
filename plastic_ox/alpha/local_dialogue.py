@@ -16,7 +16,7 @@ LINES = {
 'Route16': ['Check your bicycle before a long ride. Brakes matter!', 'Cyclists make this road look easy. I prefer walking.'],
 'Route21': ['The waves hide as much life as the grass does.', 'Sea winds can change quickly. Keep the shore in sight.'],
 'Route25': ['BILL studies how POKéMON are stored and transferred.', 'That little house attracts some very curious trainers.'],
-'Route34': ['The DAY CARE gives busy trainers a helping hand.', 'GOLDENROD feels enormous after a quiet walk out here.'],
+'Route34': ['The DAY CARE gives busy trainers a helping hand.', 'SAFFRON feels enormous after a quiet walk out here.'],
 'Route35': ['The NATIONAL PARK is a welcome break from city crowds.', 'I like to walk here after shopping in GOLDENROD.'],
 'Route38': ['The farms and open fields make this a peaceful place to train.', 'The grass here grows thick after the rain.'],
 'Gate_AzaleaTown': ['ILEX FOREST is quiet. Please respect the trees and their POKéMON.', 'Pack supplies before heading into the forest.'],

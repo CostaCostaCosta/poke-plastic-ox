@@ -124,7 +124,7 @@ SAFFRON CITY
 
 After the Space Center opens Saffron:
 SAFFRON
-  ↑ Route 5
+  ↑ Route 34
   ↑ Route 115
   ↑ METEOR FALLS
   ↑ BLACKTHORN CITY [GYM 8 — CLAIR]
@@ -454,7 +454,7 @@ Track separate flags:
 
 ## North Gate
 
-Saffron's north exit toward Route 5 opens when the Space Center opens the city.
+Saffron's north exit toward Route 34 opens when the Space Center opens the city.
 Neither Bruno's Badge nor Silph completion is required to explore Meteor Falls,
 reach Blackthorn, or challenge Clair. This is an open-ended OU region.
 
@@ -466,7 +466,12 @@ MOSSDEEP_SPACE_CENTER_COMPLETE
 
 The available route is:
 
-**Saffron → Route 5 → Route 115 → Meteor Falls → Blackthorn**
+**Saffron → Route 34 → Route 115 → Meteor Falls → Blackthorn**
+
+Route 34 replaced Route 5 as this road. It enters at Route 34's old gatehouse
+throat `(31,66)` and leaves by the north gap `(26–28,0)` onto Route 115's beach
+`(20,79)`. Route 116's north connection to Route 34 is removed; `Route5_hns`
+is retired.
 
 ---
 
@@ -476,7 +481,7 @@ This is the final Gym approach.
 
 Progression:
 
-**Route 5 → Route 115 → Meteor Falls → Blackthorn**
+**Route 34 → Route 115 → Meteor Falls → Blackthorn**
 
 Meteor Falls replaces Ice Path functionally:
 
@@ -553,7 +558,7 @@ This prevents Uber availability from interfering with the main game's LC→PU→
 | Ecruteak east → Route 119 | Open after Morty progression | Gym/story progression | Canonical path to Weather Institute/Fortree |
 | Saffron surface entrances | Blocked | Complete Mossdeep Space Center | Keeps Saffron late-game while allowing underground bypass |
 | Route 8 ↔ Route 7 Underground Path | Open | Available during Lavender segment | Main Lavender→Cinnabar bypass |
-| Saffron north → Route 5 | Blocked with Saffron | Complete Mossdeep Space Center | Opens the northern OU region independently of Bruno and Silph |
+| Saffron north → Route 34 | Blocked with Saffron | Complete Mossdeep Space Center | Opens the northern OU region independently of Bruno and Silph |
 | Ecruteak west → Victory Road | Blocked | 8 Badges | League finale |
 | Lavender south → harbor | Blocked | Become Champion | Postgame Frontier/Uber islands |
 | Blackthorn → Route 45/46 return | Directionally constrained | Reach Blackthorn | Fast late-game return; no early Blackthorn bypass |
@@ -619,7 +624,7 @@ The final macro-flow is:
 
 ### Act VI — Northern mountains
 
-**Saffron → Route 5 → Route 115 → Meteor Falls → Blackthorn**
+**Saffron → Route 34 → Route 115 → Meteor Falls → Blackthorn**
 
 ### Finale — Return to a familiar crossroads
 

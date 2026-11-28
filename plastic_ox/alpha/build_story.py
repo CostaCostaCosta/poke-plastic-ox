@@ -304,7 +304,7 @@ def travel(name, destination, x, y, text, prerequisites=()):
         'CinnabarRoad':'Take ROUTE 8 west. The UNDERGROUND PATH bypasses closed SAFFRON.|From ROUTE 7, cross ROUTE 103 to CINNABAR.',
         'MossdeepRoad':'Follow the southern coast through SEAFOAM ISLANDS to MOSSDEEP.',
         'SaffronRoad':'The northern coast leads through ROUTE 19 to SAFFRON.',
-        'BlackthornRoad':"Pavement is murder on my boots. I'm out the north gate myself as soon as these laces are done.|ROUTE 5, then ROUTE 115, then down through METEOR FALLS to BLACKTHORN. The gate's open, same as everything else here. Nobody asks what you've done first.",
+        'BlackthornRoad':"Pavement is murder on my boots. I'm out the north gate myself as soon as these laces are done.|ROUTE 34, then ROUTE 115, then down through METEOR FALLS to BLACKTHORN. The gate's open, same as everything else here. Nobody asks what you've done first.",
         'LeagueRoad':'The LEAGUE gate is west of ECRUTEAK. Bring all eight BADGES.',
         'WhirlGuide':'SEAFOAM ISLANDS lie along the coast to MOSSDEEP.',
     }

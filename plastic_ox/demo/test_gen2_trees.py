@@ -130,7 +130,9 @@ def headbutt_tests():
              ("Route44_hns", 54, 19, "move"),
              ("Route29_hns", 3, 12, "bag"),
              ("IlexForest_hns", 66, 4, "direct"),
-             ("Route33_hns", 8, 17, "legacy")]
+             ("Route33_hns", 8, 17, "legacy"),
+             ("Route34_hns", 26, 26, "direct"),
+             ("Route115", 20, 66, "legacy")]
     for name, x, y, mode in cases:
         g = StoryGame()
         face(g, name, x, y)
