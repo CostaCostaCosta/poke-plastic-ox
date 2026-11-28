@@ -122,7 +122,7 @@ static void CB_ExitFlyMap(void);
 static const u16 sRegionMapCursorPal[] = INCGFX_U16("graphics/pokenav/region_map/cursor.pal", ".gbapal");
 static const u32 sRegionMapCursorSmallGfxLZ[] = INCGFX_U32("graphics/pokenav/region_map/cursor_small.png", ".4bpp.smol");
 static const u32 sRegionMapCursorLargeGfxLZ[] = INCGFX_U32("graphics/pokenav/region_map/cursor_large.png", ".4bpp.smol");
-static const u16 sRegionMapBg_Pal[] = INCGFX_U16("graphics/pokenav/region_map/map.pal", ".gbapal");
+static const u16 ALIGNED(4) sRegionMapBg_Pal[] = INCGFX_U16("graphics/pokenav/region_map/map.pal", ".gbapal");
 // Plastic Ox: map.png/map.bin/map.pal come from plastic_ox/town_map/build_fly_map.py.
 static const u32 sRegionMapBg_GfxLZ[] = INCGFX_U32("graphics/pokenav/region_map/map.png", ".8bpp.smol");
 static const u32 sRegionMapBg_TilemapLZ[] = INCGFX_U32("graphics/pokenav/region_map/map.bin", ".smolTM");
@@ -381,8 +381,9 @@ static const u32 sRegionMapFrameTilemapLZ[] = INCGFX_U32("graphics/pokenav/regio
 static const u16 sFlyTargetIcons_Pal[] = INCGFX_U16("graphics/pokenav/region_map/fly_target_icons.png", ".gbapal");
 static const u32 sFlyTargetIcons_Gfx[] = INCGFX_U32("graphics/pokenav/region_map/fly_target_icons.png", ".4bpp.smol");
 
-static const u16 ALIGNED(4) sPokedexAreaMap_Pal[] = INCGFX_U16("graphics/pokedex/region_map.pal", ".gbapal");
-static const u32 sPokedexAreaMap_Gfx[] = INCGFX_U32("graphics/pokedex/region_map.png", ".8bpp.smol", "-num_tiles 232 -Wnum_tiles");
+// Plastic Ox: the Pokedex area screen shows the fly map. It shares the tiles
+// and palette; region_map.bin is the same tilemap for a text background
+// (plastic_ox/town_map/build_fly_map.py).
 static const u32 sPokedexAreaMap_Tilemap[] = INCGFX_U32("graphics/pokedex/region_map.bin", ".smolTM");
 
 static const u16 ALIGNED(4) sPokedexAreaMapKanto_Pal[] = INCGFX_U16("graphics/pokedex/region_map_kanto.pal", ".gbapal");
@@ -417,10 +418,10 @@ const struct RegionMapInfo gRegionMapInfos[] =
 {
     [REGION_MAP_HOENN]    =
     {
-        .dexMapPalette = sPokedexAreaMap_Pal,
-        .dexMapGfx = sPokedexAreaMap_Gfx,
+        .dexMapPalette = sRegionMapBg_Pal,
+        .dexMapGfx = sRegionMapBg_GfxLZ,
         .dexMapTilemap = sPokedexAreaMap_Tilemap,
-        .dexMapPaletteSize = sizeof(sPokedexAreaMap_Pal),
+        .dexMapPaletteSize = sizeof(sRegionMapBg_Pal),
         .regionMapPalette = sRegionMapBg_Pal,
         .regionMapGfx = sRegionMapBg_GfxLZ,
         .regionMapTilemap = sRegionMapBg_TilemapLZ,
@@ -1612,6 +1613,41 @@ static u8 GetMapsecType(mapsec_u16_t mapSecId)
 mapsec_u16_t GetRegionMapSecIdAt(u16 x, u16 y)
 {
     return GetMapSecIdAt(x, y);
+}
+
+#include "data/region_map/plastic_ox_dex_area_maps.h"
+
+// Plastic Ox: whether the Pokedex area screen shows this map's wild encounters.
+bool32 PoxDexArea_ShowsMap(u32 mapGroup, u32 mapNum)
+{
+    u32 i;
+
+    for (i = 0; i < ARRAY_COUNT(sPoxDexAreaMaps); i++)
+    {
+        if (sPoxDexAreaMaps[i][0] == mapGroup && sPoxDexAreaMaps[i][1] == mapNum)
+            return TRUE;
+    }
+    return FALSE;
+}
+
+// Plastic Ox: whether a map section has a cell of its own on the region map.
+// Sections that only sit inside another cell (Burned Tower, Pokemon Tower)
+// have a region map entry but no cell.
+bool32 PoxRegionMap_HasCell(mapsec_u16_t mapSecId)
+{
+    u32 x, y;
+
+    if (mapSecId >= MAPSEC_NONE)
+        return FALSE;
+    for (y = 0; y < MAP_HEIGHT; y++)
+    {
+        for (x = 0; x < MAP_WIDTH; x++)
+        {
+            if (sRegionMap_MapSectionLayout[y][x] == mapSecId)
+                return TRUE;
+        }
+    }
+    return FALSE;
 }
 
 static mapsec_u16_t CorrectSpecialMapSecId_Internal(mapsec_u16_t mapSecId)

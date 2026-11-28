@@ -10,6 +10,13 @@ reads the concept art below. Edit the layout there and rerun it; never
 hand-edit its outputs (listed in `../generated_manifest.json`).
 `fly_map_preview.png` is a labelled review image.
 
+The Pokédex area screen draws the same map (`graphics/pokedex/region_map.bin`
+is the fly map's tilemap in text-background form) and lights the cells of the
+map sections where a species is found. `plastic_ox_dex_area_maps.h` lists the
+maps whose wild tables count: those on the region map that the player can
+reach, so tables left on replaced donor maps are ignored. Rerun the script
+after adding a wild table to a new map.
+
 Two screen corners are covered by windows, so keep cells out of them: the fly
 map's name box (x ≥ 15 on rows 13–14) and the Town Map's title (x ≥ 20 on rows
 0–1).
