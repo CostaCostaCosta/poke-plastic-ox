@@ -121,7 +121,7 @@ static void BuildAreaGlowTilemap(void);
 static void SetAreaHasMon(u16, u16);
 static void SetSpecialMapHasMon(u16, u16);
 static mapsec_u16_t GetRegionMapSectionId(u8, u8);
-static bool8 MapHasSpecies(const struct WildEncounterTypes *, u32, enum Species);
+static bool8 MapHasSpecies(const struct WildEncounterTypes *, const struct WildEncounterTypes *, u32, enum Species);
 static bool8 MonListHasSpecies(const struct WildPokemonInfo *, enum Species, u16);
 static void DoAreaGlow(void);
 static void Task_ShowPokedexAreaScreen(u8 taskId);
@@ -340,21 +340,19 @@ static void FindMapsWithMon(enum Species species)
         if (GetRegionMapType(headerSectionId) != currentRegionMapType)
             continue;
 
-        if (MapHasSpecies(&gWildMonHeaders[i].encounterTypes[gAreaTimeOfDay], headerSectionId, species))
+        // Plastic Ox: maps live in many groups, so the vanilla group test would
+        // drop most of the region. Show every reachable map that is on the
+        // region map: a section with its own cell glows, one inside another
+        // cell (Burned Tower, Dragon's Den) gets a marker.
+        if (!PoxDexArea_ShowsMap(gWildMonHeaders[i].mapGroup, gWildMonHeaders[i].mapNum))
+            continue;
+
+        if (MapHasSpecies(&gWildMonHeaders[i].encounterTypes[gAreaTimeOfDay], &gWildMonHeaders[i].encounterTypes[OW_TIME_OF_DAY_FALLBACK], headerSectionId, species))
         {
-            switch (gWildMonHeaders[i].mapGroup)
-            {
-            case MAP_GROUP_TOWNS_AND_ROUTES:
-            case MAP_GROUP_TOWNS_AND_ROUTES_FRLG:
+            if (PoxRegionMap_HasCell(CorrectSpecialMapSecId(headerSectionId)))
                 SetAreaHasMon(gWildMonHeaders[i].mapGroup, gWildMonHeaders[i].mapNum);
-                break;
-            case MAP_GROUP_DUNGEONS:
-            case MAP_GROUP_DUNGEONS_FRLG:
-            case MAP_GROUP_SPECIAL_AREA:
-            case MAP_GROUP_SPECIAL_AREA_FRLG:
+            else
                 SetSpecialMapHasMon(gWildMonHeaders[i].mapGroup, gWildMonHeaders[i].mapNum);
-                break;
-            }
         }
     }
 
@@ -375,6 +373,16 @@ static void FindMapsWithMon(enum Species species)
 
 static void SetAreaHasMon(u16 mapGroup, u16 mapNum)
 {
+    u32 i;
+    mapsec_u16_t regionMapSectionId = CorrectSpecialMapSecId(Overworld_GetMapHeaderByGroupAndId(mapGroup, mapNum)->regionMapSectionId);
+
+    // Plastic Ox: a cave's floors share one cell; list it once.
+    for (i = 0; i < sPokedexAreaScreen->numOverworldAreas; i++)
+    {
+        if (sPokedexAreaScreen->overworldAreasWithMons[i].regionMapSectionId == regionMapSectionId)
+            return;
+    }
+
     if (sPokedexAreaScreen->numOverworldAreas < MAX_AREA_HIGHLIGHTS)
     {
         sPokedexAreaScreen->overworldAreasWithMons[sPokedexAreaScreen->numOverworldAreas].mapGroup = mapGroup;
@@ -429,7 +437,17 @@ static mapsec_u16_t GetRegionMapSectionId(u8 mapGroup, u8 mapNum)
     return Overworld_GetMapHeaderByGroupAndId(mapGroup, mapNum)->regionMapSectionId;
 }
 
-static bool8 MapHasSpecies(const struct WildEncounterTypes *info, u32 headerSectionId, enum Species species)
+// Plastic Ox: a map with one all-day table keeps it in the fallback time slot,
+// and the game uses it at every time of day (GetTimeOfDayForEncounters). Do
+// the same here, or such a map would only show on the fallback time's tab.
+static const struct WildPokemonInfo *AreaMonsOrFallback(const struct WildPokemonInfo *mons, const struct WildPokemonInfo *fallback)
+{
+    if (mons == NULL && !OW_TIME_OF_DAY_DISABLE_FALLBACK)
+        return fallback;
+    return mons;
+}
+
+static bool8 MapHasSpecies(const struct WildEncounterTypes *info, const struct WildEncounterTypes *fallback, u32 headerSectionId, enum Species species)
 {
     // If this is a header for Altering Cave, skip it if it's not the current Altering Cave encounter set
     if (headerSectionId == MAPSEC_ALTERING_CAVE)
@@ -439,19 +457,19 @@ static bool8 MapHasSpecies(const struct WildEncounterTypes *info, u32 headerSect
             return FALSE;
     }
 
-    if (MonListHasSpecies(info->landMonsInfo, species, NUM_LAND_MONS_ENCOUNTER_SLOTS))
+    if (MonListHasSpecies(AreaMonsOrFallback(info->landMonsInfo, fallback->landMonsInfo), species, NUM_LAND_MONS_ENCOUNTER_SLOTS))
         return TRUE;
-    if (MonListHasSpecies(info->waterMonsInfo, species, NUM_WATER_MONS_ENCOUNTER_SLOTS))
+    if (MonListHasSpecies(AreaMonsOrFallback(info->waterMonsInfo, fallback->waterMonsInfo), species, NUM_WATER_MONS_ENCOUNTER_SLOTS))
         return TRUE;
 // When searching the fishing encounters, this incorrectly uses the size of the land encounters.
 // As a result it's reading out of bounds of the fishing encounters tables.
 #ifdef BUGFIX
-    if (MonListHasSpecies(info->fishingMonsInfo, species, NUM_FISHING_MONS_ENCOUNTER_SLOTS))
+    if (MonListHasSpecies(AreaMonsOrFallback(info->fishingMonsInfo, fallback->fishingMonsInfo), species, NUM_FISHING_MONS_ENCOUNTER_SLOTS))
 #else
-    if (MonListHasSpecies(info->fishingMonsInfo, species, NUM_LAND_MONS_ENCOUNTER_SLOTS))
+    if (MonListHasSpecies(AreaMonsOrFallback(info->fishingMonsInfo, fallback->fishingMonsInfo), species, NUM_LAND_MONS_ENCOUNTER_SLOTS))
 #endif
         return TRUE;
-    if (MonListHasSpecies(info->rockSmashMonsInfo, species, NUM_ROCK_SMASH_MONS_ENCOUNTER_SLOTS))
+    if (MonListHasSpecies(AreaMonsOrFallback(info->rockSmashMonsInfo, fallback->rockSmashMonsInfo), species, NUM_ROCK_SMASH_MONS_ENCOUNTER_SLOTS))
         return TRUE;
     return FALSE;
 }

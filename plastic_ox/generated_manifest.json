@@ -100,7 +100,8 @@
       "name": "fly-map",
       "command": "python3 plastic_ox/town_map/build_fly_map.py  # --check verifies",
       "sources": [
-        "plastic_ox/town_map/build_fly_map.py (v7 grid layout from plastic_ox_topology.svg, fly spots, derived terrain)"
+        "plastic_ox/town_map/build_fly_map.py (v7 grid layout from plastic_ox_topology.svg, fly spots, derived terrain)",
+        "data/maps/*/map.json, data/maps/*/scripts.inc, data/scripts/plastic_ox*.inc, src/data/wild_encounters.json (which wild tables the Pokedex area screen shows)"
       ],
       "outputs": [
         "graphics/pokenav/region_map/map.png",
@@ -109,6 +110,8 @@
         "src/data/region_map/region_map_layout.h",
         "src/data/region_map/region_map_sections.json (x/y/width/height of placed map sections)",
         "src/data/region_map/plastic_ox_fly_spots.h",
+        "src/data/region_map/plastic_ox_dex_area_maps.h",
+        "graphics/pokedex/region_map.bin",
         "plastic_ox/town_map/fly_map_preview.png"
       ],
       "drift_check": "python3 plastic_ox/town_map/build_fly_map.py --check (run by pox-check-static)"
