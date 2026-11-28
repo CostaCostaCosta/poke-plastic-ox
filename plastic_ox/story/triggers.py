@@ -29,7 +29,6 @@ import story_notes  # noqa: E402
 REGISTRY: dict[str, tuple[str, str]] = {
     # Story gates and scenes
     "Pox_StarterGate": ("Story gate", "Turns the player back from Pallet's north edge until the starter is chosen (FLAG_POX_STORY_STARTER)."),
-    "Route21_South_EventScript_CinnabarSeam": ("Story gate", "Walking south toward Cinnabar is refused until the Mansion is cleared (FLAG_POX_STORY_MANSION)."),
     "Route36_EventScript_RuinsResearcherStep": ("Story gate", "Lanes beside the Ruins of Alph researcher: turned back until the Cinnabar archives are read (FLAG_POX_STORY_MANSION); after that he walks into the gatehouse and the lanes are open."),
     "PoxMoon_EnterFromRoute44": ("Story gate", "Cave mouth into Mt. Moon 1F; turned back without Badge 1."),
     "MtMoon_B2F_EventScript_MiguelTrigger": ("Story scene", "Super Nerd Miguel spots the player and starts the fossil battle (VAR_POX_MTMOON_STATE 0 only)."),
