@@ -248,6 +248,11 @@ enum StatChangeResult TryStatChange(struct BattleCalcValues *cv, struct StatChan
     }
 
     enum StatChangeResult result = STAT_CHANGE_DIDNT_WORK;
+    // A move with no queued stat change (e.g. Charge with B_UPDATED_MOVE_DATA < GEN_5,
+    // whose Sp. Def boost is compiled out) is done with this battler at once;
+    // otherwise StatChangeTryChange never advances and the battle hangs.
+    if (st->statStageAmount == 0)
+        st->nextBattler = TRUE;
     for (u32 i = 0; i < st->statStageAmount; i++)
     {
         if (i + 1 == st->statStageAmount) // Avoids redundant looping
